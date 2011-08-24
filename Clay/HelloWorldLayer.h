@@ -13,9 +13,12 @@
 // HelloWorldLayer
 @interface HelloWorldLayer : CCLayer
 {
+    CCSprite *sprite;
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
+
+-(void) moveSprite:(CGPoint)touchLocation;
 
 @end

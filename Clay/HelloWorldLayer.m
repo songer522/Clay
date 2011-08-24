@@ -37,6 +37,12 @@
 		
 		// create and initialize a Label
 		CCLabelTTF *label = [CCLabelTTF labelWithString:@"Hello World" fontName:@"Marker Felt" fontSize:64];
+        
+        sprite = [CCSprite spriteWithFile:@"red_circle.png"];
+        sprite.scale = 0.15f;
+        sprite.position = ccp(300,300);
+        [self addChild:sprite];
+        
 
 		// ask director the the window size
 		CGSize size = [[CCDirector sharedDirector] winSize];
@@ -46,8 +52,45 @@
 		
 		// add the label as a child to this Layer
 		[self addChild: label];
+        
+        self.isTouchEnabled = YES;
+        [self scheduleUpdate];
 	}
 	return self;
+}
+
+-(void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    NSSet *allTouches = [event allTouches];
+    for(UITouch *touch in allTouches) {
+        CGPoint touchLocation = [self convertTouchToNodeSpace:touch];
+        [self moveSprite:touchLocation];
+        [sprite setOpacity:255];
+    }
+}
+
+-(void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    NSSet *allTouches = [event allTouches];
+    for(UITouch *touch in allTouches) {
+        CGPoint touchLocation = [self convertTouchToNodeSpace:touch];
+        [self moveSprite:touchLocation];
+        [sprite setOpacity:255];
+    }
+}
+
+-(void) moveSprite:(CGPoint)touchLocation
+{
+    NSLog(@"X:%f Y:%f",touchLocation.x,touchLocation.y);
+    sprite.position = touchLocation;
+}
+
+-(void)update:(ccTime)dt
+{
+    NSLog(@"Update: %f",dt);
+    GLubyte opacity = sprite.opacity;
+    opacity -= dt*48;
+    [sprite setOpacity:opacity];
 }
 
 // on "dealloc" you need to release all your retained objects
