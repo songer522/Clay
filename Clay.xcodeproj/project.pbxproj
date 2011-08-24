@@ -123,6 +123,10 @@
 		54484E3B140449B700D0D7D9 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54484E3A140449B700D0D7D9 /* RootViewController.m */; };
 		54484E3E140449B700D0D7D9 /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 54484E3D140449B700D0D7D9 /* HelloWorldLayer.m */; };
 		54484E49140455A500D0D7D9 /* red_circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 54484E48140455A500D0D7D9 /* red_circle.png */; };
+		5498452D1405470C00088F77 /* forest.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5498452C1405470C00088F77 /* forest.jpg */; };
+		54984530140547F400088F77 /* forest@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5498452F140547F400088F77 /* forest@2x.jpg */; };
+		5498453314054BAE00088F77 /* left_foot.png in Resources */ = {isa = PBXBuildFile; fileRef = 5498453114054BAE00088F77 /* left_foot.png */; };
+		5498453414054BAE00088F77 /* right_foot.png in Resources */ = {isa = PBXBuildFile; fileRef = 5498453214054BAE00088F77 /* right_foot.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -362,6 +366,10 @@
 		54484E3D140449B700D0D7D9 /* HelloWorldLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
 		54484E3F140449B700D0D7D9 /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
 		54484E48140455A500D0D7D9 /* red_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = red_circle.png; path = Resources/red_circle.png; sourceTree = "<group>"; };
+		5498452C1405470C00088F77 /* forest.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = forest.jpg; path = Resources/forest.jpg; sourceTree = "<group>"; };
+		5498452F140547F400088F77 /* forest@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "forest@2x.jpg"; path = "Resources/forest@2x.jpg"; sourceTree = "<group>"; };
+		5498453114054BAE00088F77 /* left_foot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = left_foot.png; path = Resources/left_foot.png; sourceTree = "<group>"; };
+		5498453214054BAE00088F77 /* right_foot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = right_foot.png; path = Resources/right_foot.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -435,6 +443,10 @@
 		54484CE5140449B500D0D7D9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5498453114054BAE00088F77 /* left_foot.png */,
+				5498453214054BAE00088F77 /* right_foot.png */,
+				5498452F140547F400088F77 /* forest@2x.jpg */,
+				5498452C1405470C00088F77 /* forest.jpg */,
 				54484E48140455A500D0D7D9 /* red_circle.png */,
 				54484CE6140449B500D0D7D9 /* Default.png */,
 				54484CE8140449B500D0D7D9 /* fps_images.png */,
@@ -818,6 +830,10 @@
 				54484CF5140449B500D0D7D9 /* Icon@2x.png in Resources */,
 				54484CF8140449B500D0D7D9 /* iTunesArtwork in Resources */,
 				54484E49140455A500D0D7D9 /* red_circle.png in Resources */,
+				5498452D1405470C00088F77 /* forest.jpg in Resources */,
+				54984530140547F400088F77 /* forest@2x.jpg in Resources */,
+				5498453314054BAE00088F77 /* left_foot.png in Resources */,
+				5498453414054BAE00088F77 /* right_foot.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1019,6 +1035,7 @@
 				54484E44140449B700D0D7D9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
