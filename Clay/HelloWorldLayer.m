@@ -42,6 +42,18 @@
         background.scale = 1.0f;
         [self addChild:background];
 		
+        
+        speedbar_inner = [CCSprite spriteWithFile:@"speedbar_inner.png"];
+        speedbar_inner.position = ccp(screenSize.width / 2 - 63, 100);
+        speedbar_inner.anchorPoint = ccp(0,0.5);
+        speedbar_inner.scaleX = 0.75f;
+        [self addChild:speedbar_inner];
+        
+        
+        speedbar_outer = [CCSprite spriteWithFile:@"speedbar_outer.png"];
+        speedbar_outer.position = ccp(screenSize.width / 2, 100);
+        [self addChild:speedbar_outer];
+        
 		// create and initialize a Label
         showDistanceTravelled = [CCLabelTTF labelWithString:@"Distance Travelled: 0.00mi" dimensions:CGSizeMake(300, 50) alignment:UITextAlignmentLeft fontName:@"Arial" fontSize:18];
         
@@ -138,6 +150,7 @@
 {
     stalled = true;
     velocity = (velocity / 3.0f) * 2.0f;
+    acceleration = acceleration / 3.0f;
     delayBeforeVisibleFoot = 0.4f;
     rightFoot.opacity = 0;
     leftFoot.opacity = 0;
@@ -197,6 +210,9 @@
     }
     
     distanceTravelled += 0.000015f * velocity;
+    
+    speedbar_inner.scaleX = (21 * velocity)/127;
+    
     [self updateText];
     
 }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		542877DA1405857C00D45925 /* speedbar_inner.png in Resources */ = {isa = PBXBuildFile; fileRef = 542877D81405857C00D45925 /* speedbar_inner.png */; };
+		542877DB1405857C00D45925 /* speedbar_outer.png in Resources */ = {isa = PBXBuildFile; fileRef = 542877D91405857C00D45925 /* speedbar_outer.png */; };
 		54484CD5140449B500D0D7D9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54484CD4140449B500D0D7D9 /* QuartzCore.framework */; };
 		54484CD7140449B500D0D7D9 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54484CD6140449B500D0D7D9 /* OpenGLES.framework */; };
 		54484CD9140449B500D0D7D9 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54484CD8140449B500D0D7D9 /* OpenAL.framework */; };
@@ -130,6 +132,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		542877D81405857C00D45925 /* speedbar_inner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = speedbar_inner.png; path = Resources/speedbar_inner.png; sourceTree = "<group>"; };
+		542877D91405857C00D45925 /* speedbar_outer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = speedbar_outer.png; path = Resources/speedbar_outer.png; sourceTree = "<group>"; };
 		54484CD0140449B500D0D7D9 /* Clay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54484CD4140449B500D0D7D9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		54484CD6140449B500D0D7D9 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -443,6 +447,8 @@
 		54484CE5140449B500D0D7D9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				542877D81405857C00D45925 /* speedbar_inner.png */,
+				542877D91405857C00D45925 /* speedbar_outer.png */,
 				5498453114054BAE00088F77 /* left_foot.png */,
 				5498453214054BAE00088F77 /* right_foot.png */,
 				5498452F140547F400088F77 /* forest@2x.jpg */,
@@ -834,6 +840,8 @@
 				54984530140547F400088F77 /* forest@2x.jpg in Resources */,
 				5498453314054BAE00088F77 /* left_foot.png in Resources */,
 				5498453414054BAE00088F77 /* right_foot.png in Resources */,
+				542877DA1405857C00D45925 /* speedbar_inner.png in Resources */,
+				542877DB1405857C00D45925 /* speedbar_outer.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

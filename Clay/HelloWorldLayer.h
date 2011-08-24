@@ -19,6 +19,9 @@
     CCSprite *leftFoot;
     CCSprite *rightFoot;
     
+    CCSprite *speedbar_outer;
+    CCSprite *speedbar_inner;
+    
     CCLabelTTF *showDistanceTravelled;
     CCLabelTTF *showVelocity;
     
