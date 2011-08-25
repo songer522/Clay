@@ -3,7 +3,7 @@
 //  Clay
 //
 //  Created by Brian Cable on 8/23/11.
-//  Copyright __MyCompanyName__ 2011. All rights reserved.
+//  Copyright Xecudev, LLC 2011. All rights reserved.
 //
 
 #import "cocos2d.h"
@@ -12,6 +12,7 @@
 #import "GameConfig.h"
 #import "HelloWorldLayer.h"
 #import "RootViewController.h"
+#import "GameLayer.h"
 
 @implementation AppDelegate
 
@@ -110,7 +111,8 @@
 	[self removeStartupFlicker];
 	
 	// Run the intro Scene
-	[[CCDirector sharedDirector] runWithScene: [HelloWorldLayer scene]];
+	//[[CCDirector sharedDirector] runWithScene: [HelloWorldLayer scene]];
+    [[CCDirector sharedDirector] runWithScene: [GameLayer scene]];
 }
 
 

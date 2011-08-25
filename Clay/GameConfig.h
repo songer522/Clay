@@ -3,7 +3,7 @@
 //  Clay
 //
 //  Created by Brian Cable on 8/23/11.
-//  Copyright __MyCompanyName__ 2011. All rights reserved.
+//  Copyright Xecudev, LLC 2011. All rights reserved.
 //
 
 #ifndef __GAME_CONFIG_H
