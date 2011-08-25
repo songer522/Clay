@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		542877DA1405857C00D45925 /* speedbar_inner.png in Resources */ = {isa = PBXBuildFile; fileRef = 542877D81405857C00D45925 /* speedbar_inner.png */; };
 		542877DB1405857C00D45925 /* speedbar_outer.png in Resources */ = {isa = PBXBuildFile; fileRef = 542877D91405857C00D45925 /* speedbar_outer.png */; };
+		542877DF1405A65500D45925 /* character_Test_v2.png in Resources */ = {isa = PBXBuildFile; fileRef = 542877DE1405A65500D45925 /* character_Test_v2.png */; };
+		542877E11405A92B00D45925 /* character_Test-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 542877E01405A92B00D45925 /* character_Test-hd.png */; };
 		54484CD5140449B500D0D7D9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54484CD4140449B500D0D7D9 /* QuartzCore.framework */; };
 		54484CD7140449B500D0D7D9 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54484CD6140449B500D0D7D9 /* OpenGLES.framework */; };
 		54484CD9140449B500D0D7D9 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54484CD8140449B500D0D7D9 /* OpenAL.framework */; };
@@ -134,6 +136,8 @@
 /* Begin PBXFileReference section */
 		542877D81405857C00D45925 /* speedbar_inner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = speedbar_inner.png; path = Resources/speedbar_inner.png; sourceTree = "<group>"; };
 		542877D91405857C00D45925 /* speedbar_outer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = speedbar_outer.png; path = Resources/speedbar_outer.png; sourceTree = "<group>"; };
+		542877DE1405A65500D45925 /* character_Test_v2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = character_Test_v2.png; path = Resources/character_Test_v2.png; sourceTree = "<group>"; };
+		542877E01405A92B00D45925 /* character_Test-hd.png */ = {isa = PBXFileReference; name = "character_Test-hd.png"; path = "Resources/character_Test-hd.png"; sourceTree = "<group>"; };
 		54484CD0140449B500D0D7D9 /* Clay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54484CD4140449B500D0D7D9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		54484CD6140449B500D0D7D9 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -447,6 +451,8 @@
 		54484CE5140449B500D0D7D9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				542877E01405A92B00D45925 /* character_Test-hd.png */,
+				542877DE1405A65500D45925 /* character_Test_v2.png */,
 				542877D81405857C00D45925 /* speedbar_inner.png */,
 				542877D91405857C00D45925 /* speedbar_outer.png */,
 				5498453114054BAE00088F77 /* left_foot.png */,
@@ -842,6 +848,8 @@
 				5498453414054BAE00088F77 /* right_foot.png in Resources */,
 				542877DA1405857C00D45925 /* speedbar_inner.png in Resources */,
 				542877DB1405857C00D45925 /* speedbar_outer.png in Resources */,
+				542877DF1405A65500D45925 /* character_Test_v2.png in Resources */,
+				542877E11405A92B00D45925 /* character_Test-hd.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

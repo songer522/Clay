@@ -26,6 +26,9 @@
     CCLabelTTF *showVelocity;
     
     
+    CCSprite *character;
+    
+    
     float delayBeforeVisibleFoot;
     float distanceTravelled;
     float velocity;

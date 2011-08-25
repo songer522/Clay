@@ -40,8 +40,7 @@
         background = [CCSprite spriteWithFile:@"forest.jpg"];
         background.position = ccp(screenSize.width/2,screenSize.height/2);
         background.scale = 1.0f;
-        [self addChild:background];
-		
+        
         
         speedbar_inner = [CCSprite spriteWithFile:@"speedbar_inner.png"];
         speedbar_inner.position = ccp(screenSize.width / 2 - 63, 100);
@@ -84,6 +83,14 @@
         rightFoot.position = ccp(435, 50);
         [self addChild:rightFoot];        
         rightFoot.opacity = 0.0f;
+        
+        [self addChild:background];
+		
+        character = [CCSprite spriteWithFile:@"character_Test.png"];
+        character.position = ccp(100,0);
+        character.scale = 1.0f;
+        [self addChild:character];
+        
         
         self.isTouchEnabled = YES;
         [self scheduleUpdate];
