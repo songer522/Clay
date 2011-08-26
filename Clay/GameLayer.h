@@ -19,6 +19,9 @@
     Player *_player;
     
     Background *_background;
+    
+    CCSprite *_test;
+    CCAction *_running;
 }
 
 +(CCScene *) scene;

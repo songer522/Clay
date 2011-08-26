@@ -36,6 +36,29 @@
         _background = [Background backgroundForLayer:self];
         _player = [Player playerForLayer:self];
         
+        
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"anim_guy.plist"];
+        
+        CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"anim_guy.png"];
+        [self addChild:spriteSheet];
+        
+        NSMutableArray *walkFrames = [NSMutableArray array];
+        for (int i=1; i<=2; i++) {
+            [walkFrames addObject:
+             [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"player_idle_0%d-hd.png",i]]];
+        }
+        
+        CCAnimation *walkAnim = [CCAnimation animationWithFrames:walkFrames delay:0.1f];
+        
+        _test = [CCSprite spriteWithSpriteFrameName:@"player_idle_01-hd.png"];
+        _test.position = ccp(300,100);
+        
+        _running = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:walkAnim restoreOriginalFrame:NO]];
+        [_test runAction:_running];
+        
+        [spriteSheet addChild:_test];
+        
+        
         [self scheduleUpdate];
     }
     
