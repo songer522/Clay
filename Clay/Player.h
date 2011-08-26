@@ -22,6 +22,7 @@
 +(id) playerForLayer:(id)layer;
 - (id)initWithLayer:(id)layer;
 
+-(float)getVelocity;
 -(void)updatePlayer:(float)dt;
 
 @end

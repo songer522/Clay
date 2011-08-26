@@ -24,5 +24,6 @@
 +(CCScene *) scene;
 
 
+@property(nonatomic,retain) Player *_player;
 
 @end

@@ -12,6 +12,8 @@
 
 @implementation GameLayer
 
+@synthesize _player;
+
 +(CCScene *) scene
 {
 	// 'scene' is an autorelease object.
@@ -40,9 +42,12 @@
     return self;
 
 }
+
 -(void)update:(ccTime)dt
 {
     [_player updatePlayer:dt];
+    [_background update:dt];
+    
 }
 
 @end

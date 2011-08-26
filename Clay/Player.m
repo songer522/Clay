@@ -64,13 +64,20 @@
             [_sinCalculator addTime:dt];
         }
         float sinValue = [_sinCalculator calculate:kSinX];
-        NSLog(@"LOG: %f, SIN: %f",logValue,sinValue);
-        _velocity = (PLAYER_LOGX_MAGNITUDE * logValue + PLAYER_LOGX_OFFSET) + sinValue * 5;
-        _xposition = PLAYER_STARTING_X_POSITION + PLAYER_VELOCITY_MULTIPLIER * _velocity;
-        NSLog(@"xpos: %f",_xposition);
+
+        _velocity = (PLAYER_LOGX_MAGNITUDE * logValue + PLAYER_LOGX_OFFSET);
+        _xposition = PLAYER_STARTING_X_POSITION + PLAYER_VELOCITY_MULTIPLIER * _velocity + sinValue * 5;
         
         [_sprite setPositionAtX:_xposition Y:PLAYER_STARTING_Y_POSITION];
     }
+}
+
+
+//for now, the _xposition will represent the final velocity.
+//TODO: make velocity a class, that way it can be more dynamic and not clutter up this class
+-(float)getVelocity
+{
+    return _velocity;
 }
 
 @end
