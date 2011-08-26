@@ -46,6 +46,11 @@
     _sprite = sprite;
 }
 
+-(Sprite*) getSprite
+{
+    return _sprite;
+}
+
 -(void)update:(float)dt
 {
 }

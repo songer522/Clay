@@ -16,7 +16,7 @@
 }
 
 +(id)animationFromPlist:(NSString*)name forSequence:(NSString*)sequence withFrameCount:(int)count onLayer:(id)layer;
-- (id)initWithPlist:(NSString*)name forSequence:(NSString*)sequence withFrameCount:(int)count onLayer:(id)layer;
-
+-(id)initWithPlist:(NSString*)name forSequence:(NSString*)sequence withFrameCount:(int)count onLayer:(id)layer;
+-(void)useAnimationToReplaceSprite:(Sprite*)sprite;
 
 @end

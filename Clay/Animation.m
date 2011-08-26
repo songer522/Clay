@@ -23,16 +23,16 @@
     if (self) {
         // Initialization code here.
         
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:[NSString stringWithFormat:@"%s.plist",name]];
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:[name stringByAppendingString:@".plist"]];
         
-        _spriteSheet = [CCSpriteBatchNode batchNodeWithFile:[NSString stringWithFormat:@"%s.png",name]];
+        _spriteSheet = [CCSpriteBatchNode batchNodeWithFile:[name stringByAppendingString:@".png"]];
         
         [layer addChild:_spriteSheet];
         
         _frames = [NSMutableArray array];
-        for (int i=1; i<=count; i++) {
+        for (int i=1; i<=count; ++i) {
             [_frames addObject:
-             [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"%s%d-hd.png",sequence,i]]];
+                [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[sequence stringByAppendingFormat:@"%d-hd.png",i]]];
         }
 
     }
@@ -42,12 +42,13 @@
 
 -(void)useAnimationToReplaceSprite:(Sprite*)sprite
 {
-    
+    [[sprite getCCSprite] setBatchNode:_spriteSheet];
+    [[sprite getCCSprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"player_idle_01-hd.png"]];
     CCAnimation *_anim = [CCAnimation animationWithFrames:_frames delay:0.1f];
         
     CCAction *action = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:_anim restoreOriginalFrame:NO]];
     [[sprite getCCSprite] runAction:action];
     
-    [_spriteSheet addChild:[sprite getCCSprite]];
+    //[_spriteSheet addChild:[sprite getCCSprite]];
 }
 @end

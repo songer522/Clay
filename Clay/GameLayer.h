@@ -8,6 +8,7 @@
 
 #import "cocos2d.h"
 #import "GameClasses.h"
+#import "BaseClasses.h"
 #import <Foundation/Foundation.h>
 
 @class Sprite;
@@ -19,6 +20,8 @@
     Player *_player;
     
     Background *_background;
+    
+    Animation *_playerAnimation;
     
     CCSprite *_test;
     CCAction *_running;

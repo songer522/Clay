@@ -11,6 +11,7 @@
 #import "Sprite.h"
 #import "GameObject.h"
 #import "TimeEquation.h"
+#import "Animation.h"
 
 @interface BaseClasses : NSObject
 

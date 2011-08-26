@@ -20,6 +20,7 @@
 -(id) initWithSprite:(Sprite*)initSprite;
 -(void) setPositionAtX:(int)x Y:(int)y;
 -(void) setSprite:(Sprite*)sprite;
+-(Sprite*) getSprite;
 -(void) update:(float)dt;
 
 @end
