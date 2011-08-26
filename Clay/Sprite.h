@@ -13,10 +13,14 @@
     CCSprite *sprite_cc;
 }
 
-+(id) spriteWithFile:(NSString *)filename toScene:(id)scene;
--(id) initWithFile:(NSString *)filename toScene:(id)scene;
++(id) spriteWithFile:(NSString *)filename toLayer:(id)layer;
++(id) spriteWithFile:(NSString *)filename rect:(CGRect)rect toLayer:(id)layer;
+
+-(id) initWithFile:(NSString *)filename toLayer:(id)layer;
+-(id) initWithFile:(NSString *)filename rect:(CGRect)rect toLayer:(id)layer;
 -(void) setCentered;
 -(void) setPositionAtX:(float)x Y:(float)y;
 -(CCSprite*) getCCSprite;
+-(void) initializeSpriteOnceLoaded;
 
 @end

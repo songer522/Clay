@@ -19,8 +19,8 @@
     TimeEquation *_sinCalculator;
 }
 
-+(id) playerForScene:(id)scene;
-- (id)initWithScene:(id)scene;
++(id) playerForLayer:(id)layer;
+- (id)initWithLayer:(id)layer;
 
 -(void)updatePlayer:(float)dt;
 

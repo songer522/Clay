@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "BaseClasses.h"
 #import "Player.h"
+#import "Background.h"
 
 
 @interface GameClasses : NSObject

@@ -20,26 +20,51 @@
     return self;
 }
 
-+ (id) spriteWithFile:(NSString*)filename toScene:(id)scene
++(id) spriteWithFile:(NSString*)filename toLayer:(id)layer
 {
-    return [[self alloc] initWithFile:filename toScene:scene];
+    return [[self alloc] initWithFile:filename toLayer:layer];
 }
 
-- (id) initWithFile:(NSString*) filename toScene:(id)scene
++(id) spriteWithFile:(NSString *)filename rect:(CGRect)rect toLayer:(id)layer
+{
+    return [[self alloc] initWithFile:filename rect:rect toLayer:layer];
+}
+
+-(id) initWithFile:(NSString*) filename toLayer:(id)layer
 {
     NSAssert(filename!=nil, @"Invalid filename");
-    NSAssert(scene!=nil, @"Invalid scene");
+    NSAssert(layer!=nil, @"Invalid layer");
     
     if((self = [self init]))
     {
         sprite_cc = [[CCSprite spriteWithFile:filename] retain];
-        sprite_cc.position = ccp(0,0);
-        sprite_cc.anchorPoint = ccp(0,0);
-        [scene addChild:sprite_cc];
+        [self initializeSpriteOnceLoaded];
+        [layer addChild:sprite_cc];
     }
     return self;
 }
 
+-(id) initWithFile:(NSString *)filename rect:(CGRect)rect toLayer:(id)layer
+{
+    NSAssert(filename!=nil, @"Invalid filename");
+    NSAssert(layer!=nil, @"Invalid layer");
+    
+    if((self = [self init]))
+    {
+        sprite_cc = [[CCSprite spriteWithFile:filename] retain];
+        [self initializeSpriteOnceLoaded];
+        [layer addChild:sprite_cc];
+    }
+    return self;
+}
+
+-(void) initializeSpriteOnceLoaded
+{
+    NSAssert(sprite_cc!=nil, @"Do not call before sprite is loaded");
+    sprite_cc.position = ccp(0,0);
+    sprite_cc.anchorPoint = ccp(0,0);    
+}
+                     
 -(void) setCentered
 {
     sprite_cc.anchorPoint = ccp(0.5,0.5);

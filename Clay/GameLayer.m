@@ -31,12 +31,8 @@
 - (id)init
 {
     if( (self=[super init])) {
-        CGSize screenSize = [[CCDirector sharedDirector] winSize];
-        background = [Sprite spriteWithFile:@"background.png" toScene:self];
-        [background setCentered];
-        [background setPositionAtX:screenSize.width/2 Y:screenSize.height/2];
-        
-        _player = [Player playerForScene:self];
+        _background = [Background backgroundForLayer:self];
+        _player = [Player playerForLayer:self];
         
         [self scheduleUpdate];
     }

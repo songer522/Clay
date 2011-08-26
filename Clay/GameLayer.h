@@ -14,9 +14,11 @@
 
 @interface GameLayer : CCLayer
 {
-    Sprite *background;
+    //Sprite *background;
     
     Player *_player;
+    
+    Background *_background;
 }
 
 +(CCScene *) scene;
