@@ -48,7 +48,5 @@
         
     CCAction *action = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:_anim restoreOriginalFrame:NO]];
     [[sprite getCCSprite] runAction:action];
-    
-    //[_spriteSheet addChild:[sprite getCCSprite]];
 }
 @end

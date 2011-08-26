@@ -33,6 +33,8 @@
 - (id)init
 {
     if( (self=[super init])) {
+        [[CCDirector sharedDirector] setProjection:CCDirectorProjection2D];
+        
         _background = [Background backgroundForLayer:self];
         _player = [Player playerForLayer:self];
         

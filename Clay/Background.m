@@ -47,8 +47,8 @@
     if (_backgroundPosition<=-CCX_IPHONE_WIDTH) {
         _backgroundPosition+=CCX_IPHONE_WIDTH;
     }
-    [_bkg1 setPositionAtX:_backgroundPosition Y:BACKGROUND_STARTING_Y];
-    [_bkg2 setPositionAtX:(_backgroundPosition + CCX_IPHONE_WIDTH) Y:BACKGROUND_STARTING_Y];
+    [_bkg1 setPositionAtX:(int)_backgroundPosition Y:BACKGROUND_STARTING_Y];
+    [_bkg2 setPositionAtX:(int)(_backgroundPosition + CCX_IPHONE_WIDTH) Y:BACKGROUND_STARTING_Y];
 }
 
 @end
