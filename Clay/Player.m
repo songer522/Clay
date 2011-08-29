@@ -10,6 +10,7 @@
 #import "BaseClasses.h"
 #import "cocos2d.h"
 
+#define PLAYER_SPRITE_FILE @"player_idle_01.png"
 #define PLAYER_STARTING_VELOCITY 0
 #define PLAYER_STARTING_Y_POSITION 95
 #define PLAYER_STARTING_X_POSITION 20
@@ -17,6 +18,7 @@
 #define PLAYER_LOGX_MAGNITUDE 5
 #define PLAYER_LOGX_OFFSET 8.55
 #define PLAYER_SINX_MULTIPLIER 1
+#define PLAYER_SINX_MAGNITUDE 5
 #define PLAYER_VELOCITY_MULTIPLIER 2
 #define PLAYER_LOGX_MAX_VALUE 2.2
 
@@ -35,10 +37,9 @@
 
         _isRunning = true;
         _velocity = PLAYER_STARTING_VELOCITY;
-        _xposition = PLAYER_STARTING_X_POSITION;
         
-        [self setSprite:[Sprite spriteWithFile:@"player_idle_01.png" toLayer:layer]];
-        [self setPositionAtX:_xposition Y:PLAYER_STARTING_Y_POSITION];
+        [self setSprite:[Sprite spriteWithFile:PLAYER_SPRITE_FILE toLayer:layer]];
+        [self setPositionAtX:PLAYER_STARTING_X_POSITION Y:PLAYER_STARTING_Y_POSITION];
         
         //log equation to be used for calculating speed
         _logCalculator = [[TimeEquation alloc] init];
@@ -68,20 +69,25 @@
         float sinValue = [_sinCalculator calculate:kSinX];
 
         _velocity = (PLAYER_LOGX_MAGNITUDE * logValue + PLAYER_LOGX_OFFSET);
-        _xposition = PLAYER_STARTING_X_POSITION + PLAYER_VELOCITY_MULTIPLIER * _velocity + sinValue * 5;
+        float xposition = PLAYER_STARTING_X_POSITION + PLAYER_VELOCITY_MULTIPLIER * _velocity + sinValue * PLAYER_SINX_MAGNITUDE;
         
-        [_sprite setPositionAtX:_xposition Y:PLAYER_STARTING_Y_POSITION];
+        [_sprite setPositionAtX:xposition Y:PLAYER_STARTING_Y_POSITION];
     }
 }
 
 
-//for now, the _xposition will represent the final velocity.
 //TODO: make velocity a class, that way it can be more dynamic and not clutter up this class
 -(float)getVelocity
 {
     return _velocity;
 }
 
+-(void)dealloc
+{
+    [_logCalculator release];
+    [_sinCalculator release];
+    [super dealloc];
+}
 
 
 @end

@@ -38,8 +38,8 @@
         _background = [Background backgroundForLayer:self];
         _player = [Player playerForLayer:self];
         
-        _playerAnimation = [Animation animationFromPlist:@"anim_guy" forSequence:@"player_idle_0" withFrameCount:2 onLayer:self];
-        [_playerAnimation useAnimationToReplaceSprite:[_player getSprite]];
+        _playerAnimation = [Animation animationFromPlist:@"anim_guy" forSequence:@"player_idle_0" NumberOfFrames:2 onLayer:self];
+        [_playerAnimation useAnimationToReplaceSprite:_player.sprite];
         
         [self scheduleUpdate];
     }

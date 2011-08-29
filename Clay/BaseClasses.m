@@ -7,17 +7,3 @@
 //
 
 #import "BaseClasses.h"
-
-@implementation BaseClasses
-
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        // Initialization code here.
-    }
-    
-    return self;
-}
-
-@end

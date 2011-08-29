@@ -54,6 +54,7 @@
     }
     
     //position the backgrounds based on the position, one beside the other
+    //rounded to ints to keep seams from appearing between the two
     [_bkg1 setPositionAtX:(int)_backgroundPosition Y:BACKGROUND_STARTING_Y];
     [_bkg2 setPositionAtX:(int)(_backgroundPosition + CCX_IPHONE_WIDTH) Y:BACKGROUND_STARTING_Y];
 }

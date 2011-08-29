@@ -12,39 +12,62 @@
 
 @implementation Animation
 
-+(id)animationFromPlist:(NSString*)name forSequence:(NSString*)sequence withFrameCount:(int)count onLayer:(id)layer
+static NSString * const ANIMATION_GRAPHIC_EXTENSION = @".png";
+static NSString * const ANIMATION_HD_SUFFIX = @"hd";
+static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
+
+@synthesize delay = _delay;
+
++(id)animationFromPlist:(NSString*)name forSequence:(NSString*)sequence NumberOfFrames:(int)numberOfFrames onLayer:(id)layer
 {
-    return [[self alloc] initWithPlist:name forSequence:sequence withFrameCount:count onLayer:layer];
+    return [[self alloc] initWithPlist:name forSequence:sequence NumberOfFrames:numberOfFrames onLayer:layer];
 }
 
--(id)initWithPlist:(NSString*)name forSequence:(NSString*)sequence withFrameCount:(int)count onLayer:(id)layer
+-(id)initWithPlist:(NSString*)name forSequence:(NSString*)sequence NumberOfFrames:(int)numberOfFrames onLayer:(id)layer
 {
+    NSAssert(numberOfFrames>0,@"Number of frames must be 1 or greater.");
+    
     self = [super init];
     if (self) {
         // Initialization code here.
         
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:[name stringByAppendingString:@".plist"]];
+        //default delay
+        _delay = 0.1f;
         
-        _spriteSheet = [CCSpriteBatchNode batchNodeWithFile:[name stringByAppendingString:@".png"]];
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:[name stringByAppendingString:ANIMATION_SPRITE_CACHE_SUFFIX]];
+        
+        _spriteSheet = [CCSpriteBatchNode batchNodeWithFile:[name stringByAppendingString:ANIMATION_GRAPHIC_EXTENSION]];
+        
+        [self createFramesWithSequence:sequence NumberOfFrames:numberOfFrames];
         
         [layer addChild:_spriteSheet];
-        
-        _frames = [NSMutableArray array];
-        for (int i=1; i<=count; ++i) {
-            [_frames addObject:
-                [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[sequence stringByAppendingFormat:@"%d-hd.png",i]]];
-        }
 
     }
     
     return self;
 }
 
+-(void)createFramesWithSequence:(NSString*)sequence NumberOfFrames:(int)numberOfFrames
+{
+    _frames = [NSMutableArray array];
+    for (int i=1; i<=numberOfFrames; ++i) {
+        
+        //builds frameName with format "(SEQUENCE_NAME)(FRAME_NUMBER)-(HD_SUFFIX)(EXTENTION)", for example "player_1-hd.png"
+        NSString *frameName = [sequence stringByAppendingFormat:@"%d-%@%@",i, ANIMATION_HD_SUFFIX,ANIMATION_GRAPHIC_EXTENSION];
+        
+        if (i == 1) {
+            _firstFrameName = [NSString stringWithString:frameName];
+        }
+        
+        [_frames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName]];
+    }
+}
+                                  
 -(void)useAnimationToReplaceSprite:(Sprite*)sprite
 {
     [[sprite getCCSprite] setBatchNode:_spriteSheet];
-    [[sprite getCCSprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"player_idle_01-hd.png"]];
-    CCAnimation *_anim = [CCAnimation animationWithFrames:_frames delay:0.1f];
+    [[sprite getCCSprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:_firstFrameName]];
+    CCAnimation *_anim = [CCAnimation animationWithFrames:_frames delay:_delay];
         
     CCAction *action = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:_anim restoreOriginalFrame:NO]];
     [[sprite getCCSprite] runAction:action];

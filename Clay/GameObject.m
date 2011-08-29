@@ -12,6 +12,8 @@
 
 @implementation GameObject
 
+@synthesize sprite = _sprite;
+
 + (id) objectWithSprite:(Sprite*)sprite
 {
     return [[self alloc] initWithSprite:sprite];
@@ -39,16 +41,6 @@
 -(void)setPositionAtX:(int)x Y:(int)y
 {
     [_sprite setPositionAtX:x Y:y];
-}
-
--(void)setSprite:(Sprite *)sprite
-{
-    _sprite = sprite;
-}
-
--(Sprite*) getSprite
-{
-    return _sprite;
 }
 
 -(void)update:(float)dt
