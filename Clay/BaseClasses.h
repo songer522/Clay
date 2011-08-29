@@ -12,3 +12,5 @@
 #import "GameObject.h"
 #import "TimeEquation.h"
 #import "Animation.h"
+#import "InputController.h"
+#import "InputEvent.h"

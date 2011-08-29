@@ -11,3 +11,4 @@
 #import "BaseClasses.h"
 #import "Player.h"
 #import "Background.h"
+#import "GameController.h"

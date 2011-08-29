@@ -35,17 +35,38 @@
     if( (self=[super init])) {
         [[CCDirector sharedDirector] setProjection:CCDirectorProjection2D];
         
+        _gameController = [GameController gameController];
+        _inputController = [InputController inputController];
+        
         _background = [Background backgroundForLayer:self];
         _player = [Player playerForLayer:self];
         
         _playerAnimation = [Animation animationFromPlist:@"anim_guy" forSequence:@"player_idle_0" NumberOfFrames:2 onLayer:self];
+        _playerAnimation.delay = 0.03f;
         [_playerAnimation useAnimationToReplaceSprite:_player.sprite];
+        
+        Sprite *temp = [Sprite spriteWithFile:@"player_idle_01-hd.png" toLayer:self];
+        [temp setPositionAtX:300 Y:100];
+        Animation *player2 = [Animation animationFromPlist:@"anim_guy" forSequence:@"player_idle_0" NumberOfFrames:2 onLayer:self];
+        [player2 useAnimationToReplaceSprite:temp];
         
         [self scheduleUpdate];
     }
     
     return self;
 
+}
+
+
+-(void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    NSSet *allTouches = [event allTouches];
+    for(UITouch *touch in allTouches) {
+        InputEvent *event = [InputEvent inputEventWithType:INPUT_EVENT_TYPE_TOUCHES_BEGAN];
+        [event setReceiver:_gameController];
+        [event setTouchLocation:[self convertTouchToNodeSpace:touch]];
+        [_inputController interpretAndReactToInputEvent:event];
+    }
 }
 
 

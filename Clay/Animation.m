@@ -52,9 +52,10 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
     _frames = [NSMutableArray array];
     for (int i=1; i<=numberOfFrames; ++i) {
         
-        //builds frameName with format "(SEQUENCE_NAME)(FRAME_NUMBER)-(HD_SUFFIX)(EXTENTION)", for example "player_1-hd.png"
+        //builds frameName with format "(SEQUENCE_NAME)(FRAME_NUMBER)-(HD_SUFFIX)(FILE_EXTENSION)", for example "player_1-hd.png"
         NSString *frameName = [sequence stringByAppendingFormat:@"%d-%@%@",i, ANIMATION_HD_SUFFIX,ANIMATION_GRAPHIC_EXTENSION];
         
+        //we want to know the name of the first frame, so we can switch sprites to it later
         if (i == 1) {
             _firstFrameName = [NSString stringWithString:frameName];
         }

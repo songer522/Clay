@@ -22,6 +22,9 @@
     
     Animation *_playerAnimation;    //the animation for the player. TODO: integrate within player,
                                     //create AnimationManager class
+    GameController *_gameController;
+    
+    InputController *_inputController;
     
     //TODO: create a GameController class to link here, and any game logic into it.
 }

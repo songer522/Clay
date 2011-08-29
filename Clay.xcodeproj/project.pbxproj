@@ -10,6 +10,9 @@
 		5423405E1406CA2C0051E911 /* player_idle_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 5423405D1406CA2C0051E911 /* player_idle_01.png */; };
 		542340621406D0050051E911 /* TimeEquation.m in Sources */ = {isa = PBXBuildFile; fileRef = 542340611406D0050051E911 /* TimeEquation.m */; };
 		542340641406FA170051E911 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 542340631406FA160051E911 /* background.png */; };
+		54297897140C1F8900B3FFF4 /* GameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54297896140C1F8900B3FFF4 /* GameController.m */; };
+		5429789B140C233E00B3FFF4 /* InputController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5429789A140C233E00B3FFF4 /* InputController.m */; };
+		5429789E140C268100B3FFF4 /* InputEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5429789D140C268100B3FFF4 /* InputEvent.m */; };
 		54484CD5140449B500D0D7D9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54484CD4140449B500D0D7D9 /* QuartzCore.framework */; };
 		54484CD7140449B500D0D7D9 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54484CD6140449B500D0D7D9 /* OpenGLES.framework */; };
 		54484CD9140449B500D0D7D9 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54484CD8140449B500D0D7D9 /* OpenAL.framework */; };
@@ -144,6 +147,12 @@
 		542340601406D0050051E911 /* TimeEquation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeEquation.h; sourceTree = "<group>"; };
 		542340611406D0050051E911 /* TimeEquation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeEquation.m; sourceTree = "<group>"; };
 		542340631406FA160051E911 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = Resources/background.png; sourceTree = "<group>"; };
+		54297895140C1F8900B3FFF4 /* GameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameController.h; sourceTree = "<group>"; };
+		54297896140C1F8900B3FFF4 /* GameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameController.m; sourceTree = "<group>"; };
+		54297899140C233E00B3FFF4 /* InputController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputController.h; sourceTree = "<group>"; };
+		5429789A140C233E00B3FFF4 /* InputController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputController.m; sourceTree = "<group>"; };
+		5429789C140C268100B3FFF4 /* InputEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputEvent.h; sourceTree = "<group>"; };
+		5429789D140C268100B3FFF4 /* InputEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputEvent.m; sourceTree = "<group>"; };
 		54484CD0140449B500D0D7D9 /* Clay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54484CD4140449B500D0D7D9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		54484CD6140449B500D0D7D9 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -828,6 +837,10 @@
 				542340611406D0050051E911 /* TimeEquation.m */,
 				5496A2401408343600186F3D /* Animation.h */,
 				5496A2411408343600186F3D /* Animation.m */,
+				54297899140C233E00B3FFF4 /* InputController.h */,
+				5429789A140C233E00B3FFF4 /* InputController.m */,
+				5429789C140C268100B3FFF4 /* InputEvent.h */,
+				5429789D140C268100B3FFF4 /* InputEvent.m */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -841,6 +854,8 @@
 				54518F741406B761009D74AA /* GameClasses.m */,
 				54DF2A961407E4AA004FBFBE /* Background.h */,
 				54DF2A971407E4AB004FBFBE /* Background.m */,
+				54297895140C1F8900B3FFF4 /* GameController.h */,
+				54297896140C1F8900B3FFF4 /* GameController.m */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -1024,6 +1039,9 @@
 				542340621406D0050051E911 /* TimeEquation.m in Sources */,
 				54DF2A981407E4AB004FBFBE /* Background.m in Sources */,
 				5496A2421408343600186F3D /* Animation.m in Sources */,
+				54297897140C1F8900B3FFF4 /* GameController.m in Sources */,
+				5429789B140C233E00B3FFF4 /* InputController.m in Sources */,
+				5429789E140C268100B3FFF4 /* InputEvent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
