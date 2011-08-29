@@ -41,16 +41,12 @@
         _background = [Background backgroundForLayer:self];
         _player = [Player playerForLayer:self];
         
-        _playerAnimation = [Animation animationFromPlist:@"anim_guy" forSequence:@"player_idle_0" NumberOfFrames:2 onLayer:self];
-        _playerAnimation.delay = 0.03f;
+        _playerAnimation = [Animation animationFromPlist:@"character_running" forSequence:@"Character_Running_" NumberOfFrames:10 onLayer:self];
+        _playerAnimation.delay = 0.075f;
         [_playerAnimation useAnimationToReplaceSprite:_player.sprite];
-        
-        Sprite *temp = [Sprite spriteWithFile:@"player_idle_01-hd.png" toLayer:self];
-        [temp setPositionAtX:300 Y:100];
-        Animation *player2 = [Animation animationFromPlist:@"anim_guy" forSequence:@"player_idle_0" NumberOfFrames:2 onLayer:self];
-        [player2 useAnimationToReplaceSprite:temp];
-        
+                
         [self scheduleUpdate];
+        self.isTouchEnabled = YES;
     }
     
     return self;

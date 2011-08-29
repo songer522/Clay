@@ -7,6 +7,7 @@
 //
 
 #import "InputController.h"
+#import "GameController.h"
 
 @implementation InputController
 
@@ -28,9 +29,12 @@
 
 -(void)interpretAndReactToInputEvent:(InputEvent*)event
 {
+    GameController *receiver = (GameController*)event.receiver;
+    
     switch (event.type) {
         case INPUT_EVENT_TYPE_TOUCHES_BEGAN:
-            
+            //below is temporary while i find a better way to do this
+            [receiver reactToTouchAt:event.touchLocation];
             break;
             
         default:

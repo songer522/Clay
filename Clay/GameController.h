@@ -26,5 +26,6 @@ typedef enum {
 +(id)gameController;
 
 -(void)changeGameState:(GameState)gameState;
+-(void)reactToTouchAt:(CGPoint)location;
 
 @end

@@ -47,6 +47,13 @@
 
 }
 
-
+-(void)reactToTouchAt:(CGPoint)location
+{
+    if (location.x < 240) {
+        NSLog(@"jump!");
+    } else {
+        NSLog(@"dive!");
+    }
+}
 
 @end

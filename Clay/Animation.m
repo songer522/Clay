@@ -13,7 +13,7 @@
 @implementation Animation
 
 static NSString * const ANIMATION_GRAPHIC_EXTENSION = @".png";
-static NSString * const ANIMATION_HD_SUFFIX = @"hd";
+static NSString * const ANIMATION_HD_SUFFIX = @"";
 static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
 
 @synthesize delay = _delay;
@@ -53,7 +53,7 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
     for (int i=1; i<=numberOfFrames; ++i) {
         
         //builds frameName with format "(SEQUENCE_NAME)(FRAME_NUMBER)-(HD_SUFFIX)(FILE_EXTENSION)", for example "player_1-hd.png"
-        NSString *frameName = [sequence stringByAppendingFormat:@"%d-%@%@",i, ANIMATION_HD_SUFFIX,ANIMATION_GRAPHIC_EXTENSION];
+        NSString *frameName = [sequence stringByAppendingFormat:@"%d%@%@",i, ANIMATION_HD_SUFFIX,ANIMATION_GRAPHIC_EXTENSION];
         
         //we want to know the name of the first frame, so we can switch sprites to it later
         if (i == 1) {
