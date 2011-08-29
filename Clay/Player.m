@@ -22,6 +22,8 @@
 
 @implementation Player
 
+@synthesize isRunning = _isRunning;
+
 +(id) playerForLayer:(id)layer
 {
     return [[self alloc] initWithLayer:layer];
@@ -52,7 +54,7 @@
     return self;
 }
 
--(void)updatePlayer:(float)dt
+-(void)update:(float)dt
 {
 
     if (_isRunning) {        
@@ -79,5 +81,7 @@
 {
     return _velocity;
 }
+
+
 
 @end

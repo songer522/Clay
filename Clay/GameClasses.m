@@ -5,19 +5,7 @@
 //  Created by Brian Cable on 8/25/11.
 //  Copyright 2011 Xecudev, LLC. All rights reserved.
 //
+//  Put all imports for the Game folder here to allow for a single-line import for these classes in non-Game classes
+
 
 #import "GameClasses.h"
-
-@implementation GameClasses
-
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        // Initialization code here.
-    }
-    
-    return self;
-}
-
-@end

@@ -48,11 +48,20 @@
 
 }
 
+
 -(void)update:(ccTime)dt
 {
-    [_player updatePlayer:dt];
+    [_player update:dt];
     [_background update:dt];
     
+}
+
+-(void) dealloc
+{
+    [_player release];
+    [_background release];
+    [_playerAnimation release];
+    [super dealloc];
 }
 
 @end

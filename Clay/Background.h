@@ -5,6 +5,8 @@
 //  Created by Brian Cable on 8/26/11.
 //  Copyright 2011 Xecudev, LLC. All rights reserved.
 //
+//  The background layer for the game. Currently just loads two images and scrolls them based on the velocity
+//  value for the player in the GameLayer
 
 #import <Foundation/Foundation.h>
 #import "BaseClasses.h"
@@ -13,14 +15,18 @@
 
 @interface Background : NSObject
 {
-    GameLayer *_layer;
-    Sprite *_bkg1;
-    Sprite *_bkg2;
-    float _backgroundPosition;
+    GameLayer *_layer;                  //reference to the game layer
+    
+    Sprite *_bkg1;                      //the first background sprite (starts on the screen)
+    Sprite *_bkg2;                      //the second background sprite (starts to the right of the first)
+    
+    float _backgroundPosition;          //current background position
 }
 
-+(id)backgroundForLayer:(id)layer;
--(id)initForLayer:(id)layer;
--(void)update:(float)dt;
++(id)backgroundForLayer:(id)layer;      //creates background, attaches it to given layer, and returns it
+
+-(id)initForLayer:(id)layer;            //constructor
+
+-(void)update:(float)dt;                //updates the background positions, dt = seconds since last update
 
 @end

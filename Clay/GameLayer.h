@@ -5,6 +5,7 @@
 //  Created by Brian Cable on 8/25/11.
 //  Copyright 2011 Xecudev, LLC. All rights reserved.
 //
+//  This class is the main layer on which Clay will take place.
 
 #import "cocos2d.h"
 #import "GameClasses.h"
@@ -15,20 +16,17 @@
 
 @interface GameLayer : CCLayer
 {
-    //Sprite *background;
+    Player *_player;                //the player character in the game
     
-    Player *_player;
+    Background *_background;        //the background layer
     
-    Background *_background;
+    Animation *_playerAnimation;    //the animation for the player. TODO: integrate within player,
+                                    //create AnimationManager class
     
-    Animation *_playerAnimation;
-    
-    CCSprite *_test;
-    CCAction *_running;
+    //TODO: create a GameController class to link here, and any game logic into it.
 }
 
-+(CCScene *) scene;
-
++(CCScene *) scene; //create and return a Cocos2D scene
 
 @property(nonatomic,retain) Player *_player;
 
