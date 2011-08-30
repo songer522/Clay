@@ -44,7 +44,7 @@
 -(void)update:(float)dt
 {
     //determine how far to scroll based on a multiple of the player's velocity
-    float vx = [_layer._player getVelocity];
+    float vx = [_layer.player getVelocityX];
     _backgroundPosition -= vx * BACKGROUND_VELOCITY_MODIFIER;
     
     //if we've scrolled to the point where the right image is about to move off the screen,

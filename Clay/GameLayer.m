@@ -12,7 +12,7 @@
 
 @implementation GameLayer
 
-@synthesize _player;
+@synthesize player = _player;
 
 +(CCScene *) scene
 {
@@ -36,6 +36,7 @@
         [[CCDirector sharedDirector] setProjection:CCDirectorProjection2D];
         
         _gameController = [GameController gameController];
+        [_gameController setLayer:self];
         _inputController = [InputController inputController];
         
         _background = [Background backgroundForLayer:self];

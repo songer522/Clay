@@ -7,8 +7,12 @@
 //
 
 #import "GameController.h"
+#import "GameLayer.h"
+
 
 @implementation GameController
+
+@synthesize layer = _layer;
 
 - (id)init
 {
@@ -51,9 +55,18 @@
 {
     if (location.x < 240) {
         NSLog(@"jump!");
+        if (!_layer.player.isJumping) {
+            [_layer.player startJump:JUMP_MEDIUM];
+        }
     } else {
         NSLog(@"dive!");
+        
     }
+}
+
+-(void)setLayer:(GameLayer*)gameLayer
+{
+    _layer = gameLayer;
 }
 
 @end

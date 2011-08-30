@@ -31,6 +31,6 @@
 
 +(CCScene *) scene; //create and return a Cocos2D scene
 
-@property(nonatomic,retain) Player *_player;
+@property(nonatomic,retain) Player *player;
 
 @end

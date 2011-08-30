@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class GameLayer;
+
 typedef enum {
     GAMESTATE_INITIALIZE,
     GAMESTATE_PRE_RACE,
@@ -21,11 +23,15 @@ typedef enum {
 @interface GameController : NSObject
 {
     GameState _currentGameState;
+    GameLayer *_layer;
 }
+
+@property(nonatomic,retain) GameLayer *layer;
 
 +(id)gameController;
 
 -(void)changeGameState:(GameState)gameState;
 -(void)reactToTouchAt:(CGPoint)location;
+-(void)setLayer:(GameLayer*)layer;
 
 @end

@@ -21,10 +21,12 @@
 #define PLAYER_SINX_MAGNITUDE 5
 #define PLAYER_VELOCITY_MULTIPLIER 2
 #define PLAYER_LOGX_MAX_VALUE 2.2
+#define PLAYER_VELOCITY_Y_MAX 10.0f
 
 @implementation Player
 
 @synthesize isRunning = _isRunning;
+@synthesize isJumping = _isJumping;
 
 +(id) playerForLayer:(id)layer
 {
@@ -36,7 +38,10 @@
     if ((self=[super init])) {
 
         _isRunning = true;
-        _velocity = PLAYER_STARTING_VELOCITY;
+        _isJumping = false;
+        _velocityX = PLAYER_STARTING_VELOCITY;
+        _velocityY = 0;
+        _yPosition = PLAYER_STARTING_Y_POSITION;
         
         [self setSprite:[Sprite spriteWithFile:PLAYER_SPRITE_FILE toLayer:layer]];
         [self setPositionAtX:PLAYER_STARTING_X_POSITION Y:PLAYER_STARTING_Y_POSITION];
@@ -68,18 +73,42 @@
         }
         float sinValue = [_sinCalculator calculate:kSinX];
 
-        _velocity = (PLAYER_LOGX_MAGNITUDE * logValue + PLAYER_LOGX_OFFSET);
-        float xposition = PLAYER_STARTING_X_POSITION + PLAYER_VELOCITY_MULTIPLIER * _velocity + sinValue * PLAYER_SINX_MAGNITUDE;
+        _velocityX = (PLAYER_LOGX_MAGNITUDE * logValue + PLAYER_LOGX_OFFSET);
+        float xposition = PLAYER_STARTING_X_POSITION + PLAYER_VELOCITY_MULTIPLIER * _velocityX + sinValue * PLAYER_SINX_MAGNITUDE;
         
-        [_sprite setPositionAtX:xposition Y:PLAYER_STARTING_Y_POSITION];
+        [self updateJump:dt];
+        
+        [_sprite setPositionAtX:xposition Y:_yPosition];
     }
+}
+
+-(void)updateJump:(float)dt
+{
+    if (_isJumping) {
+        _velocityY += 24.0 * dt;
+        if(_velocityY > PLAYER_VELOCITY_Y_MAX) {
+            _velocityY = PLAYER_VELOCITY_Y_MAX;
+        }
+        _yPosition -= _velocityY;
+        
+        if (_yPosition <= PLAYER_STARTING_Y_POSITION) {
+            _yPosition = PLAYER_STARTING_Y_POSITION;
+            _isJumping = false;
+        }
+    }
+}
+
+-(void)startJump:(RunnerJump)height
+{
+    _velocityY = -3.0f * height;
+    _isJumping = true;
 }
 
 
 //TODO: make velocity a class, that way it can be more dynamic and not clutter up this class
--(float)getVelocity
+-(float)getVelocityX
 {
-    return _velocity;
+    return _velocityX;
 }
 
 -(void)dealloc
