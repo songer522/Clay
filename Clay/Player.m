@@ -12,7 +12,7 @@
 
 #define PLAYER_SPRITE_FILE @"player_idle_01.png"
 #define PLAYER_STARTING_VELOCITY 0
-#define PLAYER_STARTING_Y_POSITION 97
+#define PLAYER_STARTING_Y_POSITION 40
 #define PLAYER_STARTING_X_POSITION 20
 #define PLAYER_LOGX_MULTIPLIER 1
 #define PLAYER_LOGX_MAGNITUDE 5
@@ -59,6 +59,7 @@
         
         speed = [[RunningSpeed alloc] init];
         [speed setPace:RUNNING_SPEED_PACE_ENDURANCE];
+        [speed setPlayer:self];
     }
     
     return self;
@@ -108,6 +109,10 @@
     _isTurbo = true;
 }
 
+-(void)setIsTurbo:(_Bool)isTurbo
+{
+    _isTurbo = isTurbo;
+}
 
 //TODO: make velocity a class, that way it can be more dynamic and not clutter up this class
 -(float)getVelocityX

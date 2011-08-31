@@ -75,7 +75,7 @@
 -(void)endTurbo
 {
     [self setPace:RUNNING_SPEED_PACE_ENDURANCE];
-    _player.isTurbo = false;
+    [_player setIsTurbo:false];
     _inTurbo = false;
     _stamina = RUNNING_SPEED_MAX_STAMINA;
 }
@@ -84,7 +84,7 @@
 {
     if (_pace == RUNNING_SPEED_PACE_RECOVERY) {
         _stamina += 5.0f * dt;
-        if (_stamina >= RUNNING_SPEED_MAX_STAMINA) {
+        if (_stamina >= RUNNING_SPEED_MAX_STAMINA && _inTurbo) {
             [self endTurbo];
         }
     } else {
