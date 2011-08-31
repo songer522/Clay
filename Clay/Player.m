@@ -12,7 +12,7 @@
 
 #define PLAYER_SPRITE_FILE @"player_idle_01.png"
 #define PLAYER_STARTING_VELOCITY 0
-#define PLAYER_STARTING_Y_POSITION 95
+#define PLAYER_STARTING_Y_POSITION 97
 #define PLAYER_STARTING_X_POSITION 20
 #define PLAYER_LOGX_MULTIPLIER 1
 #define PLAYER_LOGX_MAGNITUDE 5
@@ -27,6 +27,7 @@
 
 @synthesize isRunning = _isRunning;
 @synthesize isJumping = _isJumping;
+@synthesize isTurbo = _isTurbo;
 
 +(id) playerForLayer:(id)layer
 {
@@ -39,7 +40,8 @@
 
         _isRunning = true;
         _isJumping = false;
-        _velocityX = PLAYER_STARTING_VELOCITY;
+        _isTurbo = false;
+        //_velocityX = PLAYER_STARTING_VELOCITY;
         _velocityY = 0;
         _yPosition = PLAYER_STARTING_Y_POSITION;
         
@@ -55,6 +57,8 @@
         [_sinCalculator setTimeMultiplier:PLAYER_SINX_MULTIPLIER];
         
         
+        speed = [[RunningSpeed alloc] init];
+        [speed setPace:RUNNING_SPEED_PACE_ENDURANCE];
     }
     
     return self;
@@ -64,26 +68,20 @@
 {
 
     if (_isRunning) {        
-        [_logCalculator addTime:dt];
-        float logValue = [_logCalculator calculate:kLogX];
-        
-        if (logValue >= PLAYER_LOGX_MAX_VALUE) {
-            logValue = PLAYER_LOGX_MAX_VALUE;
-            [_sinCalculator addTime:dt];
-        }
-        float sinValue = [_sinCalculator calculate:kSinX];
-
-        _velocityX = (PLAYER_LOGX_MAGNITUDE * logValue + PLAYER_LOGX_OFFSET);
-        float xposition = PLAYER_STARTING_X_POSITION + PLAYER_VELOCITY_MULTIPLIER * _velocityX + sinValue * PLAYER_SINX_MAGNITUDE;
+        float xposition = PLAYER_STARTING_X_POSITION + PLAYER_VELOCITY_MULTIPLIER * speed.velocity;
         
         [self updateJump:dt];
         
         [_sprite setPositionAtX:xposition Y:_yPosition];
     }
+    
+    [speed update:dt];
 }
 
 -(void)updateJump:(float)dt
 {
+    [speed update:dt];
+    
     if (_isJumping) {
         _velocityY += 24.0 * dt;
         if(_velocityY > PLAYER_VELOCITY_Y_MAX) {
@@ -104,11 +102,18 @@
     _isJumping = true;
 }
 
+-(void)startTurbo
+{
+    [speed startTurbo];
+    _isTurbo = true;
+}
+
 
 //TODO: make velocity a class, that way it can be more dynamic and not clutter up this class
 -(float)getVelocityX
 {
-    return _velocityX;
+    //return _velocityX;
+    return speed.velocity;
 }
 
 -(void)dealloc

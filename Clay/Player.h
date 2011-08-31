@@ -9,6 +9,7 @@
 
 #import <Foundation/Foundation.h>
 #import "BaseClasses.h"
+#import "RunningSpeed.h"
 #import "cocos2d.h"
 
 typedef enum {
@@ -21,6 +22,8 @@ typedef enum {
 {
     bool _isRunning;                    //will be used for starting gun, and will be used for gamestate for the time being
     bool _isJumping;
+    bool _isTurbo;
+    
     float _velocityY;
     float _velocityX;                    //current velocity of the runner
     
@@ -28,6 +31,8 @@ typedef enum {
     
     TimeEquation *_logCalculator;       //uses log to determine velocity
     TimeEquation *_sinCalculator;       //uses sin to add a bit of sway to the runner's gait
+    
+    RunningSpeed *speed;
 }
 
 +(id) playerForLayer:(id)layer;         //create player, attach it to (layer), return it
@@ -39,7 +44,10 @@ typedef enum {
 -(void)startJump:(RunnerJump)height;
 -(void)updateJump:(float)dt;
 
+-(void)startTurbo;
+
 @property(nonatomic,assign) bool isRunning;
 @property(nonatomic,assign) bool isJumping;
+@property(nonatomic,assign) bool isTurbo;
 
 @end

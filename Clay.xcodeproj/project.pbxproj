@@ -144,6 +144,8 @@
 		549B33481408297900953E67 /* anim_guy.plist in Resources */ = {isa = PBXBuildFile; fileRef = 549B33461408297900953E67 /* anim_guy.plist */; };
 		549B3350140830C100953E67 /* anim_guy.png in Resources */ = {isa = PBXBuildFile; fileRef = 549B334F140830C100953E67 /* anim_guy.png */; };
 		54C4CA9F140D405B00156936 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C4CA9E140D405B00156936 /* Utilities.m */; };
+		54CA0B19140D65DB0038B3E1 /* Runner.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CA0B18140D65DB0038B3E1 /* Runner.m */; };
+		54CA0B20140D698B0038B3E1 /* RunningSpeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CA0B1F140D698B0038B3E1 /* RunningSpeed.m */; };
 		54DF2A981407E4AB004FBFBE /* Background.m in Sources */ = {isa = PBXBuildFile; fileRef = 54DF2A971407E4AB004FBFBE /* Background.m */; };
 /* End PBXBuildFile section */
 
@@ -417,6 +419,10 @@
 		549B334F140830C100953E67 /* anim_guy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = anim_guy.png; path = Resources/anim_guy.png; sourceTree = "<group>"; };
 		54C4CA9D140D405B00156936 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		54C4CA9E140D405B00156936 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
+		54CA0B17140D65DB0038B3E1 /* Runner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Runner.h; sourceTree = "<group>"; };
+		54CA0B18140D65DB0038B3E1 /* Runner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Runner.m; sourceTree = "<group>"; };
+		54CA0B1E140D698B0038B3E1 /* RunningSpeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RunningSpeed.h; sourceTree = "<group>"; };
+		54CA0B1F140D698B0038B3E1 /* RunningSpeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RunningSpeed.m; sourceTree = "<group>"; };
 		54DF2A961407E4AA004FBFBE /* Background.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Background.h; sourceTree = "<group>"; };
 		54DF2A971407E4AB004FBFBE /* Background.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Background.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -873,6 +879,10 @@
 				54DF2A971407E4AB004FBFBE /* Background.m */,
 				54297895140C1F8900B3FFF4 /* GameController.h */,
 				54297896140C1F8900B3FFF4 /* GameController.m */,
+				54CA0B17140D65DB0038B3E1 /* Runner.h */,
+				54CA0B18140D65DB0038B3E1 /* Runner.m */,
+				54CA0B1E140D698B0038B3E1 /* RunningSpeed.h */,
+				54CA0B1F140D698B0038B3E1 /* RunningSpeed.m */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -1064,6 +1074,8 @@
 				5429789B140C233E00B3FFF4 /* InputController.m in Sources */,
 				5429789E140C268100B3FFF4 /* InputEvent.m in Sources */,
 				54C4CA9F140D405B00156936 /* Utilities.m in Sources */,
+				54CA0B19140D65DB0038B3E1 /* Runner.m in Sources */,
+				54CA0B20140D698B0038B3E1 /* RunningSpeed.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

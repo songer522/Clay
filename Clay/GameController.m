@@ -59,8 +59,10 @@
             [_layer.player startJump:JUMP_MEDIUM];
         }
     } else {
-        NSLog(@"dive!");
-        
+        //NSLog(@"dive!");
+        if(!_layer.player.isTurbo) {
+            [_layer.player startTurbo];
+        }
     }
 }
 
