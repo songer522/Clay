@@ -14,9 +14,10 @@
 #define RUNNING_SPEED_TURBO_VELOCITY 40.0f
 #define RUNNING_SPEED_TURBO_PERIOD 7.0f
 #define RUNNING_SPEED_PACE_ENDURANCE 1.0f
-#define RUNNING_SPEED_PACE_RECOVERY 0.75f
+#define RUNNING_SPEED_PACE_RECOVERY 0.8f
 #define RUNNING_SPEED_PACE_TURBO 2.0f
 #define RUNNING_SPEED_MAX_STAMINA 20.0f
+#define RUNNING_SPEED_MIN_VELOCITY 14.0f
 
 @class Player;
 
@@ -26,20 +27,19 @@
     bool _atMax;
     
     float _velocity;
+    float _targetVelocity;                 //used when slowing down or speeding up
+    
     float _acceleration;
     float _targetAcceleration;
+    
     float _stamina;
     
-    float _targetSpeed;                 //used when slowing down or speeding up
     
     float _timeToLockSpeedAtTarget;     //when positive, locks the speed at the target (when reached) until done
     
     float _pace;
     
     Player *_player;
-    
-    TimeEquation *_logCalculator;
-    TimeEquation *_sinCalculator;
 }
 
 @property(readonly,nonatomic,assign) float velocity;
@@ -48,9 +48,14 @@
 -(void)startTurbo;
 -(void)endTurbo;
 -(void)update:(float)dt;
--(void)updateAcceleration:(float)dt;
--(void)updateStamina:(float)dt;
 -(void)setPace:(float)modifier;
 -(void)setPlayer:(Player*)player;
+
+//private methods
+-(void)updateAcceleration:(float)dt;
+-(void)updateAccelerationWhenBelowTargetVelocity:(float)dt;
+-(void)updateAccelerationWhenAboveTargetVelocity:(float)dt;
+-(void)updateStamina:(float)dt;
+
 
 @end
