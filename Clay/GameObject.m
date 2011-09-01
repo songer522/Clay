@@ -13,6 +13,8 @@
 @implementation GameObject
 
 @synthesize sprite = _sprite;
+@synthesize x = _x;
+@synthesize y = _y;
 
 + (id) objectWithSprite:(Sprite*)sprite
 {

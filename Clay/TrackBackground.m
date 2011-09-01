@@ -21,8 +21,10 @@
 {
     self = [super init];
     if (self) {
-        _track = [TrackBackgroundLayer trackLayerWithImage:@"track.png" Layer:layer RateOfChange:0.003f];
-        _bushes = [TrackBackgroundLayer trackLayerWithImage:@"foreground.png" Layer:layer RateOfChange:-0.3f];
+        _track = [TrackBackgroundLayer trackLayerWithImage:@"track.png" Layer:layer RateOfChange:0.004f];
+        _bushes = [TrackBackgroundLayer trackLayerWithImage:@"foreground.png" Layer:layer RateOfChange:-0.30f];
+        _sky = [TrackBackgroundLayer trackLayerWithImage:@"sky.png" Layer:layer RateOfChange:-0.001f];
+        _fence = [TrackBackgroundLayer trackLayerWithImage:@"fence.png" Layer:layer RateOfChange:-0.34f];
     }
     
     return self;
@@ -30,8 +32,10 @@
 
 -(void)update:(float)dt Velocity:(float)vx
 {
+    [_sky update:dt Velocity:vx];
     [_track update:dt Velocity:vx];
     [_bushes update:dt Velocity:vx];
+    [_fence update:dt Velocity:vx];
 }
 
 @end

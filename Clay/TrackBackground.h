@@ -15,10 +15,10 @@
 
 @interface TrackBackground : NSObject
 {
-    TrackBackgroundLayer *_clouds;
+    TrackBackgroundLayer *_sky;
     TrackBackgroundLayer *_track;
     TrackBackgroundLayer *_bushes;
-    TrackBackgroundLayer *_nearFence;
+    TrackBackgroundLayer *_fence;
 }
 
 +(id)backgroundForLayer:(id)layer;                  //creates background, attaches it to given layer, and returns it

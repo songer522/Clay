@@ -25,9 +25,7 @@
 
 @implementation Player
 
-@synthesize isRunning = _isRunning;
 @synthesize isJumping = _isJumping;
-@synthesize isTurbo = _isTurbo;
 
 +(id) playerForLayer:(id)layer
 {
@@ -38,28 +36,19 @@
 {
     if ((self=[super init])) {
 
-        _isRunning = true;
         _isJumping = false;
-        _isTurbo = false;
-        //_velocityX = PLAYER_STARTING_VELOCITY;
-        _velocityY = 0;
+        _vx = 0;
+        _vy = 0;
         _yPosition = PLAYER_STARTING_Y_POSITION;
         
         [self setSprite:[Sprite spriteWithFile:PLAYER_SPRITE_FILE toLayer:layer]];
         [self setPositionAtX:PLAYER_STARTING_X_POSITION Y:PLAYER_STARTING_Y_POSITION];
         
-        //log equation to be used for calculating speed
-        _logCalculator = [[TimeEquation alloc] init];
-        [_logCalculator setTimeMultiplier:PLAYER_LOGX_MULTIPLIER];
-        
-        //sin equation to be used for calculating the extra sway when the max log is reached
-        _sinCalculator = [[TimeEquation alloc] init];
-        [_sinCalculator setTimeMultiplier:PLAYER_SINX_MULTIPLIER];
-        
-        
         speed = [[RunningSpeed alloc] init];
         [speed setPace:RUNNING_SPEED_PACE_ENDURANCE];
         [speed setPlayer:self];
+        [speed start];
+        [self changeToRunnerState:RUNNER_STATE_RUNNING];
     }
     
     return self;
@@ -69,6 +58,8 @@
 {
 
     if (_isRunning) {        
+        [speed update:dt];
+        
         float xposition = PLAYER_STARTING_X_POSITION + PLAYER_VELOCITY_MULTIPLIER * speed.velocity;
         
         [self updateJump:dt];
@@ -76,22 +67,21 @@
         [_sprite setPositionAtX:xposition Y:_yPosition];
     }
     
-    [speed update:dt];
+    
+    
 }
 
 -(void)updateJump:(float)dt
 {
-    [speed update:dt];
-    
     if (_isJumping) {
-        _velocityY += 24.0 * dt;
-        if(_velocityY > PLAYER_VELOCITY_Y_MAX) {
-            _velocityY = PLAYER_VELOCITY_Y_MAX;
+        _vy += 24.0f * dt;
+        if(_vy > PLAYER_VELOCITY_Y_MAX) {
+            _vy = PLAYER_VELOCITY_Y_MAX;
         }
-        _yPosition -= _velocityY;
+        _y -= _vy;
         
-        if (_yPosition <= PLAYER_STARTING_Y_POSITION) {
-            _yPosition = PLAYER_STARTING_Y_POSITION;
+        if (_y <= PLAYER_STARTING_Y_POSITION) {
+            _y = PLAYER_STARTING_Y_POSITION;
             _isJumping = false;
         }
     }
@@ -99,32 +89,29 @@
 
 -(void)startJump:(RunnerJump)height
 {
-    _velocityY = -3.0f * height;
+    _vy = -3.0f * height;
     _isJumping = true;
 }
 
 -(void)startTurbo
 {
     [speed startTurbo];
-    _isTurbo = true;
 }
 
--(void)setIsTurbo:(_Bool)isTurbo
-{
-    _isTurbo = isTurbo;
+-(bool)getIsTurbo {
+    return speed.inTurbo;
 }
 
-//TODO: make velocity a class, that way it can be more dynamic and not clutter up this class
+
+//used by background layers for scrolling
 -(float)getVelocityX
 {
-    //return _velocityX;
     return speed.velocity;
 }
 
 -(void)dealloc
 {
-    [_logCalculator release];
-    [_sinCalculator release];
+    [speed dealloc];
     [super dealloc];
 }
 

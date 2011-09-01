@@ -8,7 +8,6 @@
 
 #import "cocos2d.h"
 #import "GameLayer.h"
-#import "GameClasses.h"
 
 @implementation GameLayer
 
@@ -40,12 +39,19 @@
         _inputController = [InputController inputController];
         
         _background = [TrackBackground backgroundForLayer:self];
-        _player = [Player playerForLayer:self];
+
+        for (int i=0; i<1; i++) {
+            Sprite *sprite = [Sprite spriteWithFile:@"player_idle_01.png" toLayer:self];
+            [sprite setAnimation:[Animation animationFromPlist:@"character_running" forSequence:@"Character_Running_" NumberOfFrames:10 onLayer:self] Delay:0.075f];
+            Runner *runner = [Runner runnerWithSprite:sprite Layer:self];
+            [runner setPositionAtX:-10.0f+i*8.0f Y:195 - (2 * i)];
+            [_runners addObject:runner];
+        }        
         
-        _playerAnimation = [Animation animationFromPlist:@"character_running" forSequence:@"Character_Running_" NumberOfFrames:10 onLayer:self];
-        _playerAnimation.delay = 0.075f;
-        [_playerAnimation useAnimationToReplaceSprite:_player.sprite];
-                
+        
+        _player = [Player playerForLayer:self];
+        [[_player getSprite] setAnimation:[Animation animationFromPlist:@"character_running" forSequence:@"Character_Running_" NumberOfFrames:10 onLayer:self] Delay:0.075f];
+        
         [self scheduleUpdate];
         self.isTouchEnabled = YES;
     }

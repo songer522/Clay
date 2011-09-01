@@ -60,7 +60,7 @@
         }
     } else {
         //NSLog(@"dive!");
-        if(!_layer.player.isTurbo) {
+        if(![_layer.player getIsTurbo]) {
             [_layer.player startTurbo];
         }
     }

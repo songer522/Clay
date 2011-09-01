@@ -8,9 +8,12 @@
 
 #import "cocos2d.h"
 
+@class Animation;
+
 @interface Sprite : NSObject
 {
     CCSprite *sprite_cc;
+    Animation *_animation;
 }
 
 +(id) spriteWithFile:(NSString *)filename toLayer:(id)layer;
@@ -24,4 +27,5 @@
 -(void) initializeSpriteOnceLoaded;
 -(float) getWidth;
 -(float) getHeight;
+-(void)setAnimation:(Animation*)animation Delay:(float)delay;
 @end

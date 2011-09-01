@@ -26,7 +26,7 @@
     
     InputController *_inputController;
     
-    //TODO: create a GameController class to link here, and any game logic into it.
+    NSMutableArray *_runners;
 }
 
 +(CCScene *) scene; //create and return a Cocos2D scene

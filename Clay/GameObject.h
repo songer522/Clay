@@ -15,9 +15,13 @@
 {
     Sprite *_sprite;
     //Animation *_animation;
+    float _x;
+    float _y;
 }
 
 @property(nonatomic,retain) Sprite *sprite;
+@property(nonatomic,assign) float x;
+@property(nonatomic,assign) float y;
 
 +(id) objectWithSprite:(Sprite*)sprite;     //create game object, add a sprite to it, return
 -(id) initWithSprite:(Sprite*)initSprite;   //constructor

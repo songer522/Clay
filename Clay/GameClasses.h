@@ -11,4 +11,6 @@
 #import "BaseClasses.h"
 #import "Player.h"
 #import "TrackBackground.h"
+#import "TrackBackgroundLayer.h"
 #import "GameController.h"
+#import "Runner.h"

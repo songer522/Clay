@@ -10,6 +10,7 @@
 #import <Foundation/Foundation.h>
 #import "BaseClasses.h"
 #import "RunningSpeed.h"
+#import "Runner.h"
 #import "cocos2d.h"
 
 typedef enum {
@@ -18,21 +19,11 @@ typedef enum {
     JUMP_SHORT = 1
 } RunnerJump;
 
-@interface Player : GameObject
+@interface Player : Runner
 {
-    bool _isRunning;                    //will be used for starting gun, and will be used for gamestate for the time being
     bool _isJumping;
-    bool _isTurbo;
-    
-    float _velocityY;
-    float _velocityX;                    //current velocity of the runner
     
     float _yPosition;
-    
-    TimeEquation *_logCalculator;       //uses log to determine velocity
-    TimeEquation *_sinCalculator;       //uses sin to add a bit of sway to the runner's gait
-    
-    RunningSpeed *speed;
 }
 
 +(id) playerForLayer:(id)layer;         //create player, attach it to (layer), return it
@@ -45,9 +36,8 @@ typedef enum {
 -(void)updateJump:(float)dt;
 
 -(void)startTurbo;
+-(bool)getIsTurbo;
 
-@property(nonatomic,assign) bool isRunning;
 @property(nonatomic,assign) bool isJumping;
-@property(nonatomic,assign) bool isTurbo;
 
 @end

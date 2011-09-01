@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BaseClasses.h"
 
 typedef enum {
     RUNNER_STATE_PRERACE,
@@ -15,35 +16,37 @@ typedef enum {
     RUNNER_STATE_POSTRACE
 } RunnerState;
 
-@interface Runner : NSObject
+@class RunningSpeed;
+
+@interface Runner : GameObject
 {
     RunnerState _state;
     
     float _vx;                  //velocity in the x plane
     float _vy;                  //velocity in the y plane (only used by player for now)
     
-    float _x;
-    float _y;
-    
+    float _distance;            //how much distance travelled in the race so far. used to determine
+                                //onscreen position relative to the main player
     bool _isRunning;
-    bool _isJumping;
+    
+    RunningSpeed *speed;
+
 }
 
 
-
-
+-(id)initWithSprite:(Sprite *)sprite Layer:(id)layer;
++(id)runnerWithSprite:(Sprite*)sprite Layer:(id)layer;
 
 
 @property(nonatomic,assign) float vx;
 @property(nonatomic,assign) float vy;
-@property(nonatomic,assign) float x;
-@property(nonatomic,assign) float y;
 @property(nonatomic,assign) RunnerState state;
 
 @property(nonatomic,assign) bool isRunning;
 @property(nonatomic,assign) bool isJumping;
 
 -(void)changeToRunnerState:(RunnerState)state;
-//-(id)initWithLayer:(id)layer;
+
+-(Sprite*)getSprite;
 
 @end

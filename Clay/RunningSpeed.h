@@ -23,6 +23,8 @@
 
 @interface RunningSpeed : NSObject
 {
+    bool _isStopped;
+    
     bool _inTurbo;
     bool _atMax;
     
@@ -43,6 +45,12 @@
 }
 
 @property(readonly,nonatomic,assign) float velocity;
+@property(readonly,nonatomic,assign) bool inTurbo;
+
+//think media player controls
+-(void)start;
+-(void)stop;
+-(void)reset;
 
 -(void)increaseSpeedTo:(float)target ForPeriod:(float)seconds;
 -(void)startTurbo;
@@ -50,6 +58,7 @@
 -(void)update:(float)dt;
 -(void)setPace:(float)modifier;
 -(void)setPlayer:(Player*)player;
+
 
 //private methods
 -(void)updateAcceleration:(float)dt;

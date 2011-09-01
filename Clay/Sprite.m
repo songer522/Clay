@@ -8,6 +8,7 @@
 
 #import "cocos2d.h"
 #import "Sprite.h"
+#import "Animation.h"
 
 @implementation Sprite
 
@@ -15,6 +16,8 @@
 {
     //super init already called within initWithFile under sprite
     if ((self=[super init])) {
+        sprite_cc = nil;
+        _animation = nil;
         
     }    
     return self;
@@ -89,5 +92,13 @@
 {
     return [sprite_cc boundingBox].size.height;
 }
+
+-(void)setAnimation:(Animation*)animation Delay:(float)delay
+{
+    _animation = animation;
+    _animation.delay = delay;
+    [_animation useAnimationToReplaceSprite:self];
+}
+
 
 @end
