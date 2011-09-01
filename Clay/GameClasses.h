@@ -10,5 +10,5 @@
 #import <Foundation/Foundation.h>
 #import "BaseClasses.h"
 #import "Player.h"
-#import "Background.h"
+#import "TrackBackground.h"
 #import "GameController.h"

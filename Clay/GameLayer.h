@@ -18,7 +18,7 @@
 {
     Player *_player;                //the player character in the game
     
-    Background *_background;        //the background layer
+    TrackBackground *_background;        //the background layer
     
     Animation *_playerAnimation;    //the animation for the player. TODO: integrate within player,
                                     //create AnimationManager class

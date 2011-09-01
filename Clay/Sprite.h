@@ -22,5 +22,6 @@
 -(void) setPositionAtX:(float)x Y:(float)y;
 -(CCSprite*) getCCSprite;
 -(void) initializeSpriteOnceLoaded;
-
+-(float) getWidth;
+-(float) getHeight;
 @end

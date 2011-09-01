@@ -150,7 +150,8 @@
 		54C4CA9F140D405B00156936 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C4CA9E140D405B00156936 /* Utilities.m */; };
 		54CA0B19140D65DB0038B3E1 /* Runner.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CA0B18140D65DB0038B3E1 /* Runner.m */; };
 		54CA0B20140D698B0038B3E1 /* RunningSpeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CA0B1F140D698B0038B3E1 /* RunningSpeed.m */; };
-		54DF2A981407E4AB004FBFBE /* Background.m in Sources */ = {isa = PBXBuildFile; fileRef = 54DF2A971407E4AB004FBFBE /* Background.m */; };
+		54DC8A75140FCE6A00D055D7 /* TrackBackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 54DC8A74140FCE6A00D055D7 /* TrackBackgroundLayer.m */; };
+		54DF2A981407E4AB004FBFBE /* TrackBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 54DF2A971407E4AB004FBFBE /* TrackBackground.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -431,8 +432,10 @@
 		54CA0B18140D65DB0038B3E1 /* Runner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Runner.m; sourceTree = "<group>"; };
 		54CA0B1E140D698B0038B3E1 /* RunningSpeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RunningSpeed.h; sourceTree = "<group>"; };
 		54CA0B1F140D698B0038B3E1 /* RunningSpeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RunningSpeed.m; sourceTree = "<group>"; };
-		54DF2A961407E4AA004FBFBE /* Background.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Background.h; sourceTree = "<group>"; };
-		54DF2A971407E4AB004FBFBE /* Background.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Background.m; sourceTree = "<group>"; };
+		54DC8A73140FCE6A00D055D7 /* TrackBackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackBackgroundLayer.h; sourceTree = "<group>"; };
+		54DC8A74140FCE6A00D055D7 /* TrackBackgroundLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackBackgroundLayer.m; sourceTree = "<group>"; };
+		54DF2A961407E4AA004FBFBE /* TrackBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackBackground.h; sourceTree = "<group>"; };
+		54DF2A971407E4AB004FBFBE /* TrackBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackBackground.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -883,12 +886,11 @@
 		54518F641406AE38009D74AA /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				54DC8A76140FCE7100D055D7 /* Backgrounds */,
 				54518F681406AE64009D74AA /* Player.h */,
 				54518F691406AE64009D74AA /* Player.m */,
 				54518F731406B761009D74AA /* GameClasses.h */,
 				54518F741406B761009D74AA /* GameClasses.m */,
-				54DF2A961407E4AA004FBFBE /* Background.h */,
-				54DF2A971407E4AB004FBFBE /* Background.m */,
 				54297895140C1F8900B3FFF4 /* GameController.h */,
 				54297896140C1F8900B3FFF4 /* GameController.m */,
 				54CA0B17140D65DB0038B3E1 /* Runner.h */,
@@ -897,6 +899,17 @@
 				54CA0B1F140D698B0038B3E1 /* RunningSpeed.m */,
 			);
 			name = Game;
+			sourceTree = "<group>";
+		};
+		54DC8A76140FCE7100D055D7 /* Backgrounds */ = {
+			isa = PBXGroup;
+			children = (
+				54DF2A961407E4AA004FBFBE /* TrackBackground.h */,
+				54DF2A971407E4AB004FBFBE /* TrackBackground.m */,
+				54DC8A73140FCE6A00D055D7 /* TrackBackgroundLayer.h */,
+				54DC8A74140FCE6A00D055D7 /* TrackBackgroundLayer.m */,
+			);
+			name = Backgrounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1087,7 +1100,7 @@
 				54518F701406B061009D74AA /* BaseClasses.m in Sources */,
 				54518F751406B761009D74AA /* GameClasses.m in Sources */,
 				542340621406D0050051E911 /* TimeEquation.m in Sources */,
-				54DF2A981407E4AB004FBFBE /* Background.m in Sources */,
+				54DF2A981407E4AB004FBFBE /* TrackBackground.m in Sources */,
 				5496A2421408343600186F3D /* Animation.m in Sources */,
 				54297897140C1F8900B3FFF4 /* GameController.m in Sources */,
 				5429789B140C233E00B3FFF4 /* InputController.m in Sources */,
@@ -1095,6 +1108,7 @@
 				54C4CA9F140D405B00156936 /* Utilities.m in Sources */,
 				54CA0B19140D65DB0038B3E1 /* Runner.m in Sources */,
 				54CA0B20140D698B0038B3E1 /* RunningSpeed.m in Sources */,
+				54DC8A75140FCE6A00D055D7 /* TrackBackgroundLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

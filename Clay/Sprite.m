@@ -80,5 +80,14 @@
     return sprite_cc;
 }
 
+-(float) getWidth
+{
+    return [sprite_cc boundingBox].size.width;
+}
+
+-(float) getHeight
+{
+    return [sprite_cc boundingBox].size.height;
+}
 
 @end

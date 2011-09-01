@@ -39,7 +39,7 @@
         [_gameController setLayer:self];
         _inputController = [InputController inputController];
         
-        _background = [Background backgroundForLayer:self];
+        _background = [TrackBackground backgroundForLayer:self];
         _player = [Player playerForLayer:self];
         
         _playerAnimation = [Animation animationFromPlist:@"character_running" forSequence:@"Character_Running_" NumberOfFrames:10 onLayer:self];
@@ -70,7 +70,7 @@
 -(void)update:(ccTime)dt
 {
     [_player update:dt];
-    [_background update:dt];
+    [_background update:dt Velocity:[_player getVelocityX]];
     
 }
 
