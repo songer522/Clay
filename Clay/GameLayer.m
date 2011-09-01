@@ -40,7 +40,7 @@
         
         _background = [TrackBackground backgroundForLayer:self];
 
-        for (int i=0; i<1; i++) {
+        for (int i=0; i<40; i++) {
             Sprite *sprite = [Sprite spriteWithFile:@"player_idle_01.png" toLayer:self];
             [sprite setAnimation:[Animation animationFromPlist:@"character_running" forSequence:@"Character_Running_" NumberOfFrames:10 onLayer:self] Delay:0.075f];
             Runner *runner = [Runner runnerWithSprite:sprite Layer:self];
