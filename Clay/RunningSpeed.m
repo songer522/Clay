@@ -31,6 +31,11 @@
 @synthesize velocity = _velocity;
 @synthesize inTurbo = _inTurbo;
 
++(id)node
+{
+    return [[self alloc] init];
+}
+
 - (id)init
 {
     self = [super init];
@@ -61,6 +66,7 @@
     _stamina = 20.0f;
     _inTurbo = false;
     _isStopped = true;
+    _pace = RUNNING_SPEED_PACE_ENDURANCE;
 }
 
 -(void)increaseSpeedTo:(float)target ForPeriod:(float)seconds

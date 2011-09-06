@@ -18,22 +18,32 @@
     
     float _delay;                           //number of seconds between frames
     NSString *_firstFrameName;              //name of the first frame of the sequence
+    
+    bool _looping;                          //does the animation loop (true), or play through once and stop (false)
 }
 
-//constructor
+#pragma mark - properties
+
+@property(nonatomic,assign) float delay;
+
+
+#pragma mark - initializers
+
 +(id)animationFromPlist:(NSString*)name forSequence:(NSString*)sequence NumberOfFrames:(int)numberOfFrames onLayer:(id)layer;
 -(id)initWithPlist:(NSString*)name forSequence:(NSString*)sequence NumberOfFrames:(int)numberOfFrames onLayer:(id)layer;
+//constructors
 
+#pragma mark - public methods
+
+-(void)useAnimationToReplaceSprite:(Sprite*)sprite;
+//replaces the given sprite with this animation
+
+#pragma mark - private methods
 
 -(void)createFramesWithSequence:(NSString*)sequence NumberOfFrames:(int)numberOfFrames;
 //called by constructor, populates the (_frames) array
 //sequence = name of the sequence within the spritesheet (usually the image filenames it compiles)
 
-
--(void)useAnimationToReplaceSprite:(Sprite*)sprite;
-//replaces the given sprite with this animation
-
-@property(nonatomic,assign) float delay;
 
 
 @end

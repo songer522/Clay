@@ -27,6 +27,9 @@
     InputController *_inputController;
     
     NSMutableArray *_runners;
+    
+
+    
 }
 
 +(CCScene *) scene; //create and return a Cocos2D scene

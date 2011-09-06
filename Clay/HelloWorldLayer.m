@@ -10,8 +10,12 @@
 // Import the interfaces
 #import "HelloWorldLayer.h"
 
+#import "Level.h"
+#import "Runner.h"
+
 // HelloWorldLayer implementation
 @implementation HelloWorldLayer
+
 
 +(CCScene *) scene
 {
@@ -34,195 +38,31 @@
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super init])) {
-
-        CGSize screenSize = [[CCDirector sharedDirector] winSize];
-
-        background = [CCSprite spriteWithFile:@"forest.jpg"];
-        background.position = ccp(screenSize.width/2,screenSize.height/2);
-        background.scale = 1.0f;
         
+        _xp = 0;
+        _level = [Level levelWithFilename:@"platformtest.tmx" Layer:self];
         
-        speedbar_inner = [CCSprite spriteWithFile:@"speedbar_inner.png"];
-        speedbar_inner.position = ccp(screenSize.width / 2 - 63, 100);
-        speedbar_inner.anchorPoint = ccp(0,0.5);
-        speedbar_inner.scaleX = 0.75f;
-        [self addChild:speedbar_inner];
+        _runner = [Runner runnerWithSprite:[Sprite spriteWithFile:@"player_idle_01.png" toLayer:self] Layer:self];
+        [_runner setPositionAtX:20 Y:100];
         
+        [[_runner getSprite] setAnimation:[Animation animationFromPlist:@"character_running" forSequence:@"Character_Running_" NumberOfFrames:10 onLayer:self] Delay:0.075f];
         
-        speedbar_outer = [CCSprite spriteWithFile:@"speedbar_outer.png"];
-        speedbar_outer.position = ccp(screenSize.width / 2, 100);
-        [self addChild:speedbar_outer];
+        [_runner changeToRunnerState:RUNNER_STATE_RUNNING];
         
-		// create and initialize a Label
-        showDistanceTravelled = [CCLabelTTF labelWithString:@"Distance Travelled: 0.00mi" dimensions:CGSizeMake(300, 50) alignment:UITextAlignmentLeft fontName:@"Arial" fontSize:18];
-        
-        showVelocity = [CCLabelTTF labelWithString:@"Velocity: 0.0mph" dimensions:CGSizeMake(300, 50) alignment:UITextAlignmentLeft fontName:@"Arial" fontSize:18];
-        
-        [showDistanceTravelled setColor:ccWHITE];
-        [showVelocity setColor:ccWHITE];
-        showDistanceTravelled.position = ccp(200,200);
-        showVelocity.position = ccp(310,30);
-        [self addChild:showDistanceTravelled];
-        [self addChild:showVelocity];
-        
-        
-        velocity = 0.0f;
-        distanceTravelled = 0.0f;
-        stalled = true;
-        delayBeforeVisibleFoot = 1.0f;
-        acceleration = 0.0f;
-        currentFoot = 0;
-        
-        
-        leftFoot = [CCSprite spriteWithFile:@"left_foot.png"];
-        leftFoot.position = ccp(45, 50);
-        [self addChild:leftFoot];
-        leftFoot.opacity = 0.0f;
-        
-        rightFoot = [CCSprite spriteWithFile:@"right_foot.png"];
-        rightFoot.position = ccp(435, 50);
-        [self addChild:rightFoot];        
-        rightFoot.opacity = 0.0f;
-        
-        [self addChild:background];
-		
-        character = [CCSprite spriteWithFile:@"character_Test.png"];
-        character.position = ccp(100,0);
-        character.scale = 1.0f;
-        [self addChild:character];
-        
-        
-        self.isTouchEnabled = YES;
         [self scheduleUpdate];
+        self.isTouchEnabled = YES;
 	}
 	return self;
 }
 
--(void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+-(void) update:(ccTime)dt
 {
-    NSSet *allTouches = [event allTouches];
-    for(UITouch *touch in allTouches) {
-        CGPoint touchLocation = [self convertTouchToNodeSpace:touch];
-        [self doRun:touchLocation];
-    }
-}
-
--(void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    NSSet *allTouches = [event allTouches];
-    for(UITouch *touch in allTouches) {
-        CGPoint touchLocation = [self convertTouchToNodeSpace:touch];
-        [self doRun:touchLocation];
-    }
-}
-
--(void) doRun:(CGPoint)touchLocation
-{
-    NSLog(@"X:%f Y:%f",touchLocation.x,touchLocation.y);
-    if (touchLocation.x <= 240) {
-        //check if currently left foot and visible
-        if(delayBeforeVisibleFoot <= 0.0f) {
-            if (currentFoot == 0) {
-                currentFoot = 1;
-                delayBeforeVisibleFoot = 0.40f - (acceleration / 5.0f);
-                if(delayBeforeVisibleFoot <=0) delayBeforeVisibleFoot = 0;
-                leftFoot.opacity = 0;
-                stalled = false;
-            } else {
-                currentFoot = 1;
-                [self stallOut];
-            }
-        } else {
-            [self stallOut];
-        }
-    } else {
-        if(delayBeforeVisibleFoot <= 0.0f) {
-            if (currentFoot == 1) {
-                currentFoot = 0;
-                delayBeforeVisibleFoot = 0.40f - (acceleration / 5.0f);
-                if(delayBeforeVisibleFoot <=0) delayBeforeVisibleFoot = 0;
-                rightFoot.opacity = 0;
-                stalled = false;
-            } else {
-                currentFoot = 0;
-                [self stallOut];
-            }
-        } else {
-            [self stallOut];
-        }
-    }
-}
-
--(void) stallOut
-{
-    stalled = true;
-    velocity = (velocity / 3.0f) * 2.0f;
-    acceleration = acceleration / 3.0f;
-    delayBeforeVisibleFoot = 0.4f;
-    rightFoot.opacity = 0;
-    leftFoot.opacity = 0;
-    [self updateText];
-}
-
--(void) showFoot
-{
-    if (currentFoot == 0) {
-        leftFoot.opacity = 255;
-    } else {
-        rightFoot.opacity = 255;
-    }
-}
-
--(void) updateText
-{
-    [showVelocity setString:[NSString stringWithFormat:@"Velocity: %.2fmph",velocity]];
-    [showDistanceTravelled setString:[NSString stringWithFormat:@"Distance Travelled: %.3fmi",distanceTravelled]];
-}
-
--(void)update:(ccTime)dt
-{
-    //NSLog(@"Update: %f",dt);
-    
-    if (delayBeforeVisibleFoot >= 0.0f) {
-        delayBeforeVisibleFoot -= dt;
-    }
-    
-    if (delayBeforeVisibleFoot <=0.0f && leftFoot.opacity == 0 && rightFoot.opacity == 0) {
-        [self showFoot];
-    }
-
-    
-    if (!stalled) {
-        if(delayBeforeVisibleFoot >= 0.0f) {
-            acceleration += 0.003f * dt;
-            if (acceleration > 2.0f) {
-                acceleration = 2.0f;
-            }
-            
-            velocity += acceleration;
-            if (velocity > 6.0f) {
-                velocity = 6.0f;
-            }            
-        }
-        
-    } else {
-        acceleration -= 0.003f * dt;
-        if(acceleration <= 0.0f) {
-            acceleration = 0.0f;
-        }
-        velocity += acceleration;
-        if(velocity <=0.0f) {
-            velocity = 0.0f;
-        }
-    }
-    
-    distanceTravelled += 0.000015f * velocity;
-    
-    speedbar_inner.scaleX = (21 * velocity)/127;
-    
-    [self updateText];
+    [_runner update:dt];
+    [_level checkCollisionAtPoint:CGPointMake(_runner.x, _runner.y)];
+    //[_level moveBy:
     
 }
+
 
 // on "dealloc" you need to release all your retained objects
 - (void) dealloc

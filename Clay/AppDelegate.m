@@ -111,8 +111,8 @@
 	[self removeStartupFlicker];
 	
 	// Run the intro Scene
-	//[[CCDirector sharedDirector] runWithScene: [HelloWorldLayer scene]];
-    [[CCDirector sharedDirector] runWithScene: [GameLayer scene]];
+	[[CCDirector sharedDirector] runWithScene: [HelloWorldLayer scene]];
+    //[[CCDirector sharedDirector] runWithScene: [GameLayer scene]];
 }
 
 

@@ -25,12 +25,21 @@ typedef enum {
 
 @interface TimeEquation : NSObject
 {
-    float _totalTime;
-    float _multipleAmount;    
+    float _totalTime;               //the total amount of time given to the class so far
+    float _multipleAmount;          //how much to multiply the equation by
 }
 
+#pragma mark - public methods
+
 -(void) setTimeMultiplier:(float)multiple;
+//set the multiplier for the time-based equations
+
+
 -(void) addTime:(float)dt;
+//add the given amount of time to the total
+
 -(float) calculate:(EquationType)equation;
+//
+
 
 @end

@@ -29,7 +29,7 @@ typedef enum {
                                 //onscreen position relative to the main player
     bool _isRunning;
     
-    RunningSpeed *speed;
+    RunningSpeed *_speed;
 
 }
 

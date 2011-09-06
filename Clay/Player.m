@@ -6,9 +6,10 @@
 //  Copyright 2011 Xecudev, LLC. All rights reserved.
 //
 
-#import "Player.h"
-#import "BaseClasses.h"
 #import "cocos2d.h"
+#import "BaseClasses.h"
+#import "Player.h"
+#import "RunningSpeed.h"
 
 #define PLAYER_SPRITE_FILE @"player_idle_01.png"
 #define PLAYER_STARTING_VELOCITY 0
@@ -44,10 +45,10 @@
         [self setSprite:[Sprite spriteWithFile:PLAYER_SPRITE_FILE toLayer:layer]];
         [self setPositionAtX:PLAYER_STARTING_X_POSITION Y:PLAYER_STARTING_Y_POSITION];
         
-        speed = [[RunningSpeed alloc] init];
-        [speed setPace:RUNNING_SPEED_PACE_ENDURANCE];
-        [speed setPlayer:self];
-        [speed start];
+        _speed = [[RunningSpeed alloc] init];
+        [_speed setPace:RUNNING_SPEED_PACE_ENDURANCE];
+        [_speed setPlayer:self];
+        [_speed start];
         [self changeToRunnerState:RUNNER_STATE_RUNNING];
     }
     
@@ -58,9 +59,9 @@
 {
 
     if (_isRunning) {        
-        [speed update:dt];
+        [_speed update:dt];
         
-        float xposition = PLAYER_STARTING_X_POSITION + PLAYER_VELOCITY_MULTIPLIER * speed.velocity;
+        float xposition = PLAYER_STARTING_X_POSITION + PLAYER_VELOCITY_MULTIPLIER * _speed.velocity;
         
         [self updateJump:dt];
         
@@ -95,23 +96,23 @@
 
 -(void)startTurbo
 {
-    [speed startTurbo];
+    [_speed startTurbo];
 }
 
 -(bool)getIsTurbo {
-    return speed.inTurbo;
+    return _speed.inTurbo;
 }
 
 
 //used by background layers for scrolling
 -(float)getVelocityX
 {
-    return speed.velocity;
+    return _speed.velocity;
 }
 
 -(void)dealloc
 {
-    [speed dealloc];
+    [_speed dealloc];
     [super dealloc];
 }
 

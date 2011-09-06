@@ -17,7 +17,7 @@
 #define RUNNING_SPEED_PACE_RECOVERY 0.8f
 #define RUNNING_SPEED_PACE_TURBO 2.0f
 #define RUNNING_SPEED_MAX_STAMINA 20.0f
-#define RUNNING_SPEED_MIN_VELOCITY 14.0f
+#define RUNNING_SPEED_MIN_VELOCITY 18.0f
 
 @class Player;
 
@@ -47,11 +47,15 @@
 @property(readonly,nonatomic,assign) float velocity;
 @property(readonly,nonatomic,assign) bool inTurbo;
 
-//think media player controls
+#pragma mark - inits
++(id)node;
+
+#pragma mark - controls
 -(void)start;
 -(void)stop;
 -(void)reset;
 
+#pragma mark - public methods
 -(void)increaseSpeedTo:(float)target ForPeriod:(float)seconds;
 -(void)startTurbo;
 -(void)endTurbo;
@@ -60,7 +64,7 @@
 -(void)setPlayer:(Player*)player;
 
 
-//private methods
+#pragma mark - private methods
 -(void)updateAcceleration:(float)dt;
 -(void)updateAccelerationWhenBelowTargetVelocity:(float)dt;
 -(void)updateAccelerationWhenAboveTargetVelocity:(float)dt;

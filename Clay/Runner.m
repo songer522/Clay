@@ -7,6 +7,7 @@
 //
 
 #import "Runner.h"
+#import "RunningSpeed.h"
 #import "GameObject.h"
 
 #define RUNNER_VELOCITY_RATE 3.0f
@@ -34,6 +35,8 @@
         [self changeToRunnerState:RUNNER_STATE_PRERACE];
         [self setPositionAtX:0 Y:0];
         [self setSprite:sprite];
+        _speed = [RunningSpeed node];
+        [_speed setPace:RUNNING_SPEED_PACE_ENDURANCE];
     }
     
     return self;
@@ -45,9 +48,11 @@
     switch (state) {
         case RUNNER_STATE_PRERACE:
             _isRunning = false;
+            [_speed stop];
             break;
         case RUNNER_STATE_RUNNING:
             _isRunning = true;
+            [_speed start];
         default:
             break;
     }
@@ -56,6 +61,11 @@
 -(void)update:(float)dt
 {
     float rate = RUNNER_VELOCITY_RATE * dt;
+    
+    [_speed update:dt];
+    
+    _vx = _speed.velocity;
+    
     if(_isRunning) {
         self.x += _vx * rate;
         self.y += _vy * rate;

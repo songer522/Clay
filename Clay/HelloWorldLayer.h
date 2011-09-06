@@ -10,41 +10,22 @@
 // When you import this file, you import all the cocos2d classes
 #import "cocos2d.h"
 
+@class Level;
+@class Runner;
+
 // HelloWorldLayer
 @interface HelloWorldLayer : CCLayer
 {
-    CCSprite *sprite;
+    Level *_level;
     
-    CCSprite *background;
-    CCSprite *leftFoot;
-    CCSprite *rightFoot;
+    Runner *_runner;
     
-    CCSprite *speedbar_outer;
-    CCSprite *speedbar_inner;
-    
-    CCLabelTTF *showDistanceTravelled;
-    CCLabelTTF *showVelocity;
-    
-    
-    CCSprite *character;
-    
-    
-    float delayBeforeVisibleFoot;
-    float distanceTravelled;
-    float velocity;
-    float acceleration;
-    bool stalled;
-    int currentFoot;
-    
+    float _xp;
     
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
 
--(void) doRun:(CGPoint)touchLocation;
--(void) showFoot;
--(void) updateText;
--(void) stallOut;
 
 @end

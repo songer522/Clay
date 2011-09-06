@@ -9,7 +9,6 @@
 
 #import <Foundation/Foundation.h>
 #import "BaseClasses.h"
-#import "RunningSpeed.h"
 #import "Runner.h"
 #import "cocos2d.h"
 
@@ -18,6 +17,8 @@ typedef enum {
     JUMP_MEDIUM = 2,
     JUMP_SHORT = 1
 } RunnerJump;
+
+@class  RunningSpeed;
 
 @interface Player : Runner
 {

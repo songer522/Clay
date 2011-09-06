@@ -10,6 +10,9 @@
 #import "Sprite.h"
 #import "Animation.h"
 
+#define ANIMATION_DEFAULT_DELAY 0.1f
+#define ANIMATION_DEFAULT_LOOPING true
+
 @implementation Animation
 
 static NSString * const ANIMATION_GRAPHIC_EXTENSION = @".png";
@@ -31,8 +34,9 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
     if (self) {
         // Initialization code here.
         
-        //default delay
-        _delay = 0.1f;
+        //defaults
+        _delay = ANIMATION_DEFAULT_DELAY;
+        _looping = ANIMATION_DEFAULT_LOOPING;
         
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:[name stringByAppendingString:ANIMATION_SPRITE_CACHE_SUFFIX]];
         
@@ -65,7 +69,7 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
 }
                                   
 -(void)useAnimationToReplaceSprite:(Sprite*)sprite
-{
+{    
     [[sprite getCCSprite] setBatchNode:_spriteSheet];
     [[sprite getCCSprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:_firstFrameName]];
     CCAnimation *_anim = [CCAnimation animationWithFrames:_frames delay:_delay];
