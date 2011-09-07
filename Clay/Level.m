@@ -34,6 +34,8 @@
         
         _map.scale = 2.0f * [[UIScreen mainScreen] scale];
         
+        [self initObjects];
+        
         [layer addChild:voidNode];
     }
     
@@ -155,6 +157,21 @@
 {
     _background = [CCSprite spriteWithFile:filename];
     _background.anchorPoint = ccp(0, 0);
+    
+}
+
+-(void)initObjects
+{
+    _objects = [_map objectGroupNamed:@"objects"];
+    NSAssert(_objects != nil, @"'objects' object group not found");
+    
+    NSMutableDictionary *spawnPoint = [_objects objectNamed:@"SpawnPoint"];
+    NSAssert(spawnPoint != nil, @"SpawnPoint object not found");
+    
+    int x = [[spawnPoint valueForKey:@"x"] intValue];
+    int y = [[spawnPoint valueForKey:@"y"] intValue];
+    
+    _spawnPoint = CGPointMake(x, y);
     
 }
 

@@ -1,0 +1,99 @@
+//
+//  Camera.m
+//  Clay
+//
+//  Created by Brian Cable on 9/7/11.
+//  Copyright 2011 Xecudev, LLC. All rights reserved.
+//
+
+#import "Camera.h"
+
+@implementation Camera
+
+
+static Camera *_sharedCamera = nil;
+
++(Camera*)sharedCamera
+{
+	if (!_sharedCamera) {
+        _sharedCamera = [[self alloc] init];
+	}
+	return _sharedCamera;
+}
+
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        // Initialization code here.
+        CGSize size = [[CCDirector sharedDirector] winSize];
+
+        _x = size.width / 2.0f;
+        _y = size.height / 2.0f;
+        _boundary = CGRectMake(0, 0, 1000, 640);
+        _center = CGPointMake(size.width / 2.0f, size.height / 2.0f);
+        _isBoundaryFlexible = false;        
+        _target = nil;
+    }
+    
+    return self;
+}
+
+-(void)setBoundaries:(CGRect)rect
+{
+    NSAssert(rect.origin.x < rect.size.width && rect.origin.y < rect.size.height, @"Invalid Rect for boundaries");
+    _boundary = rect;
+    
+    [self keepWithinBoundaries];
+}
+
+-(void)keepWithinBoundaries
+{
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    
+    float left = _x - _center.x;
+    float right = left + winSize.width;
+    float bottom = _y - _center.y;
+    float top = bottom + winSize.height; 
+    
+    if(left < _boundary.origin.x) {
+        _x = _boundary.origin.x + _center.x;
+    } else if(right > (_boundary.origin.x + _boundary.size.width)) {
+        _x = _boundary.origin.x + _boundary.size.width - winSize.width + _center.x;
+    }
+    
+    if(top > (_boundary.origin.y + _boundary.size.height)) {
+        _y = _boundary.origin.y + _boundary.size.height - winSize.height + _center.y;
+    } else if (bottom < _boundary.origin.y) {
+        _y = _boundary.origin.y + _center.y;
+    }
+}
+
+-(void)moveByX:(float)x Y:(float)y
+{
+    _x += x;
+    _y += y;
+    [self keepWithinBoundaries];    
+}
+
+-(CGPoint)convertToScreenXY:(CGPoint)worldXY
+{
+    float x = worldXY.x - _x + _center.x;
+    float y = worldXY.y - _y + _center.y;
+    return CGPointMake(x, y);
+}
+
+-(CGPoint)convertToWorldXY:(CGPoint)screenXY
+{
+    float x = _x - _center.x + screenXY.x;
+    float y = _y - _center.y + screenXY.y;
+    return CGPointMake(x, y);    
+}
+
+-(void)moveTowardsTarget:(float)dt
+{
+    
+}
+
+@end

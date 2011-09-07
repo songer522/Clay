@@ -140,6 +140,7 @@
 		545E2FA714117B7E003074AE /* test_tileset_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 545E2FA614117B7E003074AE /* test_tileset_small.png */; };
 		545E2FAA141181D4003074AE /* fence.png in Resources */ = {isa = PBXBuildFile; fileRef = 545E2FA8141181D4003074AE /* fence.png */; };
 		545E2FAB141181D4003074AE /* fence.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 545E2FA9141181D4003074AE /* fence.tmx */; };
+		5483C7191417CF140032BDDD /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = 5483C7181417CF140032BDDD /* Camera.m */; };
 		54910845140D2D0500A5E537 /* character_running-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54910844140D2D0500A5E537 /* character_running-hd.png */; };
 		54910848140D2E9C00A5E537 /* character_running-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54910847140D2E9C00A5E537 /* character_running-hd.plist */; };
 		54911E831410071B003BBB16 /* brush-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54911E7B1410071B003BBB16 /* brush-hd.png */; };
@@ -432,6 +433,8 @@
 		545E2FA614117B7E003074AE /* test_tileset_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = test_tileset_small.png; path = Resources/Tiles/test_tileset_small.png; sourceTree = "<group>"; };
 		545E2FA8141181D4003074AE /* fence.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fence.png; path = Resources/Tiles/fence.png; sourceTree = "<group>"; };
 		545E2FA9141181D4003074AE /* fence.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = fence.tmx; path = Resources/Tiles/fence.tmx; sourceTree = "<group>"; };
+		5483C7171417CF140032BDDD /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
+		5483C7181417CF140032BDDD /* Camera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Camera.m; sourceTree = "<group>"; };
 		54910844140D2D0500A5E537 /* character_running-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "character_running-hd.png"; path = "Resources/character_running-hd.png"; sourceTree = "<group>"; };
 		54910847140D2E9C00A5E537 /* character_running-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "character_running-hd.plist"; path = "Resources/character_running-hd.plist"; sourceTree = "<group>"; };
 		54911E7B1410071B003BBB16 /* brush-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brush-hd.png"; sourceTree = "<group>"; };
@@ -916,6 +919,8 @@
 				54C4CA9E140D405B00156936 /* Utilities.m */,
 				549969151416664400CB7800 /* AnimationController.h */,
 				549969161416664400CB7800 /* AnimationController.m */,
+				5483C7171417CF140032BDDD /* Camera.h */,
+				5483C7181417CF140032BDDD /* Camera.m */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -1194,6 +1199,7 @@
 				54DC8A75140FCE6A00D055D7 /* TrackBackgroundLayer.m in Sources */,
 				549969171416664400CB7800 /* AnimationController.m in Sources */,
 				5499691F1416820000CB7800 /* Level.m in Sources */,
+				5483C7191417CF140032BDDD /* Camera.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

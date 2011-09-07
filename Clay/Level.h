@@ -21,6 +21,10 @@
     CCTMXLayer *_meta;
     
     CCTMXTiledMap *_map;
+    
+    CCTMXObjectGroup *_objects;
+    
+    CGPoint _spawnPoint;
 }
 
 #pragma mark - inits
@@ -38,4 +42,5 @@
 -(CGPoint)tileCoordForPosition:(CGPoint)position;
 -(bool)checkIfSameTile:(int)tileId atNewPosition:(CGPoint)point forTileLayer:(CCTMXLayer*)layer;
 -(NSString*)getCollisionPropertyForTileCoords:(CGPoint)coords;
+-(void)initObjects;
 @end
