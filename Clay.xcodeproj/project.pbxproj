@@ -487,13 +487,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		54013FBA1411303500DEA293 /* Comics */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Comics;
-			sourceTree = "<group>";
-		};
 		54484CC5140449B500D0D7D9 = {
 			isa = PBXGroup;
 			children = (
@@ -536,8 +529,6 @@
 				54484E37140449B700D0D7D9 /* AppDelegate.m */,
 				54484E39140449B700D0D7D9 /* RootViewController.h */,
 				54484E3A140449B700D0D7D9 /* RootViewController.m */,
-				54484E3C140449B700D0D7D9 /* HelloWorldLayer.h */,
-				54484E3D140449B700D0D7D9 /* HelloWorldLayer.m */,
 				54484E3F140449B700D0D7D9 /* GameConfig.h */,
 				54484CE5140449B500D0D7D9 /* Resources */,
 				54484CF9140449B500D0D7D9 /* libs */,
@@ -894,6 +885,8 @@
 		54518F5614069B0C009D74AA /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				54484E3C140449B700D0D7D9 /* HelloWorldLayer.h */,
+				54484E3D140449B700D0D7D9 /* HelloWorldLayer.m */,
 				54518F5D14069B40009D74AA /* GameLayer.h */,
 				54518F5E14069B40009D74AA /* GameLayer.m */,
 			);
@@ -930,7 +923,6 @@
 		54518F641406AE38009D74AA /* Game */ = {
 			isa = PBXGroup;
 			children = (
-				54013FBA1411303500DEA293 /* Comics */,
 				54DC8A76140FCE7100D055D7 /* Backgrounds */,
 				54518F681406AE64009D74AA /* Player.h */,
 				54518F691406AE64009D74AA /* Player.m */,

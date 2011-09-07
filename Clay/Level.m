@@ -8,30 +8,33 @@
 
 #import "Level.h"
 
+#import "TrackBackground.h"
+
 @implementation Level
 
 
-+(id)levelWithFilename:(NSString*)filename Layer:(CCLayer*)layer
++(id)levelWithFilename:(NSString*)filename Background:(NSString*)backgroundImage Layer:(CCLayer*)layer
 {
-    return [[self alloc] initWithFilename:filename Layer:layer];
+    return [[self alloc] initWithFilename:filename Background:backgroundImage Layer:layer];
 }
 
-- (id)initWithFilename:(NSString*)filename Layer:(CCLayer*)layer
+- (id)initWithFilename:(NSString*)filename Background:(NSString*)backgroundImage Layer:(CCLayer*)layer
 {
     self = [super init];
     if (self) {
         // Initialization code here.
         
-        _map = [CCTMXTiledMap tiledMapWithTMXFile:filename];
-        _map.scale = 3.0f;
+        [self initTiledMap:filename];
+        [self initBackgroundImage:backgroundImage];
         
-        [layer addChild:_map];
+        CCParallaxNode  *voidNode = [CCParallaxNode node];
         
-        _meta = [_map layerNamed:@"meta"];
-        _meta.visible = NO;
+        [voidNode addChild:_background z:-1 parallaxRatio:ccp(5.0f, 0) positionOffset:ccp(0, 0)];
+        [voidNode addChild:_map z:1 parallaxRatio:ccp(0.5f, 0) positionOffset:ccp(0, 0)];
         
-        _main = [_map layerNamed:@"main"];
+        _map.scale = 2.0f * [[UIScreen mainScreen] scale];
         
+        [layer addChild:voidNode];
     }
     
     return self;
@@ -39,9 +42,41 @@
 
 -(CGPoint)tileCoordForPosition:(CGPoint)position
 {
-    int x = position.x / _map.tileSize.width;
-    int y = ((_map.mapSize.height * _map.tileSize.height) - position.y) / _map.tileSize.height;
+    int scaledTileWidth = _map.tileSize.width * _map.scale;
+    int scaledTileHeight = _map.tileSize.height * _map.scale;
+    int x = position.x / scaledTileWidth;
+    int y = ((_map.mapSize.height * scaledTileHeight) - position.y) / scaledTileHeight;
+    
+    if (x < 0) {
+        x = 0;
+    } else if(x > (_map.mapSize.width - 1)) {
+        x = _map.mapSize.width - 1;
+    }
+    
+    if (y < 0) {
+        y = 0;
+    } else if(y > (_map.mapSize.height - 1)) {
+        y = _map.mapSize.height - 1;
+    }
+    
     return ccp(x,y);
+}
+
+-(int)getTopYPositionForTileCoords:(CGPoint)coords atX:(int)x ForTileProperty:(NSString*)property
+{
+    //int scaledTileWidth = _map.tileSize.width * _map.scale;
+    int scaledTileHeight = _map.tileSize.height * _map.scale;
+    
+    int y = 0;
+    if ([property compare:@"none"] == NSOrderedSame) {
+        //y position based on coordinates
+        y = (coords.y * scaledTileHeight) + scaledTileHeight;
+        
+        //flip the y position so it's based on screen
+        y = (_map.mapSize.height * scaledTileHeight) - y;
+    }
+    
+    return y;
 }
 
 -(CGPoint)checkCollisionAtPoint:(CGPoint)point
@@ -50,29 +85,44 @@
     float newY = point.y;
     
     CGPoint tileCoordinates = [self tileCoordForPosition:point];
-    NSLog(@"Coords: %f,%f",tileCoordinates.x,tileCoordinates.y);
+    NSString *collisionProperty = [self getCollisionPropertyForTileCoords:tileCoordinates];
     
-    int tileGid = [_meta tileGIDAt:tileCoordinates];
-    if (tileGid) {
-        NSDictionary *properties = [_map propertiesForGID:tileGid];
-        if (properties) {
-            NSString *collision = [properties valueForKey:@"collision"];
-            if(collision) {
-                if([collision compare:@"full"] == NSOrderedSame ) {
-                    bool colliding = true;
-                    while (colliding) {
-                        newY -= 1;
-                        bool sameTile = [self checkIfSameTile:tileGid atNewPosition:CGPointMake(point.x, newY) forTileLayer:_meta];
-                        if(!sameTile) {
-                            colliding = false;
-                        }
-                    }
-                }
-            }
+    bool colliding = true;
+    while (colliding) {
+        if ([collisionProperty compare:@"none"] == NSOrderedSame || tileCoordinates.y < 0) {
+            colliding = false;
+        } else {
+            tileCoordinates.y -= 1;
+            collisionProperty = [self getCollisionPropertyForTileCoords:tileCoordinates];            
         }
     }
     
+    newY = [self getTopYPositionForTileCoords:tileCoordinates atX:newX ForTileProperty:collisionProperty];
+    
     return CGPointMake(newX,newY);
+}
+
+-(NSString*)getCollisionPropertyForTileCoords:(CGPoint)coords
+{
+    NSString *returnVal = [NSString stringWithString:@"none"];
+    
+    int tileGid = [_meta tileGIDAt:coords];
+    
+    if (tileGid) {
+        NSDictionary *properties = [_map propertiesForGID:tileGid];
+        
+        if (properties) {
+            returnVal = [properties valueForKey:@"collision"];
+        }
+    }
+    
+    return returnVal;
+}
+
+-(void)update:(float)dt Velocity:(float)vx
+{
+    float rate = vx * 0.2f;
+    [_map setPosition:CGPointMake(_map.position.x - rate, _map.position.y)];
 }
 
 -(bool)checkIfSameTile:(int)tileId atNewPosition:(CGPoint)point forTileLayer:(CCTMXLayer*)layer
@@ -85,6 +135,29 @@
     }
     return returnVal;
 }
+
+
+
+-(void)initTiledMap:(NSString*)filename 
+{
+    _map = [CCTMXTiledMap tiledMapWithTMXFile:filename];
+    _map.scale = 1.0f;
+    
+    _meta = [_map layerNamed:@"meta"];
+    _meta.visible = NO;
+    
+    _main = [_map layerNamed:@"main"];
+    
+    
+}
+
+-(void)initBackgroundImage:(NSString *)filename
+{
+    _background = [CCSprite spriteWithFile:filename];
+    _background.anchorPoint = ccp(0, 0);
+    
+}
+
 
 
 @end

@@ -11,6 +11,7 @@
 #import "GameObject.h"
 
 #define RUNNER_VELOCITY_RATE 3.0f
+#define RUNNER_STARTING_X_POSITION 20
 
 @implementation Runner
 
@@ -37,6 +38,7 @@
         [self setSprite:sprite];
         _speed = [RunningSpeed node];
         [_speed setPace:RUNNING_SPEED_PACE_ENDURANCE];
+        [[[self getSprite] getCCSprite] setAnchorPoint:ccp(0,1)];
     }
     
     return self;
@@ -61,7 +63,9 @@
 -(void)update:(float)dt
 {
     float rate = RUNNER_VELOCITY_RATE * dt;
-    
+    float xposition = RUNNER_STARTING_X_POSITION + RUNNER_VELOCITY_RATE * _speed.velocity;
+    [[self getSprite] setPositionAtX:xposition Y:_y];
+
     [_speed update:dt];
     
     _vx = _speed.velocity;

@@ -60,7 +60,6 @@
 
     if (_isRunning) {        
         [_speed update:dt];
-        
         float xposition = PLAYER_STARTING_X_POSITION + PLAYER_VELOCITY_MULTIPLIER * _speed.velocity;
         
         [self updateJump:dt];

@@ -33,6 +33,7 @@
 - (id)init
 {
     if( (self=[super init])) {
+        
         [[CCDirector sharedDirector] setProjection:CCDirectorProjection2D];
         
         _gameController = [GameController gameController];

@@ -26,9 +26,6 @@
     
     InputController *_inputController;
     
-    NSMutableArray *_runners;
-    
-
     
 }
 

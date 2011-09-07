@@ -38,9 +38,10 @@
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super init])) {
+        [[CCDirector sharedDirector] setProjection:CCDirectorProjection2D];
         
         _xp = 0;
-        _level = [Level levelWithFilename:@"platformtest.tmx" Layer:self];
+        _level = [Level levelWithFilename:@"platformtest.tmx" Background:@"sky.png" Layer:self];
         
         _runner = [Runner runnerWithSprite:[Sprite spriteWithFile:@"player_idle_01.png" toLayer:self] Layer:self];
         [_runner setPositionAtX:20 Y:100];
@@ -55,12 +56,12 @@
 	return self;
 }
 
--(void) update:(ccTime)dt
+-(void)update:(ccTime)dt
 {
     [_runner update:dt];
-    [_level checkCollisionAtPoint:CGPointMake(_runner.x, _runner.y)];
-    //[_level moveBy:
-    
+    CGPoint newRunnerPosition = [_level checkCollisionAtPoint:ccp(_runner.x,_runner.y)];
+    [_runner setPositionAtX:_runner.x Y:newRunnerPosition.y - 52];
+    [_level update:dt Velocity:_runner.vx];
 }
 
 
