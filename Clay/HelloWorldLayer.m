@@ -14,6 +14,7 @@
 #import "Runner.h"
 #import "Camera.h"
 #import "Player.h"
+#import "BaseClasses.h"
 
 // HelloWorldLayer implementation
 @implementation HelloWorldLayer
@@ -40,21 +41,26 @@
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super init])) {
         [[CCDirector sharedDirector] setProjection:CCDirectorProjection2D];
+        [[LayerManager sharedLayers] setCurrentLayer:self];
         
         _xp = 0;
         _level = [Level levelWithFilename:@"platformtest.tmx" Background:@"sky.png" Layer:self];
         
         //_runner = [self initRunner:_runner atPosition:CGPointMake(20, 100)];
         _player = [Player playerForLayer:self];
-        [[_player getSprite] setAnimation:[Animation animationFromPlist:@"character_running" forSequence:@"Character_Running_" NumberOfFrames:10 onLayer:self] Delay:0.075f];
+        
+        [[AnimationController sharedController] replaceSprite:[_player getSprite] withAnimationNamed:@"jumpingAnim"];
+
+        CGPoint spawn = [_level getSpawnPoint];
+        [_player setPositionAtX:spawn.x Y:spawn.y];
         
         
-        _runner2 = [self initRunner:_runner2 atPosition:CGPointMake(190, 100)];
-        _runner3 = [self initRunner:_runner3 atPosition:CGPointMake(400, 100)];
+        //_runner2 = [self initRunner:_runner2 atPosition:CGPointMake(190, 100)];
+        //_runner3 = [self initRunner:_runner3 atPosition:CGPointMake(400, 100)];
         
         [self initCamera];
         
-        [[Camera sharedCamera] setBoundaries:CGRectMake(0, 0, 2304, 1152)];
+        [[Camera sharedCamera] setBoundaries:CGRectMake(0, 0, 4800, 1152)];
         
         [self scheduleUpdate];
         self.isTouchEnabled = YES;
@@ -67,7 +73,7 @@
     runner = [Runner runnerWithSprite:[Sprite spriteWithFile:@"player_idle_01.png" toLayer:self] Layer:self];
     [runner setPositionAtX:position.x Y:position.y];
     
-    [[runner getSprite] setAnimation:[Animation animationFromPlist:@"character_running" forSequence:@"Character_Running_" NumberOfFrames:10 onLayer:self] Delay:0.075f];
+    [[runner getSprite] setAnimation:[Animation animationFromPlist:@"character_running" forSequence:@"Character_Running_" FrameList:@"1,2,3,4,5,6,7,8,9,10"] Delay:0.075f];
     
     [runner changeToRunnerState:RUNNER_STATE_RUNNING];
     
@@ -77,7 +83,7 @@
 -(void)initCamera
 {
     [[Camera sharedCamera] setTarget:[_player getSprite]];
-    [[Camera sharedCamera] setCenter:CGPointMake(30, 60)];        
+    [[Camera sharedCamera] setCenter:CGPointMake(70, 60)];        
     [[Camera sharedCamera] setPosition:[[_player getSprite] getPosition]];    
 }
 
@@ -91,8 +97,8 @@
     CGPoint newPosition = [_level checkCollisionAtPoint:[_player getPosition]];
     [_player setPositionAtX:newPosition.x Y:newPosition.y - 201];    
 
-    [self updateRunner:_runner2 DT:dt];
-    [self updateRunner:_runner3 DT:dt];
+    //[self updateRunner:_runner2 DT:dt];
+    //[self updateRunner:_runner3 DT:dt];
     
     [[Camera sharedCamera] moveTowardsTarget:dt];
     

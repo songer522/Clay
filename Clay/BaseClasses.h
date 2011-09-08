@@ -16,3 +16,5 @@
 #import "InputEvent.h"
 #import "Utilities.h"
 #import "Level.h"
+#import "LayerManager.h"
+#import "AnimationController.h"

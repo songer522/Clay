@@ -7,13 +7,24 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "cocos2d.h"
+
+@class Sprite;
 
 @interface AnimationController : NSObject
 {
+    NSMutableDictionary *animations;
     
 }
 
++(AnimationController*)sharedController;
 
+-(void)loadAnimationsFromPlist:(NSString*)plist;
+
+-(CCAnimationCache*)loadPlistForObjectName:(NSString*)objectName;
+-(CCAnimation*)loadPlistForAnimationWithName:(NSString*)animationName andObjectName:(NSString*)objectName;
+
+-(void)replaceSprite:(Sprite*)sprite withAnimationNamed:(NSString*)name;
 
 
 @end

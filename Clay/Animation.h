@@ -11,6 +11,8 @@
 #import "cocos2d.h"
 #import <Foundation/Foundation.h>
 
+@class Sprite;
+
 @interface Animation : NSObject
 {
     NSMutableArray *_frames;                //the frames of the animation
@@ -28,9 +30,8 @@
 
 
 #pragma mark - initializers
-
-+(id)animationFromPlist:(NSString*)name forSequence:(NSString*)sequence NumberOfFrames:(int)numberOfFrames onLayer:(id)layer;
--(id)initWithPlist:(NSString*)name forSequence:(NSString*)sequence NumberOfFrames:(int)numberOfFrames onLayer:(id)layer;
++(id)animationFromPlist:(NSString*)name forSequence:(NSString*)sequence FrameList:(NSString*)framelist;
+-(id)initWithPlist:(NSString*)name forSequence:(NSString*)sequence FrameList:(NSString*)framelist;
 //constructors
 
 #pragma mark - public methods
@@ -40,7 +41,7 @@
 
 #pragma mark - private methods
 
--(void)createFramesWithSequence:(NSString*)sequence NumberOfFrames:(int)numberOfFrames;
+-(void)createFramesWithSequence:(NSString*)sequence FrameList:(NSString*)framelist;
 //called by constructor, populates the (_frames) array
 //sequence = name of the sequence within the spritesheet (usually the image filenames it compiles)
 

@@ -1,79 +1,22 @@
 //
-//  AnimationController.m
+//  GameCharacter.m
 //  Clay
 //
-//  Created by Brian Cable on 9/6/11.
-//  Copyright 2011 Xecudev, LLC. All rights reserved.
+//  Created by Dustin Werner on 9/7/11.
+//  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "AnimationController.h"
-#import "Animation.h"
-#import "Sprite.h"
+#import "GameCharacter.h"
+#import "cocos2d.h"
 
-@implementation AnimationController
+@implementation GameCharacter
 
-static AnimationController *_sharedController = nil;
-
-+(AnimationController*)sharedController
-{
-	if (!_sharedController) {
-        _sharedController = [[self alloc] init];
-	}
-	return _sharedController;
-}
-
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        // Initialization code here.
-        animations = [NSMutableDictionary dictionaryWithCapacity:10];
+-(id) init {
+    if((self=[super init])){
         
-        [self loadAnimationsFromPlist:@"anims"];
     }
-    
     return self;
 }
-
--(void)loadAnimationsFromPlist:(NSString*)plist
-{
-    NSString *path = [[NSBundle mainBundle] pathForResource:plist ofType:@"plist"];
-    
-    //read plist
-    NSDictionary *plistDictionary = [NSDictionary dictionaryWithContentsOfFile:path];
-    
-    NSAssert(plistDictionary!=nil,@"Error reading plist.");
-    
-    NSEnumerator *enumerator = [plistDictionary keyEnumerator];
-    id animationName;
-    while ((animationName = [enumerator nextObject])) {
-        NSDictionary *animationSettings = [plistDictionary objectForKey:animationName];
-        
-        // get animation delay
-        float animationDelay = [[animationSettings objectForKey:@"delay"] floatValue];
-        
-        // add frames to animation
-        NSString *spritesheetPlist = [animationSettings objectForKey:@"spritesheetPlist"];
-        NSString *sequencePrefix = [animationSettings objectForKey:@"sequencePrefix"];
-        NSString *animationFrames = [animationSettings objectForKey:@"animationFrames"];
-
-        Animation *anim = [Animation animationFromPlist:spritesheetPlist forSequence:sequencePrefix FrameList:animationFrames];
-        anim.delay = animationDelay;
-        
-        [animations setValue:anim forKey:animationName];
-        
-    }
-}
-
-
--(void)replaceSprite:(Sprite*)sprite withAnimationNamed:(NSString*)name
-{
-    Animation *anim = [animations objectForKey:name];
-    NSAssert(anim!=nil,@"Animation not loaded.");
-    [sprite setAnimation:anim Delay:anim.delay];
-}
-
-
 
 -(CCAnimationCache*)loadPlistForObjectName:(NSString*)objectName {
     CCAnimationCache *animationCacheToReturn = nil;
@@ -175,7 +118,5 @@ static AnimationController *_sharedController = nil;
     }
     return animationToReturn;
 }
-
-
 
 @end

@@ -46,7 +46,7 @@
 
 -(CGPoint)tileCoordForPosition:(CGPoint)position
 {
-    int scaledTileWidth = _map.tileSize.width * _map.scale;
+    int scaledTileWidth = _map.tileSize.width * 2.0f;
     int scaledTileHeight = _map.tileSize.height * _map.scale;
     int x = position.x / scaledTileWidth;
     int y = ((_map.mapSize.height * scaledTileHeight) - position.y) / scaledTileHeight;
@@ -75,8 +75,10 @@
 
 -(int)getTopYPositionForTileCoords:(CGPoint)coords atX:(int)x ForTileProperty:(NSString*)property
 {
-    //int scaledTileWidth = _map.tileSize.width * _map.scale;
+    int scaledTileWidth = _map.tileSize.width * _map.scale;
     int scaledTileHeight = _map.tileSize.height * _map.scale;
+    
+    int tileX = x % scaledTileWidth;
     
     int y = 0;
     if ([property compare:@"none"] == NSOrderedSame) {
@@ -85,7 +87,19 @@
         
         //flip the y position so it's based on screen
         y = (_map.mapSize.height * scaledTileHeight) - y;
+    } else if([property compare:@"leftslant"] == NSOrderedSame) {
+        y = (coords.y * scaledTileHeight) + (scaledTileWidth - tileX);
+        
+        //flip the y position so it's based on screen
+        y = (_map.mapSize.height * scaledTileHeight) - y;
+    } else if([property compare:@"rightslant"] == NSOrderedSame) {
+        y = (coords.y * scaledTileHeight) + tileX;
+        
+        //flip the y position so it's based on screen
+        y = (_map.mapSize.height * scaledTileHeight) - y;
     }
+    
+    NSLog(@"X,TILEX,Y:%d,%d,%d   Coord:%f,%f   Top Tile: %@",x,tileX,y,coords.x,coords.y,property);
     
     return y;
 }
@@ -100,7 +114,7 @@
     
     bool colliding = true;
     while (colliding) {
-        if ([collisionProperty compare:@"none"] == NSOrderedSame || tileCoordinates.y < 0) {
+        if ([collisionProperty compare:@"full"] != NSOrderedSame || tileCoordinates.y < 0) {
             colliding = false;
         } else {
             tileCoordinates.y -= 1;

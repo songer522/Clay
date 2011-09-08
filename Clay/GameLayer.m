@@ -43,7 +43,7 @@
         _background = [TrackBackground backgroundForLayer:self];
         
         _player = [Player playerForLayer:self];
-        [[_player getSprite] setAnimation:[Animation animationFromPlist:@"character_running" forSequence:@"Character_Running_" NumberOfFrames:10 onLayer:self] Delay:0.075f];
+        [[_player getSprite] setAnimation:[Animation animationFromPlist:@"character_running" forSequence:@"Character_Running_" FrameList:@"1,2,3,4,5,6,7,8,9,10"] Delay:0.075f];
         
         
         

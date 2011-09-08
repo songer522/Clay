@@ -9,6 +9,7 @@
 #import "cocos2d.h"
 #import "Sprite.h"
 #import "Animation.h"
+#import "BaseClasses.h"
 
 #define ANIMATION_DEFAULT_DELAY 0.1f
 #define ANIMATION_DEFAULT_LOOPING true
@@ -21,15 +22,13 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
 
 @synthesize delay = _delay;
 
-+(id)animationFromPlist:(NSString*)name forSequence:(NSString*)sequence NumberOfFrames:(int)numberOfFrames onLayer:(id)layer
++(id)animationFromPlist:(NSString*)name forSequence:(NSString*)sequence FrameList:(NSString*)framelist
 {
-    return [[self alloc] initWithPlist:name forSequence:sequence NumberOfFrames:numberOfFrames onLayer:layer];
+    return [[self alloc] initWithPlist:name forSequence:sequence FrameList:(NSString*)framelist];
 }
 
--(id)initWithPlist:(NSString*)name forSequence:(NSString*)sequence NumberOfFrames:(int)numberOfFrames onLayer:(id)layer
+-(id)initWithPlist:(NSString*)name forSequence:(NSString*)sequence FrameList:(NSString*)framelist
 {
-    NSAssert(numberOfFrames>0,@"Number of frames must be 1 or greater.");
-    
     self = [super init];
     if (self) {
         // Initialization code here.
@@ -42,25 +41,31 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
         
         _spriteSheet = [CCSpriteBatchNode batchNodeWithFile:[name stringByAppendingString:ANIMATION_GRAPHIC_EXTENSION]];
         
-        [self createFramesWithSequence:sequence NumberOfFrames:numberOfFrames];
+        [self createFramesWithSequence:sequence FrameList:(NSString*)framelist];
         
-        [layer addChild:_spriteSheet];
+        
+        [[[LayerManager sharedLayers] currentLayer] addChild:_spriteSheet];
 
     }
     
     return self;
 }
 
--(void)createFramesWithSequence:(NSString*)sequence NumberOfFrames:(int)numberOfFrames
+-(void)createFramesWithSequence:(NSString*)sequence FrameList:(NSString*)framelist
 {
+    
+    NSArray *animationFrameNumbers = [framelist componentsSeparatedByString:@","];
+    
+    bool isFirstFrame = true;
     _frames = [NSMutableArray array];
-    for (int i=1; i<=numberOfFrames; ++i) {
+    
+    for (NSString *frameNumber in animationFrameNumbers) {
         
         //builds frameName with format "(SEQUENCE_NAME)(FRAME_NUMBER)-(HD_SUFFIX)(FILE_EXTENSION)", for example "player_1-hd.png"
-        NSString *frameName = [sequence stringByAppendingFormat:@"%d%@%@",i, ANIMATION_HD_SUFFIX,ANIMATION_GRAPHIC_EXTENSION];
+        NSString *frameName = [sequence stringByAppendingFormat:@"%@%@%@",frameNumber, ANIMATION_HD_SUFFIX,ANIMATION_GRAPHIC_EXTENSION];
         
         //we want to know the name of the first frame, so we can switch sprites to it later
-        if (i == 1) {
+        if (isFirstFrame) {
             _firstFrameName = [NSString stringWithString:frameName];
         }
         
