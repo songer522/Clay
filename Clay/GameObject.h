@@ -28,6 +28,8 @@
 
 -(void) setPositionAtX:(int)x Y:(int)y;     //give new x and y position on screen (with cocos2D, both hi and low-res use 320x480 resolution for its points)
 
+-(CGPoint) getPosition;
+
 -(void) update:(float)dt;
 
 @end

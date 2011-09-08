@@ -10,7 +10,7 @@
 #import "RunningSpeed.h"
 #import "GameObject.h"
 
-#define RUNNER_VELOCITY_RATE 8.0f
+#define RUNNER_VELOCITY_RATE 24.0f
 #define RUNNER_STARTING_X_POSITION 20
 
 @implementation Runner
@@ -63,18 +63,19 @@
 -(void)update:(float)dt
 {
     float rate = RUNNER_VELOCITY_RATE * dt;
-    float xposition = RUNNER_STARTING_X_POSITION + RUNNER_VELOCITY_RATE * _speed.velocity;
-    [[self getSprite] setPositionAtX:xposition Y:_y];
+    //float xposition = RUNNER_STARTING_X_POSITION + RUNNER_VELOCITY_RATE * _speed.velocity;
 
     [_speed update:dt];
     
-    _vx = _speed.velocity;
+    _vx = rate * _speed.velocity * [[UIScreen mainScreen] scale];
+    //_vy += 8.0f * dt;
     
     if(_isRunning) {
         self.x += _vx * rate;
-        self.y += _vy * rate;
+        self.y -= _vy * rate;
     }
-    
+    [[self getSprite] setPositionAtX:self.x Y:self.y];
+
 }
 
 -(Sprite*)getSprite

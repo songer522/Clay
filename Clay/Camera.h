@@ -11,6 +11,8 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
+@class Sprite;
+
 @interface Camera : NSObject
 {
     float _x;                   //x position of the camera
@@ -25,7 +27,7 @@
 
     CGPoint _center;            //x and y position relative to the screen where the target should be. default is center.
     
-    CCSprite *_target;          //what the camera is tracking towards (will be the runner mostly, but every
+    Sprite *_target;          //what the camera is tracking towards (will be the runner mostly, but every
                                 //once in awhile we might want to highlight something else)
 }
 
@@ -36,11 +38,13 @@
 -(void)setBoundaries:(CGRect)rect;
 -(CGPoint)convertToScreenXY:(CGPoint)worldXY;
 -(CGPoint)convertToWorldXY:(CGPoint)screenXY;
+-(void)setTarget:(Sprite*)sprite;
+-(void)setCenter:(CGPoint)point;
+-(void)setPosition:(CGPoint)point;
+-(void)moveTowardsTarget:(float)dt;
 
 #pragma mark - private methods
 -(void)keepWithinBoundaries;
--(void)moveTowardsTarget:(float)dt;
-
 
 
 @end

@@ -46,6 +46,8 @@
         [[_player getSprite] setAnimation:[Animation animationFromPlist:@"character_running" forSequence:@"Character_Running_" NumberOfFrames:10 onLayer:self] Delay:0.075f];
         
         
+        
+        
         [self scheduleUpdate];
         self.isTouchEnabled = YES;
     }

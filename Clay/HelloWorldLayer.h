@@ -19,6 +19,8 @@
     Level *_level;
     
     Runner *_runner;
+    Runner *_runner2;
+    Runner *_runner3;
     
     float _xp;
     
@@ -27,5 +29,7 @@
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
 
+-(void)initCamera;
+-(Runner*)initRunner:(Runner*)runner atPosition:(CGPoint)position;
 
 @end

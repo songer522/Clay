@@ -40,8 +40,15 @@
 }
 
 
+-(CGPoint) getPosition
+{
+    return [_sprite getPosition];
+}
+
 -(void)setPositionAtX:(int)x Y:(int)y
 {
+    _x = x;
+    _y = y;
     [_sprite setPositionAtX:x Y:y];
 }
 

@@ -43,25 +43,50 @@
         _xp = 0;
         _level = [Level levelWithFilename:@"platformtest.tmx" Background:@"sky.png" Layer:self];
         
-        _runner = [Runner runnerWithSprite:[Sprite spriteWithFile:@"player_idle_01.png" toLayer:self] Layer:self];
-        [_runner setPositionAtX:20 Y:100];
+        _runner = [self initRunner:_runner atPosition:CGPointMake(20, 100)];
+        //[self initRunner:_runner2 atPosition:CGPointMake(90, 100)];
+        //[self initRunner:_runner3 atPosition:CGPointMake(400, 100)];
         
-        [[_runner getSprite] setAnimation:[Animation animationFromPlist:@"character_running" forSequence:@"Character_Running_" NumberOfFrames:10 onLayer:self] Delay:0.075f];
+        [self initCamera];
         
-        [_runner changeToRunnerState:RUNNER_STATE_RUNNING];
-                
         [self scheduleUpdate];
         self.isTouchEnabled = YES;
 	}
 	return self;
 }
 
+-(Runner*)initRunner:(Runner*)runner atPosition:(CGPoint)position
+{
+    runner = [Runner runnerWithSprite:[Sprite spriteWithFile:@"player_idle_01.png" toLayer:self] Layer:self];
+    [runner setPositionAtX:position.x Y:position.y];
+    
+    [[runner getSprite] setAnimation:[Animation animationFromPlist:@"character_running" forSequence:@"Character_Running_" NumberOfFrames:10 onLayer:self] Delay:0.075f];
+    
+    [runner changeToRunnerState:RUNNER_STATE_RUNNING];
+    
+    return runner;
+}
+
+-(void)initCamera
+{
+    [[Camera sharedCamera] setTarget:[_runner getSprite]];
+    [[Camera sharedCamera] setCenter:CGPointMake(50, 220)];        
+    [[Camera sharedCamera] setPosition:[[_runner getSprite] getPosition]];    
+}
+
 -(void)update:(ccTime)dt
 {
+    
     [_runner update:dt];
-    CGPoint newRunnerPosition = [_level checkCollisionAtPoint:ccp(_runner.x,_runner.y)];
-    [_runner setPositionAtX:_runner.x Y:newRunnerPosition.y - 52];
+    
+    CGPoint newPosition = [_level checkCollisionAtPoint:[_runner getPosition]];
+    
+    [_runner setPositionAtX:newPosition.x Y:newPosition.y - 52];
+    
     [_level update:dt Velocity:_runner.vx];
+    
+    [[Camera sharedCamera] moveTowardsTarget:dt];
+    
 }
 
 

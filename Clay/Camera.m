@@ -7,6 +7,7 @@
 //
 
 #import "Camera.h"
+#import "Sprite.h"
 
 @implementation Camera
 
@@ -70,6 +71,16 @@ static Camera *_sharedCamera = nil;
     }
 }
 
+-(void)setTarget:(Sprite *)sprite
+{
+    _target = sprite;
+}
+
+-(void)setCenter:(CGPoint)point
+{
+    _center = point;
+}
+
 -(void)moveByX:(float)x Y:(float)y
 {
     _x += x;
@@ -93,7 +104,25 @@ static Camera *_sharedCamera = nil;
 
 -(void)moveTowardsTarget:(float)dt
 {
-    
+    if (_target != nil) {
+        CGPoint position = [_target getPosition];
+        float dx = position.x - _x;
+        float dy = position.y - _y;
+        
+        float distance = sqrtf(dx*dx + dy*dy);
+        float magnitude = distance * 8.0f * dt;
+        
+        if (distance) {
+            _x += magnitude * (dx/distance);
+            _y += magnitude * (dy/distance);
+        }        
+    }
+}
+
+-(void)setPosition:(CGPoint)point
+{
+    _x = point.x;
+    _y = point.y;
 }
 
 @end

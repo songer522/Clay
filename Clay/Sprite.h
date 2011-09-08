@@ -14,7 +14,12 @@
 {
     CCSprite *sprite_cc;
     Animation *_animation;
+    float _x;
+    float _y;
 }
+
+@property (nonatomic,assign) float x;
+@property (nonatomic,assign) float y;
 
 +(id) spriteWithFile:(NSString *)filename toLayer:(id)layer;
 +(id) spriteWithFile:(NSString *)filename rect:(CGRect)rect toLayer:(id)layer;
@@ -27,5 +32,6 @@
 -(void) initializeSpriteOnceLoaded;
 -(float) getWidth;
 -(float) getHeight;
+-(CGPoint) getPosition;
 -(void)setAnimation:(Animation*)animation Delay:(float)delay;
 @end

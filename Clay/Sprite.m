@@ -13,6 +13,9 @@
 
 @implementation Sprite
 
+@synthesize x = _x;
+@synthesize y = _y;
+
 - (id)init
 {
     //super init already called within initWithFile under sprite
@@ -76,8 +79,15 @@
 
 -(void) setPositionAtX:(float)x Y:(float)y
 {
+    _x = x;
+    _y = y;
     CGPoint position = [[Camera sharedCamera] convertToScreenXY:CGPointMake(x, y)];
     sprite_cc.position = ccp(position.x,position.y);
+}
+
+-(CGPoint) getPosition
+{
+    return CGPointMake(_x, _y);
 }
 
 -(CCSprite*) getCCSprite

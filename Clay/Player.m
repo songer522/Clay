@@ -73,6 +73,7 @@
 
 -(void)updateJump:(float)dt
 {
+    /*
     if (_isJumping) {
         _vy += 24.0f * dt;
         if(_vy > PLAYER_VELOCITY_Y_MAX) {
@@ -84,7 +85,7 @@
             _y = PLAYER_STARTING_Y_POSITION;
             _isJumping = false;
         }
-    }
+    }*/
 }
 
 -(void)startJump:(RunnerJump)height

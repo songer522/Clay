@@ -25,6 +25,9 @@
     CCTMXObjectGroup *_objects;
     
     CGPoint _spawnPoint;
+    
+    float _x;
+    float _y;
 }
 
 #pragma mark - inits
@@ -35,6 +38,7 @@
 -(CGPoint)checkCollisionAtPoint:(CGPoint)point;
 -(void)update:(float)dt Velocity:(float)vx;
 -(CGRect)getLevelBoundaries;
+-(CGPoint)getSpawnPoint;
 
 
 #pragma mark - private methods
@@ -44,4 +48,5 @@
 -(bool)checkIfSameTile:(int)tileId atNewPosition:(CGPoint)point forTileLayer:(CCTMXLayer*)layer;
 -(NSString*)getCollisionPropertyForTileCoords:(CGPoint)coords;
 -(void)initObjects;
+-(void)setPositionAtX:(float)x Y:(float)y;
 @end

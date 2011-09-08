@@ -133,7 +133,7 @@
 -(void)update:(float)dt Velocity:(float)vx
 {
     //float rate = vx * 0.2f;
-    //[_map setPosition:CGPointMake(_map.position.x - rate, _map.position.y)];
+    [self setPositionAtX:_x Y:_y];
 }
 
 -(bool)checkIfSameTile:(int)tileId atNewPosition:(CGPoint)point forTileLayer:(CCTMXLayer*)layer
@@ -147,7 +147,12 @@
     return returnVal;
 }
 
-
+-(void)setPositionAtX:(float)x Y:(float)y
+{
+    _x = x;
+    _y = y;
+    [_map setPosition:[[Camera sharedCamera] convertToScreenXY:CGPointMake(_x, _y)]];
+}
 
 -(void)initTiledMap:(NSString*)filename 
 {
@@ -184,6 +189,10 @@
     
 }
 
+-(CGPoint)getSpawnPoint
+{
+    return _spawnPoint;
+}
 
 
 @end
