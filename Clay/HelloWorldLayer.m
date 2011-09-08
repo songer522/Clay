@@ -49,11 +49,7 @@
         [[_runner getSprite] setAnimation:[Animation animationFromPlist:@"character_running" forSequence:@"Character_Running_" NumberOfFrames:10 onLayer:self] Delay:0.075f];
         
         [_runner changeToRunnerState:RUNNER_STATE_RUNNING];
-        
-        [[Camera sharedCamera] moveByX:300 Y:50];
-        [[Camera sharedCamera] convertToScreenXY:CGPointMake(420,200)];
-        
-        
+                
         [self scheduleUpdate];
         self.isTouchEnabled = YES;
 	}

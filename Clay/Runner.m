@@ -10,7 +10,7 @@
 #import "RunningSpeed.h"
 #import "GameObject.h"
 
-#define RUNNER_VELOCITY_RATE 3.0f
+#define RUNNER_VELOCITY_RATE 8.0f
 #define RUNNER_STARTING_X_POSITION 20
 
 @implementation Runner

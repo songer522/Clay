@@ -5,6 +5,8 @@
 //  Created by Brian Cable on 9/7/11.
 //  Copyright 2011 Xecudev, LLC. All rights reserved.
 //
+//  Camera class that will follow a target with an offset (the player on the left side of the screen, for example), while
+//  ensuring the camera stays within the boundaries of the level.
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"

@@ -9,6 +9,7 @@
 #import "cocos2d.h"
 #import "Sprite.h"
 #import "Animation.h"
+#import "Camera.h"
 
 @implementation Sprite
 
@@ -75,7 +76,8 @@
 
 -(void) setPositionAtX:(float)x Y:(float)y
 {
-    sprite_cc.position = ccp(x,y);
+    CGPoint position = [[Camera sharedCamera] convertToScreenXY:CGPointMake(x, y)];
+    sprite_cc.position = ccp(position.x,position.y);
 }
 
 -(CCSprite*) getCCSprite

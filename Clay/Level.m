@@ -8,7 +8,7 @@
 
 #import "Level.h"
 
-#import "TrackBackground.h"
+#import "Camera.h"
 
 @implementation Level
 
@@ -36,6 +36,8 @@
         
         [self initObjects];
         
+        [[Camera sharedCamera] setBoundaries:[self getLevelBoundaries]];
+        
         [layer addChild:voidNode];
     }
     
@@ -62,6 +64,13 @@
     }
     
     return ccp(x,y);
+}
+
+-(CGRect)getLevelBoundaries
+{
+    int width = _map.mapSize.width * _map.tileSize.width * _map.scale;
+    int height = _map.mapSize.height * _map.tileSize.height * _map.scale;
+    return CGRectMake(0, 0, width, height);
 }
 
 -(int)getTopYPositionForTileCoords:(CGPoint)coords atX:(int)x ForTileProperty:(NSString*)property
@@ -123,8 +132,8 @@
 
 -(void)update:(float)dt Velocity:(float)vx
 {
-    float rate = vx * 0.2f;
-    [_map setPosition:CGPointMake(_map.position.x - rate, _map.position.y)];
+    //float rate = vx * 0.2f;
+    //[_map setPosition:CGPointMake(_map.position.x - rate, _map.position.y)];
 }
 
 -(bool)checkIfSameTile:(int)tileId atNewPosition:(CGPoint)point forTileLayer:(CCTMXLayer*)layer
@@ -168,8 +177,8 @@
     NSMutableDictionary *spawnPoint = [_objects objectNamed:@"SpawnPoint"];
     NSAssert(spawnPoint != nil, @"SpawnPoint object not found");
     
-    int x = [[spawnPoint valueForKey:@"x"] intValue];
-    int y = [[spawnPoint valueForKey:@"y"] intValue];
+    int x = [[spawnPoint valueForKey:@"x"] intValue] * _map.scale;
+    int y = [[spawnPoint valueForKey:@"y"] intValue] * _map.scale;
     
     _spawnPoint = CGPointMake(x, y);
     

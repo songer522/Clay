@@ -34,6 +34,7 @@
 #pragma mark - public methods
 -(CGPoint)checkCollisionAtPoint:(CGPoint)point;
 -(void)update:(float)dt Velocity:(float)vx;
+-(CGRect)getLevelBoundaries;
 
 
 #pragma mark - private methods
