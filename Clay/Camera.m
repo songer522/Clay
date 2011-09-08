@@ -117,6 +117,7 @@ static Camera *_sharedCamera = nil;
             _y += magnitude * (dy/distance);
         }        
     }
+    [self keepWithinBoundaries];
 }
 
 -(void)setPosition:(CGPoint)point

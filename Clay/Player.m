@@ -40,7 +40,6 @@
         _isJumping = false;
         _vx = 0;
         _vy = 0;
-        _yPosition = PLAYER_STARTING_Y_POSITION;
         
         [self setSprite:[Sprite spriteWithFile:PLAYER_SPRITE_FILE toLayer:layer]];
         [self setPositionAtX:PLAYER_STARTING_X_POSITION Y:PLAYER_STARTING_Y_POSITION];
@@ -57,23 +56,16 @@
 
 -(void)update:(float)dt
 {
-
-    if (_isRunning) {        
-        [_speed update:dt];
-        float xposition = PLAYER_STARTING_X_POSITION + PLAYER_VELOCITY_MULTIPLIER * _speed.velocity;
-        
-        [self updateJump:dt];
-        
-        [_sprite setPositionAtX:xposition Y:_yPosition];
-    }
-    
-    
+    [super update:dt];
+    [self updateJump:dt];
     
 }
 
+
+
 -(void)updateJump:(float)dt
 {
-    /*
+    
     if (_isJumping) {
         _vy += 24.0f * dt;
         if(_vy > PLAYER_VELOCITY_Y_MAX) {
@@ -85,7 +77,7 @@
             _y = PLAYER_STARTING_Y_POSITION;
             _isJumping = false;
         }
-    }*/
+    }
 }
 
 -(void)startJump:(RunnerJump)height

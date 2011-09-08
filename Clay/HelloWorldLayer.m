@@ -13,6 +13,7 @@
 #import "Level.h"
 #import "Runner.h"
 #import "Camera.h"
+#import "Player.h"
 
 // HelloWorldLayer implementation
 @implementation HelloWorldLayer
@@ -43,11 +44,17 @@
         _xp = 0;
         _level = [Level levelWithFilename:@"platformtest.tmx" Background:@"sky.png" Layer:self];
         
-        _runner = [self initRunner:_runner atPosition:CGPointMake(20, 100)];
-        //[self initRunner:_runner2 atPosition:CGPointMake(90, 100)];
-        //[self initRunner:_runner3 atPosition:CGPointMake(400, 100)];
+        //_runner = [self initRunner:_runner atPosition:CGPointMake(20, 100)];
+        _player = [Player playerForLayer:self];
+        [[_player getSprite] setAnimation:[Animation animationFromPlist:@"character_running" forSequence:@"Character_Running_" NumberOfFrames:10 onLayer:self] Delay:0.075f];
+        
+        
+        _runner2 = [self initRunner:_runner2 atPosition:CGPointMake(190, 100)];
+        _runner3 = [self initRunner:_runner3 atPosition:CGPointMake(400, 100)];
         
         [self initCamera];
+        
+        [[Camera sharedCamera] setBoundaries:CGRectMake(0, 0, 2304, 1152)];
         
         [self scheduleUpdate];
         self.isTouchEnabled = YES;
@@ -69,26 +76,34 @@
 
 -(void)initCamera
 {
-    [[Camera sharedCamera] setTarget:[_runner getSprite]];
-    [[Camera sharedCamera] setCenter:CGPointMake(50, 220)];        
-    [[Camera sharedCamera] setPosition:[[_runner getSprite] getPosition]];    
+    [[Camera sharedCamera] setTarget:[_player getSprite]];
+    [[Camera sharedCamera] setCenter:CGPointMake(30, 60)];        
+    [[Camera sharedCamera] setPosition:[[_player getSprite] getPosition]];    
 }
 
 -(void)update:(ccTime)dt
 {
     
-    [_runner update:dt];
     
-    CGPoint newPosition = [_level checkCollisionAtPoint:[_runner getPosition]];
+    [_level update:dt Velocity:_player.vx];
     
-    [_runner setPositionAtX:newPosition.x Y:newPosition.y - 52];
-    
-    [_level update:dt Velocity:_runner.vx];
+    [_player update:dt];
+    CGPoint newPosition = [_level checkCollisionAtPoint:[_player getPosition]];
+    [_player setPositionAtX:newPosition.x Y:newPosition.y - 201];    
+
+    [self updateRunner:_runner2 DT:dt];
+    [self updateRunner:_runner3 DT:dt];
     
     [[Camera sharedCamera] moveTowardsTarget:dt];
     
 }
 
+-(void)updateRunner:(Runner*)runner DT:(float)dt
+{
+    [runner update:dt];
+    CGPoint newPosition = [_level checkCollisionAtPoint:[runner getPosition]];
+    [runner setPositionAtX:newPosition.x Y:newPosition.y - 52];    
+}
 
 // on "dealloc" you need to release all your retained objects
 - (void) dealloc

@@ -12,13 +12,18 @@
 
 @class Level;
 @class Runner;
+@class Player;
+
 
 // HelloWorldLayer
 @interface HelloWorldLayer : CCLayer
 {
     Level *_level;
     
-    Runner *_runner;
+    Player *_player;
+    
+    
+    //Runner *_runner;
     Runner *_runner2;
     Runner *_runner3;
     
@@ -31,5 +36,5 @@
 
 -(void)initCamera;
 -(Runner*)initRunner:(Runner*)runner atPosition:(CGPoint)position;
-
+-(void)updateRunner:(Runner*)runner DT:(float)dt;
 @end
