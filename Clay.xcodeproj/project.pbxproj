@@ -141,12 +141,6 @@
 		54518F6D1406AEE6009D74AA /* GameObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 54518F6C1406AEE6009D74AA /* GameObject.m */; };
 		54518F701406B061009D74AA /* BaseClasses.m in Sources */ = {isa = PBXBuildFile; fileRef = 54518F6F1406B061009D74AA /* BaseClasses.m */; };
 		54518F751406B761009D74AA /* GameClasses.m in Sources */ = {isa = PBXBuildFile; fileRef = 54518F741406B761009D74AA /* GameClasses.m */; };
-		545E2FA0141168F5003074AE /* test.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 545E2F9F141168F5003074AE /* test.tmx */; };
-		545E2FA3141169CD003074AE /* test_tileset.png in Resources */ = {isa = PBXBuildFile; fileRef = 545E2FA2141169CD003074AE /* test_tileset.png */; };
-		545E2FA514117B5B003074AE /* test2.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 545E2FA414117B5B003074AE /* test2.tmx */; };
-		545E2FA714117B7E003074AE /* test_tileset_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 545E2FA614117B7E003074AE /* test_tileset_small.png */; };
-		545E2FAA141181D4003074AE /* fence.png in Resources */ = {isa = PBXBuildFile; fileRef = 545E2FA8141181D4003074AE /* fence.png */; };
-		545E2FAB141181D4003074AE /* fence.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 545E2FA9141181D4003074AE /* fence.tmx */; };
 		5483C7191417CF140032BDDD /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = 5483C7181417CF140032BDDD /* Camera.m */; };
 		54910845140D2D0500A5E537 /* character_running-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54910844140D2D0500A5E537 /* character_running-hd.png */; };
 		54910848140D2E9C00A5E537 /* character_running-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54910847140D2E9C00A5E537 /* character_running-hd.plist */; };
@@ -172,8 +166,6 @@
 		54D00E3214169B3900204121 /* tileset-platformer.png in Resources */ = {isa = PBXBuildFile; fileRef = 54D00E3014169B3900204121 /* tileset-platformer.png */; };
 		54DC8A75140FCE6A00D055D7 /* TrackBackgroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 54DC8A74140FCE6A00D055D7 /* TrackBackgroundLayer.m */; };
 		54DF2A981407E4AB004FBFBE /* TrackBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 54DF2A971407E4AB004FBFBE /* TrackBackground.m */; };
-		54E7AA201411600900190084 /* dirt_64.png in Resources */ = {isa = PBXBuildFile; fileRef = 54E7AA1F1411600900190084 /* dirt_64.png */; };
-		54E7AA231411601500190084 /* wood_128.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 54E7AA221411601500190084 /* wood_128.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -443,12 +435,6 @@
 		54518F6F1406B061009D74AA /* BaseClasses.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseClasses.m; sourceTree = "<group>"; };
 		54518F731406B761009D74AA /* GameClasses.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameClasses.h; sourceTree = "<group>"; };
 		54518F741406B761009D74AA /* GameClasses.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameClasses.m; sourceTree = "<group>"; };
-		545E2F9F141168F5003074AE /* test.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = test.tmx; path = Resources/Tiles/test.tmx; sourceTree = "<group>"; };
-		545E2FA2141169CD003074AE /* test_tileset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = test_tileset.png; path = Resources/Tiles/test_tileset.png; sourceTree = "<group>"; };
-		545E2FA414117B5B003074AE /* test2.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = test2.tmx; path = Resources/Tiles/test2.tmx; sourceTree = "<group>"; };
-		545E2FA614117B7E003074AE /* test_tileset_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = test_tileset_small.png; path = Resources/Tiles/test_tileset_small.png; sourceTree = "<group>"; };
-		545E2FA8141181D4003074AE /* fence.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fence.png; path = Resources/Tiles/fence.png; sourceTree = "<group>"; };
-		545E2FA9141181D4003074AE /* fence.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = fence.tmx; path = Resources/Tiles/fence.tmx; sourceTree = "<group>"; };
 		5483C7171417CF140032BDDD /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
 		5483C7181417CF140032BDDD /* Camera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Camera.m; sourceTree = "<group>"; };
 		54910844140D2D0500A5E537 /* character_running-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "character_running-hd.png"; path = "Resources/character_running-hd.png"; sourceTree = "<group>"; };
@@ -483,8 +469,6 @@
 		54DC8A74140FCE6A00D055D7 /* TrackBackgroundLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackBackgroundLayer.m; sourceTree = "<group>"; };
 		54DF2A961407E4AA004FBFBE /* TrackBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackBackground.h; sourceTree = "<group>"; };
 		54DF2A971407E4AB004FBFBE /* TrackBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackBackground.m; sourceTree = "<group>"; };
-		54E7AA1F1411600900190084 /* dirt_64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dirt_64.png; path = Resources/Tiles/dirt_64.png; sourceTree = "<group>"; };
-		54E7AA221411601500190084 /* wood_128.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = wood_128.jpg; path = Resources/Tiles/wood_128.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -585,14 +569,6 @@
 			children = (
 				5416A1A7141959E800648B6A /* Tim */,
 				549969181416749900CB7800 /* test */,
-				545E2FA8141181D4003074AE /* fence.png */,
-				545E2FA9141181D4003074AE /* fence.tmx */,
-				545E2FA614117B7E003074AE /* test_tileset_small.png */,
-				545E2FA414117B5B003074AE /* test2.tmx */,
-				545E2FA2141169CD003074AE /* test_tileset.png */,
-				545E2F9F141168F5003074AE /* test.tmx */,
-				54E7AA221411601500190084 /* wood_128.jpg */,
-				54E7AA1F1411600900190084 /* dirt_64.png */,
 				54911E8B14100BF8003BBB16 /* player_idle_01.png */,
 				54911E791410071B003BBB16 /* backgrounds */,
 				549B334F140830C100953E67 /* anim_guy.png */,
@@ -1103,14 +1079,6 @@
 				54911E891410071B003BBB16 /* track-hd.png in Resources */,
 				54911E8A1410071B003BBB16 /* track.png in Resources */,
 				54911E8C14100BF8003BBB16 /* player_idle_01.png in Resources */,
-				54E7AA201411600900190084 /* dirt_64.png in Resources */,
-				54E7AA231411601500190084 /* wood_128.jpg in Resources */,
-				545E2FA0141168F5003074AE /* test.tmx in Resources */,
-				545E2FA3141169CD003074AE /* test_tileset.png in Resources */,
-				545E2FA514117B5B003074AE /* test2.tmx in Resources */,
-				545E2FA714117B7E003074AE /* test_tileset_small.png in Resources */,
-				545E2FAA141181D4003074AE /* fence.png in Resources */,
-				545E2FAB141181D4003074AE /* fence.tmx in Resources */,
 				54D00E2D141699FE00204121 /* meta.png in Resources */,
 				54D00E3114169B3900204121 /* platformtest.tmx in Resources */,
 				54D00E3214169B3900204121 /* tileset-platformer.png in Resources */,

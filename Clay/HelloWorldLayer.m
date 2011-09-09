@@ -89,7 +89,7 @@
     [[Camera sharedCamera] setTarget:[_player getSprite]];
     [[Camera sharedCamera] setCenter:CGPointMake(70, 90)];        
     [[Camera sharedCamera] setPosition:[[_player getSprite] getPosition]];    
-    [[Camera sharedCamera] setBoundaries:CGRectMake(0, 0, 3340, 2000)];
+    //[[Camera sharedCamera] setBoundaries:CGRectMake(0, 0, 3340, 2000)];
 }
 
 -(void)update:(ccTime)dt

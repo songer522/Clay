@@ -70,8 +70,8 @@
 
 -(CGRect)getLevelBoundaries
 {
-    int width = _map.mapSize.width * _map.tileSize.width * _map.scale;
-    int height = _map.mapSize.height * _map.tileSize.height * _map.scale;
+    int width = _map.mapSize.width * _map.tileSize.width * 2.0f;
+    int height = _map.mapSize.height * _map.tileSize.height * 2.0f;
     return CGRectMake(0, 0, width, height);
 }
 
@@ -100,8 +100,6 @@
         //flip the y position so it's based on screen
         y = (_map.mapSize.height * scaledTileHeight) - y;
     }
-    
-    //NSLog(@"X,TILEX,Y:%d,%d,%d   Coord:%f,%f   Top Tile: %@",x,tileX,y,coords.x,coords.y,property);
     
     return y;
 }
@@ -157,7 +155,6 @@
 
 -(void)update:(float)dt Velocity:(float)vx
 {
-    //float rate = vx * 0.2f;
     [self setPositionAtX:_x Y:_y];
 }
 

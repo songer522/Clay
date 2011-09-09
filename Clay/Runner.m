@@ -29,8 +29,8 @@
     self = [super init];
     if (self) {
         // Initialization code here.
-        _vx = 0.0f;
-        _vy = 0.0f;
+        self.vx = 0.0f;
+        self.vy = 0.0f;
         [self changeToRunnerState:RUNNER_STATE_PRERACE];
         [self setPositionAtX:0 Y:0];
         [self setSprite:sprite];
@@ -61,9 +61,8 @@
 -(void)update:(float)dt
 {
     [_speed update:dt];
-    
-    _vx = RUNNER_VELOCITY_RATE * _speed.velocity;
-    _vy += 1100.0f * dt;
+    self.vx = RUNNER_VELOCITY_RATE * _speed.velocity;
+    self.vy += 1100.0f * dt;
     
     [super update:dt];
 }
