@@ -59,7 +59,7 @@
 
 -(void)reset
 {
-    _velocity = 6.0f;
+    _velocity = 18.0f;
     _acceleration = 0.0f;
     _targetVelocity = 0;
     _targetAcceleration = 0;

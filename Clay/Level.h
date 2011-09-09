@@ -11,6 +11,7 @@
 
 @class TrackBackground;
 
+@class GameObject;
 
 @interface Level : NSObject
 {
@@ -35,7 +36,7 @@
 -(id)initWithFilename:(NSString*)filename Background:(NSString*)backgroundImage Layer:(CCLayer*)layer;
 
 #pragma mark - public methods
--(CGPoint)checkCollisionAtPoint:(CGPoint)point;
+-(CGPoint)checkCollisionForObject:(GameObject*)object AtPoint:(CGPoint)point;
 -(void)update:(float)dt Velocity:(float)vx;
 -(CGRect)getLevelBoundaries;
 -(CGPoint)getSpawnPoint;

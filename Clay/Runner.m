@@ -15,8 +15,6 @@
 
 @implementation Runner
 
-@synthesize vx = _vx;
-@synthesize vy = _vy;
 @synthesize state = _state;
 @synthesize isRunning = _isRunning;
 @synthesize isJumping = _isJumping;
@@ -64,14 +62,10 @@
 {
     [_speed update:dt];
     
-    _vx = RUNNER_VELOCITY_RATE * _speed.velocity * [[UIScreen mainScreen] scale];
-    //_vy += 8.0f * dt;
+    _vx = RUNNER_VELOCITY_RATE * _speed.velocity;
+    _vy += 1100.0f * dt;
     
-    self.x += _vx * dt;
-    self.y -= _vy * dt;
-
-    [[self getSprite] setPositionAtX:self.x Y:self.y];
-
+    [super update:dt];
 }
 
 -(Sprite*)getSprite

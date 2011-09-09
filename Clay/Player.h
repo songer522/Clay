@@ -23,15 +23,16 @@ typedef enum {
 @interface Player : Runner
 {
     bool _isJumping;
+    bool _firstFrameJumping;
     
     float _yPosition;
 }
 
-+(id) playerForLayer:(id)layer;         //create player, attach it to (layer), return it
-- (id)initWithLayer:(id)layer;          //constructor
++(id) playerForLayer:(id)layer;                 //create player, attach it to (layer), return it
+- (id)initWithLayer:(id)layer;                  //constructor
 
--(float)getVelocityX;                    //get the current velocity (read-only, for now)
--(void)update:(float)dt;                //update, dt = seconds since last update
+-(float)getVelocityX;                           //get the current velocity (read-only, for now)
+-(void)update:(float)dt Level:(Level*)level;    //update, dt = seconds since last update
 
 -(void)startJump:(RunnerJump)height;
 -(void)updateJump:(float)dt;

@@ -19,6 +19,7 @@
 		5429789E140C268100B3FFF4 /* InputEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5429789D140C268100B3FFF4 /* InputEvent.m */; };
 		542978A1140C376E00B3FFF4 /* character_running.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5429789F140C376E00B3FFF4 /* character_running.plist */; };
 		542978A2140C376E00B3FFF4 /* character_running.png in Resources */ = {isa = PBXBuildFile; fileRef = 542978A0140C376E00B3FFF4 /* character_running.png */; };
+		544034B2141A76DF0065B061 /* Collision.m in Sources */ = {isa = PBXBuildFile; fileRef = 544034B1141A76DF0065B061 /* Collision.m */; };
 		54484CD5140449B500D0D7D9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54484CD4140449B500D0D7D9 /* QuartzCore.framework */; };
 		54484CD7140449B500D0D7D9 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54484CD6140449B500D0D7D9 /* OpenGLES.framework */; };
 		54484CD9140449B500D0D7D9 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54484CD8140449B500D0D7D9 /* OpenAL.framework */; };
@@ -193,6 +194,8 @@
 		5429789D140C268100B3FFF4 /* InputEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputEvent.m; sourceTree = "<group>"; };
 		5429789F140C376E00B3FFF4 /* character_running.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = character_running.plist; path = Resources/character_running.plist; sourceTree = "<group>"; };
 		542978A0140C376E00B3FFF4 /* character_running.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = character_running.png; path = Resources/character_running.png; sourceTree = "<group>"; };
+		544034B0141A76DF0065B061 /* Collision.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Collision.h; sourceTree = "<group>"; };
+		544034B1141A76DF0065B061 /* Collision.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Collision.m; sourceTree = "<group>"; };
 		54484CD0140449B500D0D7D9 /* Clay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54484CD4140449B500D0D7D9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		54484CD6140449B500D0D7D9 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -957,6 +960,8 @@
 				5483C7181417CF140032BDDD /* Camera.m */,
 				5416A1B71419632E00648B6A /* LayerManager.h */,
 				5416A1B81419632E00648B6A /* LayerManager.m */,
+				544034B0141A76DF0065B061 /* Collision.h */,
+				544034B1141A76DF0065B061 /* Collision.m */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -1242,6 +1247,7 @@
 				5499691F1416820000CB7800 /* Level.m in Sources */,
 				5483C7191417CF140032BDDD /* Camera.m in Sources */,
 				5416A1B91419632E00648B6A /* LayerManager.m in Sources */,
+				544034B2141A76DF0065B061 /* Collision.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

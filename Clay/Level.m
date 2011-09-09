@@ -9,6 +9,8 @@
 #import "Level.h"
 
 #import "Camera.h"
+#import "GameObject.h"
+#import "Collision.h"
 
 @implementation Level
 
@@ -99,12 +101,12 @@
         y = (_map.mapSize.height * scaledTileHeight) - y;
     }
     
-    NSLog(@"X,TILEX,Y:%d,%d,%d   Coord:%f,%f   Top Tile: %@",x,tileX,y,coords.x,coords.y,property);
+    //NSLog(@"X,TILEX,Y:%d,%d,%d   Coord:%f,%f   Top Tile: %@",x,tileX,y,coords.x,coords.y,property);
     
     return y;
 }
 
--(CGPoint)checkCollisionAtPoint:(CGPoint)point
+-(CGPoint)checkCollisionForObject:(GameObject*)object AtPoint:(CGPoint)point
 {
     float newX = point.x;
     float newY = point.y;
@@ -122,7 +124,16 @@
         }
     }
     
-    newY = [self getTopYPositionForTileCoords:tileCoordinates atX:newX ForTileProperty:collisionProperty];
+    float topY = [self getTopYPositionForTileCoords:tileCoordinates atX:newX ForTileProperty:collisionProperty];
+    
+    //if the top of the course is higher than the current Y position, then change the Y  pos.
+    //otherwise, the guy is jumping or falling and should be left alone.
+    if (topY > newY) {
+        newY = topY;
+        [[object getCollision] processNewTile:collisionProperty CollisionState:COLLISION_STATE_GROUNDED];
+    } else if(topY != newY) {
+        [[object getCollision] processNewTile:collisionProperty CollisionState:COLLISION_STATE_MIDAIR];
+    }
     
     return CGPointMake(newX,newY);
 }

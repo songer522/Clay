@@ -11,24 +11,38 @@
 
 @class Sprite;
 
+@class Collision;
+
 @interface GameObject : NSObject
 {
     Sprite *_sprite;
     //Animation *_animation;
     float _x;
     float _y;
+    float _vx;
+    float _vy;
+    float _offsetX;     //how much to offset whatever x position comes in by
+    float _offsetY;     //how much to offset whatever y position comes in by
+    
+    Collision *_collisionState;
 }
 
 @property(nonatomic,retain) Sprite *sprite;
 @property(nonatomic,assign) float x;
 @property(nonatomic,assign) float y;
+@property(nonatomic,assign) float vx;
+@property(nonatomic,assign) float vy;
+
 
 +(id) objectWithSprite:(Sprite*)sprite;     //create game object, add a sprite to it, return
 -(id) initWithSprite:(Sprite*)initSprite;   //constructor
 
+-(void) setOffsetForX:(float)x Y:(float)y;
+
 -(void) setPositionAtX:(int)x Y:(int)y;     //give new x and y position on screen (with cocos2D, both hi and low-res use 320x480 resolution for its points)
 
 -(CGPoint) getPosition;
+-(Collision*) getCollision;
 
 -(void) update:(float)dt;
 

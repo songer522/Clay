@@ -22,15 +22,12 @@ typedef enum {
 {
     RunnerState _state;
     
-    float _vx;                  //velocity in the x plane
-    float _vy;                  //velocity in the y plane (only used by player for now)
-    
     float _distance;            //how much distance travelled in the race so far. used to determine
                                 //onscreen position relative to the main player
     bool _isRunning;
     
     RunningSpeed *_speed;
-
+    
 }
 
 
@@ -38,8 +35,6 @@ typedef enum {
 +(id)runnerWithSprite:(Sprite*)sprite Layer:(id)layer;
 
 
-@property(nonatomic,assign) float vx;
-@property(nonatomic,assign) float vy;
 @property(nonatomic,assign) RunnerState state;
 
 @property(nonatomic,assign) bool isRunning;

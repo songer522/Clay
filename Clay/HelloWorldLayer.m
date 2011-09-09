@@ -56,6 +56,7 @@
         _level = [Level levelWithFilename:@"platformtest.tmx" Background:@"sky.png" Layer:self];
         
         _player = [Player playerForLayer:self];
+        [_player setOffsetForX:0 Y:-201];
         
         [[AnimationController sharedController] replaceSprite:[_player getSprite] withAnimationNamed:@"runningAnim"];
 
@@ -64,8 +65,6 @@
         
         
         [self initCamera];
-        
-        [[Camera sharedCamera] setBoundaries:CGRectMake(0, 0, 4800, 1152)];
         
         [self scheduleUpdate];
         self.isTouchEnabled = YES;
@@ -78,8 +77,8 @@
     runner = [Runner runnerWithSprite:[Sprite spriteWithFile:@"player_idle_01.png" toLayer:self] Layer:self];
     [runner setPositionAtX:position.x Y:position.y];
     
-    [[runner getSprite] setAnimation:[Animation animationFromPlist:@"character_running" forSequence:@"Character_Running_" FrameList:@"1,2,3,4,5,6,7,8,9,10"] Delay:0.075f];
-    
+    [[AnimationController sharedController] replaceSprite:[runner getSprite] withAnimationNamed:@"runningAnim"];
+
     [runner changeToRunnerState:RUNNER_STATE_RUNNING];
     
     return runner;
@@ -88,22 +87,19 @@
 -(void)initCamera
 {
     [[Camera sharedCamera] setTarget:[_player getSprite]];
-    [[Camera sharedCamera] setCenter:CGPointMake(70, 60)];        
+    [[Camera sharedCamera] setCenter:CGPointMake(70, 90)];        
     [[Camera sharedCamera] setPosition:[[_player getSprite] getPosition]];    
+    [[Camera sharedCamera] setBoundaries:CGRectMake(0, 0, 3340, 2000)];
 }
 
 -(void)update:(ccTime)dt
 {
-    
-    
     [_level update:dt Velocity:_player.vx];
     
-    [_player update:dt];
-    CGPoint newPosition = [_level checkCollisionAtPoint:[_player getPosition]];
-    [_player setPositionAtX:newPosition.x Y:newPosition.y - 201];    
+    [_player update:dt Level:_level];
 
-    [self updateRunner:_runner2 DT:dt];
-    [self updateRunner:_runner3 DT:dt];
+    //[self updateRunner:_runner2 DT:dt];
+    //[self updateRunner:_runner3 DT:dt];
     
     [[Camera sharedCamera] moveTowardsTarget:dt];
     
@@ -125,7 +121,8 @@
 -(void)updateRunner:(Runner*)runner DT:(float)dt
 {
     [runner update:dt];
-    CGPoint newPosition = [_level checkCollisionAtPoint:[runner getPosition]];
+    
+    CGPoint newPosition = [_level checkCollisionForObject:_player AtPoint:[_player getPosition]];
     [runner setPositionAtX:newPosition.x Y:newPosition.y - 52];    
 }
 

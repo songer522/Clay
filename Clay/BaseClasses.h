@@ -18,3 +18,4 @@
 #import "Level.h"
 #import "LayerManager.h"
 #import "AnimationController.h"
+#import "Collision.h"
