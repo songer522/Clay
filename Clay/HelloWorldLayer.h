@@ -13,7 +13,8 @@
 @class Level;
 @class Runner;
 @class Player;
-
+@class InputController;
+@class GameController;
 
 // HelloWorldLayer
 @interface HelloWorldLayer : CCLayer
@@ -22,14 +23,18 @@
     
     Player *_player;
     
+    GameController *_gameController;
     
-    //Runner *_runner;
+    InputController *_inputController;
+    
     Runner *_runner2;
     Runner *_runner3;
     
     float _xp;
     
 }
+
+@property(nonatomic,retain) Player *player;
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;

@@ -27,7 +27,7 @@ static AnimationController *_sharedController = nil;
     self = [super init];
     if (self) {
         // Initialization code here.
-        animations = [NSMutableDictionary dictionaryWithCapacity:10];
+        animations = [[[NSMutableDictionary alloc] initWithCapacity:20] retain];
         
         [self loadAnimationsFromPlist:@"anims"];
     }
@@ -48,27 +48,29 @@ static AnimationController *_sharedController = nil;
     id animationName;
     while ((animationName = [enumerator nextObject])) {
         NSDictionary *animationSettings = [plistDictionary objectForKey:animationName];
-        
-        // get animation delay
-        float animationDelay = [[animationSettings objectForKey:@"delay"] floatValue];
-        
-        // add frames to animation
-        NSString *spritesheetPlist = [animationSettings objectForKey:@"spritesheetPlist"];
-        NSString *sequencePrefix = [animationSettings objectForKey:@"sequencePrefix"];
-        NSString *animationFrames = [animationSettings objectForKey:@"animationFrames"];
-
-        Animation *anim = [Animation animationFromPlist:spritesheetPlist forSequence:sequencePrefix FrameList:animationFrames];
-        anim.delay = animationDelay;
-        
-        [animations setValue:anim forKey:animationName];
-        
+        if (animationSettings == nil) {
+            CCLOG(@"Could not locate AnimationWithName:%@", animationName);
+        } else {
+            // get animation delay
+            float animationDelay = [[animationSettings objectForKey:@"delay"] floatValue];
+            
+            // add frames to animation
+            NSString *spritesheetPlist = [animationSettings objectForKey:@"spritesheetPlist"];
+            NSString *sequencePrefix = [animationSettings objectForKey:@"sequencePrefix"];
+            NSString *animationFrames = [animationSettings objectForKey:@"animationFrames"];
+            
+            Animation *anim = [[Animation animationFromPlist:spritesheetPlist forSequence:sequencePrefix FrameList:animationFrames] retain];
+            anim.delay = animationDelay;
+            
+            [animations setValue:anim forKey:animationName];
+        }
     }
 }
 
 
 -(void)replaceSprite:(Sprite*)sprite withAnimationNamed:(NSString*)name
 {
-    Animation *anim = [animations objectForKey:name];
+    Animation *anim = (Animation*)[animations objectForKey:name];
     NSAssert(anim!=nil,@"Animation not loaded.");
     [sprite setAnimation:anim Delay:anim.delay];
 }

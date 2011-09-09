@@ -37,7 +37,7 @@
         [[CCDirector sharedDirector] setProjection:CCDirectorProjection2D];
         
         _gameController = [GameController gameController];
-        [_gameController setLayer:self];
+        //[_gameController setLayer:self];
         _inputController = [InputController inputController];
         
         _background = [TrackBackground backgroundForLayer:self];

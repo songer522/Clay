@@ -57,16 +57,18 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
     NSArray *animationFrameNumbers = [framelist componentsSeparatedByString:@","];
     
     bool isFirstFrame = true;
-    _frames = [NSMutableArray array];
+    _frames = [[NSMutableArray alloc] initWithCapacity:10];
     
     for (NSString *frameNumber in animationFrameNumbers) {
         
         //builds frameName with format "(SEQUENCE_NAME)(FRAME_NUMBER)-(HD_SUFFIX)(FILE_EXTENSION)", for example "player_1-hd.png"
+        
         NSString *frameName = [sequence stringByAppendingFormat:@"%@%@%@",frameNumber, ANIMATION_HD_SUFFIX,ANIMATION_GRAPHIC_EXTENSION];
         
         //we want to know the name of the first frame, so we can switch sprites to it later
         if (isFirstFrame) {
-            _firstFrameName = [NSString stringWithString:frameName];
+            _firstFrameName = [[NSString alloc] initWithString:frameName];
+            isFirstFrame = false;
         }
         
         [_frames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName]];

@@ -56,9 +56,8 @@
 
 -(void)update:(float)dt
 {
-    [super update:dt];
     [self updateJump:dt];
-    
+    [super update:dt];    
 }
 
 
@@ -67,11 +66,11 @@
 {
     
     if (_isJumping) {
-        _vy += 24.0f * dt;
+        //_vy += 24.0f * dt;
         if(_vy > PLAYER_VELOCITY_Y_MAX) {
             _vy = PLAYER_VELOCITY_Y_MAX;
         }
-        _y -= _vy;
+//        _y -= _vy;
         
         if (_y <= PLAYER_STARTING_Y_POSITION) {
             _y = PLAYER_STARTING_Y_POSITION;
@@ -82,8 +81,9 @@
 
 -(void)startJump:(RunnerJump)height
 {
-    _vy = -3.0f * height;
+    _vy = -43.0f * height;
     _isJumping = true;
+    [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"jumpingAnim"];
 }
 
 -(void)startTurbo

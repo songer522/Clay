@@ -15,9 +15,13 @@
 #import "Camera.h"
 #import "Player.h"
 #import "BaseClasses.h"
+#import "GameController.h"
+
 
 // HelloWorldLayer implementation
 @implementation HelloWorldLayer
+
+@synthesize player = _player;
 
 +(CCScene *) scene
 {
@@ -41,22 +45,23 @@
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super init])) {
         [[CCDirector sharedDirector] setProjection:CCDirectorProjection2D];
+        
+        _gameController = [GameController gameController];
+        [_gameController setLayer:self];
+        _inputController = [InputController inputController];
+        
         [[LayerManager sharedLayers] setCurrentLayer:self];
         
         _xp = 0;
         _level = [Level levelWithFilename:@"platformtest.tmx" Background:@"sky.png" Layer:self];
         
-        //_runner = [self initRunner:_runner atPosition:CGPointMake(20, 100)];
         _player = [Player playerForLayer:self];
         
-        [[AnimationController sharedController] replaceSprite:[_player getSprite] withAnimationNamed:@"jumpingAnim"];
+        [[AnimationController sharedController] replaceSprite:[_player getSprite] withAnimationNamed:@"runningAnim"];
 
         CGPoint spawn = [_level getSpawnPoint];
         [_player setPositionAtX:spawn.x Y:spawn.y];
         
-        
-        //_runner2 = [self initRunner:_runner2 atPosition:CGPointMake(190, 100)];
-        //_runner3 = [self initRunner:_runner3 atPosition:CGPointMake(400, 100)];
         
         [self initCamera];
         
@@ -97,12 +102,25 @@
     CGPoint newPosition = [_level checkCollisionAtPoint:[_player getPosition]];
     [_player setPositionAtX:newPosition.x Y:newPosition.y - 201];    
 
-    //[self updateRunner:_runner2 DT:dt];
-    //[self updateRunner:_runner3 DT:dt];
+    [self updateRunner:_runner2 DT:dt];
+    [self updateRunner:_runner3 DT:dt];
     
     [[Camera sharedCamera] moveTowardsTarget:dt];
     
 }
+
+-(void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    NSSet *allTouches = [event allTouches];
+    for(UITouch *touch in allTouches) {
+        InputEvent *event = [InputEvent inputEventWithType:INPUT_EVENT_TYPE_TOUCHES_BEGAN];
+        [event setReceiver:_gameController];
+        [event setTouchLocation:[self convertTouchToNodeSpace:touch]];
+        [_inputController interpretAndReactToInputEvent:event];
+    }
+}
+
+
 
 -(void)updateRunner:(Runner*)runner DT:(float)dt
 {
