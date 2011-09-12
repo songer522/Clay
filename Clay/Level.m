@@ -29,20 +29,39 @@
         
         [self initTiledMap:filename];
         
-        //[self initBackgroundImage:backgroundImage];
+        parallaxLayers = [CCParallaxNode node];
         
-        CCParallaxNode  *voidNode = [CCParallaxNode node];
+        [layer addChild:_map];
+
+        NSMutableArray *layerList = [[NSMutableArray alloc] initWithCapacity:20];
+        [layerList addObject:[NSString stringWithString:@"back-5"]];
+        [layerList addObject:[NSString stringWithString:@"back-4"]];
+        [layerList addObject:[NSString stringWithString:@"back-3"]];
+        [layerList addObject:[NSString stringWithString:@"back-2"]];
+        [layerList addObject:[NSString stringWithString:@"back-1"]];
+        [layerList addObject:[NSString stringWithString:@"main0"]];
+        [layerList addObject:[NSString stringWithString:@"front1"]];
+        [layerList addObject:[NSString stringWithString:@"front2"]];
+        [layerList addObject:[NSString stringWithString:@"front3"]];
+
+        int currentZ = 0;
+        for (NSString *layerName in layerList) {
+            CCTMXLayer *tmxLayer = [_map layerNamed:layerName];
+            if (tmxLayer) {
+                float speed = [[tmxLayer propertyNamed:@"speed"] floatValue];
+                [tmxLayer removeFromParentAndCleanup:NO];
+                [parallaxLayers addChild:tmxLayer z:currentZ parallaxRatio:ccp(speed, 0.0f) positionOffset:ccp(0, 0)];
+                currentZ++;
+            }
+        }
         
-        //[voidNode addChild:_background z:-1 parallaxRatio:ccp(5.0f, 0) positionOffset:ccp(0, 0)];
-        [voidNode addChild:_map z:1 parallaxRatio:ccp(0.5f, 0) positionOffset:ccp(0, 0)];
-        
-        //_map.scale = [[UIScreen mainScreen] scale];
+        _map.scale = [[UIScreen mainScreen] scale] / 2;
         
         [self initObjects];
         
         [[Camera sharedCamera] setBoundaries:[self getLevelBoundaries]];
         
-        [layer addChild:voidNode];
+        [layer addChild:parallaxLayers];
     }
     
     return self;
@@ -50,7 +69,7 @@
 
 -(CGPoint)tileCoordForPosition:(CGPoint)position
 {
-    int scaledTileWidth = _map.tileSize.width * 2.0f;
+    int scaledTileWidth = _map.tileSize.width * _map.scale;
     int scaledTileHeight = _map.tileSize.height * _map.scale;
     int x = position.x / scaledTileWidth;
     int y = ((_map.mapSize.height * scaledTileHeight) - position.y) / scaledTileHeight;
@@ -157,7 +176,7 @@
 
 -(void)update:(float)dt Velocity:(float)vx
 {
-    [self setPositionAtX:(int)_x Y:(int)_y];
+    [self setPositionAtX:_x Y:_y];
 }
 
 -(bool)checkIfSameTile:(int)tileId atNewPosition:(CGPoint)point forTileLayer:(CCTMXLayer*)layer
@@ -175,7 +194,7 @@
 {
     _x = x;
     _y = y;
-    [_map setPosition:[[Camera sharedCamera] convertToScreenXY:CGPointMake(_x, _y)]];
+    [parallaxLayers setPosition:[[Camera sharedCamera] convertToScreenXY:CGPointMake(_x, _y)]];
 }
 
 -(void)initTiledMap:(NSString*)filename 
@@ -189,7 +208,7 @@
     _meta = [_map layerNamed:@"meta"];
     _meta.visible = NO;
     
-    _main = [_map layerNamed:@"main"];
+    _main = [_map layerNamed:@"main0"];
     _main.visible = YES;
     
 }

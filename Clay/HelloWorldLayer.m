@@ -53,7 +53,7 @@
         [[LayerManager sharedLayers] setCurrentLayer:self];
         
         _xp = 0;
-        _level = [Level levelWithFilename:@"jeffs2.tmx" Background:@"sky.png" Layer:self];
+        _level = [Level levelWithFilename:@"clayl1.1.tmx" Background:@"sky.png" Layer:self];
         
         _player = [Player playerForLayer:self];
         
@@ -122,7 +122,7 @@
     [runner update:dt];
     
     CGPoint newPosition = [_level checkCollisionForObject:_player AtPoint:[_player getPosition]];
-    [runner setPositionAtX:newPosition.x Y:newPosition.y - 52];    
+    [runner setPositionAtX:newPosition.x Y:newPosition.y - 22];    
 }
 
 // on "dealloc" you need to release all your retained objects

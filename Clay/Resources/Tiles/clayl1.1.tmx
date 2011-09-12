@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="1000" height="14" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" name="tian" tilewidth="64" tileheight="64">
+  <image source="Tile_Track_Test.png" width="448" height="640"/>
+ </tileset>
+ <tileset firstgid="71" name="meta" tilewidth="64" tileheight="64">
+  <image source="meta64.png" width="256" height="64"/>
+  <tile id="0">
+   <properties>
+    <property name="collision" value="full"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="collision" value="slantleft"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="collision" value="slantright"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="collision" value="none"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="75" name="hurdle" tilewidth="64" tileheight="64">
+  <image source="Env_Track_Icons.png" width="128" height="64"/>
+  <tile id="1">
+   <properties>
+    <property name="SpawnPoint" value="true"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="background-99" width="1000" height="14">
+  <properties>
+   <property name="speed" value="0.0"/>
+   <property name="zindex" value="-6"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt16ERgEAQBMGL4h0Oh8PhyD8qwnh2q7tqgpg1M0u/DwAAgG67v1P+HAAAgP3fKX8OAADA/u+UPwcAAGDmUEQAAAB0OxURAAAA3S5FBAAAQLdbEQEAANDtUUQAAAB0exURAAAAAAAAAAAAAAAAAAAAAAAA0O8DxzaX9w==
+  </data>
+ </layer>
+ <layer name="back-5" width="1000" height="14">
+  <properties>
+   <property name="speed" value="0.028"/>
+   <property name="zindex" value="-5"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt2k0OgjAQBtCeA91QNuD9D6g1NI5EYYVN7HvJpD80k26/lJQAAAAAAAAAgLNMrS8AAAAApLn1BQAAAICUW18AAAAAeOZz/7gDAADA7wyPuob1mF75fPly5qjH3lkAAADo3RDmNUOXPD6t327pPZ+XcVn359Bjm79rjyrvnAUAAIDe1Zxdxxxq3Kw/1SXMa/bOoV/cG8K+jA4AAEDPSkYu+bi8gR9l77NLRgcAAAAAAAAAAAAAAAAAAAAAAAD+2R11hA1+
+  </data>
+ </layer>
+ <layer name="back-4" width="1000" height="14">
+  <properties>
+   <property name="speed" value="0.03"/>
+   <property name="zindex" value="-4"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt3L0KgzAUBtAs2qXpYn3/V60BL0SbgNBBaM6BSzA/mvXDkJQAAACAEUxbPe7eBAAAAAzuudXr7k0AAADA4Natlrs3AQAAAANpnWXPe7XmRnaPNc7BAwAAwO9aZ9lb+Xze58ZYWTM11gIAAABHV+55u5rPc/rO57HWfXIAAADQd87Zc2NOZO46Y+dOXy+fl3ZJx5wvswMAAED7LHpk9ZKb33sb8+r/6PnUN1V9vXye0zGfx5iMDgAAwIhKli7/ycs9bpGll+p52StXba7G10Zfr9bTO+p3rqdvyekAAAAAAAAAAAAAAAAAAAAAAADAv/kA4LEGnQ==
+  </data>
+ </layer>
+ <layer name="back-3" width="1000" height="14">
+  <properties>
+   <property name="speed" value="0.02"/>
+   <property name="zindex" value="-3"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt2sEJADAIA0BX0/2HarcQzB3kn28gVQAAAECS/pntEgAAAHCAjQ0AAAAAAAAAAAAAQCJ/egAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACSPB+kAYo=
+  </data>
+ </layer>
+ <layer name="back-2" width="1000" height="14">
+  <properties>
+   <property name="speed" value=".03"/>
+   <property name="zindex" value="-2"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt3DEKg0AQBVAvE9OojUljvP+58hvBJmCiqxLfg98tzLQDs1NV5fXJI3nuUAsAAACu4pbUyX3h+yF5JWOxjgAAAOB6mqRNuqMbAQAAAAAAAIACvt1b/7f6AAAAcAa/7K1vOVPP67spBwAAAMut/Yv+ab53Uw4AAAD249YcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAweQPEkgd4
+  </data>
+ </layer>
+ <layer name="back-1" width="1000" height="14">
+  <properties>
+   <property name="speed" value="0.45"/>
+   <property name="zindex" value="-1"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztzsEJACAMBEG7UD9q/1WadyoIZAYO9nljAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABVzNiKba21Tl3lh9Zaa6211h36xG7saa116io/tNZaa6217tAAAAAAAAAAAAAAAFDBBxsc1ts=
+  </data>
+ </layer>
+ <layer name="main0" width="1000" height="14">
+  <properties>
+   <property name="speed" value="1.0"/>
+   <property name="zindex" value="0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztwyERAAAIBDAa4XD0r4Uiw5vtblUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMBrVVVVNX5UVVXV+FVVVVXjAQAAgLwDAlx47w==
+  </data>
+ </layer>
+ <layer name="front1" width="1000" height="14">
+  <properties>
+   <property name="speed" value="1.2"/>
+   <property name="zindex" value="1"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztzSESwCAUQ0FkC4LC/Q9LXP1XiN2ZiKjXGgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD8nuzNejYKf2ZftrJd+Pr6+vr6+vr6+vr6+vr6+gAAAMANDjhsMq0=
+  </data>
+ </layer>
+ <layer name="front2" width="1000" height="14">
+  <properties>
+   <property name="speed" value="1.35"/>
+   <property name="zindex" value="2"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztx7ENADAIBDFI2H/mfJcRaGzpiqsCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgK/TSTeN995777333nvvVx4AAADY9wDJ6wnF
+  </data>
+ </layer>
+ <layer name="front3" width="1000" height="14">
+  <properties>
+   <property name="speed" value="1.0"/>
+   <property name="zindex" value="3"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt0cENgCAQRUH7w/7r8U5AwER3MTMXPX72HQcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADkdUYPGCjRAyql+kYpnf/M6p277G5pbd/5PX/Va6LVc3e3c9c4o9trk99MIx2/MXtnPd6xclcNclrtoiMAAAAAAAAAcAG57wcK
+  </data>
+ </layer>
+ <layer name="meta" width="1000" height="14" opacity="0.91">
+  <data encoding="base64" compression="zlib">
+   eJztw0ENAAAMA6FzN/+O9qwJSCgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAmFNVVVVVVVVVeypeKs8=
+  </data>
+ </layer>
+ <objectgroup name="objects" width="1000" height="14">
+  <object name="SpawnPoint" x="320" y="704" width="64" height="64"/>
+ </objectgroup>
+</map>

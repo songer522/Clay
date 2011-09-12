@@ -27,6 +27,8 @@
     
     CGPoint _spawnPoint;
     
+    CCParallaxNode *parallaxLayers;
+    
     float _x;
     float _y;
 }
