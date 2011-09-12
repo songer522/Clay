@@ -53,10 +53,9 @@
         [[LayerManager sharedLayers] setCurrentLayer:self];
         
         _xp = 0;
-        _level = [Level levelWithFilename:@"platformtest.tmx" Background:@"sky.png" Layer:self];
+        _level = [Level levelWithFilename:@"jeffs2.tmx" Background:@"sky.png" Layer:self];
         
         _player = [Player playerForLayer:self];
-        [_player setOffsetForX:0 Y:-201];
         
         [[AnimationController sharedController] replaceSprite:[_player getSprite] withAnimationNamed:@"runningAnim"];
 
@@ -87,7 +86,7 @@
 -(void)initCamera
 {
     [[Camera sharedCamera] setTarget:[_player getSprite]];
-    [[Camera sharedCamera] setCenter:CGPointMake(70, 90)];        
+    [[Camera sharedCamera] setCenter:CGPointMake(70, 167)];        
     [[Camera sharedCamera] setPosition:[[_player getSprite] getPosition]];    
     //[[Camera sharedCamera] setBoundaries:CGRectMake(0, 0, 3340, 2000)];
 }

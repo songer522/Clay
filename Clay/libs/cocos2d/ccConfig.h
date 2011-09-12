@@ -140,9 +140,12 @@
  
  To enable set it to 1. Enabled by default.
  */
+//XECUDEV: changed to 0 to remove black artifacts from map
 #ifndef CC_SPRITEBATCHNODE_RENDER_SUBPIXEL
-#define CC_SPRITEBATCHNODE_RENDER_SUBPIXEL	1
+#define CC_SPRITEBATCHNODE_RENDER_SUBPIXEL	0
 #endif
+
+
 
 /** @def CC_USES_VBO
  If enabled, batch nodes (texture atlas and particle system) will use VBO instead of vertex list (VBO is recommended by Apple)

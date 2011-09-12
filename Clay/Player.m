@@ -49,6 +49,10 @@
         [_speed setPlayer:self];
         [_speed start];
         [self changeToRunnerState:RUNNER_STATE_RUNNING];
+        
+        [[[self getSprite] getCCSprite] setAnchorPoint:ccp(0.5,1)];
+        [self setOffsetForX:0 Y:71];
+
     }
     
     return self;

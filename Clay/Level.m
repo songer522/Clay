@@ -26,15 +26,17 @@
     if (self) {
         // Initialization code here.
         
+        
         [self initTiledMap:filename];
-        [self initBackgroundImage:backgroundImage];
+        
+        //[self initBackgroundImage:backgroundImage];
         
         CCParallaxNode  *voidNode = [CCParallaxNode node];
         
-        [voidNode addChild:_background z:-1 parallaxRatio:ccp(5.0f, 0) positionOffset:ccp(0, 0)];
+        //[voidNode addChild:_background z:-1 parallaxRatio:ccp(5.0f, 0) positionOffset:ccp(0, 0)];
         [voidNode addChild:_map z:1 parallaxRatio:ccp(0.5f, 0) positionOffset:ccp(0, 0)];
         
-        _map.scale = 2.0f * [[UIScreen mainScreen] scale];
+        //_map.scale = [[UIScreen mainScreen] scale];
         
         [self initObjects];
         
@@ -155,7 +157,7 @@
 
 -(void)update:(float)dt Velocity:(float)vx
 {
-    [self setPositionAtX:_x Y:_y];
+    [self setPositionAtX:(int)_x Y:(int)_y];
 }
 
 -(bool)checkIfSameTile:(int)tileId atNewPosition:(CGPoint)point forTileLayer:(CCTMXLayer*)layer
@@ -178,14 +180,17 @@
 
 -(void)initTiledMap:(NSString*)filename 
 {
+    
+    [[CCDirector sharedDirector] setProjection:CCDirectorProjection2D];
     _map = [CCTMXTiledMap tiledMapWithTMXFile:filename];
+    
     _map.scale = 1.0f;
     
     _meta = [_map layerNamed:@"meta"];
     _meta.visible = NO;
     
     _main = [_map layerNamed:@"main"];
-    
+    _main.visible = YES;
     
 }
 
