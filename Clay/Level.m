@@ -11,6 +11,8 @@
 #import "Camera.h"
 #import "GameObject.h"
 #import "Collision.h"
+#import "Sprite.h"
+#import "LayerManager.h"
 
 @implementation Level
 
@@ -26,8 +28,10 @@
     if (self) {
         // Initialization code here.
         
+        _obstacleSprites = [[NSMutableArray alloc] initWithCapacity:100];
         
         [self initTiledMap:filename];
+        
         
         parallaxLayers = [CCParallaxNode node];
         
@@ -43,6 +47,7 @@
         [layerList addObject:[NSString stringWithString:@"front1"]];
         [layerList addObject:[NSString stringWithString:@"front2"]];
         [layerList addObject:[NSString stringWithString:@"front3"]];
+        [layerList addObject:[NSString stringWithString:@"meta"]];
 
         int currentZ = 0;
         for (NSString *layerName in layerList) {
@@ -62,6 +67,9 @@
         [[Camera sharedCamera] setBoundaries:[self getLevelBoundaries]];
         
         [layer addChild:parallaxLayers];
+        
+        [self initHurdles];
+
     }
     
     return self;
@@ -91,8 +99,8 @@
 
 -(CGRect)getLevelBoundaries
 {
-    int width = _map.mapSize.width * _map.tileSize.width * 2.0f;
-    int height = _map.mapSize.height * _map.tileSize.height * 2.0f;
+    int width = _map.mapSize.width * _map.tileSize.width * _map.scale;
+    int height = _map.mapSize.height * _map.tileSize.height * _map.scale;
     return CGRectMake(0, 0, width, height);
 }
 
@@ -121,6 +129,8 @@
         //flip the y position so it's based on screen
         y = (_map.mapSize.height * scaledTileHeight) - y;
     }
+    
+    NSLog(@"X: %f, Y: %f",coords.x,coords.y);
     
     return y;
 }
@@ -177,6 +187,7 @@
 -(void)update:(float)dt Velocity:(float)vx
 {
     [self setPositionAtX:_x Y:_y];
+    [self updateHurdles];
 }
 
 -(bool)checkIfSameTile:(int)tileId atNewPosition:(CGPoint)point forTileLayer:(CCTMXLayer*)layer
@@ -211,6 +222,8 @@
     _main = [_map layerNamed:@"main0"];
     _main.visible = YES;
     
+    _obstacles = [_map layerNamed:@"front3"];
+    
 }
 
 -(void)initBackgroundImage:(NSString *)filename
@@ -234,6 +247,60 @@
     _spawnPoint = CGPointMake(x, y);
     
 }
+
+-(void)initHurdles
+{
+    for (int i=0; i<_map.mapSize.width; i++) {
+        for (int j=0; j<_map.mapSize.height;j++) {
+            CGPoint coords = CGPointMake(i, j);
+            NSString *obstacle = [self getPropertyForTileCoords:coords forKey:@"obstacle"];
+            if (obstacle) {
+                if ([obstacle compare:@"hurdle"] == NSOrderedSame) {
+                    GameObject *hurdle = [GameObject objectWithSprite:[Sprite spriteWithFile:@"hurdle.png" toLayer:[[LayerManager sharedLayers] currentLayer]]];
+                    CGPoint position = [self getXYPositionForCoordinates:coords];
+                    [hurdle setPositionAtX:position.x Y:position.y];
+                    [_obstacleSprites addObject:hurdle];
+                }
+            }
+        }
+    }
+                                          
+}
+
+-(void)updateHurdles
+{
+    for(GameObject *hurdle in _obstacleSprites) {
+        [hurdle setPosition:[hurdle getPosition]];
+    }
+    
+}
+                
+-(CGPoint)getXYPositionForCoordinates:(CGPoint)coords
+{
+    int scaledTileWidth = _map.tileSize.width * _map.scale;
+    int scaledTileHeight = _map.tileSize.height * _map.scale;
+    float x = _x * scaledTileWidth;
+    float y = _y * scaledTileHeight;
+    return CGPointMake(x, y);
+}
+
+-(NSString*)getPropertyForTileCoords:(CGPoint)coords forKey:(NSString*)key
+{
+    NSString *returnVal = nil;
+    
+    int tileGid = [_meta tileGIDAt:coords];
+    
+    if (tileGid) {
+        NSDictionary *properties = [_map propertiesForGID:tileGid];
+        
+        if (properties) {
+            returnVal = [properties valueForKey:key];
+        }
+    }
+    
+    return returnVal;
+}
+
 
 -(CGPoint)getSpawnPoint
 {

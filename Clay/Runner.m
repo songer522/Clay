@@ -62,11 +62,12 @@
 
 -(void)update:(float)dt
 {
+    
     [_speed update:dt];
     self.vx = RUNNER_VELOCITY_RATE * _speed.velocity;
-    self.vy += 1100.0f * dt;
-    
+    self.vy += 1800.0f * dt;
     [super update:dt];
+    
 }
 
 -(Sprite*)getSprite

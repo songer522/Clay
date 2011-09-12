@@ -32,7 +32,7 @@ static Camera *_sharedCamera = nil;
 
         _x = size.width / 2.0f;
         _y = size.height / 2.0f;
-        _boundary = CGRectMake(0, 0, 1000, 640);
+        //_boundary = CGRectMake(0, 0, 1000, 640);
         _center = CGPointMake(size.width / 2.0f, size.height / 2.0f);
         _isBoundaryFlexible = false;        
         _target = nil;

@@ -26,6 +26,7 @@ typedef enum {
     bool _firstFrameJumping;
     
     float _yPosition;
+    float _jumpAcceleration;
 }
 
 +(id) playerForLayer:(id)layer;                 //create player, attach it to (layer), return it

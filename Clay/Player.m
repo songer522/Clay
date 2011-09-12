@@ -22,7 +22,7 @@
 #define PLAYER_SINX_MAGNITUDE 5
 #define PLAYER_VELOCITY_MULTIPLIER 2
 #define PLAYER_LOGX_MAX_VALUE 2.2
-#define PLAYER_VELOCITY_Y_MAX 900.0f
+#define PLAYER_VELOCITY_Y_MAX 22900.0f
 
 @implementation Player
 
@@ -50,8 +50,8 @@
         [_speed start];
         [self changeToRunnerState:RUNNER_STATE_RUNNING];
         
-        [[[self getSprite] getCCSprite] setAnchorPoint:ccp(0.5,1)];
-        [self setOffsetForX:0 Y:571];
+        [[[self getSprite] getCCSprite] setAnchorPoint:ccp(0.5,0.5)];
+        [self setOffsetForX:0 Y:3];
 
     }
     
@@ -60,12 +60,11 @@
 
 -(void)update:(float)dt Level:(Level *)level
 {
-    if(_vy > PLAYER_VELOCITY_Y_MAX) {
-        _vy = PLAYER_VELOCITY_Y_MAX;
-    }
+    [super update:dt];
+    _jumpAcceleration += 12.0f;
+    _vy += _jumpAcceleration * dt;
     
     [self updateJump:dt];
-    [super update:dt];
     [self setPositionAtX:_x Y:_y];
     
     CGPoint newPosition = [level checkCollisionForObject:self AtPoint:[self getPosition]];
@@ -86,6 +85,7 @@
             [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"runningAnim"];
         }
 
+        _jumpAcceleration = 0;
         _vy = 0;
     }
 }
@@ -93,8 +93,9 @@
 -(void)startJump:(RunnerJump)height
 {
     _firstFrameJumping = true;
-    _vy = -220.0f * height;
+    _vy = -320.0f * height;
     _y += 2.0f;
+    _jumpAcceleration = 0;
     _isJumping = true;
     [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"jumpingAnim"];
     [[self getCollision] processNewTile:@"" CollisionState:COLLISION_STATE_MIDAIR];

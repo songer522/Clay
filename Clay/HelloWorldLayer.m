@@ -86,7 +86,7 @@
 -(void)initCamera
 {
     [[Camera sharedCamera] setTarget:[_player getSprite]];
-    [[Camera sharedCamera] setCenter:CGPointMake(70, 167)];        
+    [[Camera sharedCamera] setCenter:CGPointMake(70, 507)];        
     [[Camera sharedCamera] setPosition:[[_player getSprite] getPosition]];    
     //[[Camera sharedCamera] setBoundaries:CGRectMake(0, 0, 3340, 2000)];
 }

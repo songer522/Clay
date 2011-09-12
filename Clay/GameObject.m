@@ -34,7 +34,7 @@
         _vy = 0;
         _offsetX = 0;
         _offsetY = 0;
-        _collisionState = [Collision collisionNode];
+        _collisionState = [[Collision collisionNode] retain];
         // Initialization code here.
     }
     
@@ -59,6 +59,11 @@
 {
     _offsetX = x;
     _offsetY = y;
+}
+
+-(void) setPosition:(CGPoint)position
+{
+    [self setPositionAtX:position.x Y:position.y];
 }
 
 -(void)setPositionAtX:(int)x Y:(int)y

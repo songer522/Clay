@@ -20,6 +20,7 @@
     
     CCTMXLayer *_main;
     CCTMXLayer *_meta;
+    CCTMXLayer *_obstacles;
     
     CCTMXTiledMap *_map;
     
@@ -28,6 +29,8 @@
     CGPoint _spawnPoint;
     
     CCParallaxNode *parallaxLayers;
+    
+    NSMutableArray *_obstacleSprites;
     
     float _x;
     float _y;
@@ -42,7 +45,10 @@
 -(void)update:(float)dt Velocity:(float)vx;
 -(CGRect)getLevelBoundaries;
 -(CGPoint)getSpawnPoint;
-
+-(NSString*)getPropertyForTileCoords:(CGPoint)coords forKey:(NSString*)key;
+-(CGPoint)getXYPositionForCoordinates:(CGPoint)coords;
+-(void)updateHurdles;
+-(void)initHurdles;
 
 #pragma mark - private methods
 -(void)initTiledMap:(NSString*)filename;
