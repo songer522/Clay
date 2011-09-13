@@ -45,10 +45,10 @@
 -(void)update:(float)dt Velocity:(float)vx;
 -(CGRect)getLevelBoundaries;
 -(CGPoint)getSpawnPoint;
--(NSString*)getPropertyForTileCoords:(CGPoint)coords forKey:(NSString*)key;
 -(CGPoint)getXYPositionForCoordinates:(CGPoint)coords;
 -(void)updateHurdles;
 -(void)initHurdles;
+-(NSString*)getObstaclePropertyForTileCoords:(CGPoint)coords forKey:(NSString*)key;
 
 #pragma mark - private methods
 -(void)initTiledMap:(NSString*)filename;

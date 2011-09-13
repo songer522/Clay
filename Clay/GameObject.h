@@ -8,6 +8,7 @@
 //  An object in the game. Means it will have a sprite associated with it, an x/y position, maybe other things like animation and velocity
 
 #import <Foundation/Foundation.h>
+#import "cocos2d.h"
 
 @class Sprite;
 
@@ -41,6 +42,9 @@
 
 -(void) setPosition:(CGPoint)position;
 -(void) setPositionAtX:(int)x Y:(int)y;     //give new x and y position on screen (with cocos2D, both hi and low-res use 320x480 resolution for its points)
+
+-(CCSprite*) getCCSprite;
+
 
 -(CGPoint) getPosition;
 -(Collision*) getCollision;

@@ -73,6 +73,11 @@
     [_sprite setPositionAtX:x + _offsetX Y:y + _offsetY];
 }
 
+-(CCSprite*) getCCSprite
+{
+    return [_sprite getCCSprite];
+}
+
 -(void)update:(float)dt
 {
     _x += _vx * dt;
