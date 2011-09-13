@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>hurdle</key>
+	<dict>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>0</integer>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>0</integer>
+			<key>y</key>
+			<real>0.75</real>
+		</dict>
+		<key>animationName</key>
+		<string></string>
+		<key>boundingBox</key>
+		<dict>
+			<key>x</key>
+			<integer>0</integer>
+			<key>y</key>
+			<integer>0</integer>
+			<key>width</key>
+			<integer>0</integer>
+			<key>height</key>
+			<integer>0</integer>
+		</dict>
+		<key>imageName</key>
+		<string>hurdle.png</string>
+	</dict>
+</dict>
+</plist>

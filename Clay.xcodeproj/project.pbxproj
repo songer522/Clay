@@ -162,6 +162,7 @@
 		54D00E3214169B3900204121 /* tileset-platformer.png in Resources */ = {isa = PBXBuildFile; fileRef = 54D00E3014169B3900204121 /* tileset-platformer.png */; };
 		54E0CE81141FC0A6005BFD5C /* hurdle.png in Resources */ = {isa = PBXBuildFile; fileRef = 54E0CE80141FC0A6005BFD5C /* hurdle.png */; };
 		557430E7141FEDFC00EB91A7 /* clayl1.5.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 557430E6141FEDFC00EB91A7 /* clayl1.5.tmx */; };
+		572DB81D141FF62D00DDC493 /* objects.plist in Resources */ = {isa = PBXBuildFile; fileRef = 572DB81C141FF62D00DDC493 /* objects.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -458,6 +459,7 @@
 		54D00E3014169B3900204121 /* tileset-platformer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tileset-platformer.png"; path = "Resources/Tiles/tileset-platformer.png"; sourceTree = "<group>"; };
 		54E0CE80141FC0A6005BFD5C /* hurdle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hurdle.png; sourceTree = "<group>"; };
 		557430E6141FEDFC00EB91A7 /* clayl1.5.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = clayl1.5.tmx; path = Resources/Tiles/clayl1.5.tmx; sourceTree = "<group>"; };
+		572DB81C141FF62D00DDC493 /* objects.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = objects.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -483,6 +485,7 @@
 			isa = PBXGroup;
 			children = (
 				5416A1B514195B6400648B6A /* anims.plist */,
+				572DB81C141FF62D00DDC493 /* objects.plist */,
 			);
 			name = Plists;
 			sourceTree = "<group>";
@@ -1069,6 +1072,7 @@
 				54BE1769141E8DE100A3D773 /* clayl1.1.tmx in Resources */,
 				54E0CE81141FC0A6005BFD5C /* hurdle.png in Resources */,
 				557430E7141FEDFC00EB91A7 /* clayl1.5.tmx in Resources */,
+				572DB81D141FF62D00DDC493 /* objects.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
