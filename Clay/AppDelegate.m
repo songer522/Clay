@@ -12,7 +12,6 @@
 #import "GameConfig.h"
 #import "HelloWorldLayer.h"
 #import "RootViewController.h"
-#import "GameLayer.h"
 
 @implementation AppDelegate
 
