@@ -18,6 +18,7 @@
 @synthesize y = _y;
 @synthesize vx = _vx;
 @synthesize vy = _vy;
+@synthesize boundingBox = _boundingBox;
 
 + (id) objectWithSprite:(Sprite*)sprite
 {
@@ -34,8 +35,8 @@
         _vy = 0;
         _offsetX = 0;
         _offsetY = 0;
+        _boundingBox = CGRectMake(0, 0, 0, 0);
         _collisionState = [[Collision collisionNode] retain];
-        // Initialization code here.
     }
     
     return self;

@@ -16,13 +16,12 @@
 
 @implementation Level
 
-
-+(id)levelWithFilename:(NSString*)filename Background:(NSString*)backgroundImage Layer:(CCLayer*)layer
++(id)levelWithFilename:(NSString*)filename
 {
-    return [[self alloc] initWithFilename:filename Background:backgroundImage Layer:layer];
+    return [[self alloc] initWithFilename:filename];
 }
 
-- (id)initWithFilename:(NSString*)filename Background:(NSString*)backgroundImage Layer:(CCLayer*)layer
+- (id)initWithFilename:(NSString*)filename
 {
     self = [super init];
     if (self) {
@@ -35,7 +34,7 @@
         
         parallaxLayers = [CCParallaxNode node];
         
-        [layer addChild:_map];
+        [[[LayerManager sharedLayers] currentLayer] addChild:_map];
 
         NSMutableArray *layerList = [[NSMutableArray alloc] initWithCapacity:20];
         [layerList addObject:[NSString stringWithString:@"background-99"]];
@@ -63,13 +62,12 @@
         }
         
         _map.scale = [[UIScreen mainScreen] scale] / 2;
-        //_map.scale = 1.0f;
         
-        [self initObjects];
+        [self initSpawnPoint];
         
         [[Camera sharedCamera] setBoundaries:[self getLevelBoundaries]];
         
-        [layer addChild:parallaxLayers];
+        [[[LayerManager sharedLayers] currentLayer] addChild:parallaxLayers];
         
         [self initHurdles];
 
@@ -237,7 +235,7 @@
     
 }
 
--(void)initObjects
+-(void)initSpawnPoint
 {
     _objects = [_map objectGroupNamed:@"objects"];
     NSAssert(_objects != nil, @"'objects' object group not found");
