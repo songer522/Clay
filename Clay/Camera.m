@@ -11,6 +11,7 @@
 
 @implementation Camera
 
+#define CAMERA_MOVE_TO_TARGET_SPEED 8.0f
 
 static Camera *_sharedCamera = nil;
 
@@ -29,12 +30,9 @@ static Camera *_sharedCamera = nil;
     if (self) {
         // Initialization code here.
         CGSize size = [[CCDirector sharedDirector] winSize];
-
-        _x = size.width / 2.0f;
-        _y = size.height / 2.0f;
-        //_boundary = CGRectMake(0, 0, 1000, 640);
+        _x = 0;
+        _y = 0;
         _center = CGPointMake(size.width / 2.0f, size.height / 2.0f);
-        _isBoundaryFlexible = false;        
         _target = nil;
     }
     
@@ -110,7 +108,7 @@ static Camera *_sharedCamera = nil;
         float dy = position.y - _y;
         
         float distance = sqrtf(dx*dx + dy*dy);
-        float magnitude = distance * 8.0f * dt;
+        float magnitude = distance * CAMERA_MOVE_TO_TARGET_SPEED * dt;
         
         if (distance) {
             _x += magnitude * (dx/distance);
@@ -118,6 +116,15 @@ static Camera *_sharedCamera = nil;
         }        
     }
     [self keepWithinBoundaries];
+}
+
+-(void)snapToTarget
+{
+    if (_target!=nil) {
+        _x = _target.x;
+        _y = _target.y;
+        [self keepWithinBoundaries];        
+    }
 }
 
 -(void)setPosition:(CGPoint)point

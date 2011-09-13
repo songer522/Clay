@@ -85,10 +85,9 @@
 
 -(void)initCamera
 {
+    [[Camera sharedCamera] setCenter:CGPointMake(70, 120)];        
     [[Camera sharedCamera] setTarget:[_player getSprite]];
-    [[Camera sharedCamera] setCenter:CGPointMake(70, 507)];        
-    [[Camera sharedCamera] setPosition:[[_player getSprite] getPosition]];    
-    //[[Camera sharedCamera] setBoundaries:CGRectMake(0, 0, 3340, 2000)];
+    [[Camera sharedCamera] snapToTarget];
 }
 
 -(void)update:(ccTime)dt
@@ -97,9 +96,6 @@
     
     [_player update:dt Level:_level];
 
-    //[self updateRunner:_runner2 DT:dt];
-    //[self updateRunner:_runner3 DT:dt];
-    
     [[Camera sharedCamera] moveTowardsTarget:dt];
     
 }

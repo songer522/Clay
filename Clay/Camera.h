@@ -17,12 +17,7 @@
 {
     float _x;                   //x position of the camera
     float _y;                   //y position of the camera
-    
-    
-    bool _isBoundaryFlexible;   //when the camera reaches the boundary, will it just stop or bounce
-                                //and can you potentially drag with your thumb to reveal past the boundary
-                                //(like how UIViews work)
-    
+        
     CGRect _boundary;           //the boundary that the 2D camera window has to be within
 
     CGPoint _center;            //x and y position relative to the screen where the target should be. default is center.
@@ -42,6 +37,7 @@
 -(void)setCenter:(CGPoint)point;
 -(void)setPosition:(CGPoint)point;
 -(void)moveTowardsTarget:(float)dt;
+-(void)snapToTarget;
 
 #pragma mark - private methods
 -(void)keepWithinBoundaries;

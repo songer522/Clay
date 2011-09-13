@@ -259,8 +259,6 @@
                 if ([obstacle compare:@"hurdle"] == NSOrderedSame) {
                     GameObject *hurdle = [GameObject objectWithSprite:[Sprite spriteWithFile:@"hurdle.png" toLayer:[[LayerManager sharedLayers] currentLayer]]];
                     CGPoint position = [self getXYPositionForCoordinates:coords];
-                    position.y = position.y / 2.0f;
-                    position.x = position.x / 2.0f;
                     [[hurdle getCCSprite] setAnchorPoint:ccp(0, 0.75f)];
                     [hurdle setPositionAtX:position.x Y:position.y];
                     [_obstacleSprites addObject:hurdle];
@@ -281,8 +279,8 @@
                 
 -(CGPoint)getXYPositionForCoordinates:(CGPoint)coords
 {
-    int scaledTileWidth = _map.tileSize.width * _map.scale;
-    int scaledTileHeight = _map.tileSize.height * _map.scale;
+    int scaledTileWidth = _map.tileSize.width * _map.scale / 2.0f;
+    int scaledTileHeight = _map.tileSize.height * _map.scale / 2.0f;
     float x = coords.x * scaledTileWidth;
     float y = (_map.mapSize.height * scaledTileHeight) - coords.y * scaledTileHeight;
 

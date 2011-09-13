@@ -129,7 +129,6 @@
 		54484E38140449B700D0D7D9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 54484E37140449B700D0D7D9 /* AppDelegate.m */; };
 		54484E3B140449B700D0D7D9 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54484E3A140449B700D0D7D9 /* RootViewController.m */; };
 		54484E3E140449B700D0D7D9 /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 54484E3D140449B700D0D7D9 /* HelloWorldLayer.m */; };
-		54518F5F14069B40009D74AA /* GameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 54518F5E14069B40009D74AA /* GameLayer.m */; };
 		54518F6314069BF0009D74AA /* Sprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 54518F6214069BF0009D74AA /* Sprite.m */; };
 		54518F6A1406AE64009D74AA /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 54518F691406AE64009D74AA /* Player.m */; };
 		54518F6D1406AEE6009D74AA /* GameObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 54518F6C1406AEE6009D74AA /* GameObject.m */; };
@@ -424,8 +423,6 @@
 		54484E3C140449B700D0D7D9 /* HelloWorldLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloWorldLayer.h; sourceTree = "<group>"; };
 		54484E3D140449B700D0D7D9 /* HelloWorldLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
 		54484E3F140449B700D0D7D9 /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
-		54518F5D14069B40009D74AA /* GameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameLayer.h; sourceTree = "<group>"; };
-		54518F5E14069B40009D74AA /* GameLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameLayer.m; sourceTree = "<group>"; };
 		54518F6114069BF0009D74AA /* Sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sprite.h; sourceTree = "<group>"; };
 		54518F6214069BF0009D74AA /* Sprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sprite.m; sourceTree = "<group>"; };
 		54518F681406AE64009D74AA /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
@@ -905,8 +902,6 @@
 			children = (
 				54484E3C140449B700D0D7D9 /* HelloWorldLayer.h */,
 				54484E3D140449B700D0D7D9 /* HelloWorldLayer.m */,
-				54518F5D14069B40009D74AA /* GameLayer.h */,
-				54518F5E14069B40009D74AA /* GameLayer.m */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -1249,7 +1244,6 @@
 				54484E38140449B700D0D7D9 /* AppDelegate.m in Sources */,
 				54484E3B140449B700D0D7D9 /* RootViewController.m in Sources */,
 				54484E3E140449B700D0D7D9 /* HelloWorldLayer.m in Sources */,
-				54518F5F14069B40009D74AA /* GameLayer.m in Sources */,
 				54518F6314069BF0009D74AA /* Sprite.m in Sources */,
 				54518F6A1406AE64009D74AA /* Player.m in Sources */,
 				54518F6D1406AEE6009D74AA /* GameObject.m in Sources */,
