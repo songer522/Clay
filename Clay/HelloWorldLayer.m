@@ -53,7 +53,7 @@
         [[LayerManager sharedLayers] setCurrentLayer:self];
         
         _xp = 0;
-        _level = [Level levelWithFilename:@"clayl1.1.tmx" Background:@"sky.png" Layer:self];
+        _level = [Level levelWithFilename:@"clayl1.4.tmx" Background:@"sky.png" Layer:self];
         
         _player = [Player playerForLayer:self];
         
@@ -85,7 +85,7 @@
 
 -(void)initCamera
 {
-    [[Camera sharedCamera] setCenter:CGPointMake(70, 120)];        
+    [[Camera sharedCamera] setCenter:CGPointMake(70, 100)];        
     [[Camera sharedCamera] setTarget:[_player getSprite]];
     [[Camera sharedCamera] snapToTarget];
 }

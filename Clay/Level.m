@@ -38,6 +38,7 @@
         [layer addChild:_map];
 
         NSMutableArray *layerList = [[NSMutableArray alloc] initWithCapacity:20];
+        [layerList addObject:[NSString stringWithString:@"background-99"]];
         [layerList addObject:[NSString stringWithString:@"back-5"]];
         [layerList addObject:[NSString stringWithString:@"back-4"]];
         [layerList addObject:[NSString stringWithString:@"back-3"]];
@@ -53,9 +54,10 @@
         for (NSString *layerName in layerList) {
             CCTMXLayer *tmxLayer = [_map layerNamed:layerName];
             if (tmxLayer) {
-                float speed = [[tmxLayer propertyNamed:@"speed"] floatValue];
+                float speedx = [[tmxLayer propertyNamed:@"speedx"] floatValue];
+                float speedy = [[tmxLayer propertyNamed:@"speedy"] floatValue];
                 [tmxLayer removeFromParentAndCleanup:NO];
-                [parallaxLayers addChild:tmxLayer z:currentZ parallaxRatio:ccp(speed, 0.0f) positionOffset:ccp(0, 0)];
+                [parallaxLayers addChild:tmxLayer z:currentZ parallaxRatio:ccp(speedx,speedy) positionOffset:ccp(0, 0)];
                 currentZ++;
             }
         }
@@ -206,6 +208,7 @@
 {
     _x = x;
     _y = y;
+    //[parallaxLayers setPosition:CGPointMake(_x, _y)];
     [parallaxLayers setPosition:[[Camera sharedCamera] convertToScreenXY:CGPointMake(_x, _y)]];
 }
 
