@@ -24,6 +24,7 @@
     float _vy;
     float _offsetX;     //how much to offset whatever x position comes in by
     float _offsetY;     //how much to offset whatever y position comes in by
+    CGRect _boundingBox;
     
     Collision *_collisionState;
 }
@@ -33,6 +34,7 @@
 @property(nonatomic,assign) float y;
 @property(nonatomic,assign) float vx;
 @property(nonatomic,assign) float vy;
+@property(nonatomic,assign) CGRect boundingBox;
 
 
 +(id) objectWithSprite:(Sprite*)sprite;     //create game object, add a sprite to it, return

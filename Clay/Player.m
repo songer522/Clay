@@ -1,5 +1,5 @@
 //
-//  PlayerOnScreen.m
+//  Player.m
 //  Clay
 //
 //  Created by Brian Cable on 8/25/11.
@@ -45,6 +45,8 @@
         
         [[[self getSprite] getCCSprite] setAnchorPoint:ccp(0.5,0.5)];
         [self setOffsetForX:0 Y:3];
+        
+        self.boundingBox = CGRectMake(-50, -50, 100, 100);
 
     }
     

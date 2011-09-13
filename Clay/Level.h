@@ -37,8 +37,8 @@
 }
 
 #pragma mark - inits
-+(id)levelWithFilename:(NSString*)filename Background:(NSString*)backgroundImage Layer:(CCLayer*)layer;
--(id)initWithFilename:(NSString*)filename Background:(NSString*)backgroundImage Layer:(CCLayer*)layer;
++(id)levelWithFilename:(NSString*)filename;
+-(id)initWithFilename:(NSString*)filename;
 
 #pragma mark - public methods
 -(CGPoint)checkCollisionForObject:(GameObject*)object AtPoint:(CGPoint)point;
@@ -47,7 +47,6 @@
 -(CGPoint)getSpawnPoint;
 -(CGPoint)getXYPositionForCoordinates:(CGPoint)coords;
 -(void)updateHurdles;
--(void)initHurdles;
 -(NSString*)getObstaclePropertyForTileCoords:(CGPoint)coords forKey:(NSString*)key;
 
 #pragma mark - private methods
@@ -56,6 +55,7 @@
 -(CGPoint)tileCoordForPosition:(CGPoint)position;
 -(bool)checkIfSameTile:(int)tileId atNewPosition:(CGPoint)point forTileLayer:(CCTMXLayer*)layer;
 -(NSString*)getCollisionPropertyForTileCoords:(CGPoint)coords;
--(void)initObjects;
+-(void)initHurdles;
+-(void)initSpawnPoint;
 -(void)setPositionAtX:(float)x Y:(float)y;
 @end

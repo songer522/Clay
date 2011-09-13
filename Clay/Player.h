@@ -1,5 +1,5 @@
 //
-//  PlayerOnScreen.h
+//  Player.h
 //  Clay
 //
 //  Created by Brian Cable on 8/25/11.
