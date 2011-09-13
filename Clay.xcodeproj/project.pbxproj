@@ -934,6 +934,7 @@
 		548C3DBB141ABDBB000567A8 /* levels */ = {
 			isa = PBXGroup;
 			children = (
+				557430E6141FEDFC00EB91A7 /* clayl1.5.tmx */,
 				54BE1768141E8DE100A3D773 /* clayl1.1.tmx */,
 				54968B3C141E7BDA00A4D2DC /* Env_Track_Icons.png */,
 				548C3DB5141ABDB2000567A8 /* meta64.png */,
