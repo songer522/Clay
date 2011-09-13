@@ -165,7 +165,6 @@
 		549B3350140830C100953E67 /* anim_guy.png in Resources */ = {isa = PBXBuildFile; fileRef = 549B334F140830C100953E67 /* anim_guy.png */; };
 		54BE1769141E8DE100A3D773 /* clayl1.1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 54BE1768141E8DE100A3D773 /* clayl1.1.tmx */; };
 		54BE1771141EBB7200A3D773 /* hurdle.png in Resources */ = {isa = PBXBuildFile; fileRef = 54BE1770141EBB7200A3D773 /* hurdle.png */; };
-		54C1381B141FA39700BEE841 /* clayl1.1a.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 54C1381A141FA39700BEE841 /* clayl1.1a.tmx */; };
 		54C4CA9F140D405B00156936 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C4CA9E140D405B00156936 /* Utilities.m */; };
 		54CA0B19140D65DB0038B3E1 /* Runner.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CA0B18140D65DB0038B3E1 /* Runner.m */; };
 		54CA0B20140D698B0038B3E1 /* RunningSpeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CA0B1F140D698B0038B3E1 /* RunningSpeed.m */; };
@@ -471,7 +470,6 @@
 		549B334F140830C100953E67 /* anim_guy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = anim_guy.png; path = Resources/anim_guy.png; sourceTree = "<group>"; };
 		54BE1768141E8DE100A3D773 /* clayl1.1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = clayl1.1.tmx; path = Resources/Tiles/clayl1.1.tmx; sourceTree = "<group>"; };
 		54BE1770141EBB7200A3D773 /* hurdle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hurdle.png; sourceTree = "<group>"; };
-		54C1381A141FA39700BEE841 /* clayl1.1a.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = clayl1.1a.tmx; path = Resources/Tiles/clayl1.1a.tmx; sourceTree = "<group>"; };
 		54C4CA9D140D405B00156936 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		54C4CA9E140D405B00156936 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		54CA0B17140D65DB0038B3E1 /* Runner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Runner.h; sourceTree = "<group>"; };
@@ -967,7 +965,6 @@
 		548C3DBB141ABDBB000567A8 /* levels */ = {
 			isa = PBXGroup;
 			children = (
-				54C1381A141FA39700BEE841 /* clayl1.1a.tmx */,
 				54BE1768141E8DE100A3D773 /* clayl1.1.tmx */,
 				54968B3B141E7BDA00A4D2DC /* clayl1.tmx */,
 				54968B3C141E7BDA00A4D2DC /* Env_Track_Icons.png */,
@@ -1144,7 +1141,6 @@
 				54968B3E141E7BDA00A4D2DC /* Env_Track_Icons.png in Resources */,
 				54BE1769141E8DE100A3D773 /* clayl1.1.tmx in Resources */,
 				54BE1771141EBB7200A3D773 /* hurdle.png in Resources */,
-				54C1381B141FA39700BEE841 /* clayl1.1a.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -61,6 +61,7 @@
         }
         
         _map.scale = [[UIScreen mainScreen] scale] / 2;
+        //_map.scale = 1.0f;
         
         [self initObjects];
         

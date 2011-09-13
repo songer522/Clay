@@ -93,7 +93,7 @@
 -(void)startJump:(RunnerJump)height
 {
     _firstFrameJumping = true;
-    _vy = -320.0f * height;
+    _vy = -250.0f * height;
     _y += 2.0f;
     _jumpAcceleration = 0;
     _isJumping = true;
