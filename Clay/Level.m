@@ -78,7 +78,7 @@
 
 -(CGPoint)tileCoordForPosition:(CGPoint)position
 {
-    int scaledTileWidth = _map.tileSize.width * _map.scale;
+    int scaledTileWidth = _map.tileSize.width * _map.scale / 2.0f;
     int scaledTileHeight = _map.tileSize.height * _map.scale;
     int x = position.x / scaledTileWidth;
     int y = ((_map.mapSize.height * scaledTileHeight) - position.y) / scaledTileHeight;
@@ -280,8 +280,11 @@
                 
 -(CGPoint)getXYPositionForCoordinates:(CGPoint)coords
 {
+    //TODO: not sure why these need to be divided by 2 to get the right position yet
+    //should make it clear what the 2.0 represents once figured out
     int scaledTileWidth = _map.tileSize.width * _map.scale / 2.0f;
     int scaledTileHeight = _map.tileSize.height * _map.scale / 2.0f;
+    
     float x = coords.x * scaledTileWidth;
     float y = (_map.mapSize.height * scaledTileHeight) - coords.y * scaledTileHeight;
 
