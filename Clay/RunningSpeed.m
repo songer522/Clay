@@ -102,6 +102,12 @@
     _stamina = RUNNING_SPEED_MAX_STAMINA;
 }
 
+-(void)startCollision
+{
+    _velocity = 4.0f;
+    _acceleration = 0.0f;
+}
+
 -(void) updateStamina:(float)dt
 {
     if (_pace == RUNNING_SPEED_PACE_RECOVERY) {

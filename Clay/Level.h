@@ -48,6 +48,8 @@
 -(CGPoint)getXYPositionForCoordinates:(CGPoint)coords;
 -(void)updateHurdles;
 -(NSString*)getObstaclePropertyForTileCoords:(CGPoint)coords forKey:(NSString*)key;
+-(bool)testCollisions:(GameObject*)source;
+-(bool)testCollisionWithGameObject:(GameObject*)target Source:(GameObject*)source;
 
 #pragma mark - private methods
 -(void)initTiledMap:(NSString*)filename;

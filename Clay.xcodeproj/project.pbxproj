@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		5416A1B614195B6400648B6A /* anims.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5416A1B514195B6400648B6A /* anims.plist */; };
 		5416A1B91419632E00648B6A /* LayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5416A1B81419632E00648B6A /* LayerManager.m */; };
-		542340621406D0050051E911 /* TimeEquation.m in Sources */ = {isa = PBXBuildFile; fileRef = 542340611406D0050051E911 /* TimeEquation.m */; };
 		54297897140C1F8900B3FFF4 /* GameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54297896140C1F8900B3FFF4 /* GameController.m */; };
 		5429789B140C233E00B3FFF4 /* InputController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5429789A140C233E00B3FFF4 /* InputController.m */; };
 		5429789E140C268100B3FFF4 /* InputEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5429789D140C268100B3FFF4 /* InputEvent.m */; };
@@ -154,7 +153,6 @@
 		5496A2421408343600186F3D /* Animation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5496A2411408343600186F3D /* Animation.m */; };
 		549969171416664400CB7800 /* AnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 549969161416664400CB7800 /* AnimationController.m */; };
 		5499691F1416820000CB7800 /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = 5499691E1416820000CB7800 /* Level.m */; };
-		54C4CA9F140D405B00156936 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C4CA9E140D405B00156936 /* Utilities.m */; };
 		54CA0B19140D65DB0038B3E1 /* Runner.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CA0B18140D65DB0038B3E1 /* Runner.m */; };
 		54CA0B20140D698B0038B3E1 /* RunningSpeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CA0B1F140D698B0038B3E1 /* RunningSpeed.m */; };
 		54E0CE81141FC0A6005BFD5C /* hurdle.png in Resources */ = {isa = PBXBuildFile; fileRef = 54E0CE80141FC0A6005BFD5C /* hurdle.png */; };
@@ -167,8 +165,6 @@
 		5416A1B514195B6400648B6A /* anims.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = anims.plist; sourceTree = "<group>"; };
 		5416A1B71419632E00648B6A /* LayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayerManager.h; sourceTree = "<group>"; };
 		5416A1B81419632E00648B6A /* LayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayerManager.m; sourceTree = "<group>"; };
-		542340601406D0050051E911 /* TimeEquation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeEquation.h; sourceTree = "<group>"; };
-		542340611406D0050051E911 /* TimeEquation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeEquation.m; sourceTree = "<group>"; };
 		54297895140C1F8900B3FFF4 /* GameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameController.h; sourceTree = "<group>"; };
 		54297896140C1F8900B3FFF4 /* GameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameController.m; sourceTree = "<group>"; };
 		54297899140C233E00B3FFF4 /* InputController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputController.h; sourceTree = "<group>"; };
@@ -446,8 +442,6 @@
 		549969161416664400CB7800 /* AnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationController.m; sourceTree = "<group>"; };
 		5499691D1416820000CB7800 /* Level.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level.h; sourceTree = "<group>"; };
 		5499691E1416820000CB7800 /* Level.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level.m; sourceTree = "<group>"; };
-		54C4CA9D140D405B00156936 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
-		54C4CA9E140D405B00156936 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		54CA0B17140D65DB0038B3E1 /* Runner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Runner.h; sourceTree = "<group>"; };
 		54CA0B18140D65DB0038B3E1 /* Runner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Runner.m; sourceTree = "<group>"; };
 		54CA0B1E140D698B0038B3E1 /* RunningSpeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RunningSpeed.h; sourceTree = "<group>"; };
@@ -539,14 +533,14 @@
 			isa = PBXGroup;
 			children = (
 				5416A1B414195B5500648B6A /* Plists */,
+				54518F5614069B0C009D74AA /* Scenes */,
 				54518F641406AE38009D74AA /* Game */,
 				54518F6014069BD8009D74AA /* Base */,
-				54518F5614069B0C009D74AA /* Scenes */,
 				54484E36140449B700D0D7D9 /* AppDelegate.h */,
 				54484E37140449B700D0D7D9 /* AppDelegate.m */,
+				54484E3F140449B700D0D7D9 /* GameConfig.h */,
 				54484E39140449B700D0D7D9 /* RootViewController.h */,
 				54484E3A140449B700D0D7D9 /* RootViewController.m */,
-				54484E3F140449B700D0D7D9 /* GameConfig.h */,
 				54484CE5140449B500D0D7D9 /* Resources */,
 				54484CF9140449B500D0D7D9 /* libs */,
 				54484E32140449B700D0D7D9 /* Supporting Files */,
@@ -891,36 +885,32 @@
 		54518F6014069BD8009D74AA /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				5499691D1416820000CB7800 /* Level.h */,
-				5499691E1416820000CB7800 /* Level.m */,
-				54518F6114069BF0009D74AA /* Sprite.h */,
-				54518F6214069BF0009D74AA /* Sprite.m */,
-				54518F6B1406AEE6009D74AA /* GameObject.h */,
-				54518F6C1406AEE6009D74AA /* GameObject.m */,
-				572DB81F142000A400DDC493 /* GameObjectController.h */,
-				572DB820142000A400DDC493 /* GameObjectController.m */,
-				54518F6E1406B061009D74AA /* BaseClasses.h */,
-				54518F6F1406B061009D74AA /* BaseClasses.m */,
-				542340601406D0050051E911 /* TimeEquation.h */,
-				542340611406D0050051E911 /* TimeEquation.m */,
 				5496A2401408343600186F3D /* Animation.h */,
 				5496A2411408343600186F3D /* Animation.m */,
 				549969151416664400CB7800 /* AnimationController.h */,
 				549969161416664400CB7800 /* AnimationController.m */,
+				54518F6E1406B061009D74AA /* BaseClasses.h */,
+				54518F6F1406B061009D74AA /* BaseClasses.m */,
+				5483C7171417CF140032BDDD /* Camera.h */,
+				5483C7181417CF140032BDDD /* Camera.m */,
+				544034B0141A76DF0065B061 /* Collision.h */,
+				544034B1141A76DF0065B061 /* Collision.m */,
+				54518F6B1406AEE6009D74AA /* GameObject.h */,
+				54518F6C1406AEE6009D74AA /* GameObject.m */,
+				572DB81F142000A400DDC493 /* GameObjectController.h */,
+				572DB820142000A400DDC493 /* GameObjectController.m */,
 				54297899140C233E00B3FFF4 /* InputController.h */,
 				5429789A140C233E00B3FFF4 /* InputController.m */,
 				5429789C140C268100B3FFF4 /* InputEvent.h */,
 				5429789D140C268100B3FFF4 /* InputEvent.m */,
-				54C4CA9D140D405B00156936 /* Utilities.h */,
-				54C4CA9E140D405B00156936 /* Utilities.m */,
-				5483C7171417CF140032BDDD /* Camera.h */,
-				5483C7181417CF140032BDDD /* Camera.m */,
 				5416A1B71419632E00648B6A /* LayerManager.h */,
 				5416A1B81419632E00648B6A /* LayerManager.m */,
-				544034B0141A76DF0065B061 /* Collision.h */,
-				544034B1141A76DF0065B061 /* Collision.m */,
+				5499691D1416820000CB7800 /* Level.h */,
+				5499691E1416820000CB7800 /* Level.m */,
 				572DB822142004D500DDC493 /* PListLoader.h */,
 				572DB823142004D500DDC493 /* PListLoader.m */,
+				54518F6114069BF0009D74AA /* Sprite.h */,
+				54518F6214069BF0009D74AA /* Sprite.m */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -928,12 +918,12 @@
 		54518F641406AE38009D74AA /* Game */ = {
 			isa = PBXGroup;
 			children = (
-				54518F681406AE64009D74AA /* Player.h */,
-				54518F691406AE64009D74AA /* Player.m */,
 				54518F731406B761009D74AA /* GameClasses.h */,
 				54518F741406B761009D74AA /* GameClasses.m */,
 				54297895140C1F8900B3FFF4 /* GameController.h */,
 				54297896140C1F8900B3FFF4 /* GameController.m */,
+				54518F681406AE64009D74AA /* Player.h */,
+				54518F691406AE64009D74AA /* Player.m */,
 				54CA0B17140D65DB0038B3E1 /* Runner.h */,
 				54CA0B18140D65DB0038B3E1 /* Runner.m */,
 				54CA0B1E140D698B0038B3E1 /* RunningSpeed.h */,
@@ -1188,12 +1178,10 @@
 				54518F6D1406AEE6009D74AA /* GameObject.m in Sources */,
 				54518F701406B061009D74AA /* BaseClasses.m in Sources */,
 				54518F751406B761009D74AA /* GameClasses.m in Sources */,
-				542340621406D0050051E911 /* TimeEquation.m in Sources */,
 				5496A2421408343600186F3D /* Animation.m in Sources */,
 				54297897140C1F8900B3FFF4 /* GameController.m in Sources */,
 				5429789B140C233E00B3FFF4 /* InputController.m in Sources */,
 				5429789E140C268100B3FFF4 /* InputEvent.m in Sources */,
-				54C4CA9F140D405B00156936 /* Utilities.m in Sources */,
 				54CA0B19140D65DB0038B3E1 /* Runner.m in Sources */,
 				54CA0B20140D698B0038B3E1 /* RunningSpeed.m in Sources */,
 				549969171416664400CB7800 /* AnimationController.m in Sources */,

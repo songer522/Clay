@@ -131,7 +131,7 @@
         y = (_map.mapSize.height * scaledTileHeight) - y;
     }
     
-    NSLog(@"X: %f, Y: %f",coords.x,coords.y);
+    //NSLog(@"X: %f, Y: %f",coords.x,coords.y);
     
     return y;
 }
@@ -262,6 +262,7 @@
                     CGPoint position = [self getXYPositionForCoordinates:coords];
                     [[hurdle getCCSprite] setAnchorPoint:ccp(0, 0.75f)];
                     [hurdle setPositionAtX:position.x Y:position.y];
+                    hurdle.boundingBox = CGRectMake(30.0f, 5.0f, 3.0f, 10.0f);
                     [_obstacleSprites addObject:hurdle];
                 }
             }
@@ -308,6 +309,53 @@
     return returnVal;
 }
 
+-(bool)testCollisions:(GameObject*)source
+{
+    bool collision = false;
+    
+    for (GameObject *obstacle in _obstacleSprites) {
+        collision = [self testCollisionWithGameObject:obstacle Source:source];
+        if (collision) {
+            //TODO:tell obstacle that it's been hit so it can change its sprite or animation
+            break;
+        }
+        
+    }
+    if (collision) {
+        NSLog(@"COLLISION!");
+    } else {
+        NSLog(@"NO!");
+    }
+    
+    return collision;
+}
+
+-(bool)testCollisionWithGameObject:(GameObject*)target Source:(GameObject*)source
+{
+    bool collision = true;
+    
+    float targetLeft = target.x + target.boundingBox.origin.x;
+    float targetRight = target.x + target.boundingBox.size.width;
+    float targetTop = target.y + target.boundingBox.origin.y;
+    float targetBottom = target.y + target.boundingBox.size.height;
+    
+    float sourceLeft = source.x + source.boundingBox.origin.x;
+    float sourceRight = source.x + source.boundingBox.size.width;
+    float sourceTop = source.y + source.boundingBox.origin.y;
+    float sourceBottom = source.y + source.boundingBox.size.height;
+    
+    
+    //assume that a collision happened unless the sides of the
+    //target object indicate there can't possibly be
+    //an intersection. by checking all four sides this gives
+    //full detection, and is more efficient than other methods
+    if (sourceBottom < targetTop) { collision = false; }
+    if (sourceTop > targetBottom) { collision = false; }
+    if (sourceRight < targetLeft) { collision = false; }
+    if (sourceLeft > targetRight) { collision = false; }
+    
+    return collision;
+}
 
 -(CGPoint)getSpawnPoint
 {

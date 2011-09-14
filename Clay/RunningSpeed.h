@@ -62,6 +62,7 @@
 -(void)update:(float)dt;
 -(void)setPace:(float)modifier;
 -(void)setPlayer:(Player*)player;
+-(void)startCollision;
 
 
 #pragma mark - private methods

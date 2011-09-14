@@ -41,6 +41,8 @@ typedef enum {
 -(void)startTurbo;
 -(bool)getIsTurbo;
 
+-(void)startCollision;
+
 @property(nonatomic,assign) bool isJumping;
 
 @end

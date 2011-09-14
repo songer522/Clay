@@ -46,7 +46,7 @@
         [[[self getSprite] getCCSprite] setAnchorPoint:ccp(0.5,0.5)];
         [self setOffsetForX:0 Y:3];
         
-        self.boundingBox = CGRectMake(-50, -50, 100, 100);
+        self.boundingBox = CGRectMake(-40, -40, 80, 80);
 
     }
     
@@ -106,6 +106,10 @@
     return _speed.inTurbo;
 }
 
+-(void)startCollision
+{
+    [_speed startCollision];
+}
 
 //used by background layers for scrolling
 -(float)getVelocityX

@@ -55,12 +55,10 @@
 -(void)reactToTouchAt:(CGPoint)location
 {
     if (location.x < 240) {
-        NSLog(@"jump!");
         if (!_layer.player.isJumping) {
             [_layer.player startJump:JUMP_MEDIUM];
         }
     } else {
-        //NSLog(@"dive!");
         if(![_layer.player getIsTurbo]) {
             [_layer.player startTurbo];
         }

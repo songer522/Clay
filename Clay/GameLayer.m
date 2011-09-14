@@ -95,6 +95,10 @@
     [_level update:dt Velocity:_player.vx];
     
     [_player update:dt Level:_level];
+    
+    if([_level testCollisions:_player]) {
+        //collision happened, so reduce speed
+    }
 
     [[Camera sharedCamera] moveTowardsTarget:dt];
     
