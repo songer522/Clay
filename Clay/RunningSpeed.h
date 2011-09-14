@@ -26,19 +26,10 @@
     bool _isStopped;
     
     bool _inTurbo;
-    bool _atMax;
     
     float _velocity;
-    float _targetVelocity;                 //used when slowing down or speeding up
-    
     float _acceleration;
-    float _targetAcceleration;
-    
     float _stamina;
-    
-    
-    float _timeToLockSpeedAtTarget;     //when positive, locks the speed at the target (when reached) until done
-    
     float _pace;
     
     Player *_player;
@@ -56,20 +47,11 @@
 -(void)reset;
 
 #pragma mark - public methods
--(void)increaseSpeedTo:(float)target ForPeriod:(float)seconds;
 -(void)startTurbo;
 -(void)endTurbo;
 -(void)update:(float)dt;
 -(void)setPace:(float)modifier;
 -(void)setPlayer:(Player*)player;
 -(void)startCollision;
-
-
-#pragma mark - private methods
--(void)updateAcceleration:(float)dt;
--(void)updateAccelerationWhenBelowTargetVelocity:(float)dt;
--(void)updateAccelerationWhenAboveTargetVelocity:(float)dt;
--(void)updateStamina:(float)dt;
-
 
 @end
