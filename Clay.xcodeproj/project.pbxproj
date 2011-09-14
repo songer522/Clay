@@ -163,6 +163,8 @@
 		54E0CE81141FC0A6005BFD5C /* hurdle.png in Resources */ = {isa = PBXBuildFile; fileRef = 54E0CE80141FC0A6005BFD5C /* hurdle.png */; };
 		557430E7141FEDFC00EB91A7 /* clayl1.5.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 557430E6141FEDFC00EB91A7 /* clayl1.5.tmx */; };
 		572DB81D141FF62D00DDC493 /* objects.plist in Resources */ = {isa = PBXBuildFile; fileRef = 572DB81C141FF62D00DDC493 /* objects.plist */; };
+		572DB821142000A400DDC493 /* GameObjectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 572DB820142000A400DDC493 /* GameObjectController.m */; };
+		572DB824142004D500DDC493 /* PListLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 572DB823142004D500DDC493 /* PListLoader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -460,6 +462,10 @@
 		54E0CE80141FC0A6005BFD5C /* hurdle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hurdle.png; sourceTree = "<group>"; };
 		557430E6141FEDFC00EB91A7 /* clayl1.5.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = clayl1.5.tmx; path = Resources/Tiles/clayl1.5.tmx; sourceTree = "<group>"; };
 		572DB81C141FF62D00DDC493 /* objects.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = objects.plist; sourceTree = "<group>"; };
+		572DB81F142000A400DDC493 /* GameObjectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObjectController.h; sourceTree = "<group>"; };
+		572DB820142000A400DDC493 /* GameObjectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameObjectController.m; sourceTree = "<group>"; };
+		572DB822142004D500DDC493 /* PListLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PListLoader.h; sourceTree = "<group>"; };
+		572DB823142004D500DDC493 /* PListLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PListLoader.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -895,6 +901,8 @@
 				54518F6214069BF0009D74AA /* Sprite.m */,
 				54518F6B1406AEE6009D74AA /* GameObject.h */,
 				54518F6C1406AEE6009D74AA /* GameObject.m */,
+				572DB81F142000A400DDC493 /* GameObjectController.h */,
+				572DB820142000A400DDC493 /* GameObjectController.m */,
 				54518F6E1406B061009D74AA /* BaseClasses.h */,
 				54518F6F1406B061009D74AA /* BaseClasses.m */,
 				542340601406D0050051E911 /* TimeEquation.h */,
@@ -915,6 +923,8 @@
 				5416A1B81419632E00648B6A /* LayerManager.m */,
 				544034B0141A76DF0065B061 /* Collision.h */,
 				544034B1141A76DF0065B061 /* Collision.m */,
+				572DB822142004D500DDC493 /* PListLoader.h */,
+				572DB823142004D500DDC493 /* PListLoader.m */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -1199,6 +1209,8 @@
 				5483C7191417CF140032BDDD /* Camera.m in Sources */,
 				5416A1B91419632E00648B6A /* LayerManager.m in Sources */,
 				544034B2141A76DF0065B061 /* Collision.m in Sources */,
+				572DB821142000A400DDC493 /* GameObjectController.m in Sources */,
+				572DB824142004D500DDC493 /* PListLoader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
