@@ -46,7 +46,7 @@
 -(CGRect)getLevelBoundaries;
 -(CGPoint)getSpawnPoint;
 -(CGPoint)getXYPositionForCoordinates:(CGPoint)coords;
--(void)updateHurdles;
+-(void)updateHurdles:(float)dt;
 -(NSString*)getObstaclePropertyForTileCoords:(CGPoint)coords forKey:(NSString*)key;
 -(bool)testCollisions:(GameObject*)source;
 -(bool)testCollisionWithGameObject:(GameObject*)target Source:(GameObject*)source;

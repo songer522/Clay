@@ -40,7 +40,7 @@
         _offsetY = 0;
         _boundingBox = CGRectMake(0, 0, 0, 0);
         _collisionState = [[Collision collisionNode] retain];
-        _behavior = COLLISION_BEHAVIOR_FALL_OVER;
+        _behavior = COLLISION_BEHAVIOR_STATIC;
     }
     
     return self;
@@ -81,9 +81,7 @@
 -(void) startCollision
 {
     _collided = true;
-    if (_behavior == COLLISION_BEHAVIOR_FLYING_SHURIKEN) {
-        _angle = rand() % 360;
-    }
+    _behavior = COLLISION_BEHAVIOR_FALL_OVER;
 }
 
 -(CCSprite*) getCCSprite
@@ -96,6 +94,14 @@
     _x += _vx * dt;
     _y -= _vy * dt;
     [self setPositionAtX:_x Y:_y];
+    if (_behavior == COLLISION_BEHAVIOR_FALL_OVER) {
+        _angle += 325.0f * dt;
+        if (_angle >= 90) {
+            _angle = 90;
+            _behavior = COLLISION_BEHAVIOR_STATIC;
+        }
+        [self getCCSprite].rotation = _angle;
+    }
 }
 
 -(Collision*) getCollision

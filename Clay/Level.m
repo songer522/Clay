@@ -188,7 +188,7 @@
 -(void)update:(float)dt Velocity:(float)vx
 {
     [self setPositionAtX:_x Y:_y];
-    [self updateHurdles];
+    [self updateHurdles:dt];
 }
 
 -(bool)checkIfSameTile:(int)tileId atNewPosition:(CGPoint)point forTileLayer:(CCTMXLayer*)layer
@@ -260,7 +260,8 @@
                 if ([obstacle compare:@"hurdle"] == NSOrderedSame) {
                     GameObject *hurdle = [GameObject objectWithSprite:[Sprite spriteWithFile:@"hurdle.png" toLayer:[[LayerManager sharedLayers] currentLayer]]];
                     CGPoint position = [self getXYPositionForCoordinates:coords];
-                    [[hurdle getCCSprite] setAnchorPoint:ccp(0, 0.75f)];
+                    [[hurdle getCCSprite] setAnchorPoint:ccp(0.9f, 0.2f)];
+                    [hurdle setOffsetForX:0 Y:-33.0f];
                     [hurdle setPositionAtX:position.x Y:position.y];
                     hurdle.boundingBox = CGRectMake(60.0f, 10.0f, 2.0f, 10.0f);
                     [_obstacleSprites addObject:hurdle];
@@ -271,10 +272,10 @@
                                           
 }
 
--(void)updateHurdles
+-(void)updateHurdles:(float)dt
 {
     for(GameObject *hurdle in _obstacleSprites) {
-        [hurdle setPosition:[hurdle getPosition]];
+        [hurdle update:dt];
     }
     
 }
