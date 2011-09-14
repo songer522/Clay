@@ -11,7 +11,7 @@
 
 @implementation Camera
 
-#define CAMERA_MOVE_TO_TARGET_SPEED 8.0f
+#define CAMERA_MOVE_TO_TARGET_SPEED 6.0f
 
 static Camera *_sharedCamera = nil;
 
@@ -103,6 +103,7 @@ static Camera *_sharedCamera = nil;
 -(void)moveTowardsTarget:(float)dt
 {
     if (_target != nil) {
+        
         CGPoint position = [_target getPosition];
         float dx = position.x - _x;
         float dy = position.y - _y;
@@ -110,10 +111,19 @@ static Camera *_sharedCamera = nil;
         float distance = sqrtf(dx*dx + dy*dy);
         float magnitude = distance * CAMERA_MOVE_TO_TARGET_SPEED * dt;
         
-        if (distance) {
-            _x += magnitude * (dx/distance);
-            _y += magnitude * (dy/distance);
-        }        
+        //NSLog(@"Magnitude: %.2f",magnitude);
+        
+        if (distance > 2.0f) {
+            //NSLog(@"X: %.2f, Y: %.2f, TX: %.2f, TY: %.2f, DX: %.2f, DY: %.2f MOVE",_x,_y,position.x,position.y,dx,dy);
+            _x += (int)(magnitude * (dx/distance));
+            _y += (int)(magnitude * (dy/distance));
+            
+        } else {
+            //NSLog(@"X: %.2f, Y: %.2f, TX: %.2f, TY: %.2f, DX: %.2f, DY: %.2f SNAP",_x,_y,position.x,position.y,dx,dy);
+            _x = (int)position.x;
+            _y = (int)position.y;
+            
+        }
     }
     [self keepWithinBoundaries];
 }

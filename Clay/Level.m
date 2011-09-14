@@ -38,6 +38,7 @@
 
         NSMutableArray *layerList = [[NSMutableArray alloc] initWithCapacity:20];
         [layerList addObject:[NSString stringWithString:@"background-99"]];
+        [layerList addObject:[NSString stringWithString:@"back-6"]];
         [layerList addObject:[NSString stringWithString:@"back-5"]];
         [layerList addObject:[NSString stringWithString:@"back-4"]];
         [layerList addObject:[NSString stringWithString:@"back-3"]];
@@ -47,6 +48,9 @@
         [layerList addObject:[NSString stringWithString:@"front1"]];
         [layerList addObject:[NSString stringWithString:@"front2"]];
         [layerList addObject:[NSString stringWithString:@"front3"]];
+        [layerList addObject:[NSString stringWithString:@"front4"]];
+        [layerList addObject:[NSString stringWithString:@"front5"]];
+        [layerList addObject:[NSString stringWithString:@"front6"]];
         [layerList addObject:[NSString stringWithString:@"meta"]];
 
         int currentZ = 0;
@@ -224,7 +228,7 @@
     _main = [_map layerNamed:@"main0"];
     _main.visible = YES;
     
-    _obstacles = [_map layerNamed:@"front3"];
+    _obstacles = [_map layerNamed:@"front6"];
     _obstacles.visible = NO;
 }
 

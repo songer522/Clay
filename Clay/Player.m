@@ -56,14 +56,13 @@
 -(void)update:(float)dt Level:(Level *)level
 {
     [super update:dt];
-    _jumpAcceleration += 12.0f;
-    _vy += _jumpAcceleration * dt;
+    if (_isJumping) {
+        _jumpAcceleration += 12.0f;
+        _vy += _jumpAcceleration * dt;
+    }
     
     [self updateJump:dt];
-    [self setPositionAtX:_x Y:_y];
-    
-    CGPoint newPosition = [level checkCollisionForObject:self AtPoint:[self getPosition]];
-
+    CGPoint newPosition = [level checkCollisionForObject:self AtPoint:[self getPosition]];    
     [self setPositionAtX:newPosition.x Y:newPosition.y];
 }
 

@@ -53,7 +53,7 @@
         [[LayerManager sharedLayers] setCurrentLayer:self];
         
         _xp = 0;
-        _level = [Level levelWithFilename:@"clayl1.5.tmx"];
+        _level = [Level levelWithFilename:@"clayl2.1.0.tmx"];
         
         _player = [Player playerForLayer:self];
         
