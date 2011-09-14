@@ -98,6 +98,7 @@
     
     if([_level testCollisions:_player]) {
         //collision happened, so reduce speed
+        [_player startCollision];
     }
 
     [[Camera sharedCamera] moveTowardsTarget:dt];

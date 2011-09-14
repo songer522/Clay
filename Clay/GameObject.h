@@ -14,6 +14,12 @@
 
 @class Collision;
 
+typedef enum {
+    COLLISION_BEHAVIOR_FALL_OVER,
+    COLLISION_BEHAVIOR_ALIEN_ABDUCTION,
+    COLLISION_BEHAVIOR_FLYING_SHURIKEN
+} CollisionBehavior;
+
 @interface GameObject : NSObject
 {
     Sprite *_sprite;
@@ -24,9 +30,18 @@
     float _vy;
     float _offsetX;     //how much to offset whatever x position comes in by
     float _offsetY;     //how much to offset whatever y position comes in by
+    float _angle;
+    
+    //collision
     CGRect _boundingBox;
     
-    Collision *_collisionState;
+    bool _collided;     //starts false, but switches to true when player collides with it
+                        //so the player can't keep colliding with it
+    
+    Collision *_collisionState;     //used to keep track of whether the object is in midair or on
+                                    //the ground.
+    
+    CollisionBehavior _behavior;
 }
 
 @property(nonatomic,retain) Sprite *sprite;
@@ -35,6 +50,7 @@
 @property(nonatomic,assign) float vx;
 @property(nonatomic,assign) float vy;
 @property(nonatomic,assign) CGRect boundingBox;
+@property(readonly,nonatomic,assign) bool collided;
 
 
 +(id) objectWithSprite:(Sprite*)sprite;     //create game object, add a sprite to it, return
@@ -50,6 +66,8 @@
 
 -(CGPoint) getPosition;
 -(Collision*) getCollision;
+
+-(void) startCollision;
 
 -(void) update:(float)dt;
 

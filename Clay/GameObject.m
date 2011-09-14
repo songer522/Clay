@@ -19,6 +19,8 @@
 @synthesize vx = _vx;
 @synthesize vy = _vy;
 @synthesize boundingBox = _boundingBox;
+@synthesize collided = _collided;
+
 
 + (id) objectWithSprite:(Sprite*)sprite
 {
@@ -33,10 +35,12 @@
         _y = 0;
         _vx = 0;
         _vy = 0;
+        _angle = 0;
         _offsetX = 0;
         _offsetY = 0;
         _boundingBox = CGRectMake(0, 0, 0, 0);
         _collisionState = [[Collision collisionNode] retain];
+        _behavior = COLLISION_BEHAVIOR_FALL_OVER;
     }
     
     return self;
@@ -72,6 +76,14 @@
     _x = x;
     _y = y;
     [_sprite setPositionAtX:x + _offsetX Y:y + _offsetY];
+}
+
+-(void) startCollision
+{
+    _collided = true;
+    if (_behavior == COLLISION_BEHAVIOR_FLYING_SHURIKEN) {
+        _angle = rand() % 360;
+    }
 }
 
 -(CCSprite*) getCCSprite

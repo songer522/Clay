@@ -262,7 +262,7 @@
                     CGPoint position = [self getXYPositionForCoordinates:coords];
                     [[hurdle getCCSprite] setAnchorPoint:ccp(0, 0.75f)];
                     [hurdle setPositionAtX:position.x Y:position.y];
-                    hurdle.boundingBox = CGRectMake(30.0f, 5.0f, 3.0f, 10.0f);
+                    hurdle.boundingBox = CGRectMake(60.0f, 10.0f, 2.0f, 10.0f);
                     [_obstacleSprites addObject:hurdle];
                 }
             }
@@ -314,19 +314,14 @@
     bool collision = false;
     
     for (GameObject *obstacle in _obstacleSprites) {
-        collision = [self testCollisionWithGameObject:obstacle Source:source];
-        if (collision) {
-            //TODO:tell obstacle that it's been hit so it can change its sprite or animation
-            break;
-        }
-        
+        if(!obstacle.collided) {
+            collision = [self testCollisionWithGameObject:obstacle Source:source];
+            if (collision) {
+                [obstacle startCollision];
+                break;
+            }
+        }        
     }
-    if (collision) {
-        NSLog(@"COLLISION!");
-    } else {
-        NSLog(@"NO!");
-    }
-    
     return collision;
 }
 

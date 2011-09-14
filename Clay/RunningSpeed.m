@@ -105,7 +105,10 @@
 -(void)startCollision
 {
     _velocity = 4.0f;
-    _acceleration = 0.0f;
+    _acceleration = 0.1f;
+    _stamina = 20.0f;
+    _inTurbo = false;
+    [self setPace:RUNNING_SPEED_PACE_ENDURANCE];
 }
 
 -(void) updateStamina:(float)dt
@@ -185,11 +188,12 @@
     if (_velocity >= _targetVelocity ) {
         _atMax = true;
         if(_acceleration > 0.01f) {
-            _acceleration = 3.0f * (_acceleration / 4.0f);
+            _acceleration -= 0.2f * dt;
         }
     }
     
     if(_velocity < 0) _velocity = 0.0f;
+    NSLog(@"Velocity: %f",_velocity);
 }
 
 -(void)update:(float)dt
