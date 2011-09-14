@@ -8,7 +8,7 @@
 
 #import "GameController.h"
 #import "Player.h"
-#import "HelloWorldLayer.h"
+#import "GameLayer.h"
 
 
 @implementation GameController
@@ -67,7 +67,7 @@
     }
 }
 
--(void)setLayer:(HelloWorldLayer*)gameLayer
+-(void)setLayer:(GameLayer*)gameLayer
 {
     _layer = gameLayer;
 }

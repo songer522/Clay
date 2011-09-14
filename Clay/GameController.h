@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class HelloWorldLayer;
+@class GameLayer;
 
 typedef enum {
     GAMESTATE_INITIALIZE,
@@ -23,15 +23,15 @@ typedef enum {
 @interface GameController : NSObject
 {
     GameState _currentGameState;
-    HelloWorldLayer *_layer;
+    GameLayer *_layer;
 }
 
-@property(nonatomic,retain) HelloWorldLayer *layer;
+@property(nonatomic,retain) GameLayer *layer;
 
 +(id)gameController;
 
 -(void)changeGameState:(GameState)gameState;
 -(void)reactToTouchAt:(CGPoint)location;
--(void)setLayer:(HelloWorldLayer*)layer;
+-(void)setLayer:(GameLayer*)layer;
 
 @end
