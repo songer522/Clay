@@ -73,7 +73,7 @@
     [self setPositionAtX:position.x Y:position.y];
 }
 
--(void)setPositionAtX:(int)x Y:(int)y
+-(void)setPositionAtX:(float)x Y:(float)y
 {
     _x = x;
     _y = y;
@@ -90,7 +90,7 @@
         _rotationAmount = rand() % 10 * 200;
         _vx = magnitude * cosf((_angle * 3.14159)/180.0f);
         _vy = - magnitude * sinf((_angle * 3.14159)/180.0f);
-        NSLog(@"Angle: %f, VX: %f, VY: %f",_angle,_vx,_vy);
+        //NSLog(@"Angle: %f, VX: %f, VY: %f",_angle,_vx,_vy);
     }
 }
 

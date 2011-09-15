@@ -65,7 +65,7 @@ typedef enum {
 -(void) switchToInactive;
 
 -(void) setPosition:(CGPoint)position;
--(void) setPositionAtX:(int)x Y:(int)y;     //give new x and y position on screen (with cocos2D, both hi and low-res use 320x480 resolution for its points)
+-(void) setPositionAtX:(float)x Y:(float)y;     //give new x and y position on screen (with cocos2D, both hi and low-res use 320x480 resolution for its points)
 
 -(CCSprite*) getCCSprite;
 

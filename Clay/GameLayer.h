@@ -42,4 +42,5 @@
 -(void)initCamera;
 -(Runner*)initRunner:(Runner*)runner atPosition:(CGPoint)position;
 -(void)updateRunner:(Runner*)runner DT:(float)dt;
+-(void)updateLogic:(ccTime)dt;
 @end

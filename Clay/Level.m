@@ -228,7 +228,7 @@
     _main = [_map layerNamed:@"main0"];
     _main.visible = YES;
     
-    _obstacles = [_map layerNamed:@"front3"];
+    _obstacles = [_map layerNamed:@"front6"];
     _obstacles.visible = NO;
 }
 

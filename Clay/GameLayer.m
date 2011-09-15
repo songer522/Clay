@@ -53,7 +53,7 @@
         [[LayerManager sharedLayers] setCurrentLayer:self];
         
         _xp = 0;
-        _level = [Level levelWithFilename:@"clayl1.5.tmx"];
+        _level = [Level levelWithFilename:@"clayl2.1.1.tmx"];
         
         _player = [Player playerForLayer:self];
         
@@ -65,7 +65,10 @@
         
         [self initCamera];
         
-        [self scheduleUpdate];
+        //[self scheduleUpdate];
+        
+        [self schedule:@selector(updateLogic:) interval:1.0/60.0f];
+        
         self.isTouchEnabled = YES;
 	}
 	return self;
@@ -92,16 +95,19 @@
 
 -(void)update:(ccTime)dt
 {
+}
+
+-(void)updateLogic:(ccTime)dt
+{
+    [_player update:dt Level:_level];    
+
     [_level update:dt Velocity:_player.vx];
     
-    [_player update:dt Level:_level];
     
     if([_level testCollisions:_player]) {
         //collision happened, so reduce speed
         [_player startCollision];
     }
-
-    [[Camera sharedCamera] moveTowardsTarget:dt];
     
 }
 

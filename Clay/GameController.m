@@ -60,8 +60,7 @@
         }
     } else {
         if(![_layer.player getIsTurbo]) {
-            NSLog(@"MAAAAAARK");
-            //[_layer.player startTurbo];
+            [_layer.player startTurbo];
         }
     }
 }

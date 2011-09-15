@@ -81,7 +81,7 @@
 {
     _x = x;
     _y = y;
-    CGPoint position = [[Camera sharedCamera] convertToScreenXY:CGPointMake(x, y)];
+    CGPoint position = [[Camera sharedCamera] convertToScreenXY:CGPointMake((int)x, (int)y)];
     sprite_cc.position = ccp(position.x,position.y);
 }
 

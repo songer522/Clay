@@ -155,6 +155,7 @@
 		5499691F1416820000CB7800 /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = 5499691E1416820000CB7800 /* Level.m */; };
 		549BBB901421619800337F71 /* Barn_Tile_Final.png in Resources */ = {isa = PBXBuildFile; fileRef = 549BBB8E1421619800337F71 /* Barn_Tile_Final.png */; };
 		549BBB911421619800337F71 /* clayl2.1.0.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 549BBB8F1421619800337F71 /* clayl2.1.0.tmx */; };
+		54C2C27C14225FC900C94935 /* clayl2.1.1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 54C2C27B14225FC900C94935 /* clayl2.1.1.tmx */; };
 		54CA0B19140D65DB0038B3E1 /* Runner.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CA0B18140D65DB0038B3E1 /* Runner.m */; };
 		54CA0B20140D698B0038B3E1 /* RunningSpeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CA0B1F140D698B0038B3E1 /* RunningSpeed.m */; };
 		54E0CE81141FC0A6005BFD5C /* hurdle.png in Resources */ = {isa = PBXBuildFile; fileRef = 54E0CE80141FC0A6005BFD5C /* hurdle.png */; };
@@ -446,6 +447,7 @@
 		5499691E1416820000CB7800 /* Level.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level.m; sourceTree = "<group>"; };
 		549BBB8E1421619800337F71 /* Barn_Tile_Final.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Barn_Tile_Final.png; path = Resources/levels/Barn_Tile_Final.png; sourceTree = "<group>"; };
 		549BBB8F1421619800337F71 /* clayl2.1.0.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = clayl2.1.0.tmx; path = Resources/levels/clayl2.1.0.tmx; sourceTree = "<group>"; };
+		54C2C27B14225FC900C94935 /* clayl2.1.1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = clayl2.1.1.tmx; path = Resources/levels/clayl2.1.1.tmx; sourceTree = "<group>"; };
 		54CA0B17140D65DB0038B3E1 /* Runner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Runner.h; sourceTree = "<group>"; };
 		54CA0B18140D65DB0038B3E1 /* Runner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Runner.m; sourceTree = "<group>"; };
 		54CA0B1E140D698B0038B3E1 /* RunningSpeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RunningSpeed.h; sourceTree = "<group>"; };
@@ -941,6 +943,7 @@
 			children = (
 				549BBB8E1421619800337F71 /* Barn_Tile_Final.png */,
 				549BBB8F1421619800337F71 /* clayl2.1.0.tmx */,
+				54C2C27B14225FC900C94935 /* clayl2.1.1.tmx */,
 				543C09521420F39B00F259BA /* clayl1.5.tmx */,
 				543C09531420F39B00F259BA /* Env_Track_Icons.png */,
 				543C09541420F39B00F259BA /* meta64.png */,
@@ -1073,6 +1076,7 @@
 				543C095F1420F3AA00F259BA /* tileset-platformer.png in Resources */,
 				549BBB901421619800337F71 /* Barn_Tile_Final.png in Resources */,
 				549BBB911421619800337F71 /* clayl2.1.0.tmx in Resources */,
+				54C2C27C14225FC900C94935 /* clayl2.1.1.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

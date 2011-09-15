@@ -63,6 +63,15 @@
     
     [self updateJump:dt];
     CGPoint newPosition = [level checkCollisionForObject:self AtPoint:[self getPosition]];    
+
+    [self setPositionAtX:newPosition.x Y:newPosition.y];    //for some reason the y position jitters without
+                                                            //having this twice.
+    
+    [[Camera sharedCamera] moveTowardsTarget:dt];   //need this here, because the camera needs to be
+                                                    //based on the new player position, but the player
+                                                    //sprite can't be drawn on screen without the updated
+                                                    //camera position. will cause jitteriness otherwise
+    
     [self setPositionAtX:newPosition.x Y:newPosition.y];
 }
 
