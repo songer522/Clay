@@ -8,7 +8,7 @@
 
 #import "LevelManager.h"
 #import "PListLoader.h"
-
+#import "GameObjectController.h"
 #import "Level.h"
 
 @implementation LevelManager
@@ -30,6 +30,8 @@ static LevelManager *_shared = nil;
     self = [super init];
     if (self) {
         // Initialization code here.
+        _gameObjects = [[GameObjectController alloc] init];
+        
         _levelSettings = [NSDictionary dictionaryWithDictionary:[PListLoader loadPlistWithName:@"levels"]];
         
         NSString *startingLevel = [_levelSettings valueForKey:@"startingLevel"];
@@ -52,6 +54,7 @@ static LevelManager *_shared = nil;
     
     Level *level = [Level levelWithFilename:fileName ObstacleLayer:obstacleLayer LayerList:layerList];
     level.nextLevelName = nextLevelName;
+    level.gameObjects = _gameObjects;
     
     _currentLevel = level;
 }

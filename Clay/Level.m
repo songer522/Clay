@@ -18,6 +18,7 @@
 @implementation Level
 
 @synthesize nextLevelName = _nextLevelName;
+@synthesize gameObjects = _gameObjects;
 
 +(id)levelWithFilename:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer LayerList:(NSString*)layerList
 {
@@ -30,7 +31,6 @@
     self = [super init];
     if (self) {
         // Initialization code here.
-        _gameObjects = [[GameObjectController alloc] init];
         _obstacleSprites = [[NSMutableArray alloc] initWithCapacity:100];
         
         [self initTiledMap:filename ObstacleLayer:obstacleLayer];

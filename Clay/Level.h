@@ -43,6 +43,7 @@
 }
 
 @property (nonatomic,retain) NSString *nextLevelName;
+@property (nonatomic,retain) GameObjectController *gameObjects;
 
 #pragma mark - inits
 +(id)levelWithFilename:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer LayerList:(NSString*)layerList;

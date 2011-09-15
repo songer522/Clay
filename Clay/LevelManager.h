@@ -10,6 +10,8 @@
 
 @class Level;
 
+@class GameObjectController;
+
 @interface LevelManager : NSObject
 {
     NSMutableArray *_levels;
@@ -17,6 +19,8 @@
     NSDictionary *_levelSettings;
     
     Level *_currentLevel;
+    
+    GameObjectController *_gameObjects;
 }
 
 @property(readonly,nonatomic,retain)Level *currentLevel;
