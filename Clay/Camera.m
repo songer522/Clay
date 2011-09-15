@@ -126,7 +126,6 @@ static Camera *_sharedCamera = nil;
             _y = position.y;
             
         }
-        [self snapToTarget];
     }
     [self keepWithinBoundaries];
 }
