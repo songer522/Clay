@@ -24,7 +24,10 @@ typedef enum {
 @interface GameObject : NSObject
 {
     Sprite *_sprite;
-    //Animation *_animation;
+    
+    bool _isActive;      //starts true, but switched to false if we no longer
+                         //want the object to be seen or updated
+    
     float _x;
     float _y;
     float _vx;
@@ -32,6 +35,7 @@ typedef enum {
     float _offsetX;     //how much to offset whatever x position comes in by
     float _offsetY;     //how much to offset whatever y position comes in by
     float _angle;
+    float _rotationAmount;
     
     //collision
     CGRect _boundingBox;
@@ -58,6 +62,7 @@ typedef enum {
 -(id) initWithSprite:(Sprite*)initSprite;   //constructor
 
 -(void) setOffsetForX:(float)x Y:(float)y;
+-(void) switchToInactive;
 
 -(void) setPosition:(CGPoint)position;
 -(void) setPositionAtX:(int)x Y:(int)y;     //give new x and y position on screen (with cocos2D, both hi and low-res use 320x480 resolution for its points)
