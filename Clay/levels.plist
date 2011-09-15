@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>level1</key>
+	<dict>
+		<key>fileName</key>
+		<string>clayl1.5.tmx</string>
+		<key>obstacleLayer</key>
+		<string>front3</string>
+		<key>nextLevelName</key>
+		<string>level2</string>
+		<key>layerList</key>
+		<string>background-99,back-5,back-4,back-3,back-2,back-1,main0,front1,front2,front3,meta</string>
+	</dict>
+	<key>level2</key>
+	<dict>
+		<key>fileName</key>
+		<string>clayl2.1.1.tmx</string>
+		<key>obstacleLayer</key>
+		<string>front6</string>
+		<key>nextLevelName</key>
+		<string>level1</string>
+		<key>layerList</key>
+		<string>back-6,back-5,back-4,back-3,back-2,back-1,main0,front1,front2,front3,front4,front5,front6,meta</string>
+	</dict>
+	<key>startingLevel</key>
+	<string>level1</string>
+</dict>
+</plist>

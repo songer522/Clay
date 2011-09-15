@@ -30,7 +30,7 @@
     
     CGPoint _spawnPoint;
     
-    CCParallaxNode *parallaxLayers;
+    CCParallaxNode *_parallaxLayers;
     
     NSMutableArray *_obstacleSprites;
     
@@ -40,9 +40,12 @@
     float _y;
 }
 
+@property (nonatomic,retain) NSString *nextLevelName;
+
 #pragma mark - inits
-+(id)levelWithFilename:(NSString*)filename;
--(id)initWithFilename:(NSString*)filename;
++(id)levelWithFilename:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer LayerList:(NSString*)layerList;
+
+-(id)initWithFilename:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer LayerList:(NSString*)layerList;
 
 #pragma mark - public methods
 -(CGPoint)checkCollisionForObject:(GameObject*)object AtPoint:(CGPoint)point;
@@ -50,13 +53,14 @@
 -(CGRect)getLevelBoundaries;
 -(CGPoint)getSpawnPoint;
 -(CGPoint)getXYPositionForCoordinates:(CGPoint)coords;
+-(void)loadLayers:(NSString*)layerList;
 -(void)updateHurdles:(float)dt;
 -(NSString*)getObstaclePropertyForTileCoords:(CGPoint)coords forKey:(NSString*)key;
 -(bool)testCollisions:(GameObject*)source;
 -(bool)testCollisionWithGameObject:(GameObject*)target Source:(GameObject*)source;
 
 #pragma mark - private methods
--(void)initTiledMap:(NSString*)filename;
+-(void)initTiledMap:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer;
 -(void)initBackgroundImage:(NSString*)filename;
 -(CGPoint)tileCoordForPosition:(CGPoint)position;
 -(bool)checkIfSameTile:(int)tileId atNewPosition:(CGPoint)point forTileLayer:(CCTMXLayer*)layer;
