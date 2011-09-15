@@ -34,6 +34,8 @@
     
     NSMutableArray *_obstacleSprites;
     
+    NSString *_nextLevelName;           //the name of the level to load after this one is about
+                                        //to complete. will be used by the LevelManager
     GameObjectController *_gameObjects;
     
     float _x;
