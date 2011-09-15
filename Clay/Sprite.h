@@ -21,11 +21,9 @@
 @property (nonatomic,assign) float x;
 @property (nonatomic,assign) float y;
 
-+(id) spriteWithFile:(NSString *)filename toLayer:(id)layer;
-+(id) spriteWithFile:(NSString *)filename rect:(CGRect)rect toLayer:(id)layer;
++(id) spriteWithFile:(NSString *)filename;
 
--(id) initWithFile:(NSString *)filename toLayer:(id)layer;
--(id) initWithFile:(NSString *)filename rect:(CGRect)rect toLayer:(id)layer;
+-(id) initWithFile:(NSString *)filename;
 -(void) setCentered;
 -(void) setPositionAtX:(float)x Y:(float)y;
 -(CCSprite*) getCCSprite;

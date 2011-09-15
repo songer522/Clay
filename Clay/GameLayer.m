@@ -76,7 +76,7 @@
 
 -(Runner*)initRunner:(Runner*)runner atPosition:(CGPoint)position
 {
-    runner = [Runner runnerWithSprite:[Sprite spriteWithFile:@"player_idle_01.png" toLayer:self] Layer:self];
+    runner = [Runner runnerWithSprite:[Sprite spriteWithFile:@"player_idle_01.png"] Layer:self];
     [runner setPositionAtX:position.x Y:position.y];
     
     [[AnimationController sharedController] replaceSprite:[runner getSprite] withAnimationNamed:@"runningAnim"];

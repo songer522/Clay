@@ -7,26 +7,26 @@
 		<key>offsetx</key>
 		<integer>0</integer>
 		<key>offsety</key>
-		<integer>0</integer>
+		<integer>-33</integer>
 		<key>anchorpoint</key>
 		<dict>
 			<key>x</key>
-			<integer>0</integer>
+			<real>0.9</real>
 			<key>y</key>
-			<real>0.75</real>
+			<real>0.2</real>
 		</dict>
 		<key>animationName</key>
 		<string></string>
 		<key>boundingBox</key>
 		<dict>
 			<key>x</key>
-			<integer>-25</integer>
+			<integer>60</integer>
 			<key>y</key>
-			<integer>-25</integer>
+			<integer>10</integer>
 			<key>width</key>
-			<integer>50</integer>
+			<integer>2</integer>
 			<key>height</key>
-			<integer>50</integer>
+			<integer>10</integer>
 		</dict>
 		<key>imageName</key>
 		<string>hurdle.png</string>

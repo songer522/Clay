@@ -34,7 +34,7 @@
         _vx = 0;
         _vy = 0;
         
-        [self setSprite:[Sprite spriteWithFile:PLAYER_SPRITE_FILE toLayer:layer]];
+        [self setSprite:[Sprite spriteWithFile:PLAYER_SPRITE_FILE]];
         [self setPositionAtX:PLAYER_STARTING_X_POSITION Y:PLAYER_STARTING_Y_POSITION];
         
         _speed = [[RunningSpeed alloc] init];

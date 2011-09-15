@@ -13,6 +13,7 @@
 #import "Collision.h"
 #import "Sprite.h"
 #import "LayerManager.h"
+#import "GameObjectController.h"
 
 @implementation Level
 
@@ -26,7 +27,7 @@
     self = [super init];
     if (self) {
         // Initialization code here.
-        
+        _gameObjects = [[GameObjectController alloc] init];
         _obstacleSprites = [[NSMutableArray alloc] initWithCapacity:100];
         
         [self initTiledMap:filename];
@@ -262,12 +263,10 @@
             NSString *obstacle = [self getObstaclePropertyForTileCoords:coords forKey:@"obstacle"];
             if (obstacle) {
                 if ([obstacle compare:@"hurdle"] == NSOrderedSame) {
-                    GameObject *hurdle = [GameObject objectWithSprite:[Sprite spriteWithFile:@"hurdle.png" toLayer:[[LayerManager sharedLayers] currentLayer]]];
+                    GameObject *hurdle = [_gameObjects loadGameObjectWithName:@"hurdle"];
+                    
                     CGPoint position = [self getXYPositionForCoordinates:coords];
-                    [[hurdle getCCSprite] setAnchorPoint:ccp(0.9f, 0.2f)];
-                    [hurdle setOffsetForX:0 Y:-33.0f];
                     [hurdle setPositionAtX:position.x Y:position.y];
-                    hurdle.boundingBox = CGRectMake(60.0f, 10.0f, 2.0f, 10.0f);
                     [_obstacleSprites addObject:hurdle];
                 }
             }

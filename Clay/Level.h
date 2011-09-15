@@ -13,6 +13,8 @@
 
 @class GameObject;
 
+@class GameObjectController;
+
 @interface Level : NSObject
 {
     NSString *_name;
@@ -31,6 +33,8 @@
     CCParallaxNode *parallaxLayers;
     
     NSMutableArray *_obstacleSprites;
+    
+    GameObjectController *_gameObjects;
     
     float _x;
     float _y;

@@ -10,6 +10,7 @@
 #import "Sprite.h"
 #import "Animation.h"
 #import "Camera.h"
+#import "LayerManager.h"
 
 @implementation Sprite
 
@@ -27,40 +28,20 @@
     return self;
 }
 
-+(id) spriteWithFile:(NSString*)filename toLayer:(id)layer
++(id) spriteWithFile:(NSString*)filename
 {
-    return [[self alloc] initWithFile:filename toLayer:layer];
+    return [[self alloc] initWithFile:filename];
 }
 
-+(id) spriteWithFile:(NSString *)filename rect:(CGRect)rect toLayer:(id)layer
-{
-    return [[self alloc] initWithFile:filename rect:rect toLayer:layer];
-}
-
--(id) initWithFile:(NSString*) filename toLayer:(id)layer
+-(id) initWithFile:(NSString*) filename
 {
     NSAssert(filename!=nil, @"Invalid filename");
-    NSAssert(layer!=nil, @"Invalid layer");
     
     if((self = [self init]))
     {
         sprite_cc = [[CCSprite spriteWithFile:filename] retain];
         [self initializeSpriteOnceLoaded];
-        [layer addChild:sprite_cc];
-    }
-    return self;
-}
-
--(id) initWithFile:(NSString *)filename rect:(CGRect)rect toLayer:(id)layer
-{
-    NSAssert(filename!=nil, @"Invalid filename");
-    NSAssert(layer!=nil, @"Invalid layer");
-    
-    if((self = [self init]))
-    {
-        sprite_cc = [[CCSprite spriteWithFile:filename] retain];
-        [self initializeSpriteOnceLoaded];
-        [layer addChild:sprite_cc];
+        [[[LayerManager sharedLayers] currentLayer] addChild:sprite_cc];
     }
     return self;
 }

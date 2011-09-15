@@ -9,10 +9,12 @@
 #import "CCSprite.h"
 #import "cocos2d.h"
 
+@class GameObject;
+
 @interface GameObjectController : NSObject {
     NSDictionary *_objectSettings;
 }
 
--(CCSprite*)loadGameObjectWithName:(NSString*)objectName;
+-(GameObject*)loadGameObjectWithName:(NSString*)objectName;
 
 @end
