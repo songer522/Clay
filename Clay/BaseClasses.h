@@ -16,6 +16,7 @@
 #import "InputController.h"
 #import "InputEvent.h"
 #import "LayerManager.h"
+#import "LevelManager.h"
 #import "Level.h"
 #import "PListLoader.h"
 #import "Sprite.h"

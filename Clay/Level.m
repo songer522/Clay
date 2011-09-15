@@ -16,12 +16,15 @@
 
 @implementation Level
 
-+(id)levelWithFilename:(NSString*)filename
+@synthesize nextLevelName = _nextLevelName;
+
++(id)levelWithFilename:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer LayerList:(NSString*)layerList
 {
-    return [[self alloc] initWithFilename:filename];
+    return [[self alloc] initWithFilename:filename ObstacleLayer:obstacleLayer LayerList:layerList];
 }
 
-- (id)initWithFilename:(NSString*)filename
+
+-(id)initWithFilename:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer LayerList:(NSString*)layerList;
 {
     self = [super init];
     if (self) {
@@ -29,41 +32,13 @@
         
         _obstacleSprites = [[NSMutableArray alloc] initWithCapacity:100];
         
-        [self initTiledMap:filename];
-        
-        
-        parallaxLayers = [CCParallaxNode node];
+        [self initTiledMap:filename ObstacleLayer:obstacleLayer];
         
         [[[LayerManager sharedLayers] currentLayer] addChild:_map];
+        
+        _parallaxLayers = [CCParallaxNode node];
 
-        NSMutableArray *layerList = [[NSMutableArray alloc] initWithCapacity:20];
-        [layerList addObject:[NSString stringWithString:@"background-99"]];
-        [layerList addObject:[NSString stringWithString:@"back-6"]];
-        [layerList addObject:[NSString stringWithString:@"back-5"]];
-        [layerList addObject:[NSString stringWithString:@"back-4"]];
-        [layerList addObject:[NSString stringWithString:@"back-3"]];
-        [layerList addObject:[NSString stringWithString:@"back-2"]];
-        [layerList addObject:[NSString stringWithString:@"back-1"]];
-        [layerList addObject:[NSString stringWithString:@"main0"]];
-        [layerList addObject:[NSString stringWithString:@"front1"]];
-        [layerList addObject:[NSString stringWithString:@"front2"]];
-        [layerList addObject:[NSString stringWithString:@"front3"]];
-        [layerList addObject:[NSString stringWithString:@"front4"]];
-        [layerList addObject:[NSString stringWithString:@"front5"]];
-        [layerList addObject:[NSString stringWithString:@"front6"]];
-        [layerList addObject:[NSString stringWithString:@"meta"]];
-
-        int currentZ = 0;
-        for (NSString *layerName in layerList) {
-            CCTMXLayer *tmxLayer = [_map layerNamed:layerName];
-            if (tmxLayer) {
-                float speedx = [[tmxLayer propertyNamed:@"speedx"] floatValue];
-                float speedy = [[tmxLayer propertyNamed:@"speedy"] floatValue];
-                [tmxLayer removeFromParentAndCleanup:NO];
-                [parallaxLayers addChild:tmxLayer z:currentZ parallaxRatio:ccp(speedx,speedy) positionOffset:ccp(0, 0)];
-                currentZ++;
-            }
-        }
+        [self loadLayers:layerList];
         
         _map.scale = [[UIScreen mainScreen] scale] / 2;
         
@@ -71,13 +46,30 @@
         
         [[Camera sharedCamera] setBoundaries:[self getLevelBoundaries]];
         
-        [[[LayerManager sharedLayers] currentLayer] addChild:parallaxLayers];
+        [[[LayerManager sharedLayers] currentLayer] addChild:_parallaxLayers];
         
         [self initHurdles];
 
     }
     
     return self;
+}
+
+-(void)loadLayers:(NSString*)layerList;
+{
+    int currentZ = 0;
+
+    NSArray *layers = [layerList componentsSeparatedByString:@","];
+    for (NSString *layerName in layers) {
+        CCTMXLayer *tmxLayer = [_map layerNamed:layerName];
+        if (tmxLayer) {
+            float speedx = [[tmxLayer propertyNamed:@"speedx"] floatValue];
+            float speedy = [[tmxLayer propertyNamed:@"speedy"] floatValue];
+            [tmxLayer removeFromParentAndCleanup:NO];
+            [_parallaxLayers addChild:tmxLayer z:currentZ parallaxRatio:ccp(speedx,speedy) positionOffset:ccp(0, 0)];
+            currentZ++;
+        }
+    }
 }
 
 -(CGPoint)tileCoordForPosition:(CGPoint)position
@@ -210,25 +202,19 @@
 {
     _x = x;
     _y = y;
-    //[parallaxLayers setPosition:CGPointMake(_x, _y)];
-    [parallaxLayers setPosition:[[Camera sharedCamera] convertToScreenXY:CGPointMake(_x, _y)]];
+    [_parallaxLayers setPosition:[[Camera sharedCamera] convertToScreenXY:CGPointMake(_x, _y)]];
 }
 
--(void)initTiledMap:(NSString*)filename 
+-(void)initTiledMap:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer
 {
     
     [[CCDirector sharedDirector] setProjection:CCDirectorProjection2D];
     _map = [CCTMXTiledMap tiledMapWithTMXFile:filename];
     
-    _map.scale = 1.0f;
-    
     _meta = [_map layerNamed:@"meta"];
     _meta.visible = NO;
-    
-    _main = [_map layerNamed:@"main0"];
-    _main.visible = YES;
-    
-    _obstacles = [_map layerNamed:@"front6"];
+        
+    _obstacles = [_map layerNamed:obstacleLayer];
     _obstacles.visible = NO;
 }
 

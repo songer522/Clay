@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5416A1B614195B6400648B6A /* anims.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5416A1B514195B6400648B6A /* anims.plist */; };
 		5416A1B91419632E00648B6A /* LayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5416A1B81419632E00648B6A /* LayerManager.m */; };
+		542361AE14228E5E0086E533 /* LevelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 542361AD14228E5E0086E533 /* LevelManager.m */; };
 		54297897140C1F8900B3FFF4 /* GameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54297896140C1F8900B3FFF4 /* GameController.m */; };
 		5429789B140C233E00B3FFF4 /* InputController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5429789A140C233E00B3FFF4 /* InputController.m */; };
 		5429789E140C268100B3FFF4 /* InputEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5429789D140C268100B3FFF4 /* InputEvent.m */; };
@@ -141,6 +142,7 @@
 		54518F6D1406AEE6009D74AA /* GameObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 54518F6C1406AEE6009D74AA /* GameObject.m */; };
 		54518F701406B061009D74AA /* BaseClasses.m in Sources */ = {isa = PBXBuildFile; fileRef = 54518F6F1406B061009D74AA /* BaseClasses.m */; };
 		54518F751406B761009D74AA /* GameClasses.m in Sources */ = {isa = PBXBuildFile; fileRef = 54518F741406B761009D74AA /* GameClasses.m */; };
+		547472CA14228C0A00B0B0B7 /* levels.plist in Resources */ = {isa = PBXBuildFile; fileRef = 547472C914228C0A00B0B0B7 /* levels.plist */; };
 		5483C7191417CF140032BDDD /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = 5483C7181417CF140032BDDD /* Camera.m */; };
 		54968B2F141E554400A4D2DC /* character_jumping-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54968B27141E554400A4D2DC /* character_jumping-hd.plist */; };
 		54968B30141E554400A4D2DC /* character_jumping-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54968B28141E554400A4D2DC /* character_jumping-hd.png */; };
@@ -168,6 +170,8 @@
 		5416A1B514195B6400648B6A /* anims.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = anims.plist; sourceTree = "<group>"; };
 		5416A1B71419632E00648B6A /* LayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayerManager.h; sourceTree = "<group>"; };
 		5416A1B81419632E00648B6A /* LayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayerManager.m; sourceTree = "<group>"; };
+		542361AC14228E5E0086E533 /* LevelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelManager.h; sourceTree = "<group>"; };
+		542361AD14228E5E0086E533 /* LevelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelManager.m; sourceTree = "<group>"; };
 		54297895140C1F8900B3FFF4 /* GameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameController.h; sourceTree = "<group>"; };
 		54297896140C1F8900B3FFF4 /* GameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameController.m; sourceTree = "<group>"; };
 		54297899140C233E00B3FFF4 /* InputController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputController.h; sourceTree = "<group>"; };
@@ -429,6 +433,7 @@
 		54518F6F1406B061009D74AA /* BaseClasses.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseClasses.m; sourceTree = "<group>"; };
 		54518F731406B761009D74AA /* GameClasses.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameClasses.h; sourceTree = "<group>"; };
 		54518F741406B761009D74AA /* GameClasses.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameClasses.m; sourceTree = "<group>"; };
+		547472C914228C0A00B0B0B7 /* levels.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = levels.plist; sourceTree = "<group>"; };
 		5483C7171417CF140032BDDD /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
 		5483C7181417CF140032BDDD /* Camera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Camera.m; sourceTree = "<group>"; };
 		54968B27141E554400A4D2DC /* character_jumping-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "character_jumping-hd.plist"; sourceTree = "<group>"; };
@@ -484,6 +489,7 @@
 			children = (
 				5416A1B514195B6400648B6A /* anims.plist */,
 				572DB81C141FF62D00DDC493 /* objects.plist */,
+				547472C914228C0A00B0B0B7 /* levels.plist */,
 			);
 			name = Plists;
 			sourceTree = "<group>";
@@ -913,6 +919,8 @@
 				5416A1B81419632E00648B6A /* LayerManager.m */,
 				5499691D1416820000CB7800 /* Level.h */,
 				5499691E1416820000CB7800 /* Level.m */,
+				542361AC14228E5E0086E533 /* LevelManager.h */,
+				542361AD14228E5E0086E533 /* LevelManager.m */,
 				572DB822142004D500DDC493 /* PListLoader.h */,
 				572DB823142004D500DDC493 /* PListLoader.m */,
 				54518F6114069BF0009D74AA /* Sprite.h */,
@@ -1077,6 +1085,7 @@
 				549BBB901421619800337F71 /* Barn_Tile_Final.png in Resources */,
 				549BBB911421619800337F71 /* clayl2.1.0.tmx in Resources */,
 				54C2C27C14225FC900C94935 /* clayl2.1.1.tmx in Resources */,
+				547472CA14228C0A00B0B0B7 /* levels.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1203,6 +1212,7 @@
 				544034B2141A76DF0065B061 /* Collision.m in Sources */,
 				572DB821142000A400DDC493 /* GameObjectController.m in Sources */,
 				572DB824142004D500DDC493 /* PListLoader.m in Sources */,
+				542361AE14228E5E0086E533 /* LevelManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
