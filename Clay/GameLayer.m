@@ -67,9 +67,9 @@
         
         [self initCamera];
         
-        //[self scheduleUpdate];
+        [self scheduleUpdate];
         
-        [self schedule:@selector(updateLogic:) interval:1.0/60.0f];
+        //[self schedule:@selector(updateLogic:) interval:1.0/60.0f];
         
         self.isTouchEnabled = YES;
 	}
@@ -97,6 +97,7 @@
 
 -(void)update:(ccTime)dt
 {
+    [self updateLogic:dt];
 }
 
 -(void)updateLogic:(ccTime)dt

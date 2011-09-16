@@ -33,15 +33,15 @@
 		<key>playerOffsetY</key>
 		<integer>3</integer>
 		<key>fileName</key>
-		<string>clayl2.1.1.tmx</string>
+		<string>clayl2.1.3.tmx</string>
 		<key>obstacleLayer</key>
-		<string>front6</string>
+		<string>front3</string>
 		<key>nextLevelName</key>
 		<string>level1</string>
 		<key>layerList</key>
-		<string>back-6,back-5,back-4,back-3,back-2,back-1,main0,front1,front2,front3,front4,front5,front6,meta</string>
+		<string>back-2,back-1,main0,front2,front3,meta</string>
 	</dict>
 	<key>startingLevel</key>
-	<string>level2</string>
+	<string>platformTest</string>
 </dict>
 </plist>

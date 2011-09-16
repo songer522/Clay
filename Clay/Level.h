@@ -62,6 +62,7 @@
 -(NSString*)getObstaclePropertyForTileCoords:(CGPoint)coords forKey:(NSString*)key;
 -(bool)testCollisions:(GameObject*)source;
 -(bool)testCollisionWithGameObject:(GameObject*)target Source:(GameObject*)source;
+-(float) checkRightCollisionAtPoint:(CGPoint)point;
 
 #pragma mark - private methods
 -(void)initTiledMap:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer;

@@ -99,7 +99,7 @@
     } else if(y > (_map.mapSize.height - 1)) {
         y = _map.mapSize.height - 1;
     }
-    NSLog(@"X: %d, Y: %d",x,y);
+    
     return ccp(x,y);
 }
 
@@ -122,7 +122,6 @@
     
     int y = 0;
     if ([property compare:@"none"] == NSOrderedSame) {
-        //y position based on coordinates
         y = topOfTileY - scaledTileHeight;
     } else if([property compare:@"leftslant"] == NSOrderedSame) {
         y = topOfTileY - scaledTileHeight + tileX;
@@ -133,10 +132,32 @@
     return y;
 }
 
+-(float) checkRightCollisionAtPoint:(CGPoint)point
+{
+    
+    CGPoint tileCoordinates = [self tileCoordForPosition:point];
+    NSString *collisionProperty = [self getCollisionPropertyForTileCoords:tileCoordinates];
+
+    bool colliding = true;
+    while (colliding) {
+        if ([collisionProperty compare:@"full"] != NSOrderedSame || tileCoordinates.x <=0) {
+            colliding = false;
+        } else {
+            tileCoordinates.x -= 1;
+            collisionProperty = [self getCollisionPropertyForTileCoords:tileCoordinates];
+        }
+    }
+    
+    return tileCoordinates.x * (_map.tileSize.width/2.0f);
+}
+
 -(CGPoint)checkCollisionForObject:(GameObject*)object AtPoint:(CGPoint)point
 {
     float newX = point.x;
     float newY = point.y;
+    
+    float leftX = [self checkRightCollisionAtPoint:point];
+    float ldx = point.x - leftX;    
     
     CGPoint tileCoordinates = [self tileCoordForPosition:point];
     NSString *collisionProperty = [self getCollisionPropertyForTileCoords:tileCoordinates];
@@ -153,13 +174,22 @@
     
     float topY = [self getTopYPositionForTileCoords:tileCoordinates atX:newX ForTileProperty:collisionProperty];
     
-    //if the top of the course is higher than the current Y position, then change the Y  pos.
-    //otherwise, the guy is jumping or falling and should be left alone.
-    if (topY > newY) {
-        newY = topY;
-        [[object getCollision] processNewTile:collisionProperty CollisionState:COLLISION_STATE_GROUNDED];
-    } else if(topY != newY) {
-        [[object getCollision] processNewTile:collisionProperty CollisionState:COLLISION_STATE_MIDAIR];
+    float tdy = topY - newY;
+    
+    if (tdy < ldx) {
+        //if the top of the course is higher than the current Y position, then change the Y  pos.
+        //otherwise, the guy is jumping or falling and should be left alone.
+        if (topY > newY) {
+            newY = topY;
+            [[object getCollision] processNewTile:collisionProperty CollisionState:COLLISION_STATE_GROUNDED];
+        } else if(topY != newY) {
+            [[object getCollision] processNewTile:collisionProperty CollisionState:COLLISION_STATE_MIDAIR];
+        }
+    } else {
+        newX = leftX;
+        if(topY < newY) {
+            [[object getCollision] processNewTile:collisionProperty CollisionState:COLLISION_STATE_MIDAIR];
+        }
     }
     
     return CGPointMake(newX,newY);
