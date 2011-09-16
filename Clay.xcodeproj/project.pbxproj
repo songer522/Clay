@@ -160,6 +160,9 @@
 		54C2C27C14225FC900C94935 /* clayl2.1.1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 54C2C27B14225FC900C94935 /* clayl2.1.1.tmx */; };
 		54CA0B19140D65DB0038B3E1 /* Runner.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CA0B18140D65DB0038B3E1 /* Runner.m */; };
 		54CA0B20140D698B0038B3E1 /* RunningSpeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CA0B1F140D698B0038B3E1 /* RunningSpeed.m */; };
+		54DDF8201423A17B00631A41 /* platformtest-2.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 54DDF81E1423A17B00631A41 /* platformtest-2.tmx */; };
+		54DDF8211423A17B00631A41 /* tileset-platformer_64.png in Resources */ = {isa = PBXBuildFile; fileRef = 54DDF81F1423A17B00631A41 /* tileset-platformer_64.png */; };
+		54DDF8251423A67300631A41 /* CollisionDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = 54DDF8241423A67300631A41 /* CollisionDetection.m */; };
 		54E0CE81141FC0A6005BFD5C /* hurdle.png in Resources */ = {isa = PBXBuildFile; fileRef = 54E0CE80141FC0A6005BFD5C /* hurdle.png */; };
 		572DB81D141FF62D00DDC493 /* objects.plist in Resources */ = {isa = PBXBuildFile; fileRef = 572DB81C141FF62D00DDC493 /* objects.plist */; };
 		572DB821142000A400DDC493 /* GameObjectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 572DB820142000A400DDC493 /* GameObjectController.m */; };
@@ -457,6 +460,10 @@
 		54CA0B18140D65DB0038B3E1 /* Runner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Runner.m; sourceTree = "<group>"; };
 		54CA0B1E140D698B0038B3E1 /* RunningSpeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RunningSpeed.h; sourceTree = "<group>"; };
 		54CA0B1F140D698B0038B3E1 /* RunningSpeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RunningSpeed.m; sourceTree = "<group>"; };
+		54DDF81E1423A17B00631A41 /* platformtest-2.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "platformtest-2.tmx"; path = "Resources/levels/platformtest-2.tmx"; sourceTree = "<group>"; };
+		54DDF81F1423A17B00631A41 /* tileset-platformer_64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tileset-platformer_64.png"; path = "Resources/levels/tileset-platformer_64.png"; sourceTree = "<group>"; };
+		54DDF8231423A67300631A41 /* CollisionDetection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollisionDetection.h; sourceTree = "<group>"; };
+		54DDF8241423A67300631A41 /* CollisionDetection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollisionDetection.m; sourceTree = "<group>"; };
 		54E0CE80141FC0A6005BFD5C /* hurdle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hurdle.png; sourceTree = "<group>"; };
 		572DB81C141FF62D00DDC493 /* objects.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = objects.plist; sourceTree = "<group>"; };
 		572DB81F142000A400DDC493 /* GameObjectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObjectController.h; sourceTree = "<group>"; };
@@ -907,6 +914,8 @@
 				5483C7181417CF140032BDDD /* Camera.m */,
 				544034B0141A76DF0065B061 /* Collision.h */,
 				544034B1141A76DF0065B061 /* Collision.m */,
+				54DDF8231423A67300631A41 /* CollisionDetection.h */,
+				54DDF8241423A67300631A41 /* CollisionDetection.m */,
 				54518F6B1406AEE6009D74AA /* GameObject.h */,
 				54518F6C1406AEE6009D74AA /* GameObject.m */,
 				572DB81F142000A400DDC493 /* GameObjectController.h */,
@@ -949,6 +958,8 @@
 		548C3DBB141ABDBB000567A8 /* levels */ = {
 			isa = PBXGroup;
 			children = (
+				54DDF81E1423A17B00631A41 /* platformtest-2.tmx */,
+				54DDF81F1423A17B00631A41 /* tileset-platformer_64.png */,
 				549BBB8E1421619800337F71 /* Barn_Tile_Final.png */,
 				549BBB8F1421619800337F71 /* clayl2.1.0.tmx */,
 				54C2C27B14225FC900C94935 /* clayl2.1.1.tmx */,
@@ -1086,6 +1097,8 @@
 				549BBB911421619800337F71 /* clayl2.1.0.tmx in Resources */,
 				54C2C27C14225FC900C94935 /* clayl2.1.1.tmx in Resources */,
 				547472CA14228C0A00B0B0B7 /* levels.plist in Resources */,
+				54DDF8201423A17B00631A41 /* platformtest-2.tmx in Resources */,
+				54DDF8211423A17B00631A41 /* tileset-platformer_64.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1213,6 +1226,7 @@
 				572DB821142000A400DDC493 /* GameObjectController.m in Sources */,
 				572DB824142004D500DDC493 /* PListLoader.m in Sources */,
 				542361AE14228E5E0086E533 /* LevelManager.m in Sources */,
+				54DDF8251423A67300631A41 /* CollisionDetection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
