@@ -17,6 +17,7 @@
 {
     float _x;                   //x position of the camera
     float _y;                   //y position of the camera
+    float _scale;               //scale for calculating positions of things
         
     CGRect _boundary;           //the boundary that the 2D camera window has to be within
 

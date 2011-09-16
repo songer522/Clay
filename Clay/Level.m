@@ -41,11 +41,12 @@
         
         [[[LayerManager sharedLayers] currentLayer] addChild:_map];
         
+        _scale = [[UIScreen mainScreen] scale] / 2.0f;
+
         _parallaxLayers = [CCParallaxNode node];
 
         [self loadLayers:layerList];
         
-        _scale = [[UIScreen mainScreen] scale] / 2.0f;
 
         _map.scale = _scale;
         _parallaxLayers.scale = _scale;
@@ -71,8 +72,8 @@
     for (NSString *layerName in layers) {
         CCTMXLayer *tmxLayer = [_map layerNamed:layerName];
         if (tmxLayer) {
-            float speedx = [[tmxLayer propertyNamed:@"speedx"] floatValue];
-            float speedy = [[tmxLayer propertyNamed:@"speedy"] floatValue];
+            float speedx = [[tmxLayer propertyNamed:@"speedx"] floatValue] * _scale;
+            float speedy = [[tmxLayer propertyNamed:@"speedy"] floatValue] * _scale;
             [tmxLayer removeFromParentAndCleanup:NO];
             [_parallaxLayers addChild:tmxLayer z:currentZ parallaxRatio:ccp(speedx,speedy) positionOffset:ccp(0, 0)];
             currentZ++;
@@ -82,8 +83,8 @@
 
 -(CGPoint)tileCoordForPosition:(CGPoint)position
 {
-    int scaledTileWidth = _map.tileSize.width * _map.scale / 2.0f;
-    int scaledTileHeight = _map.tileSize.height * 1;
+    int scaledTileWidth = _map.tileSize.width / 2.0f;
+    int scaledTileHeight = _map.tileSize.height;
     int x = position.x / scaledTileWidth;
     int y = ((_map.mapSize.height * scaledTileHeight) - position.y) / scaledTileHeight;
     
@@ -104,15 +105,15 @@
 
 -(CGRect)getLevelBoundaries
 {
-    int width = _map.mapSize.width * _map.tileSize.width * _map.scale;
-    int height = _map.mapSize.height * _map.tileSize.height * _map.scale;
+    int width = _map.mapSize.width * _map.tileSize.width;
+    int height = _map.mapSize.height * _map.tileSize.height;
     return CGRectMake(0, 0, width, height);
 }
 
 -(int)getTopYPositionForTileCoords:(CGPoint)coords atX:(int)x ForTileProperty:(NSString*)property
 {
-    int scaledTileWidth = _map.tileSize.width * _map.scale;
-    int scaledTileHeight = _map.tileSize.height * _map.scale;
+    int scaledTileWidth = _map.tileSize.width;
+    int scaledTileHeight = _map.tileSize.height;
 
     float topOfTileY = (_map.mapSize.height - coords.y) * scaledTileHeight;
 
@@ -150,7 +151,7 @@
         }
     }
     
-    float topY = [self getTopYPositionForTileCoords:tileCoordinates atX:(newX /2) ForTileProperty:collisionProperty];
+    float topY = [self getTopYPositionForTileCoords:tileCoordinates atX:newX ForTileProperty:collisionProperty];
     
     //if the top of the course is higher than the current Y position, then change the Y  pos.
     //otherwise, the guy is jumping or falling and should be left alone.
@@ -252,6 +253,9 @@
                     
                     CGPoint position = [self getXYPositionForCoordinates:coords];
                     [hurdle setPositionAtX:position.x Y:position.y];
+                    
+                    [[hurdle getCCSprite] setScale:_scale];
+                    
                     [_obstacleSprites addObject:hurdle];
                 }
             }
@@ -272,8 +276,8 @@
 {
     //TODO: not sure why these need to be divided by 2 to get the right position yet
     //should make it clear what the 2.0 represents once figured out
-    int scaledTileWidth = _map.tileSize.width * _map.scale / 2.0f;
-    int scaledTileHeight = _map.tileSize.height * _map.scale / 2.0f;
+    int scaledTileWidth = _map.tileSize.width;
+    int scaledTileHeight = _map.tileSize.height;
     
     float x = coords.x * scaledTileWidth;
     float y = (_map.mapSize.height * scaledTileHeight) - coords.y * scaledTileHeight;
