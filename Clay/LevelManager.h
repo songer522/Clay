@@ -21,9 +21,12 @@
     Level *_currentLevel;
     
     GameObjectController *_gameObjects;
+    
+    int _playerOffsetY;
 }
 
-@property(readonly,nonatomic,retain)Level *currentLevel;
+@property(readonly,nonatomic,retain) Level *currentLevel;
+@property(readonly,nonatomic,assign) int playerOffsetY;
 
 +(LevelManager*)shared;
 -(void)loadLevelNamed:(NSString*)levelName;

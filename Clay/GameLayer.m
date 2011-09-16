@@ -56,9 +56,11 @@
         _level = [[LevelManager shared] currentLevel];
         
         _player = [Player playerForLayer:self];
+        [_player setOffsetForX:0 Y:[[LevelManager shared] playerOffsetY]];
         
         [[AnimationController sharedController] replaceSprite:[_player getSprite] withAnimationNamed:@"runningAnim"];
 
+        
         CGPoint spawn = [_level getSpawnPoint];
         [_player setPositionAtX:spawn.x Y:spawn.y];
         

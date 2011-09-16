@@ -4,6 +4,8 @@
 <dict>
 	<key>level1</key>
 	<dict>
+		<key>playerOffsetY</key>
+		<integer>3</integer>
 		<key>fileName</key>
 		<string>clayl1.5.tmx</string>
 		<key>obstacleLayer</key>
@@ -15,6 +17,8 @@
 	</dict>
 	<key>platformTest</key>
 	<dict>
+		<key>playerOffsetY</key>
+		<integer>-30</integer>
 		<key>fileName</key>
 		<string>platformtest-2.tmx</string>
 		<key>obstacleLayer</key>
@@ -26,6 +30,8 @@
 	</dict>
 	<key>level2</key>
 	<dict>
+		<key>playerOffsetY</key>
+		<integer>3</integer>
 		<key>fileName</key>
 		<string>clayl2.1.1.tmx</string>
 		<key>obstacleLayer</key>

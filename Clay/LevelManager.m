@@ -10,10 +10,13 @@
 #import "PListLoader.h"
 #import "GameObjectController.h"
 #import "Level.h"
+#import "LayerManager.h"
+#import "Player.h"
 
 @implementation LevelManager
 
 @synthesize currentLevel = _currentLevel;
+@synthesize playerOffsetY = _playerOffsetY;
 
 static LevelManager *_shared = nil;
 
@@ -50,13 +53,18 @@ static LevelManager *_shared = nil;
     NSString *fileName = [levelSettings valueForKey:@"fileName"];
     NSString *obstacleLayer = [levelSettings valueForKey:@"obstacleLayer"];
     NSString *nextLevelName = [levelSettings valueForKey:@"nextLevelName"];
+
     NSString *layerList = [levelSettings valueForKey:@"layerList"];
+
+    _playerOffsetY = [[levelSettings valueForKey:@"playerOffsetY"] intValue];
     
-    Level *level = [Level levelWithFilename:fileName ObstacleLayer:obstacleLayer LayerList:layerList];
+    Level *level = [Level levelWithFilename:fileName ObstacleLayer:obstacleLayer LayerList:layerList GameObjectController:_gameObjects];
     level.nextLevelName = nextLevelName;
     level.gameObjects = _gameObjects;
     
     _currentLevel = level;
+    
+    
 }
 
 @end

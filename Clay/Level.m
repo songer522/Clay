@@ -20,17 +20,20 @@
 @synthesize nextLevelName = _nextLevelName;
 @synthesize gameObjects = _gameObjects;
 
-+(id)levelWithFilename:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer LayerList:(NSString*)layerList
++(id)levelWithFilename:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer LayerList:(NSString*)layerList GameObjectController:(GameObjectController*)gameObjects
 {
-    return [[self alloc] initWithFilename:filename ObstacleLayer:obstacleLayer LayerList:layerList];
+    return [[self alloc] initWithFilename:filename ObstacleLayer:obstacleLayer LayerList:layerList GameObjectController:gameObjects];
 }
 
 
--(id)initWithFilename:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer LayerList:(NSString*)layerList;
+-(id)initWithFilename:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer LayerList:(NSString*)layerList GameObjectController:(GameObjectController*)gameObjects
 {
     self = [super init];
     if (self) {
         // Initialization code here.
+        
+        _gameObjects = gameObjects;
+        
         _obstacleSprites = [[NSMutableArray alloc] initWithCapacity:100];
         
         [self initTiledMap:filename ObstacleLayer:obstacleLayer];
@@ -109,8 +112,6 @@
     
     int tileX = x % scaledTileWidth;
     
-    NSLog(@"COLLISION: %@",property);
-    
     int y = 0;
     if ([property compare:@"none"] == NSOrderedSame) {
         //y position based on coordinates
@@ -142,7 +143,7 @@
     
     CGPoint tileCoordinates = [self tileCoordForPosition:point];
     NSString *collisionProperty = [self getCollisionPropertyForTileCoords:tileCoordinates];
-
+    
     bool colliding = true;
     while (colliding) {
         if ([collisionProperty compare:@"full"] != NSOrderedSame || tileCoordinates.y <= 0) {
