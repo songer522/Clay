@@ -40,6 +40,7 @@
     
     float _x;
     float _y;
+    float _scale;
 }
 
 @property (nonatomic,retain) NSString *nextLevelName;

@@ -8,6 +8,7 @@
 
 #import "Level.h"
 
+#import "cocos2d.h"
 #import "Camera.h"
 #import "GameObject.h"
 #import "Collision.h"
@@ -44,7 +45,10 @@
 
         [self loadLayers:layerList];
         
-        _map.scale = [[UIScreen mainScreen] scale] / 2;
+        _scale = [[UIScreen mainScreen] scale] / 2.0f;
+
+        _map.scale = _scale;
+        _parallaxLayers.scale = _scale;
         
         [self initSpawnPoint];
         
@@ -79,7 +83,7 @@
 -(CGPoint)tileCoordForPosition:(CGPoint)position
 {
     int scaledTileWidth = _map.tileSize.width * _map.scale / 2.0f;
-    int scaledTileHeight = _map.tileSize.height * _map.scale;
+    int scaledTileHeight = _map.tileSize.height * 1;
     int x = position.x / scaledTileWidth;
     int y = ((_map.mapSize.height * scaledTileHeight) - position.y) / scaledTileHeight;
     
@@ -94,7 +98,7 @@
     } else if(y > (_map.mapSize.height - 1)) {
         y = _map.mapSize.height - 1;
     }
-    
+    NSLog(@"X: %d, Y: %d",x,y);
     return ccp(x,y);
 }
 
@@ -109,29 +113,21 @@
 {
     int scaledTileWidth = _map.tileSize.width * _map.scale;
     int scaledTileHeight = _map.tileSize.height * _map.scale;
+
+    float topOfTileY = (_map.mapSize.height - coords.y) * scaledTileHeight;
+
     
     int tileX = x % scaledTileWidth;
     
     int y = 0;
     if ([property compare:@"none"] == NSOrderedSame) {
         //y position based on coordinates
-        y = (coords.y * scaledTileHeight) + scaledTileHeight;
-        
-        //flip the y position so it's based on screen
-        y = (_map.mapSize.height * scaledTileHeight) - y;
+        y = topOfTileY - scaledTileHeight;
     } else if([property compare:@"leftslant"] == NSOrderedSame) {
-        y = (coords.y * scaledTileHeight) + ((scaledTileWidth - tileX)/2.0f);
-        
-        //flip the y position so it's based on screen
-        y = (_map.mapSize.height * scaledTileHeight) - y;
+        y = topOfTileY - scaledTileHeight + tileX;
     } else if([property compare:@"rightslant"] == NSOrderedSame) {
-        y = (coords.y * scaledTileHeight) + tileX;
-        
-        //flip the y position so it's based on screen
-        y = (_map.mapSize.height * scaledTileHeight) - y;
+        y = topOfTileY + tileX;
     }
-    
-    //NSLog(@"X: %f, Y: %f",coords.x,coords.y);
     
     return y;
 }
@@ -154,7 +150,7 @@
         }
     }
     
-    float topY = [self getTopYPositionForTileCoords:tileCoordinates atX:newX ForTileProperty:collisionProperty];
+    float topY = [self getTopYPositionForTileCoords:tileCoordinates atX:(newX /2) ForTileProperty:collisionProperty];
     
     //if the top of the course is higher than the current Y position, then change the Y  pos.
     //otherwise, the guy is jumping or falling and should be left alone.
