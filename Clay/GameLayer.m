@@ -69,7 +69,7 @@
         
         [self scheduleUpdate];
         
-        //[self schedule:@selector(updateLogic:) interval:1.0/60.0f];
+        //[self schedule:@selector(updateLogic:) interval:10.0/60.0f];
         
         self.isTouchEnabled = YES;
 	}
@@ -131,7 +131,7 @@
 {
     [runner update:dt];
     
-    CGPoint newPosition = [_level checkCollisionForObject:_player AtPoint:[_player getPosition]];
+    CGPoint newPosition = [_level checkCollisionForObject:_player];
     [runner setPositionAtX:newPosition.x Y:newPosition.y - 22];    
 }
 

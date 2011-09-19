@@ -129,6 +129,8 @@
         y = topOfTileY + tileX;
     }
     
+    NSLog(@"CX: %.0f, CY: %.0f, X: %.2d, Y: %.2d, Collision: %@",coords.x, coords.y, x,y,property);
+    
     return y;
 }
 
@@ -151,48 +153,106 @@
     return tileCoordinates.x * (_map.tileSize.width/2.0f);
 }
 
--(CGPoint)checkCollisionForObject:(GameObject*)object AtPoint:(CGPoint)point
+-(bool) outOfBoundsTest:(CGPoint)testPosition
 {
-    float newX = point.x;
-    float newY = point.y;
+    return false;
+}
+
+-(CGPoint)checkCollisionForObject:(GameObject*)object
+{
     
-    float leftX = [self checkRightCollisionAtPoint:point];
-    float ldx = point.x - leftX;    
+    CGPoint startPosition = [object getPosition];   
+    CGPoint testPosition = startPosition;
+    CGPoint prevPosition = [object getPreviousPosition];
     
-    CGPoint tileCoordinates = [self tileCoordForPosition:point];
-    NSString *collisionProperty = [self getCollisionPropertyForTileCoords:tileCoordinates];
+    float dx = startPosition.x - prevPosition.x;
+    float dy = startPosition.y - prevPosition.y;
+    
+    float dist = sqrtf(dx*dx + dy*dy);
+    float testDist = dist;
+    float angle = atan2f(dy, dx);
     
     bool colliding = true;
+    bool singleCollision = false;
+    bool groundCollision = false;
+    bool testYOnlyFirst = true;
+    
     while (colliding) {
-        if ([collisionProperty compare:@"full"] != NSOrderedSame || tileCoordinates.y <= 0) {
+        if ([self outOfBoundsTest:testPosition]) {
             colliding = false;
-        } else {
-            tileCoordinates.y -= 1;
-            collisionProperty = [self getCollisionPropertyForTileCoords:tileCoordinates];            
+            break;
+        }
+        
+        CGPoint coords = [self tileCoordForPosition:testPosition];
+        NSString *collisionProperty = [self getCollisionPropertyForTileCoords:coords];
+        
+        CGPoint pointWithinTile = CGPointMake((int)testPosition.x % (int)_map.tileSize.width, (int)testPosition.y % (int)_map.tileSize.height);
+        
+        if (!singleCollision) {
+            NSLog(@"CoordX: %.0f, PointInTileX: %.2f,DX: %.2f",coords.x,pointWithinTile.x,dx);
+        }
+        
+        //NSLog(@"Property: %@",collisionProperty);
+        
+        //check if the test position collides with current tile
+        if ([collisionProperty compare:@"full"] == NSOrderedSame) {
+            singleCollision = true;
+            groundCollision = true;
+        } else if ([collisionProperty compare:@"none"] == NSOrderedSame) {
+            colliding = false;
+            break;
+        } else if([collisionProperty compare:@"leftslant"] == NSOrderedSame) {
+            if (pointWithinTile.y > pointWithinTile.x) {
+                colliding = false;
+                break;
+            } else {
+                singleCollision = true;
+                testPosition.y += pointWithinTile.x - pointWithinTile.y;
+                colliding = false;
+                break;                
+            }
+        } else if([collisionProperty compare:@"rightslant"] == NSOrderedSame) {
+            if (pointWithinTile.y > (_map.tileSize.width - pointWithinTile.x)) {
+                colliding = false;
+                break;
+            } else {                
+                singleCollision = true;
+            }
+        }
+        
+        if (colliding) {
+            if (testDist < 0.01f) {
+                if (testYOnlyFirst) {
+                    testDist = dist;
+                    testYOnlyFirst = false;
+                } else {
+                    colliding = false;
+                    testPosition.x = prevPosition.x;
+                    testPosition.y = prevPosition.y;                    
+                }
+            } else {
+                if(testDist > 1.0f) {
+                    testDist-=1;
+                } else {
+                    testDist = testDist / 2.0f;
+                }
+                if (!testYOnlyFirst) {
+                    testPosition.x = prevPosition.x + testDist * cosf(angle);                    
+                }
+                testPosition.y = prevPosition.y - testDist * sin(angle);                
+            }
         }
     }
     
-    float topY = [self getTopYPositionForTileCoords:tileCoordinates atX:newX ForTileProperty:collisionProperty];
-    
-    float tdy = topY - newY;
-    
-    if (tdy < ldx) {
-        //if the top of the course is higher than the current Y position, then change the Y  pos.
-        //otherwise, the guy is jumping or falling and should be left alone.
-        if (topY > newY) {
-            newY = topY;
-            [[object getCollision] processNewTile:collisionProperty CollisionState:COLLISION_STATE_GROUNDED];
-        } else if(topY != newY) {
-            [[object getCollision] processNewTile:collisionProperty CollisionState:COLLISION_STATE_MIDAIR];
-        }
+    if (groundCollision || testYOnlyFirst) {
+        [[object getCollision] processNewCollisionState:COLLISION_STATE_GROUNDED];
+    } else if (singleCollision) {
+        [[object getCollision] processNewCollisionState:COLLISION_STATE_BUMPED_WALL];
     } else {
-        newX = leftX;
-        if(topY < newY) {
-            [[object getCollision] processNewTile:collisionProperty CollisionState:COLLISION_STATE_MIDAIR];
-        }
+        [[object getCollision] processNewCollisionState:COLLISION_STATE_MIDAIR];
     }
     
-    return CGPointMake(newX,newY);
+    return CGPointMake(testPosition.x,testPosition.y);
 }
 
 -(NSString*)getCollisionPropertyForTileCoords:(CGPoint)coords

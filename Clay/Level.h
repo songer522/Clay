@@ -52,7 +52,7 @@
 -(id)initWithFilename:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer LayerList:(NSString*)layerList GameObjectController:(GameObjectController*)gameObjects;
 
 #pragma mark - public methods
--(CGPoint)checkCollisionForObject:(GameObject*)object AtPoint:(CGPoint)point;
+-(CGPoint)checkCollisionForObject:(GameObject*)object;
 -(void)update:(float)dt Velocity:(float)vx;
 -(CGRect)getLevelBoundaries;
 -(CGPoint)getSpawnPoint;

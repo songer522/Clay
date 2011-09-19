@@ -25,6 +25,6 @@ typedef enum {
 
 
 +(id)collisionNode;
--(void)processNewTile:(NSString*)tile CollisionState:(CollisionState)state;
+-(void)processNewCollisionState:(CollisionState)state;
 
 @end

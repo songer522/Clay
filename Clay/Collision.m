@@ -28,7 +28,7 @@
     return self;
 }
 
--(void)processNewTile:(NSString*)tile CollisionState:(CollisionState)state
+-(void)processNewCollisionState:(CollisionState)state
 {
     _currentState = state;
 }

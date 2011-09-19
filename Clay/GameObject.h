@@ -37,6 +37,8 @@ typedef enum {
     float _angle;
     float _rotationAmount;
     
+    CGPoint _prevLocation;
+    
     //collision
     CGRect _boundingBox;
     
@@ -71,6 +73,7 @@ typedef enum {
 
 
 -(CGPoint) getPosition;
+-(CGPoint) getPreviousPosition;
 -(Collision*) getCollision;
 
 -(void) startCollision;

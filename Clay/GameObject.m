@@ -62,6 +62,11 @@
     return CGPointMake(_x, _y);
 }
 
+-(CGPoint) getPreviousPosition
+{
+    return _prevLocation;
+}
+
 -(void) setOffsetForX:(float)x Y:(float)y
 {
     _offsetX = x;
@@ -103,6 +108,8 @@
 {
     //guard
     if (!_isActive) { return; }
+    
+    _prevLocation = CGPointMake(_x, _y);
     
     _x += _vx * dt;
     _y -= _vy * dt;

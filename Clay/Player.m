@@ -60,7 +60,7 @@
     }
     
     [self updateJump:dt];
-    CGPoint newPosition = [level checkCollisionForObject:self AtPoint:[self getPosition]];    
+    CGPoint newPosition = [level checkCollisionForObject:self];    
 
     [self setPositionAtX:newPosition.x Y:newPosition.y];    //for some reason the y position jitters without
                                                             //having this twice.
@@ -99,7 +99,7 @@
     _jumpAcceleration = 0;
     _isJumping = true;
     [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"jumpingAnim"];
-    [[self getCollision] processNewTile:@"" CollisionState:COLLISION_STATE_MIDAIR];
+    [[self getCollision] processNewCollisionState:COLLISION_STATE_MIDAIR];
     [self setPositionAtX:_x Y:_y];
 }
 

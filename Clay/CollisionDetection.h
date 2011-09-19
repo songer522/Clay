@@ -9,11 +9,25 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
+@class GameObject;
+
 @interface CollisionDetection : NSObject
 {
     CCTMXLayer *_collisionData;
+    CCTMXTiledMap *_map;
+    int _tileSize;
+    
+    GameObject *_currentObject;
+    
+    CGPoint _desiredPosition;
+    CGPoint _testPosition;
+    
+    NSString *_tileCollision;
 }
 
--(CGPoint)testForCollisions;
+-(bool)tryGoingFullVxAndVy;
+-(bool)tryGoingFullVx;
+-(bool)getOutOfCollision;
 
+-(NSString*)getCollisionPropertyForTileCoords:(CGPoint)coords;
 @end
