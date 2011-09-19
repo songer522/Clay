@@ -8,11 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+@class CCScene;
+
 @interface LayerManager : NSObject
 {
-    id _currentLayer;
-    
+    id          _currentLayer;
+    CCScene     *_currentScene;
 }
+
+@property(nonatomic,retain) CCScene *currentScene;
+
 +(LayerManager*)sharedLayers;
 -(void)setCurrentLayer:(id)layer;
 -(id)currentLayer;

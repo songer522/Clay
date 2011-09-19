@@ -100,6 +100,16 @@ static Camera *_sharedCamera = nil;
     return CGPointMake(x, y);    
 }
 
+-(float)convertToScreenX:(float)worldX
+{
+    return (worldX - _x + _center.x);
+}
+
+-(float)convertToScreenY:(float)worldY
+{
+    return (worldY - _y + _center.y);    
+}
+
 -(void)moveTowardsTarget:(float)dt
 {
     if (_target != nil) {

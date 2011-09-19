@@ -92,26 +92,42 @@
 
 -(bool)tryGoingFullVxAndVy
 {
+    bool returnVal = false;
     [self prepareDataForPosition:_desiredPosition];
     
+    
     if ([_tileCollision compare:@"none"]) {
+        //we don't need to change position and we're in midair
         [[_currentObject getCollision] setCurrentState:COLLISION_STATE_MIDAIR];
-        return true;
+        returnVal = true;
     } else if([_tileCollision compare:@"leftslant"]) {
+        
         if (_pointWithinTile.y < _pointWithinTile.x) {
-            _pointWithinTile.y += (_pointWithinTile.x - _pointWithinTile.y);
+            
+            //if on the slant, shift the position up 
+            _testPosition.y += (_pointWithinTile.x - _pointWithinTile.y);
         }
         [[_currentObject getCollision] setCurrentState:COLLISION_STATE_GROUNDED];
-        return true;
+        returnVal = true;
     } else if([_tileCollision compare:@"full"]) {
-        //CGPointMake(<#CGFloat x#>, <#CGFloat y#>)
+        CGPoint newPoint = CGPointMake(_testPosition.x,(_testPosition.y + _tileSize - _testPosition.y));
+        [self prepareDataForPosition:newPoint];
+        
+        if ([_tileCollision compare:@"none"]==NSOrderedSame) {
+            [[_currentObject getCollision] setCurrentState:COLLISION_STATE_GROUNDED];
+            returnVal = true;
+        }
     }
     
-    return true;
+    return returnVal;
 }
 
 -(bool)tryGoingFullVx
 {
+    [self prepareDataForPosition:_desiredPosition];
+    
+    
+    
     return true;
 }
 

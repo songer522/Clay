@@ -392,6 +392,11 @@
     return returnVal;
 }
 
+-(NSMutableArray*)getGameObjectsList
+{
+    return _obstacleSprites;
+}
+
 -(bool)testCollisions:(GameObject*)source
 {
     bool collision = false;

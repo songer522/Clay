@@ -10,9 +10,14 @@
 
 @class RootViewController;
 
+@class GameDebugLayer;
+
 @interface AppDelegate : NSObject <UIApplicationDelegate> {
 	UIWindow			*window;
 	RootViewController	*viewController;
+    CCScene             *gameScene;
+    GameDebugLayer      *_debugLayer;
+
 }
 
 @property (nonatomic, retain) UIWindow *window;

@@ -11,6 +11,8 @@
 #import "AppDelegate.h"
 #import "GameConfig.h"
 #import "GameLayer.h"
+#import "GameDebugLayer.h"
+#import "LayerManager.h"
 #import "RootViewController.h"
 
 @implementation AppDelegate
@@ -110,8 +112,13 @@
 	[self removeStartupFlicker];
 	
 	// Run the intro Scene
-	[[CCDirector sharedDirector] runWithScene: [GameLayer scene]];
-    //[[CCDirector sharedDirector] runWithScene: [GameLayer scene]];
+    gameScene = [GameLayer scene];
+    [[LayerManager sharedLayers] setCurrentScene:gameScene];
+    
+    _debugLayer = [GameDebugLayer debugLayerForScene:[[LayerManager sharedLayers] currentScene] GameLayer:[[LayerManager sharedLayers] currentLayer]];
+
+    
+	[[CCDirector sharedDirector] runWithScene: gameScene];
 }
 
 

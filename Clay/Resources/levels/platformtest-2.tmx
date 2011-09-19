@@ -58,5 +58,6 @@
  </layer>
  <objectgroup name="objects" width="53" height="12">
   <object name="SpawnPoint" x="128" y="512" width="64" height="64"/>
+  <object x="2048" y="512" width="64" height="64"/>
  </objectgroup>
 </map>

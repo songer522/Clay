@@ -6,9 +6,12 @@
 //  Copyright 2011 Xecudev, LLC. All rights reserved.
 //
 
+#import "cocos2d.h"
 #import "LayerManager.h"
 
 @implementation LayerManager
+
+@synthesize currentScene = _currentScene;
 
 
 static LayerManager *_sharedLayers = nil;

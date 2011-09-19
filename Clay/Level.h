@@ -63,6 +63,7 @@
 -(bool)testCollisions:(GameObject*)source;
 -(bool)testCollisionWithGameObject:(GameObject*)target Source:(GameObject*)source;
 -(float) checkRightCollisionAtPoint:(CGPoint)point;
+-(NSMutableArray*)getGameObjectsList;
 
 #pragma mark - private methods
 -(void)initTiledMap:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer;

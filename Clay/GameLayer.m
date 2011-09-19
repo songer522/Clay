@@ -52,6 +52,8 @@
         
         [[LayerManager sharedLayers] setCurrentLayer:self];
         
+        
+        
         _xp = 0;
         _level = [[LevelManager shared] currentLevel];
         
@@ -134,6 +136,17 @@
     CGPoint newPosition = [_level checkCollisionForObject:_player];
     [runner setPositionAtX:newPosition.x Y:newPosition.y - 22];    
 }
+
+
+
+
+-(NSMutableArray*)getGameObjectsList
+{
+    return [_level getGameObjectsList];    
+}
+
+
+
 
 // on "dealloc" you need to release all your retained objects
 - (void) dealloc

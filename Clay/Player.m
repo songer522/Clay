@@ -44,7 +44,7 @@
         [self changeToRunnerState:RUNNER_STATE_RUNNING];
         
         [[[self getSprite] getCCSprite] setAnchorPoint:ccp(0.5,0.5)];
-        self.boundingBox = CGRectMake(-40, -40, 80, 80);
+        self.boundingBox = CGRectMake(-22, -65, 50, 120);
 
     }
     

@@ -32,7 +32,11 @@
 #pragma mark - public methods
 -(void)moveByX:(float)x Y:(float)y;
 -(void)setBoundaries:(CGRect)rect;
+
 -(CGPoint)convertToScreenXY:(CGPoint)worldXY;
+-(float)convertToScreenX:(float)worldX;
+-(float)convertToScreenY:(float)worldY;
+
 -(CGPoint)convertToWorldXY:(CGPoint)screenXY;
 -(void)setTarget:(Sprite*)sprite;
 -(void)setCenter:(CGPoint)point;

@@ -32,6 +32,7 @@
     
     float _xp;
     
+
 }
 
 @property(nonatomic,retain) Player *player;
@@ -43,4 +44,6 @@
 -(Runner*)initRunner:(Runner*)runner atPosition:(CGPoint)position;
 -(void)updateRunner:(Runner*)runner DT:(float)dt;
 -(void)updateLogic:(ccTime)dt;
+-(NSMutableArray*)getGameObjectsList;
+
 @end
