@@ -17,10 +17,15 @@
     CCTMXTiledMap *_map;
     int _tileSize;
     
+    float _amountToReachGround;
+    
     GameObject *_currentObject;
     
     CGPoint _desiredPosition;
     CGPoint _testPosition;
+    CGPoint _pointWithinTile;
+    
+    CGPoint _coordinates;
     
     NSString *_tileCollision;
 }
@@ -29,5 +34,8 @@
 -(bool)tryGoingFullVx;
 -(bool)getOutOfCollision;
 
+-(void)prepareDataForPosition:(CGPoint)position;
+
+- (id)initWithCollisionLayer:(CCTMXLayer*)collisionLayer Map:(CCTMXTiledMap*)map;
 -(NSString*)getCollisionPropertyForTileCoords:(CGPoint)coords;
 @end

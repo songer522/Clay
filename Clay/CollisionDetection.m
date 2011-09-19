@@ -61,10 +61,11 @@
     _desiredPosition = [object getPosition];
     _testPosition = [object getPosition];
     _currentObject = object;
+    _amountToReachGround = 100000.0f;
     
     if([self tryGoingFullVxAndVy])
     {
-        return _desiredPosition;
+        return _testPosition;
     }
     else if([self tryGoingFullVx])
     {
@@ -80,8 +81,32 @@
     }
 }
 
+-(void)prepareDataForPosition:(CGPoint)position
+{
+    _testPosition = CGPointMake(position.x, position.y);
+    _pointWithinTile = CGPointMake((int)position.x % _tileSize, (int)position.y % _tileSize);
+    _coordinates = [self tileCoordForPosition:_testPosition];
+    _tileCollision = [self getCollisionPropertyForTileCoords:_coordinates];
+    
+}
+
 -(bool)tryGoingFullVxAndVy
 {
+    [self prepareDataForPosition:_desiredPosition];
+    
+    if ([_tileCollision compare:@"none"]) {
+        [[_currentObject getCollision] setCurrentState:COLLISION_STATE_MIDAIR];
+        return true;
+    } else if([_tileCollision compare:@"leftslant"]) {
+        if (_pointWithinTile.y < _pointWithinTile.x) {
+            _pointWithinTile.y += (_pointWithinTile.x - _pointWithinTile.y);
+        }
+        [[_currentObject getCollision] setCurrentState:COLLISION_STATE_GROUNDED];
+        return true;
+    } else if([_tileCollision compare:@"full"]) {
+        //CGPointMake(<#CGFloat x#>, <#CGFloat y#>)
+    }
+    
     return true;
 }
 
