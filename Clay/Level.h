@@ -12,6 +12,7 @@
 @class TrackBackground;
 
 @class GameObject;
+@class CollisionDetection;
 
 @class GameObjectController;
 
@@ -27,6 +28,8 @@
     CCTMXTiledMap *_map;
     
     CCTMXObjectGroup *_objects;
+    
+    CollisionDetection *_collisionHandler;
     
     CGPoint _spawnPoint;
     

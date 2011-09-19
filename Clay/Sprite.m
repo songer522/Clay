@@ -40,6 +40,7 @@
     if((self = [self init]))
     {
         sprite_cc = [[CCSprite spriteWithFile:filename] retain];
+        
         [self initializeSpriteOnceLoaded];
         [[[LayerManager sharedLayers] currentLayer] addChild:sprite_cc];
     }

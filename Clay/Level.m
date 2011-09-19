@@ -9,6 +9,7 @@
 #import "Level.h"
 
 #import "cocos2d.h"
+#import "CollisionDetection.h"
 #import "Camera.h"
 #import "GameObject.h"
 #import "Collision.h"
@@ -47,7 +48,7 @@
 
         [self loadLayers:layerList];
         
-
+        
         _map.scale = _scale;
         _parallaxLayers.scale = _scale;
         
@@ -58,6 +59,9 @@
         [[[LayerManager sharedLayers] currentLayer] addChild:_parallaxLayers];
         
         [self initHurdles];
+        
+        _collisionHandler = [CollisionDetection collisionHandlerWithMetaLayer:_meta Map:_map];
+
 
     }
     
@@ -160,7 +164,10 @@
 
 -(CGPoint)checkCollisionForObject:(GameObject*)object
 {
-    
+    return [_collisionHandler checkCollisionForObject:object];
+}
+/*
+-(CGPoint)checkCollisionForObject:(GameObject*)object
     CGPoint startPosition = [object getPosition];   
     CGPoint testPosition = startPosition;
     CGPoint prevPosition = [object getPreviousPosition];
@@ -253,7 +260,8 @@
     }
     
     return CGPointMake(testPosition.x,testPosition.y);
-}
+}*/
+
 
 -(NSString*)getCollisionPropertyForTileCoords:(CGPoint)coords
 {

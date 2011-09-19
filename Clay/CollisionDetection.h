@@ -14,6 +14,7 @@
 @interface CollisionDetection : NSObject
 {
     CCTMXLayer *_collisionData;
+    CCTMXLayer *_main;
     CCTMXTiledMap *_map;
     int _tileSize;
     
@@ -30,12 +31,18 @@
     NSString *_tileCollision;
 }
 
++(id) collisionHandlerWithMetaLayer:(CCTMXLayer*)collisionLayer Map:(CCTMXTiledMap*)map;
+- (id)initWithCollisionLayer:(CCTMXLayer*)collisionLayer Map:(CCTMXTiledMap*)map;
+-(NSString*)getCollisionPropertyForTileCoords:(CGPoint)coords;
+-(CGPoint)checkCollisionForObject:(GameObject*)object;
+
+
 -(bool)tryGoingFullVxAndVy;
 -(bool)tryGoingFullVx;
 -(bool)getOutOfCollision;
 
+-(void) setupDebugText:(CCTMXTiledMap*)map;
+
 -(void)prepareDataForPosition:(CGPoint)position;
 
-- (id)initWithCollisionLayer:(CCTMXLayer*)collisionLayer Map:(CCTMXTiledMap*)map;
--(NSString*)getCollisionPropertyForTileCoords:(CGPoint)coords;
 @end
