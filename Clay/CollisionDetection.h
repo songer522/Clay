@@ -40,8 +40,7 @@
 -(bool)tryGoingFullVxAndVy;
 -(bool)tryGoingFullVx;
 -(bool)getOutOfCollision;
-
--(void) setupDebugText:(CCTMXTiledMap*)map;
+-(void) setupDebugText:(CCTMXTiledMap*)map Layer:(CCTMXLayer*)layer;
 
 -(void)prepareDataForPosition:(CGPoint)position;
 

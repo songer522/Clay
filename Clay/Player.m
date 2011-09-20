@@ -88,6 +88,9 @@
 
         _jumpAcceleration = 0;
         _vy = 0;
+    } else if(state == COLLISION_STATE_BUMPED_WALL) {
+        _vx = 0;
+        _vy = 0;
     }
 }
 

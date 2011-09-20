@@ -144,6 +144,7 @@
 		54518F751406B761009D74AA /* GameClasses.m in Sources */ = {isa = PBXBuildFile; fileRef = 54518F741406B761009D74AA /* GameClasses.m */; };
 		5460F9FE1423EB6100582EBD /* clayl2.1.4.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 5460F9FD1423EB6100582EBD /* clayl2.1.4.tmx */; };
 		547472CA14228C0A00B0B0B7 /* levels.plist in Resources */ = {isa = PBXBuildFile; fileRef = 547472C914228C0A00B0B0B7 /* levels.plist */; };
+		547F09731428E49C00E5D920 /* blank.png in Resources */ = {isa = PBXBuildFile; fileRef = 547F09721428E49C00E5D920 /* blank.png */; };
 		5483C7191417CF140032BDDD /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = 5483C7181417CF140032BDDD /* Camera.m */; };
 		54968B2F141E554400A4D2DC /* character_jumping-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54968B27141E554400A4D2DC /* character_jumping-hd.plist */; };
 		54968B30141E554400A4D2DC /* character_jumping-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54968B28141E554400A4D2DC /* character_jumping-hd.png */; };
@@ -440,6 +441,7 @@
 		54518F741406B761009D74AA /* GameClasses.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameClasses.m; sourceTree = "<group>"; };
 		5460F9FD1423EB6100582EBD /* clayl2.1.4.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = clayl2.1.4.tmx; path = Resources/levels/clayl2.1.4.tmx; sourceTree = "<group>"; };
 		547472C914228C0A00B0B0B7 /* levels.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = levels.plist; sourceTree = "<group>"; };
+		547F09721428E49C00E5D920 /* blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blank.png; path = Resources/levels/blank.png; sourceTree = "<group>"; };
 		5483C7171417CF140032BDDD /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
 		5483C7181417CF140032BDDD /* Camera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Camera.m; sourceTree = "<group>"; };
 		54968B27141E554400A4D2DC /* character_jumping-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "character_jumping-hd.plist"; sourceTree = "<group>"; };
@@ -965,6 +967,7 @@
 		548C3DBB141ABDBB000567A8 /* levels */ = {
 			isa = PBXGroup;
 			children = (
+				547F09721428E49C00E5D920 /* blank.png */,
 				5460F9FD1423EB6100582EBD /* clayl2.1.4.tmx */,
 				54DDF81E1423A17B00631A41 /* platformtest-2.tmx */,
 				54DDF81F1423A17B00631A41 /* tileset-platformer_64.png */,
@@ -1108,6 +1111,7 @@
 				54DDF8201423A17B00631A41 /* platformtest-2.tmx in Resources */,
 				54DDF8211423A17B00631A41 /* tileset-platformer_64.png in Resources */,
 				5460F9FE1423EB6100582EBD /* clayl2.1.4.tmx in Resources */,
+				547F09731428E49C00E5D920 /* blank.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -20,13 +20,13 @@
 		<key>boundingBox</key>
 		<dict>
 			<key>x</key>
-			<integer>18</integer>
+			<integer>13</integer>
 			<key>y</key>
 			<integer>-2</integer>
 			<key>width</key>
-			<integer>8</integer>
+			<integer>14</integer>
 			<key>height</key>
-			<integer>28</integer>
+			<integer>35</integer>
 		</dict>
 		<key>imageName</key>
 		<string>hurdle.png</string>
