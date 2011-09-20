@@ -89,7 +89,7 @@
 
 -(void)initCamera
 {
-    [[Camera sharedCamera] setCenter:CGPointMake(35, 100)];        
+    [[Camera sharedCamera] setCenter:CGPointMake(35, 20)];        
     [[Camera sharedCamera] setTarget:[_player getSprite]];
     [[Camera sharedCamera] snapToTarget];
 }

@@ -13,7 +13,7 @@
 #import "Player.h"
 #import "Camera.h"
 
-#define DEBUG_DRAW_BOUNDING_BOXES 1
+#define DEBUG_DRAW_BOUNDING_BOXES 0
 
 @implementation GameDebugLayer
 

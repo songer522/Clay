@@ -25,9 +25,40 @@
     self = [super init];
     if (self) {
         // Initialization code here.
+        _normalVelocityMax = 10.0f;
+        _normalAcceleration = 1.0f;
+        _normalAccelerationMax = 1.0f;
+        _turboAcceleration = 2.0f;
+        _turboAccelerationMax = 2.0f;
+        _turboVelocityMax = 2.0f;
+        _turboDuration = 3.0f;
         [self reset];
     }
     
+    return self;
+}
+
+-(id) initWithSettings:(NSDictionary*)settings
+{
+    self = [super init];
+    if (self) {
+        NSDictionary *normalBehavior = [settings objectForKey:@"normalBehavior"];
+        NSAssert(normalBehavior!=nil,@"Error loading player settings (player.plist)");
+        
+        _normalAcceleration = [[normalBehavior objectForKey:@"acceleration"] floatValue];
+        _normalVelocityMax = [[normalBehavior objectForKey:@"velocityMax"] floatValue];
+        _normalAccelerationMax = [[normalBehavior objectForKey:@"accelerationMax"] floatValue];
+        
+        NSDictionary *turboBehavior = [settings objectForKey:@"turboBehavior"];
+        NSAssert(turboBehavior!=nil,@"Error loading player settings (player.plist)");
+        
+        _turboAcceleration = [[turboBehavior objectForKey:@"acceleration"] floatValue];
+        _turboAccelerationMax = [[turboBehavior objectForKey:@"accelerationMax"] floatValue];
+        _turboDuration = [[turboBehavior objectForKey:@"duration"] floatValue];
+        _turboVelocityMax = [[turboBehavior objectForKey:@"velocityMax"] floatValue];
+        
+        [self reset];
+    }
     return self;
 }
 
@@ -45,67 +76,60 @@
 {
     _velocity = 4.0f;
     _acceleration = 0.0f;
-    _stamina = 20.0f;
+    _turboLeft = 0.0f;
     _inTurbo = false;
     _isStopped = true;
-    _pace = RUNNING_SPEED_PACE_ENDURANCE;
 }
 
--(void)setPace:(float)modifier
+-(void)startCollision
 {
-    _pace = modifier;
-}
-
--(void)setPlayer:(Player*)player
-{
-    _player = player;
+    _velocity = 1.0f;
+    _acceleration = 0.5f;
+    _inTurbo = false;
 }
 
 -(void)startTurbo
 {
     _inTurbo = true;
-    _acceleration = RUNNING_SPEED_MAX_ACCELERATION;
-    _stamina = RUNNING_SPEED_MAX_STAMINA;
-    [self setPace:RUNNING_SPEED_PACE_TURBO];
+    _turboLeft = _turboDuration;
 }
-
--(void)endTurbo
-{
-    [self setPace:RUNNING_SPEED_PACE_ENDURANCE];
-    _inTurbo = false;
-    _stamina = RUNNING_SPEED_MAX_STAMINA;
-}
-
--(void)startCollision
-{
-    _velocity = 0.0f;
-    _acceleration = 0.1f;
-    _stamina = 20.0f;
-    _inTurbo = false;
-    [self setPace:RUNNING_SPEED_PACE_ENDURANCE];
-}
-
 
 -(void)update:(float)dt
 {
     if (!_isStopped) {
-        if (_acceleration < RUNNING_SPEED_MAX_ACCELERATION) {
-            _acceleration += 0.5f * _pace * dt;
+        
+        if (_inTurbo)
+        {
+            _acceleration += _turboAcceleration * RUNNING_SPEED_MODIFIER_ACCELERATION * dt;
+            if (_acceleration > RUNNING_SPEED_MODIFIER_ACCELERATION_MAX * _turboAccelerationMax) {
+                _acceleration = RUNNING_SPEED_MODIFIER_ACCELERATION_MAX * _turboAccelerationMax;
+            }
+            
+            _velocity += _acceleration * dt;
+            if (_velocity > RUNNING_SPEED_MODIFIER_VELOCITY_MAX * _turboVelocityMax) {
+                _velocity = RUNNING_SPEED_MODIFIER_VELOCITY_MAX * _turboVelocityMax;
+            }
+            
+            _turboLeft -= dt;
+            if (_turboLeft <= 0.0f) {
+                _inTurbo = false;
+            }
         }
-        
-        _velocity += _acceleration;
-        
-        if (_velocity > (RUNNING_SPEED_MAX_VELOCITY * _pace)) {
-            _velocity = RUNNING_SPEED_MAX_VELOCITY * _pace;
-        }
-        
-        if (_inTurbo) {
-            _stamina -= 2.0f * dt;
-            if (_stamina <= 0.0f) {
-                [self setPace:RUNNING_SPEED_PACE_ENDURANCE];
+        else
+        {
+            _acceleration += _normalAcceleration * RUNNING_SPEED_MODIFIER_ACCELERATION * dt;
+            if (_acceleration > RUNNING_SPEED_MODIFIER_ACCELERATION_MAX * _normalAccelerationMax) {
+                _acceleration = RUNNING_SPEED_MODIFIER_ACCELERATION_MAX * _normalAccelerationMax;
+            }
+            
+            _velocity += _acceleration * dt;
+            if (_velocity > RUNNING_SPEED_MODIFIER_VELOCITY_MAX * _normalVelocityMax) {
+                _velocity = RUNNING_SPEED_MODIFIER_VELOCITY_MAX * _normalVelocityMax;
             }
         }
     }
+    
+    NSLog(@"VX: %f, ACCEL: %f",_velocity,_acceleration);
 }
 
 

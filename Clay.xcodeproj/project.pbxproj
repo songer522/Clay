@@ -164,6 +164,7 @@
 		5499691F1416820000CB7800 /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = 5499691E1416820000CB7800 /* Level.m */; };
 		549BBB901421619800337F71 /* Barn_Tile_Final.png in Resources */ = {isa = PBXBuildFile; fileRef = 549BBB8E1421619800337F71 /* Barn_Tile_Final.png */; };
 		549BBB911421619800337F71 /* clayl2.1.0.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 549BBB8F1421619800337F71 /* clayl2.1.0.tmx */; };
+		54A32B581429301F00A10727 /* player.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54A32B571429301F00A10727 /* player.plist */; };
 		54A3BFD71427C32A002E8D2D /* GameDebugLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A3BFD61427C32A002E8D2D /* GameDebugLayer.m */; };
 		54C2C27C14225FC900C94935 /* clayl2.1.1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 54C2C27B14225FC900C94935 /* clayl2.1.1.tmx */; };
 		54CA0B19140D65DB0038B3E1 /* Runner.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CA0B18140D65DB0038B3E1 /* Runner.m */; };
@@ -471,6 +472,7 @@
 		5499691E1416820000CB7800 /* Level.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level.m; sourceTree = "<group>"; };
 		549BBB8E1421619800337F71 /* Barn_Tile_Final.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Barn_Tile_Final.png; path = Resources/levels/Barn_Tile_Final.png; sourceTree = "<group>"; };
 		549BBB8F1421619800337F71 /* clayl2.1.0.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = clayl2.1.0.tmx; path = Resources/levels/clayl2.1.0.tmx; sourceTree = "<group>"; };
+		54A32B571429301F00A10727 /* player.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = player.plist; sourceTree = "<group>"; };
 		54A3BFD51427C32A002E8D2D /* GameDebugLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameDebugLayer.h; sourceTree = "<group>"; };
 		54A3BFD61427C32A002E8D2D /* GameDebugLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameDebugLayer.m; sourceTree = "<group>"; };
 		54C2C27B14225FC900C94935 /* clayl2.1.1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = clayl2.1.1.tmx; path = Resources/levels/clayl2.1.1.tmx; sourceTree = "<group>"; };
@@ -515,6 +517,7 @@
 				5416A1B514195B6400648B6A /* anims.plist */,
 				572DB81C141FF62D00DDC493 /* objects.plist */,
 				547472C914228C0A00B0B0B7 /* levels.plist */,
+				54A32B571429301F00A10727 /* player.plist */,
 			);
 			name = Plists;
 			sourceTree = "<group>";
@@ -1133,6 +1136,7 @@
 				547F097D1428FFF300E5D920 /* character_health-hd.png in Resources */,
 				547F097E1428FFF300E5D920 /* character_health.plist in Resources */,
 				547F097F1428FFF300E5D920 /* character_health.png in Resources */,
+				54A32B581429301F00A10727 /* player.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

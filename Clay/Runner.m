@@ -32,7 +32,6 @@
         [self setPositionAtX:0 Y:0];
         [self setSprite:sprite];
         _speed = [RunningSpeed node];
-        [_speed setPace:RUNNING_SPEED_PACE_ENDURANCE];
         [[[self getSprite] getCCSprite] setAnchorPoint:ccp(0,1)];
         [self setOffsetForX:0 Y:-201];
     }    

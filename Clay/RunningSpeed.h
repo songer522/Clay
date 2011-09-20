@@ -9,15 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "BaseClasses.h"
 
-#define RUNNING_SPEED_MAX_VELOCITY 20.0f
-#define RUNNING_SPEED_MAX_ACCELERATION 0.3f
-#define RUNNING_SPEED_TURBO_VELOCITY 40.0f
-#define RUNNING_SPEED_TURBO_PERIOD 7.0f
-#define RUNNING_SPEED_PACE_ENDURANCE 1.0f
-#define RUNNING_SPEED_PACE_RECOVERY 0.8f
-#define RUNNING_SPEED_PACE_TURBO 2.0f
-#define RUNNING_SPEED_MAX_STAMINA 20.0f
-#define RUNNING_SPEED_MIN_VELOCITY 18.0f
+#define RUNNING_SPEED_MODIFIER_VELOCITY_MAX 0.25f
+#define RUNNING_SPEED_MODIFIER_ACCELERATION_MAX 20.0f
+#define RUNNING_SPEED_MODIFIER_ACCELERATION 10.0f
 
 @class Player;
 
@@ -29,10 +23,17 @@
     
     float _velocity;
     float _acceleration;
-    float _stamina;
-    float _pace;
+    float _turboLeft;
     
-    Player *_player;
+    
+    float _normalVelocityMax;
+    float _normalAcceleration;
+    float _normalAccelerationMax;
+    
+    float _turboAcceleration;
+    float _turboAccelerationMax;
+    float _turboDuration;
+    float _turboVelocityMax;
 }
 
 @property(readonly,nonatomic,assign) float velocity;
@@ -40,6 +41,7 @@
 
 #pragma mark - inits
 +(id)node;
+-(id) initWithSettings:(NSDictionary*)settings;
 
 #pragma mark - controls
 -(void)start;
@@ -47,11 +49,8 @@
 -(void)reset;
 
 #pragma mark - public methods
--(void)startTurbo;
--(void)endTurbo;
--(void)update:(float)dt;
--(void)setPace:(float)modifier;
--(void)setPlayer:(Player*)player;
 -(void)startCollision;
+-(void)startTurbo;
+-(void)update:(float)dt;
 
 @end

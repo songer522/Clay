@@ -13,6 +13,8 @@
 #import "LevelManager.h"
 #import "GameController.h"
 #import "GameObjectController.h"
+#import "PListLoader.h"
+#import "Camera.h"
 
 #define PLAYER_SPRITE_FILE @"player_idle_01.png"
 #define PLAYER_STARTING_VELOCITY 0
@@ -33,15 +35,20 @@
 {
     if ((self=[super init])) {
 
+        NSDictionary *settings = [PListLoader loadPlistWithName:@"player"];
+        NSAssert(settings!=nil,@"Error loading player.plist");
+        
+        NSDictionary *cameraTracking = [settings objectForKey:@"cameraTracking"];
+        int cameraX = [[cameraTracking objectForKey:@"x"] intValue];
+        int cameraY = [[cameraTracking objectForKey:@"y"] intValue];
+        [[Camera sharedCamera] setCenter:CGPointMake(cameraX, cameraY)];
         
         GameObjectController *factory = [LevelManager shared].gameObjectFactory;
         [factory initializeGameObject:self Name:@"player"];
         
         _isJumping = false;
         
-        _speed = [[RunningSpeed alloc] init];
-        [_speed setPace:RUNNING_SPEED_PACE_ENDURANCE];
-        [_speed setPlayer:self];
+        _speed = [[RunningSpeed alloc] initWithSettings:settings];
         [_speed start];
         [self changeToRunnerState:RUNNER_STATE_RUNNING];
         
