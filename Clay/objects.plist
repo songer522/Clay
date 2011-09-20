@@ -42,16 +42,16 @@
 			<key>x</key>
 			<real>0.5</real>
 			<key>y</key>
-			<real>0.5</real>
+			<integer>0</integer>
 		</dict>
 		<key>animationName</key>
 		<string>runningAnim</string>
 		<key>boundingBox</key>
 		<dict>
 			<key>x</key>
-			<integer>-22</integer>
+			<integer>30</integer>
 			<key>y</key>
-			<integer>-65</integer>
+			<integer>10</integer>
 			<key>width</key>
 			<integer>50</integer>
 			<key>height</key>

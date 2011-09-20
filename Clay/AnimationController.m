@@ -75,6 +75,13 @@ static AnimationController *_sharedController = nil;
     [sprite setAnimation:anim Delay:anim.delay];
 }
 
+-(void)replaceSprite:(Sprite*)sprite withAnimationNamed:(NSString*)name FrameNumber:(int)frameNumber
+{
+    Animation *anim = (Animation*)[animations objectForKey:name];
+    NSAssert(anim!=nil,@"Animation not loaded.");
+    [sprite setAnimation:anim Delay:anim.delay StartingFrameNumber:frameNumber];
+}
+
 
 
 -(CCAnimationCache*)loadPlistForObjectName:(NSString*)objectName {

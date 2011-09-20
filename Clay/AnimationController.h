@@ -25,6 +25,6 @@
 -(CCAnimation*)loadPlistForAnimationWithName:(NSString*)animationName andObjectName:(NSString*)objectName;
 
 -(void)replaceSprite:(Sprite*)sprite withAnimationNamed:(NSString*)name;
-
+-(void)replaceSprite:(Sprite*)sprite withAnimationNamed:(NSString*)name FrameNumber:(int)frameNumber;
 
 @end

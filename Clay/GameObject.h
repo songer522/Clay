@@ -60,6 +60,7 @@ typedef enum {
 @property(readonly,nonatomic,assign) bool collided;
 
 
++(id) instance;
 +(id) objectWithSprite:(Sprite*)sprite;     //create game object, add a sprite to it, return
 -(id) initWithSprite:(Sprite*)initSprite;   //constructor
 

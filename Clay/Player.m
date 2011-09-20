@@ -10,6 +10,9 @@
 #import "BaseClasses.h"
 #import "Player.h"
 #import "RunningSpeed.h"
+#import "LevelManager.h"
+#import "GameController.h"
+#import "GameObjectController.h"
 
 #define PLAYER_SPRITE_FILE @"player_idle_01.png"
 #define PLAYER_STARTING_VELOCITY 0
@@ -21,21 +24,20 @@
 
 @synthesize isJumping = _isJumping;
 
-+(id) playerForLayer:(id)layer
++(id) instance
 {
-    return [[self alloc] initWithLayer:layer];
+    return [[self alloc] init];
 }
 
-- (id)initWithLayer:(id)layer
+- (id)init
 {
     if ((self=[super init])) {
 
-        _isJumping = false;
-        _vx = 0;
-        _vy = 0;
         
-        [self setSprite:[Sprite spriteWithFile:PLAYER_SPRITE_FILE]];
-        [self setPositionAtX:PLAYER_STARTING_X_POSITION Y:PLAYER_STARTING_Y_POSITION];
+        GameObjectController *factory = [LevelManager shared].gameObjectFactory;
+        [factory initializeGameObject:self Name:@"player"];
+        
+        _isJumping = false;
         
         _speed = [[RunningSpeed alloc] init];
         [_speed setPace:RUNNING_SPEED_PACE_ENDURANCE];
@@ -43,9 +45,6 @@
         [_speed start];
         [self changeToRunnerState:RUNNER_STATE_RUNNING];
         
-        [[[self getSprite] getCCSprite] setAnchorPoint:ccp(0.5,0.5)];
-        self.boundingBox = CGRectMake(-22, -65, 50, 120);
-
     }
     
     return self;
@@ -83,7 +82,7 @@
     if (state == COLLISION_STATE_GROUNDED) {
         if (_isJumping) {                
             _isJumping = false;
-            [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"runningAnim"];
+            [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"runningAnim" FrameNumber:8];
         }
 
         _jumpAcceleration = 0;

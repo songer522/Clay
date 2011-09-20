@@ -36,6 +36,7 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
         //defaults
         _delay = ANIMATION_DEFAULT_DELAY;
         _looping = ANIMATION_DEFAULT_LOOPING;
+        _sequence = [[NSString alloc] initWithString:sequence];
         
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:[name stringByAppendingString:ANIMATION_SPRITE_CACHE_SUFFIX]];
         
@@ -74,14 +75,26 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
         [_frames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName]];
     }
 }
-                                  
+
 -(void)useAnimationToReplaceSprite:(Sprite*)sprite
-{    
+{
+    [self useAnimationToReplaceSprite:sprite FrameName:_firstFrameName];
+}
+
+-(void)useAnimationToReplaceSprite:(Sprite*)sprite FrameNumber:(int)frameNumber
+{
+    NSString *frameName = [_sequence stringByAppendingFormat:@"%d%@%@",frameNumber, ANIMATION_HD_SUFFIX,ANIMATION_GRAPHIC_EXTENSION];
+    [self useAnimationToReplaceSprite:sprite FrameName:frameName];
+}
+
+-(void)useAnimationToReplaceSprite:(Sprite*)sprite FrameName:(NSString*)frameName
+{
     [[sprite getCCSprite] setBatchNode:_spriteSheet];
-    [[sprite getCCSprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:_firstFrameName]];
+    [[sprite getCCSprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName]];
     CCAnimation *_anim = [CCAnimation animationWithFrames:_frames delay:_delay];
-        
+    
     CCAction *action = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:_anim restoreOriginalFrame:NO]];
     [[sprite getCCSprite] runAction:action];
 }
+
 @end

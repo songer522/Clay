@@ -57,11 +57,8 @@
         _xp = 0;
         _level = [[LevelManager shared] currentLevel];
         
-        _player = [Player playerForLayer:self];
+        _player = [Player instance];
         [_player setOffsetForX:0 Y:[[LevelManager shared] playerOffsetY]];
-        
-        [[AnimationController sharedController] replaceSprite:[_player getSprite] withAnimationNamed:@"runningAnim"];
-
         
         CGPoint spawn = [_level getSpawnPoint];
         [_player setPositionAtX:spawn.x Y:spawn.y];
@@ -80,7 +77,7 @@
 
 -(Runner*)initRunner:(Runner*)runner atPosition:(CGPoint)position
 {
-    runner = [Runner runnerWithSprite:[Sprite spriteWithFile:@"player_idle_01.png"] Layer:self];
+    runner = [Runner runnerWithSprite:[Sprite spriteWithFile:@"player_idle_01.png"]];
     [runner setPositionAtX:position.x Y:position.y];
     
     [[AnimationController sharedController] replaceSprite:[runner getSprite] withAnimationNamed:@"runningAnim"];
@@ -92,7 +89,7 @@
 
 -(void)initCamera
 {
-    [[Camera sharedCamera] setCenter:CGPointMake(90, 100)];        
+    [[Camera sharedCamera] setCenter:CGPointMake(35, 100)];        
     [[Camera sharedCamera] setTarget:[_player getSprite]];
     [[Camera sharedCamera] snapToTarget];
 }

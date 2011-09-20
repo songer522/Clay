@@ -28,6 +28,11 @@
     return [[self alloc] initWithSprite:sprite];
 }
 
++ (id) instance
+{
+    return [[self alloc] init];
+}
+
 - (id)init
 {
     self = [super init];

@@ -29,8 +29,7 @@ typedef enum {
     float _jumpAcceleration;
 }
 
-+(id) playerForLayer:(id)layer;                 //create player, attach it to (layer), return it
-- (id)initWithLayer:(id)layer;                  //constructor
++(id) instance;                                 //constructor
 
 -(float)getVelocityX;                           //get the current velocity (read-only, for now)
 -(void)update:(float)dt Level:(Level*)level;    //update, dt = seconds since last update

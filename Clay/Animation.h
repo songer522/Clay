@@ -21,6 +21,8 @@
     float _delay;                           //number of seconds between frames
     NSString *_firstFrameName;              //name of the first frame of the sequence
     
+    NSString *_sequence;
+    
     bool _looping;                          //does the animation loop (true), or play through once and stop (false)
 }
 
@@ -37,6 +39,8 @@
 #pragma mark - public methods
 
 -(void)useAnimationToReplaceSprite:(Sprite*)sprite;
+-(void)useAnimationToReplaceSprite:(Sprite*)sprite FrameName:(NSString*)frameName;
+-(void)useAnimationToReplaceSprite:(Sprite*)sprite FrameNumber:(int)frameNumber;
 //replaces the given sprite with this animation
 
 #pragma mark - private methods

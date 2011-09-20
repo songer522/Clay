@@ -31,7 +31,7 @@
 	<key>level2</key>
 	<dict>
 		<key>playerOffsetY</key>
-		<integer>3</integer>
+		<integer>-75</integer>
 		<key>fileName</key>
 		<string>clayl2.1.3.tmx</string>
 		<key>obstacleLayer</key>

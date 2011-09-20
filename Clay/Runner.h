@@ -31,8 +31,8 @@ typedef enum {
 }
 
 
--(id)initWithSprite:(Sprite *)sprite Layer:(id)layer;
-+(id)runnerWithSprite:(Sprite*)sprite Layer:(id)layer;
+-(id)initWithSprite:(Sprite *)sprite;
++(id)runnerWithSprite:(Sprite*)sprite;
 
 
 @property(nonatomic,assign) RunnerState state;

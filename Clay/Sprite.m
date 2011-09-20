@@ -94,5 +94,11 @@
     [_animation useAnimationToReplaceSprite:self];
 }
 
+-(void)setAnimation:(Animation*)animation Delay:(float)delay StartingFrameNumber:(int)frameNumber
+{
+    _animation = animation;
+    _animation.delay = delay;
+    [_animation useAnimationToReplaceSprite:self FrameNumber:frameNumber];
+}
 
 @end

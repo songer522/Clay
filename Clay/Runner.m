@@ -19,18 +19,15 @@
 @synthesize isRunning = _isRunning;
 @synthesize isJumping = _isJumping;
 
-+(id) runnerWithSprite:(Sprite*)sprite Layer:(id)layer
++(id) runnerWithSprite:(Sprite*)sprite
 {
-    return [[self alloc] initWithSprite:(Sprite*)sprite Layer:(id)layer];
+    return [[self alloc] initWithSprite:(Sprite*)sprite];
 }
 
--(id)initWithSprite:(Sprite *)sprite Layer:(id)layer
+-(id)initWithSprite:(Sprite *)sprite
 {
-    self = [super init];
-    if (self) {
+    if ((self = [super init])) {
         // Initialization code here.
-        self.vx = 0.0f;
-        self.vy = 0.0f;
         [self changeToRunnerState:RUNNER_STATE_PRERACE];
         [self setPositionAtX:0 Y:0];
         [self setSprite:sprite];
@@ -38,9 +35,7 @@
         [_speed setPace:RUNNING_SPEED_PACE_ENDURANCE];
         [[[self getSprite] getCCSprite] setAnchorPoint:ccp(0,1)];
         [self setOffsetForX:0 Y:-201];
-        
-    }
-    
+    }    
     return self;
 }
 

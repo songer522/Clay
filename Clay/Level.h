@@ -65,15 +65,11 @@
 -(NSString*)getObstaclePropertyForTileCoords:(CGPoint)coords forKey:(NSString*)key;
 -(bool)testCollisions:(GameObject*)source;
 -(bool)testCollisionWithGameObject:(GameObject*)target Source:(GameObject*)source;
--(float) checkRightCollisionAtPoint:(CGPoint)point;
 -(NSMutableArray*)getGameObjectsList;
 
 #pragma mark - private methods
 -(void)initTiledMap:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer;
 -(void)initBackgroundImage:(NSString*)filename;
--(CGPoint)tileCoordForPosition:(CGPoint)position;
--(bool)checkIfSameTile:(int)tileId atNewPosition:(CGPoint)point forTileLayer:(CCTMXLayer*)layer;
--(NSString*)getCollisionPropertyForTileCoords:(CGPoint)coords;
 -(void)initHurdles;
 -(void)initSpawnPoint;
 -(void)setPositionAtX:(float)x Y:(float)y;

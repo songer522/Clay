@@ -16,5 +16,6 @@
 }
 
 -(GameObject*)loadGameObjectWithName:(NSString*)objectName;
+-(void)initializeGameObject:(GameObject*)gameObject Name:(NSString*)objectName;
 
 @end

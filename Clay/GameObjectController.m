@@ -10,6 +10,7 @@
 #import "PListLoader.h"
 #import "GameObject.h"
 #import "Sprite.h"
+#import "AnimationController.h"
 
 @implementation GameObjectController
 
@@ -25,21 +26,32 @@
 
 -(GameObject*)loadGameObjectWithName:(NSString *)objectName {
     
+    GameObject *gameObject = [GameObject instance];
+    [self initializeGameObject:gameObject Name:objectName];
+    return gameObject;
+    
+}
+
+-(void)initializeGameObject:(GameObject*)gameObject Name:(NSString*)objectName {
     NSDictionary *gameobjectSettings = [_objectSettings objectForKey:objectName];
     if (gameobjectSettings == nil) {
         CCLOG(@"Could not locate GameObjectWithName:%@", objectName);
-        return nil;
+        return;
     }
+    
     Sprite *gameSprite = [Sprite spriteWithFile:[gameobjectSettings objectForKey:@"imageName"]];
-
-    GameObject *gameObject = [GameObject objectWithSprite:gameSprite];
+    [gameObject setSprite:gameSprite];
+    
+    NSString *animation = [gameobjectSettings objectForKey:@"animationName"];
+    if (animation && [animation compare:@""] != NSOrderedSame) {
+        [[AnimationController sharedController] replaceSprite:gameSprite withAnimationNamed:animation];
+    }
+    
     [gameObject setOffsetForX:[[gameobjectSettings objectForKey:@"offsetx"] floatValue] Y:[[gameobjectSettings objectForKey:@"offsety"] floatValue]];
     NSDictionary *anchorPoint = [gameobjectSettings objectForKey:@"anchorPoint"];
     [[gameObject getCCSprite] setAnchorPoint:ccp([[anchorPoint objectForKey:@"x"] floatValue], [[anchorPoint objectForKey:@"y"] floatValue])];
     NSDictionary *boundingBox = [gameobjectSettings objectForKey:@"boundingBox"];
     gameObject.boundingBox = CGRectMake([[boundingBox objectForKey:@"x"] floatValue], [[boundingBox objectForKey:@"y"] floatValue], [[boundingBox objectForKey:@"width"] floatValue], [[boundingBox objectForKey:@"height"] floatValue]);
-    
-    return gameObject;
 }
 
 @end

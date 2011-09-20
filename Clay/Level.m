@@ -92,25 +92,6 @@
     return CGRectMake(0, 0, width, height);
 }
 
--(float) checkRightCollisionAtPoint:(CGPoint)point
-{
-    
-    CGPoint tileCoordinates = [self tileCoordForPosition:point];
-    NSString *collisionProperty = [self getCollisionPropertyForTileCoords:tileCoordinates];
-
-    bool colliding = true;
-    while (colliding) {
-        if ([collisionProperty compare:@"full"] != NSOrderedSame || tileCoordinates.x <=0) {
-            colliding = false;
-        } else {
-            tileCoordinates.x -= 1;
-            collisionProperty = [self getCollisionPropertyForTileCoords:tileCoordinates];
-        }
-    }
-    
-    return tileCoordinates.x * (_map.tileSize.width/2.0f);
-}
-
 -(CGPoint)checkCollisionForObject:(GameObject*)object
 {
     return [_collisionHandler checkCollisionForObject:object];
