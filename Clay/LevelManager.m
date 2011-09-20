@@ -17,6 +17,7 @@
 
 @synthesize currentLevel = _currentLevel;
 @synthesize playerOffsetY = _playerOffsetY;
+@synthesize gameObjectFactory = _gameObjects;
 
 static LevelManager *_shared = nil;
 

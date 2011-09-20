@@ -31,5 +31,34 @@
 		<key>imageName</key>
 		<string>hurdle.png</string>
 	</dict>
+	<key>player</key>
+	<dict>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>0</integer>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<real>0.5</real>
+			<key>y</key>
+			<real>0.5</real>
+		</dict>
+		<key>animationName</key>
+		<string>runningAnim</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>x</key>
+			<integer>-22</integer>
+			<key>y</key>
+			<integer>-65</integer>
+			<key>width</key>
+			<integer>50</integer>
+			<key>height</key>
+			<integer>120</integer>
+		</dict>
+		<key>imageName</key>
+		<string>character_idle.png</string>
+	</dict>
 </dict>
 </plist>
