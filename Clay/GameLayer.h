@@ -36,6 +36,7 @@
 }
 
 @property(nonatomic,retain) Player *player;
+@property(readonly,nonatomic,retain) GameController *gameController;
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
@@ -45,5 +46,10 @@
 -(void)updateRunner:(Runner*)runner DT:(float)dt;
 -(void)updateLogic:(ccTime)dt;
 -(NSMutableArray*)getGameObjectsList;
+
+//the following serve as our pause and unpause functions
+//based on code posted at: http://www.cocos2d-iphone.org/forum/topic/1232
+-(void)onEnter;
+-(void)onExit;
 
 @end

@@ -22,6 +22,7 @@
 @implementation GameLayer
 
 @synthesize player = _player;
+@synthesize gameController = _gameController;
 
 +(CCScene *) scene
 {
@@ -47,7 +48,7 @@
         [[CCDirector sharedDirector] setProjection:CCDirectorProjection2D];
         
         _gameController = [GameController gameController];
-        [_gameController setLayer:self];
+        [_gameController setGameLayer:self];
         _inputController = [InputController inputController];
         
         [[LayerManager sharedLayers] setCurrentLayer:self];
@@ -68,6 +69,8 @@
         
         [self scheduleUpdate];
         
+        //comment out scheduleUpdate and uncomment below to test at a slower speed
+        //doesn't work proper for everything though (weird glitches)
         //[self schedule:@selector(updateLogic:) interval:10.0/60.0f];
         
         self.isTouchEnabled = YES;
@@ -89,7 +92,6 @@
 
 -(void)initCamera
 {
-    [[Camera sharedCamera] setCenter:CGPointMake(35, 20)];        
     [[Camera sharedCamera] setTarget:[_player getSprite]];
     [[Camera sharedCamera] snapToTarget];
 }
@@ -143,6 +145,19 @@
 }
 
 
+-(void)onExit
+{
+    if (!_gameController.isPaused) {
+        [super onExit];
+    }
+}
+
+-(void)onEnter
+{
+    if (!_gameController.isPaused) {
+        [super onEnter];
+    }
+}
 
 
 // on "dealloc" you need to release all your retained objects

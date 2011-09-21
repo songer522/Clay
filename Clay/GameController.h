@@ -10,6 +10,8 @@
 
 @class GameLayer;
 
+@class PauseMenuScreen;
+
 typedef enum {
     GAMESTATE_INITIALIZE,
     GAMESTATE_PRE_RACE,
@@ -23,15 +25,21 @@ typedef enum {
 @interface GameController : NSObject
 {
     GameState _currentGameState;
-    GameLayer *_layer;
+    GameLayer *_gameLayer;
+    PauseMenuScreen *_pauseMenu;
+    
+    bool _isPaused;
 }
 
 @property(nonatomic,retain) GameLayer *layer;
+@property(readonly,nonatomic,assign) bool isPaused;
 
 +(id)gameController;
 
 -(void)changeGameState:(GameState)gameState;
 -(void)reactToTouchAt:(CGPoint)location;
--(void)setLayer:(GameLayer*)layer;
+-(void)setGameLayer:(GameLayer*)layer;
+
+-(void)pauseGame;
 
 @end

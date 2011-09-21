@@ -9,11 +9,13 @@
 #import "GameController.h"
 #import "Player.h"
 #import "GameLayer.h"
+#import "PauseMenuScreen.h"
 
 
 @implementation GameController
 
-@synthesize layer = _layer;
+@synthesize layer = _gameLayer;
+@synthesize isPaused = _isPaused;
 
 - (id)init
 {
@@ -21,6 +23,7 @@
     if (self) {
         // Initialization code here.
         [self changeGameState:GAMESTATE_INITIALIZE];
+        _isPaused = false;
     }
     
     return self;
@@ -54,20 +57,42 @@
 
 -(void)reactToTouchAt:(CGPoint)location
 {
-    if (location.x < 240) {
-        if (!_layer.player.isJumping) {
-            [_layer.player startJump:JUMP_MEDIUM];
-        }
-    } else {
-        if(![_layer.player getIsTurbo]) {
-            [_layer.player startTurbo];
+    if (location.x > 400 && location.y > 270) {
+        [self pauseGame];
+    } else if(!_isPaused) {
+        if (location.x < 240) {
+            if (!_gameLayer.player.isJumping) {
+                [_gameLayer.player startJump:JUMP_MEDIUM];
+            }
+        } else {
+            if(![_gameLayer.player getIsTurbo]) {
+                [_gameLayer.player startTurbo];
+            }
         }
     }
 }
 
--(void)setLayer:(GameLayer*)gameLayer
+-(void)setGameLayer:(GameLayer*)gameLayer
 {
-    _layer = gameLayer;
+    _gameLayer = gameLayer;
+}
+
+-(void)pauseGame
+{
+    //toggles. if paused, then unpause, and vice versa
+    if (!_isPaused) {
+        //[_gameLayer unscheduleUpdate];
+        [_gameLayer onExit];
+        _pauseMenu = [PauseMenuScreen instance];
+        _pauseMenu.gameController = self;
+        _isPaused = true;
+    } else {
+        [[[LayerManager sharedLayers] currentScene] removeChild:_pauseMenu cleanup:YES];
+        [_pauseMenu release];
+        _pauseMenu = nil;
+        _isPaused = false;
+        [_gameLayer onEnter];
+    }
 }
 
 @end

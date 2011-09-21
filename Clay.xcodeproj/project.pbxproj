@@ -22,6 +22,7 @@
 		543C095E1420F3AA00F259BA /* platformtest.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 543C095B1420F3AA00F259BA /* platformtest.tmx */; };
 		543C095F1420F3AA00F259BA /* tileset-platformer.png in Resources */ = {isa = PBXBuildFile; fileRef = 543C095C1420F3AA00F259BA /* tileset-platformer.png */; };
 		544034B2141A76DF0065B061 /* Collision.m in Sources */ = {isa = PBXBuildFile; fileRef = 544034B1141A76DF0065B061 /* Collision.m */; };
+		5443303F142A39F80008898E /* PauseMenuScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 5443303E142A39F80008898E /* PauseMenuScreen.m */; };
 		54484CD5140449B500D0D7D9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54484CD4140449B500D0D7D9 /* QuartzCore.framework */; };
 		54484CD7140449B500D0D7D9 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54484CD6140449B500D0D7D9 /* OpenGLES.framework */; };
 		54484CD9140449B500D0D7D9 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54484CD8140449B500D0D7D9 /* OpenAL.framework */; };
@@ -200,6 +201,8 @@
 		543C095C1420F3AA00F259BA /* tileset-platformer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tileset-platformer.png"; path = "Resources/levels/tileset-platformer.png"; sourceTree = "<group>"; };
 		544034B0141A76DF0065B061 /* Collision.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Collision.h; sourceTree = "<group>"; };
 		544034B1141A76DF0065B061 /* Collision.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Collision.m; sourceTree = "<group>"; };
+		5443303D142A39F80008898E /* PauseMenuScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PauseMenuScreen.h; sourceTree = "<group>"; };
+		5443303E142A39F80008898E /* PauseMenuScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PauseMenuScreen.m; sourceTree = "<group>"; };
 		54484CD0140449B500D0D7D9 /* Clay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54484CD4140449B500D0D7D9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		54484CD6140449B500D0D7D9 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -920,6 +923,8 @@
 				54484E3D140449B700D0D7D9 /* GameLayer.m */,
 				54A3BFD51427C32A002E8D2D /* GameDebugLayer.h */,
 				54A3BFD61427C32A002E8D2D /* GameDebugLayer.m */,
+				5443303D142A39F80008898E /* PauseMenuScreen.h */,
+				5443303E142A39F80008898E /* PauseMenuScreen.m */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -1267,6 +1272,7 @@
 				54DDF8251423A67300631A41 /* CollisionDetection.m in Sources */,
 				54A3BFD71427C32A002E8D2D /* GameDebugLayer.m in Sources */,
 				547F09771428FA5400E5D920 /* SavePoint.m in Sources */,
+				5443303F142A39F80008898E /* PauseMenuScreen.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

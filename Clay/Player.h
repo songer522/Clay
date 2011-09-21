@@ -27,6 +27,9 @@ typedef enum {
     
     float _yPosition;
     float _jumpAcceleration;
+    
+    int hitPoints;
+    Sprite *bandages;
 }
 
 +(id) instance;                                 //constructor

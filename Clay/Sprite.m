@@ -101,4 +101,13 @@
     [_animation useAnimationToReplaceSprite:self FrameNumber:frameNumber];
 }
 
+-(void)setAnimationFrame:(int)frame
+{
+    /*
+    CCAtlasNode *newAtlas = [CCAtlasNode at
+    AtlasSprite  *newAtlasSprite = [AtlasSprite sprit
+    _animation
+    */
+}
+
 @end

@@ -52,6 +52,13 @@
         [_speed start];
         [self changeToRunnerState:RUNNER_STATE_RUNNING];
         
+        hitPoints = 3;
+        
+        bandages = [Sprite spriteWithFile:@"character_health.png"];
+        Animation *anim = [Animation animationFromPlist:@"character_health" forSequence:@"character_health_" FrameList:@"0,1,2"];
+        [bandages setAnimation:anim Delay:100000.3f StartingFrameNumber:2];
+        [[bandages getCCSprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"character_health_01.png"]];
+        [bandages setPositionAtX:300 Y:250];
     }
     
     return self;
@@ -77,6 +84,9 @@
                                                     //camera position. will cause jitteriness otherwise
     
     [self setPositionAtX:newPosition.x Y:newPosition.y];
+    
+    [bandages setPositionAtX:newPosition.x + 38 Y:128];
+
 }
 
 
@@ -124,6 +134,8 @@
 -(void)startCollision
 {
     [_speed startCollision];
+    hitPoints -= 1;
+    
 }
 
 //used by background layers for scrolling
