@@ -100,6 +100,11 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
     [[sprite getCCSprite] runAction:action];
 }
 
+-(int)getTotalFramesCount
+{
+    return _animateAction.totalFrames;
+}
+
 -(int)getCurrentFrameNumber
 {
     return _animateAction.frame;

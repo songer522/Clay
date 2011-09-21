@@ -63,6 +63,7 @@
 
 -(void)update:(float)dt Level:(Level *)level
 {
+    
     [super update:dt];
     if (_isJumping) {
         _jumpAcceleration += 12.0f;
@@ -81,8 +82,7 @@
                                                     //camera position. will cause jitteriness otherwise
     
     [self setPositionAtX:newPosition.x Y:newPosition.y];
-    
-    [_bandages update:dt Player:self];
+    [_bandages update:dt Player:self];  
 
 }
 

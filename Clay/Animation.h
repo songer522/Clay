@@ -46,6 +46,7 @@
 -(void)useAnimationToReplaceSprite:(Sprite*)sprite FrameName:(NSString*)frameName;
 -(void)useAnimationToReplaceSprite:(Sprite*)sprite FrameNumber:(int)frameNumber;
 -(int)getCurrentFrameNumber;
+-(int)getTotalFramesCount;
 
 //replaces the given sprite with this animation
 

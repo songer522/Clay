@@ -26,7 +26,7 @@
         // Initialization code here.
         sprite = [Sprite spriteWithFile:@"character_health.png"];
         offsetYWhenRunning = [[NSArray alloc] initWithObjects:N(0),N(-1),N(0),N(-1),N(-2),N(0),N(2),N(0),N(-1),N(-1), nil];
-        [self setFrame:0];
+        [self setFrame:1];
     }
     
     return self;
@@ -41,8 +41,8 @@
 
 -(void)update:(float)dt Player:(Player*)player
 {
-    int frameNumber = [player.sprite getCurrentFrameNumber];
-    float offsetY = [[offsetYWhenRunning objectAtIndex:frameNumber] intValue] / 2;
+    int frameNumber = ([player.sprite getCurrentFrameNumber] + 0) % [player.sprite getTotalFramesCount];
+    float offsetY = [[offsetYWhenRunning objectAtIndex:frameNumber] floatValue] / 2;
     [sprite setPositionAtX:player.x + 37 Y:player.y + offsetY];
     //NSLog(@"Frame: %d",frameNumber);
 }

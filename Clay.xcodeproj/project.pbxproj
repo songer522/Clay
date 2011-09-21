@@ -977,6 +977,8 @@
 		54518F641406AE38009D74AA /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				5421A2F6142A5C7E0078D861 /* Bandages.h */,
+				5421A2F7142A5C7E0078D861 /* Bandages.m */,
 				54518F731406B761009D74AA /* GameClasses.h */,
 				54518F741406B761009D74AA /* GameClasses.m */,
 				54297895140C1F8900B3FFF4 /* GameController.h */,
@@ -989,8 +991,6 @@
 				54CA0B1F140D698B0038B3E1 /* RunningSpeed.m */,
 				547F09751428FA5400E5D920 /* SavePoint.h */,
 				547F09761428FA5400E5D920 /* SavePoint.m */,
-				5421A2F6142A5C7E0078D861 /* Bandages.h */,
-				5421A2F7142A5C7E0078D861 /* Bandages.m */,
 			);
 			name = Game;
 			sourceTree = "<group>";

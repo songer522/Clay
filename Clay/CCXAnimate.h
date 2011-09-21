@@ -11,9 +11,11 @@
 @interface CCXAnimate : CCAnimate
 {
     int _frame;
+    int _totalFrames;
 }
 
 @property(nonatomic,assign) int frame;
+@property(nonatomic,readonly,assign) int totalFrames;
 
 -(void)update:(ccTime)t;
 

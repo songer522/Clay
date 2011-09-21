@@ -12,6 +12,7 @@
 @implementation CCXAnimate
 
 @synthesize frame = _frame;
+@synthesize totalFrames = _totalFrames;
 
 - (id)init
 {
@@ -27,6 +28,8 @@
 {
     NSArray *frames = [animation_ frames];
     NSUInteger numberOfFrames = [frames count];
+    
+    _totalFrames = numberOfFrames;
     
     NSUInteger idx = t * numberOfFrames;
     

@@ -101,6 +101,11 @@
     [_animation useAnimationToReplaceSprite:self FrameNumber:frameNumber];
 }
 
+-(int)getTotalFramesCount
+{
+    return [_animation getTotalFramesCount];
+}
+
 -(int)getCurrentFrameNumber
 {
     return [_animation getCurrentFrameNumber];
