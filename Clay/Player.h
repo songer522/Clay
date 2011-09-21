@@ -18,7 +18,8 @@ typedef enum {
     JUMP_SHORT = 1
 } RunnerJump;
 
-@class  RunningSpeed;
+@class RunningSpeed;
+@class Bandages;
 
 @interface Player : Runner
 {
@@ -29,7 +30,7 @@ typedef enum {
     float _jumpAcceleration;
     
     int hitPoints;
-    Sprite *bandages;
+    Bandages *_bandages;
 }
 
 +(id) instance;                                 //constructor

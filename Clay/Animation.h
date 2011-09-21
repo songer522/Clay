@@ -12,6 +12,7 @@
 #import <Foundation/Foundation.h>
 
 @class Sprite;
+@class CCXAnimate;
 
 @interface Animation : NSObject
 {
@@ -22,6 +23,9 @@
     NSString *_firstFrameName;              //name of the first frame of the sequence
     
     NSString *_sequence;
+    
+    CCXAnimate *_animateAction;             //extension of CCAnimate to allow to
+                                            //read the current frame
     
     bool _looping;                          //does the animation loop (true), or play through once and stop (false)
 }
@@ -41,6 +45,8 @@
 -(void)useAnimationToReplaceSprite:(Sprite*)sprite;
 -(void)useAnimationToReplaceSprite:(Sprite*)sprite FrameName:(NSString*)frameName;
 -(void)useAnimationToReplaceSprite:(Sprite*)sprite FrameNumber:(int)frameNumber;
+-(int)getCurrentFrameNumber;
+
 //replaces the given sprite with this animation
 
 #pragma mark - private methods
@@ -48,7 +54,6 @@
 -(void)createFramesWithSequence:(NSString*)sequence FrameList:(NSString*)framelist;
 //called by constructor, populates the (_frames) array
 //sequence = name of the sequence within the spritesheet (usually the image filenames it compiles)
-
 
 
 @end

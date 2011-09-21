@@ -9,6 +9,7 @@
 #import "cocos2d.h"
 #import "Sprite.h"
 #import "Animation.h"
+#import "CCXAnimate.h"
 #import "BaseClasses.h"
 
 #define ANIMATION_DEFAULT_DELAY 0.1f
@@ -93,8 +94,15 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
     [[sprite getCCSprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName]];
     CCAnimation *_anim = [CCAnimation animationWithFrames:_frames delay:_delay];
     
-    CCAction *action = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:_anim restoreOriginalFrame:NO]];
+    _animateAction = [CCXAnimate actionWithAnimation:_anim restoreOriginalFrame:NO];
+    
+    CCAction *action = [CCRepeatForever actionWithAction:_animateAction];
     [[sprite getCCSprite] runAction:action];
+}
+
+-(int)getCurrentFrameNumber
+{
+    return _animateAction.frame;
 }
 
 @end

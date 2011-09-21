@@ -15,6 +15,7 @@
 #import "GameObjectController.h"
 #import "PListLoader.h"
 #import "Camera.h"
+#import "Bandages.h"
 
 #define PLAYER_SPRITE_FILE @"player_idle_01.png"
 #define PLAYER_STARTING_VELOCITY 0
@@ -52,13 +53,9 @@
         [_speed start];
         [self changeToRunnerState:RUNNER_STATE_RUNNING];
         
-        hitPoints = 3;
-        
-        bandages = [Sprite spriteWithFile:@"character_health.png"];
-        Animation *anim = [Animation animationFromPlist:@"character_health" forSequence:@"character_health_" FrameList:@"0,1,2"];
-        [bandages setAnimation:anim Delay:100000.3f StartingFrameNumber:2];
-        [[bandages getCCSprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"character_health_01.png"]];
-        [bandages setPositionAtX:300 Y:250];
+        hitPoints = 2;
+        _bandages = [Bandages instance];
+
     }
     
     return self;
@@ -85,7 +82,7 @@
     
     [self setPositionAtX:newPosition.x Y:newPosition.y];
     
-    [bandages setPositionAtX:newPosition.x + 38 Y:128];
+    [_bandages update:dt Player:self];
 
 }
 
@@ -135,7 +132,10 @@
 {
     [_speed startCollision];
     hitPoints -= 1;
-    
+    if (hitPoints <=0) {
+        hitPoints = 0;
+    }
+    [_bandages setFrame:(2 - hitPoints)];    
 }
 
 //used by background layers for scrolling

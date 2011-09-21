@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		5416A1B614195B6400648B6A /* anims.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5416A1B514195B6400648B6A /* anims.plist */; };
 		5416A1B91419632E00648B6A /* LayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5416A1B81419632E00648B6A /* LayerManager.m */; };
+		5421A2F8142A5C7E0078D861 /* Bandages.m in Sources */ = {isa = PBXBuildFile; fileRef = 5421A2F7142A5C7E0078D861 /* Bandages.m */; };
+		5421A2FC142A63FF0078D861 /* CCXAnimate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5421A2FB142A63FF0078D861 /* CCXAnimate.m */; };
 		542361AE14228E5E0086E533 /* LevelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 542361AD14228E5E0086E533 /* LevelManager.m */; };
 		54297897140C1F8900B3FFF4 /* GameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54297896140C1F8900B3FFF4 /* GameController.m */; };
 		5429789B140C233E00B3FFF4 /* InputController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5429789A140C233E00B3FFF4 /* InputController.m */; };
@@ -183,6 +185,10 @@
 		5416A1B514195B6400648B6A /* anims.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = anims.plist; sourceTree = "<group>"; };
 		5416A1B71419632E00648B6A /* LayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayerManager.h; sourceTree = "<group>"; };
 		5416A1B81419632E00648B6A /* LayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayerManager.m; sourceTree = "<group>"; };
+		5421A2F6142A5C7E0078D861 /* Bandages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bandages.h; sourceTree = "<group>"; };
+		5421A2F7142A5C7E0078D861 /* Bandages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bandages.m; sourceTree = "<group>"; };
+		5421A2FA142A63FF0078D861 /* CCXAnimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCXAnimate.h; sourceTree = "<group>"; };
+		5421A2FB142A63FF0078D861 /* CCXAnimate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCXAnimate.m; sourceTree = "<group>"; };
 		542361AC14228E5E0086E533 /* LevelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelManager.h; sourceTree = "<group>"; };
 		542361AD14228E5E0086E533 /* LevelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelManager.m; sourceTree = "<group>"; };
 		54297895140C1F8900B3FFF4 /* GameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameController.h; sourceTree = "<group>"; };
@@ -962,6 +968,8 @@
 				572DB823142004D500DDC493 /* PListLoader.m */,
 				54518F6114069BF0009D74AA /* Sprite.h */,
 				54518F6214069BF0009D74AA /* Sprite.m */,
+				5421A2FA142A63FF0078D861 /* CCXAnimate.h */,
+				5421A2FB142A63FF0078D861 /* CCXAnimate.m */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -981,6 +989,8 @@
 				54CA0B1F140D698B0038B3E1 /* RunningSpeed.m */,
 				547F09751428FA5400E5D920 /* SavePoint.h */,
 				547F09761428FA5400E5D920 /* SavePoint.m */,
+				5421A2F6142A5C7E0078D861 /* Bandages.h */,
+				5421A2F7142A5C7E0078D861 /* Bandages.m */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -1273,6 +1283,8 @@
 				54A3BFD71427C32A002E8D2D /* GameDebugLayer.m in Sources */,
 				547F09771428FA5400E5D920 /* SavePoint.m in Sources */,
 				5443303F142A39F80008898E /* PauseMenuScreen.m in Sources */,
+				5421A2F8142A5C7E0078D861 /* Bandages.m in Sources */,
+				5421A2FC142A63FF0078D861 /* CCXAnimate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
