@@ -13,7 +13,7 @@
 
 @class GameObject;
 @class CollisionDetection;
-
+@class Player;
 @class GameObjectController;
 
 @interface Level : NSObject
@@ -32,6 +32,11 @@
     CollisionDetection *_collisionHandler;
     
     CGPoint _spawnPoint;
+    
+    bool _switchingToNextLevel;
+    CGPoint _nextLevelTriggerPosition;
+    CGPoint _nextLevelTriggerDirection;
+    
     
     CCParallaxNode *_parallaxLayers;
     
@@ -61,16 +66,17 @@
 -(CGPoint)getSpawnPoint;
 -(CGPoint)getXYPositionForCoordinates:(CGPoint)coords;
 -(void)loadLayers:(NSString*)layerList;
--(void)updateHurdles:(float)dt;
--(NSString*)getObstaclePropertyForTileCoords:(CGPoint)coords forKey:(NSString*)key;
+-(void)updateObstacles:(float)dt;
+-(NSString*)getPropertyForTileCoords:(CGPoint)coords forKey:(NSString*)key;
 -(bool)testCollisions:(GameObject*)source;
 -(bool)testCollisionWithGameObject:(GameObject*)target Source:(GameObject*)source;
 -(NSMutableArray*)getGameObjectsList;
+-(bool)nextLevelTriggerCheck:(Player*)player;
 
 #pragma mark - private methods
 -(void)initTiledMap:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer;
 -(void)initBackgroundImage:(NSString*)filename;
--(void)initHurdles;
+-(void)scanThroughMapAndAddObjects;
 -(void)initSpawnPoint;
 -(void)setPositionAtX:(float)x Y:(float)y;
 @end

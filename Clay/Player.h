@@ -46,6 +46,8 @@ typedef enum {
 
 -(void)startCollision;
 
+-(void)resetSprite:(CCLayer*)layer;
+
 @property(nonatomic,assign) bool isJumping;
 
 @end

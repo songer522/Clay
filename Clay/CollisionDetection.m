@@ -205,7 +205,7 @@
         
         //check if the test position collides with current tile
         if ([_tileCollision compare:@"full"] == NSOrderedSame) {
-            NSLog(@"test");
+            //NSLog(@"test");
         } else if ([_tileCollision compare:@"none"] == NSOrderedSame) {
             colliding = false;
             break;

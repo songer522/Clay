@@ -30,9 +30,6 @@
     Runner *_runner2;
     Runner *_runner3;
     
-    float _xp;
-    
-
 }
 
 @property(nonatomic,retain) Player *player;
@@ -40,7 +37,7 @@
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
-
+-(void)initForLevel;
 -(void)initCamera;
 -(Runner*)initRunner:(Runner*)runner atPosition:(CGPoint)position;
 -(void)updateRunner:(Runner*)runner DT:(float)dt;

@@ -36,18 +36,18 @@ static LevelManager *_shared = nil;
         // Initialization code here.
         _gameObjects = [[GameObjectController alloc] init];
         
-        _levelSettings = [NSDictionary dictionaryWithDictionary:[PListLoader loadPlistWithName:@"levels"]];
+        _levelSettings = [[NSDictionary alloc] initWithDictionary:[PListLoader loadPlistWithName:@"levels"]];
         
         NSString *startingLevel = [_levelSettings valueForKey:@"startingLevel"];
         
-        [self loadLevelNamed:startingLevel];
+        _currentLevel = [self loadLevelNamed:startingLevel];
         
     }
     
     return self;
 }
 
--(void)loadLevelNamed:(NSString*)levelName
+-(Level*)loadLevelNamed:(NSString*)levelName
 {
     NSDictionary *levelSettings = [_levelSettings valueForKey:levelName];
     
@@ -63,9 +63,17 @@ static LevelManager *_shared = nil;
     level.nextLevelName = nextLevelName;
     level.gameObjects = _gameObjects;
     
-    _currentLevel = level;
-    
-    
+    return level;
+}
+
+-(void)loadNextLevel
+{
+    _nextLevel = [self loadLevelNamed:_currentLevel.nextLevelName];
+}
+
+-(void)switchToNextLevel
+{
+    _currentLevel = _nextLevel;
 }
 
 @end

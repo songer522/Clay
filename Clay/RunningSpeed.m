@@ -128,8 +128,6 @@
             }
         }
     }
-    
-    NSLog(@"VX: %f, ACCEL: %f",_velocity,_acceleration);
 }
 
 

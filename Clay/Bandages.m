@@ -41,10 +41,15 @@
 
 -(void)update:(float)dt Player:(Player*)player
 {
-    int frameNumber = ([player.sprite getCurrentFrameNumber] + 0) % [player.sprite getTotalFramesCount];
+    int frameNumber = [player.sprite getCurrentFrameNumber];
     float offsetY = [[offsetYWhenRunning objectAtIndex:frameNumber] floatValue] / 2;
     [sprite setPositionAtX:player.x + 37 Y:player.y + offsetY];
     //NSLog(@"Frame: %d",frameNumber);
+}
+
+-(CCSprite*)getCCSprite
+{
+    return [sprite getCCSprite];
 }
 
 @end

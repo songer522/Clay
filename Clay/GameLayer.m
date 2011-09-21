@@ -53,29 +53,33 @@
         
         [[LayerManager sharedLayers] setCurrentLayer:self];
         
-        
-        
-        _xp = 0;
         _level = [[LevelManager shared] currentLevel];
         
         _player = [Player instance];
-        [_player setOffsetForX:0 Y:[[LevelManager shared] playerOffsetY]];
         
-        CGPoint spawn = [_level getSpawnPoint];
-        [_player setPositionAtX:spawn.x Y:spawn.y];
-        
-        
-        [self initCamera];
+        [self initForLevel];
         
         [self scheduleUpdate];
-        
-        //comment out scheduleUpdate and uncomment below to test at a slower speed
-        //doesn't work proper for everything though (weird glitches)
-        //[self schedule:@selector(updateLogic:) interval:10.0/60.0f];
         
         self.isTouchEnabled = YES;
 	}
 	return self;
+}
+
+-(void)initForLevel
+{
+    _level = [[LevelManager shared] currentLevel];
+    
+    [_player resetSprite:self];
+    
+    [_player setOffsetForX:0 Y:[[LevelManager shared] playerOffsetY]];
+    
+    CGPoint spawn = [_level getSpawnPoint];
+    [_player setPositionAtX:spawn.x Y:spawn.y];
+    
+    [self initCamera];
+    
+
 }
 
 -(Runner*)initRunner:(Runner*)runner atPosition:(CGPoint)position
@@ -113,6 +117,11 @@
         [_player startCollision];
     }
     
+    //check to see if we should be switching to the next level
+    if([_level nextLevelTriggerCheck:_player]) {
+        [[LevelManager shared] switchToNextLevel];
+        [self initForLevel];
+    }
 }
 
 -(void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

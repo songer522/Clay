@@ -59,6 +59,8 @@
 {
     if (location.x > 400 && location.y > 270) {
         [self pauseGame];
+    } else if(location.x < 80 && location.y > 270) {
+        [[LevelManager shared] loadNextLevel];
     } else if(!_isPaused) {
         if (location.x < 240) {
             if (!_gameLayer.player.isJumping) {

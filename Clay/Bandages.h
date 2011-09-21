@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "cocos2d.h"
 
 @class Sprite;
 @class Player;
@@ -21,5 +22,5 @@
 
 -(void) setFrame:(int)frameNumber;
 -(void)update:(float)dt Player:(Player*)player;
-
+-(CCSprite*)getCCSprite;
 @end

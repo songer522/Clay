@@ -19,6 +19,7 @@
     NSDictionary *_levelSettings;
     
     Level *_currentLevel;
+    Level *_nextLevel;
     
     GameObjectController *_gameObjects;
     
@@ -30,6 +31,10 @@
 @property(readonly,nonatomic,retain) GameObjectController *gameObjectFactory;
 
 +(LevelManager*)shared;
--(void)loadLevelNamed:(NSString*)levelName;
+-(Level*)loadLevelNamed:(NSString*)levelName;
+
+-(void)loadNextLevel;
+-(void)switchToNextLevel;
+
 
 @end

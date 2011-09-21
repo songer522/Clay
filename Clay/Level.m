@@ -15,6 +15,7 @@
 #import "Collision.h"
 #import "Sprite.h"
 #import "LayerManager.h"
+#import "Player.h"
 #import "GameObjectController.h"
 
 @implementation Level
@@ -58,7 +59,8 @@
         
         [[[LayerManager sharedLayers] currentLayer] addChild:_parallaxLayers];
         
-        [self initHurdles];
+        [self scanThroughMapAndAddObjects];
+        _switchingToNextLevel = false;
         
         _collisionHandler = [CollisionDetection collisionHandlerWithMetaLayer:_meta Map:_map];
 
@@ -100,7 +102,7 @@
 -(void)update:(float)dt Velocity:(float)vx
 {
     [self setPositionAtX:_x Y:_y];
-    [self updateHurdles:dt];
+    [self updateObstacles:dt];
 }
 
 -(void)setPositionAtX:(float)x Y:(float)y
@@ -145,33 +147,38 @@
     
 }
 
--(void)initHurdles
+-(void)scanThroughMapAndAddObjects
 {
     for (int i=0; i<_map.mapSize.width; i++) {
         for (int j=0; j<_map.mapSize.height;j++) {
             CGPoint coords = CGPointMake(i, j);
-            NSString *obstacle = [self getObstaclePropertyForTileCoords:coords forKey:@"obstacle"];
-            if (obstacle) {
-                if ([obstacle compare:@"hurdle"] == NSOrderedSame) {
-                    GameObject *hurdle = [_gameObjects loadGameObjectWithName:@"hurdle"];
-                    
-                    CGPoint position = [self getXYPositionForCoordinates:coords];
-                    [hurdle setPositionAtX:position.x Y:position.y];
-                    
-                    [[hurdle getCCSprite] setScale:_scale];
-                    
-                    [_obstacleSprites addObject:hurdle];
+            
+            NSString *special = [self getPropertyForTileCoords:coords forKey:@"special"];
+            if (special) {
+                if ([special compare:@"nextlevelNE"] == NSOrderedSame) {
+                    _nextLevelTriggerPosition = [self getXYPositionForCoordinates:CGPointMake(i, j)];
+                    _nextLevelTriggerDirection = CGPointMake(1, -1);
                 }
+            }
+            
+            NSString *obstacle = [self getPropertyForTileCoords:coords forKey:@"obstacle"];
+            if (obstacle) {
+                GameObject *object = [_gameObjects loadGameObjectWithName:obstacle];
+                CGPoint position = [self getXYPositionForCoordinates:coords];
+                
+                [object setPositionAtX:position.x Y:position.y];                
+                [[object getCCSprite] setScale:_scale];                
+                [_obstacleSprites addObject:object];
             }
         }
     }
                                           
 }
 
--(void)updateHurdles:(float)dt
+-(void)updateObstacles:(float)dt
 {
-    for(GameObject *hurdle in _obstacleSprites) {
-        [hurdle update:dt];
+    for(GameObject *obstacle in _obstacleSprites) {
+        [obstacle update:dt];
     }
     
 }
@@ -180,7 +187,7 @@
 {
     //TODO: not sure why these need to be divided by 2 to get the right position yet
     //should make it clear what the 2.0 represents once figured out
-    int scaledTileWidth = _map.tileSize.width;
+    int scaledTileWidth = _map.tileSize.width / 2;
     int scaledTileHeight = _map.tileSize.height;
     
     float x = coords.x * scaledTileWidth;
@@ -189,7 +196,7 @@
     return CGPointMake(x, y);
 }
 
--(NSString*)getObstaclePropertyForTileCoords:(CGPoint)coords forKey:(NSString*)key
+-(NSString*)getPropertyForTileCoords:(CGPoint)coords forKey:(NSString*)key
 {
     NSString *returnVal = nil;
     
@@ -255,6 +262,22 @@
     if (sourceLeft > targetRight) { collision = false; }
     
     return collision;
+}
+
+-(bool)nextLevelTriggerCheck:(Player*)player
+{
+    bool returnVal = false;
+    
+    if (!_switchingToNextLevel) {
+        if (player.x < _nextLevelTriggerPosition.x ^ _nextLevelTriggerDirection.x == 1) {
+            if(player.y < _nextLevelTriggerPosition.x ^ _nextLevelTriggerDirection.y == 1) {
+                _switchingToNextLevel = true;
+                [[LevelManager shared] loadNextLevel];
+                returnVal = true;
+            }
+        }
+    }
+    return returnVal;
 }
 
 -(CGPoint)getSpawnPoint

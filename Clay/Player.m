@@ -144,6 +144,20 @@
     return _speed.velocity;
 }
 
+
+
+-(void)resetSprite:(CCLayer*)layer
+{
+    CCSprite *playerSprite = [self getCCSprite];
+    CCSprite *bandageSprite = [_bandages getCCSprite];
+    [layer removeChild:playerSprite cleanup:NO];
+    [layer removeChild:bandageSprite cleanup:NO];
+    [layer addChild:playerSprite];
+    [layer addChild:bandageSprite];
+}
+
+
+
 -(void)dealloc
 {
     [_speed dealloc];

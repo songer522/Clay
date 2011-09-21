@@ -18,7 +18,7 @@
 {
     self = [super init];
     if (self) {
-        _objectSettings = [PListLoader loadPlistWithName:@"objects"];
+        _objectSettings = [[PListLoader loadPlistWithName:@"objects"] retain];
     }
     
     return self;

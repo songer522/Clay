@@ -45,7 +45,7 @@
   </tile>
   <tile id="3">
    <properties>
-    <property name="special" value="nextlevel"/>
+    <property name="special" value="nextlevelNE"/>
    </properties>
   </tile>
  </tileset>
@@ -94,7 +94,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1DEOgCAQBED/iPr/p9gTFYwgp840UG5uOaYJAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4ppHByhIowNkUnaOkg7ukeU5S7mXXkEa2Mv+lh7+5KiTnl1FfrctnM3ODoxTmr1u4qvp6Ikev/6H1aids73q48pc73bgvfdxtZcou3Q3x9okBQAAAAAAAAD80wbTAAnH
+   eJzt1DkSgCAQBED/6PH/p5hTIlgKrNqdQDi1wzJNAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAENcyOkDBPDpAYk7OnK1TjvQeWZqzlHttFeQBR9nf0sOf5Dpp2VXkd/uEs9nZgXFKs9dNfDUd9ejx639Yjdo526s2rsz1bgfeextXe4myS1FyAAAAAAAAAMAf7YdLCcc=
   </data>
  </layer>
  <layer name="meta" width="1000" height="14" opacity="0.85">
