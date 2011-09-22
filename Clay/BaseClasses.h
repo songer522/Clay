@@ -20,3 +20,4 @@
 #import "Level.h"
 #import "PListLoader.h"
 #import "Sprite.h"
+#import "Trigger.h"

@@ -35,7 +35,7 @@
   </tile>
   <tile id="1">
    <properties>
-    <property name="SpawnPoint" value="true"/>
+    <property name="special" value="spawnpoint"/>
    </properties>
   </tile>
   <tile id="2">
@@ -136,7 +136,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt2EESgjAMBVDuiHr/o7hy41BpsZoE3tvAwsFv/tSZsCwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA9LhFB9ixRgdoiM619f3RmUZF5b1PeMY32av1VFlr1jo47tPszDXO3ux1k19PR3r8j97z1Lr2egx+/ipG5uhM5DTay1l7zPa7jv5XzbY27jN7z1kl95YzvEe4AnvsfPbYnOyx9dlj8+idsz5+wx5bnz0WAAAAAAAAAAAAAAAAAAAAeHkCeGEQPQ==
+   eJzt2EEOgjAQBVDuiHL/o7g3rbRYnWl5bwMLg9/5qcmwbQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACsYI8OUBGdq/T90Zl6ReV9DnjGN9ln62lmtVnr4LpPszPXOGez101+LR3p8T9az1Pt2uro/Pxd9MzRmcipt5dVe8z2u67+V422V+4ze885S+6SFd4j3IE9djx7bE722PnZY/NonbM+fsMeOz97LCWP6AAAAAAAAAAAAAAAAAAAAACEeAE2yxA9
   </data>
  </layer>
  <layer name="meta" width="2000" height="14" opacity="0.85">
@@ -148,7 +148,4 @@
    eJzt2E0KwyAQgFFvF/D+B2q6Fc0fTZ2R9+AjhWyMs5qWAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAK6uwDNGrznKUOfkdWS85z9/TOnvl7VjWaiVk9d3R37nWes7s3m/iuzMgc/+PqPZvHO+7cqxnEdHcuq84x2nfZY59rz5nl3D322Bzssb9nj42p/Z+w957Y7LFx2GPnssfmZ4/la5MkSZIkSZIkSZIkSZIkSZIkSZIkSZIkae8DE89jfQ==
   </data>
  </layer>
- <objectgroup name="objects" width="2000" height="14">
-  <object name="SpawnPoint" x="320" y="704" width="64" height="64"/>
- </objectgroup>
 </map>

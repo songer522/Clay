@@ -55,14 +55,11 @@
         _map.scale = _scale;
         _parallaxLayers.scale = _scale;
         
-        [self initSpawnPoint];
-        
         [[Camera sharedCamera] setBoundaries:[self getLevelBoundaries]];
         
         [[[LayerManager sharedLayers] currentLayer] addChild:_parallaxLayers];
         
         [self scanThroughMapAndAddObjects];
-        _switchingToNextLevel = false;
         
         _collisionHandler = [CollisionDetection collisionHandlerWithMetaLayer:_meta Map:_map];
 
@@ -120,32 +117,17 @@
     _obstacles.visible = NO;
 }
 
--(void)initSpawnPoint
-{
-    _objects = [_map objectGroupNamed:@"objects"];
-    NSAssert(_objects != nil, @"'objects' object group not found");
-    
-    NSMutableDictionary *spawnPoint = [_objects objectNamed:@"SpawnPoint"];
-    NSAssert(spawnPoint != nil, @"SpawnPoint object not found");
-    
-    int x = [[spawnPoint valueForKey:@"x"] intValue] * _map.scale;
-    int y = [[spawnPoint valueForKey:@"y"] intValue] * _map.scale;
-    
-    _spawnPoint = CGPointMake(x, y);
-    
-}
-
 -(void)unloadLevel
 {
     [_obstacleSprites release];
-    [_nextLevelTrigger release];
-    
+    [_triggers removeAllObjects];
+    [_triggers release];
 }
 
 -(void)scanThroughMapAndAddObjects
 {
     _obstacleSprites = [[NSMutableArray alloc] initWithCapacity:100];
-    _nextLevelTrigger = [[Trigger alloc] init];
+    _triggers = [[NSMutableArray alloc] initWithCapacity:30];
     
     for (int i=0; i<_map.mapSize.width; i++) {
         for (int j=0; j<_map.mapSize.height;j++) {
@@ -154,11 +136,19 @@
             NSString *special = [self getPropertyForTileCoords:coords forKey:@"special"];
             if (special) {
                 if ([special compare:@"nextlevelNE"] == NSOrderedSame) {
-                    _nextLevelTrigger.position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
-                    _nextLevelTrigger.direction = CGPointMake(1,-1);
-                    _nextLevelTrigger.type = TRIGGER_NEXTLEVEL;
+                    Trigger *trigger = [[Trigger alloc] init];
+                    trigger.position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
+                    trigger.direction = CGPointMake(1,-1);
+                    trigger.type = TRIGGER_NEXTLEVEL;
+                    [_triggers addObject:trigger];
                 } else if([special compare:@"checkpoint"] == NSOrderedSame) {
-                    
+                    Trigger *trigger = [[Trigger alloc] init];
+                    trigger.position = [self getXYPositionForCoordinates:CGPointMake(i,j)];
+                    trigger.direction = CGPointMake(1, -1);
+                    trigger.type = TRIGGER_CHECKPOINT;
+                    [_triggers addObject:trigger];
+                } else if([special compare:@"spawnpoint"] == NSOrderedSame) {
+                    _spawnPoint = [self getXYPositionForCoordinates:CGPointMake(i, j)];
                 }
             }
             
@@ -252,20 +242,26 @@
     return collision;
 }
 
--(bool)nextLevelTriggerCheck:(Player*)player
+
+//TODO: only supporting one trigger per update, for now. not ideal though and we will eventually need to extend this
+//TODO: also only assumes each trigger will be triggered whenever the player goes to the right and above the trigger point. eventually support more directions.
+-(Trigger*)testTriggers:(Player*)player
 {
-    bool returnVal = false;
+    Trigger *returnTrigger = nil;
     
-    if (!_switchingToNextLevel) {
-        if (player.x < _nextLevelTrigger.position.x ^ _nextLevelTrigger.direction.x == 1) {
-            if(player.y < _nextLevelTrigger.position.x ^ _nextLevelTrigger.direction.y == 1) {
-                _switchingToNextLevel = true;
-                [[LevelManager shared] loadNextLevel];
-                returnVal = true;
-            }
+    for (Trigger *trigger in _triggers) {
+        if (!trigger.triggered) {
+            if (player.x < trigger.position.x ^ trigger.direction.x == 1) {
+                if(player.y < trigger.position.y ^ trigger.direction.y == 1) {
+                    returnTrigger = trigger;
+                    trigger.triggered = true;                    
+                }
+            }            
         }
+        
     }
-    return returnVal;
+    
+    return returnTrigger;
 }
 
 -(void)update:(float)dt Velocity:(float)vx

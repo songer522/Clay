@@ -22,10 +22,15 @@
   </tile>
  </tileset>
  <tileset firstgid="115" name="Env_Track_Icons" tilewidth="64" tileheight="64">
-  <image source="Env_Track_Icons.png" width="128" height="64"/>
+  <image source="Env_Track_Icons.png" width="256" height="64"/>
   <tile id="0">
    <properties>
     <property name="obstacle" value="hurdle"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="special" value="spawnpoint"/>
    </properties>
   </tile>
  </tileset>
@@ -53,12 +58,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztwQENAAAAwqD3T20PBxQAAM8GCfAAAQ==
+   eJxjYBgFo2AUjIJRMApGAT1ByUA7YBSMOAAAJo8AdQ==
   </data>
  </layer>
- <objectgroup name="objects" width="53" height="12">
-  <object name="SpawnPoint" x="128" y="512" width="64" height="64"/>
-  <object x="2048" y="512" width="64" height="64"/>
-  <object x="2112" y="512"/>
- </objectgroup>
 </map>

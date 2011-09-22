@@ -116,10 +116,18 @@
         [_player startCollision];
     }
     
-    //check to see if we should be switching to the next level
-    if([_level nextLevelTriggerCheck:_player]) {
-        [[LevelManager shared] switchToNextLevel];
-        [self initForLevel];
+    //check to see if any triggers have been hit
+    Trigger *trigger = [_level testTriggers:_player];
+    if (trigger) {
+        switch (trigger.type) {
+            case TRIGGER_NEXTLEVEL:
+                [[LevelManager shared] loadNextLevel];
+                [[LevelManager shared] switchToNextLevel];
+                [self initForLevel];
+                break;
+            default:
+                break;
+        }
     }
 }
 

@@ -94,7 +94,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1EEShCAMBED/yOr/n+KdUsFaMVG7L3BzKkOcJgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMjrFx2goUQHqJTqjFJ27pnVOVu551FBLrCV/Sk9fMleJyO7yvxur3A0OzsQpzV73eTX09EdPb79H9ajd872aowzc/23g6j3vgR99y5ne8myS1lyAAAAAAAAAMAXrXGfCcc=
+   eJzt1EkSgCAMBED/6PL/p3hPueCCRO2+wHEqQ+g6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4Ky+dYCgD2c0PZwj3jOLOfdyj7WC3GAp+1t6+JO1Tmp2lfnd3mFrdnagnb3Z6ya/ko6e6PHrf1iJ0jnbqzqOzPVqB957HUd7ybJLWXIMrQMAAAAAAAAAQAMzaTAJxw==
   </data>
  </layer>
  <layer name="meta" width="1000" height="14" opacity="0.85">
@@ -106,7 +106,4 @@
    eJztw0ENAAAMA6FzN/+O9qwJSCgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAmFNVVVVVVVVVeypeKs8=
   </data>
  </layer>
- <objectgroup name="objects" width="1000" height="14">
-  <object name="SpawnPoint" x="320" y="704" width="64" height="64"/>
- </objectgroup>
 </map>

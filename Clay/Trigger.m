@@ -13,12 +13,14 @@
 @synthesize position = _position;
 @synthesize direction = _direction;
 @synthesize type = _type;
+@synthesize triggered = _triggered;
 
 - (id)init
 {
     self = [super init];
     if (self) {
         // Initialization code here.
+        _triggered = false;
     }
     
     return self;

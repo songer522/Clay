@@ -33,10 +33,6 @@
     
     CGPoint _spawnPoint;
     
-    Trigger *_nextLevelTrigger;
-    
-    bool _switchingToNextLevel;    
-    
     CCParallaxNode *_parallaxLayers;
     
     NSMutableArray *_obstacleSprites;
@@ -71,11 +67,10 @@
 -(NSString*)getPropertyForTileCoords:(CGPoint)coords forKey:(NSString*)key;
 -(bool)testCollisions:(GameObject*)source;
 -(bool)testCollisionWithGameObject:(GameObject*)target Source:(GameObject*)source;
--(bool)nextLevelTriggerCheck:(Player*)player;
+-(Trigger*)testTriggers:(Player*)player;
 
 #pragma mark - private methods
 -(void)initTiledMap:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer;
 -(void)scanThroughMapAndAddObjects;
--(void)initSpawnPoint;
 -(void)setPositionAtX:(float)x Y:(float)y;
 @end
