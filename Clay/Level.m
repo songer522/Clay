@@ -39,13 +39,19 @@
         // Initialization code here.
         
         _gameObjects = gameObjects;
-        _switchingToNextLevel = false;
+        
+        _obstacleSprites = [[NSMutableArray alloc] initWithCapacity:100];
         
         [self initTiledMap:filename ObstacleLayer:obstacleLayer];
-                
-        [self loadLayers:layerList];
-
+        
+        [[[LayerManager sharedLayers] currentLayer] addChild:_map];
+        
         _scale = [[UIScreen mainScreen] scale] / 2.0f;
+        
+        _parallaxLayers = [CCParallaxNode node];
+        
+        [self loadLayers:layerList];
+        
         _map.scale = _scale;
         _parallaxLayers.scale = _scale;
         
@@ -53,11 +59,12 @@
         
         [[Camera sharedCamera] setBoundaries:[self getLevelBoundaries]];
         
-        [self scanThroughMapAndAddObjects];
+        [[[LayerManager sharedLayers] currentLayer] addChild:_parallaxLayers];
         
+        [self scanThroughMapAndAddObjects];
+        _switchingToNextLevel = false;
         
         _collisionHandler = [CollisionDetection collisionHandlerWithMetaLayer:_meta Map:_map];
-
 
     }
     
@@ -67,8 +74,6 @@
 -(void)loadLayers:(NSString*)layerList;
 {
     int currentZ = 0;
-    
-    _parallaxLayers = [CCParallaxNode node];
     
     NSArray *layers = [layerList componentsSeparatedByString:@","];
     for (NSString *layerName in layers) {
@@ -80,10 +85,7 @@
             [_parallaxLayers addChild:tmxLayer z:currentZ parallaxRatio:ccp(speedx,speedy) positionOffset:ccp(0, 0)];
             currentZ++;
         }
-    }
-    
-    [[[LayerManager sharedLayers] currentLayer] addChild:_parallaxLayers];
-    
+    }    
 }
 
 -(CGRect)getLevelBoundaries
@@ -116,8 +118,6 @@
         
     _obstacles = [_map layerNamed:obstacleLayer];
     _obstacles.visible = NO;
-    
-    [[[LayerManager sharedLayers] currentLayer] addChild:_map];
 }
 
 -(void)initSpawnPoint
