@@ -13,6 +13,8 @@
 #import "BaseClasses.h"
 #import "GameClasses.h"
 
+#import "GameCenter.h"
+
 // HelloWorldLayer implementation
 @implementation GameLayer
 
@@ -62,6 +64,7 @@
         
         
         self.isTouchEnabled = YES;
+        
 	}
 	return self;
 }

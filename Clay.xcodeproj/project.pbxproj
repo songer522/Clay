@@ -10,6 +10,8 @@
 		5416A1B614195B6400648B6A /* anims.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5416A1B514195B6400648B6A /* anims.plist */; };
 		5416A1B91419632E00648B6A /* LayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5416A1B81419632E00648B6A /* LayerManager.m */; };
 		54179E27142BBFA400D3A79E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 54179E26142BBFA400D3A79E /* Default@2x.png */; };
+		54179E2B142BC8AE00D3A79E /* GameCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 54179E2A142BC8AE00D3A79E /* GameCenter.m */; };
+		54179E2D142BC92400D3A79E /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54179E2C142BC92300D3A79E /* GameKit.framework */; };
 		5421A2F8142A5C7E0078D861 /* Bandages.m in Sources */ = {isa = PBXBuildFile; fileRef = 5421A2F7142A5C7E0078D861 /* Bandages.m */; };
 		5421A2FC142A63FF0078D861 /* CCXAnimate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5421A2FB142A63FF0078D861 /* CCXAnimate.m */; };
 		542361AE14228E5E0086E533 /* LevelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 542361AD14228E5E0086E533 /* LevelManager.m */; };
@@ -188,6 +190,9 @@
 		5416A1B71419632E00648B6A /* LayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayerManager.h; sourceTree = "<group>"; };
 		5416A1B81419632E00648B6A /* LayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayerManager.m; sourceTree = "<group>"; };
 		54179E26142BBFA400D3A79E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Resources/Default@2x.png"; sourceTree = "<group>"; };
+		54179E29142BC8AE00D3A79E /* GameCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenter.h; sourceTree = "<group>"; };
+		54179E2A142BC8AE00D3A79E /* GameCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCenter.m; sourceTree = "<group>"; };
+		54179E2C142BC92300D3A79E /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		5421A2F6142A5C7E0078D861 /* Bandages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bandages.h; sourceTree = "<group>"; };
 		5421A2F7142A5C7E0078D861 /* Bandages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bandages.m; sourceTree = "<group>"; };
 		5421A2FA142A63FF0078D861 /* CCXAnimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCXAnimate.h; sourceTree = "<group>"; };
@@ -511,6 +516,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54179E2D142BC92400D3A79E /* GameKit.framework in Frameworks */,
 				54484CD5140449B500D0D7D9 /* QuartzCore.framework in Frameworks */,
 				54484CD7140449B500D0D7D9 /* OpenGLES.framework in Frameworks */,
 				54484CD9140449B500D0D7D9 /* OpenAL.framework in Frameworks */,
@@ -555,6 +561,7 @@
 		54484CC5140449B500D0D7D9 = {
 			isa = PBXGroup;
 			children = (
+				54179E2C142BC92300D3A79E /* GameKit.framework */,
 				54484CE4140449B500D0D7D9 /* Clay */,
 				54484CD3140449B500D0D7D9 /* Frameworks */,
 				54484CD1140449B500D0D7D9 /* Products */,
@@ -956,6 +963,8 @@
 				544034B1141A76DF0065B061 /* Collision.m */,
 				54DDF8231423A67300631A41 /* CollisionDetection.h */,
 				54DDF8241423A67300631A41 /* CollisionDetection.m */,
+				54179E29142BC8AE00D3A79E /* GameCenter.h */,
+				54179E2A142BC8AE00D3A79E /* GameCenter.m */,
 				54518F6B1406AEE6009D74AA /* GameObject.h */,
 				54518F6C1406AEE6009D74AA /* GameObject.m */,
 				572DB81F142000A400DDC493 /* GameObjectController.h */,
@@ -1295,6 +1304,7 @@
 				5421A2F8142A5C7E0078D861 /* Bandages.m in Sources */,
 				5421A2FC142A63FF0078D861 /* CCXAnimate.m in Sources */,
 				54413573142B83460031C09E /* Trigger.m in Sources */,
+				54179E2B142BC8AE00D3A79E /* GameCenter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
