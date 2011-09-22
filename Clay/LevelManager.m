@@ -74,7 +74,11 @@ static LevelManager *_shared = nil;
 
 -(void)switchToNextLevel
 {
+    Level *_levelToUnload = _currentLevel;
     _currentLevel = _nextLevel;
+    [_levelToUnload unloadLevel];
+    [_levelToUnload release];
+    _levelToUnload = nil;
 }
 
 @end

@@ -120,9 +120,8 @@
 
 -(void)unloadLevel
 {
-    [_obstacleSprites release];
-    [_triggers removeAllObjects];
-    [_triggers release];
+    [[[LayerManager sharedLayers] currentLayer] removeChild:_map cleanup:YES];
+    [[[LayerManager sharedLayers] currentLayer] removeChild:_parallaxLayers cleanup:YES];
 }
 
 -(void)scanThroughMapAndAddObjects
@@ -271,6 +270,17 @@
     for(GameObject *obstacle in _obstacleSprites) {
         [obstacle update:dt];
     }
+}
+
+-(void)dealloc
+{
+    [_obstacleSprites removeAllObjects];
+    [_obstacleSprites release];
+    [_triggers removeAllObjects];
+    [_triggers release];
+    [_collisionHandler release];
+    [_nextLevelName release];
+    [super dealloc];
 }
 
 

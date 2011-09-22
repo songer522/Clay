@@ -180,6 +180,7 @@
 		54DDF8211423A17B00631A41 /* tileset-platformer_64.png in Resources */ = {isa = PBXBuildFile; fileRef = 54DDF81F1423A17B00631A41 /* tileset-platformer_64.png */; };
 		54DDF8251423A67300631A41 /* CollisionDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = 54DDF8241423A67300631A41 /* CollisionDetection.m */; };
 		54E0CE81141FC0A6005BFD5C /* hurdle.png in Resources */ = {isa = PBXBuildFile; fileRef = 54E0CE80141FC0A6005BFD5C /* hurdle.png */; };
+		54E274B2142BE0D50030EE0B /* ParticleSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E274B1142BE0D50030EE0B /* ParticleSystem.m */; };
 		572DB81D141FF62D00DDC493 /* objects.plist in Resources */ = {isa = PBXBuildFile; fileRef = 572DB81C141FF62D00DDC493 /* objects.plist */; };
 		572DB821142000A400DDC493 /* GameObjectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 572DB820142000A400DDC493 /* GameObjectController.m */; };
 		572DB824142004D500DDC493 /* PListLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 572DB823142004D500DDC493 /* PListLoader.m */; };
@@ -504,6 +505,8 @@
 		54DDF8231423A67300631A41 /* CollisionDetection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollisionDetection.h; sourceTree = "<group>"; };
 		54DDF8241423A67300631A41 /* CollisionDetection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollisionDetection.m; sourceTree = "<group>"; };
 		54E0CE80141FC0A6005BFD5C /* hurdle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hurdle.png; sourceTree = "<group>"; };
+		54E274B0142BE0D50030EE0B /* ParticleSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticleSystem.h; sourceTree = "<group>"; };
+		54E274B1142BE0D50030EE0B /* ParticleSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticleSystem.m; sourceTree = "<group>"; };
 		572DB81C141FF62D00DDC493 /* objects.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = objects.plist; sourceTree = "<group>"; };
 		572DB81F142000A400DDC493 /* GameObjectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObjectController.h; sourceTree = "<group>"; };
 		572DB820142000A400DDC493 /* GameObjectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameObjectController.m; sourceTree = "<group>"; };
@@ -987,6 +990,8 @@
 				54413572142B83460031C09E /* Trigger.m */,
 				5421A2FA142A63FF0078D861 /* CCXAnimate.h */,
 				5421A2FB142A63FF0078D861 /* CCXAnimate.m */,
+				54E274B0142BE0D50030EE0B /* ParticleSystem.h */,
+				54E274B1142BE0D50030EE0B /* ParticleSystem.m */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -1305,6 +1310,7 @@
 				5421A2FC142A63FF0078D861 /* CCXAnimate.m in Sources */,
 				54413573142B83460031C09E /* Trigger.m in Sources */,
 				54179E2B142BC8AE00D3A79E /* GameCenter.m in Sources */,
+				54E274B2142BE0D50030EE0B /* ParticleSystem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
