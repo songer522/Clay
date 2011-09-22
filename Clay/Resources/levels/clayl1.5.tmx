@@ -4,7 +4,7 @@
   <image source="Tile_Track_Test.png" width="448" height="640"/>
  </tileset>
  <tileset firstgid="71" name="meta" tilewidth="64" tileheight="64">
-  <image source="meta64.png" width="256" height="64"/>
+  <image source="meta64.png" width="256" height="192"/>
   <tile id="0">
    <properties>
     <property name="collision" value="full"/>
@@ -26,8 +26,8 @@
    </properties>
   </tile>
  </tileset>
- <tileset firstgid="75" name="hurdle" tilewidth="64" tileheight="64">
-  <image source="Env_Track_Icons.png" width="128" height="64"/>
+ <tileset firstgid="83" name="hurdle" tilewidth="64" tileheight="64">
+  <image source="Env_Track_Icons.png" width="256" height="64"/>
   <tile id="0">
    <properties>
     <property name="obstacle" value="hurdle"/>
@@ -36,6 +36,16 @@
   <tile id="1">
    <properties>
     <property name="SpawnPoint" value="true"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="special" value="checkpoint"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="special" value="nextlevelNE"/>
    </properties>
   </tile>
  </tileset>
@@ -126,7 +136,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt2EEOgkAQBED+t/7/PZxMDGFhV9GZwaoL3GymT+2yAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADDiER3gRIsO0BGda+/3ozPNqpb31SfZK393Nb1b6+B9R7dz1zhnt9dNfiMd6fE3Ru+sj++YuasOcprt5a49ZvuutnlGaZ33zLY5q+Tec4f/Ef6BHXs9OzYnO7Y+OzYPOzaWHVufHQsAAAAAAAAAAAAAAAAAAAA8rc1LDTE=
+   eJzt2EESgjAMBVDuiHr/o7hy41BpsZoE3tvAwsFv/tSZsCwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA9LhFB9ixRgdoiM619f3RmUZF5b1PeMY32av1VFlr1jo47tPszDXO3ux1k19PR3r8j97z1Lr2egx+/ipG5uhM5DTay1l7zPa7jv5XzbY27jN7z1kl95YzvEe4AnvsfPbYnOyx9dlj8+idsz5+wx5bnz0WAAAAAAAAAAAAAAAAAAAAeHkCeGEQPQ==
   </data>
  </layer>
  <layer name="meta" width="2000" height="14" opacity="0.85">

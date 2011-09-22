@@ -14,13 +14,13 @@
 @class GameObject;
 @class CollisionDetection;
 @class Player;
+@class Trigger;
 @class GameObjectController;
 
 @interface Level : NSObject
 {
     NSString *_name;
-    CCSprite *_background;
-    
+
     CCTMXLayer *_main;
     CCTMXLayer *_meta;
     CCTMXLayer *_obstacles;
@@ -33,10 +33,9 @@
     
     CGPoint _spawnPoint;
     
-    bool _switchingToNextLevel;
-    CGPoint _nextLevelTriggerPosition;
-    CGPoint _nextLevelTriggerDirection;
+    Trigger *_nextLevelTrigger;
     
+    bool _switchingToNextLevel;    
     
     CCParallaxNode *_parallaxLayers;
     
@@ -46,6 +45,8 @@
                                         //to complete. will be used by the LevelManager
     GameObjectController *_gameObjects;
     
+    NSMutableArray *_triggers;
+    
     float _x;
     float _y;
     float _scale;
@@ -53,6 +54,8 @@
 
 @property (nonatomic,retain) NSString *nextLevelName;
 @property (nonatomic,retain) GameObjectController *gameObjects;
+@property (nonatomic,readonly,assign) CGPoint spawnPoint;
+@property (nonatomic,readonly,retain) NSMutableArray *obstacleSprites;
 
 #pragma mark - inits
 +(id)levelWithFilename:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer LayerList:(NSString*)layerList GameObjectController:(GameObjectController*)gameObjects;
@@ -63,19 +66,15 @@
 -(CGPoint)checkCollisionForObject:(GameObject*)object;
 -(void)update:(float)dt Velocity:(float)vx;
 -(CGRect)getLevelBoundaries;
--(CGPoint)getSpawnPoint;
 -(CGPoint)getXYPositionForCoordinates:(CGPoint)coords;
 -(void)loadLayers:(NSString*)layerList;
--(void)updateObstacles:(float)dt;
 -(NSString*)getPropertyForTileCoords:(CGPoint)coords forKey:(NSString*)key;
 -(bool)testCollisions:(GameObject*)source;
 -(bool)testCollisionWithGameObject:(GameObject*)target Source:(GameObject*)source;
--(NSMutableArray*)getGameObjectsList;
 -(bool)nextLevelTriggerCheck:(Player*)player;
 
 #pragma mark - private methods
 -(void)initTiledMap:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer;
--(void)initBackgroundImage:(NSString*)filename;
 -(void)scanThroughMapAndAddObjects;
 -(void)initSpawnPoint;
 -(void)setPositionAtX:(float)x Y:(float)y;

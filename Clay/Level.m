@@ -16,12 +16,15 @@
 #import "Sprite.h"
 #import "LayerManager.h"
 #import "Player.h"
+#import "Trigger.h"
 #import "GameObjectController.h"
 
 @implementation Level
 
 @synthesize nextLevelName = _nextLevelName;
 @synthesize gameObjects = _gameObjects;
+@synthesize spawnPoint = _spawnPoint;
+@synthesize obstacleSprites = _obstacleSprites;
 
 +(id)levelWithFilename:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer LayerList:(NSString*)layerList GameObjectController:(GameObjectController*)gameObjects
 {
@@ -36,20 +39,13 @@
         // Initialization code here.
         
         _gameObjects = gameObjects;
-        
-        _obstacleSprites = [[NSMutableArray alloc] initWithCapacity:100];
+        _switchingToNextLevel = false;
         
         [self initTiledMap:filename ObstacleLayer:obstacleLayer];
-        
-        [[[LayerManager sharedLayers] currentLayer] addChild:_map];
-        
-        _scale = [[UIScreen mainScreen] scale] / 2.0f;
-
-        _parallaxLayers = [CCParallaxNode node];
-
+                
         [self loadLayers:layerList];
-        
-        
+
+        _scale = [[UIScreen mainScreen] scale] / 2.0f;
         _map.scale = _scale;
         _parallaxLayers.scale = _scale;
         
@@ -57,10 +53,8 @@
         
         [[Camera sharedCamera] setBoundaries:[self getLevelBoundaries]];
         
-        [[[LayerManager sharedLayers] currentLayer] addChild:_parallaxLayers];
-        
         [self scanThroughMapAndAddObjects];
-        _switchingToNextLevel = false;
+        
         
         _collisionHandler = [CollisionDetection collisionHandlerWithMetaLayer:_meta Map:_map];
 
@@ -73,7 +67,9 @@
 -(void)loadLayers:(NSString*)layerList;
 {
     int currentZ = 0;
-
+    
+    _parallaxLayers = [CCParallaxNode node];
+    
     NSArray *layers = [layerList componentsSeparatedByString:@","];
     for (NSString *layerName in layers) {
         CCTMXLayer *tmxLayer = [_map layerNamed:layerName];
@@ -85,6 +81,9 @@
             currentZ++;
         }
     }
+    
+    [[[LayerManager sharedLayers] currentLayer] addChild:_parallaxLayers];
+    
 }
 
 -(CGRect)getLevelBoundaries
@@ -97,12 +96,6 @@
 -(CGPoint)checkCollisionForObject:(GameObject*)object
 {
     return [_collisionHandler checkCollisionForObject:object];
-}
-
--(void)update:(float)dt Velocity:(float)vx
-{
-    [self setPositionAtX:_x Y:_y];
-    [self updateObstacles:dt];
 }
 
 -(void)setPositionAtX:(float)x Y:(float)y
@@ -123,13 +116,8 @@
         
     _obstacles = [_map layerNamed:obstacleLayer];
     _obstacles.visible = NO;
-}
-
--(void)initBackgroundImage:(NSString *)filename
-{
-    _background = [CCSprite spriteWithFile:filename];
-    _background.anchorPoint = ccp(0, 0);
     
+    [[[LayerManager sharedLayers] currentLayer] addChild:_map];
 }
 
 -(void)initSpawnPoint
@@ -147,8 +135,18 @@
     
 }
 
+-(void)unloadLevel
+{
+    [_obstacleSprites release];
+    [_nextLevelTrigger release];
+    
+}
+
 -(void)scanThroughMapAndAddObjects
 {
+    _obstacleSprites = [[NSMutableArray alloc] initWithCapacity:100];
+    _nextLevelTrigger = [[Trigger alloc] init];
+    
     for (int i=0; i<_map.mapSize.width; i++) {
         for (int j=0; j<_map.mapSize.height;j++) {
             CGPoint coords = CGPointMake(i, j);
@@ -156,8 +154,11 @@
             NSString *special = [self getPropertyForTileCoords:coords forKey:@"special"];
             if (special) {
                 if ([special compare:@"nextlevelNE"] == NSOrderedSame) {
-                    _nextLevelTriggerPosition = [self getXYPositionForCoordinates:CGPointMake(i, j)];
-                    _nextLevelTriggerDirection = CGPointMake(1, -1);
+                    _nextLevelTrigger.position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
+                    _nextLevelTrigger.direction = CGPointMake(1,-1);
+                    _nextLevelTrigger.type = TRIGGER_NEXTLEVEL;
+                } else if([special compare:@"checkpoint"] == NSOrderedSame) {
+                    
                 }
             }
             
@@ -173,14 +174,6 @@
         }
     }
                                           
-}
-
--(void)updateObstacles:(float)dt
-{
-    for(GameObject *obstacle in _obstacleSprites) {
-        [obstacle update:dt];
-    }
-    
 }
                 
 -(CGPoint)getXYPositionForCoordinates:(CGPoint)coords
@@ -211,11 +204,6 @@
     }
     
     return returnVal;
-}
-
--(NSMutableArray*)getGameObjectsList
-{
-    return _obstacleSprites;
 }
 
 -(bool)testCollisions:(GameObject*)source
@@ -269,8 +257,8 @@
     bool returnVal = false;
     
     if (!_switchingToNextLevel) {
-        if (player.x < _nextLevelTriggerPosition.x ^ _nextLevelTriggerDirection.x == 1) {
-            if(player.y < _nextLevelTriggerPosition.x ^ _nextLevelTriggerDirection.y == 1) {
+        if (player.x < _nextLevelTrigger.position.x ^ _nextLevelTrigger.direction.x == 1) {
+            if(player.y < _nextLevelTrigger.position.x ^ _nextLevelTrigger.direction.y == 1) {
                 _switchingToNextLevel = true;
                 [[LevelManager shared] loadNextLevel];
                 returnVal = true;
@@ -280,9 +268,12 @@
     return returnVal;
 }
 
--(CGPoint)getSpawnPoint
+-(void)update:(float)dt Velocity:(float)vx
 {
-    return _spawnPoint;
+    [self setPositionAtX:_x Y:_y];
+    for(GameObject *obstacle in _obstacleSprites) {
+        [obstacle update:dt];
+    }
 }
 
 

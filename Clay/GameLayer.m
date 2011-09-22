@@ -74,8 +74,7 @@
     
     [_player setOffsetForX:0 Y:[[LevelManager shared] playerOffsetY]];
     
-    CGPoint spawn = [_level getSpawnPoint];
-    [_player setPositionAtX:spawn.x Y:spawn.y];
+    [_player setPositionAtX:_level.spawnPoint.x Y:_level.spawnPoint.y];
     
     [self initCamera];
     
@@ -150,7 +149,7 @@
 
 -(NSMutableArray*)getGameObjectsList
 {
-    return [_level getGameObjectsList];    
+    return _level.obstacleSprites;    
 }
 
 
