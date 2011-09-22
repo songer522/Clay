@@ -12,3 +12,6 @@
 #import "Player.h"
 #import "GameController.h"
 #import "Runner.h"
+#import "RunningSpeed.h"
+#import "Bandages.h"
+#import "SavePoint.h"

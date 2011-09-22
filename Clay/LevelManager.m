@@ -62,6 +62,7 @@ static LevelManager *_shared = nil;
     Level *level = [Level levelWithFilename:fileName ObstacleLayer:obstacleLayer LayerList:layerList GameObjectController:_gameObjects];
     level.nextLevelName = nextLevelName;
     level.gameObjects = _gameObjects;
+    level.name = levelName;
     
     return level;
 }

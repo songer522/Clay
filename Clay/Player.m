@@ -26,6 +26,7 @@
 @implementation Player
 
 @synthesize isJumping = _isJumping;
+@synthesize isDead = _isDead;
 
 +(id) instance
 {
@@ -48,6 +49,7 @@
         [factory initializeGameObject:self Name:@"player"];
         
         _isJumping = false;
+        _isDead = false;
         
         _speed = [[RunningSpeed alloc] initWithSettings:settings];
         [_speed start];
@@ -133,7 +135,7 @@
     [_speed startCollision];
     hitPoints -= 1;
     if (hitPoints <=0) {
-        hitPoints = 0;
+        _isDead = true;        
     }
     [_bandages setFrame:(2 - hitPoints)];    
 }
@@ -142,6 +144,11 @@
 -(float)getVelocityX
 {
     return _speed.velocity;
+}
+
+-(void)reset
+{
+    hitPoints = 2;
 }
 
 

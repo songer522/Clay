@@ -10,13 +10,8 @@
 // Import the interfaces
 #import "GameLayer.h"
 
-#import "Level.h"
-#import "Runner.h"
-#import "Camera.h"
-#import "Player.h"
 #import "BaseClasses.h"
-#import "GameController.h"
-
+#import "GameClasses.h"
 
 // HelloWorldLayer implementation
 @implementation GameLayer
@@ -51,15 +46,20 @@
         [_gameController setGameLayer:self];
         _inputController = [InputController inputController];
         
+        
         [[LayerManager sharedLayers] setCurrentLayer:self];
         
         _level = [[LevelManager shared] currentLevel];
         
         _player = [Player instance];
         
+        _savePoint = [SavePoint instance];
+        
         [self initForLevel];
         
         [self scheduleUpdate];
+        
+        
         
         self.isTouchEnabled = YES;
 	}
@@ -75,6 +75,8 @@
     [_player setOffsetForX:0 Y:[[LevelManager shared] playerOffsetY]];
     
     [_player setPositionAtX:_level.spawnPoint.x Y:_level.spawnPoint.y];
+    
+    [_savePoint setSavePoint:_level.spawnPoint Level:_level.name];
     
     [self initCamera];
     
@@ -110,12 +112,6 @@
 
     [_level update:dt Velocity:_player.vx];
     
-    
-    if([_level testCollisions:_player]) {
-        //collision happened, so reduce speed
-        [_player startCollision];
-    }
-    
     //check to see if any triggers have been hit
     Trigger *trigger = [_level testTriggers:_player];
     if (trigger) {
@@ -125,9 +121,22 @@
                 [[LevelManager shared] switchToNextLevel];
                 [self initForLevel];
                 break;
+            case TRIGGER_CHECKPOINT:
+                [_savePoint setSavePoint:trigger.position Level:_level.name];
             default:
                 break;
         }
+    }
+    
+    if([_level testCollisions:_player]) {
+        //collision happened, so reduce speed
+        [_player startCollision];
+    }
+    
+    if(_player.isDead) {
+        [_player reset];
+        [_savePoint restoreSavePoint:_player];
+        _player.isDead = false;
     }
 }
 

@@ -25,6 +25,7 @@ typedef enum {
 {
     bool _isJumping;
     bool _firstFrameJumping;
+    bool _isDead;
     
     float _yPosition;
     float _jumpAcceleration;
@@ -32,6 +33,8 @@ typedef enum {
     int hitPoints;
     Bandages *_bandages;
 }
+
+@property(nonatomic,assign) bool isDead;
 
 +(id) instance;                                 //constructor
 
@@ -46,6 +49,8 @@ typedef enum {
 
 -(void)startCollision;
 
+
+-(void)reset;
 -(void)resetSprite:(CCLayer*)layer;
 
 @property(nonatomic,assign) bool isJumping;

@@ -13,6 +13,7 @@
 @class Level;
 @class Runner;
 @class Player;
+@class SavePoint;
 @class InputController;
 @class GameController;
 
@@ -26,6 +27,8 @@
     GameController *_gameController;
     
     InputController *_inputController;
+    
+    SavePoint *_savePoint;
     
     Runner *_runner2;
     Runner *_runner3;

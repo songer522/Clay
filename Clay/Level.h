@@ -48,6 +48,7 @@
     float _scale;
 }
 
+@property (nonatomic,retain) NSString *name;
 @property (nonatomic,retain) NSString *nextLevelName;
 @property (nonatomic,retain) GameObjectController *gameObjects;
 @property (nonatomic,readonly,assign) CGPoint spawnPoint;

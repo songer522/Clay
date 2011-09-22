@@ -12,6 +12,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class Player;
+
 @interface SavePoint : NSObject
 {
     CGPoint         _position;
@@ -19,6 +21,9 @@
     
 }
 
++(id)instance;
 
+-(void)setSavePoint:(CGPoint)position Level:(NSString*)level;
+-(void)restoreSavePoint:(Player*)player;
 
 @end

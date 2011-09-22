@@ -21,6 +21,7 @@
 
 @implementation Level
 
+@synthesize name = _name;
 @synthesize nextLevelName = _nextLevelName;
 @synthesize gameObjects = _gameObjects;
 @synthesize spawnPoint = _spawnPoint;

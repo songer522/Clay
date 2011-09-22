@@ -7,8 +7,14 @@
 //
 
 #import "SavePoint.h"
+#import "Player.h"
 
 @implementation SavePoint
+
++(id)instance
+{
+    return [[self alloc] init];
+}
 
 - (id)init
 {
@@ -18,6 +24,24 @@
     }
     
     return self;
+}
+
+-(void)setSavePoint:(CGPoint)position Level:(NSString*)level
+{
+    _position = position;
+    _levelName = [[NSString alloc] initWithString:level];
+}
+
+-(void)restoreSavePoint:(Player*)player
+{
+    [player setPosition:_position];
+    //TODO: tell game layer to switch to load/switch levels (if needed) and reset obstacles
+}
+
+-(void)dealloc
+{
+    [super dealloc];
+    [_levelName release];
 }
 
 @end
