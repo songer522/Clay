@@ -63,6 +63,8 @@
         
         _dustTest = [[ParticleSystem alloc] init];
         
+        [ParticleSystem testLimits];
+        
         self.isTouchEnabled = YES;
         
 	}

@@ -14,5 +14,5 @@
 }
 
 +(void)addDustImpactAtPosition:(CGPoint)position;
-
++(void)testLimits;
 @end

@@ -61,6 +61,7 @@
         [[[LayerManager sharedLayers] currentLayer] addChild:_parallaxLayers];
         
         [self scanThroughMapAndAddObjects];
+        [_obstacles releaseMap];
         
         _collisionHandler = [CollisionDetection collisionHandlerWithMetaLayer:_meta Map:_map];
 
@@ -82,6 +83,10 @@
             [tmxLayer removeFromParentAndCleanup:NO];
             [_parallaxLayers addChild:tmxLayer z:currentZ parallaxRatio:ccp(speedx,speedy) positionOffset:ccp(0, 0)];
             currentZ++;
+            
+            if ([layerName compare:@"meta"] != NSOrderedSame && [layerName compare:@"front3"] != NSOrderedSame) {
+                [tmxLayer releaseMap];
+            }
         }
     }    
 }

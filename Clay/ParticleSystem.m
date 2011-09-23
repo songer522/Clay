@@ -48,6 +48,32 @@
     [[[LayerManager sharedLayers] currentLayer] addChild:_emitter];    
 }
 
++(void)testLimits
+{
+    CCParticleSystem *_emitter = [CCParticleFireworks node];        
+    [_emitter setEmitterMode:kCCParticleModeGravity];
+    
+    _emitter.duration = -1.0f;
+    _emitter.totalParticles = 50;
+    _emitter.texture = [[CCTextureCache sharedTextureCache] addImage:@"ball.png"];
+    //ccColor4F startColor = { 0.8f, 0.6f, 0.04f, 1.0f };
+    //ccColor4F endColor = { 1.0f, 1.0f, 1.0f, 0.9f };
+    _emitter.position = ccp(240, 160);
+    //_emitter.startColor = startColor;
+    //_emitter.endColor = endColor;
+    _emitter.scale = 0.75f;
+    _emitter.angle = 160;
+    _emitter.angleVar = 360;
+    _emitter.blendAdditive = YES;
+    _emitter.speed = 300;
+    _emitter.gravity = CGPointMake(0.0f, -10.0f);
+    _emitter.life = 1.0f;
+    _emitter.emissionRate = 2200.0f;
+    _emitter.autoRemoveOnFinish = YES;
+    
+    [[[LayerManager sharedLayers] currentLayer] addChild:_emitter];    
+}
+
 -(void) dealloc
 {
     [super dealloc];
