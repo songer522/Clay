@@ -11,8 +11,8 @@
 
 @interface ParticleSystem : NSObject
 {
-    CCParticleSystemQuad *_particleSystem;
-    CCParticleSnow *_dustParticles;
 }
+
++(void)addDustImpactAtPosition:(CGPoint)position;
 
 @end

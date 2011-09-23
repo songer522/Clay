@@ -16,6 +16,7 @@
 @class SavePoint;
 @class InputController;
 @class GameController;
+@class ParticleSystem;
 
 // HelloWorldLayer
 @interface GameLayer : CCLayer
@@ -32,6 +33,8 @@
     
     Runner *_runner2;
     Runner *_runner3;
+    
+    ParticleSystem *_dustTest;
     
 }
 

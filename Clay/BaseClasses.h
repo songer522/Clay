@@ -18,6 +18,7 @@
 #import "LayerManager.h"
 #import "LevelManager.h"
 #import "Level.h"
+#import "ParticleSystem.h"
 #import "PListLoader.h"
 #import "Sprite.h"
 #import "Trigger.h"

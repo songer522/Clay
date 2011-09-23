@@ -99,6 +99,11 @@
         if (_isJumping) {                
             _isJumping = false;
             [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"runningAnim" FrameNumber:8];
+            
+            float x = _x + 60.0f;
+            float y = _y - 20.0f;
+            CGPoint position = [[Camera sharedCamera] convertToScreenXY:CGPointMake(x, y)];
+            [ParticleSystem addDustImpactAtPosition:position];
         }
 
         _jumpAcceleration = 0;

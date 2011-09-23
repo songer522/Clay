@@ -61,7 +61,7 @@
         
         [self scheduleUpdate];
         
-        
+        _dustTest = [[ParticleSystem alloc] init];
         
         self.isTouchEnabled = YES;
         
@@ -141,6 +141,7 @@
         [_savePoint restoreSavePoint:_player];
         _player.isDead = false;
     }
+    
 }
 
 -(void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
