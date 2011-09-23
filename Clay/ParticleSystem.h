@@ -11,8 +11,11 @@
 
 @interface ParticleSystem : NSObject
 {
+    NSMutableArray *_emitters;
 }
 
-+(void)addDustImpactAtPosition:(CGPoint)position;
++(id)instance;
+-(void)addDustImpactAtPosition:(CGPoint)position;
 +(void)testLimits;
+-(void)update:(float)dt;
 @end

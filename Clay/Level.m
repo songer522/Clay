@@ -85,7 +85,7 @@
             currentZ++;
             
             if ([layerName compare:@"meta"] != NSOrderedSame && [layerName compare:@"front3"] != NSOrderedSame) {
-                [tmxLayer releaseMap];
+                //[tmxLayer releaseMap];
             }
         }
     }    

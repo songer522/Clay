@@ -14,6 +14,7 @@
 #import "GameController.h"
 #import "GameObjectController.h"
 #import "PListLoader.h"
+#import "ParticleSystem.h"
 #import "Camera.h"
 #import "Bandages.h"
 
@@ -57,6 +58,8 @@
         
         hitPoints = 2;
         _bandages = [Bandages instance];
+        
+        _particleSystem = [ParticleSystem instance];
 
     }
     
@@ -84,7 +87,8 @@
                                                     //camera position. will cause jitteriness otherwise
     
     [self setPositionAtX:newPosition.x Y:newPosition.y];
-    [_bandages update:dt Player:self];  
+    [_bandages update:dt Player:self];
+    [_particleSystem update:dt];
 
 }
 
@@ -100,10 +104,9 @@
             _isJumping = false;
             [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"runningAnim" FrameNumber:8];
             
-            float x = _x + 60.0f;
-            float y = _y - 20.0f;
-            CGPoint position = [[Camera sharedCamera] convertToScreenXY:CGPointMake(x, y)];
-            [ParticleSystem addDustImpactAtPosition:position];
+            float x = _x + 70.0f;
+            float y = _y - 45.0f;
+            [_particleSystem addDustImpactAtPosition:CGPointMake(x, y)];
         }
 
         _jumpAcceleration = 0;

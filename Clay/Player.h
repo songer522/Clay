@@ -32,6 +32,8 @@ typedef enum {
     
     int hitPoints;
     Bandages *_bandages;
+    
+    ParticleSystem *_particleSystem;
 }
 
 @property(nonatomic,assign) bool isDead;
