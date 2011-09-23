@@ -21,4 +21,5 @@
 #import "ParticleSystem.h"
 #import "PListLoader.h"
 #import "Sprite.h"
+#import "SoundEngine.h"
 #import "Trigger.h"

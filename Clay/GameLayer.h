@@ -16,6 +16,7 @@
 @class SavePoint;
 @class InputController;
 @class GameController;
+@class SoundEngine;
 @class ParticleSystem;
 
 // HelloWorldLayer
@@ -30,6 +31,8 @@
     InputController *_inputController;
     
     SavePoint *_savePoint;
+    
+    SoundEngine *_soundEngine;
     
     Runner *_runner2;
     Runner *_runner3;

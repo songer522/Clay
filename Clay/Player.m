@@ -107,6 +107,7 @@
             float x = _x + 70.0f;
             float y = _y - 45.0f;
             [_particleSystem addDustImpactAtPosition:CGPointMake(x, y)];
+            [SoundEngine playSound:@"footsteps.caf"];
         }
 
         _jumpAcceleration = 0;

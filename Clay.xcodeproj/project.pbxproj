@@ -151,6 +151,9 @@
 		54518F701406B061009D74AA /* BaseClasses.m in Sources */ = {isa = PBXBuildFile; fileRef = 54518F6F1406B061009D74AA /* BaseClasses.m */; };
 		54518F751406B761009D74AA /* GameClasses.m in Sources */ = {isa = PBXBuildFile; fileRef = 54518F741406B761009D74AA /* GameClasses.m */; };
 		545CBC2A142D084D00795FC9 /* Particle.m in Sources */ = {isa = PBXBuildFile; fileRef = 545CBC29142D084D00795FC9 /* Particle.m */; };
+		545CBC31142D25BE00795FC9 /* footsteps.caf in Resources */ = {isa = PBXBuildFile; fileRef = 545CBC30142D25BE00795FC9 /* footsteps.caf */; };
+		545CBC34142D260B00795FC9 /* SoundEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 545CBC33142D260B00795FC9 /* SoundEngine.m */; };
+		545CBC36142D267F00795FC9 /* sounds.plist in Resources */ = {isa = PBXBuildFile; fileRef = 545CBC35142D267F00795FC9 /* sounds.plist */; };
 		5460F9FE1423EB6100582EBD /* clayl2.1.4.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 5460F9FD1423EB6100582EBD /* clayl2.1.4.tmx */; };
 		547472CA14228C0A00B0B0B7 /* levels.plist in Resources */ = {isa = PBXBuildFile; fileRef = 547472C914228C0A00B0B0B7 /* levels.plist */; };
 		547F09731428E49C00E5D920 /* blank.png in Resources */ = {isa = PBXBuildFile; fileRef = 547F09721428E49C00E5D920 /* blank.png */; };
@@ -470,6 +473,10 @@
 		54518F741406B761009D74AA /* GameClasses.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameClasses.m; sourceTree = "<group>"; };
 		545CBC28142D084D00795FC9 /* Particle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Particle.h; sourceTree = "<group>"; };
 		545CBC29142D084D00795FC9 /* Particle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Particle.m; sourceTree = "<group>"; };
+		545CBC30142D25BE00795FC9 /* footsteps.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = footsteps.caf; path = Resources/sounds/footsteps.caf; sourceTree = "<group>"; };
+		545CBC32142D260B00795FC9 /* SoundEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundEngine.h; sourceTree = "<group>"; };
+		545CBC33142D260B00795FC9 /* SoundEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundEngine.m; sourceTree = "<group>"; };
+		545CBC35142D267F00795FC9 /* sounds.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sounds.plist; sourceTree = "<group>"; };
 		5460F9FD1423EB6100582EBD /* clayl2.1.4.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = clayl2.1.4.tmx; path = Resources/levels/clayl2.1.4.tmx; sourceTree = "<group>"; };
 		547472C914228C0A00B0B0B7 /* levels.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = levels.plist; sourceTree = "<group>"; };
 		547F09721428E49C00E5D920 /* blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blank.png; path = Resources/levels/blank.png; sourceTree = "<group>"; };
@@ -553,6 +560,7 @@
 				572DB81C141FF62D00DDC493 /* objects.plist */,
 				547472C914228C0A00B0B0B7 /* levels.plist */,
 				54A32B571429301F00A10727 /* player.plist */,
+				545CBC35142D267F00795FC9 /* sounds.plist */,
 			);
 			name = Plists;
 			sourceTree = "<group>";
@@ -628,6 +636,7 @@
 		54484CE5140449B500D0D7D9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				545CBC2F142D25AB00795FC9 /* sounds */,
 				54090E1F142CCE6700FC3ABE /* ball.png */,
 				54090E1D142CCE2C00FC3ABE /* particles */,
 				543C09601420F3CF00F259BA /* app artwork */,
@@ -1008,6 +1017,8 @@
 				545CBC29142D084D00795FC9 /* Particle.m */,
 				54E274B0142BE0D50030EE0B /* ParticleSystem.h */,
 				54E274B1142BE0D50030EE0B /* ParticleSystem.m */,
+				545CBC32142D260B00795FC9 /* SoundEngine.h */,
+				545CBC33142D260B00795FC9 /* SoundEngine.m */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -1031,6 +1042,14 @@
 				547F09761428FA5400E5D920 /* SavePoint.m */,
 			);
 			name = Game;
+			sourceTree = "<group>";
+		};
+		545CBC2F142D25AB00795FC9 /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+				545CBC30142D25BE00795FC9 /* footsteps.caf */,
+			);
+			name = sounds;
 			sourceTree = "<group>";
 		};
 		548C3DBB141ABDBB000567A8 /* levels */ = {
@@ -1192,6 +1211,8 @@
 				54A32B581429301F00A10727 /* player.plist in Resources */,
 				54179E27142BBFA400D3A79E /* Default@2x.png in Resources */,
 				54090E20142CCE6700FC3ABE /* ball.png in Resources */,
+				545CBC31142D25BE00795FC9 /* footsteps.caf in Resources */,
+				545CBC36142D267F00795FC9 /* sounds.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1329,6 +1350,7 @@
 				54179E2B142BC8AE00D3A79E /* GameCenter.m in Sources */,
 				54E274B2142BE0D50030EE0B /* ParticleSystem.m in Sources */,
 				545CBC2A142D084D00795FC9 /* Particle.m in Sources */,
+				545CBC34142D260B00795FC9 /* SoundEngine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -44,9 +44,12 @@
 	if( (self=[super init])) {
         [[CCDirector sharedDirector] setProjection:CCDirectorProjection2D];
         
+        _soundEngine = [SoundEngine instance];
+        
         _gameController = [GameController gameController];
         [_gameController setGameLayer:self];
         _inputController = [InputController inputController];
+        
         
         
         [[LayerManager sharedLayers] setCurrentLayer:self];
