@@ -97,4 +97,11 @@
     }
 }
 
+-(void)dealloc
+{
+    [_gameLayer release];
+    [_pauseMenu release];
+    [super dealloc];
+}
+
 @end

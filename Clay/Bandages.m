@@ -52,4 +52,11 @@
     return [sprite getCCSprite];
 }
 
+-(void)dealloc
+{
+    [sprite release];
+    [offsetYWhenRunning release];
+    [super dealloc];
+}
+
 @end

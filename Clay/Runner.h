@@ -5,6 +5,8 @@
 //  Created by Brian Cable on 8/30/11.
 //  Copyright 2011 Xecudev, LLC. All rights reserved.
 //
+//  Base class for all runners, which the Player inherits from. Other runners can be spawned from this class
+//  as well.
 
 #import <Foundation/Foundation.h>
 #import "BaseClasses.h"

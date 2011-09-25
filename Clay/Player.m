@@ -176,7 +176,9 @@
 
 -(void)dealloc
 {
-    [_speed dealloc];
+    [_speed release];
+    [_bandages release];
+    [_particleSystem release];
     [super dealloc];
 }
 
