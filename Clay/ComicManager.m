@@ -16,6 +16,8 @@
 
 @implementation ComicManager
 
+@synthesize gameLayer = _gameLayer;
+
 +(id)instance
 {
     return [[self alloc] init];
@@ -50,6 +52,7 @@
         _videoFileName = result;
         _isActive = true;
         [_comicLayer startTransition:BLACKBOX_IN];
+        
         _gameLayer.gameController.isInputEnabled = false;
         _phase = COMIC_PHASE_BARS_IN;
     }
@@ -68,6 +71,7 @@
             case COMIC_PHASE_PLAY_VIDEO:
                 [[CCDirector sharedDirector] startAnimation];
                 [_comicLayer startTransition:BLACKBOX_OUT];
+                _gameLayer.gameController.isInputEnabled = false;
                 _phase = COMIC_PHASE_BARS_OUT;
             case COMIC_PHASE_BARS_OUT:
                 _gameLayer.gameController.isInputEnabled = true;

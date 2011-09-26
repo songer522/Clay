@@ -125,6 +125,7 @@
 
     
     _comicManager = [ComicManager instance];
+    _comicManager.gameLayer = [[LayerManager sharedLayers] currentLayer];
     [_comicManager startComic:@"trackToFarm"];
     
     

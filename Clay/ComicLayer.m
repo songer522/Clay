@@ -55,30 +55,66 @@
 
 -(void)update:(ccTime)dt
 {
+    switch (_transition) {
+        case BLACKBOX_IN:
+            [self blackBoxIn:dt];
+            break;
+        case BLACKBOX_OUT:
+            [self blackBoxOut:dt];
+        default:
+            break;
+    }
     if (_transition != BLACKBOX_IDLE) {
-        if (!_atTarget) {        
-            float dx = _targetPosition - _position;
-            float magnitude = sqrtf(dx * dx);
-            
-            
-            if (_transition == BLACKBOX_IN) {
-                _position += 5.0f * magnitude * dt;
-            } else {
-                _position -= 5.0f * magnitude * dt;
-            }
-            
-            if (fabsf(_position - _targetPosition) < 0.02f) {
-                _position = _targetPosition;
-                _atTarget = true;
-            }
+        if (!_atTarget) {      
         } else {
-            _timeToWait -= dt;
-            if (_timeToWait<=0.0f) {
-                [_parent finishedAction];
-            }
         }
     }
 }
+
+-(void)blackBoxIn:(ccTime)dt
+{
+    if (!_atTarget) {
+        [self moveBars:dt];
+    } else {
+        _timeToWait -= dt;
+        if (_timeToWait<=0.0f) {
+            _transition = BLACKBOX_IDLE;
+            [_parent finishedAction];
+        }
+    }
+}
+
+-(void)blackBoxOut:(ccTime)dt
+{
+    _timeToWait -= dt;
+    if (_timeToWait <= 0.0f) {
+        [self moveBars:dt];
+        if (_atTarget) {
+            _transition = BLACKBOX_IDLE;
+            [_parent finishedAction];
+        }
+    }
+    
+}
+
+-(void)moveBars:(ccTime)dt
+{
+    float dx = _targetPosition - _position;
+    float magnitude = sqrtf(dx * dx);
+    
+    
+    if (_transition == BLACKBOX_IN) {
+        _position += 5.0f * magnitude * dt;
+    } else {
+        _position -= 5.0f * magnitude * dt;
+    }
+    
+    if (fabsf(_position - _targetPosition) < 0.02f) {
+        _position = _targetPosition;
+        _atTarget = true;
+    }
+}
+
 
 -(void)draw
 {

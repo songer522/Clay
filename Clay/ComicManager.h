@@ -35,6 +35,8 @@ typedef enum {
     NSString *_videoFileName;
 }
 
+@property(nonatomic,retain)GameLayer *gameLayer;
+
 +(id)instance;
 
 -(void)startComic:(NSString*)comic;

@@ -650,7 +650,6 @@
 		54484CE4140449B500D0D7D9 /* Clay */ = {
 			isa = PBXGroup;
 			children = (
-				54FBA23D1430D7D20010A91A /* Cocos2D-Extensions */,
 				5416A1B414195B5500648B6A /* Plists */,
 				54518F5614069B0C009D74AA /* Scenes */,
 				54518F641406AE38009D74AA /* Game */,
@@ -660,6 +659,7 @@
 				54484E3F140449B700D0D7D9 /* GameConfig.h */,
 				54484E39140449B700D0D7D9 /* RootViewController.h */,
 				54484E3A140449B700D0D7D9 /* RootViewController.m */,
+				54FBA23D1430D7D20010A91A /* Cocos2D-Extensions */,
 				54484CE5140449B500D0D7D9 /* Resources */,
 				54484CF9140449B500D0D7D9 /* libs */,
 				54484E32140449B700D0D7D9 /* Supporting Files */,
@@ -999,6 +999,8 @@
 		54518F5614069B0C009D74AA /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				54FBA2591430F94C0010A91A /* ComicLayer.h */,
+				54FBA25A1430F94C0010A91A /* ComicLayer.m */,
 				54FBA2561430EA120010A91A /* ComicManager.h */,
 				54FBA2571430EA120010A91A /* ComicManager.m */,
 				54484E3C140449B700D0D7D9 /* GameLayer.h */,
@@ -1009,8 +1011,6 @@
 				5443303E142A39F80008898E /* PauseMenuScreen.m */,
 				54FBA23A1430CE210010A91A /* VideoPlaybackScene.h */,
 				54FBA23B1430CE210010A91A /* VideoPlaybackScene.m */,
-				54FBA2591430F94C0010A91A /* ComicLayer.h */,
-				54FBA25A1430F94C0010A91A /* ComicLayer.m */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
