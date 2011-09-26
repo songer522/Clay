@@ -4,6 +4,8 @@
 <dict>
 	<key>level1</key>
 	<dict>
+		<key>postLevelComic</key>
+		<string>trackToFarm</string>
 		<key>worldType</key>
 		<string>realWorld</string>
 		<key>playerOffsetY</key>

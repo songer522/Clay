@@ -125,7 +125,7 @@
 
     
     _comicManager = [ComicManager instance];
-    [_comicManager startComic:@""];
+    [_comicManager startComic:@"trackToFarm"];
     
     
 	[[CCDirector sharedDirector] runWithScene: gameScene];

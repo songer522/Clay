@@ -23,12 +23,16 @@ typedef enum {
 
 @interface ComicManager : NSObject
 {
+    bool _isActive;
+    
     GameLayer *_gameLayer;
     VideoPlayer *_videoPlayer;
     NSDictionary *_videoList;
     ComicLayer *_comicLayer;
     
     ComicPhase _phase;
+    
+    NSString *_videoFileName;
 }
 
 +(id)instance;

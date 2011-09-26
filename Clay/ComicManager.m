@@ -12,6 +12,7 @@
 #import "LevelManager.h"
 #import "GameLayer.h"
 #import "GameController.h"
+#import "PListLoader.h"
 
 @implementation ComicManager
 
@@ -30,6 +31,10 @@
         
         _comicLayer = [ComicLayer instance];
         _comicLayer.parent = self;
+        
+        _isActive = false;
+        
+        _videoList = [[NSDictionary alloc] initWithDictionary:[PListLoader loadPlistWithName:@"comics"]];
     }
     
     return self;
@@ -37,31 +42,40 @@
 
 -(void)startComic:(NSString*)comic
 {
-    [_comicLayer startTransition:BLACKBOX_IN];
-    _gameLayer.gameController.isInputEnabled = false;
-    _phase = COMIC_PHASE_BARS_IN;
+    if (!_isActive) {
+        id result = [_videoList objectForKey:comic];
+        
+        NSAssert([result isKindOfClass:[NSString class]],@"Result is not a string or is null. Verify what you're asking for is in the plist.");
+
+        _videoFileName = result;
+        _isActive = true;
+        [_comicLayer startTransition:BLACKBOX_IN];
+        _gameLayer.gameController.isInputEnabled = false;
+        _phase = COMIC_PHASE_BARS_IN;
+    }
 }
 
 
 -(void)finishedAction
 {
-    switch (_phase) {
-        case COMIC_PHASE_BARS_IN:
-            //[_gameLayer onExit];
-            [[CCDirector sharedDirector] stopAnimation];
-            [_videoPlayer playMovie:@"bait.m4v"];
-            _phase = COMIC_PHASE_PLAY_VIDEO;
-            break;
-        case COMIC_PHASE_PLAY_VIDEO:
-            //[_gameLayer onEnter];
-            [[CCDirector sharedDirector] startAnimation];
-            [_comicLayer startTransition:BLACKBOX_OUT];
-            _phase = COMIC_PHASE_BARS_OUT;
-        case COMIC_PHASE_BARS_OUT:
-            _gameLayer.gameController.isInputEnabled = true;
-            _phase = COMIC_PHASE_PLAY_LEVEL;
-        default:
-            break;
+    if (_isActive) {
+        switch (_phase) {
+            case COMIC_PHASE_BARS_IN:
+                [_videoPlayer playMovie:_videoFileName];
+                [[CCDirector sharedDirector] stopAnimation];
+                _phase = COMIC_PHASE_PLAY_VIDEO;
+                break;
+            case COMIC_PHASE_PLAY_VIDEO:
+                [[CCDirector sharedDirector] startAnimation];
+                [_comicLayer startTransition:BLACKBOX_OUT];
+                _phase = COMIC_PHASE_BARS_OUT;
+            case COMIC_PHASE_BARS_OUT:
+                _gameLayer.gameController.isInputEnabled = true;
+                _phase = COMIC_PHASE_PLAY_LEVEL;
+                _isActive = false;
+            default:
+                break;
+        }        
     }
 }
 
