@@ -18,6 +18,7 @@
 @class GameController;
 @class SoundEngine;
 @class ParticleSystem;
+@class ComicLayer;
 
 // HelloWorldLayer
 @interface GameLayer : CCLayer
@@ -38,6 +39,8 @@
     Runner *_runner3;
     
     ParticleSystem *_dustTest;
+    
+    ComicLayer *_comicLayer;
     
 }
 

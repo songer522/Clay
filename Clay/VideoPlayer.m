@@ -20,6 +20,12 @@
     return self;
 }
 
++(id)instance
+{
+    return [[self alloc] init];
+}
+
+
 +(void)playMovie:(NSString*)url
 {
     MPMoviePlayerController *moviePlayer = [[MPMoviePlayerController alloc]

@@ -1,5 +1,5 @@
 //
-//  VideoPlayer.h
+//  LevelThread.h
 //  Clay
 //
 //  Created by Brian Cable on 9/26/11.
@@ -7,15 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <MediaPlayer/MediaPlayer.h>
 
-@interface VideoPlayer : NSObject
+@interface LevelThread : NSObject
 {
     
 }
 
-+(id)instance;
++(void)test:(id)param;
 
-+(void)playMovie:(NSString*)url;
 
 @end

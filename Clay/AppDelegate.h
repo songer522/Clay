@@ -11,12 +11,14 @@
 @class RootViewController;
 
 @class GameDebugLayer;
+@class ComicLayer;
 
 @interface AppDelegate : NSObject <UIApplicationDelegate> {
 	UIWindow			*window;
 	RootViewController	*viewController;
     CCScene             *gameScene;
     GameDebugLayer      *_debugLayer;
+    ComicLayer          *_comicLayer;
 
 }
 

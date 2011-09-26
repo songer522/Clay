@@ -16,6 +16,8 @@
 #import "RootViewController.h"
 #import "VideoPlayer.h"
 #import "CCVideoPlayer.h"
+#import "LevelThread.h"
+#import "ComicLayer.h"
 
 @implementation AppDelegate
 
@@ -122,7 +124,19 @@
     _debugLayer = [GameDebugLayer debugLayerForScene:[[LayerManager sharedLayers] currentScene] GameLayer:[[LayerManager sharedLayers] currentLayer]];
 
     
+    _comicLayer = [ComicLayer instance];
+    
+    
 	[[CCDirector sharedDirector] runWithScene: gameScene];
+    
+    /*
+    int x;
+    [NSThread detachNewThreadSelector:@selector(test:) toTarget:[LevelThread class] withObject:nil];     
+    
+    for (x=0; x<250; ++x) {
+        printf("Main thread says x is %i\n",x);
+        usleep(1);
+    }*/
 }
 
 

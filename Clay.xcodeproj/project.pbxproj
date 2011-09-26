@@ -193,6 +193,10 @@
 		54FBA2451430D9AC0010A91A /* CCVideoPlayerImpliOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 54FBA2411430D9AC0010A91A /* CCVideoPlayerImpliOS.m */; };
 		54FBA2491430DAAC0010A91A /* videoOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 54FBA2481430DAAC0010A91A /* videoOverlayView.m */; };
 		54FBA24B1430DDF30010A91A /* bait.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 54FBA24A1430DDF30010A91A /* bait.m4v */; };
+		54FBA2531430E5850010A91A /* LevelThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 54FBA2521430E5850010A91A /* LevelThread.m */; };
+		54FBA2551430E9630010A91A /* comics.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54FBA2541430E9630010A91A /* comics.plist */; };
+		54FBA2581430EA130010A91A /* ComicManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 54FBA2571430EA120010A91A /* ComicManager.m */; };
+		54FBA25B1430F94C0010A91A /* ComicLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 54FBA25A1430F94C0010A91A /* ComicLayer.m */; };
 		572DB81D141FF62D00DDC493 /* objects.plist in Resources */ = {isa = PBXBuildFile; fileRef = 572DB81C141FF62D00DDC493 /* objects.plist */; };
 		572DB821142000A400DDC493 /* GameObjectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 572DB820142000A400DDC493 /* GameObjectController.m */; };
 		572DB824142004D500DDC493 /* PListLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 572DB823142004D500DDC493 /* PListLoader.m */; };
@@ -538,6 +542,13 @@
 		54FBA2471430DAAC0010A91A /* videoOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = videoOverlayView.h; sourceTree = "<group>"; };
 		54FBA2481430DAAC0010A91A /* videoOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = videoOverlayView.m; sourceTree = "<group>"; };
 		54FBA24A1430DDF30010A91A /* bait.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = bait.m4v; sourceTree = "<group>"; };
+		54FBA2511430E5850010A91A /* LevelThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelThread.h; sourceTree = "<group>"; };
+		54FBA2521430E5850010A91A /* LevelThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelThread.m; sourceTree = "<group>"; };
+		54FBA2541430E9630010A91A /* comics.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = comics.plist; sourceTree = "<group>"; };
+		54FBA2561430EA120010A91A /* ComicManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComicManager.h; sourceTree = "<group>"; };
+		54FBA2571430EA120010A91A /* ComicManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComicManager.m; sourceTree = "<group>"; };
+		54FBA2591430F94C0010A91A /* ComicLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComicLayer.h; sourceTree = "<group>"; };
+		54FBA25A1430F94C0010A91A /* ComicLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComicLayer.m; sourceTree = "<group>"; };
 		572DB81C141FF62D00DDC493 /* objects.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = objects.plist; sourceTree = "<group>"; };
 		572DB81F142000A400DDC493 /* GameObjectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObjectController.h; sourceTree = "<group>"; };
 		572DB820142000A400DDC493 /* GameObjectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameObjectController.m; sourceTree = "<group>"; };
@@ -581,6 +592,7 @@
 				547472C914228C0A00B0B0B7 /* levels.plist */,
 				54A32B571429301F00A10727 /* player.plist */,
 				545CBC35142D267F00795FC9 /* sounds.plist */,
+				54FBA2541430E9630010A91A /* comics.plist */,
 			);
 			name = Plists;
 			sourceTree = "<group>";
@@ -604,8 +616,6 @@
 		54484CC5140449B500D0D7D9 = {
 			isa = PBXGroup;
 			children = (
-				54FBA2351430CBBE0010A91A /* MediaPlayer.framework */,
-				54179E2C142BC92300D3A79E /* GameKit.framework */,
 				54484CE4140449B500D0D7D9 /* Clay */,
 				54484CD3140449B500D0D7D9 /* Frameworks */,
 				54484CD1140449B500D0D7D9 /* Products */,
@@ -623,6 +633,8 @@
 		54484CD3140449B500D0D7D9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				54FBA2351430CBBE0010A91A /* MediaPlayer.framework */,
+				54179E2C142BC92300D3A79E /* GameKit.framework */,
 				54484CD4140449B500D0D7D9 /* QuartzCore.framework */,
 				54484CD6140449B500D0D7D9 /* OpenGLES.framework */,
 				54484CD8140449B500D0D7D9 /* OpenAL.framework */,
@@ -987,6 +999,8 @@
 		54518F5614069B0C009D74AA /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				54FBA2561430EA120010A91A /* ComicManager.h */,
+				54FBA2571430EA120010A91A /* ComicManager.m */,
 				54484E3C140449B700D0D7D9 /* GameLayer.h */,
 				54484E3D140449B700D0D7D9 /* GameLayer.m */,
 				54A3BFD51427C32A002E8D2D /* GameDebugLayer.h */,
@@ -995,6 +1009,8 @@
 				5443303E142A39F80008898E /* PauseMenuScreen.m */,
 				54FBA23A1430CE210010A91A /* VideoPlaybackScene.h */,
 				54FBA23B1430CE210010A91A /* VideoPlaybackScene.m */,
+				54FBA2591430F94C0010A91A /* ComicLayer.h */,
+				54FBA25A1430F94C0010A91A /* ComicLayer.m */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -1067,6 +1083,8 @@
 				54CA0B1F140D698B0038B3E1 /* RunningSpeed.m */,
 				547F09751428FA5400E5D920 /* SavePoint.h */,
 				547F09761428FA5400E5D920 /* SavePoint.m */,
+				54FBA2511430E5850010A91A /* LevelThread.h */,
+				54FBA2521430E5850010A91A /* LevelThread.m */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -1262,6 +1280,7 @@
 				545CBC31142D25BE00795FC9 /* footsteps.caf in Resources */,
 				545CBC36142D267F00795FC9 /* sounds.plist in Resources */,
 				54FBA24B1430DDF30010A91A /* bait.m4v in Resources */,
+				54FBA2551430E9630010A91A /* comics.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1405,6 +1424,9 @@
 				54FBA2441430D9AC0010A91A /* CCVideoPlayer.m in Sources */,
 				54FBA2451430D9AC0010A91A /* CCVideoPlayerImpliOS.m in Sources */,
 				54FBA2491430DAAC0010A91A /* videoOverlayView.m in Sources */,
+				54FBA2531430E5850010A91A /* LevelThread.m in Sources */,
+				54FBA2581430EA130010A91A /* ComicManager.m in Sources */,
+				54FBA25B1430F94C0010A91A /* ComicLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

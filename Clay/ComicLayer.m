@@ -1,42 +1,92 @@
 //
-//  ComicScene.m
+//  ComicLayer.m
 //  Clay
 //
-//  Created by Brian Cable on 9/2/11.
+//  Created by Brian Cable on 9/26/11.
 //  Copyright 2011 Xecudev, LLC. All rights reserved.
 //
 
 #import "ComicLayer.h"
+#import "LayerManager.h"
 
 @implementation ComicLayer
 
-- (id)init
++(id)instance
+{
+    return [[self alloc] init];
+}
+
+-(id) init
 {
     self = [super init];
     if (self) {
         // Initialization code here.
+        
+        [self scheduleUpdate];
+        [[[LayerManager sharedLayers] currentScene] addChild:self];
+        
+        self.isTouchEnabled = YES;
+        _transition = BLACKBOX_IDLE;
+        [self startTransition:BLACKBOX_IN]; 
+
     }
     
     return self;
 }
 
-
-+(CCScene *) scene
+-(void)startTransition:(BlackBoxTransition)transition
 {
-	// 'scene' is an autorelease object.
-	CCScene *scene = [CCScene node];
-	
-	// 'layer' is an autorelease object.
-	GameLayer *layer = [GameLayer node];
-	
-	// add layer as a child to scene
-	[scene addChild: layer];
-	
-	// return the scene
-	return scene;
+    _transition = transition;
+    if (transition == BLACKBOX_IN) {
+        _targetPosition = 35.0f;
+    } else {
+        _targetPosition = 0.0f;
+    }
 }
 
 
+-(void)update:(ccTime)dt
+{
+    if (_transition != BLACKBOX_IDLE) {
+        float dx = _targetPosition - _position;
+        float magnitude = sqrtf(dx * dx);
+        
+        
+        if (_transition == BLACKBOX_IN) {
+            _position += 5.0f * magnitude * dt;
+        } else {
+            _position -= 5.0f * magnitude * dt;
+        }
+        
+        if (fabsf(_position - _targetPosition) < 0.02f) {
+            _position = _targetPosition;
+        }
+    }
+}
+
+-(void)draw
+{
+    float scale = [[UIScreen mainScreen] scale];
+    [self ccDrawFilledRectFrom:ccp(0,0) To:ccp(960,_position * scale)];
+    [self ccDrawFilledRectFrom:ccp(0,640) To:ccp(960,(320.0f - _position) * scale)];
+}
+
+-(void) ccDrawFilledRectFrom:(CGPoint)v1 To:(CGPoint)v2
+{
+    CGPoint poli[] = {v1, CGPointMake(v1.x,v2.y),v2,CGPointMake(v2.x,v1.y)};
+    
+    glColor4ub(0, 0, 0, 255);
+    glDisable(GL_TEXTURE_2D);
+    glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+    glDisableClientState(GL_COLOR_ARRAY);
+    
+    glVertexPointer(2, GL_FLOAT, 0, poli);
+    glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+    
+    glEnableClientState(GL_COLOR_ARRAY);
+    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+    glEnable(GL_TEXTURE_2D);
+}
 
 
 

@@ -15,6 +15,8 @@
 
 #import "GameCenter.h"
 
+#import "ComicLayer.h"
+
 // HelloWorldLayer implementation
 @implementation GameLayer
 
@@ -69,6 +71,8 @@
         //[ParticleSystem testLimits];
         
         self.isTouchEnabled = YES;
+        
+        _comicLayer = [[ComicLayer alloc] init];
         
 	}
 	return self;

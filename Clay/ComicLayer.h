@@ -1,25 +1,33 @@
 //
-//  ComicScene.h
+//  ComicLayer.h
 //  Clay
 //
-//  Created by Brian Cable on 9/2/11.
+//  Created by Brian Cable on 9/26/11.
 //  Copyright 2011 Xecudev, LLC. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "cocos2d.h"
-#import "CCTMXTiledMap.h"
-#import "CCTMXLayer.h"
 
-@interface ComicLayer : CCScene
+#import "CCLayer.h"
+#import "cocos2d.h"
+
+typedef enum {
+    BLACKBOX_IN = 1,
+    BLACKBOX_OUT = -1,
+    BLACKBOX_IDLE = 0
+}BlackBoxTransition;
+
+@interface ComicLayer : CCLayer
 {
-    CCTMXTiledMap *_tileMap;
-    CCTMXLayer *_background;
+    float _position;
+    float _targetPosition;
+    
+    BlackBoxTransition _transition;
 }
 
-+(CCScene *) scene; //create and return a Cocos2D scene
++(id)instance;
 
-@property (nonatomic,retain) CCTMXTiledMap *tileMap;
-@property (nonatomic,retain) CCTMXLayer *background;
+-(void) ccDrawFilledRectFrom:(CGPoint)v1 To:(CGPoint)v2;
+-(void)startTransition:(BlackBoxTransition)transition;
 
 @end
