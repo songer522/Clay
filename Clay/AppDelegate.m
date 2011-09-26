@@ -14,6 +14,8 @@
 #import "GameDebugLayer.h"
 #import "LayerManager.h"
 #import "RootViewController.h"
+#import "VideoPlayer.h"
+#import "CCVideoPlayer.h"
 
 @implementation AppDelegate
 
@@ -68,6 +70,8 @@
 								   depthFormat:0						// GL_DEPTH_COMPONENT16_OES
 						];
 	
+    glView.opaque = NO;
+    
 	// attach the openglView to the director
 	[director setOpenGLView:glView];
 	
@@ -119,6 +123,9 @@
 
     
 	[[CCDirector sharedDirector] runWithScene: gameScene];
+    [[CCDirector sharedDirector] stopAnimation];
+    //[VideoPlayer playMovie:@"http://www.yo-yo.org/mp4/yu.mp4"];
+    [CCVideoPlayer playMovieWithFile:@"bait.m4v"];
 }
 
 

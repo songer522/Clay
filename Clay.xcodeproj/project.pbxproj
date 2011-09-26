@@ -186,6 +186,13 @@
 		54DDF8251423A67300631A41 /* CollisionDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = 54DDF8241423A67300631A41 /* CollisionDetection.m */; };
 		54E0CE81141FC0A6005BFD5C /* hurdle.png in Resources */ = {isa = PBXBuildFile; fileRef = 54E0CE80141FC0A6005BFD5C /* hurdle.png */; };
 		54E274B2142BE0D50030EE0B /* ParticleSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E274B1142BE0D50030EE0B /* ParticleSystem.m */; };
+		54FBA2331430CA5D0010A91A /* VideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 54FBA2321430CA5D0010A91A /* VideoPlayer.m */; };
+		54FBA2361430CBBE0010A91A /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54FBA2351430CBBE0010A91A /* MediaPlayer.framework */; };
+		54FBA23C1430CE210010A91A /* VideoPlaybackScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 54FBA23B1430CE210010A91A /* VideoPlaybackScene.m */; };
+		54FBA2441430D9AC0010A91A /* CCVideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 54FBA23F1430D9AC0010A91A /* CCVideoPlayer.m */; };
+		54FBA2451430D9AC0010A91A /* CCVideoPlayerImpliOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 54FBA2411430D9AC0010A91A /* CCVideoPlayerImpliOS.m */; };
+		54FBA2491430DAAC0010A91A /* videoOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 54FBA2481430DAAC0010A91A /* videoOverlayView.m */; };
+		54FBA24B1430DDF30010A91A /* bait.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 54FBA24A1430DDF30010A91A /* bait.m4v */; };
 		572DB81D141FF62D00DDC493 /* objects.plist in Resources */ = {isa = PBXBuildFile; fileRef = 572DB81C141FF62D00DDC493 /* objects.plist */; };
 		572DB821142000A400DDC493 /* GameObjectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 572DB820142000A400DDC493 /* GameObjectController.m */; };
 		572DB824142004D500DDC493 /* PListLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 572DB823142004D500DDC493 /* PListLoader.m */; };
@@ -519,6 +526,18 @@
 		54E0CE80141FC0A6005BFD5C /* hurdle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hurdle.png; sourceTree = "<group>"; };
 		54E274B0142BE0D50030EE0B /* ParticleSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticleSystem.h; sourceTree = "<group>"; };
 		54E274B1142BE0D50030EE0B /* ParticleSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticleSystem.m; sourceTree = "<group>"; };
+		54FBA2311430CA5D0010A91A /* VideoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayer.h; sourceTree = "<group>"; };
+		54FBA2321430CA5D0010A91A /* VideoPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayer.m; sourceTree = "<group>"; };
+		54FBA2351430CBBE0010A91A /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		54FBA23A1430CE210010A91A /* VideoPlaybackScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlaybackScene.h; sourceTree = "<group>"; };
+		54FBA23B1430CE210010A91A /* VideoPlaybackScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlaybackScene.m; sourceTree = "<group>"; };
+		54FBA23E1430D9AC0010A91A /* CCVideoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCVideoPlayer.h; sourceTree = "<group>"; };
+		54FBA23F1430D9AC0010A91A /* CCVideoPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCVideoPlayer.m; sourceTree = "<group>"; };
+		54FBA2401430D9AC0010A91A /* CCVideoPlayerImpliOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCVideoPlayerImpliOS.h; sourceTree = "<group>"; };
+		54FBA2411430D9AC0010A91A /* CCVideoPlayerImpliOS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCVideoPlayerImpliOS.m; sourceTree = "<group>"; };
+		54FBA2471430DAAC0010A91A /* videoOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = videoOverlayView.h; sourceTree = "<group>"; };
+		54FBA2481430DAAC0010A91A /* videoOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = videoOverlayView.m; sourceTree = "<group>"; };
+		54FBA24A1430DDF30010A91A /* bait.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = bait.m4v; sourceTree = "<group>"; };
 		572DB81C141FF62D00DDC493 /* objects.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = objects.plist; sourceTree = "<group>"; };
 		572DB81F142000A400DDC493 /* GameObjectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObjectController.h; sourceTree = "<group>"; };
 		572DB820142000A400DDC493 /* GameObjectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameObjectController.m; sourceTree = "<group>"; };
@@ -531,6 +550,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54FBA2361430CBBE0010A91A /* MediaPlayer.framework in Frameworks */,
 				54179E2D142BC92400D3A79E /* GameKit.framework in Frameworks */,
 				54484CD5140449B500D0D7D9 /* QuartzCore.framework in Frameworks */,
 				54484CD7140449B500D0D7D9 /* OpenGLES.framework in Frameworks */,
@@ -584,6 +604,7 @@
 		54484CC5140449B500D0D7D9 = {
 			isa = PBXGroup;
 			children = (
+				54FBA2351430CBBE0010A91A /* MediaPlayer.framework */,
 				54179E2C142BC92300D3A79E /* GameKit.framework */,
 				54484CE4140449B500D0D7D9 /* Clay */,
 				54484CD3140449B500D0D7D9 /* Frameworks */,
@@ -617,6 +638,7 @@
 		54484CE4140449B500D0D7D9 /* Clay */ = {
 			isa = PBXGroup;
 			children = (
+				54FBA23D1430D7D20010A91A /* Cocos2D-Extensions */,
 				5416A1B414195B5500648B6A /* Plists */,
 				54518F5614069B0C009D74AA /* Scenes */,
 				54518F641406AE38009D74AA /* Game */,
@@ -636,8 +658,8 @@
 		54484CE5140449B500D0D7D9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				54FBA24C1430E1ED0010A91A /* videos */,
 				545CBC2F142D25AB00795FC9 /* sounds */,
-				54090E1F142CCE6700FC3ABE /* ball.png */,
 				54090E1D142CCE2C00FC3ABE /* particles */,
 				543C09601420F3CF00F259BA /* app artwork */,
 				54BE176F141EBB7200A3D773 /* objects */,
@@ -645,6 +667,7 @@
 				548C3DBB141ABDBB000567A8 /* levels */,
 				549969181416749900CB7800 /* test */,
 				54484CE8140449B500D0D7D9 /* fps_images.png */,
+				54090E1F142CCE6700FC3ABE /* ball.png */,
 				54484CF6140449B500D0D7D9 /* Info.plist */,
 			);
 			name = Resources;
@@ -970,6 +993,8 @@
 				54A3BFD61427C32A002E8D2D /* GameDebugLayer.m */,
 				5443303D142A39F80008898E /* PauseMenuScreen.h */,
 				5443303E142A39F80008898E /* PauseMenuScreen.m */,
+				54FBA23A1430CE210010A91A /* VideoPlaybackScene.h */,
+				54FBA23B1430CE210010A91A /* VideoPlaybackScene.m */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -1019,6 +1044,8 @@
 				54E274B1142BE0D50030EE0B /* ParticleSystem.m */,
 				545CBC32142D260B00795FC9 /* SoundEngine.h */,
 				545CBC33142D260B00795FC9 /* SoundEngine.m */,
+				54FBA2311430CA5D0010A91A /* VideoPlayer.h */,
+				54FBA2321430CA5D0010A91A /* VideoPlayer.m */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -1118,6 +1145,27 @@
 			path = Resources/objects;
 			sourceTree = "<group>";
 		};
+		54FBA23D1430D7D20010A91A /* Cocos2D-Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				54FBA2471430DAAC0010A91A /* videoOverlayView.h */,
+				54FBA2481430DAAC0010A91A /* videoOverlayView.m */,
+				54FBA23E1430D9AC0010A91A /* CCVideoPlayer.h */,
+				54FBA23F1430D9AC0010A91A /* CCVideoPlayer.m */,
+				54FBA2401430D9AC0010A91A /* CCVideoPlayerImpliOS.h */,
+				54FBA2411430D9AC0010A91A /* CCVideoPlayerImpliOS.m */,
+			);
+			name = "Cocos2D-Extensions";
+			sourceTree = "<group>";
+		};
+		54FBA24C1430E1ED0010A91A /* videos */ = {
+			isa = PBXGroup;
+			children = (
+				54FBA24A1430DDF30010A91A /* bait.m4v */,
+			);
+			name = videos;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1213,6 +1261,7 @@
 				54090E20142CCE6700FC3ABE /* ball.png in Resources */,
 				545CBC31142D25BE00795FC9 /* footsteps.caf in Resources */,
 				545CBC36142D267F00795FC9 /* sounds.plist in Resources */,
+				54FBA24B1430DDF30010A91A /* bait.m4v in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1351,6 +1400,11 @@
 				54E274B2142BE0D50030EE0B /* ParticleSystem.m in Sources */,
 				545CBC2A142D084D00795FC9 /* Particle.m in Sources */,
 				545CBC34142D260B00795FC9 /* SoundEngine.m in Sources */,
+				54FBA2331430CA5D0010A91A /* VideoPlayer.m in Sources */,
+				54FBA23C1430CE210010A91A /* VideoPlaybackScene.m in Sources */,
+				54FBA2441430D9AC0010A91A /* CCVideoPlayer.m in Sources */,
+				54FBA2451430D9AC0010A91A /* CCVideoPlayerImpliOS.m in Sources */,
+				54FBA2491430DAAC0010A91A /* videoOverlayView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

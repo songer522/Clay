@@ -181,7 +181,8 @@ static CCDirector *_sharedDirector = nil;
 	[self setProjection: projection_];
 	
 	// set other opengl default values
-	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    //XECUDEV: changed to 0.0f alpha to support video playback per http://stackoverflow.com/questions/4454758/cocos2d-playing-a-video-in-the-background-of-a-menu/4479700#4479700
+	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	
 #if CC_DIRECTOR_FAST_FPS
     if (!FPSLabel_) {
