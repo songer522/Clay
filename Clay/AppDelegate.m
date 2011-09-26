@@ -123,9 +123,6 @@
 
     
 	[[CCDirector sharedDirector] runWithScene: gameScene];
-    [[CCDirector sharedDirector] stopAnimation];
-    //[VideoPlayer playMovie:@"http://www.yo-yo.org/mp4/yu.mp4"];
-    [CCVideoPlayer playMovieWithFile:@"bait.m4v"];
 }
 
 
