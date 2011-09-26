@@ -11,6 +11,8 @@
 #import "CCLayer.h"
 #import "cocos2d.h"
 
+@class ComicManager;
+
 typedef enum {
     BLACKBOX_IN = 1,
     BLACKBOX_OUT = -1,
@@ -21,9 +23,16 @@ typedef enum {
 {
     float _position;
     float _targetPosition;
+    float _timeToWait;
+    bool _atTarget;
+    
+    ComicManager *_parent;
     
     BlackBoxTransition _transition;
 }
+
+@property (nonatomic,retain) ComicManager *parent;
+
 
 +(id)instance;
 

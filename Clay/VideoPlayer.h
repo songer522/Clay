@@ -7,15 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CCVideoPlayer.h"
 #import <MediaPlayer/MediaPlayer.h>
 
-@interface VideoPlayer : NSObject
+@class ComicManager;
+
+@interface VideoPlayer : NSObject <CCVideoPlayerDelegate>
 {
-    
+    ComicManager *_parent;
 }
+
+@property(nonatomic,retain) ComicManager *parent;
 
 +(id)instance;
 
-+(void)playMovie:(NSString*)url;
++(void)playMovie:(NSString*)file;
+-(void)playMovie:(NSString*)file;
 
 @end

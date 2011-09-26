@@ -29,10 +29,12 @@ typedef enum {
     PauseMenuScreen *_pauseMenu;
     
     bool _isPaused;
+    bool _isInputEnabled;
 }
 
 @property(nonatomic,retain) GameLayer *layer;
 @property(readonly,nonatomic,assign) bool isPaused;
+@property(nonatomic,assign) bool isInputEnabled;
 
 +(id)gameController;
 

@@ -7,9 +7,12 @@
 //
 
 #import "ComicLayer.h"
+#import "ComicManager.h"
 #import "LayerManager.h"
 
 @implementation ComicLayer
+
+@synthesize parent = _parent;
 
 +(id)instance
 {
@@ -27,8 +30,8 @@
         
         self.isTouchEnabled = YES;
         _transition = BLACKBOX_IDLE;
-        [self startTransition:BLACKBOX_IN]; 
-
+        _targetPosition = 0.0f;
+        _atTarget = false;
     }
     
     return self;
@@ -42,24 +45,37 @@
     } else {
         _targetPosition = 0.0f;
     }
+    _timeToWait = 2.0f;
+    _atTarget = false;
 }
+
+
+
 
 
 -(void)update:(ccTime)dt
 {
     if (_transition != BLACKBOX_IDLE) {
-        float dx = _targetPosition - _position;
-        float magnitude = sqrtf(dx * dx);
-        
-        
-        if (_transition == BLACKBOX_IN) {
-            _position += 5.0f * magnitude * dt;
+        if (!_atTarget) {        
+            float dx = _targetPosition - _position;
+            float magnitude = sqrtf(dx * dx);
+            
+            
+            if (_transition == BLACKBOX_IN) {
+                _position += 5.0f * magnitude * dt;
+            } else {
+                _position -= 5.0f * magnitude * dt;
+            }
+            
+            if (fabsf(_position - _targetPosition) < 0.02f) {
+                _position = _targetPosition;
+                _atTarget = true;
+            }
         } else {
-            _position -= 5.0f * magnitude * dt;
-        }
-        
-        if (fabsf(_position - _targetPosition) < 0.02f) {
-            _position = _targetPosition;
+            _timeToWait -= dt;
+            if (_timeToWait<=0.0f) {
+                [_parent finishedAction];
+            }
         }
     }
 }

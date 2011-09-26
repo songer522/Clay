@@ -16,6 +16,7 @@
 
 @synthesize layer = _gameLayer;
 @synthesize isPaused = _isPaused;
+@synthesize isInputEnabled = _isInputEnabled;
 
 - (id)init
 {
@@ -24,6 +25,7 @@
         // Initialization code here.
         [self changeGameState:GAMESTATE_INITIALIZE];
         _isPaused = false;
+        _isInputEnabled = true;
     }
     
     return self;
@@ -57,21 +59,25 @@
 
 -(void)reactToTouchAt:(CGPoint)location
 {
-    if (location.x > 400 && location.y > 270) {
-        [self pauseGame];
-    } else if(location.x < 80 && location.y > 270) {
-        [[LevelManager shared] loadNextLevel];
-    } else if(!_isPaused) {
-        if (location.x < 240) {
-            if (!_gameLayer.player.isJumping) {
-                [_gameLayer.player startJump:JUMP_MEDIUM];
+    //guard
+    if (_isInputEnabled) {
+        if (location.x > 400 && location.y > 270) {
+            [self pauseGame];
+        } else if(location.x < 80 && location.y > 270) {
+            [[LevelManager shared] loadNextLevel];
+        } else if(!_isPaused) {
+            if (location.x < 240) {
+                if (!_gameLayer.player.isJumping) {
+                    [_gameLayer.player startJump:JUMP_MEDIUM];
+                }
+            } else {
+                if(![_gameLayer.player getIsTurbo]) {
+                    [_gameLayer.player startTurbo];
+                }
             }
-        } else {
-            if(![_gameLayer.player getIsTurbo]) {
-                [_gameLayer.player startTurbo];
-            }
-        }
+        }        
     }
+    
 }
 
 -(void)setGameLayer:(GameLayer*)gameLayer

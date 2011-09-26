@@ -11,17 +11,31 @@
 
 @class VideoPlayer;
 @class ComicLayer;
+@class GameLayer;
+
+typedef enum {
+    COMIC_PHASE_BARS_IN,
+    COMIC_PHASE_PLAY_VIDEO,
+    COMIC_PHASE_LOAD_LEVEL,
+    COMIC_PHASE_BARS_OUT,
+    COMIC_PHASE_PLAY_LEVEL
+}ComicPhase;
 
 @interface ComicManager : NSObject
 {
+    GameLayer *_gameLayer;
     VideoPlayer *_videoPlayer;
     NSDictionary *_videoList;
     ComicLayer *_comicLayer;
+    
+    ComicPhase _phase;
 }
+
++(id)instance;
 
 -(void)startComic:(NSString*)comic;
 
-
+-(void)finishedAction;
 
 @end
  

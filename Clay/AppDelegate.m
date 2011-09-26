@@ -17,7 +17,7 @@
 #import "VideoPlayer.h"
 #import "CCVideoPlayer.h"
 #import "LevelThread.h"
-#import "ComicLayer.h"
+#import "ComicManager.h"
 
 @implementation AppDelegate
 
@@ -124,7 +124,8 @@
     _debugLayer = [GameDebugLayer debugLayerForScene:[[LayerManager sharedLayers] currentScene] GameLayer:[[LayerManager sharedLayers] currentLayer]];
 
     
-    _comicLayer = [ComicLayer instance];
+    _comicManager = [ComicManager instance];
+    [_comicManager startComic:@""];
     
     
 	[[CCDirector sharedDirector] runWithScene: gameScene];

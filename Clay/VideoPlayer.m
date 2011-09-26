@@ -7,8 +7,12 @@
 //
 
 #import "VideoPlayer.h"
+#import "ComicManager.h"
+#import "CCVideoPlayer.h"
 
 @implementation VideoPlayer
+
+@synthesize parent = _parent;
 
 - (id)init
 {
@@ -26,11 +30,27 @@
 }
 
 
-+(void)playMovie:(NSString*)url
++(void)playMovie:(NSString*)file
 {
-    MPMoviePlayerController *moviePlayer = [[MPMoviePlayerController alloc]
-                                      initWithContentURL:[NSURL URLWithString:url]];
-    [moviePlayer play];
+    [self playMovie:file];
 }
+
+-(void)playMovie:(NSString*)file
+{
+    [CCVideoPlayer setDelegate:self];
+    [CCVideoPlayer setNoSkip:true];
+    [CCVideoPlayer playMovieWithFile:file];
+}
+
+-(void)moviePlaybackFinished
+{
+    [_parent finishedAction];
+}
+
+-(void)movieStartsPlaying
+{
+    
+}
+
 
 @end
