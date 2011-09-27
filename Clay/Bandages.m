@@ -10,7 +10,7 @@
 #import "BaseClasses.h"
 #import "Player.h"
 
-#define N(x) [NSNumber numberWithInt: x]
+#define N(x) [NSNumber numberWithFloat: x]
 
 @implementation Bandages
 
@@ -25,7 +25,7 @@
     if (self) {
         // Initialization code here.
         sprite = [Sprite spriteWithFile:@"character_health.png"];
-        offsetYWhenRunning = [[NSArray alloc] initWithObjects:N(0),N(-1),N(0),N(-1),N(-2),N(0),N(2),N(0),N(-1),N(-1), nil];
+        offsetYWhenRunning = [[NSArray alloc] initWithObjects:N(0),N(1),N(0),N(-1),N(-2),N(0),N(2),N(0),N(-1),N(-1), nil];
         [self setFrame:1];
     }
     
@@ -42,7 +42,8 @@
 -(void)update:(float)dt Player:(Player*)player
 {
     int frameNumber = [player.sprite getCurrentFrameNumber];
-    float offsetY = [[offsetYWhenRunning objectAtIndex:frameNumber] floatValue] / 2;
+    float offsetY = [[offsetYWhenRunning objectAtIndex:frameNumber] floatValue] / 2.0f;
+    NSLog(@"Frame: %d, OffsetY: %f",frameNumber, offsetY);
     [sprite setPositionAtX:player.x + 37 Y:player.y + offsetY];
     //NSLog(@"Frame: %d",frameNumber);
 }
