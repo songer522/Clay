@@ -8,12 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
+@class SimpleAudioEngine;
+
 @interface SoundEngine : NSObject
 {
-    
+    SimpleAudioEngine *_audioEngine;
+    NSDictionary *_soundMap;
+    NSDictionary *_musicMap;
 }
-+(id)instance;
-+(void) playSound:(NSString*)sound;
++(SoundEngine*)shared;
 
+
+-(void)playMusic:(NSString*)music;
+-(void)playSound:(NSString*)sound;
+-(void)preloadAudio;
 
 @end

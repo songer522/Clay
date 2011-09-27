@@ -107,7 +107,7 @@
             float x = _x + 70.0f;
             float y = _y - 45.0f;
             [_particleSystem addDustImpactAtPosition:CGPointMake(x, y)];
-            [SoundEngine playSound:@"Footstep.wav"];
+            [[SoundEngine shared] playSound:@"jumpLand"];
         }
 
         _jumpAcceleration = 0;
@@ -128,13 +128,13 @@
     [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"jumpingAnim"];
     [[self getCollision] processNewCollisionState:COLLISION_STATE_MIDAIR];
     [self setPositionAtX:_x Y:_y];
-    [SoundEngine playSound:@"Jump1.wav"];
+    [[SoundEngine shared] playSound:@"jumpStart"];
 }
 
 -(void)startTurbo
 {
     [_speed startTurbo];
-    [SoundEngine playSound:@"Supercharge.wav"];
+    [[SoundEngine shared] playSound:@"turboStart"];
 }
 
 -(bool)getIsTurbo {
@@ -147,9 +147,9 @@
     hitPoints -= 1;
     if (hitPoints <=0) {
         _isDead = true;
-        [SoundEngine playSound:@"UhOh.wav"];
+        [[SoundEngine shared] playSound:@"dead"];
     } else {
-        [SoundEngine playSound:@"HurdleCollision.wav"];
+        [[SoundEngine shared] playSound:@"collision"];
     }
     
     [_bandages setFrame:(2 - hitPoints)];  

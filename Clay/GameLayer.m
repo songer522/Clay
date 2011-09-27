@@ -46,7 +46,8 @@
 	if( (self=[super init])) {
         [[CCDirector sharedDirector] setProjection:CCDirectorProjection2D];
         
-        _soundEngine = [SoundEngine instance];
+        [[SoundEngine shared] preloadAudio];
+        [[SoundEngine shared] playMusic:@"track"];
         
         _gameController = [GameController gameController];
         [_gameController setGameLayer:self];

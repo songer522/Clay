@@ -8,39 +8,70 @@
 
 #import "SoundEngine.h"
 #import "SimpleAudioEngine.h"
+#import "PListLoader.h"
 
 @implementation SoundEngine
+
+static SoundEngine *_shared = nil;
+
++(SoundEngine*)shared
+{
+	if (!_shared) {
+        _shared = [[self alloc] init];
+	}
+	return _shared;
+}
 
 - (id)init
 {
     self = [super init];
     if (self) {
         // Initialization code here.
-        [[SimpleAudioEngine sharedEngine] preloadEffect:@"footsteps.caf"];
-        [[SimpleAudioEngine sharedEngine] preloadEffect:@"Footstep.wav"];
-        [[SimpleAudioEngine sharedEngine] preloadEffect:@"Craziness.wav"];
-        [[SimpleAudioEngine sharedEngine] preloadEffect:@"HurdleCollision.wav"];
-        [[SimpleAudioEngine sharedEngine] preloadEffect:@"Jump1.wav"];
-        [[SimpleAudioEngine sharedEngine] preloadEffect:@"Jump2.wav"];
-        [[SimpleAudioEngine sharedEngine] preloadEffect:@"Noooo.wav"];
-        [[SimpleAudioEngine sharedEngine] preloadEffect:@"Supercharge.wav"];
-        [[SimpleAudioEngine sharedEngine] preloadEffect:@"UhOh.wav"];
-        //[[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"rock_bkg.caf"];
-        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"rock_bkg.caf"];
-        [CDAudioManager sharedManager].backgroundMusic.volume = 1.0f;
+        
+        _audioEngine = [SimpleAudioEngine sharedEngine];
+        //_audioEngine.mute = true;
+        
+        _soundMap = [[NSDictionary alloc] initWithDictionary:[PListLoader loadPlistWithName:@"sounds"]];
+        _musicMap = [[NSDictionary alloc] initWithDictionary:[PListLoader loadPlistWithName:@"music"]];
     }
     
     return self;
 }
 
-+(id)instance
+-(void)preloadAudio
 {
-    return [[self alloc] init];
+    
+    NSEnumerator *enumerator = [_soundMap keyEnumerator];
+    id key;
+    while ((key = [enumerator nextObject])) {
+        NSString *filename = [_soundMap objectForKey:key];
+        [_audioEngine preloadEffect:filename];
+    }
+    
+    enumerator = [_musicMap keyEnumerator];
+    
+    while ((key = [enumerator nextObject])) {
+        NSString *filename = [_musicMap objectForKey:key];
+        [_audioEngine preloadBackgroundMusic:filename];
+    }
 }
 
-+(void) playSound:(NSString*)sound
+-(void) playSound:(NSString*)sound
 {
-    [[SimpleAudioEngine sharedEngine] playEffect:sound];
+    NSString *filename = [_soundMap objectForKey:sound];
+    
+    NSAssert(filename!=nil,@"Requested sound not in dictionary. Double-check sounds.plist");
+    
+    [[SimpleAudioEngine sharedEngine] playEffect:filename];
+}
+
+-(void) playMusic:(NSString*)music
+{
+    NSString *filename = [_musicMap objectForKey:music];
+    
+    NSAssert(filename!=nil,@"Requested music file not in dictionary. Double-check music.plist");
+    
+    [[SimpleAudioEngine sharedEngine] playBackgroundMusic:filename];
 }
 
 @end

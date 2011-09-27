@@ -2,7 +2,15 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>footstep</key>
-	<string>footstep.caf</string>
+	<key>jumpLand</key>
+	<string>Footstep.wav</string>
+	<key>turboStart</key>
+	<string>Supercharge.wav</string>
+	<key>dead</key>
+	<string>UhOh.wav</string>
+	<key>collision</key>
+	<string>HurdleCollision.wav</string>
+	<key>jumpStart</key>
+	<string>Jump1.wav</string>
 </dict>
 </plist>

@@ -33,8 +33,6 @@
     
     SavePoint *_savePoint;
     
-    SoundEngine *_soundEngine;
-    
     Runner *_runner2;
     Runner *_runner3;
     
