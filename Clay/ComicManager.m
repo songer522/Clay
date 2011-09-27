@@ -44,6 +44,11 @@
 
 -(void)startComic:(NSString*)comic
 {
+    [self startComic:comic StartPhase:COMIC_PHASE_BARS_IN];
+}
+
+-(void)startComic:(NSString*)comic StartPhase:(ComicPhase)phase
+{
     if (!_isActive) {
         id result = [_videoList objectForKey:comic];
         
@@ -51,32 +56,52 @@
 
         _videoFileName = result;
         _isActive = true;
-        [_comicLayer startTransition:BLACKBOX_IN];
         
-        _gameLayer.gameController.isInputEnabled = false;
-        _phase = COMIC_PHASE_BARS_IN;
+        [self switchToPhase:phase];
     }
 }
 
+-(void)switchToPhase:(ComicPhase)phase
+{
+    _phase = phase;
+    if (_isActive) {
+        switch (phase) {
+            case COMIC_PHASE_BARS_IN:
+                [_comicLayer startTransition:BLACKBOX_IN];
+                _gameLayer.gameController.isInputEnabled = false;
+                break;
+            case COMIC_PHASE_PLAY_VIDEO:
+                [_videoPlayer playMovie:_videoFileName];
+                [[CCDirector sharedDirector] stopAnimation];
+                break;
+            case COMIC_PHASE_BARS_OUT:
+                [[CCDirector sharedDirector] startAnimation];
+                [_comicLayer startTransition:BLACKBOX_OUT];
+                _gameLayer.gameController.isInputEnabled = false;
+                break;
+            case COMIC_PHASE_PLAY_LEVEL:
+                _gameLayer.gameController.isInputEnabled = true;
+                _phase = COMIC_PHASE_PLAY_LEVEL;
+                _isActive = false;
+                break;
+            default:
+                break;
+        }
+    }
+}
 
 -(void)finishedAction
 {
     if (_isActive) {
         switch (_phase) {
             case COMIC_PHASE_BARS_IN:
-                [_videoPlayer playMovie:_videoFileName];
-                [[CCDirector sharedDirector] stopAnimation];
-                _phase = COMIC_PHASE_PLAY_VIDEO;
+                [self switchToPhase:COMIC_PHASE_PLAY_VIDEO];
                 break;
             case COMIC_PHASE_PLAY_VIDEO:
-                [[CCDirector sharedDirector] startAnimation];
-                [_comicLayer startTransition:BLACKBOX_OUT];
-                _gameLayer.gameController.isInputEnabled = false;
-                _phase = COMIC_PHASE_BARS_OUT;
+                [self switchToPhase:COMIC_PHASE_BARS_OUT];
+                break;
             case COMIC_PHASE_BARS_OUT:
-                _gameLayer.gameController.isInputEnabled = true;
-                _phase = COMIC_PHASE_PLAY_LEVEL;
-                _isActive = false;
+                [self switchToPhase:COMIC_PHASE_PLAY_LEVEL];
             default:
                 break;
         }        

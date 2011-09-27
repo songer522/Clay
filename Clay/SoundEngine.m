@@ -17,6 +17,17 @@
     if (self) {
         // Initialization code here.
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"footsteps.caf"];
+        [[SimpleAudioEngine sharedEngine] preloadEffect:@"Footstep.wav"];
+        [[SimpleAudioEngine sharedEngine] preloadEffect:@"Craziness.wav"];
+        [[SimpleAudioEngine sharedEngine] preloadEffect:@"HurdleCollision.wav"];
+        [[SimpleAudioEngine sharedEngine] preloadEffect:@"Jump1.wav"];
+        [[SimpleAudioEngine sharedEngine] preloadEffect:@"Jump2.wav"];
+        [[SimpleAudioEngine sharedEngine] preloadEffect:@"Noooo.wav"];
+        [[SimpleAudioEngine sharedEngine] preloadEffect:@"Supercharge.wav"];
+        [[SimpleAudioEngine sharedEngine] preloadEffect:@"UhOh.wav"];
+        //[[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"rock_bkg.caf"];
+        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"rock_bkg.caf"];
+        [CDAudioManager sharedManager].backgroundMusic.volume = 1.0f;
     }
     
     return self;

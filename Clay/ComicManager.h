@@ -40,6 +40,8 @@ typedef enum {
 +(id)instance;
 
 -(void)startComic:(NSString*)comic;
+-(void)startComic:(NSString*)comic StartPhase:(ComicPhase)phase;
+-(void)switchToPhase:(ComicPhase)phase;
 
 -(void)finishedAction;
 

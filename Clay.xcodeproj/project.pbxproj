@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		54090E20142CCE6700FC3ABE /* ball.png in Resources */ = {isa = PBXBuildFile; fileRef = 54090E1F142CCE6700FC3ABE /* ball.png */; };
+		54133A0114321CB300E433FC /* Craziness.wav in Resources */ = {isa = PBXBuildFile; fileRef = 541339F914321CB300E433FC /* Craziness.wav */; };
+		54133A0214321CB300E433FC /* Footstep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 541339FA14321CB300E433FC /* Footstep.wav */; };
+		54133A0314321CB300E433FC /* HurdleCollision.wav in Resources */ = {isa = PBXBuildFile; fileRef = 541339FB14321CB300E433FC /* HurdleCollision.wav */; };
+		54133A0414321CB300E433FC /* Jump1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 541339FC14321CB300E433FC /* Jump1.wav */; };
+		54133A0514321CB300E433FC /* Jump2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 541339FD14321CB300E433FC /* Jump2.wav */; };
+		54133A0614321CB300E433FC /* Noooo.wav in Resources */ = {isa = PBXBuildFile; fileRef = 541339FE14321CB300E433FC /* Noooo.wav */; };
+		54133A0714321CB300E433FC /* Supercharge.wav in Resources */ = {isa = PBXBuildFile; fileRef = 541339FF14321CB300E433FC /* Supercharge.wav */; };
+		54133A0814321CB300E433FC /* UhOh.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54133A0014321CB300E433FC /* UhOh.wav */; };
+		54133A0A14321F6E00E433FC /* rock_bkg.caf in Resources */ = {isa = PBXBuildFile; fileRef = 54133A0914321F6E00E433FC /* rock_bkg.caf */; };
 		5416A1B614195B6400648B6A /* anims.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5416A1B514195B6400648B6A /* anims.plist */; };
 		5416A1B91419632E00648B6A /* LayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5416A1B81419632E00648B6A /* LayerManager.m */; };
 		54179E27142BBFA400D3A79E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 54179E26142BBFA400D3A79E /* Default@2x.png */; };
@@ -204,6 +213,15 @@
 
 /* Begin PBXFileReference section */
 		54090E1F142CCE6700FC3ABE /* ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ball.png; path = Resources/particles/ball.png; sourceTree = "<group>"; };
+		541339F914321CB300E433FC /* Craziness.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Craziness.wav; path = Resources/sounds/Craziness.wav; sourceTree = "<group>"; };
+		541339FA14321CB300E433FC /* Footstep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Footstep.wav; path = Resources/sounds/Footstep.wav; sourceTree = "<group>"; };
+		541339FB14321CB300E433FC /* HurdleCollision.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = HurdleCollision.wav; path = Resources/sounds/HurdleCollision.wav; sourceTree = "<group>"; };
+		541339FC14321CB300E433FC /* Jump1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Jump1.wav; path = Resources/sounds/Jump1.wav; sourceTree = "<group>"; };
+		541339FD14321CB300E433FC /* Jump2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Jump2.wav; path = Resources/sounds/Jump2.wav; sourceTree = "<group>"; };
+		541339FE14321CB300E433FC /* Noooo.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Noooo.wav; path = Resources/sounds/Noooo.wav; sourceTree = "<group>"; };
+		541339FF14321CB300E433FC /* Supercharge.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Supercharge.wav; path = Resources/sounds/Supercharge.wav; sourceTree = "<group>"; };
+		54133A0014321CB300E433FC /* UhOh.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = UhOh.wav; path = Resources/sounds/UhOh.wav; sourceTree = "<group>"; };
+		54133A0914321F6E00E433FC /* rock_bkg.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = rock_bkg.caf; path = Resources/sounds/rock_bkg.caf; sourceTree = "<group>"; };
 		5416A1B514195B6400648B6A /* anims.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = anims.plist; sourceTree = "<group>"; };
 		5416A1B71419632E00648B6A /* LayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayerManager.h; sourceTree = "<group>"; };
 		5416A1B81419632E00648B6A /* LayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayerManager.m; sourceTree = "<group>"; };
@@ -1092,6 +1110,15 @@
 		545CBC2F142D25AB00795FC9 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				54133A0914321F6E00E433FC /* rock_bkg.caf */,
+				541339F914321CB300E433FC /* Craziness.wav */,
+				541339FA14321CB300E433FC /* Footstep.wav */,
+				541339FB14321CB300E433FC /* HurdleCollision.wav */,
+				541339FC14321CB300E433FC /* Jump1.wav */,
+				541339FD14321CB300E433FC /* Jump2.wav */,
+				541339FE14321CB300E433FC /* Noooo.wav */,
+				541339FF14321CB300E433FC /* Supercharge.wav */,
+				54133A0014321CB300E433FC /* UhOh.wav */,
 				545CBC30142D25BE00795FC9 /* footsteps.caf */,
 			);
 			name = sounds;
@@ -1281,6 +1308,15 @@
 				545CBC36142D267F00795FC9 /* sounds.plist in Resources */,
 				54FBA24B1430DDF30010A91A /* bait.m4v in Resources */,
 				54FBA2551430E9630010A91A /* comics.plist in Resources */,
+				54133A0114321CB300E433FC /* Craziness.wav in Resources */,
+				54133A0214321CB300E433FC /* Footstep.wav in Resources */,
+				54133A0314321CB300E433FC /* HurdleCollision.wav in Resources */,
+				54133A0414321CB300E433FC /* Jump1.wav in Resources */,
+				54133A0514321CB300E433FC /* Jump2.wav in Resources */,
+				54133A0614321CB300E433FC /* Noooo.wav in Resources */,
+				54133A0714321CB300E433FC /* Supercharge.wav in Resources */,
+				54133A0814321CB300E433FC /* UhOh.wav in Resources */,
+				54133A0A14321F6E00E433FC /* rock_bkg.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

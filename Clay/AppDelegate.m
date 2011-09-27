@@ -126,10 +126,12 @@
     
     _comicManager = [ComicManager instance];
     _comicManager.gameLayer = [[LayerManager sharedLayers] currentLayer];
-    [_comicManager startComic:@"trackToFarm"];
     
     
 	[[CCDirector sharedDirector] runWithScene: gameScene];
+    
+    //[_comicManager startComic:@"introMovie" StartPhase:COMIC_PHASE_PLAY_VIDEO];
+    
     
     /*
     int x;

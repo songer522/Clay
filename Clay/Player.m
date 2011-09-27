@@ -107,7 +107,7 @@
             float x = _x + 70.0f;
             float y = _y - 45.0f;
             [_particleSystem addDustImpactAtPosition:CGPointMake(x, y)];
-            [SoundEngine playSound:@"footsteps.caf"];
+            [SoundEngine playSound:@"Footstep.wav"];
         }
 
         _jumpAcceleration = 0;
@@ -128,11 +128,13 @@
     [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"jumpingAnim"];
     [[self getCollision] processNewCollisionState:COLLISION_STATE_MIDAIR];
     [self setPositionAtX:_x Y:_y];
+    [SoundEngine playSound:@"Jump1.wav"];
 }
 
 -(void)startTurbo
 {
     [_speed startTurbo];
+    [SoundEngine playSound:@"Supercharge.wav"];
 }
 
 -(bool)getIsTurbo {
@@ -144,9 +146,13 @@
     [_speed startCollision];
     hitPoints -= 1;
     if (hitPoints <=0) {
-        _isDead = true;        
+        _isDead = true;
+        [SoundEngine playSound:@"UhOh.wav"];
+    } else {
+        [SoundEngine playSound:@"HurdleCollision.wav"];
     }
-    [_bandages setFrame:(2 - hitPoints)];    
+    
+    [_bandages setFrame:(2 - hitPoints)];  
 }
 
 //used by background layers for scrolling
