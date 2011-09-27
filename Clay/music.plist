@@ -3,8 +3,8 @@
 <plist version="1.0">
 <dict>
 	<key>track</key>
-	<string>track.caf</string>
-	<key>barn</key>
 	<string>rock_bkg.caf</string>
+	<key>barn</key>
+	<string>track.caf</string>
 </dict>
 </plist>

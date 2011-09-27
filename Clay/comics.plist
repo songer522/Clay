@@ -4,7 +4,7 @@
 <dict>
 	<key>trackToFarm</key>
 	<string>bait.m4v</string>
-	<key>introMovie</key>
-	<string>zelda.m4v</string>
+	<key>farmToCornfields</key>
+	<string>bait.m4v</string>
 </dict>
 </plist>

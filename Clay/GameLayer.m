@@ -15,7 +15,7 @@
 
 #import "GameCenter.h"
 
-#import "ComicLayer.h"
+#import "ComicManager.h"
 
 // HelloWorldLayer implementation
 @implementation GameLayer
@@ -72,9 +72,7 @@
         //[ParticleSystem testLimits];
         
         self.isTouchEnabled = YES;
-        
-        _comicLayer = [[ComicLayer alloc] init];
-        
+                
 	}
 	return self;
 }
@@ -121,6 +119,9 @@
 
 -(void)updateLogic:(ccTime)dt
 {
+    [[ComicManager shared] update:dt];
+    [[SoundEngine shared] update:dt];
+    
     [_player update:dt Level:_level];    
 
     [_level update:dt Velocity:_player.vx];
@@ -130,9 +131,8 @@
     if (trigger) {
         switch (trigger.type) {
             case TRIGGER_NEXTLEVEL:
-                [[LevelManager shared] loadNextLevel];
-                [[LevelManager shared] switchToNextLevel];
-                [self initForLevel];
+                [[ComicManager shared] startComic:_level.postLevelComicName];
+                [ComicManager shared].loadNextLevel = true;
                 break;
             case TRIGGER_CHECKPOINT:
                 [_savePoint setSavePoint:trigger.position Level:_level.name];
@@ -146,12 +146,13 @@
         [_player startCollision];
     }
     
-    if(_player.isDead) {
-        [_player reset];
-        [_savePoint restoreSavePoint:_player];
-        _player.isDead = false;
+    if (![[ComicManager shared] isActive]) {
+        if(_player.isDead) {
+            [_player reset];
+            [_savePoint restoreSavePoint:_player];
+            _player.isDead = false;
+        }        
     }
-    
 }
 
 -(void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

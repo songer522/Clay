@@ -24,6 +24,8 @@ typedef enum {
 @interface ComicManager : NSObject
 {
     bool _isActive;
+    bool _loadNextLevel;
+    
     
     GameLayer *_gameLayer;
     VideoPlayer *_videoPlayer;
@@ -36,8 +38,15 @@ typedef enum {
 }
 
 @property(nonatomic,retain)GameLayer *gameLayer;
+@property(nonatomic,assign)bool loadNextLevel;
+@property(nonatomic,assign)bool isActive;
+
++(ComicManager*)shared;
 
 +(id)instance;
+
+-(void)preload;
+-(void)update:(ccTime)dt;
 
 -(void)startComic:(NSString*)comic;
 -(void)startComic:(NSString*)comic StartPhase:(ComicPhase)phase;

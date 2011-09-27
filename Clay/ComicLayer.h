@@ -43,5 +43,6 @@ typedef enum {
 -(void)blackBoxIn:(ccTime)dt;
 -(void)blackBoxOut:(ccTime)dt;
 -(void)moveBars:(ccTime)dt;
+-(void)update:(ccTime)dt;
 
 @end

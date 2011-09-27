@@ -123,14 +123,10 @@
     
     _debugLayer = [GameDebugLayer debugLayerForScene:[[LayerManager sharedLayers] currentScene] GameLayer:[[LayerManager sharedLayers] currentLayer]];
 
-    
-    _comicManager = [ComicManager instance];
-    _comicManager.gameLayer = [[LayerManager sharedLayers] currentLayer];
-    
+    [[ComicManager shared] preload];
+    [ComicManager shared].gameLayer = [[LayerManager sharedLayers] currentLayer];
     
 	[[CCDirector sharedDirector] runWithScene: gameScene];
-    
-    //[_comicManager startComic:@"introMovie" StartPhase:COMIC_PHASE_PLAY_VIDEO];
     
     
     /*

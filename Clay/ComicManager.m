@@ -13,10 +13,24 @@
 #import "GameLayer.h"
 #import "GameController.h"
 #import "PListLoader.h"
+#import "SoundEngine.h"
 
 @implementation ComicManager
 
 @synthesize gameLayer = _gameLayer;
+@synthesize loadNextLevel = _loadNextLevel;
+@synthesize isActive = _isActive;
+
+static ComicManager *_shared = nil;
+
++(ComicManager*)shared
+{
+	if (!_shared) {
+        _shared = [[self alloc] init];
+	}
+	return _shared;
+}
+
 
 +(id)instance
 {
@@ -28,19 +42,25 @@
     self = [super init];
     if (self) {
         // Initialization code here.
-        _videoPlayer = [VideoPlayer instance];
-        _videoPlayer.parent = self;
-        
-        _comicLayer = [ComicLayer instance];
-        _comicLayer.parent = self;
-        
-        _isActive = false;
-        
-        _videoList = [[NSDictionary alloc] initWithDictionary:[PListLoader loadPlistWithName:@"comics"]];
     }
     
     return self;
 }
+
+-(void)preload
+{
+    _videoPlayer = [VideoPlayer instance];
+    _videoPlayer.parent = self;
+    
+    _comicLayer = [ComicLayer instance];
+    _comicLayer.parent = self;
+    
+    _isActive = false;
+    _loadNextLevel = false;
+    
+    _videoList = [[NSDictionary alloc] initWithDictionary:[PListLoader loadPlistWithName:@"comics"]];    
+}
+
 
 -(void)startComic:(NSString*)comic
 {
@@ -61,6 +81,11 @@
     }
 }
 
+-(void)update:(ccTime)dt
+{
+    [_comicLayer update:dt];
+}
+
 -(void)switchToPhase:(ComicPhase)phase
 {
     _phase = phase;
@@ -68,14 +93,28 @@
         switch (phase) {
             case COMIC_PHASE_BARS_IN:
                 [_comicLayer startTransition:BLACKBOX_IN];
+                [[SoundEngine shared] cueFadeOut];
                 _gameLayer.gameController.isInputEnabled = false;
                 break;
             case COMIC_PHASE_PLAY_VIDEO:
+                
+                _gameLayer.visible = false;
+                
+                if(_loadNextLevel) { [[LevelManager shared] loadNextLevel]; }
+                
                 [_videoPlayer playMovie:_videoFileName];
                 [[CCDirector sharedDirector] stopAnimation];
                 break;
             case COMIC_PHASE_BARS_OUT:
+                [[SoundEngine shared] cueFadeIn];
+                if(_loadNextLevel)
+                {
+                    [[LevelManager shared] switchToNextLevel];
+                    [_gameLayer initForLevel];
+                    _gameLayer.visible = true;
+                }
                 [[CCDirector sharedDirector] startAnimation];
+                
                 [_comicLayer startTransition:BLACKBOX_OUT];
                 _gameLayer.gameController.isInputEnabled = false;
                 break;
@@ -83,6 +122,7 @@
                 _gameLayer.gameController.isInputEnabled = true;
                 _phase = COMIC_PHASE_PLAY_LEVEL;
                 _isActive = false;
+                _loadNextLevel = false;
                 break;
             default:
                 break;

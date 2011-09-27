@@ -36,6 +36,8 @@
 	</dict>
 	<key>level2</key>
 	<dict>
+		<key>postLevelComic</key>
+		<string>farmToCornfields</string>
 		<key>worldType</key>
 		<string>dreamWorld</string>
 		<key>playerOffsetY</key>

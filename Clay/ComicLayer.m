@@ -25,7 +25,7 @@
     if (self) {
         // Initialization code here.
         
-        [self scheduleUpdate];
+        //[self scheduleUpdate];
         [[[LayerManager sharedLayers] currentScene] addChild:self];
         
         self.isTouchEnabled = YES;
@@ -63,11 +63,6 @@
             [self blackBoxOut:dt];
         default:
             break;
-    }
-    if (_transition != BLACKBOX_IDLE) {
-        if (!_atTarget) {      
-        } else {
-        }
     }
 }
 

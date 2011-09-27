@@ -26,6 +26,7 @@
 @synthesize gameObjects = _gameObjects;
 @synthesize spawnPoint = _spawnPoint;
 @synthesize obstacleSprites = _obstacleSprites;
+@synthesize postLevelComicName = _postLevelComicName;
 
 +(id)levelWithFilename:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer LayerList:(NSString*)layerList GameObjectController:(GameObjectController*)gameObjects
 {

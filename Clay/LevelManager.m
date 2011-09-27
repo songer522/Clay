@@ -54,6 +54,7 @@ static LevelManager *_shared = nil;
     NSString *fileName = [levelSettings valueForKey:@"fileName"];
     NSString *obstacleLayer = [levelSettings valueForKey:@"obstacleLayer"];
     NSString *nextLevelName = [levelSettings valueForKey:@"nextLevelName"];
+    NSString *postLevelComicName = [levelSettings valueForKey:@"postLevelComic"];
 
     NSString *layerList = [levelSettings valueForKey:@"layerList"];
 
@@ -61,6 +62,7 @@ static LevelManager *_shared = nil;
     
     Level *level = [Level levelWithFilename:fileName ObstacleLayer:obstacleLayer LayerList:layerList GameObjectController:_gameObjects];
     level.nextLevelName = nextLevelName;
+    level.postLevelComicName = postLevelComicName;
     level.gameObjects = _gameObjects;
     level.name = levelName;
     

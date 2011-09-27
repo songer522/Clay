@@ -38,8 +38,6 @@
     
     ParticleSystem *_dustTest;
     
-    ComicLayer *_comicLayer;
-    
 }
 
 @property(nonatomic,retain) Player *player;

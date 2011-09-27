@@ -33,6 +33,8 @@ static SoundEngine *_shared = nil;
         
         _soundMap = [[NSDictionary alloc] initWithDictionary:[PListLoader loadPlistWithName:@"sounds"]];
         _musicMap = [[NSDictionary alloc] initWithDictionary:[PListLoader loadPlistWithName:@"music"]];
+        
+        _soundMode = SOUND_MODE_NORMAL;
     }
     
     return self;
@@ -73,5 +75,52 @@ static SoundEngine *_shared = nil;
     
     [[SimpleAudioEngine sharedEngine] playBackgroundMusic:filename];
 }
+
+-(void)toggleMute
+{
+    if (_audioEngine.mute) {
+        _audioEngine.mute = false;
+    } else {
+        _audioEngine.mute = true;
+    }
+}
+
+-(void)cueFadeIn
+{
+    _volume = 0.0f;
+    _soundMode = SOUND_MODE_FADEIN;
+}
+
+-(void)cueFadeOut
+{
+    _volume = 1.0f;
+    _soundMode = SOUND_MODE_FADEOUT;
+}
+
+-(void)update:(float)dt
+{
+    float rate = 0.4f * dt;
+    
+    switch (_soundMode) {
+        case SOUND_MODE_FADEIN:
+            _volume += rate;
+            if(_volume >= 1.0f) {
+                _volume = 1.0f;
+                _soundMode = SOUND_MODE_NORMAL;
+            }
+            [_audioEngine setBackgroundMusicVolume:_volume];
+            break;
+        case SOUND_MODE_FADEOUT:
+            _volume -= rate;
+            if(_volume <= 0.0f) {
+                _volume = 0.0f;
+                _soundMode = SOUND_MODE_NORMAL;
+            }
+            [_audioEngine setBackgroundMusicVolume:_volume];
+        default:
+            break;
+    }
+}
+
 
 @end
