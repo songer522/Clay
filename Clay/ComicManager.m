@@ -14,6 +14,7 @@
 #import "GameController.h"
 #import "PListLoader.h"
 #import "SoundEngine.h"
+#import "Camera.h"
 
 @implementation ComicManager
 
@@ -95,17 +96,20 @@ static ComicManager *_shared = nil;
                 [_comicLayer startTransition:BLACKBOX_IN];
                 [[SoundEngine shared] cueFadeOut];
                 _gameLayer.gameController.isInputEnabled = false;
+                [Camera sharedCamera].trackingTarget = false;
                 break;
             case COMIC_PHASE_PLAY_VIDEO:
                 
                 _gameLayer.visible = false;
                 
-                if(_loadNextLevel) { [[LevelManager shared] loadNextLevel]; }
                 
                 [_videoPlayer playMovie:_videoFileName];
                 [[CCDirector sharedDirector] stopAnimation];
                 break;
             case COMIC_PHASE_BARS_OUT:
+                if(_loadNextLevel) { [[LevelManager shared] loadNextLevel]; }
+                [Camera sharedCamera].trackingTarget = false;
+                [[Camera sharedCamera] snapToTarget];
                 [[SoundEngine shared] cueFadeIn];
                 if(_loadNextLevel)
                 {

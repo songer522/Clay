@@ -39,6 +39,8 @@
     
     NSString *_postLevelComicName;
     
+    NSString *_musicName;
+    
     NSString *_nextLevelName;           //the name of the level to load after this one is about
                                         //to complete. will be used by the LevelManager
     GameObjectController *_gameObjects;
@@ -52,6 +54,7 @@
 
 @property (nonatomic,retain) NSString *name;
 @property (nonatomic,retain) NSString *nextLevelName;
+@property (nonatomic,retain) NSString *musicName;
 @property (nonatomic,retain) NSString *postLevelComicName;
 @property (nonatomic,retain) GameObjectController *gameObjects;
 @property (nonatomic,readonly,assign) CGPoint spawnPoint;

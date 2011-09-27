@@ -11,6 +11,8 @@
 
 @implementation Camera
 
+@synthesize trackingTarget = _trackingTarget;
+
 #define CAMERA_MOVE_TO_TARGET_SPEED 6.0f
 
 static Camera *_sharedCamera = nil;
@@ -72,6 +74,7 @@ static Camera *_sharedCamera = nil;
 -(void)setTarget:(Sprite *)sprite
 {
     _target = sprite;
+    _trackingTarget = true;
 }
 
 -(void)setCenter:(CGPoint)point
@@ -112,7 +115,7 @@ static Camera *_sharedCamera = nil;
 
 -(void)moveTowardsTarget:(float)dt
 {
-    if (_target != nil) {
+    if (_target != nil && _trackingTarget) {
         
         CGPoint position = [_target getPosition];
         float dx = (position.x - _x);

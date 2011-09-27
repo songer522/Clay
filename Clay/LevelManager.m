@@ -41,6 +41,7 @@ static LevelManager *_shared = nil;
         NSString *startingLevel = [_levelSettings valueForKey:@"startingLevel"];
         
         _currentLevel = [self loadLevelNamed:startingLevel];
+        [[SoundEngine shared] playMusic:_currentLevel.musicName];
         
     }
     
@@ -55,6 +56,7 @@ static LevelManager *_shared = nil;
     NSString *obstacleLayer = [levelSettings valueForKey:@"obstacleLayer"];
     NSString *nextLevelName = [levelSettings valueForKey:@"nextLevelName"];
     NSString *postLevelComicName = [levelSettings valueForKey:@"postLevelComic"];
+    NSString *music = [levelSettings valueForKey:@"music"];
 
     NSString *layerList = [levelSettings valueForKey:@"layerList"];
 
@@ -65,6 +67,7 @@ static LevelManager *_shared = nil;
     level.postLevelComicName = postLevelComicName;
     level.gameObjects = _gameObjects;
     level.name = levelName;
+    level.musicName = music;
     
     return level;
 }
@@ -81,6 +84,8 @@ static LevelManager *_shared = nil;
     [_levelToUnload unloadLevel];
     [_levelToUnload release];
     _levelToUnload = nil;
+    [[SoundEngine shared] playMusic:_currentLevel.musicName];
+
 }
 
 @end

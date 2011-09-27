@@ -45,7 +45,7 @@
     } else {
         _targetPosition = 0.0f;
     }
-    _timeToWait = 2.0f;
+    _timeToWait = 1.0f;
     _atTarget = false;
 }
 

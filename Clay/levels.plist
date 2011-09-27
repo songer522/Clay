@@ -4,6 +4,8 @@
 <dict>
 	<key>level1</key>
 	<dict>
+		<key>music</key>
+		<string>track</string>
 		<key>postLevelComic</key>
 		<string>trackToFarm</string>
 		<key>worldType</key>
@@ -21,6 +23,8 @@
 	</dict>
 	<key>platformTest</key>
 	<dict>
+		<key>music</key>
+		<string>track</string>
 		<key>worldType</key>
 		<string>testWorld</string>
 		<key>playerOffsetY</key>
@@ -36,6 +40,8 @@
 	</dict>
 	<key>level2</key>
 	<dict>
+		<key>music</key>
+		<string>barn</string>
 		<key>postLevelComic</key>
 		<string>farmToCornfields</string>
 		<key>worldType</key>

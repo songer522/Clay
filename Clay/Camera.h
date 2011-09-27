@@ -25,7 +25,12 @@
     
     Sprite *_target;          //what the camera is tracking towards (will be the runner mostly, but every
                                 //once in awhile we might want to highlight something else)
+    
+    bool _trackingTarget;
 }
+
+@property (nonatomic,assign) bool trackingTarget;
+
 
 +(Camera*)sharedCamera;
 

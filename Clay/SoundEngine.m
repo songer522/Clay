@@ -99,7 +99,7 @@ static SoundEngine *_shared = nil;
 
 -(void)update:(float)dt
 {
-    float rate = 0.4f * dt;
+    float rate = 0.5f * dt;
     
     switch (_soundMode) {
         case SOUND_MODE_FADEIN:
