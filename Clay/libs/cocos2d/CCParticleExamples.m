@@ -507,7 +507,9 @@
 		endColorVar.b = 0.0f;
 		endColorVar.a = 0.0f;
 		
-		self.texture = [[CCTextureCache sharedTextureCache] addImage: @"fire.png"];
+        
+        //XECUDEV: commented out, because we shouldn't have to call this each time, causes hiccups
+		//self.texture = [[CCTextureCache sharedTextureCache] addImage: @"fire.png"];
 		
 		// additive
 		self.blendAdditive = YES;

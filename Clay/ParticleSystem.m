@@ -18,7 +18,9 @@
     self = [super init];
     if (self) {
         // Initialization code here.
+        
         _emitters = [[NSMutableArray alloc] initWithCapacity:10];
+        _dustTexture = [[CCTextureCache sharedTextureCache] addImage:@"ball.png"];
     }
     
     return self;
@@ -32,12 +34,12 @@
 -(void)addDustImpactAtPosition:(CGPoint)position
 {
     
-    CCParticleSystem *_dust = [CCParticleMeteor node];        
+    CCParticleSystem *_dust = [[CCParticleMeteor alloc] initWithTotalParticles:7];
     [_dust setEmitterMode:kCCParticleModeGravity];
     
     _dust.duration = 0.1f;
-    _dust.totalParticles = 15;
-    _dust.texture = [[CCTextureCache sharedTextureCache] addImage:@"ball.png"];
+    _dust.totalParticles = 7;
+    _dust.texture = _dustTexture;
     ccColor4F startColor = { 0.8f, 0.6f, 0.04f, 1.0f };
     ccColor4F endColor = { 1.0f, 1.0f, 1.0f, 0.0f };
     _dust.position = position;
@@ -55,6 +57,7 @@
     [[[LayerManager sharedLayers] currentLayer] addChild:_dust];
     Particle *particle = [[Particle alloc] initWithEmitter:_dust At:position];
     [_emitters addObject:particle];
+     
 }
 
 +(void)testLimits

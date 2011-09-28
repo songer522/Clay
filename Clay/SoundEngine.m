@@ -29,7 +29,7 @@ static SoundEngine *_shared = nil;
         // Initialization code here.
         
         _audioEngine = [SimpleAudioEngine sharedEngine];
-        //_audioEngine.mute = true;
+        _audioEngine.mute = true;
         
         _soundMap = [[NSDictionary alloc] initWithDictionary:[PListLoader loadPlistWithName:@"sounds"]];
         _musicMap = [[NSDictionary alloc] initWithDictionary:[PListLoader loadPlistWithName:@"music"]];

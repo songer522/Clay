@@ -165,6 +165,14 @@
 		545CBC34142D260B00795FC9 /* SoundEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 545CBC33142D260B00795FC9 /* SoundEngine.m */; };
 		545CBC36142D267F00795FC9 /* sounds.plist in Resources */ = {isa = PBXBuildFile; fileRef = 545CBC35142D267F00795FC9 /* sounds.plist */; };
 		5460F9FE1423EB6100582EBD /* clayl2.1.4.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 5460F9FD1423EB6100582EBD /* clayl2.1.4.tmx */; };
+		54642B0814337E5F001D8212 /* Battery_v1_s-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54642B0014337E5F001D8212 /* Battery_v1_s-hd.plist */; };
+		54642B0914337E5F001D8212 /* Battery_v1_s-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54642B0114337E5F001D8212 /* Battery_v1_s-hd.png */; };
+		54642B0A14337E5F001D8212 /* Battery_v1_s.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54642B0214337E5F001D8212 /* Battery_v1_s.plist */; };
+		54642B0B14337E5F001D8212 /* Battery_v1_s.png in Resources */ = {isa = PBXBuildFile; fileRef = 54642B0314337E5F001D8212 /* Battery_v1_s.png */; };
+		54642B0C14337E5F001D8212 /* Battery_v2_s-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54642B0414337E5F001D8212 /* Battery_v2_s-hd.plist */; };
+		54642B0D14337E5F001D8212 /* Battery_v2_s-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54642B0514337E5F001D8212 /* Battery_v2_s-hd.png */; };
+		54642B0E14337E5F001D8212 /* Battery_v2_s.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54642B0614337E5F001D8212 /* Battery_v2_s.plist */; };
+		54642B0F14337E5F001D8212 /* Battery_v2_s.png in Resources */ = {isa = PBXBuildFile; fileRef = 54642B0714337E5F001D8212 /* Battery_v2_s.png */; };
 		547472CA14228C0A00B0B0B7 /* levels.plist in Resources */ = {isa = PBXBuildFile; fileRef = 547472C914228C0A00B0B0B7 /* levels.plist */; };
 		547F09731428E49C00E5D920 /* blank.png in Resources */ = {isa = PBXBuildFile; fileRef = 547F09721428E49C00E5D920 /* blank.png */; };
 		547F09771428FA5400E5D920 /* SavePoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 547F09761428FA5400E5D920 /* SavePoint.m */; };
@@ -509,6 +517,14 @@
 		545CBC33142D260B00795FC9 /* SoundEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundEngine.m; sourceTree = "<group>"; };
 		545CBC35142D267F00795FC9 /* sounds.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sounds.plist; sourceTree = "<group>"; };
 		5460F9FD1423EB6100582EBD /* clayl2.1.4.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = clayl2.1.4.tmx; path = Resources/levels/clayl2.1.4.tmx; sourceTree = "<group>"; };
+		54642B0014337E5F001D8212 /* Battery_v1_s-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Battery_v1_s-hd.plist"; sourceTree = "<group>"; };
+		54642B0114337E5F001D8212 /* Battery_v1_s-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Battery_v1_s-hd.png"; sourceTree = "<group>"; };
+		54642B0214337E5F001D8212 /* Battery_v1_s.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Battery_v1_s.plist; sourceTree = "<group>"; };
+		54642B0314337E5F001D8212 /* Battery_v1_s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Battery_v1_s.png; sourceTree = "<group>"; };
+		54642B0414337E5F001D8212 /* Battery_v2_s-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Battery_v2_s-hd.plist"; sourceTree = "<group>"; };
+		54642B0514337E5F001D8212 /* Battery_v2_s-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Battery_v2_s-hd.png"; sourceTree = "<group>"; };
+		54642B0614337E5F001D8212 /* Battery_v2_s.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Battery_v2_s.plist; sourceTree = "<group>"; };
+		54642B0714337E5F001D8212 /* Battery_v2_s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Battery_v2_s.png; sourceTree = "<group>"; };
 		547472C914228C0A00B0B0B7 /* levels.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = levels.plist; sourceTree = "<group>"; };
 		547F09721428E49C00E5D920 /* blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blank.png; path = Resources/levels/blank.png; sourceTree = "<group>"; };
 		547F09751428FA5400E5D920 /* SavePoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavePoint.h; sourceTree = "<group>"; };
@@ -700,6 +716,7 @@
 		54484CE5140449B500D0D7D9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				54642AFE14337E5F001D8212 /* sprites */,
 				54133A0D143231AF00E433FC /* music */,
 				54FBA24C1430E1ED0010A91A /* videos */,
 				545CBC2F142D25AB00795FC9 /* sounds */,
@@ -1135,6 +1152,30 @@
 			name = sounds;
 			sourceTree = "<group>";
 		};
+		54642AFE14337E5F001D8212 /* sprites */ = {
+			isa = PBXGroup;
+			children = (
+				54642AFF14337E5F001D8212 /* battery */,
+			);
+			name = sprites;
+			path = Resources/sprites;
+			sourceTree = "<group>";
+		};
+		54642AFF14337E5F001D8212 /* battery */ = {
+			isa = PBXGroup;
+			children = (
+				54642B0014337E5F001D8212 /* Battery_v1_s-hd.plist */,
+				54642B0114337E5F001D8212 /* Battery_v1_s-hd.png */,
+				54642B0214337E5F001D8212 /* Battery_v1_s.plist */,
+				54642B0314337E5F001D8212 /* Battery_v1_s.png */,
+				54642B0414337E5F001D8212 /* Battery_v2_s-hd.plist */,
+				54642B0514337E5F001D8212 /* Battery_v2_s-hd.png */,
+				54642B0614337E5F001D8212 /* Battery_v2_s.plist */,
+				54642B0714337E5F001D8212 /* Battery_v2_s.png */,
+			);
+			path = battery;
+			sourceTree = "<group>";
+		};
 		548C3DBB141ABDBB000567A8 /* levels */ = {
 			isa = PBXGroup;
 			children = (
@@ -1329,6 +1370,14 @@
 				54133A0C14322E0900E433FC /* music.plist in Resources */,
 				54133A0F143231C200E433FC /* track.caf in Resources */,
 				54133A11143231CA00E433FC /* rock_bkg.caf in Resources */,
+				54642B0814337E5F001D8212 /* Battery_v1_s-hd.plist in Resources */,
+				54642B0914337E5F001D8212 /* Battery_v1_s-hd.png in Resources */,
+				54642B0A14337E5F001D8212 /* Battery_v1_s.plist in Resources */,
+				54642B0B14337E5F001D8212 /* Battery_v1_s.png in Resources */,
+				54642B0C14337E5F001D8212 /* Battery_v2_s-hd.plist in Resources */,
+				54642B0D14337E5F001D8212 /* Battery_v2_s-hd.png in Resources */,
+				54642B0E14337E5F001D8212 /* Battery_v2_s.plist in Resources */,
+				54642B0F14337E5F001D8212 /* Battery_v2_s.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

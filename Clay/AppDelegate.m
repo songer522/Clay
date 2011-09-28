@@ -97,7 +97,7 @@
 #endif
 	
 	[director setAnimationInterval:1.0/60];
-	[director setDisplayFPS:NO];
+	[director setDisplayFPS:YES];
 	
 	
 	// make the OpenGLView a child of the view controller
@@ -112,7 +112,7 @@
 	// It can be RGBA8888, RGBA4444, RGB5_A1, RGB565
 	// You can change anytime.
 	[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
-
+    //[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA4444];
 	
 	// Removes the startup flicker
 	[self removeStartupFlicker];

@@ -12,6 +12,7 @@
 @interface ParticleSystem : NSObject
 {
     NSMutableArray *_emitters;
+    CCTexture2D *_dustTexture;
 }
 
 +(id)instance;

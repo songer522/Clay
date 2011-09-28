@@ -15,7 +15,10 @@
 @interface Bandages : NSObject
 {
     Sprite *sprite;
-    NSArray *offsetYWhenRunning;
+    int _currentFrame;
+    float _totalTime;
+    float _waitToFade;
+    float _alpha;
 }
 
 +(id)instance;
@@ -23,4 +26,5 @@
 -(void) setFrame:(int)frameNumber;
 -(void)update:(float)dt Player:(Player*)player;
 -(CCSprite*)getCCSprite;
+-(void)reset;
 @end

@@ -80,7 +80,7 @@
 {
     _level = [[LevelManager shared] currentLevel];
     
-    [_player resetSprite:self];
+    [_player reset];
     
     [_player setOffsetForX:0 Y:[[LevelManager shared] playerOffsetY]];
     
@@ -89,8 +89,6 @@
     [_savePoint setSavePoint:_level.spawnPoint Level:_level.name];
     
     [self initCamera];
-    
-
 }
 
 -(Runner*)initRunner:(Runner*)runner atPosition:(CGPoint)position

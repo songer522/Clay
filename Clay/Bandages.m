@@ -24,9 +24,9 @@
     self = [super init];
     if (self) {
         // Initialization code here.
-        sprite = [Sprite spriteWithFile:@"character_health.png"];
-        offsetYWhenRunning = [[NSArray alloc] initWithObjects:N(0),N(1),N(0),N(-1),N(-2),N(0),N(2),N(0),N(-1),N(-1), nil];
+        sprite = [Sprite spriteWithFile:@"Battery_v1_s.png"];
         [self setFrame:1];
+        [sprite setPositionAtX:625 Y:420];
     }
     
     return self;
@@ -35,17 +35,39 @@
 -(void) setFrame:(int)frameNumber
 {
     NSString *number = [NSString stringWithFormat:@"%d",frameNumber];
-    Animation *anim = [Animation animationFromPlist:@"character_health" forSequence:@"character_health_" FrameList:number];
+    Animation *anim = [Animation animationFromPlist:@"Battery_v2_s" forSequence:@"Battery_" FrameList:number];
     [sprite setAnimation:anim Delay:100.0f];
+    _currentFrame = frameNumber;
+    if (_currentFrame == 3) {
+        _totalTime = 0.0f;
+        [[sprite getCCSprite] setOpacity:255];
+    } else {
+        [[sprite getCCSprite] setVisible:YES];
+    }
+    _waitToFade = 3.0f;
+    _alpha = 1.0f;
 }
 
 -(void)update:(float)dt Player:(Player*)player
 {
-    int frameNumber = [player.sprite getCurrentFrameNumber];
-    float offsetY = [[offsetYWhenRunning objectAtIndex:frameNumber] floatValue] / 2.0f;
-    NSLog(@"Frame: %d, OffsetY: %f",frameNumber, offsetY);
-    [sprite setPositionAtX:player.x + 37 Y:player.y + offsetY];
-    //NSLog(@"Frame: %d",frameNumber);
+    if (_currentFrame == 3) {
+        _totalTime += 6.0f * dt;
+        float test = sinf(_totalTime);
+        if (test < 0.3f) {
+            [[sprite getCCSprite] setVisible:NO];
+        } else {
+            [[sprite getCCSprite] setVisible:YES];
+        }        
+    } else {
+        _waitToFade -= dt;
+        if (_waitToFade <= 0.0f) {
+            _alpha -= 1.0f * dt;
+            if (_alpha <= 0.3f) {
+                _alpha = 0.3f;
+            }
+        }
+        [[sprite getCCSprite] setOpacity:(255 * _alpha)];
+    }
 }
 
 -(CCSprite*)getCCSprite
@@ -53,10 +75,14 @@
     return [sprite getCCSprite];
 }
 
+-(void)reset
+{
+    [self setFrame:1];
+}
+
 -(void)dealloc
 {
     [sprite release];
-    [offsetYWhenRunning release];
     [super dealloc];
 }
 

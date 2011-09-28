@@ -56,7 +56,7 @@
         [_speed start];
         [self changeToRunnerState:RUNNER_STATE_RUNNING];
         
-        hitPoints = 2;
+        hitPoints = 3;
         _bandages = [Bandages instance];
         
         _particleSystem = [ParticleSystem instance];
@@ -152,7 +152,7 @@
         [[SoundEngine shared] playSound:@"collision"];
     }
     
-    [_bandages setFrame:(2 - hitPoints)];  
+    [_bandages setFrame:(4 - hitPoints)];  
 }
 
 //used by background layers for scrolling
@@ -163,7 +163,9 @@
 
 -(void)reset
 {
-    hitPoints = 2;
+    hitPoints = 3;
+    [_bandages reset];
+    [self resetSprite:[[LayerManager sharedLayers] currentLayer]];
 }
 
 
