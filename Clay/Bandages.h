@@ -17,14 +17,24 @@
     Sprite *sprite;
     int _currentFrame;
     float _totalTime;
-    float _waitToFade;
+    float _wait;
     float _alpha;
+    bool _isRecharging;
 }
 
 +(id)instance;
 
 -(void) setFrame:(int)frameNumber;
--(void)update:(float)dt Player:(Player*)player;
+-(void)update:(float)dt;
+
+-(void)recharging:(float)dt;
+-(void)lowBatteryWarning:(float)dt;
+-(void)normalBattery:(float)dt;
+
+-(void)startRecharge;
+
 -(CCSprite*)getCCSprite;
 -(void)reset;
+
+
 @end

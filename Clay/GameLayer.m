@@ -148,6 +148,7 @@
             [_player reset];
             [_savePoint restoreSavePoint:_player];
             _player.isDead = false;
+            [_player rechargeBattery];
         }        
     }
 }

@@ -44,31 +44,71 @@
     } else {
         [[sprite getCCSprite] setVisible:YES];
     }
-    _waitToFade = 3.0f;
+    _wait = 3.0f;
     _alpha = 1.0f;
 }
 
--(void)update:(float)dt Player:(Player*)player
+-(void)update:(float)dt
 {
-    if (_currentFrame == 3) {
-        _totalTime += 6.0f * dt;
-        float test = sinf(_totalTime);
-        if (test < 0.3f) {
-            [[sprite getCCSprite] setVisible:NO];
-        } else {
-            [[sprite getCCSprite] setVisible:YES];
-        }        
+    if (_isRecharging) {
+        [self recharging:dt];
+    } else if (_currentFrame == 3) {
+        [self lowBatteryWarning:dt];
     } else {
-        _waitToFade -= dt;
-        if (_waitToFade <= 0.0f) {
-            _alpha -= 1.0f * dt;
-            if (_alpha <= 0.3f) {
-                _alpha = 0.3f;
-            }
-        }
-        [[sprite getCCSprite] setOpacity:(255 * _alpha)];
+        [self normalBattery:dt];
     }
 }
+
+-(void)lowBatteryWarning:(float)dt
+{
+    _totalTime += 6.0f * dt;
+    float test = sinf(_totalTime);
+    if (test < 0.3f) {
+        [[sprite getCCSprite] setVisible:NO];
+    } else {
+        [[sprite getCCSprite] setVisible:YES];
+    }    
+}
+
+-(void)normalBattery:(float)dt
+{
+    _wait -= dt;
+    if (_wait <= 0.0f) {
+        _alpha -= 1.0f * dt;
+        if (_alpha <= 0.3f) {
+            _alpha = 0.3f;
+        }
+    }
+    [[sprite getCCSprite] setOpacity:(255 * _alpha)];
+}
+
+-(void)startRecharge
+{
+    [self setFrame:4];
+    _isRecharging = true;
+    _alpha = 1.0f;
+    [[sprite getCCSprite] setVisible:YES];
+    [[sprite getCCSprite] setOpacity:255];
+    _wait = 0.6f;
+}
+
+-(void)recharging:(float)dt
+{
+    if (_currentFrame > 1) {
+        _wait -= dt;
+        if (_wait <= 0.0f) {
+            [self setFrame:_currentFrame - 1];
+            _wait = 0.2f;
+        }
+    } else {
+        _isRecharging = false;
+        _wait = 3.0f;
+        _alpha = 1.0f;
+    }
+}
+
+
+
 
 -(CCSprite*)getCCSprite
 {
@@ -78,6 +118,9 @@
 -(void)reset
 {
     [self setFrame:1];
+    _isRecharging = false;
+    [[sprite getCCSprite] setOpacity:255];
+    [[sprite getCCSprite] setVisible:YES];
 }
 
 -(void)dealloc

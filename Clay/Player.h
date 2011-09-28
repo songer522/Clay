@@ -54,6 +54,7 @@ typedef enum {
 
 -(void)reset;
 -(void)resetSprite:(CCLayer*)layer;
+-(void)rechargeBattery;
 
 @property(nonatomic,assign) bool isJumping;
 

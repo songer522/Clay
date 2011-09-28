@@ -87,7 +87,7 @@
                                                     //camera position. will cause jitteriness otherwise
     
     [self setPositionAtX:newPosition.x Y:newPosition.y];
-    [_bandages update:dt Player:self];
+    [_bandages update:dt];
     [_particleSystem update:dt];
 
 }
@@ -178,6 +178,11 @@
     [layer removeChild:bandageSprite cleanup:NO];
     [layer addChild:playerSprite];
     [layer addChild:bandageSprite];
+}
+
+-(void)rechargeBattery
+{
+    [_bandages startRecharge];
 }
 
 
