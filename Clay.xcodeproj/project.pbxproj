@@ -165,10 +165,6 @@
 		545CBC34142D260B00795FC9 /* SoundEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 545CBC33142D260B00795FC9 /* SoundEngine.m */; };
 		545CBC36142D267F00795FC9 /* sounds.plist in Resources */ = {isa = PBXBuildFile; fileRef = 545CBC35142D267F00795FC9 /* sounds.plist */; };
 		5460F9FE1423EB6100582EBD /* clayl2.1.4.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 5460F9FD1423EB6100582EBD /* clayl2.1.4.tmx */; };
-		54642B0814337E5F001D8212 /* Battery_v1_s-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54642B0014337E5F001D8212 /* Battery_v1_s-hd.plist */; };
-		54642B0914337E5F001D8212 /* Battery_v1_s-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54642B0114337E5F001D8212 /* Battery_v1_s-hd.png */; };
-		54642B0A14337E5F001D8212 /* Battery_v1_s.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54642B0214337E5F001D8212 /* Battery_v1_s.plist */; };
-		54642B0B14337E5F001D8212 /* Battery_v1_s.png in Resources */ = {isa = PBXBuildFile; fileRef = 54642B0314337E5F001D8212 /* Battery_v1_s.png */; };
 		54642B0C14337E5F001D8212 /* Battery_v2_s-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54642B0414337E5F001D8212 /* Battery_v2_s-hd.plist */; };
 		54642B0D14337E5F001D8212 /* Battery_v2_s-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54642B0514337E5F001D8212 /* Battery_v2_s-hd.png */; };
 		54642B0E14337E5F001D8212 /* Battery_v2_s.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54642B0614337E5F001D8212 /* Battery_v2_s.plist */; };
@@ -517,10 +513,6 @@
 		545CBC33142D260B00795FC9 /* SoundEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundEngine.m; sourceTree = "<group>"; };
 		545CBC35142D267F00795FC9 /* sounds.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sounds.plist; sourceTree = "<group>"; };
 		5460F9FD1423EB6100582EBD /* clayl2.1.4.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = clayl2.1.4.tmx; path = Resources/levels/clayl2.1.4.tmx; sourceTree = "<group>"; };
-		54642B0014337E5F001D8212 /* Battery_v1_s-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Battery_v1_s-hd.plist"; sourceTree = "<group>"; };
-		54642B0114337E5F001D8212 /* Battery_v1_s-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Battery_v1_s-hd.png"; sourceTree = "<group>"; };
-		54642B0214337E5F001D8212 /* Battery_v1_s.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Battery_v1_s.plist; sourceTree = "<group>"; };
-		54642B0314337E5F001D8212 /* Battery_v1_s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Battery_v1_s.png; sourceTree = "<group>"; };
 		54642B0414337E5F001D8212 /* Battery_v2_s-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Battery_v2_s-hd.plist"; sourceTree = "<group>"; };
 		54642B0514337E5F001D8212 /* Battery_v2_s-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Battery_v2_s-hd.png"; sourceTree = "<group>"; };
 		54642B0614337E5F001D8212 /* Battery_v2_s.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Battery_v2_s.plist; sourceTree = "<group>"; };
@@ -1164,10 +1156,6 @@
 		54642AFF14337E5F001D8212 /* battery */ = {
 			isa = PBXGroup;
 			children = (
-				54642B0014337E5F001D8212 /* Battery_v1_s-hd.plist */,
-				54642B0114337E5F001D8212 /* Battery_v1_s-hd.png */,
-				54642B0214337E5F001D8212 /* Battery_v1_s.plist */,
-				54642B0314337E5F001D8212 /* Battery_v1_s.png */,
 				54642B0414337E5F001D8212 /* Battery_v2_s-hd.plist */,
 				54642B0514337E5F001D8212 /* Battery_v2_s-hd.png */,
 				54642B0614337E5F001D8212 /* Battery_v2_s.plist */,
@@ -1370,10 +1358,6 @@
 				54133A0C14322E0900E433FC /* music.plist in Resources */,
 				54133A0F143231C200E433FC /* track.caf in Resources */,
 				54133A11143231CA00E433FC /* rock_bkg.caf in Resources */,
-				54642B0814337E5F001D8212 /* Battery_v1_s-hd.plist in Resources */,
-				54642B0914337E5F001D8212 /* Battery_v1_s-hd.png in Resources */,
-				54642B0A14337E5F001D8212 /* Battery_v1_s.plist in Resources */,
-				54642B0B14337E5F001D8212 /* Battery_v1_s.png in Resources */,
 				54642B0C14337E5F001D8212 /* Battery_v2_s-hd.plist in Resources */,
 				54642B0D14337E5F001D8212 /* Battery_v2_s-hd.png in Resources */,
 				54642B0E14337E5F001D8212 /* Battery_v2_s.plist in Resources */,
