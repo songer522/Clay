@@ -30,6 +30,8 @@ typedef enum {
     
     RunningSpeed *_speed;
     
+    float _ay;
+    
 }
 
 

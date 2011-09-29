@@ -14,6 +14,8 @@
 
 @implementation Bandages
 
+@synthesize parent = _player;
+
 +(id)instance
 {
     return [[self alloc] init];
@@ -26,7 +28,8 @@
         // Initialization code here.
         sprite = [Sprite spriteWithFile:@"Battery_v1_s.png"];
         [self setFrame:1];
-        [sprite setPositionAtX:625 Y:420];
+        [sprite setPositionAtX:625 Y:343];
+
     }
     
     return self;
@@ -46,16 +49,25 @@
     }
     _wait = 3.0f;
     _alpha = 1.0f;
+    _waitToIncrease = 7.0f;
 }
 
 -(void)update:(float)dt
 {
     if (_isRecharging) {
         [self recharging:dt];
-    } else if (_currentFrame == 3) {
-        [self lowBatteryWarning:dt];
     } else {
-        [self normalBattery:dt];
+        _waitToIncrease -= dt;
+        if (_waitToIncrease <=0.0f) {
+            [_player changeHealth:1];
+            _waitToIncrease = 6.0f;
+        }
+        
+        if (_currentFrame == 3) {
+            [self lowBatteryWarning:dt];
+        } else {
+            [self normalBattery:dt];
+        }
     }
 }
 

@@ -63,8 +63,8 @@
 -(void)drawBoxForGameObject:(GameObject*)object
 {
     CGPoint point = [object getCCSprite].position;
-    float left = point.x + object.boundingBox.origin.x;
-    float right = point.x + object.boundingBox.origin.x + object.boundingBox.size.width;
+    float left = point.x - object.boundingBox.origin.x;
+    float right = point.x - object.boundingBox.origin.x + object.boundingBox.size.width;
     float bottom = point.y + object.boundingBox.origin.y;
     float top = point.y + object.boundingBox.origin.y + object.boundingBox.size.height;
     
@@ -78,8 +78,8 @@
 -(void)drawBoxForGameObject:(GameObject*)object Collisions:(XDCollision)collisions
 {
     CGPoint point = [object getCCSprite].position;
-    float left = point.x + object.boundingBox.origin.x;
-    float right = point.x + object.boundingBox.origin.x + object.boundingBox.size.width;
+    float left = point.x - object.boundingBox.origin.x;
+    float right = point.x - object.boundingBox.origin.x + object.boundingBox.size.width;
     float bottom = point.y + object.boundingBox.origin.y;
     float top = point.y + object.boundingBox.origin.y + object.boundingBox.size.height;
     

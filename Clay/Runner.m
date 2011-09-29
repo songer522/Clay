@@ -34,6 +34,7 @@
         _speed = [RunningSpeed node];
         [[[self getSprite] getCCSprite] setAnchorPoint:ccp(0,1)];
         [self setOffsetForX:0 Y:-201];
+        _ay = 0.0f;
     }    
     return self;
 }
@@ -58,8 +59,9 @@
 {
     
     [_speed update:dt];
+    _ay += 150.0f * dt;
     self.vx = RUNNER_VELOCITY_RATE * _speed.velocity;
-    self.vy += 1800.0f * dt;
+    self.vy += _ay;
     [super update:dt];
     
 }

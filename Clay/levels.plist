@@ -11,7 +11,7 @@
 		<key>worldType</key>
 		<string>realWorld</string>
 		<key>playerOffsetY</key>
-		<integer>-73</integer>
+		<integer>-9</integer>
 		<key>fileName</key>
 		<string>clayl1.5.tmx</string>
 		<key>obstacleLayer</key>
@@ -28,7 +28,7 @@
 		<key>worldType</key>
 		<string>testWorld</string>
 		<key>playerOffsetY</key>
-		<integer>-108</integer>
+		<integer>-9</integer>
 		<key>fileName</key>
 		<string>platformtest-2.tmx</string>
 		<key>obstacleLayer</key>
@@ -47,7 +47,7 @@
 		<key>worldType</key>
 		<string>dreamWorld</string>
 		<key>playerOffsetY</key>
-		<integer>-73</integer>
+		<integer>-9</integer>
 		<key>fileName</key>
 		<string>clayl2.1.4.tmx</string>
 		<key>obstacleLayer</key>
@@ -57,7 +57,26 @@
 		<key>layerList</key>
 		<string>back-2,back-1,main0,front2,front3,meta</string>
 	</dict>
+	<key>level3</key>
+	<dict>
+		<key>music</key>
+		<string>barn</string>
+		<key>postLevelComic</key>
+		<string>farmToCornfields</string>
+		<key>worldType</key>
+		<string>dreamWorld</string>
+		<key>playerOffsetY</key>
+		<integer>-9</integer>
+		<key>fileName</key>
+		<string>clayl3.0.2.tmx</string>
+		<key>obstacleLayer</key>
+		<string>front2</string>
+		<key>nextLevelName</key>
+		<string>level1</string>
+		<key>layerList</key>
+		<string>back-3,back-2,back-1,main,front1,front2,meta</string>
+	</dict>
 	<key>startingLevel</key>
-	<string>level2</string>
+	<string>level1</string>
 </dict>
 </plist>

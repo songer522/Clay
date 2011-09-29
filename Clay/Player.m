@@ -59,6 +59,7 @@
         
         hitPoints = 3;
         _bandages = [Bandages instance];
+        _bandages.parent = self;
         
         _particleSystem = [ParticleSystem instance];
 
@@ -67,17 +68,34 @@
     return self;
 }
 
+-(void)changeHealth:(int)amount
+{
+    if (amount > 0 && hitPoints<3) {
+        hitPoints+=1;
+        [_bandages setFrame:(4-hitPoints)];
+    } else if(amount < 0 && hitPoints >= 0) {
+        hitPoints-=1;
+        [_bandages setFrame:(4-hitPoints)];
+    }
+    
+    if (hitPoints <=0) {
+        _isDead = true;
+        [[SoundEngine shared] playSound:@"dead"];
+    } else {
+        [[SoundEngine shared] playSound:@"collision"];
+    }
+}
+
 -(void)update:(float)dt Level:(Level *)level
 {
     
     [super update:dt];
-    if (_isJumping) {
-        _jumpAcceleration += 12.0f;
-        _vy += _jumpAcceleration * dt;
-    }
+    //_jumpAcceleration += 10000.0f * dt;
+    //self.vy += _jumpAcceleration * dt;
+    
     
     [self updateJump:dt];
-    CGPoint newPosition = [level checkCollisionForObject:self];    
+    CGPoint newPosition = [level checkCollisionForObject2:self];    
 
     [self setPositionAtX:newPosition.x Y:newPosition.y];    //for some reason the y position jitters without
                                                             //having this twice.
@@ -110,14 +128,15 @@
                 [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"runningAnim" FrameNumber:8];
             }
             
-            float x = _x + 70.0f;
-            float y = _y - 45.0f;
+            float x = _x + 60.0f;
+            float y = _y + 23.0f;
             [_particleSystem addDustImpactAtPosition:CGPointMake(x, y)];
             [[SoundEngine shared] playSound:@"jumpLand"];
         }
 
         _jumpAcceleration = 0;
         _vy = 0;
+        _ay = 0;
     } else if(state == COLLISION_STATE_BUMPED_WALL) {
         _vx = 0;
         _vy = 0;
@@ -127,7 +146,7 @@
 -(void)startJump:(RunnerJump)height
 {
     _firstFrameJumping = true;
-    _vy = -250.0f * height;
+    _vy = -175.0f * height;
     _y += 2.0f;
     _jumpAcceleration = 0;
     _isJumping = true;
@@ -139,9 +158,13 @@
 
 -(void)startTurbo
 {
-    [_speed startTurbo];
-    [[SoundEngine shared] playSound:@"turboStart"];
-    [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"turboAnim"];
+    if (hitPoints > 1) {
+        [_speed startTurbo];
+        [[SoundEngine shared] playSound:@"turboStart"];
+        [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"turboAnim"];
+        hitPoints -=1;
+        [_bandages setFrame:(4 - hitPoints)];        
+    }
 
 }
 
@@ -152,6 +175,7 @@
 -(void)endTurbo
 {
     [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"runningAnim"];
+    [_speed endTurbo];
     
 }
 
@@ -162,15 +186,8 @@
     }
     
     [_speed startCollision];
-    hitPoints -= 1;
-    if (hitPoints <=0) {
-        _isDead = true;
-        [[SoundEngine shared] playSound:@"dead"];
-    } else {
-        [[SoundEngine shared] playSound:@"collision"];
-    }
     
-    [_bandages setFrame:(4 - hitPoints)];  
+    [self changeHealth:-1];
 }
 
 //used by background layers for scrolling

@@ -19,8 +19,12 @@
     float _totalTime;
     float _wait;
     float _alpha;
+    float _waitToIncrease;
     bool _isRecharging;
+    Player *_player;
 }
+
+@property(nonatomic,retain) Player *parent;
 
 +(id)instance;
 

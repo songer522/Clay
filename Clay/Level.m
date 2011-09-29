@@ -105,6 +105,10 @@
 {
     return [_collisionHandler checkCollisionForObject:object];
 }
+-(CGPoint)checkCollisionForObject2:(GameObject*)object
+{
+    return [_collisionHandler checkCollisionForObject2:object];
+}
 
 -(void)setPositionAtX:(float)x Y:(float)y
 {
@@ -179,7 +183,7 @@
     //TODO: not sure why these need to be divided by 2 to get the right position yet
     //should make it clear what the 2.0 represents once figured out
     int scaledTileWidth = _map.tileSize.width / 2;
-    int scaledTileHeight = _map.tileSize.height;
+    int scaledTileHeight = _map.tileSize.height / 2;
     
     float x = coords.x * scaledTileWidth;
     float y = (_map.mapSize.height * scaledTileHeight) - coords.y * scaledTileHeight;
@@ -228,12 +232,12 @@
     
     //both of these are wrong in the same way, so they seem right, but they wouldn't match with the world
     
-    float targetLeft = [[target getCCSprite] position].x + (target.boundingBox.origin.x * scale);
+    float targetLeft = [[target getCCSprite] position].x - (target.boundingBox.origin.x * scale);
     float targetRight = targetLeft + (target.boundingBox.size.width * scale);
     float targetTop = [[target getCCSprite] position].y + (target.boundingBox.origin.y * scale);
     float targetBottom = targetTop + (target.boundingBox.size.height * scale);
     
-    float sourceLeft = [[source getCCSprite] position].x + (source.boundingBox.origin.x * scale);
+    float sourceLeft = [[source getCCSprite] position].x - (source.boundingBox.origin.x * scale);
     float sourceRight = sourceLeft + (source.boundingBox.size.width * scale);
     float sourceTop = [[source getCCSprite] position].y + (source.boundingBox.origin.y * scale);
     float sourceBottom = sourceTop + (source.boundingBox.size.height * scale);

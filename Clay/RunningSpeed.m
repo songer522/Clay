@@ -99,7 +99,6 @@
 -(void)endTurbo
 {
     _inTurbo = false;
-    [_player endTurbo];
 }
 
 -(void)update:(float)dt
@@ -120,7 +119,7 @@
             
             _turboLeft -= dt;
             if (_turboLeft <= 0.0f) {
-                [self endTurbo];
+                [_player endTurbo];
             }
         }
         else

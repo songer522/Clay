@@ -53,6 +53,7 @@ typedef enum {
 
 -(void)startCollision;
 
+-(void)changeHealth:(int)amount;
 
 -(void)reset;
 -(void)resetSprite:(CCLayer*)layer;
