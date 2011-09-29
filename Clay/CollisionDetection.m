@@ -12,6 +12,8 @@
 
 @implementation CollisionDetection
 
+@synthesize midpointCollisions = _currentMidpoints;
+
 +(id) collisionHandlerWithMetaLayer:(CCTMXLayer*)collisionLayer Map:(CCTMXTiledMap*)map
 {
     return [[self alloc] initWithCollisionLayer:collisionLayer Map:map];
@@ -86,8 +88,94 @@
     return ccp(x,y);
 }
 
--(void)ShowCollisions
+-(CGPoint)accurateCoords:(CGPoint)position
 {
+    int scaledTileWidth = _tileSize / 2.0f;
+    int scaledTileHeight = _tileSize / 2.0f;
+    int x = position.x / scaledTileWidth;
+    int y = ((_map.mapSize.height * scaledTileHeight) - position.y) / scaledTileHeight;
+    
+    if (x < 0) {
+        x = 0;
+    } else if(x > (_map.mapSize.width - 1)) {
+        x = _map.mapSize.width - 1;
+    }
+    
+    if (y < 0) {
+        y = 0;
+    } else if(y > (_map.mapSize.height - 1)) {
+        y = _map.mapSize.height - 1;
+    }
+    
+    return ccp(x,y);
+}
+
+-(XDCollision)getMidpointCollisions
+{
+    float scale = 1;
+    
+    CGPoint pos = [_currentObject getPosition];
+    float leftMidpoint = pos.x + (_objectBoundingBox.origin.x * scale);
+    float bottomMidpoint = pos.y + (_objectBoundingBox.origin.y * scale);
+    float rightMidpoint = leftMidpoint + (_objectBoundingBox.size.width * scale);
+    float topMidpoint = bottomMidpoint + (_objectBoundingBox.size.height * scale);
+    
+    bool bottomCollision = [self checkCollisionAtPoint:CGPointMake(pos.x, bottomMidpoint)];
+    bool leftCollision = [self checkCollisionAtPoint:CGPointMake(leftMidpoint, pos.y)];
+    bool topCollision = [self checkCollisionAtPoint:CGPointMake(pos.x,topMidpoint)];
+    bool rightCollision = [self checkCollisionAtPoint:CGPointMake(rightMidpoint, pos.y)];
+    
+    bool hasCollision = false;
+    if (leftCollision||rightCollision||topCollision||bottomCollision) {
+        hasCollision = true;
+    }
+    
+    XDCollision returnVal = XDCollisionMake(hasCollision, leftCollision, rightCollision, topCollision, bottomCollision);
+    
+    return returnVal;
+}
+
+-(void)showCollisions
+{
+    _currentMidpoints = [self getMidpointCollisions];
+    
+}
+
+-(bool)checkCollisionAtPoint:(CGPoint)point
+{
+    bool returnVal = false;
+    
+    CGPoint coords = [self accurateCoords:point];
+    _pointWithinTile = CGPointMake((int)point.x % (_tileSize/2), (int)point.y % (_tileSize/2));
+
+    CollisionType collision = [self getCollisionTypeForCoords:coords];
+    
+    switch (collision) {
+        case COLLISION_TYPE_NONE:
+            returnVal = false;
+            break;
+        case COLLISION_TYPE_FULL:
+            returnVal = true;
+            break;
+        case COLLISION_TYPE_LEFT_SLANT:
+            if (_pointWithinTile.y < _pointWithinTile.x) {
+                returnVal = true;
+            } else {
+                returnVal = false;
+            }
+            break;
+        case COLLISION_TYPE_RIGHT_SLANT:
+            if (_pointWithinTile.y < _pointWithinTile.x) {
+                returnVal = true;
+            } else {
+                returnVal = false;
+            }
+            break;
+        default:
+            break;
+    }
+    
+    return returnVal;
     
 }
 
@@ -100,7 +188,7 @@
     _amountToReachGround = 100000.0f;
     _objectBoundingBox = _currentObject.boundingBox;
     
-    //[self showCollisions];
+    [self showCollisions];
     
     if([self tryGoingFullVxAndVy])
     {
@@ -175,6 +263,22 @@
     
     
     return false;
+}
+
+-(CollisionType)getCollisionTypeForCoords:(CGPoint)coords
+{
+    CollisionType returnVal = COLLISION_TYPE_NONE;
+    
+    NSString *property = [self getCollisionPropertyForTileCoords:coords];
+    if ([property compare:@"full"] == NSOrderedSame) {
+        returnVal = COLLISION_TYPE_FULL;
+    } else if([property compare:@"leftslant"] == NSOrderedSame) {
+        returnVal = COLLISION_TYPE_LEFT_SLANT;
+    } else if([property compare:@"rightslant"] == NSOrderedSame) {
+        returnVal = COLLISION_TYPE_RIGHT_SLANT;
+    }
+    
+    return returnVal;
 }
 
 

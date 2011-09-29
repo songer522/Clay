@@ -28,6 +28,7 @@
 @synthesize obstacleSprites = _obstacleSprites;
 @synthesize postLevelComicName = _postLevelComicName;
 @synthesize musicName = _musicName;
+@synthesize collisionHandler = _collisionHandler;
 
 +(id)levelWithFilename:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer LayerList:(NSString*)layerList GameObjectController:(GameObjectController*)gameObjects
 {
@@ -225,6 +226,7 @@
     
     float scale = 1;
     
+    //both of these are wrong in the same way, so they seem right, but they wouldn't match with the world
     
     float targetLeft = [[target getCCSprite] position].x + (target.boundingBox.origin.x * scale);
     float targetRight = targetLeft + (target.boundingBox.size.width * scale);

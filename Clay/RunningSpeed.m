@@ -14,6 +14,7 @@
 
 @synthesize velocity = _velocity;
 @synthesize inTurbo = _inTurbo;
+@synthesize parent = _player;
 
 +(id)node
 {
@@ -92,6 +93,13 @@
 {
     _inTurbo = true;
     _turboLeft = _turboDuration;
+    _velocity = RUNNING_SPEED_MODIFIER_VELOCITY_MAX * _normalVelocityMax;
+}
+
+-(void)endTurbo
+{
+    _inTurbo = false;
+    [_player endTurbo];
 }
 
 -(void)update:(float)dt
@@ -112,7 +120,7 @@
             
             _turboLeft -= dt;
             if (_turboLeft <= 0.0f) {
-                _inTurbo = false;
+                [self endTurbo];
             }
         }
         else

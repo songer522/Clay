@@ -49,6 +49,8 @@ typedef enum {
 -(void)startTurbo;
 -(bool)getIsTurbo;
 
+-(void)endTurbo;
+
 -(void)startCollision;
 
 

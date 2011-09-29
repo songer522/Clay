@@ -53,6 +53,7 @@
         _isDead = false;
         
         _speed = [[RunningSpeed alloc] initWithSettings:settings];
+        _speed.parent = self;
         [_speed start];
         [self changeToRunnerState:RUNNER_STATE_RUNNING];
         
@@ -102,7 +103,12 @@
     if (state == COLLISION_STATE_GROUNDED) {
         if (_isJumping) {                
             _isJumping = false;
-            [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"runningAnim" FrameNumber:8];
+            
+            if (_speed.inTurbo) {
+                [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"turboAnim" FrameNumber:8];
+            } else {
+                [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"runningAnim" FrameNumber:8];
+            }
             
             float x = _x + 70.0f;
             float y = _y - 45.0f;
@@ -135,14 +141,26 @@
 {
     [_speed startTurbo];
     [[SoundEngine shared] playSound:@"turboStart"];
+    [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"turboAnim"];
+
 }
 
 -(bool)getIsTurbo {
     return _speed.inTurbo;
 }
 
+-(void)endTurbo
+{
+    [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"runningAnim"];
+    
+}
+
 -(void)startCollision
 {
+    if(_speed.inTurbo) {
+        [self endTurbo];
+    }
+    
     [_speed startCollision];
     hitPoints -= 1;
     if (hitPoints <=0) {

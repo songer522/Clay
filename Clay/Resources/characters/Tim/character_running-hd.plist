@@ -22,7 +22,7 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{681, 0}, {225, 300}}</string>
+			<string>{{227, 604}, {225, 300}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -66,7 +66,7 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{227, 302}, {225, 300}}</string>
+			<string>{{681, 302}, {225, 300}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -88,7 +88,7 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{227, 604}, {225, 300}}</string>
+			<string>{{681, 0}, {225, 300}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -110,7 +110,7 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{227, 0}, {225, 300}}</string>
+			<string>{{0, 302}, {225, 300}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -132,7 +132,7 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{0, 302}, {225, 300}}</string>
+			<string>{{454, 0}, {225, 300}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -176,7 +176,7 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{681, 302}, {225, 300}}</string>
+			<string>{{227, 302}, {225, 300}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -198,7 +198,7 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{454, 302}, {225, 300}}</string>
+			<string>{{227, 0}, {225, 300}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -220,7 +220,7 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{454, 0}, {225, 300}}</string>
+			<string>{{454, 302}, {225, 300}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -241,13 +241,13 @@
 		<key>target</key>
 		<dict>
 			<key>name</key>
-			<string>default</string>
+			<string>s-hd</string>
 			<key>textureFileName</key>
-			<string>default</string>
+			<string>s-hd</string>
 			<key>textureFileExtension</key>
 			<string>.png</string>
 			<key>coordinatesFileName</key>
-			<string>default</string>
+			<string>s-hd</string>
 			<key>coordinatesFileExtension</key>
 			<string>.plist</string>
 			<key>premultipliedAlpha</key>

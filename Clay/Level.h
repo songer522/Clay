@@ -59,6 +59,7 @@
 @property (nonatomic,retain) GameObjectController *gameObjects;
 @property (nonatomic,readonly,assign) CGPoint spawnPoint;
 @property (nonatomic,readonly,retain) NSMutableArray *obstacleSprites;
+@property (nonatomic,readonly,retain) CollisionDetection *collisionHandler;
 
 #pragma mark - inits
 +(id)levelWithFilename:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer LayerList:(NSString*)layerList GameObjectController:(GameObjectController*)gameObjects;

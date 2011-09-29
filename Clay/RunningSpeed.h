@@ -17,6 +17,8 @@
 
 @interface RunningSpeed : NSObject
 {
+    Player *_player;
+    
     bool _isStopped;
     
     bool _inTurbo;
@@ -38,6 +40,7 @@
 
 @property(readonly,nonatomic,assign) float velocity;
 @property(readonly,nonatomic,assign) bool inTurbo;
+@property(nonatomic,retain) Player *parent;
 
 #pragma mark - inits
 +(id)node;
@@ -51,6 +54,7 @@
 #pragma mark - public methods
 -(void)startCollision;
 -(void)startTurbo;
+-(void)endTurbo;
 -(void)update:(float)dt;
 
 @end

@@ -28,5 +28,18 @@
 		<key>delay</key>
 		<string>0.1</string>
 	</dict>
+	<key>turboAnim</key>
+	<dict>
+		<key>group</key>
+		<string>Player</string>
+		<key>spritesheetPlist</key>
+		<string>character_turbo</string>
+		<key>sequencePrefix</key>
+		<string>Character_Running_</string>
+		<key>animationFrames</key>
+		<string>1,2,3,4,5,6,7,8,9,10</string>
+		<key>delay</key>
+		<string>0.075</string>
+	</dict>
 </dict>
 </plist>
