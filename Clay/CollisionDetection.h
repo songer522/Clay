@@ -28,7 +28,10 @@
     
     CGPoint _coordinates;
     
+    CGRect _objectBoundingBox;
+    
     NSString *_tileCollision;
+    
 }
 
 +(id) collisionHandlerWithMetaLayer:(CCTMXLayer*)collisionLayer Map:(CCTMXTiledMap*)map;
@@ -36,6 +39,8 @@
 -(NSString*)getCollisionPropertyForTileCoords:(CGPoint)coords;
 -(CGPoint)checkCollisionForObject:(GameObject*)object;
 
+
+-(bool)showCollisions;
 
 -(bool)tryGoingFullVxAndVy;
 -(bool)tryGoingFullVx;

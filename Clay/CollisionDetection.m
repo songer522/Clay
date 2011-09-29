@@ -86,6 +86,11 @@
     return ccp(x,y);
 }
 
+-(void)ShowCollisions
+{
+    
+}
+
 
 -(CGPoint)checkCollisionForObject:(GameObject*)object
 {
@@ -93,6 +98,9 @@
     _testPosition = [object getPosition];
     _currentObject = object;
     _amountToReachGround = 100000.0f;
+    _objectBoundingBox = _currentObject.boundingBox;
+    
+    //[self showCollisions];
     
     if([self tryGoingFullVxAndVy])
     {
