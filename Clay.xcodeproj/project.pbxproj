@@ -26,14 +26,12 @@
 		54179E2D142BC92400D3A79E /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54179E2C142BC92300D3A79E /* GameKit.framework */; };
 		5421A2F8142A5C7E0078D861 /* Bandages.m in Sources */ = {isa = PBXBuildFile; fileRef = 5421A2F7142A5C7E0078D861 /* Bandages.m */; };
 		5421A2FC142A63FF0078D861 /* CCXAnimate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5421A2FB142A63FF0078D861 /* CCXAnimate.m */; };
+		5422798A143628D30010A640 /* clayl3.0.1.2.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 54227989143628D30010A640 /* clayl3.0.1.2.tmx */; };
 		542361AE14228E5E0086E533 /* LevelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 542361AD14228E5E0086E533 /* LevelManager.m */; };
 		54297897140C1F8900B3FFF4 /* GameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54297896140C1F8900B3FFF4 /* GameController.m */; };
 		5429789B140C233E00B3FFF4 /* InputController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5429789A140C233E00B3FFF4 /* InputController.m */; };
 		5429789E140C268100B3FFF4 /* InputEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5429789D140C268100B3FFF4 /* InputEvent.m */; };
-		5430BC76143523B6002FD8E5 /* clayl3.0.1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 5430BC73143523B6002FD8E5 /* clayl3.0.1.tmx */; };
-		5430BC77143523B6002FD8E5 /* TL_Town_TileTextures_v2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5430BC74143523B6002FD8E5 /* TL_Town_TileTextures_v2.png */; };
 		5430BC78143523B6002FD8E5 /* TL_Town_TileTextures.png in Resources */ = {isa = PBXBuildFile; fileRef = 5430BC75143523B6002FD8E5 /* TL_Town_TileTextures.png */; };
-		5430BC7B1435242E002FD8E5 /* clayl3.0.2.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 5430BC7A1435242E002FD8E5 /* clayl3.0.2.tmx */; };
 		543C09511420F38200F259BA /* character_idle.png in Resources */ = {isa = PBXBuildFile; fileRef = 543C09501420F38200F259BA /* character_idle.png */; };
 		543C09561420F39B00F259BA /* clayl1.5.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 543C09521420F39B00F259BA /* clayl1.5.tmx */; };
 		543C09571420F39B00F259BA /* Env_Track_Icons.png in Resources */ = {isa = PBXBuildFile; fileRef = 543C09531420F39B00F259BA /* Env_Track_Icons.png */; };
@@ -208,6 +206,7 @@
 		54E316361434D94100CD81FA /* character_turbo-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54E316321434D94100CD81FA /* character_turbo-hd.png */; };
 		54E316371434D94100CD81FA /* character_turbo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54E316331434D94100CD81FA /* character_turbo.plist */; };
 		54E316381434D94100CD81FA /* character_turbo.png in Resources */ = {isa = PBXBuildFile; fileRef = 54E316341434D94100CD81FA /* character_turbo.png */; };
+		54F55C03143666AC00AB8FBC /* clayl3.0.1.3.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 54F55C02143666AC00AB8FBC /* clayl3.0.1.3.tmx */; };
 		54FBA2331430CA5D0010A91A /* VideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 54FBA2321430CA5D0010A91A /* VideoPlayer.m */; };
 		54FBA2361430CBBE0010A91A /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54FBA2351430CBBE0010A91A /* MediaPlayer.framework */; };
 		54FBA23C1430CE210010A91A /* VideoPlaybackScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 54FBA23B1430CE210010A91A /* VideoPlaybackScene.m */; };
@@ -248,6 +247,7 @@
 		5421A2F7142A5C7E0078D861 /* Bandages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bandages.m; sourceTree = "<group>"; };
 		5421A2FA142A63FF0078D861 /* CCXAnimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCXAnimate.h; sourceTree = "<group>"; };
 		5421A2FB142A63FF0078D861 /* CCXAnimate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCXAnimate.m; sourceTree = "<group>"; };
+		54227989143628D30010A640 /* clayl3.0.1.2.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = clayl3.0.1.2.tmx; path = Resources/levels/clayl3.0.1.2.tmx; sourceTree = "<group>"; };
 		542361AC14228E5E0086E533 /* LevelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelManager.h; sourceTree = "<group>"; };
 		542361AD14228E5E0086E533 /* LevelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelManager.m; sourceTree = "<group>"; };
 		54297895140C1F8900B3FFF4 /* GameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameController.h; sourceTree = "<group>"; };
@@ -256,10 +256,7 @@
 		5429789A140C233E00B3FFF4 /* InputController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputController.m; sourceTree = "<group>"; };
 		5429789C140C268100B3FFF4 /* InputEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputEvent.h; sourceTree = "<group>"; };
 		5429789D140C268100B3FFF4 /* InputEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputEvent.m; sourceTree = "<group>"; };
-		5430BC73143523B6002FD8E5 /* clayl3.0.1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = clayl3.0.1.tmx; path = Resources/levels/clayl3.0.1.tmx; sourceTree = "<group>"; };
-		5430BC74143523B6002FD8E5 /* TL_Town_TileTextures_v2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TL_Town_TileTextures_v2.png; path = Resources/levels/TL_Town_TileTextures_v2.png; sourceTree = "<group>"; };
 		5430BC75143523B6002FD8E5 /* TL_Town_TileTextures.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TL_Town_TileTextures.png; path = Resources/levels/TL_Town_TileTextures.png; sourceTree = "<group>"; };
-		5430BC7A1435242E002FD8E5 /* clayl3.0.2.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = clayl3.0.2.tmx; path = Resources/levels/clayl3.0.2.tmx; sourceTree = "<group>"; };
 		543C09501420F38200F259BA /* character_idle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = character_idle.png; sourceTree = "<group>"; };
 		543C09521420F39B00F259BA /* clayl1.5.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = clayl1.5.tmx; path = Resources/levels/clayl1.5.tmx; sourceTree = "<group>"; };
 		543C09531420F39B00F259BA /* Env_Track_Icons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Env_Track_Icons.png; path = Resources/levels/Env_Track_Icons.png; sourceTree = "<group>"; };
@@ -574,6 +571,7 @@
 		54E316321434D94100CD81FA /* character_turbo-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "character_turbo-hd.png"; sourceTree = "<group>"; };
 		54E316331434D94100CD81FA /* character_turbo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = character_turbo.plist; sourceTree = "<group>"; };
 		54E316341434D94100CD81FA /* character_turbo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = character_turbo.png; sourceTree = "<group>"; };
+		54F55C02143666AC00AB8FBC /* clayl3.0.1.3.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = clayl3.0.1.3.tmx; path = Resources/levels/clayl3.0.1.3.tmx; sourceTree = "<group>"; };
 		54FBA2311430CA5D0010A91A /* VideoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayer.h; sourceTree = "<group>"; };
 		54FBA2321430CA5D0010A91A /* VideoPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayer.m; sourceTree = "<group>"; };
 		54FBA2351430CBBE0010A91A /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -1183,9 +1181,9 @@
 		548C3DBB141ABDBB000567A8 /* levels */ = {
 			isa = PBXGroup;
 			children = (
-				5430BC7A1435242E002FD8E5 /* clayl3.0.2.tmx */,
-				5430BC73143523B6002FD8E5 /* clayl3.0.1.tmx */,
-				5430BC74143523B6002FD8E5 /* TL_Town_TileTextures_v2.png */,
+				54F55C02143666AC00AB8FBC /* clayl3.0.1.3.tmx */,
+				54227989143628D30010A640 /* clayl3.0.1.2.tmx */,
+				543C09521420F39B00F259BA /* clayl1.5.tmx */,
 				5430BC75143523B6002FD8E5 /* TL_Town_TileTextures.png */,
 				547F09721428E49C00E5D920 /* blank.png */,
 				5460F9FD1423EB6100582EBD /* clayl2.1.4.tmx */,
@@ -1194,7 +1192,6 @@
 				549BBB8E1421619800337F71 /* Barn_Tile_Final.png */,
 				549BBB8F1421619800337F71 /* clayl2.1.0.tmx */,
 				54C2C27B14225FC900C94935 /* clayl2.1.1.tmx */,
-				543C09521420F39B00F259BA /* clayl1.5.tmx */,
 				543C09531420F39B00F259BA /* Env_Track_Icons.png */,
 				543C09541420F39B00F259BA /* meta64.png */,
 				543C09551420F39B00F259BA /* Tile_Track_Test.png */,
@@ -1390,10 +1387,9 @@
 				54E316361434D94100CD81FA /* character_turbo-hd.png in Resources */,
 				54E316371434D94100CD81FA /* character_turbo.plist in Resources */,
 				54E316381434D94100CD81FA /* character_turbo.png in Resources */,
-				5430BC76143523B6002FD8E5 /* clayl3.0.1.tmx in Resources */,
-				5430BC77143523B6002FD8E5 /* TL_Town_TileTextures_v2.png in Resources */,
 				5430BC78143523B6002FD8E5 /* TL_Town_TileTextures.png in Resources */,
-				5430BC7B1435242E002FD8E5 /* clayl3.0.2.tmx in Resources */,
+				5422798A143628D30010A640 /* clayl3.0.1.2.tmx in Resources */,
+				54F55C03143666AC00AB8FBC /* clayl3.0.1.3.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

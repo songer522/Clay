@@ -33,7 +33,7 @@
 
 -(void)addDustImpactAtPosition:(CGPoint)position
 {
-    
+    /*
     CCParticleSystem *_dust = [[CCParticleMeteor alloc] initWithTotalParticles:7];
     [_dust setEmitterMode:kCCParticleModeGravity];
     
@@ -57,7 +57,7 @@
     [[[LayerManager sharedLayers] currentLayer] addChild:_dust];
     Particle *particle = [[Particle alloc] initWithEmitter:_dust At:position];
     [_emitters addObject:particle];
-     
+     */
 }
 
 +(void)testLimits

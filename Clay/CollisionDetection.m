@@ -337,6 +337,10 @@
         returnVal = COLLISION_TYPE_LEFT_SLANT;
     } else if([property compare:@"rightslant"] == NSOrderedSame) {
         returnVal = COLLISION_TYPE_RIGHT_SLANT;
+    } else if([property compare:@"rs2tileL"] == NSOrderedSame) {
+        returnVal = COLLISION_TYPE_RIGHT_SLANT_2TILE_L;
+    } else if([property compare:@"rs2tileR"] == NSOrderedSame) {
+        returnVal = COLLISION_TYPE_RIGHT_SLANT_2TILE_R;        
     }
     
     return returnVal;

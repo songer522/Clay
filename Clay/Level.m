@@ -83,13 +83,16 @@
         if (tmxLayer) {
             float speedx = [[tmxLayer propertyNamed:@"speedx"] floatValue] * _scale;
             float speedy = [[tmxLayer propertyNamed:@"speedy"] floatValue] * _scale;
-            [tmxLayer removeFromParentAndCleanup:NO];
-            [_parallaxLayers addChild:tmxLayer z:currentZ parallaxRatio:ccp(speedx,speedy) positionOffset:ccp(0, 0)];
-            currentZ++;
-            
-            if ([layerName compare:@"meta"] != NSOrderedSame && [layerName compare:@"front3"] != NSOrderedSame) {
-                //[tmxLayer releaseMap];
+            float offsety = [[tmxLayer propertyNamed:@"offsety"] floatValue];
+
+            CGPoint offsetPoint = ccp(0, 0);
+            if (offsety && offsety!= 0.0f && speedy != 0.0f) {
+                offsetPoint = ccp(0, offsety * _map.tileSize.width);
             }
+            
+            [tmxLayer removeFromParentAndCleanup:NO];
+            [_parallaxLayers addChild:tmxLayer z:currentZ parallaxRatio:ccp(speedx,speedy) positionOffset:offsetPoint];
+            currentZ++;
         }
     }    
 }
