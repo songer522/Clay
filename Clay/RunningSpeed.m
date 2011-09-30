@@ -118,7 +118,7 @@
             }
             
             _turboLeft -= dt;
-            if (_turboLeft <= 0.0f) {
+            if (_turboLeft <= 0.0f && !_player.isJumping) {
                 [_player endTurbo];
             }
         }

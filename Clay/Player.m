@@ -90,8 +90,6 @@
 {
     
     [super update:dt];
-    //_jumpAcceleration += 10000.0f * dt;
-    //self.vy += _jumpAcceleration * dt;
     
     
     [self updateJump:dt];
@@ -146,7 +144,7 @@
 -(void)startJump:(RunnerJump)height
 {
     _firstFrameJumping = true;
-    _vy = -175.0f * height;
+    _vy = -150.0f * height;
     _y += 2.0f;
     _jumpAcceleration = 0;
     _isJumping = true;

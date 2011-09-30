@@ -28,7 +28,7 @@
         // Initialization code here.
         sprite = [Sprite spriteWithFile:@"Battery_v1_s.png"];
         [self setFrame:1];
-        [sprite setPositionAtX:625 Y:343];
+        [sprite setPositionAtX:625 Y:421];
 
     }
     
@@ -44,12 +44,14 @@
     if (_currentFrame == 3) {
         _totalTime = 0.0f;
         [[sprite getCCSprite] setOpacity:255];
+        _waitToIncrease = 11.0f;
     } else {
         [[sprite getCCSprite] setVisible:YES];
+        _waitToIncrease = 5.0f;
     }
+    
     _wait = 3.0f;
     _alpha = 1.0f;
-    _waitToIncrease = 7.0f;
 }
 
 -(void)update:(float)dt
@@ -57,10 +59,11 @@
     if (_isRecharging) {
         [self recharging:dt];
     } else {
-        _waitToIncrease -= dt;
+        if(![_player getIsTurbo]) {
+            _waitToIncrease -= dt;
+        }
         if (_waitToIncrease <=0.0f) {
             [_player changeHealth:1];
-            _waitToIncrease = 6.0f;
         }
         
         if (_currentFrame == 3) {
