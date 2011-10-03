@@ -37,6 +37,7 @@
 
 -(void) setFrame:(int)frameNumber
 {
+    
     NSString *number = [NSString stringWithFormat:@"%d",frameNumber];
     Animation *anim = [Animation animationFromPlist:@"Battery_v2_s" forSequence:@"Battery_" FrameList:number];
     [sprite setAnimation:anim Delay:100.0f];
@@ -52,6 +53,7 @@
     
     _wait = 3.0f;
     _alpha = 1.0f;
+     
 }
 
 -(void)update:(float)dt

@@ -30,6 +30,9 @@ typedef enum {
     float _yPosition;
     float _jumpAcceleration;
     
+    bool _isHighJump;
+    
+    
     int hitPoints;
     Bandages *_bandages;
     
@@ -43,7 +46,8 @@ typedef enum {
 -(float)getVelocityX;                           //get the current velocity (read-only, for now)
 -(void)update:(float)dt Level:(Level*)level;    //update, dt = seconds since last update
 
--(void)startJump:(RunnerJump)height;
+-(void)startJump:(RunnerJump)type;
+-(void)boostJump:(RunnerJump)type;
 -(void)updateJump:(float)dt;
 
 -(void)startTurbo;

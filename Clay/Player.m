@@ -61,6 +61,8 @@
         _bandages = [Bandages instance];
         _bandages.parent = self;
         
+        _isHighJump = false;
+        
         _particleSystem = [ParticleSystem instance];
 
     }
@@ -81,8 +83,6 @@
     if (hitPoints <=0) {
         _isDead = true;
         [[SoundEngine shared] playSound:@"dead"];
-    } else {
-        [[SoundEngine shared] playSound:@"collision"];
     }
 }
 
@@ -126,6 +126,11 @@
                 [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"runningAnim" FrameNumber:8];
             }
             
+            if (_isHighJump) {
+                _isHighJump = false;
+                [_speed landFromHighJump];
+            }
+            
             float x = _x + 60.0f;
             float y = _y + 23.0f;
             [_particleSystem addDustImpactAtPosition:CGPointMake(x, y)];
@@ -141,10 +146,11 @@
     }
 }
 
--(void)startJump:(RunnerJump)height
+-(void)startJump:(RunnerJump)type
 {
     _firstFrameJumping = true;
-    _vy = -150.0f * height;
+    _isHighJump = false;
+    _vy = -200.0f;
     _y += 2.0f;
     _jumpAcceleration = 0;
     _isJumping = true;
@@ -152,6 +158,16 @@
     [[self getCollision] processNewCollisionState:COLLISION_STATE_MIDAIR];
     [self setPositionAtX:_x Y:_y];
     [[SoundEngine shared] playSound:@"jumpStart"];
+}
+
+-(void)boostJump:(RunnerJump)type
+{
+    if (type == JUMP_MEDIUM) {
+        _vy += -200.0f;
+    } else if(type == JUMP_HIGH) {
+        _vy += -200.0f;
+        _isHighJump = true;
+    }
 }
 
 -(void)startTurbo

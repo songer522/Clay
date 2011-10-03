@@ -11,6 +11,7 @@
 #import "Sprite.h"
 #import "Collision.h"
 #import "Camera.h"
+#import "SoundEngine.h"
 
 @implementation GameObject
 
@@ -93,13 +94,14 @@
 -(void) startCollision
 {
     _collided = true;
-    _behavior = COLLISION_BEHAVIOR_FLYING_SHURIKEN;
+    _behavior = COLLISION_BEHAVIOR_FALL_OVER;
     if (_behavior == COLLISION_BEHAVIOR_FLYING_SHURIKEN) {
         float magnitude = rand() % 500 + 600;
         _angle = rand() % 70 + 10;
         _rotationAmount = rand() % 10 * 200;
         _vx = magnitude * cosf((_angle * 3.14159)/180.0f);
         _vy = - magnitude * sinf((_angle * 3.14159)/180.0f);
+        [[SoundEngine shared] playSound:@"collision"];
         //NSLog(@"Angle: %f, VX: %f, VY: %f",_angle,_vx,_vy);
     }
 }

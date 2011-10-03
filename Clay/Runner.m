@@ -57,11 +57,12 @@
 
 -(void)update:(float)dt
 {
+    float rate = 30.0f * dt;
     
     [_speed update:dt];
     _ay += 150.0f * dt;
     self.vx = RUNNER_VELOCITY_RATE * _speed.velocity;
-    self.vy += _ay;
+    self.vy += _ay * rate;
     [super update:dt];
     
 }

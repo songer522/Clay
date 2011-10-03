@@ -96,6 +96,15 @@
     _velocity = RUNNING_SPEED_MODIFIER_VELOCITY_MAX * _normalVelocityMax;
 }
 
+-(void)landFromHighJump
+{
+    _acceleration *= 0.4f;
+    _velocity *= 0.4f;
+    if (_inTurbo) {
+        [_player endTurbo];
+    }
+}
+
 -(void)endTurbo
 {
     _inTurbo = false;

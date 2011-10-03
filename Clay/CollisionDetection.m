@@ -227,7 +227,7 @@
         }
         
     }
-    NSLog(@"Property: %@",_tileCollision);
+    //NSLog(@"Property: %@",_tileCollision);
 
     return true;
 }

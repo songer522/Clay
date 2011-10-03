@@ -50,7 +50,9 @@
         
         _gameController = [GameController gameController];
         [_gameController setGameLayer:self];
+        
         _inputController = [InputController inputController];
+        [self addChild:_inputController];       //need to so its scheduled selectors will be trigger
         
         
         
@@ -158,6 +160,17 @@
     NSSet *allTouches = [event allTouches];
     for(UITouch *touch in allTouches) {
         InputEvent *event = [InputEvent inputEventWithType:INPUT_EVENT_TYPE_TOUCHES_BEGAN];
+        [event setReceiver:_gameController];
+        [event setTouchLocation:[self convertTouchToNodeSpace:touch]];
+        [_inputController interpretAndReactToInputEvent:event];
+    }
+}
+
+-(void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    NSSet *allTouches = [event allTouches];
+    for(UITouch *touch in allTouches) {
+        InputEvent *event = [InputEvent inputEventWithType:INPUT_EVENT_TYPE_TOUCHES_ENDED];
         [event setReceiver:_gameController];
         [event setTouchLocation:[self convertTouchToNodeSpace:touch]];
         [_inputController interpretAndReactToInputEvent:event];

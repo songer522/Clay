@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "InputController.h"
 
 @class GameLayer;
 
@@ -39,7 +40,7 @@ typedef enum {
 +(id)gameController;
 
 -(void)changeGameState:(GameState)gameState;
--(void)reactToTouchAt:(CGPoint)location;
+-(void)reactToTouchAt:(CGPoint)location InputType:(InputType)type;
 -(void)setGameLayer:(GameLayer*)layer;
 
 -(void)pauseGame;

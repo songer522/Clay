@@ -8,14 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import "InputEvent.h"
-
+#import "cocos2d.h"
 
 typedef enum {
     INPUT_TOUCH_PRESSED,
     INPUT_TOUCH_RELEASE,
     INPUT_TOUCH_MOVE,
     INPUT_TOUCH_TAP,
-    INPUT_TOUCH_PRESS_AND_HOLD,
+    INPUT_TOUCH_HOLD_MEDIUM,
+    INPUT_TOUCH_HOLD_LONG,
     INPUT_TOUCH_MULTITOUCH,
     INPUT_GYRO_SHAKE,
     INPUT_GYRO_TILT,
@@ -23,8 +24,9 @@ typedef enum {
     INPUT_TEXT
 } InputType;
 
-@interface InputController : NSObject
+@interface InputController : CCNode
 {
+    InputEvent *_inputBeganEvent;
     
 }
 
@@ -32,7 +34,8 @@ typedef enum {
 
 -(void)interpretAndReactToInputEvent:(InputEvent*)event;
 
-
+-(void)reactMediumHold;
+-(void)reactLongHold;
 
 
 @end

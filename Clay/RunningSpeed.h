@@ -55,6 +55,7 @@
 -(void)startCollision;
 -(void)startTurbo;
 -(void)endTurbo;
+-(void)landFromHighJump;
 -(void)update:(float)dt;
 
 @end

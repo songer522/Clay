@@ -53,14 +53,14 @@
 		<key>obstacleLayer</key>
 		<string>front3</string>
 		<key>nextLevelName</key>
-		<string>level1</string>
+		<string>level3</string>
 		<key>layerList</key>
 		<string>back-2,back-1,main0,front2,front3,meta</string>
 	</dict>
 	<key>level3</key>
 	<dict>
 		<key>music</key>
-		<string>barn</string>
+		<string>cornfields</string>
 		<key>postLevelComic</key>
 		<string>farmToCornfields</string>
 		<key>worldType</key>
@@ -68,7 +68,7 @@
 		<key>playerOffsetY</key>
 		<integer>-9</integer>
 		<key>fileName</key>
-		<string>clayl3.0.1.3.tmx</string>
+		<string>clayl3.0.1.4.tmx</string>
 		<key>obstacleLayer</key>
 		<string>front2</string>
 		<key>nextLevelName</key>
