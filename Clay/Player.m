@@ -28,6 +28,7 @@
 
 @synthesize isJumping = _isJumping;
 @synthesize isDead = _isDead;
+@synthesize isTripping = _isTripping;
 
 +(id) instance
 {
@@ -51,6 +52,7 @@
         
         _isJumping = false;
         _isDead = false;
+        _waitToGetUp = 0.0f;
         
         _speed = [[RunningSpeed alloc] initWithSettings:settings];
         _speed.parent = self;
@@ -106,6 +108,16 @@
     [self setPositionAtX:newPosition.x Y:newPosition.y];
     [_bandages update:dt];
     [_particleSystem update:dt];
+    
+    if (_isTripping) {
+        _waitToGetUp -= dt;
+        if (_waitToGetUp <= 0.0f) {
+            _isTripping = false;
+            [self endTurbo];
+            [_speed start];
+            [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"runningAnim" FrameNumber:8];
+        }
+    }
 
 }
 
@@ -117,7 +129,7 @@
     CollisionState state = [[self getCollision] currentState];
 
     if (state == COLLISION_STATE_GROUNDED) {
-        if (_isJumping) {                
+        if (_isJumping && !_isTripping) {                
             _isJumping = false;
             
             if (_speed.inTurbo) {
@@ -135,11 +147,20 @@
             float y = _y + 23.0f;
             [_particleSystem addDustImpactAtPosition:CGPointMake(x, y)];
             [[SoundEngine shared] playSound:@"jumpLand"];
+        } else if (_isJumping && _isTripping) {
+            _waitToGetUp = 1.5f;
+            _isJumping = false;
+            [_speed stop];
         }
-
+        
         _jumpAcceleration = 0;
         _vy = 0;
         _ay = 0;
+
+        if (_isTripping) {
+            [_speed applyFriction:0.85f];
+        }
+        
     } else if(state == COLLISION_STATE_BUMPED_WALL) {
         _vx = 0;
         _vy = 0;
@@ -148,6 +169,9 @@
 
 -(void)startJump:(RunnerJump)type
 {
+    //guard
+    if (_isTripping || _isDead) { return; }
+    
     _firstFrameJumping = true;
     _isHighJump = false;
     _vy = -200.0f;
@@ -172,6 +196,9 @@
 
 -(void)startTurbo
 {
+    //guard
+    if (_isTripping || _isDead) { return; }
+    
     if (hitPoints > 1) {
         [_speed startTurbo];
         [[SoundEngine shared] playSound:@"turboStart"];
@@ -195,13 +222,20 @@
 
 -(void)startCollision
 {
-    if(_speed.inTurbo) {
-        [self endTurbo];
-    }
-    
     [_speed startCollision];
     
+    if (_isJumping) {
+        [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"trippedAnim"];
+        _isTripping = true;
+    } else {
+        [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"hurtAnim"];
+        _vy = -250.0f;
+        _y += 2.0f;
+    }
+    
     [self changeHealth:-1];
+    
+    _waitToGetUp = 100.0f;  //just a high number, gets lowered after hits the ground
 }
 
 //used by background layers for scrolling

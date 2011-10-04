@@ -4,6 +4,10 @@
 <dict>
 	<key>runningAnim</key>
 	<dict>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>looping</key>
+		<string>true</string>
 		<key>group</key>
 		<string>Player</string>
 		<key>spritesheetPlist</key>
@@ -17,6 +21,10 @@
 	</dict>
 	<key>jumpingAnim</key>
 	<dict>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>looping</key>
+		<string>false</string>
 		<key>group</key>
 		<string>Player</string>
 		<key>spritesheetPlist</key>
@@ -30,6 +38,10 @@
 	</dict>
 	<key>turboAnim</key>
 	<dict>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>looping</key>
+		<string>true</string>
 		<key>group</key>
 		<string>Player</string>
 		<key>spritesheetPlist</key>
@@ -38,6 +50,40 @@
 		<string>Character_Running_</string>
 		<key>animationFrames</key>
 		<string>1,2,3,4,5,6,7,8,9,10</string>
+		<key>delay</key>
+		<string>0.075</string>
+	</dict>
+	<key>trippedAnim</key>
+	<dict>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>looping</key>
+		<string>false</string>
+		<key>group</key>
+		<string>Player</string>
+		<key>spritesheetPlist</key>
+		<string>character_tripped</string>
+		<key>sequencePrefix</key>
+		<string>Character_Tumble_</string>
+		<key>animationFrames</key>
+		<string>1,2,3,3,3,3</string>
+		<key>delay</key>
+		<string>0.075</string>
+	</dict>
+	<key>hurtAnim</key>
+	<dict>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>looping</key>
+		<string>false</string>
+		<key>group</key>
+		<string>Player</string>
+		<key>spritesheetPlist</key>
+		<string>character_hurt</string>
+		<key>sequencePrefix</key>
+		<string>Character_Hurting_</string>
+		<key>animationFrames</key>
+		<string>1,1,1</string>
 		<key>delay</key>
 		<string>0.075</string>
 	</dict>

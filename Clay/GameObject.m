@@ -12,6 +12,7 @@
 #import "Collision.h"
 #import "Camera.h"
 #import "SoundEngine.h"
+#import "LayerManager.h"
 
 @implementation GameObject
 
@@ -91,10 +92,16 @@
     [_sprite setPositionAtX:x + _offsetX Y:y + _offsetY];
 }
 
+-(void) setStartingPosition:(CGPoint)position
+{
+    _startingPosition = CGPointMake(position.x, position.y);
+}
+
 -(void) startCollision
 {
     _collided = true;
     _behavior = COLLISION_BEHAVIOR_FALL_OVER;
+    _fallVelocity = 425.0f;
     if (_behavior == COLLISION_BEHAVIOR_FLYING_SHURIKEN) {
         float magnitude = rand() % 500 + 600;
         _angle = rand() % 70 + 10;
@@ -102,7 +109,6 @@
         _vx = magnitude * cosf((_angle * 3.14159)/180.0f);
         _vy = - magnitude * sinf((_angle * 3.14159)/180.0f);
         [[SoundEngine shared] playSound:@"collision"];
-        //NSLog(@"Angle: %f, VX: %f, VY: %f",_angle,_vx,_vy);
     }
 }
 
@@ -124,10 +130,14 @@
     
     
     if (_behavior == COLLISION_BEHAVIOR_FALL_OVER) {
-        _angle += 325.0f * dt;
+        _angle += (_fallVelocity + 100.0f) * dt;
         if (_angle >= 90) {
             _angle = 90;
+            _fallVelocity = -0.8f * _fallVelocity;
             _behavior = COLLISION_BEHAVIOR_STATIC;
+        } else if(_angle <= 0) {
+            _angle = 0;
+            _fallVelocity = -0.8f * _fallVelocity;
         }
         [self getCCSprite].rotation = _angle;
     } else if(_behavior == COLLISION_BEHAVIOR_FLYING_SHURIKEN) {
@@ -147,6 +157,19 @@
 {
     _isActive = false;
     [self getCCSprite].visible = false;
+}
+
+-(void) reset
+{
+    _isActive = true;
+    _angle = 0.0f;
+    _vx = 0;
+    _vy = 0;
+    [self setPosition:_startingPosition];
+    [self getCCSprite].visible = true;
+    [self getCCSprite].rotation = _angle;
+    _behavior = COLLISION_BEHAVIOR_STATIC;
+    _collided = false;
 }
 
 -(Collision*) getCollision

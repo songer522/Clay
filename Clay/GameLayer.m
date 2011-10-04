@@ -151,6 +151,8 @@
             [_savePoint restoreSavePoint:_player];
             _player.isDead = false;
             [_player rechargeBattery];
+            
+            [_level resetObstacles];
         }        
     }
 }

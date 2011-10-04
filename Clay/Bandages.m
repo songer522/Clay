@@ -28,7 +28,7 @@
         // Initialization code here.
         sprite = [Sprite spriteWithFile:@"Battery_v1_s.png"];
         [self setFrame:1];
-        [sprite setPositionAtX:625 Y:421];
+        [sprite setPositionAtX:585 Y:421];
 
     }
     

@@ -30,12 +30,15 @@ typedef enum {
     
     float _x;
     float _y;
+    CGPoint _startingPosition;
     float _vx;
     float _vy;
     float _offsetX;     //how much to offset whatever x position comes in by
     float _offsetY;     //how much to offset whatever y position comes in by
     float _angle;
     float _rotationAmount;
+    
+    float _fallVelocity;
     
     CGPoint _prevLocation;
     
@@ -69,9 +72,12 @@ typedef enum {
 
 -(void) setPosition:(CGPoint)position;
 -(void) setPositionAtX:(float)x Y:(float)y;     //give new x and y position on screen (with cocos2D, both hi and low-res use 320x480 resolution for its points)
+-(void) setStartingPosition:(CGPoint)position;
 
 -(CCSprite*) getCCSprite;
 
+
+-(void)reset;
 
 -(CGPoint) getPosition;
 -(CGPoint) getPreviousPosition;

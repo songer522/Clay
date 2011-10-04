@@ -24,11 +24,13 @@ typedef enum {
 @interface Player : Runner
 {
     bool _isJumping;
+    bool _isTripping;
     bool _firstFrameJumping;
     bool _isDead;
     
     float _yPosition;
     float _jumpAcceleration;
+    float _waitToGetUp;
     
     bool _isHighJump;
     
@@ -40,6 +42,7 @@ typedef enum {
 }
 
 @property(nonatomic,assign) bool isDead;
+@property(nonatomic,assign) bool isTripping;
 
 +(id) instance;                                 //constructor
 

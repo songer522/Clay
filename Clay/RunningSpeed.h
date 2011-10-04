@@ -9,9 +9,15 @@
 #import <Foundation/Foundation.h>
 #import "BaseClasses.h"
 
+/*
 #define RUNNING_SPEED_MODIFIER_VELOCITY_MAX 0.25f
 #define RUNNING_SPEED_MODIFIER_ACCELERATION_MAX 20.0f
 #define RUNNING_SPEED_MODIFIER_ACCELERATION 10.0f
+*/
+#define RUNNING_SPEED_MODIFIER_VELOCITY_MAX 1.5f
+#define RUNNING_SPEED_MODIFIER_ACCELERATION_MAX 80.0f
+#define RUNNING_SPEED_MODIFIER_ACCELERATION 40.0f
+
 
 @class Player;
 
@@ -55,6 +61,7 @@
 -(void)startCollision;
 -(void)startTurbo;
 -(void)endTurbo;
+-(void)applyFriction:(float)friction;
 -(void)landFromHighJump;
 -(void)update:(float)dt;
 

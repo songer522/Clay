@@ -190,6 +190,14 @@
 		549BBB911421619800337F71 /* clayl2.1.0.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 549BBB8F1421619800337F71 /* clayl2.1.0.tmx */; };
 		54A32B581429301F00A10727 /* player.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54A32B571429301F00A10727 /* player.plist */; };
 		54A3BFD71427C32A002E8D2D /* GameDebugLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A3BFD61427C32A002E8D2D /* GameDebugLayer.m */; };
+		54B6C6D0143B4CA400EF3569 /* character_tripped-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54B6C6CC143B4CA400EF3569 /* character_tripped-hd.plist */; };
+		54B6C6D1143B4CA400EF3569 /* character_tripped-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54B6C6CD143B4CA400EF3569 /* character_tripped-hd.png */; };
+		54B6C6D2143B4CA400EF3569 /* character_tripped.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54B6C6CE143B4CA400EF3569 /* character_tripped.plist */; };
+		54B6C6D3143B4CA400EF3569 /* character_tripped.png in Resources */ = {isa = PBXBuildFile; fileRef = 54B6C6CF143B4CA400EF3569 /* character_tripped.png */; };
+		54B6C6D9143B73E600EF3569 /* character_hurt-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54B6C6D5143B73E600EF3569 /* character_hurt-hd.plist */; };
+		54B6C6DA143B73E600EF3569 /* character_hurt-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54B6C6D6143B73E600EF3569 /* character_hurt-hd.png */; };
+		54B6C6DB143B73E600EF3569 /* character_hurt.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54B6C6D7143B73E600EF3569 /* character_hurt.plist */; };
+		54B6C6DC143B73E600EF3569 /* character_hurt.png in Resources */ = {isa = PBXBuildFile; fileRef = 54B6C6D8143B73E600EF3569 /* character_hurt.png */; };
 		54C2C27C14225FC900C94935 /* clayl2.1.1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 54C2C27B14225FC900C94935 /* clayl2.1.1.tmx */; };
 		54CA0B19140D65DB0038B3E1 /* Runner.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CA0B18140D65DB0038B3E1 /* Runner.m */; };
 		54CA0B20140D698B0038B3E1 /* RunningSpeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CA0B1F140D698B0038B3E1 /* RunningSpeed.m */; };
@@ -553,6 +561,14 @@
 		54A32B571429301F00A10727 /* player.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = player.plist; sourceTree = "<group>"; };
 		54A3BFD51427C32A002E8D2D /* GameDebugLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameDebugLayer.h; sourceTree = "<group>"; };
 		54A3BFD61427C32A002E8D2D /* GameDebugLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameDebugLayer.m; sourceTree = "<group>"; };
+		54B6C6CC143B4CA400EF3569 /* character_tripped-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "character_tripped-hd.plist"; sourceTree = "<group>"; };
+		54B6C6CD143B4CA400EF3569 /* character_tripped-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "character_tripped-hd.png"; sourceTree = "<group>"; };
+		54B6C6CE143B4CA400EF3569 /* character_tripped.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = character_tripped.plist; sourceTree = "<group>"; };
+		54B6C6CF143B4CA400EF3569 /* character_tripped.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = character_tripped.png; sourceTree = "<group>"; };
+		54B6C6D5143B73E600EF3569 /* character_hurt-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "character_hurt-hd.plist"; sourceTree = "<group>"; };
+		54B6C6D6143B73E600EF3569 /* character_hurt-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "character_hurt-hd.png"; sourceTree = "<group>"; };
+		54B6C6D7143B73E600EF3569 /* character_hurt.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = character_hurt.plist; sourceTree = "<group>"; };
+		54B6C6D8143B73E600EF3569 /* character_hurt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = character_hurt.png; sourceTree = "<group>"; };
 		54C2C27B14225FC900C94935 /* clayl2.1.1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = clayl2.1.1.tmx; path = Resources/levels/clayl2.1.1.tmx; sourceTree = "<group>"; };
 		54CA0B17140D65DB0038B3E1 /* Runner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Runner.h; sourceTree = "<group>"; };
 		54CA0B18140D65DB0038B3E1 /* Runner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Runner.m; sourceTree = "<group>"; };
@@ -1217,6 +1233,14 @@
 		54968B26141E554400A4D2DC /* Tim */ = {
 			isa = PBXGroup;
 			children = (
+				54B6C6D5143B73E600EF3569 /* character_hurt-hd.plist */,
+				54B6C6D6143B73E600EF3569 /* character_hurt-hd.png */,
+				54B6C6D7143B73E600EF3569 /* character_hurt.plist */,
+				54B6C6D8143B73E600EF3569 /* character_hurt.png */,
+				54B6C6CC143B4CA400EF3569 /* character_tripped-hd.plist */,
+				54B6C6CD143B4CA400EF3569 /* character_tripped-hd.png */,
+				54B6C6CE143B4CA400EF3569 /* character_tripped.plist */,
+				54B6C6CF143B4CA400EF3569 /* character_tripped.png */,
 				54E316311434D94100CD81FA /* character_turbo-hd.plist */,
 				54E316321434D94100CD81FA /* character_turbo-hd.png */,
 				54E316331434D94100CD81FA /* character_turbo.plist */,
@@ -1398,6 +1422,14 @@
 				54F55C03143666AC00AB8FBC /* clayl3.0.1.3.tmx in Resources */,
 				54F8A187143A09FC00FCBAAB /* stars_voice.caf in Resources */,
 				54F8A18A143A158C00FCBAAB /* clayl3.0.1.4.tmx in Resources */,
+				54B6C6D0143B4CA400EF3569 /* character_tripped-hd.plist in Resources */,
+				54B6C6D1143B4CA400EF3569 /* character_tripped-hd.png in Resources */,
+				54B6C6D2143B4CA400EF3569 /* character_tripped.plist in Resources */,
+				54B6C6D3143B4CA400EF3569 /* character_tripped.png in Resources */,
+				54B6C6D9143B73E600EF3569 /* character_hurt-hd.plist in Resources */,
+				54B6C6DA143B73E600EF3569 /* character_hurt-hd.png in Resources */,
+				54B6C6DB143B73E600EF3569 /* character_hurt.plist in Resources */,
+				54B6C6DC143B73E600EF3569 /* character_hurt.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

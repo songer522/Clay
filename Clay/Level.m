@@ -172,7 +172,8 @@
                 GameObject *object = [_gameObjects loadGameObjectWithName:obstacle];
                 CGPoint position = [self getXYPositionForCoordinates:coords];
                 
-                [object setPositionAtX:position.x Y:position.y];                
+                [object setPositionAtX:position.x Y:position.y];
+                [object setStartingPosition:position];
                 [[object getCCSprite] setScale:_scale];                
                 [_obstacleSprites addObject:object];
             }
@@ -209,6 +210,13 @@
     }
     
     return returnVal;
+}
+
+-(void)resetObstacles
+{
+    for (GameObject *obstacle in _obstacleSprites) {
+        [obstacle reset];
+    }
 }
 
 -(bool)testCollisions:(GameObject*)source

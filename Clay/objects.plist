@@ -7,13 +7,13 @@
 		<key>offsetx</key>
 		<integer>0</integer>
 		<key>offsety</key>
-		<integer>-40</integer>
+		<integer>-35</integer>
 		<key>anchorpoint</key>
 		<dict>
 			<key>x</key>
-			<real>0.9</real>
+			<integer>1</integer>
 			<key>y</key>
-			<real>0.2</real>
+			<integer>0</integer>
 		</dict>
 		<key>animationName</key>
 		<string></string>

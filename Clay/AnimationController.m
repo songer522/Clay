@@ -58,9 +58,13 @@ static AnimationController *_sharedController = nil;
             NSString *spritesheetPlist = [animationSettings objectForKey:@"spritesheetPlist"];
             NSString *sequencePrefix = [animationSettings objectForKey:@"sequencePrefix"];
             NSString *animationFrames = [animationSettings objectForKey:@"animationFrames"];
+            BOOL looping = [[animationSettings objectForKey:@"looping"] boolValue];
+            BOOL clearPreviousAnimations = [[animationSettings objectForKey:@"clearPreviousAnims"] boolValue];
             
             Animation *anim = [[Animation animationFromPlist:spritesheetPlist forSequence:sequencePrefix FrameList:animationFrames] retain];
+            anim.looping = looping;
             anim.delay = animationDelay;
+            anim.clearPreviousAnimations = clearPreviousAnimations;
             
             [animations setValue:anim forKey:animationName];
         }

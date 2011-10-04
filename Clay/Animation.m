@@ -14,6 +14,7 @@
 
 #define ANIMATION_DEFAULT_DELAY 0.1f
 #define ANIMATION_DEFAULT_LOOPING true
+#define ANIMATION_DEFAULT_CLEAR_OLD_ANIMS true
 
 @implementation Animation
 
@@ -22,6 +23,8 @@ static NSString * const ANIMATION_HD_SUFFIX = @"";
 static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
 
 @synthesize delay = _delay;
+@synthesize looping = _looping;
+@synthesize clearPreviousAnimations = _clearPreviousAnimations;
 
 +(id)animationFromPlist:(NSString*)name forSequence:(NSString*)sequence FrameList:(NSString*)framelist
 {
@@ -37,6 +40,7 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
         //defaults
         _delay = ANIMATION_DEFAULT_DELAY;
         _looping = ANIMATION_DEFAULT_LOOPING;
+        _clearPreviousAnimations = ANIMATION_DEFAULT_CLEAR_OLD_ANIMS;
         _sequence = [[NSString alloc] initWithString:sequence];
         
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:[name stringByAppendingString:ANIMATION_SPRITE_CACHE_SUFFIX]];
@@ -96,7 +100,17 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
     
     _animateAction = [CCXAnimate actionWithAnimation:_anim restoreOriginalFrame:NO];
     
-    CCAction *action = [CCRepeatForever actionWithAction:_animateAction];
+    CCAction *action;
+    if (_looping) {
+        action = [CCRepeatForever actionWithAction:_animateAction];
+    } else {
+        action = [CCRepeat actionWithAction:_animateAction times:1];
+    }
+    
+    if (_clearPreviousAnimations) {
+        [[sprite getCCSprite] stopAllActions];        
+    }
+    
     [[sprite getCCSprite] runAction:action];
 }
 

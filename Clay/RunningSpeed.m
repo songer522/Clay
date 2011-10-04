@@ -84,9 +84,15 @@
 
 -(void)startCollision
 {
-    _velocity = 1.0f;
-    _acceleration = 0.5f;
-    _inTurbo = false;
+    if (_player.isJumping) {
+        _acceleration = 0.0f;
+    } else {
+        if (_inTurbo) {
+            [_player endTurbo];            
+        }
+        _velocity = -0.8f * _velocity;
+        _acceleration = 0.5f;
+    }
 }
 
 -(void)startTurbo
@@ -108,6 +114,11 @@
 -(void)endTurbo
 {
     _inTurbo = false;
+}
+
+-(void)applyFriction:(float)friction
+{
+    _velocity *= friction;
 }
 
 -(void)update:(float)dt
@@ -143,7 +154,14 @@
                 _velocity = RUNNING_SPEED_MODIFIER_VELOCITY_MAX * _normalVelocityMax;
             }
         }
+        
+        [self applyFriction:0.85f];
+        
+        NSLog(@"Velocity: %.2f, Acceleration: %.2f", _velocity, _acceleration);
+
     }
+    
+    
 }
 
 -(void)dealloc

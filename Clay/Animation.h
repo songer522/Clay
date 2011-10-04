@@ -28,11 +28,15 @@
                                             //read the current frame
     
     bool _looping;                          //does the animation loop (true), or play through once and stop (false)
+    
+    bool _clearPreviousAnimations;          //when adding the new animation, do we want to remove all the previous ones? usually this will be yes, but sometimes we want the animation to play and revert to the previous one (like when the character gets hurt)
 }
 
 #pragma mark - properties
 
 @property(nonatomic,assign) float delay;
+@property(nonatomic,assign) bool looping;
+@property(nonatomic,assign) bool clearPreviousAnimations;
 
 
 #pragma mark - initializers

@@ -76,6 +76,7 @@
 -(NSString*)getPropertyForTileCoords:(CGPoint)coords forKey:(NSString*)key;
 -(bool)testCollisions:(GameObject*)source;
 -(bool)testCollisionWithGameObject:(GameObject*)target Source:(GameObject*)source;
+-(void)resetObstacles;
 -(Trigger*)testTriggers:(Player*)player;
 -(void)unloadLevel;
 
