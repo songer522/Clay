@@ -239,6 +239,7 @@ int compareInts (const void * a, const void * b);
 	// cons:
 	//  - difficult to scale / rotate / etc.
 	[textureAtlas_.texture setAliasTexParameters];
+    //[textureAtlas_.texture setAntiAliasTexParameters];
 	
 	CFByteOrder o = CFByteOrderGetCurrent();
 		

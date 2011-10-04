@@ -29,6 +29,7 @@
 @synthesize isJumping = _isJumping;
 @synthesize isDead = _isDead;
 @synthesize isTripping = _isTripping;
+@synthesize isInMidAir = _isInMidAir;
 
 +(id) instance
 {
@@ -52,6 +53,7 @@
         
         _isJumping = false;
         _isDead = false;
+        _isInMidAir = false;
         _waitToGetUp = 0.0f;
         
         _speed = [[RunningSpeed alloc] initWithSettings:settings];
@@ -59,13 +61,32 @@
         [_speed start];
         [self changeToRunnerState:RUNNER_STATE_RUNNING];
         
-        hitPoints = 3;
+        hitPoints = 4;
         _bandages = [Bandages instance];
         _bandages.parent = self;
         
         _isHighJump = false;
         
         _particleSystem = [ParticleSystem instance];
+        
+        
+        float scale = [[UIScreen mainScreen] scale] / 2.0f;
+        
+        _buttonJump = [[Sprite spriteWithFile:@"UI_Button_Jumping.png"] retain];
+        [_buttonJump setPositionAtX:170 Y:140];
+        [[_buttonJump getCCSprite] setOpacity:204];
+        [[_buttonJump getCCSprite] setScale:scale];
+        
+        _buttonKick = [[Sprite spriteWithFile:@"UI_Button_Kicking.png"] retain];
+        [_buttonKick setPositionAtX:525 Y:140];
+        [[_buttonKick getCCSprite] setOpacity:204];
+        [[_buttonKick getCCSprite] setScale:scale];
+        
+        _buttonSprint = [[Sprite spriteWithFile:@"UI_Button_TurboBoost.png"] retain];
+        [_buttonSprint setPositionAtX:585 Y:140];
+        [[_buttonSprint getCCSprite] setOpacity:204];
+        [[_buttonSprint getCCSprite] setScale:scale];
+
 
     }
     
@@ -74,12 +95,12 @@
 
 -(void)changeHealth:(int)amount
 {
-    if (amount > 0 && hitPoints<3) {
+    if (amount > 0 && hitPoints<4) {
         hitPoints+=1;
-        [_bandages setFrame:(4-hitPoints)];
+        [_bandages setFrame:(5-hitPoints)];
     } else if(amount < 0 && hitPoints >= 0) {
         hitPoints-=1;
-        [_bandages setFrame:(4-hitPoints)];
+        [_bandages setFrame:(5-hitPoints)];
     }
     
     if (hitPoints <=0) {
@@ -118,6 +139,13 @@
             [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"runningAnim" FrameNumber:8];
         }
     }
+    
+    if(_speed.isStopped && !_isTripping) {
+        _waitToGetUp -= dt;
+        if (_waitToGetUp <= 0.0f) {
+            [_speed start];
+        }
+    }
 
 }
 
@@ -128,7 +156,12 @@
 
     CollisionState state = [[self getCollision] currentState];
 
-    if (state == COLLISION_STATE_GROUNDED) {
+    _isInMidAir = false;
+    
+    if (state == COLLISION_STATE_MIDAIR) {
+        _isInMidAir = true;
+    } else if (state == COLLISION_STATE_GROUNDED) {
+        
         if (_isJumping && !_isTripping) {                
             _isJumping = false;
             
@@ -156,11 +189,7 @@
         _jumpAcceleration = 0;
         _vy = 0;
         _ay = 0;
-
-        if (_isTripping) {
-            [_speed applyFriction:0.85f];
-        }
-        
+                
     } else if(state == COLLISION_STATE_BUMPED_WALL) {
         _vx = 0;
         _vy = 0;
@@ -204,7 +233,7 @@
         [[SoundEngine shared] playSound:@"turboStart"];
         [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"turboAnim"];
         hitPoints -=1;
-        [_bandages setFrame:(4 - hitPoints)];        
+        [_bandages setFrame:(5 - hitPoints)];        
     }
 
 }
@@ -224,6 +253,8 @@
 {
     [_speed startCollision];
     
+    _waitToGetUp = 100.0f;
+    
     if (_isJumping) {
         [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"trippedAnim"];
         _isTripping = true;
@@ -231,11 +262,10 @@
         [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"hurtAnim"];
         _vy = -250.0f;
         _y += 2.0f;
+        _waitToGetUp = 0.3f;
     }
     
     [self changeHealth:-1];
-    
-    _waitToGetUp = 100.0f;  //just a high number, gets lowered after hits the ground
 }
 
 //used by background layers for scrolling
@@ -246,8 +276,9 @@
 
 -(void)reset
 {
-    hitPoints = 3;
+    hitPoints = 4;
     [_bandages reset];
+    _speed.velocity = 0.0f;
     [self resetSprite:[[LayerManager sharedLayers] currentLayer]];
 }
 

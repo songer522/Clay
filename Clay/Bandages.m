@@ -26,9 +26,9 @@
     self = [super init];
     if (self) {
         // Initialization code here.
-        sprite = [Sprite spriteWithFile:@"Battery_v1_s.png"];
+        sprite = [Sprite spriteWithFile:@"battery.png"];
         [self setFrame:1];
-        [sprite setPositionAtX:585 Y:421];
+        [sprite setPositionAtX:575 Y:421];
 
     }
     
@@ -39,10 +39,10 @@
 {
     
     NSString *number = [NSString stringWithFormat:@"%d",frameNumber];
-    Animation *anim = [Animation animationFromPlist:@"Battery_v2_s" forSequence:@"Battery_" FrameList:number];
+    Animation *anim = [Animation animationFromPlist:@"battery" forSequence:@"Battery_" FrameList:number];
     [sprite setAnimation:anim Delay:100.0f];
     _currentFrame = frameNumber;
-    if (_currentFrame == 3) {
+    if (_currentFrame == 4) {
         _totalTime = 0.0f;
         [[sprite getCCSprite] setOpacity:255];
         _waitToIncrease = 11.0f;
@@ -68,7 +68,7 @@
             [_player changeHealth:1];
         }
         
-        if (_currentFrame == 3) {
+        if (_currentFrame == 4) {
             [self lowBatteryWarning:dt];
         } else {
             [self normalBattery:dt];
@@ -101,7 +101,7 @@
 
 -(void)startRecharge
 {
-    [self setFrame:4];
+    [self setFrame:5];
     _isRecharging = true;
     _alpha = 1.0f;
     [[sprite getCCSprite] setVisible:YES];
@@ -115,7 +115,7 @@
         _wait -= dt;
         if (_wait <= 0.0f) {
             [self setFrame:_currentFrame - 1];
-            _wait = 0.2f;
+            _wait = 0.15f;
         }
     } else {
         _isRecharging = false;

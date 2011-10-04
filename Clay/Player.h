@@ -27,6 +27,7 @@ typedef enum {
     bool _isTripping;
     bool _firstFrameJumping;
     bool _isDead;
+    bool _isInMidAir;
     
     float _yPosition;
     float _jumpAcceleration;
@@ -39,10 +40,17 @@ typedef enum {
     Bandages *_bandages;
     
     ParticleSystem *_particleSystem;
+    
+    
+    Sprite *_buttonJump;
+    Sprite *_buttonKick;
+    Sprite *_buttonSprint;
+
 }
 
 @property(nonatomic,assign) bool isDead;
 @property(nonatomic,assign) bool isTripping;
+@property(nonatomic,assign) bool isInMidAir;
 
 +(id) instance;                                 //constructor
 

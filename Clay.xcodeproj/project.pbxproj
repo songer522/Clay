@@ -201,6 +201,13 @@
 		54C2C27C14225FC900C94935 /* clayl2.1.1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 54C2C27B14225FC900C94935 /* clayl2.1.1.tmx */; };
 		54CA0B19140D65DB0038B3E1 /* Runner.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CA0B18140D65DB0038B3E1 /* Runner.m */; };
 		54CA0B20140D698B0038B3E1 /* RunningSpeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CA0B1F140D698B0038B3E1 /* RunningSpeed.m */; };
+		54CD29DD143BA21400F805E0 /* UI_Button_Jumping.png in Resources */ = {isa = PBXBuildFile; fileRef = 54CD29DA143BA21400F805E0 /* UI_Button_Jumping.png */; };
+		54CD29DE143BA21400F805E0 /* UI_Button_Kicking.png in Resources */ = {isa = PBXBuildFile; fileRef = 54CD29DB143BA21400F805E0 /* UI_Button_Kicking.png */; };
+		54CD29DF143BA21400F805E0 /* UI_Button_TurboBoost.png in Resources */ = {isa = PBXBuildFile; fileRef = 54CD29DC143BA21400F805E0 /* UI_Button_TurboBoost.png */; };
+		54CD29E5143BA9A800F805E0 /* battery-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54CD29E1143BA9A800F805E0 /* battery-hd.plist */; };
+		54CD29E6143BA9A800F805E0 /* battery-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54CD29E2143BA9A800F805E0 /* battery-hd.png */; };
+		54CD29E7143BA9A800F805E0 /* battery.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54CD29E3143BA9A800F805E0 /* battery.plist */; };
+		54CD29E8143BA9A800F805E0 /* battery.png in Resources */ = {isa = PBXBuildFile; fileRef = 54CD29E4143BA9A800F805E0 /* battery.png */; };
 		54DDF8201423A17B00631A41 /* platformtest-2.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 54DDF81E1423A17B00631A41 /* platformtest-2.tmx */; };
 		54DDF8211423A17B00631A41 /* tileset-platformer_64.png in Resources */ = {isa = PBXBuildFile; fileRef = 54DDF81F1423A17B00631A41 /* tileset-platformer_64.png */; };
 		54DDF8251423A67300631A41 /* CollisionDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = 54DDF8241423A67300631A41 /* CollisionDetection.m */; };
@@ -574,6 +581,13 @@
 		54CA0B18140D65DB0038B3E1 /* Runner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Runner.m; sourceTree = "<group>"; };
 		54CA0B1E140D698B0038B3E1 /* RunningSpeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RunningSpeed.h; sourceTree = "<group>"; };
 		54CA0B1F140D698B0038B3E1 /* RunningSpeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RunningSpeed.m; sourceTree = "<group>"; };
+		54CD29DA143BA21400F805E0 /* UI_Button_Jumping.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UI_Button_Jumping.png; sourceTree = "<group>"; };
+		54CD29DB143BA21400F805E0 /* UI_Button_Kicking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UI_Button_Kicking.png; sourceTree = "<group>"; };
+		54CD29DC143BA21400F805E0 /* UI_Button_TurboBoost.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UI_Button_TurboBoost.png; sourceTree = "<group>"; };
+		54CD29E1143BA9A800F805E0 /* battery-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "battery-hd.plist"; sourceTree = "<group>"; };
+		54CD29E2143BA9A800F805E0 /* battery-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "battery-hd.png"; sourceTree = "<group>"; };
+		54CD29E3143BA9A800F805E0 /* battery.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = battery.plist; sourceTree = "<group>"; };
+		54CD29E4143BA9A800F805E0 /* battery.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = battery.png; sourceTree = "<group>"; };
 		54DDF81E1423A17B00631A41 /* platformtest-2.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "platformtest-2.tmx"; path = "Resources/levels/platformtest-2.tmx"; sourceTree = "<group>"; };
 		54DDF81F1423A17B00631A41 /* tileset-platformer_64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tileset-platformer_64.png"; path = "Resources/levels/tileset-platformer_64.png"; sourceTree = "<group>"; };
 		54DDF8231423A67300631A41 /* CollisionDetection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollisionDetection.h; sourceTree = "<group>"; };
@@ -1182,6 +1196,9 @@
 		54642AFE14337E5F001D8212 /* sprites */ = {
 			isa = PBXGroup;
 			children = (
+				54CD29DA143BA21400F805E0 /* UI_Button_Jumping.png */,
+				54CD29DB143BA21400F805E0 /* UI_Button_Kicking.png */,
+				54CD29DC143BA21400F805E0 /* UI_Button_TurboBoost.png */,
 				54642AFF14337E5F001D8212 /* battery */,
 			);
 			name = sprites;
@@ -1191,6 +1208,10 @@
 		54642AFF14337E5F001D8212 /* battery */ = {
 			isa = PBXGroup;
 			children = (
+				54CD29E1143BA9A800F805E0 /* battery-hd.plist */,
+				54CD29E2143BA9A800F805E0 /* battery-hd.png */,
+				54CD29E3143BA9A800F805E0 /* battery.plist */,
+				54CD29E4143BA9A800F805E0 /* battery.png */,
 				54642B0414337E5F001D8212 /* Battery_v2_s-hd.plist */,
 				54642B0514337E5F001D8212 /* Battery_v2_s-hd.png */,
 				54642B0614337E5F001D8212 /* Battery_v2_s.plist */,
@@ -1430,6 +1451,13 @@
 				54B6C6DA143B73E600EF3569 /* character_hurt-hd.png in Resources */,
 				54B6C6DB143B73E600EF3569 /* character_hurt.plist in Resources */,
 				54B6C6DC143B73E600EF3569 /* character_hurt.png in Resources */,
+				54CD29DD143BA21400F805E0 /* UI_Button_Jumping.png in Resources */,
+				54CD29DE143BA21400F805E0 /* UI_Button_Kicking.png in Resources */,
+				54CD29DF143BA21400F805E0 /* UI_Button_TurboBoost.png in Resources */,
+				54CD29E5143BA9A800F805E0 /* battery-hd.plist in Resources */,
+				54CD29E6143BA9A800F805E0 /* battery-hd.png in Resources */,
+				54CD29E7143BA9A800F805E0 /* battery.plist in Resources */,
+				54CD29E8143BA9A800F805E0 /* battery.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

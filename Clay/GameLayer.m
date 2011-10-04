@@ -72,6 +72,7 @@
         
         //[ParticleSystem testLimits];
         
+        
         self.isTouchEnabled = YES;
                 
 	}

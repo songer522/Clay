@@ -19,6 +19,7 @@
 @class SoundEngine;
 @class ParticleSystem;
 @class ComicLayer;
+@class Sprite;
 
 // HelloWorldLayer
 @interface GameLayer : CCLayer

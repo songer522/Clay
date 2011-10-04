@@ -15,6 +15,7 @@
 @synthesize velocity = _velocity;
 @synthesize inTurbo = _inTurbo;
 @synthesize parent = _player;
+@synthesize isStopped = _isStopped;
 
 +(id)node
 {
@@ -33,6 +34,7 @@
         _turboAccelerationMax = 2.0f;
         _turboVelocityMax = 2.0f;
         _turboDuration = 3.0f;
+        _isStopped = false;
         [self reset];
     }
     
@@ -92,6 +94,7 @@
         }
         _velocity = -0.8f * _velocity;
         _acceleration = 0.5f;
+        [self stop];
     }
 }
 
@@ -116,9 +119,10 @@
     _inTurbo = false;
 }
 
--(void)applyFriction:(float)friction
+-(void)applyFriction:(float)friction Dt:(float)dt
 {
-    _velocity *= friction;
+    NSLog(@"SuperFriction: %.2f",(friction * dt));
+    _velocity = (1 - (friction * dt)) * _velocity;
 }
 
 -(void)update:(float)dt
@@ -127,38 +131,49 @@
         
         if (_inTurbo)
         {
-            _acceleration += _turboAcceleration * RUNNING_SPEED_MODIFIER_ACCELERATION * dt;
-            if (_acceleration > RUNNING_SPEED_MODIFIER_ACCELERATION_MAX * _turboAccelerationMax) {
-                _acceleration = RUNNING_SPEED_MODIFIER_ACCELERATION_MAX * _turboAccelerationMax;
-            }
-            
-            _velocity += _acceleration * dt;
-            if (_velocity > RUNNING_SPEED_MODIFIER_VELOCITY_MAX * _turboVelocityMax) {
-                _velocity = RUNNING_SPEED_MODIFIER_VELOCITY_MAX * _turboVelocityMax;
-            }
-            
-            _turboLeft -= dt;
-            if (_turboLeft <= 0.0f && !_player.isJumping) {
-                [_player endTurbo];
+            if (!_player.isInMidAir) {
+                _acceleration += _turboAcceleration * RUNNING_SPEED_MODIFIER_ACCELERATION * dt;
+                if (_acceleration > RUNNING_SPEED_MODIFIER_ACCELERATION_MAX * _turboAccelerationMax) {
+                    _acceleration = RUNNING_SPEED_MODIFIER_ACCELERATION_MAX * _turboAccelerationMax;
+                }
+                
+                _velocity += _acceleration * dt;
+                //[self applyFriction:3.0f Dt:dt];
+                if (_velocity > RUNNING_SPEED_MODIFIER_VELOCITY_MAX * _turboVelocityMax) {
+                    _velocity = RUNNING_SPEED_MODIFIER_VELOCITY_MAX * _turboVelocityMax;
+                }
+
+                _turboLeft -= dt;
+                if (_turboLeft <= 0.0f) {
+                    [_player endTurbo];
+                }
+
             }
         }
         else
         {
-            _acceleration += _normalAcceleration * RUNNING_SPEED_MODIFIER_ACCELERATION * dt;
-            if (_acceleration > RUNNING_SPEED_MODIFIER_ACCELERATION_MAX * _normalAccelerationMax) {
-                _acceleration = RUNNING_SPEED_MODIFIER_ACCELERATION_MAX * _normalAccelerationMax;
+            if (!_player.isInMidAir) {
+                _acceleration += _normalAcceleration * RUNNING_SPEED_MODIFIER_ACCELERATION * dt;
+                if (_acceleration > RUNNING_SPEED_MODIFIER_ACCELERATION_MAX * _normalAccelerationMax) {
+                    _acceleration = RUNNING_SPEED_MODIFIER_ACCELERATION_MAX * _normalAccelerationMax;
+                }
+                
+                _velocity += _acceleration * dt;
+                
+                //[self applyFriction:3.0f Dt:dt];
+                
+                if (_velocity > RUNNING_SPEED_MODIFIER_VELOCITY_MAX * _normalVelocityMax) {
+                    _velocity = RUNNING_SPEED_MODIFIER_VELOCITY_MAX * _normalVelocityMax;
+                }
+
             }
             
-            _velocity += _acceleration * dt;
-            if (_velocity > RUNNING_SPEED_MODIFIER_VELOCITY_MAX * _normalVelocityMax) {
-                _velocity = RUNNING_SPEED_MODIFIER_VELOCITY_MAX * _normalVelocityMax;
-            }
         }
-        
-        [self applyFriction:0.85f];
         
         NSLog(@"Velocity: %.2f, Acceleration: %.2f", _velocity, _acceleration);
 
+    } else {
+        [self applyFriction:5.0f Dt:dt];
     }
     
     
