@@ -18,6 +18,7 @@
 #import "CCVideoPlayer.h"
 #import "LevelThread.h"
 #import "ComicManager.h"
+#import "HudLayer.h"
 
 @implementation AppDelegate
 
@@ -120,11 +121,17 @@
 	// Run the intro Scene
     gameScene = [GameLayer scene];
     [[LayerManager sharedLayers] setCurrentScene:gameScene];
+    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+    
     
     _debugLayer = [GameDebugLayer debugLayerForScene:[[LayerManager sharedLayers] currentScene] GameLayer:[[LayerManager sharedLayers] currentLayer]];
 
     [[ComicManager shared] preload];
     [ComicManager shared].gameLayer = [[LayerManager sharedLayers] currentLayer];
+    
+    _hudLayer = [HudLayer instance];
+    [gameLayer setupHud:_hudLayer];
+    
     
 	[[CCDirector sharedDirector] runWithScene: gameScene];
     

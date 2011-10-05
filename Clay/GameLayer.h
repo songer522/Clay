@@ -20,6 +20,7 @@
 @class ParticleSystem;
 @class ComicLayer;
 @class Sprite;
+@class HudLayer;
 
 // HelloWorldLayer
 @interface GameLayer : CCLayer
@@ -39,6 +40,8 @@
     
     ParticleSystem *_dustTest;
     
+    HudLayer *_hud;
+    
 }
 
 @property(nonatomic,retain) Player *player;
@@ -51,6 +54,9 @@
 -(Runner*)initRunner:(Runner*)runner atPosition:(CGPoint)position;
 -(void)updateRunner:(Runner*)runner DT:(float)dt;
 -(void)updateLogic:(ccTime)dt;
+
+-(void)setupHud:(HudLayer*)hud;
+
 -(NSMutableArray*)getGameObjectsList;
 
 //the following serve as our pause and unpause functions

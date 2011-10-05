@@ -16,6 +16,7 @@
 #import "GameCenter.h"
 
 #import "ComicManager.h"
+#import "HudLayer.h"
 
 // HelloWorldLayer implementation
 @implementation GameLayer
@@ -73,6 +74,8 @@
         //[ParticleSystem testLimits];
         
         
+        
+        
         self.isTouchEnabled = YES;
                 
 	}
@@ -104,6 +107,14 @@
     [runner changeToRunnerState:RUNNER_STATE_RUNNING];
     
     return runner;
+}
+
+-(void)setupHud:(HudLayer*)hud
+{
+    _hud = hud;
+    
+    //pass on the hud to the gamecontroller
+    [_gameController setHud:hud];
 }
 
 -(void)initCamera
@@ -156,6 +167,8 @@
             [_level resetObstacles];
         }        
     }
+    
+    [_hud update:dt];
 }
 
 -(void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

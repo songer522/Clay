@@ -10,6 +10,7 @@
 #import "Player.h"
 #import "GameLayer.h"
 #import "PauseMenuScreen.h"
+#import "HudLayer.h"
 
 
 @implementation GameController
@@ -59,33 +60,46 @@
 
 -(void)reactToTouchAt:(CGPoint)location InputType:(InputType)type
 {
-    //guard
+    //guards
     if (!_isInputEnabled) { return; }
     
     if (location.x > 400 && location.y > 270) {
         [self pauseGame];
-    } else if(location.x < 80 && location.y > 270) {
-        [[LevelManager shared] loadNextLevel];
     } else if(!_isPaused) {
-        if (location.x < 240) {
-            if (!_gameLayer.player.isJumping) {
-                [_gameLayer.player startJump:JUMP_SHORT];
-            } else {
-                if (type == INPUT_TOUCH_HOLD_MEDIUM) {
-                    [_gameLayer.player boostJump:JUMP_MEDIUM];
-                } else if(type == INPUT_TOUCH_HOLD_LONG) {
-                    [_gameLayer.player boostJump:JUMP_HIGH];
+        
+        HudButton result = [_hud testInput:location];
+        
+        switch (result) {
+            case HUD_BUTTON_JUMP:
+                if (!_gameLayer.player.isJumping) {
+                    [_gameLayer.player startJump:JUMP_SHORT];
+                } else {
+                    if (type == INPUT_TOUCH_HOLD_MEDIUM) {
+                        [_gameLayer.player boostJump:JUMP_MEDIUM];
+                    } else if(type == INPUT_TOUCH_HOLD_LONG) {
+                        [_gameLayer.player boostJump:JUMP_HIGH];
+                    }
                 }
-            }
-        } else {
-            if(![_gameLayer.player getIsTurbo]) {
-                [_gameLayer.player startTurbo];
-            } else {
-                [_gameLayer.player endTurbo];
-            }
+                break;
+            case HUD_BUTTON_SPRINT:
+                if(![_gameLayer.player getIsTurbo]) {
+                    [_gameLayer.player startTurbo];
+                } else {
+                    [_gameLayer.player endTurbo];
+                }
+                break;
+            case HUD_BUTTON_ACTION:
+                NSLog(@"ACTION BUTTON PRESSED!");
+            default:
+                break;
         }
     }        
     
+}
+
+-(void)setHud:(HudLayer*)hud
+{
+    _hud = hud;
 }
 
 -(void)setGameLayer:(GameLayer*)gameLayer

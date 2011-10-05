@@ -69,24 +69,6 @@
         
         _particleSystem = [ParticleSystem instance];
         
-        
-        float scale = [[UIScreen mainScreen] scale] / 2.0f;
-        
-        _buttonJump = [[Sprite spriteWithFile:@"UI_Button_Jumping.png"] retain];
-        [_buttonJump setPositionAtX:170 Y:140];
-        [[_buttonJump getCCSprite] setOpacity:204];
-        [[_buttonJump getCCSprite] setScale:scale];
-        
-        _buttonKick = [[Sprite spriteWithFile:@"UI_Button_Kicking.png"] retain];
-        [_buttonKick setPositionAtX:525 Y:140];
-        [[_buttonKick getCCSprite] setOpacity:204];
-        [[_buttonKick getCCSprite] setScale:scale];
-        
-        _buttonSprint = [[Sprite spriteWithFile:@"UI_Button_TurboBoost.png"] retain];
-        [_buttonSprint setPositionAtX:585 Y:140];
-        [[_buttonSprint getCCSprite] setOpacity:204];
-        [[_buttonSprint getCCSprite] setScale:scale];
-
 
     }
     

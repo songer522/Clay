@@ -32,6 +32,7 @@
 		5429789B140C233E00B3FFF4 /* InputController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5429789A140C233E00B3FFF4 /* InputController.m */; };
 		5429789E140C268100B3FFF4 /* InputEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5429789D140C268100B3FFF4 /* InputEvent.m */; };
 		5430BC78143523B6002FD8E5 /* TL_Town_TileTextures.png in Resources */ = {isa = PBXBuildFile; fileRef = 5430BC75143523B6002FD8E5 /* TL_Town_TileTextures.png */; };
+		543250BC143CA40300F1F177 /* HudLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 543250BB143CA40300F1F177 /* HudLayer.m */; };
 		543C09511420F38200F259BA /* character_idle.png in Resources */ = {isa = PBXBuildFile; fileRef = 543C09501420F38200F259BA /* character_idle.png */; };
 		543C09561420F39B00F259BA /* clayl1.5.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 543C09521420F39B00F259BA /* clayl1.5.tmx */; };
 		543C09571420F39B00F259BA /* Env_Track_Icons.png in Resources */ = {isa = PBXBuildFile; fileRef = 543C09531420F39B00F259BA /* Env_Track_Icons.png */; };
@@ -274,6 +275,8 @@
 		5429789C140C268100B3FFF4 /* InputEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputEvent.h; sourceTree = "<group>"; };
 		5429789D140C268100B3FFF4 /* InputEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputEvent.m; sourceTree = "<group>"; };
 		5430BC75143523B6002FD8E5 /* TL_Town_TileTextures.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TL_Town_TileTextures.png; path = Resources/levels/TL_Town_TileTextures.png; sourceTree = "<group>"; };
+		543250BA143CA40300F1F177 /* HudLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HudLayer.h; sourceTree = "<group>"; };
+		543250BB143CA40300F1F177 /* HudLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HudLayer.m; sourceTree = "<group>"; };
 		543C09501420F38200F259BA /* character_idle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = character_idle.png; sourceTree = "<group>"; };
 		543C09521420F39B00F259BA /* clayl1.5.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = clayl1.5.tmx; path = Resources/levels/clayl1.5.tmx; sourceTree = "<group>"; };
 		543C09531420F39B00F259BA /* Env_Track_Icons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Env_Track_Icons.png; path = Resources/levels/Env_Track_Icons.png; sourceTree = "<group>"; };
@@ -1096,6 +1099,8 @@
 				54484E3D140449B700D0D7D9 /* GameLayer.m */,
 				54A3BFD51427C32A002E8D2D /* GameDebugLayer.h */,
 				54A3BFD61427C32A002E8D2D /* GameDebugLayer.m */,
+				543250BA143CA40300F1F177 /* HudLayer.h */,
+				543250BB143CA40300F1F177 /* HudLayer.m */,
 				5443303D142A39F80008898E /* PauseMenuScreen.h */,
 				5443303E142A39F80008898E /* PauseMenuScreen.m */,
 				54FBA23A1430CE210010A91A /* VideoPlaybackScene.h */,
@@ -1604,6 +1609,7 @@
 				54FBA2531430E5850010A91A /* LevelThread.m in Sources */,
 				54FBA2581430EA130010A91A /* ComicManager.m in Sources */,
 				54FBA25B1430F94C0010A91A /* ComicLayer.m in Sources */,
+				543250BC143CA40300F1F177 /* HudLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

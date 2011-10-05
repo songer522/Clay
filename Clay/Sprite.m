@@ -59,6 +59,11 @@
     sprite_cc.anchorPoint = ccp(0.5,0.5);
 }
 
+-(void) setPosition:(CGPoint)position
+{
+    [self setPositionAtX:position.x Y:position.y];
+}
+
 -(void) setPositionAtX:(float)x Y:(float)y
 {
     _x = x;

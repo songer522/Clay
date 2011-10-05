@@ -35,6 +35,16 @@ static LayerManager *_sharedLayers = nil;
     return self;
 }
 
+-(void)setWorkingLayer:(id)layer
+{
+    _workingLayer = layer;
+}
+
+-(void)forgetWorkingLayer
+{
+    _workingLayer = nil;
+}
+
 -(void)setCurrentLayer:(id)layer
 {
     _currentLayer = layer;
@@ -42,7 +52,11 @@ static LayerManager *_sharedLayers = nil;
 
 -(id)currentLayer
 {
-    return _currentLayer;
+    if (_workingLayer!=nil) {
+        return _workingLayer;
+    } else {
+        return _currentLayer;        
+    }
 }
 
 @end

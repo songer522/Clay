@@ -26,6 +26,7 @@
 -(id) initWithFile:(NSString *)filename;
 -(void) setCentered;
 -(void) setPositionAtX:(float)x Y:(float)y;
+-(void) setPosition:(CGPoint)position;
 -(CCSprite*) getCCSprite;
 -(void) initializeSpriteOnceLoaded;
 -(float) getWidth;

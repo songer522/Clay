@@ -87,7 +87,7 @@
 -(void)startCollision
 {
     if (_player.isJumping) {
-        _acceleration = 0.0f;
+        _acceleration = 1.0f;
     } else {
         if (_inTurbo) {
             [_player endTurbo];            

@@ -13,6 +13,7 @@
 @interface LayerManager : NSObject
 {
     id          _currentLayer;
+    id          _workingLayer;
     CCScene     *_currentScene;
 }
 
@@ -21,5 +22,8 @@
 +(LayerManager*)sharedLayers;
 -(void)setCurrentLayer:(id)layer;
 -(id)currentLayer;
+
+-(void)setWorkingLayer:(id)layer;
+-(void)forgetWorkingLayer;
 
 @end

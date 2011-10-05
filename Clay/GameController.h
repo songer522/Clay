@@ -12,6 +12,7 @@
 @class GameLayer;
 
 @class PauseMenuScreen;
+@class HudLayer;
 
 typedef enum {
     GAMESTATE_INITIALIZE,
@@ -27,6 +28,7 @@ typedef enum {
 {
     GameState _currentGameState;
     GameLayer *_gameLayer;
+    HudLayer *_hud;
     PauseMenuScreen *_pauseMenu;
     
     bool _isPaused;
@@ -42,7 +44,7 @@ typedef enum {
 -(void)changeGameState:(GameState)gameState;
 -(void)reactToTouchAt:(CGPoint)location InputType:(InputType)type;
 -(void)setGameLayer:(GameLayer*)layer;
-
+-(void)setHud:(HudLayer*)hud;
 -(void)pauseGame;
 
 @end

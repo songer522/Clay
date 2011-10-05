@@ -12,14 +12,16 @@
 
 @class GameDebugLayer;
 @class ComicManager;
+@class HudLayer;
+@class GameLayer;
 
 @interface AppDelegate : NSObject <UIApplicationDelegate> {
 	UIWindow			*window;
 	RootViewController	*viewController;
     CCScene             *gameScene;
     GameDebugLayer      *_debugLayer;
+    HudLayer            *_hudLayer;
     ComicManager        *_comicManager;
-
 }
 
 @property (nonatomic, retain) UIWindow *window;
