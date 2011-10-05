@@ -9,6 +9,7 @@
 #import "HudLayer.h"
 
 #import "BaseClasses.h"
+#import "TrackTimer.h"
 
 #define HUD_LAYER_BUTTON_OPACITY 140 //tian's suggestion: 204
 #define HUD_LAYER_BUTTON_Y 65
@@ -39,8 +40,14 @@
         _buttonJump = [self initButton:@"UI_Button_Jumping.png" Position:ccp(HUD_LAYER_JUMP_X,HUD_LAYER_BUTTON_Y)];
         _buttonAction = [self initButton:@"UI_Button_Kicking.png" Position:ccp(HUD_LAYER_ACTION_X,HUD_LAYER_BUTTON_Y)];
         _buttonSprint = [self initButton:@"UI_Button_TurboBoost.png" Position:ccp(HUD_LAYER_SPRINT_X,HUD_LAYER_BUTTON_Y)];
+
+        
+        _trackTimer = [TrackTimer instance];
         
         [[LayerManager sharedLayers] forgetWorkingLayer];
+        
+
+        
         
         _resetButtons = false;
         
@@ -142,6 +149,8 @@
         [self resettingButton:_buttonJump TimePassed:dt];
         [self resettingButton:_buttonSprint TimePassed:dt];        
     }
+    
+    [_trackTimer update:dt];
 }
 
 -(void)dealloc

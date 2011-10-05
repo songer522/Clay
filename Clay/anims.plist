@@ -66,7 +66,7 @@
 		<key>sequencePrefix</key>
 		<string>Character_Tumble_</string>
 		<key>animationFrames</key>
-		<string>1,2,3,3,3,3</string>
+		<string>1,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,5</string>
 		<key>delay</key>
 		<string>0.075</string>
 	</dict>

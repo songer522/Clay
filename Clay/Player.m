@@ -160,6 +160,11 @@
             
             float x = _x + 60.0f;
             float y = _y + 23.0f;
+            
+            if (_speed.velocity < 0.0f) {
+                _speed.velocity = 0.0f;
+            }
+            
             [_particleSystem addDustImpactAtPosition:CGPointMake(x, y)];
             [[SoundEngine shared] playSound:@"jumpLand"];
         } else if (_isJumping && _isTripping) {

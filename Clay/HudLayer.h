@@ -10,6 +10,7 @@
 #import "CCLayer.h"
 
 @class Sprite;
+@class TrackTimer;
 
 typedef enum {
     HUD_BUTTON_NONE,
@@ -25,6 +26,8 @@ typedef enum {
     Sprite *_buttonAction;
     
     float _buttonScale;
+    
+    TrackTimer *_trackTimer;
     
     bool _resetButtons;
     

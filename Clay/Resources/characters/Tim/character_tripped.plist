@@ -22,7 +22,7 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{196, 0}, {195, 150}}</string>
+			<string>{{0, 151}, {195, 150}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -44,7 +44,7 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{0, 151}, {195, 150}}</string>
+			<string>{{196, 151}, {195, 150}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -66,7 +66,51 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
+			<string>{{0, 302}, {195, 150}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>Character_Tumble_4.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{68, 43}, {109, 100}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 0}</string>
+			<key>spriteSize</key>
+			<string>{195, 150}</string>
+			<key>spriteSourceSize</key>
+			<string>{195, 150}</string>
+			<key>spriteTrimmed</key>
+			<false/>
+			<key>textureRect</key>
 			<string>{{0, 0}, {195, 150}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>Character_Tumble_5.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{73, 20}, {77, 122}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 0}</string>
+			<key>spriteSize</key>
+			<string>{195, 150}</string>
+			<key>spriteSourceSize</key>
+			<string>{195, 150}</string>
+			<key>spriteTrimmed</key>
+			<false/>
+			<key>textureRect</key>
+			<string>{{196, 0}, {195, 150}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
