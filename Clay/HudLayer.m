@@ -42,7 +42,7 @@
         _buttonSprint = [self initButton:@"UI_Button_TurboBoost.png" Position:ccp(HUD_LAYER_SPRINT_X,HUD_LAYER_BUTTON_Y)];
 
         
-        _trackTimer = [TrackTimer instance];
+        //_trackTimer = [TrackTimer instance];
         
         [[LayerManager sharedLayers] forgetWorkingLayer];
         
@@ -150,7 +150,7 @@
         [self resettingButton:_buttonSprint TimePassed:dt];        
     }
     
-    [_trackTimer update:dt];
+    //[_trackTimer update:dt];
 }
 
 -(void)dealloc

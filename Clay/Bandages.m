@@ -46,6 +46,7 @@
         _totalTime = 0.0f;
         [[sprite getCCSprite] setOpacity:255];
         _waitToIncrease = 11.0f;
+        [[SoundEngine shared] playSound:@"lowBattery"];
     } else {
         [[sprite getCCSprite] setVisible:YES];
         _waitToIncrease = 5.0f;

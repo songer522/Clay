@@ -116,6 +116,7 @@
         _pauseMenu = [PauseMenuScreen instance];
         _pauseMenu.gameController = self;
         _isPaused = true;
+        [[SoundEngine shared] playSound:@"pause"];
     } else {
         [[[LayerManager sharedLayers] currentScene] removeChild:_pauseMenu cleanup:YES];
         [_pauseMenu release];

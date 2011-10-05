@@ -12,5 +12,13 @@
 	<string>HurdleCollision.wav</string>
 	<key>jumpStart</key>
 	<string>Jump1.wav</string>
+	<key>pause</key>
+	<string>Pause.wav</string>
+	<key>lowBattery</key>
+	<string>LowBattery.wav</string>
+	<key>batteryFullCharge</key>
+	<string>BatteryFullCharge.wav</string>
+	<key>error</key>
+	<string>Error.wav</string>
 </dict>
 </plist>
