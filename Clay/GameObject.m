@@ -49,7 +49,7 @@
         _offsetY = 0;
         _boundingBox = CGRectMake(0, 0, 0, 0);
         _collisionState = [[Collision collisionNode] retain];
-        _behavior = COLLISION_BEHAVIOR_STATIC;
+        _currentBehavior = COLLISION_BEHAVIOR_STATIC;
     }
     
     return self;
@@ -97,12 +97,17 @@
     _startingPosition = CGPointMake(position.x, position.y);
 }
 
--(void) startCollision
+-(PlayerEffect) startCollision
 {
-    _collided = true;
-    _behavior = COLLISION_BEHAVIOR_FALL_OVER;
-    _fallVelocity = 425.0f;
-    if (_behavior == COLLISION_BEHAVIOR_FLYING_SHURIKEN) {
+    if(_playerEffect == PLAYER_EFFECT_COLLIDE) {
+        _collided = true;
+    }
+    
+    _currentBehavior = _collideBehavior;
+    
+    if (_currentBehavior == COLLISION_BEHAVIOR_FALL_OVER) {
+        _fallVelocity = 425.0f;
+    } else if (_currentBehavior == COLLISION_BEHAVIOR_FLYING_SHURIKEN) {
         float magnitude = rand() % 500 + 600;
         _angle = rand() % 70 + 10;
         _rotationAmount = rand() % 10 * 200;
@@ -110,6 +115,8 @@
         _vy = - magnitude * sinf((_angle * 3.14159)/180.0f);
         [[SoundEngine shared] playSound:@"collision"];
     }
+    
+    return _playerEffect;
 }
 
 -(CCSprite*) getCCSprite
@@ -129,18 +136,18 @@
     [self setPositionAtX:_x Y:_y];
     
     
-    if (_behavior == COLLISION_BEHAVIOR_FALL_OVER) {
+    if (_currentBehavior == COLLISION_BEHAVIOR_FALL_OVER) {
         _angle += (_fallVelocity + 100.0f) * dt;
         if (_angle >= 90) {
             _angle = 90;
             _fallVelocity = -0.8f * _fallVelocity;
-            _behavior = COLLISION_BEHAVIOR_STATIC;
+            _currentBehavior = COLLISION_BEHAVIOR_STATIC;
         } else if(_angle <= 0) {
             _angle = 0;
             _fallVelocity = -0.8f * _fallVelocity;
         }
         [self getCCSprite].rotation = _angle;
-    } else if(_behavior == COLLISION_BEHAVIOR_FLYING_SHURIKEN) {
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_FLYING_SHURIKEN) {
         _angle += _rotationAmount * dt;
         [self getCCSprite].rotation = _angle;
         CGPoint position = [[Camera sharedCamera] convertToScreenXY:[self getPosition]];
@@ -168,13 +175,31 @@
     [self setPosition:_startingPosition];
     [self getCCSprite].visible = true;
     [self getCCSprite].rotation = _angle;
-    _behavior = COLLISION_BEHAVIOR_STATIC;
+    _currentBehavior = COLLISION_BEHAVIOR_STATIC;
     _collided = false;
 }
 
 -(Collision*) getCollision
 {
     return _collisionState;
+}
+
+-(void) setCollideBehavior:(NSString*)behavior
+{
+    if([behavior compare:@"static"] == NSOrderedSame) {
+        _collideBehavior = COLLISION_BEHAVIOR_STATIC;
+    } else if([behavior compare:@"falls"] == NSOrderedSame){
+        _collideBehavior = COLLISION_BEHAVIOR_FALL_OVER;
+    }
+}
+
+-(void) setPlayerEffect:(NSString*)effect
+{
+    if([effect compare:@"collide"] == NSOrderedSame) {
+        _playerEffect = PLAYER_EFFECT_COLLIDE;
+    } else if([effect compare:@"slow"] == NSOrderedSame) {
+        _playerEffect = PLAYER_EFFECT_SLOWDOWN;
+    }
 }
 
 

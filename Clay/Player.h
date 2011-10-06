@@ -67,7 +67,7 @@ typedef enum {
 
 -(void)endTurbo;
 
--(void)startCollision;
+-(void)startCollision:(PlayerEffect)effect;
 
 -(void)changeHealth:(int)amount;
 

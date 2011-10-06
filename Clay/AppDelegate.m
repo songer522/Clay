@@ -126,12 +126,14 @@
     
     _debugLayer = [GameDebugLayer debugLayerForScene:[[LayerManager sharedLayers] currentScene] GameLayer:[[LayerManager sharedLayers] currentLayer]];
 
-    [[ComicManager shared] preload];
-    [ComicManager shared].gameLayer = [[LayerManager sharedLayers] currentLayer];
     
     _hudLayer = [HudLayer instance];
     [gameLayer setupHud:_hudLayer];
     
+
+    [[ComicManager shared] preload];
+    [ComicManager shared].gameLayer = [[LayerManager sharedLayers] currentLayer];
+
     
 	[[CCDirector sharedDirector] runWithScene: gameScene];
     

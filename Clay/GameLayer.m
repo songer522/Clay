@@ -14,10 +14,8 @@
 #import "GameClasses.h"
 
 #import "GameCenter.h"
-
 #import "ComicManager.h"
 #import "HudLayer.h"
-
 #import "Battery.h"
 
 // HelloWorldLayer implementation
@@ -61,9 +59,9 @@
         
         [[LayerManager sharedLayers] setCurrentLayer:self];
         
-        _level = [[LevelManager shared] currentLevel];
-        
         _player = [Player instance];
+        
+        _level = [[LevelManager shared] currentLevel];
         
         _savePoint = [SavePoint instance];
         
@@ -71,7 +69,6 @@
         [self scheduleUpdate];
         
         _dustTest = [[ParticleSystem alloc] init];
-        
         
         
         //[ParticleSystem testLimits];
@@ -89,8 +86,6 @@
 {
     _level = [[LevelManager shared] currentLevel];
     
-    [_player reset];
-    
     [_player setOffsetForX:0 Y:[[LevelManager shared] playerOffsetY]];
     
     [_player setPositionAtX:_level.spawnPoint.x Y:_level.spawnPoint.y];
@@ -101,18 +96,6 @@
 
     [_hud reset];
 
-}
-
--(Runner*)initRunner:(Runner*)runner atPosition:(CGPoint)position
-{
-    runner = [Runner runnerWithSprite:[Sprite spriteWithFile:@"player_idle_01.png"]];
-    [runner setPositionAtX:position.x Y:position.y];
-    
-    [[AnimationController sharedController] replaceSprite:[runner getSprite] withAnimationNamed:@"runningAnim"];
-
-    [runner changeToRunnerState:RUNNER_STATE_RUNNING];
-    
-    return runner;
 }
 
 -(void)setupHud:(HudLayer*)hud
@@ -161,10 +144,7 @@
         }
     }
     
-    if([_level testCollisions:_player]) {
-        //collision happened, so reduce speed
-        [_player startCollision];
-    }
+    [_level testCollisions:_player];
     
     if (![[ComicManager shared] isActive]) {
         if(_player.isDead) {
@@ -201,18 +181,6 @@
         [_inputController interpretAndReactToInputEvent:event];
     }
 }
-
-
-
--(void)updateRunner:(Runner*)runner DT:(float)dt
-{
-    [runner update:dt];
-    
-    CGPoint newPosition = [_level checkCollisionForObject:_player];
-    [runner setPositionAtX:newPosition.x Y:newPosition.y - 22];    
-}
-
-
 
 
 -(NSMutableArray*)getGameObjectsList

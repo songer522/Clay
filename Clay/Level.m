@@ -12,6 +12,7 @@
 #import "CollisionDetection.h"
 #import "Camera.h"
 #import "GameObject.h"
+#import "GameLayer.h"
 #import "Collision.h"
 #import "Sprite.h"
 #import "LayerManager.h"
@@ -30,13 +31,13 @@
 @synthesize musicName = _musicName;
 @synthesize collisionHandler = _collisionHandler;
 
-+(id)levelWithFilename:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer LayerList:(NSString*)layerList GameObjectController:(GameObjectController*)gameObjects
++(id)levelWithFilename:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer LayerList:(NSString*)layerList GameObjectController:(GameObjectController*)gameObjects Player:(Player*)player
 {
-    return [[self alloc] initWithFilename:filename ObstacleLayer:obstacleLayer LayerList:layerList GameObjectController:gameObjects];
+    return [[self alloc] initWithFilename:filename ObstacleLayer:obstacleLayer LayerList:layerList GameObjectController:gameObjects Player:player];
 }
 
 
--(id)initWithFilename:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer LayerList:(NSString*)layerList GameObjectController:(GameObjectController*)gameObjects
+-(id)initWithFilename:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer LayerList:(NSString*)layerList GameObjectController:(GameObjectController*)gameObjects Player:(Player*)player
 {
     self = [super init];
     if (self) {
@@ -67,6 +68,8 @@
         
         [self scanThroughMapAndAddObjects];
         
+        [player reset];
+        
         [[[LayerManager sharedLayers] currentLayer] addChild:_parallaxLayersFront];
         
         [_obstacles releaseMap];
@@ -88,6 +91,7 @@
     for (NSString *layerName in layers) {
         if ([layerName compare:@"actives"] == NSOrderedSame) {
             currentNode = _parallaxLayersFront;
+            currentZ = 0;
             continue;
         }
         
@@ -241,7 +245,8 @@
         if(!obstacle.collided) {
             collision = [self testCollisionWithGameObject:obstacle Source:source];
             if (collision) {
-                [obstacle startCollision];
+                GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+                [gameLayer.player startCollision:[obstacle startCollision]];
                 break;
             }
         }        

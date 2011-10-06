@@ -8,5 +8,9 @@
 	<string>rock_bkg.caf</string>
 	<key>cornfields</key>
 	<string>stars_voice.caf</string>
+	<key>disco</key>
+	<string>discoworld.caf</string>
+	<key>trailer</key>
+	<string>trailer.caf</string>
 </dict>
 </plist>

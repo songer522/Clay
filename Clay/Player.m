@@ -235,23 +235,28 @@
     
 }
 
--(void)startCollision
+-(void)startCollision:(PlayerEffect)effect
 {
-    [_speed startCollision];
     
-    _waitToGetUp = 100.0f;
-    
-    if (_isJumping) {
-        [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"trippedAnim"];
-        _isTripping = true;
-    } else {
-        [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"hurtAnim"];
-        _vy = -250.0f;
-        _y += 2.0f;
-        _waitToGetUp = 0.3f;
+    if (effect == PLAYER_EFFECT_COLLIDE) {
+        [_speed startCollision];
+
+        _waitToGetUp = 100.0f;
+        
+        if (_isJumping) {
+            [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"trippedAnim"];
+            _isTripping = true;
+        } else {
+            [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"hurtAnim"];
+            _vy = -250.0f;
+            _y += 2.0f;
+            _waitToGetUp = 0.3f;
+        }
+        
+        [self changeHealth:-1];
+    } else if(effect == PLAYER_EFFECT_SLOWDOWN) {
+        [_speed slowDown];
     }
-    
-    [self changeHealth:-1];
 }
 
 //used by background layers for scrolling

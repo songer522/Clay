@@ -13,13 +13,22 @@
 #import "Battery.h"
 
 #define HUD_LAYER_BUTTON_OPACITY 140 //tian's suggestion: 204
+
 #define HUD_LAYER_BUTTON_Y 65
 #define HUD_LAYER_JUMP_X 88
 #define HUD_LAYER_ACTION_X 443
 #define HUD_LAYER_SPRINT_X 503
 #define HUD_LAYER_BUTTON_SIZE 55
- 
- 
+
+//angle positions
+/*
+#define HUD_LAYER_BUTTON_Y 55
+#define HUD_LAYER_JUMP_X 88
+#define HUD_LAYER_ACTION_X 468
+#define HUD_LAYER_SPRINT_X 503
+#define HUD_LAYER_BUTTON_SIZE 55
+*/
+
 @implementation HudLayer
 
 +(id)instance
