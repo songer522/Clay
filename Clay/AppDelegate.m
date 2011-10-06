@@ -136,6 +136,8 @@
 	[[CCDirector sharedDirector] runWithScene: gameScene];
     
     
+    [_hudLayer reset];
+    
     /*
     int x;
     [NSThread detachNewThreadSelector:@selector(test:) toTarget:[LevelThread class] withObject:nil];     

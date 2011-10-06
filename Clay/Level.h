@@ -33,7 +33,8 @@
     
     CGPoint _spawnPoint;
     
-    CCParallaxNode *_parallaxLayers;
+    CCParallaxNode *_parallaxLayersBack;
+    CCParallaxNode *_parallaxLayersFront;
     
     NSMutableArray *_obstacleSprites;
     

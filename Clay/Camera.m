@@ -85,7 +85,7 @@ static Camera *_sharedCamera = nil;
 -(void)moveByX:(float)x Y:(float)y
 {
     _x += x;
-    _y += y;
+    //_y += y;
     [self keepWithinBoundaries];    
 }
 
@@ -122,19 +122,14 @@ static Camera *_sharedCamera = nil;
         float dy = (position.y - _y);
         
         float distance = sqrtf(dx*dx + dy*dy);
-        //float magnitude = distance * CAMERA_MOVE_TO_TARGET_SPEED * dt;
         
         float magnitude = distance * CAMERA_MOVE_TO_TARGET_SPEED * dt;;
         
-        //NSLog(@"Magnitude: %.2f, DT: %.4f",magnitude,dt);
-        
         if (distance > 2.0f) {
-            //NSLog(@"X: %.2f, Y: %.2f, TX: %.2f, TY: %.2f, DX: %.2f, DY: %.2f MOVE",_x,_y,position.x,position.y,dx,dy);
             _x += (magnitude * (dx/distance));
             _y += (magnitude * (dy/distance));
             
         } else {
-            //NSLog(@"X: %.2f, Y: %.2f, TX: %.2f, TY: %.2f, DX: %.2f, DY: %.2f SNAP",_x,_y,position.x,position.y,dx,dy);
             _x = position.x;
             _y = position.y;
             

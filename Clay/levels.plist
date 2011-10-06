@@ -74,7 +74,7 @@
 		<key>nextLevelName</key>
 		<string>level1</string>
 		<key>layerList</key>
-		<string>back-4,back-1,back-3,back-2,main,front1,front2,meta</string>
+		<string>back-4,back-1,back-3,back-2,main,actives,front1,front2,meta</string>
 	</dict>
 	<key>startingLevel</key>
 	<string>level1</string>

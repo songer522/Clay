@@ -19,7 +19,7 @@ typedef enum {
 } RunnerJump;
 
 @class RunningSpeed;
-@class Bandages;
+@class Battery;
 
 @interface Player : Runner
 {
@@ -37,7 +37,7 @@ typedef enum {
     
     
     int hitPoints;
-    Bandages *_bandages;
+    Battery *_battery;
     
     ParticleSystem *_particleSystem;
     
@@ -51,6 +51,7 @@ typedef enum {
 @property(nonatomic,assign) bool isDead;
 @property(nonatomic,assign) bool isTripping;
 @property(nonatomic,assign) bool isInMidAir;
+@property(nonatomic,retain) Battery *battery;
 
 +(id) instance;                                 //constructor
 

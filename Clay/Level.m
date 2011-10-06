@@ -52,22 +52,28 @@
         
         _scale = [[UIScreen mainScreen] scale] / 2.0f;
         
-        _parallaxLayers = [CCParallaxNode node];
+        _parallaxLayersBack = [CCParallaxNode node];
+        _parallaxLayersFront = [CCParallaxNode node];
         
         [self loadLayers:layerList];
         
         _map.scale = _scale;
-        _parallaxLayers.scale = _scale;
+        _parallaxLayersBack.scale = _scale;
+        _parallaxLayersFront.scale = _scale;
         
         [[Camera sharedCamera] setBoundaries:[self getLevelBoundaries]];
         
-        [[[LayerManager sharedLayers] currentLayer] addChild:_parallaxLayers];
+        [[[LayerManager sharedLayers] currentLayer] addChild:_parallaxLayersBack];
         
         [self scanThroughMapAndAddObjects];
+        
+        [[[LayerManager sharedLayers] currentLayer] addChild:_parallaxLayersFront];
+        
         [_obstacles releaseMap];
         
         _collisionHandler = [CollisionDetection collisionHandlerWithMetaLayer:_meta Map:_map];
 
+        
     }
     
     return self;
@@ -76,9 +82,15 @@
 -(void)loadLayers:(NSString*)layerList;
 {
     int currentZ = 0;
+    CCParallaxNode *currentNode = _parallaxLayersBack;
     
     NSArray *layers = [layerList componentsSeparatedByString:@","];
     for (NSString *layerName in layers) {
+        if ([layerName compare:@"actives"] == NSOrderedSame) {
+            currentNode = _parallaxLayersFront;
+            continue;
+        }
+        
         CCTMXLayer *tmxLayer = [_map layerNamed:layerName];
         if (tmxLayer) {
             float speedx = [[tmxLayer propertyNamed:@"speedx"] floatValue] * _scale;
@@ -91,7 +103,7 @@
             }
             
             [tmxLayer removeFromParentAndCleanup:NO];
-            [_parallaxLayers addChild:tmxLayer z:currentZ parallaxRatio:ccp(speedx,speedy) positionOffset:offsetPoint];
+            [currentNode addChild:tmxLayer z:currentZ parallaxRatio:ccp(speedx,speedy) positionOffset:offsetPoint];
             currentZ++;
         }
     }    
@@ -117,7 +129,8 @@
 {
     _x = x;
     _y = y;
-    [_parallaxLayers setPosition:[[Camera sharedCamera] convertToScreenXY:CGPointMake(_x, _y)]];
+    [_parallaxLayersBack setPosition:[[Camera sharedCamera] convertToScreenXY:CGPointMake(_x, _y)]];
+    [_parallaxLayersFront setPosition:[[Camera sharedCamera] convertToScreenXY:CGPointMake(_x, _y)]];
 }
 
 -(void)initTiledMap:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer
@@ -136,7 +149,8 @@
 -(void)unloadLevel
 {
     [[[LayerManager sharedLayers] currentLayer] removeChild:_map cleanup:YES];
-    [[[LayerManager sharedLayers] currentLayer] removeChild:_parallaxLayers cleanup:YES];
+    [[[LayerManager sharedLayers] currentLayer] removeChild:_parallaxLayersBack cleanup:YES];
+    [[[LayerManager sharedLayers] currentLayer] removeChild:_parallaxLayersFront cleanup:YES];
 }
 
 -(void)scanThroughMapAndAddObjects

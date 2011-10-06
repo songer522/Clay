@@ -24,9 +24,8 @@
 		54179E27142BBFA400D3A79E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 54179E26142BBFA400D3A79E /* Default@2x.png */; };
 		54179E2B142BC8AE00D3A79E /* GameCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 54179E2A142BC8AE00D3A79E /* GameCenter.m */; };
 		54179E2D142BC92400D3A79E /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54179E2C142BC92300D3A79E /* GameKit.framework */; };
-		5421A2F8142A5C7E0078D861 /* Bandages.m in Sources */ = {isa = PBXBuildFile; fileRef = 5421A2F7142A5C7E0078D861 /* Bandages.m */; };
+		5421A2F8142A5C7E0078D861 /* Battery.m in Sources */ = {isa = PBXBuildFile; fileRef = 5421A2F7142A5C7E0078D861 /* Battery.m */; };
 		5421A2FC142A63FF0078D861 /* CCXAnimate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5421A2FB142A63FF0078D861 /* CCXAnimate.m */; };
-		5422798A143628D30010A640 /* clayl3.0.1.2.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 54227989143628D30010A640 /* clayl3.0.1.2.tmx */; };
 		542361AE14228E5E0086E533 /* LevelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 542361AD14228E5E0086E533 /* LevelManager.m */; };
 		54297897140C1F8900B3FFF4 /* GameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54297896140C1F8900B3FFF4 /* GameController.m */; };
 		5429789B140C233E00B3FFF4 /* InputController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5429789A140C233E00B3FFF4 /* InputController.m */; };
@@ -267,11 +266,10 @@
 		54179E29142BC8AE00D3A79E /* GameCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenter.h; sourceTree = "<group>"; };
 		54179E2A142BC8AE00D3A79E /* GameCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCenter.m; sourceTree = "<group>"; };
 		54179E2C142BC92300D3A79E /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
-		5421A2F6142A5C7E0078D861 /* Bandages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bandages.h; sourceTree = "<group>"; };
-		5421A2F7142A5C7E0078D861 /* Bandages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bandages.m; sourceTree = "<group>"; };
+		5421A2F6142A5C7E0078D861 /* Battery.h */ = {isa = PBXFileReference; fileEncoding = 4; path = Battery.h; sourceTree = "<group>"; };
+		5421A2F7142A5C7E0078D861 /* Battery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Battery.m; sourceTree = "<group>"; };
 		5421A2FA142A63FF0078D861 /* CCXAnimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCXAnimate.h; sourceTree = "<group>"; };
 		5421A2FB142A63FF0078D861 /* CCXAnimate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCXAnimate.m; sourceTree = "<group>"; };
-		54227989143628D30010A640 /* clayl3.0.1.2.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = clayl3.0.1.2.tmx; path = Resources/levels/clayl3.0.1.2.tmx; sourceTree = "<group>"; };
 		542361AC14228E5E0086E533 /* LevelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelManager.h; sourceTree = "<group>"; };
 		542361AD14228E5E0086E533 /* LevelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelManager.m; sourceTree = "<group>"; };
 		54297895140C1F8900B3FFF4 /* GameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameController.h; sourceTree = "<group>"; };
@@ -757,8 +755,6 @@
 				54518F5614069B0C009D74AA /* Scenes */,
 				54518F641406AE38009D74AA /* Game */,
 				54518F6014069BD8009D74AA /* Base */,
-				54484E36140449B700D0D7D9 /* AppDelegate.h */,
-				54484E37140449B700D0D7D9 /* AppDelegate.m */,
 				54484E3F140449B700D0D7D9 /* GameConfig.h */,
 				54484E39140449B700D0D7D9 /* RootViewController.h */,
 				54484E3A140449B700D0D7D9 /* RootViewController.m */,
@@ -1119,6 +1115,8 @@
 				5443303E142A39F80008898E /* PauseMenuScreen.m */,
 				54FBA23A1430CE210010A91A /* VideoPlaybackScene.h */,
 				54FBA23B1430CE210010A91A /* VideoPlaybackScene.m */,
+				54484E36140449B700D0D7D9 /* AppDelegate.h */,
+				54484E37140449B700D0D7D9 /* AppDelegate.m */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -1179,8 +1177,8 @@
 			children = (
 				54F7F581143CD615004EC10B /* TrackTimer.h */,
 				54F7F582143CD615004EC10B /* TrackTimer.m */,
-				5421A2F6142A5C7E0078D861 /* Bandages.h */,
-				5421A2F7142A5C7E0078D861 /* Bandages.m */,
+				5421A2F6142A5C7E0078D861 /* Battery.h */,
+				5421A2F7142A5C7E0078D861 /* Battery.m */,
 				54518F731406B761009D74AA /* GameClasses.h */,
 				54518F741406B761009D74AA /* GameClasses.m */,
 				54297895140C1F8900B3FFF4 /* GameController.h */,
@@ -1250,7 +1248,6 @@
 			children = (
 				54F8A189143A158C00FCBAAB /* clayl3.0.1.4.tmx */,
 				54F55C02143666AC00AB8FBC /* clayl3.0.1.3.tmx */,
-				54227989143628D30010A640 /* clayl3.0.1.2.tmx */,
 				543C09521420F39B00F259BA /* clayl1.5.tmx */,
 				5430BC75143523B6002FD8E5 /* TL_Town_TileTextures.png */,
 				547F09721428E49C00E5D920 /* blank.png */,
@@ -1472,7 +1469,6 @@
 				54E316371434D94100CD81FA /* character_turbo.plist in Resources */,
 				54E316381434D94100CD81FA /* character_turbo.png in Resources */,
 				5430BC78143523B6002FD8E5 /* TL_Town_TileTextures.png in Resources */,
-				5422798A143628D30010A640 /* clayl3.0.1.2.tmx in Resources */,
 				54F55C03143666AC00AB8FBC /* clayl3.0.1.3.tmx in Resources */,
 				54F8A187143A09FC00FCBAAB /* stars_voice.caf in Resources */,
 				54F8A18A143A158C00FCBAAB /* clayl3.0.1.4.tmx in Resources */,
@@ -1627,7 +1623,7 @@
 				54A3BFD71427C32A002E8D2D /* GameDebugLayer.m in Sources */,
 				547F09771428FA5400E5D920 /* SavePoint.m in Sources */,
 				5443303F142A39F80008898E /* PauseMenuScreen.m in Sources */,
-				5421A2F8142A5C7E0078D861 /* Bandages.m in Sources */,
+				5421A2F8142A5C7E0078D861 /* Battery.m in Sources */,
 				5421A2FC142A63FF0078D861 /* CCXAnimate.m in Sources */,
 				54413573142B83460031C09E /* Trigger.m in Sources */,
 				54179E2B142BC8AE00D3A79E /* GameCenter.m in Sources */,

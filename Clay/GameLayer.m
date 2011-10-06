@@ -18,6 +18,8 @@
 #import "ComicManager.h"
 #import "HudLayer.h"
 
+#import "Battery.h"
+
 // HelloWorldLayer implementation
 @implementation GameLayer
 
@@ -65,19 +67,20 @@
         
         _savePoint = [SavePoint instance];
         
-        [self initForLevel];
         
         [self scheduleUpdate];
         
         _dustTest = [[ParticleSystem alloc] init];
         
+        
+        
         //[ParticleSystem testLimits];
         
         
-        
+        [self initForLevel];
         
         self.isTouchEnabled = YES;
-                
+        
 	}
 	return self;
 }
@@ -95,6 +98,9 @@
     [_savePoint setSavePoint:_level.spawnPoint Level:_level.name];
     
     [self initCamera];
+
+    [_hud reset];
+
 }
 
 -(Runner*)initRunner:(Runner*)runner atPosition:(CGPoint)position
@@ -112,6 +118,9 @@
 -(void)setupHud:(HudLayer*)hud
 {
     _hud = hud;
+    
+    _player.battery = [_hud getBattery];
+    [_hud getBattery].parent = _player;
     
     //pass on the hud to the gamecontroller
     [_gameController setHud:hud];
