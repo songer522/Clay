@@ -118,8 +118,8 @@
 
 -(void)landFromHighJump
 {
-    _acceleration *= 0.4f;
-    _velocity *= 0.4f;
+    _acceleration *= 0.1f;
+    _velocity *= 0.1f;
     if (_inTurbo) {
         [_player endTurbo];
     }
@@ -134,6 +134,15 @@
 {
     NSLog(@"SuperFriction: %.2f",(friction * dt));
     _velocity = (1 - (friction * dt)) * _velocity;
+}
+
+-(void)startJump
+{
+    if (_inTurbo) {
+        _velocity += 5.0f;        
+    } else {
+        _velocity += 2.5f;
+    }
 }
 
 -(void)update:(float)dt
@@ -151,7 +160,7 @@
                 _velocity += _acceleration * dt;
                 
                 if (_isSlowedDown) {
-                    [self applyFriction:5.0f Dt:dt];
+                    [self applyFriction:2.5f Dt:dt];
                 }
 
                 if (_velocity > RUNNING_SPEED_MODIFIER_VELOCITY_MAX * _turboVelocityMax) {

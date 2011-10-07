@@ -68,7 +68,7 @@
         
         [self scanThroughMapAndAddObjects];
         
-        [player reset];
+        [player resetSprite:[[LayerManager sharedLayers] currentLayer]];
         
         [[[LayerManager sharedLayers] currentLayer] addChild:_parallaxLayersFront];
         

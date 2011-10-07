@@ -187,9 +187,10 @@
     //guard
     if (_isTripping || _isDead) { return; }
     
+    self.hasGravity = false;
     _firstFrameJumping = true;
     _isHighJump = false;
-    _vy = -200.0f;
+    _vy = -150.0f;
     _y += 2.0f;
     _jumpAcceleration = 0;
     _isJumping = true;
@@ -197,17 +198,29 @@
     [[self getCollision] processNewCollisionState:COLLISION_STATE_MIDAIR];
     [self setPositionAtX:_x Y:_y];
     [[SoundEngine shared] playSound:@"jumpStart"];
+    
+    [_speed startJump];
+    
 }
 
 -(void)boostJump:(RunnerJump)type
 {
+    _jumpHeight = type;
+    
     if (type == JUMP_MEDIUM) {
-        _vy += -200.0f;
+        //_vy += -200.0f;
     } else if(type == JUMP_HIGH) {
-        _vy += -200.0f;
+        //_vy += -200.0f;
+        self.hasGravity = true;
         _isHighJump = true;
     }
 }
+
+-(void)endJump
+{
+    self.hasGravity = true;
+}
+
 
 -(void)startTurbo
 {
@@ -269,8 +282,7 @@
 {
     hitPoints = 4;
     [_battery reset];
-    _speed.velocity = 0.0f;
-    [self resetSprite:[[LayerManager sharedLayers] currentLayer]];
+    [_speed reset];
 }
 
 

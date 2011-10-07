@@ -65,8 +65,10 @@
 {
     //test jump button
     if ([self testButtonPosition:CGPointMake(HUD_LAYER_JUMP_X, HUD_LAYER_BUTTON_Y) Test:point]) {
-        [[_buttonJump getCCSprite] setOpacity:255];
-        [[_buttonJump getCCSprite] setScale:0.85f * _buttonScale];
+        if (type == INPUT_TOUCH_PRESSED) {
+            [[_buttonJump getCCSprite] setOpacity:255];
+            [[_buttonJump getCCSprite] setScale:0.85f * _buttonScale];            
+        }
         _resetButtons = true;
         return HUD_BUTTON_JUMP;
     }

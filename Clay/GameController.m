@@ -80,6 +80,10 @@
                         [_gameLayer.player boostJump:JUMP_HIGH];
                     }
                 }
+                
+                if (type == INPUT_TOUCH_END) {
+                    [_gameLayer.player endJump];
+                }
                 break;
             case HUD_BUTTON_SPRINT:
                 if(![_gameLayer.player getIsTurbo]) {

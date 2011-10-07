@@ -33,6 +33,8 @@ typedef enum {
     bool _isActive;      //starts true, but switched to false if we no longer
                          //want the object to be seen or updated
     
+    bool _hasGravity;
+    
     float _x;
     float _y;
     CGPoint _startingPosition;
@@ -69,6 +71,7 @@ typedef enum {
 @property(nonatomic,assign) float vy;
 @property(nonatomic,assign) CGRect boundingBox;
 @property(readonly,nonatomic,assign) bool collided;
+@property(nonatomic,assign) bool hasGravity;
 
 
 +(id) instance;

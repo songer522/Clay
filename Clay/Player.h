@@ -41,6 +41,7 @@ typedef enum {
     
     ParticleSystem *_particleSystem;
     
+    RunnerJump _jumpHeight;
     
     Sprite *_buttonJump;
     Sprite *_buttonKick;
@@ -60,12 +61,15 @@ typedef enum {
 
 -(void)startJump:(RunnerJump)type;
 -(void)boostJump:(RunnerJump)type;
+-(void)endJump;
 -(void)updateJump:(float)dt;
 
 -(void)startTurbo;
 -(bool)getIsTurbo;
 
 -(void)endTurbo;
+
+
 
 -(void)startCollision:(PlayerEffect)effect;
 
