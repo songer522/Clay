@@ -69,6 +69,11 @@
         
         HudButton result = [_hud testInput:location InputType:type];
         
+        if (type == INPUT_TOUCH_END) {
+            [_gameLayer.player endJump];
+            return;
+        }
+        
         switch (result) {
             case HUD_BUTTON_JUMP:
                 if (!_gameLayer.player.isJumping) {
@@ -81,9 +86,6 @@
                     }
                 }
                 
-                if (type == INPUT_TOUCH_END) {
-                    [_gameLayer.player endJump];
-                }
                 break;
             case HUD_BUTTON_SPRINT:
                 if(![_gameLayer.player getIsTurbo]) {

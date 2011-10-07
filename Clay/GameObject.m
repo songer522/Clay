@@ -195,6 +195,11 @@
     }
 }
 
+-(void)setRange:(CGRect)range
+{
+    _range = range;
+}
+
 -(void) setPlayerEffect:(NSString*)effect
 {
     if([effect compare:@"collide"] == NSOrderedSame) {

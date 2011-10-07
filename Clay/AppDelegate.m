@@ -19,6 +19,7 @@
 #import "LevelThread.h"
 #import "ComicManager.h"
 #import "HudLayer.h"
+#import "MainMenuScene.h"
 
 @implementation AppDelegate
 
@@ -139,6 +140,12 @@
     
     
     [_hudLayer reset];
+
+    
+    _mainMenuScene = [MainMenuScene scene];
+    
+    [[CCDirector sharedDirector] pushScene:_mainMenuScene];
+    
     
     /*
     int x;

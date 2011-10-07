@@ -47,6 +47,8 @@ typedef enum {
     
     float _fallVelocity;
     
+    CGRect _range;       //range in which this object can move on screen. absolute positions.
+    
     CGPoint _prevLocation;
     
     //collision
@@ -92,6 +94,9 @@ typedef enum {
 
 -(CGPoint) getPosition;
 -(CGPoint) getPreviousPosition;
+
+-(void)setRange:(CGRect)rect;
+
 -(Collision*) getCollision;
 
 -(void) setCollideBehavior:(NSString*)behavior;
