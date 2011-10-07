@@ -231,6 +231,12 @@
     [[_buttonAction getCCSprite] setOpacity:opacity];
     [[_buttonSprint getCCSprite] setOpacity:opacity];    
     [[_battery getCCSprite] setOpacity:opacity];
+    
+    if (_alpha == 0.0f) {
+        [self setVisible:NO];
+    } else {
+        [self setVisible:YES];
+    }
 }
 
 -(void)reset
