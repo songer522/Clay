@@ -8,9 +8,11 @@
 
 #import "cocos2d.h"
 #import "CCLayer.h"
+#import "InputController.h"
 
 @class Sprite;
 @class TrackTimer;
+@class Battery;
 
 typedef enum {
     HUD_BUTTON_NONE,
@@ -29,6 +31,8 @@ typedef enum {
     
     TrackTimer *_trackTimer;
     
+    Battery *_battery;
+    
     bool _resetButtons;
     
 }
@@ -37,11 +41,15 @@ typedef enum {
 
 -(Sprite*)initButton:(NSString*)image Position:(CGPoint)position;
 
--(HudButton)testInput:(CGPoint)point;
+-(HudButton)testInput:(CGPoint)point InputType:(InputType)type;
 -(bool)testButtonPosition:(CGPoint)buttonPosition Test:(CGPoint)testPosition;
 
 -(void)resettingButton:(Sprite*)button TimePassed:(float)dt;
 
 -(void)update:(float)dt;
+
+-(Battery*)getBattery;
+
+-(void)reset;
 
 @end

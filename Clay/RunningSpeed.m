@@ -98,6 +98,17 @@
     }
 }
 
+-(void)slowDown
+{
+    if(_player.isInMidAir) {
+        if (_inTurbo) {
+            [_player endTurbo];
+        }
+    }
+    
+    _isSlowedDown = true;
+}
+
 -(void)startTurbo
 {
     _inTurbo = true;
@@ -138,7 +149,11 @@
                 }
                 
                 _velocity += _acceleration * dt;
-                //[self applyFriction:3.0f Dt:dt];
+                
+                if (_isSlowedDown) {
+                    [self applyFriction:5.0f Dt:dt];
+                }
+
                 if (_velocity > RUNNING_SPEED_MODIFIER_VELOCITY_MAX * _turboVelocityMax) {
                     _velocity = RUNNING_SPEED_MODIFIER_VELOCITY_MAX * _turboVelocityMax;
                 }
@@ -160,7 +175,9 @@
                 
                 _velocity += _acceleration * dt;
                 
-                //[self applyFriction:3.0f Dt:dt];
+                if (_isSlowedDown) {
+                    [self applyFriction:5.0f Dt:dt];
+                }
                 
                 if (_velocity > RUNNING_SPEED_MODIFIER_VELOCITY_MAX * _normalVelocityMax) {
                     _velocity = RUNNING_SPEED_MODIFIER_VELOCITY_MAX * _normalVelocityMax;
@@ -176,7 +193,7 @@
         [self applyFriction:5.0f Dt:dt];
     }
     
-    
+    _isSlowedDown = false;
 }
 
 -(void)dealloc

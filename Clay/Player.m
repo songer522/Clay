@@ -16,7 +16,7 @@
 #import "PListLoader.h"
 #import "ParticleSystem.h"
 #import "Camera.h"
-#import "Bandages.h"
+#import "Battery.h"
 
 #define PLAYER_SPRITE_FILE @"player_idle_01.png"
 #define PLAYER_STARTING_VELOCITY 0
@@ -30,6 +30,7 @@
 @synthesize isDead = _isDead;
 @synthesize isTripping = _isTripping;
 @synthesize isInMidAir = _isInMidAir;
+@synthesize battery = _battery;
 
 +(id) instance
 {
@@ -62,8 +63,6 @@
         [self changeToRunnerState:RUNNER_STATE_RUNNING];
         
         hitPoints = 4;
-        _bandages = [Bandages instance];
-        _bandages.parent = self;
         
         _isHighJump = false;
         
@@ -79,10 +78,10 @@
 {
     if (amount > 0 && hitPoints<4) {
         hitPoints+=1;
-        [_bandages setFrame:(5-hitPoints)];
+        [_battery setFrame:(5-hitPoints)];
     } else if(amount < 0 && hitPoints >= 0) {
         hitPoints-=1;
-        [_bandages setFrame:(5-hitPoints)];
+        [_battery setFrame:(5-hitPoints)];
     }
     
     if (hitPoints <=0) {
@@ -109,7 +108,7 @@
                                                     //camera position. will cause jitteriness otherwise
     
     [self setPositionAtX:newPosition.x Y:newPosition.y];
-    [_bandages update:dt];
+    [_battery update:dt];
     [_particleSystem update:dt];
     
     if (_isTripping) {
@@ -220,7 +219,7 @@
         [[SoundEngine shared] playSound:@"turboStart"];
         [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"turboAnim"];
         hitPoints -=1;
-        [_bandages setFrame:(5 - hitPoints)];        
+        [_battery setFrame:(5 - hitPoints)];        
     }
 
 }
@@ -236,23 +235,28 @@
     
 }
 
--(void)startCollision
+-(void)startCollision:(PlayerEffect)effect
 {
-    [_speed startCollision];
     
-    _waitToGetUp = 100.0f;
-    
-    if (_isJumping) {
-        [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"trippedAnim"];
-        _isTripping = true;
-    } else {
-        [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"hurtAnim"];
-        _vy = -250.0f;
-        _y += 2.0f;
-        _waitToGetUp = 0.3f;
+    if (effect == PLAYER_EFFECT_COLLIDE) {
+        [_speed startCollision];
+
+        _waitToGetUp = 100.0f;
+        
+        if (_isJumping) {
+            [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"trippedAnim"];
+            _isTripping = true;
+        } else {
+            [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"hurtAnim"];
+            _vy = -250.0f;
+            _y += 2.0f;
+            _waitToGetUp = 0.3f;
+        }
+        
+        [self changeHealth:-1];
+    } else if(effect == PLAYER_EFFECT_SLOWDOWN) {
+        [_speed slowDown];
     }
-    
-    [self changeHealth:-1];
 }
 
 //used by background layers for scrolling
@@ -264,7 +268,7 @@
 -(void)reset
 {
     hitPoints = 4;
-    [_bandages reset];
+    [_battery reset];
     _speed.velocity = 0.0f;
     [self resetSprite:[[LayerManager sharedLayers] currentLayer]];
 }
@@ -274,24 +278,20 @@
 -(void)resetSprite:(CCLayer*)layer
 {
     CCSprite *playerSprite = [self getCCSprite];
-    CCSprite *bandageSprite = [_bandages getCCSprite];
     [layer removeChild:playerSprite cleanup:NO];
-    [layer removeChild:bandageSprite cleanup:NO];
     [layer addChild:playerSprite];
-    [layer addChild:bandageSprite];
 }
 
 -(void)rechargeBattery
 {
-    [_bandages startRecharge];
+    [_battery startRecharge];
 }
-
 
 
 -(void)dealloc
 {
     [_speed release];
-    [_bandages release];
+    [_battery release];
     [_particleSystem release];
     [super dealloc];
 }

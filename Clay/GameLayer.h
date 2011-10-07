@@ -35,9 +35,6 @@
     
     SavePoint *_savePoint;
     
-    Runner *_runner2;
-    Runner *_runner3;
-    
     ParticleSystem *_dustTest;
     
     HudLayer *_hud;
@@ -51,8 +48,6 @@
 +(CCScene *) scene;
 -(void)initForLevel;
 -(void)initCamera;
--(Runner*)initRunner:(Runner*)runner atPosition:(CGPoint)position;
--(void)updateRunner:(Runner*)runner DT:(float)dt;
 -(void)updateLogic:(ccTime)dt;
 
 -(void)setupHud:(HudLayer*)hud;

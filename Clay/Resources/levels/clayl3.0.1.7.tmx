@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="500" height="14" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" name="meta64" tilewidth="64" tileheight="64">
+  <image source="meta64.png" width="256" height="192"/>
+  <tile id="0">
+   <properties>
+    <property name="collision" value="full"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="collision" value="leftslant"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="collision" value="rightslant"/>
+   </properties>
+  </tile>
+  <tile id="10">
+   <properties>
+    <property name="collision" value="rs2tileL"/>
+   </properties>
+  </tile>
+  <tile id="11">
+   <properties>
+    <property name="collision" value="rs2tileR"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="13" name="Env_Track_Icons" tilewidth="64" tileheight="64">
+  <image source="TrackLapse_Icon.png" width="448" height="64"/>
+  <tile id="0">
+   <properties>
+    <property name="obstacle" value="hurdle"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="special" value="spawnpoint"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="special" value="checkpoint"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="special" value="nextlevelNE"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="17" name="TL_Town_TileTextures_v7" tilewidth="64" tileheight="64">
+  <image source="TL_Town_TileTextures_v7.png" width="1280" height="832"/>
+ </tileset>
+ <layer name="back-9" width="500" height="14">
+  <properties>
+   <property name="speedx" value="0"/>
+   <property name="speedy" value="0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztw0ERwjAABMBEQkUgoiIQgYiKQERFVERFIAIPeMjxuMfuzG5jjG0xANDhEQQAOuxBAKDDMwgAdHgFAYAORxAA6PAOAgAdziAA0OEKAgAd7iAA0OETBAA6fIMAQIc51wMAAAD/8QMzc1lr
+  </data>
+ </layer>
+ <layer name="back-8" width="500" height="14">
+  <properties>
+   <property name="speedx" value="1.0"/>
+   <property name="speedy" value=".9"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt0UsKwCAMBUDvf8a2Z2h7gmYtLuJvUZiBgCDxJVgKAAAAAAAAAAAAAAAAAACwyxF1Rl3VuXWf7enNnZ1xRUZPzujOs7L/s+JdAP7ljnqi3urcus/29ObOzrgioydndOdZ2f9Z8S4AAAAAAAAAAACwzwe7XFE3
+  </data>
+ </layer>
+ <layer name="back-7" width="500" height="14">
+  <properties>
+   <property name="speedx" value=".4"/>
+   <property name="speedy" value=".5"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt0tdNA2EQhdFtwmBCA2QawMQGiKYBGzBQAMmGzrlFrDRa/edI39N9G03XAQAAAAAAAAAAAAAAAAAAQNddp5t0m+7SfXpI0/TYwD5Ka2k9jdNG2kxbabuBvfr+1Xv1/av36vvb/b//72+fpXl6Ss/pJS3Sa3prYN9Ju2kv7aeDdJiO0nEDe/X9q/fq+1fv1fe3+3//39/+kT7TV/pOP2mZVum3gf0kTdJpOkvn6SJdpqsG9ur7V+/V96/eq+9v9//+v7/9XZIkDb4/SZI0+ACA4fsHWTCuPA==
+  </data>
+ </layer>
+ <layer name="back-6" width="500" height="14">
+  <properties>
+   <property name="speedx" value="1.0"/>
+   <property name="speedy" value="1.0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztwwEJAAAIAzATG8LkxjjoBqsCAAAAAAAAAAAAAAAAAAAAAAAAAICM1mMBPho9FgAAAMhbeaOpsQ==
+  </data>
+ </layer>
+ <layer name="back-5" width="500" height="14">
+  <properties>
+   <property name="speedx" value="1.0"/>
+   <property name="speedy" value="1.0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt1TdOBEEQQNElZfFw0IXlCLgj4I6Ai1nMYmK8izGLjfHuk89IaFo9tNB/0o96SlXZVCqSJEmSJEmSJEmSJEmSJEmSJEmSpNQsU4NWaJXWaJ2atEGbtEXbf3SfJOl3ajRIQ1Sn4YRmYu7Lei8yU6a8/SF37dAu7dE+HdAhHdExndApnYWfL0mKaIRGaYzGaSKhmZj7st6LzJQpb3/IXed0QZd0RS26phu6pTu6p4fw8yVJEU3SFE3TDM0mNBNzX9Z7kZky5e0PueuRnuiZXuiV3uidPuiTvn4+bAs+X5IU0RzN0wIt0lJCMzH3Zb0XmSlT3v6Qu9r5T1epgzqpi7qph3qpj/ppwP+5JEmSJEmSJEn/yjfTi5Yu
+  </data>
+ </layer>
+ <layer name="back-4" width="500" height="14">
+  <properties>
+   <property name="speedx" value="1.0"/>
+   <property name="speedy" value="1.0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztz8cJAzAQBECX4lSCUwlOJTj1X4W3ASFxIOPHDOxHsLdosQAAAAAAAAAAAAAAAAAAAGZbJqtknWySbeOt16lujdyr7M3oVG4CwC/skn1ySI7JqfHW61S3Ru5V9mZ0qv8GgNnOySW5Jrfk3njrdapbI/cqezM61X8DwGyP5Jm8knfyabz1OtWtkXuVvRmd6r8BAAAAAAD+wRf5ni0B
+  </data>
+ </layer>
+ <layer name="back-3" width="500" height="14">
+  <properties>
+   <property name="speedx" value="1.0"/>
+   <property name="speedy" value="1.0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt0YFNAzEMBdAuAp0BmIEyHjADdAZgBmAGYBM8wLmJdZYqjvckS0kkO1/JbgcAAAAAAAAAAAAAAACcw33UQ9Tj5HqpLzsb7bMco5wVHX0d2SrzOvNV/mCN2bnd71C5G2DLnqKeo46T66W+7Gy0z3KMclZ09HVkq8zrzFf5gzVm53a/Q+VugC17iXqNeptcL/VlZ6N9lmOUs6KjryNbZV5nvsofrDE7t/sdKncDbNl71EfU5+R6qS87G+2zHKOcFR19Hdkq8zrzVf4gcxF1GbWfzHNK9ztU7gbYsq+o76ifyfVSX3Y22mc5RjkrOvo6slXmdear/EHmKuo66mYyzynd71C5GwD+s9uoQ9TduYMAAAAAf8YvMnEEkg==
+  </data>
+ </layer>
+ <layer name="back-2" width="500" height="14">
+  <properties>
+   <property name="speedx" value="1.0"/>
+   <property name="speedy" value="1.0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztz8EJAkEMBdDtH7UGtYbVGtSqzHkuiYHAIu9BYGZCfphtAwAAAAAAAAAAAAAAAAAAfnWKOkddiudObqW3vmX3yp7uXOe/mYnMLHtyJwDHco26Rd2L505upbe+ZffKnu5cltkxkZllT+4E4Fj2qEfUs3ju5FZ661t2r+zpznX+m5nIzLIndwJwLK+od9SneO7kVnrrW3av7OnOdf6bmcjMsid3AgAAAAAA/+8Lz5eAQQ==
+  </data>
+ </layer>
+ <layer name="back-1" width="500" height="14">
+  <properties>
+   <property name="speedx" value="1.0"/>
+   <property name="speedy" value="1.0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt0lkKgCAUAEDvf92X/xUkRGSoCAXNgD8ub1FTAgAAAAAAAAAAAAAAAAAAAAAAAACA90TDnmUbeXLekXhx1FLztDaq5KzdU28fcYoVl/nW+KWe2W8youX/7HLH3ruzX+gVAAAAAAD+YgWaJxbe
+  </data>
+ </layer>
+ <layer name="main" width="500" height="14">
+  <properties>
+   <property name="speedx" value="1.0"/>
+   <property name="speedy" value="1.0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztxQERglAURcGHNNUO0gE6aAfpAG2gAjcG/r87c+ZUAQAAAAAAAAAAAAAAAAAAAAAAAHAHz/Ryd+/on/QtaMs7Te7uHf2X1nSk072Rz2lxd+/oW9rTY6gaB/c2DgD8vwsY0mgP
+  </data>
+ </layer>
+ <layer name="front1" width="500" height="14">
+  <properties>
+   <property name="speedx" value="1.2"/>
+   <property name="speedy" value="1.1"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztx7kNACEQBEHyNw8uBZ4smSBwVqqS2ujWAAAAAAAAAAAAAAAAAAAAAAAAAAAAeOFLPY30e++9977kz7TSTsd77733JR8AqO8CxgVnWw==
+  </data>
+ </layer>
+ <layer name="front2" width="500" height="14">
+  <properties>
+   <property name="speedx" value="1.0"/>
+   <property name="speedy" value="1.0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt0kEOgCAMBEA+gPr/13r3ojSVkjBzhs1C2xoAAAAAAAAAAAAAAAAAAAAAAAAAAAA76NUFHlbrEzHyhi9nz2iRQaN/3wN3Zlu93wyz9udNxiyy5pmZ8+eOZWavmHUl5VQ5qgsAAADAhm5izAEN
+  </data>
+ </layer>
+ <layer name="meta" width="500" height="14" opacity="0.34">
+  <properties>
+   <property name="speedx" value="1.0"/>
+   <property name="speedy" value="1.0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztw7ENAAAMAiD9/2nTK7pAQgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwKmqqqr6fvtyA+k=
+  </data>
+ </layer>
+</map>

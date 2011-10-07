@@ -5,7 +5,7 @@
 	<key>level1</key>
 	<dict>
 		<key>music</key>
-		<string>track</string>
+		<string>trailer</string>
 		<key>postLevelComic</key>
 		<string>trackToFarm</string>
 		<key>worldType</key>
@@ -19,7 +19,7 @@
 		<key>nextLevelName</key>
 		<string>level2</string>
 		<key>layerList</key>
-		<string>background-99,back-5,back-4,back-3,back-2,back-1,main0,front1,front2,front3,meta</string>
+		<string>background-99,back-5,back-4,back-3,back-2,back-1,main0,actives,front1,front2,front3,meta</string>
 	</dict>
 	<key>platformTest</key>
 	<dict>
@@ -55,9 +55,9 @@
 		<key>nextLevelName</key>
 		<string>level3</string>
 		<key>layerList</key>
-		<string>back-2,back-1,main0,front2,front3,meta</string>
+		<string>back-2,back-1,main0,actives,front2,front3,meta</string>
 	</dict>
-	<key>level3</key>
+	<key>level3old</key>
 	<dict>
 		<key>music</key>
 		<string>cornfields</string>
@@ -68,13 +68,32 @@
 		<key>playerOffsetY</key>
 		<integer>-9</integer>
 		<key>fileName</key>
-		<string>clayl3.0.1.4.tmx</string>
+		<string>clayl3.0.1.7.tmx</string>
 		<key>obstacleLayer</key>
 		<string>front2</string>
 		<key>nextLevelName</key>
 		<string>level1</string>
 		<key>layerList</key>
-		<string>back-4,back-1,back-3,back-2,main,front1,front2,meta</string>
+		<string>back-4,back-1,back-3,back-2,main,actives,front1,front2,meta</string>
+	</dict>
+	<key>level3</key>
+	<dict>
+		<key>music</key>
+		<string>disco</string>
+		<key>postLevelComic</key>
+		<string>farmToCornfields</string>
+		<key>worldType</key>
+		<string>realWorld</string>
+		<key>playerOffsetY</key>
+		<integer>-9</integer>
+		<key>fileName</key>
+		<string>clayl3.0.1.7.tmx</string>
+		<key>obstacleLayer</key>
+		<string>front2</string>
+		<key>nextLevelName</key>
+		<string>level1</string>
+		<key>layerList</key>
+		<string>back-9,back-8,back-7,back-6,back-5,back-4,back-3,back-2,back-1,main,actives,front1,front2,meta</string>
 	</dict>
 	<key>startingLevel</key>
 	<string>level1</string>

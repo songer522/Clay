@@ -4,6 +4,10 @@
 <dict>
 	<key>hurdle</key>
 	<dict>
+		<key>playerEffect</key>
+		<string>collide</string>
+		<key>collideBehavior</key>
+		<string>falls</string>
 		<key>offsetx</key>
 		<integer>0</integer>
 		<key>offsety</key>
@@ -26,10 +30,76 @@
 			<key>width</key>
 			<integer>14</integer>
 			<key>height</key>
-			<integer>26</integer>
+			<integer>30</integer>
 		</dict>
 		<key>imageName</key>
 		<string>hurdle.png</string>
+	</dict>
+	<key>bighurdle</key>
+	<dict>
+		<key>playerEffect</key>
+		<string>collide</string>
+		<key>collideBehavior</key>
+		<string>falls</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>-45</integer>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>1</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string></string>
+		<key>boundingBox</key>
+		<dict>
+			<key>x</key>
+			<integer>20</integer>
+			<key>y</key>
+			<integer>2</integer>
+			<key>width</key>
+			<integer>14</integer>
+			<key>height</key>
+			<integer>40</integer>
+		</dict>
+		<key>imageName</key>
+		<string>bighurdle.png</string>
+	</dict>
+	<key>sandpit</key>
+	<dict>
+		<key>playerEffect</key>
+		<string>slow</string>
+		<key>collideBehavior</key>
+		<string>static</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>-45</integer>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>0</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string></string>
+		<key>boundingBox</key>
+		<dict>
+			<key>x</key>
+			<integer>-12</integer>
+			<key>y</key>
+			<integer>2</integer>
+			<key>width</key>
+			<integer>57</integer>
+			<key>height</key>
+			<integer>15</integer>
+		</dict>
+		<key>imageName</key>
+		<string>sandpit.png</string>
 	</dict>
 	<key>player</key>
 	<dict>

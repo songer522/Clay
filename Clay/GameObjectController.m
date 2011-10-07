@@ -48,6 +48,13 @@
     }
     
     [gameObject setOffsetForX:[[gameobjectSettings objectForKey:@"offsetx"] floatValue] Y:[[gameobjectSettings objectForKey:@"offsety"] floatValue]];
+    
+    NSString *collideBehavior = [gameobjectSettings objectForKey:@"collideBehavior"];
+    [gameObject setCollideBehavior:collideBehavior];
+    
+    NSString *playerEffect = [gameobjectSettings objectForKey:@"playerEffect"];
+    [gameObject setPlayerEffect:playerEffect];
+    
     NSDictionary *anchorPoint = [gameobjectSettings objectForKey:@"anchorpoint"];
     [[gameObject getCCSprite] setAnchorPoint:ccp([[anchorPoint objectForKey:@"x"] floatValue], [[anchorPoint objectForKey:@"y"] floatValue])];
     NSDictionary *boundingBox = [gameobjectSettings objectForKey:@"boundingBox"];

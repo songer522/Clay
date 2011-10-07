@@ -21,6 +21,11 @@ typedef enum {
     COLLISION_BEHAVIOR_STATIC
 } CollisionBehavior;
 
+typedef enum {
+    PLAYER_EFFECT_COLLIDE,
+    PLAYER_EFFECT_SLOWDOWN
+} PlayerEffect;
+
 @interface GameObject : NSObject
 {
     Sprite *_sprite;
@@ -51,7 +56,10 @@ typedef enum {
     Collision *_collisionState;     //used to keep track of whether the object is in midair or on
                                     //the ground.
     
-    CollisionBehavior _behavior;
+    CollisionBehavior _currentBehavior;
+    CollisionBehavior _collideBehavior;
+    
+    PlayerEffect _playerEffect;
 }
 
 @property(nonatomic,retain) Sprite *sprite;
@@ -83,7 +91,10 @@ typedef enum {
 -(CGPoint) getPreviousPosition;
 -(Collision*) getCollision;
 
--(void) startCollision;
+-(void) setCollideBehavior:(NSString*)behavior;
+-(void) setPlayerEffect:(NSString*)effect;
+
+-(PlayerEffect) startCollision;
 
 -(void) update:(float)dt;
 

@@ -37,6 +37,8 @@
     float _turboAccelerationMax;
     float _turboDuration;
     float _turboVelocityMax;
+    
+    float _isSlowedDown;
 }
 
 @property(nonatomic,assign) float velocity;
@@ -56,6 +58,7 @@
 #pragma mark - public methods
 -(void)startCollision;
 -(void)startTurbo;
+-(void)slowDown;
 -(void)endTurbo;
 -(void)applyFriction:(float)friction Dt:(float)dt;
 -(void)landFromHighJump;

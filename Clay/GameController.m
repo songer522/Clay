@@ -67,7 +67,7 @@
         [self pauseGame];
     } else if(!_isPaused) {
         
-        HudButton result = [_hud testInput:location];
+        HudButton result = [_hud testInput:location InputType:type];
         
         switch (result) {
             case HUD_BUTTON_JUMP:

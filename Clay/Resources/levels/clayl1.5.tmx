@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="2000" height="14" tilewidth="64" tileheight="64">
  <tileset firstgid="1" name="tian" tilewidth="64" tileheight="64">
-  <image source="Tile_Track_Test.png" width="448" height="640"/>
+  <image source="Tile_Track_Test.png" width="448" height="704"/>
  </tileset>
- <tileset firstgid="71" name="meta" tilewidth="64" tileheight="64">
+ <tileset firstgid="78" name="meta" tilewidth="64" tileheight="64">
   <image source="meta64.png" width="256" height="192"/>
   <tile id="0">
    <properties>
@@ -26,8 +26,8 @@
    </properties>
   </tile>
  </tileset>
- <tileset firstgid="83" name="hurdle" tilewidth="64" tileheight="64">
-  <image source="Env_Track_Icons.png" width="256" height="64"/>
+ <tileset firstgid="90" name="hurdle" tilewidth="64" tileheight="64">
+  <image source="TrackLapse_Icon.png" width="448" height="64"/>
   <tile id="0">
    <properties>
     <property name="obstacle" value="hurdle"/>
@@ -46,6 +46,21 @@
   <tile id="3">
    <properties>
     <property name="special" value="nextlevelNE"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="special" value="jimAppearance1"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="obstacle" value="bighurdle"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="obstacle" value="sandpit"/>
    </properties>
   </tile>
  </tileset>
@@ -82,7 +97,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt2cENACAMAsCupvsPpUNoGvEu4Q9vqgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeMHYmd0lDkrbAwAAAAAAAPCLtL83bQ8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwC0L4NECDQ==
+   eJzt2cENACAMAsBup/tPpENoGvEu4Q9vqgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeMHYmd0lDkrbAwAAAAAAAPCLtL83bQ8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwC0LRJMCPQ==
   </data>
  </layer>
  <layer name="back-2" width="2000" height="14">
@@ -109,7 +124,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztwzENAAAIA7A54uPDvy34sdAmTQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4CtVVVVVVVVVNa2qqqqqqqqqZlRVVVVVVVVVAAAAAAAAAOAsb/zx3Q==
+   eJzt0yEOgDAMQNHeCIfDAGZw//uQaRSCdYP3ku+bdosAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIC7SZIkSZIkSZIkSZIkxZzc2sEMPc61Nphh//gOs2bfBr7ZKLX4H3+p7vHNN6vn1Xv465IkSZIkSZIk5bQkVzqYoce5SoMZzo/vMGv2Y+CbjVKL//GX6h7ffLN6Xr2Hvy5JkiRJkiRJUk4AAAAAAAAAQMQFO8bzVw==
   </data>
  </layer>
  <layer name="front1" width="2000" height="14">
@@ -136,7 +151,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt2EEOgjAQBVDuiHL/o7g3rbRYnWl5bwMLg9/5qcmwbQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACsYI8OUBGdq/T90Zl6ReV9DnjGN9ln62lmtVnr4LpPszPXOGez101+LR3p8T9az1Pt2uro/Pxd9MzRmcipt5dVe8z2u67+V422V+4ze885S+6SFd4j3IE9djx7bE722PnZY/NonbM+fsMeOz97LCWP6AAAAAAAAAAAAAAAAAAAAACEeAE2yxA9
+   eJzt2FsOgyAQBVDXadvU/a+i6V/TQEFEB+05idEvuc7gA6cJAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgCuYowNkROdKjd+SadmYY4uoGt47nGNL9meH8UuWA8Y4g1yfSv3rMUeu6lftjpjbpL1rv3xsrR4dstCm5r0S/e3xL0p1ngv7Wu63tDV1dE+MaW1frtrH0a6r9VnV25w5Htl3zrPkTun1H4F9ta5jyftVO3WNU/vdzbisY8dRW2f92Id17PlZx5Jyiw4AAAAAAAAAAAAAAAAAAABAiBdIYBPp
   </data>
  </layer>
  <layer name="meta" width="2000" height="14" opacity="0.85">
@@ -145,7 +160,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt2E0KwyAQgFFvF/D+B2q6Fc0fTZ2R9+AjhWyMs5qWAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAK6uwDNGrznKUOfkdWS85z9/TOnvl7VjWaiVk9d3R37nWes7s3m/iuzMgc/+PqPZvHO+7cqxnEdHcuq84x2nfZY59rz5nl3D322Bzssb9nj42p/Z+w957Y7LFx2GPnssfmZ4/la5MkSZIkSZIkSZIkSZIkSZIkSZIkSZIkae8DE89jfQ==
+   eJzt2E0KwyAQgFFPGPD+l2m6Fc0fTZ2R9+AjhWyMs5qWAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAK6uwDNGrznKUOfkdWS85z9/TOnvl7VjWaiVk9d3R37nWes7s3m/iuzMgc/+PqPZvHO+7cqxnEdHcuq84x2nfZY59rz5nl3D322Bzssb9nj42p/Z+w957Y7LFx2GPnssfmZ4/la5MkSZIkSZIkSZIkSZIkSZIkSZIkSZIkae8DYUPSLQ==
   </data>
  </layer>
 </map>

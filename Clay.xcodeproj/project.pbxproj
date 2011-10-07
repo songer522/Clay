@@ -24,7 +24,7 @@
 		54179E27142BBFA400D3A79E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 54179E26142BBFA400D3A79E /* Default@2x.png */; };
 		54179E2B142BC8AE00D3A79E /* GameCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 54179E2A142BC8AE00D3A79E /* GameCenter.m */; };
 		54179E2D142BC92400D3A79E /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54179E2C142BC92300D3A79E /* GameKit.framework */; };
-		5421A2F8142A5C7E0078D861 /* Bandages.m in Sources */ = {isa = PBXBuildFile; fileRef = 5421A2F7142A5C7E0078D861 /* Bandages.m */; };
+		5421A2F8142A5C7E0078D861 /* Battery.m in Sources */ = {isa = PBXBuildFile; fileRef = 5421A2F7142A5C7E0078D861 /* Battery.m */; };
 		5421A2FC142A63FF0078D861 /* CCXAnimate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5421A2FB142A63FF0078D861 /* CCXAnimate.m */; };
 		542361AE14228E5E0086E533 /* LevelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 542361AD14228E5E0086E533 /* LevelManager.m */; };
 		54297897140C1F8900B3FFF4 /* GameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54297896140C1F8900B3FFF4 /* GameController.m */; };
@@ -34,7 +34,6 @@
 		543250BC143CA40300F1F177 /* HudLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 543250BB143CA40300F1F177 /* HudLayer.m */; };
 		543C09511420F38200F259BA /* character_idle.png in Resources */ = {isa = PBXBuildFile; fileRef = 543C09501420F38200F259BA /* character_idle.png */; };
 		543C09561420F39B00F259BA /* clayl1.5.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 543C09521420F39B00F259BA /* clayl1.5.tmx */; };
-		543C09571420F39B00F259BA /* Env_Track_Icons.png in Resources */ = {isa = PBXBuildFile; fileRef = 543C09531420F39B00F259BA /* Env_Track_Icons.png */; };
 		543C09581420F39B00F259BA /* meta64.png in Resources */ = {isa = PBXBuildFile; fileRef = 543C09541420F39B00F259BA /* meta64.png */; };
 		543C09591420F39B00F259BA /* Tile_Track_Test.png in Resources */ = {isa = PBXBuildFile; fileRef = 543C09551420F39B00F259BA /* Tile_Track_Test.png */; };
 		543C095D1420F3AA00F259BA /* meta.png in Resources */ = {isa = PBXBuildFile; fileRef = 543C095A1420F3AA00F259BA /* meta.png */; };
@@ -190,6 +189,8 @@
 		549BBB911421619800337F71 /* clayl2.1.0.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 549BBB8F1421619800337F71 /* clayl2.1.0.tmx */; };
 		54A32B581429301F00A10727 /* player.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54A32B571429301F00A10727 /* player.plist */; };
 		54A3BFD71427C32A002E8D2D /* GameDebugLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A3BFD61427C32A002E8D2D /* GameDebugLayer.m */; };
+		54A84E89143E46D900DD742E /* bighurdle.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A84E87143E46D900DD742E /* bighurdle.png */; };
+		54A84E8A143E46D900DD742E /* sandpit.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A84E88143E46D900DD742E /* sandpit.png */; };
 		54B6C6D0143B4CA400EF3569 /* character_tripped-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54B6C6CC143B4CA400EF3569 /* character_tripped-hd.plist */; };
 		54B6C6D1143B4CA400EF3569 /* character_tripped-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54B6C6CD143B4CA400EF3569 /* character_tripped-hd.png */; };
 		54B6C6D2143B4CA400EF3569 /* character_tripped.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54B6C6CE143B4CA400EF3569 /* character_tripped.plist */; };
@@ -199,6 +200,11 @@
 		54B6C6DB143B73E600EF3569 /* character_hurt.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54B6C6D7143B73E600EF3569 /* character_hurt.plist */; };
 		54B6C6DC143B73E600EF3569 /* character_hurt.png in Resources */ = {isa = PBXBuildFile; fileRef = 54B6C6D8143B73E600EF3569 /* character_hurt.png */; };
 		54C2C27C14225FC900C94935 /* clayl2.1.1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 54C2C27B14225FC900C94935 /* clayl2.1.1.tmx */; };
+		54C86331143E0785007341B3 /* TrackLapse_Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 54C86330143E0785007341B3 /* TrackLapse_Icon.png */; };
+		54C86333143E098B007341B3 /* clayl3.0.1.7.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 54C86332143E098B007341B3 /* clayl3.0.1.7.tmx */; };
+		54C86335143E0A28007341B3 /* TL_Town_TileTextures_v7.png in Resources */ = {isa = PBXBuildFile; fileRef = 54C86334143E0A28007341B3 /* TL_Town_TileTextures_v7.png */; };
+		54C8633C143E164F007341B3 /* discoworld.caf in Resources */ = {isa = PBXBuildFile; fileRef = 54C8633A143E164F007341B3 /* discoworld.caf */; };
+		54C8633D143E164F007341B3 /* trailer.caf in Resources */ = {isa = PBXBuildFile; fileRef = 54C8633B143E164F007341B3 /* trailer.caf */; };
 		54CA0B19140D65DB0038B3E1 /* Runner.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CA0B18140D65DB0038B3E1 /* Runner.m */; };
 		54CA0B20140D698B0038B3E1 /* RunningSpeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CA0B1F140D698B0038B3E1 /* RunningSpeed.m */; };
 		54CD29DD143BA21400F805E0 /* UI_Button_Jumping.png in Resources */ = {isa = PBXBuildFile; fileRef = 54CD29DA143BA21400F805E0 /* UI_Button_Jumping.png */; };
@@ -266,8 +272,8 @@
 		54179E29142BC8AE00D3A79E /* GameCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenter.h; sourceTree = "<group>"; };
 		54179E2A142BC8AE00D3A79E /* GameCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCenter.m; sourceTree = "<group>"; };
 		54179E2C142BC92300D3A79E /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
-		5421A2F6142A5C7E0078D861 /* Bandages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bandages.h; sourceTree = "<group>"; };
-		5421A2F7142A5C7E0078D861 /* Bandages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bandages.m; sourceTree = "<group>"; };
+		5421A2F6142A5C7E0078D861 /* Battery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Battery.h; sourceTree = "<group>"; };
+		5421A2F7142A5C7E0078D861 /* Battery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Battery.m; sourceTree = "<group>"; };
 		5421A2FA142A63FF0078D861 /* CCXAnimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCXAnimate.h; sourceTree = "<group>"; };
 		5421A2FB142A63FF0078D861 /* CCXAnimate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCXAnimate.m; sourceTree = "<group>"; };
 		542361AC14228E5E0086E533 /* LevelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelManager.h; sourceTree = "<group>"; };
@@ -283,7 +289,6 @@
 		543250BB143CA40300F1F177 /* HudLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HudLayer.m; sourceTree = "<group>"; };
 		543C09501420F38200F259BA /* character_idle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = character_idle.png; sourceTree = "<group>"; };
 		543C09521420F39B00F259BA /* clayl1.5.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = clayl1.5.tmx; path = Resources/levels/clayl1.5.tmx; sourceTree = "<group>"; };
-		543C09531420F39B00F259BA /* Env_Track_Icons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Env_Track_Icons.png; path = Resources/levels/Env_Track_Icons.png; sourceTree = "<group>"; };
 		543C09541420F39B00F259BA /* meta64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = meta64.png; path = Resources/levels/meta64.png; sourceTree = "<group>"; };
 		543C09551420F39B00F259BA /* Tile_Track_Test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Tile_Track_Test.png; path = Resources/levels/Tile_Track_Test.png; sourceTree = "<group>"; };
 		543C095A1420F3AA00F259BA /* meta.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = meta.png; path = Resources/levels/meta.png; sourceTree = "<group>"; };
@@ -575,6 +580,8 @@
 		54A32B571429301F00A10727 /* player.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = player.plist; sourceTree = "<group>"; };
 		54A3BFD51427C32A002E8D2D /* GameDebugLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameDebugLayer.h; sourceTree = "<group>"; };
 		54A3BFD61427C32A002E8D2D /* GameDebugLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameDebugLayer.m; sourceTree = "<group>"; };
+		54A84E87143E46D900DD742E /* bighurdle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bighurdle.png; sourceTree = "<group>"; };
+		54A84E88143E46D900DD742E /* sandpit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sandpit.png; sourceTree = "<group>"; };
 		54B6C6CC143B4CA400EF3569 /* character_tripped-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "character_tripped-hd.plist"; sourceTree = "<group>"; };
 		54B6C6CD143B4CA400EF3569 /* character_tripped-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "character_tripped-hd.png"; sourceTree = "<group>"; };
 		54B6C6CE143B4CA400EF3569 /* character_tripped.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = character_tripped.plist; sourceTree = "<group>"; };
@@ -584,6 +591,11 @@
 		54B6C6D7143B73E600EF3569 /* character_hurt.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = character_hurt.plist; sourceTree = "<group>"; };
 		54B6C6D8143B73E600EF3569 /* character_hurt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = character_hurt.png; sourceTree = "<group>"; };
 		54C2C27B14225FC900C94935 /* clayl2.1.1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = clayl2.1.1.tmx; path = Resources/levels/clayl2.1.1.tmx; sourceTree = "<group>"; };
+		54C86330143E0785007341B3 /* TrackLapse_Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TrackLapse_Icon.png; path = Resources/levels/TrackLapse_Icon.png; sourceTree = "<group>"; };
+		54C86332143E098B007341B3 /* clayl3.0.1.7.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = clayl3.0.1.7.tmx; path = Resources/levels/clayl3.0.1.7.tmx; sourceTree = "<group>"; };
+		54C86334143E0A28007341B3 /* TL_Town_TileTextures_v7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TL_Town_TileTextures_v7.png; path = Resources/levels/TL_Town_TileTextures_v7.png; sourceTree = "<group>"; };
+		54C8633A143E164F007341B3 /* discoworld.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = discoworld.caf; path = Resources/music/discoworld.caf; sourceTree = "<group>"; };
+		54C8633B143E164F007341B3 /* trailer.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = trailer.caf; path = Resources/music/trailer.caf; sourceTree = "<group>"; };
 		54CA0B17140D65DB0038B3E1 /* Runner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Runner.h; sourceTree = "<group>"; };
 		54CA0B18140D65DB0038B3E1 /* Runner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Runner.m; sourceTree = "<group>"; };
 		54CA0B1E140D698B0038B3E1 /* RunningSpeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RunningSpeed.h; sourceTree = "<group>"; };
@@ -677,6 +689,8 @@
 		54133A0D143231AF00E433FC /* music */ = {
 			isa = PBXGroup;
 			children = (
+				54C8633A143E164F007341B3 /* discoworld.caf */,
+				54C8633B143E164F007341B3 /* trailer.caf */,
 				54133A10143231CA00E433FC /* rock_bkg.caf */,
 				54133A0E143231C200E433FC /* track.caf */,
 				54F8A186143A09FC00FCBAAB /* stars_voice.caf */,
@@ -755,8 +769,6 @@
 				54518F5614069B0C009D74AA /* Scenes */,
 				54518F641406AE38009D74AA /* Game */,
 				54518F6014069BD8009D74AA /* Base */,
-				54484E36140449B700D0D7D9 /* AppDelegate.h */,
-				54484E37140449B700D0D7D9 /* AppDelegate.m */,
 				54484E3F140449B700D0D7D9 /* GameConfig.h */,
 				54484E39140449B700D0D7D9 /* RootViewController.h */,
 				54484E3A140449B700D0D7D9 /* RootViewController.m */,
@@ -1117,6 +1129,8 @@
 				5443303E142A39F80008898E /* PauseMenuScreen.m */,
 				54FBA23A1430CE210010A91A /* VideoPlaybackScene.h */,
 				54FBA23B1430CE210010A91A /* VideoPlaybackScene.m */,
+				54484E36140449B700D0D7D9 /* AppDelegate.h */,
+				54484E37140449B700D0D7D9 /* AppDelegate.m */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -1177,8 +1191,8 @@
 			children = (
 				54F7F581143CD615004EC10B /* TrackTimer.h */,
 				54F7F582143CD615004EC10B /* TrackTimer.m */,
-				5421A2F6142A5C7E0078D861 /* Bandages.h */,
-				5421A2F7142A5C7E0078D861 /* Bandages.m */,
+				5421A2F6142A5C7E0078D861 /* Battery.h */,
+				5421A2F7142A5C7E0078D861 /* Battery.m */,
 				54518F731406B761009D74AA /* GameClasses.h */,
 				54518F741406B761009D74AA /* GameClasses.m */,
 				54297895140C1F8900B3FFF4 /* GameController.h */,
@@ -1246,6 +1260,9 @@
 		548C3DBB141ABDBB000567A8 /* levels */ = {
 			isa = PBXGroup;
 			children = (
+				54C86334143E0A28007341B3 /* TL_Town_TileTextures_v7.png */,
+				54C86332143E098B007341B3 /* clayl3.0.1.7.tmx */,
+				54C86330143E0785007341B3 /* TrackLapse_Icon.png */,
 				54F8A189143A158C00FCBAAB /* clayl3.0.1.4.tmx */,
 				54F55C02143666AC00AB8FBC /* clayl3.0.1.3.tmx */,
 				543C09521420F39B00F259BA /* clayl1.5.tmx */,
@@ -1257,7 +1274,6 @@
 				549BBB8E1421619800337F71 /* Barn_Tile_Final.png */,
 				549BBB8F1421619800337F71 /* clayl2.1.0.tmx */,
 				54C2C27B14225FC900C94935 /* clayl2.1.1.tmx */,
-				543C09531420F39B00F259BA /* Env_Track_Icons.png */,
 				543C09541420F39B00F259BA /* meta64.png */,
 				543C09551420F39B00F259BA /* Tile_Track_Test.png */,
 			);
@@ -1318,6 +1334,8 @@
 		54BE176F141EBB7200A3D773 /* objects */ = {
 			isa = PBXGroup;
 			children = (
+				54A84E87143E46D900DD742E /* bighurdle.png */,
+				54A84E88143E46D900DD742E /* sandpit.png */,
 				54E0CE80141FC0A6005BFD5C /* hurdle.png */,
 			);
 			name = objects;
@@ -1421,7 +1439,6 @@
 				572DB81D141FF62D00DDC493 /* objects.plist in Resources */,
 				543C09511420F38200F259BA /* character_idle.png in Resources */,
 				543C09561420F39B00F259BA /* clayl1.5.tmx in Resources */,
-				543C09571420F39B00F259BA /* Env_Track_Icons.png in Resources */,
 				543C09581420F39B00F259BA /* meta64.png in Resources */,
 				543C09591420F39B00F259BA /* Tile_Track_Test.png in Resources */,
 				543C095D1420F3AA00F259BA /* meta.png in Resources */,
@@ -1492,6 +1509,13 @@
 				54EE34B1143CEB4A00734E58 /* Error.wav in Resources */,
 				54EE34B2143CEB4A00734E58 /* LowBattery.wav in Resources */,
 				54EE34B3143CEB4A00734E58 /* Pause.wav in Resources */,
+				54C86331143E0785007341B3 /* TrackLapse_Icon.png in Resources */,
+				54C86333143E098B007341B3 /* clayl3.0.1.7.tmx in Resources */,
+				54C86335143E0A28007341B3 /* TL_Town_TileTextures_v7.png in Resources */,
+				54C8633C143E164F007341B3 /* discoworld.caf in Resources */,
+				54C8633D143E164F007341B3 /* trailer.caf in Resources */,
+				54A84E89143E46D900DD742E /* bighurdle.png in Resources */,
+				54A84E8A143E46D900DD742E /* sandpit.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1623,7 +1647,7 @@
 				54A3BFD71427C32A002E8D2D /* GameDebugLayer.m in Sources */,
 				547F09771428FA5400E5D920 /* SavePoint.m in Sources */,
 				5443303F142A39F80008898E /* PauseMenuScreen.m in Sources */,
-				5421A2F8142A5C7E0078D861 /* Bandages.m in Sources */,
+				5421A2F8142A5C7E0078D861 /* Battery.m in Sources */,
 				5421A2FC142A63FF0078D861 /* CCXAnimate.m in Sources */,
 				54413573142B83460031C09E /* Trigger.m in Sources */,
 				54179E2B142BC8AE00D3A79E /* GameCenter.m in Sources */,

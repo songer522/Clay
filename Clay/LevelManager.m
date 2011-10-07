@@ -12,6 +12,7 @@
 #import "Level.h"
 #import "LayerManager.h"
 #import "Player.h"
+#import "GameLayer.h"
 
 @implementation LevelManager
 
@@ -62,7 +63,9 @@ static LevelManager *_shared = nil;
 
     _playerOffsetY = [[levelSettings valueForKey:@"playerOffsetY"] intValue];
     
-    Level *level = [Level levelWithFilename:fileName ObstacleLayer:obstacleLayer LayerList:layerList GameObjectController:_gameObjects];
+    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+    
+    Level *level = [Level levelWithFilename:fileName ObstacleLayer:obstacleLayer LayerList:layerList GameObjectController:_gameObjects Player:gameLayer.player];
     level.nextLevelName = nextLevelName;
     level.postLevelComicName = postLevelComicName;
     level.gameObjects = _gameObjects;

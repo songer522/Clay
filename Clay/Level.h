@@ -33,7 +33,8 @@
     
     CGPoint _spawnPoint;
     
-    CCParallaxNode *_parallaxLayers;
+    CCParallaxNode *_parallaxLayersBack;
+    CCParallaxNode *_parallaxLayersFront;
     
     NSMutableArray *_obstacleSprites;
     
@@ -62,9 +63,9 @@
 @property (nonatomic,readonly,retain) CollisionDetection *collisionHandler;
 
 #pragma mark - inits
-+(id)levelWithFilename:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer LayerList:(NSString*)layerList GameObjectController:(GameObjectController*)gameObjects;
++(id)levelWithFilename:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer LayerList:(NSString*)layerList GameObjectController:(GameObjectController*)gameObjects Player:(Player*)player;
 
--(id)initWithFilename:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer LayerList:(NSString*)layerList GameObjectController:(GameObjectController*)gameObjects;
+-(id)initWithFilename:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer LayerList:(NSString*)layerList GameObjectController:(GameObjectController*)gameObjects Player:(Player*)player;
 
 #pragma mark - public methods
 -(CGPoint)checkCollisionForObject:(GameObject*)object;
