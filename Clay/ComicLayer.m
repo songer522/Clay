@@ -42,10 +42,11 @@
     _transition = transition;
     if (transition == BLACKBOX_IN) {
         _targetPosition = 35.0f;
+        _timeToWait = 1.5f;
     } else {
         _targetPosition = 0.0f;
+        _timeToWait = 1.0f;
     }
-    _timeToWait = 1.0f;
     _atTarget = false;
 }
 

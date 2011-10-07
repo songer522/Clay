@@ -21,6 +21,12 @@ typedef enum {
     HUD_BUTTON_ACTION
 } HudButton;
 
+typedef enum {
+    HUD_TRANSITION_IN,
+    HUD_TRANSITION_OUT,
+    HUD_TRANSITION_IDLE
+}HudTransition;
+
 @interface HudLayer : CCLayer
 {
     Sprite *_buttonJump;
@@ -35,6 +41,11 @@ typedef enum {
     
     bool _resetButtons;
     
+    float _alpha;
+    float _delay;
+    
+    HudTransition _currentTransition;
+    
 }
 
 +(id)instance;
@@ -47,8 +58,15 @@ typedef enum {
 -(void)resettingButton:(Sprite*)button TimePassed:(float)dt;
 
 -(void)update:(float)dt;
+-(void)updateTransitions:(float)dt;
+
+-(void)setOpacities:(float)alpha;
+
+-(void)fadeIn;
+-(void)fadeOut;
 
 -(Battery*)getBattery;
+
 
 -(void)reset;
 

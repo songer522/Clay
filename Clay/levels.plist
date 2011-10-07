@@ -96,6 +96,6 @@
 		<string>back-9,back-8,back-7,back-6,back-5,back-4,back-3,back-2,back-1,main,actives,front1,front2,meta</string>
 	</dict>
 	<key>startingLevel</key>
-	<string>level1</string>
+	<string>level2</string>
 </dict>
 </plist>

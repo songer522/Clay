@@ -38,7 +38,7 @@
 -(void)playMovie:(NSString*)file
 {
     [CCVideoPlayer setDelegate:self];
-    [CCVideoPlayer setNoSkip:true];
+    [CCVideoPlayer setNoSkip:false];
     [CCVideoPlayer playMovieWithFile:file];
 }
 

@@ -111,7 +111,6 @@
 {
     //toggles. if paused, then unpause, and vice versa
     if (!_isPaused) {
-        //[_gameLayer unscheduleUpdate];
         [_gameLayer onExit];
         _pauseMenu = [PauseMenuScreen instance];
         _pauseMenu.gameController = self;

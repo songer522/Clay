@@ -109,6 +109,11 @@
     [_gameController setHud:hud];
 }
 
+-(HudLayer*)getHud
+{
+    return _hud;
+}
+
 -(void)initCamera
 {
     [[Camera sharedCamera] setTarget:[_player getSprite]];
