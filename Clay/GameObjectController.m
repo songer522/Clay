@@ -64,6 +64,7 @@
 -(void)dealloc
 {
     [_objectSettings release];
+    [super dealloc];
 }
 
 @end

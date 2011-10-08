@@ -193,6 +193,7 @@ static AnimationController *_sharedController = nil;
 {
     [animations removeAllObjects];
     [animations release];
+    [super dealloc];
 }
 
 

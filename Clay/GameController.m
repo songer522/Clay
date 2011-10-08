@@ -124,8 +124,6 @@
         [[SoundEngine shared] playSound:@"pause"];
     } else {
         [[[LayerManager sharedLayers] currentScene] removeChild:_pauseMenu cleanup:YES];
-        [_pauseMenu release];
-        _pauseMenu = nil;
         _isPaused = false;
         [_gameLayer onEnter];
     }

@@ -163,6 +163,7 @@ static Camera *_sharedCamera = nil;
 -(void)dealloc
 {
     [_target release];
+    [super dealloc];
 }
 
 @end
