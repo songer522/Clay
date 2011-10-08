@@ -152,4 +152,14 @@ static ComicManager *_shared = nil;
     }
 }
 
+-(void)dealloc
+{
+    [_gameLayer release];
+    [_videoList release];
+    [_videoPlayer release];
+    [_comicLayer release];
+    [_videoFileName release];
+    [super dealloc];
+}
+
 @end

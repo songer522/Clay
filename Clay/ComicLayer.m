@@ -136,6 +136,11 @@
     glEnable(GL_TEXTURE_2D);
 }
 
+-(void)dealloc
+{
+    [_parent release];
+    
+}
 
 
 @end

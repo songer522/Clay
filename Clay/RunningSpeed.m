@@ -207,6 +207,7 @@
 
 -(void)dealloc
 {
+    [_player release];
     [super dealloc];
 }
 

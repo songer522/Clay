@@ -217,6 +217,14 @@
 	// cocos2d will automatically release all the children (Label)
 	
 	// don't forget to call "super dealloc"
+    [_level release];
+    [_player release];
+    [_gameController release];
+    [_inputController release];
+    [_savePoint release];
+    [_dustTest release];
+    [_hud release];
 	[super dealloc];
 }
+
 @end

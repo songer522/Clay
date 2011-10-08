@@ -124,4 +124,14 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
     return _animateAction.frame;
 }
 
+-(void)dealloc
+{
+    [_frames release];
+    [_spriteSheet release];
+    [_firstFrameName release];
+    [_sequence release];
+    [_animateAction release];
+    [super dealloc];
+}
+
 @end

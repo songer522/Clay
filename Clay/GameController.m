@@ -135,6 +135,7 @@
 {
     [_gameLayer release];
     [_pauseMenu release];
+    [_hud release];
     [super dealloc];
 }
 

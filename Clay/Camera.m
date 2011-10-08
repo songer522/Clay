@@ -160,4 +160,9 @@ static Camera *_sharedCamera = nil;
     _y = point.y;
 }
 
+-(void)dealloc
+{
+    [_target release];
+}
+
 @end

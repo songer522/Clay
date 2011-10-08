@@ -317,6 +317,18 @@
 
 -(void)dealloc
 {
+    [_main release];
+    [_meta release];
+    [_obstacles release];
+    [_map release];
+    [_objects release];
+    [_parallaxLayersBack release];
+    [_parallaxLayersFront release];
+    [_postLevelComicName release];
+    [_musicName release];
+    [_gameObjects release];
+    [_triggers removeAllObjects];
+    [_triggers release];
     [_obstacleSprites removeAllObjects];
     [_obstacleSprites release];
     [_triggers removeAllObjects];

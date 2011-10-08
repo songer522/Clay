@@ -59,4 +59,10 @@ static LayerManager *_sharedLayers = nil;
     }
 }
 
+-(void)dealloc
+{
+    [_currentScene release];
+    [super dealloc];
+}
+
 @end

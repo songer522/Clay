@@ -141,5 +141,16 @@
     }
 }
 
+-(void)dealloc
+{
+    [_trackBackground release];
+    [_rain1 release];
+    [_rain2 release];
+    [_logo release];
+    [_playButtonBlue release];
+    [_playButtonOrange release];
+    [_copyright release];
+    [super dealloc];
+}
 
 @end

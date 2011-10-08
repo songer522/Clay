@@ -62,6 +62,8 @@
 
 -(void)dealloc
 {
+    [_gameController release];
+    [_label release];
     [super dealloc];
 }
 

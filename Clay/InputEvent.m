@@ -42,5 +42,9 @@
     return [[self alloc] initInputEventWithType:type];
 }
 
+-(void)dealloc
+{
+    [super dealloc];
+}
 
 @end

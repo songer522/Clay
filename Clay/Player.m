@@ -305,6 +305,11 @@
     [_speed release];
     [_battery release];
     [_particleSystem release];
+    
+    [_buttonJump release];
+    [_buttonKick release];
+    [_buttonSprint release];
+    
     [super dealloc];
 }
 

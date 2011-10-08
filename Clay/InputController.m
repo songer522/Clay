@@ -73,7 +73,7 @@
 
 -(void)dealloc
 {
-    
+    [_inputBeganEvent release];
     [super dealloc];
 }
 

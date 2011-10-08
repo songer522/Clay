@@ -76,4 +76,9 @@
     return self.sprite;
 }
 
+-(void)dealloc
+{
+    [_speed release];
+}
+
 @end

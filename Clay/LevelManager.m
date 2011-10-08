@@ -91,4 +91,15 @@ static LevelManager *_shared = nil;
 
 }
 
+-(void)dealloc
+{
+    [_levels removeAllObjects];
+    [_levels release];
+    [_levelSettings release];
+    [_currentLevel release];
+    [_nextLevel release];
+    [_gameObjects release];
+    [super dealloc];
+}
+
 @end

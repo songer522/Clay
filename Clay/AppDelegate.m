@@ -195,9 +195,17 @@
 }
 
 - (void)dealloc {
+    [window release];
+    [viewController release];
+    [gameScene release];
+    [_debugLayer release];
+    [_hudLayer release];
+    [_comicManager release];
+    [_mainMenuScene release];
 	[[CCDirector sharedDirector] end];
 	[window release];
 	[super dealloc];
 }
+
 
 @end

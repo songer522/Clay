@@ -52,5 +52,11 @@
     
 }
 
+-(void)dealloc
+{
+    [_parent release];
+    [super dealloc];
+}
+
 
 @end

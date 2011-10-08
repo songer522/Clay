@@ -40,8 +40,8 @@
 
 -(void)dealloc
 {
-    [super dealloc];
     [_levelName release];
+    [super dealloc];
 }
 
 @end

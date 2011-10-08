@@ -209,5 +209,12 @@
     }
 }
 
+-(void)dealloc
+{
+    [_sprite release];
+    [_collisionState release];
+    [super dealloc];
+}
+
 
 @end

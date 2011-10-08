@@ -122,5 +122,12 @@ static SoundEngine *_shared = nil;
     }
 }
 
+-(void)dealloc
+{
+    [_audioEngine release];
+    [_soundMap release];
+    [_musicMap release];
+    [super dealloc];
+}
 
 @end

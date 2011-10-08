@@ -128,4 +128,11 @@
     return [_animation getCurrentFrameNumber];
 }
 
+-(void)dealloc
+{
+    [sprite_cc release];
+    [_animation release];
+    [super dealloc];
+}
+
 @end

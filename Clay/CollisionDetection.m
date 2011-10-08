@@ -411,5 +411,15 @@
     return true;
 }
 
+-(void) dealloc
+{
+    [_collisionData release];
+    [_main release];
+    [_map release];
+    [_currentObject release];
+    [_tileCollision release];
+    [super dealloc];
+}
+
 
 @end

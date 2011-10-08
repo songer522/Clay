@@ -61,4 +61,9 @@
     gameObject.boundingBox = CGRectMake([[boundingBox objectForKey:@"x"] floatValue], [[boundingBox objectForKey:@"y"] floatValue], [[boundingBox objectForKey:@"width"] floatValue], [[boundingBox objectForKey:@"height"] floatValue]);
 }
 
+-(void)dealloc
+{
+    [_objectSettings release];
+}
+
 @end

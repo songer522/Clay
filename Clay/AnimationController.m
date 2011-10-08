@@ -189,6 +189,12 @@ static AnimationController *_sharedController = nil;
     return animationToReturn;
 }
 
+-(void)dealloc
+{
+    [animations removeAllObjects];
+    [animations release];
+}
+
 
 
 @end

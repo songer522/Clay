@@ -252,6 +252,8 @@
     [_buttonJump release];
     [_buttonSprint release];
     [_buttonAction release];
+    [_trackTimer release];
+    [_battery release];
     [super dealloc];
 }
 

@@ -75,4 +75,11 @@
     return time;
 }
 
+-(void)dealloc
+{
+    [_lowerDisplay release];
+    [_upperDisplay release];
+    [super dealloc];
+}
+
 @end

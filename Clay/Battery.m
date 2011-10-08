@@ -144,6 +144,7 @@
 -(void)dealloc
 {
     [sprite release];
+    [_player release];
     [super dealloc];
 }
 
