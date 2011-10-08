@@ -33,6 +33,8 @@ typedef enum {
     bool _isActive;      //starts true, but switched to false if we no longer
                          //want the object to be seen or updated
     
+    bool _hasGravity;
+    
     float _x;
     float _y;
     CGPoint _startingPosition;
@@ -44,6 +46,8 @@ typedef enum {
     float _rotationAmount;
     
     float _fallVelocity;
+    
+    CGRect _range;       //range in which this object can move on screen. absolute positions.
     
     CGPoint _prevLocation;
     
@@ -69,6 +73,7 @@ typedef enum {
 @property(nonatomic,assign) float vy;
 @property(nonatomic,assign) CGRect boundingBox;
 @property(readonly,nonatomic,assign) bool collided;
+@property(nonatomic,assign) bool hasGravity;
 
 
 +(id) instance;
@@ -89,6 +94,9 @@ typedef enum {
 
 -(CGPoint) getPosition;
 -(CGPoint) getPreviousPosition;
+
+-(void)setRange:(CGRect)rect;
+
 -(Collision*) getCollision;
 
 -(void) setCollideBehavior:(NSString*)behavior;

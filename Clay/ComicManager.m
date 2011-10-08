@@ -15,6 +15,7 @@
 #import "PListLoader.h"
 #import "SoundEngine.h"
 #import "Camera.h"
+#import "HudLayer.h"
 
 @implementation ComicManager
 
@@ -97,12 +98,10 @@ static ComicManager *_shared = nil;
                 [[SoundEngine shared] cueFadeOut];
                 _gameLayer.gameController.isInputEnabled = false;
                 [Camera sharedCamera].trackingTarget = false;
+                [[_gameLayer getHud] fadeOut];
                 break;
             case COMIC_PHASE_PLAY_VIDEO:
-                
                 _gameLayer.visible = false;
-                
-                
                 [_videoPlayer playMovie:_videoFileName];
                 [[CCDirector sharedDirector] stopAnimation];
                 break;
@@ -121,6 +120,7 @@ static ComicManager *_shared = nil;
                 
                 [_comicLayer startTransition:BLACKBOX_OUT];
                 _gameLayer.gameController.isInputEnabled = false;
+                [[_gameLayer getHud] fadeIn];
                 break;
             case COMIC_PHASE_PLAY_LEVEL:
                 _gameLayer.gameController.isInputEnabled = true;

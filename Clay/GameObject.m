@@ -23,6 +23,7 @@
 @synthesize vy = _vy;
 @synthesize boundingBox = _boundingBox;
 @synthesize collided = _collided;
+@synthesize hasGravity = _hasGravity;
 
 
 + (id) objectWithSprite:(Sprite*)sprite
@@ -131,8 +132,9 @@
     
     _prevLocation = CGPointMake(_x, _y);
     
-    _x += _vx * dt;
+    _x += _vx * dt;    
     _y -= _vy * dt;
+    
     [self setPositionAtX:_x Y:_y];
     
     
@@ -191,6 +193,11 @@
     } else if([behavior compare:@"falls"] == NSOrderedSame){
         _collideBehavior = COLLISION_BEHAVIOR_FALL_OVER;
     }
+}
+
+-(void)setRange:(CGRect)range
+{
+    _range = range;
 }
 
 -(void) setPlayerEffect:(NSString*)effect

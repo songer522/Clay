@@ -32,7 +32,9 @@
 -(float) getWidth;
 -(float) getHeight;
 -(CGPoint) getPosition;
+-(void)move:(CGPoint)amount;
 -(int)getCurrentFrameNumber;
+-(void)setAlpha:(float)alpha;
 -(int)getTotalFramesCount;
 -(void)setAnimation:(Animation*)animation Delay:(float)delay;
 -(void)setAnimation:(Animation*)animation Delay:(float)delay StartingFrameNumber:(int)frameNumber;

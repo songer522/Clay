@@ -113,9 +113,16 @@ static Camera *_sharedCamera = nil;
     return (worldY - _y + _center.y);    
 }
 
--(void)moveTowardsTarget:(float)dt
+-(void)moveTowardsTarget:(float)dt PlayerOnGround:(bool)onGround
 {
     if (_target != nil && _trackingTarget) {
+        
+        float rate;
+        if (onGround) {
+            rate = 1.0f;
+        } else {
+            rate = 0.2f;
+        }
         
         CGPoint position = [_target getPosition];
         float dx = (position.x - _x);
@@ -127,7 +134,7 @@ static Camera *_sharedCamera = nil;
         
         if (distance > 2.0f) {
             _x += (magnitude * (dx/distance));
-            _y += (magnitude * (dy/distance));
+            _y += rate * (magnitude * (dy/distance));
             
         } else {
             _x = position.x;

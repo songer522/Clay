@@ -77,9 +77,21 @@
     return CGPointMake(_x, _y);
 }
 
+-(void)move:(CGPoint)amount
+{
+    CCSprite *sprite = [self getCCSprite];
+    sprite.position = ccp(sprite.position.x + amount.x, sprite.position.y + amount.y);
+}
+
 -(CCSprite*) getCCSprite
 {
     return sprite_cc;
+}
+
+-(void)setAlpha:(float)alpha
+{
+    int opacity = (int)(alpha * 255);
+    [[self getCCSprite] setOpacity:opacity];
 }
 
 -(float) getWidth

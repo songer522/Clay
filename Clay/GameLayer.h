@@ -51,6 +51,8 @@
 -(void)updateLogic:(ccTime)dt;
 
 -(void)setupHud:(HudLayer*)hud;
+-(HudLayer*)getHud;
+
 
 -(NSMutableArray*)getGameObjectsList;
 

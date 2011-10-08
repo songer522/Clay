@@ -12,22 +12,13 @@
 #import "TrackTimer.h"
 #import "Battery.h"
 
-#define HUD_LAYER_BUTTON_OPACITY 140 //tian's suggestion: 204
+#define HUD_LAYER_BUTTON_OPACITY 170 //tian's suggestion: 204
 
 #define HUD_LAYER_BUTTON_Y 65
 #define HUD_LAYER_JUMP_X 88
 #define HUD_LAYER_ACTION_X 443
 #define HUD_LAYER_SPRINT_X 503
 #define HUD_LAYER_BUTTON_SIZE 55
-
-//angle positions
-/*
-#define HUD_LAYER_BUTTON_Y 55
-#define HUD_LAYER_JUMP_X 88
-#define HUD_LAYER_ACTION_X 468
-#define HUD_LAYER_SPRINT_X 503
-#define HUD_LAYER_BUTTON_SIZE 55
-*/
 
 @implementation HudLayer
 
@@ -60,8 +51,8 @@
         [[LayerManager sharedLayers] forgetWorkingLayer];
         
 
-        
-        
+        _alpha = 1.0f;
+        _currentTransition = HUD_TRANSITION_IDLE;
         _resetButtons = false;
         
         
@@ -74,8 +65,10 @@
 {
     //test jump button
     if ([self testButtonPosition:CGPointMake(HUD_LAYER_JUMP_X, HUD_LAYER_BUTTON_Y) Test:point]) {
-        [[_buttonJump getCCSprite] setOpacity:255];
-        [[_buttonJump getCCSprite] setScale:0.75f * _buttonScale];
+        if (type == INPUT_TOUCH_PRESSED) {
+            [[_buttonJump getCCSprite] setOpacity:255];
+            [[_buttonJump getCCSprite] setScale:0.85f * _buttonScale];            
+        }
         _resetButtons = true;
         return HUD_BUTTON_JUMP;
     }
@@ -84,7 +77,7 @@
     if ([self testButtonPosition:CGPointMake(HUD_LAYER_ACTION_X, HUD_LAYER_BUTTON_Y) Test:point]) {
         if (type == INPUT_TOUCH_PRESSED) {
             [[_buttonAction getCCSprite] setOpacity:255];
-            [[_buttonAction getCCSprite] setScale:0.75f * _buttonScale];
+            [[_buttonAction getCCSprite] setScale:0.85f * _buttonScale];
             _resetButtons = true;
             return HUD_BUTTON_ACTION;            
         }
@@ -172,16 +165,86 @@
         [self resettingButton:_buttonJump TimePassed:dt];
         [self resettingButton:_buttonSprint TimePassed:dt];        
     }
+    
+    [self updateTransitions:dt];
+    
     //[_trackTimer update:dt];
+}
+
+-(void)fadeIn
+{
+    _delay = 1.0f;
+    _alpha = 0.0f;
+    _currentTransition = HUD_TRANSITION_IN;
+}
+
+-(void)fadeOut
+{
+    _delay = 0.0f;
+    _alpha = 1.0f;
+    _currentTransition = HUD_TRANSITION_OUT;
+}
+
+
+-(void)updateTransitions:(float)dt
+{
+    float rate = 2.0f * dt;
+    
+    switch (_currentTransition) {
+        case HUD_TRANSITION_IN:
+            _delay -= dt;
+            if (_delay < 0.0f) {
+                _alpha += rate;
+                if (_alpha >= 1.0f) {
+                    _alpha = 1.0f;
+                    [self setOpacities:_alpha];
+                    _currentTransition = HUD_TRANSITION_IDLE;
+                }
+            }
+            
+            [self setOpacities:_alpha];
+            
+            break;
+        case HUD_TRANSITION_OUT:
+            _delay -= dt;
+            if (_delay < 0.0f) {
+                _alpha -= 2.0f * rate;
+                if (_alpha <= 0.0f) {
+                    _alpha = 0.0f;
+                    [self setOpacities:_alpha];
+                    _currentTransition = HUD_TRANSITION_IDLE;
+                }
+            }
+            
+            [self setOpacities:_alpha];
+            
+            break;
+        default:
+            break;
+    }
+    
+}
+
+
+-(void)setOpacities:(float)alpha
+{
+    int opacity = alpha * 255;
+    [[_buttonJump getCCSprite] setOpacity:opacity];
+    [[_buttonAction getCCSprite] setOpacity:opacity];
+    [[_buttonSprint getCCSprite] setOpacity:opacity];    
+    [[_battery getCCSprite] setOpacity:opacity];
+    
+    if (_alpha == 0.0f) {
+        [self setVisible:NO];
+    } else {
+        [self setVisible:YES];
+    }
 }
 
 -(void)reset
 {
-    [self removeChild:[_buttonJump getCCSprite] cleanup:NO];
-    [self addChild:[_buttonJump getCCSprite]];
-    self.visible = YES;
-    [[_buttonJump getCCSprite] setOpacity:255];
-    [[_buttonJump getCCSprite] setVisible:YES];
+    //[self removeChild:[_buttonJump getCCSprite] cleanup:NO];
+    //[self addChild:[_buttonJump getCCSprite]];
 }
 
 -(void)dealloc

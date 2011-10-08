@@ -47,6 +47,7 @@
             }*/
             break;
         case INPUT_EVENT_TYPE_TOUCHES_ENDED:
+            [receiver reactToTouchAt:event.touchLocation InputType:INPUT_TOUCH_END];
             [self unschedule:@selector(reactMediumHold)];
             [self unschedule:@selector(reactLongHold)];
             break;

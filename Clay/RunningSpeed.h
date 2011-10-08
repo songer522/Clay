@@ -12,7 +12,7 @@
 
 #define RUNNING_SPEED_MODIFIER_VELOCITY_MAX 0.25f
 #define RUNNING_SPEED_MODIFIER_ACCELERATION_MAX 20.0f
-#define RUNNING_SPEED_MODIFIER_ACCELERATION 10.0f
+#define RUNNING_SPEED_MODIFIER_ACCELERATION 50.0f
 
 @class Player;
 
@@ -58,6 +58,7 @@
 #pragma mark - public methods
 -(void)startCollision;
 -(void)startTurbo;
+-(void)startJump;
 -(void)slowDown;
 -(void)endTurbo;
 -(void)applyFriction:(float)friction Dt:(float)dt;

@@ -69,6 +69,11 @@
         
         HudButton result = [_hud testInput:location InputType:type];
         
+        if (type == INPUT_TOUCH_END) {
+            [_gameLayer.player endJump];
+            return;
+        }
+        
         switch (result) {
             case HUD_BUTTON_JUMP:
                 if (!_gameLayer.player.isJumping) {
@@ -80,6 +85,7 @@
                         [_gameLayer.player boostJump:JUMP_HIGH];
                     }
                 }
+                
                 break;
             case HUD_BUTTON_SPRINT:
                 if(![_gameLayer.player getIsTurbo]) {
@@ -111,7 +117,6 @@
 {
     //toggles. if paused, then unpause, and vice versa
     if (!_isPaused) {
-        //[_gameLayer unscheduleUpdate];
         [_gameLayer onExit];
         _pauseMenu = [PauseMenuScreen instance];
         _pauseMenu.gameController = self;

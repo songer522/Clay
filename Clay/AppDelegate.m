@@ -19,6 +19,7 @@
 #import "LevelThread.h"
 #import "ComicManager.h"
 #import "HudLayer.h"
+#import "MainMenuScene.h"
 
 @implementation AppDelegate
 
@@ -98,7 +99,7 @@
 #endif
 	
 	[director setAnimationInterval:1.0/60];
-	[director setDisplayFPS:YES];
+	[director setDisplayFPS:NO];
 	
 	
 	// make the OpenGLView a child of the view controller
@@ -139,6 +140,12 @@
     
     
     [_hudLayer reset];
+
+    
+    _mainMenuScene = [MainMenuScene scene];
+    
+    [[CCDirector sharedDirector] pushScene:_mainMenuScene];
+    
     
     /*
     int x;

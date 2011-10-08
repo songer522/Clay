@@ -31,6 +31,8 @@ typedef enum {
     HudLayer *_hud;
     PauseMenuScreen *_pauseMenu;
     
+    
+    
     bool _isPaused;
     bool _isInputEnabled;
 }

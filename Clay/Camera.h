@@ -46,7 +46,7 @@
 -(void)setTarget:(Sprite*)sprite;
 -(void)setCenter:(CGPoint)point;
 -(void)setPosition:(CGPoint)point;
--(void)moveTowardsTarget:(float)dt;
+-(void)moveTowardsTarget:(float)dt PlayerOnGround:(bool)onGround;
 -(void)snapToTarget;
 
 #pragma mark - private methods
