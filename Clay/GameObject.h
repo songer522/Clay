@@ -59,6 +59,8 @@ typedef enum {
     bool _collided;     //starts false, but switches to true when player collides with it
                         //so the player can't keep colliding with it
     
+    bool _isAggressive;
+    
     Collision *_collisionState;     //used to keep track of whether the object is in midair or on
                                     //the ground.
     
@@ -76,6 +78,7 @@ typedef enum {
 @property(nonatomic,assign) CGRect boundingBox;
 @property(readonly,nonatomic,assign) bool collided;
 @property(nonatomic,assign) bool hasGravity;
+@property(nonatomic,assign) bool isAggressive;
 
 
 +(id) instance;

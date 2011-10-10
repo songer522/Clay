@@ -49,6 +49,9 @@
     
     [gameObject setOffsetForX:[[gameobjectSettings objectForKey:@"offsetx"] floatValue] Y:[[gameobjectSettings objectForKey:@"offsety"] floatValue]];
     
+    bool aggressive = [[gameobjectSettings objectForKey:@"aggressive"] boolValue];
+    gameObject.isAggressive = aggressive;
+    
     NSString *collideBehavior = [gameobjectSettings objectForKey:@"collideBehavior"];
     [gameObject setCollideBehavior:collideBehavior];
     

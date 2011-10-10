@@ -4,6 +4,8 @@
 <dict>
 	<key>hurdle</key>
 	<dict>
+		<key>aggressive</key>
+		<string>false</string>
 		<key>playerEffect</key>
 		<string>collide</string>
 		<key>collideBehavior</key>
@@ -37,6 +39,8 @@
 	</dict>
 	<key>bighurdle</key>
 	<dict>
+		<key>aggressive</key>
+		<string>false</string>
 		<key>playerEffect</key>
 		<string>collide</string>
 		<key>collideBehavior</key>
@@ -70,6 +74,8 @@
 	</dict>
 	<key>sandpit</key>
 	<dict>
+		<key>aggressive</key>
+		<string>false</string>
 		<key>playerEffect</key>
 		<string>slow</string>
 		<key>collideBehavior</key>
@@ -103,6 +109,8 @@
 	</dict>
 	<key>player</key>
 	<dict>
+		<key>aggressive</key>
+		<string>false</string>
 		<key>offsetx</key>
 		<integer>0</integer>
 		<key>offsety</key>
@@ -132,6 +140,8 @@
 	</dict>
 	<key>hen</key>
 	<dict>
+		<key>aggressive</key>
+		<string>false</string>
 		<key>playerEffect</key>
 		<string>slow</string>
 		<key>collideBehavior</key>
@@ -139,7 +149,7 @@
 		<key>offsetx</key>
 		<integer>0</integer>
 		<key>offsety</key>
-		<integer>-45</integer>
+		<integer>-25</integer>
 		<key>anchorpoint</key>
 		<dict>
 			<key>x</key>
@@ -162,6 +172,41 @@
 		</dict>
 		<key>imageName</key>
 		<string>hen_idle_1.png</string>
+	</dict>
+	<key>cow</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>playerEffect</key>
+		<string>collide</string>
+		<key>collideBehavior</key>
+		<string>falls</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>-45</integer>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>1</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string></string>
+		<key>boundingBox</key>
+		<dict>
+			<key>x</key>
+			<integer>70</integer>
+			<key>y</key>
+			<integer>2</integer>
+			<key>width</key>
+			<integer>45</integer>
+			<key>height</key>
+			<integer>75</integer>
+		</dict>
+		<key>imageName</key>
+		<string>cow.png</string>
 	</dict>
 </dict>
 </plist>

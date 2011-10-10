@@ -25,6 +25,7 @@
 @synthesize boundingBox = _boundingBox;
 @synthesize collided = _collided;
 @synthesize hasGravity = _hasGravity;
+@synthesize isAggressive = _isAggressive;
 
 
 + (id) objectWithSprite:(Sprite*)sprite
@@ -52,6 +53,7 @@
         _boundingBox = CGRectMake(0, 0, 0, 0);
         _collisionState = [[Collision collisionNode] retain];
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;
+        _isAggressive = false;
     }
     
     return self;

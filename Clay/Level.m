@@ -248,6 +248,26 @@
                 GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
                 [gameLayer.player startCollision:[obstacle startCollision]];
                 break;
+            } else {
+                if (obstacle.isAggressive) {
+                    [self testCollisionsForAggressive:obstacle];
+                }
+            }
+        }        
+    }
+    return collision;
+}
+
+-(bool)testCollisionsForAggressive:(GameObject*)source
+{
+    bool collision = false;
+    
+    for (GameObject *obstacle in _obstacleSprites) {
+        if(!obstacle.collided) {
+            collision = [self testCollisionWithGameObject:obstacle Source:source];
+            if (collision) {
+                [obstacle startCollision];
+                break;
             }
         }        
     }
