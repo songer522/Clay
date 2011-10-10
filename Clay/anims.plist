@@ -121,5 +121,22 @@
 		<key>delay</key>
 		<string>0.075</string>
 	</dict>
+	<key>henKicked</key>
+	<dict>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>group</key>
+		<string>Obstacles</string>
+		<key>spritesheetPlist</key>
+		<string>hen_kicked</string>
+		<key>sequencePrefix</key>
+		<string>hen_kicked_</string>
+		<key>animationFrames</key>
+		<string>1,2</string>
+		<key>delay</key>
+		<string>0.04</string>
+	</dict>
 </dict>
 </plist>

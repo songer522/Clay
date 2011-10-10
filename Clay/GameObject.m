@@ -13,6 +13,7 @@
 #import "Camera.h"
 #import "SoundEngine.h"
 #import "LayerManager.h"
+#import "AnimationController.h"
 
 @implementation GameObject
 
@@ -115,6 +116,14 @@
         _vx = magnitude * cosf((_angle * 3.14159)/180.0f);
         _vy = - magnitude * sinf((_angle * 3.14159)/180.0f);
         [[SoundEngine shared] playSound:@"collision"];
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_HEN_KICKED) {
+        float magnitude = 525.0f;
+        _angle = -30;
+        _rotationAmount = 75;
+        _vx = magnitude * cosf((_angle * 3.14159)/180.0f);
+        _vy = magnitude * sinf((_angle * 3.14159)/180.0f);
+        [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"henKicked"];
+         
     }
     
     return _playerEffect;
@@ -159,6 +168,11 @@
         if (position.y > 800.0f || position.x > 1200.0f) {
             [self switchToInactive];            
         }
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_HEN_KICKED) {
+        _angle += _rotationAmount * dt;
+        [self getCCSprite].rotation = _angle;
+        _vy += 500.0f * dt;
+        
     }
 }
 
@@ -192,6 +206,10 @@
         _collideBehavior = COLLISION_BEHAVIOR_STATIC;
     } else if([behavior compare:@"falls"] == NSOrderedSame){
         _collideBehavior = COLLISION_BEHAVIOR_FALL_OVER;
+    } else if([behavior compare:@"kicked"] == NSOrderedSame) {
+        _collideBehavior = COLLISION_BEHAVIOR_HEN_KICKED;
+    } else if([behavior compare:@"anim"] == NSOrderedSame) {
+        _collideBehavior = COLLISION_BEHAVIOR_PLAY_ANIMATION;
     }
 }
 

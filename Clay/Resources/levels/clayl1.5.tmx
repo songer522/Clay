@@ -40,7 +40,7 @@
   </tile>
   <tile id="2">
    <properties>
-    <property name="special" value="checkpoint"/>
+    <property name="obstacle" value="hen"/>
    </properties>
   </tile>
   <tile id="3">
@@ -50,7 +50,7 @@
   </tile>
   <tile id="4">
    <properties>
-    <property name="special" value="jimAppearance1"/>
+    <property name="obstacle" value="cow"/>
    </properties>
   </tile>
   <tile id="5">
@@ -151,7 +151,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt2EkOgzAMAEDeSVs1/38F6rUiJEDAAWYuLELE2CwxwwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAHYwVx6TC9hFq4jp7/KWYPpn9aX8om0Xl8N3gHHti/zYYvySdMMYV5OpUql+Le+SulnJ3xr3NvF/uU3QQ7FLzXYmeezxFKc9jYVkrNzd7ujV59Ez0aW1d7lrH3q5r67uqtTGz3rP/OK8S95y1/xGIsbWPJW8pd/Iap3beTb/0sf2ozbN6HEMfe336WOa8ogMAAAAAAAAAAAAAAAAAAAAgxATORRPp
+   eJzt2FESQzAUBVDrVG3tfxWd/ppEQkKCc36U0ea5jxLDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAdjBn7TIv1T+XfL/3eFFnG5NQfGn+tpndk+5wx1lH2Zl8qlX+Oktq/FcZPmU8Y4wpifUr1r8Y5cldr2Z1xbhP2z35uXQRFcu4rre6bT5PKeUwsc8WezZ5uS46uiT5t7ctd+9jbce39r6ptjHzu2bLOq9QdsvU9Am3snccSt5adXNvJfe6mX+ax/cjNWT+OYR57feaxhLxaFwAAAAAAAAAAAAAAAAAAAEATP4vxFa8=
   </data>
  </layer>
  <layer name="meta" width="2000" height="14" opacity="0.85">
