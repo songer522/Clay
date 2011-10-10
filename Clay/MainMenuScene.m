@@ -68,13 +68,9 @@
         
         [[LayerManager sharedLayers] forgetWorkingLayer];
         
-        _comics = [ComicLayer instance];
-        
-        
-        
         
         _totalTime = 0.0f;
-        _transitionTime = 0.0f;
+        _time = 0.0f;
         _transition = MAINMENU_TRANSITION_IN;
         
         
@@ -82,6 +78,9 @@
         
         [self scheduleUpdate];
         self.isTouchEnabled = YES;
+        
+        _comics = [ComicLayer instance];
+
     }
     
     return self;
@@ -104,7 +103,7 @@
 
 -(void)switchToTransitionOut
 {
-    _transitionTime = 0.0f;
+    _time = 0.0f;
     _transition = MAINMENU_TRANSITION_OUT;
     [_playButtonOrange setAlpha:0.0f];
     [[_playButtonOrange getCCSprite] setVisible:YES];
@@ -112,10 +111,10 @@
 
 -(void)update:(ccTime)dt
 {
-    float rate = 4.0f * dt;
+    float rate = 6.0f * dt;
     
     _totalTime += rate;
-    _transitionTime += 0.75f * dt;
+    _time += 0.75f * dt;
     
     float rainFrame = _totalTime - ((int)_totalTime);
     if (rainFrame <= 0.5f) {
@@ -128,50 +127,35 @@
     
     switch (_transition) {
         case MAINMENU_TRANSITION_IN:
-            if (_transitionTime>=1.0f) {
-                _transitionTime = 1.0f;
+            if (_time>=1.0f) {
+                _time = 1.0f;
                 _transition = MAINMENU_TRANSITION_IDLE;
             }
             [_logo move:ccp(0, rate)];
-            [_logo setAlpha:_transitionTime];
-            [_playButtonBlue setAlpha:_transitionTime];
+            [_logo setAlpha:_time];
+            [_playButtonBlue setAlpha:_time];
             [_copyright move:ccp(0,-0.5f * rate)];
-            [_copyright setAlpha:_transitionTime];
+            [_copyright setAlpha:_time];
+            [_rain1 setAlpha:_time];
+            [_rain2 setAlpha:_time];
             break;
         case MAINMENU_TRANSITION_OUT:
-            [_logo setAlpha:(1.0f - _transitionTime)];
-            [_playButtonOrange setAlpha:(MAX(1.0f - 8.0f * _transitionTime, 0.0f))];
-            [_playButtonBlue setAlpha:(MIN(1.0f,2.0f - 2.0f * _transitionTime))];
-            if (_transitionTime >=1.0f) {
+            [_logo setAlpha:(1.0f - _time)];
+            [_rain1 setAlpha:(1.0f - _time)];
+            [_rain2 setAlpha:(1.0f - _time)];
+            [_copyright setAlpha:(1.0f - _time)];
+            [_playButtonOrange setAlpha:(MAX(1.0f - 8.0f * _time, 0.0f))];
+            [_playButtonBlue setAlpha:(MIN(1.0f,1.0f - 1.0f * _time))];
+            if (_time >=1.0f) {
                 [[CCDirector sharedDirector] popScene];
             }
             
-            float position = 160.0f * _transitionTime;
-            float scale = [[UIScreen mainScreen] scale];
-            [self ccDrawFilledRectFrom:ccp(0,0) To:ccp(960,position * scale)];
-            [self ccDrawFilledRectFrom:ccp(0,640) To:ccp(960,(320.0f - position) * scale)];
+            float position = 160.0f * _time;
+            [_comics drawBars:position];
         default:
             break;
     }
 }
-
--(void) ccDrawFilledRectFrom:(CGPoint)v1 To:(CGPoint)v2
-{
-    CGPoint poli[] = {v1, CGPointMake(v1.x,v2.y),v2,CGPointMake(v2.x,v1.y)};
-    
-    glColor4ub(0, 0, 0, 255);
-    glDisable(GL_TEXTURE_2D);
-    glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-    glDisableClientState(GL_COLOR_ARRAY);
-    
-    glVertexPointer(2, GL_FLOAT, 0, poli);
-    glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
-    
-    glEnableClientState(GL_COLOR_ARRAY);
-    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-    glEnable(GL_TEXTURE_2D);
-}
-
 
 -(void)dealloc
 {

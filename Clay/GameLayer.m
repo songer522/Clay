@@ -78,6 +78,8 @@
         
         self.isTouchEnabled = YES;
         
+        [self updateLogic:0.001f];
+        
 	}
 	return self;
 }

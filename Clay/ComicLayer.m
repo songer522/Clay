@@ -114,10 +114,16 @@
 
 -(void)draw
 {
-    float scale = [[UIScreen mainScreen] scale];
-    [self ccDrawFilledRectFrom:ccp(0,0) To:ccp(960,_position * scale)];
-    [self ccDrawFilledRectFrom:ccp(0,640) To:ccp(960,(320.0f - _position) * scale)];
+    [self drawBars:_position];
 }
+
+-(void)drawBars:(float)position
+{
+    float scale = [[UIScreen mainScreen] scale];
+    [self ccDrawFilledRectFrom:ccp(0,0) To:ccp(960,position * scale)];
+    [self ccDrawFilledRectFrom:ccp(0,640) To:ccp(960,(320.0f - position) * scale)];    
+}
+
 
 -(void) ccDrawFilledRectFrom:(CGPoint)v1 To:(CGPoint)v2
 {

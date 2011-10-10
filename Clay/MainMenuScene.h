@@ -35,12 +35,11 @@ typedef enum {
     ComicLayer *_comics;
     
     float _totalTime;
-    float _transitionTime;
+    float _time;
     
 }
 +(CCScene *) scene;
 
 -(void)switchToTransitionOut;
--(void) ccDrawFilledRectFrom:(CGPoint)v1 To:(CGPoint)v2;
 
 @end

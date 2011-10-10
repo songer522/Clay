@@ -38,6 +38,7 @@ typedef enum {
 
 -(void) ccDrawFilledRectFrom:(CGPoint)v1 To:(CGPoint)v2;
 -(void)startTransition:(BlackBoxTransition)transition;
+-(void)drawBars:(float)position;
 
 #pragma mark - private methods
 -(void)blackBoxIn:(ccTime)dt;
