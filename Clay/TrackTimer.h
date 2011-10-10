@@ -1,19 +1,17 @@
 //
-//  Stopwatch.h
+//  TrackTimer.h
 //  Clay
 //
-//  Created by Brian Cable on 10/5/11.
+//  Created by Brian Cable on 10/10/11.
 //  Copyright 2011 Xecudev, LLC. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "cocos2d.h"
 
 @interface TrackTimer : NSObject
 {
-    CCLabelTTF *_lowerDisplay;
-    CCLabelTTF *_upperDisplay;
-
+    NSMutableArray *_timerAnimations;
+    
     float _totalTime;
     bool _isStopped;
 }
@@ -22,6 +20,12 @@
 
 -(void)update:(float)dt;
 
--(NSString*)getTimeString;
+-(void)setupAnimations;
+
+-(void)setTimerSprites;
+
+-(void)setSpriteAtIndex:(int)index withNumber:(int)number;
+
+-(void)setOpacity:(int)opacity;
 
 @end

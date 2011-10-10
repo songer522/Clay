@@ -123,9 +123,19 @@
     return [_animation getTotalFramesCount];
 }
 
+-(void)setFrame:(int)frame
+{
+    [_animation setFrame:frame];    
+}
+
 -(int)getCurrentFrameNumber
 {
     return [_animation getCurrentFrameNumber];
+}
+
+-(Animation*)getAnimation
+{
+    return _animation;
 }
 
 -(void)dealloc

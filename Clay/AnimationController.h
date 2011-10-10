@@ -10,6 +10,7 @@
 #import "cocos2d.h"
 
 @class Sprite;
+@class Animation;
 
 @interface AnimationController : NSObject
 {
@@ -23,6 +24,8 @@
 
 -(CCAnimationCache*)loadPlistForObjectName:(NSString*)objectName;
 -(CCAnimation*)loadPlistForAnimationWithName:(NSString*)animationName andObjectName:(NSString*)objectName;
+
+-(Animation*)getAnimationWithName:(NSString*)name;
 
 -(void)replaceSprite:(Sprite*)sprite withAnimationNamed:(NSString*)name;
 -(void)replaceSprite:(Sprite*)sprite withAnimationNamed:(NSString*)name FrameNumber:(int)frameNumber;

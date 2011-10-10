@@ -204,6 +204,11 @@
 		5499691F1416820000CB7800 /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = 5499691E1416820000CB7800 /* Level.m */; };
 		549BBB901421619800337F71 /* Barn_Tile_Final.png in Resources */ = {isa = PBXBuildFile; fileRef = 549BBB8E1421619800337F71 /* Barn_Tile_Final.png */; };
 		549BBB911421619800337F71 /* clayl2.1.0.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 549BBB8F1421619800337F71 /* clayl2.1.0.tmx */; };
+		54A1191F14433D6B0008A823 /* TrackTimer-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54A1191B14433D6B0008A823 /* TrackTimer-hd.plist */; };
+		54A1192014433D6B0008A823 /* TrackTimer-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A1191C14433D6B0008A823 /* TrackTimer-hd.png */; };
+		54A1192114433D6B0008A823 /* TrackTimer.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54A1191D14433D6B0008A823 /* TrackTimer.plist */; };
+		54A1192214433D6B0008A823 /* TrackTimer.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A1191E14433D6B0008A823 /* TrackTimer.png */; };
+		54A1192B144349D60008A823 /* TrackTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A1192A144349D60008A823 /* TrackTimer.m */; };
 		54A32B581429301F00A10727 /* player.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54A32B571429301F00A10727 /* player.plist */; };
 		54A3BFD71427C32A002E8D2D /* GameDebugLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A3BFD61427C32A002E8D2D /* GameDebugLayer.m */; };
 		54A84E89143E46D900DD742E /* bighurdle.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A84E87143E46D900DD742E /* bighurdle.png */; };
@@ -250,7 +255,6 @@
 		54EE34B3143CEB4A00734E58 /* Pause.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54EE34AF143CEB4A00734E58 /* Pause.wav */; };
 		54F55C03143666AC00AB8FBC /* clayl3.0.1.3.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 54F55C02143666AC00AB8FBC /* clayl3.0.1.3.tmx */; };
 		54F7F57F143CD0FD004EC10B /* 7 Segment.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 54F7F57E143CD0FD004EC10B /* 7 Segment.ttf */; };
-		54F7F583143CD615004EC10B /* TrackTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 54F7F582143CD615004EC10B /* TrackTimer.m */; };
 		54F8A187143A09FC00FCBAAB /* stars_voice.caf in Resources */ = {isa = PBXBuildFile; fileRef = 54F8A186143A09FC00FCBAAB /* stars_voice.caf */; };
 		54F8A18A143A158C00FCBAAB /* clayl3.0.1.4.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 54F8A189143A158C00FCBAAB /* clayl3.0.1.4.tmx */; };
 		54FBA2331430CA5D0010A91A /* VideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 54FBA2321430CA5D0010A91A /* VideoPlayer.m */; };
@@ -614,6 +618,12 @@
 		5499691E1416820000CB7800 /* Level.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level.m; sourceTree = "<group>"; };
 		549BBB8E1421619800337F71 /* Barn_Tile_Final.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Barn_Tile_Final.png; path = Resources/levels/Barn_Tile_Final.png; sourceTree = "<group>"; };
 		549BBB8F1421619800337F71 /* clayl2.1.0.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = clayl2.1.0.tmx; path = Resources/levels/clayl2.1.0.tmx; sourceTree = "<group>"; };
+		54A1191B14433D6B0008A823 /* TrackTimer-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TrackTimer-hd.plist"; sourceTree = "<group>"; };
+		54A1191C14433D6B0008A823 /* TrackTimer-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TrackTimer-hd.png"; sourceTree = "<group>"; };
+		54A1191D14433D6B0008A823 /* TrackTimer.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TrackTimer.plist; sourceTree = "<group>"; };
+		54A1191E14433D6B0008A823 /* TrackTimer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrackTimer.png; sourceTree = "<group>"; };
+		54A11929144349D60008A823 /* TrackTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackTimer.h; sourceTree = "<group>"; };
+		54A1192A144349D60008A823 /* TrackTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackTimer.m; sourceTree = "<group>"; };
 		54A32B571429301F00A10727 /* player.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = player.plist; sourceTree = "<group>"; };
 		54A3BFD51427C32A002E8D2D /* GameDebugLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameDebugLayer.h; sourceTree = "<group>"; };
 		54A3BFD61427C32A002E8D2D /* GameDebugLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameDebugLayer.m; sourceTree = "<group>"; };
@@ -665,8 +675,6 @@
 		54EE34AF143CEB4A00734E58 /* Pause.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Pause.wav; path = Resources/sounds/Pause.wav; sourceTree = "<group>"; };
 		54F55C02143666AC00AB8FBC /* clayl3.0.1.3.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = clayl3.0.1.3.tmx; path = Resources/levels/clayl3.0.1.3.tmx; sourceTree = "<group>"; };
 		54F7F57E143CD0FD004EC10B /* 7 Segment.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "7 Segment.ttf"; path = "Resources/fonts/7 Segment.ttf"; sourceTree = "<group>"; };
-		54F7F581143CD615004EC10B /* TrackTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackTimer.h; sourceTree = "<group>"; };
-		54F7F582143CD615004EC10B /* TrackTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackTimer.m; sourceTree = "<group>"; };
 		54F8A186143A09FC00FCBAAB /* stars_voice.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = stars_voice.caf; path = Resources/music/stars_voice.caf; sourceTree = "<group>"; };
 		54F8A189143A158C00FCBAAB /* clayl3.0.1.4.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = clayl3.0.1.4.tmx; path = Resources/levels/clayl3.0.1.4.tmx; sourceTree = "<group>"; };
 		54FBA2311430CA5D0010A91A /* VideoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayer.h; sourceTree = "<group>"; };
@@ -1255,8 +1263,6 @@
 		54518F641406AE38009D74AA /* Game */ = {
 			isa = PBXGroup;
 			children = (
-				54F7F581143CD615004EC10B /* TrackTimer.h */,
-				54F7F582143CD615004EC10B /* TrackTimer.m */,
 				5421A2F6142A5C7E0078D861 /* Battery.h */,
 				5421A2F7142A5C7E0078D861 /* Battery.m */,
 				54518F731406B761009D74AA /* GameClasses.h */,
@@ -1273,6 +1279,8 @@
 				547F09761428FA5400E5D920 /* SavePoint.m */,
 				54FBA2511430E5850010A91A /* LevelThread.h */,
 				54FBA2521430E5850010A91A /* LevelThread.m */,
+				54A11929144349D60008A823 /* TrackTimer.h */,
+				54A1192A144349D60008A823 /* TrackTimer.m */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -1299,6 +1307,7 @@
 		54642AFE14337E5F001D8212 /* sprites */ = {
 			isa = PBXGroup;
 			children = (
+				54A1191A14433D6B0008A823 /* timer */,
 				54CD29DA143BA21400F805E0 /* UI_Button_Jumping.png */,
 				54CD29DB143BA21400F805E0 /* UI_Button_Kicking.png */,
 				54CD29DC143BA21400F805E0 /* UI_Button_TurboBoost.png */,
@@ -1395,6 +1404,17 @@
 				543C095C1420F3AA00F259BA /* tileset-platformer.png */,
 			);
 			name = test;
+			sourceTree = "<group>";
+		};
+		54A1191A14433D6B0008A823 /* timer */ = {
+			isa = PBXGroup;
+			children = (
+				54A1191B14433D6B0008A823 /* TrackTimer-hd.plist */,
+				54A1191C14433D6B0008A823 /* TrackTimer-hd.png */,
+				54A1191D14433D6B0008A823 /* TrackTimer.plist */,
+				54A1191E14433D6B0008A823 /* TrackTimer.png */,
+			);
+			path = timer;
 			sourceTree = "<group>";
 		};
 		54BE176F141EBB7200A3D773 /* objects */ = {
@@ -1596,6 +1616,10 @@
 				5441BEED143F8D44003224FF /* Menu_PlayOrange.png in Resources */,
 				5441BEEE143F8D44003224FF /* Menu_Rain_01-hd.png in Resources */,
 				5441BEEF143F8D44003224FF /* Menu_Rain_02-hd.png in Resources */,
+				54A1191F14433D6B0008A823 /* TrackTimer-hd.plist in Resources */,
+				54A1192014433D6B0008A823 /* TrackTimer-hd.png in Resources */,
+				54A1192114433D6B0008A823 /* TrackTimer.plist in Resources */,
+				54A1192214433D6B0008A823 /* TrackTimer.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1743,10 +1767,10 @@
 				54FBA2581430EA130010A91A /* ComicManager.m in Sources */,
 				54FBA25B1430F94C0010A91A /* ComicLayer.m in Sources */,
 				543250BC143CA40300F1F177 /* HudLayer.m in Sources */,
-				54F7F583143CD615004EC10B /* TrackTimer.m in Sources */,
 				5441BECF143F8AEC003224FF /* MainMenuScene.m in Sources */,
 				547330A51440AEE20072796C /* NewParticle.m in Sources */,
 				547330A91441084F0072796C /* NewEmitter.m in Sources */,
+				54A1192B144349D60008A823 /* TrackTimer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

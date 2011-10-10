@@ -86,6 +86,12 @@ static AnimationController *_sharedController = nil;
     [sprite setAnimation:anim Delay:anim.delay StartingFrameNumber:frameNumber];
 }
 
+-(Animation*)getAnimationWithName:(NSString*)name
+{
+    Animation *anim = (Animation*)[animations objectForKey:name];
+    return anim;
+}
+
 
 
 -(CCAnimationCache*)loadPlistForObjectName:(NSString*)objectName {

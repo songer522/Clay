@@ -12,9 +12,11 @@
 {
     int _frame;
     int _totalFrames;
+    bool _paused;
 }
 
 @property(nonatomic,assign) int frame;
+@property(nonatomic,assign) bool paused;
 @property(nonatomic,readonly,assign) int totalFrames;
 
 -(void)update:(ccTime)t;

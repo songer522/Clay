@@ -87,5 +87,39 @@
 		<key>delay</key>
 		<string>0.075</string>
 	</dict>
+	<key>largeTimer</key>
+	<dict>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>group</key>
+		<string>Timer</string>
+		<key>spritesheetPlist</key>
+		<string>TrackTimer</string>
+		<key>sequencePrefix</key>
+		<string>Large_</string>
+		<key>animationFrames</key>
+		<string>1,2,3,4,5,6,7,8,9,10,11</string>
+		<key>delay</key>
+		<string>0.075</string>
+	</dict>
+	<key>smallTimer</key>
+	<dict>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>group</key>
+		<string>Timer</string>
+		<key>spritesheetPlist</key>
+		<string>TrackTimer</string>
+		<key>sequencePrefix</key>
+		<string>Small_</string>
+		<key>animationFrames</key>
+		<string>1,2,3,4,5,6,7,8,9,10</string>
+		<key>delay</key>
+		<string>0.075</string>
+	</dict>
 </dict>
 </plist>

@@ -12,6 +12,7 @@
 @implementation CCXAnimate
 
 @synthesize frame = _frame;
+@synthesize paused = _paused;
 @synthesize totalFrames = _totalFrames;
 
 - (id)init
@@ -26,6 +27,8 @@
 
 -(void)update:(ccTime)t
 {
+    if (_paused) { return; }
+    
     NSArray *frames = [animation_ frames];
     NSUInteger numberOfFrames = [frames count];
     
@@ -47,7 +50,14 @@
 
 -(void)setFrame:(int)frame
 {
+    CCSprite *sprite = target_;
     
+    NSArray *frames = [animation_ frames];
+    
+    if(![sprite isFrameDisplayed:[frames objectAtIndex:frame]]) {
+        [sprite setDisplayFrame:[frames objectAtIndex:frame]];
+        _frame = frame;
+    }
 }
 
 -(void)dealloc

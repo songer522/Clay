@@ -124,6 +124,20 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
     return _animateAction.frame;
 }
 
+-(void)togglePauseAnimation
+{
+    if (_animateAction.paused) {
+        _animateAction.paused = false;
+    } else {
+        _animateAction.paused = true;
+    }
+}
+
+-(void)setFrame:(int)frame
+{
+    [_animateAction setFrame:frame];
+}
+
 -(void)dealloc
 {
     [_frames release];

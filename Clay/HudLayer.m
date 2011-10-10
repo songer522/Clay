@@ -44,7 +44,7 @@
         _buttonSprint = [self initButton:@"UI_Button_TurboBoost.png" Position:ccp(HUD_LAYER_SPRINT_X,HUD_LAYER_BUTTON_Y)];
 
         
-        //_trackTimer = [TrackTimer instance];
+        _trackTimer = [TrackTimer instance];
         
         _battery = [Battery instance];
         
@@ -168,7 +168,7 @@
     
     [self updateTransitions:dt];
     
-    //[_trackTimer update:dt];
+    [_trackTimer update:dt];
 }
 
 -(void)fadeIn
@@ -233,6 +233,7 @@
     [[_buttonAction getCCSprite] setOpacity:opacity];
     [[_buttonSprint getCCSprite] setOpacity:opacity];    
     [[_battery getCCSprite] setOpacity:opacity];
+    [_trackTimer setOpacity:opacity];
     
     if (_alpha == 0.0f) {
         [self setVisible:NO];

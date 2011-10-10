@@ -51,6 +51,8 @@
 -(void)useAnimationToReplaceSprite:(Sprite*)sprite FrameNumber:(int)frameNumber;
 -(int)getCurrentFrameNumber;
 -(int)getTotalFramesCount;
+-(void)togglePauseAnimation;
+-(void)setFrame:(int)frame;
 
 //replaces the given sprite with this animation
 

@@ -85,7 +85,6 @@ static LevelManager *_shared = nil;
     Level *_levelToUnload = _currentLevel;
     _currentLevel = _nextLevel;
     [_levelToUnload unloadLevel];
-    [_levelToUnload release];
     _levelToUnload = nil;
     [[SoundEngine shared] playMusic:_currentLevel.musicName];
 
