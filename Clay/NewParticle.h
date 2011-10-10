@@ -19,12 +19,12 @@
     float _alpha;
 }
 
-@property(nonatomic,retain) float vx;
-@property(nonatomic,retain) float vy;
-@property(nonatomic,retain) float ax;
-@property(nonatomic,retain) float ay;
-@property(nonatomic,retain) float angle;
-@property(nonatomic,retain) float angleVelocity;
-@property(nonatomic,retain) float alpha;
+@property(nonatomic,assign) float vx;
+@property(nonatomic,assign) float vy;
+@property(nonatomic,assign) float ax;
+@property(nonatomic,assign) float ay;
+@property(nonatomic,assign) float angle;
+@property(nonatomic,assign) float angleVelocity;
+@property(nonatomic,assign) float alpha;
 
 @end

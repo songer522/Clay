@@ -16,6 +16,7 @@
 @synthesize ay = _ay;
 @synthesize angle = _angle;
 @synthesize angleVelocity = _angleVelocity;
+@synthesize alpha = _alpha;
 
 - (id)init
 {
@@ -30,6 +31,8 @@
         _angleVelocity = 0;
         _alpha = 1.0f;
     }
+    
+    
     
     return self;
 }
