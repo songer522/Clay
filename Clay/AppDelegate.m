@@ -143,8 +143,9 @@
 
     
     _mainMenuScene = [MainMenuScene scene];
-    
+    [[LayerManager sharedLayers] setWorkingScene:_mainMenuScene];
     [[CCDirector sharedDirector] pushScene:_mainMenuScene];
+    [[LayerManager sharedLayers] forgetWorkingScene];
     
     
     /*

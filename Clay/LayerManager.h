@@ -15,9 +15,8 @@
     id          _currentLayer;
     id          _workingLayer;
     CCScene     *_currentScene;
+    id          _workingScene;
 }
-
-@property(nonatomic,retain) CCScene *currentScene;
 
 +(LayerManager*)sharedLayers;
 -(void)setCurrentLayer:(id)layer;
@@ -25,5 +24,12 @@
 
 -(void)setWorkingLayer:(id)layer;
 -(void)forgetWorkingLayer;
+
+-(void)setWorkingScene:(id)scene;
+-(void)forgetWorkingScene;
+-(id)currentScene;
+-(void)setCurrentScene:(CCScene*)scene;
+
+
 
 @end

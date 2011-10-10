@@ -17,6 +17,8 @@ typedef enum {
     MAINMENU_TRANSITION_IDLE
 } MainMenuTransition;
 
+@class ComicLayer;
+
 @interface MainMenuScene : CCLayer
 {
     Sprite *_trackBackground;
@@ -30,6 +32,8 @@ typedef enum {
     
     MainMenuTransition _transition;
     
+    ComicLayer *_comics;
+    
     float _totalTime;
     float _transitionTime;
     
@@ -37,5 +41,6 @@ typedef enum {
 +(CCScene *) scene;
 
 -(void)switchToTransitionOut;
+-(void) ccDrawFilledRectFrom:(CGPoint)v1 To:(CGPoint)v2;
 
 @end

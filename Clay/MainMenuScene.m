@@ -9,6 +9,7 @@
 #import "MainMenuScene.h"
 #import "Sprite.h"
 #import "LayerManager.h"
+#import "ComicLayer.h"
 
 @implementation MainMenuScene
 
@@ -67,9 +68,17 @@
         
         [[LayerManager sharedLayers] forgetWorkingLayer];
         
+        _comics = [ComicLayer instance];
+        
+        
+        
+        
         _totalTime = 0.0f;
         _transitionTime = 0.0f;
         _transition = MAINMENU_TRANSITION_IN;
+        
+        
+        
         
         [self scheduleUpdate];
         self.isTouchEnabled = YES;
@@ -131,15 +140,38 @@
             break;
         case MAINMENU_TRANSITION_OUT:
             [_logo setAlpha:(1.0f - _transitionTime)];
-            [_playButtonOrange setAlpha:(1.0f - 2.0f * _transitionTime)];
-            [_playButtonBlue setAlpha:(2.0f - 2.0f * _transitionTime)];
+            [_playButtonOrange setAlpha:(MAX(1.0f - 8.0f * _transitionTime, 0.0f))];
+            [_playButtonBlue setAlpha:(MIN(1.0f,2.0f - 2.0f * _transitionTime))];
             if (_transitionTime >=1.0f) {
                 [[CCDirector sharedDirector] popScene];
             }
+            
+            float position = 160.0f * _transitionTime;
+            float scale = [[UIScreen mainScreen] scale];
+            [self ccDrawFilledRectFrom:ccp(0,0) To:ccp(960,position * scale)];
+            [self ccDrawFilledRectFrom:ccp(0,640) To:ccp(960,(320.0f - position) * scale)];
         default:
             break;
     }
 }
+
+-(void) ccDrawFilledRectFrom:(CGPoint)v1 To:(CGPoint)v2
+{
+    CGPoint poli[] = {v1, CGPointMake(v1.x,v2.y),v2,CGPointMake(v2.x,v1.y)};
+    
+    glColor4ub(0, 0, 0, 255);
+    glDisable(GL_TEXTURE_2D);
+    glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+    glDisableClientState(GL_COLOR_ARRAY);
+    
+    glVertexPointer(2, GL_FLOAT, 0, poli);
+    glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+    
+    glEnableClientState(GL_COLOR_ARRAY);
+    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+    glEnable(GL_TEXTURE_2D);
+}
+
 
 -(void)dealloc
 {

@@ -11,8 +11,6 @@
 
 @implementation LayerManager
 
-@synthesize currentScene = _currentScene;
-
 
 static LayerManager *_sharedLayers = nil;
 
@@ -63,6 +61,30 @@ static LayerManager *_sharedLayers = nil;
 {
     [_currentScene release];
     [super dealloc];
+}
+
+-(void)setWorkingScene:(id)scene
+{
+    _workingScene = scene;
+}
+
+-(void)forgetWorkingScene
+{
+    _workingScene = nil;
+}
+
+-(id)currentScene
+{
+    if (_workingScene!=nil) {
+        return _workingScene;
+    } else {
+        return _currentScene;
+    }
+}
+
+-(void)setCurrentScene:(CCScene*)scene
+{
+    _currentScene = scene;
 }
 
 @end
