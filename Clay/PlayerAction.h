@@ -15,6 +15,7 @@
 -(bool)inAction;
 -(void)startAction;
 -(void)endAction;
+-(bool)isActive;
 -(void)update:(float)dt;
 -(void)setParent:(Player*)player;
 -(Player*)getParent;

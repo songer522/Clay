@@ -13,14 +13,8 @@
 {
     Player *_parent;
     bool _inAction;
+    bool _isActive;
     float _duration;
 }
-
-+(id)instance;
--(void)startAction;
--(void)update:(float)dt;
-
--(void)setParent:(Player*)player;
--(Player*)getParent;
 
 @end

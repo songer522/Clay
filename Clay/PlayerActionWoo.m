@@ -65,6 +65,10 @@
     return _inAction;
 }
 
+-(bool)isActive
+{
+    return _isActive;
+}
 
 
 @end

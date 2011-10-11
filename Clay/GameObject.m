@@ -26,6 +26,7 @@
 @synthesize collided = _collided;
 @synthesize hasGravity = _hasGravity;
 @synthesize isAggressive = _isAggressive;
+@synthesize originalAnimation = _originalAnimation;
 
 
 + (id) objectWithSprite:(Sprite*)sprite
@@ -119,11 +120,8 @@
         _vy = - magnitude * sinf((_angle * 3.14159)/180.0f);
         [[SoundEngine shared] playSound:@"collision"];
     } else if(_currentBehavior == COLLISION_BEHAVIOR_HEN_KICKED) {
-        float magnitude = 555.0f;
-        _angle = -30;
-        _rotationAmount = 75;
-        _vx = magnitude * cosf((_angle * 3.14159)/180.0f);
-        _vy = magnitude * sinf((_angle * 3.14159)/180.0f);
+        //hen always dies, but don't actually kick hen unless player decides it's been kicked
+        _collided = true;
         [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"henKicked"];
          
     } else if(_currentBehavior == COLLISION_BEHAVIOR_COW_COLLAPSE) {
@@ -132,6 +130,18 @@
     
     return _playerEffect;
 }
+
+//called by player once it decides that the hen is actually kicked.
+-(void)special_kickHen
+{
+    float magnitude = 555.0f;
+    _angle = -30;
+    _rotationAmount = 75;
+    _vx = magnitude * cosf((_angle * 3.14159)/180.0f);
+    _vy = magnitude * sinf((_angle * 3.14159)/180.0f);
+    
+}
+
 
 -(CCSprite*) getCCSprite
 {
@@ -192,6 +202,9 @@
     _angle = 0.0f;
     _vx = 0;
     _vy = 0;
+    
+    [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:_originalAnimation];
+    
     [self setPosition:_startingPosition];
     [self getCCSprite].visible = true;
     [self getCCSprite].rotation = _angle;
@@ -230,6 +243,8 @@
         _playerEffect = PLAYER_EFFECT_COLLIDE;
     } else if([effect compare:@"slow"] == NSOrderedSame) {
         _playerEffect = PLAYER_EFFECT_SLOWDOWN;
+    } else if([effect compare:@"actionOrCollide"] == NSOrderedSame) {
+        _playerEffect = PLAYER_EFFECT_ACTION_OR_COLLIDE;
     }
 }
 

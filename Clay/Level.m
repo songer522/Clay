@@ -246,7 +246,7 @@
             collision = [self testCollisionWithGameObject:obstacle Source:source];
             if (collision) {
                 GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
-                [gameLayer.player startCollision:[obstacle startCollision]];
+                [gameLayer.player startCollision:[obstacle startCollision] Obstacle:obstacle];
                 break;
             } else {
                 if (obstacle.isAggressive) {

@@ -46,6 +46,7 @@
     if (animation && [animation compare:@""] != NSOrderedSame) {
         [[AnimationController sharedController] replaceSprite:gameSprite withAnimationNamed:animation];
     }
+    gameObject.originalAnimation = [[NSString stringWithString:animation] retain];
     
     [gameObject setOffsetForX:[[gameobjectSettings objectForKey:@"offsetx"] floatValue] Y:[[gameobjectSettings objectForKey:@"offsety"] floatValue]];
     

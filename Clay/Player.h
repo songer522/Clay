@@ -55,6 +55,7 @@ typedef enum {
 @property(nonatomic,assign) bool isDead;
 @property(nonatomic,assign) bool isTripping;
 @property(nonatomic,assign) bool isInMidAir;
+@property(nonatomic,assign) bool isJumping;
 @property(nonatomic,retain) Battery *battery;
 
 +(id) instance;                                 //constructor
@@ -74,7 +75,7 @@ typedef enum {
 
 -(void)startThirdAction;
 
--(void)startCollision:(PlayerEffect)effect;
+-(void)startCollision:(PlayerEffect)effect Obstacle:(GameObject*)obstacle;
 
 -(void)changeHealth:(int)amount;
 
@@ -82,6 +83,7 @@ typedef enum {
 -(void)resetSprite:(CCLayer*)layer;
 -(void)rechargeBattery;
 
-@property(nonatomic,assign) bool isJumping;
+
+-(void)private_StartPlayerCollision;
 
 @end

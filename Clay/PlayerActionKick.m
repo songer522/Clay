@@ -31,7 +31,8 @@
     if (!_inAction) {
         NSLog(@"Kick!");
         _inAction = true;
-        _duration = 1.0f;        
+        _duration = 1.0f;
+        [_parent endTurbo];
     }
 }
 
@@ -39,6 +40,13 @@
 {
     if (_inAction) {
         _duration -= dt;
+        
+        if (_duration < 0.5f) {
+            _isActive = true;
+        } else {
+            _isActive = false;
+        }
+        
         if (_duration <= 0.0f) {
             [self endAction];
         }
@@ -51,9 +59,15 @@
     return _inAction;
 }
 
+-(bool)isActive
+{
+    return _isActive;
+}
+
 -(void)endAction
 {
     _inAction = false;
+    _isActive = false;
     NSLog(@"End kick.");
 }
 

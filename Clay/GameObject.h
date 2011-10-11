@@ -26,7 +26,8 @@ typedef enum {
 
 typedef enum {
     PLAYER_EFFECT_COLLIDE,
-    PLAYER_EFFECT_SLOWDOWN
+    PLAYER_EFFECT_SLOWDOWN,
+    PLAYER_EFFECT_ACTION_OR_COLLIDE
 } PlayerEffect;
 
 @interface GameObject : NSObject
@@ -57,6 +58,8 @@ typedef enum {
     //collision
     CGRect _boundingBox;
     
+    NSString *_originalAnimation;
+    
     bool _collided;     //starts false, but switches to true when player collides with it
                         //so the player can't keep colliding with it
     
@@ -80,6 +83,7 @@ typedef enum {
 @property(readonly,nonatomic,assign) bool collided;
 @property(nonatomic,assign) bool hasGravity;
 @property(nonatomic,assign) bool isAggressive;
+@property(nonatomic,retain) NSString *originalAnimation;
 
 
 +(id) instance;
@@ -94,6 +98,8 @@ typedef enum {
 -(void) setStartingPosition:(CGPoint)position;
 
 -(CCSprite*) getCCSprite;
+
+-(void)special_kickHen;
 
 
 -(void)reset;

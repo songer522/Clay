@@ -12,6 +12,7 @@
 #import "RunningSpeed.h"
 #import "LevelManager.h"
 #import "GameController.h"
+#import "GameObject.h"
 #import "GameObjectController.h"
 #import "PListLoader.h"
 #import "ParticleSystem.h"
@@ -129,6 +130,10 @@
             [_speed start];
         }
     }
+    
+    if ([_thirdAction inAction]) {
+        [_thirdAction update:dt];
+    }
 
 }
 
@@ -187,7 +192,7 @@
 -(void)startJump:(RunnerJump)type
 {
     //guard
-    if (_isTripping || _isDead) { return; }
+    if (_isTripping || _isDead || [_thirdAction inAction]) { return; }
     
     self.hasGravity = false;
     _firstFrameJumping = true;
@@ -207,11 +212,13 @@
 
 -(void)boostJump:(RunnerJump)type
 {
-    _jumpHeight = type;
-    
-    if(type == JUMP_HIGH) {
-        self.hasGravity = true;
-        _isHighJump = true;
+    if (_isJumping) {
+        _jumpHeight = type;
+        
+        if(type == JUMP_HIGH) {
+            self.hasGravity = true;
+            _isHighJump = true;
+        }        
     }
 }
 
@@ -224,7 +231,7 @@
 -(void)startTurbo
 {
     //guard
-    if (_isTripping || _isDead) { return; }
+    if (_isTripping || _isDead || [_thirdAction inAction]) { return; }
     
     if (hitPoints > 1) {
         [_speed startTurbo];
@@ -247,28 +254,39 @@
     
 }
 
--(void)startCollision:(PlayerEffect)effect
+-(void)startCollision:(PlayerEffect)effect Obstacle:(GameObject*)obstacle
 {
-    
-    if (effect == PLAYER_EFFECT_COLLIDE) {
-        [_speed startCollision];
-
-        _waitToGetUp = 100.0f;
-        
-        if (_isJumping) {
-            [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"trippedAnim"];
-            _isTripping = true;
+    if (effect == PLAYER_EFFECT_ACTION_OR_COLLIDE) {
+        if (![_thirdAction inAction]) {
+            [self private_StartPlayerCollision];
         } else {
-            [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"hurtAnim"];
-            _vy = -250.0f;
-            _y += 2.0f;
-            _waitToGetUp = 0.3f;
+            [obstacle special_kickHen];
         }
-        
-        [self changeHealth:-1];
+    }
+    if (effect == PLAYER_EFFECT_COLLIDE) {
+        [self private_StartPlayerCollision];
     } else if(effect == PLAYER_EFFECT_SLOWDOWN) {
         [_speed slowDown];
     }
+}
+
+-(void)private_StartPlayerCollision
+{
+    [_speed startCollision];
+    
+    _waitToGetUp = 100.0f;
+    
+    if (_isJumping) {
+        [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"trippedAnim"];
+        _isTripping = true;
+    } else {
+        [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"hurtAnim"];
+        _vy = -250.0f;
+        _y += 2.0f;
+        _waitToGetUp = 0.3f;
+    }
+    
+    [self changeHealth:-1];
 }
 
 //used by background layers for scrolling
@@ -295,7 +313,9 @@
 
 -(void)startThirdAction
 {
-    [_thirdAction startAction];
+    if (!_isJumping) {        
+        [_thirdAction startAction];
+    }
 }
 
 
