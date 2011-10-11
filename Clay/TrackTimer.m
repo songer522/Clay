@@ -18,6 +18,8 @@
 
 @implementation TrackTimer
 
+@synthesize isStopped = _isStopped;
+
 +(TrackTimer*) instance
 {
     return [[self alloc] init];    
@@ -132,12 +134,10 @@
     Sprite *sprite = [_timerAnimations objectAtIndex:index];
     
     if (number == 0) {
-        number = 9;
-    } else {
-        number -= 1;
+        number = 10;
     }
     
-    [sprite setFrame:number];
+    [[sprite getAnimation] setStaticFrame:number Sprite:sprite];
 }
 
 -(void)setOpacity:(int)opacity

@@ -141,7 +141,7 @@
 	<key>hen</key>
 	<dict>
 		<key>aggressive</key>
-		<string>false</string>
+		<string>true</string>
 		<key>playerEffect</key>
 		<string>slow</string>
 		<key>collideBehavior</key>
@@ -149,7 +149,7 @@
 		<key>offsetx</key>
 		<integer>0</integer>
 		<key>offsety</key>
-		<integer>-25</integer>
+		<integer>-35</integer>
 		<key>anchorpoint</key>
 		<dict>
 			<key>x</key>

@@ -133,6 +133,13 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
     }
 }
 
+-(void)setStaticFrame:(int)frameNumber Sprite:(Sprite*)sprite
+{
+    NSString *frameName = [_sequence stringByAppendingFormat:@"%d%@%@",frameNumber, ANIMATION_HD_SUFFIX,ANIMATION_GRAPHIC_EXTENSION];
+    [[sprite getCCSprite] setBatchNode:_spriteSheet];
+    [[sprite getCCSprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName]];
+}
+
 -(void)setFrame:(int)frame
 {
     [_animateAction setFrame:frame];

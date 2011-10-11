@@ -66,7 +66,7 @@ typedef enum {
 -(void)fadeOut;
 
 -(Battery*)getBattery;
-
+-(TrackTimer*)getTrackTimer;
 
 -(void)reset;
 

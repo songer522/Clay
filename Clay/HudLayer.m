@@ -176,6 +176,7 @@
     _delay = 1.0f;
     _alpha = 0.0f;
     _currentTransition = HUD_TRANSITION_IN;
+    _trackTimer.isStopped = false;
 }
 
 -(void)fadeOut
@@ -213,6 +214,7 @@
                     _alpha = 0.0f;
                     [self setOpacities:_alpha];
                     _currentTransition = HUD_TRANSITION_IDLE;
+                    _trackTimer.isStopped = true;
                 }
             }
             
@@ -240,6 +242,11 @@
     } else {
         [self setVisible:YES];
     }
+}
+
+-(TrackTimer*)getTrackTimer
+{
+    return _trackTimer;
 }
 
 -(void)reset

@@ -53,6 +53,7 @@
 -(int)getTotalFramesCount;
 -(void)togglePauseAnimation;
 -(void)setFrame:(int)frame;
+-(void)setStaticFrame:(int)frame Sprite:(Sprite*)sprite;
 
 //replaces the given sprite with this animation
 

@@ -16,6 +16,8 @@
     bool _isStopped;
 }
 
+@property(nonatomic,assign) bool isStopped;
+
 +(TrackTimer*) instance;
 
 -(void)update:(float)dt;
