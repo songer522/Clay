@@ -119,7 +119,7 @@
         _vy = - magnitude * sinf((_angle * 3.14159)/180.0f);
         [[SoundEngine shared] playSound:@"collision"];
     } else if(_currentBehavior == COLLISION_BEHAVIOR_HEN_KICKED) {
-        float magnitude = 525.0f;
+        float magnitude = 555.0f;
         _angle = -30;
         _rotationAmount = 75;
         _vx = magnitude * cosf((_angle * 3.14159)/180.0f);

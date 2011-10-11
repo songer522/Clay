@@ -263,7 +263,7 @@
     bool collision = false;
     
     for (GameObject *obstacle in _obstacleSprites) {
-        if(!obstacle.collided) {
+        if(obstacle!=source && !obstacle.collided && !obstacle.isAggressive) {
             collision = [self testCollisionWithGameObject:obstacle Source:source];
             if (collision) {
                 [obstacle startCollision];

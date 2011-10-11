@@ -203,7 +203,7 @@
 			<key>width</key>
 			<integer>45</integer>
 			<key>height</key>
-			<integer>75</integer>
+			<integer>85</integer>
 		</dict>
 		<key>imageName</key>
 		<string>cow.png</string>
