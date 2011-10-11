@@ -15,6 +15,7 @@
 #import "GameObjectController.h"
 #import "PListLoader.h"
 #import "ParticleSystem.h"
+#import "PlayerActionFactory.h"
 #import "Camera.h"
 #import "Battery.h"
 
@@ -68,7 +69,8 @@
         
         _particleSystem = [ParticleSystem instance];
         
-
+        _thirdAction = [PlayerActionFactory buildPlayerAction:PLAYER_ACTION_KICK];
+        [_thirdAction setParent:self];
     }
     
     return self;
@@ -289,6 +291,11 @@
     _isHighJump = false;
     [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"runningAnim"];
 
+}
+
+-(void)startThirdAction
+{
+    [_thirdAction startAction];
 }
 
 

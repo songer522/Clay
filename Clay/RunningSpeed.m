@@ -132,7 +132,6 @@
 
 -(void)applyFriction:(float)friction Dt:(float)dt
 {
-    NSLog(@"SuperFriction: %.2f",(friction * dt));
     _velocity = (1 - (friction * dt)) * _velocity;
 }
 
@@ -195,8 +194,6 @@
             }
             
         }
-        
-        NSLog(@"Velocity: %.2f, Acceleration: %.2f", _velocity, _acceleration);
 
     } else {
         [self applyFriction:5.0f Dt:dt];

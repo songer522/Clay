@@ -20,6 +20,7 @@ typedef enum {
 
 @class RunningSpeed;
 @class Battery;
+@protocol PlayerAction;
 
 @interface Player : Runner
 {
@@ -46,6 +47,8 @@ typedef enum {
     Sprite *_buttonJump;
     Sprite *_buttonKick;
     Sprite *_buttonSprint;
+    
+    id <PlayerAction> _thirdAction; //playeraction
 
 }
 
@@ -69,7 +72,7 @@ typedef enum {
 
 -(void)endTurbo;
 
-
+-(void)startThirdAction;
 
 -(void)startCollision:(PlayerEffect)effect;
 

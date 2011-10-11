@@ -138,5 +138,22 @@
 		<key>delay</key>
 		<string>0.04</string>
 	</dict>
+	<key>kickingAnim</key>
+	<dict>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>looping</key>
+		<string>false</string>
+		<key>group</key>
+		<string>Player</string>
+		<key>spritesheetPlist</key>
+		<string>character_jumping</string>
+		<key>sequencePrefix</key>
+		<string>Character_Jumping_</string>
+		<key>animationFrames</key>
+		<string>1,1,1,2,3,3,3,3</string>
+		<key>delay</key>
+		<string>0.1</string>
+	</dict>
 </dict>
 </plist>

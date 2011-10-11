@@ -95,7 +95,7 @@
                 }
                 break;
             case HUD_BUTTON_ACTION:
-                NSLog(@"ACTION BUTTON PRESSED!");
+                [_gameLayer.player startThirdAction];
             default:
                 break;
         }

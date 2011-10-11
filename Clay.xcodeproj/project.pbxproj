@@ -256,6 +256,9 @@
 		54E316361434D94100CD81FA /* character_turbo-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54E316321434D94100CD81FA /* character_turbo-hd.png */; };
 		54E316371434D94100CD81FA /* character_turbo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54E316331434D94100CD81FA /* character_turbo.plist */; };
 		54E316381434D94100CD81FA /* character_turbo.png in Resources */ = {isa = PBXBuildFile; fileRef = 54E316341434D94100CD81FA /* character_turbo.png */; };
+		54E378811444A5830011D8F3 /* PlayerActionKick.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E378801444A5830011D8F3 /* PlayerActionKick.m */; };
+		54E378841444A6710011D8F3 /* PlayerActionFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E378831444A6710011D8F3 /* PlayerActionFactory.m */; };
+		54E378871444A77D0011D8F3 /* PlayerActionWoo.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E378861444A77D0011D8F3 /* PlayerActionWoo.m */; };
 		54EE34B0143CEB4A00734E58 /* BatteryFullCharge.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54EE34AC143CEB4A00734E58 /* BatteryFullCharge.wav */; };
 		54EE34B1143CEB4A00734E58 /* Error.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54EE34AD143CEB4A00734E58 /* Error.wav */; };
 		54EE34B2143CEB4A00734E58 /* LowBattery.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54EE34AE143CEB4A00734E58 /* LowBattery.wav */; };
@@ -683,6 +686,13 @@
 		54E316321434D94100CD81FA /* character_turbo-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "character_turbo-hd.png"; sourceTree = "<group>"; };
 		54E316331434D94100CD81FA /* character_turbo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = character_turbo.plist; sourceTree = "<group>"; };
 		54E316341434D94100CD81FA /* character_turbo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = character_turbo.png; sourceTree = "<group>"; };
+		54E3787E1444A5470011D8F3 /* PlayerAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerAction.h; sourceTree = "<group>"; };
+		54E3787F1444A5830011D8F3 /* PlayerActionKick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerActionKick.h; sourceTree = "<group>"; };
+		54E378801444A5830011D8F3 /* PlayerActionKick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerActionKick.m; sourceTree = "<group>"; };
+		54E378821444A6710011D8F3 /* PlayerActionFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerActionFactory.h; sourceTree = "<group>"; };
+		54E378831444A6710011D8F3 /* PlayerActionFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerActionFactory.m; sourceTree = "<group>"; };
+		54E378851444A77D0011D8F3 /* PlayerActionWoo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerActionWoo.h; sourceTree = "<group>"; };
+		54E378861444A77D0011D8F3 /* PlayerActionWoo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerActionWoo.m; sourceTree = "<group>"; };
 		54EE34AC143CEB4A00734E58 /* BatteryFullCharge.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = BatteryFullCharge.wav; path = Resources/sounds/BatteryFullCharge.wav; sourceTree = "<group>"; };
 		54EE34AD143CEB4A00734E58 /* Error.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Error.wav; path = Resources/sounds/Error.wav; sourceTree = "<group>"; };
 		54EE34AE143CEB4A00734E58 /* LowBattery.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = LowBattery.wav; path = Resources/sounds/LowBattery.wav; sourceTree = "<group>"; };
@@ -1295,6 +1305,13 @@
 				547F09761428FA5400E5D920 /* SavePoint.m */,
 				54A11929144349D60008A823 /* TrackTimer.h */,
 				54A1192A144349D60008A823 /* TrackTimer.m */,
+				54E3787E1444A5470011D8F3 /* PlayerAction.h */,
+				54E378821444A6710011D8F3 /* PlayerActionFactory.h */,
+				54E378831444A6710011D8F3 /* PlayerActionFactory.m */,
+				54E3787F1444A5830011D8F3 /* PlayerActionKick.h */,
+				54E378801444A5830011D8F3 /* PlayerActionKick.m */,
+				54E378851444A77D0011D8F3 /* PlayerActionWoo.h */,
+				54E378861444A77D0011D8F3 /* PlayerActionWoo.m */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -1808,6 +1825,9 @@
 				547330A51440AEE20072796C /* NewParticle.m in Sources */,
 				547330A91441084F0072796C /* NewEmitter.m in Sources */,
 				54A1192B144349D60008A823 /* TrackTimer.m in Sources */,
+				54E378811444A5830011D8F3 /* PlayerActionKick.m in Sources */,
+				54E378841444A6710011D8F3 /* PlayerActionFactory.m in Sources */,
+				54E378871444A77D0011D8F3 /* PlayerActionWoo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

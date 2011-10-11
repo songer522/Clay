@@ -67,7 +67,6 @@
 {
     GameController *receiver = (GameController*)_inputBeganEvent.receiver;
     [receiver reactToTouchAt:_inputBeganEvent.touchLocation InputType:INPUT_TOUCH_HOLD_LONG];
-    NSLog(@"BEHOLD! IT'S THE LONG JUMP!");
     [self unschedule:@selector(reactLongHold)];
 }
 
