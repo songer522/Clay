@@ -115,7 +115,7 @@ static Camera *_sharedCamera = nil;
 
 -(void)moveTowardsTarget:(float)dt PlayerOnGround:(bool)onGround
 {
-    if (_target != nil && _trackingTarget) {
+    if (_target != nil) {
         
         float rate;
         if (onGround) {
@@ -133,11 +133,15 @@ static Camera *_sharedCamera = nil;
         float magnitude = distance * CAMERA_MOVE_TO_TARGET_SPEED * dt;;
         
         if (distance > 2.0f) {
-            _x += (magnitude * (dx/distance));
+            if (_trackingTarget) {
+                _x += (magnitude * (dx/distance));                
+            }
             _y += rate * (magnitude * (dy/distance));
             
         } else {
-            _x = position.x;
+            if (_trackingTarget) {
+                _x = position.x;                
+            }
             _y = position.y;
             
         }
@@ -149,6 +153,14 @@ static Camera *_sharedCamera = nil;
 {
     if (_target!=nil) {
         _x = _target.x;
+        _y = _target.y;
+        [self keepWithinBoundaries];        
+    }
+}
+
+-(void)snapToTargetY
+{
+    if (_target!=nil) {
         _y = _target.y;
         [self keepWithinBoundaries];        
     }

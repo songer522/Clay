@@ -92,6 +92,8 @@
     
     [_player setPositionAtX:_level.spawnPoint.x Y:_level.spawnPoint.y];
     
+    [_player reset];
+    
     [_savePoint setSavePoint:_level.spawnPoint Level:_level.name];
     
     [self initCamera];

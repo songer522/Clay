@@ -54,7 +54,7 @@
  <tileset firstgid="20" name="TL_Town_TileTextures_v7" tilewidth="64" tileheight="64">
   <image source="TL_Town_TileTextures_v7.png" width="1280" height="832"/>
  </tileset>
- <layer name="back-8" width="660" height="14">
+ <layer name="back-9" width="660" height="14">
   <properties>
    <property name="speedx" value="0"/>
    <property name="speedy" value="0"/>
@@ -63,13 +63,22 @@
    eJztw1ENgDAQBbAjQcJEIAIRiEAEIiZiIhCBCEQgAQ97v23SVlVtMgAAbEEAANiDAABwBAEA4AwCAMAVBACAHgQAgBEEAIA7CAAATxAAAN4gAAB8QQAAWJf5AAAAAACJHzGzW7Q=
   </data>
  </layer>
- <layer name="back-7" width="660" height="14">
+ <layer name="back-8" width="660" height="14">
   <properties>
    <property name="speedx" value=".4"/>
    <property name="speedy" value=".5"/>
   </properties>
   <data encoding="base64" compression="zlib">
    eJzt0tlNQmEUhVHKUHFoQASkAWcbEAVtQJwLcNbC3UXc5OT6r5V8T/vt5AwGAAAAAAAAAAAAAAAAAAAAAAAAAAD8Zxdpni7TVVqkZbpONw3sa2k9baRh2kxbaTvtNLBX3796r75/9V59f7v/9//d7VDpNq3SXbpPD+kxPaXnBvbdNEp7aZwmaZr206yBvfr+1Xv1/av36vvb/b//726HSq/pLb2nj/SZvtJ3+mlgP0iH6Sgdp5N0ms7SeQN79f2r9+r7V+/V97f7f//f3Q6VXiRJUu+DSr+SJKn3AQAA9NUfQ53LiA==
+  </data>
+ </layer>
+ <layer name="back-7" width="660" height="14">
+  <properties>
+   <property name="speedx" value="1.0"/>
+   <property name="speedy" value=".9"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt0TEKwCAMBVDvf8m2Z2i711kcoslSeA8CgsSfYGsAAAAAAAAAAAAAAAAAAAAAAAAA/3T0Ontdw3l2H+1Zzc3OWJGxkrO7c1b0fyreBQCIuns9vd7hPLuP9qzmZmesyFjJ2d05K/o/Fe8CAAAAAAAAAAAAAAAAQMYH5RBSRQ==
   </data>
  </layer>
  <layer name="back-6" width="660" height="14">

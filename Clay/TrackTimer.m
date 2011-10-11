@@ -13,7 +13,7 @@
 #import "Sprite.h"
 
 #define TRACK_TIMER_STARTX 10
-#define TRACK_TIMER_STARTY 292
+#define TRACK_TIMER_STARTY 288.5
 #define TRACK_TIMER_WIDTH 20
 
 @implementation TrackTimer

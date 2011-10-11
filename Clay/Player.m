@@ -207,10 +207,7 @@
 {
     _jumpHeight = type;
     
-    if (type == JUMP_MEDIUM) {
-        //_vy += -200.0f;
-    } else if(type == JUMP_HIGH) {
-        //_vy += -200.0f;
+    if(type == JUMP_HIGH) {
         self.hasGravity = true;
         _isHighJump = true;
     }
@@ -283,6 +280,14 @@
     hitPoints = 4;
     [_battery reset];
     [_speed reset];
+    _isJumping = false;
+    _isTripping = false;
+    _isDead = false;
+    self.hasGravity = true;
+    _firstFrameJumping = false;
+    _isHighJump = false;
+    [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"runningAnim"];
+
 }
 
 

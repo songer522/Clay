@@ -48,6 +48,7 @@
 -(void)setPosition:(CGPoint)point;
 -(void)moveTowardsTarget:(float)dt PlayerOnGround:(bool)onGround;
 -(void)snapToTarget;
+-(void)snapToTargetY;
 
 #pragma mark - private methods
 -(void)keepWithinBoundaries;

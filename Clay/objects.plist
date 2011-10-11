@@ -162,13 +162,13 @@
 		<key>boundingBox</key>
 		<dict>
 			<key>x</key>
-			<integer>45</integer>
+			<integer>30</integer>
 			<key>y</key>
-			<integer>2</integer>
+			<integer>-10</integer>
 			<key>width</key>
-			<integer>40</integer>
+			<integer>20</integer>
 			<key>height</key>
-			<integer>40</integer>
+			<integer>30</integer>
 		</dict>
 		<key>imageName</key>
 		<string>hen_idle_1.png</string>
@@ -201,7 +201,7 @@
 			<key>y</key>
 			<integer>2</integer>
 			<key>width</key>
-			<integer>45</integer>
+			<integer>35</integer>
 			<key>height</key>
 			<integer>85</integer>
 		</dict>

@@ -13,6 +13,7 @@
 #import "GameLayer.h"
 #import "GameController.h"
 #import "PListLoader.h"
+#import "Player.h"
 #import "SoundEngine.h"
 #import "Camera.h"
 #import "HudLayer.h"
@@ -98,6 +99,7 @@ static ComicManager *_shared = nil;
                 [[SoundEngine shared] cueFadeOut];
                 _gameLayer.gameController.isInputEnabled = false;
                 [Camera sharedCamera].trackingTarget = false;
+                [_gameLayer.player setHasGravity:true];
                 [[_gameLayer getHud] fadeOut];
                 break;
             case COMIC_PHASE_PLAY_VIDEO:
