@@ -83,7 +83,6 @@ typedef enum {
 @property(readonly,nonatomic,assign) bool collided;
 @property(nonatomic,assign) bool hasGravity;
 @property(nonatomic,assign) bool isAggressive;
-@property(nonatomic,retain) NSString *originalAnimation;
 
 
 +(id) instance;
@@ -113,6 +112,7 @@ typedef enum {
 
 -(void) setCollideBehavior:(NSString*)behavior;
 -(void) setPlayerEffect:(NSString*)effect;
+-(void) setOriginalAnimation:(NSString*)animation;
 
 -(PlayerEffect) startCollision;
 

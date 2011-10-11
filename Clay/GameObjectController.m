@@ -42,11 +42,13 @@
     Sprite *gameSprite = [Sprite spriteWithFile:[gameobjectSettings objectForKey:@"imageName"]];
     [gameObject setSprite:gameSprite];
     
-    NSString *animation = [gameobjectSettings objectForKey:@"animationName"];
-    if (animation && [animation compare:@""] != NSOrderedSame) {
+    NSString *animation = [NSString stringWithString:[gameobjectSettings objectForKey:@"animationName"]];
+    if (animation && [animation compare:@"none"] != NSOrderedSame) {
         [[AnimationController sharedController] replaceSprite:gameSprite withAnimationNamed:animation];
+        [gameObject setOriginalAnimation:animation];
+    } else {
+        [gameObject setOriginalAnimation:@"none"];
     }
-    gameObject.originalAnimation = [[NSString stringWithString:animation] retain];
     
     [gameObject setOffsetForX:[[gameobjectSettings objectForKey:@"offsetx"] floatValue] Y:[[gameobjectSettings objectForKey:@"offsety"] floatValue]];
     

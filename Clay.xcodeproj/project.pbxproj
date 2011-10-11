@@ -36,6 +36,10 @@
 		54282F891444D28A0074BA3D /* cow_died-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54282F861444D28A0074BA3D /* cow_died-hd.png */; };
 		54282F8A1444D28A0074BA3D /* cow_died.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54282F871444D28A0074BA3D /* cow_died.plist */; };
 		54282F901444E7520074BA3D /* manure.png in Resources */ = {isa = PBXBuildFile; fileRef = 54282F8F1444E7520074BA3D /* manure.png */; };
+		54282F961444F5E50074BA3D /* hen_idle-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54282F921444F5E50074BA3D /* hen_idle-hd.plist */; };
+		54282F971444F5E50074BA3D /* hen_idle-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54282F931444F5E50074BA3D /* hen_idle-hd.png */; };
+		54282F981444F5E50074BA3D /* hen_idle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54282F941444F5E50074BA3D /* hen_idle.plist */; };
+		54282F991444F5E50074BA3D /* hen_idle.png in Resources */ = {isa = PBXBuildFile; fileRef = 54282F951444F5E50074BA3D /* hen_idle.png */; };
 		54297897140C1F8900B3FFF4 /* GameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54297896140C1F8900B3FFF4 /* GameController.m */; };
 		5429789B140C233E00B3FFF4 /* InputController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5429789A140C233E00B3FFF4 /* InputController.m */; };
 		5429789E140C268100B3FFF4 /* InputEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5429789D140C268100B3FFF4 /* InputEvent.m */; };
@@ -323,6 +327,10 @@
 		54282F861444D28A0074BA3D /* cow_died-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cow_died-hd.png"; sourceTree = "<group>"; };
 		54282F871444D28A0074BA3D /* cow_died.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cow_died.plist; sourceTree = "<group>"; };
 		54282F8F1444E7520074BA3D /* manure.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manure.png; sourceTree = "<group>"; };
+		54282F921444F5E50074BA3D /* hen_idle-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "hen_idle-hd.plist"; sourceTree = "<group>"; };
+		54282F931444F5E50074BA3D /* hen_idle-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hen_idle-hd.png"; sourceTree = "<group>"; };
+		54282F941444F5E50074BA3D /* hen_idle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = hen_idle.plist; sourceTree = "<group>"; };
+		54282F951444F5E50074BA3D /* hen_idle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hen_idle.png; sourceTree = "<group>"; };
 		54297895140C1F8900B3FFF4 /* GameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameController.h; sourceTree = "<group>"; };
 		54297896140C1F8900B3FFF4 /* GameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameController.m; sourceTree = "<group>"; };
 		54297899140C233E00B3FFF4 /* InputController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputController.h; sourceTree = "<group>"; };
@@ -1467,6 +1475,10 @@
 		54BE176F141EBB7200A3D773 /* objects */ = {
 			isa = PBXGroup;
 			children = (
+				54282F921444F5E50074BA3D /* hen_idle-hd.plist */,
+				54282F931444F5E50074BA3D /* hen_idle-hd.png */,
+				54282F941444F5E50074BA3D /* hen_idle.plist */,
+				54282F951444F5E50074BA3D /* hen_idle.png */,
 				54282F8F1444E7520074BA3D /* manure.png */,
 				54282F851444D28A0074BA3D /* cow_died-hd.plist */,
 				54282F861444D28A0074BA3D /* cow_died-hd.png */,
@@ -1694,6 +1706,10 @@
 				54282F891444D28A0074BA3D /* cow_died-hd.png in Resources */,
 				54282F8A1444D28A0074BA3D /* cow_died.plist in Resources */,
 				54282F901444E7520074BA3D /* manure.png in Resources */,
+				54282F961444F5E50074BA3D /* hen_idle-hd.plist in Resources */,
+				54282F971444F5E50074BA3D /* hen_idle-hd.png in Resources */,
+				54282F981444F5E50074BA3D /* hen_idle.plist in Resources */,
+				54282F991444F5E50074BA3D /* hen_idle.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

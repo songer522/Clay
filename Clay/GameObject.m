@@ -26,7 +26,7 @@
 @synthesize collided = _collided;
 @synthesize hasGravity = _hasGravity;
 @synthesize isAggressive = _isAggressive;
-@synthesize originalAnimation = _originalAnimation;
+
 
 
 + (id) objectWithSprite:(Sprite*)sprite
@@ -134,8 +134,9 @@
 //called by player once it decides that the hen is actually kicked.
 -(void)special_kickHen
 {
+    _collided = false;  //want it to remain aggressive
     float magnitude = 555.0f;
-    _angle = -30;
+    _angle = -20; //old was -30
     _rotationAmount = 75;
     _vx = magnitude * cosf((_angle * 3.14159)/180.0f);
     _vy = magnitude * sinf((_angle * 3.14159)/180.0f);
@@ -203,7 +204,9 @@
     _vx = 0;
     _vy = 0;
     
-    [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:_originalAnimation];
+    if ([_originalAnimation compare:@"none"] != NSOrderedSame) {
+        [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:_originalAnimation];        
+    }
     
     [self setPosition:_startingPosition];
     [self getCCSprite].visible = true;
@@ -246,6 +249,11 @@
     } else if([effect compare:@"actionOrCollide"] == NSOrderedSame) {
         _playerEffect = PLAYER_EFFECT_ACTION_OR_COLLIDE;
     }
+}
+
+-(void) setOriginalAnimation:(NSString*)animation
+{
+    _originalAnimation = [NSString stringWithString:animation];
 }
 
 -(void)dealloc
