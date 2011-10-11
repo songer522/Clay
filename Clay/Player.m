@@ -280,6 +280,7 @@
     hitPoints = 4;
     [_battery reset];
     [_speed reset];
+    [_speed start];
     _isJumping = false;
     _isTripping = false;
     _isDead = false;
