@@ -12,7 +12,8 @@
 @interface PlayerActionWoo : NSObject <PlayerAction>
 {
     Player *_parent;
-    
+    bool _inAction;
+    float _duration;
 }
 
 +(id)instance;

@@ -37,6 +37,7 @@
 -(void)setAlpha:(float)alpha;
 -(void)setFrame:(int)frame;
 -(int)getTotalFramesCount;
+-(void)replaceSpriteWithFile:(NSString*)filename;
 -(Animation*)getAnimation;
 -(void)setAnimation:(Animation*)animation Delay:(float)delay;
 -(void)setAnimation:(Animation*)animation Delay:(float)delay StartingFrameNumber:(int)frameNumber;

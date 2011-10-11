@@ -11,11 +11,15 @@
 
 @interface PlayerActionKick : NSObject <PlayerAction>
 {
-    Player *_parent;    
+    Player *_parent;
+    bool _inAction;
+    float _duration;
 }
 
 +(id)instance;
+-(bool)inAction;
 -(void)startAction;
+-(void)endAction;
 -(void)update:(float)dt;
 
 -(void)setParent:(Player*)player;

@@ -164,11 +164,11 @@
 			<key>x</key>
 			<integer>30</integer>
 			<key>y</key>
-			<integer>-10</integer>
+			<integer>0</integer>
 			<key>width</key>
 			<integer>20</integer>
 			<key>height</key>
-			<integer>30</integer>
+			<integer>25</integer>
 		</dict>
 		<key>imageName</key>
 		<string>hen_idle_1.png</string>
@@ -180,7 +180,7 @@
 		<key>playerEffect</key>
 		<string>collide</string>
 		<key>collideBehavior</key>
-		<string>falls</string>
+		<string>cowCollapse</string>
 		<key>offsetx</key>
 		<integer>0</integer>
 		<key>offsety</key>
@@ -193,17 +193,17 @@
 			<integer>0</integer>
 		</dict>
 		<key>animationName</key>
-		<string></string>
+		<string>cowIdle</string>
 		<key>boundingBox</key>
 		<dict>
 			<key>x</key>
-			<integer>70</integer>
+			<integer>90</integer>
 			<key>y</key>
 			<integer>2</integer>
 			<key>width</key>
-			<integer>35</integer>
+			<integer>42</integer>
 			<key>height</key>
-			<integer>85</integer>
+			<integer>57</integer>
 		</dict>
 		<key>imageName</key>
 		<string>cow.png</string>

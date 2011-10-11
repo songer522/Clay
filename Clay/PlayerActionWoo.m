@@ -27,12 +27,27 @@
 
 -(void)startAction
 {
-    NSLog(@"Woo!");
+    if (!_inAction) {
+        NSLog(@"Woo!");
+        _inAction = true;
+        _duration = 1.0f;        
+    }
+}
+
+-(void)endAction
+{
+    _inAction = false;
+    NSLog(@"End woo.");
 }
 
 -(void)update:(float)dt
 {
-    
+    if (_inAction) {
+        _duration -= dt;
+        if (_duration <= 0.0f) {
+            [self endAction];
+        }
+    }    
 }
 
 -(void)setParent:(Player*)player
@@ -44,6 +59,12 @@
 {
     return _parent;
 }
+
+-(bool)inAction
+{
+    return _inAction;
+}
+
 
 
 @end

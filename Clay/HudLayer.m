@@ -20,6 +20,11 @@
 #define HUD_LAYER_SPRINT_X 503
 #define HUD_LAYER_BUTTON_SIZE 55
 
+//these only here because some positions got screwed up and didn't have time to fix them properly
+//(keep in mind, the button hitboxes test against the above constants
+#define HUD_LAYER_OFFSET_X -51 //53,32
+#define HUD_LAYER_OFFSET_Y -31
+
 @implementation HudLayer
 
 +(id)instance
@@ -38,10 +43,9 @@
         [[[LayerManager sharedLayers] currentScene] addChild:self];
         
         [[LayerManager sharedLayers] setWorkingLayer:self];
-        
-        _buttonJump = [self initButton:@"UI_Button_Jumping.png" Position:ccp(HUD_LAYER_JUMP_X,HUD_LAYER_BUTTON_Y)];
-        _buttonAction = [self initButton:@"UI_Button_Kicking.png" Position:ccp(HUD_LAYER_ACTION_X,HUD_LAYER_BUTTON_Y)];
-        _buttonSprint = [self initButton:@"UI_Button_TurboBoost.png" Position:ccp(HUD_LAYER_SPRINT_X,HUD_LAYER_BUTTON_Y)];
+        _buttonJump = [self initButton:@"UI_Button_Jumping.png" Position:[[Camera sharedCamera] convertToScreenXY:CGPointMake(HUD_LAYER_JUMP_X - HUD_LAYER_OFFSET_X, HUD_LAYER_BUTTON_Y - HUD_LAYER_OFFSET_Y)]];
+        _buttonAction = [self initButton:@"UI_Button_Kicking.png" Position:[[Camera sharedCamera] convertToScreenXY:CGPointMake(HUD_LAYER_ACTION_X - HUD_LAYER_OFFSET_X, HUD_LAYER_BUTTON_Y - HUD_LAYER_OFFSET_Y)]];
+        _buttonSprint = [self initButton:@"UI_Button_TurboBoost.png" Position:[[Camera sharedCamera] convertToScreenXY:CGPointMake(HUD_LAYER_SPRINT_X - HUD_LAYER_OFFSET_X, HUD_LAYER_BUTTON_Y - HUD_LAYER_OFFSET_Y)]];
 
         
         _trackTimer = [TrackTimer instance];

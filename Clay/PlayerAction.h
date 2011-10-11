@@ -12,7 +12,9 @@
 @protocol PlayerAction
 
 +(id)instance;
+-(bool)inAction;
 -(void)startAction;
+-(void)endAction;
 -(void)update:(float)dt;
 -(void)setParent:(Player*)player;
 -(Player*)getParent;

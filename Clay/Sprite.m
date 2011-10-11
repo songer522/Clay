@@ -72,6 +72,11 @@
     sprite_cc.position = ccp(position.x,position.y);
 }
 
+-(void)replaceSpriteWithFile:(NSString*)filename
+{
+    //sprite_cc setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
+}
+
 -(CGPoint) getPosition
 {
     return CGPointMake(_x, _y);

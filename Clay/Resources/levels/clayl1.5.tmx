@@ -27,7 +27,7 @@
   </tile>
  </tileset>
  <tileset firstgid="90" name="hurdle" tilewidth="64" tileheight="64">
-  <image source="TrackLapse_Icon.png" width="448" height="64"/>
+  <image source="TrackLapse_Icon.png" width="576" height="64"/>
   <tile id="0">
    <properties>
     <property name="obstacle" value="hurdle"/>
@@ -40,7 +40,7 @@
   </tile>
   <tile id="2">
    <properties>
-    <property name="obstacle" value="hen"/>
+    <property name="special" value="spawnpoint"/>
    </properties>
   </tile>
   <tile id="3">
@@ -50,7 +50,7 @@
   </tile>
   <tile id="4">
    <properties>
-    <property name="obstacle" value="cow"/>
+    <property name="special" value="jimAppearance"/>
    </properties>
   </tile>
   <tile id="5">
@@ -61,6 +61,16 @@
   <tile id="6">
    <properties>
     <property name="obstacle" value="sandpit"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="obstacle" value="hen"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="obstacle" value="cow"/>
    </properties>
   </tile>
  </tileset>
@@ -151,7 +161,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt10sOgyAQANCe09rW+5+i6bYBQUT55L0NRo0MM6jweAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwgyXjnjVx/X3y+bk+kfNrpI3Zi3dPyVi2wr5CXhWfdaVU/nOcmTexeVLTdkMfI4jVKVW/GnNkVnu5u2NuE/bL/dY6CE7J+a/UXLMQl8rzkmhzjbJuutuRPHon+nS0LrPWsbdxlX6ralsixz37j3OUuENCsY88nlmV7mOJ28udvLaTu+6mX/ax/cjNs3pcwz52fPaxhDxbBwAAAAAAAAAAAAAAAAAAAEATX7+AFQA=
+   eJzt10sSgyAMAFDPadup9z9Fp4tuOiqIUT7z3kZXEBJQMk0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAjGCuHUCGWjH+z1sSxxIQx88rcKwrPQPGOFPzd8D8KcsNc/Rgq06p+kXskVHt5e6Ovc26b+6X2kFwSs5/pYc70QhSeZ4Tz1y93JvudiSPzkSbjtZl1Dq2tq7Sb1W0eeO9ZRF9dyvWYu95PaMq7WPZtpc7ea0n995Nu/Sx7cjNs3pcQx/bP30sax61AwAAAAAAAAAAAAAAAAAAAKCKD+MPEs8=
   </data>
  </layer>
  <layer name="meta" width="2000" height="14" opacity="0.85">

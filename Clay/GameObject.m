@@ -126,6 +126,8 @@
         _vy = magnitude * sinf((_angle * 3.14159)/180.0f);
         [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"henKicked"];
          
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_COW_COLLAPSE) {
+        [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"cowDied"];        
     }
     
     return _playerEffect;
@@ -212,6 +214,8 @@
         _collideBehavior = COLLISION_BEHAVIOR_HEN_KICKED;
     } else if([behavior compare:@"anim"] == NSOrderedSame) {
         _collideBehavior = COLLISION_BEHAVIOR_PLAY_ANIMATION;
+    } else if([behavior compare:@"cowCollapse"] == NSOrderedSame) {
+        _collideBehavior = COLLISION_BEHAVIOR_COW_COLLAPSE;
     }
 }
 

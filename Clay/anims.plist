@@ -155,5 +155,39 @@
 		<key>delay</key>
 		<string>0.1</string>
 	</dict>
+	<key>cowIdle</key>
+	<dict>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>group</key>
+		<string>Obstacle</string>
+		<key>spritesheetPlist</key>
+		<string>cow_idle</string>
+		<key>sequencePrefix</key>
+		<string>cow_idle_</string>
+		<key>animationFrames</key>
+		<string>1,1,2,1,2</string>
+		<key>delay</key>
+		<string>0.15</string>
+	</dict>
+	<key>cowDied</key>
+	<dict>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>looping</key>
+		<string>false</string>
+		<key>group</key>
+		<string>Obstacle</string>
+		<key>spritesheetPlist</key>
+		<string>cow_died</string>
+		<key>sequencePrefix</key>
+		<string>cow_died_</string>
+		<key>animationFrames</key>
+		<string>1,2</string>
+		<key>delay</key>
+		<string>0.075</string>
+	</dict>
 </dict>
 </plist>

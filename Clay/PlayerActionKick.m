@@ -20,6 +20,7 @@
     self = [super init];
     if (self) {
         // Initialization code here.
+        _inAction = false;
     }
     
     return self;
@@ -27,12 +28,33 @@
 
 -(void)startAction
 {
-    NSLog(@"Kick!");
+    if (!_inAction) {
+        NSLog(@"Kick!");
+        _inAction = true;
+        _duration = 1.0f;        
+    }
 }
 
 -(void)update:(float)dt
 {
+    if (_inAction) {
+        _duration -= dt;
+        if (_duration <= 0.0f) {
+            [self endAction];
+        }
+    }
     
+}
+
+-(bool)inAction
+{
+    return _inAction;
+}
+
+-(void)endAction
+{
+    _inAction = false;
+    NSLog(@"End kick.");
 }
 
 -(void)setParent:(Player*)player
