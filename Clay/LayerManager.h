@@ -32,7 +32,10 @@
 -(void)setCurrentScene:(CCScene*)scene;
 
 -(void)setScene:(CCScene*)scene ForKey:(NSString*)key;
--(CCScene*)getSceneForKey:(NSString*)key;
+-(id)getSceneForKey:(NSString*)key;
+
+-(void)pushSceneNamed:(NSString*)pushScene;
+-(void)popAndPushSceneNamed:(NSString*)pushScene;
 
 
 @end

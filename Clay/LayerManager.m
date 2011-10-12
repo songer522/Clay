@@ -28,6 +28,7 @@ static LayerManager *_sharedLayers = nil;
     self = [super init];
     if (self) {
         // Initialization code here.
+        _scenes = [[NSMutableDictionary alloc] initWithCapacity:5];
     }
     
     return self;
@@ -92,10 +93,22 @@ static LayerManager *_sharedLayers = nil;
     [_scenes setObject:scene forKey:key];
 }
 
--(CCScene*)getSceneForKey:(NSString*)key
+-(id)getSceneForKey:(NSString*)key
 {
-    CCScene *scene = [_scenes objectForKey:key];
-    return scene;
+    return [_scenes objectForKey:key];
+}
+
+-(void)pushSceneNamed:(NSString*)scene
+{
+    id pushScene = [_scenes objectForKey:scene];
+    [[CCDirector sharedDirector] pushScene:pushScene];
+    //[pushScene scheduleUpdate];
+}
+
+-(void)popAndPushSceneNamed:(NSString*)scene
+{
+    //[[CCDirector sharedDirector] popScene];
+    [self pushSceneNamed:scene];
 }
 
 @end

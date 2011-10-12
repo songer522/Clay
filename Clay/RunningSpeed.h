@@ -61,6 +61,7 @@
 -(void)startJump;
 -(void)slowDown;
 -(void)endTurbo;
+-(void)startKick;
 -(void)applyFriction:(float)friction Dt:(float)dt;
 -(void)landFromHighJump;
 -(void)update:(float)dt;

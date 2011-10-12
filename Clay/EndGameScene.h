@@ -27,6 +27,7 @@ typedef enum {
     CCScene *_scene;
     
     float _alpha;
+    bool _initialized;
     
     EndGameState _state;
     

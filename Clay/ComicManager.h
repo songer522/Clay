@@ -34,6 +34,8 @@ typedef enum {
     
     ComicPhase _phase;
     
+    bool _showEndGame;
+    
     NSString *_videoFileName;
 }
 
@@ -53,6 +55,8 @@ typedef enum {
 -(void)switchToPhase:(ComicPhase)phase;
 
 -(void)finishedAction;
+
+-(void)endTheGame;
 
 @end
  

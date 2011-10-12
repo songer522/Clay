@@ -17,6 +17,7 @@
 #import "SoundEngine.h"
 #import "Camera.h"
 #import "HudLayer.h"
+#import "EndGameScene.h"
 
 @implementation ComicManager
 
@@ -59,6 +60,7 @@ static ComicManager *_shared = nil;
     _comicLayer.parent = self;
     
     _isActive = false;
+    _showEndGame = false;
     _loadNextLevel = false;
     
     _videoList = [[NSDictionary alloc] initWithDictionary:[PListLoader loadPlistWithName:@"comics"]];    
@@ -80,8 +82,7 @@ static ComicManager *_shared = nil;
         
         _videoFileName = result;
         if ([_videoFileName compare:@"endGame"] == NSOrderedSame) {
-            
-            
+            _showEndGame = true;            
         }
         _isActive = true;
         
@@ -108,9 +109,13 @@ static ComicManager *_shared = nil;
                 [[_gameLayer getHud] fadeOut];
                 break;
             case COMIC_PHASE_PLAY_VIDEO:
-                _gameLayer.visible = false;
-                [_videoPlayer playMovie:_videoFileName];
-                [[CCDirector sharedDirector] stopAnimation];
+                if (_showEndGame) {
+                    [self endTheGame];
+                } else {
+                    _gameLayer.visible = false;
+                    [_videoPlayer playMovie:_videoFileName];
+                    [[CCDirector sharedDirector] stopAnimation];
+                }
                 break;
             case COMIC_PHASE_BARS_OUT:
                 if(_loadNextLevel) { [[LevelManager shared] loadNextLevel]; }
@@ -157,6 +162,13 @@ static ComicManager *_shared = nil;
                 break;
         }        
     }
+}
+
+-(void)endTheGame
+{
+    CCScene *endGame = [[LayerManager sharedLayers] getSceneForKey:@"endGame"];
+    
+    [[CCDirector sharedDirector] pushScene:endGame];
 }
 
 -(void)dealloc

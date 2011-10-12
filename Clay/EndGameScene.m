@@ -11,6 +11,8 @@
 #import "ComicLayer.h"
 #import "TrackTimer.h"
 #import "Sprite.h"
+#import "GameLayer.h"
+#import "HudLayer.h"
 
 @implementation EndGameScene
 
@@ -56,8 +58,9 @@
         
         
         [_endGame setAlpha:0.0f];
-        [_timer setTime:374.85];
         [_timer setAlpha:0.0f];
+        
+        _initialized = false;
         
         [self scheduleUpdate];
         self.isTouchEnabled = true;
@@ -86,6 +89,13 @@
 {
     float rate = 2.0f * dt;
     
+    if (!_initialized) {
+        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+        float _finalTime = [[[gameLayer getHud] getTrackTimer] getTime];
+        [_timer setTime:_finalTime];
+        _initialized = true;
+    }
+    
     switch (_state) {
         case END_GAME_TRANSITION_IN:
             _alpha += rate;
@@ -100,7 +110,8 @@
             _alpha -= rate;
             if (_alpha <= 0.0f) {
                 _alpha = 0.0f;
-                _state = END_GAME_TRANSITION_IDLE;
+                [[LayerManager sharedLayers] popAndPushSceneNamed:@"menu"];
+                [self unscheduleUpdate];
             }
             [_endGame setAlpha:_alpha];
             [_timer setAlpha:_alpha];

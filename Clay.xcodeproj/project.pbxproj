@@ -279,6 +279,10 @@
 		54EE34B1143CEB4A00734E58 /* Error.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54EE34AD143CEB4A00734E58 /* Error.wav */; };
 		54EE34B2143CEB4A00734E58 /* LowBattery.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54EE34AE143CEB4A00734E58 /* LowBattery.wav */; };
 		54EE34B3143CEB4A00734E58 /* Pause.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54EE34AF143CEB4A00734E58 /* Pause.wav */; };
+		54F11C0C144630AC003CF2CF /* character_kicking-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54F11C08144630AC003CF2CF /* character_kicking-hd.plist */; };
+		54F11C0D144630AC003CF2CF /* character_kicking-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54F11C09144630AC003CF2CF /* character_kicking-hd.png */; };
+		54F11C0E144630AC003CF2CF /* character_kicking.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54F11C0A144630AC003CF2CF /* character_kicking.plist */; };
+		54F11C0F144630AC003CF2CF /* character_kicking.png in Resources */ = {isa = PBXBuildFile; fileRef = 54F11C0B144630AC003CF2CF /* character_kicking.png */; };
 		54F7F57F143CD0FD004EC10B /* 7 Segment.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 54F7F57E143CD0FD004EC10B /* 7 Segment.ttf */; };
 		54F8A187143A09FC00FCBAAB /* stars_voice.caf in Resources */ = {isa = PBXBuildFile; fileRef = 54F8A186143A09FC00FCBAAB /* stars_voice.caf */; };
 		54FBA2331430CA5D0010A91A /* VideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 54FBA2321430CA5D0010A91A /* VideoPlayer.m */; };
@@ -728,6 +732,10 @@
 		54EE34AD143CEB4A00734E58 /* Error.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Error.wav; path = Resources/sounds/Error.wav; sourceTree = "<group>"; };
 		54EE34AE143CEB4A00734E58 /* LowBattery.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = LowBattery.wav; path = Resources/sounds/LowBattery.wav; sourceTree = "<group>"; };
 		54EE34AF143CEB4A00734E58 /* Pause.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Pause.wav; path = Resources/sounds/Pause.wav; sourceTree = "<group>"; };
+		54F11C08144630AC003CF2CF /* character_kicking-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "character_kicking-hd.plist"; sourceTree = "<group>"; };
+		54F11C09144630AC003CF2CF /* character_kicking-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "character_kicking-hd.png"; sourceTree = "<group>"; };
+		54F11C0A144630AC003CF2CF /* character_kicking.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = character_kicking.plist; sourceTree = "<group>"; };
+		54F11C0B144630AC003CF2CF /* character_kicking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = character_kicking.png; sourceTree = "<group>"; };
 		54F7F57E143CD0FD004EC10B /* 7 Segment.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "7 Segment.ttf"; path = "Resources/fonts/7 Segment.ttf"; sourceTree = "<group>"; };
 		54F8A186143A09FC00FCBAAB /* stars_voice.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = stars_voice.caf; path = Resources/music/stars_voice.caf; sourceTree = "<group>"; };
 		54FBA2311430CA5D0010A91A /* VideoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayer.h; sourceTree = "<group>"; };
@@ -1267,6 +1275,8 @@
 				54484E3D140449B700D0D7D9 /* GameLayer.m */,
 				543250BA143CA40300F1F177 /* HudLayer.h */,
 				543250BB143CA40300F1F177 /* HudLayer.m */,
+				5416A1B71419632E00648B6A /* LayerManager.h */,
+				5416A1B81419632E00648B6A /* LayerManager.m */,
 				5441BECD143F8AEC003224FF /* MainMenuScene.h */,
 				5441BECE143F8AEC003224FF /* MainMenuScene.m */,
 				5443303D142A39F80008898E /* PauseMenuScreen.h */,
@@ -1304,8 +1314,6 @@
 				5429789A140C233E00B3FFF4 /* InputController.m */,
 				5429789C140C268100B3FFF4 /* InputEvent.h */,
 				5429789D140C268100B3FFF4 /* InputEvent.m */,
-				5416A1B71419632E00648B6A /* LayerManager.h */,
-				5416A1B81419632E00648B6A /* LayerManager.m */,
 				5499691D1416820000CB7800 /* Level.h */,
 				5499691E1416820000CB7800 /* Level.m */,
 				542361AC14228E5E0086E533 /* LevelManager.h */,
@@ -1443,6 +1451,10 @@
 		54968B26141E554400A4D2DC /* Tim */ = {
 			isa = PBXGroup;
 			children = (
+				54F11C08144630AC003CF2CF /* character_kicking-hd.plist */,
+				54F11C09144630AC003CF2CF /* character_kicking-hd.png */,
+				54F11C0A144630AC003CF2CF /* character_kicking.plist */,
+				54F11C0B144630AC003CF2CF /* character_kicking.png */,
 				544D50DC1445E72700BED4CE /* character_falling-hd.plist */,
 				544D50DD1445E72700BED4CE /* character_falling-hd.png */,
 				544D50DE1445E72700BED4CE /* character_falling.plist */,
@@ -1748,6 +1760,10 @@
 				544D50E11445E72700BED4CE /* character_falling-hd.png in Resources */,
 				544D50E21445E72700BED4CE /* character_falling.plist in Resources */,
 				544D50E31445E72700BED4CE /* character_falling.png in Resources */,
+				54F11C0C144630AC003CF2CF /* character_kicking-hd.plist in Resources */,
+				54F11C0D144630AC003CF2CF /* character_kicking-hd.png in Resources */,
+				54F11C0E144630AC003CF2CF /* character_kicking.plist in Resources */,
+				54F11C0F144630AC003CF2CF /* character_kicking.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

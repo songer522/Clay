@@ -17,6 +17,7 @@
                         //it can trigger will be triggered during this time (a kick will actually kick,
                         //a "woo" will scare the background, etc.
     float _duration;
+    bool _madeNoise;
 }
 
 @end

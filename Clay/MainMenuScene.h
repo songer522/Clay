@@ -37,9 +37,14 @@ typedef enum {
     float _totalTime;
     float _time;
     
+    bool _reinit;
+    
 }
 +(CCScene *) scene;
 
+-(void)switchToTransitionIn;
 -(void)switchToTransitionOut;
+
+-(void)reinit;
 
 @end

@@ -317,12 +317,15 @@
 
 -(void)startThirdAction
 {
-    if (!_isJumping) {        
+    if (!_isJumping && !_isInMidAir) {        
         [_thirdAction startAction];
     }
 }
 
-
+-(void)setVelocity:(float)velocity
+{
+    _speed.velocity = velocity;
+}
 
 -(void)resetSprite:(CCLayer*)layer
 {
@@ -334,6 +337,11 @@
 -(void)rechargeBattery
 {
     [_battery startRecharge];
+}
+
+-(void)startKick
+{
+    [_speed startKick];
 }
 
 

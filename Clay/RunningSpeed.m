@@ -144,6 +144,12 @@
     }
 }
 
+-(void)startKick
+{
+    _velocity *= 0.4f;
+    _acceleration *= 0.4f;
+}
+
 -(void)update:(float)dt
 {
     if (!_isStopped) {

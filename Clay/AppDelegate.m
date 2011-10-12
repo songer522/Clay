@@ -138,8 +138,7 @@
     [ComicManager shared].gameLayer = [[LayerManager sharedLayers] currentLayer];
 
     
-	[[CCDirector sharedDirector] runWithScene: gameScene];
-    
+	
     
     [_hudLayer reset];
 
@@ -147,12 +146,13 @@
     _mainMenuScene = [MainMenuScene scene];
     [[LayerManager sharedLayers] setScene:_mainMenuScene ForKey:@"menu"];
     [[LayerManager sharedLayers] setWorkingScene:_mainMenuScene];
-    [[CCDirector sharedDirector] pushScene:_mainMenuScene];
     [[LayerManager sharedLayers] forgetWorkingScene];
+
+    [[CCDirector sharedDirector] runWithScene:_mainMenuScene]; 
+    
     
     _endGameScene = [EndGameScene scene];
     [[LayerManager sharedLayers] setScene:_endGameScene ForKey:@"endGame"];
-    [[CCDirector sharedDirector] pushScene:_endGameScene];
     
     /*
     int x;

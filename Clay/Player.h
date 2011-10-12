@@ -73,6 +73,8 @@ typedef enum {
 
 -(void)endTurbo;
 
+-(void)startKick;
+
 -(void)startThirdAction;
 
 -(void)startCollision:(PlayerEffect)effect Obstacle:(GameObject*)obstacle;
@@ -83,6 +85,7 @@ typedef enum {
 -(void)resetSprite:(CCLayer*)layer;
 -(void)rechargeBattery;
 
+-(void)setVelocity:(float)velocity;
 
 -(void)private_StartPlayerCollision;
 

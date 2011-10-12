@@ -39,12 +39,15 @@
         
         _trackBackground = [Sprite spriteWithFile:@"Menu_Background.png"];
         [_trackBackground getCCSprite].position = ccp(0,0);
+        [_trackBackground setAlpha:1.0f];
         
         _rain1 = [Sprite spriteWithFile:@"Menu_Rain_01.png"];
         [_rain1 getCCSprite].position = ccp(0, 0);
+        [_rain1 setAlpha:0.0f];
         
         _rain2 = [Sprite spriteWithFile:@"Menu_Rain_02.png"];
         [_rain2 getCCSprite].position = ccp(0, 0);
+        [_rain2 setAlpha:0.0f];
         
         _logo = [Sprite spriteWithFile:@"Menu_Logo.png"];
         [_logo setAlpha:0.0f];
@@ -74,13 +77,13 @@
         _transition = MAINMENU_TRANSITION_IN;
         
         
-        
+        _reinit = false;
         
         [self scheduleUpdate];
         self.isTouchEnabled = YES;
         
         _comics = [ComicLayer instance];
-
+        
     }
     
     return self;
@@ -101,12 +104,41 @@
     }
 }
 
+-(void)switchToTransitionIn
+{
+    _time = 0.0f;
+    _totalTime = 0.0f;
+    
+    _transition = MAINMENU_TRANSITION_IN;
+    [[_playButtonOrange getCCSprite] setVisible:YES];
+    
+    [_trackBackground setAlpha:1.0f];
+    
+    [_rain1 setAlpha:0.0f];
+    
+    [_rain2 setAlpha:0.0f];
+    
+    [_logo setAlpha:0.0f];
+
+    [_playButtonBlue setAlpha:0.0f];
+    [_playButtonOrange setAlpha:0.0f];
+    
+    [_copyright setAlpha:0.0f];
+}
+
+
 -(void)switchToTransitionOut
 {
     _time = 0.0f;
     _transition = MAINMENU_TRANSITION_OUT;
     [_playButtonOrange setAlpha:0.0f];
     [[_playButtonOrange getCCSprite] setVisible:YES];
+}
+
+-(void)reinit
+{
+    [self switchToTransitionIn];    
+    _reinit = false;
 }
 
 -(void)update:(ccTime)dt
@@ -147,7 +179,9 @@
             [_playButtonOrange setAlpha:(MAX(1.0f - 8.0f * _time, 0.0f))];
             [_playButtonBlue setAlpha:(MIN(1.0f,1.0f - 1.0f * _time))];
             if (_time >=1.0f) {
-                [[CCDirector sharedDirector] popScene];
+                _reinit = true;
+                [self unscheduleUpdate];
+                [[LayerManager sharedLayers] popAndPushSceneNamed:@"game"];
             }
             
             float position = 160.0f * _time;
