@@ -57,6 +57,7 @@
         
         [_endGame setAlpha:0.0f];
         [_timer setTime:374.85];
+        [_timer setAlpha:0.0f];
         
         [self scheduleUpdate];
         self.isTouchEnabled = true;
@@ -93,6 +94,7 @@
                 _state = END_GAME_TRANSITION_IDLE;
             }
             [_endGame setAlpha:_alpha];
+            [_timer setAlpha:_alpha];
             break;
         case END_GAME_TRANSITION_OUT:
             _alpha -= rate;
@@ -101,6 +103,7 @@
                 _state = END_GAME_TRANSITION_IDLE;
             }
             [_endGame setAlpha:_alpha];
+            [_timer setAlpha:_alpha];
             break;
         default:
             break;

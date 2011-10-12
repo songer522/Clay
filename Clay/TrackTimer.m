@@ -103,6 +103,13 @@
     return _totalTime;
 }
 
+-(void)setAlpha:(float)alpha
+{
+    for (Sprite *sprite in _timerAnimations) {
+        [sprite setAlpha:alpha];
+    }
+}
+
 -(void)setTimerSprites
 {
     int seconds = ((int)floorf(_totalTime)) % 60;

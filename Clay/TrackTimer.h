@@ -31,6 +31,8 @@
 -(void)setTime:(float)time;
 -(float)getTime;
 
+-(void)setAlpha:(float)alpha;
+
 -(void)setupAnimationsAtX:(float)x Y:(float)y;
 
 @end
