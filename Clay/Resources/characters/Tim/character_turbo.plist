@@ -5,7 +5,7 @@
 	<key>frames</key>
 	<dict>
 		
-		<key>Character_Running_1.png</key>
+		<key>Character_Turbo_1.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -22,12 +22,12 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{0, 0}, {112, 150}}</string>
+			<string>{{0, 151}, {112, 150}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
-		<key>Character_Running_10.png</key>
+		<key>Character_Turbo_10.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -44,12 +44,12 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{340, 0}, {112, 150}}</string>
+			<string>{{113, 302}, {112, 150}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
-		<key>Character_Running_2.png</key>
+		<key>Character_Turbo_2.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -66,12 +66,12 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{227, 0}, {112, 150}}</string>
+			<string>{{113, 151}, {112, 150}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
-		<key>Character_Running_3.png</key>
+		<key>Character_Turbo_3.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -88,12 +88,12 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{113, 302}, {112, 150}}</string>
+			<string>{{340, 0}, {112, 150}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
-		<key>Character_Running_4.png</key>
+		<key>Character_Turbo_4.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -110,12 +110,12 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{113, 0}, {112, 150}}</string>
+			<string>{{227, 151}, {112, 150}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
-		<key>Character_Running_5.png</key>
+		<key>Character_Turbo_5.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -132,12 +132,12 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{227, 151}, {112, 150}}</string>
+			<string>{{227, 0}, {112, 150}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
-		<key>Character_Running_6.png</key>
+		<key>Character_Turbo_6.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -154,12 +154,12 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{0, 302}, {112, 150}}</string>
+			<string>{{0, 0}, {112, 150}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
-		<key>Character_Running_7.png</key>
+		<key>Character_Turbo_7.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -176,12 +176,12 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{0, 151}, {112, 150}}</string>
+			<string>{{113, 0}, {112, 150}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
-		<key>Character_Running_8.png</key>
+		<key>Character_Turbo_8.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -203,7 +203,7 @@
 			<false/>
 		</dict>
 		
-		<key>Character_Running_9.png</key>
+		<key>Character_Turbo_9.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -220,7 +220,7 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{113, 151}, {112, 150}}</string>
+			<string>{{0, 302}, {112, 150}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
