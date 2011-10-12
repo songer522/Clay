@@ -48,6 +48,8 @@ typedef enum {
     Sprite *_buttonKick;
     Sprite *_buttonSprint;
     
+    float _adjustX;
+    
     id <PlayerAction> _thirdAction; //playeraction
 
 }
@@ -73,7 +75,8 @@ typedef enum {
 
 -(void)endTurbo;
 
--(void)startKick;
+-(void)endKick;
+-(RunningSpeed*)getSpeed;
 
 -(void)startThirdAction;
 
@@ -88,5 +91,7 @@ typedef enum {
 -(void)setVelocity:(float)velocity;
 
 -(void)private_StartPlayerCollision;
+
+-(void)pushAfterAnimation:(float)xAmount;
 
 @end

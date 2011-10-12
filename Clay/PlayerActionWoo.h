@@ -15,6 +15,7 @@
     bool _inAction;
     bool _isActive;
     float _duration;
+    float _cooldown;
 }
 
 @end

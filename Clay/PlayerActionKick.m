@@ -7,6 +7,8 @@
 //
 
 #import "PlayerActionKick.h"
+#import "AnimationController.h"
+#import "RunningSpeed.h"
 
 @implementation PlayerActionKick
 
@@ -32,11 +34,10 @@
         NSLog(@"Kick!");
         _inAction = true;
         _isActive = false;
-        _duration = 0.75f;
+        _duration = 0.4f;
         _madeNoise = false;
         [_parent endTurbo];
         [[AnimationController sharedController] replaceSprite:[_parent getSprite] withAnimationNamed:@"kickingAnim"];
-        [_parent startKick];
     }
 }
 
@@ -45,11 +46,11 @@
     if (_inAction) {
         _duration -= dt;
         
-        if (_duration < 0.6f) {
+        if (_duration < 0.2f) {
             _isActive = true;
             if (!_madeNoise) {
-                _parent.vy = -250.0f;
                 _madeNoise = true;
+                [[_parent getSpeed] startKick];
             }
         } else {
             _isActive = false;
@@ -76,7 +77,7 @@
 {
     _inAction = false;
     _isActive = false;
-    NSLog(@"End kick.");
+    [_parent pushAfterAnimation:20.0f];
 }
 
 -(void)setParent:(Player*)player

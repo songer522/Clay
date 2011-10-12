@@ -146,8 +146,8 @@
 
 -(void)startKick
 {
-    _velocity *= 0.4f;
-    _acceleration *= 0.4f;
+    _velocity *= 0.1f;
+    _acceleration *= 0.1f;
 }
 
 -(void)update:(float)dt

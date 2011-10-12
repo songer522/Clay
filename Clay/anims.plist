@@ -19,6 +19,23 @@
 		<key>delay</key>
 		<real>0.075</real>
 	</dict>
+	<key>wooAnim</key>
+	<dict>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>looping</key>
+		<string>false</string>
+		<key>group</key>
+		<string>Player</string>
+		<key>spritesheetPlist</key>
+		<string>character_woo</string>
+		<key>sequencePrefix</key>
+		<string>Character_Woo_</string>
+		<key>animationFrames</key>
+		<string>1,2,3,4,5,6,7,8,9,10</string>
+		<key>delay</key>
+		<real>0.075</real>
+	</dict>
 	<key>jumpingAnim</key>
 	<dict>
 		<key>clearPreviousAnims</key>
@@ -185,7 +202,7 @@
 		<key>sequencePrefix</key>
 		<string>character_kicking_</string>
 		<key>animationFrames</key>
-		<string>1,2,3</string>
+		<string>1,2,3,3</string>
 		<key>delay</key>
 		<string>0.1</string>
 	</dict>

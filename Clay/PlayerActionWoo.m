@@ -20,6 +20,7 @@
     self = [super init];
     if (self) {
         // Initialization code here.
+        _cooldown = 0.0f;
     }
     
     return self;
@@ -27,10 +28,13 @@
 
 -(void)startAction
 {
-    if (!_inAction) {
+    if (!_inAction && _cooldown<=0.0f) {
         NSLog(@"Woo!");
         _inAction = true;
-        _duration = 1.0f;        
+        _duration = 0.75f;
+        _cooldown = 3.0f;
+        [_parent endTurbo];
+        [[AnimationController sharedController] replaceSprite:[_parent getSprite] withAnimationNamed:@"wooAnim"];
     }
 }
 
@@ -47,7 +51,11 @@
         if (_duration <= 0.0f) {
             [self endAction];
         }
-    }    
+    } else {
+        if (_cooldown > 0.0f) {
+            _cooldown -= dt;
+        }
+    }
 }
 
 -(void)setParent:(Player*)player

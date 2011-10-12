@@ -68,9 +68,12 @@
         
         _isHighJump = false;
         
+        _adjustX = 0.0f;
+        
         _particleSystem = [ParticleSystem instance];
         
-        _thirdAction = [PlayerActionFactory buildPlayerAction:PLAYER_ACTION_KICK];
+        //_thirdAction = [PlayerActionFactory buildPlayerAction:PLAYER_ACTION_KICK];
+        _thirdAction = [PlayerActionFactory buildPlayerAction:PLAYER_ACTION_WOO];
         [_thirdAction setParent:self];
     }
     
@@ -100,6 +103,14 @@
     
     
     [self updateJump:dt];
+    
+    if (_adjustX != 0.0f) {
+        self.x += _adjustX;
+        _adjustX = 0.0f;
+        [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"runningAnim" FrameNumber:8];
+
+    }
+    
     CGPoint newPosition = [level checkCollisionForObject2:self];    
 
     [self setPositionAtX:newPosition.x Y:newPosition.y];    //for some reason the y position jitters without
@@ -131,9 +142,7 @@
         }
     }
     
-    if ([_thirdAction inAction]) {
-        [_thirdAction update:dt];
-    }
+    [_thirdAction update:dt];
 
 }
 
@@ -274,6 +283,11 @@
     }
 }
 
+-(void)pushAfterAnimation:(float)xAmount
+{
+    _adjustX = xAmount;
+}
+
 -(void)private_StartPlayerCollision
 {
     [_speed startCollision];
@@ -339,9 +353,14 @@
     [_battery startRecharge];
 }
 
--(void)startKick
+-(RunningSpeed*)getSpeed
 {
-    [_speed startKick];
+    return _speed;
+}
+
+-(void)endKick
+{
+    [_speed start];
 }
 
 
