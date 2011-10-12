@@ -185,6 +185,10 @@
 		54484E38140449B700D0D7D9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 54484E37140449B700D0D7D9 /* AppDelegate.m */; };
 		54484E3B140449B700D0D7D9 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54484E3A140449B700D0D7D9 /* RootViewController.m */; };
 		54484E3E140449B700D0D7D9 /* GameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 54484E3D140449B700D0D7D9 /* GameLayer.m */; };
+		544D50E01445E72700BED4CE /* character_falling-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 544D50DC1445E72700BED4CE /* character_falling-hd.plist */; };
+		544D50E11445E72700BED4CE /* character_falling-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 544D50DD1445E72700BED4CE /* character_falling-hd.png */; };
+		544D50E21445E72700BED4CE /* character_falling.plist in Resources */ = {isa = PBXBuildFile; fileRef = 544D50DE1445E72700BED4CE /* character_falling.plist */; };
+		544D50E31445E72700BED4CE /* character_falling.png in Resources */ = {isa = PBXBuildFile; fileRef = 544D50DF1445E72700BED4CE /* character_falling.png */; };
 		54518F6314069BF0009D74AA /* Sprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 54518F6214069BF0009D74AA /* Sprite.m */; };
 		54518F6A1406AE64009D74AA /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 54518F691406AE64009D74AA /* Player.m */; };
 		54518F6D1406AEE6009D74AA /* GameObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 54518F6C1406AEE6009D74AA /* GameObject.m */; };
@@ -604,6 +608,10 @@
 		54484E3C140449B700D0D7D9 /* GameLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameLayer.h; sourceTree = "<group>"; };
 		54484E3D140449B700D0D7D9 /* GameLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameLayer.m; sourceTree = "<group>"; };
 		54484E3F140449B700D0D7D9 /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
+		544D50DC1445E72700BED4CE /* character_falling-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "character_falling-hd.plist"; sourceTree = "<group>"; };
+		544D50DD1445E72700BED4CE /* character_falling-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "character_falling-hd.png"; sourceTree = "<group>"; };
+		544D50DE1445E72700BED4CE /* character_falling.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = character_falling.plist; sourceTree = "<group>"; };
+		544D50DF1445E72700BED4CE /* character_falling.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = character_falling.png; sourceTree = "<group>"; };
 		54518F6114069BF0009D74AA /* Sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sprite.h; sourceTree = "<group>"; };
 		54518F6214069BF0009D74AA /* Sprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sprite.m; sourceTree = "<group>"; };
 		54518F681406AE64009D74AA /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
@@ -771,6 +779,7 @@
 			children = (
 			);
 			name = particles;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		54133A0D143231AF00E433FC /* music */ = {
@@ -834,7 +843,7 @@
 				5441BED8143F8B75003224FF /* Menu_Rain_02.png */,
 			);
 			name = menu;
-			path = Resources/menu;
+			path = ../menu;
 			sourceTree = "<group>";
 		};
 		54484CC5140449B500D0D7D9 = {
@@ -895,15 +904,10 @@
 				543C09601420F3CF00F259BA /* app artwork */,
 				54F7F580143CD103004EC10B /* fonts */,
 				548C3DBB141ABDBB000567A8 /* levels */,
-				5441BED1143F8B75003224FF /* menu */,
 				54133A0D143231AF00E433FC /* music */,
-				54BE176F141EBB7200A3D773 /* objects */,
-				54AF542714438E7500EAA964 /* other */,
-				54090E1D142CCE2C00FC3ABE /* particles */,
 				545CBC2F142D25AB00795FC9 /* sounds */,
-				54642AFE14337E5F001D8212 /* sprites */,
+				54642AFE14337E5F001D8212 /* art */,
 				54FBA24C1430E1ED0010A91A /* videos */,
-				549969181416749900CB7800 /* test */,
 				54484CE8140449B500D0D7D9 /* fps_images.png */,
 				54090E1F142CCE6700FC3ABE /* ball.png */,
 				54484CF6140449B500D0D7D9 /* Info.plist */,
@@ -1222,6 +1226,27 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		544D50DA1445E68E00BED4CE /* hud */ = {
+			isa = PBXGroup;
+			children = (
+				5441BED1143F8B75003224FF /* menu */,
+				54642AFF14337E5F001D8212 /* battery */,
+				544D50DB1445E6BD00BED4CE /* buttons */,
+				54A1191A14433D6B0008A823 /* timer */,
+			);
+			name = hud;
+			sourceTree = "<group>";
+		};
+		544D50DB1445E6BD00BED4CE /* buttons */ = {
+			isa = PBXGroup;
+			children = (
+				54CD29DA143BA21400F805E0 /* UI_Button_Jumping.png */,
+				54CD29DB143BA21400F805E0 /* UI_Button_Kicking.png */,
+				54CD29DC143BA21400F805E0 /* UI_Button_TurboBoost.png */,
+			);
+			name = buttons;
+			sourceTree = "<group>";
+		};
 		54518F5614069B0C009D74AA /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
@@ -1353,17 +1378,16 @@
 			name = sounds;
 			sourceTree = "<group>";
 		};
-		54642AFE14337E5F001D8212 /* sprites */ = {
+		54642AFE14337E5F001D8212 /* art */ = {
 			isa = PBXGroup;
 			children = (
 				54968B25141E554400A4D2DC /* characters */,
-				54A1191A14433D6B0008A823 /* timer */,
-				54CD29DA143BA21400F805E0 /* UI_Button_Jumping.png */,
-				54CD29DB143BA21400F805E0 /* UI_Button_Kicking.png */,
-				54CD29DC143BA21400F805E0 /* UI_Button_TurboBoost.png */,
-				54642AFF14337E5F001D8212 /* battery */,
+				544D50DA1445E68E00BED4CE /* hud */,
+				54BE176F141EBB7200A3D773 /* objects */,
+				54AF542714438E7500EAA964 /* other */,
+				54090E1D142CCE2C00FC3ABE /* particles */,
 			);
-			name = sprites;
+			name = art;
 			path = Resources/sprites;
 			sourceTree = "<group>";
 		};
@@ -1385,6 +1409,7 @@
 		548C3DBB141ABDBB000567A8 /* levels */ = {
 			isa = PBXGroup;
 			children = (
+				549969181416749900CB7800 /* test */,
 				543C09521420F39B00F259BA /* clayl1.5.tmx */,
 				5460F9FD1423EB6100582EBD /* clayl2.1.4.tmx */,
 				54C86332143E098B007341B3 /* clayl3.0.1.7.tmx */,
@@ -1413,6 +1438,10 @@
 		54968B26141E554400A4D2DC /* Tim */ = {
 			isa = PBXGroup;
 			children = (
+				544D50DC1445E72700BED4CE /* character_falling-hd.plist */,
+				544D50DD1445E72700BED4CE /* character_falling-hd.png */,
+				544D50DE1445E72700BED4CE /* character_falling.plist */,
+				544D50DF1445E72700BED4CE /* character_falling.png */,
 				54B6C6D5143B73E600EF3569 /* character_hurt-hd.plist */,
 				54B6C6D6143B73E600EF3569 /* character_hurt-hd.png */,
 				54B6C6D7143B73E600EF3569 /* character_hurt.plist */,
@@ -1469,7 +1498,7 @@
 				54AF542814438E7500EAA964 /* Menu_Ending_Temp.png */,
 			);
 			name = other;
-			path = Resources/other;
+			path = ../other;
 			sourceTree = "<group>";
 		};
 		54BE176F141EBB7200A3D773 /* objects */ = {
@@ -1499,7 +1528,7 @@
 				54E0CE80141FC0A6005BFD5C /* hurdle.png */,
 			);
 			name = objects;
-			path = Resources/objects;
+			path = ../objects;
 			sourceTree = "<group>";
 		};
 		54F7F580143CD103004EC10B /* fonts */ = {
@@ -1710,6 +1739,10 @@
 				54282F971444F5E50074BA3D /* hen_idle-hd.png in Resources */,
 				54282F981444F5E50074BA3D /* hen_idle.plist in Resources */,
 				54282F991444F5E50074BA3D /* hen_idle.png in Resources */,
+				544D50E01445E72700BED4CE /* character_falling-hd.plist in Resources */,
+				544D50E11445E72700BED4CE /* character_falling-hd.png in Resources */,
+				544D50E21445E72700BED4CE /* character_falling.plist in Resources */,
+				544D50E31445E72700BED4CE /* character_falling.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

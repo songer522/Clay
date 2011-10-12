@@ -216,14 +216,18 @@
         _jumpHeight = type;
         
         if(type == JUMP_HIGH) {
-            self.hasGravity = true;
-            _isHighJump = true;
+            [self endJump];
         }        
     }
 }
 
+
+
 -(void)endJump
 {
+    if (!_isTripping && _isInMidAir) {
+        [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"fallingAnim"];        
+    }
     self.hasGravity = true;
 }
 

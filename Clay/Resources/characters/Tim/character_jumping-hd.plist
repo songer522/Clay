@@ -5,7 +5,7 @@
 	<key>frames</key>
 	<dict>
 		
-		<key>Character_Jumping_1.png</key>
+		<key>character_jumping_1.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -27,50 +27,6 @@
 			<false/>
 		</dict>
 		
-		<key>Character_Jumping_2.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{25, 8}, {167, 278}}</string>
-			<key>spriteOffset</key>
-			<string>{0, 0}</string>
-			<key>spriteSize</key>
-			<string>{225, 300}</string>
-			<key>spriteSourceSize</key>
-			<string>{225, 300}</string>
-			<key>spriteTrimmed</key>
-			<false/>
-			<key>textureRect</key>
-			<string>{{227, 0}, {225, 300}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>Character_Jumping_3.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{18, 5}, {177, 280}}</string>
-			<key>spriteOffset</key>
-			<string>{0, 0}</string>
-			<key>spriteSize</key>
-			<string>{225, 300}</string>
-			<key>spriteSourceSize</key>
-			<string>{225, 300}</string>
-			<key>spriteTrimmed</key>
-			<false/>
-			<key>textureRect</key>
-			<string>{{454, 0}, {225, 300}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
 	</dict>
 	<key>metadata</key>
 	<dict>
@@ -79,7 +35,7 @@
 		<key>format</key>
 		<integer>3</integer>
 		<key>size</key>
-		<string>{1024, 512}</string>
+		<string>{256, 512}</string>
 		<key>name</key>
 		<string>character_jumping</string>
 		<key>premultipliedAlpha</key>
@@ -87,13 +43,13 @@
 		<key>target</key>
 		<dict>
 			<key>name</key>
-			<string>default</string>
+			<string>-hd</string>
 			<key>textureFileName</key>
-			<string>default</string>
+			<string>-hd</string>
 			<key>textureFileExtension</key>
 			<string>.png</string>
 			<key>coordinatesFileName</key>
-			<string>default</string>
+			<string>-hd</string>
 			<key>coordinatesFileExtension</key>
 			<string>.plist</string>
 			<key>premultipliedAlpha</key>
