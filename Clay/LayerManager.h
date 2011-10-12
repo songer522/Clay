@@ -16,6 +16,7 @@
     id          _workingLayer;
     CCScene     *_currentScene;
     id          _workingScene;
+    NSMutableDictionary *_scenes;
 }
 
 +(LayerManager*)sharedLayers;
@@ -30,6 +31,8 @@
 -(id)currentScene;
 -(void)setCurrentScene:(CCScene*)scene;
 
+-(void)setScene:(CCScene*)scene ForKey:(NSString*)key;
+-(CCScene*)getSceneForKey:(NSString*)key;
 
 
 @end

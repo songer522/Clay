@@ -18,6 +18,7 @@
 #import "CCVideoPlayer.h"
 #import "LevelThread.h"
 #import "ComicManager.h"
+#import "EndGameScene.h"
 #import "HudLayer.h"
 #import "MainMenuScene.h"
 
@@ -121,6 +122,7 @@
 	
 	// Run the intro Scene
     gameScene = [GameLayer scene];
+    [[LayerManager sharedLayers] setScene:gameScene ForKey:@"game"];
     [[LayerManager sharedLayers] setCurrentScene:gameScene];
     GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
     
@@ -143,10 +145,14 @@
 
     
     _mainMenuScene = [MainMenuScene scene];
+    [[LayerManager sharedLayers] setScene:_mainMenuScene ForKey:@"menu"];
     [[LayerManager sharedLayers] setWorkingScene:_mainMenuScene];
     [[CCDirector sharedDirector] pushScene:_mainMenuScene];
     [[LayerManager sharedLayers] forgetWorkingScene];
     
+    _endGameScene = [EndGameScene scene];
+    [[LayerManager sharedLayers] setScene:_endGameScene ForKey:@"endGame"];
+    [[CCDirector sharedDirector] pushScene:_endGameScene];
     
     /*
     int x;

@@ -77,7 +77,12 @@ static ComicManager *_shared = nil;
         
         NSAssert([result isKindOfClass:[NSString class]],@"Result is not a string or is null. Verify what you're asking for is in the plist.");
 
+        
         _videoFileName = result;
+        if ([_videoFileName compare:@"endGame"] == NSOrderedSame) {
+            
+            
+        }
         _isActive = true;
         
         [self switchToPhase:phase];

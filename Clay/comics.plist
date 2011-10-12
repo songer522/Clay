@@ -6,5 +6,7 @@
 	<string>bait.m4v</string>
 	<key>farmToCornfields</key>
 	<string>bait.m4v</string>
+	<key>endGame</key>
+	<string>endGame</string>
 </dict>
 </plist>

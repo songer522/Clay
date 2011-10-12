@@ -87,4 +87,15 @@ static LayerManager *_sharedLayers = nil;
     _currentScene = scene;
 }
 
+-(void)setScene:(CCScene*)scene ForKey:(NSString*)key
+{
+    [_scenes setObject:scene forKey:key];
+}
+
+-(CCScene*)getSceneForKey:(NSString*)key
+{
+    CCScene *scene = [_scenes objectForKey:key];
+    return scene;
+}
+
 @end

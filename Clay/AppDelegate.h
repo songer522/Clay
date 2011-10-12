@@ -15,6 +15,7 @@
 @class HudLayer;
 @class GameLayer;
 @class MainMenuScene;
+@class EndGameScene;
 
 @interface AppDelegate : NSObject <UIApplicationDelegate> {
 	UIWindow			*window;
@@ -23,6 +24,7 @@
     GameDebugLayer      *_debugLayer;
     HudLayer            *_hudLayer;
     ComicManager        *_comicManager;
+    CCScene             *_endGameScene;
     CCScene             *_mainMenuScene;
 }
 
