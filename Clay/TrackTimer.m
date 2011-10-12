@@ -31,23 +31,20 @@
     if (self) {
         // Initialization code here.
         
-        _isStopped = false;
-        
-        [self setupAnimations];
-        
+        _isStopped = false;        
     }
     
     return self;
 }
 
--(void)setupAnimations
+-(void)setupAnimationsAtX:(float)x Y:(float)y
 {
-    float _currentX = TRACK_TIMER_STARTX;
+    float _currentX = x;
     
     _timerAnimations = [[NSMutableArray alloc] initWithCapacity:7];
     for (int i=0; i<5; i++) {
         Sprite *sprite2 = [Sprite spriteWithFile:@"blank.png"];
-        [sprite2 getCCSprite].position = ccp(_currentX, TRACK_TIMER_STARTY);
+        [sprite2 getCCSprite].position = ccp(_currentX, y);
         [[AnimationController sharedController] replaceSprite:sprite2 withAnimationNamed:@"largeTimer"];
         [[sprite2 getAnimation] togglePauseAnimation];
         [_timerAnimations addObject:sprite2];
@@ -67,7 +64,7 @@
     _currentX -= 3;
 
     Sprite *sprite = [Sprite spriteWithFile:@"blank.png"];
-    [sprite getCCSprite].position = ccp(_currentX, TRACK_TIMER_STARTY);
+    [sprite getCCSprite].position = ccp(_currentX, y);
     [[AnimationController sharedController] replaceSprite:sprite withAnimationNamed:@"smallTimer"];
     [[sprite getAnimation] togglePauseAnimation];
     [_timerAnimations addObject:sprite];
@@ -75,7 +72,7 @@
     _currentX += 11;
     
     sprite = [Sprite spriteWithFile:@"blank.png"];
-    [sprite getCCSprite].position = ccp(_currentX, TRACK_TIMER_STARTY);
+    [sprite getCCSprite].position = ccp(_currentX, y);
     [[AnimationController sharedController] replaceSprite:sprite withAnimationNamed:@"smallTimer"];
     [[sprite getAnimation] togglePauseAnimation];
     [_timerAnimations addObject:sprite];
@@ -93,6 +90,17 @@
         [self setTimerSprites];
         
     }
+}
+
+-(void)setTime:(float)time
+{
+    _totalTime = time;
+    [self setTimerSprites];
+}
+
+-(float)getTime
+{
+    return _totalTime;
 }
 
 -(void)setTimerSprites

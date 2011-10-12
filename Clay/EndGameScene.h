@@ -11,6 +11,7 @@
 
 @class Sprite;
 @class ComicLayer;
+@class TrackTimer;
 
 typedef enum {
     END_GAME_TRANSITION_IN,
@@ -28,6 +29,8 @@ typedef enum {
     float _alpha;
     
     EndGameState _state;
+    
+    TrackTimer *_timer;
 }
 
 +(CCScene *) scene;

@@ -22,12 +22,15 @@
 
 -(void)update:(float)dt;
 
--(void)setupAnimations;
-
 -(void)setTimerSprites;
 
 -(void)setSpriteAtIndex:(int)index withNumber:(int)number;
 
 -(void)setOpacity:(int)opacity;
+
+-(void)setTime:(float)time;
+-(float)getTime;
+
+-(void)setupAnimationsAtX:(float)x Y:(float)y;
 
 @end

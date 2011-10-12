@@ -9,6 +9,7 @@
 #import "EndGameScene.h"
 #import "LayerManager.h"
 #import "ComicLayer.h"
+#import "TrackTimer.h"
 #import "Sprite.h"
 
 @implementation EndGameScene
@@ -39,15 +40,23 @@
     self = [super init];
     if (self) {
         // Initialization code here.
-        [[LayerManager sharedLayers] setWorkingLayer:self];
-        
-        _endGame = [Sprite spriteWithFile:@"Menu_Ending_Temp.png"];
-        [_endGame setAlpha:0.0f];
         
         _state = END_GAME_TRANSITION_IN;
         _alpha = 0.0f;
         
+        
+        [[LayerManager sharedLayers] setWorkingLayer:self];
+        
+        _endGame = [Sprite spriteWithFile:@"Menu_Ending_Temp.png"];
+        
+        _timer = [TrackTimer instance];
+        [_timer setupAnimationsAtX:232.0f Y:145.0f];
+        
         [[LayerManager sharedLayers] forgetWorkingLayer];
+        
+        
+        [_endGame setAlpha:0.0f];
+        [_timer setTime:374.85];
         
         [self scheduleUpdate];
         self.isTouchEnabled = true;

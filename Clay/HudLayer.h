@@ -62,6 +62,8 @@ typedef enum {
 
 -(void)setOpacities:(float)alpha;
 
+-(float)getCurrentTime;
+
 -(void)fadeIn;
 -(void)fadeOut;
 

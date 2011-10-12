@@ -49,6 +49,7 @@
 
         
         _trackTimer = [TrackTimer instance];
+        [_trackTimer setupAnimationsAtX:10.0f Y:288.5f];
         
         _battery = [Battery instance];
         
@@ -158,6 +159,11 @@
 -(Battery*)getBattery
 {
     return _battery;
+}
+
+-(float)getCurrentTime
+{
+    return [_trackTimer getTime];
 }
 
 -(void)update:(float)dt
