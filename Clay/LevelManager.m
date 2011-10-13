@@ -58,6 +58,8 @@ static LevelManager *_shared = nil;
     NSString *nextLevelName = [levelSettings valueForKey:@"nextLevelName"];
     NSString *postLevelComicName = [levelSettings valueForKey:@"postLevelComic"];
     NSString *music = [levelSettings valueForKey:@"music"];
+    
+    //NSString *thirdAction = [levelSettings valueForKey:@"thirdAction"];
 
     NSString *layerList = [levelSettings valueForKey:@"layerList"];
 

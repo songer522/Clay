@@ -56,6 +56,8 @@
 		543C095E1420F3AA00F259BA /* platformtest.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 543C095B1420F3AA00F259BA /* platformtest.tmx */; };
 		543C095F1420F3AA00F259BA /* tileset-platformer.png in Resources */ = {isa = PBXBuildFile; fileRef = 543C095C1420F3AA00F259BA /* tileset-platformer.png */; };
 		544034B2141A76DF0065B061 /* Collision.m in Sources */ = {isa = PBXBuildFile; fileRef = 544034B1141A76DF0065B061 /* Collision.m */; };
+		5440F60414473E080068F05C /* test_big.mov in Resources */ = {isa = PBXBuildFile; fileRef = 5440F60214473E080068F05C /* test_big.mov */; };
+		5440F60514473E080068F05C /* test_small.mov in Resources */ = {isa = PBXBuildFile; fileRef = 5440F60314473E080068F05C /* test_small.mov */; };
 		54413573142B83460031C09E /* Trigger.m in Sources */ = {isa = PBXBuildFile; fileRef = 54413572142B83460031C09E /* Trigger.m */; };
 		5441BECF143F8AEC003224FF /* MainMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 5441BECE143F8AEC003224FF /* MainMenuScene.m */; };
 		5441BED9143F8B75003224FF /* Menu_Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 5441BED2143F8B75003224FF /* Menu_Background.png */; };
@@ -369,6 +371,8 @@
 		543C095C1420F3AA00F259BA /* tileset-platformer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tileset-platformer.png"; path = "Resources/levels/tileset-platformer.png"; sourceTree = "<group>"; };
 		544034B0141A76DF0065B061 /* Collision.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Collision.h; sourceTree = "<group>"; };
 		544034B1141A76DF0065B061 /* Collision.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Collision.m; sourceTree = "<group>"; };
+		5440F60214473E080068F05C /* test_big.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = test_big.mov; path = Resources/videos/test_big.mov; sourceTree = "<group>"; };
+		5440F60314473E080068F05C /* test_small.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; name = test_small.mov; path = Resources/videos/test_small.mov; sourceTree = "<group>"; };
 		54413571142B83460031C09E /* Trigger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trigger.h; sourceTree = "<group>"; };
 		54413572142B83460031C09E /* Trigger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Trigger.m; sourceTree = "<group>"; };
 		5441BECD143F8AEC003224FF /* MainMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuScene.h; sourceTree = "<group>"; };
@@ -1596,6 +1600,8 @@
 		54FBA24C1430E1ED0010A91A /* videos */ = {
 			isa = PBXGroup;
 			children = (
+				5440F60214473E080068F05C /* test_big.mov */,
+				5440F60314473E080068F05C /* test_small.mov */,
 				54FBA24A1430DDF30010A91A /* bait.m4v */,
 			);
 			name = videos;
@@ -1796,6 +1802,8 @@
 				54142C7D14468F7300A74447 /* hen_squawk.caf in Resources */,
 				54142C7E14468F7300A74447 /* woo_action.caf in Resources */,
 				54142C811446B57F00A74447 /* cow_moo.caf in Resources */,
+				5440F60414473E080068F05C /* test_big.mov in Resources */,
+				5440F60514473E080068F05C /* test_small.mov in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

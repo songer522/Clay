@@ -30,6 +30,7 @@
 @synthesize postLevelComicName = _postLevelComicName;
 @synthesize musicName = _musicName;
 @synthesize collisionHandler = _collisionHandler;
+@synthesize playerThirdActionName = _playerThirdActionName;
 
 +(id)levelWithFilename:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer LayerList:(NSString*)layerList GameObjectController:(GameObjectController*)gameObjects Player:(Player*)player
 {
@@ -76,6 +77,9 @@
         
         _collisionHandler = [CollisionDetection collisionHandlerWithMetaLayer:_meta Map:_map];
 
+        [player setThirdAction:_playerThirdActionName];
+        
+        //[[[[LayerManager sharedLayers] currentLayer] getHud] setThirdAction:_playerThirdActionName];
         
     }
     

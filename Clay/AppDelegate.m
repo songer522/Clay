@@ -136,7 +136,8 @@
 
     [[ComicManager shared] preload];
     [ComicManager shared].gameLayer = [[LayerManager sharedLayers] currentLayer];
-
+    [[ComicManager shared] startComic:@"intro"];
+    
     
 	
     

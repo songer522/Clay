@@ -74,7 +74,8 @@
         
         _thirdAction = [PlayerActionFactory buildPlayerAction:PLAYER_ACTION_KICK];
         //_thirdAction = [PlayerActionFactory buildPlayerAction:PLAYER_ACTION_WOO];
-        [_thirdAction setParent:self];
+        [_thirdAction setParent:self];    
+        
     }
     
     return self;
@@ -226,6 +227,7 @@
         
         if(type == JUMP_HIGH) {
             [self endJump];
+            _isHighJump = true;
         }        
     }
 }
@@ -333,6 +335,18 @@
 {
     if (!_isJumping && !_isInMidAir) {        
         [_thirdAction startAction];
+    }
+}
+
+-(void)setThirdAction:(NSString*)action
+{
+    if ([action compare:@"woo"] == NSOrderedSame) {
+        _thirdAction = [PlayerActionFactory buildPlayerAction:PLAYER_ACTION_KICK];
+        //_thirdAction = [PlayerActionFactory buildPlayerAction:PLAYER_ACTION_WOO];
+        [_thirdAction setParent:self];    
+        
+    } else if ([action compare:@"kick"] == NSOrderedSame) {
+        
     }
 }
 

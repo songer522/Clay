@@ -94,4 +94,6 @@ typedef enum {
 
 -(void)pushAfterAnimation:(float)xAmount;
 
+-(void)setThirdAction:(NSString*)action;
+
 @end

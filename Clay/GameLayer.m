@@ -134,8 +134,8 @@
     [[ComicManager shared] update:dt];
     [[SoundEngine shared] update:dt];
     
-    [_player update:dt Level:_level];    
-
+    [_player update:dt Level:_level];
+    
     [_level update:dt Velocity:_player.vx];
     
     //check to see if any triggers have been hit

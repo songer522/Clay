@@ -44,6 +44,8 @@
     
     NSString *_nextLevelName;           //the name of the level to load after this one is about
                                         //to complete. will be used by the LevelManager
+    NSString *_playerThirdActionName;
+    
     GameObjectController *_gameObjects;
     
     NSMutableArray *_triggers;
@@ -61,6 +63,7 @@
 @property (nonatomic,readonly,assign) CGPoint spawnPoint;
 @property (nonatomic,readonly,retain) NSMutableArray *obstacleSprites;
 @property (nonatomic,readonly,retain) CollisionDetection *collisionHandler;
+@property (nonatomic,retain) NSString *playerThirdActionName;
 
 #pragma mark - inits
 +(id)levelWithFilename:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer LayerList:(NSString*)layerList GameObjectController:(GameObjectController*)gameObjects Player:(Player*)player;
