@@ -30,6 +30,9 @@ typedef enum {
     Sprite *_playButtonOrange;
     Sprite *_copyright;
     
+    Sprite *_blackCover;
+    float _blackFadeOut;
+    
     MainMenuTransition _transition;
     
     ComicLayer *_comics;

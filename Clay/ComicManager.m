@@ -128,8 +128,8 @@ static ComicManager *_shared = nil;
                 if(_loadNextLevel)
                 {
                     [[LevelManager shared] switchToNextLevel];
-                    [_gameLayer initForLevel];
                 }
+                [_gameLayer initForLevel];
                 _gameLayer.visible = true;
                 [[CCDirector sharedDirector] startAnimation];
                 

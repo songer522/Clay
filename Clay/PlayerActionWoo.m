@@ -34,6 +34,7 @@
         _duration = 0.75f;
         _cooldown = 3.0f;
         [_parent endTurbo];
+        [_parent changeHealth:1];
         [[AnimationController sharedController] replaceSprite:[_parent getSprite] withAnimationNamed:@"wooAnim"];
         [[SoundEngine shared] playSound:@"wooAction"];
     }

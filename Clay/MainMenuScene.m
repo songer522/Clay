@@ -43,6 +43,10 @@
         [_trackBackground getCCSprite].position = ccp(0,0);
         [_trackBackground setAlpha:1.0f];
         
+        _blackCover = [Sprite spriteWithFile:@"black_background.png"];
+        [_blackCover getCCSprite].position = ccp(0,0);
+        [_blackCover setAlpha:0.0f];
+        
         _rain1 = [Sprite spriteWithFile:@"Menu_Rain_01.png"];
         [_rain1 getCCSprite].position = ccp(0, 0);
         [_rain1 setAlpha:0.0f];
@@ -111,6 +115,7 @@
 {
     _time = 0.0f;
     _totalTime = 0.0f;
+    _blackFadeOut = 0.0f;
     
     _transition = MAINMENU_TRANSITION_IN;
     [[_playButtonOrange getCCSprite] setVisible:YES];
@@ -123,6 +128,8 @@
     
     [_logo setAlpha:0.0f];
 
+    [_blackCover setAlpha:0.0f];
+    
     [_playButtonBlue setAlpha:0.0f];
     [_playButtonOrange setAlpha:0.0f];
     
@@ -175,6 +182,9 @@
             [_rain2 setAlpha:_time];
             break;
         case MAINMENU_TRANSITION_OUT:
+            if (_time >=1.0f) {
+                _time = 1.0f;
+            }
             [_logo setAlpha:(1.0f - _time)];
             [_rain1 setAlpha:(1.0f - _time)];
             [_rain2 setAlpha:(1.0f - _time)];
@@ -182,10 +192,15 @@
             [_playButtonOrange setAlpha:(MAX(1.0f - 8.0f * _time, 0.0f))];
             [_playButtonBlue setAlpha:(MIN(1.0f,1.0f - 1.0f * _time))];
             if (_time >=1.0f) {
-                _reinit = true;
-                [self unscheduleUpdate];
-                [[LayerManager sharedLayers] popAndPushSceneNamed:@"game"];
-                [[ComicManager shared] startComic:@"intro" StartPhase:COMIC_PHASE_PLAY_VIDEO];
+                _blackFadeOut += dt;
+                if (_blackFadeOut >= 1.0f) {
+                    _blackFadeOut = 1.0f;
+                    _reinit = true;
+                    [self unscheduleUpdate];
+                    [[LayerManager sharedLayers] popAndPushSceneNamed:@"game"];
+                    [[ComicManager shared] startComic:@"intro" StartPhase:COMIC_PHASE_PLAY_VIDEO];
+                }
+                [_blackCover setAlpha:_blackFadeOut];
             }
             
             float position = 160.0f * _time;
