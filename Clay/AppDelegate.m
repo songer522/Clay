@@ -144,9 +144,7 @@
 
     
     [[LevelManager shared] initAfterPlayerAndHudInit];
-    
-    [[ComicManager shared] startComic:@"intro"];
-    
+        
     _mainMenuScene = [MainMenuScene scene];
     [[LayerManager sharedLayers] setScene:_mainMenuScene ForKey:@"menu"];
     [[LayerManager sharedLayers] setWorkingScene:_mainMenuScene];

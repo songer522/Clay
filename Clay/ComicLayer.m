@@ -31,6 +31,7 @@
         self.isTouchEnabled = YES;
         _transition = BLACKBOX_IDLE;
         _targetPosition = 0.0f;
+        _rate = 1.0f;
         _atTarget = false;
     }
     
@@ -40,13 +41,17 @@
 -(void)startTransition:(BlackBoxTransition)transition
 {
     _transition = transition;
+    _phase = 1;
     if (transition == BLACKBOX_IN) {
+        _position = 0.0f;
         _targetPosition = 35.0f;
-        _timeToWait = 1.5f;
-    } else {
-        _targetPosition = 0.0f;
         _timeToWait = 1.0f;
+    } else {
+        _position = 240.0f; //used to be 35.0f
+        _targetPosition = 35.0f;
+        _timeToWait = 0.00f;
     }
+    _rate = 0.9f;
     _atTarget = false;
 }
 
@@ -74,21 +79,48 @@
     } else {
         _timeToWait -= dt;
         if (_timeToWait<=0.0f) {
-            _transition = BLACKBOX_IDLE;
-            [_parent finishedAction];
+            if (_phase == 1) {
+                [self secondTierBars];
+            } else {
+                _transition = BLACKBOX_IDLE;
+                [_parent finishedAction];
+            }
         }
     }
 }
 
 -(void)blackBoxOut:(ccTime)dt
 {
-    _timeToWait -= dt;
-    if (_timeToWait <= 0.0f) {
+    if (!_atTarget) {
         [self moveBars:dt];
-        if (_atTarget) {
-            _transition = BLACKBOX_IDLE;
-            [_parent finishedAction];
+    } else {
+        _timeToWait -= dt;
+        if (_timeToWait<=0.0f) {
+            if (_phase == 1) {
+                [self secondTierBars];
+            } else {
+                _transition = BLACKBOX_IDLE;
+                [_parent finishedAction];                
+            }
         }
+    }
+}
+
+//bars open up twice, once to cinematic, 2nd to full screen (open or closed).
+//this function is when it's time to change target positions for the 2nd phase of this
+//animation, which will be all black if bar phase is coming in, or no black if bars are going out
+-(void)secondTierBars
+{
+    _phase = 2;
+    _rate = 1.0f;
+    if (_transition == BLACKBOX_IN) {
+        _targetPosition = 240.0f;
+        _timeToWait = 0.0f;
+        _atTarget = false;
+    } else {
+        _targetPosition = 0.0f;
+        _timeToWait = 0.0f;
+        _atTarget = false;
     }
     
 }
@@ -100,12 +132,12 @@
     
     
     if (_transition == BLACKBOX_IN) {
-        _position += 5.0f * magnitude * dt;
+        _position += 5.0f * _rate * magnitude * dt;
     } else {
-        _position -= 5.0f * magnitude * dt;
+        _position -= 5.0f * _rate * magnitude * dt;
     }
     
-    if (fabsf(_position - _targetPosition) < 0.02f) {
+    if (fabsf(_position - _targetPosition) < 1.0f) {
         _position = _targetPosition;
         _atTarget = true;
     }

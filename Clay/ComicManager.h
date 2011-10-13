@@ -35,6 +35,7 @@ typedef enum {
     ComicPhase _phase;
     
     bool _showEndGame;
+    bool _introMovie;
     
     NSString *_videoFileName;
 }

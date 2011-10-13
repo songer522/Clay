@@ -25,6 +25,8 @@ typedef enum {
     float _targetPosition;
     float _timeToWait;
     bool _atTarget;
+    int _phase;
+    float _rate;
     
     ComicManager *_parent;
     
@@ -43,6 +45,7 @@ typedef enum {
 #pragma mark - private methods
 -(void)blackBoxIn:(ccTime)dt;
 -(void)blackBoxOut:(ccTime)dt;
+-(void)secondTierBars;
 -(void)moveBars:(ccTime)dt;
 -(void)update:(ccTime)dt;
 

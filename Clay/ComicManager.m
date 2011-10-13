@@ -81,9 +81,13 @@ static ComicManager *_shared = nil;
 
         
         _videoFileName = result;
+        
+        
+        _introMovie = false;
         if ([_videoFileName compare:@"endGame"] == NSOrderedSame) {
             _showEndGame = true;            
         }
+        
         _isActive = true;
         
         [self switchToPhase:phase];
@@ -112,7 +116,6 @@ static ComicManager *_shared = nil;
                 if (_showEndGame) {
                     [self endTheGame];
                 } else {
-                    _gameLayer.visible = false;
                     [_videoPlayer playMovie:_videoFileName];
                     [[CCDirector sharedDirector] stopAnimation];
                 }
@@ -126,8 +129,8 @@ static ComicManager *_shared = nil;
                 {
                     [[LevelManager shared] switchToNextLevel];
                     [_gameLayer initForLevel];
-                    _gameLayer.visible = true;
                 }
+                _gameLayer.visible = true;
                 [[CCDirector sharedDirector] startAnimation];
                 
                 [_comicLayer startTransition:BLACKBOX_OUT];

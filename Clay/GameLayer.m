@@ -45,6 +45,8 @@
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super init])) {
+        [self setVisible:NO];
+
         [[CCDirector sharedDirector] setProjection:CCDirectorProjection2D];
         
         [[SoundEngine shared] preloadAudio];
@@ -87,6 +89,8 @@
 
 -(void)initForLevel
 {
+    [self setVisible:NO]; //let comic manager make it visible
+    
     _level = [[LevelManager shared] currentLevel];
     
     [_player setOffsetForX:0 Y:[[LevelManager shared] playerOffsetY]];

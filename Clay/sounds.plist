@@ -26,5 +26,7 @@
 	<string>woo_action.caf</string>
 	<key>cowDied</key>
 	<string>cow_moo.caf</string>
+	<key>menuPlayButton</key>
+	<string>Craziness.wav</string>
 </dict>
 </plist>

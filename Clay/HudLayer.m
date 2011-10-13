@@ -56,10 +56,10 @@
         [[LayerManager sharedLayers] forgetWorkingLayer];
         
 
-        _alpha = 1.0f;
+        _alpha = 0.0f;
         _currentTransition = HUD_TRANSITION_IDLE;
         _resetButtons = false;
-        
+        [self setOpacities:_alpha];
         
     }
     

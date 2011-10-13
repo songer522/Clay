@@ -10,6 +10,8 @@
 #import "Sprite.h"
 #import "LayerManager.h"
 #import "ComicLayer.h"
+#import "ComicManager.h"
+#import "SoundEngine.h"
 
 @implementation MainMenuScene
 
@@ -100,6 +102,7 @@
         
         if (shouldStart) {
             [self switchToTransitionOut];
+            [[SoundEngine shared] playSound:@"menuPlayButton"];
         }
     }
 }
@@ -182,6 +185,7 @@
                 _reinit = true;
                 [self unscheduleUpdate];
                 [[LayerManager sharedLayers] popAndPushSceneNamed:@"game"];
+                [[ComicManager shared] startComic:@"intro" StartPhase:COMIC_PHASE_PLAY_VIDEO];
             }
             
             float position = 160.0f * _time;
