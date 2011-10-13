@@ -122,6 +122,7 @@
 {
     Sprite *sprite = [Sprite spriteWithFile:image];
     [[sprite getCCSprite] setOpacity:HUD_LAYER_BUTTON_OPACITY];
+    //[[sprite getCCSprite] setOpacity:_alpha];
     [[sprite getCCSprite] setScale:_buttonScale];
     [[sprite getCCSprite] setAnchorPoint:ccp(0.5f, 0.5f)];
     [sprite setPosition:position];
@@ -252,6 +253,25 @@
     } else {
         [self setVisible:YES];
     }
+}
+
+-(void)setThirdAction:(NSString*)action
+{
+    [[LayerManager sharedLayers] setWorkingLayer:self];
+    
+    if (_buttonAction!=nil) {
+        [[[LayerManager sharedLayers] currentLayer] removeChild:[_buttonAction getCCSprite] cleanup:YES];
+        [_buttonAction release];
+        _buttonAction = nil;        
+    }
+    
+    if ([action compare:@"woo"] == NSOrderedSame) {
+        _buttonAction = [self initButton:@"UI_Button_Woo.png" Position:CGPointMake(HUD_LAYER_ACTION_X, HUD_LAYER_BUTTON_Y)];
+    } else if([action compare:@"kick"] == NSOrderedSame) {
+        _buttonAction = [self initButton:@"UI_Button_Kicking.png" Position:CGPointMake(HUD_LAYER_ACTION_X, HUD_LAYER_BUTTON_Y)];
+    }
+    
+    [[LayerManager sharedLayers] forgetWorkingLayer];
 }
 
 -(TrackTimer*)getTrackTimer

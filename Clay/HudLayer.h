@@ -64,6 +64,8 @@ typedef enum {
 
 -(float)getCurrentTime;
 
+-(void)setThirdAction:(NSString*)action;
+
 -(void)fadeIn;
 -(void)fadeOut;
 

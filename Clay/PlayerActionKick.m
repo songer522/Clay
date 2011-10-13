@@ -90,5 +90,10 @@
     return _parent;
 }
 
+-(void)dealloc
+{
+    [super dealloc];
+}
+
 
 @end

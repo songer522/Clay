@@ -77,13 +77,16 @@
         
         _collisionHandler = [CollisionDetection collisionHandlerWithMetaLayer:_meta Map:_map];
 
-        [player setThirdAction:_playerThirdActionName];
-        
-        //[[[[LayerManager sharedLayers] currentLayer] getHud] setThirdAction:_playerThirdActionName];
-        
     }
     
     return self;
+}
+
+-(void)setThirdAction:(NSString*)action
+{
+    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+    [gameLayer.player setThirdAction:action];
+    [[gameLayer getHud] setThirdAction:action];
 }
 
 -(void)loadLayers:(NSString*)layerList;

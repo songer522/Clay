@@ -21,7 +21,10 @@
     Level *_currentLevel;
     Level *_nextLevel;
     
+    Level *_loadedLevel;
+    
     GameObjectController *_gameObjects;
+    NSString *_thirdAction;
     
     int _playerOffsetY;
 }
@@ -36,5 +39,6 @@
 -(void)loadNextLevel;
 -(void)switchToNextLevel;
 
+-(void)initAfterPlayerAndHudInit;
 
 @end

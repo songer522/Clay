@@ -59,6 +59,8 @@
         _isInMidAir = false;
         _waitToGetUp = 0.0f;
         
+        _thirdAction = nil;
+        
         _speed = [[RunningSpeed alloc] initWithSettings:settings];
         _speed.parent = self;
         [_speed start];
@@ -72,9 +74,6 @@
         
         _particleSystem = [ParticleSystem instance];
         
-        _thirdAction = [PlayerActionFactory buildPlayerAction:PLAYER_ACTION_KICK];
-        //_thirdAction = [PlayerActionFactory buildPlayerAction:PLAYER_ACTION_WOO];
-        [_thirdAction setParent:self];    
         
     }
     
@@ -340,14 +339,17 @@
 
 -(void)setThirdAction:(NSString*)action
 {
-    if ([action compare:@"woo"] == NSOrderedSame) {
-        _thirdAction = [PlayerActionFactory buildPlayerAction:PLAYER_ACTION_KICK];
-        //_thirdAction = [PlayerActionFactory buildPlayerAction:PLAYER_ACTION_WOO];
-        [_thirdAction setParent:self];    
-        
-    } else if ([action compare:@"kick"] == NSOrderedSame) {
-        
+    if (_thirdAction != nil) {
+        _thirdAction = nil;
     }
+    
+    if ([action compare:@"woo"] == NSOrderedSame) {
+        _thirdAction = [PlayerActionFactory buildPlayerAction:PLAYER_ACTION_WOO];
+    } else if([action compare:@"kick"] == NSOrderedSame) {
+        _thirdAction = [PlayerActionFactory buildPlayerAction:PLAYER_ACTION_KICK];
+    }
+    
+    [_thirdAction setParent:self];
 }
 
 -(void)setVelocity:(float)velocity
@@ -383,11 +385,7 @@
     [_speed release];
     [_battery release];
     [_particleSystem release];
-    
-    [_buttonJump release];
-    [_buttonKick release];
-    [_buttonSprint release];
-    
+        
     [super dealloc];
 }
 

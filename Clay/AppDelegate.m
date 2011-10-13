@@ -21,6 +21,7 @@
 #import "EndGameScene.h"
 #import "HudLayer.h"
 #import "MainMenuScene.h"
+#import "LevelManager.h"
 
 @implementation AppDelegate
 
@@ -141,6 +142,8 @@
     
     [_hudLayer reset];
 
+    
+    [[LevelManager shared] initAfterPlayerAndHudInit];
     
     _mainMenuScene = [MainMenuScene scene];
     [[LayerManager sharedLayers] setScene:_mainMenuScene ForKey:@"menu"];

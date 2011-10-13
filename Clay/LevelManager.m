@@ -49,6 +49,15 @@ static LevelManager *_shared = nil;
     return self;
 }
 
+
+//TODO: this is an ugly hack since the player references this object and thus first level gets loaded before the player
+//object exists. need to fix later
+-(void)initAfterPlayerAndHudInit
+{
+    [_loadedLevel setThirdAction:_thirdAction];
+    
+}
+
 -(Level*)loadLevelNamed:(NSString*)levelName
 {
     NSDictionary *levelSettings = [_levelSettings valueForKey:levelName];
@@ -59,7 +68,7 @@ static LevelManager *_shared = nil;
     NSString *postLevelComicName = [levelSettings valueForKey:@"postLevelComic"];
     NSString *music = [levelSettings valueForKey:@"music"];
     
-    //NSString *thirdAction = [levelSettings valueForKey:@"thirdAction"];
+    _thirdAction = [levelSettings valueForKey:@"thirdAction"];
 
     NSString *layerList = [levelSettings valueForKey:@"layerList"];
 
@@ -73,6 +82,12 @@ static LevelManager *_shared = nil;
     level.gameObjects = _gameObjects;
     level.name = levelName;
     level.musicName = music;
+    
+    _loadedLevel = level;
+    
+    if (gameLayer.player != nil) {
+        [self initAfterPlayerAndHudInit];
+    }
     
     return level;
 }

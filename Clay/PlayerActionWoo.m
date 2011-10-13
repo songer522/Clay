@@ -79,5 +79,10 @@
     return _isActive;
 }
 
+-(void)dealloc
+{
+    [super dealloc];
+}
+
 
 @end

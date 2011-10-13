@@ -44,10 +44,6 @@ typedef enum {
     
     RunnerJump _jumpHeight;
     
-    Sprite *_buttonJump;
-    Sprite *_buttonKick;
-    Sprite *_buttonSprint;
-    
     float _adjustX;
     
     id <PlayerAction> _thirdAction; //playeraction
