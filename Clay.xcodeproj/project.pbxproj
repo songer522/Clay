@@ -204,6 +204,7 @@
 		545CBC34142D260B00795FC9 /* SoundEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 545CBC33142D260B00795FC9 /* SoundEngine.m */; };
 		545CBC36142D267F00795FC9 /* sounds.plist in Resources */ = {isa = PBXBuildFile; fileRef = 545CBC35142D267F00795FC9 /* sounds.plist */; };
 		5460F9FE1423EB6100582EBD /* clayl2.1.4.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 5460F9FD1423EB6100582EBD /* clayl2.1.4.tmx */; };
+		5461A0B01447801100D97D6C /* Comic_Part01.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5461A0AF1447801100D97D6C /* Comic_Part01.mp4 */; };
 		54642B0C14337E5F001D8212 /* Battery_v2_s-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54642B0414337E5F001D8212 /* Battery_v2_s-hd.plist */; };
 		54642B0D14337E5F001D8212 /* Battery_v2_s-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54642B0514337E5F001D8212 /* Battery_v2_s-hd.png */; };
 		54642B0E14337E5F001D8212 /* Battery_v2_s.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54642B0614337E5F001D8212 /* Battery_v2_s.plist */; };
@@ -650,6 +651,7 @@
 		545CBC33142D260B00795FC9 /* SoundEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundEngine.m; sourceTree = "<group>"; };
 		545CBC35142D267F00795FC9 /* sounds.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sounds.plist; sourceTree = "<group>"; };
 		5460F9FD1423EB6100582EBD /* clayl2.1.4.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = clayl2.1.4.tmx; path = Resources/levels/clayl2.1.4.tmx; sourceTree = "<group>"; };
+		5461A0AF1447801100D97D6C /* Comic_Part01.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = Comic_Part01.mp4; path = Resources/videos/Comic_Part01.mp4; sourceTree = "<group>"; };
 		54642B0414337E5F001D8212 /* Battery_v2_s-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Battery_v2_s-hd.plist"; sourceTree = "<group>"; };
 		54642B0514337E5F001D8212 /* Battery_v2_s-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Battery_v2_s-hd.png"; sourceTree = "<group>"; };
 		54642B0614337E5F001D8212 /* Battery_v2_s.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Battery_v2_s.plist; sourceTree = "<group>"; };
@@ -1600,6 +1602,7 @@
 		54FBA24C1430E1ED0010A91A /* videos */ = {
 			isa = PBXGroup;
 			children = (
+				5461A0AF1447801100D97D6C /* Comic_Part01.mp4 */,
 				5440F607144743590068F05C /* test_big.mp4 */,
 				5440F608144743590068F05C /* test_small.mp4 */,
 				54FBA24A1430DDF30010A91A /* bait.m4v */,
@@ -1633,7 +1636,7 @@
 		54484CC7140449B500D0D7D9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0410;
+				LastUpgradeCheck = 0420;
 			};
 			buildConfigurationList = 54484CCA140449B500D0D7D9 /* Build configuration list for PBXProject "Clay" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1804,6 +1807,7 @@
 				54142C811446B57F00A74447 /* cow_moo.caf in Resources */,
 				5440F609144743590068F05C /* test_big.mp4 in Resources */,
 				5440F60A144743590068F05C /* test_small.mp4 in Resources */,
+				5461A0B01447801100D97D6C /* Comic_Part01.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2010,6 +2014,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Clay/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = Clay/Resources/Info.plist;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2025,6 +2030,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Clay/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = Clay/Resources/Info.plist;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";

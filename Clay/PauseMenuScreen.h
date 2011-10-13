@@ -11,7 +11,7 @@
 
 @class GameController;
 
-@interface PauseMenuScreen : CCLayerColor
+@interface PauseMenuScreen : CCLayer
 {
     float _alpha;
     GameController *_gameController;
@@ -21,6 +21,6 @@
 @property(nonatomic,retain) GameController *gameController;
 
 +(id)instance;
-- (id)initWithColor:(ccColor4B)color;
+//- (id)initWithColor:(ccColor4B)color;
 
 @end

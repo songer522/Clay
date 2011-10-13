@@ -16,12 +16,13 @@
 
 +(id)instance
 {
-    return [[self alloc] initWithColor:ccc4(0, 0, 0, 0)];
+    return [[self alloc] init];
 }
 
-- (id)initWithColor:(ccColor4B)color
+//- (id)initWithColor:(ccColor4B)color
+- (id)init
 {
-    self = [super initWithColor:color];
+    self = [super init];
     if (self) {
         // Initialization code here.
         _alpha = 0.0;
@@ -56,7 +57,7 @@
     if (_alpha > 1.0f) {
         _alpha = 1.0f;
     }
-    [self setOpacity:(int)(150 * _alpha)];
+    //[self setOpacity:(int)(150 * _alpha)];
     [_label setOpacity:(int)(255 * _alpha)];
 }
 

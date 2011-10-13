@@ -43,9 +43,9 @@
         [[[LayerManager sharedLayers] currentScene] addChild:self];
         
         [[LayerManager sharedLayers] setWorkingLayer:self];
-        _buttonJump = [self initButton:@"UI_Button_Jumping.png" Position:[[Camera sharedCamera] convertToScreenXY:CGPointMake(HUD_LAYER_JUMP_X - HUD_LAYER_OFFSET_X, HUD_LAYER_BUTTON_Y - HUD_LAYER_OFFSET_Y)]];
-        _buttonAction = [self initButton:@"UI_Button_Kicking.png" Position:[[Camera sharedCamera] convertToScreenXY:CGPointMake(HUD_LAYER_ACTION_X - HUD_LAYER_OFFSET_X, HUD_LAYER_BUTTON_Y - HUD_LAYER_OFFSET_Y)]];
-        _buttonSprint = [self initButton:@"UI_Button_TurboBoost.png" Position:[[Camera sharedCamera] convertToScreenXY:CGPointMake(HUD_LAYER_SPRINT_X - HUD_LAYER_OFFSET_X, HUD_LAYER_BUTTON_Y - HUD_LAYER_OFFSET_Y)]];
+        _buttonJump = [self initButton:@"UI_Button_Jumping.png" Position:CGPointMake(HUD_LAYER_JUMP_X, HUD_LAYER_BUTTON_Y)];
+        _buttonAction = [self initButton:@"UI_Button_Kicking.png" Position:CGPointMake(HUD_LAYER_ACTION_X, HUD_LAYER_BUTTON_Y)];
+        _buttonSprint = [self initButton:@"UI_Button_TurboBoost.png" Position:CGPointMake(HUD_LAYER_SPRINT_X, HUD_LAYER_BUTTON_Y)];
 
         
         _trackTimer = [TrackTimer instance];
@@ -260,15 +260,17 @@
     [[LayerManager sharedLayers] setWorkingLayer:self];
     
     if (_buttonAction!=nil) {
-        [[[LayerManager sharedLayers] currentLayer] removeChild:[_buttonAction getCCSprite] cleanup:YES];
+        [[[LayerManager sharedLayers] currentLayer] removeChild:[_buttonAction getCCSprite] cleanup:NO];
         [_buttonAction release];
         _buttonAction = nil;        
     }
     
     if ([action compare:@"woo"] == NSOrderedSame) {
         _buttonAction = [self initButton:@"UI_Button_Woo.png" Position:CGPointMake(HUD_LAYER_ACTION_X, HUD_LAYER_BUTTON_Y)];
+        [[_buttonAction getCCSprite] setVisible:YES];
     } else if([action compare:@"kick"] == NSOrderedSame) {
         _buttonAction = [self initButton:@"UI_Button_Kicking.png" Position:CGPointMake(HUD_LAYER_ACTION_X, HUD_LAYER_BUTTON_Y)];
+        [[_buttonAction getCCSprite] setVisible:YES];
     }
     
     [[LayerManager sharedLayers] forgetWorkingLayer];
