@@ -3,12 +3,12 @@
 <plist version="1.0">
 <dict>
 	<key>trackToFarm</key>
-	<string>test_big.mov</string>
+	<string>test_big.mp4</string>
 	<key>farmToCornfields</key>
-	<string>test_small.mov</string>
+	<string>test_small.mp4</string>
 	<key>endGame</key>
 	<string>endGame</string>
 	<key>intro</key>
-	<string>test_big.mov</string>
+	<string>test_big.mp4</string>
 </dict>
 </plist>
