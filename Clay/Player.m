@@ -72,8 +72,8 @@
         
         _particleSystem = [ParticleSystem instance];
         
-        //_thirdAction = [PlayerActionFactory buildPlayerAction:PLAYER_ACTION_KICK];
-        _thirdAction = [PlayerActionFactory buildPlayerAction:PLAYER_ACTION_WOO];
+        _thirdAction = [PlayerActionFactory buildPlayerAction:PLAYER_ACTION_KICK];
+        //_thirdAction = [PlayerActionFactory buildPlayerAction:PLAYER_ACTION_WOO];
         [_thirdAction setParent:self];
     }
     

@@ -123,9 +123,11 @@
         //hen always dies, but don't actually kick hen unless player decides it's been kicked
         _collided = true;
         [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"henKicked"];
+        [[SoundEngine shared] playSound:@"henKicked"];
          
     } else if(_currentBehavior == COLLISION_BEHAVIOR_COW_COLLAPSE) {
-        [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"cowDied"];        
+        [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"cowDied"];  
+        [[SoundEngine shared] playSound:@"cowDied"];
     }
     
     return _playerEffect;

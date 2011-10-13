@@ -20,5 +20,11 @@
 	<string>BatteryFullCharge.wav</string>
 	<key>error</key>
 	<string>Error.wav</string>
+	<key>henKicked</key>
+	<string>hen_squawk.caf</string>
+	<key>wooAction</key>
+	<string>woo_action.caf</string>
+	<key>cowDied</key>
+	<string>cow_moo.caf</string>
 </dict>
 </plist>
