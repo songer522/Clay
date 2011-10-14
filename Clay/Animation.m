@@ -25,6 +25,7 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
 @synthesize delay = _delay;
 @synthesize looping = _looping;
 @synthesize clearPreviousAnimations = _clearPreviousAnimations;
+@synthesize name = _name;
 
 +(id)animationFromPlist:(NSString*)name forSequence:(NSString*)sequence FrameList:(NSString*)framelist
 {

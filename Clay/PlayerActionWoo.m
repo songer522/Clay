@@ -34,7 +34,6 @@
         _duration = 0.75f;
         _cooldown = 3.0f;
         [_parent endTurbo];
-        [_parent changeHealth:1];
         [[AnimationController sharedController] replaceSprite:[_parent getSprite] withAnimationNamed:@"wooAnim"];
         [[SoundEngine shared] playSound:@"wooAction"];
     }
@@ -43,8 +42,19 @@
 -(void)endAction
 {
     _inAction = false;
+    [_parent changeHealth:1];
     NSLog(@"End woo.");
 }
+
+-(void)cancelAction
+{
+    _inAction = false;
+    _isActive = false;
+    [[AnimationController sharedController] replaceSprite:[_parent getSprite] withAnimationNamed:@"runningAnim"];
+    _cooldown = 3.0f;
+    
+}
+
 
 -(void)update:(float)dt
 {

@@ -73,6 +73,14 @@
     return _isActive;
 }
 
+-(void)cancelAction
+{
+    _inAction = false;
+    _isActive = false;
+    [[AnimationController sharedController] replaceSprite:[_parent getSprite] withAnimationNamed:@"runningAnim"];
+    
+}
+
 -(void)endAction
 {
     _inAction = false;

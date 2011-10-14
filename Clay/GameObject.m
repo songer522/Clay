@@ -14,6 +14,8 @@
 #import "SoundEngine.h"
 #import "LayerManager.h"
 #import "AnimationController.h"
+#import "GameLayer.h"
+#import "Player.h"
 
 @implementation GameObject
 
@@ -124,6 +126,8 @@
         _collided = true;
         [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"henKicked"];
         [[SoundEngine shared] playSound:@"henKicked"];
+        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+        [gameLayer.player changeHealth:1];
          
     } else if(_currentBehavior == COLLISION_BEHAVIOR_COW_COLLAPSE) {
         [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"cowDied"];  

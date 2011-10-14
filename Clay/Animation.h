@@ -20,9 +20,14 @@
     CCSpriteBatchNode *_spriteSheet;        //a reference to the spritesheet
     
     float _delay;                           //number of seconds between frames
+    
+    NSString *_name;
+    
     NSString *_firstFrameName;              //name of the first frame of the sequence
     
     NSString *_sequence;
+    
+    
     
     CCXAnimate *_animateAction;             //extension of CCAnimate to allow to
                                             //read the current frame
@@ -37,6 +42,7 @@
 @property(nonatomic,assign) float delay;
 @property(nonatomic,assign) bool looping;
 @property(nonatomic,assign) bool clearPreviousAnimations;
+@property(nonatomic,retain) NSString *name;
 
 
 #pragma mark - initializers

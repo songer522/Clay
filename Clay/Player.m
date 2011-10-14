@@ -98,6 +98,7 @@
 
 -(void)update:(float)dt Level:(Level *)level
 {
+    NSLog(@"Current Animation: %@",[_sprite getAnimation].name);
     
     [super update:dt];
     
@@ -186,6 +187,8 @@
             _waitToGetUp = 1.5f;
             _isJumping = false;
             [_speed stop];
+        } else if(!_isInMidAir && !_speed.inTurbo && ![_thirdAction inAction] && [[_sprite getAnimation].name compare:@"runningAnim"]!=NSOrderedSame) {
+            [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"runningAnim"];
         }
         
         _jumpAcceleration = 0;
@@ -271,14 +274,17 @@
 -(void)startCollision:(PlayerEffect)effect Obstacle:(GameObject*)obstacle
 {
     if (effect == PLAYER_EFFECT_ACTION_OR_COLLIDE) {
-        if (![_thirdAction inAction]) {
-            [self private_StartPlayerCollision];
-        } else {
-            [obstacle special_kickHen];
+        if (!_isTripping && !_isDead) {
+            if (![_thirdAction isActive]) {
+                [self private_StartPlayerCollision];
+            } else {
+                [obstacle special_kickHen];
+            }            
         }
-    }
-    if (effect == PLAYER_EFFECT_COLLIDE) {
-        [self private_StartPlayerCollision];
+    } else if (effect == PLAYER_EFFECT_COLLIDE) {
+        if (!_isTripping && !_isDead) {
+            [self private_StartPlayerCollision];            
+        }
     } else if(effect == PLAYER_EFFECT_SLOWDOWN) {
         [_speed slowDown];
     }

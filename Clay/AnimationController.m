@@ -65,6 +65,7 @@ static AnimationController *_sharedController = nil;
             anim.looping = looping;
             anim.delay = animationDelay;
             anim.clearPreviousAnimations = clearPreviousAnimations;
+            anim.name = animationName;
             
             [animations setValue:anim forKey:animationName];
         }

@@ -14,6 +14,7 @@
 +(id)instance;
 -(bool)inAction;
 -(void)startAction;
+-(void)cancelAction;
 -(void)endAction;
 -(bool)isActive;
 -(void)update:(float)dt;
