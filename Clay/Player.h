@@ -81,7 +81,7 @@ typedef enum {
 -(void)startCollision:(PlayerEffect)effect Obstacle:(GameObject*)obstacle;
 
 -(void)changeHealth:(int)amount;
-
+-(bool)objectShouldReactToCollision;
 -(void)reset;
 -(void)resetSprite:(CCLayer*)layer;
 -(void)rechargeBattery;
