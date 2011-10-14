@@ -14,16 +14,11 @@
 
 #define HUD_LAYER_BUTTON_OPACITY 170 //tian's suggestion: 204
 
-#define HUD_LAYER_BUTTON_Y 65
-#define HUD_LAYER_JUMP_X 88
-#define HUD_LAYER_ACTION_X 443
-#define HUD_LAYER_SPRINT_X 503
+#define HUD_LAYER_BUTTON_Y 29
+#define HUD_LAYER_JUMP_X 32
+#define HUD_LAYER_ACTION_X 390
+#define HUD_LAYER_SPRINT_X 450
 #define HUD_LAYER_BUTTON_SIZE 55
-
-//these only here because some positions got screwed up and didn't have time to fix them properly
-//(keep in mind, the button hitboxes test against the above constants
-#define HUD_LAYER_OFFSET_X -51 //53,32
-#define HUD_LAYER_OFFSET_Y -31
 
 @implementation HudLayer
 
@@ -106,9 +101,9 @@
 {
     bool collision = false;
     
-    float left = buttonPosition.x - 1.5f * HUD_LAYER_BUTTON_SIZE;
+    float left = buttonPosition.x - 0.5f * HUD_LAYER_BUTTON_SIZE;
     float right = left + HUD_LAYER_BUTTON_SIZE;
-    float bottom = buttonPosition.y - 1.5f * HUD_LAYER_BUTTON_SIZE + 25;
+    float bottom = buttonPosition.y - 0.5f * HUD_LAYER_BUTTON_SIZE;
     float top = bottom + HUD_LAYER_BUTTON_SIZE;
     
     if (testPosition.x > left && testPosition.x < right && testPosition.y < top && testPosition.y > bottom){
@@ -125,7 +120,7 @@
     //[[sprite getCCSprite] setOpacity:_alpha];
     [[sprite getCCSprite] setScale:_buttonScale];
     [[sprite getCCSprite] setAnchorPoint:ccp(0.5f, 0.5f)];
-    [sprite setPosition:position];
+    [sprite getCCSprite].position = position;
     return sprite;
 }
 

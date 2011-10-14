@@ -100,8 +100,6 @@
 
 -(void)update:(float)dt Level:(Level *)level
 {
-    NSLog(@"Current Animation: %@",[_sprite getAnimation].name);
-    
     [super update:dt];
     
     [self updateJump:dt];

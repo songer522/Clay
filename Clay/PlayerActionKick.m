@@ -31,7 +31,6 @@
 -(void)startAction
 {
     if (!_inAction) {
-        NSLog(@"Kick!");
         _inAction = true;
         _isActive = false;
         _duration = 0.4f;

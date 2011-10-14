@@ -29,7 +29,6 @@
 -(void)startAction
 {
     if (!_inAction && _cooldown<=0.0f) {
-        NSLog(@"Woo!");
         _inAction = true;
         _duration = 0.75f;
         _cooldown = 3.0f;
@@ -43,7 +42,6 @@
 {
     _inAction = false;
     [_parent changeHealth:1];
-    NSLog(@"End woo.");
 }
 
 -(void)cancelAction
@@ -51,7 +49,7 @@
     _inAction = false;
     _isActive = false;
     [[AnimationController sharedController] replaceSprite:[_parent getSprite] withAnimationNamed:@"runningAnim"];
-    _cooldown = 3.0f;
+    _cooldown = 1.0f;
     
 }
 
