@@ -25,6 +25,16 @@
     <property name="special" value="nextlevelNE"/>
    </properties>
   </tile>
+  <tile id="10">
+   <properties>
+    <property name="obstacle" value="haybale"/>
+   </properties>
+  </tile>
+  <tile id="11">
+   <properties>
+    <property name="obstacle" value="leafpile"/>
+   </properties>
+  </tile>
  </tileset>
  <tileset firstgid="281" name="Meta" tilewidth="64" tileheight="64">
   <image source="meta.png" width="256" height="192"/>
@@ -150,7 +160,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt0zsOgEAIBcC18HP/ExtLK8UgYjJTE/IW2DEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAiJinrxOcdcvzROQNd2rXoplEZ3/Ud99X93wVqu7nSsYusvaZ2efNG8vs3bHX1uQ24Y8W/wcAAAAAKLIDwx8AgQ==
+   eJzt08sKgCAQBVBb9NjV/39tuAhaBD5QMThnZ4zXEacQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKhxLnl1V2Zd7t547vv71zplL+wpZubeN5UTPf3WZPa4X6218JxYX7pntNn7G2HU/KS0eItW79kyp+eMtcyeMeuYZDbhjzb/DwAAAAAwyA1eGwFW
   </data>
  </layer>
  <layer name="meta" width="660" height="14" opacity="0.34">
