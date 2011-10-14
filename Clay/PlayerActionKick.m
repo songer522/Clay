@@ -46,7 +46,7 @@
     if (_inAction) {
         _duration -= dt;
         
-        if (_duration < 0.2f) {
+        if (_duration < 0.3f) {
             _isActive = true;
             if (!_madeNoise) {
                 _madeNoise = true;

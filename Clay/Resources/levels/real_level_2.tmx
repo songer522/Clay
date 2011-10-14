@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="1000" height="14" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" name="Barn" tilewidth="64" tileheight="64">
+  <image source="tileset_level_2.png" width="1792" height="832"/>
+ </tileset>
+ <tileset firstgid="365" name="Icons" tilewidth="64" tileheight="64">
+  <image source="TrackLapse_Icons.png" width="640" height="128"/>
+  <tile id="0">
+   <properties>
+    <property name="obstacle" value="hurdle"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="special" value="spawnpoint"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="special" value="checkpoint"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="special" value="nextlevelNE"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="special" value="jimAppearance1"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="obstacle" value="hen"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="obstacle" value="cow"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="obstacle" value="manure"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="385" name="Meta" tilewidth="64" tileheight="64">
+  <image source="meta.png" width="256" height="192"/>
+  <tile id="0">
+   <properties>
+    <property name="collision" value="full"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="collision" value="slantleft"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="collision" value="slantright"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="collision" value="none"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="back-2" width="1000" height="14">
+  <properties>
+   <property name="speedx" value=".60"/>
+   <property name="speedy" value="1.0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztzDsOgzAURFGTXUBC9r8tPskugIxEDZa7FOfIoye5uKUAAAAAAAAAAAAAAAAAAAAAAAAA8A+mbM6WbM0+2ffmv/Xq6+vr6+vr6+vr6+vr6+vX+1u2Z0dWurzs0V3/t159fX19fX19fX19fX19ff16v8+G7Jm9sjF73/y3Xn19fX19fX19fX19fX19/XofAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIDTDxAb8NU=
+  </data>
+ </layer>
+ <layer name="back-1" width="1000" height="14">
+  <properties>
+   <property name="speedx" value="0.8"/>
+   <property name="speedy" value="1.0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztzVtWjgEAheG/pGgOksQc5NwcUqjm4BjmkFOYQzmEOZBDjMm7lvvv5rt93rX2zb55piaTyXQ70WbayTbb5tqpdrrNj/ymGAwGg8FgMBgMBoPBYAx+Z9pCO9sW27m21M635XahXRz5MRgMBoPBYDAYDAaDwRj+LrWVdrldaVfbtXa93Wg32+rIj8FgMBgMBoPBYDAYDMbwt9ZutfW20W63O+1u22xbbXvkx2AwGAwGg8FgMBgMBmP4u9futwftYXvUHred9qQ9bc9GfgwGg8FgMBgMBoPBYDCGv932vL1oL9ur9rrttTftbXs38mMwGAwGg8FgMBgMBoMx/O23g/a+fWgf26d22D63L+3ryI/BYDAYDAaDwWAwGAzG8PetfW9H7Uf72X613+24/Wl/R34MBoPBYDAYDAaDwWAwhj9JkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJ0v/+AYth0fU=
+  </data>
+ </layer>
+ <layer name="main0" width="1000" height="14">
+  <properties>
+   <property name="speedx" value="1.0"/>
+   <property name="speedy" value="1.0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt1DWM3EAARuHbKswMXZgZujDTBbowM/Rhxj7M2IcZ+zBjH2Ys8ko3tu5kO+to35O+dnb8a7RFRWZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmaWZMdxAidxCqdxBmdxDudxARdxCZdxBVdxDddxI8Fzspb7ROc+0blPdO4TnftE5z7RuU907hOd+0TnPtG5T3TuE93/uk8FVEQlVEYVVEU1VEcN1EQt1EYd1EU91EcDNMRN3MJt3MFd3MN9PMBDPMJjPMFTPMNzvMBLvErwnKS+K419gvePs0+cc9zHfdynMPfx/9n34z7u4z7u4z7u4z7Z3acZmqMFWqIVWqMN2qId2qMDOqITOqMLuqIbuuM13uAt3uE9PuAjPuEzvuArvuE7fuAnfuE3/iR4TlLfVdpzwu4c/K7g/ePsE+ecsHumvU9J3k8W9snX+3Ef90l7n0L+f/b9uI/7uI/7uI/7uE/W9+mDvuiH/hiAgRiEwRiCoRiG4RiBYozEKIzGGJTJFRWVRTmURwVURCVURhVURTVURw3URC3URh3UzSV3TlLfVdpzwu4c/K7g/ePsE+ecsHumvU9J3k8W9snX+3Ef90l7n0L+f/b9uI/7uI/7uI/7uE/W95mISZiMKZiKaZiOGZiJWZiNOZiLeZiPBViIRWjEbzZGEzRFMzRHC7REK7RGG7RFO7RHB3REJ3TOJXdOUt9V2nPC7hz8ruD94+wT55ywe6a9T0neTxb2ydf7cR/3SXufQv5/9v24j/u4j/u4j/u4T9b3WYwlWIplWI4VWIlVWI01WIt1WI8N2IhN2Iwt6MFv9kQv9EYf9EU/9McADMQgDMYQDMUwDMcIFOeSOyep7yrtOWF3Dn5X8P5x9olzTtg9096nJO8nC/vk6/24j/ukvU8h/z/7ftzHfdzHfdzHfdwn6/tsxTZsxw7sxC7sxh7sxT7sxwEcxCEcxhEcxTGM5TfHYTwmYCImYTKmYCqmYTpmYCZmYTbmYC7m5ZI7J6nvinNO8M7B7wreP84+cc4J2/Zf7hP2frKwTxbej/u4j//Pvh/3cR/3cR/3cR/3Kax9zMzMzMzMzCz//QXNbN3r
+  </data>
+ </layer>
+ <layer name="front2" width="1000" height="14">
+  <properties>
+   <property name="speedx" value="1.2"/>
+   <property name="speedy" value="1.0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztxzENADAMBLHwJ5o2KPpbIWSxpRuuCgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC+TifdNN5777333nvvvV95AAAAYN8Dwk6MYg==
+  </data>
+ </layer>
+ <layer name="front3" width="1000" height="14">
+  <properties>
+   <property name="speedx" value="1.0"/>
+   <property name="speedy" value="1.0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt1MsOgyAQBVD7wX0s2n5/00UTF4I8CoI5Z2WMymVmcFkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgPN6Xsveehe+VfDO21l6OV2bO1Hqk7j93/a97RW1D+dd5Y9nXeX/XoedT9/ZoMCv/dt3IuHWPY4V60rJXNedxBrHaOQPH2at9SW969rPFWrPNY0reHns6+z8sRWqdZ5uxWeTUtbYH5r2N3L6McpZGyXEbJAcAAAAAAAAA9PQBjIISlA==
+  </data>
+ </layer>
+ <layer name="meta" width="1000" height="14" opacity="0.85">
+  <properties>
+   <property name="speedx" value="1.0"/>
+   <property name="speedy" value="1.0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztwzENAAAMA6BWep3vnAlISAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgraqqqqqqqqrqAYi3984=
+  </data>
+ </layer>
+</map>

@@ -15,7 +15,7 @@
 		<key>playerOffsetY</key>
 		<integer>-9</integer>
 		<key>fileName</key>
-		<string>clayl1.5.tmx</string>
+		<string>real_level_1.tmx</string>
 		<key>obstacleLayer</key>
 		<string>front3</string>
 		<key>nextLevelName</key>
@@ -53,7 +53,7 @@
 		<key>playerOffsetY</key>
 		<integer>-9</integer>
 		<key>fileName</key>
-		<string>clayl2.1.4.tmx</string>
+		<string>real_level_2.tmx</string>
 		<key>obstacleLayer</key>
 		<string>front3</string>
 		<key>nextLevelName</key>
@@ -74,7 +74,7 @@
 		<key>playerOffsetY</key>
 		<integer>-9</integer>
 		<key>fileName</key>
-		<string>clayl3.0.1.7.tmx</string>
+		<string>real_level_3.tmx</string>
 		<key>obstacleLayer</key>
 		<string>front2</string>
 		<key>nextLevelName</key>

@@ -28,5 +28,11 @@
 	<string>cow_moo.caf</string>
 	<key>menuPlayButton</key>
 	<string>Craziness.wav</string>
+	<key>timCollision</key>
+	<string>tim_hit_something.caf</string>
+	<key>timHurt</key>
+	<string>hurt.caf</string>
+	<key>steppedInSand</key>
+	<string>sand_step.caf</string>
 </dict>
 </plist>

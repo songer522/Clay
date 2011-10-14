@@ -70,6 +70,8 @@
         
         _isHighJump = false;
         
+        _waitToPlaySlowSound = 0.0f;
+        
         _adjustX = 0.0f;
         
         _particleSystem = [ParticleSystem instance];
@@ -101,7 +103,6 @@
     NSLog(@"Current Animation: %@",[_sprite getAnimation].name);
     
     [super update:dt];
-    
     
     [self updateJump:dt];
     
@@ -147,7 +148,16 @@
 
 }
 
-
+-(void)updateSlow:(float)dt
+{
+    if (_speed.isSlowedDown) {
+        _waitToPlaySlowSound -= dt;
+        if (_waitToPlaySlowSound<=0.0f) {
+            [[SoundEngine shared] playSound:@"steppedInSand"];
+            _waitToPlaySlowSound = 0.4f;
+        }
+    }
+}
 
 -(void)updateJump:(float)dt
 {
@@ -186,8 +196,9 @@
         } else if (_isJumping && _isTripping) {
             _waitToGetUp = 1.5f;
             _isJumping = false;
+            [[SoundEngine shared] playSound:@"timCollision"];
             [_speed stop];
-        } else if(!_isInMidAir && !_speed.inTurbo && ![_thirdAction inAction] && [[_sprite getAnimation].name compare:@"runningAnim"]!=NSOrderedSame) {
+        } else if(!_isInMidAir && !_speed.inTurbo && !_isTripping && ![_thirdAction inAction] && [[_sprite getAnimation].name compare:@"runningAnim"]!=NSOrderedSame) {
             [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"runningAnim"];
         }
         
@@ -300,6 +311,8 @@
     [_speed startCollision];
     
     _waitToGetUp = 100.0f;
+    
+    [[SoundEngine shared] playSound:@"timHurt"];
     
     if (_isJumping) {
         [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"trippedAnim"];

@@ -16,6 +16,7 @@
 @synthesize inTurbo = _inTurbo;
 @synthesize parent = _player;
 @synthesize isStopped = _isStopped;
+@synthesize isSlowedDown = _isSlowedDown;
 
 +(id)node
 {
@@ -205,6 +206,7 @@
         [self applyFriction:5.0f Dt:dt];
     }
     
+    [_player updateSlow:dt];
     _isSlowedDown = false;
 }
 

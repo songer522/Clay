@@ -45,6 +45,8 @@ typedef enum {
     RunnerJump _jumpHeight;
     
     float _adjustX;
+    float _waitToPlaySlowSound;
+    
     
     id <PlayerAction> _thirdAction; //playeraction
 
@@ -89,6 +91,8 @@ typedef enum {
 -(void)private_StartPlayerCollision;
 
 -(void)pushAfterAnimation:(float)xAmount;
+
+-(void)updateSlow:(float)dt;
 
 -(void)setThirdAction:(NSString*)action;
 
