@@ -37,6 +37,41 @@
 		<key>imageName</key>
 		<string>hurdle.png</string>
 	</dict>
+	<key>haybale</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>playerEffect</key>
+		<string>collide</string>
+		<key>collideBehavior</key>
+		<string>falls</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>-45</integer>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>1</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>none</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>x</key>
+			<integer>50</integer>
+			<key>y</key>
+			<integer>2</integer>
+			<key>width</key>
+			<integer>35</integer>
+			<key>height</key>
+			<integer>40</integer>
+		</dict>
+		<key>imageName</key>
+		<string>haybale.png</string>
+	</dict>
 	<key>bighurdle</key>
 	<dict>
 		<key>aggressive</key>
@@ -242,6 +277,41 @@
 		</dict>
 		<key>imageName</key>
 		<string>manure.png</string>
+	</dict>
+	<key>leafpile</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>playerEffect</key>
+		<string>slow</string>
+		<key>collideBehavior</key>
+		<string>static</string>
+		<key>offsetx</key>
+		<integer>-64</integer>
+		<key>offsety</key>
+		<integer>-45</integer>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>0</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>none</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>x</key>
+			<integer>-12</integer>
+			<key>y</key>
+			<integer>2</integer>
+			<key>width</key>
+			<integer>87</integer>
+			<key>height</key>
+			<integer>15</integer>
+		</dict>
+		<key>imageName</key>
+		<string>leafpile.png</string>
 	</dict>
 </dict>
 </plist>

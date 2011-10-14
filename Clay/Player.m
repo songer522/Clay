@@ -150,7 +150,7 @@
 
 -(void)updateSlow:(float)dt
 {
-    if (_speed.isSlowedDown) {
+    if (_speed.isSlowedDown && !_isTripping) {
         _waitToPlaySlowSound -= dt;
         if (_waitToPlaySlowSound<=0.0f) {
             [[SoundEngine shared] playSound:@"steppedInSand"];

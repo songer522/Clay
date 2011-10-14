@@ -228,6 +228,8 @@
 		54883BAC14488D900029759E /* tim_hit_something.caf in Resources */ = {isa = PBXBuildFile; fileRef = 54883BAB14488D900029759E /* tim_hit_something.caf */; };
 		54883BAF14488F720029759E /* hurt.caf in Resources */ = {isa = PBXBuildFile; fileRef = 54883BAD14488F710029759E /* hurt.caf */; };
 		54883BB014488F720029759E /* sand_step.caf in Resources */ = {isa = PBXBuildFile; fileRef = 54883BAE14488F720029759E /* sand_step.caf */; };
+		54883BB31448985F0029759E /* haybale.png in Resources */ = {isa = PBXBuildFile; fileRef = 54883BB11448985F0029759E /* haybale.png */; };
+		54883BB41448985F0029759E /* leafpile.png in Resources */ = {isa = PBXBuildFile; fileRef = 54883BB21448985F0029759E /* leafpile.png */; };
 		54968B2F141E554400A4D2DC /* character_jumping-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54968B27141E554400A4D2DC /* character_jumping-hd.plist */; };
 		54968B30141E554400A4D2DC /* character_jumping-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54968B28141E554400A4D2DC /* character_jumping-hd.png */; };
 		54968B31141E554400A4D2DC /* character_jumping.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54968B29141E554400A4D2DC /* character_jumping.plist */; };
@@ -682,6 +684,8 @@
 		54883BAB14488D900029759E /* tim_hit_something.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = tim_hit_something.caf; path = Resources/sounds/tim_hit_something.caf; sourceTree = "<group>"; };
 		54883BAD14488F710029759E /* hurt.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = hurt.caf; path = Resources/sounds/hurt.caf; sourceTree = "<group>"; };
 		54883BAE14488F720029759E /* sand_step.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = sand_step.caf; path = Resources/sounds/sand_step.caf; sourceTree = "<group>"; };
+		54883BB11448985F0029759E /* haybale.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = haybale.png; sourceTree = "<group>"; };
+		54883BB21448985F0029759E /* leafpile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leafpile.png; sourceTree = "<group>"; };
 		54968B27141E554400A4D2DC /* character_jumping-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "character_jumping-hd.plist"; sourceTree = "<group>"; };
 		54968B28141E554400A4D2DC /* character_jumping-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "character_jumping-hd.png"; sourceTree = "<group>"; };
 		54968B29141E554400A4D2DC /* character_jumping.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = character_jumping.plist; sourceTree = "<group>"; };
@@ -1560,6 +1564,8 @@
 		54BE176F141EBB7200A3D773 /* objects */ = {
 			isa = PBXGroup;
 			children = (
+				54883BB11448985F0029759E /* haybale.png */,
+				54883BB21448985F0029759E /* leafpile.png */,
 				54282F921444F5E50074BA3D /* hen_idle-hd.plist */,
 				54282F931444F5E50074BA3D /* hen_idle-hd.png */,
 				54282F941444F5E50074BA3D /* hen_idle.plist */,
@@ -1820,6 +1826,8 @@
 				54883BAC14488D900029759E /* tim_hit_something.caf in Resources */,
 				54883BAF14488F720029759E /* hurt.caf in Resources */,
 				54883BB014488F720029759E /* sand_step.caf in Resources */,
+				54883BB31448985F0029759E /* haybale.png in Resources */,
+				54883BB41448985F0029759E /* leafpile.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
