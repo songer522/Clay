@@ -10,12 +10,14 @@
 #import "cocos2d.h"
 
 @class GameController;
+@class Sprite;
 
 @interface PauseMenuScreen : CCLayer
 {
     float _alpha;
     GameController *_gameController;
     CCLabelTTF *_label;
+    Sprite *_bkg;
 }
 
 @property(nonatomic,retain) GameController *gameController;
