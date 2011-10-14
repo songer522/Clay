@@ -115,6 +115,7 @@
 
 -(void)pauseGame
 {
+    /*
     //toggles. if paused, then unpause, and vice versa
     if (!_isPaused) {
         [_gameLayer onExit];
@@ -126,7 +127,7 @@
         [[[LayerManager sharedLayers] currentScene] removeChild:_pauseMenu cleanup:YES];
         _isPaused = false;
         [_gameLayer onEnter];
-    }
+    }*/
 }
 
 -(void)dealloc
