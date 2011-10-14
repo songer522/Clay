@@ -50,6 +50,7 @@ typedef enum {
     float _rotationAmount;
     float _alpha;
     float _fallVelocity;
+    bool _chickenSound;
     bool _fadeout;
     CGRect _range;       //range in which this object can move on screen. absolute positions.
     

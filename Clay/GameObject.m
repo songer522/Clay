@@ -55,6 +55,7 @@
         _fadeout = false;
         _offsetX = 0;
         _offsetY = 0;
+        _chickenSound = false;
         _boundingBox = CGRectMake(0, 0, 0, 0);
         _collisionState = [[Collision collisionNode] retain];
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;
@@ -147,6 +148,10 @@
     GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
     [gameLayer.player changeHealth:1];
 
+    if (!_chickenSound) {
+        [[SoundEngine shared] playSound:@"henKicked"];
+        _chickenSound = true;
+    }
     _collided = false;  //want it to remain aggressive
     float magnitude = 555.0f;
     _angle = -20; //old was -30
@@ -231,6 +236,7 @@
     _vy = 0;
     _alpha = 1.0f;
     _fadeout = false;
+    _chickenSound = false;
     [_sprite setAlpha:1.0f];
     
     if ([_originalAnimation compare:@"none"] != NSOrderedSame) {
