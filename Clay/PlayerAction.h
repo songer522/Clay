@@ -18,6 +18,7 @@
 -(void)endAction;
 -(bool)isActive;
 -(void)update:(float)dt;
+-(bool)shouldTriggerPlayerHurtCollision;
 -(void)setParent:(Player*)player;
 -(Player*)getParent;
 

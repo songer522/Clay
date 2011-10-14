@@ -48,9 +48,9 @@ typedef enum {
     float _offsetY;     //how much to offset whatever y position comes in by
     float _angle;
     float _rotationAmount;
-    
+    float _alpha;
     float _fallVelocity;
-    
+    bool _fadeout;
     CGRect _range;       //range in which this object can move on screen. absolute positions.
     
     CGPoint _prevLocation;

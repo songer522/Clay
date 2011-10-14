@@ -73,6 +73,11 @@
     _parent = player;
 }
 
+-(bool)shouldTriggerPlayerHurtCollision
+{
+    return true;
+}
+
 -(Player*)getParent
 {
     return _parent;

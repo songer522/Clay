@@ -45,7 +45,7 @@
     if (_inAction) {
         _duration -= dt;
         
-        if (_duration < 0.4f) {
+        if (_duration < 0.2f) {
             _isActive = true;
             if (!_madeNoise) {
                 _madeNoise = true;
@@ -95,6 +95,15 @@
 -(Player*)getParent
 {
     return _parent;
+}
+
+-(bool)shouldTriggerPlayerHurtCollision
+{
+    if (_inAction) {
+        return false;
+    } else {
+        return true;
+    }
 }
 
 -(void)dealloc

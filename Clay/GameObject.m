@@ -51,6 +51,8 @@
         _vx = 0;
         _vy = 0;
         _angle = 0;
+        _alpha = 1.0f;
+        _fadeout = false;
         _offsetX = 0;
         _offsetY = 0;
         _boundingBox = CGRectMake(0, 0, 0, 0);
@@ -123,15 +125,17 @@
         [[SoundEngine shared] playSound:@"collision"];
     } else if(_currentBehavior == COLLISION_BEHAVIOR_HEN_KICKED) {
         //hen always dies, but don't actually kick hen unless player decides it's been kicked
-        _collided = true;
-        [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"henKicked"];
-        [[SoundEngine shared] playSound:@"henKicked"];
         GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
-        [gameLayer.player changeHealth:1];
-         
+        if ([gameLayer.player objectShouldReactToCollision]) {
+            _collided = true;
+            [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"henKicked"];
+            [[SoundEngine shared] playSound:@"henKicked"];
+        }
     } else if(_currentBehavior == COLLISION_BEHAVIOR_COW_COLLAPSE) {
         [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"cowDied"];  
         [[SoundEngine shared] playSound:@"cowDied"];
+        _alpha = 1.5f;
+        _fadeout = true;
     }
     
     return _playerEffect;
@@ -140,6 +144,9 @@
 //called by player once it decides that the hen is actually kicked.
 -(void)special_kickHen
 {
+    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+    [gameLayer.player changeHealth:1];
+
     _collided = false;  //want it to remain aggressive
     float magnitude = 555.0f;
     _angle = -20; //old was -30
@@ -167,6 +174,19 @@
     
     [self setPositionAtX:_x Y:_y];
     
+    if (_fadeout) {
+        float _setAlpha;
+        _alpha -= 2.0f * dt;
+        //TODO: build this into setAlpha method
+        if (_alpha <= 0.0f) {
+            _alpha = 0.0f;
+        }
+        _setAlpha = _alpha;
+        if (_setAlpha>=1.0f) {
+            _setAlpha = 1.0f;
+        }
+        [_sprite setAlpha:_setAlpha];
+    }
     
     if (_currentBehavior == COLLISION_BEHAVIOR_FALL_OVER) {
         _angle += (_fallVelocity + 100.0f) * dt;
@@ -209,6 +229,9 @@
     _angle = 0.0f;
     _vx = 0;
     _vy = 0;
+    _alpha = 1.0f;
+    _fadeout = false;
+    [_sprite setAlpha:1.0f];
     
     if ([_originalAnimation compare:@"none"] != NSOrderedSame) {
         [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:_originalAnimation];        
