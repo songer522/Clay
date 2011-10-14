@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>trackToFarm</key>
-	<string>test_big.mp4</string>
+	<string>Comic_Part02.mp4</string>
 	<key>farmToCornfields</key>
-	<string>test_big.mp4</string>
+	<string>Comic_Part03.mp4</string>
 	<key>endGame</key>
 	<string>endGame</string>
 	<key>intro</key>

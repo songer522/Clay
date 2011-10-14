@@ -265,6 +265,8 @@
 		54C8633D143E164F007341B3 /* trailer.caf in Resources */ = {isa = PBXBuildFile; fileRef = 54C8633B143E164F007341B3 /* trailer.caf */; };
 		54CA0B19140D65DB0038B3E1 /* Runner.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CA0B18140D65DB0038B3E1 /* Runner.m */; };
 		54CA0B20140D698B0038B3E1 /* RunningSpeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CA0B1F140D698B0038B3E1 /* RunningSpeed.m */; };
+		54CC6D4A1448C3DE00882E78 /* Comic_Part02.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 54CC6D481448C3DE00882E78 /* Comic_Part02.mp4 */; };
+		54CC6D4B1448C3DE00882E78 /* Comic_Part03.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 54CC6D491448C3DE00882E78 /* Comic_Part03.mp4 */; };
 		54CD29DD143BA21400F805E0 /* UI_Button_Jumping.png in Resources */ = {isa = PBXBuildFile; fileRef = 54CD29DA143BA21400F805E0 /* UI_Button_Jumping.png */; };
 		54CD29DE143BA21400F805E0 /* UI_Button_Kicking.png in Resources */ = {isa = PBXBuildFile; fileRef = 54CD29DB143BA21400F805E0 /* UI_Button_Kicking.png */; };
 		54CD29DF143BA21400F805E0 /* UI_Button_TurboBoost.png in Resources */ = {isa = PBXBuildFile; fileRef = 54CD29DC143BA21400F805E0 /* UI_Button_TurboBoost.png */; };
@@ -728,6 +730,8 @@
 		54CA0B18140D65DB0038B3E1 /* Runner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Runner.m; sourceTree = "<group>"; };
 		54CA0B1E140D698B0038B3E1 /* RunningSpeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RunningSpeed.h; sourceTree = "<group>"; };
 		54CA0B1F140D698B0038B3E1 /* RunningSpeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RunningSpeed.m; sourceTree = "<group>"; };
+		54CC6D481448C3DE00882E78 /* Comic_Part02.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = Comic_Part02.mp4; path = Resources/videos/Comic_Part02.mp4; sourceTree = "<group>"; };
+		54CC6D491448C3DE00882E78 /* Comic_Part03.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = Comic_Part03.mp4; path = Resources/videos/Comic_Part03.mp4; sourceTree = "<group>"; };
 		54CD29DA143BA21400F805E0 /* UI_Button_Jumping.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UI_Button_Jumping.png; sourceTree = "<group>"; };
 		54CD29DB143BA21400F805E0 /* UI_Button_Kicking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UI_Button_Kicking.png; sourceTree = "<group>"; };
 		54CD29DC143BA21400F805E0 /* UI_Button_TurboBoost.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UI_Button_TurboBoost.png; sourceTree = "<group>"; };
@@ -1618,6 +1622,8 @@
 			isa = PBXGroup;
 			children = (
 				5461A0AF1447801100D97D6C /* Comic_Part01.mp4 */,
+				54CC6D481448C3DE00882E78 /* Comic_Part02.mp4 */,
+				54CC6D491448C3DE00882E78 /* Comic_Part03.mp4 */,
 				5440F607144743590068F05C /* test_big.mp4 */,
 				5440F608144743590068F05C /* test_small.mp4 */,
 				54FBA24A1430DDF30010A91A /* bait.m4v */,
@@ -1828,6 +1834,8 @@
 				54883BB014488F720029759E /* sand_step.caf in Resources */,
 				54883BB31448985F0029759E /* haybale.png in Resources */,
 				54883BB41448985F0029759E /* leafpile.png in Resources */,
+				54CC6D4A1448C3DE00882E78 /* Comic_Part02.mp4 in Resources */,
+				54CC6D4B1448C3DE00882E78 /* Comic_Part03.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
