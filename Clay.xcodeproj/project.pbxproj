@@ -2020,6 +2020,9 @@
 				54E378841444A6710011D8F3 /* PlayerActionFactory.m in Sources */,
 				54E378871444A77D0011D8F3 /* PlayerActionWoo.m in Sources */,
 				544D50E61445EE4A00BED4CE /* EndGameScene.m in Sources */,
+				57BBD89B144CB0B500CB5FF7 /* GCHelper.m in Sources */,
+				57A5BAEF144CC2D3003FE838 /* GCState.m in Sources */,
+				57A5BAF2144CC6C7003FE838 /* GCDatabase.m in Sources */,
 				54A40A56144C915900B9C604 /* MapObject.m in Sources */,
 				54E11204144CC04900BBF32B /* MapLayer.m in Sources */,
 			);
