@@ -12,6 +12,7 @@
 #import "ComicLayer.h"
 #import "ComicManager.h"
 #import "SoundEngine.h"
+#import "GCHelper.h"
 
 @implementation MainMenuScene
 
@@ -36,7 +37,8 @@
     self = [super init];
     if (self) {
         // Initialization code here.
-        
+        [[GCHelper sharedInstance] authenticateLocalUser];
+    
         [[LayerManager sharedLayers] setWorkingLayer:self];
         
         _trackBackground = [Sprite spriteWithFile:@"Menu_Background.png"];

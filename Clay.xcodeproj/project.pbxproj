@@ -317,6 +317,7 @@
 		572DB81D141FF62D00DDC493 /* objects.plist in Resources */ = {isa = PBXBuildFile; fileRef = 572DB81C141FF62D00DDC493 /* objects.plist */; };
 		572DB821142000A400DDC493 /* GameObjectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 572DB820142000A400DDC493 /* GameObjectController.m */; };
 		572DB824142004D500DDC493 /* PListLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 572DB823142004D500DDC493 /* PListLoader.m */; };
+		57BBD89B144CB0B500CB5FF7 /* GCHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 57BBD89A144CB0B500CB5FF7 /* GCHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -798,6 +799,8 @@
 		572DB820142000A400DDC493 /* GameObjectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameObjectController.m; sourceTree = "<group>"; };
 		572DB822142004D500DDC493 /* PListLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PListLoader.h; sourceTree = "<group>"; };
 		572DB823142004D500DDC493 /* PListLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PListLoader.m; sourceTree = "<group>"; };
+		57BBD899144CB0B500CB5FF7 /* GCHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCHelper.h; sourceTree = "<group>"; };
+		57BBD89A144CB0B500CB5FF7 /* GCHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1347,6 +1350,8 @@
 				54518F6C1406AEE6009D74AA /* GameObject.m */,
 				572DB81F142000A400DDC493 /* GameObjectController.h */,
 				572DB820142000A400DDC493 /* GameObjectController.m */,
+				57BBD899144CB0B500CB5FF7 /* GCHelper.h */,
+				57BBD89A144CB0B500CB5FF7 /* GCHelper.m */,
 				54297899140C233E00B3FFF4 /* InputController.h */,
 				5429789A140C233E00B3FFF4 /* InputController.m */,
 				5429789C140C268100B3FFF4 /* InputEvent.h */,
@@ -1991,6 +1996,7 @@
 				54E378841444A6710011D8F3 /* PlayerActionFactory.m in Sources */,
 				54E378871444A77D0011D8F3 /* PlayerActionWoo.m in Sources */,
 				544D50E61445EE4A00BED4CE /* EndGameScene.m in Sources */,
+				57BBD89B144CB0B500CB5FF7 /* GCHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
