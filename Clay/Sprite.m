@@ -44,6 +44,7 @@
     
     if((self = [self init]))
     {
+        NSLog(@"Image File: %@",filename);
         sprite_cc = [[CCSprite spriteWithFile:filename] retain];
         
         [self initializeSpriteOnceLoaded];
