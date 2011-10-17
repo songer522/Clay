@@ -18,6 +18,8 @@
 #import "LayerManager.h"
 #import "Player.h"
 #import "Trigger.h"
+#import "MapObject.h"
+#import "MapLayer.h"
 #import "GameObjectController.h"
 
 @implementation Level
@@ -26,7 +28,7 @@
 @synthesize nextLevelName = _nextLevelName;
 @synthesize gameObjects = _gameObjects;
 @synthesize spawnPoint = _spawnPoint;
-@synthesize obstacleSprites = _obstacleSprites;
+@synthesize obstacleSprites = _obstacleMapObjects;
 @synthesize postLevelComicName = _postLevelComicName;
 @synthesize musicName = _musicName;
 @synthesize collisionHandler = _collisionHandler;
@@ -46,7 +48,10 @@
         
         _gameObjects = gameObjects;
         
-        _obstacleSprites = [[NSMutableArray alloc] initWithCapacity:100];
+        _obstacleMapObjects = [[NSMutableArray alloc] initWithCapacity:100];
+        _otherMapObjects = [[NSMutableArray alloc] initWithCapacity:100];
+        _mapLayers = [[NSMutableDictionary alloc] initWithCapacity:12];
+        _parallaxLayers = [[NSMutableArray alloc] initWithCapacity:12];
         
         [self initTiledMap:filename ObstacleLayer:obstacleLayer];
         
@@ -54,24 +59,13 @@
         
         _scale = [[UIScreen mainScreen] scale] / 2.0f;
         
-        _parallaxLayersBack = [CCParallaxNode node];
-        _parallaxLayersFront = [CCParallaxNode node];
-        
-        [self loadLayers:layerList];
+        [self scanThroughMapAndAddObjects];
+                
+        [self loadLayers:layerList Player:player];
         
         _map.scale = _scale;
-        _parallaxLayersBack.scale = _scale;
-        _parallaxLayersFront.scale = _scale;
         
         [[Camera sharedCamera] setBoundaries:[self getLevelBoundaries]];
-        
-        [[[LayerManager sharedLayers] currentLayer] addChild:_parallaxLayersBack];
-        
-        [self scanThroughMapAndAddObjects];
-        
-        [player resetSprite:[[LayerManager sharedLayers] currentLayer]];
-        
-        [[[LayerManager sharedLayers] currentLayer] addChild:_parallaxLayersFront];
         
         [_obstacles releaseMap];
         
@@ -89,21 +83,25 @@
     [[gameLayer getHud] setThirdAction:action];
 }
 
--(void)loadLayers:(NSString*)layerList;
+-(void)loadLayers:(NSString*)layerList Player:(Player*)player
 {
     int currentZ = 0;
-    CCParallaxNode *currentNode = _parallaxLayersBack;
-    
+
     NSArray *layers = [layerList componentsSeparatedByString:@","];
     for (NSString *layerName in layers) {
         if ([layerName compare:@"actives"] == NSOrderedSame) {
-            currentNode = _parallaxLayersFront;
+            [self addObstaclesToMap];
+            [player resetSprite:[[LayerManager sharedLayers] currentLayer]];
             currentZ = 0;
             continue;
         }
         
         CCTMXLayer *tmxLayer = [_map layerNamed:layerName];
         if (tmxLayer) {
+            
+            
+            CCParallaxNode *node = [CCParallaxNode node];
+            
             float speedx = [[tmxLayer propertyNamed:@"speedx"] floatValue] * _scale;
             float speedy = [[tmxLayer propertyNamed:@"speedy"] floatValue] * _scale;
             float offsety = [[tmxLayer propertyNamed:@"offsety"] floatValue];
@@ -114,10 +112,22 @@
             }
             
             [tmxLayer removeFromParentAndCleanup:NO];
-            [currentNode addChild:tmxLayer z:currentZ parallaxRatio:ccp(speedx,speedy) positionOffset:offsetPoint];
-            currentZ++;
+            [node addChild:tmxLayer z:currentZ parallaxRatio:ccp(speedx,speedy) positionOffset:offsetPoint];
+            
+            [_parallaxLayers addObject:node];
+            [[[LayerManager sharedLayers] currentLayer] addChild:node];
+            
+            [self addMapObjectsAboveLayer:tmxLayer ParallaxRatio:ccp(speedx,speedy)];
         }
-    }    
+    }
+}
+
+-(void)addObstaclesToMap
+{
+    for (MapObject *mapObject in _obstacleMapObjects) {
+        GameObject *obstacle = mapObject.object;
+        [[[LayerManager sharedLayers] currentLayer] addChild:[obstacle getCCSprite]];
+    }
 }
 
 -(CGRect)getLevelBoundaries
@@ -140,15 +150,20 @@
 {
     _x = x;
     _y = y;
-    [_parallaxLayersBack setPosition:[[Camera sharedCamera] convertToScreenXY:CGPointMake(_x, _y)]];
-    [_parallaxLayersFront setPosition:[[Camera sharedCamera] convertToScreenXY:CGPointMake(_x, _y)]];
+    for (CCParallaxNode *node in _parallaxLayers) {
+        [node setPosition:[[Camera sharedCamera] convertToScreenXY:CGPointMake(_x,_y)]];
+    }
+    
+    for (MapObject *mapObject in _otherMapObjects) {
+        //[mapObject setPosition:CGPointMake(_x, _y)];
+    }
 }
 
 -(void)initTiledMap:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer
 {
     
     [[CCDirector sharedDirector] setProjection:CCDirectorProjection2D];
-    _map = [CCTMXTiledMap tiledMapWithTMXFile:filename];
+    _map = [[CCTMXTiledMap tiledMapWithTMXFile:filename] retain];
     
     _meta = [_map layerNamed:@"meta"];
     _meta.visible = NO;
@@ -160,13 +175,14 @@
 -(void)unloadLevel
 {
     [[[LayerManager sharedLayers] currentLayer] removeChild:_map cleanup:YES];
-    [[[LayerManager sharedLayers] currentLayer] removeChild:_parallaxLayersBack cleanup:YES];
-    [[[LayerManager sharedLayers] currentLayer] removeChild:_parallaxLayersFront cleanup:YES];
+    for (CCParallaxNode *node in _parallaxLayers) {
+        [[[LayerManager sharedLayers] currentLayer] removeChild:node cleanup:YES];
+    }
 }
 
 -(void)scanThroughMapAndAddObjects
 {
-    _obstacleSprites = [[NSMutableArray alloc] initWithCapacity:100];
+    _obstacleMapObjects = [[NSMutableArray alloc] initWithCapacity:100];
     _triggers = [[NSMutableArray alloc] initWithCapacity:30];
     
     for (int i=0; i<_map.mapSize.width; i++) {
@@ -174,6 +190,8 @@
             CGPoint coords = CGPointMake(i, j);
             
             NSString *special = [self getPropertyForTileCoords:coords forKey:@"special"];
+            NSString *layerBelow = [self getPropertyForTileCoords:coords forKey:@"layerBelow"];
+            
             if (special) {
                 if ([special compare:@"nextlevelNE"] == NSOrderedSame) {
                     Trigger *trigger = [[Trigger alloc] init];
@@ -189,22 +207,43 @@
                     [_triggers addObject:trigger];
                 } else if([special compare:@"spawnpoint"] == NSOrderedSame) {
                     _spawnPoint = [self getXYPositionForCoordinates:CGPointMake(i, j)];
+                } else if([special compare:@"jimAppearance1"] == NSOrderedSame) {
+                    CGPoint position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
+                    GameObject *jim = [_gameObjects loadGameObjectWithName:@"jim" AddToLayer:NO];
+                    [jim setPosition:position];
+                    [jim setStartingPosition:position];
+                    [jim getCCSprite].scale = 0.75f;
+                    MapObject *mapObject = [MapObject mapObjectWithSprite:jim AboveLayer:layerBelow];
+                    [_otherMapObjects addObject:mapObject];
                 }
             }
             
             NSString *obstacle = [self getPropertyForTileCoords:coords forKey:@"obstacle"];
             if (obstacle) {
-                GameObject *object = [_gameObjects loadGameObjectWithName:obstacle];
+                GameObject *object = [_gameObjects loadGameObjectWithName:obstacle AddToLayer:NO];
                 CGPoint position = [self getXYPositionForCoordinates:coords];
-                
                 [object setPositionAtX:position.x Y:position.y];
                 [object setStartingPosition:position];
                 [[object getCCSprite] setScale:_scale];                
-                [_obstacleSprites addObject:object];
+                
+                MapObject *mapObject = [MapObject mapObjectWithSprite:object AboveLayer:@"main0"];
+                [_obstacleMapObjects addObject:mapObject];
             }
         }
     }
                                           
+}
+
+
+-(void)addMapObjectsAboveLayer:(CCTMXLayer*)layer ParallaxRatio:(CGPoint)ratio
+{
+    for (MapObject *mapObject in _otherMapObjects) {
+        if (!mapObject.placed && [mapObject.layerAbove isEqualToString:layer.layerName]) {
+            mapObject.parallaxRatio = ratio;
+            [[[LayerManager sharedLayers] currentLayer] addChild:[mapObject.object getCCSprite]];
+            mapObject.placed = true;
+        }
+    }
 }
                 
 -(CGPoint)getXYPositionForCoordinates:(CGPoint)coords
@@ -239,7 +278,7 @@
 
 -(void)resetObstacles
 {
-    for (GameObject *obstacle in _obstacleSprites) {
+    for (GameObject *obstacle in _obstacleMapObjects) {
         [obstacle reset];
     }
 }
@@ -248,7 +287,8 @@
 {
     bool collision = false;
     
-    for (GameObject *obstacle in _obstacleSprites) {
+    for (MapObject *mapObject in _obstacleMapObjects) {
+        GameObject *obstacle = mapObject.object;
         if(!obstacle.collided) {
             collision = [self testCollisionWithGameObject:obstacle Source:source];
             if (collision) {
@@ -269,7 +309,8 @@
 {
     bool collision = false;
     
-    for (GameObject *obstacle in _obstacleSprites) {
+    for (MapObject *mapObject in _obstacleMapObjects) {
+        GameObject *obstacle = mapObject.object;
         if(obstacle!=source && !obstacle.collided && !obstacle.isAggressive) {
             collision = [self testCollisionWithGameObject:obstacle Source:source];
             if (collision) {
@@ -337,8 +378,8 @@
 -(void)update:(float)dt Velocity:(float)vx
 {
     [self setPositionAtX:_x Y:_y];
-    for(GameObject *obstacle in _obstacleSprites) {
-        [obstacle update:dt];
+    for(MapObject *obstacle in _obstacleMapObjects) {
+        [obstacle.object update:dt];
     }
 }
 
@@ -349,15 +390,17 @@
     [_obstacles release];
     [_map release];
     [_objects release];
-    [_parallaxLayersBack release];
-    [_parallaxLayersFront release];
+    [_parallaxLayers removeAllObjects];
+    [_parallaxLayers release];
     [_postLevelComicName release];
     [_musicName release];
     [_gameObjects release];
     [_triggers removeAllObjects];
     [_triggers release];
-    [_obstacleSprites removeAllObjects];
-    [_obstacleSprites release];
+    [_obstacleMapObjects removeAllObjects];
+    [_obstacleMapObjects release];
+    [_otherMapObjects removeAllObjects];
+    [_otherMapObjects release];
     [_triggers removeAllObjects];
     [_triggers release];
     [_collisionHandler release];

@@ -30,10 +30,15 @@
 
 +(id) spriteWithFile:(NSString*)filename
 {
-    return [[self alloc] initWithFile:filename];
+    return [[self alloc] initWithFile:filename AddToLayer:YES];
 }
 
--(id) initWithFile:(NSString*) filename
++(id) spriteWithFile:(NSString *)filename AddToLayer:(bool)shouldAddToLayer
+{
+    return [[self alloc] initWithFile:filename AddToLayer:shouldAddToLayer];
+}
+
+-(id) initWithFile:(NSString *)filename AddToLayer:(bool)shouldAddToLayer
 {
     NSAssert(filename!=nil, @"Invalid filename");
     
@@ -42,7 +47,10 @@
         sprite_cc = [[CCSprite spriteWithFile:filename] retain];
         
         [self initializeSpriteOnceLoaded];
-        [[[LayerManager sharedLayers] currentLayer] addChild:sprite_cc];
+        
+        if (shouldAddToLayer) {
+            [[[LayerManager sharedLayers] currentLayer] addChild:sprite_cc];
+        }
     }
     return self;
 }

@@ -52,7 +52,7 @@
         [[Camera sharedCamera] setCenter:CGPointMake(cameraX, cameraY)];
         
         GameObjectController *factory = [LevelManager shared].gameObjectFactory;
-        [factory initializeGameObject:self Name:@"player"];
+        [factory initializeGameObject:self Name:@"player" AddToLayer:YES];
         
         _isJumping = false;
         _isDead = false;

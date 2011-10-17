@@ -16,6 +16,7 @@
 }
 
 -(GameObject*)loadGameObjectWithName:(NSString*)objectName;
--(void)initializeGameObject:(GameObject*)gameObject Name:(NSString*)objectName;
+-(GameObject*)loadGameObjectWithName:(NSString *)objectName AddToLayer:(bool)shouldAddToLayer;
+-(void)initializeGameObject:(GameObject*)gameObject Name:(NSString*)objectName AddToLayer:(bool)shouldAddToLayer;
 
 @end

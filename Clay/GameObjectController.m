@@ -24,22 +24,30 @@
     return self;
 }
 
--(GameObject*)loadGameObjectWithName:(NSString *)objectName {
-    
+-(GameObject*)loadGameObjectWithName:(NSString *)objectName
+{
     GameObject *gameObject = [GameObject instance];
-    [self initializeGameObject:gameObject Name:objectName];
+    [self initializeGameObject:gameObject Name:objectName AddToLayer:YES];
     return gameObject;
-    
 }
 
--(void)initializeGameObject:(GameObject*)gameObject Name:(NSString*)objectName {
+-(GameObject*)loadGameObjectWithName:(NSString *)objectName AddToLayer:(bool)shouldAddToLayer
+{
+    GameObject *gameObject = [GameObject instance];
+    [self initializeGameObject:gameObject Name:objectName AddToLayer:shouldAddToLayer];
+    return gameObject;
+}
+
+-(void)initializeGameObject:(GameObject*)gameObject Name:(NSString*)objectName AddToLayer:(bool)shouldAddToLayer
+{
     NSDictionary *gameobjectSettings = [_objectSettings objectForKey:objectName];
+    NSAssert(gameobjectSettings != nil, @"Object could not be found. Please ensure the entry is in objects.plist");
     if (gameobjectSettings == nil) {
         CCLOG(@"Could not locate GameObjectWithName:%@", objectName);
         return;
     }
     
-    Sprite *gameSprite = [Sprite spriteWithFile:[gameobjectSettings objectForKey:@"imageName"]];
+    Sprite *gameSprite = [Sprite spriteWithFile:[gameobjectSettings objectForKey:@"imageName"] AddToLayer:shouldAddToLayer];
     [gameObject setSprite:gameSprite];
     
     NSString *animation = [NSString stringWithString:[gameobjectSettings objectForKey:@"animationName"]];

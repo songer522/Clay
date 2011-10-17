@@ -33,10 +33,11 @@
     
     CGPoint _spawnPoint;
     
-    CCParallaxNode *_parallaxLayersBack;
-    CCParallaxNode *_parallaxLayersFront;
+    NSMutableArray *_obstacleMapObjects;
+    NSMutableArray *_otherMapObjects;
+    NSMutableArray *_parallaxLayers;
     
-    NSMutableArray *_obstacleSprites;
+    NSMutableDictionary *_mapLayers;
     
     NSString *_postLevelComicName;
     
@@ -76,11 +77,13 @@
 -(void)update:(float)dt Velocity:(float)vx;
 -(CGRect)getLevelBoundaries;
 -(CGPoint)getXYPositionForCoordinates:(CGPoint)coords;
--(void)loadLayers:(NSString*)layerList;
+-(void)loadLayers:(NSString*)layerList Player:(Player*)player;
 -(NSString*)getPropertyForTileCoords:(CGPoint)coords forKey:(NSString*)key;
 -(bool)testCollisions:(GameObject*)source;
 -(bool)testCollisionsForAggressive:(GameObject*)source;
 -(bool)testCollisionWithGameObject:(GameObject*)target Source:(GameObject*)source;
+-(void)addMapObjectsAboveLayer:(CCTMXLayer*)layer ParallaxRatio:(CGPoint)ratio;
+-(void)addObstaclesToMap;
 
 -(void)resetObstacles;
 -(Trigger*)testTriggers:(Player*)player;

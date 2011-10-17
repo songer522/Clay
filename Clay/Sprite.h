@@ -22,8 +22,8 @@
 @property (nonatomic,assign) float y;
 
 +(id) spriteWithFile:(NSString *)filename;
-
--(id) initWithFile:(NSString *)filename;
++(id) spriteWithFile:(NSString *)filename AddToLayer:(bool)shouldAddToLayer;
+-(id) initWithFile:(NSString *)filename AddToLayer:(bool)shouldAddToLayer;
 -(void) setCentered;
 -(void) setPositionAtX:(float)x Y:(float)y;
 -(void) setPosition:(CGPoint)position;
