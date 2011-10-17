@@ -19,6 +19,8 @@
 #import "Player.h"
 #import "Trigger.h"
 #import "GameObjectController.h"
+#import "GCState.h"
+#import "GCHelper.h"
 
 @implementation Level
 
@@ -273,6 +275,26 @@
         if(obstacle!=source && !obstacle.collided && !obstacle.isAggressive) {
             collision = [self testCollisionWithGameObject:obstacle Source:source];
             if (collision) {
+                if (source.CurrentBehavior == COLLISION_BEHAVIOR_HEN_KICKED) {
+                    NSLog(@"Counting Chicken Kicked Into Cow");
+                    int maxKicksIntoCow = 10;
+                    
+                    if ([GCState sharedInstance].chickensKickedIntoCows < maxKicksIntoCow) {
+                        [GCState sharedInstance].chickensKickedIntoCows++;
+                        [[GCState sharedInstance] save];
+                        
+                        double pctComplete = ((double) [GCState sharedInstance].chickensKickedIntoCows / (int)maxKicksIntoCow) * 100.0;
+                        [[GCHelper sharedInstance] reportAchievement:gcAchievementChickensKickedIntoCows percentComplete:pctComplete];
+                        
+                        NSLog(@"Pct Complete - Chickens Kicked Into Cows: %f", pctComplete);
+                    }
+                    
+                    if ([GCState sharedInstance].chickensKickedIntoCows >= maxKicksIntoCow) {
+                        //ADD CODE TO DISPLAY ACHIEVEMENT
+                        NSLog(@"DISPLAY Chicken Kick Achievement");
+                    }
+                
+                }
                 [obstacle startCollision];
                 break;
             }

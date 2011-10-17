@@ -28,8 +28,7 @@
 @synthesize collided = _collided;
 @synthesize hasGravity = _hasGravity;
 @synthesize isAggressive = _isAggressive;
-
-
+@synthesize CurrentBehavior = _currentBehavior;
 
 + (id) objectWithSprite:(Sprite*)sprite
 {

@@ -13,7 +13,7 @@
 #import "BaseClasses.h"
 #import "GameClasses.h"
 
-#import "GameCenter.h"
+#import "GCHelper.h"
 #import "ComicManager.h"
 #import "HudLayer.h"
 #import "Battery.h"
