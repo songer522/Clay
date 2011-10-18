@@ -130,6 +130,7 @@
     } else if(_currentBehavior == COLLISION_BEHAVIOR_HEN_KICKED) {
         //hen always dies, but don't actually kick hen unless player decides it's been kicked
         GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+        _hasGravity = false;
         if ([gameLayer.player objectShouldReactToCollision]) {
             _collided = true;
             [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"henKicked"];
@@ -155,6 +156,8 @@
         [[SoundEngine shared] playSound:@"henKicked"];
         _chickenSound = true;
     }
+    [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"henKicked"];
+    _hasGravity = true;
     _collided = false;  //want it to remain aggressive
     float magnitude = 555.0f;
     _angle = -20; //old was -30
