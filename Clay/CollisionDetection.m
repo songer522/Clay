@@ -114,6 +114,13 @@
                 returnVal = false;
             }
             break;
+        case COLLISION_TYPE_LEDGE_FULL:
+            if (_currentObject.isFalling || !_currentObject.isInMidAir) {
+                returnVal = true;
+            } else {
+                returnVal = false;
+            }
+            break;
         default:
             break;
     }
@@ -149,16 +156,29 @@
     CollisionType returnVal = COLLISION_TYPE_NONE;
     
     NSString *property = [self getCollisionPropertyForTileCoords:coords];
-    if ([property compare:@"full"] == NSOrderedSame) {
+    if ([property isEqualToString:@"full"])
+    {
         returnVal = COLLISION_TYPE_FULL;
-    } else if([property compare:@"leftslant"] == NSOrderedSame) {
+    }
+    else if([property isEqualToString:@"leftslant"])
+    {
         returnVal = COLLISION_TYPE_LEFT_SLANT;
-    } else if([property compare:@"rightslant"] == NSOrderedSame) {
+    }
+    else if([property isEqualToString:@"rightslant"])
+    {
         returnVal = COLLISION_TYPE_RIGHT_SLANT;
-    } else if([property compare:@"rs2tileL"] == NSOrderedSame) {
+    }
+    else if([property isEqualToString:@"rs2tileL"])
+    {
         returnVal = COLLISION_TYPE_RIGHT_SLANT_2TILE_L;
-    } else if([property compare:@"rs2tileR"] == NSOrderedSame) {
+    }
+    else if([property isEqualToString:@"rs2tileR"])
+    {
         returnVal = COLLISION_TYPE_RIGHT_SLANT_2TILE_R;        
+    }
+    else if([property isEqualToString:@"ledgefull"])
+    {
+        returnVal = COLLISION_TYPE_LEDGE_FULL;
     }
     
     return returnVal;
@@ -187,26 +207,41 @@
     while (colliding) {
         [self prepareDataForPosition:_testPosition];
         
+        float topOfTile = (_map.mapSize.height - _coordinates.y - 1) * (_tileSize / 2.0f);
         
         //check if the test position collides with current tile
-        if ([_tileCollision compare:@"full"] == NSOrderedSame) {
+        if ([_tileCollision isEqualToString:@"full"])
+        {
             _coordinates.y-=1;
+
+            //NOTE: the "+1" at the end of the line below prevents an infinite loop
             _testPosition.y = (_map.mapSize.height - _coordinates.y - 1) * (_tileSize / 2.0f) + 1;
-            // the "+1" at the end prevents an infinite loop here
-        } else if ([_tileCollision compare:@"none"] == NSOrderedSame) {
-            _testPosition.y = (_map.mapSize.height - _coordinates.y - 1) * (_tileSize / 2.0f);
-            colliding = false;
-        } else if([_tileCollision compare:@"leftslant"] == NSOrderedSame) {
-            colliding = false;
-            _testPosition.y = (_map.mapSize.height - _coordinates.y - 1) * (_tileSize / 2.0f) + _pointWithinTile.x;
             
-        } else if([_tileCollision compare:@"rightslant"] == NSOrderedSame) {
+        }
+        else if ([_tileCollision isEqualToString:@"none"])
+        {
+            _testPosition.y = topOfTile;
             colliding = false;
-            _testPosition.y = (_map.mapSize.height - _coordinates.y - 1) * (_tileSize / 2.0f) + (32.0f - _pointWithinTile.x);
+        }
+        else if([_tileCollision isEqualToString:@"leftslant"])
+        {
+            colliding = false;
+            _testPosition.y = topOfTile + _pointWithinTile.x;
+            
+        }
+        else if([_tileCollision isEqualToString:@"rightslant"])
+        {
+            colliding = false;
+            _testPosition.y = topOfTile + (32.0f - _pointWithinTile.x);
+        }
+        else if([_tileCollision isEqualToString:@"ledgefull"])
+        {
+            _testPosition.y = topOfTile + 32;
+            colliding = false;
         }
         
     }
-    //NSLog(@"Property: %@",_tileCollision);
+    NSLog(@"Property: %@",_tileCollision);
 
     return true;
 }

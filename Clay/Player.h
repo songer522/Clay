@@ -28,7 +28,6 @@ typedef enum {
     bool _isTripping;
     bool _firstFrameJumping;
     bool _isDead;
-    bool _isInMidAir;
     
     float _yPosition;
     float _jumpAcceleration;
@@ -54,7 +53,6 @@ typedef enum {
 
 @property(nonatomic,assign) bool isDead;
 @property(nonatomic,assign) bool isTripping;
-@property(nonatomic,assign) bool isInMidAir;
 @property(nonatomic,assign) bool isJumping;
 @property(nonatomic,retain) Battery *battery;
 

@@ -31,7 +31,6 @@
 @synthesize isJumping = _isJumping;
 @synthesize isDead = _isDead;
 @synthesize isTripping = _isTripping;
-@synthesize isInMidAir = _isInMidAir;
 @synthesize battery = _battery;
 
 +(id) instance

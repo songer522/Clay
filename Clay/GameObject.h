@@ -38,6 +38,8 @@ typedef enum {
                          //want the object to be seen or updated
     
     bool _hasGravity;
+    bool _isInMidAir;
+    bool _isFalling;
     
     float _x;
     float _y;
@@ -85,6 +87,8 @@ typedef enum {
 @property(readonly,nonatomic,assign) bool collided;
 @property(nonatomic,assign) bool hasGravity;
 @property(nonatomic,assign) bool isAggressive;
+@property(nonatomic,assign) bool isInMidAir;
+@property(nonatomic,assign) bool isFalling;
 
 
 +(id) instance;
@@ -115,6 +119,8 @@ typedef enum {
 -(void) setCollideBehavior:(NSString*)behavior;
 -(void) setPlayerEffect:(NSString*)effect;
 -(void) setOriginalAnimation:(NSString*)animation;
+
+-(void) updateFlags;
 
 -(PlayerEffect) startCollision;
 

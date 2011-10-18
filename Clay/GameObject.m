@@ -29,6 +29,8 @@
 @synthesize hasGravity = _hasGravity;
 @synthesize isAggressive = _isAggressive;
 @synthesize CurrentBehavior = _currentBehavior;
+@synthesize isInMidAir = _isInMidAir;
+@synthesize isFalling = _isFalling;
 
 + (id) objectWithSprite:(Sprite*)sprite
 {
@@ -59,6 +61,8 @@
         _collisionState = [[Collision collisionNode] retain];
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;
         _isAggressive = false;
+        _isFalling = false;
+        _isInMidAir = false;
     }
     
     return self;
@@ -218,6 +222,17 @@
         [self getCCSprite].rotation = _angle;
         _vy += 500.0f * dt;
         
+    }
+    
+    [self updateFlags];
+}
+
+-(void) updateFlags
+{
+    //only place isfalling gets updated
+    _isFalling = false;
+    if (_isInMidAir && _vy > 0) {
+        _isFalling = true;
     }
 }
 
