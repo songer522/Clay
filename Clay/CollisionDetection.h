@@ -24,7 +24,9 @@ typedef enum {
 typedef enum {
     BOX_RIGHT_MIDDLE,
     BOX_RIGHT_BOTTOM,
+    BOX_LEFT_MIDDLE,
     BOX_BOTTOM_MIDDLE,
+    BOX_TOP_MIDDLE,
     BOX_NONE
 }BoundingBoxPoint;
 
@@ -65,8 +67,6 @@ XDCollisionMake(bool hasCollision, bool left, bool right, bool top, bool bottom)
     NSString *_tileCollision;
     
     XDCollision _currentMidpoints;
-    XDCollision _currentCorners;
-    
 }
 
 @property(nonatomic,assign) XDCollision midpointCollisions;
@@ -78,7 +78,7 @@ XDCollisionMake(bool hasCollision, bool left, bool right, bool top, bool bottom)
 
 -(XDCollision)getMidpointCollisionsForPoint:(CGPoint)position;
 
--(bool)checkCollisionAtPoint:(CGPoint)point;
+-(bool)checkCollisionAtPoint:(CGPoint)point BoundingBoxPoint:(BoundingBoxPoint)edge;
 -(CGPoint)accurateCoords:(CGPoint)position;
 -(CollisionType)getCollisionTypeForCoords:(CGPoint)coords;
 -(NSString*)getCollisionPropertyForTileCoords:(CGPoint)coords;

@@ -260,13 +260,17 @@
         _buttonAction = nil;        
     }
     
+    NSString *button;
     if ([action compare:@"woo"] == NSOrderedSame) {
-        _buttonAction = [self initButton:@"UI_Button_Woo.png" Position:CGPointMake(HUD_LAYER_ACTION_X, HUD_LAYER_BUTTON_Y)];
-        [[_buttonAction getCCSprite] setVisible:YES];
+        button = @"UI_Button_Woo.png";
     } else if([action compare:@"kick"] == NSOrderedSame) {
-        _buttonAction = [self initButton:@"UI_Button_Kicking.png" Position:CGPointMake(HUD_LAYER_ACTION_X, HUD_LAYER_BUTTON_Y)];
-        [[_buttonAction getCCSprite] setVisible:YES];
+        button = @"UI_Button_Kicking.png";
+    } else if([action isEqualToString:@"dodge"]) {
+        button = @"UI_Button_Kicking.png";
     }
+    
+    _buttonAction = [self initButton:button Position:CGPointMake(HUD_LAYER_ACTION_X, HUD_LAYER_BUTTON_Y)];
+    [[_buttonAction getCCSprite] setVisible:YES];
     
     [[LayerManager sharedLayers] forgetWorkingLayer];
 }

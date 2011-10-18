@@ -11,7 +11,8 @@
 
 typedef enum {
     PLAYER_ACTION_KICK,
-    PLAYER_ACTION_WOO
+    PLAYER_ACTION_WOO,
+    PLAYER_ACTION_DODGE
 }PlayerActionType;
 
 @interface PlayerActionFactory : NSObject

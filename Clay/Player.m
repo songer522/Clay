@@ -370,6 +370,8 @@
         _thirdAction = [PlayerActionFactory buildPlayerAction:PLAYER_ACTION_WOO];
     } else if([action compare:@"kick"] == NSOrderedSame) {
         _thirdAction = [PlayerActionFactory buildPlayerAction:PLAYER_ACTION_KICK];
+    } else if([action isEqualToString:@"dodge"]) {
+        _thirdAction = [PlayerActionFactory buildPlayerAction:PLAYER_ACTION_DODGE];
     }
     
     [_thirdAction setParent:self];

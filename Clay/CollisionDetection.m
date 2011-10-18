@@ -35,6 +35,8 @@
     return self;
 }
 
+
+
 //entry point for this class each update
 -(CGPoint)checkCollisionForObject:(GameObject *)object
 {
@@ -43,13 +45,14 @@
     _currentObject = object;
     _objectBoundingBox = object.boundingBox;
     
+    
     _currentMidpoints = [self getMidpointCollisionsForPoint:[_currentObject getPosition]];
     
     if(!_currentMidpoints.hasCollision) {
         _testPosition = _desiredPosition;
         [[_currentObject getCollision] setCurrentState:COLLISION_STATE_MIDAIR];
     } else {
-        /*if (_currentMidpoints.right) {
+        if (_currentMidpoints.right) {
             _testPosition = _desiredPosition;
             if ([self pushLeft]) {
                 [[_currentObject getCollision] setCurrentState:COLLISION_STATE_BUMPED_WALL];
@@ -62,8 +65,7 @@
                 NSLog(@"PUSH LEFT FAILED");
                 [[_currentObject getCollision] setCurrentState:COLLISION_STATE_MIDAIR];
             }
-        } else 
-        */
+        }
         if (_currentMidpoints.bottom) {
             if([self pushUp]) {
                 [[_currentObject getCollision] setCurrentState:COLLISION_STATE_GROUNDED];
@@ -91,13 +93,13 @@
     bool leftCollision = false;
     
 #if COLLISION_DETECTION_TEST_LEFT_COLLISIONS
-        leftCollision = [self checkCollisionAtPoint:CGPointMake(left, middleY)];
+    leftCollision = [self checkCollisionAtPoint:CGPointMake(left, middleY) BoundingBoxPoint:BOX_LEFT_MIDDLE];
 #endif
     
-    bool bottomCollision = [self checkCollisionAtPoint:CGPointMake(middleX, bottom)];
+    bool bottomCollision = [self checkCollisionAtPoint:CGPointMake(middleX, bottom) BoundingBoxPoint:BOX_BOTTOM_MIDDLE];
     
-    bool topCollision = [self checkCollisionAtPoint:CGPointMake(middleX,top)];
-    bool rightCollision = [self checkCollisionAtPoint:CGPointMake(right, middleY)];
+    bool topCollision = [self checkCollisionAtPoint:CGPointMake(middleX,top) BoundingBoxPoint:BOX_TOP_MIDDLE];
+    bool rightCollision = [self checkCollisionAtPoint:CGPointMake(right, middleY) BoundingBoxPoint:BOX_RIGHT_MIDDLE];
     
     //want to offset Y position as this test is used for left/right collisions and don't want to do left/right just because it
     //always says true while on the ground
@@ -114,7 +116,7 @@
 }
 
 
--(bool)checkCollisionAtPoint:(CGPoint)point
+-(bool)checkCollisionAtPoint:(CGPoint)point BoundingBoxPoint:(BoundingBoxPoint)edge
 {
     bool returnVal = false;
     
@@ -145,7 +147,8 @@
             }
             break;
         case COLLISION_TYPE_LEDGE_FULL:
-            if (_currentObject.isFalling || !_currentObject.isInMidAir) {
+            //don't want this true unless it's the bottom edge when falling or not in midair.
+            if (edge == BOX_BOTTOM_MIDDLE && (_currentObject.isFalling || !_currentObject.isInMidAir)) {
                 returnVal = true;
             } else {
                 returnVal = false;
@@ -234,8 +237,6 @@
 
 -(bool)pushUp
 {
-    CGPoint checkPoint = _testPosition;
-    
     bool colliding = true;    
     while (colliding) {
         
@@ -286,9 +287,9 @@
     bool movedLeftOnce = false;     //most circumstances, if we need to move left more than one block, then we should be testing the top collision instead
     bool colliding = true;
     while (colliding) {
-        [self prepareDataForPosition:_testPosition BoundingBoxPoint:BOX_NONE];
+        [self prepareDataForPosition:_testPosition BoundingBoxPoint:BOX_RIGHT_MIDDLE];
         
-        float leftOfTile = _coordinates.x * (_tileSize / 2.0f);
+        float leftOfTile = _coordinates.x * (_tileSize / 2.0f) + 6.0f;
         
         if ([_tileCollision isEqualToString:@"full"]) {
             if (!movedLeftOnce) {

@@ -177,6 +177,12 @@
 		54484E38140449B700D0D7D9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 54484E37140449B700D0D7D9 /* AppDelegate.m */; };
 		54484E3B140449B700D0D7D9 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54484E3A140449B700D0D7D9 /* RootViewController.m */; };
 		54484E3E140449B700D0D7D9 /* GameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 54484E3D140449B700D0D7D9 /* GameLayer.m */; };
+		544B1634144E251E00785C88 /* PlayerActionDodge.m in Sources */ = {isa = PBXBuildFile; fileRef = 544B1633144E251E00785C88 /* PlayerActionDodge.m */; };
+		544B1639144E2DA500785C88 /* character_dodging-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 544B1635144E2DA500785C88 /* character_dodging-hd.plist */; };
+		544B163A144E2DA500785C88 /* character_dodging-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 544B1636144E2DA500785C88 /* character_dodging-hd.png */; };
+		544B163B144E2DA500785C88 /* character_dodging.plist in Resources */ = {isa = PBXBuildFile; fileRef = 544B1637144E2DA500785C88 /* character_dodging.plist */; };
+		544B163C144E2DA500785C88 /* character_dodging.png in Resources */ = {isa = PBXBuildFile; fileRef = 544B1638144E2DA500785C88 /* character_dodging.png */; };
+		544B163E144E2E4600785C88 /* test_level_4.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 544B163D144E2E4600785C88 /* test_level_4.tmx */; };
 		544D50E01445E72700BED4CE /* character_falling-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 544D50DC1445E72700BED4CE /* character_falling-hd.plist */; };
 		544D50E11445E72700BED4CE /* character_falling-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 544D50DD1445E72700BED4CE /* character_falling-hd.png */; };
 		544D50E21445E72700BED4CE /* character_falling.plist in Resources */ = {isa = PBXBuildFile; fileRef = 544D50DE1445E72700BED4CE /* character_falling.plist */; };
@@ -323,7 +329,6 @@
 		57A5BAEF144CC2D3003FE838 /* GCState.m in Sources */ = {isa = PBXBuildFile; fileRef = 57A5BAEE144CC2D3003FE838 /* GCState.m */; };
 		57A5BAF2144CC6C7003FE838 /* GCDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 57A5BAF1144CC6C7003FE838 /* GCDatabase.m */; };
 		57BBD89B144CB0B500CB5FF7 /* GCHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 57BBD89A144CB0B500CB5FF7 /* GCHelper.m */; };
-		57BBD89E144CBE2600CB5FF7 /* blank.png in Resources */ = {isa = PBXBuildFile; fileRef = 57BBD89D144CBE2600CB5FF7 /* blank.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -629,6 +634,13 @@
 		54484E3C140449B700D0D7D9 /* GameLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameLayer.h; sourceTree = "<group>"; };
 		54484E3D140449B700D0D7D9 /* GameLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameLayer.m; sourceTree = "<group>"; };
 		54484E3F140449B700D0D7D9 /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
+		544B1632144E251E00785C88 /* PlayerActionDodge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerActionDodge.h; sourceTree = "<group>"; };
+		544B1633144E251E00785C88 /* PlayerActionDodge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerActionDodge.m; sourceTree = "<group>"; };
+		544B1635144E2DA500785C88 /* character_dodging-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "character_dodging-hd.plist"; sourceTree = "<group>"; };
+		544B1636144E2DA500785C88 /* character_dodging-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "character_dodging-hd.png"; sourceTree = "<group>"; };
+		544B1637144E2DA500785C88 /* character_dodging.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = character_dodging.plist; sourceTree = "<group>"; };
+		544B1638144E2DA500785C88 /* character_dodging.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = character_dodging.png; sourceTree = "<group>"; };
+		544B163D144E2E4600785C88 /* test_level_4.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = test_level_4.tmx; path = Resources/levels/test_level_4.tmx; sourceTree = "<group>"; };
 		544D50DC1445E72700BED4CE /* character_falling-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "character_falling-hd.plist"; sourceTree = "<group>"; };
 		544D50DD1445E72700BED4CE /* character_falling-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "character_falling-hd.png"; sourceTree = "<group>"; };
 		544D50DE1445E72700BED4CE /* character_falling.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = character_falling.plist; sourceTree = "<group>"; };
@@ -815,7 +827,6 @@
 		57A5BAF1144CC6C7003FE838 /* GCDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDatabase.m; sourceTree = "<group>"; };
 		57BBD899144CB0B500CB5FF7 /* GCHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCHelper.h; sourceTree = "<group>"; };
 		57BBD89A144CB0B500CB5FF7 /* GCHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCHelper.m; sourceTree = "<group>"; };
-		57BBD89D144CBE2600CB5FF7 /* blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blank.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1427,6 +1438,8 @@
 				54E3787E1444A5470011D8F3 /* PlayerAction.h */,
 				54E378821444A6710011D8F3 /* PlayerActionFactory.h */,
 				54E378831444A6710011D8F3 /* PlayerActionFactory.m */,
+				544B1632144E251E00785C88 /* PlayerActionDodge.h */,
+				544B1633144E251E00785C88 /* PlayerActionDodge.m */,
 				54E3787F1444A5830011D8F3 /* PlayerActionKick.h */,
 				54E378801444A5830011D8F3 /* PlayerActionKick.m */,
 				54E378851444A77D0011D8F3 /* PlayerActionWoo.h */,
@@ -1491,6 +1504,7 @@
 		548C3DBB141ABDBB000567A8 /* levels */ = {
 			isa = PBXGroup;
 			children = (
+				544B163D144E2E4600785C88 /* test_level_4.tmx */,
 				54883B91144885C40029759E /* real_level_1.tmx */,
 				54883B92144885C40029759E /* real_level_2.tmx */,
 				54883B93144885C40029759E /* real_level_3.tmx */,
@@ -1515,6 +1529,10 @@
 		54968B26141E554400A4D2DC /* Tim */ = {
 			isa = PBXGroup;
 			children = (
+				544B1635144E2DA500785C88 /* character_dodging-hd.plist */,
+				544B1636144E2DA500785C88 /* character_dodging-hd.png */,
+				544B1637144E2DA500785C88 /* character_dodging.plist */,
+				544B1638144E2DA500785C88 /* character_dodging.png */,
 				54F11C141446496D003CF2CF /* character_woo-hd.plist */,
 				54F11C151446496D003CF2CF /* character_woo-hd.png */,
 				54F11C161446496D003CF2CF /* character_woo.plist */,
@@ -1866,6 +1884,11 @@
 				54CC6D4B1448C3DE00882E78 /* Comic_Part03.mp4 in Resources */,
 				54A40A52144C7B7A00B9C604 /* jim_standing.png in Resources */,
 				54E11200144CBE1E00BBF32B /* blank.png in Resources */,
+				544B1639144E2DA500785C88 /* character_dodging-hd.plist in Resources */,
+				544B163A144E2DA500785C88 /* character_dodging-hd.png in Resources */,
+				544B163B144E2DA500785C88 /* character_dodging.plist in Resources */,
+				544B163C144E2DA500785C88 /* character_dodging.png in Resources */,
+				544B163E144E2E4600785C88 /* test_level_4.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2025,6 +2048,7 @@
 				57A5BAF2144CC6C7003FE838 /* GCDatabase.m in Sources */,
 				54A40A56144C915900B9C604 /* MapObject.m in Sources */,
 				54E11204144CC04900BBF32B /* MapLayer.m in Sources */,
+				544B1634144E251E00785C88 /* PlayerActionDodge.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

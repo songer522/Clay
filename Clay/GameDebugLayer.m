@@ -15,7 +15,7 @@
 #import "Player.h"
 #import "Camera.h"
 
-#define DEBUG_DRAW_BOUNDING_BOXES 1
+#define DEBUG_DRAW_BOUNDING_BOXES 0
 
 @implementation GameDebugLayer
 
@@ -67,8 +67,8 @@
     CGPoint point = [object getCCSprite].position;
     float left = point.x - object.boundingBox.origin.x;
     float right = point.x - object.boundingBox.origin.x + object.boundingBox.size.width;
-    float bottom = point.y + object.boundingBox.origin.y;
-    float top = point.y + object.boundingBox.origin.y + object.boundingBox.size.height;
+    float bottom = point.y - object.boundingBox.origin.y;
+    float top = point.y - object.boundingBox.origin.y + object.boundingBox.size.height;
     
     ccDrawLine(ccp(left, top), ccp(right, top));
     ccDrawLine(ccp(right, top), ccp(right, bottom));
@@ -82,8 +82,8 @@
     CGPoint point = [object getCCSprite].position;
     float left = point.x - object.boundingBox.origin.x;
     float right = point.x - object.boundingBox.origin.x + object.boundingBox.size.width;
-    float bottom = point.y + object.boundingBox.origin.y;
-    float top = point.y + object.boundingBox.origin.y + object.boundingBox.size.height;
+    float bottom = point.y - object.boundingBox.origin.y;
+    float top = point.y - object.boundingBox.origin.y + object.boundingBox.size.height;
     
     
     //top
