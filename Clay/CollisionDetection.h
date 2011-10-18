@@ -21,6 +21,13 @@ typedef enum {
     COLLISION_TYPE_NONE
 }CollisionType;
 
+typedef enum {
+    BOX_RIGHT_MIDDLE,
+    BOX_RIGHT_BOTTOM,
+    BOX_BOTTOM_MIDDLE,
+    BOX_NONE
+}BoundingBoxPoint;
+
 struct XDCollision {
     bool left;
     bool right;
@@ -69,14 +76,17 @@ XDCollisionMake(bool hasCollision, bool left, bool right, bool top, bool bottom)
 
 -(CGPoint)checkCollisionForObject:(GameObject*)object;
 
--(XDCollision)getMidpointCollisions;
+-(XDCollision)getMidpointCollisionsForPoint:(CGPoint)position;
 
 -(bool)checkCollisionAtPoint:(CGPoint)point;
 -(CGPoint)accurateCoords:(CGPoint)position;
 -(CollisionType)getCollisionTypeForCoords:(CGPoint)coords;
 -(NSString*)getCollisionPropertyForTileCoords:(CGPoint)coords;
 
--(bool)pushUp;
--(void)prepareDataForPosition:(CGPoint)position;
 
+
+-(bool)pushUp;
+-(bool)pushLeft;
+-(void)prepareDataForPosition:(CGPoint)position BoundingBoxPoint:(BoundingBoxPoint)edge;
+-(CGPoint)getPointForObject:(GameObject*)object AtPosition:(CGPoint)position ForBoundingBoxEdge:(BoundingBoxPoint)edge;
 @end

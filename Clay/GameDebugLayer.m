@@ -11,10 +11,11 @@
 #import "LevelManager.h"
 #import "LayerManager.h"
 #import "GameObject.h"
+#import "MapObject.h"
 #import "Player.h"
 #import "Camera.h"
 
-#define DEBUG_DRAW_BOUNDING_BOXES 0
+#define DEBUG_DRAW_BOUNDING_BOXES 1
 
 @implementation GameDebugLayer
 
@@ -50,7 +51,8 @@
         
         NSMutableArray *obstacles = [gameLayer getGameObjectsList];
         
-        for (GameObject *obstacle in obstacles) {
+        for (MapObject *mapObject in obstacles) {
+            GameObject *obstacle = mapObject.object;
             if (!obstacle.collided) {
                 [self drawBoxForGameObject:obstacle];
             }
@@ -109,6 +111,7 @@
         glColor4ub(0, 255, 0, 255);        
     }
     ccDrawLine(ccp(right, bottom), ccp(left, bottom));
+    
     
     //left
     if (collisions.left) {

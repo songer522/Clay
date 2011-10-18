@@ -10,6 +10,8 @@
 #import "Collision.h"
 #import "GameObject.h"
 
+#define COLLISION_DETECTION_TEST_LEFT_COLLISIONS 0
+
 @implementation CollisionDetection
 
 @synthesize midpointCollisions = _currentMidpoints;
@@ -39,16 +41,33 @@
     _desiredPosition = [object getPosition];
     _testPosition = [object getPosition];
     _currentObject = object;
+    _objectBoundingBox = object.boundingBox;
     
-    _currentMidpoints = [self getMidpointCollisions];
+    _currentMidpoints = [self getMidpointCollisionsForPoint:[_currentObject getPosition]];
     
     if(!_currentMidpoints.hasCollision) {
         _testPosition = _desiredPosition;
         [[_currentObject getCollision] setCurrentState:COLLISION_STATE_MIDAIR];
     } else {
+        /*if (_currentMidpoints.right) {
+            _testPosition = _desiredPosition;
+            if ([self pushLeft]) {
+                [[_currentObject getCollision] setCurrentState:COLLISION_STATE_BUMPED_WALL];
+                NSLog(@"PUSH LEFT");
+            } else {
+                _testPosition = _desiredPosition;
+                if([self pushUp]) {
+                    [[_currentObject getCollision] setCurrentState:COLLISION_STATE_GROUNDED];
+                }
+                NSLog(@"PUSH LEFT FAILED");
+                [[_currentObject getCollision] setCurrentState:COLLISION_STATE_MIDAIR];
+            }
+        } else 
+        */
         if (_currentMidpoints.bottom) {
             if([self pushUp]) {
                 [[_currentObject getCollision] setCurrentState:COLLISION_STATE_GROUNDED];
+                NSLog(@"PUSH UP");
             }
         }
     }
@@ -58,20 +77,31 @@
 }
 
 
--(XDCollision)getMidpointCollisions
+-(XDCollision)getMidpointCollisionsForPoint:(CGPoint)position
 {
     float scale = 1;
     
-    CGPoint pos = [_currentObject getPosition];
-    float leftMidpoint = pos.x - (_objectBoundingBox.origin.x * scale);
-    float bottomMidpoint = pos.y + (_objectBoundingBox.origin.y * scale);
-    float rightMidpoint = leftMidpoint + (_objectBoundingBox.size.width * scale);
-    float topMidpoint = bottomMidpoint + (_objectBoundingBox.size.height * scale);
+    float left = position.x - (_objectBoundingBox.origin.x * scale);
+    float bottom = position.y + (_objectBoundingBox.origin.y * scale);
+    float right = left + (_objectBoundingBox.size.width * scale);
+    float top = bottom + (_objectBoundingBox.size.height * scale);
+    float middleX = (left + right) / 2.0f;
+    float middleY = (top + bottom) / 2.0f;
     
-    bool bottomCollision = [self checkCollisionAtPoint:CGPointMake(pos.x, bottomMidpoint)];
-    bool leftCollision = [self checkCollisionAtPoint:CGPointMake(leftMidpoint, pos.y)];
-    bool topCollision = [self checkCollisionAtPoint:CGPointMake(pos.x,topMidpoint)];
-    bool rightCollision = [self checkCollisionAtPoint:CGPointMake(rightMidpoint, pos.y)];
+    bool leftCollision = false;
+    
+#if COLLISION_DETECTION_TEST_LEFT_COLLISIONS
+        leftCollision = [self checkCollisionAtPoint:CGPointMake(left, middleY)];
+#endif
+    
+    bool bottomCollision = [self checkCollisionAtPoint:CGPointMake(middleX, bottom)];
+    
+    bool topCollision = [self checkCollisionAtPoint:CGPointMake(middleX,top)];
+    bool rightCollision = [self checkCollisionAtPoint:CGPointMake(right, middleY)];
+    
+    //want to offset Y position as this test is used for left/right collisions and don't want to do left/right just because it
+    //always says true while on the ground
+    //bool bottomRightCollision = [self checkCollisionAtPoint:CGPointMake(right, bottom + 3.0f)];
     
     bool hasCollision = false;
     if (leftCollision||rightCollision||topCollision||bottomCollision) {
@@ -156,6 +186,7 @@
     CollisionType returnVal = COLLISION_TYPE_NONE;
     
     NSString *property = [self getCollisionPropertyForTileCoords:coords];
+    
     if ([property isEqualToString:@"full"])
     {
         returnVal = COLLISION_TYPE_FULL;
@@ -203,9 +234,13 @@
 
 -(bool)pushUp
 {
+    CGPoint checkPoint = _testPosition;
+    
     bool colliding = true;    
     while (colliding) {
-        [self prepareDataForPosition:_testPosition];
+        
+        [self prepareDataForPosition:_testPosition BoundingBoxPoint:BOX_BOTTOM_MIDDLE];
+
         
         float topOfTile = (_map.mapSize.height - _coordinates.y - 1) * (_tileSize / 2.0f);
         
@@ -241,18 +276,76 @@
         }
         
     }
-    NSLog(@"Property: %@",_tileCollision);
 
     return true;
 }
 
--(void)prepareDataForPosition:(CGPoint)position
+-(bool)pushLeft
 {
+    bool returnVal = true;
+    bool movedLeftOnce = false;     //most circumstances, if we need to move left more than one block, then we should be testing the top collision instead
+    bool colliding = true;
+    while (colliding) {
+        [self prepareDataForPosition:_testPosition BoundingBoxPoint:BOX_NONE];
+        
+        float leftOfTile = _coordinates.x * (_tileSize / 2.0f);
+        
+        if ([_tileCollision isEqualToString:@"full"]) {
+            if (!movedLeftOnce) {
+                movedLeftOnce = true;
+                _coordinates.x -= 1;
+                _testPosition.x = _coordinates.x * (_tileSize / 2.0f) -1;                
+            } else {
+                colliding = false;
+                returnVal = false;
+            }
+        } else if([_tileCollision isEqualToString:@"none"]) {
+            colliding = false;
+            _testPosition.x = leftOfTile;
+        } else {
+            colliding = false;
+            returnVal = false;
+        }
+    }
+    return returnVal;
+}
+                                 
+
+
+-(void)prepareDataForPosition:(CGPoint)position BoundingBoxPoint:(BoundingBoxPoint)edge
+{
+    CGPoint collisionPoint = [self getPointForObject:_currentObject AtPosition:position ForBoundingBoxEdge:edge];
     _testPosition = CGPointMake(position.x, position.y);
-    _pointWithinTile = CGPointMake((int)position.x % (_tileSize/2), (int)position.y % _tileSize/2);
-    _coordinates = [self accurateCoords:_testPosition];
+    _pointWithinTile = CGPointMake((int)collisionPoint.x % (_tileSize/2), (int)collisionPoint.y % _tileSize/2);
+    _coordinates = [self accurateCoords:collisionPoint];
     _tileCollision = [self getCollisionPropertyForTileCoords:_coordinates];
     
+}
+
+
+-(CGPoint)getPointForObject:(GameObject*)object AtPosition:(CGPoint)position ForBoundingBoxEdge:(BoundingBoxPoint)edge
+{
+    float left = position.x - (_objectBoundingBox.origin.x);
+    float bottom = position.y + (_objectBoundingBox.origin.y);
+    float right = left + (_objectBoundingBox.size.width);
+    float top = bottom + (_objectBoundingBox.size.height);
+
+    float middleX = (left + right) / 2.0f;
+    float middleY = (top + bottom) / 2.0f;
+
+    switch (edge) {
+        case BOX_BOTTOM_MIDDLE:
+            return CGPointMake(middleX, bottom);
+            break;
+        case BOX_RIGHT_BOTTOM:
+            return CGPointMake(right, bottom);
+            break;
+        case BOX_RIGHT_MIDDLE:
+            return CGPointMake(right, middleY);
+        default:
+            return position;
+            break;
+    }
 }
 
 -(void) dealloc
