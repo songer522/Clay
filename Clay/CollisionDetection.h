@@ -65,16 +65,17 @@ XDCollisionMake(bool hasCollision, bool left, bool right, bool top, bool bottom)
 
 +(id) collisionHandlerWithMetaLayer:(CCTMXLayer*)collisionLayer Map:(CCTMXTiledMap*)map;
 - (id)initWithCollisionLayer:(CCTMXLayer*)collisionLayer Map:(CCTMXTiledMap*)map;
--(NSString*)getCollisionPropertyForTileCoords:(CGPoint)coords;
--(CollisionType)getCollisionTypeForCoords:(CGPoint)coords;
-
--(CGPoint)accurateCoords:(CGPoint)position;
-
--(XDCollision)getMidpointCollisions;
--(bool)checkCollisionAtPoint:(CGPoint)point;
 
 -(CGPoint)checkCollisionForObject:(GameObject*)object;
--(void)prepareDataForPosition:(CGPoint)position;
+
+-(XDCollision)getMidpointCollisions;
+
+-(bool)checkCollisionAtPoint:(CGPoint)point;
+-(CGPoint)accurateCoords:(CGPoint)position;
+-(CollisionType)getCollisionTypeForCoords:(CGPoint)coords;
+-(NSString*)getCollisionPropertyForTileCoords:(CGPoint)coords;
+
 -(bool)pushUp;
+-(void)prepareDataForPosition:(CGPoint)position;
 
 @end

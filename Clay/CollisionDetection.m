@@ -33,27 +33,30 @@
     return self;
 }
 
--(CGPoint)accurateCoords:(CGPoint)position
+//entry point for this class each update
+-(CGPoint)checkCollisionForObject:(GameObject *)object
 {
-    int scaledTileWidth = _tileSize / 2.0f;
-    int scaledTileHeight = _tileSize / 2.0f;
-    int x = position.x / scaledTileWidth;
-    int y = ((_map.mapSize.height * scaledTileHeight) - position.y) / scaledTileHeight;
+    _desiredPosition = [object getPosition];
+    _testPosition = [object getPosition];
+    _currentObject = object;
     
-    if (x < 0) {
-        x = 0;
-    } else if(x > (_map.mapSize.width - 1)) {
-        x = _map.mapSize.width - 1;
+    _currentMidpoints = [self getMidpointCollisions];
+    
+    if(!_currentMidpoints.hasCollision) {
+        _testPosition = _desiredPosition;
+        [[_currentObject getCollision] setCurrentState:COLLISION_STATE_MIDAIR];
+    } else {
+        if (_currentMidpoints.bottom) {
+            if([self pushUp]) {
+                [[_currentObject getCollision] setCurrentState:COLLISION_STATE_GROUNDED];
+            }
+        }
     }
     
-    if (y < 0) {
-        y = 0;
-    } else if(y > (_map.mapSize.height - 1)) {
-        y = _map.mapSize.height - 1;
-    }
     
-    return ccp(x,y);
+    return _testPosition;
 }
+
 
 -(XDCollision)getMidpointCollisions
 {
@@ -79,6 +82,7 @@
     
     return returnVal;
 }
+
 
 -(bool)checkCollisionAtPoint:(CGPoint)point
 {
@@ -118,27 +122,63 @@
     
 }
 
--(CGPoint)checkCollisionForObject:(GameObject *)object //good one
+-(CGPoint)accurateCoords:(CGPoint)position
 {
-    _desiredPosition = [object getPosition];
-    _testPosition = [object getPosition];
-    _currentObject = object;
+    int scaledTileWidth = _tileSize / 2.0f;
+    int scaledTileHeight = _tileSize / 2.0f;
+    int x = position.x / scaledTileWidth;
+    int y = ((_map.mapSize.height * scaledTileHeight) - position.y) / scaledTileHeight;
     
-    _currentMidpoints = [self getMidpointCollisions];
+    if (x < 0) {
+        x = 0;
+    } else if(x > (_map.mapSize.width - 1)) {
+        x = _map.mapSize.width - 1;
+    }
     
-    if(!_currentMidpoints.hasCollision) {
-        _testPosition = _desiredPosition;
-        [[_currentObject getCollision] setCurrentState:COLLISION_STATE_MIDAIR];
-    } else {
-        if (_currentMidpoints.bottom) {
-            if([self pushUp]) {
-                [[_currentObject getCollision] setCurrentState:COLLISION_STATE_GROUNDED];
-            }
+    if (y < 0) {
+        y = 0;
+    } else if(y > (_map.mapSize.height - 1)) {
+        y = _map.mapSize.height - 1;
+    }
+    
+    return ccp(x,y);
+}
+
+-(CollisionType)getCollisionTypeForCoords:(CGPoint)coords
+{
+    CollisionType returnVal = COLLISION_TYPE_NONE;
+    
+    NSString *property = [self getCollisionPropertyForTileCoords:coords];
+    if ([property compare:@"full"] == NSOrderedSame) {
+        returnVal = COLLISION_TYPE_FULL;
+    } else if([property compare:@"leftslant"] == NSOrderedSame) {
+        returnVal = COLLISION_TYPE_LEFT_SLANT;
+    } else if([property compare:@"rightslant"] == NSOrderedSame) {
+        returnVal = COLLISION_TYPE_RIGHT_SLANT;
+    } else if([property compare:@"rs2tileL"] == NSOrderedSame) {
+        returnVal = COLLISION_TYPE_RIGHT_SLANT_2TILE_L;
+    } else if([property compare:@"rs2tileR"] == NSOrderedSame) {
+        returnVal = COLLISION_TYPE_RIGHT_SLANT_2TILE_R;        
+    }
+    
+    return returnVal;
+}
+
+-(NSString*)getCollisionPropertyForTileCoords:(CGPoint)coords
+{
+    NSString *returnVal = [NSString stringWithString:@"none"];
+    
+    int tileGid = [_collisionData tileGIDAt:coords];
+    
+    if (tileGid) {
+        NSDictionary *properties = [_map propertiesForGID:tileGid];
+        
+        if (properties) {
+            returnVal = [properties valueForKey:@"collision"];
         }
     }
     
-    
-    return _testPosition;
+    return returnVal;
 }
 
 -(bool)pushUp
@@ -178,44 +218,6 @@
     _coordinates = [self accurateCoords:_testPosition];
     _tileCollision = [self getCollisionPropertyForTileCoords:_coordinates];
     
-}
-
--(CollisionType)getCollisionTypeForCoords:(CGPoint)coords
-{
-    CollisionType returnVal = COLLISION_TYPE_NONE;
-    
-    NSString *property = [self getCollisionPropertyForTileCoords:coords];
-    if ([property compare:@"full"] == NSOrderedSame) {
-        returnVal = COLLISION_TYPE_FULL;
-    } else if([property compare:@"leftslant"] == NSOrderedSame) {
-        returnVal = COLLISION_TYPE_LEFT_SLANT;
-    } else if([property compare:@"rightslant"] == NSOrderedSame) {
-        returnVal = COLLISION_TYPE_RIGHT_SLANT;
-    } else if([property compare:@"rs2tileL"] == NSOrderedSame) {
-        returnVal = COLLISION_TYPE_RIGHT_SLANT_2TILE_L;
-    } else if([property compare:@"rs2tileR"] == NSOrderedSame) {
-        returnVal = COLLISION_TYPE_RIGHT_SLANT_2TILE_R;        
-    }
-    
-    return returnVal;
-}
-
-
--(NSString*)getCollisionPropertyForTileCoords:(CGPoint)coords
-{
-    NSString *returnVal = [NSString stringWithString:@"none"];
-    
-    int tileGid = [_collisionData tileGIDAt:coords];
-    
-    if (tileGid) {
-        NSDictionary *properties = [_map propertiesForGID:tileGid];
-        
-        if (properties) {
-            returnVal = [properties valueForKey:@"collision"];
-        }
-    }
-    
-    return returnVal;
 }
 
 -(void) dealloc
