@@ -73,7 +73,6 @@
 
 #pragma mark - public methods
 -(CGPoint)checkCollisionForObject:(GameObject*)object;
--(CGPoint)checkCollisionForObject2:(GameObject*)object;
 -(void)update:(float)dt Velocity:(float)vx;
 -(CGRect)getLevelBoundaries;
 -(CGPoint)getXYPositionForCoordinates:(CGPoint)coords;

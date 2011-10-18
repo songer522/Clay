@@ -53,7 +53,7 @@
 		<key>playerOffsetY</key>
 		<integer>-9</integer>
 		<key>fileName</key>
-		<string>real_level_2.tmx</string>
+		<string>test_level_2.tmx</string>
 		<key>obstacleLayer</key>
 		<string>front3</string>
 		<key>nextLevelName</key>

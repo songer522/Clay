@@ -28,64 +28,9 @@
         _map = map;
         _tileSize = _map.tileSize.width;
         
-        [self setupDebugText:map Layer:collisionLayer];
-        
     }
     
     return self;
-}
-
--(void) setupDebugText:(CCTMXTiledMap*)map Layer:(CCTMXLayer*)layer
-{
-    //_main = [_map layerNamed:@"meta"];
-    _main = layer;
-    
-    /*
-    for (int i=0; i<_map.mapSize.width; i++) {
-        for (int j=0; j<_map.mapSize.height; j++) {
-            CGPoint coords = CGPointMake(i, j);
-            CCSprite *spriteAttach = [_main tileAt:coords];
-            CCSprite *fontSprite = [CCSprite spriteWithFile:@"blank.png"];
-            NSString *property = [self getCollisionPropertyForTileCoords:coords];
-            if([property compare:@"none"] != NSOrderedSame) {
-                CCLabelTTF *label = [CCLabelTTF labelWithString:property dimensions:CGSizeMake([spriteAttach contentSize].width, [spriteAttach contentSize].height) alignment:UITextAlignmentCenter fontName:@"Arial" fontSize:10];
-                //fontSprite.texture.name = spriteAttach.texture.name;
-                [fontSprite addChild:label];
-                [spriteAttach addChild:fontSprite];
-            }
-                                
-        }
-    }*/
-
-}
-
-
--(bool) outOfBoundsTest:(CGPoint)testPosition
-{
-    return false;
-}
-
-
--(CGPoint)tileCoordForPosition:(CGPoint)position
-{
-    int scaledTileWidth = _tileSize / 2.0f;
-    int scaledTileHeight = _tileSize;
-    int x = position.x / scaledTileWidth;
-    int y = ((_map.mapSize.height * scaledTileHeight) - position.y) / scaledTileHeight;
-    
-    if (x < 0) {
-        x = 0;
-    } else if(x > (_map.mapSize.width - 1)) {
-        x = _map.mapSize.width - 1;
-    }
-    
-    if (y < 0) {
-        y = 0;
-    } else if(y > (_map.mapSize.height - 1)) {
-        y = _map.mapSize.height - 1;
-    }
-    
-    return ccp(x,y);
 }
 
 -(CGPoint)accurateCoords:(CGPoint)position
@@ -135,12 +80,6 @@
     return returnVal;
 }
 
--(void)showCollisions
-{
-    _currentMidpoints = [self getMidpointCollisions];
-    
-}
-
 -(bool)checkCollisionAtPoint:(CGPoint)point
 {
     bool returnVal = false;
@@ -179,7 +118,7 @@
     
 }
 
--(CGPoint)checkCollisionForObject2:(GameObject *)object
+-(CGPoint)checkCollisionForObject:(GameObject *)object //good one
 {
     _desiredPosition = [object getPosition];
     _testPosition = [object getPosition];
@@ -206,7 +145,7 @@
 {
     bool colliding = true;    
     while (colliding) {
-        [self prepareDataForPosition2:_testPosition];
+        [self prepareDataForPosition:_testPosition];
         
         
         //check if the test position collides with current tile
@@ -232,98 +171,13 @@
     return true;
 }
 
--(CGPoint)checkCollisionForObject:(GameObject*)object
-{
-    _desiredPosition = [object getPosition];
-    _testPosition = [object getPosition];
-    _currentObject = object;
-    _amountToReachGround = 100000.0f;
-    _objectBoundingBox = _currentObject.boundingBox;
-    
-    [self showCollisions];
-    
-    if([self tryGoingFullVxAndVy])
-    {
-        return _testPosition;
-    }
-    else if([self tryGoingFullVx])
-    {
-        return CGPointMake(_desiredPosition.x, _testPosition.y);
-    }
-    else if([self getOutOfCollision])
-    {
-        return _testPosition;
-    }
-    else
-    {
-        return [object getPreviousPosition];
-    }
-}
-
 -(void)prepareDataForPosition:(CGPoint)position
-{
-    _testPosition = CGPointMake(position.x, position.y);
-    _pointWithinTile = CGPointMake((int)position.x % (_tileSize/2), (int)position.y % _tileSize);
-    _coordinates = [self tileCoordForPosition:_testPosition];
-    _tileCollision = [self getCollisionPropertyForTileCoords:_coordinates];
-    
-}
-
--(void)prepareDataForPosition2:(CGPoint)position
 {
     _testPosition = CGPointMake(position.x, position.y);
     _pointWithinTile = CGPointMake((int)position.x % (_tileSize/2), (int)position.y % _tileSize/2);
     _coordinates = [self accurateCoords:_testPosition];
     _tileCollision = [self getCollisionPropertyForTileCoords:_coordinates];
     
-}
-
--(bool)tryGoingFullVxAndVy
-{
-    bool returnVal = false;
-    [self prepareDataForPosition:_desiredPosition];
-    
-    
-    if ([_tileCollision compare:@"none"] == NSOrderedSame) {
-        //we don't need to change position and we're in midair
-        [[_currentObject getCollision] setCurrentState:COLLISION_STATE_MIDAIR];
-        returnVal = true;
-    } else if([_tileCollision compare:@"leftslant"] == NSOrderedSame) {
-        
-        if (_pointWithinTile.y < _pointWithinTile.x) {
-            
-            //if on the slant, shift the position up 
-            float upAmount = - _pointWithinTile.y + _pointWithinTile.x;
-            _testPosition.y += upAmount;
-            [self tileCoordForPosition:CGPointMake(_testPosition.x, _testPosition.y)];
-            //_testPosition.y += 2 * _pointWithinTile.x - _pointWithinTile.y;
-        }
-        [[_currentObject getCollision] setCurrentState:COLLISION_STATE_GROUNDED];
-        returnVal = true;
-    } else if([_tileCollision compare:@"full"] == NSOrderedSame) {
-        CGPoint newPoint = CGPointMake(_testPosition.x,(_testPosition.y + _tileSize - _pointWithinTile.y));
-        [self prepareDataForPosition:newPoint];
-        
-        if ([_tileCollision compare:@"none"] == NSOrderedSame) {
-            [[_currentObject getCollision] setCurrentState:COLLISION_STATE_GROUNDED];
-            returnVal = true;
-        } else if([_tileCollision compare:@"leftslant"] == NSOrderedSame) {
-            [[_currentObject getCollision] setCurrentState:COLLISION_STATE_GROUNDED];
-            returnVal = true;
-            _testPosition.y -= 2;
-        }
-    }
-    
-    return returnVal;
-}
-
--(bool)tryGoingFullVx
-{
-    [self prepareDataForPosition:_desiredPosition];
-    
-    
-    
-    return false;
 }
 
 -(CollisionType)getCollisionTypeForCoords:(CGPoint)coords
@@ -362,53 +216,6 @@
     }
     
     return returnVal;
-}
-
-
--(bool)getOutOfCollision
-{
-    [self prepareDataForPosition:_desiredPosition];
-    CGPoint prevPosition = [_currentObject getPreviousPosition];
-    
-    float dx = _testPosition.x - prevPosition.x;
-    float dy = _testPosition.y - prevPosition.y;
-    
-    float dist = sqrtf(dx*dx + dy*dy);
-    float testDist = dist;
-    float angle = atan2f(dy, dx);
-    
-    bool colliding = true;    
-    while (colliding) {
-        
-        //check if the test position collides with current tile
-        if ([_tileCollision compare:@"full"] == NSOrderedSame) {
-            //NSLog(@"test");
-        } else if ([_tileCollision compare:@"none"] == NSOrderedSame) {
-            colliding = false;
-            break;
-        } else if([_tileCollision compare:@"leftslant"] == NSOrderedSame) {
-            if (_pointWithinTile.y > _pointWithinTile.x) {
-                colliding = false;
-                break;
-            }
-        } else if([_tileCollision compare:@"rightslant"] == NSOrderedSame) {
-            if (_pointWithinTile.y > (_map.tileSize.width - _pointWithinTile.x)) {
-                colliding = false;
-                break;
-            }
-        }
-
-        if (colliding) {
-            testDist-=1;
-            _testPosition.x = prevPosition.x + testDist * cosf(angle);                    
-            _testPosition.y = prevPosition.y - testDist * sin(angle);                
-            [self prepareDataForPosition:_testPosition];
-            [[_currentObject getCollision] processNewCollisionState:COLLISION_STATE_BUMPED_WALL];
-        }
-    }
-    
-    
-    return true;
 }
 
 -(void) dealloc

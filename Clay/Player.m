@@ -111,7 +111,7 @@
 
     }
     
-    CGPoint newPosition = [level checkCollisionForObject2:self];    
+    CGPoint newPosition = [level checkCollisionForObject:self];    
 
     [self setPositionAtX:newPosition.x Y:newPosition.y];    //for some reason the y position jitters without
                                                             //having this twice.

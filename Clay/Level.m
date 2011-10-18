@@ -143,10 +143,6 @@
 {
     return [_collisionHandler checkCollisionForObject:object];
 }
--(CGPoint)checkCollisionForObject2:(GameObject*)object
-{
-    return [_collisionHandler checkCollisionForObject2:object];
-}
 
 -(void)setPositionAtX:(float)x Y:(float)y
 {

@@ -70,24 +70,11 @@ XDCollisionMake(bool hasCollision, bool left, bool right, bool top, bool bottom)
 
 -(CGPoint)accurateCoords:(CGPoint)position;
 
--(void)showCollisions;
 -(XDCollision)getMidpointCollisions;
 -(bool)checkCollisionAtPoint:(CGPoint)point;
 
-
--(CGPoint)checkCollisionForObject2:(GameObject *)object;
-
-
--(bool)tryGoingFullVxAndVy;
--(bool)tryGoingFullVx;
--(bool)getOutOfCollision;
--(void) setupDebugText:(CCTMXTiledMap*)map Layer:(CCTMXLayer*)layer;
-
-
 -(CGPoint)checkCollisionForObject:(GameObject*)object;
--(CGPoint)checkCollisionForObject2:(GameObject*)object;
 -(void)prepareDataForPosition:(CGPoint)position;
--(void)prepareDataForPosition2:(CGPoint)position;
 -(bool)pushUp;
 
 @end
