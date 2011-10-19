@@ -12,8 +12,8 @@
 #import "Player.h"
 
 #define kPlayerActionDodgeMoveX 20.0f
-#define kPlayerActionDodgeFullDuration 0.4f;
-#define kPlayerActionDodgeActiveWhileDurationLessThan 0.3f
+#define kPlayerActionDodgeFullDuration 0.9f;
+#define kPlayerActionDodgeActiveWhileDurationLessThan 0.85f
 
 @implementation PlayerActionDodge
 
