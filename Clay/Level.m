@@ -227,6 +227,23 @@
                 MapObject *mapObject = [MapObject mapObjectWithSprite:object AboveLayer:@"main0"];
                 [_obstacleMapObjects addObject:mapObject];
             }
+            
+            NSString *objectName = [self getPropertyForTileCoords:coords forKey:@"object"];
+            
+            if (objectName) {
+                GameObject *object = [_gameObjects loadGameObjectWithName:objectName AddToLayer:NO];
+                CGPoint position = [self getXYPositionForCoordinates:coords];
+                [object setPositionAtX:position.x Y:position.y];
+                [object setStartingPosition:position];
+                [[object getCCSprite] setScale:_scale];
+                
+                if (!layerBelow) {
+                    layerBelow = @"main0";
+                }
+                
+                MapObject *mapObject = [MapObject mapObjectWithSprite:object AboveLayer:layerBelow];
+                [_obstacleMapObjects addObject:mapObject];
+            }
         }
     }
                                           
@@ -398,6 +415,10 @@
     [self setPositionAtX:_x Y:_y];
     for(MapObject *obstacle in _obstacleMapObjects) {
         [obstacle.object update:dt];
+    }
+    
+    for (MapObject *objects in _otherMapObjects) {
+        [objects.object update:dt];
     }
 }
 

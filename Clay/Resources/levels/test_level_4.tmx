@@ -35,9 +35,20 @@
     <property name="obstacle" value="leafpile"/>
    </properties>
   </tile>
+  <tile id="12">
+   <properties>
+    <property name="object" value="discoDancers"/>
+   </properties>
+  </tile>
   <tile id="13">
    <properties>
-    <property name="obstacle" value="lighting"/>
+    <property name="layerBelow" value="front1"/>
+    <property name="object" value="lighting"/>
+   </properties>
+  </tile>
+  <tile id="14">
+   <properties>
+    <property name="object" value="tvAnimation"/>
    </properties>
   </tile>
  </tileset>
@@ -165,7 +176,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt27sOwjAMBdCyAFsR//+xiIHFSpU4jwrQOVsr+dpN0jHbBgAAAAAAAAAAAAAAAIx6XsaeAQAAAAAAAAAAAAAAAAAA+C+PiffKP1nZzFiXqd875i/V3Bbdr9/DN/XMW8tsNTJDT03sF+ddsebxDM1Y71Lu7PySd/bK/OjoPJXej+5dpteRzNq05NbyahnZvartb+zX0v/M89Li/mXzwC+5+n8AAAAAgJO8AKvpAz0=
+   eJzt2DkOwjAQBdDQAF1Y7n9XREEzcuQtjoP0XkeE/0xsp5llAQAAAAAAAAAAAAAAAHq9Ln2/AQAAAAB6vSfMHWfUBAAAAADmeRbOBGf9DwAAAADgbB47zjd/WbWZcV3N+rWh/9Sa26A57xreqaXfXGapnh5a1sR6sd8Rex7v0B77ncrdOz/lmz0yP9q6T6nnvWdXU2tLzd6U5Obychm1Z5U731ivpP6R96XE/WT9wD+5+n4AAAAAgIN8AFQ5A60=
   </data>
  </layer>
  <layer name="meta" width="660" height="14" opacity="0.34">

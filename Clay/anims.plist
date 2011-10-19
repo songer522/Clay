@@ -257,5 +257,39 @@
 		<key>delay</key>
 		<string>0.075</string>
 	</dict>
+	<key>discoDancersAnim</key>
+	<dict>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>group</key>
+		<string>Background</string>
+		<key>spritesheetPlist</key>
+		<string>disco_dancers_bkg</string>
+		<key>sequencePrefix</key>
+		<string>Disco_DancingAnimation_Key0</string>
+		<key>animationFrames</key>
+		<string>1,1,2,2,3,3,2,2</string>
+		<key>delay</key>
+		<string>0.075</string>
+	</dict>
+	<key>tvAnimationAnim</key>
+	<dict>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>group</key>
+		<string>Background</string>
+		<key>spritesheetPlist</key>
+		<string>tvAnimation</string>
+		<key>sequencePrefix</key>
+		<string>tv_</string>
+		<key>animationFrames</key>
+		<string>1,2,3,4,5,6,7,8,9,10</string>
+		<key>delay</key>
+		<string>0.075</string>
+	</dict>
 </dict>
 </plist>

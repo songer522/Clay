@@ -103,7 +103,28 @@
 		<key>layerList</key>
 		<string>back-8,back-7,back-6,back-5,back-4,back-3,back-2,back-1,main,actives,front1,front2,meta</string>
 	</dict>
+	<key>level4-1</key>
+	<dict>
+		<key>thirdAction</key>
+		<string>dodge</string>
+		<key>music</key>
+		<string>disco</string>
+		<key>postLevelComic</key>
+		<string>endGame</string>
+		<key>worldType</key>
+		<string>realWorld</string>
+		<key>playerOffsetY</key>
+		<integer>-9</integer>
+		<key>fileName</key>
+		<string>Disco.tmx</string>
+		<key>obstacleLayer</key>
+		<string>objects</string>
+		<key>nextLevelName</key>
+		<string>endGame</string>
+		<key>layerList</key>
+		<string>back-3,back-2,back-1,main0,actives,front-1,meta</string>
+	</dict>
 	<key>startingLevel</key>
-	<string>level4</string>
+	<string>level4-1</string>
 </dict>
 </plist>

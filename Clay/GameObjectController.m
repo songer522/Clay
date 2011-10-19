@@ -75,7 +75,7 @@
     NSDictionary *boundingBox = [gameobjectSettings objectForKey:@"boundingBox"];
     gameObject.boundingBox = CGRectMake([[boundingBox objectForKey:@"x"] floatValue], [[boundingBox objectForKey:@"y"] floatValue], [[boundingBox objectForKey:@"width"] floatValue], [[boundingBox objectForKey:@"height"] floatValue]);
     
-    //[gameObject initialize:objectName];
+    [gameObject initialize:objectName];
 
 }
 
