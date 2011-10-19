@@ -86,7 +86,7 @@
 {
     if ([type isEqualToString:@"lighting"]) {
         _rotateLights = true;
-        _angle = 0;
+        _angle = rand() % 50 - 25;
         _direction = 1;
         _isActive = true;
     }
@@ -259,16 +259,18 @@
 -(void) updateLights:(float)dt
 {
     if (_rotateLights) {
+        float maxAngle = 25.0f;
+        float rate = 90.0f * dt;
         if (_direction == 1) {
-            _angle += dt;
-            if (_angle >= 90.0f) {
-                _angle = 90.0f;
+            _angle += rate;
+            if (_angle >= maxAngle) {
+                _angle = maxAngle;
                 _direction = -1;
             }
         } else {
-            _angle -= dt;
-            if (_angle <= -90.0f) {
-                _angle = -90.0f;
+            _angle -= rate;
+            if (_angle <= -maxAngle) {
+                _angle = -maxAngle;
                 _direction = 1;
             }
         }
