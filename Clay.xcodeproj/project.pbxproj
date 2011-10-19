@@ -203,6 +203,17 @@
 		54642B0D14337E5F001D8212 /* Battery_v2_s-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54642B0514337E5F001D8212 /* Battery_v2_s-hd.png */; };
 		54642B0E14337E5F001D8212 /* Battery_v2_s.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54642B0614337E5F001D8212 /* Battery_v2_s.plist */; };
 		54642B0F14337E5F001D8212 /* Battery_v2_s.png in Resources */ = {isa = PBXBuildFile; fileRef = 54642B0714337E5F001D8212 /* Battery_v2_s.png */; };
+		54675BD7144F1B0900436C06 /* Boss.m in Sources */ = {isa = PBXBuildFile; fileRef = 54675BD6144F1B0900436C06 /* Boss.m */; };
+		54675BDB144F1B2000436C06 /* BossChicken.m in Sources */ = {isa = PBXBuildFile; fileRef = 54675BDA144F1B2000436C06 /* BossChicken.m */; };
+		54675BDF144F1D4D00436C06 /* BossDisco.m in Sources */ = {isa = PBXBuildFile; fileRef = 54675BDE144F1D4D00436C06 /* BossDisco.m */; };
+		54675BE2144F1D5B00436C06 /* BossFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 54675BE1144F1D5B00436C06 /* BossFactory.m */; };
+		54675BE7144F22C200436C06 /* BossDevilJim.m in Sources */ = {isa = PBXBuildFile; fileRef = 54675BE6144F22C200436C06 /* BossDevilJim.m */; };
+		54675BEA144F22D900436C06 /* BossZombies.m in Sources */ = {isa = PBXBuildFile; fileRef = 54675BE9144F22D800436C06 /* BossZombies.m */; };
+		54675BED144F22EE00436C06 /* BossWhale.m in Sources */ = {isa = PBXBuildFile; fileRef = 54675BEC144F22EE00436C06 /* BossWhale.m */; };
+		54675BF0144F232600436C06 /* BossFinalJim.m in Sources */ = {isa = PBXBuildFile; fileRef = 54675BEF144F232600436C06 /* BossFinalJim.m */; };
+		54675BF3144F264000436C06 /* PlayerActionShoot.m in Sources */ = {isa = PBXBuildFile; fileRef = 54675BF2144F264000436C06 /* PlayerActionShoot.m */; };
+		54675BF6144F264D00436C06 /* PlayerActionMagnet.m in Sources */ = {isa = PBXBuildFile; fileRef = 54675BF5144F264D00436C06 /* PlayerActionMagnet.m */; };
+		54675BF9144F26A400436C06 /* PlayerAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 54675BF8144F26A400436C06 /* PlayerAction.m */; };
 		547330A51440AEE20072796C /* NewParticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 547330A41440AEE10072796C /* NewParticle.m */; };
 		547330A91441084F0072796C /* NewEmitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 547330A81441084D0072796C /* NewEmitter.m */; };
 		547472CA14228C0A00B0B0B7 /* levels.plist in Resources */ = {isa = PBXBuildFile; fileRef = 547472C914228C0A00B0B0B7 /* levels.plist */; };
@@ -669,6 +680,28 @@
 		54642B0514337E5F001D8212 /* Battery_v2_s-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Battery_v2_s-hd.png"; sourceTree = "<group>"; };
 		54642B0614337E5F001D8212 /* Battery_v2_s.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Battery_v2_s.plist; sourceTree = "<group>"; };
 		54642B0714337E5F001D8212 /* Battery_v2_s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Battery_v2_s.png; sourceTree = "<group>"; };
+		54675BD5144F1B0900436C06 /* Boss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Boss.h; sourceTree = "<group>"; };
+		54675BD6144F1B0900436C06 /* Boss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Boss.m; sourceTree = "<group>"; };
+		54675BD9144F1B2000436C06 /* BossChicken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BossChicken.h; sourceTree = "<group>"; };
+		54675BDA144F1B2000436C06 /* BossChicken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BossChicken.m; sourceTree = "<group>"; };
+		54675BDD144F1D4D00436C06 /* BossDisco.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BossDisco.h; sourceTree = "<group>"; };
+		54675BDE144F1D4D00436C06 /* BossDisco.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BossDisco.m; sourceTree = "<group>"; };
+		54675BE0144F1D5B00436C06 /* BossFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BossFactory.h; sourceTree = "<group>"; };
+		54675BE1144F1D5B00436C06 /* BossFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BossFactory.m; sourceTree = "<group>"; };
+		54675BE5144F22C200436C06 /* BossDevilJim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BossDevilJim.h; sourceTree = "<group>"; };
+		54675BE6144F22C200436C06 /* BossDevilJim.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BossDevilJim.m; sourceTree = "<group>"; };
+		54675BE8144F22D800436C06 /* BossZombies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BossZombies.h; sourceTree = "<group>"; };
+		54675BE9144F22D800436C06 /* BossZombies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BossZombies.m; sourceTree = "<group>"; };
+		54675BEB144F22EE00436C06 /* BossWhale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BossWhale.h; sourceTree = "<group>"; };
+		54675BEC144F22EE00436C06 /* BossWhale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BossWhale.m; sourceTree = "<group>"; };
+		54675BEE144F232500436C06 /* BossFinalJim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BossFinalJim.h; sourceTree = "<group>"; };
+		54675BEF144F232600436C06 /* BossFinalJim.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BossFinalJim.m; sourceTree = "<group>"; };
+		54675BF1144F264000436C06 /* PlayerActionShoot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerActionShoot.h; sourceTree = "<group>"; };
+		54675BF2144F264000436C06 /* PlayerActionShoot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerActionShoot.m; sourceTree = "<group>"; };
+		54675BF4144F264D00436C06 /* PlayerActionMagnet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerActionMagnet.h; sourceTree = "<group>"; };
+		54675BF5144F264D00436C06 /* PlayerActionMagnet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerActionMagnet.m; sourceTree = "<group>"; };
+		54675BF7144F26A300436C06 /* PlayerAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerAction.h; sourceTree = "<group>"; };
+		54675BF8144F26A400436C06 /* PlayerAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerAction.m; sourceTree = "<group>"; };
 		547330A31440AEE00072796C /* NewParticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewParticle.h; sourceTree = "<group>"; };
 		547330A41440AEE10072796C /* NewParticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewParticle.m; sourceTree = "<group>"; };
 		547330A71441084C0072796C /* NewEmitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewEmitter.h; sourceTree = "<group>"; };
@@ -775,7 +808,6 @@
 		54E316321434D94100CD81FA /* character_turbo-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "character_turbo-hd.png"; sourceTree = "<group>"; };
 		54E316331434D94100CD81FA /* character_turbo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = character_turbo.plist; sourceTree = "<group>"; };
 		54E316341434D94100CD81FA /* character_turbo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = character_turbo.png; sourceTree = "<group>"; };
-		54E3787E1444A5470011D8F3 /* PlayerAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerAction.h; sourceTree = "<group>"; };
 		54E3787F1444A5830011D8F3 /* PlayerActionKick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerActionKick.h; sourceTree = "<group>"; };
 		54E378801444A5830011D8F3 /* PlayerActionKick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerActionKick.m; sourceTree = "<group>"; };
 		54E378821444A6710011D8F3 /* PlayerActionFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerActionFactory.h; sourceTree = "<group>"; };
@@ -1417,6 +1449,8 @@
 		54518F641406AE38009D74AA /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				54675BE4144F227900436C06 /* PlayerActions */,
+				54675BDC144F1B2700436C06 /* Bosses */,
 				5421A2F6142A5C7E0078D861 /* Battery.h */,
 				5421A2F7142A5C7E0078D861 /* Battery.m */,
 				54518F731406B761009D74AA /* GameClasses.h */,
@@ -1435,15 +1469,6 @@
 				547F09761428FA5400E5D920 /* SavePoint.m */,
 				54A11929144349D60008A823 /* TrackTimer.h */,
 				54A1192A144349D60008A823 /* TrackTimer.m */,
-				54E3787E1444A5470011D8F3 /* PlayerAction.h */,
-				54E378821444A6710011D8F3 /* PlayerActionFactory.h */,
-				54E378831444A6710011D8F3 /* PlayerActionFactory.m */,
-				544B1632144E251E00785C88 /* PlayerActionDodge.h */,
-				544B1633144E251E00785C88 /* PlayerActionDodge.m */,
-				54E3787F1444A5830011D8F3 /* PlayerActionKick.h */,
-				54E378801444A5830011D8F3 /* PlayerActionKick.m */,
-				54E378851444A77D0011D8F3 /* PlayerActionWoo.h */,
-				54E378861444A77D0011D8F3 /* PlayerActionWoo.m */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -1499,6 +1524,50 @@
 				54642B0714337E5F001D8212 /* Battery_v2_s.png */,
 			);
 			path = battery;
+			sourceTree = "<group>";
+		};
+		54675BDC144F1B2700436C06 /* Bosses */ = {
+			isa = PBXGroup;
+			children = (
+				54675BD5144F1B0900436C06 /* Boss.h */,
+				54675BD6144F1B0900436C06 /* Boss.m */,
+				54675BD9144F1B2000436C06 /* BossChicken.h */,
+				54675BDA144F1B2000436C06 /* BossChicken.m */,
+				54675BDD144F1D4D00436C06 /* BossDisco.h */,
+				54675BDE144F1D4D00436C06 /* BossDisco.m */,
+				54675BE8144F22D800436C06 /* BossZombies.h */,
+				54675BE9144F22D800436C06 /* BossZombies.m */,
+				54675BE5144F22C200436C06 /* BossDevilJim.h */,
+				54675BE6144F22C200436C06 /* BossDevilJim.m */,
+				54675BEB144F22EE00436C06 /* BossWhale.h */,
+				54675BEC144F22EE00436C06 /* BossWhale.m */,
+				54675BEE144F232500436C06 /* BossFinalJim.h */,
+				54675BEF144F232600436C06 /* BossFinalJim.m */,
+				54675BE0144F1D5B00436C06 /* BossFactory.h */,
+				54675BE1144F1D5B00436C06 /* BossFactory.m */,
+			);
+			name = Bosses;
+			sourceTree = "<group>";
+		};
+		54675BE4144F227900436C06 /* PlayerActions */ = {
+			isa = PBXGroup;
+			children = (
+				54675BF7144F26A300436C06 /* PlayerAction.h */,
+				54675BF8144F26A400436C06 /* PlayerAction.m */,
+				54E378821444A6710011D8F3 /* PlayerActionFactory.h */,
+				54E378831444A6710011D8F3 /* PlayerActionFactory.m */,
+				544B1632144E251E00785C88 /* PlayerActionDodge.h */,
+				544B1633144E251E00785C88 /* PlayerActionDodge.m */,
+				54E3787F1444A5830011D8F3 /* PlayerActionKick.h */,
+				54E378801444A5830011D8F3 /* PlayerActionKick.m */,
+				54E378851444A77D0011D8F3 /* PlayerActionWoo.h */,
+				54E378861444A77D0011D8F3 /* PlayerActionWoo.m */,
+				54675BF1144F264000436C06 /* PlayerActionShoot.h */,
+				54675BF2144F264000436C06 /* PlayerActionShoot.m */,
+				54675BF4144F264D00436C06 /* PlayerActionMagnet.h */,
+				54675BF5144F264D00436C06 /* PlayerActionMagnet.m */,
+			);
+			name = PlayerActions;
 			sourceTree = "<group>";
 		};
 		548C3DBB141ABDBB000567A8 /* levels */ = {
@@ -2049,6 +2118,17 @@
 				54A40A56144C915900B9C604 /* MapObject.m in Sources */,
 				54E11204144CC04900BBF32B /* MapLayer.m in Sources */,
 				544B1634144E251E00785C88 /* PlayerActionDodge.m in Sources */,
+				54675BD7144F1B0900436C06 /* Boss.m in Sources */,
+				54675BDB144F1B2000436C06 /* BossChicken.m in Sources */,
+				54675BDF144F1D4D00436C06 /* BossDisco.m in Sources */,
+				54675BE2144F1D5B00436C06 /* BossFactory.m in Sources */,
+				54675BE7144F22C200436C06 /* BossDevilJim.m in Sources */,
+				54675BEA144F22D900436C06 /* BossZombies.m in Sources */,
+				54675BED144F22EE00436C06 /* BossWhale.m in Sources */,
+				54675BF0144F232600436C06 /* BossFinalJim.m in Sources */,
+				54675BF3144F264000436C06 /* PlayerActionShoot.m in Sources */,
+				54675BF6144F264D00436C06 /* PlayerActionMagnet.m in Sources */,
+				54675BF9144F26A400436C06 /* PlayerAction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
