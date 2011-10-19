@@ -286,22 +286,24 @@
 
 -(void)startCollision:(PlayerEffect)effect Obstacle:(GameObject*)obstacle
 {
-    if (effect == PLAYER_EFFECT_ACTION_OR_COLLIDE) {
-        if (!_isTripping && !_isDead) {
-            if (![_thirdAction isActive]) {
-                if ([_thirdAction shouldTriggerPlayerHurtCollision]) {
-                    [self private_StartPlayerCollision];                    
-                }
-            } else {
-                [obstacle special_kickHen];
-            }            
+    if (!_isInvincible) {
+        if (effect == PLAYER_EFFECT_ACTION_OR_COLLIDE) {
+            if (!_isTripping && !_isDead) {
+                if (![_thirdAction isActive]) {
+                    if ([_thirdAction shouldTriggerPlayerHurtCollision]) {
+                        [self private_StartPlayerCollision];                    
+                    }
+                } else {
+                    [obstacle special_kickHen];
+                }            
+            }
+        } else if (effect == PLAYER_EFFECT_COLLIDE) {
+            if (!_isTripping && !_isDead) {
+                [self private_StartPlayerCollision];    
+            }
+        } else if(effect == PLAYER_EFFECT_SLOWDOWN) {
+            [_speed slowDown];
         }
-    } else if (effect == PLAYER_EFFECT_COLLIDE) {
-        if (!_isTripping && !_isDead) {
-            [self private_StartPlayerCollision];    
-        }
-    } else if(effect == PLAYER_EFFECT_SLOWDOWN) {
-        [_speed slowDown];
     }
 }
 

@@ -32,6 +32,7 @@
     if (_inAction) {
         if (_duration < kPlayerActionDodgeActiveWhileDurationLessThan) {
             _isActive = true;
+            _parent.isInvincible = true;
         } else {
             _isActive = false;
         }
