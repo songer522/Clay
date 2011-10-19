@@ -303,6 +303,7 @@
 		54D4490F144F6D3E006C6EBA /* tvAnimation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54D4490B144F6D3E006C6EBA /* tvAnimation.plist */; };
 		54D44910144F6D3E006C6EBA /* tvAnimation.png in Resources */ = {isa = PBXBuildFile; fileRef = 54D4490C144F6D3E006C6EBA /* tvAnimation.png */; };
 		54D44912144F78ED006C6EBA /* TL_Disco_TileTextures.png in Resources */ = {isa = PBXBuildFile; fileRef = 54D44911144F78ED006C6EBA /* TL_Disco_TileTextures.png */; };
+		54D44914144F7E1E006C6EBA /* computerworld.caf in Resources */ = {isa = PBXBuildFile; fileRef = 54D44913144F7E1E006C6EBA /* computerworld.caf */; };
 		54DDF8251423A67300631A41 /* CollisionDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = 54DDF8241423A67300631A41 /* CollisionDetection.m */; };
 		54E0CE81141FC0A6005BFD5C /* hurdle.png in Resources */ = {isa = PBXBuildFile; fileRef = 54E0CE80141FC0A6005BFD5C /* hurdle.png */; };
 		54E11200144CBE1E00BBF32B /* blank.png in Resources */ = {isa = PBXBuildFile; fileRef = 54E111FF144CBE1E00BBF32B /* blank.png */; };
@@ -814,6 +815,7 @@
 		54D4490B144F6D3E006C6EBA /* tvAnimation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = tvAnimation.plist; path = disco/tvAnimation.plist; sourceTree = "<group>"; };
 		54D4490C144F6D3E006C6EBA /* tvAnimation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tvAnimation.png; path = disco/tvAnimation.png; sourceTree = "<group>"; };
 		54D44911144F78ED006C6EBA /* TL_Disco_TileTextures.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TL_Disco_TileTextures.png; path = Resources/levels/TL_Disco_TileTextures.png; sourceTree = "<group>"; };
+		54D44913144F7E1E006C6EBA /* computerworld.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = computerworld.caf; path = Resources/music/computerworld.caf; sourceTree = "<group>"; };
 		54DDF8231423A67300631A41 /* CollisionDetection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollisionDetection.h; sourceTree = "<group>"; };
 		54DDF8241423A67300631A41 /* CollisionDetection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollisionDetection.m; sourceTree = "<group>"; };
 		54E0CE80141FC0A6005BFD5C /* hurdle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hurdle.png; sourceTree = "<group>"; };
@@ -915,6 +917,7 @@
 		54133A0D143231AF00E433FC /* music */ = {
 			isa = PBXGroup;
 			children = (
+				54D44913144F7E1E006C6EBA /* computerworld.caf */,
 				54C8633A143E164F007341B3 /* discoworld.caf */,
 				54C8633B143E164F007341B3 /* trailer.caf */,
 				54133A10143231CA00E433FC /* rock_bkg.caf */,
@@ -2018,6 +2021,7 @@
 				54D4490F144F6D3E006C6EBA /* tvAnimation.plist in Resources */,
 				54D44910144F6D3E006C6EBA /* tvAnimation.png in Resources */,
 				54D44912144F78ED006C6EBA /* TL_Disco_TileTextures.png in Resources */,
+				54D44914144F7E1E006C6EBA /* computerworld.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

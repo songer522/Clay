@@ -12,5 +12,7 @@
 	<string>discoworld.caf</string>
 	<key>trailer</key>
 	<string>trailer.caf</string>
+	<key>computer</key>
+	<string>computerworld.caf</string>
 </dict>
 </plist>

@@ -242,7 +242,7 @@
                 }
                 
                 MapObject *mapObject = [MapObject mapObjectWithSprite:object AboveLayer:layerBelow];
-                [_obstacleMapObjects addObject:mapObject];
+                [_otherMapObjects addObject:mapObject];
             }
         }
     }
