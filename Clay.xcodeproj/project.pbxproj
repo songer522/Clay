@@ -214,6 +214,8 @@
 		54675BF3144F264000436C06 /* PlayerActionShoot.m in Sources */ = {isa = PBXBuildFile; fileRef = 54675BF2144F264000436C06 /* PlayerActionShoot.m */; };
 		54675BF6144F264D00436C06 /* PlayerActionMagnet.m in Sources */ = {isa = PBXBuildFile; fileRef = 54675BF5144F264D00436C06 /* PlayerActionMagnet.m */; };
 		54675BF9144F26A400436C06 /* PlayerAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 54675BF8144F26A400436C06 /* PlayerAction.m */; };
+		54675BFC144F430600436C06 /* disco_lights_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 54675BFB144F430600436C06 /* disco_lights_1.png */; };
+		54675BFE144F480E00436C06 /* Disco.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 54675BFD144F480E00436C06 /* Disco.tmx */; };
 		547330A51440AEE20072796C /* NewParticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 547330A41440AEE10072796C /* NewParticle.m */; };
 		547330A91441084F0072796C /* NewEmitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 547330A81441084D0072796C /* NewEmitter.m */; };
 		547472CA14228C0A00B0B0B7 /* levels.plist in Resources */ = {isa = PBXBuildFile; fileRef = 547472C914228C0A00B0B0B7 /* levels.plist */; };
@@ -702,6 +704,8 @@
 		54675BF5144F264D00436C06 /* PlayerActionMagnet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerActionMagnet.m; sourceTree = "<group>"; };
 		54675BF7144F26A300436C06 /* PlayerAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerAction.h; sourceTree = "<group>"; };
 		54675BF8144F26A400436C06 /* PlayerAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerAction.m; sourceTree = "<group>"; };
+		54675BFB144F430600436C06 /* disco_lights_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = disco_lights_1.png; sourceTree = "<group>"; };
+		54675BFD144F480E00436C06 /* Disco.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Disco.tmx; path = Clay/Resources/levels/Disco.tmx; sourceTree = SOURCE_ROOT; };
 		547330A31440AEE00072796C /* NewParticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewParticle.h; sourceTree = "<group>"; };
 		547330A41440AEE10072796C /* NewParticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewParticle.m; sourceTree = "<group>"; };
 		547330A71441084C0072796C /* NewEmitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewEmitter.h; sourceTree = "<group>"; };
@@ -1402,10 +1406,6 @@
 				544034B1141A76DF0065B061 /* Collision.m */,
 				54DDF8231423A67300631A41 /* CollisionDetection.h */,
 				54DDF8241423A67300631A41 /* CollisionDetection.m */,
-				54518F6B1406AEE6009D74AA /* GameObject.h */,
-				54518F6C1406AEE6009D74AA /* GameObject.m */,
-				572DB81F142000A400DDC493 /* GameObjectController.h */,
-				572DB820142000A400DDC493 /* GameObjectController.m */,
 				57A5BAF0144CC6C7003FE838 /* GCDatabase.h */,
 				57A5BAF1144CC6C7003FE838 /* GCDatabase.m */,
 				57BBD899144CB0B500CB5FF7 /* GCHelper.h */,
@@ -1451,12 +1451,17 @@
 			children = (
 				54675BE4144F227900436C06 /* PlayerActions */,
 				54675BDC144F1B2700436C06 /* Bosses */,
+				54675BFA144F317500436C06 /* GameObjects */,
 				5421A2F6142A5C7E0078D861 /* Battery.h */,
 				5421A2F7142A5C7E0078D861 /* Battery.m */,
 				54518F731406B761009D74AA /* GameClasses.h */,
 				54518F741406B761009D74AA /* GameClasses.m */,
 				54297895140C1F8900B3FFF4 /* GameController.h */,
 				54297896140C1F8900B3FFF4 /* GameController.m */,
+				54518F6B1406AEE6009D74AA /* GameObject.h */,
+				54518F6C1406AEE6009D74AA /* GameObject.m */,
+				572DB81F142000A400DDC493 /* GameObjectController.h */,
+				572DB820142000A400DDC493 /* GameObjectController.m */,
 				54FBA2511430E5850010A91A /* LevelThread.h */,
 				54FBA2521430E5850010A91A /* LevelThread.m */,
 				54518F681406AE64009D74AA /* Player.h */,
@@ -1570,6 +1575,13 @@
 			name = PlayerActions;
 			sourceTree = "<group>";
 		};
+		54675BFA144F317500436C06 /* GameObjects */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = GameObjects;
+			sourceTree = "<group>";
+		};
 		548C3DBB141ABDBB000567A8 /* levels */ = {
 			isa = PBXGroup;
 			children = (
@@ -1581,6 +1593,7 @@
 				54883BA5144889390029759E /* test_level_2.tmx */,
 				54883BA6144889390029759E /* test_level_3.tmx */,
 				54883B97144885CB0029759E /* test_level_x.tmx */,
+				54675BFD144F480E00436C06 /* Disco.tmx */,
 				549969181416749900CB7800 /* tilesets */,
 			);
 			name = levels;
@@ -1682,6 +1695,7 @@
 		54BE176F141EBB7200A3D773 /* objects */ = {
 			isa = PBXGroup;
 			children = (
+				54675BFB144F430600436C06 /* disco_lights_1.png */,
 				54A40A51144C7B7A00B9C604 /* jim_standing.png */,
 				54883BB11448985F0029759E /* haybale.png */,
 				54883BB21448985F0029759E /* leafpile.png */,
@@ -1958,6 +1972,8 @@
 				544B163B144E2DA500785C88 /* character_dodging.plist in Resources */,
 				544B163C144E2DA500785C88 /* character_dodging.png in Resources */,
 				544B163E144E2E4600785C88 /* test_level_4.tmx in Resources */,
+				54675BFC144F430600436C06 /* disco_lights_1.png in Resources */,
+				54675BFE144F480E00436C06 /* Disco.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,13 +21,15 @@ typedef enum {
     COLLISION_BEHAVIOR_HEN_KICKED,
     COLLISION_BEHAVIOR_PLAY_ANIMATION,
     COLLISION_BEHAVIOR_STATIC,
-    COLLISION_BEHAVIOR_COW_COLLAPSE
+    COLLISION_BEHAVIOR_COW_COLLAPSE,
+    COLLISION_BEHAVIOR_NONE
 } CollisionBehavior;
 
 typedef enum {
     PLAYER_EFFECT_COLLIDE,
     PLAYER_EFFECT_SLOWDOWN,
-    PLAYER_EFFECT_ACTION_OR_COLLIDE
+    PLAYER_EFFECT_ACTION_OR_COLLIDE,
+    PLAYER_EFFECT_NONE
 } PlayerEffect;
 
 @interface GameObject : NSObject
@@ -55,6 +57,10 @@ typedef enum {
     bool _chickenSound;
     bool _isInvincible;
     bool _fadeout;
+    bool _rotateLights;
+    
+    int _direction;
+    
     CGRect _range;       //range in which this object can move on screen. absolute positions.
     
     CGPoint _prevLocation;
@@ -91,11 +97,15 @@ typedef enum {
 @property(nonatomic,assign) bool isInMidAir;
 @property(nonatomic,assign) bool isFalling;
 @property(nonatomic,assign) bool isInvincible;
+@property(nonatomic,assign) bool rotateLights;
 
 
 +(id) instance;
+
 +(id) objectWithSprite:(Sprite*)sprite;     //create game object, add a sprite to it, return
 -(id) initWithSprite:(Sprite*)initSprite;   //constructor
+
+-(void) initialize:(NSString*)type;
 
 -(void) setOffsetForX:(float)x Y:(float)y;
 -(void) switchToInactive;
@@ -123,6 +133,8 @@ typedef enum {
 -(void) setOriginalAnimation:(NSString*)animation;
 
 -(void) updateFlags;
+
+-(void) updateLights:(float)dt;
 
 -(PlayerEffect) startCollision;
 

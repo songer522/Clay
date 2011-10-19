@@ -32,6 +32,7 @@
 @synthesize isInMidAir = _isInMidAir;
 @synthesize isFalling = _isFalling;
 @synthesize isInvincible = _isInvincible;
+@synthesize rotateLights = _rotateLights;
 
 + (id) objectWithSprite:(Sprite*)sprite
 {
@@ -64,6 +65,7 @@
         _isAggressive = false;
         _isFalling = false;
         _isInMidAir = false;
+        _direction = 1;
         _isInvincible = false;
     }
     
@@ -74,10 +76,21 @@
 {
     if((self=[self init])) {
         _sprite = initSprite;
+
     }
     return self;
 }
 
+
+-(void) initialize:(NSString*)type
+{
+    if ([type isEqualToString:@"lighting"]) {
+        _rotateLights = true;
+        _angle = 0;
+        _direction = 1;
+        _isActive = true;
+    }
+}
 
 -(CGPoint) getPosition
 {
@@ -230,6 +243,8 @@
     }
     
     [self updateFlags];
+    
+    [self updateLights:dt];
 }
 
 -(void) updateFlags
@@ -238,6 +253,26 @@
     _isFalling = false;
     if (_isInMidAir && _vy > 0) {
         _isFalling = true;
+    }
+}
+
+-(void) updateLights:(float)dt
+{
+    if (_rotateLights) {
+        if (_direction == 1) {
+            _angle += dt;
+            if (_angle >= 90.0f) {
+                _angle = 90.0f;
+                _direction = -1;
+            }
+        } else {
+            _angle -= dt;
+            if (_angle <= -90.0f) {
+                _angle = -90.0f;
+                _direction = 1;
+            }
+        }
+        [_sprite getCCSprite].rotation = _angle;
     }
 }
 
@@ -286,6 +321,8 @@
         _collideBehavior = COLLISION_BEHAVIOR_PLAY_ANIMATION;
     } else if([behavior compare:@"cowCollapse"] == NSOrderedSame) {
         _collideBehavior = COLLISION_BEHAVIOR_COW_COLLAPSE;
+    } else {
+        _collideBehavior = COLLISION_BEHAVIOR_NONE;
     }
 }
 
@@ -302,6 +339,8 @@
         _playerEffect = PLAYER_EFFECT_SLOWDOWN;
     } else if([effect compare:@"actionOrCollide"] == NSOrderedSame) {
         _playerEffect = PLAYER_EFFECT_ACTION_OR_COLLIDE;
+    } else {
+        _playerEffect = PLAYER_EFFECT_NONE;
     }
 }
 

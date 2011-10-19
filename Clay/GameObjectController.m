@@ -41,6 +41,7 @@
 -(void)initializeGameObject:(GameObject*)gameObject Name:(NSString*)objectName AddToLayer:(bool)shouldAddToLayer
 {
     NSDictionary *gameobjectSettings = [_objectSettings objectForKey:objectName];
+    NSLog(@"Object Name: %@",objectName);
     NSAssert(gameobjectSettings != nil, @"Object could not be found. Please ensure the entry is in objects.plist");
     if (gameobjectSettings == nil) {
         CCLOG(@"Could not locate GameObjectWithName:%@", objectName);
@@ -73,6 +74,9 @@
     [[gameObject getCCSprite] setAnchorPoint:ccp([[anchorPoint objectForKey:@"x"] floatValue], [[anchorPoint objectForKey:@"y"] floatValue])];
     NSDictionary *boundingBox = [gameobjectSettings objectForKey:@"boundingBox"];
     gameObject.boundingBox = CGRectMake([[boundingBox objectForKey:@"x"] floatValue], [[boundingBox objectForKey:@"y"] floatValue], [[boundingBox objectForKey:@"width"] floatValue], [[boundingBox objectForKey:@"height"] floatValue]);
+    
+    //[gameObject initialize:objectName];
+
 }
 
 -(void)dealloc

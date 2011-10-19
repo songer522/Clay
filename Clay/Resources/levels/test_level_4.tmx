@@ -35,6 +35,11 @@
     <property name="obstacle" value="leafpile"/>
    </properties>
   </tile>
+  <tile id="13">
+   <properties>
+    <property name="obstacle" value="lighting"/>
+   </properties>
+  </tile>
  </tileset>
  <tileset firstgid="281" name="Meta" tilewidth="64" tileheight="64">
   <image source="meta.png" width="256" height="192"/>
@@ -160,7 +165,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt0zEOgzAMBVC6tN3a+58WdWCxjBKHgKj03ojkb+MkywIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADATN/H/KxqZqyr1H8G5s9qXhP3kPXa/mlk3lZmryMzjNTEfnHeM3Ye79CMfWe5s/Mzv+wz86O9+5R9P3p2lV57KrvpyW3ltTKqZ9U639ivp/+V96XH+2bzwD95ej8AAAAAwEVWKtgC8Q==
+   eJzt27sOwjAMBdCyAFsR//+xiIHFSpU4jwrQOVsr+dpN0jHbBgAAAAAAAAAAAAAAAIx6XsaeAQAAAAAAAAAAAAAAAAAA+C+PiffKP1nZzFiXqd875i/V3Bbdr9/DN/XMW8tsNTJDT03sF+ddsebxDM1Y71Lu7PySd/bK/OjoPJXej+5dpteRzNq05NbyahnZvartb+zX0v/M89Li/mXzwC+5+n8AAAAAgJO8AKvpAz0=
   </data>
  </layer>
  <layer name="meta" width="660" height="14" opacity="0.34">
