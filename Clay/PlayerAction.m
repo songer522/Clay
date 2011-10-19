@@ -21,9 +21,15 @@
     if (self) {
         // Initialization code here.
         _inAction = false;
+        [self initialize];
     }
     
     return self;
+}
+
+-(void) initialize
+{
+    
 }
 
 -(void)startAction

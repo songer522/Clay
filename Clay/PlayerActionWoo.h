@@ -9,12 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "PlayerAction.h"
 
-@interface PlayerActionWoo : NSObject <PlayerAction>
+@interface PlayerActionWoo : PlayerAction
 {
-    Player *_parent;
-    bool _inAction;
-    bool _isActive;
-    float _duration;
     float _cooldown;
 }
 

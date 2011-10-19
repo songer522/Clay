@@ -20,6 +20,6 @@ typedef enum {
     
 }
 
-+(id<PlayerAction>)buildPlayerAction:(PlayerActionType)type;
++(id<PlayerActionProtocol>)buildPlayerAction:(PlayerActionType)type;
 
 @end

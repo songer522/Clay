@@ -37,5 +37,6 @@
     float _duration;    
 }
 
+-(void) initialize; //individual actions can setup specific vars here
 
 @end

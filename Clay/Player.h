@@ -20,7 +20,7 @@ typedef enum {
 
 @class RunningSpeed;
 @class Battery;
-@protocol PlayerAction;
+@protocol PlayerActionProtocol;
 
 @interface Player : Runner
 {
@@ -47,7 +47,7 @@ typedef enum {
     float _waitToPlaySlowSound;
     
     
-    id <PlayerAction> _thirdAction; //playeraction
+    id <PlayerActionProtocol> _thirdAction; //playeraction
 
 }
 

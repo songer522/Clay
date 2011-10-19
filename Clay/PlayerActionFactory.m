@@ -15,7 +15,7 @@
 @implementation PlayerActionFactory
 
 
-+(id<PlayerAction>)buildPlayerAction:(PlayerActionType)type
++(id<PlayerActionProtocol>)buildPlayerAction:(PlayerActionType)type
 {
     switch (type) {
         case PLAYER_ACTION_KICK:

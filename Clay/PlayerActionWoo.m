@@ -7,29 +7,21 @@
 //
 
 #import "PlayerActionWoo.h"
+#import "Player.h"
+#import "AnimationController.h"
+#import "SoundEngine.h"
 
 @implementation PlayerActionWoo
 
-+(id)instance
+-(void)initialize
 {
-    return [[self alloc] init];
-}
-
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        // Initialization code here.
-        _cooldown = 0.0f;
-    }
-    
-    return self;
+    _cooldown = 0.0f;    
 }
 
 -(void)startAction
 {
     if (!_inAction && _cooldown<=0.0f) {
-        _inAction = true;
+        [super startAction];
         _duration = 0.75f;
         _cooldown = 3.0f;
         [_parent endTurbo];
@@ -40,57 +32,26 @@
 
 -(void)endAction
 {
-    _inAction = false;
     [_parent changeHealth:1];
+    [super endAction];
 }
 
 -(void)cancelAction
 {
-    _inAction = false;
-    _isActive = false;
     [[AnimationController sharedController] replaceSprite:[_parent getSprite] withAnimationNamed:@"runningAnim"];
     _cooldown = 1.0f;
-    
+    [super cancelAction];
 }
 
 
 -(void)update:(float)dt
 {
-    if (_inAction) {
-        _duration -= dt;
-        if (_duration <= 0.0f) {
-            [self endAction];
-        }
-    } else {
+    if (!_inAction) {
         if (_cooldown > 0.0f) {
             _cooldown -= dt;
         }
     }
-}
-
--(void)setParent:(Player*)player
-{
-    _parent = player;
-}
-
--(bool)shouldTriggerPlayerHurtCollision
-{
-    return true;
-}
-
--(Player*)getParent
-{
-    return _parent;
-}
-
--(bool)inAction
-{
-    return _inAction;
-}
-
--(bool)isActive
-{
-    return _isActive;
+    [super update:dt];
 }
 
 -(void)dealloc

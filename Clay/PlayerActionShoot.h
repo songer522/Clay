@@ -8,6 +8,6 @@
 
 #import "PlayerAction.h"
 
-@interface PlayerActionShoot : NSObject<PlayerAction>
+@interface PlayerActionShoot : PlayerAction
 
 @end

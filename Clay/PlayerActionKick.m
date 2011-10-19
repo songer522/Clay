@@ -9,43 +9,29 @@
 #import "PlayerActionKick.h"
 #import "AnimationController.h"
 #import "RunningSpeed.h"
+#import "Player.h"
+
+#define kPlayerActionDodgeMoveX 20.0f
+#define kPlayerActionDodgeFullDuration 0.4f;
+#define kPlayerActionDodgeActiveWhileDurationLessThan 0.2f
 
 @implementation PlayerActionKick
-
-+(id)instance
-{
-    return [[self alloc] init];
-}
-
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        // Initialization code here.
-        _inAction = false;
-    }
-    
-    return self;
-}
 
 -(void)startAction
 {
     if (!_inAction) {
-        _inAction = true;
-        _isActive = false;
-        _duration = 0.4f;
+        _duration = kPlayerActionDodgeFullDuration;
         _madeNoise = false;
         [_parent endTurbo];
         [[AnimationController sharedController] replaceSprite:[_parent getSprite] withAnimationNamed:@"kickingAnim"];
     }
+    [super startAction];
 }
 
 -(void)update:(float)dt
 {
     if (_inAction) {
-        _duration -= dt;
-        
-        if (_duration < 0.2f) {
+        if (_duration < kPlayerActionDodgeActiveWhileDurationLessThan) {
             _isActive = true;
             if (!_madeNoise) {
                 _madeNoise = true;
@@ -54,47 +40,20 @@
         } else {
             _isActive = false;
         }
-        
-        if (_duration <= 0.0f) {
-            [self endAction];
-        }
     }
-    
-}
-
--(bool)inAction
-{
-    return _inAction;
-}
-
--(bool)isActive
-{
-    return _isActive;
+    [super update:dt];
 }
 
 -(void)cancelAction
 {
-    _inAction = false;
-    _isActive = false;
     [[AnimationController sharedController] replaceSprite:[_parent getSprite] withAnimationNamed:@"runningAnim"];
-    
+    [super cancelAction];
 }
 
 -(void)endAction
 {
-    _inAction = false;
-    _isActive = false;
-    [_parent pushAfterAnimation:20.0f];
-}
-
--(void)setParent:(Player*)player
-{
-    _parent = player;
-}
-
--(Player*)getParent
-{
-    return _parent;
+    [_parent pushAfterAnimation:kPlayerActionDodgeMoveX];
+    [super endAction];
 }
 
 -(bool)shouldTriggerPlayerHurtCollision

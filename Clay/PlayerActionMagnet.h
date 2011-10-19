@@ -9,6 +9,6 @@
 #import "PlayerAction.h"
 
 
-@interface PlayerActionMagnet : NSObject<PlayerAction>
+@interface PlayerActionMagnet : PlayerAction
 
 @end
