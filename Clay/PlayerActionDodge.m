@@ -33,7 +33,7 @@
     if (!_inAction) {
         _inAction = true;
         _isActive = false;
-        _duration = 0.4f;
+        _duration = 0.9f;
         [_parent endTurbo];
         [[AnimationController sharedController] replaceSprite:[_parent getSprite] withAnimationNamed:@"dodgingAnim"];
     }
@@ -44,8 +44,9 @@
     if (_inAction) {
         _duration -= dt;
         
-        if (_duration < 0.3f) {
+        if (_duration < 0.9f) {
             _isActive = true;
+            _parent.isInvincible = true;
         } else {
             _isActive = false;
         }
@@ -78,6 +79,7 @@
 {
     _inAction = false;
     _isActive = false;
+    _parent.isInvincible = false;
     [_parent pushAfterAnimation:20.0f];
 }
 

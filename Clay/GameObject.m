@@ -31,6 +31,7 @@
 @synthesize CurrentBehavior = _currentBehavior;
 @synthesize isInMidAir = _isInMidAir;
 @synthesize isFalling = _isFalling;
+@synthesize isInvincible = _isInvincible;
 
 + (id) objectWithSprite:(Sprite*)sprite
 {
@@ -63,6 +64,7 @@
         _isAggressive = false;
         _isFalling = false;
         _isInMidAir = false;
+        _isInvincible = false;
     }
     
     return self;

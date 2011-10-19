@@ -53,6 +53,7 @@ typedef enum {
     float _alpha;
     float _fallVelocity;
     bool _chickenSound;
+    bool _isInvincible;
     bool _fadeout;
     CGRect _range;       //range in which this object can move on screen. absolute positions.
     
@@ -89,6 +90,7 @@ typedef enum {
 @property(nonatomic,assign) bool isAggressive;
 @property(nonatomic,assign) bool isInMidAir;
 @property(nonatomic,assign) bool isFalling;
+@property(nonatomic,assign) bool isInvincible;
 
 
 +(id) instance;
