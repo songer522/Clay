@@ -313,7 +313,7 @@
 		<key>imageName</key>
 		<string>leafpile.png</string>
 	</dict>
-	<key>jim</key>
+	<key>jimBarn</key>
 	<dict>
 		<key>aggressive</key>
 		<string>false</string>
@@ -324,7 +324,7 @@
 		<key>offsetx</key>
 		<integer>-64</integer>
 		<key>offsety</key>
-		<integer>-88</integer>
+		<integer>-55</integer>
 		<key>anchorpoint</key>
 		<dict>
 			<key>x</key>
@@ -346,7 +346,42 @@
 			<integer>1</integer>
 		</dict>
 		<key>imageName</key>
-		<string>jim_standing.png</string>
+		<string>jim_standing_barn.png</string>
+	</dict>
+	<key>jimCornfields</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>playerEffect</key>
+		<string>slow</string>
+		<key>collideBehavior</key>
+		<string>static</string>
+		<key>offsetx</key>
+		<integer>-64</integer>
+		<key>offsety</key>
+		<integer>-55</integer>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>0</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>none</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>x</key>
+			<integer>0</integer>
+			<key>y</key>
+			<integer>0</integer>
+			<key>width</key>
+			<integer>1</integer>
+			<key>height</key>
+			<integer>1</integer>
+		</dict>
+		<key>imageName</key>
+		<string>jim_standing_cornfields.png</string>
 	</dict>
 	<key>lighting</key>
 	<dict>

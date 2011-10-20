@@ -26,6 +26,9 @@
 		54179E27142BBFA400D3A79E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 54179E26142BBFA400D3A79E /* Default@2x.png */; };
 		54179E2D142BC92400D3A79E /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54179E2C142BC92300D3A79E /* GameKit.framework */; };
 		5418FB2814506EF800C8F16E /* barnworld.caf in Resources */ = {isa = PBXBuildFile; fileRef = 5418FB2714506EF800C8F16E /* barnworld.caf */; };
+		5418FB2C14508B2600C8F16E /* jim_standing_barn.png in Resources */ = {isa = PBXBuildFile; fileRef = 5418FB2A14508B2600C8F16E /* jim_standing_barn.png */; };
+		5418FB2D14508B2600C8F16E /* jim_standing_cornfields.png in Resources */ = {isa = PBXBuildFile; fileRef = 5418FB2B14508B2600C8F16E /* jim_standing_cornfields.png */; };
+		5418FB2F145093A300C8F16E /* UI_Button_Dodging.png in Resources */ = {isa = PBXBuildFile; fileRef = 5418FB2E145093A300C8F16E /* UI_Button_Dodging.png */; };
 		5421A2F8142A5C7E0078D861 /* Battery.m in Sources */ = {isa = PBXBuildFile; fileRef = 5421A2F7142A5C7E0078D861 /* Battery.m */; };
 		5421A2FC142A63FF0078D861 /* CCXAnimate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5421A2FB142A63FF0078D861 /* CCXAnimate.m */; };
 		542361AE14228E5E0086E533 /* LevelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 542361AD14228E5E0086E533 /* LevelManager.m */; };
@@ -378,6 +381,9 @@
 		54179E26142BBFA400D3A79E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Resources/Default@2x.png"; sourceTree = "<group>"; };
 		54179E2C142BC92300D3A79E /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		5418FB2714506EF800C8F16E /* barnworld.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = barnworld.caf; path = Resources/music/barnworld.caf; sourceTree = "<group>"; };
+		5418FB2A14508B2600C8F16E /* jim_standing_barn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jim_standing_barn.png; sourceTree = "<group>"; };
+		5418FB2B14508B2600C8F16E /* jim_standing_cornfields.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jim_standing_cornfields.png; sourceTree = "<group>"; };
+		5418FB2E145093A300C8F16E /* UI_Button_Dodging.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UI_Button_Dodging.png; sourceTree = "<group>"; };
 		5421A2F6142A5C7E0078D861 /* Battery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Battery.h; sourceTree = "<group>"; };
 		5421A2F7142A5C7E0078D861 /* Battery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Battery.m; sourceTree = "<group>"; };
 		5421A2FA142A63FF0078D861 /* CCXAnimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCXAnimate.h; sourceTree = "<group>"; };
@@ -1040,12 +1046,12 @@
 		54484CE5140449B500D0D7D9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				54642AFE14337E5F001D8212 /* art */,
 				543C09601420F3CF00F259BA /* app artwork */,
 				54F7F580143CD103004EC10B /* fonts */,
 				548C3DBB141ABDBB000567A8 /* levels */,
 				54133A0D143231AF00E433FC /* music */,
 				545CBC2F142D25AB00795FC9 /* sounds */,
-				54642AFE14337E5F001D8212 /* art */,
 				54FBA24C1430E1ED0010A91A /* videos */,
 				54484CE8140449B500D0D7D9 /* fps_images.png */,
 				54090E1F142CCE6700FC3ABE /* ball.png */,
@@ -1379,6 +1385,7 @@
 		544D50DB1445E6BD00BED4CE /* buttons */ = {
 			isa = PBXGroup;
 			children = (
+				5418FB2E145093A300C8F16E /* UI_Button_Dodging.png */,
 				54F11C1D14464E69003CF2CF /* UI_Button_Woo.png */,
 				54CD29DA143BA21400F805E0 /* UI_Button_Jumping.png */,
 				54CD29DB143BA21400F805E0 /* UI_Button_Kicking.png */,
@@ -1725,6 +1732,8 @@
 		54BE176F141EBB7200A3D773 /* objects */ = {
 			isa = PBXGroup;
 			children = (
+				5418FB2A14508B2600C8F16E /* jim_standing_barn.png */,
+				5418FB2B14508B2600C8F16E /* jim_standing_cornfields.png */,
 				54D448FF144F6951006C6EBA /* disco */,
 				54A40A51144C7B7A00B9C604 /* jim_standing.png */,
 				54883BB11448985F0029759E /* haybale.png */,
@@ -2035,6 +2044,9 @@
 				54D4491B144F911A006C6EBA /* disco_light_3.png in Resources */,
 				54D4491C144F911A006C6EBA /* disco_light_4.png in Resources */,
 				5418FB2814506EF800C8F16E /* barnworld.caf in Resources */,
+				5418FB2C14508B2600C8F16E /* jim_standing_barn.png in Resources */,
+				5418FB2D14508B2600C8F16E /* jim_standing_cornfields.png in Resources */,
+				5418FB2F145093A300C8F16E /* UI_Button_Dodging.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

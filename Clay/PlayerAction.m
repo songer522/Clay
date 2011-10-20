@@ -42,7 +42,6 @@
         _inAction = true;
         _isActive = false;
         _canTrigger = false;
-        _duration = 0.4f;
         GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
         [[gameLayer getHud] setEnabled:false ForButton:HUD_BUTTON_ACTION];
     }

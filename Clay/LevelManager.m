@@ -95,6 +95,7 @@ static LevelManager *_shared = nil;
 
 -(void)loadNextLevel
 {
+    //[[CCSpriteFrameCache sharedSpriteFrameCache] removeUnusedSpriteFrames];
     _nextLevel = [self loadLevelNamed:_currentLevel.nextLevelName];
     [UserData sharedInstance].currentLevel = [[_currentLevel.name substringFromIndex:5] intValue];
     [[UserData sharedInstance] save];
