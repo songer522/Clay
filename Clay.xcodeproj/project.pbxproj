@@ -18,7 +18,6 @@
 		54133A0814321CB300E433FC /* UhOh.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54133A0014321CB300E433FC /* UhOh.wav */; };
 		54133A0C14322E0900E433FC /* music.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54133A0B14322E0900E433FC /* music.plist */; };
 		54133A0F143231C200E433FC /* track.caf in Resources */ = {isa = PBXBuildFile; fileRef = 54133A0E143231C200E433FC /* track.caf */; };
-		54133A11143231CA00E433FC /* rock_bkg.caf in Resources */ = {isa = PBXBuildFile; fileRef = 54133A10143231CA00E433FC /* rock_bkg.caf */; };
 		54142C7D14468F7300A74447 /* hen_squawk.caf in Resources */ = {isa = PBXBuildFile; fileRef = 54142C7B14468F7300A74447 /* hen_squawk.caf */; };
 		54142C7E14468F7300A74447 /* woo_action.caf in Resources */ = {isa = PBXBuildFile; fileRef = 54142C7C14468F7300A74447 /* woo_action.caf */; };
 		54142C811446B57F00A74447 /* cow_moo.caf in Resources */ = {isa = PBXBuildFile; fileRef = 54142C801446B57F00A74447 /* cow_moo.caf */; };
@@ -26,6 +25,7 @@
 		5416A1B91419632E00648B6A /* LayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5416A1B81419632E00648B6A /* LayerManager.m */; };
 		54179E27142BBFA400D3A79E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 54179E26142BBFA400D3A79E /* Default@2x.png */; };
 		54179E2D142BC92400D3A79E /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54179E2C142BC92300D3A79E /* GameKit.framework */; };
+		5418FB2814506EF800C8F16E /* barnworld.caf in Resources */ = {isa = PBXBuildFile; fileRef = 5418FB2714506EF800C8F16E /* barnworld.caf */; };
 		5421A2F8142A5C7E0078D861 /* Battery.m in Sources */ = {isa = PBXBuildFile; fileRef = 5421A2F7142A5C7E0078D861 /* Battery.m */; };
 		5421A2FC142A63FF0078D861 /* CCXAnimate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5421A2FB142A63FF0078D861 /* CCXAnimate.m */; };
 		542361AE14228E5E0086E533 /* LevelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 542361AD14228E5E0086E533 /* LevelManager.m */; };
@@ -337,7 +337,6 @@
 		54F11C1B1446496D003CF2CF /* character_woo.png in Resources */ = {isa = PBXBuildFile; fileRef = 54F11C171446496D003CF2CF /* character_woo.png */; };
 		54F11C1E14464E69003CF2CF /* UI_Button_Woo.png in Resources */ = {isa = PBXBuildFile; fileRef = 54F11C1D14464E69003CF2CF /* UI_Button_Woo.png */; };
 		54F7F57F143CD0FD004EC10B /* 7 Segment.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 54F7F57E143CD0FD004EC10B /* 7 Segment.ttf */; };
-		54F8A187143A09FC00FCBAAB /* stars_voice.caf in Resources */ = {isa = PBXBuildFile; fileRef = 54F8A186143A09FC00FCBAAB /* stars_voice.caf */; };
 		54FBA2331430CA5D0010A91A /* VideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 54FBA2321430CA5D0010A91A /* VideoPlayer.m */; };
 		54FBA2361430CBBE0010A91A /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54FBA2351430CBBE0010A91A /* MediaPlayer.framework */; };
 		54FBA23C1430CE210010A91A /* VideoPlaybackScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 54FBA23B1430CE210010A91A /* VideoPlaybackScene.m */; };
@@ -369,7 +368,6 @@
 		54133A0014321CB300E433FC /* UhOh.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = UhOh.wav; path = Resources/sounds/UhOh.wav; sourceTree = "<group>"; };
 		54133A0B14322E0900E433FC /* music.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = music.plist; sourceTree = "<group>"; };
 		54133A0E143231C200E433FC /* track.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = track.caf; path = Resources/music/track.caf; sourceTree = "<group>"; };
-		54133A10143231CA00E433FC /* rock_bkg.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = rock_bkg.caf; path = Resources/music/rock_bkg.caf; sourceTree = "<group>"; };
 		54142C7B14468F7300A74447 /* hen_squawk.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = hen_squawk.caf; path = Resources/sounds/hen_squawk.caf; sourceTree = "<group>"; };
 		54142C7C14468F7300A74447 /* woo_action.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = woo_action.caf; path = Resources/sounds/woo_action.caf; sourceTree = "<group>"; };
 		54142C801446B57F00A74447 /* cow_moo.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = cow_moo.caf; path = Resources/sounds/cow_moo.caf; sourceTree = "<group>"; };
@@ -378,6 +376,7 @@
 		5416A1B81419632E00648B6A /* LayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayerManager.m; sourceTree = "<group>"; };
 		54179E26142BBFA400D3A79E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Resources/Default@2x.png"; sourceTree = "<group>"; };
 		54179E2C142BC92300D3A79E /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		5418FB2714506EF800C8F16E /* barnworld.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = barnworld.caf; path = Resources/music/barnworld.caf; sourceTree = "<group>"; };
 		5421A2F6142A5C7E0078D861 /* Battery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Battery.h; sourceTree = "<group>"; };
 		5421A2F7142A5C7E0078D861 /* Battery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Battery.m; sourceTree = "<group>"; };
 		5421A2FA142A63FF0078D861 /* CCXAnimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCXAnimate.h; sourceTree = "<group>"; };
@@ -858,7 +857,6 @@
 		54F11C171446496D003CF2CF /* character_woo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = character_woo.png; sourceTree = "<group>"; };
 		54F11C1D14464E69003CF2CF /* UI_Button_Woo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UI_Button_Woo.png; sourceTree = "<group>"; };
 		54F7F57E143CD0FD004EC10B /* 7 Segment.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "7 Segment.ttf"; path = "Resources/fonts/7 Segment.ttf"; sourceTree = "<group>"; };
-		54F8A186143A09FC00FCBAAB /* stars_voice.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = stars_voice.caf; path = Resources/music/stars_voice.caf; sourceTree = "<group>"; };
 		54FBA2311430CA5D0010A91A /* VideoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayer.h; sourceTree = "<group>"; };
 		54FBA2321430CA5D0010A91A /* VideoPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayer.m; sourceTree = "<group>"; };
 		54FBA2351430CBBE0010A91A /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -923,12 +921,11 @@
 		54133A0D143231AF00E433FC /* music */ = {
 			isa = PBXGroup;
 			children = (
+				5418FB2714506EF800C8F16E /* barnworld.caf */,
 				54D44913144F7E1E006C6EBA /* computerworld.caf */,
 				54C8633A143E164F007341B3 /* discoworld.caf */,
 				54C8633B143E164F007341B3 /* trailer.caf */,
-				54133A10143231CA00E433FC /* rock_bkg.caf */,
 				54133A0E143231C200E433FC /* track.caf */,
-				54F8A186143A09FC00FCBAAB /* stars_voice.caf */,
 			);
 			name = music;
 			sourceTree = "<group>";
@@ -1890,7 +1887,6 @@
 				54133A0814321CB300E433FC /* UhOh.wav in Resources */,
 				54133A0C14322E0900E433FC /* music.plist in Resources */,
 				54133A0F143231C200E433FC /* track.caf in Resources */,
-				54133A11143231CA00E433FC /* rock_bkg.caf in Resources */,
 				54642B0C14337E5F001D8212 /* Battery_v2_s-hd.plist in Resources */,
 				54642B0D14337E5F001D8212 /* Battery_v2_s-hd.png in Resources */,
 				54642B0E14337E5F001D8212 /* Battery_v2_s.plist in Resources */,
@@ -1903,7 +1899,6 @@
 				54E316361434D94100CD81FA /* character_turbo-hd.png in Resources */,
 				54E316371434D94100CD81FA /* character_turbo.plist in Resources */,
 				54E316381434D94100CD81FA /* character_turbo.png in Resources */,
-				54F8A187143A09FC00FCBAAB /* stars_voice.caf in Resources */,
 				54B6C6D0143B4CA400EF3569 /* character_tripped-hd.plist in Resources */,
 				54B6C6D1143B4CA400EF3569 /* character_tripped-hd.png in Resources */,
 				54B6C6D2143B4CA400EF3569 /* character_tripped.plist in Resources */,
@@ -2034,6 +2029,7 @@
 				54D4491A144F911A006C6EBA /* disco_light_2.png in Resources */,
 				54D4491B144F911A006C6EBA /* disco_light_3.png in Resources */,
 				54D4491C144F911A006C6EBA /* disco_light_4.png in Resources */,
+				5418FB2814506EF800C8F16E /* barnworld.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
