@@ -37,8 +37,12 @@
     self = [super init];
     if (self) {
         // Initialization code here.
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pause) name:UIWindowDidResignKeyNotification object:nil];
+        
         [[GCHelper sharedInstance] authenticateLocalUser];
     
+                
         [[LayerManager sharedLayers] setWorkingLayer:self];
         
         _trackBackground = [Sprite spriteWithFile:@"Menu_Background.png"];
@@ -97,6 +101,10 @@
     return self;
 }
 
+-(void)pause
+{
+    [[CCDirector sharedDirector] pause];
+}
 -(void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     if (_transition == MAINMENU_TRANSITION_IDLE) {

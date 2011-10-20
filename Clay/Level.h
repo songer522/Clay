@@ -20,7 +20,6 @@
 @interface Level : NSObject
 {
     NSString *_name;
-
     CCTMXLayer *_main;
     CCTMXLayer *_meta;
     CCTMXLayer *_obstacles;
