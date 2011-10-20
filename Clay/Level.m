@@ -57,7 +57,7 @@
         
         [self initTiledMap:filename ObstacleLayer:obstacleLayer];
         
-        [[[LayerManager sharedLayers] currentLayer] addChild:_map];
+        //[[[LayerManager sharedLayers] currentLayer] addChild:_map];
         
         _scale = [[UIScreen mainScreen] scale] / 2.0f;
         
@@ -94,13 +94,13 @@
         if ([layerName compare:@"actives"] == NSOrderedSame) {
             [self addObstaclesToMap];
             [player resetSprite:[[LayerManager sharedLayers] currentLayer]];
-            currentZ = 0;
+            //currentZ -= 1;
             continue;
         }
         
         CCTMXLayer *tmxLayer = [_map layerNamed:layerName];
         if (tmxLayer) {
-            
+
             
             CCParallaxNode *node = [CCParallaxNode node];
             
@@ -117,9 +117,13 @@
             [node addChild:tmxLayer z:currentZ parallaxRatio:ccp(speedx,speedy) positionOffset:offsetPoint];
             
             [_parallaxLayers addObject:node];
-            [[[LayerManager sharedLayers] currentLayer] addChild:node];
+            
+            
+            [[[LayerManager sharedLayers] currentLayer] addChild:node z:currentZ];
             
             [self addMapObjectsAboveLayer:tmxLayer ParallaxRatio:ccp(speedx,speedy)];
+            //currentZ += 1;
+            
         }
     }
 }

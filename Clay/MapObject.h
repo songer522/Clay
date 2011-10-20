@@ -19,12 +19,14 @@
     bool _placed;
     CGPoint _parallaxRatio;
     CGPoint _position;
+    int _zOrder;
 }
 
 @property(nonatomic,retain)NSString *layerAbove;
 @property(nonatomic,retain)GameObject *object;
 @property(nonatomic,assign)bool placed;
 @property(nonatomic,assign)CGPoint parallaxRatio;
+@property(nonatomic,assign)int zOrder;
 
 +(id)mapObjectWithSprite:(GameObject*)object AboveLayer:(NSString*)layerAbove;
 

@@ -18,6 +18,7 @@
 @synthesize layerAbove = _layerAbove;
 @synthesize placed = _placed;
 @synthesize parallaxRatio = _parallaxRatio;
+@synthesize zOrder = _zOrder;
 
 +(id)mapObjectWithSprite:(GameObject*)object AboveLayer:(NSString*)layerAbove
 {
