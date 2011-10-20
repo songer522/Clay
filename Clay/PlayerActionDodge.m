@@ -13,8 +13,8 @@
 #import "RunningSpeed.h"
 
 #define kPlayerActionDodgeMoveX 20.0f
-#define kPlayerActionDodgeFullDuration 1.6f;
-#define kPlayerActionDodgeActiveWhileDurationLessThan 1.5f
+#define kPlayerActionDodgeFullDuration 1.0f;
+#define kPlayerActionDodgeActiveWhileDurationLessThan 0.9f
 
 @implementation PlayerActionDodge
 
@@ -22,7 +22,8 @@
 {
     if (!_inAction && _canTrigger) {
         _duration = kPlayerActionDodgeFullDuration;
-        _cooldown = 2.0f;
+        _cooldown = 0.7f;
+        _parent.isInvincible = true;
         [_parent endTurbo];
         [[AnimationController sharedController] replaceSprite:[_parent getSprite] withAnimationNamed:@"dodgingAnim"];
     }
@@ -32,10 +33,19 @@
 -(void)update:(float)dt
 {
     if (_inAction) {
-        [_parent getSpeed].velocity = 11.0f;
+        Animation *anim = [[_parent getSprite] getAnimation];
+        int frame = 1;
+        if ([anim.name isEqualToString:@"dodgingAnim"]) {
+            frame = [anim getCurrentFrameNumber];
+        }
+        
+        if (frame == 1 || frame == 3) {
+            [_parent getSpeed].velocity = 11.0f;
+        } else {
+            [_parent getSpeed].velocity = 4.0f;
+        }
         if (_duration < kPlayerActionDodgeActiveWhileDurationLessThan) {
             _isActive = true;
-            _parent.isInvincible = true;
         } else {
             _isActive = false;
         }
@@ -46,11 +56,13 @@
 -(void)cancelAction
 {
     [[AnimationController sharedController] replaceSprite:[_parent getSprite] withAnimationNamed:@"runningAnim"];
+    _parent.isInvincible = false;
     [super cancelAction];
 }
 
 -(void)endAction
 {
+    _parent.isInvincible = false;
     [super endAction];
 }
 

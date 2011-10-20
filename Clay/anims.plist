@@ -240,6 +240,23 @@
 		<key>delay</key>
 		<string>0.15</string>
 	</dict>
+	<key>dancinManAnim</key>
+	<dict>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>group</key>
+		<string>Obstacle</string>
+		<key>spritesheetPlist</key>
+		<string>dancin_man</string>
+		<key>sequencePrefix</key>
+		<string>Disco_Dancer_</string>
+		<key>animationFrames</key>
+		<string>1,2</string>
+		<key>delay</key>
+		<string>0.2</string>
+	</dict>
 	<key>cowDied</key>
 	<dict>
 		<key>clearPreviousAnims</key>

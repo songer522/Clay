@@ -243,6 +243,41 @@
 		<key>imageName</key>
 		<string>cow.png</string>
 	</dict>
+	<key>dancinMan</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>playerEffect</key>
+		<string>collide</string>
+		<key>collideBehavior</key>
+		<string>static</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>-35</integer>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>1</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>dancinManAnim</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>x</key>
+			<integer>90</integer>
+			<key>y</key>
+			<integer>2</integer>
+			<key>width</key>
+			<integer>42</integer>
+			<key>height</key>
+			<integer>70</integer>
+		</dict>
+		<key>imageName</key>
+		<string>blank.png</string>
+	</dict>
 	<key>manure</key>
 	<dict>
 		<key>aggressive</key>
@@ -312,6 +347,41 @@
 		</dict>
 		<key>imageName</key>
 		<string>leafpile.png</string>
+	</dict>
+	<key>spilledDrink</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>playerEffect</key>
+		<string>slow</string>
+		<key>collideBehavior</key>
+		<string>static</string>
+		<key>offsetx</key>
+		<integer>-64</integer>
+		<key>offsety</key>
+		<integer>-45</integer>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>0</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>none</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>x</key>
+			<integer>-12</integer>
+			<key>y</key>
+			<integer>2</integer>
+			<key>width</key>
+			<integer>87</integer>
+			<key>height</key>
+			<integer>15</integer>
+		</dict>
+		<key>imageName</key>
+		<string>spilleddrink.png</string>
 	</dict>
 	<key>jimBarn</key>
 	<dict>
