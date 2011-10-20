@@ -7,7 +7,7 @@
 //
 
 #import "GCState.h"
-#import "GCDatabase.h"
+#import "Database.h"
 
 @implementation GCState
 @synthesize chickensKickedIntoCows;

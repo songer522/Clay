@@ -13,6 +13,7 @@
 #import "Sprite.h"
 #import "GameLayer.h"
 #import "HudLayer.h"
+#import "UserData.h"
 
 @implementation EndGameScene
 
@@ -94,6 +95,11 @@
     if (!_initialized) {
         GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
         float _finalTime = [[[gameLayer getHud] getTrackTimer] getTime];
+        if ([[UserData sharedInstance] bestTime] > _finalTime)
+        {
+            [UserData sharedInstance].bestTime = _finalTime;
+            [[UserData sharedInstance] save];
+        }
         [_timer setTime:_finalTime];
         _initialized = true;
     }

@@ -7,7 +7,7 @@
 //
 
 #import "GCHelper.h"
-#import "GCDatabase.h"
+#import "Database.h"
 #import "cocos2d.h"
 @implementation GCHelper
 @synthesize leaderboardToReport;

@@ -13,6 +13,7 @@
 #import "LayerManager.h"
 #import "Player.h"
 #import "GameLayer.h"
+#import "UserData.h"
 
 @implementation LevelManager
 
@@ -95,6 +96,8 @@ static LevelManager *_shared = nil;
 -(void)loadNextLevel
 {
     _nextLevel = [self loadLevelNamed:_currentLevel.nextLevelName];
+    [UserData sharedInstance].currentLevel = [[_currentLevel.name substringFromIndex:5] intValue];
+    [[UserData sharedInstance] save];
 }
 
 -(void)switchToNextLevel
