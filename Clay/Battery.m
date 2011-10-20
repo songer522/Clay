@@ -9,6 +9,8 @@
 #import "Battery.h"
 #import "BaseClasses.h"
 #import "Player.h"
+#import "HudLayer.h"
+#import "GameLayer.h"
 
 #define N(x) [NSNumber numberWithFloat: x]
 
@@ -29,7 +31,7 @@
         sprite = [Sprite spriteWithFile:@"battery.png"];
         [self setFrame:1];
         [sprite setPositionAtX:462 Y:322];
-
+        _wasLowBattery = false;
     }
     
     return self;
@@ -47,7 +49,20 @@
         [[sprite getCCSprite] setOpacity:255];
         _waitToIncrease = 11.0f;
         [[SoundEngine shared] playSound:@"lowBattery"];
+        
+        //disable sprint button in the hud
+        _wasLowBattery = true;
+        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+        [[gameLayer getHud] setEnabled:false ForButton:HUD_BUTTON_SPRINT];
     } else {
+        
+        //re-enable sprint button in the hud
+        if (_wasLowBattery) {
+            GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+            [[gameLayer getHud] setEnabled:true ForButton:HUD_BUTTON_SPRINT];
+            _wasLowBattery = false;
+        }
+        
         [[sprite getCCSprite] setVisible:YES];
         _waitToIncrease = 5.0f;
     }
@@ -137,6 +152,7 @@
 {
     [self setFrame:1];
     _isRecharging = false;
+    _wasLowBattery = false;
     [[sprite getCCSprite] setOpacity:255];
     [[sprite getCCSprite] setVisible:YES];
 }

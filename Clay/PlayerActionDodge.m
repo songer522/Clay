@@ -19,8 +19,9 @@
 
 -(void)startAction
 {
-    if (!_inAction) {
+    if (!_inAction && _canTrigger) {
         _duration = kPlayerActionDodgeFullDuration;
+        _cooldown = 2.0f;
         [_parent endTurbo];
         [[AnimationController sharedController] replaceSprite:[_parent getSprite] withAnimationNamed:@"dodgingAnim"];
     }

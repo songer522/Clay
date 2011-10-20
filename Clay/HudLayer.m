@@ -280,6 +280,22 @@
     return _trackTimer;
 }
 
+-(void)setEnabled:(bool)enabled ForButton:(HudButton)button
+{
+    switch (button) {
+        case HUD_BUTTON_JUMP:
+            [[_buttonJump getCCSprite] setVisible:enabled];
+            break;
+        case HUD_BUTTON_ACTION:
+            [[_buttonAction getCCSprite] setVisible:enabled];
+            break;
+        case HUD_BUTTON_SPRINT:
+            [[_buttonSprint getCCSprite] setVisible:enabled];
+        default:
+            break;
+    }
+}
+
 -(void)reset
 {
     //[self removeChild:[_buttonJump getCCSprite] cleanup:NO];

@@ -34,7 +34,9 @@
     bool _isActive;     //if true, then the action is currently "active", which means whatever
     //it can trigger will be triggered during this time (a kick will actually kick,
     //a "woo" will scare the background, etc.
-    float _duration;    
+    float _duration;
+    float _cooldown;
+    bool _canTrigger;
 }
 
 -(void) initialize; //individual actions can setup specific vars here

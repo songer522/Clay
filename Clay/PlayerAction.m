@@ -7,6 +7,9 @@
 //
 
 #import "PlayerAction.h"
+#import "LayerManager.h"
+#import "GameLayer.h"
+#import "HudLayer.h"
 
 @implementation PlayerAction
 
@@ -21,6 +24,7 @@
     if (self) {
         // Initialization code here.
         _inAction = false;
+        _cooldown = 0.0f;
         [self initialize];
     }
     
@@ -34,10 +38,13 @@
 
 -(void)startAction
 {
-    if (!_inAction) {
+    if (!_inAction && _canTrigger) {
         _inAction = true;
         _isActive = false;
+        _canTrigger = false;
         _duration = 0.4f;
+        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+        [[gameLayer getHud] setEnabled:false ForButton:HUD_BUTTON_ACTION];
     }
 }
 
@@ -48,6 +55,13 @@
 
         if (_duration <= 0.0f) {
             [self endAction];
+        }
+    } else {
+        _cooldown -= dt;
+        if (_cooldown<=0.0f && !_canTrigger) {
+            _canTrigger = true;
+            GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+            [[gameLayer getHud] setEnabled:true ForButton:HUD_BUTTON_ACTION];
         }
     }
     
