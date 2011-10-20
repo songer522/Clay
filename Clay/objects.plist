@@ -250,11 +250,11 @@
 		<key>playerEffect</key>
 		<string>collide</string>
 		<key>collideBehavior</key>
-		<string>static</string>
+		<string>dancinManCollapse</string>
 		<key>offsetx</key>
 		<integer>0</integer>
 		<key>offsety</key>
-		<integer>-35</integer>
+		<integer>-59</integer>
 		<key>anchorpoint</key>
 		<dict>
 			<key>x</key>
@@ -267,9 +267,9 @@
 		<key>boundingBox</key>
 		<dict>
 			<key>x</key>
-			<integer>90</integer>
+			<integer>110</integer>
 			<key>y</key>
-			<integer>2</integer>
+			<integer>-50</integer>
 			<key>width</key>
 			<integer>42</integer>
 			<key>height</key>

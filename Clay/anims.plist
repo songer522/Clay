@@ -257,6 +257,23 @@
 		<key>delay</key>
 		<string>0.2</string>
 	</dict>
+	<key>dancinManDied</key>
+	<dict>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>looping</key>
+		<string>fale</string>
+		<key>group</key>
+		<string>Obstacle</string>
+		<key>spritesheetPlist</key>
+		<string>dancin_man_hit</string>
+		<key>sequencePrefix</key>
+		<string>Disco_Dancer_Hit_</string>
+		<key>animationFrames</key>
+		<string>1</string>
+		<key>delay</key>
+		<string>0.2</string>
+	</dict>
 	<key>cowDied</key>
 	<dict>
 		<key>clearPreviousAnims</key>

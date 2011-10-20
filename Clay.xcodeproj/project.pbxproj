@@ -40,6 +40,10 @@
 		5424F85A1450D86D00802354 /* disco.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5424F8591450D86D00802354 /* disco.mp3 */; };
 		5424F85E1450D89700802354 /* barn.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5424F85C1450D89700802354 /* barn.mp3 */; };
 		5424F85F1450D89700802354 /* computer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5424F85D1450D89700802354 /* computer.mp3 */; };
+		5424F8641450DDFE00802354 /* dancin_man_hit-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5424F8601450DDFE00802354 /* dancin_man_hit-hd.plist */; };
+		5424F8651450DDFE00802354 /* dancin_man_hit-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5424F8611450DDFE00802354 /* dancin_man_hit-hd.png */; };
+		5424F8661450DDFE00802354 /* dancin_man_hit.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5424F8621450DDFE00802354 /* dancin_man_hit.plist */; };
+		5424F8671450DDFE00802354 /* dancin_man_hit.png in Resources */ = {isa = PBXBuildFile; fileRef = 5424F8631450DDFE00802354 /* dancin_man_hit.png */; };
 		54282F7E1444C78A0074BA3D /* cow_idle-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54282F7A1444C78A0074BA3D /* cow_idle-hd.plist */; };
 		54282F7F1444C78A0074BA3D /* cow_idle-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54282F7B1444C78A0074BA3D /* cow_idle-hd.png */; };
 		54282F801444C78A0074BA3D /* cow_idle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54282F7C1444C78A0074BA3D /* cow_idle.plist */; };
@@ -406,6 +410,10 @@
 		5424F8591450D86D00802354 /* disco.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = disco.mp3; path = Resources/music/disco.mp3; sourceTree = "<group>"; };
 		5424F85C1450D89700802354 /* barn.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = barn.mp3; path = Resources/music/barn.mp3; sourceTree = "<group>"; };
 		5424F85D1450D89700802354 /* computer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = computer.mp3; path = Resources/music/computer.mp3; sourceTree = "<group>"; };
+		5424F8601450DDFE00802354 /* dancin_man_hit-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "dancin_man_hit-hd.plist"; path = "disco/dancin_man_hit-hd.plist"; sourceTree = "<group>"; };
+		5424F8611450DDFE00802354 /* dancin_man_hit-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dancin_man_hit-hd.png"; path = "disco/dancin_man_hit-hd.png"; sourceTree = "<group>"; };
+		5424F8621450DDFE00802354 /* dancin_man_hit.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = dancin_man_hit.plist; path = disco/dancin_man_hit.plist; sourceTree = "<group>"; };
+		5424F8631450DDFE00802354 /* dancin_man_hit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dancin_man_hit.png; path = disco/dancin_man_hit.png; sourceTree = "<group>"; };
 		54282F7A1444C78A0074BA3D /* cow_idle-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "cow_idle-hd.plist"; sourceTree = "<group>"; };
 		54282F7B1444C78A0074BA3D /* cow_idle-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cow_idle-hd.png"; sourceTree = "<group>"; };
 		54282F7C1444C78A0074BA3D /* cow_idle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cow_idle.plist; sourceTree = "<group>"; };
@@ -1787,6 +1795,10 @@
 		54D448FF144F6951006C6EBA /* disco */ = {
 			isa = PBXGroup;
 			children = (
+				5424F8601450DDFE00802354 /* dancin_man_hit-hd.plist */,
+				5424F8611450DDFE00802354 /* dancin_man_hit-hd.png */,
+				5424F8621450DDFE00802354 /* dancin_man_hit.plist */,
+				5424F8631450DDFE00802354 /* dancin_man_hit.png */,
 				5418FB381450CBD800C8F16E /* spilleddrink.png */,
 				5418FB301450C49C00C8F16E /* dancin_man-hd.plist */,
 				5418FB311450C49C00C8F16E /* dancin_man-hd.png */,
@@ -2079,6 +2091,10 @@
 				5424F85A1450D86D00802354 /* disco.mp3 in Resources */,
 				5424F85E1450D89700802354 /* barn.mp3 in Resources */,
 				5424F85F1450D89700802354 /* computer.mp3 in Resources */,
+				5424F8641450DDFE00802354 /* dancin_man_hit-hd.plist in Resources */,
+				5424F8651450DDFE00802354 /* dancin_man_hit-hd.png in Resources */,
+				5424F8661450DDFE00802354 /* dancin_man_hit.plist in Resources */,
+				5424F8671450DDFE00802354 /* dancin_man_hit.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -156,6 +156,10 @@
         [[SoundEngine shared] playSound:@"cowDied"];
         _alpha = 1.5f;
         _fadeout = true;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_DANCIN_MAN_COLLAPSE) {
+        [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"dancinManDied"];
+        _alpha = 1.5f;
+        _fadeout = true;
     }
     
     return _playerEffect;
@@ -323,6 +327,8 @@
         _collideBehavior = COLLISION_BEHAVIOR_PLAY_ANIMATION;
     } else if([behavior compare:@"cowCollapse"] == NSOrderedSame) {
         _collideBehavior = COLLISION_BEHAVIOR_COW_COLLAPSE;
+    } else if([behavior isEqualToString:@"dancinManCollapse"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_DANCIN_MAN_COLLAPSE;
     } else {
         _collideBehavior = COLLISION_BEHAVIOR_NONE;
     }

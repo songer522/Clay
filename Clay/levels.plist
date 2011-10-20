@@ -101,9 +101,9 @@
 		<key>nextLevelName</key>
 		<string>endGame</string>
 		<key>layerList</key>
-		<string>back-3,back-2,back-1,main0,actives,front-1,meta</string>
+		<string>back-3,back-2,back-1,main0,actives,front-1,front-2,meta</string>
 	</dict>
 	<key>startingLevel</key>
-	<string>level4</string>
+	<string>level1</string>
 </dict>
 </plist>

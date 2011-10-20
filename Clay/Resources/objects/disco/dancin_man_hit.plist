@@ -5,46 +5,24 @@
 	<key>frames</key>
 	<dict>
 		
-		<key>Disco_Dancer_1.png</key>
+		<key>Disco_Dancer_Hit_1.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
 			
 			</array>
 			<key>spriteColorRect</key>
-			<string>{{47, 49}, {212, 280}}</string>
+			<string>{{26, 0}, {114, 164}}</string>
 			<key>spriteOffset</key>
 			<string>{0, 0}</string>
 			<key>spriteSize</key>
-			<string>{300, 380}</string>
+			<string>{150, 190}</string>
 			<key>spriteSourceSize</key>
-			<string>{300, 380}</string>
+			<string>{150, 190}</string>
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{0, 0}, {300, 380}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>Disco_Dancer_2.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{51, 47}, {204, 282}}</string>
-			<key>spriteOffset</key>
-			<string>{0, 0}</string>
-			<key>spriteSize</key>
-			<string>{300, 380}</string>
-			<key>spriteSourceSize</key>
-			<string>{300, 380}</string>
-			<key>spriteTrimmed</key>
-			<false/>
-			<key>textureRect</key>
-			<string>{{302, 0}, {300, 380}}</string>
+			<string>{{0, 0}, {150, 190}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -57,21 +35,21 @@
 		<key>format</key>
 		<integer>3</integer>
 		<key>size</key>
-		<string>{1024, 512}</string>
+		<string>{512, 512}</string>
 		<key>name</key>
-		<string>dancin_man</string>
+		<string>dancin_man_hit</string>
 		<key>premultipliedAlpha</key>
 		<false/>
 		<key>target</key>
 		<dict>
 			<key>name</key>
-			<string>-hd</string>
+			<string>s</string>
 			<key>textureFileName</key>
-			<string>-hd</string>
+			<string>s</string>
 			<key>textureFileExtension</key>
 			<string>.png</string>
 			<key>coordinatesFileName</key>
-			<string>-hd</string>
+			<string>s</string>
 			<key>coordinatesFileExtension</key>
 			<string>.plist</string>
 			<key>premultipliedAlpha</key>
