@@ -18,5 +18,6 @@
 -(GameObject*)loadGameObjectWithName:(NSString*)objectName;
 -(GameObject*)loadGameObjectWithName:(NSString *)objectName AddToLayer:(bool)shouldAddToLayer;
 -(void)initializeGameObject:(GameObject*)gameObject Name:(NSString*)objectName AddToLayer:(bool)shouldAddToLayer;
+-(NSString*)getRandomImageFromList:(NSString*)list;
 
 @end

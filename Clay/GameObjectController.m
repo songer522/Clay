@@ -41,14 +41,11 @@
 -(void)initializeGameObject:(GameObject*)gameObject Name:(NSString*)objectName AddToLayer:(bool)shouldAddToLayer
 {
     NSDictionary *gameobjectSettings = [_objectSettings objectForKey:objectName];
-    NSLog(@"Object Name: %@",objectName);
-    NSAssert(gameobjectSettings != nil, @"Object could not be found. Please ensure the entry is in objects.plist");
-    if (gameobjectSettings == nil) {
-        CCLOG(@"Could not locate GameObjectWithName:%@", objectName);
-        return;
-    }
+    NSAssert(gameobjectSettings != nil, @"Object could not be found. Please ensure %@ is in objects.plist",objectName);
+
+    NSString *imageName = [self getRandomImageFromList:[gameobjectSettings objectForKey:@"imageName"]];
     
-    Sprite *gameSprite = [Sprite spriteWithFile:[gameobjectSettings objectForKey:@"imageName"] AddToLayer:shouldAddToLayer];
+    Sprite *gameSprite = [Sprite spriteWithFile:imageName AddToLayer:shouldAddToLayer];
     [gameObject setSprite:gameSprite];
     
     NSString *animation = [NSString stringWithString:[gameobjectSettings objectForKey:@"animationName"]];
@@ -79,6 +76,18 @@
 
 }
 
+-(NSString*)getRandomImageFromList:(NSString*)list
+{
+    NSArray *options = [list componentsSeparatedByString:@","];
+    int numberOfOptions = [options count];
+    if (numberOfOptions == 1) {
+        return list;
+    } else {
+        int choice = rand() % numberOfOptions;
+        return [options objectAtIndex:choice];
+    }
+}
+                           
 -(void)dealloc
 {
     [_objectSettings release];

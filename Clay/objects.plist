@@ -381,7 +381,7 @@
 			<integer>10</integer>
 		</dict>
 		<key>imageName</key>
-		<string>disco_lights_1.png</string>
+		<string>disco_light_1.png,disco_light_2.png,disco_light_3.png,disco_light_4.png</string>
 	</dict>
 	<key>discoDancers</key>
 	<dict>
