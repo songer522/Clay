@@ -8,7 +8,7 @@
 
 #import "GCHelper.h"
 #import "GCDatabase.h"
-
+#import "cocos2d.h"
 @implementation GCHelper
 @synthesize leaderboardToReport;
 @synthesize achievementsToReport;
@@ -112,7 +112,10 @@ static GCHelper *sharedHelper = nil;
     
     NSLog(@"Authenticating local user...");
     if ([GKLocalPlayer localPlayer].authenticated == NO) {
-        [[GKLocalPlayer localPlayer] authenticateWithCompletionHandler:nil];
+        [[GKLocalPlayer localPlayer] authenticateWithCompletionHandler:^(NSError* error)
+         {
+             [[CCDirector sharedDirector] resume];
+         }];
     } else {
         NSLog(@"Already authenticated!");
     }
