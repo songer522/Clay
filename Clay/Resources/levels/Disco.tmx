@@ -148,9 +148,14 @@
    eJztxoEJACAAwzBPVT9Q/wf3xiCBQscAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOg300rbe++99957X/Un3fS899577733VQ8AAHT66eJuZg==
   </data>
  </layer>
+ <layer name="front-2" width="755" height="14">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8G6lKAAB
+  </data>
+ </layer>
  <layer name="objects" width="755" height="14">
   <data encoding="base64" compression="zlib">
-   eJztz0EKg0AMBVDvfydxW2sP1a2IMFOpJtH3VsL/ZpJhAAAAAAAAAAAAjpofnl/9nlx+57wlej+5vHLeEr2fXJ45BwAAAAAAAAAAyOodvcBJ3FWLu2pxVy3uqsVdtbgLAAAgh5eenp6enp6enp6eHgAAQFqf1ffyY7/3n73Odk5r1pF3e3u9swAA+K8peoGExugFAAAAAADgxr4zCY6x
+   eJzt1ssRhCAQBUDzz8ny6i8oA9iqFZBdGOy+vgfMeHKaAAAAAAAAAACAUtvL83+/J5ePnN9pPZ9cHjm/03o+ubznHAAAAAAAAAAAoFd76wF+xF6x2CsWe8Vir1jsFYu9AAAA+rDq6enp6enp6enp6QEAAAzrKDx3PuynvpvSK9khZ/7cXb+dTbmr5rfJ6aVaKt8HAMTlv+DT3HoAAAAAAAAY2AUi1ZEI
   </data>
  </layer>
  <layer name="meta" width="755" height="14" opacity="0.62">

@@ -5,14 +5,14 @@
 	<key>track</key>
 	<string>track.caf</string>
 	<key>barn</key>
-	<string>barnworld.caf</string>
+	<string>barn.mp3</string>
 	<key>cornfields</key>
 	<string>stars_voice.caf</string>
 	<key>disco</key>
-	<string>discoworld.caf</string>
+	<string>disco.mp3</string>
 	<key>trailer</key>
 	<string>trailer.caf</string>
 	<key>computer</key>
-	<string>computerworld.caf</string>
+	<string>computer.mp3</string>
 </dict>
 </plist>
