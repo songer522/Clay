@@ -25,6 +25,12 @@
     <property name="special" value="nextlevelNE"/>
    </properties>
   </tile>
+  <tile id="4">
+   <properties>
+    <property name="layerBelow" value="back-1"/>
+    <property name="object" value="jimCornfields"/>
+   </properties>
+  </tile>
   <tile id="10">
    <properties>
     <property name="obstacle" value="haybale"/>

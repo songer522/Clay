@@ -10,10 +10,11 @@
 #import "Sprite.h"
 #import "AnimationController.h"
 #import "Player.h"
+#import "RunningSpeed.h"
 
 #define kPlayerActionDodgeMoveX 20.0f
-#define kPlayerActionDodgeFullDuration 0.9f;
-#define kPlayerActionDodgeActiveWhileDurationLessThan 0.85f
+#define kPlayerActionDodgeFullDuration 1.6f;
+#define kPlayerActionDodgeActiveWhileDurationLessThan 1.5f
 
 @implementation PlayerActionDodge
 
@@ -31,6 +32,7 @@
 -(void)update:(float)dt
 {
     if (_inAction) {
+        [_parent getSpeed].velocity = 11.0f;
         if (_duration < kPlayerActionDodgeActiveWhileDurationLessThan) {
             _isActive = true;
             _parent.isInvincible = true;

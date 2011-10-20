@@ -28,7 +28,7 @@
   <tile id="4">
    <properties>
     <property name="layerBelow" value="back-1"/>
-    <property name="special" value="jimAppearance1"/>
+    <property name="object" value="jimBarn"/>
    </properties>
   </tile>
   <tile id="7">
@@ -112,7 +112,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt3M0OgyAMAGD3wPtLNp9/2W0HUYqAmH3faYmmLS3Mk04TAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAuJ6X2LW1+1vonQ8AAAAAAAAAAAAAAAAAAIDjvCq+Y74Wq2aer7kwXqqOd4N37aO57h16FO3b1hp+15IbO7IXSue8lW8p7hHzmhP9S/3ekruGtZipa6nYJTNaipW7p2qfk5b/CZHz0yJur/hLeWrPaamuSD0t89R6fpTmbfH8ypGT93GC79hcM2rMuWevFmfmbHL73GMe/yjS170zsN/biM5llLM0Sh23QeoAAAAAAAAAgJ4+aTwoBA==
+   eJzt280OgyAMAGD3wPtLNp9/2W0H0YKAmH3faYlLW1rQE9MEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADCG5+XoCgAAAAAAAAAAAAAAAAAg7VXxHtxarJp5vubCeKk63g3uA+bmunfoUW7fttbwu5Zo7Jy9UDrnrXxLcY+Y15zoX+r3luga1mKmnqVil8xoKVZ0T9U+Jy3fCTnnp0XcXvGX8tSe01JdOfW0zFPr+1Gat8X3KyKS93GCu/bXQI2R/+zV4sycTbTPPebxj3L6uncG9nsbuXMZ5SyNUsdtkDoAAAAAAAAAoKcPN9wmrg==
   </data>
  </layer>
  <layer name="meta" width="1000" height="14" opacity="0.85">

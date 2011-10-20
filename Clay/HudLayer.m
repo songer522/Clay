@@ -266,7 +266,7 @@
     } else if([action compare:@"kick"] == NSOrderedSame) {
         button = @"UI_Button_Kicking.png";
     } else if([action isEqualToString:@"dodge"]) {
-        button = @"UI_Button_Kicking.png";
+        button = @"UI_Button_Dodging.png";
     }
     
     _buttonAction = [self initButton:button Position:CGPointMake(HUD_LAYER_ACTION_X, HUD_LAYER_BUTTON_Y)];
