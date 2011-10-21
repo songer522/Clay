@@ -11,6 +11,7 @@
 
 @interface PlayerActionDodge : PlayerAction
 {
+    CGPoint _preActionPlayerPosition;
 }
 
 @end

@@ -24,6 +24,7 @@
         _duration = kPlayerActionDodgeFullDuration;
         _cooldown = 0.7f;
         _parent.isInvincible = true;
+        _preActionPlayerPosition = [_parent getPosition];
         [_parent endTurbo];
         [[AnimationController sharedController] replaceSprite:[_parent getSprite] withAnimationNamed:@"dodgingAnim"];
     }
@@ -34,6 +35,15 @@
 {
     if (_inAction) {
         Animation *anim = [[_parent getSprite] getAnimation];
+        
+        
+        if (_duration >= 0.9f) {
+            [_parent move:CGPointMake(0, -100.0f*dt)];
+        } else if(_duration <= 0.1f) {
+            [_parent move:CGPointMake(0, 100.0f*dt)];
+        }
+        
+        
         int frame = 1;
         if ([anim.name isEqualToString:@"dodgingAnim"]) {
             frame = [anim getCurrentFrameNumber];
@@ -57,12 +67,14 @@
 {
     [[AnimationController sharedController] replaceSprite:[_parent getSprite] withAnimationNamed:@"runningAnim"];
     _parent.isInvincible = false;
+    [_parent setPosition:_preActionPlayerPosition];
     [super cancelAction];
 }
 
 -(void)endAction
 {
     _parent.isInvincible = false;
+    [[_parent getSprite] setPosition:_preActionPlayerPosition];
     [super endAction];
 }
 
