@@ -355,7 +355,7 @@
 		<key>sequencePrefix</key>
 		<string>Disco_BreakDancer_</string>
 		<key>animationFrames</key>
-		<string>1,1</string>
+		<string>1,2,3,4</string>
 		<key>delay</key>
 		<string>0.15</string>
 	</dict>

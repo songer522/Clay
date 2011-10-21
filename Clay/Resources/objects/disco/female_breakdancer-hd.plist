@@ -12,17 +12,83 @@
 			
 			</array>
 			<key>spriteColorRect</key>
-			<string>{{42, 33}, {291, 227}}</string>
+			<string>{{30, 18}, {271, 221}}</string>
 			<key>spriteOffset</key>
 			<string>{0, 0}</string>
 			<key>spriteSize</key>
-			<string>{365, 275}</string>
+			<string>{303, 241}</string>
 			<key>spriteSourceSize</key>
-			<string>{365, 275}</string>
+			<string>{303, 241}</string>
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{0, 0}, {365, 275}}</string>
+			<string>{{0, 0}, {303, 241}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>Disco_BreakDancer_2.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{62, 6}, {193, 225}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 0}</string>
+			<key>spriteSize</key>
+			<string>{303, 241}</string>
+			<key>spriteSourceSize</key>
+			<string>{303, 241}</string>
+			<key>spriteTrimmed</key>
+			<false/>
+			<key>textureRect</key>
+			<string>{{305, 0}, {303, 241}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>Disco_BreakDancer_3.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{6, 28}, {265, 211}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 0}</string>
+			<key>spriteSize</key>
+			<string>{303, 241}</string>
+			<key>spriteSourceSize</key>
+			<string>{303, 241}</string>
+			<key>spriteTrimmed</key>
+			<false/>
+			<key>textureRect</key>
+			<string>{{305, 243}, {303, 241}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>Disco_BreakDancer_4.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{62, 62}, {191, 169}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 0}</string>
+			<key>spriteSize</key>
+			<string>{303, 241}</string>
+			<key>spriteSourceSize</key>
+			<string>{303, 241}</string>
+			<key>spriteTrimmed</key>
+			<false/>
+			<key>textureRect</key>
+			<string>{{0, 243}, {303, 241}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -35,7 +101,7 @@
 		<key>format</key>
 		<integer>3</integer>
 		<key>size</key>
-		<string>{1024, 1024}</string>
+		<string>{1024, 512}</string>
 		<key>name</key>
 		<string>female_breakdancer</string>
 		<key>premultipliedAlpha</key>

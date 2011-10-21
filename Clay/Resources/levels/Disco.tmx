@@ -88,7 +88,7 @@
   </tile>
   <tile id="20">
    <properties>
-    <property name="object" value="femaleBreakdancer"/>
+    <property name="obstacle" value="femaleBreakdancer"/>
    </properties>
   </tile>
  </tileset>
@@ -181,7 +181,7 @@
  </layer>
  <layer name="objects" width="755" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt28tygzAMAMCQ/v+/trn2kZw6wxCwiS0wJrunDJItyUBuXC4AAAAAAAAAAECpnzeP711PXPzM8ZzW/YmL9xzPad2fuPiR4wAAAAAAAFGG4fnadebaGqXrthDZy/iMln7vIbJe6nz2niul5D5GPtNRos50PEfLmaa1a+ab7tVyrmHmfI/0PgBAT35bN7ARc/XFXH0xV1/M1Rdz9cVcAAAAx/AtT548efLkyZMnT548AACAU/iY+T7sr3Cve1Un6+uuyVuTM+33lf5rZi1ZG3k2r+Tleq2N/yt95mrXHqWHpfUlz0pqTdRZ5erN1Yl+v0pmye2b2vOroF5Oqt5Sr1vcw7HbxvsD78F/ybPP1g0AAAAAAMCJPQAvGcrz
+   eJzt28FygyAQANDY/v+/tr2mSTu5OWgAAUWS904Zd2F30XjzcgEAAAAAAAAAAEr9vnn86Hri4q8cT+ndn7j4yPGU3v2Ji585DgAAAAAA0Mo0La99rFzLUbpuDy17mZ/Rs99HaFkvdj5HzxVTch9bPtOttDrT+Rw9Zwpr18wX7tVzrmnlfM/0fwCAkdx6N7ATc43FXGMx11jMNRZzjcVcAAAA53CVJ0+ePHny5MmTJ08eAADA8D4Lvg2Lrfmr3P/eMC8n59HvvMew/9TaUjlrw7NreTaxvLBuqtfUPc89p9y+a9fGnsmjetiyvuQ5i62p7TO33lqdLe+HnLlLZkntG+457/G7oF5KbIZnvdbew9R7+adyf4AH75Klr94NAAAAAADAC/sHmn3KHQ==
   </data>
  </layer>
  <layer name="meta" width="755" height="14" opacity="0.62">
