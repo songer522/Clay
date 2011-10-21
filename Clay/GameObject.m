@@ -206,7 +206,7 @@
 -(void)update:(float)dt
 {
     //guard
-    if (!_isActive) { return; }
+    if (!_isActive && _collideBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER) { return; }
     
     _prevLocation = CGPointMake(_x, _y);
     
@@ -270,6 +270,14 @@
         [self getCCSprite].rotation = _angle;
         _vy += 500.0f * dt;
         
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_CHARGE_AT_PLAYER) {
+        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+        CGPoint position = [gameLayer.player getPosition];
+        if (_x < (position.x + 550.0f) && _x > 0.0f) {
+            _vx = -350.0f;    
+        } else {
+            _vx = 0.0f;
+        }
     }
 }
 
@@ -328,7 +336,9 @@
     [self setPosition:_startingPosition];
     [self getCCSprite].visible = true;
     [self getCCSprite].rotation = _angle;
-    _currentBehavior = COLLISION_BEHAVIOR_STATIC;
+    if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER) {
+        _currentBehavior = COLLISION_BEHAVIOR_STATIC;        
+    }
     _collided = false;
 }
 
@@ -351,6 +361,9 @@
         _collideBehavior = COLLISION_BEHAVIOR_COW_COLLAPSE;
     } else if([behavior isEqualToString:@"dancinManCollapse"]) {
         _collideBehavior = COLLISION_BEHAVIOR_DANCIN_MAN_COLLAPSE;
+    } else if([behavior isEqualToString:@"chargeAtPlayer"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_CHARGE_AT_PLAYER;
+        _currentBehavior = COLLISION_BEHAVIOR_CHARGE_AT_PLAYER;
     } else {
         _collideBehavior = COLLISION_BEHAVIOR_NONE;
     }
