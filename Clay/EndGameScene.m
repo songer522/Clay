@@ -51,15 +51,21 @@
         [[LayerManager sharedLayers] setWorkingLayer:self];
         
         _endGame = [Sprite spriteWithFile:@"Menu_Ending_Temp.png"];
-        
+        _bestTime = [Sprite spriteWithFile:@"Menu_Ending_BestTime.png"];
+        [_bestTime getCCSprite].position = ccp(350.0f, 145.0f);
         _timer = [TrackTimer instance];
-        [_timer setupAnimationsAtX:232.0f Y:145.0f];
+        [_timer setupAnimationsAtX:232.0f Y:125.0f];
+        
+        _besttimer = [TrackTimer instance];
+        [_besttimer setupAnimationsAtX:232.0f Y:145.0f];
         
         [[LayerManager sharedLayers] forgetWorkingLayer];
         
         
         [_endGame setAlpha:0.0f];
+        [_bestTime setAlpha:0.0f];
         [_timer setAlpha:0.0f];
+        [_besttimer setAlpha:0.0f];
         
         _initialized = false;
         
@@ -101,6 +107,7 @@
             [[UserData sharedInstance] save];
         }
         [_timer setTime:_finalTime];
+        [_besttimer setTime:[[UserData sharedInstance] bestTime]];
         _initialized = true;
     }
     
@@ -112,7 +119,9 @@
                 _state = END_GAME_TRANSITION_IDLE;
             }
             [_endGame setAlpha:_alpha];
+            [_bestTime setAlpha:_alpha];
             [_timer setAlpha:_alpha];
+            [_besttimer setAlpha:_alpha];
             break;
         case END_GAME_TRANSITION_OUT:
             _alpha -= rate;
@@ -122,7 +131,9 @@
                 [self unscheduleUpdate];
             }
             [_endGame setAlpha:_alpha];
+            [_bestTime setAlpha:_alpha];
             [_timer setAlpha:_alpha];
+            [_besttimer setAlpha:_alpha];
             break;
         default:
             break;

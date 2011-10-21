@@ -17,6 +17,7 @@ NSString * pathForFile(NSString *filename) {
 
 id loadData(NSString * filename) {
     NSString *filepath = pathForFile(filename);
+    NSLog(filename);
     if ([[NSFileManager defaultManager] fileExistsAtPath:filepath]) {
         NSData *data = [[[NSData alloc] initWithContentsOfFile:filepath] autorelease];
         NSKeyedUnarchiver *unarchiver = [[[NSKeyedUnarchiver alloc] initForReadingWithData:data] autorelease];
