@@ -90,6 +90,11 @@ static LevelManager *_shared = nil;
         [self initAfterPlayerAndHudInit];
     }
     
+    if([levelName isEqualToString:@"level4"]) {
+        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+        [gameLayer initializeLaserShow];
+    }
+    
     return level;
 }
 
@@ -107,6 +112,7 @@ static LevelManager *_shared = nil;
     _currentLevel = _nextLevel;
     [_levelToUnload unloadLevel];
     _levelToUnload = nil;
+    
     [[SoundEngine shared] playMusic:_currentLevel.musicName];
 
 }

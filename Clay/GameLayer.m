@@ -18,6 +18,8 @@
 #import "HudLayer.h"
 #import "Battery.h"
 
+#import "LaserShow.h"
+
 // HelloWorldLayer implementation
 @implementation GameLayer
 
@@ -172,6 +174,10 @@
     }
     
     [_hud update:dt];
+    
+    if (_laserShow!=nil) {
+        [_laserShow update:dt];
+    }
 }
 
 -(void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -215,6 +221,11 @@
     if (!_gameController.isPaused) {
         [super onEnter];
     }
+}
+
+-(void)initializeLaserShow
+{
+    _laserShow = [LaserShow instance];
 }
 
 

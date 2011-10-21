@@ -61,6 +61,12 @@
 		5429789B140C233E00B3FFF4 /* InputController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5429789A140C233E00B3FFF4 /* InputController.m */; };
 		5429789E140C268100B3FFF4 /* InputEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5429789D140C268100B3FFF4 /* InputEvent.m */; };
 		543250BC143CA40300F1F177 /* HudLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 543250BB143CA40300F1F177 /* HudLayer.m */; };
+		543A22E51451CFF5007261A3 /* disco_laser_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 543A22E11451CFF5007261A3 /* disco_laser_1.png */; };
+		543A22E61451CFF5007261A3 /* disco_laser_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 543A22E21451CFF5007261A3 /* disco_laser_2.png */; };
+		543A22E71451CFF5007261A3 /* disco_laser_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 543A22E31451CFF5007261A3 /* disco_laser_3.png */; };
+		543A22E81451CFF5007261A3 /* disco_laser_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 543A22E41451CFF5007261A3 /* disco_laser_4.png */; };
+		543A22EB1451D045007261A3 /* LaserShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 543A22EA1451D045007261A3 /* LaserShow.m */; };
+		543A22EE1451D16D007261A3 /* Laser.m in Sources */ = {isa = PBXBuildFile; fileRef = 543A22ED1451D16D007261A3 /* Laser.m */; };
 		543C09511420F38200F259BA /* character_idle.png in Resources */ = {isa = PBXBuildFile; fileRef = 543C09501420F38200F259BA /* character_idle.png */; };
 		543C095D1420F3AA00F259BA /* meta.png in Resources */ = {isa = PBXBuildFile; fileRef = 543C095A1420F3AA00F259BA /* meta.png */; };
 		544034B2141A76DF0065B061 /* Collision.m in Sources */ = {isa = PBXBuildFile; fileRef = 544034B1141A76DF0065B061 /* Collision.m */; };
@@ -435,6 +441,14 @@
 		5429789D140C268100B3FFF4 /* InputEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputEvent.m; sourceTree = "<group>"; };
 		543250BA143CA40300F1F177 /* HudLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HudLayer.h; sourceTree = "<group>"; };
 		543250BB143CA40300F1F177 /* HudLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HudLayer.m; sourceTree = "<group>"; };
+		543A22E11451CFF5007261A3 /* disco_laser_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = disco_laser_1.png; path = disco/disco_laser_1.png; sourceTree = "<group>"; };
+		543A22E21451CFF5007261A3 /* disco_laser_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = disco_laser_2.png; path = disco/disco_laser_2.png; sourceTree = "<group>"; };
+		543A22E31451CFF5007261A3 /* disco_laser_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = disco_laser_3.png; path = disco/disco_laser_3.png; sourceTree = "<group>"; };
+		543A22E41451CFF5007261A3 /* disco_laser_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = disco_laser_4.png; path = disco/disco_laser_4.png; sourceTree = "<group>"; };
+		543A22E91451D045007261A3 /* LaserShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaserShow.h; sourceTree = "<group>"; };
+		543A22EA1451D045007261A3 /* LaserShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaserShow.m; sourceTree = "<group>"; };
+		543A22EC1451D16D007261A3 /* Laser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Laser.h; sourceTree = "<group>"; };
+		543A22ED1451D16D007261A3 /* Laser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Laser.m; sourceTree = "<group>"; };
 		543C09501420F38200F259BA /* character_idle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = character_idle.png; sourceTree = "<group>"; };
 		543C095A1420F3AA00F259BA /* meta.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = meta.png; path = Resources/levels/meta.png; sourceTree = "<group>"; };
 		544034B0141A76DF0065B061 /* Collision.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Collision.h; sourceTree = "<group>"; };
@@ -1510,6 +1524,10 @@
 		54518F641406AE38009D74AA /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				543A22EC1451D16D007261A3 /* Laser.h */,
+				543A22ED1451D16D007261A3 /* Laser.m */,
+				543A22E91451D045007261A3 /* LaserShow.h */,
+				543A22EA1451D045007261A3 /* LaserShow.m */,
 				54675BE4144F227900436C06 /* PlayerActions */,
 				54675BDC144F1B2700436C06 /* Bosses */,
 				54675BFA144F317500436C06 /* GameObjects */,
@@ -1795,6 +1813,10 @@
 		54D448FF144F6951006C6EBA /* disco */ = {
 			isa = PBXGroup;
 			children = (
+				543A22E11451CFF5007261A3 /* disco_laser_1.png */,
+				543A22E21451CFF5007261A3 /* disco_laser_2.png */,
+				543A22E31451CFF5007261A3 /* disco_laser_3.png */,
+				543A22E41451CFF5007261A3 /* disco_laser_4.png */,
 				5424F8601450DDFE00802354 /* dancin_man_hit-hd.plist */,
 				5424F8611450DDFE00802354 /* dancin_man_hit-hd.png */,
 				5424F8621450DDFE00802354 /* dancin_man_hit.plist */,
@@ -2095,6 +2117,10 @@
 				5424F8651450DDFE00802354 /* dancin_man_hit-hd.png in Resources */,
 				5424F8661450DDFE00802354 /* dancin_man_hit.plist in Resources */,
 				5424F8671450DDFE00802354 /* dancin_man_hit.png in Resources */,
+				543A22E51451CFF5007261A3 /* disco_laser_1.png in Resources */,
+				543A22E61451CFF5007261A3 /* disco_laser_2.png in Resources */,
+				543A22E71451CFF5007261A3 /* disco_laser_3.png in Resources */,
+				543A22E81451CFF5007261A3 /* disco_laser_4.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2267,6 +2293,8 @@
 				54675BF6144F264D00436C06 /* PlayerActionMagnet.m in Sources */,
 				54675BF9144F26A400436C06 /* PlayerAction.m in Sources */,
 				570F1DF61450C48600B1352B /* UserData.m in Sources */,
+				543A22EB1451D045007261A3 /* LaserShow.m in Sources */,
+				543A22EE1451D16D007261A3 /* Laser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
