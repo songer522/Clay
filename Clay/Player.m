@@ -406,6 +406,10 @@
     [_speed start];
 }
 
+-(id<PlayerActionProtocol>)getThirdAction
+{
+    return _thirdAction;
+}
 
 -(void)dealloc
 {

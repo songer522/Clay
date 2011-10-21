@@ -7,6 +7,7 @@
 //
 
 #import "PlayerAction.h"
+#import "Player.h"
 #import "LayerManager.h"
 #import "GameLayer.h"
 #import "HudLayer.h"
@@ -36,12 +37,14 @@
     
 }
 
+
 -(void)startAction
 {
     if (!_inAction && _canTrigger) {
         _inAction = true;
         _isActive = false;
         _canTrigger = false;
+        _hasKilledEnemy = false;
         GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
         [[gameLayer getHud] setEnabled:false ForButton:HUD_BUTTON_ACTION];
     }
@@ -86,6 +89,9 @@
 {
     _inAction = false;
     _isActive = false;
+    if (_hasKilledEnemy) {
+        [_parent changeHealth:1];
+    }
 }
 
 -(void)setParent:(Player*)player
@@ -96,6 +102,11 @@
 -(Player*)getParent
 {
     return _parent;
+}
+
+-(void)setKilledEnemy:(bool)killedEnemy
+{
+    _hasKilledEnemy = killedEnemy;
 }
 
 -(bool)shouldTriggerPlayerHurtCollision

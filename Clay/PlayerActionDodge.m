@@ -36,12 +36,12 @@
     if (_inAction) {
         Animation *anim = [[_parent getSprite] getAnimation];
         
-        
+        /*
         if (_duration >= 0.9f) {
             [_parent move:CGPointMake(0, -100.0f*dt)];
         } else if(_duration <= 0.1f) {
             [_parent move:CGPointMake(0, 100.0f*dt)];
-        }
+        }*/
         
         
         int frame = 1;
@@ -50,9 +50,9 @@
         }
         
         if (frame == 1 || frame == 3) {
-            [_parent getSpeed].velocity = 11.0f;
+            [_parent getSpeed].velocity = 13.0f;
         } else {
-            [_parent getSpeed].velocity = 4.0f;
+            [_parent getSpeed].velocity = 7.0f;
         }
         if (_duration < kPlayerActionDodgeActiveWhileDurationLessThan) {
             _isActive = true;
@@ -67,14 +67,14 @@
 {
     [[AnimationController sharedController] replaceSprite:[_parent getSprite] withAnimationNamed:@"runningAnim"];
     _parent.isInvincible = false;
-    [_parent setPosition:_preActionPlayerPosition];
+    //[_parent setPosition:_preActionPlayerPosition];
     [super cancelAction];
 }
 
 -(void)endAction
 {
     _parent.isInvincible = false;
-    [[_parent getSprite] setPosition:_preActionPlayerPosition];
+    //[[_parent getSprite] setPosition:_preActionPlayerPosition];
     [super endAction];
 }
 

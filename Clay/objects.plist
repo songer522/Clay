@@ -267,13 +267,13 @@
 		<key>boundingBox</key>
 		<dict>
 			<key>x</key>
-			<integer>110</integer>
+			<integer>120</integer>
 			<key>y</key>
-			<integer>-50</integer>
+			<integer>-30</integer>
 			<key>width</key>
-			<integer>42</integer>
+			<integer>60</integer>
 			<key>height</key>
-			<integer>70</integer>
+			<integer>110</integer>
 		</dict>
 		<key>imageName</key>
 		<string>blank.png</string>

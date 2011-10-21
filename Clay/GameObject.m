@@ -16,6 +16,7 @@
 #import "AnimationController.h"
 #import "GameLayer.h"
 #import "Player.h"
+#import "PlayerAction.h"
 
 @implementation GameObject
 
@@ -167,6 +168,9 @@
         [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"dancinManDied"];
         _alpha = 1.5f;
         _fadeout = true;
+        
+        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+        [[gameLayer.player getThirdAction] setKilledEnemy:YES];
     }
     
     return _playerEffect;
