@@ -106,6 +106,11 @@
             [UserData sharedInstance].bestTime = _finalTime;
             [[UserData sharedInstance] save];
         }
+        else if ([[UserData sharedInstance] bestTime] == 0.0f)
+        {
+            [UserData sharedInstance].bestTime = _finalTime;
+            [[UserData sharedInstance] save];
+        }
         [_timer setTime:_finalTime];
         [_besttimer setTime:[[UserData sharedInstance] bestTime]];
         _initialized = true;
