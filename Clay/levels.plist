@@ -53,7 +53,7 @@
 		<key>playerOffsetY</key>
 		<integer>-9</integer>
 		<key>fileName</key>
-		<string>test_level_2.tmx</string>
+		<string>real_level_2.tmx</string>
 		<key>obstacleLayer</key>
 		<string>front3</string>
 		<key>nextLevelName</key>
@@ -104,6 +104,6 @@
 		<string>back-3,back-2,back-1,main0,actives,front-1,meta</string>
 	</dict>
 	<key>startingLevel</key>
-	<string>level4</string>
+	<string>level2</string>
 </dict>
 </plist>
