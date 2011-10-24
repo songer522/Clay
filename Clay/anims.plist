@@ -353,7 +353,7 @@
 		<key>spritesheetPlist</key>
 		<string>female_breakdancer</string>
 		<key>sequencePrefix</key>
-		<string>Disco_BreakDancer_</string>
+		<string>Disco_BreakDancer_Red_</string>
 		<key>animationFrames</key>
 		<string>1,2,3,4</string>
 		<key>delay</key>
