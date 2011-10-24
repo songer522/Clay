@@ -2,379 +2,379 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>runningAnim</key>
+	<key>cowDied</key>
 	<dict>
-		<key>clearPreviousAnims</key>
-		<string>true</string>
-		<key>looping</key>
-		<string>true</string>
-		<key>group</key>
-		<string>Player</string>
-		<key>spritesheetPlist</key>
-		<string>character_running</string>
-		<key>sequencePrefix</key>
-		<string>Character_Running_</string>
-		<key>animationFrames</key>
-		<string>1,2,3,4,5,6,7,8,9,10</string>
-		<key>delay</key>
-		<real>0.075</real>
-	</dict>
-	<key>wooAnim</key>
-	<dict>
-		<key>clearPreviousAnims</key>
-		<string>false</string>
-		<key>looping</key>
-		<string>false</string>
-		<key>group</key>
-		<string>Player</string>
-		<key>spritesheetPlist</key>
-		<string>character_woo</string>
-		<key>sequencePrefix</key>
-		<string>Character_Woo_</string>
-		<key>animationFrames</key>
-		<string>1,2,3,4,5,6,7,8,9,10</string>
-		<key>delay</key>
-		<real>0.075</real>
-	</dict>
-	<key>jumpingAnim</key>
-	<dict>
-		<key>clearPreviousAnims</key>
-		<string>true</string>
-		<key>looping</key>
-		<string>false</string>
-		<key>group</key>
-		<string>Player</string>
-		<key>spritesheetPlist</key>
-		<string>character_jumping</string>
-		<key>sequencePrefix</key>
-		<string>character_jumping_</string>
-		<key>animationFrames</key>
-		<string>1</string>
-		<key>delay</key>
-		<string>0.1</string>
-	</dict>
-	<key>dodgingAnim</key>
-	<dict>
-		<key>clearPreviousAnims</key>
-		<string>true</string>
-		<key>looping</key>
-		<string>true</string>
-		<key>group</key>
-		<string>Player</string>
-		<key>spritesheetPlist</key>
-		<string>character_dodging</string>
-		<key>sequencePrefix</key>
-		<string>dodge_</string>
-		<key>animationFrames</key>
-		<string>2,3,4,5,2,3,4,5,2,3,4,5</string>
-		<key>delay</key>
-		<string>0.17</string>
-	</dict>
-	<key>fallingAnim</key>
-	<dict>
-		<key>clearPreviousAnims</key>
-		<string>true</string>
-		<key>looping</key>
-		<string>false</string>
-		<key>group</key>
-		<string>Player</string>
-		<key>spritesheetPlist</key>
-		<string>character_falling</string>
-		<key>sequencePrefix</key>
-		<string>character_falling_</string>
 		<key>animationFrames</key>
 		<string>1,2</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
 		<key>delay</key>
 		<string>0.075</string>
-	</dict>
-	<key>turboAnim</key>
-	<dict>
-		<key>clearPreviousAnims</key>
-		<string>true</string>
-		<key>looping</key>
-		<string>true</string>
 		<key>group</key>
-		<string>Player</string>
-		<key>spritesheetPlist</key>
-		<string>character_turbo</string>
-		<key>sequencePrefix</key>
-		<string>Character_Turbo_</string>
-		<key>animationFrames</key>
-		<string>1,2,3,4,5,6,7,8,9,10</string>
-		<key>delay</key>
-		<string>0.075</string>
-	</dict>
-	<key>trippedAnim</key>
-	<dict>
-		<key>clearPreviousAnims</key>
-		<string>true</string>
+		<string>Obstacle</string>
 		<key>looping</key>
 		<string>false</string>
-		<key>group</key>
-		<string>Player</string>
-		<key>spritesheetPlist</key>
-		<string>character_tripped</string>
 		<key>sequencePrefix</key>
-		<string>Character_Tumble_</string>
-		<key>animationFrames</key>
-		<string>1,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,5</string>
-		<key>delay</key>
-		<string>0.075</string>
-	</dict>
-	<key>hurtAnim</key>
-	<dict>
-		<key>clearPreviousAnims</key>
-		<string>false</string>
-		<key>looping</key>
-		<string>false</string>
-		<key>group</key>
-		<string>Player</string>
+		<string>cow_died_</string>
 		<key>spritesheetPlist</key>
-		<string>character_hurt</string>
-		<key>sequencePrefix</key>
-		<string>Character_Hurting_</string>
-		<key>animationFrames</key>
-		<string>1,1,1</string>
-		<key>delay</key>
-		<string>0.075</string>
-	</dict>
-	<key>largeTimer</key>
-	<dict>
-		<key>clearPreviousAnims</key>
-		<string>false</string>
-		<key>looping</key>
-		<string>true</string>
-		<key>group</key>
-		<string>Timer</string>
-		<key>spritesheetPlist</key>
-		<string>TrackTimer</string>
-		<key>sequencePrefix</key>
-		<string>Large_</string>
-		<key>animationFrames</key>
-		<string>1,2,3,4,5,6,7,8,9,10,11</string>
-		<key>delay</key>
-		<string>0.075</string>
-	</dict>
-	<key>smallTimer</key>
-	<dict>
-		<key>clearPreviousAnims</key>
-		<string>false</string>
-		<key>looping</key>
-		<string>true</string>
-		<key>group</key>
-		<string>Timer</string>
-		<key>spritesheetPlist</key>
-		<string>TrackTimer</string>
-		<key>sequencePrefix</key>
-		<string>Small_</string>
-		<key>animationFrames</key>
-		<string>1,2,3,4,5,6,7,8,9,10</string>
-		<key>delay</key>
-		<string>0.075</string>
-	</dict>
-	<key>henKicked</key>
-	<dict>
-		<key>clearPreviousAnims</key>
-		<string>false</string>
-		<key>looping</key>
-		<string>true</string>
-		<key>group</key>
-		<string>Obstacles</string>
-		<key>spritesheetPlist</key>
-		<string>hen_kicked</string>
-		<key>sequencePrefix</key>
-		<string>hen_kicked_</string>
-		<key>animationFrames</key>
-		<string>1,2</string>
-		<key>delay</key>
-		<string>0.04</string>
-	</dict>
-	<key>henIdle</key>
-	<dict>
-		<key>clearPreviousAnims</key>
-		<string>false</string>
-		<key>looping</key>
-		<string>true</string>
-		<key>group</key>
-		<string>Obstacles</string>
-		<key>spritesheetPlist</key>
-		<string>hen_idle</string>
-		<key>sequencePrefix</key>
-		<string>hen_idle_</string>
-		<key>animationFrames</key>
-		<string>1,2</string>
-		<key>delay</key>
-		<string>0.04</string>
-	</dict>
-	<key>kickingAnim</key>
-	<dict>
-		<key>clearPreviousAnims</key>
-		<string>false</string>
-		<key>looping</key>
-		<string>false</string>
-		<key>group</key>
-		<string>Player</string>
-		<key>spritesheetPlist</key>
-		<string>character_kicking</string>
-		<key>sequencePrefix</key>
-		<string>character_kicking_</string>
-		<key>animationFrames</key>
-		<string>1,2,3,3</string>
-		<key>delay</key>
-		<string>0.1</string>
+		<string>cow_died</string>
 	</dict>
 	<key>cowIdle</key>
 	<dict>
-		<key>clearPreviousAnims</key>
-		<string>true</string>
-		<key>looping</key>
-		<string>true</string>
-		<key>group</key>
-		<string>Obstacle</string>
-		<key>spritesheetPlist</key>
-		<string>cow_idle</string>
-		<key>sequencePrefix</key>
-		<string>cow_idle_</string>
 		<key>animationFrames</key>
 		<string>1,1,2,1,2</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
 		<key>delay</key>
 		<string>0.15</string>
+		<key>group</key>
+		<string>Obstacle</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>cow_idle_</string>
+		<key>spritesheetPlist</key>
+		<string>cow_idle</string>
 	</dict>
 	<key>dancinManAnim</key>
 	<dict>
-		<key>clearPreviousAnims</key>
-		<string>true</string>
-		<key>looping</key>
-		<string>true</string>
-		<key>group</key>
-		<string>Obstacle</string>
-		<key>spritesheetPlist</key>
-		<string>dancin_man</string>
-		<key>sequencePrefix</key>
-		<string>Disco_Dancer_</string>
 		<key>animationFrames</key>
 		<string>1,2</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
 		<key>delay</key>
 		<string>0.2</string>
+		<key>group</key>
+		<string>Obstacle</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Disco_Dancer_</string>
+		<key>spritesheetPlist</key>
+		<string>dancin_man</string>
 	</dict>
 	<key>dancinManDied</key>
 	<dict>
-		<key>clearPreviousAnims</key>
-		<string>true</string>
-		<key>looping</key>
-		<string>fale</string>
-		<key>group</key>
-		<string>Obstacle</string>
-		<key>spritesheetPlist</key>
-		<string>dancin_man_hit</string>
-		<key>sequencePrefix</key>
-		<string>Disco_Dancer_Hit_</string>
 		<key>animationFrames</key>
 		<string>1</string>
-		<key>delay</key>
-		<string>0.2</string>
-	</dict>
-	<key>cowDied</key>
-	<dict>
 		<key>clearPreviousAnims</key>
 		<string>true</string>
-		<key>looping</key>
-		<string>false</string>
+		<key>delay</key>
+		<string>0.2</string>
 		<key>group</key>
 		<string>Obstacle</string>
-		<key>spritesheetPlist</key>
-		<string>cow_died</string>
+		<key>looping</key>
+		<string>fale</string>
 		<key>sequencePrefix</key>
-		<string>cow_died_</string>
-		<key>animationFrames</key>
-		<string>1,2</string>
-		<key>delay</key>
-		<string>0.075</string>
+		<string>Disco_Dancer_Hit_</string>
+		<key>spritesheetPlist</key>
+		<string>dancin_man_hit</string>
 	</dict>
 	<key>discoDancersAnim</key>
 	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3,2</string>
 		<key>clearPreviousAnims</key>
 		<string>true</string>
-		<key>looping</key>
-		<string>true</string>
+		<key>delay</key>
+		<string>0.15</string>
 		<key>group</key>
 		<string>Background</string>
-		<key>spritesheetPlist</key>
-		<string>disco_dancers_bkg</string>
+		<key>looping</key>
+		<string>true</string>
 		<key>sequencePrefix</key>
 		<string>Disco_DancingAnimation_Key0</string>
-		<key>animationFrames</key>
-		<string>1,2,3,2</string>
-		<key>delay</key>
-		<string>0.15</string>
+		<key>spritesheetPlist</key>
+		<string>disco_dancers_bkg</string>
 	</dict>
-	<key>maleBkgDancerAnim</key>
+	<key>dodgingAnim</key>
 	<dict>
+		<key>animationFrames</key>
+		<string>2,3,4,5,2,3,4,5,2,3,4,5</string>
 		<key>clearPreviousAnims</key>
 		<string>true</string>
+		<key>delay</key>
+		<string>0.17</string>
+		<key>group</key>
+		<string>Player</string>
 		<key>looping</key>
 		<string>true</string>
-		<key>group</key>
-		<string>Background</string>
-		<key>spritesheetPlist</key>
-		<string>male_bkg_dancer</string>
 		<key>sequencePrefix</key>
-		<string>MaleDancer_</string>
+		<string>dodge_</string>
+		<key>spritesheetPlist</key>
+		<string>character_dodging</string>
+	</dict>
+	<key>fallingAnim</key>
+	<dict>
 		<key>animationFrames</key>
-		<string>1,2,3,2</string>
+		<string>1,2</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
 		<key>delay</key>
-		<string>0.15</string>
+		<string>0.075</string>
+		<key>group</key>
+		<string>Player</string>
+		<key>looping</key>
+		<string>false</string>
+		<key>sequencePrefix</key>
+		<string>character_falling_</string>
+		<key>spritesheetPlist</key>
+		<string>character_falling</string>
 	</dict>
 	<key>femaleBkgDancerAnim</key>
 	<dict>
-		<key>clearPreviousAnims</key>
-		<string>true</string>
-		<key>looping</key>
-		<string>true</string>
-		<key>group</key>
-		<string>Background</string>
-		<key>spritesheetPlist</key>
-		<string>female_bkg_dancer</string>
-		<key>sequencePrefix</key>
-		<string>FemaleDancer_</string>
 		<key>animationFrames</key>
 		<string>1,2,3,2</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
 		<key>delay</key>
 		<string>0.15</string>
+		<key>group</key>
+		<string>Background</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>FemaleDancer_</string>
+		<key>spritesheetPlist</key>
+		<string>female_bkg_dancer</string>
 	</dict>
 	<key>femaleBreakdancerAnim</key>
 	<dict>
-		<key>clearPreviousAnims</key>
-		<string>true</string>
-		<key>looping</key>
-		<string>true</string>
-		<key>group</key>
-		<string>Background</string>
-		<key>spritesheetPlist</key>
-		<string>female_breakdancer</string>
-		<key>sequencePrefix</key>
-		<string>Disco_BreakDancer_Red_</string>
 		<key>animationFrames</key>
 		<string>1,2,3,4</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
 		<key>delay</key>
 		<string>0.15</string>
+		<key>group</key>
+		<string>Background</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Disco_BreakDancer_Red_</string>
+		<key>spritesheetPlist</key>
+		<string>female_breakdancer</string>
+	</dict>
+	<key>henIdle</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2</string>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>delay</key>
+		<string>0.04</string>
+		<key>group</key>
+		<string>Obstacles</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>hen_idle_</string>
+		<key>spritesheetPlist</key>
+		<string>hen_idle</string>
+	</dict>
+	<key>henKicked</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2</string>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>delay</key>
+		<string>0.04</string>
+		<key>group</key>
+		<string>Obstacles</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>hen_kicked_</string>
+		<key>spritesheetPlist</key>
+		<string>hen_kicked</string>
+	</dict>
+	<key>hurtAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,1,1</string>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>delay</key>
+		<string>0.075</string>
+		<key>group</key>
+		<string>Player</string>
+		<key>looping</key>
+		<string>false</string>
+		<key>sequencePrefix</key>
+		<string>Character_Hurting_</string>
+		<key>spritesheetPlist</key>
+		<string>character_hurt</string>
+	</dict>
+	<key>jumpingAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>Player</string>
+		<key>looping</key>
+		<string>false</string>
+		<key>sequencePrefix</key>
+		<string>character_jumping_</string>
+		<key>spritesheetPlist</key>
+		<string>character_jumping</string>
+	</dict>
+	<key>kickingAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3,3</string>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>Player</string>
+		<key>looping</key>
+		<string>false</string>
+		<key>sequencePrefix</key>
+		<string>character_kicking_</string>
+		<key>spritesheetPlist</key>
+		<string>character_kicking</string>
+	</dict>
+	<key>largeTimer</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3,4,5,6,7,8,9,10,11</string>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>delay</key>
+		<string>0.075</string>
+		<key>group</key>
+		<string>Timer</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Large_</string>
+		<key>spritesheetPlist</key>
+		<string>TrackTimer</string>
+	</dict>
+	<key>maleBkgDancerAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3,2</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.15</string>
+		<key>group</key>
+		<string>Background</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>MaleDancer_</string>
+		<key>spritesheetPlist</key>
+		<string>male_bkg_dancer</string>
+	</dict>
+	<key>runningAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3,4,5,6,7,8,9,10</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<real>0.075</real>
+		<key>group</key>
+		<string>Player</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Character_Running_</string>
+		<key>spritesheetPlist</key>
+		<string>character_running</string>
+	</dict>
+	<key>smallTimer</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3,4,5,6,7,8,9,10</string>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>delay</key>
+		<string>0.075</string>
+		<key>group</key>
+		<string>Timer</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Small_</string>
+		<key>spritesheetPlist</key>
+		<string>TrackTimer</string>
+	</dict>
+	<key>trippedAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,5</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.075</string>
+		<key>group</key>
+		<string>Player</string>
+		<key>looping</key>
+		<string>false</string>
+		<key>sequencePrefix</key>
+		<string>Character_Tumble_</string>
+		<key>spritesheetPlist</key>
+		<string>character_tripped</string>
+	</dict>
+	<key>turboAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3,4,5,6,7,8,9,10</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.075</string>
+		<key>group</key>
+		<string>Player</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Character_Turbo_</string>
+		<key>spritesheetPlist</key>
+		<string>character_turbo</string>
 	</dict>
 	<key>tvAnimationAnim</key>
 	<dict>
-		<key>clearPreviousAnims</key>
-		<string>true</string>
-		<key>looping</key>
-		<string>true</string>
-		<key>group</key>
-		<string>Background</string>
-		<key>spritesheetPlist</key>
-		<string>tvAnimation</string>
-		<key>sequencePrefix</key>
-		<string>tv_</string>
 		<key>animationFrames</key>
 		<string>1,2,3,4,5,6,7,8,9,10</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
 		<key>delay</key>
 		<string>0.075</string>
+		<key>group</key>
+		<string>Background</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>tv_</string>
+		<key>spritesheetPlist</key>
+		<string>tvAnimation</string>
+	</dict>
+	<key>wooAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3,4,5,6,7,8,9,10</string>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>delay</key>
+		<real>0.075</real>
+		<key>group</key>
+		<string>Player</string>
+		<key>looping</key>
+		<string>false</string>
+		<key>sequencePrefix</key>
+		<string>Character_Woo_</string>
+		<key>spritesheetPlist</key>
+		<string>character_woo</string>
 	</dict>
 </dict>
 </plist>
