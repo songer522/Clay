@@ -130,8 +130,8 @@ if creatingPlists:
 
 if creatingPlists and isPlayer is not True:
 	#edit objects.plist if not a player animation
-	plistFilename = os.path.join(classesDir,"objects.plist")
-	plistObjects = plistlib.readPlist(plistFilename)
+	plistFilenameObj = os.path.join(classesDir,"objects.plist")
+	plistObjects = plistlib.readPlist(plistFilenameObj)
 
 	if isObstacle:
 		aggroValue = "true"
@@ -163,7 +163,7 @@ if creatingPlists and isPlayer is not True:
 	)
 
 	plistObjects[animationFilename] = newObject
-	plistlib.writePlist(plistObjects,plistFilename)
+	plistlib.writePlist(plistObjects,plistFilenameObj)
 
 	print ""
 	print animationFilename + " has been added to objects.plist."
