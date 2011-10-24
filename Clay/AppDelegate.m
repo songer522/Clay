@@ -22,6 +22,7 @@
 #import "HudLayer.h"
 #import "MainMenuScene.h"
 #import "LevelManager.h"
+#import "ChooseLevelScreen.h"
 
 @implementation AppDelegate
 
@@ -155,6 +156,10 @@
     
     _endGameScene = [EndGameScene scene];
     [[LayerManager sharedLayers] setScene:_endGameScene ForKey:@"endGame"];
+    
+    _chooseLevelScene = [ChooseLevelScreen scene];
+    
+    
     
     /*
     int x;

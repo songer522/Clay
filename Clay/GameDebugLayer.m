@@ -70,15 +70,6 @@
     float bottom = point.y - object.boundingBox.origin.y;
     float top = point.y - object.boundingBox.origin.y + object.boundingBox.size.height;
     
-    
-    /*
-    CGPoint point = [object getCCSprite].position;
-    float left = point.x - object.boundingBox.origin.x;
-    float right = point.x - object.boundingBox.origin.x + object.boundingBox.size.width;
-    float bottom = point.y + object.boundingBox.origin.y;
-    float top = point.y + object.boundingBox.origin.y + object.boundingBox.size.height;
-    */
-    
     ccDrawLine(ccp(left, top), ccp(right, top));
     ccDrawLine(ccp(right, top), ccp(right, bottom));
     ccDrawLine(ccp(right, bottom), ccp(left, bottom));
@@ -94,15 +85,7 @@
     float right = point.x - object.boundingBox.origin.x + object.boundingBox.size.width;
     float bottom = point.y - object.boundingBox.origin.y;
     float top = point.y - object.boundingBox.origin.y + object.boundingBox.size.height;
-    
-    /*
-    CGPoint point = [object getCCSprite].position;
-    float left = point.x - object.boundingBox.origin.x;
-    float right = point.x - object.boundingBox.origin.x + object.boundingBox.size.width;
-    float bottom = point.y + object.boundingBox.origin.y;
-    float top = point.y + object.boundingBox.origin.y + object.boundingBox.size.height;
-    */
-    
+        
     //top
     if (collisions.top) {
         glColor4ub(255, 0, 0, 255);        

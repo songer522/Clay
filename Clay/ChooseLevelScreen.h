@@ -7,7 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "cocos2d.h"
 
-@interface ChooseLevelScreen : NSObject
+@class Sprite;
+
+@interface ChooseLevelScreen : CCLayer
+{
+    Sprite *blackBackground;
+    NSMutableArray *_buttons;
+}
+
++(CCScene*)scene;
++(id)layerWithScene:(CCScene*)scene;
+-(id) initWithScene:(CCScene*)scene;
+
+-(void)load;
+
 
 @end
