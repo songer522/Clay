@@ -15,7 +15,7 @@
 #import "Player.h"
 #import "Camera.h"
 
-#define DEBUG_DRAW_BOUNDING_BOXES 0
+#define DEBUG_DRAW_BOUNDING_BOXES 1
 
 @implementation GameDebugLayer
 
@@ -70,6 +70,15 @@
     float bottom = point.y - object.boundingBox.origin.y;
     float top = point.y - object.boundingBox.origin.y + object.boundingBox.size.height;
     
+    
+    /*
+    CGPoint point = [object getCCSprite].position;
+    float left = point.x - object.boundingBox.origin.x;
+    float right = point.x - object.boundingBox.origin.x + object.boundingBox.size.width;
+    float bottom = point.y + object.boundingBox.origin.y;
+    float top = point.y + object.boundingBox.origin.y + object.boundingBox.size.height;
+    */
+    
     ccDrawLine(ccp(left, top), ccp(right, top));
     ccDrawLine(ccp(right, top), ccp(right, bottom));
     ccDrawLine(ccp(right, bottom), ccp(left, bottom));
@@ -79,12 +88,20 @@
 
 -(void)drawBoxForGameObject:(GameObject*)object Collisions:(XDCollision)collisions
 {
+    
     CGPoint point = [object getCCSprite].position;
     float left = point.x - object.boundingBox.origin.x;
     float right = point.x - object.boundingBox.origin.x + object.boundingBox.size.width;
     float bottom = point.y - object.boundingBox.origin.y;
     float top = point.y - object.boundingBox.origin.y + object.boundingBox.size.height;
     
+    /*
+    CGPoint point = [object getCCSprite].position;
+    float left = point.x - object.boundingBox.origin.x;
+    float right = point.x - object.boundingBox.origin.x + object.boundingBox.size.width;
+    float bottom = point.y + object.boundingBox.origin.y;
+    float top = point.y + object.boundingBox.origin.y + object.boundingBox.size.height;
+    */
     
     //top
     if (collisions.top) {

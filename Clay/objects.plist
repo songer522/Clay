@@ -168,7 +168,7 @@
 			<key>width</key>
 			<integer>40</integer>
 			<key>height</key>
-			<integer>120</integer>
+			<integer>100</integer>
 		</dict>
 		<key>imageName</key>
 		<string>character_idle.png</string>
@@ -619,11 +619,11 @@
 			<key>x</key>
 			<integer>30</integer>
 			<key>y</key>
-			<integer>40</integer>
+			<integer>50</integer>
 			<key>width</key>
-			<integer>30</integer>
+			<integer>45</integer>
 			<key>height</key>
-			<integer>10</integer>
+			<integer>35</integer>
 		</dict>
 		<key>imageName</key>
 		<string>blank.png</string>
