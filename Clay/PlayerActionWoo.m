@@ -20,7 +20,7 @@
 
 -(void)startAction
 {
-    if (!_inAction && _cooldown<=0.0f) {
+    if (!_inAction && _canTrigger) {
         [super startAction];
         _duration = 0.75f;
         _cooldown = 3.0f;

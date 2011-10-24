@@ -11,7 +11,6 @@
 
 @interface PlayerActionWoo : PlayerAction
 {
-    float _cooldown;
 }
 
 @end

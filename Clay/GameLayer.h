@@ -21,6 +21,7 @@
 @class ComicLayer;
 @class Sprite;
 @class HudLayer;
+@class LaserShow;
 
 // HelloWorldLayer
 @interface GameLayer : CCLayer
@@ -39,6 +40,8 @@
     
     HudLayer *_hud;
     
+    LaserShow *_laserShow;
+    
 }
 
 @property(nonatomic,retain) Player *player;
@@ -49,6 +52,8 @@
 -(void)initForLevel;
 -(void)initCamera;
 -(void)updateLogic:(ccTime)dt;
+
+-(void)initializeLaserShow;
 
 -(void)setupHud:(HudLayer*)hud;
 -(HudLayer*)getHud;

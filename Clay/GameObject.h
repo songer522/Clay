@@ -22,6 +22,8 @@ typedef enum {
     COLLISION_BEHAVIOR_PLAY_ANIMATION,
     COLLISION_BEHAVIOR_STATIC,
     COLLISION_BEHAVIOR_COW_COLLAPSE,
+    COLLISION_BEHAVIOR_DANCIN_MAN_COLLAPSE,
+    COLLISION_BEHAVIOR_CHARGE_AT_PLAYER,
     COLLISION_BEHAVIOR_NONE
 } CollisionBehavior;
 
@@ -100,44 +102,43 @@ typedef enum {
 @property(nonatomic,assign) bool rotateLights;
 
 
-+(id) instance;
+#pragma mark - initialization
 
++(id) instance;
 +(id) objectWithSprite:(Sprite*)sprite;     //create game object, add a sprite to it, return
 -(id) initWithSprite:(Sprite*)initSprite;   //constructor
-
 -(void) initialize:(NSString*)type;
 
--(void) setOffsetForX:(float)x Y:(float)y;
--(void) switchToInactive;
+#pragma mark - getters and setters
 
+-(Collision*) getCollision;
+-(CGPoint) getPosition;
+-(CGPoint) getPreviousPosition;
+-(CCSprite*) getCCSprite;
+
+-(void) setOffsetForX:(float)x Y:(float)y;
 -(void) setPosition:(CGPoint)position;
 -(void) setPositionAtX:(float)x Y:(float)y;     //give new x and y position on screen (with cocos2D, both hi and low-res use 320x480 resolution for its points)
 -(void) setStartingPosition:(CGPoint)position;
-
--(CCSprite*) getCCSprite;
-
--(void)special_kickHen;
-
-
--(void)reset;
-
--(CGPoint) getPosition;
--(CGPoint) getPreviousPosition;
-
--(void)setRange:(CGRect)rect;
-
--(Collision*) getCollision;
-
 -(void) setCollideBehavior:(NSString*)behavior;
 -(void) setPlayerEffect:(NSString*)effect;
 -(void) setOriginalAnimation:(NSString*)animation;
+-(void) setRange:(CGRect)rect;
 
+#pragma mark - public methods
+-(void) move:(CGPoint)amount;
+-(void) reset;
+-(PlayerEffect) startCollision;
+-(void) special_kickHen;
+-(void) update:(float)dt;
+
+#pragma mark - private methods
+-(void) switchToInactive;
+-(void) updateCollisionBehavior:(float)dt;
+-(void) updateFadeOut:(float)dt;
 -(void) updateFlags;
-
 -(void) updateLights:(float)dt;
 
--(PlayerEffect) startCollision;
 
--(void) update:(float)dt;
 
 @end

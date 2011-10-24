@@ -21,6 +21,7 @@
     float _alpha;
     float _waitToIncrease;
     bool _isRecharging;
+    bool _wasLowBattery;
     Player *_player;
 }
 

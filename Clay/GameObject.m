@@ -16,6 +16,7 @@
 #import "AnimationController.h"
 #import "GameLayer.h"
 #import "Player.h"
+#import "PlayerAction.h"
 
 @implementation GameObject
 
@@ -113,6 +114,13 @@
     [self setPositionAtX:position.x Y:position.y];
 }
 
+-(void) move:(CGPoint)amount
+{
+    _x += amount.x;
+    _y += amount.y;
+    [_sprite move:amount];
+}
+
 -(void)setPositionAtX:(float)x Y:(float)y
 {
     _x = x;
@@ -156,6 +164,13 @@
         [[SoundEngine shared] playSound:@"cowDied"];
         _alpha = 1.5f;
         _fadeout = true;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_DANCIN_MAN_COLLAPSE) {
+        [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"dancinManDied"];
+        _alpha = 1.5f;
+        _fadeout = true;
+        
+        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+        [[gameLayer.player getThirdAction] setKilledEnemy:YES];
     }
     
     return _playerEffect;
@@ -191,7 +206,7 @@
 -(void)update:(float)dt
 {
     //guard
-    if (!_isActive) { return; }
+    if (!_isActive && _collideBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER) { return; }
     
     _prevLocation = CGPointMake(_x, _y);
     
@@ -199,21 +214,36 @@
     _y -= _vy * dt;
     
     [self setPositionAtX:_x Y:_y];
+
+    [self updateFadeOut:dt];
     
+    [self updateCollisionBehavior:dt];
+    
+    [self updateFlags];
+    
+    [self updateLights:dt];
+}
+
+-(void)updateFadeOut:(float)dt
+{
     if (_fadeout) {
         float _setAlpha;
         _alpha -= 2.0f * dt;
         //TODO: build this into setAlpha method
         if (_alpha <= 0.0f) {
             _alpha = 0.0f;
+            [self switchToInactive];
         }
         _setAlpha = _alpha;
         if (_setAlpha>=1.0f) {
             _setAlpha = 1.0f;
         }
         [_sprite setAlpha:_setAlpha];
-    }
-    
+    } 
+}
+
+-(void)updateCollisionBehavior:(float)dt
+{
     if (_currentBehavior == COLLISION_BEHAVIOR_FALL_OVER) {
         _angle += (_fallVelocity + 100.0f) * dt;
         if (_angle >= 90) {
@@ -229,7 +259,7 @@
         _angle += _rotationAmount * dt;
         [self getCCSprite].rotation = _angle;
         CGPoint position = [[Camera sharedCamera] convertToScreenXY:[self getPosition]];
-
+        
         //hide the object if it's y or x position is high enough,
         //but give the object enough of a chance to clear the iphone screen
         if (position.y > 800.0f || position.x > 1200.0f) {
@@ -240,11 +270,15 @@
         [self getCCSprite].rotation = _angle;
         _vy += 500.0f * dt;
         
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_CHARGE_AT_PLAYER) {
+        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+        CGPoint position = [gameLayer.player getPosition];
+        if (_x < (position.x + 550.0f) && _x > 0.0f) {
+            _vx = -350.0f;    
+        } else {
+            _vx = 0.0f;
+        }
     }
-    
-    [self updateFlags];
-    
-    [self updateLights:dt];
 }
 
 -(void) updateFlags
@@ -302,7 +336,9 @@
     [self setPosition:_startingPosition];
     [self getCCSprite].visible = true;
     [self getCCSprite].rotation = _angle;
-    _currentBehavior = COLLISION_BEHAVIOR_STATIC;
+    if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER) {
+        _currentBehavior = COLLISION_BEHAVIOR_STATIC;        
+    }
     _collided = false;
 }
 
@@ -323,6 +359,11 @@
         _collideBehavior = COLLISION_BEHAVIOR_PLAY_ANIMATION;
     } else if([behavior compare:@"cowCollapse"] == NSOrderedSame) {
         _collideBehavior = COLLISION_BEHAVIOR_COW_COLLAPSE;
+    } else if([behavior isEqualToString:@"dancinManCollapse"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_DANCIN_MAN_COLLAPSE;
+    } else if([behavior isEqualToString:@"chargeAtPlayer"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_CHARGE_AT_PLAYER;
+        _currentBehavior = COLLISION_BEHAVIOR_CHARGE_AT_PLAYER;
     } else {
         _collideBehavior = COLLISION_BEHAVIOR_NONE;
     }

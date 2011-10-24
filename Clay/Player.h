@@ -75,7 +75,6 @@ typedef enum {
 -(RunningSpeed*)getSpeed;
 
 -(void)startThirdAction;
-
 -(void)startCollision:(PlayerEffect)effect Obstacle:(GameObject*)obstacle;
 
 -(void)changeHealth:(int)amount;
@@ -93,5 +92,6 @@ typedef enum {
 -(void)updateSlow:(float)dt;
 
 -(void)setThirdAction:(NSString*)action;
+-(id<PlayerActionProtocol>)getThirdAction;
 
 @end

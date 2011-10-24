@@ -5,50 +5,6 @@
 	<key>frames</key>
 	<dict>
 		
-		<key>dodge_1.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{40, 13}, {141, 270}}</string>
-			<key>spriteOffset</key>
-			<string>{0, 0}</string>
-			<key>spriteSize</key>
-			<string>{225, 300}</string>
-			<key>spriteSourceSize</key>
-			<string>{225, 300}</string>
-			<key>spriteTrimmed</key>
-			<false/>
-			<key>textureRect</key>
-			<string>{{454, 0}, {225, 300}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>dodge_10.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{40, 14}, {145, 270}}</string>
-			<key>spriteOffset</key>
-			<string>{0, 0}</string>
-			<key>spriteSize</key>
-			<string>{225, 300}</string>
-			<key>spriteSourceSize</key>
-			<string>{225, 300}</string>
-			<key>spriteTrimmed</key>
-			<false/>
-			<key>textureRect</key>
-			<string>{{0, 0}, {225, 300}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
 		<key>dodge_2.png</key>
 		<dict>
 			<key>aliases</key>
@@ -56,7 +12,7 @@
 			
 			</array>
 			<key>spriteColorRect</key>
-			<string>{{40, 12}, {141, 272}}</string>
+			<string>{{44, 14}, {145, 270}}</string>
 			<key>spriteOffset</key>
 			<string>{0, 0}</string>
 			<key>spriteSize</key>
@@ -78,7 +34,7 @@
 			
 			</array>
 			<key>spriteColorRect</key>
-			<string>{{40, 13}, {143, 270}}</string>
+			<string>{{45, 12}, {145, 272}}</string>
 			<key>spriteOffset</key>
 			<string>{0, 0}</string>
 			<key>spriteSize</key>
@@ -88,7 +44,7 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{0, 604}, {225, 300}}</string>
+			<string>{{0, 0}, {225, 300}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -100,29 +56,7 @@
 			
 			</array>
 			<key>spriteColorRect</key>
-			<string>{{37, 14}, {165, 270}}</string>
-			<key>spriteOffset</key>
-			<string>{0, 0}</string>
-			<key>spriteSize</key>
-			<string>{225, 300}</string>
-			<key>spriteSourceSize</key>
-			<string>{225, 300}</string>
-			<key>spriteTrimmed</key>
-			<false/>
-			<key>textureRect</key>
-			<string>{{227, 604}, {225, 300}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>dodge_5.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{40, 15}, {151, 268}}</string>
+			<string>{{44, 14}, {145, 270}}</string>
 			<key>spriteOffset</key>
 			<string>{0, 0}</string>
 			<key>spriteSize</key>
@@ -137,14 +71,14 @@
 			<false/>
 		</dict>
 		
-		<key>dodge_6.png</key>
+		<key>dodge_5.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
 			
 			</array>
 			<key>spriteColorRect</key>
-			<string>{{40, 13}, {141, 270}}</string>
+			<string>{{45, 12}, {145, 272}}</string>
 			<key>spriteOffset</key>
 			<string>{0, 0}</string>
 			<key>spriteSize</key>
@@ -154,73 +88,7 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{681, 302}, {225, 300}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>dodge_7.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{40, 11}, {141, 274}}</string>
-			<key>spriteOffset</key>
-			<string>{0, 0}</string>
-			<key>spriteSize</key>
-			<string>{225, 300}</string>
-			<key>spriteSourceSize</key>
-			<string>{225, 300}</string>
-			<key>spriteTrimmed</key>
-			<false/>
-			<key>textureRect</key>
-			<string>{{454, 302}, {225, 300}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>dodge_8.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{40, 13}, {157, 272}}</string>
-			<key>spriteOffset</key>
-			<string>{0, 0}</string>
-			<key>spriteSize</key>
-			<string>{225, 300}</string>
-			<key>spriteSourceSize</key>
-			<string>{225, 300}</string>
-			<key>spriteTrimmed</key>
-			<false/>
-			<key>textureRect</key>
-			<string>{{681, 0}, {225, 300}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>dodge_9.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{26, 14}, {185, 270}}</string>
-			<key>spriteOffset</key>
-			<string>{0, 0}</string>
-			<key>spriteSize</key>
-			<string>{225, 300}</string>
-			<key>spriteSourceSize</key>
-			<string>{225, 300}</string>
-			<key>spriteTrimmed</key>
-			<false/>
-			<key>textureRect</key>
-			<string>{{227, 302}, {225, 300}}</string>
+			<string>{{0, 604}, {225, 300}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -241,13 +109,13 @@
 		<key>target</key>
 		<dict>
 			<key>name</key>
-			<string>s-hd</string>
+			<string>-hd</string>
 			<key>textureFileName</key>
-			<string>s-hd</string>
+			<string>-hd</string>
 			<key>textureFileExtension</key>
 			<string>.png</string>
 			<key>coordinatesFileName</key>
-			<string>s-hd</string>
+			<string>-hd</string>
 			<key>coordinatesFileExtension</key>
 			<string>.plist</string>
 			<key>premultipliedAlpha</key>

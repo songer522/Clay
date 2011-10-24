@@ -74,4 +74,6 @@ typedef enum {
 
 -(void)reset;
 
+-(void)setEnabled:(bool)enabled ForButton:(HudButton)button;
+
 @end

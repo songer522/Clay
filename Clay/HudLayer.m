@@ -266,7 +266,7 @@
     } else if([action compare:@"kick"] == NSOrderedSame) {
         button = @"UI_Button_Kicking.png";
     } else if([action isEqualToString:@"dodge"]) {
-        button = @"UI_Button_Kicking.png";
+        button = @"UI_Button_Dodging.png";
     }
     
     _buttonAction = [self initButton:button Position:CGPointMake(HUD_LAYER_ACTION_X, HUD_LAYER_BUTTON_Y)];
@@ -278,6 +278,22 @@
 -(TrackTimer*)getTrackTimer
 {
     return _trackTimer;
+}
+
+-(void)setEnabled:(bool)enabled ForButton:(HudButton)button
+{
+    switch (button) {
+        case HUD_BUTTON_JUMP:
+            [[_buttonJump getCCSprite] setVisible:enabled];
+            break;
+        case HUD_BUTTON_ACTION:
+            [[_buttonAction getCCSprite] setVisible:enabled];
+            break;
+        case HUD_BUTTON_SPRINT:
+            [[_buttonSprint getCCSprite] setVisible:enabled];
+        default:
+            break;
+    }
 }
 
 -(void)reset

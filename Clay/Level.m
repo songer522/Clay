@@ -235,18 +235,22 @@
             NSString *objectName = [self getPropertyForTileCoords:coords forKey:@"object"];
             
             if (objectName) {
-                GameObject *object = [_gameObjects loadGameObjectWithName:objectName AddToLayer:NO];
-                CGPoint position = [self getXYPositionForCoordinates:coords];
-                [object setPositionAtX:position.x Y:position.y];
-                [object setStartingPosition:position];
-                [[object getCCSprite] setScale:_scale];
-                
-                if (!layerBelow) {
-                    layerBelow = @"main0";
+                if (![objectName isEqualToString:@"lighting"]) {  //TEMPORARY: disabling lights until we decide we don't want them
+                    
+                    GameObject *object = [_gameObjects loadGameObjectWithName:objectName AddToLayer:NO];
+                    CGPoint position = [self getXYPositionForCoordinates:coords];
+                    [object setPositionAtX:position.x Y:position.y];
+                    [object setStartingPosition:position];
+                    [[object getCCSprite] setScale:_scale];
+                    
+                    if (!layerBelow) {
+                        layerBelow = @"main0";
+                    }
+                    
+                    MapObject *mapObject = [MapObject mapObjectWithSprite:object AboveLayer:layerBelow];
+                    [_otherMapObjects addObject:mapObject];
+                                        
                 }
-                
-                MapObject *mapObject = [MapObject mapObjectWithSprite:object AboveLayer:layerBelow];
-                [_otherMapObjects addObject:mapObject];
             }
         }
     }

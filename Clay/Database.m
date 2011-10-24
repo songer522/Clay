@@ -6,7 +6,7 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "GCDatabase.h"
+#import "Database.h"
 
 NSString * pathForFile(NSString *filename) {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -17,6 +17,7 @@ NSString * pathForFile(NSString *filename) {
 
 id loadData(NSString * filename) {
     NSString *filepath = pathForFile(filename);
+    NSLog(filename);
     if ([[NSFileManager defaultManager] fileExistsAtPath:filepath]) {
         NSData *data = [[[NSData alloc] initWithContentsOfFile:filepath] autorelease];
         NSKeyedUnarchiver *unarchiver = [[[NSKeyedUnarchiver alloc] initForReadingWithData:data] autorelease];

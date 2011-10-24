@@ -3,14 +3,14 @@
 <plist version="1.0">
 <dict>
 	<key>trackToFarm</key>
-	<string>Comic_Part02.mp4</string>
+	<string>StoryText_2.mp4</string>
 	<key>farmToCornfields</key>
-	<string>Comic_Part03.mp4</string>
+	<string>StoryText_3.mp4</string>
 	<key>endGame</key>
 	<string>endGame</string>
 	<key>intro</key>
-	<string>Comic_Part01.mp4</string>
+	<string>StoryText_1.mp4</string>
 	<key>beforeDisco</key>
-	<string>Comic_Part03.mp4</string>
+	<string>StoryText_4.mp4</string>
 </dict>
 </plist>

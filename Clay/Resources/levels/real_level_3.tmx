@@ -25,6 +25,12 @@
     <property name="special" value="nextlevelNE"/>
    </properties>
   </tile>
+  <tile id="4">
+   <properties>
+    <property name="layerBelow" value="back-1"/>
+    <property name="object" value="jimCornfields"/>
+   </properties>
+  </tile>
   <tile id="10">
    <properties>
     <property name="obstacle" value="haybale"/>
@@ -136,7 +142,7 @@
    eJzt0lkKgCAUAEDvf82X96hAISJDxY+IGfDH5S1qSgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwCrRsWc7Rl6cdyZelFpa3tZm1ZytexrtIy6x4jbfG7/Ws/pNZvT8n1Me2Pt09gu9AgAAAAAAAAD80Q4UBhVe
   </data>
  </layer>
- <layer name="main" width="660" height="14">
+ <layer name="main0" width="660" height="14">
   <properties>
    <property name="speedx" value="1.0"/>
    <property name="speedy" value="1.0"/>

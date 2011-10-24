@@ -13,6 +13,7 @@
 #import "LayerManager.h"
 #import "Player.h"
 #import "GameLayer.h"
+#import "UserData.h"
 
 @implementation LevelManager
 
@@ -89,12 +90,20 @@ static LevelManager *_shared = nil;
         [self initAfterPlayerAndHudInit];
     }
     
+    if([levelName isEqualToString:@"level4"]) {
+        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+        [gameLayer initializeLaserShow];
+    }
+    
     return level;
 }
 
 -(void)loadNextLevel
 {
+    //[[CCSpriteFrameCache sharedSpriteFrameCache] removeUnusedSpriteFrames];
     _nextLevel = [self loadLevelNamed:_currentLevel.nextLevelName];
+    [UserData sharedInstance].currentLevel = [[_currentLevel.name substringFromIndex:5] intValue];
+    [[UserData sharedInstance] save];
 }
 
 -(void)switchToNextLevel
@@ -103,6 +112,7 @@ static LevelManager *_shared = nil;
     _currentLevel = _nextLevel;
     [_levelToUnload unloadLevel];
     _levelToUnload = nil;
+    
     [[SoundEngine shared] playMusic:_currentLevel.musicName];
 
 }

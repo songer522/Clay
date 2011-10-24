@@ -66,9 +66,9 @@
 		<key>sequencePrefix</key>
 		<string>dodge_</string>
 		<key>animationFrames</key>
-		<string>1,2,3,4,5,6,7,8,9,10</string>
+		<string>2,3,4,5,2,3,4,5,2,3,4,5</string>
 		<key>delay</key>
-		<string>0.1</string>
+		<string>0.17</string>
 	</dict>
 	<key>fallingAnim</key>
 	<dict>
@@ -240,6 +240,40 @@
 		<key>delay</key>
 		<string>0.15</string>
 	</dict>
+	<key>dancinManAnim</key>
+	<dict>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>group</key>
+		<string>Obstacle</string>
+		<key>spritesheetPlist</key>
+		<string>dancin_man</string>
+		<key>sequencePrefix</key>
+		<string>Disco_Dancer_</string>
+		<key>animationFrames</key>
+		<string>1,2</string>
+		<key>delay</key>
+		<string>0.2</string>
+	</dict>
+	<key>dancinManDied</key>
+	<dict>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>looping</key>
+		<string>fale</string>
+		<key>group</key>
+		<string>Obstacle</string>
+		<key>spritesheetPlist</key>
+		<string>dancin_man_hit</string>
+		<key>sequencePrefix</key>
+		<string>Disco_Dancer_Hit_</string>
+		<key>animationFrames</key>
+		<string>1</string>
+		<key>delay</key>
+		<string>0.2</string>
+	</dict>
 	<key>cowDied</key>
 	<dict>
 		<key>clearPreviousAnims</key>
@@ -270,9 +304,60 @@
 		<key>sequencePrefix</key>
 		<string>Disco_DancingAnimation_Key0</string>
 		<key>animationFrames</key>
-		<string>1,1,2,2,3,3,2,2</string>
+		<string>1,2,3,2</string>
 		<key>delay</key>
-		<string>0.075</string>
+		<string>0.15</string>
+	</dict>
+	<key>maleBkgDancerAnim</key>
+	<dict>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>group</key>
+		<string>Background</string>
+		<key>spritesheetPlist</key>
+		<string>male_bkg_dancer</string>
+		<key>sequencePrefix</key>
+		<string>MaleDancer_</string>
+		<key>animationFrames</key>
+		<string>1,2,3,2</string>
+		<key>delay</key>
+		<string>0.15</string>
+	</dict>
+	<key>femaleBkgDancerAnim</key>
+	<dict>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>group</key>
+		<string>Background</string>
+		<key>spritesheetPlist</key>
+		<string>female_bkg_dancer</string>
+		<key>sequencePrefix</key>
+		<string>FemaleDancer_</string>
+		<key>animationFrames</key>
+		<string>1,2,3,2</string>
+		<key>delay</key>
+		<string>0.15</string>
+	</dict>
+	<key>femaleBreakdancerAnim</key>
+	<dict>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>group</key>
+		<string>Background</string>
+		<key>spritesheetPlist</key>
+		<string>female_breakdancer</string>
+		<key>sequencePrefix</key>
+		<string>Disco_BreakDancer_</string>
+		<key>animationFrames</key>
+		<string>1,2,3,4</string>
+		<key>delay</key>
+		<string>0.15</string>
 	</dict>
 	<key>tvAnimationAnim</key>
 	<dict>

@@ -19,9 +19,10 @@
 
 -(void)startAction
 {
-    if (!_inAction) {
+    if (!_inAction && _canTrigger) {
         _duration = kPlayerActionDodgeFullDuration;
         _madeNoise = false;
+        _cooldown = 1.0f;
         [_parent endTurbo];
         [[AnimationController sharedController] replaceSprite:[_parent getSprite] withAnimationNamed:@"kickingAnim"];
     }
