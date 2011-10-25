@@ -52,6 +52,8 @@ XDCollisionMake(bool hasCollision, bool left, bool right, bool top, bool bottom)
     CCTMXTiledMap *_map;
     int _tileSize;
     
+    bool _landedOnLedge;
+    
     float _amountToReachGround;
     
     GameObject *_currentObject;

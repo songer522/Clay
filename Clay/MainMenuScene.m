@@ -203,7 +203,8 @@
                 _blackFadeOut += dt;
                 if (_blackFadeOut >= 1.0f) {
                     _blackFadeOut = 1.0f;
-                    [self private_switchToChooseLevel];
+                    [self private_switchToGame];
+                    //[self private_switchToChooseLevel];
                 }
                 [_blackCover setAlpha:_blackFadeOut];
             }

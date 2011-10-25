@@ -18,6 +18,9 @@ typedef enum {
     JUMP_SHORT = 1
 } RunnerJump;
 
+
+//TODO: Make player animations easier to predict by having it determined in only one location, governed by a state machine.
+
 @class RunningSpeed;
 @class Battery;
 @protocol PlayerActionProtocol;

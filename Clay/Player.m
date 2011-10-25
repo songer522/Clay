@@ -115,14 +115,11 @@
     [self setPositionAtX:newPosition.x Y:newPosition.y];    //for some reason the y position jitters without
                                                             //having this twice.
     
-    [[Camera sharedCamera] moveTowardsTarget:dt PlayerOnGround:!_isInMidAir];   //need this here, because the camera needs to be
-                                                    //based on the new player position, but the player
-                                                    //sprite can't be drawn on screen without the updated
-                                                    //camera position. will cause jitteriness otherwise
+    [[Camera sharedCamera] moveTowardsTarget:dt PlayerOnGround:false];   //used to be !_isInMidAir, but now we don't want it to move up so quickly when on the ledges, so we'll keep it false
     
     [self setPositionAtX:newPosition.x Y:newPosition.y];
     [_battery update:dt];
-    [_particleSystem update:dt];
+    //[_particleSystem update:dt];
     
     if (_isTripping) {
         _waitToGetUp -= dt;
@@ -165,7 +162,7 @@
     
     if (state == COLLISION_STATE_MIDAIR) {
         _isInMidAir = true;
-    } else if (state == COLLISION_STATE_GROUNDED) {
+    } else if (state == COLLISION_STATE_GROUNDED || state == COLLISION_STATE_LEDGE) {
         
         if (_isJumping && !_isTripping) {                
             _isJumping = false;
@@ -176,26 +173,24 @@
                 [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"runningAnim" FrameNumber:8];
             }
             
-            if (_isHighJump) {
+            //don't want high jump to execute if we're on the ledge, slows gameplay feel down too much
+            //(see github issue #46)
+            if (_isHighJump && state != COLLISION_STATE_LEDGE) {
                 _isHighJump = false;
                 [_speed landFromHighJump];
             }
-            
-            float x = _x + 60.0f;
-            float y = _y + 23.0f;
             
             if (_speed.velocity < 0.0f) {
                 _speed.velocity = 0.0f;
             }
             
-            [_particleSystem addDustImpactAtPosition:CGPointMake(x, y)];
             [[SoundEngine shared] playSound:@"jumpLand"];
         } else if (_isJumping && _isTripping) {
             _waitToGetUp = 1.5f;
             _isJumping = false;
             [[SoundEngine shared] playSound:@"timCollision"];
             [_speed stop];
-        } else if(!_isInMidAir && !_speed.inTurbo && !_isTripping && ![_thirdAction inAction] && [[_sprite getAnimation].name compare:@"runningAnim"]!=NSOrderedSame) {
+        } else if(_waitToGetUp <=0.0f && !_isInMidAir && !_speed.inTurbo && !_isTripping && ![_thirdAction inAction] && [[_sprite getAnimation].name compare:@"runningAnim"]!=NSOrderedSame) {
             [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"runningAnim"];
         }
         
@@ -351,13 +346,14 @@
     self.hasGravity = true;
     _firstFrameJumping = false;
     _isHighJump = false;
+    _waitToPlaySlowSound = 0.0f;
     [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"runningAnim"];
 
 }
 
 -(void)startThirdAction
 {
-    if (!_isJumping && !_isInMidAir) {        
+    if (!_isJumping && !_isInMidAir && !_isTripping && _waitToGetUp <=0.0f) {        
         [_thirdAction startAction];
     }
 }

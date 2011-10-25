@@ -45,6 +45,7 @@
     _currentObject = object;
     _objectBoundingBox = object.boundingBox;
     
+    _landedOnLedge = false;
     
     _currentMidpoints = [self getMidpointCollisionsForPoint:[_currentObject getPosition]];
     
@@ -56,20 +57,25 @@
             _testPosition = _desiredPosition;
             if ([self pushLeft]) {
                 [[_currentObject getCollision] setCurrentState:COLLISION_STATE_BUMPED_WALL];
-                NSLog(@"PUSH LEFT");
             } else {
                 _testPosition = _desiredPosition;
                 if([self pushUp]) {
-                    [[_currentObject getCollision] setCurrentState:COLLISION_STATE_GROUNDED];
+                    if (_landedOnLedge) {
+                        [[_currentObject getCollision] setCurrentState:COLLISION_STATE_LEDGE];
+                    } else {
+                        [[_currentObject getCollision] setCurrentState:COLLISION_STATE_GROUNDED];
+                    }
                 }
-                NSLog(@"PUSH LEFT FAILED");
                 [[_currentObject getCollision] setCurrentState:COLLISION_STATE_MIDAIR];
             }
         }
         if (_currentMidpoints.bottom) {
             if([self pushUp]) {
-                [[_currentObject getCollision] setCurrentState:COLLISION_STATE_GROUNDED];
-                NSLog(@"PUSH UP");
+                if(_landedOnLedge) {
+                    [[_currentObject getCollision] setCurrentState:COLLISION_STATE_LEDGE];
+                } else {
+                    [[_currentObject getCollision] setCurrentState:COLLISION_STATE_GROUNDED];
+                }
             }
         }
     }
@@ -274,6 +280,7 @@
         {
             _testPosition.y = topOfTile + 32;
             colliding = false;
+            _landedOnLedge = true;
         }
         
     }

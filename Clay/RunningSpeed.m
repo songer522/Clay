@@ -83,6 +83,7 @@
     _turboLeft = 0.0f;
     _inTurbo = false;
     _isStopped = true;
+    _isSlowedDown = false;
 }
 
 -(void)startCollision
