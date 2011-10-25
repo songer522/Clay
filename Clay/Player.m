@@ -115,7 +115,12 @@
     [self setPositionAtX:newPosition.x Y:newPosition.y];    //for some reason the y position jitters without
                                                             //having this twice.
     
-    [[Camera sharedCamera] moveTowardsTarget:dt PlayerOnGround:false];   //used to be !_isInMidAir, but now we don't want it to move up so quickly when on the ledges, so we'll keep it false
+    //want it to follow slower on ledge
+    if ([[self getCollision] currentState] == COLLISION_STATE_LEDGE) {
+        [[Camera sharedCamera] moveTowardsTarget:dt PlayerOnGround:false];
+    } else {
+        [[Camera sharedCamera] moveTowardsTarget:dt PlayerOnGround:!_isInMidAir];
+    }
     
     [self setPositionAtX:newPosition.x Y:newPosition.y];
     [_battery update:dt];
@@ -183,7 +188,7 @@
             }
             
             if (_speed.velocity < 0.0f) {
-                _speed.velocity = 0.0f;
+                _speed.velocity = 4.0f;                
             }
             
             [[SoundEngine shared] playSound:@"jumpLand"];
@@ -253,7 +258,7 @@
 -(void)startTurbo
 {
     //guard
-    if (_isTripping || _isDead || [_thirdAction inAction]) { return; }
+    if (_isTripping || _isDead || [_thirdAction inAction] || _isInMidAir || _waitToGetUp > 0.f) { return; }
     
     if (hitPoints > 1) {
         [_speed startTurbo];

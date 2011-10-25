@@ -119,7 +119,7 @@ static Camera *_sharedCamera = nil;
         if (onGround) {
             rate = 1.0f;
         } else {
-            rate = 0.2f;
+            rate = 0.1f;
         }
         
         CGPoint position = [_target getPosition];

@@ -15,8 +15,6 @@
 #import "Player.h"
 #import "Camera.h"
 
-#define DEBUG_DRAW_BOUNDING_BOXES 1
-
 @implementation GameDebugLayer
 
 - (id)initWithScene:(CCScene*)scene GameLayer:(GameLayer*)gameLayer
@@ -37,28 +35,24 @@
 
 -(void)draw
 {
-    if (DEBUG_DRAW_BOUNDING_BOXES) {
-        glColor4ub(255, 0, 255, 255);
-        glLineWidth(6.0f);
-        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
-        Player *player = gameLayer.player;
-        
-        CollisionDetection *_handler = [[LevelManager shared] currentLevel].collisionHandler;
-        [self drawBoxForGameObject:(GameObject*)player Collisions:_handler.midpointCollisions];
-        
-        //draw for obstacles
-        glColor4ub(0, 255, 0, 255);
-        
-        NSMutableArray *obstacles = [gameLayer getGameObjectsList];
-        
-        for (MapObject *mapObject in obstacles) {
-            GameObject *obstacle = mapObject.object;
-            if (!obstacle.collided) {
-                [self drawBoxForGameObject:obstacle];
-            }
+    glColor4ub(255, 0, 255, 255);
+    glLineWidth(6.0f);
+    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+    Player *player = gameLayer.player;
+    
+    CollisionDetection *_handler = [[LevelManager shared] currentLevel].collisionHandler;
+    [self drawBoxForGameObject:(GameObject*)player Collisions:_handler.midpointCollisions];
+    
+    //draw for obstacles
+    glColor4ub(0, 255, 0, 255);
+    
+    NSMutableArray *obstacles = [gameLayer getGameObjectsList];
+    
+    for (MapObject *mapObject in obstacles) {
+        GameObject *obstacle = mapObject.object;
+        if (!obstacle.collided) {
+            [self drawBoxForGameObject:obstacle];
         }
-
-        
     }
 }
 

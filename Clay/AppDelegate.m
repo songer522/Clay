@@ -24,6 +24,8 @@
 #import "LevelManager.h"
 #import "ChooseLevelScreen.h"
 
+#define DEBUG_DRAW_BOUNDING_BOXES 0
+
 @implementation AppDelegate
 
 @synthesize window;
@@ -130,8 +132,9 @@
     GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
     
     
+#if DEBUG_DRAW_BOUNDING_BOXES
     _debugLayer = [GameDebugLayer debugLayerForScene:[[LayerManager sharedLayers] currentScene] GameLayer:[[LayerManager sharedLayers] currentLayer]];
-
+#endif
     
     _hudLayer = [HudLayer instance];
     [gameLayer setupHud:_hudLayer];
