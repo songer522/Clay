@@ -223,7 +223,9 @@
 
 -(void)private_switchToChooseLevel
 {
+    [self unscheduleUpdate];
     [[LayerManager sharedLayers] popAndPushSceneNamed:@"chooseLevel"];
+    
 }
 
 
