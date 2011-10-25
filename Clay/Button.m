@@ -11,15 +11,18 @@
 
 @implementation Button
 
-+(id)buttonWithText:(NSString*)text
+@synthesize buttonId = _buttonId;
+
++(id)buttonWithText:(NSString*)text AtPoint:(CGPoint)point
 {
-    return [[self alloc] initWithText:text];
+    return [[self alloc] initWithText:text AtPoint:point];
 }
 
--(id)initWithText:(NSString*)text
+-(id)initWithText:(NSString*)text AtPoint:(CGPoint)point
 {
     if ((self=[super init])) {
         _buttonLabel = [CCLabelTTF labelWithString:text fontName:@"Marker Felt" fontSize:22];
+        _buttonLabel.position = ccp(point.x, point.y);
     }
     return self;
 }
@@ -42,7 +45,9 @@
     float top = bottom + _hitbox.origin.y;
     
     if (position.x < right && position.x > left && position.y > bottom && position.y < top) {
-        
+        return true;
+    } else {
+        return false;
     }
 
 }

@@ -15,15 +15,20 @@
     //currently, this is only used by the choose level screen, and is NOT used by the HUD buttons or
     //the main menu
     
+    int _buttonId;
     CGRect _hitbox;
     CGPoint _position;
     CCLabelTTF *_buttonLabel;
 }
 
-+(id)buttonWithText:(NSString*)text;
--(id)initWithText:(NSString*)text;
+@property(nonatomic,assign) int buttonId;
+
++(id)buttonWithText:(NSString*)text AtPoint:(CGPoint)point;
+-(id)initWithText:(NSString*)text AtPoint:(CGPoint)point;
 
 -(CCLabelTTF*)getLabel;
 -(void)setHitbox:(CGRect)rect;
+
+-(bool)testCollision:(CGPoint)position;
 
 @end

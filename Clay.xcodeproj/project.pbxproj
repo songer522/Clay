@@ -1571,11 +1571,8 @@
 		54518F641406AE38009D74AA /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				548148881456E37D000DAA43 /* Effects */,
 				54FC28591455F48900FD8B54 /* GUI */,
-				543A22EC1451D16D007261A3 /* Laser.h */,
-				543A22ED1451D16D007261A3 /* Laser.m */,
-				543A22E91451D045007261A3 /* LaserShow.h */,
-				543A22EA1451D045007261A3 /* LaserShow.m */,
 				54675BE4144F227900436C06 /* PlayerActions */,
 				54675BDC144F1B2700436C06 /* Bosses */,
 				54675BFA144F317500436C06 /* GameObjects */,
@@ -1709,6 +1706,17 @@
 			children = (
 			);
 			name = GameObjects;
+			sourceTree = "<group>";
+		};
+		548148881456E37D000DAA43 /* Effects */ = {
+			isa = PBXGroup;
+			children = (
+				543A22EC1451D16D007261A3 /* Laser.h */,
+				543A22ED1451D16D007261A3 /* Laser.m */,
+				543A22E91451D045007261A3 /* LaserShow.h */,
+				543A22EA1451D045007261A3 /* LaserShow.m */,
+			);
+			name = Effects;
 			sourceTree = "<group>";
 		};
 		548C3DBB141ABDBB000567A8 /* levels */ = {

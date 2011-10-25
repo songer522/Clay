@@ -38,9 +38,24 @@
 {
     if ((self = [super init])) {
         [[LayerManager sharedLayers] setScene:scene ForKey:@"chooseLevel"];
-
+        [self load];
     }
     return self;
+}
+
+-(void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    NSSet *allTouches = [event allTouches];
+    for(UITouch *touch in allTouches) {
+        for (Button *button in _buttons) {
+            bool touched = [button testCollision:[self convertTouchToNodeSpace:touch]];
+            if(touched) {
+                int levelNumber = button.buttonId;
+                NSString *levelName = [NSString stringWithFormat:@"level%d",levelNumber];
+                NSLog(@"SWITCH TO LEVEL: %@",levelName);
+            }
+        }
+    }
 }
 
 -(void)load
@@ -50,13 +65,22 @@
     blackBackground = [Sprite spriteWithFile:@"black_background-hd.png"];
     
     for (int i=0; i<6; i++) {
-        Button *button = [Button buttonWithText:@"test"];
+        Button *button = [Button buttonWithText:@"test" AtPoint:CGPointMake(100, i * 50.0f)];
+        [button setHitbox:CGRectMake(100, i*50.0f, 150.0f, 30.0f)];
+        button.buttonId = i;
+        [[button getLabel] setColor:ccc3(255, 255, 0)];
         [_buttons addObject:button];
     }
     
     [[LayerManager sharedLayers] forgetWorkingLayer];
-    
+    [self scheduleUpdate];
     self.isTouchEnabled = true;    
+}
+
+
+-(void)update:(ccTime)dt
+{
+    
 }
 
 -(void)unload
