@@ -35,8 +35,6 @@ typedef enum {
     
     MainMenuTransition _transition;
     
-    ComicLayer *_comics;
-    
     float _totalTime;
     float _time;
     
@@ -45,9 +43,12 @@ typedef enum {
 }
 +(CCScene *) scene;
 
+
+#pragma mark - private methods
+-(void)private_switchToGame;
+-(void)private_switchToChooseLevel;
+-(void)reinit;
 -(void)switchToTransitionIn;
 -(void)switchToTransitionOut;
-
--(void)reinit;
 
 @end

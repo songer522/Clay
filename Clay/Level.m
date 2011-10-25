@@ -375,21 +375,21 @@
     
     float targetLeft = [[target getCCSprite] position].x - (target.boundingBox.origin.x * scale);
     float targetRight = targetLeft + (target.boundingBox.size.width * scale);
-    float targetTop = [[target getCCSprite] position].y + (target.boundingBox.origin.y * scale);
-    float targetBottom = targetTop + (target.boundingBox.size.height * scale);
-    
+    float targetBottom = [[target getCCSprite] position].y - (target.boundingBox.origin.y * scale);
+    float targetTop = targetBottom + (target.boundingBox.size.height * scale);
+        
     float sourceLeft = [[source getCCSprite] position].x - (source.boundingBox.origin.x * scale);
     float sourceRight = sourceLeft + (source.boundingBox.size.width * scale);
-    float sourceTop = [[source getCCSprite] position].y + (source.boundingBox.origin.y * scale);
-    float sourceBottom = sourceTop + (source.boundingBox.size.height * scale);
+    float sourceBottom = [[source getCCSprite] position].y - (source.boundingBox.origin.y * scale);
+    float sourceTop = targetBottom + (source.boundingBox.size.height * scale);
     
     
     //assume that a collision happened unless the sides of the
     //target object indicate there can't possibly be
     //an intersection. by checking all four sides this gives
     //full detection, and is more efficient than other methods
-    if (sourceBottom < targetTop) { collision = false; }
-    if (sourceTop > targetBottom) { collision = false; }
+    if (sourceBottom > targetTop) { collision = false; }
+    if (sourceTop < targetBottom) { collision = false; }
     if (sourceRight < targetLeft) { collision = false; }
     if (sourceLeft > targetRight) { collision = false; }
     

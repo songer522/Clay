@@ -308,6 +308,23 @@
 		<key>spritesheetPlist</key>
 		<string>TrackTimer</string>
 	</dict>
+	<key>test5555</key>
+	<dict>
+		<key>animationFrames</key>
+		<string></string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.075</string>
+		<key>group</key>
+		<string>Obstacles</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string></string>
+		<key>spritesheetPlist</key>
+		<string>test5555</string>
+	</dict>
 	<key>trippedAnim</key>
 	<dict>
 		<key>animationFrames</key>

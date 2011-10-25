@@ -55,7 +55,7 @@
         _currentTransition = HUD_TRANSITION_IDLE;
         _resetButtons = false;
         [self setOpacities:_alpha];
-        
+                
     }
     
     return self;

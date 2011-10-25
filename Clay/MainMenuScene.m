@@ -94,8 +94,6 @@
         [self scheduleUpdate];
         self.isTouchEnabled = YES;
         
-        _comics = [ComicLayer instance];
-        
     }
     
     return self;
@@ -205,20 +203,29 @@
                 _blackFadeOut += dt;
                 if (_blackFadeOut >= 1.0f) {
                     _blackFadeOut = 1.0f;
-                    _reinit = true;
-                    [self unscheduleUpdate];
-                    [[LayerManager sharedLayers] popAndPushSceneNamed:@"game"];
-                    [[ComicManager shared] startComic:@"intro" StartPhase:COMIC_PHASE_PLAY_VIDEO];
+                    [self private_switchToChooseLevel];
                 }
                 [_blackCover setAlpha:_blackFadeOut];
             }
             
-            float position = 160.0f * _time;
-            [_comics drawBars:position];
         default:
             break;
     }
 }
+
+-(void)private_switchToGame
+{
+    _reinit = true;
+    [self unscheduleUpdate];
+    [[LayerManager sharedLayers] popAndPushSceneNamed:@"game"];
+    [[ComicManager shared] startComic:@"intro" StartPhase:COMIC_PHASE_PLAY_VIDEO];    
+}
+
+-(void)private_switchToChooseLevel
+{
+    [[LayerManager sharedLayers] popAndPushSceneNamed:@"chooseLevel"];
+}
+
 
 -(void)dealloc
 {

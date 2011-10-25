@@ -15,6 +15,7 @@
 
 @interface GameDebugLayer : CCLayer
 {
+    
 }
 
 +(id) debugLayerForScene:(CCScene*)scene GameLayer:(GameLayer*)gameLayer;

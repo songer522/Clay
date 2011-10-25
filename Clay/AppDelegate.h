@@ -26,6 +26,7 @@
     ComicManager        *_comicManager;
     CCScene             *_endGameScene;
     CCScene             *_mainMenuScene;
+    CCScene             *_chooseLevelScene;
 }
 
 @property (nonatomic, retain) UIWindow *window;

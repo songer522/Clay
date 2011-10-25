@@ -251,7 +251,7 @@
             _coordinates.y-=1;
 
             //NOTE: the "+1" at the end of the line below prevents an infinite loop
-            _testPosition.y = (_map.mapSize.height - _coordinates.y - 1) * (_tileSize / 2.0f) + 1;
+            _testPosition.y = (_map.mapSize.height - _coordinates.y - 1) * (_tileSize / 2.0f) + 2;
             
         }
         else if ([_tileCollision isEqualToString:@"none"])

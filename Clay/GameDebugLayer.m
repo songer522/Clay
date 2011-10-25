@@ -15,7 +15,7 @@
 #import "Player.h"
 #import "Camera.h"
 
-#define DEBUG_DRAW_BOUNDING_BOXES 0
+#define DEBUG_DRAW_BOUNDING_BOXES 1
 
 @implementation GameDebugLayer
 
@@ -79,13 +79,13 @@
 
 -(void)drawBoxForGameObject:(GameObject*)object Collisions:(XDCollision)collisions
 {
+    
     CGPoint point = [object getCCSprite].position;
     float left = point.x - object.boundingBox.origin.x;
     float right = point.x - object.boundingBox.origin.x + object.boundingBox.size.width;
     float bottom = point.y - object.boundingBox.origin.y;
     float top = point.y - object.boundingBox.origin.y + object.boundingBox.size.height;
-    
-    
+        
     //top
     if (collisions.top) {
         glColor4ub(255, 0, 0, 255);        
