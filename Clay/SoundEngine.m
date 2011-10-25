@@ -29,7 +29,7 @@ static SoundEngine *_shared = nil;
         // Initialization code here.
         
         _audioEngine = [SimpleAudioEngine sharedEngine];
-        _audioEngine.mute = true;
+        _audioEngine.mute = false;
         
         _soundMap = [[NSDictionary alloc] initWithDictionary:[PListLoader loadPlistWithName:@"sounds"]];
         _musicMap = [[NSDictionary alloc] initWithDictionary:[PListLoader loadPlistWithName:@"music"]];
@@ -50,12 +50,13 @@ static SoundEngine *_shared = nil;
         [_audioEngine preloadEffect:filename];
     }
     
+    /*
     enumerator = [_musicMap keyEnumerator];
     
     while ((key = [enumerator nextObject])) {
         NSString *filename = [_musicMap objectForKey:key];
         [_audioEngine preloadBackgroundMusic:filename];
-    }
+    }*/
 }
 
 -(void) playSound:(NSString*)sound
@@ -72,7 +73,6 @@ static SoundEngine *_shared = nil;
     NSString *filename = [_musicMap objectForKey:music];
     
     NSAssert(filename!=nil,@"Requested music file not in dictionary. Double-check music.plist");
-    
     [[SimpleAudioEngine sharedEngine] playBackgroundMusic:filename];
 }
 

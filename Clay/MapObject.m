@@ -22,7 +22,7 @@
 
 +(id)mapObjectWithSprite:(GameObject*)object AboveLayer:(NSString*)layerAbove
 {
-    return [[self alloc] initWithSprite:object AboveLayer:layerAbove];
+    return [[[self alloc] initWithSprite:object AboveLayer:layerAbove] autorelease];
 }
 
 -(id) initWithSprite:(GameObject*)object AboveLayer:(NSString*)layerAbove
@@ -57,6 +57,13 @@
     
     [self.object getCCSprite].position = ccp(x,y);
     
+}
+
+-(void)dealloc
+{
+    [_object release];
+    [_layerAbove release];
+    [super dealloc];
 }
 
 @end

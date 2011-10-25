@@ -54,6 +54,7 @@
 -(void)updateLogic:(ccTime)dt;
 
 -(void)initializeLaserShow;
+-(void)stopLaserShow;
 
 -(void)setupHud:(HudLayer*)hud;
 -(HudLayer*)getHud;

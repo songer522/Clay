@@ -227,6 +227,13 @@
 {
     _laserShow = [LaserShow instance];
 }
+-(void)stopLaserShow
+{
+    if (_laserShow!=nil) {
+        [_laserShow release];
+        _laserShow = nil;
+    }
+}
 
 
 // on "dealloc" you need to release all your retained objects

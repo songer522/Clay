@@ -180,6 +180,20 @@
     for (CCParallaxNode *node in _parallaxLayers) {
         [[[LayerManager sharedLayers] currentLayer] removeChild:node cleanup:YES];
     }
+    
+    for (MapObject *mapObject in _obstacleMapObjects) {
+        if (mapObject!=nil) {
+            [[mapObject.object getCCSprite] removeFromParentAndCleanup:YES];
+            mapObject = nil;            
+        }
+    }
+    
+    for (MapObject *mapObject in _otherMapObjects) {
+        if (mapObject!=nil) {
+            [[mapObject.object getCCSprite] removeFromParentAndCleanup:YES];
+            mapObject = nil;         
+        }
+    }
 }
 
 -(void)scanThroughMapAndAddObjects
@@ -439,9 +453,6 @@
 
 -(void)dealloc
 {
-    [_main release];
-    [_meta release];
-    [_obstacles release];
     [_map release];
     [_objects release];
     [_parallaxLayers removeAllObjects];
@@ -453,11 +464,8 @@
     [_triggers release];
     [_obstacleMapObjects removeAllObjects];
     [_obstacleMapObjects release];
-    [_otherMapObjects removeAllObjects];
-    [_otherMapObjects release];
     [_triggers removeAllObjects];
     [_triggers release];
-    [_collisionHandler release];
     [_nextLevelName release];
     [super dealloc];
 }

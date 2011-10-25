@@ -71,5 +71,12 @@
     _isActive = true;
 }
 
+-(void)dealloc
+{
+    [[_sprite getCCSprite] removeFromParentAndCleanup:YES];
+    [_sprite release];
+    [super dealloc];
+}
+
 
 @end

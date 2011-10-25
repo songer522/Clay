@@ -89,9 +89,11 @@ static LevelManager *_shared = nil;
         [self initAfterPlayerAndHudInit];
     }
     
+    //stop existing laser show, if going, and start new one
+    [gameLayer stopLaserShow];
     if([levelName isEqualToString:@"level4"]) {
-        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
         [gameLayer initializeLaserShow];
+    } else {
     }
     
     return level;
