@@ -8,6 +8,7 @@
 
 #import "cocos2d.h"
 #import "Button.h"
+#import "LayerManager.h"
 
 @implementation Button
 
@@ -21,9 +22,11 @@
 -(id)initWithText:(NSString*)text AtPoint:(CGPoint)point
 {
     if ((self=[super init])) {
-        _buttonLabel = [CCLabelTTF labelWithString:text fontName:@"Marker Felt" fontSize:22];
+        _buttonLabel = [CCLabelTTF labelWithString:text fontName:@"Marker Felt" fontSize:24];
         _buttonLabel.position = ccp(point.x, point.y);
+        [[[LayerManager sharedLayers] currentLayer] addChild:_buttonLabel];
     }
+    
     return self;
 }
 
@@ -39,10 +42,10 @@
 
 -(bool)testCollision:(CGPoint)position
 {
-    float left = _position.x - _hitbox.origin.x;
+    float left = _hitbox.origin.x;
     float right = left + _hitbox.size.width;
-    float bottom = _position.y - _hitbox.origin.y;
-    float top = bottom + _hitbox.origin.y;
+    float bottom = _hitbox.origin.y;
+    float top = bottom + _hitbox.size.height;
     
     if (position.x < right && position.x > left && position.y > bottom && position.y < top) {
         return true;

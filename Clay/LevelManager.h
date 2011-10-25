@@ -34,7 +34,8 @@
 @property(readonly,nonatomic,retain) GameObjectController *gameObjectFactory;
 
 +(LevelManager*)shared;
--(Level*)loadLevelNamed:(NSString*)levelName;
+-(Level*)prepareLevelNamed:(NSString*)levelName;
+-(void)loadLevelNamed:(NSString*) levelName;
 
 -(void)loadNextLevel;
 -(void)switchToNextLevel;

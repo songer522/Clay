@@ -203,8 +203,8 @@
                 _blackFadeOut += dt;
                 if (_blackFadeOut >= 1.0f) {
                     _blackFadeOut = 1.0f;
-                    [self private_switchToGame];
-                    //[self private_switchToChooseLevel];
+                    //[self private_switchToGame];
+                    [self private_switchToChooseLevel];
                 }
                 [_blackCover setAlpha:_blackFadeOut];
             }
@@ -218,15 +218,15 @@
 {
     _reinit = true;
     [self unscheduleUpdate];
-    [[LayerManager sharedLayers] popAndPushSceneNamed:@"game"];
+    [[LayerManager sharedLayers] pushSceneNamed:@"game"];
+    //[[LayerManager sharedLayers] popAndPushSceneNamed:@"game"];
     [[ComicManager shared] startComic:@"intro" StartPhase:COMIC_PHASE_PLAY_VIDEO];    
 }
 
 -(void)private_switchToChooseLevel
 {
     [self unscheduleUpdate];
-    [[LayerManager sharedLayers] popAndPushSceneNamed:@"chooseLevel"];
-    
+    [[LayerManager sharedLayers] pushSceneNamed:@"chooseLevel"];    
 }
 
 

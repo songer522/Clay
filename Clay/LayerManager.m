@@ -107,7 +107,7 @@ static LayerManager *_sharedLayers = nil;
 
 -(void)popAndPushSceneNamed:(NSString*)scene
 {
-    //[[CCDirector sharedDirector] popScene];
+    [[CCDirector sharedDirector] popScene];
     [self pushSceneNamed:scene];
 }
 

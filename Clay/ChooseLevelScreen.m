@@ -8,8 +8,10 @@
 
 #import "ChooseLevelScreen.h"
 #import "Sprite.h"
+#import "LevelManager.h"
 #import "LayerManager.h"
 #import "Button.h"
+#import "ComicManager.h"
 
 @implementation ChooseLevelScreen
 
@@ -38,6 +40,8 @@
 {
     if ((self = [super init])) {
         [[LayerManager sharedLayers] setScene:scene ForKey:@"chooseLevel"];
+        _buttons = [[NSMutableArray alloc] initWithCapacity:4];
+        _alpha = 1.0f;
         [self load];
     }
     return self;
@@ -50,9 +54,10 @@
         for (Button *button in _buttons) {
             bool touched = [button testCollision:[self convertTouchToNodeSpace:touch]];
             if(touched) {
-                int levelNumber = button.buttonId;
-                NSString *levelName = [NSString stringWithFormat:@"level%d",levelNumber];
-                NSLog(@"SWITCH TO LEVEL: %@",levelName);
+                int levelNumber = button.buttonId + 1;
+                _levelToSwitchTo = [[NSString alloc] initWithFormat:@"level%d",levelNumber];
+                _wantToSwitch = true;
+                NSLog(@"SWITCH TO LEVEL %d",levelNumber);
             }
         }
     }
@@ -65,8 +70,8 @@
     blackBackground = [Sprite spriteWithFile:@"black_background-hd.png"];
     
     for (int i=0; i<6; i++) {
-        Button *button = [Button buttonWithText:@"test" AtPoint:CGPointMake(100, i * 50.0f)];
-        [button setHitbox:CGRectMake(100, i*50.0f, 150.0f, 30.0f)];
+        Button *button = [Button buttonWithText:[NSString stringWithFormat:@"Level %d",(i+1)] AtPoint:CGPointMake(100, 280.0f - i * 48.0f)];
+        [button setHitbox:CGRectMake(70.0f, (260.0f - i*48.0f), 150.0f, 48.0f)];
         button.buttonId = i;
         [[button getLabel] setColor:ccc3(255, 255, 0)];
         [_buttons addObject:button];
@@ -78,8 +83,31 @@
 }
 
 
+-(void)popAndSwitchToLevel:(NSString*)level
+{
+    [self unscheduleUpdate];
+    [self setVisible:NO];
+    for (Button *button in _buttons) {
+        [[button getLabel] setVisible:NO];
+    }
+    [[LevelManager shared] loadLevelNamed:level];
+    [[LevelManager shared] switchToNextLevel];
+    [[ComicManager shared] startComic:@"intro" StartPhase:COMIC_PHASE_PLAY_VIDEO];    
+    [[LayerManager sharedLayers] popAndPushSceneNamed:@"game"];
+}
+
 -(void)update:(ccTime)dt
 {
+    if (_wantToSwitch) {
+        _alpha -= 5.0f * dt;
+        if (_alpha<=0.0f) {
+            [self popAndSwitchToLevel:_levelToSwitchTo];
+        }
+        
+        for (Button *button in _buttons) {
+            [[button getLabel] setOpacity:(int)(_alpha*255.0f)];
+        }
+    }
     
 }
 

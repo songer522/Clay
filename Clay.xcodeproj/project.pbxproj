@@ -297,6 +297,10 @@
 		54A1192114433D6B0008A823 /* TrackTimer.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54A1191D14433D6B0008A823 /* TrackTimer.plist */; };
 		54A1192214433D6B0008A823 /* TrackTimer.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A1191E14433D6B0008A823 /* TrackTimer.png */; };
 		54A1192B144349D60008A823 /* TrackTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A1192A144349D60008A823 /* TrackTimer.m */; };
+		54A1D4D3145739740085B2BA /* disco_level-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54A1D4CF145739740085B2BA /* disco_level-hd.plist */; };
+		54A1D4D4145739740085B2BA /* disco_level-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A1D4D0145739740085B2BA /* disco_level-hd.png */; };
+		54A1D4D5145739740085B2BA /* disco_level.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54A1D4D1145739740085B2BA /* disco_level.plist */; };
+		54A1D4D6145739740085B2BA /* disco_level.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A1D4D2145739740085B2BA /* disco_level.png */; };
 		54A32B581429301F00A10727 /* player.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54A32B571429301F00A10727 /* player.plist */; };
 		54A3BFD71427C32A002E8D2D /* GameDebugLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A3BFD61427C32A002E8D2D /* GameDebugLayer.m */; };
 		54A40A52144C7B7A00B9C604 /* jim_standing.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A40A51144C7B7A00B9C604 /* jim_standing.png */; };
@@ -852,6 +856,10 @@
 		54A1191E14433D6B0008A823 /* TrackTimer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrackTimer.png; sourceTree = "<group>"; };
 		54A11929144349D60008A823 /* TrackTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackTimer.h; sourceTree = "<group>"; };
 		54A1192A144349D60008A823 /* TrackTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackTimer.m; sourceTree = "<group>"; };
+		54A1D4CF145739740085B2BA /* disco_level-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "disco_level-hd.plist"; path = "disco/disco_level-hd.plist"; sourceTree = "<group>"; };
+		54A1D4D0145739740085B2BA /* disco_level-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "disco_level-hd.png"; path = "disco/disco_level-hd.png"; sourceTree = "<group>"; };
+		54A1D4D1145739740085B2BA /* disco_level.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = disco_level.plist; path = disco/disco_level.plist; sourceTree = "<group>"; };
+		54A1D4D2145739740085B2BA /* disco_level.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = disco_level.png; path = disco/disco_level.png; sourceTree = "<group>"; };
 		54A32B571429301F00A10727 /* player.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = player.plist; sourceTree = "<group>"; };
 		54A3BFD51427C32A002E8D2D /* GameDebugLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameDebugLayer.h; sourceTree = "<group>"; };
 		54A3BFD61427C32A002E8D2D /* GameDebugLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameDebugLayer.m; sourceTree = "<group>"; };
@@ -1835,6 +1843,10 @@
 		54BE176F141EBB7200A3D773 /* objects */ = {
 			isa = PBXGroup;
 			children = (
+				54A1D4CF145739740085B2BA /* disco_level-hd.plist */,
+				54A1D4D0145739740085B2BA /* disco_level-hd.png */,
+				54A1D4D1145739740085B2BA /* disco_level.plist */,
+				54A1D4D2145739740085B2BA /* disco_level.png */,
 				5418FB2A14508B2600C8F16E /* jim_standing_barn.png */,
 				5418FB2B14508B2600C8F16E /* jim_standing_cornfields.png */,
 				54D448FF144F6951006C6EBA /* disco */,
@@ -2223,6 +2235,10 @@
 				54861E7714520D4600717BC5 /* female_breakdancer.png in Resources */,
 				54FC28461455BFE900FD8B54 /* real_level_4.tmx in Resources */,
 				544520061456107D00E07EFE /* darkness.mp3 in Resources */,
+				54A1D4D3145739740085B2BA /* disco_level-hd.plist in Resources */,
+				54A1D4D4145739740085B2BA /* disco_level-hd.png in Resources */,
+				54A1D4D5145739740085B2BA /* disco_level.plist in Resources */,
+				54A1D4D6145739740085B2BA /* disco_level.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

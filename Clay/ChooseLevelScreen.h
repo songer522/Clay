@@ -15,6 +15,9 @@
 {
     Sprite *blackBackground;
     NSMutableArray *_buttons;
+    bool _wantToSwitch;
+    float _alpha;
+    NSString *_levelToSwitchTo;
 }
 
 +(CCScene*)scene;
@@ -22,6 +25,8 @@
 -(id) initWithScene:(CCScene*)scene;
 
 -(void)load;
+
+-(void)popAndSwitchToLevel:(NSString*)level;
 
 
 @end

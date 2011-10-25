@@ -51,7 +51,7 @@
 		<key>sequencePrefix</key>
 		<string>Disco_Dancer_</string>
 		<key>spritesheetPlist</key>
-		<string>dancin_man</string>
+		<string>disco_level</string>
 	</dict>
 	<key>dancinManDied</key>
 	<dict>
@@ -68,7 +68,7 @@
 		<key>sequencePrefix</key>
 		<string>Disco_Dancer_Hit_</string>
 		<key>spritesheetPlist</key>
-		<string>dancin_man_hit</string>
+		<string>disco_level</string>
 	</dict>
 	<key>discoDancersAnim</key>
 	<dict>
@@ -85,7 +85,7 @@
 		<key>sequencePrefix</key>
 		<string>Disco_DancingAnimation_Key0</string>
 		<key>spritesheetPlist</key>
-		<string>disco_dancers_bkg</string>
+		<string>disco_level</string>
 	</dict>
 	<key>dodgingAnim</key>
 	<dict>
@@ -136,7 +136,7 @@
 		<key>sequencePrefix</key>
 		<string>FemaleDancer_</string>
 		<key>spritesheetPlist</key>
-		<string>female_bkg_dancer</string>
+		<string>disco_level</string>
 	</dict>
 	<key>femaleBreakdancerAnim</key>
 	<dict>
@@ -153,7 +153,7 @@
 		<key>sequencePrefix</key>
 		<string>Disco_BreakDancer_Red_</string>
 		<key>spritesheetPlist</key>
-		<string>female_breakdancer</string>
+		<string>disco_level</string>
 	</dict>
 	<key>henIdle</key>
 	<dict>
@@ -272,7 +272,7 @@
 		<key>sequencePrefix</key>
 		<string>MaleDancer_</string>
 		<key>spritesheetPlist</key>
-		<string>male_bkg_dancer</string>
+		<string>disco_level</string>
 	</dict>
 	<key>runningAnim</key>
 	<dict>
@@ -357,7 +357,7 @@
 		<key>sequencePrefix</key>
 		<string>tv_</string>
 		<key>spritesheetPlist</key>
-		<string>tvAnimation</string>
+		<string>disco_level</string>
 	</dict>
 	<key>wooAnim</key>
 	<dict>

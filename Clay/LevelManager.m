@@ -42,8 +42,7 @@ static LevelManager *_shared = nil;
         
         NSString *startingLevel = [_levelSettings valueForKey:@"startingLevel"];
         
-        _currentLevel = [self loadLevelNamed:startingLevel];
-        [[SoundEngine shared] playMusic:_currentLevel.musicName];
+        _currentLevel = [self prepareLevelNamed:startingLevel];
         
     }
     
@@ -59,7 +58,7 @@ static LevelManager *_shared = nil;
     
 }
 
--(Level*)loadLevelNamed:(NSString*)levelName
+-(Level*)prepareLevelNamed:(NSString*)levelName
 {
     NSDictionary *levelSettings = [_levelSettings valueForKey:levelName];
     
@@ -98,12 +97,16 @@ static LevelManager *_shared = nil;
     return level;
 }
 
--(void)loadNextLevel
+-(void)loadLevelNamed:(NSString*) levelName
 {
-    //[[CCSpriteFrameCache sharedSpriteFrameCache] removeUnusedSpriteFrames];
-    _nextLevel = [self loadLevelNamed:_currentLevel.nextLevelName];
+    _nextLevel = [self prepareLevelNamed:levelName];
     [UserData sharedInstance].currentLevel = [[_currentLevel.name substringFromIndex:5] intValue];
     [[UserData sharedInstance] save];
+}
+
+-(void)loadNextLevel
+{
+    [self loadLevelNamed:_currentLevel.nextLevelName];
 }
 
 -(void)switchToNextLevel
