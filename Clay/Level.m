@@ -313,16 +313,20 @@
     for (MapObject *mapObject in _obstacleMapObjects) {
         GameObject *obstacle = mapObject.object;
         if(!obstacle.collided) {
-            collision = [self testCollisionWithGameObject:obstacle Source:source];
-            if (collision) {
-                GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
-                [gameLayer.player startCollision:[obstacle startCollision] Obstacle:obstacle];
-                break;
-            } else {
-                if (obstacle.isAggressive) {
-                    [self testCollisionsForAggressive:obstacle];
+            int dist = abs([source getPosition].x - [obstacle getPosition].x);
+            if (dist < 250) { //don't do the full collision detection if they're not even close to each other.
+                collision = [self testCollisionWithGameObject:obstacle Source:source];
+                if (collision) {
+                    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+                    [gameLayer.player startCollision:[obstacle startCollision] Obstacle:obstacle];
+                    break;
                 }
             }
+
+            if (!collision && obstacle.isAggressive) {
+                [self testCollisionsForAggressive:obstacle];
+            }
+
         }        
     }
     return collision;
@@ -373,14 +377,17 @@
     
     //both of these are wrong in the same way, so they seem right, but they wouldn't match with the world
     
-    float targetLeft = [[target getCCSprite] position].x - (target.boundingBox.origin.x * scale);
+    CGPoint position = [target getCCSprite].position;
+    
+    float targetLeft = position.x - (target.boundingBox.origin.x * scale);
     float targetRight = targetLeft + (target.boundingBox.size.width * scale);
-    float targetBottom = [[target getCCSprite] position].y - (target.boundingBox.origin.y * scale);
+    float targetBottom = position.y - (target.boundingBox.origin.y * scale);
     float targetTop = targetBottom + (target.boundingBox.size.height * scale);
-        
-    float sourceLeft = [[source getCCSprite] position].x - (source.boundingBox.origin.x * scale);
+    
+    position = [source getCCSprite].position;
+    float sourceLeft = position.x - (source.boundingBox.origin.x * scale);
     float sourceRight = sourceLeft + (source.boundingBox.size.width * scale);
-    float sourceBottom = [[source getCCSprite] position].y - (source.boundingBox.origin.y * scale);
+    float sourceBottom = position.y - (source.boundingBox.origin.y * scale);
     float sourceTop = targetBottom + (source.boundingBox.size.height * scale);
     
     

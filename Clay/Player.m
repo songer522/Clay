@@ -175,9 +175,11 @@
             
             //don't want high jump to execute if we're on the ledge, slows gameplay feel down too much
             //(see github issue #46)
-            if (_isHighJump && state != COLLISION_STATE_LEDGE) {
+            if (_isHighJump) {
                 _isHighJump = false;
-                [_speed landFromHighJump];
+                if (state != COLLISION_STATE_LEDGE) {
+                    [_speed landFromHighJump];                    
+                }
             }
             
             if (_speed.velocity < 0.0f) {
