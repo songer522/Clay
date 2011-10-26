@@ -129,7 +129,7 @@
 		<key>boss</key>
 		<string>zombies</string>
 		<key>thirdAction</key>
-		<string>shoot</string>
+		<string>woo</string>
 		<key>music</key>
 		<string>computer</string>
 		<key>postLevelComic</key>

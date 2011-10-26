@@ -78,8 +78,13 @@
 -(void)loadLayers:(NSString*)layerList Player:(Player*)player;
 -(NSString*)getPropertyForTileCoords:(CGPoint)coords forKey:(NSString*)key;
 -(bool)testCollisions:(GameObject*)source;
+
+
 -(bool)testCollisionsForAggressive:(GameObject*)source;
 -(bool)testCollisionWithGameObject:(GameObject*)target Source:(GameObject*)source;
+
+
+
 -(void)addMapObjectsAboveLayer:(CCTMXLayer*)layer ParallaxRatio:(CGPoint)ratio;
 -(void)addObstaclesToMap;
 

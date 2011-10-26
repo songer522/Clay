@@ -377,6 +377,8 @@
         _thirdAction = [PlayerActionFactory buildPlayerAction:PLAYER_ACTION_KICK];
     } else if([action isEqualToString:@"dodge"]) {
         _thirdAction = [PlayerActionFactory buildPlayerAction:PLAYER_ACTION_DODGE];
+    } else if([action isEqualToString:@"shoot"]) {
+        _thirdAction = [PlayerActionFactory buildPlayerAction:PLAYER_ACTION_SHOOT];
     }
     
     [_thirdAction setParent:self];

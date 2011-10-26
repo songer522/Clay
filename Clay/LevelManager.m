@@ -122,6 +122,11 @@ static LevelManager *_shared = nil;
 
 }
 
+-(NSMutableArray*)getObstacleArray
+{
+    return _currentLevel.obstacleSprites;
+}
+
 -(void)dealloc
 {
     [_levels removeAllObjects];

@@ -42,4 +42,7 @@
 
 -(void)initAfterPlayerAndHudInit;
 
+-(NSMutableArray*)getObstacleArray;
+
+
 @end

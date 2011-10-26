@@ -9,11 +9,12 @@
 #import "Projectile.h"
 
 #import "Sprite.h"
+#import "Camera.h"
 
 @implementation Projectile
 
 
-
+@synthesize boundingBox = _boundingBox;
 
 
 +(id) projectileWithBehavior:(ProjectileBehavior)behavior
@@ -29,8 +30,9 @@
         _vx = 0.0f;
         _vy = 0.0f;
         _sprite = nil;
-        
+        _isActive = false;
         _behavior = behavior;
+        
         switch (_behavior) {
             case PROJECTILE_BEHAVIOR_PLAYER_KICK:
                 _sprite = nil;
@@ -40,7 +42,8 @@
                 _vx = 100.0f;
                 break;
             default:
-                break;
+                break;                
+                
         }        
     }
     
@@ -53,9 +56,19 @@
     _attachedTo = object;
 }
 
--(void) setBoundingBox:(CGRect)rect
+-(void) setActive:(bool)isActive
 {
-    _boundingBox = rect;
+    _isActive = isActive;
+}
+
+-(CGRect)getBoundingBox
+{
+    return _boundingBox;
+}
+
+-(void)setBoundingBox:(CGRect)boundingBox
+{
+    _boundingBox = boundingBox;
 }
 
 -(void) setPosition:(CGPoint)point
@@ -63,13 +76,27 @@
     _x = point.x;
     _y = point.y;
     if (_sprite!=nil) {
-        [[_sprite getCCSprite] setPosition:point];
+        [[_sprite getCCSprite] setPosition:[[Camera sharedCamera] convertToScreenXY:point]];
     }
 }
 
--(void) update:(float)dt
+-(CGPoint)getPosition
+{
+    return CGPointMake(_x, _y);
+}
+
+-(void)startCollision
 {
     
+}
+
+
+
+-(void) update:(float)dt
+{
+    if (_isActive) {        
+        [self setPosition:CGPointMake(_x + _vx * dt, _y + _vy * dt)];
+    }
 }
 
 

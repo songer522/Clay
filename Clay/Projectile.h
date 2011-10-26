@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "Collidable.h"
+
 @class GameObject;
 
 typedef enum {
@@ -19,7 +21,7 @@ typedef enum {
 
 @class Sprite;
 
-@interface Projectile : NSObject
+@interface Projectile : NSObject<Collidable>
 {
     Sprite *_sprite;
     
@@ -32,15 +34,17 @@ typedef enum {
     float _y;
     float _vx;
     float _vy;
-    
+    bool _isActive;
 }
+
+@property(nonatomic,assign) CGRect boundingBox;
 
 +(id) projectileWithBehavior:(ProjectileBehavior)behavior;
 -(id) initWithBehavior:(ProjectileBehavior)behavior;
 
 -(void) setAttachedTo:(GameObject*)object;
 -(void) setPosition:(CGPoint)point;
--(void) setBoundingBox:(CGRect)rect;
+-(void) setActive:(bool)isActive;
 -(void) update:(float)dt;
 
 @end

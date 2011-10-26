@@ -34,5 +34,9 @@
 	<string>hurt.caf</string>
 	<key>steppedInSand</key>
 	<string>sand_step.caf</string>
+	<key>shootAction</key>
+	<string>shotgun.caf</string>
+	<key>zombieMoan</key>
+	<string>zombie_moan.caf</string>
 </dict>
 </plist>

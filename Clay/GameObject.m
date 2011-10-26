@@ -392,6 +392,16 @@
     _originalAnimation = [NSString stringWithString:animation];
 }
 
+-(CGRect)getBoundingBox
+{
+    return _boundingBox;
+}
+
+-(void)setBoundingBox:(CGRect)boundingBox
+{
+    _boundingBox = boundingBox;
+}
+
 -(void)dealloc
 {
     [_sprite release];

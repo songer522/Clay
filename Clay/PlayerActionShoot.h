@@ -9,5 +9,12 @@
 #import "PlayerAction.h"
 
 @interface PlayerActionShoot : PlayerAction
+{
+    NSArray *_bullets;
+    int _currentBulletIndex;
+}
+
+-(void)createBullet;
+
 
 @end

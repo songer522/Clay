@@ -10,6 +10,8 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
+#import "Collidable.h"
+
 @class Sprite;
 
 @class Collision;
@@ -34,7 +36,7 @@ typedef enum {
     PLAYER_EFFECT_NONE
 } PlayerEffect;
 
-@interface GameObject : NSObject
+@interface GameObject : NSObject<Collidable>
 {
     Sprite *_sprite;
     

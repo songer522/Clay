@@ -11,6 +11,9 @@
 		5411C22514586CAB000C7D91 /* real_level_5.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 5411C22314586CAB000C7D91 /* real_level_5.tmx */; };
 		5411C22714586CDA000C7D91 /* tileset_level_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 5411C22614586CDA000C7D91 /* tileset_level_5.png */; };
 		5411C22A14587AF5000C7D91 /* Projectile.m in Sources */ = {isa = PBXBuildFile; fileRef = 5411C22914587AF5000C7D91 /* Projectile.m */; };
+		5411C23214588412000C7D91 /* shotgun.caf in Resources */ = {isa = PBXBuildFile; fileRef = 5411C23014588412000C7D91 /* shotgun.caf */; };
+		5411C23314588412000C7D91 /* zombie_moan.caf in Resources */ = {isa = PBXBuildFile; fileRef = 5411C23114588412000C7D91 /* zombie_moan.caf */; };
+		5411C23914588FB8000C7D91 /* bullet.png in Resources */ = {isa = PBXBuildFile; fileRef = 5411C23814588FB8000C7D91 /* bullet.png */; };
 		54133A0114321CB300E433FC /* Craziness.wav in Resources */ = {isa = PBXBuildFile; fileRef = 541339F914321CB300E433FC /* Craziness.wav */; };
 		54133A0214321CB300E433FC /* Footstep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 541339FA14321CB300E433FC /* Footstep.wav */; };
 		54133A0314321CB300E433FC /* HurdleCollision.wav in Resources */ = {isa = PBXBuildFile; fileRef = 541339FB14321CB300E433FC /* HurdleCollision.wav */; };
@@ -411,6 +414,10 @@
 		5411C22614586CDA000C7D91 /* tileset_level_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tileset_level_5.png; path = Resources/levels/tileset_level_5.png; sourceTree = "<group>"; };
 		5411C22814587AF5000C7D91 /* Projectile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Projectile.h; sourceTree = "<group>"; };
 		5411C22914587AF5000C7D91 /* Projectile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Projectile.m; sourceTree = "<group>"; };
+		5411C23014588412000C7D91 /* shotgun.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = shotgun.caf; path = Resources/sounds/shotgun.caf; sourceTree = "<group>"; };
+		5411C23114588412000C7D91 /* zombie_moan.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = zombie_moan.caf; path = Resources/sounds/zombie_moan.caf; sourceTree = "<group>"; };
+		5411C23814588FB8000C7D91 /* bullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bullet.png; path = zombie/bullet.png; sourceTree = "<group>"; };
+		5411C23B1458ADF4000C7D91 /* Collidable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Collidable.h; sourceTree = "<group>"; };
 		541339F914321CB300E433FC /* Craziness.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Craziness.wav; path = Resources/sounds/Craziness.wav; sourceTree = "<group>"; };
 		541339FA14321CB300E433FC /* Footstep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Footstep.wav; path = Resources/sounds/Footstep.wav; sourceTree = "<group>"; };
 		541339FB14321CB300E433FC /* HurdleCollision.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = HurdleCollision.wav; path = Resources/sounds/HurdleCollision.wav; sourceTree = "<group>"; };
@@ -1072,6 +1079,7 @@
 		5411C22E1458804D000C7D91 /* zombies */ = {
 			isa = PBXGroup;
 			children = (
+				5411C23814588FB8000C7D91 /* bullet.png */,
 			);
 			name = zombies;
 			sourceTree = "<group>";
@@ -1598,6 +1606,7 @@
 				5483C7181417CF140032BDDD /* Camera.m */,
 				5421A2FA142A63FF0078D861 /* CCXAnimate.h */,
 				5421A2FB142A63FF0078D861 /* CCXAnimate.m */,
+				5411C23B1458ADF4000C7D91 /* Collidable.h */,
 				544034B0141A76DF0065B061 /* Collision.h */,
 				544034B1141A76DF0065B061 /* Collision.m */,
 				54DDF8231423A67300631A41 /* CollisionDetection.h */,
@@ -1681,6 +1690,8 @@
 		545CBC2F142D25AB00795FC9 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				5411C23014588412000C7D91 /* shotgun.caf */,
+				5411C23114588412000C7D91 /* zombie_moan.caf */,
 				54883BAD14488F710029759E /* hurt.caf */,
 				54883BAE14488F720029759E /* sand_step.caf */,
 				54883BAB14488D900029759E /* tim_hit_something.caf */,
@@ -2288,6 +2299,9 @@
 				54A1D4D6145739740085B2BA /* disco_level.png in Resources */,
 				5411C22514586CAB000C7D91 /* real_level_5.tmx in Resources */,
 				5411C22714586CDA000C7D91 /* tileset_level_5.png in Resources */,
+				5411C23214588412000C7D91 /* shotgun.caf in Resources */,
+				5411C23314588412000C7D91 /* zombie_moan.caf in Resources */,
+				5411C23914588FB8000C7D91 /* bullet.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
