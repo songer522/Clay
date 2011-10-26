@@ -10,6 +10,8 @@
 #import "PlayerActionKick.h"
 #import "PlayerActionWoo.h"
 #import "PlayerActionDodge.h"
+#import "PlayerActionShoot.h"
+#import "PlayerActionMagnet.h"
 
 
 @implementation PlayerActionFactory
@@ -27,6 +29,11 @@
         case PLAYER_ACTION_DODGE:
             return [PlayerActionDodge instance];
             break;
+        case PLAYER_ACTION_SHOOT:
+            return [PlayerActionShoot instance];
+            break;
+        case PLAYER_ACTION_MAGNET:
+            return [PlayerActionMagnet instance];
         default:
             NSLog(@"PlayerActionFactory:buildPlayerAction - Error! Wrong type selected");
             break;
