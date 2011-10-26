@@ -5,222 +5,310 @@
 	<key>frames</key>
 	<dict>
 		
-		<key>Character_Turbo_1.png</key>
+		<key>Effect_Blood.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
 			
 			</array>
 			<key>spriteColorRect</key>
-			<string>{{4, 11}, {199, 274}}</string>
+			<string>{{4, 2}, {35, 37}}</string>
 			<key>spriteOffset</key>
-			<string>{0, 0}</string>
+			<string>{1, -0}</string>
 			<key>spriteSize</key>
-			<string>{225, 300}</string>
+			<string>{35, 37}</string>
 			<key>spriteSourceSize</key>
-			<string>{225, 300}</string>
+			<string>{41, 41}</string>
 			<key>spriteTrimmed</key>
-			<false/>
+			<true/>
 			<key>textureRect</key>
-			<string>{{0, 302}, {225, 300}}</string>
+			<string>{{0, 526}, {35, 37}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
-		<key>Character_Turbo_10.png</key>
+		<key>FWH_Zombie_Walking_1.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
 			
 			</array>
 			<key>spriteColorRect</key>
-			<string>{{12, 11}, {191, 274}}</string>
+			<string>{{22, 163}, {139, 120}}</string>
 			<key>spriteOffset</key>
-			<string>{0, 0}</string>
+			<string>{-21, -73}</string>
 			<key>spriteSize</key>
-			<string>{225, 300}</string>
+			<string>{139, 120}</string>
 			<key>spriteSourceSize</key>
 			<string>{225, 300}</string>
 			<key>spriteTrimmed</key>
-			<false/>
+			<true/>
 			<key>textureRect</key>
-			<string>{{227, 604}, {225, 300}}</string>
+			<string>{{547, 0}, {139, 120}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
-		<key>Character_Turbo_2.png</key>
+		<key>FWH_Zombie_Walking_2.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
 			
 			</array>
 			<key>spriteColorRect</key>
-			<string>{{0, 11}, {203, 274}}</string>
+			<string>{{23, 147}, {131, 136}}</string>
 			<key>spriteOffset</key>
-			<string>{0, 0}</string>
+			<string>{-24, -65}</string>
 			<key>spriteSize</key>
-			<string>{225, 300}</string>
+			<string>{131, 136}</string>
 			<key>spriteSourceSize</key>
 			<string>{225, 300}</string>
 			<key>spriteTrimmed</key>
-			<false/>
+			<true/>
 			<key>textureRect</key>
-			<string>{{227, 302}, {225, 300}}</string>
+			<string>{{478, 544}, {131, 136}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
-		<key>Character_Turbo_3.png</key>
+		<key>FWH_Zombie_Walking_3.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
 			
 			</array>
 			<key>spriteColorRect</key>
-			<string>{{24, 11}, {179, 274}}</string>
+			<string>{{24, 161}, {127, 124}}</string>
 			<key>spriteOffset</key>
-			<string>{0, 0}</string>
+			<string>{-25, -73}</string>
 			<key>spriteSize</key>
-			<string>{225, 300}</string>
+			<string>{127, 124}</string>
 			<key>spriteSourceSize</key>
 			<string>{225, 300}</string>
 			<key>spriteTrimmed</key>
-			<false/>
+			<true/>
 			<key>textureRect</key>
-			<string>{{681, 0}, {225, 300}}</string>
+			<string>{{0, 274}, {127, 124}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
-		<key>Character_Turbo_4.png</key>
+		<key>FWH_Zombie_Walking_4.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
 			
 			</array>
 			<key>spriteColorRect</key>
-			<string>{{27, 11}, {177, 274}}</string>
+			<string>{{24, 162}, {139, 122}}</string>
 			<key>spriteOffset</key>
-			<string>{0, 0}</string>
+			<string>{-19, -73}</string>
 			<key>spriteSize</key>
-			<string>{225, 300}</string>
+			<string>{139, 122}</string>
 			<key>spriteSourceSize</key>
 			<string>{225, 300}</string>
 			<key>spriteTrimmed</key>
-			<false/>
+			<true/>
 			<key>textureRect</key>
-			<string>{{454, 302}, {225, 300}}</string>
+			<string>{{491, 268}, {139, 122}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
-		<key>Character_Turbo_5.png</key>
+		<key>FWH_Zombie_Walking_5.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
 			
 			</array>
 			<key>spriteColorRect</key>
-			<string>{{15, 11}, {189, 274}}</string>
+			<string>{{24, 165}, {131, 118}}</string>
 			<key>spriteOffset</key>
-			<string>{0, 0}</string>
+			<string>{-23, -74}</string>
 			<key>spriteSize</key>
-			<string>{225, 300}</string>
+			<string>{131, 118}</string>
 			<key>spriteSourceSize</key>
 			<string>{225, 300}</string>
 			<key>spriteTrimmed</key>
-			<false/>
+			<true/>
 			<key>textureRect</key>
-			<string>{{454, 0}, {225, 300}}</string>
+			<string>{{547, 122}, {131, 118}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
-		<key>Character_Turbo_6.png</key>
+		<key>FWH_Zombie_Walking_6.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
 			
 			</array>
 			<key>spriteColorRect</key>
-			<string>{{7, 11}, {197, 272}}</string>
+			<string>{{24, 161}, {125, 124}}</string>
 			<key>spriteOffset</key>
-			<string>{0, 0}</string>
+			<string>{-26, -73}</string>
 			<key>spriteSize</key>
-			<string>{225, 300}</string>
+			<string>{125, 124}</string>
 			<key>spriteSourceSize</key>
 			<string>{225, 300}</string>
 			<key>spriteTrimmed</key>
-			<false/>
+			<true/>
 			<key>textureRect</key>
-			<string>{{0, 0}, {225, 300}}</string>
+			<string>{{0, 400}, {125, 124}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
-		<key>Character_Turbo_7.png</key>
+		<key>F_Zombie_Head.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
 			
 			</array>
 			<key>spriteColorRect</key>
-			<string>{{3, 11}, {201, 274}}</string>
+			<string>{{1, 0}, {164, 171}}</string>
 			<key>spriteOffset</key>
-			<string>{0, 0}</string>
+			<string>{0, -0}</string>
 			<key>spriteSize</key>
-			<string>{225, 300}</string>
+			<string>{164, 171}</string>
 			<key>spriteSourceSize</key>
-			<string>{225, 300}</string>
+			<string>{166, 171}</string>
 			<key>spriteTrimmed</key>
-			<false/>
+			<true/>
 			<key>textureRect</key>
-			<string>{{227, 0}, {225, 300}}</string>
+			<string>{{312, 544}, {164, 171}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
-		<key>Character_Turbo_8.png</key>
+		<key>F_Zombie_Walking_1.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
 			
 			</array>
 			<key>spriteColorRect</key>
-			<string>{{12, 11}, {191, 274}}</string>
+			<string>{{22, 16}, {181, 266}}</string>
 			<key>spriteOffset</key>
-			<string>{0, 0}</string>
+			<string>{0, 1}</string>
 			<key>spriteSize</key>
-			<string>{225, 300}</string>
+			<string>{181, 266}</string>
 			<key>spriteSourceSize</key>
 			<string>{225, 300}</string>
 			<key>spriteTrimmed</key>
-			<false/>
+			<true/>
 			<key>textureRect</key>
-			<string>{{681, 302}, {225, 300}}</string>
+			<string>{{364, 0}, {181, 266}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
-		<key>Character_Turbo_9.png</key>
+		<key>F_Zombie_Walking_2.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
 			
 			</array>
 			<key>spriteColorRect</key>
-			<string>{{23, 11}, {187, 274}}</string>
+			<string>{{23, 17}, {181, 266}}</string>
 			<key>spriteOffset</key>
-			<string>{0, 0}</string>
+			<string>{1, -0}</string>
 			<key>spriteSize</key>
-			<string>{225, 300}</string>
+			<string>{181, 266}</string>
 			<key>spriteSourceSize</key>
 			<string>{225, 300}</string>
 			<key>spriteTrimmed</key>
-			<false/>
+			<true/>
 			<key>textureRect</key>
-			<string>{{0, 604}, {225, 300}}</string>
+			<string>{{0, 565}, {181, 266}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>F_Zombie_Walking_3.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{24, 12}, {181, 272}}</string>
+			<key>spriteOffset</key>
+			<string>{2, 2}</string>
+			<key>spriteSize</key>
+			<string>{181, 272}</string>
+			<key>spriteSourceSize</key>
+			<string>{225, 300}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{129, 274}, {181, 272}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>F_Zombie_Walking_4.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{24, 12}, {179, 272}}</string>
+			<key>spriteOffset</key>
+			<string>{1, 2}</string>
+			<key>spriteSize</key>
+			<string>{179, 272}</string>
+			<key>spriteSourceSize</key>
+			<string>{225, 300}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{183, 0}, {179, 272}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>F_Zombie_Walking_5.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{24, 15}, {177, 268}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 1}</string>
+			<key>spriteSize</key>
+			<string>{177, 268}</string>
+			<key>spriteSourceSize</key>
+			<string>{225, 300}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{312, 274}, {177, 268}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>F_Zombie_Walking_6.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{24, 12}, {181, 272}}</string>
+			<key>spriteOffset</key>
+			<string>{2, 2}</string>
+			<key>spriteSize</key>
+			<string>{181, 272}</string>
+			<key>spriteSourceSize</key>
+			<string>{225, 300}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{0, 0}, {181, 272}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -235,7 +323,7 @@
 		<key>size</key>
 		<string>{1024, 1024}</string>
 		<key>name</key>
-		<string>character_turbo</string>
+		<string>female_zombie.zwd</string>
 		<key>premultipliedAlpha</key>
 		<false/>
 		<key>target</key>

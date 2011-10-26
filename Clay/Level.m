@@ -335,12 +335,14 @@
                     [gameLayer.player startCollision:[obstacle startCollision] Obstacle:obstacle];
                     break;
                 }
+                
             }
 
-            if (!collision && obstacle.isAggressive) {
-                [self testCollisionsForAggressive:obstacle];
+            if(dist < 900) {
+                if (!collision && obstacle.isAggressive) {
+                    [self testCollisionsForAggressive:obstacle];
+                }
             }
-
         }        
     }
     return collision;

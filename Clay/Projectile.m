@@ -10,6 +10,7 @@
 
 #import "Sprite.h"
 #import "Camera.h"
+#import "LevelManager.h"
 
 @implementation Projectile
 
@@ -39,7 +40,9 @@
                 break;
             case PROJECTILE_BEHAVIOR_BULLET:
                 _sprite = [Sprite spriteWithFile:@"bullet.png"];
-                _vx = 100.0f;
+                //[[_sprite getCCSprite] setScale:0.1f];
+                [[_sprite getCCSprite] setVisible:NO];
+                _vx = 800.0f;
                 break;
             default:
                 break;                
@@ -88,6 +91,12 @@
 -(void)startCollision
 {
     
+}
+
+-(void)reset
+{
+    [[_sprite getCCSprite] setVisible:YES];
+    _isActive = true;
 }
 
 

@@ -91,6 +91,11 @@
     <property name="obstacle" value="femaleBreakdancer"/>
    </properties>
   </tile>
+  <tile id="23">
+   <properties>
+    <property name="obstacle" value="femaleZombie"/>
+   </properties>
+  </tile>
  </tileset>
  <tileset firstgid="291" name="Meta" tilewidth="64" tileheight="64">
   <image source="meta.png" width="256" height="192"/>
@@ -185,7 +190,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztzDERAAAIBKB38eyf2BK6QQASAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABIpm6ePnoAAAAAAPi1+LUAEQ==
+   eJzt1jEKACAIBdBaqkN0/3O2B1KDQ8F7k+BXHC0FAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB40ax5uShzmo36/fK2fUdUAwDwhpH0ozW/HgAAAADAFxYYZQEB
   </data>
  </layer>
  <layer name="meta" width="700" height="14" opacity="0.53">

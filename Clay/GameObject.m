@@ -171,6 +171,8 @@
         
         GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
         [[gameLayer.player getThirdAction] setKilledEnemy:YES];
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_HEADLESS) {
+        [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"femaleHeadlessZombieAnim"];
     }
     
     return _playerEffect;
@@ -278,6 +280,14 @@
         } else {
             _vx = 0.0f;
         }
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_WALK) {
+        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+        CGPoint position = [gameLayer.player getPosition];
+        if (_x < (position.x + 550.0f) && _x > 0.0f) {
+            _vx = -75.0f;
+        } else {
+            _vx = 0.0f;
+        }
     }
 }
 
@@ -336,7 +346,9 @@
     [self setPosition:_startingPosition];
     [self getCCSprite].visible = true;
     [self getCCSprite].rotation = _angle;
-    if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER) {
+    if (_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_HEADLESS) {
+        _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_WALK;
+    } else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;        
     }
     _collided = false;
@@ -364,7 +376,11 @@
     } else if([behavior isEqualToString:@"chargeAtPlayer"]) {
         _collideBehavior = COLLISION_BEHAVIOR_CHARGE_AT_PLAYER;
         _currentBehavior = COLLISION_BEHAVIOR_CHARGE_AT_PLAYER;
-    } else {
+    } else if([behavior isEqualToString:@"zombie"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_ZOMBIE_HEADLESS;
+        _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_WALK;
+    }
+    else {
         _collideBehavior = COLLISION_BEHAVIOR_NONE;
     }
 }

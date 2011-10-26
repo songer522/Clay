@@ -2,6 +2,23 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>shootingAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3,4</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>Player</string>
+		<key>looping</key>
+		<string>false</string>
+		<key>sequencePrefix</key>
+		<string>Character_Shooting_</string>
+		<key>spritesheetPlist</key>
+		<string>characterAnims</string>
+	</dict>
 	<key>cowDied</key>
 	<dict>
 		<key>animationFrames</key>
@@ -102,7 +119,7 @@
 		<key>sequencePrefix</key>
 		<string>dodge_</string>
 		<key>spritesheetPlist</key>
-		<string>character_dodging</string>
+		<string>characterAnims</string>
 	</dict>
 	<key>fallingAnim</key>
 	<dict>
@@ -119,7 +136,7 @@
 		<key>sequencePrefix</key>
 		<string>character_falling_</string>
 		<key>spritesheetPlist</key>
-		<string>character_falling</string>
+		<string>characterAnims</string>
 	</dict>
 	<key>femaleBkgDancerAnim</key>
 	<dict>
@@ -154,6 +171,40 @@
 		<string>Disco_BreakDancer_Red_</string>
 		<key>spritesheetPlist</key>
 		<string>disco_level</string>
+	</dict>
+	<key>femaleHeadlessZombieAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3,4,5,6</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.075</string>
+		<key>group</key>
+		<string>Obstacle</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>FWH_Zombie_Walking_</string>
+		<key>spritesheetPlist</key>
+		<string>female_zombie</string>
+	</dict>
+	<key>femaleZombieAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3,4,5,6</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.075</string>
+		<key>group</key>
+		<string>Obstacle</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>F_Zombie_Walking_</string>
+		<key>spritesheetPlist</key>
+		<string>female_zombie</string>
 	</dict>
 	<key>henIdle</key>
 	<dict>
@@ -204,7 +255,7 @@
 		<key>sequencePrefix</key>
 		<string>Character_Hurting_</string>
 		<key>spritesheetPlist</key>
-		<string>character_hurt</string>
+		<string>characterAnims</string>
 	</dict>
 	<key>jumpingAnim</key>
 	<dict>
@@ -221,7 +272,7 @@
 		<key>sequencePrefix</key>
 		<string>character_jumping_</string>
 		<key>spritesheetPlist</key>
-		<string>character_jumping</string>
+		<string>characterAnims</string>
 	</dict>
 	<key>kickingAnim</key>
 	<dict>
@@ -238,7 +289,7 @@
 		<key>sequencePrefix</key>
 		<string>character_kicking_</string>
 		<key>spritesheetPlist</key>
-		<string>character_kicking</string>
+		<string>characterAnims</string>
 	</dict>
 	<key>largeTimer</key>
 	<dict>
@@ -289,7 +340,7 @@
 		<key>sequencePrefix</key>
 		<string>Character_Running_</string>
 		<key>spritesheetPlist</key>
-		<string>character_running</string>
+		<string>characterAnims</string>
 	</dict>
 	<key>smallTimer</key>
 	<dict>
@@ -323,7 +374,7 @@
 		<key>sequencePrefix</key>
 		<string>Character_Tumble_</string>
 		<key>spritesheetPlist</key>
-		<string>character_tripped</string>
+		<string>characterAnims</string>
 	</dict>
 	<key>turboAnim</key>
 	<dict>
@@ -340,7 +391,7 @@
 		<key>sequencePrefix</key>
 		<string>Character_Turbo_</string>
 		<key>spritesheetPlist</key>
-		<string>character_turbo</string>
+		<string>characterAnims</string>
 	</dict>
 	<key>tvAnimationAnim</key>
 	<dict>
@@ -374,7 +425,7 @@
 		<key>sequencePrefix</key>
 		<string>Character_Woo_</string>
 		<key>spritesheetPlist</key>
-		<string>character_woo</string>
+		<string>characterAnims</string>
 	</dict>
 </dict>
 </plist>
