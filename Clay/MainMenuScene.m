@@ -161,10 +161,10 @@
 
 -(void)update:(ccTime)dt
 {
-    float rate = 6.0f * dt;
+    float rate = 12.0f * dt;
     
     _totalTime += rate;
-    _time += 0.75f * dt;
+    _time += dt;
     
     float rainFrame = _totalTime - ((int)_totalTime);
     if (rainFrame <= 0.5f) {
@@ -200,7 +200,7 @@
             [_playButtonOrange setAlpha:(MAX(1.0f - 8.0f * _time, 0.0f))];
             [_playButtonBlue setAlpha:(MIN(1.0f,1.0f - 1.0f * _time))];
             if (_time >=1.0f) {
-                _blackFadeOut += dt;
+                _blackFadeOut += 1.5f * dt;
                 if (_blackFadeOut >= 1.0f) {
                     _blackFadeOut = 1.0f;
                     //[self private_switchToGame];

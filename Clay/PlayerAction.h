@@ -43,4 +43,7 @@
 
 -(void) initialize; //individual actions can setup specific vars here
 
+-(void) enableAction; //called when action can be called again
+
+
 @end

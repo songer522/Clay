@@ -61,12 +61,17 @@
     } else {
         _cooldown -= dt;
         if (_cooldown<=0.0f && !_canTrigger) {
-            _canTrigger = true;
-            GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
-            [[gameLayer getHud] setEnabled:true ForButton:HUD_BUTTON_ACTION];
+            [self enableAction];
         }
     }
     
+}
+
+-(void) enableAction
+{
+    _canTrigger = true;
+    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+    [[gameLayer getHud] setEnabled:true ForButton:HUD_BUTTON_ACTION];    
 }
 
 -(bool)inAction

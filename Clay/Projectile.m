@@ -49,6 +49,7 @@
                 //[[_sprite getCCSprite] setScale:0.1f];
                 [[_sprite getCCSprite] setVisible:NO];
                 _vx = 800.0f;
+                _offscreenPadding = 20;
                 break;
             case PROJECTILE_BEHAVIOR_ZOMBIE_HEAD:
                 _sprite = [Sprite spriteWithFile:@"zombieHead.png"];
@@ -59,6 +60,7 @@
                 _vy = 50.0f;
                 _hasGravity = true;
                 _isAggressive = false;
+                _offscreenPadding = 42;
             default:
                 break;                
                 
@@ -200,6 +202,8 @@
 {
     CGPoint screenPosition = [[Camera sharedCamera] convertToScreenXY:position];
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        //float minAmount = 
+        
         if (screenPosition.x > 0 && screenPosition.x < 1024 && screenPosition.y > 0 && screenPosition.y < 768) {
             return true;
         }

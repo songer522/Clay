@@ -61,6 +61,7 @@ typedef enum {
     
     //collision
     CGRect _boundingBox;
+    CGRect _originalBoundingBox; //used by zombies
     
     NSString *_originalAnimation;
     

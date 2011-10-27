@@ -175,9 +175,14 @@
         [[gameLayer.player getThirdAction] setKilledEnemy:YES];
     } else if(_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_HEADLESS) {
         [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"femaleHeadlessZombieAnim"];
+        _alpha = 1.5f;
+        _fadeout = true;
         _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_ZOMBIE_HEAD];
         [_projectile reset];
         [_projectile setPosition:CGPointMake(_x, _y + 41)];
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_FADE) {
+        _alpha = 1.5f;
+        _fadeout = true;
     }
     
     return _playerEffect;
@@ -212,6 +217,11 @@
 
 -(void)update:(float)dt
 {
+    //update projectile regardless if active
+    if (_projectile !=nil) {
+        [_projectile update:dt];
+    }
+    
     //guard
     if (!_isActive && _collideBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER) { return; }
     
@@ -230,10 +240,6 @@
     
     [self updateLights:dt];
     
-    
-    if (_projectile !=nil) {
-        [_projectile update:dt];
-    }
 }
 
 -(void)updateFadeOut:(float)dt
@@ -286,7 +292,7 @@
         GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
         CGPoint position = [gameLayer.player getPosition];
         if (_x < (position.x + 550.0f) && _x > 0.0f) {
-            _vx = -350.0f;    
+            _vx = -250.0f;    
         } else {
             _vx = 0.0f;
         }
@@ -298,7 +304,15 @@
                 _madeSound = true;
                 [[SoundEngine shared] playSound:@"zombieMoan"];
             }
-            _vx = -50.0f;
+            _vx = -40.0f;
+        } else {
+            _vx = 0.0f;
+        }
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_WALK_FAST) {
+        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+        CGPoint position = [gameLayer.player getPosition];
+        if (_x < (position.x + 550.0f) && _x > 0.0f) {
+            _vx = -60.0f;
         } else {
             _vx = 0.0f;
         }
@@ -369,8 +383,10 @@
     [self setPosition:_startingPosition];
     [self getCCSprite].visible = true;
     [self getCCSprite].rotation = _angle;
-    if (_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_HEADLESS) {
+    if (_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_HEADLESS ||  _currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_WALK) {
         _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_WALK;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_WALK_FAST || _currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_FADE) {
+        _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_WALK_FAST;
     } else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;        
     }
@@ -402,6 +418,9 @@
     } else if([behavior isEqualToString:@"zombie"]) {
         _collideBehavior = COLLISION_BEHAVIOR_ZOMBIE_HEADLESS;
         _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_WALK;
+    } else if([behavior isEqualToString:@"headless"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_ZOMBIE_FADE;
+        _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_WALK_FAST;
     }
     else {
         _collideBehavior = COLLISION_BEHAVIOR_NONE;
@@ -439,6 +458,7 @@
 -(void)setBoundingBox:(CGRect)boundingBox
 {
     _boundingBox = boundingBox;
+    _originalBoundingBox = boundingBox;
 }
 
 -(bool)getActive

@@ -2,23 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>shootingAnim</key>
-	<dict>
-		<key>animationFrames</key>
-		<string>1,2,3,4</string>
-		<key>clearPreviousAnims</key>
-		<string>true</string>
-		<key>delay</key>
-		<string>0.1</string>
-		<key>group</key>
-		<string>Player</string>
-		<key>looping</key>
-		<string>false</string>
-		<key>sequencePrefix</key>
-		<string>Character_Shooting_</string>
-		<key>spritesheetPlist</key>
-		<string>characterAnims</string>
-	</dict>
 	<key>cowDied</key>
 	<dict>
 		<key>animationFrames</key>
@@ -179,13 +162,30 @@
 		<key>clearPreviousAnims</key>
 		<string>true</string>
 		<key>delay</key>
-		<string>0.075</string>
+		<string>0.15</string>
 		<key>group</key>
 		<string>Obstacle</string>
 		<key>looping</key>
 		<string>true</string>
 		<key>sequencePrefix</key>
 		<string>FWH_Zombie_Walking_</string>
+		<key>spritesheetPlist</key>
+		<string>female_zombie</string>
+	</dict>
+	<key>headlessZombieAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3,4,5,6</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.075</string>
+		<key>group</key>
+		<string>Obstacle</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>FWH2_Zombie_Walking_</string>
 		<key>spritesheetPlist</key>
 		<string>female_zombie</string>
 	</dict>
@@ -196,7 +196,7 @@
 		<key>clearPreviousAnims</key>
 		<string>true</string>
 		<key>delay</key>
-		<string>0.075</string>
+		<string>0.15</string>
 		<key>group</key>
 		<string>Obstacle</string>
 		<key>looping</key>
@@ -339,6 +339,23 @@
 		<string>true</string>
 		<key>sequencePrefix</key>
 		<string>Character_Running_</string>
+		<key>spritesheetPlist</key>
+		<string>characterAnims</string>
+	</dict>
+	<key>shootingAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3,4</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>Player</string>
+		<key>looping</key>
+		<string>false</string>
+		<key>sequencePrefix</key>
+		<string>Character_Shooting_</string>
 		<key>spritesheetPlist</key>
 		<string>characterAnims</string>
 	</dict>

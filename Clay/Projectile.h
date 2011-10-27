@@ -36,6 +36,7 @@ typedef enum {
     float _vy;
     float _angle;
     float _angularVelocity;
+    float _offscreenPadding;
     bool _hasGravity;
     bool _isActive;
     bool _isAggressive;

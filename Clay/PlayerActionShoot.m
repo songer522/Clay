@@ -60,6 +60,12 @@
     
 }
 
+-(void)enableAction
+{
+    [[SoundEngine shared] playSound:@"shootActionReload"];
+    [super enableAction];
+}
+
 -(void)endAction
 {
     [super endAction];
