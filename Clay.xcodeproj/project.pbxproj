@@ -294,6 +294,7 @@
 		549AFF801459FF060097BE33 /* title.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 549AFF7E1459FF060097BE33 /* title.mp3 */; };
 		549AFF82145A02C50097BE33 /* garbageZombie.png in Resources */ = {isa = PBXBuildFile; fileRef = 549AFF81145A02C50097BE33 /* garbageZombie.png */; };
 		549AFF84145A03140097BE33 /* tileset_level_6.png in Resources */ = {isa = PBXBuildFile; fileRef = 549AFF83145A03140097BE33 /* tileset_level_6.png */; };
+		549AFF86145A11A70097BE33 /* UI_Button_GreenLight.png in Resources */ = {isa = PBXBuildFile; fileRef = 549AFF85145A11A70097BE33 /* UI_Button_GreenLight.png */; };
 		54A1191F14433D6B0008A823 /* TrackTimer-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54A1191B14433D6B0008A823 /* TrackTimer-hd.plist */; };
 		54A1192014433D6B0008A823 /* TrackTimer-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A1191C14433D6B0008A823 /* TrackTimer-hd.png */; };
 		54A1192114433D6B0008A823 /* TrackTimer.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54A1191D14433D6B0008A823 /* TrackTimer.plist */; };
@@ -833,6 +834,7 @@
 		549AFF7E1459FF060097BE33 /* title.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = title.mp3; path = Resources/music/title.mp3; sourceTree = "<group>"; };
 		549AFF81145A02C50097BE33 /* garbageZombie.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = garbageZombie.png; path = zombie/garbageZombie.png; sourceTree = "<group>"; };
 		549AFF83145A03140097BE33 /* tileset_level_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tileset_level_6.png; path = Resources/levels/tileset_level_6.png; sourceTree = "<group>"; };
+		549AFF85145A11A70097BE33 /* UI_Button_GreenLight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UI_Button_GreenLight.png; sourceTree = "<group>"; };
 		54A1191B14433D6B0008A823 /* TrackTimer-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TrackTimer-hd.plist"; sourceTree = "<group>"; };
 		54A1191C14433D6B0008A823 /* TrackTimer-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TrackTimer-hd.png"; sourceTree = "<group>"; };
 		54A1191D14433D6B0008A823 /* TrackTimer.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TrackTimer.plist; sourceTree = "<group>"; };
@@ -1508,6 +1510,7 @@
 		544D50DB1445E6BD00BED4CE /* buttons */ = {
 			isa = PBXGroup;
 			children = (
+				549AFF85145A11A70097BE33 /* UI_Button_GreenLight.png */,
 				542D51EA1459B1D600011CFB /* UI_Button_Shooting.png */,
 				5418FB2E145093A300C8F16E /* UI_Button_Dodging.png */,
 				54F11C1D14464E69003CF2CF /* UI_Button_Woo.png */,
@@ -2198,6 +2201,7 @@
 				549AFF801459FF060097BE33 /* title.mp3 in Resources */,
 				549AFF82145A02C50097BE33 /* garbageZombie.png in Resources */,
 				549AFF84145A03140097BE33 /* tileset_level_6.png in Resources */,
+				549AFF86145A11A70097BE33 /* UI_Button_GreenLight.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
