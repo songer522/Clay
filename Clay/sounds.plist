@@ -38,5 +38,7 @@
 	<string>shotgun.caf</string>
 	<key>zombieMoan</key>
 	<string>zombie_moan.caf</string>
+	<key>shootReload</key>
+	<string>shotgun_reload.caf</string>
 </dict>
 </plist>

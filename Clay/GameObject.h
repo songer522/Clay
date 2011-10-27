@@ -48,7 +48,7 @@ typedef enum {
     float _rotationAmount;
     float _alpha;
     float _fallVelocity;
-    bool _chickenSound;
+    bool _madeSound;
     bool _isInvincible;
     bool _fadeout;
     bool _rotateLights;

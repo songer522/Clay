@@ -34,7 +34,11 @@
         _vy = 0.0f;
         _sprite = nil;
         _isActive = false;
+        _hasGravity = false;
         _behavior = behavior;
+        _angle = 0.0f;
+        _angularVelocity = 0.0f;
+        _isAggressive = true;
         
         switch (_behavior) {
             case PROJECTILE_BEHAVIOR_PLAYER_KICK:
@@ -46,6 +50,15 @@
                 [[_sprite getCCSprite] setVisible:NO];
                 _vx = 800.0f;
                 break;
+            case PROJECTILE_BEHAVIOR_ZOMBIE_HEAD:
+                _sprite = [Sprite spriteWithFile:@"zombieHead.png"];
+                [_sprite getCCSprite].anchorPoint = ccp(0.5f, 0.5f);
+                
+                _vx = 250 + rand()%100;
+                _angularVelocity = rand()%10 + 10;                
+                _vy = 50.0f;
+                _hasGravity = true;
+                _isAggressive = false;
             default:
                 break;                
                 
@@ -97,7 +110,7 @@
 
 -(bool)getAggressive
 {
-    return true;
+    return _isAggressive;
 }
 
 -(bool)getActive
@@ -136,20 +149,47 @@
 -(void) update:(float)dt
 {
     if (_isActive) {
+        
+        //temp
+        if (_behavior == PROJECTILE_BEHAVIOR_ZOMBIE_HEAD) {
+            _x = _x;
+        }
+        //apply gravity if needed
+        if(_hasGravity) {
+            _vy -= 600.0f * dt;
+        }
+        
+        //update position
         float x = _x + _vx * dt;
         float y = _y + _vy * dt;
+        
+        if (_hasGravity && y <= 85.0f) {
+            y = 85.0f;
+            _vy = 0.0f;
+            _angularVelocity *= 0.92f;
+            _vx *= 0.92f;      
+        }
+        
         CGPoint newPosition = CGPointMake(x, y);
         [self setPosition:newPosition];
+        
+        //change rotation based on angular velocity if needed
+        if (_angularVelocity!=0.0f) {
+            _angle += _angularVelocity * 25.0f * dt;
+            [_sprite getCCSprite].rotation = _angle;
+        }
         
         //want to disable projectile if it's offscreen so it doesn't hurt things before they appear,
         //otherwise we test to see if it collided with anything
         if (![self checkIfOnScreen:newPosition]) {
             [self disable];
         } else {
-            bool collision = [[[LevelManager shared] currentLevel] testCollisionsForAggressive:self];
-            if (collision) {
-                [self disable];            
-            }                        
+            if (_isAggressive) {
+                bool collision = [[[LevelManager shared] currentLevel] testCollisionsForAggressive:self];
+                if (collision) {
+                    [self disable];            
+                }                
+            }
         }
         
     }

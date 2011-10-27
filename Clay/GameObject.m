@@ -17,6 +17,7 @@
 #import "GameLayer.h"
 #import "Player.h"
 #import "PlayerAction.h"
+#import "Projectile.h"
 
 @implementation GameObject
 
@@ -59,7 +60,7 @@
         _fadeout = false;
         _offsetX = 0;
         _offsetY = 0;
-        _chickenSound = false;
+        _madeSound = false;
         _boundingBox = CGRectMake(0, 0, 0, 0);
         _collisionState = [[Collision collisionNode] retain];
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;
@@ -68,6 +69,7 @@
         _isInMidAir = false;
         _direction = 1;
         _isInvincible = false;
+        _projectile = nil;
     }
     
     return self;
@@ -173,6 +175,9 @@
         [[gameLayer.player getThirdAction] setKilledEnemy:YES];
     } else if(_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_HEADLESS) {
         [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"femaleHeadlessZombieAnim"];
+        _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_ZOMBIE_HEAD];
+        [_projectile reset];
+        [_projectile setPosition:CGPointMake(_x, _y + 41)];
     }
     
     return _playerEffect;
@@ -184,9 +189,9 @@
     GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
     [gameLayer.player changeHealth:1];
 
-    if (!_chickenSound) {
+    if (!_madeSound) {
         [[SoundEngine shared] playSound:@"henKicked"];
-        _chickenSound = true;
+        _madeSound = true;
     }
     [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"henKicked"];
     _hasGravity = true;
@@ -224,6 +229,11 @@
     [self updateFlags];
     
     [self updateLights:dt];
+    
+    
+    if (_projectile !=nil) {
+        [_projectile update:dt];
+    }
 }
 
 -(void)updateFadeOut:(float)dt
@@ -284,11 +294,16 @@
         GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
         CGPoint position = [gameLayer.player getPosition];
         if (_x < (position.x + 550.0f) && _x > 0.0f) {
+            if (!_madeSound) {
+                _madeSound = true;
+                [[SoundEngine shared] playSound:@"zombieMoan"];
+            }
             _vx = -50.0f;
         } else {
             _vx = 0.0f;
         }
     }
+
 }
 
 -(void) updateFlags
@@ -336,11 +351,19 @@
     _vy = 0;
     _alpha = 1.0f;
     _fadeout = false;
-    _chickenSound = false;
+    _madeSound = false;
     [_sprite setAlpha:1.0f];
     
     if ([_originalAnimation compare:@"none"] != NSOrderedSame) {
         [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:_originalAnimation];        
+    }
+    
+    
+    //for now just kill the projectile. we apparently can't add it on initialization of the object.
+    if (_projectile !=nil) {
+        [[_projectile getCCSprite] removeFromParentAndCleanup:YES];
+        [_projectile release];
+        _projectile = nil;
     }
     
     [self setPosition:_startingPosition];

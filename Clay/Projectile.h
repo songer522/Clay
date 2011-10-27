@@ -34,7 +34,11 @@ typedef enum {
     float _y;
     float _vx;
     float _vy;
+    float _angle;
+    float _angularVelocity;
+    bool _hasGravity;
     bool _isActive;
+    bool _isAggressive;
 }
 
 @property(nonatomic,assign) CGRect boundingBox;

@@ -74,6 +74,8 @@
 		54297897140C1F8900B3FFF4 /* GameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54297896140C1F8900B3FFF4 /* GameController.m */; };
 		5429789B140C233E00B3FFF4 /* InputController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5429789A140C233E00B3FFF4 /* InputController.m */; };
 		5429789E140C268100B3FFF4 /* InputEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5429789D140C268100B3FFF4 /* InputEvent.m */; };
+		542D51EB1459B1D600011CFB /* UI_Button_Shooting.png in Resources */ = {isa = PBXBuildFile; fileRef = 542D51EA1459B1D600011CFB /* UI_Button_Shooting.png */; };
+		542D51ED1459B62300011CFB /* zombieHead.png in Resources */ = {isa = PBXBuildFile; fileRef = 542D51EC1459B62300011CFB /* zombieHead.png */; };
 		543250BC143CA40300F1F177 /* HudLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 543250BB143CA40300F1F177 /* HudLayer.m */; };
 		543A22E51451CFF5007261A3 /* disco_laser_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 543A22E11451CFF5007261A3 /* disco_laser_1.png */; };
 		543A22E61451CFF5007261A3 /* disco_laser_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 543A22E21451CFF5007261A3 /* disco_laser_2.png */; };
@@ -337,6 +339,7 @@
 		54D4491A144F911A006C6EBA /* disco_light_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 54D44916144F9119006C6EBA /* disco_light_2.png */; };
 		54D4491B144F911A006C6EBA /* disco_light_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 54D44917144F911A006C6EBA /* disco_light_3.png */; };
 		54D4491C144F911A006C6EBA /* disco_light_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 54D44918144F911A006C6EBA /* disco_light_4.png */; };
+		54D8078C1459D11B0090F0DA /* shotgun_reload.caf in Resources */ = {isa = PBXBuildFile; fileRef = 54D8078B1459D11B0090F0DA /* shotgun_reload.caf */; };
 		54DDF8251423A67300631A41 /* CollisionDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = 54DDF8241423A67300631A41 /* CollisionDetection.m */; };
 		54E0CE81141FC0A6005BFD5C /* hurdle.png in Resources */ = {isa = PBXBuildFile; fileRef = 54E0CE80141FC0A6005BFD5C /* hurdle.png */; };
 		54E11200144CBE1E00BBF32B /* blank.png in Resources */ = {isa = PBXBuildFile; fileRef = 54E111FF144CBE1E00BBF32B /* blank.png */; };
@@ -452,6 +455,8 @@
 		5429789A140C233E00B3FFF4 /* InputController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputController.m; sourceTree = "<group>"; };
 		5429789C140C268100B3FFF4 /* InputEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputEvent.h; sourceTree = "<group>"; };
 		5429789D140C268100B3FFF4 /* InputEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputEvent.m; sourceTree = "<group>"; };
+		542D51EA1459B1D600011CFB /* UI_Button_Shooting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UI_Button_Shooting.png; sourceTree = "<group>"; };
+		542D51EC1459B62300011CFB /* zombieHead.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = zombieHead.png; path = zombie/zombieHead.png; sourceTree = "<group>"; };
 		543250BA143CA40300F1F177 /* HudLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HudLayer.h; sourceTree = "<group>"; };
 		543250BB143CA40300F1F177 /* HudLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HudLayer.m; sourceTree = "<group>"; };
 		543A22E11451CFF5007261A3 /* disco_laser_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = disco_laser_1.png; path = disco/disco_laser_1.png; sourceTree = "<group>"; };
@@ -874,6 +879,7 @@
 		54D44916144F9119006C6EBA /* disco_light_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = disco_light_2.png; path = disco/disco_light_2.png; sourceTree = "<group>"; };
 		54D44917144F911A006C6EBA /* disco_light_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = disco_light_3.png; path = disco/disco_light_3.png; sourceTree = "<group>"; };
 		54D44918144F911A006C6EBA /* disco_light_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = disco_light_4.png; path = disco/disco_light_4.png; sourceTree = "<group>"; };
+		54D8078B1459D11B0090F0DA /* shotgun_reload.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = shotgun_reload.caf; path = Resources/sounds/shotgun_reload.caf; sourceTree = "<group>"; };
 		54DDF8231423A67300631A41 /* CollisionDetection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollisionDetection.h; sourceTree = "<group>"; };
 		54DDF8241423A67300631A41 /* CollisionDetection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollisionDetection.m; sourceTree = "<group>"; };
 		54E0CE80141FC0A6005BFD5C /* hurdle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hurdle.png; sourceTree = "<group>"; };
@@ -1013,6 +1019,7 @@
 		5411C22E1458804D000C7D91 /* zombies */ = {
 			isa = PBXGroup;
 			children = (
+				542D51EC1459B62300011CFB /* zombieHead.png */,
 				5411C23C1458BC5D000C7D91 /* female_zombie-hd.plist */,
 				5411C23D1458BC5D000C7D91 /* female_zombie-hd.png */,
 				5411C23E1458BC5D000C7D91 /* female_zombie.plist */,
@@ -1491,6 +1498,7 @@
 		544D50DB1445E6BD00BED4CE /* buttons */ = {
 			isa = PBXGroup;
 			children = (
+				542D51EA1459B1D600011CFB /* UI_Button_Shooting.png */,
 				5418FB2E145093A300C8F16E /* UI_Button_Dodging.png */,
 				54F11C1D14464E69003CF2CF /* UI_Button_Woo.png */,
 				54CD29DA143BA21400F805E0 /* UI_Button_Jumping.png */,
@@ -1630,6 +1638,7 @@
 		545CBC2F142D25AB00795FC9 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				54D8078B1459D11B0090F0DA /* shotgun_reload.caf */,
 				5411C23014588412000C7D91 /* shotgun.caf */,
 				5411C23114588412000C7D91 /* zombie_moan.caf */,
 				54883BAD14488F710029759E /* hurt.caf */,
@@ -2170,6 +2179,9 @@
 				5411C2491458C7BD000C7D91 /* characterAnims-hd.png in Resources */,
 				5411C24A1458C7BD000C7D91 /* characterAnims.plist in Resources */,
 				5411C24B1458C7BD000C7D91 /* characterAnims-hd.plist in Resources */,
+				542D51EB1459B1D600011CFB /* UI_Button_Shooting.png in Resources */,
+				542D51ED1459B62300011CFB /* zombieHead.png in Resources */,
+				54D8078C1459D11B0090F0DA /* shotgun_reload.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
