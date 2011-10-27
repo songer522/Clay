@@ -317,6 +317,41 @@
 		<key>playerEffect</key>
 		<string>collide</string>
 	</dict>
+	<key>garbageZombie</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>1</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>none</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>36</integer>
+			<key>width</key>
+			<integer>31</integer>
+			<key>x</key>
+			<integer>50</integer>
+			<key>y</key>
+			<integer>2</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>falls</string>
+		<key>imageName</key>
+		<string>garbageZombie.png</string>
+		<key>offsetx</key>
+		<integer>90</integer>
+		<key>offsety</key>
+		<integer>-47</integer>
+		<key>playerEffect</key>
+		<string>collide</string>
+	</dict>
 	<key>headlessZombie</key>
 	<dict>
 		<key>aggressive</key>

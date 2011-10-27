@@ -7,7 +7,7 @@
 		<key>thirdAction</key>
 		<string>woo</string>
 		<key>music</key>
-		<string>trailer</string>
+		<string>track</string>
 		<key>postLevelComic</key>
 		<string>trackToFarm</string>
 		<key>worldType</key>
@@ -66,7 +66,7 @@
 		<key>thirdAction</key>
 		<string>woo</string>
 		<key>music</key>
-		<string>trailer</string>
+		<string>cornfields</string>
 		<key>postLevelComic</key>
 		<string>beforeDisco</string>
 		<key>worldType</key>
@@ -108,7 +108,7 @@
 		<key>thirdAction</key>
 		<string>woo</string>
 		<key>music</key>
-		<string>computer</string>
+		<string>city</string>
 		<key>postLevelComic</key>
 		<string>beforeDisco</string>
 		<key>worldType</key>

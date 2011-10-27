@@ -3,16 +3,16 @@
 <plist version="1.0">
 <dict>
 	<key>track</key>
-	<string>track.caf</string>
+	<string>title.mp3</string>
 	<key>barn</key>
 	<string>barn.mp3</string>
 	<key>cornfields</key>
-	<string>stars_voice.caf</string>
+	<string>darkness.mp3</string>
 	<key>disco</key>
 	<string>disco.mp3</string>
-	<key>trailer</key>
-	<string>darkness.mp3</string>
 	<key>computer</key>
 	<string>computer.mp3</string>
+	<key>city</key>
+	<string>city.mp3</string>
 </dict>
 </plist>

@@ -50,6 +50,8 @@ typedef enum {
     float _waitToPlaySlowSound;
     
     
+    NSMutableArray *projectiles;
+    
     id <PlayerActionProtocol> _thirdAction; //playeraction
 
 }

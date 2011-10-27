@@ -349,6 +349,8 @@
     [_speed start];
     _isJumping = false;
     _isTripping = false;
+    _isInMidAir = false;
+    _waitToGetUp = 0.0f;
     _isDead = false;
     self.hasGravity = true;
     _firstFrameJumping = false;
@@ -404,6 +406,16 @@
 -(RunningSpeed*)getSpeed
 {
     return _speed;
+}
+
+-(void)addProjectile:(id<Collidable>)projectile
+{
+    [projectiles addObject:projectile];
+}
+
+-(void)removeProjectile:(id<Collidable>)projectile
+{
+    [projectiles removeObject:projectile];
 }
 
 -(void)endKick
