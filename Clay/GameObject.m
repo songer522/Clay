@@ -284,7 +284,7 @@
         GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
         CGPoint position = [gameLayer.player getPosition];
         if (_x < (position.x + 550.0f) && _x > 0.0f) {
-            _vx = -75.0f;
+            _vx = -50.0f;
         } else {
             _vx = 0.0f;
         }
@@ -416,6 +416,26 @@
 -(void)setBoundingBox:(CGRect)boundingBox
 {
     _boundingBox = boundingBox;
+}
+
+-(bool)getActive
+{
+    return _isActive;
+}
+
+-(bool)getAggressive
+{
+    return _isAggressive;
+}
+
+-(bool)hasBeenHit
+{
+    return _collided;
+}
+
+-(CollisionBehavior)getCollisionBehavior
+{
+    return _currentBehavior;
 }
 
 -(void)dealloc

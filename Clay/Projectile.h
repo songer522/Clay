@@ -46,6 +46,8 @@ typedef enum {
 -(void) setPosition:(CGPoint)point;
 -(void) setActive:(bool)isActive;
 -(void) update:(float)dt;
+-(void) disable;
 -(void) reset;
+-(bool) checkIfOnScreen:(CGPoint)position;
 
 @end

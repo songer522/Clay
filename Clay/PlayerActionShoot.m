@@ -15,7 +15,7 @@
 #define PLAYER_ACTION_SHOOT_MAX_BULLETS 3
 
 #define PLAYER_ACTION_SHOOT_OFFSET_BULLET_X 0
-#define PLAYER_ACTION_SHOOT_OFFSET_BULLET_Y 50
+#define PLAYER_ACTION_SHOOT_OFFSET_BULLET_Y 45
 
 @implementation PlayerActionShoot
 
@@ -27,9 +27,9 @@
     Projectile *b1 = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_BULLET];
     Projectile *b2 = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_BULLET];
     Projectile *b3 = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_BULLET];
-    [b1 setBoundingBox:CGRectMake(0, 0, 120, 20)];
-    [b2 setBoundingBox:CGRectMake(0, 0, 120, 20)];
-    [b3 setBoundingBox:CGRectMake(0, 0, 120, 20)];
+    [b1 setBoundingBox:CGRectMake(50, 0, 50, 20)];
+    [b2 setBoundingBox:CGRectMake(50, 0, 50, 20)];
+    [b3 setBoundingBox:CGRectMake(50, 0, 50, 20)];
     
     _bullets = [[NSArray alloc] initWithObjects:b1,b2,b3,nil];
     _currentBulletIndex = 0;
@@ -41,7 +41,7 @@
     if (!_inAction && _canTrigger) {
         [super startAction];
         _duration = 0.4f;
-        _cooldown = 1.0f;
+        _cooldown = 1.1f;
         [_parent endTurbo];
         [[AnimationController sharedController] replaceSprite:[_parent getSprite] withAnimationNamed:@"shootingAnim"];
         [[SoundEngine shared] playSound:@"shootAction"];

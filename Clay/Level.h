@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
+#import "Collidable.h"
+
 @class TrackBackground;
 
 @class GameObject;
@@ -80,8 +82,8 @@
 -(bool)testCollisions:(GameObject*)source;
 
 
--(bool)testCollisionsForAggressive:(GameObject*)source;
--(bool)testCollisionWithGameObject:(GameObject*)target Source:(GameObject*)source;
+-(bool)testCollisionsForAggressive:(id<Collidable>)source;
+-(bool)testCollisionWithGameObject:(id<Collidable>)target Source:(id<Collidable>)source;
 
 
 

@@ -10,7 +10,9 @@
 
 #import "Sprite.h"
 #import "Camera.h"
+#import "Level.h"
 #import "LevelManager.h"
+
 
 @implementation Projectile
 
@@ -93,19 +95,80 @@
     
 }
 
+-(bool)getAggressive
+{
+    return true;
+}
+
+-(bool)getActive
+{
+    return _isActive;
+}
+
 -(void)reset
 {
     [[_sprite getCCSprite] setVisible:YES];
     _isActive = true;
 }
 
+-(CollisionBehavior)getCollisionBehavior
+{
+    return COLLISION_BEHAVIOR_NONE;
+}
 
+-(CCSprite*)getCCSprite
+{
+    return [_sprite getCCSprite];
+}
+
+-(void)disable
+{
+    _isActive = false;
+    [[_sprite getCCSprite] setVisible:NO];
+    
+}
+
+-(bool)hasBeenHit
+{
+    return false;
+}
 
 -(void) update:(float)dt
 {
-    if (_isActive) {        
-        [self setPosition:CGPointMake(_x + _vx * dt, _y + _vy * dt)];
+    if (_isActive) {
+        float x = _x + _vx * dt;
+        float y = _y + _vy * dt;
+        CGPoint newPosition = CGPointMake(x, y);
+        [self setPosition:newPosition];
+        
+        //want to disable projectile if it's offscreen so it doesn't hurt things before they appear,
+        //otherwise we test to see if it collided with anything
+        if (![self checkIfOnScreen:newPosition]) {
+            [self disable];
+        } else {
+            bool collision = [[[LevelManager shared] currentLevel] testCollisionsForAggressive:self];
+            if (collision) {
+                [self disable];            
+            }                        
+        }
+        
     }
+}
+
+//simple bounds test with the screen
+-(bool) checkIfOnScreen:(CGPoint)position
+{
+    CGPoint screenPosition = [[Camera sharedCamera] convertToScreenXY:position];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        if (screenPosition.x > 0 && screenPosition.x < 1024 && screenPosition.y > 0 && screenPosition.y < 768) {
+            return true;
+        }
+    } else if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        if (screenPosition.x > 0 && screenPosition.x < 480 && screenPosition.y > 0 && screenPosition.y < 320) {
+            return true;
+        }
+    }
+    return false;
 }
 
 

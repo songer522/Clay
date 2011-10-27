@@ -1544,7 +1544,6 @@
 				5483C7181417CF140032BDDD /* Camera.m */,
 				5421A2FA142A63FF0078D861 /* CCXAnimate.h */,
 				5421A2FB142A63FF0078D861 /* CCXAnimate.m */,
-				5411C23B1458ADF4000C7D91 /* Collidable.h */,
 				544034B0141A76DF0065B061 /* Collision.h */,
 				544034B1141A76DF0065B061 /* Collision.m */,
 				54DDF8231423A67300631A41 /* CollisionDetection.h */,
@@ -1607,6 +1606,9 @@
 				572DB820142000A400DDC493 /* GameObjectController.m */,
 				5499691D1416820000CB7800 /* Level.h */,
 				5499691E1416820000CB7800 /* Level.m */,
+				5411C23B1458ADF4000C7D91 /* Collidable.h */,
+				5411C22814587AF5000C7D91 /* Projectile.h */,
+				5411C22914587AF5000C7D91 /* Projectile.m */,
 				542361AC14228E5E0086E533 /* LevelManager.h */,
 				542361AD14228E5E0086E533 /* LevelManager.m */,
 				54FBA2511430E5850010A91A /* LevelThread.h */,
@@ -1727,8 +1729,6 @@
 		54675BFA144F317500436C06 /* GameObjects */ = {
 			isa = PBXGroup;
 			children = (
-				5411C22814587AF5000C7D91 /* Projectile.h */,
-				5411C22914587AF5000C7D91 /* Projectile.m */,
 			);
 			name = GameObjects;
 			sourceTree = "<group>";

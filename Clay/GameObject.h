@@ -15,21 +15,7 @@
 @class Sprite;
 
 @class Collision;
-
-typedef enum {
-    COLLISION_BEHAVIOR_FALL_OVER,
-    COLLISION_BEHAVIOR_ALIEN_ABDUCTION,
-    COLLISION_BEHAVIOR_FLYING_SHURIKEN,
-    COLLISION_BEHAVIOR_HEN_KICKED,
-    COLLISION_BEHAVIOR_PLAY_ANIMATION,
-    COLLISION_BEHAVIOR_STATIC,
-    COLLISION_BEHAVIOR_COW_COLLAPSE,
-    COLLISION_BEHAVIOR_DANCIN_MAN_COLLAPSE,
-    COLLISION_BEHAVIOR_CHARGE_AT_PLAYER,
-    COLLISION_BEHAVIOR_ZOMBIE_HEADLESS,
-    COLLISION_BEHAVIOR_ZOMBIE_WALK,
-    COLLISION_BEHAVIOR_NONE
-} CollisionBehavior;
+@class Projectile;
 
 typedef enum {
     PLAYER_EFFECT_COLLIDE,
@@ -37,6 +23,8 @@ typedef enum {
     PLAYER_EFFECT_ACTION_OR_COLLIDE,
     PLAYER_EFFECT_NONE
 } PlayerEffect;
+
+//NOTE: CollisionBehavior enum moved to "Collidable.h" protocol
 
 @interface GameObject : NSObject<Collidable>
 {
@@ -75,6 +63,8 @@ typedef enum {
     CGRect _boundingBox;
     
     NSString *_originalAnimation;
+    
+    Projectile *_projectile;
     
     bool _collided;     //starts false, but switches to true when player collides with it
                         //so the player can't keep colliding with it

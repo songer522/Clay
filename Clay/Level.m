@@ -348,16 +348,16 @@
     return collision;
 }
 
--(bool)testCollisionsForAggressive:(GameObject*)source
+-(bool)testCollisionsForAggressive:(id<Collidable>)source
 {
     bool collision = false;
     
     for (MapObject *mapObject in _obstacleMapObjects) {
         GameObject *obstacle = mapObject.object;
-        if(obstacle!=source && !obstacle.collided && !obstacle.isAggressive) {
+        if(obstacle!=source && ![obstacle hasBeenHit] && ![obstacle getAggressive]) {
             collision = [self testCollisionWithGameObject:obstacle Source:source];
             if (collision) {
-                if (source.CurrentBehavior == COLLISION_BEHAVIOR_HEN_KICKED) {
+                if ([source getCollisionBehavior] == COLLISION_BEHAVIOR_HEN_KICKED) {
                     NSLog(@"Counting Chicken Kicked Into Cow");
                     int maxKicksIntoCow = 10;
                     
@@ -385,7 +385,7 @@
     return collision;
 }
 
--(bool)testCollisionWithGameObject:(GameObject*)target Source:(GameObject*)source
+-(bool)testCollisionWithGameObject:(id<Collidable>)target Source:(id<Collidable>)source
 {
     bool collision = true;
     
@@ -394,17 +394,18 @@
     //both of these are wrong in the same way, so they seem right, but they wouldn't match with the world
     
     CGPoint position = [target getCCSprite].position;
-    
-    float targetLeft = position.x - (target.boundingBox.origin.x * scale);
-    float targetRight = targetLeft + (target.boundingBox.size.width * scale);
-    float targetBottom = position.y - (target.boundingBox.origin.y * scale);
-    float targetTop = targetBottom + (target.boundingBox.size.height * scale);
+    CGRect boundingBox = [target getBoundingBox];
+    float targetLeft = position.x - (boundingBox.origin.x * scale);
+    float targetRight = targetLeft + (boundingBox.size.width * scale);
+    float targetBottom = position.y - (boundingBox.origin.y * scale);
+    float targetTop = targetBottom + (boundingBox.size.height * scale);
     
     position = [source getCCSprite].position;
-    float sourceLeft = position.x - (source.boundingBox.origin.x * scale);
-    float sourceRight = sourceLeft + (source.boundingBox.size.width * scale);
-    float sourceBottom = position.y - (source.boundingBox.origin.y * scale);
-    float sourceTop = targetBottom + (source.boundingBox.size.height * scale);
+    boundingBox = [source getBoundingBox];
+    float sourceLeft = position.x - (boundingBox.origin.x * scale);
+    float sourceRight = sourceLeft + (boundingBox.size.width * scale);
+    float sourceBottom = position.y - (boundingBox.origin.y * scale);
+    float sourceTop = targetBottom + (boundingBox.size.height * scale);
     
     
     //assume that a collision happened unless the sides of the
