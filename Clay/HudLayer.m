@@ -117,7 +117,6 @@
 {
     Sprite *sprite = [Sprite spriteWithFile:image];
     [[sprite getCCSprite] setOpacity:HUD_LAYER_BUTTON_OPACITY];
-    //[[sprite getCCSprite] setOpacity:_alpha];
     [[sprite getCCSprite] setScale:_buttonScale];
     [[sprite getCCSprite] setAnchorPoint:ccp(0.5f, 0.5f)];
     [sprite getCCSprite].position = position;
