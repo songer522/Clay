@@ -180,6 +180,8 @@
         _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_ZOMBIE_HEAD];
         [_projectile reset];
         [_projectile setPosition:CGPointMake(_x, _y + 41)];
+        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+        [[gameLayer.player getThirdAction] setKilledEnemy:YES];
     } else if(_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_FADE) {
         _alpha = 1.5f;
         _fadeout = true;
@@ -469,6 +471,11 @@
 -(bool)getAggressive
 {
     return _isAggressive;
+}
+
+-(Projectile*)getProjectile
+{
+    return _projectile;
 }
 
 -(bool)hasBeenHit

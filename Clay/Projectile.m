@@ -38,6 +38,7 @@
         _behavior = behavior;
         _angle = 0.0f;
         _angularVelocity = 0.0f;
+        _offsetGroundDetectionY = 0.0f;
         _isAggressive = true;
         
         switch (_behavior) {
@@ -61,6 +62,8 @@
                 _hasGravity = true;
                 _isAggressive = false;
                 _offscreenPadding = 42;
+                _offsetGroundDetectionY = 10.0f;
+                
             default:
                 break;                
                 
@@ -165,8 +168,8 @@
         float x = _x + _vx * dt;
         float y = _y + _vy * dt;
         
-        if (_hasGravity && y <= 85.0f) {
-            y = 85.0f;
+        if (_hasGravity && y <= (85.0f + _offsetGroundDetectionY)) {
+            y = 85.0f + _offsetGroundDetectionY;
             _vy = 0.0f;
             _angularVelocity *= 0.92f;
             _vx *= 0.92f;      

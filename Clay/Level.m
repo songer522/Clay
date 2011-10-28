@@ -335,7 +335,6 @@
                     [gameLayer.player startCollision:[obstacle startCollision] Obstacle:obstacle];
                     break;
                 }
-                
             }
 
             if(dist < 900) {
@@ -354,7 +353,7 @@
     
     for (MapObject *mapObject in _obstacleMapObjects) {
         GameObject *obstacle = mapObject.object;
-        if(obstacle!=source && ![obstacle hasBeenHit] && ![obstacle getAggressive]) {
+        if(![obstacle hasBeenHit] && ![obstacle getAggressive]) {
             collision = [self testCollisionWithGameObject:obstacle Source:source];
             if (collision) {
                 if ([source getCollisionBehavior] == COLLISION_BEHAVIOR_HEN_KICKED) {

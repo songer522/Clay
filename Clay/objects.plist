@@ -348,7 +348,7 @@
 		<key>offsetx</key>
 		<integer>90</integer>
 		<key>offsety</key>
-		<integer>-47</integer>
+		<integer>-44</integer>
 		<key>playerEffect</key>
 		<string>collide</string>
 	</dict>

@@ -36,6 +36,9 @@
     if (_inAction) {
         Animation *anim = [[_parent getSprite] getAnimation];
         
+        //to move the player down in front of the obstacle later,
+        //but this doesn't work with the collision, so it'll probably have to be an offset modifier
+        //and make sure every movement is taking that offset into account.
         /*
         if (_duration >= 0.9f) {
             [_parent move:CGPointMake(0, -100.0f*dt)];

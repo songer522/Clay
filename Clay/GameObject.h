@@ -110,6 +110,7 @@ typedef enum {
 -(CGPoint) getPosition;
 -(CGPoint) getPreviousPosition;
 -(CCSprite*) getCCSprite;
+-(Projectile*) getProjectile;
 
 -(void) setOffsetForX:(float)x Y:(float)y;
 -(void) setPosition:(CGPoint)position;
