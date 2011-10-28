@@ -11,6 +11,7 @@
 @interface PlayerActionShoot : PlayerAction
 {
     NSArray *_bullets;
+    bool _initialize;
     int _currentBulletIndex;
 }
 

@@ -221,6 +221,13 @@
 		54518F6D1406AEE6009D74AA /* GameObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 54518F6C1406AEE6009D74AA /* GameObject.m */; };
 		54518F701406B061009D74AA /* BaseClasses.m in Sources */ = {isa = PBXBuildFile; fileRef = 54518F6F1406B061009D74AA /* BaseClasses.m */; };
 		54518F751406B761009D74AA /* GameClasses.m in Sources */ = {isa = PBXBuildFile; fileRef = 54518F741406B761009D74AA /* GameClasses.m */; };
+		54528C04145B28E4009437C3 /* HudButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 54528C03145B28E4009437C3 /* HudButton.m */; };
+		54528C07145B466B009437C3 /* clearedObstacle.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54528C06145B466B009437C3 /* clearedObstacle.wav */; };
+		54528C0D145B4CC7009437C3 /* pig-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54528C08145B4CC7009437C3 /* pig-hd.plist */; };
+		54528C0E145B4CC7009437C3 /* pig-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54528C09145B4CC7009437C3 /* pig-hd.png */; };
+		54528C0F145B4CC7009437C3 /* pig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54528C0A145B4CC7009437C3 /* pig.plist */; };
+		54528C10145B4CC7009437C3 /* pig.png in Resources */ = {isa = PBXBuildFile; fileRef = 54528C0B145B4CC7009437C3 /* pig.png */; };
+		54528C11145B4CC7009437C3 /* stoneChicken.png in Resources */ = {isa = PBXBuildFile; fileRef = 54528C0C145B4CC7009437C3 /* stoneChicken.png */; };
 		545CBC2A142D084D00795FC9 /* Particle.m in Sources */ = {isa = PBXBuildFile; fileRef = 545CBC29142D084D00795FC9 /* Particle.m */; };
 		545CBC34142D260B00795FC9 /* SoundEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 545CBC33142D260B00795FC9 /* SoundEngine.m */; };
 		545CBC36142D267F00795FC9 /* sounds.plist in Resources */ = {isa = PBXBuildFile; fileRef = 545CBC35142D267F00795FC9 /* sounds.plist */; };
@@ -741,6 +748,14 @@
 		54518F6F1406B061009D74AA /* BaseClasses.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseClasses.m; sourceTree = "<group>"; };
 		54518F731406B761009D74AA /* GameClasses.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameClasses.h; sourceTree = "<group>"; };
 		54518F741406B761009D74AA /* GameClasses.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameClasses.m; sourceTree = "<group>"; };
+		54528C02145B28E4009437C3 /* HudButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HudButton.h; sourceTree = "<group>"; };
+		54528C03145B28E4009437C3 /* HudButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HudButton.m; sourceTree = "<group>"; };
+		54528C06145B466B009437C3 /* clearedObstacle.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = clearedObstacle.wav; path = Resources/sounds/clearedObstacle.wav; sourceTree = "<group>"; };
+		54528C08145B4CC7009437C3 /* pig-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "pig-hd.plist"; path = "barn/pig-hd.plist"; sourceTree = "<group>"; };
+		54528C09145B4CC7009437C3 /* pig-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pig-hd.png"; path = "barn/pig-hd.png"; sourceTree = "<group>"; };
+		54528C0A145B4CC7009437C3 /* pig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = pig.plist; path = barn/pig.plist; sourceTree = "<group>"; };
+		54528C0B145B4CC7009437C3 /* pig.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pig.png; path = barn/pig.png; sourceTree = "<group>"; };
+		54528C0C145B4CC7009437C3 /* stoneChicken.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stoneChicken.png; path = barn/stoneChicken.png; sourceTree = "<group>"; };
 		545CBC28142D084D00795FC9 /* Particle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Particle.h; sourceTree = "<group>"; };
 		545CBC29142D084D00795FC9 /* Particle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Particle.m; sourceTree = "<group>"; };
 		545CBC32142D260B00795FC9 /* SoundEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundEngine.h; sourceTree = "<group>"; };
@@ -982,6 +997,11 @@
 		5411C22B14587FE4000C7D91 /* barn */ = {
 			isa = PBXGroup;
 			children = (
+				54528C08145B4CC7009437C3 /* pig-hd.plist */,
+				54528C09145B4CC7009437C3 /* pig-hd.png */,
+				54528C0A145B4CC7009437C3 /* pig.plist */,
+				54528C0B145B4CC7009437C3 /* pig.png */,
+				54528C0C145B4CC7009437C3 /* stoneChicken.png */,
 				5418FB2A14508B2600C8F16E /* jim_standing_barn.png */,
 				54282F921444F5E50074BA3D /* hen_idle-hd.plist */,
 				54282F931444F5E50074BA3D /* hen_idle-hd.png */,
@@ -1651,6 +1671,7 @@
 		545CBC2F142D25AB00795FC9 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				54528C06145B466B009437C3 /* clearedObstacle.wav */,
 				54D8078B1459D11B0090F0DA /* shotgun_reload.caf */,
 				5411C23014588412000C7D91 /* shotgun.caf */,
 				5411C23114588412000C7D91 /* zombie_moan.caf */,
@@ -1951,6 +1972,8 @@
 			children = (
 				54FC28561455F47E00FD8B54 /* Button.h */,
 				54FC28571455F47E00FD8B54 /* Button.m */,
+				54528C02145B28E4009437C3 /* HudButton.h */,
+				54528C03145B28E4009437C3 /* HudButton.m */,
 			);
 			name = GUI;
 			sourceTree = "<group>";
@@ -2202,6 +2225,12 @@
 				549AFF82145A02C50097BE33 /* garbageZombie.png in Resources */,
 				549AFF84145A03140097BE33 /* tileset_level_6.png in Resources */,
 				549AFF86145A11A70097BE33 /* UI_Button_GreenLight.png in Resources */,
+				54528C07145B466B009437C3 /* clearedObstacle.wav in Resources */,
+				54528C0D145B4CC7009437C3 /* pig-hd.plist in Resources */,
+				54528C0E145B4CC7009437C3 /* pig-hd.png in Resources */,
+				54528C0F145B4CC7009437C3 /* pig.plist in Resources */,
+				54528C10145B4CC7009437C3 /* pig.png in Resources */,
+				54528C11145B4CC7009437C3 /* stoneChicken.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2379,6 +2408,7 @@
 				54FC28551455F33F00FD8B54 /* ChooseLevelScreen.m in Sources */,
 				54FC28581455F47E00FD8B54 /* Button.m in Sources */,
 				5411C22A14587AF5000C7D91 /* Projectile.m in Sources */,
+				54528C04145B28E4009437C3 /* HudButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

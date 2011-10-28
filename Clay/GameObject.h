@@ -112,6 +112,7 @@ typedef enum {
 -(CCSprite*) getCCSprite;
 -(Projectile*) getProjectile;
 
+
 -(void) setOffsetForX:(float)x Y:(float)y;
 -(void) setPosition:(CGPoint)position;
 -(void) setPositionAtX:(float)x Y:(float)y;     //give new x and y position on screen (with cocos2D, both hi and low-res use 320x480 resolution for its points)
@@ -134,7 +135,7 @@ typedef enum {
 -(void) updateFadeOut:(float)dt;
 -(void) updateFlags;
 -(void) updateLights:(float)dt;
-
+-(void) updateSuccessfullyCleared:(float)dt;
 
 
 @end

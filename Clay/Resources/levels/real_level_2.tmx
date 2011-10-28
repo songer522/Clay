@@ -4,7 +4,7 @@
   <image source="tileset_level_2.png" width="1792" height="832"/>
  </tileset>
  <tileset firstgid="365" name="Icons" tilewidth="64" tileheight="64">
-  <image source="TrackLapse_Icons.png" width="640" height="192"/>
+  <image source="TrackLapse_Icons.png" width="640" height="256"/>
   <tile id="0">
    <properties>
     <property name="obstacle" value="hurdle"/>
@@ -46,8 +46,18 @@
     <property name="obstacle" value="manure"/>
    </properties>
   </tile>
+  <tile id="29">
+   <properties>
+    <property name="obstacle" value="stoneChicken"/>
+   </properties>
+  </tile>
+  <tile id="30">
+   <properties>
+    <property name="obstacle" value="pig"/>
+   </properties>
+  </tile>
  </tileset>
- <tileset firstgid="395" name="Meta" tilewidth="64" tileheight="64">
+ <tileset firstgid="405" name="Meta" tilewidth="64" tileheight="64">
   <image source="meta.png" width="256" height="192"/>
   <tile id="0">
    <properties>
@@ -112,7 +122,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt280OgyAMAGD3wPtLNp9/2W0H0YKAmH3faYlLW1rQE9MEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADCG5+XoCgAAAAAAAAAAAAAAAAAg7VXxHtxarJp5vubCeKk63g3uA+bmunfoUW7fttbwu5Zo7Jy9UDrnrXxLcY+Y15zoX+r3luga1mKmnqVil8xoKVZ0T9U+Jy3fCTnnp0XcXvGX8tSe01JdOfW0zFPr+1Gat8X3KyKS93GCu/bXQI2R/+zV4sycTbTPPebxj3L6uncG9nsbuXMZ5SyNUsdtkDoAAAAAAAAAoKcPN9wmrg==
+   eJzt28FuwjAMAFD44A0mbXwE/DTiMAlVceI0oXTaeycEle3YSTj1cAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2Iev47srAAAAAAAAAAAAAAAAAOCvuwXvql2D73ue/574Hlwt1sw8D5eV8aI6fjriRf0dzXXaoEdR36I1tdbwvJbsTHr2QjZmbSalfV+K+455XYL+RZ9bey+7hlpfo9+i+2bNWSzVmd1Ts8/JyJ0wOo9ljqjHa+PW1lCrvTd+Kc/InKI+LOvqqacUM3vvtfL0/H/UrM07K/+vUl8etS17mMk7+7xGsv/LrRgz44zEeo4xo6aS64v2T8u5ku8jWUv2Ofr09HV0BlvdDf9N71z2cpb2UsfnTuoAAAAAAAAAgC3dAfWNNaY=
   </data>
  </layer>
  <layer name="meta" width="1000" height="14" opacity="0.85">
@@ -121,7 +131,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztwzENAAAMA6BWf03vnAlISAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgraqqqqqqqqrqASCRRf0=
+   eJztwzENAAAMA6DW/12/O2cCEhIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeKuqqqqqqqqqerhclB0=
   </data>
  </layer>
 </map>

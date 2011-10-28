@@ -34,6 +34,7 @@
     _bullets = [[NSArray alloc] initWithObjects:b1,b2,b3,nil];
     _currentBulletIndex = 0;
     
+    
 }
 
 -(void)startAction
@@ -41,7 +42,7 @@
     if (!_inAction && _canTrigger) {
         [super startAction];
         _duration = 0.4f;
-        _cooldown = 0.75f;
+        _cooldown = 0.4f;
         [_parent endTurbo];
         [[AnimationController sharedController] replaceSprite:[_parent getSprite] withAnimationNamed:@"shootingAnim"];
         [[SoundEngine shared] playSound:@"shootAction"];

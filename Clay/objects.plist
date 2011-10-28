@@ -247,41 +247,6 @@
 		<key>playerEffect</key>
 		<string>collide</string>
 	</dict>
-	<key>haybale</key>
-	<dict>
-		<key>aggressive</key>
-		<string>false</string>
-		<key>anchorpoint</key>
-		<dict>
-			<key>x</key>
-			<integer>1</integer>
-			<key>y</key>
-			<integer>0</integer>
-		</dict>
-		<key>animationName</key>
-		<string>none</string>
-		<key>boundingBox</key>
-		<dict>
-			<key>height</key>
-			<integer>40</integer>
-			<key>width</key>
-			<integer>35</integer>
-			<key>x</key>
-			<integer>50</integer>
-			<key>y</key>
-			<integer>2</integer>
-		</dict>
-		<key>collideBehavior</key>
-		<string>falls</string>
-		<key>imageName</key>
-		<string>haybale.png</string>
-		<key>offsetx</key>
-		<integer>0</integer>
-		<key>offsety</key>
-		<integer>-45</integer>
-		<key>playerEffect</key>
-		<string>collide</string>
-	</dict>
 	<key>garbage</key>
 	<dict>
 		<key>aggressive</key>
@@ -349,6 +314,41 @@
 		<integer>90</integer>
 		<key>offsety</key>
 		<integer>-44</integer>
+		<key>playerEffect</key>
+		<string>collide</string>
+	</dict>
+	<key>haybale</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>1</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>none</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>40</integer>
+			<key>width</key>
+			<integer>35</integer>
+			<key>x</key>
+			<integer>50</integer>
+			<key>y</key>
+			<integer>2</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>falls</string>
+		<key>imageName</key>
+		<string>haybale.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>-45</integer>
 		<key>playerEffect</key>
 		<string>collide</string>
 	</dict>
@@ -457,6 +457,41 @@
 		<key>playerEffect</key>
 		<string>collide</string>
 	</dict>
+	<key>stoneChicken</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<real>0.5</real>
+			<key>y</key>
+			<real>0.5</real>
+		</dict>
+		<key>animationName</key>
+		<string>none</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>38</integer>
+			<key>width</key>
+			<integer>40</integer>
+			<key>x</key>
+			<integer>32</integer>
+			<key>y</key>
+			<integer>25</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>falls</string>
+		<key>imageName</key>
+		<string>stoneChicken.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>-35</integer>
+		<key>playerEffect</key>
+		<string>collide</string>
+	</dict>
 	<key>jimBarn</key>
 	<dict>
 		<key>aggressive</key>
@@ -559,41 +594,6 @@
 		<integer>-64</integer>
 		<key>offsety</key>
 		<integer>-45</integer>
-		<key>playerEffect</key>
-		<string>slow</string>
-	</dict>
-	<key>sewerWater</key>
-	<dict>
-		<key>aggressive</key>
-		<string>false</string>
-		<key>anchorpoint</key>
-		<dict>
-			<key>x</key>
-			<integer>0</integer>
-			<key>y</key>
-			<integer>0</integer>
-		</dict>
-		<key>animationName</key>
-		<string>none</string>
-		<key>boundingBox</key>
-		<dict>
-			<key>height</key>
-			<integer>15</integer>
-			<key>width</key>
-			<integer>87</integer>
-			<key>x</key>
-			<integer>-25</integer>
-			<key>y</key>
-			<integer>-22</integer>
-		</dict>
-		<key>collideBehavior</key>
-		<string>static</string>
-		<key>imageName</key>
-		<string>water.png</string>
-		<key>offsetx</key>
-		<integer>-60</integer>
-		<key>offsety</key>
-		<integer>-63</integer>
 		<key>playerEffect</key>
 		<string>slow</string>
 	</dict>
@@ -702,6 +702,41 @@
 		<key>playerEffect</key>
 		<string>slow</string>
 	</dict>
+	<key>pig</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<real>0.5</real>
+			<key>y</key>
+			<real>0.5</real>
+		</dict>
+		<key>animationName</key>
+		<string>pigAnim</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>30</integer>
+			<key>width</key>
+			<integer>50</integer>
+			<key>x</key>
+			<integer>25</integer>
+			<key>y</key>
+			<integer>25</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>chargeAtPlayer</string>
+		<key>imageName</key>
+		<string>blank.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>-8</integer>
+		<key>playerEffect</key>
+		<string>collide</string>
+	</dict>
 	<key>player</key>
 	<dict>
 		<key>aggressive</key>
@@ -765,6 +800,41 @@
 		<integer>0</integer>
 		<key>offsety</key>
 		<integer>-45</integer>
+		<key>playerEffect</key>
+		<string>slow</string>
+	</dict>
+	<key>sewerWater</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>0</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>none</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>15</integer>
+			<key>width</key>
+			<integer>87</integer>
+			<key>x</key>
+			<integer>-25</integer>
+			<key>y</key>
+			<integer>-22</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>static</string>
+		<key>imageName</key>
+		<string>water.png</string>
+		<key>offsetx</key>
+		<integer>-60</integer>
+		<key>offsety</key>
+		<integer>-63</integer>
 		<key>playerEffect</key>
 		<string>slow</string>
 	</dict>

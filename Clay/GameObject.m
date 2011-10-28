@@ -243,6 +243,8 @@
     
     [self updateLights:dt];
     
+    [self updateSuccessfullyCleared:dt];
+    
 }
 
 -(void)updateFadeOut:(float)dt
@@ -295,7 +297,7 @@
         GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
         CGPoint position = [gameLayer.player getPosition];
         if (_x < (position.x + 550.0f) && _x > 0.0f) {
-            _vx = -250.0f;    
+            _vx = -150.0f;    
         } else {
             _vx = 0.0f;
         }
@@ -321,6 +323,15 @@
         }
     }
 
+}
+
+-(void) updateSuccessfullyCleared:(float)dt
+{
+    GameLayer *gameLayer = (GameLayer*)[[LayerManager sharedLayers] currentLayer];
+    if(!_madeSound && _x < [gameLayer.player getPosition].x && !_collided && !gameLayer.player.isDead && !gameLayer.player.isTripping) {
+        [[SoundEngine shared] playSound:@"clearedObstacle"];
+        _madeSound = true;
+    }
 }
 
 -(void) updateFlags

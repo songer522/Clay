@@ -40,6 +40,8 @@
 
 -(void)initializeGameObject:(GameObject*)gameObject Name:(NSString*)objectName AddToLayer:(bool)shouldAddToLayer
 {
+    NSLog(@"Game Object Loading: %@",objectName);
+
     NSDictionary *gameobjectSettings = [_objectSettings objectForKey:objectName];
     NSAssert(gameobjectSettings != nil, @"Object could not be found. Please ensure %@ is in objects.plist",objectName);
 

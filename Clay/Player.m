@@ -283,6 +283,7 @@
 
 -(bool)objectShouldReactToCollision
 {
+    
     return [_thirdAction shouldTriggerPlayerHurtCollision];
 }
 

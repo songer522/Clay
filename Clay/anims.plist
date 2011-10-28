@@ -172,23 +172,6 @@
 		<key>spritesheetPlist</key>
 		<string>female_zombie</string>
 	</dict>
-	<key>headlessZombieAnim</key>
-	<dict>
-		<key>animationFrames</key>
-		<string>1,2,3,4,5,6</string>
-		<key>clearPreviousAnims</key>
-		<string>true</string>
-		<key>delay</key>
-		<string>0.075</string>
-		<key>group</key>
-		<string>Obstacle</string>
-		<key>looping</key>
-		<string>true</string>
-		<key>sequencePrefix</key>
-		<string>FWH2_Zombie_Walking_</string>
-		<key>spritesheetPlist</key>
-		<string>female_zombie</string>
-	</dict>
 	<key>femaleZombieAnim</key>
 	<dict>
 		<key>animationFrames</key>
@@ -203,6 +186,23 @@
 		<string>true</string>
 		<key>sequencePrefix</key>
 		<string>F_Zombie_Walking_</string>
+		<key>spritesheetPlist</key>
+		<string>female_zombie</string>
+	</dict>
+	<key>headlessZombieAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3,4,5,6</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.075</string>
+		<key>group</key>
+		<string>Obstacle</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>FWH2_Zombie_Walking_</string>
 		<key>spritesheetPlist</key>
 		<string>female_zombie</string>
 	</dict>
@@ -324,6 +324,23 @@
 		<string>MaleDancer_</string>
 		<key>spritesheetPlist</key>
 		<string>disco_level</string>
+	</dict>
+	<key>pigAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.075</string>
+		<key>group</key>
+		<string>Barn</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Barn_Pig_</string>
+		<key>spritesheetPlist</key>
+		<string>pig</string>
 	</dict>
 	<key>runningAnim</key>
 	<dict>
