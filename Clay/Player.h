@@ -35,6 +35,7 @@ typedef enum {
     float _yPosition;
     float _jumpAcceleration;
     float _waitToGetUp;
+    bool _onLedge;
     
     bool _isHighJump;
     

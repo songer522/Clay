@@ -464,9 +464,9 @@
 		<key>anchorpoint</key>
 		<dict>
 			<key>x</key>
-			<real>0.5</real>
+			<integer>1</integer>
 			<key>y</key>
-			<real>0.5</real>
+			<integer>0</integer>
 		</dict>
 		<key>animationName</key>
 		<string>none</string>

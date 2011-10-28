@@ -57,6 +57,7 @@
         _isDead = false;
         _isInMidAir = false;
         _waitToGetUp = 0.0f;
+        _onLedge = false;
         
         _thirdAction = nil;
         
@@ -117,14 +118,15 @@
     
     //want it to follow slower on ledge
     if ([[self getCollision] currentState] == COLLISION_STATE_LEDGE) {
+        _onLedge = true;
         [[Camera sharedCamera] moveTowardsTarget:dt PlayerOnGround:false];
     } else {
+        _onLedge = false;
         [[Camera sharedCamera] moveTowardsTarget:dt PlayerOnGround:!_isInMidAir];
     }
     
     [self setPositionAtX:newPosition.x Y:newPosition.y];
     [_battery update:dt];
-    //[_particleSystem update:dt];
     
     if (_isTripping) {
         _waitToGetUp -= dt;
@@ -284,12 +286,12 @@
 -(bool)objectShouldReactToCollision
 {
     
-    return [_thirdAction shouldTriggerPlayerHurtCollision];
+    return ([_thirdAction shouldTriggerPlayerHurtCollision] && _onLedge);
 }
 
 -(void)startCollision:(PlayerEffect)effect Source:(id<Collidable>)source
 {
-    if (!_isInvincible) {
+    if (!_isInvincible && !_onLedge) {
         if (effect == PLAYER_EFFECT_ACTION_OR_COLLIDE) {
             if (!_isTripping && !_isDead) {
                 if (![_thirdAction isActive]) {

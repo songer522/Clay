@@ -76,6 +76,7 @@
 		542D51EB1459B1D600011CFB /* UI_Button_Shooting.png in Resources */ = {isa = PBXBuildFile; fileRef = 542D51EA1459B1D600011CFB /* UI_Button_Shooting.png */; };
 		542D51ED1459B62300011CFB /* zombieHead.png in Resources */ = {isa = PBXBuildFile; fileRef = 542D51EC1459B62300011CFB /* zombieHead.png */; };
 		543250BC143CA40300F1F177 /* HudLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 543250BB143CA40300F1F177 /* HudLayer.m */; };
+		543298AA145B5BC300223C3D /* test_level_6.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 543298A9145B5BC300223C3D /* test_level_6.tmx */; };
 		543A22E51451CFF5007261A3 /* disco_laser_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 543A22E11451CFF5007261A3 /* disco_laser_1.png */; };
 		543A22E61451CFF5007261A3 /* disco_laser_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 543A22E21451CFF5007261A3 /* disco_laser_2.png */; };
 		543A22E71451CFF5007261A3 /* disco_laser_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 543A22E31451CFF5007261A3 /* disco_laser_3.png */; };
@@ -470,6 +471,7 @@
 		542D51EC1459B62300011CFB /* zombieHead.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = zombieHead.png; path = zombie/zombieHead.png; sourceTree = "<group>"; };
 		543250BA143CA40300F1F177 /* HudLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HudLayer.h; sourceTree = "<group>"; };
 		543250BB143CA40300F1F177 /* HudLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HudLayer.m; sourceTree = "<group>"; };
+		543298A9145B5BC300223C3D /* test_level_6.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = test_level_6.tmx; path = Resources/levels/test_level_6.tmx; sourceTree = "<group>"; };
 		543A22E11451CFF5007261A3 /* disco_laser_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = disco_laser_1.png; path = disco/disco_laser_1.png; sourceTree = "<group>"; };
 		543A22E21451CFF5007261A3 /* disco_laser_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = disco_laser_2.png; path = disco/disco_laser_2.png; sourceTree = "<group>"; };
 		543A22E31451CFF5007261A3 /* disco_laser_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = disco_laser_3.png; path = disco/disco_laser_3.png; sourceTree = "<group>"; };
@@ -1790,6 +1792,7 @@
 		548C3DBB141ABDBB000567A8 /* levels */ = {
 			isa = PBXGroup;
 			children = (
+				543298A9145B5BC300223C3D /* test_level_6.tmx */,
 				549AFF7A1459F0610097BE33 /* real_level_6.tmx */,
 				54883B91144885C40029759E /* real_level_1.tmx */,
 				54883B92144885C40029759E /* real_level_2.tmx */,
@@ -2231,6 +2234,7 @@
 				54528C0F145B4CC7009437C3 /* pig.plist in Resources */,
 				54528C10145B4CC7009437C3 /* pig.png in Resources */,
 				54528C11145B4CC7009437C3 /* stoneChicken.png in Resources */,
+				543298AA145B5BC300223C3D /* test_level_6.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
