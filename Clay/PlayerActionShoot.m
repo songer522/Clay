@@ -41,7 +41,7 @@
     if (!_inAction && _canTrigger) {
         [super startAction];
         _duration = 0.4f;
-        _cooldown = 1.1f;
+        _cooldown = 0.75f;
         [_parent endTurbo];
         [[AnimationController sharedController] replaceSprite:[_parent getSprite] withAnimationNamed:@"shootingAnim"];
         [[SoundEngine shared] playSound:@"shootAction"];

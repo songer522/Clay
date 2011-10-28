@@ -16,6 +16,7 @@
     Animation *_animation;
     float _x;
     float _y;
+    float _alpha;
 }
 
 @property (nonatomic,assign) float x;
@@ -34,7 +35,14 @@
 -(CGPoint) getPosition;
 -(void)move:(CGPoint)amount;
 -(int)getCurrentFrameNumber;
+
 -(void)setAlpha:(float)alpha;
+
+//modifies the alpha. if it's above the limit, it uses 1.0f on the sprite instead (full opacity)
+//if it reaches the minimum, then let the parent know, so it can use that to trigger actions
+-(bool)reachedMinAfterModifyAlpha:(float)amount;
+
+
 -(void)setFrame:(int)frame;
 -(int)getTotalFramesCount;
 -(void)replaceSpriteWithFile:(NSString*)filename;

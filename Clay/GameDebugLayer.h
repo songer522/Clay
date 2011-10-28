@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "CollisionDetection.h"
+#import "Collidable.h"
 
 @class GameLayer;
 @class GameObject;
@@ -20,7 +21,7 @@
 
 +(id) debugLayerForScene:(CCScene*)scene GameLayer:(GameLayer*)gameLayer;
 
--(void)drawBoxForGameObject:(GameObject*)object;
+-(void)drawBoxForCollidable:(id<Collidable>)object;
 -(void)drawBoxForGameObject:(GameObject*)object Collisions:(XDCollision)collisions;
 
 @end

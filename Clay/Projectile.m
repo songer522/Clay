@@ -37,6 +37,8 @@
         _hasGravity = false;
         _behavior = behavior;
         _angle = 0.0f;
+        _alpha = 1.0f;
+        _fadeOut = false;
         _angularVelocity = 0.0f;
         _offsetGroundDetectionY = 0.0f;
         _isAggressive = true;
@@ -110,7 +112,9 @@
 
 -(void)startCollision
 {
-    
+    _fadeOut = true;
+    [_sprite setAlpha:1.0f];
+    _isActive = false;
 }
 
 -(bool)getAggressive
@@ -127,6 +131,8 @@
 {
     [[_sprite getCCSprite] setVisible:YES];
     _isActive = true;
+    _fadeOut = false;
+    [_sprite setAlpha:1.0f];
 }
 
 -(CollisionBehavior)getCollisionBehavior
@@ -153,12 +159,16 @@
 
 -(void) update:(float)dt
 {
+    if (_fadeOut) {
+        if ([_sprite reachedMinAfterModifyAlpha:-2.0f * dt]) {
+            [[_sprite getCCSprite] setVisible:NO];
+        } else {
+            [_sprite move:CGPointMake(100.0f *dt, 200.0f*dt)];
+        }
+    }
+    
     if (_isActive) {
         
-        //temp
-        if (_behavior == PROJECTILE_BEHAVIOR_ZOMBIE_HEAD) {
-            _x = _x;
-        }
         //apply gravity if needed
         if(_hasGravity) {
             _vy -= 600.0f * dt;

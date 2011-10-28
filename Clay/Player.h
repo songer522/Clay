@@ -80,7 +80,7 @@ typedef enum {
 -(RunningSpeed*)getSpeed;
 
 -(void)startThirdAction;
--(void)startCollision:(PlayerEffect)effect Obstacle:(GameObject*)obstacle;
+-(void)startCollision:(PlayerEffect)effect Source:(id<Collidable>)source;
 
 -(void)changeHealth:(int)amount;
 -(bool)objectShouldReactToCollision;

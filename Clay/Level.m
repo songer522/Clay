@@ -23,6 +23,7 @@
 #import "GameObjectController.h"
 #import "GCState.h"
 #import "GCHelper.h"
+#import "Projectile.h"
 
 @implementation Level
 
@@ -323,26 +324,38 @@
 -(bool)testCollisions:(GameObject*)source
 {
     bool collision = false;
+    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
     
     for (MapObject *mapObject in _obstacleMapObjects) {
         GameObject *obstacle = mapObject.object;
         if(!obstacle.collided) {
+            
             int dist = abs([source getPosition].x - [obstacle getPosition].x);
             if (dist < 250) { //don't do the full collision detection if they're not even close to each other.
                 collision = [self testCollisionWithGameObject:obstacle Source:source];
                 if (collision) {
-                    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
-                    [gameLayer.player startCollision:[obstacle startCollision] Obstacle:obstacle];
+                    [gameLayer.player startCollision:[obstacle startCollision] Source:obstacle];
                     break;
                 }
             }
 
             if(dist < 900) {
+                
+                //if aggressive, test the object against the non-aggressive objects (example of aggressive: chickens in barn level)
                 if (!collision && obstacle.isAggressive) {
                     [self testCollisionsForAggressive:obstacle];
                 }
             }
-        }        
+        }    
+        
+        //test the gameobject's active projectile, if any (example: zombie heads)
+        Projectile *projectile = [obstacle getProjectile];
+        if (projectile!=nil && [projectile getActive]) {
+            if([self testCollisionWithGameObject:projectile Source:source]) {
+                [gameLayer.player startCollision:PLAYER_EFFECT_COLLIDE Source:projectile];
+                [projectile startCollision];
+            }                    
+        }
     }
     return collision;
 }

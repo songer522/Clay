@@ -286,7 +286,7 @@
     return [_thirdAction shouldTriggerPlayerHurtCollision];
 }
 
--(void)startCollision:(PlayerEffect)effect Obstacle:(GameObject*)obstacle
+-(void)startCollision:(PlayerEffect)effect Source:(id<Collidable>)source
 {
     if (!_isInvincible) {
         if (effect == PLAYER_EFFECT_ACTION_OR_COLLIDE) {
@@ -296,7 +296,8 @@
                         [self private_StartPlayerCollision];                    
                     }
                 } else {
-                    [obstacle special_kickHen];
+                    GameObject *object = (GameObject*)source;
+                    [object special_kickHen];
                 }            
             }
         } else if (effect == PLAYER_EFFECT_COLLIDE) {

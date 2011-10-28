@@ -104,6 +104,17 @@
 
 -(void)setAlpha:(float)alpha
 {
+    if (alpha == 0.0f) {
+        alpha = 0.0f;
+        _alpha = 0.0f;
+    } else if(alpha >= 1.0f) {
+        //set it before modifying it for the ccsprite
+        _alpha = alpha;
+        alpha = 1.0f;
+    } else {
+        _alpha = alpha;
+    }
+    
     int opacity = (int)(alpha * 255);
     [[self getCCSprite] setOpacity:opacity];
 }
@@ -151,6 +162,22 @@
 {
     return _animation;
 }
+
+-(bool)reachedMinAfterModifyAlpha:(float)amount
+{
+    bool returnVal = false;
+
+    _alpha += amount;
+    if (_alpha<=0.0f) {
+        _alpha = 0.0f;
+        returnVal = true;
+    }
+    
+    [self setAlpha:_alpha];
+    
+    return returnVal;
+}
+
 
 -(void)dealloc
 {

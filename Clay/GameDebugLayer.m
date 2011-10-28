@@ -14,6 +14,7 @@
 #import "MapObject.h"
 #import "Player.h"
 #import "Camera.h"
+#import "Projectile.h"
 
 @implementation GameDebugLayer
 
@@ -51,18 +52,25 @@
     for (MapObject *mapObject in obstacles) {
         GameObject *obstacle = mapObject.object;
         if (!obstacle.collided) {
-            [self drawBoxForGameObject:obstacle];
+            [self drawBoxForCollidable:obstacle];
+        }
+        
+        Projectile *projectile = [obstacle getProjectile];
+        if (projectile!=nil && [projectile getActive]) {
+            [self drawBoxForCollidable:projectile];
         }
     }
 }
 
--(void)drawBoxForGameObject:(GameObject*)object
+-(void)drawBoxForCollidable:(id<Collidable>)object
 {
     CGPoint point = [object getCCSprite].position;
-    float left = point.x - object.boundingBox.origin.x;
-    float right = point.x - object.boundingBox.origin.x + object.boundingBox.size.width;
-    float bottom = point.y - object.boundingBox.origin.y;
-    float top = point.y - object.boundingBox.origin.y + object.boundingBox.size.height;
+    CGRect boundingBox = [object getBoundingBox];
+    
+    float left = point.x - boundingBox.origin.x;
+    float right = point.x - boundingBox.origin.x + boundingBox.size.width;
+    float bottom = point.y - boundingBox.origin.y;
+    float top = point.y - boundingBox.origin.y + boundingBox.size.height;
     
     ccDrawLine(ccp(left, top), ccp(right, top));
     ccDrawLine(ccp(right, top), ccp(right, bottom));
