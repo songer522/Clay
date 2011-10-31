@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5408FA96145EFAF80004FBB5 /* ObstacleChicken.m in Sources */ = {isa = PBXBuildFile; fileRef = 5408FA95145EFAF80004FBB5 /* ObstacleChicken.m */; };
 		54090E20142CCE6700FC3ABE /* ball.png in Resources */ = {isa = PBXBuildFile; fileRef = 54090E1F142CCE6700FC3ABE /* ball.png */; };
 		5411C22514586CAB000C7D91 /* real_level_5.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 5411C22314586CAB000C7D91 /* real_level_5.tmx */; };
 		5411C22714586CDA000C7D91 /* tileset_level_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 5411C22614586CDA000C7D91 /* tileset_level_5.png */; };
@@ -399,6 +400,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5408FA94145EFAF80004FBB5 /* ObstacleChicken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObstacleChicken.h; sourceTree = "<group>"; };
+		5408FA95145EFAF80004FBB5 /* ObstacleChicken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObstacleChicken.m; sourceTree = "<group>"; };
 		54090E1F142CCE6700FC3ABE /* ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ball.png; path = Resources/particles/ball.png; sourceTree = "<group>"; };
 		5411C22314586CAB000C7D91 /* real_level_5.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = real_level_5.tmx; path = Resources/levels/real_level_5.tmx; sourceTree = "<group>"; };
 		5411C22614586CDA000C7D91 /* tileset_level_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tileset_level_5.png; path = Resources/levels/tileset_level_5.png; sourceTree = "<group>"; };
@@ -1045,7 +1048,7 @@
 			name = barn;
 			sourceTree = "<group>";
 		};
-		5411C22C1458801E000C7D91 /* cornfields */ = {
+		5411C22C1458801E000C7D91 /* town */ = {
 			isa = PBXGroup;
 			children = (
 				547BE763145E55AF00B11EB0 /* townCrow-hd.plist */,
@@ -1056,7 +1059,7 @@
 				54883BB21448985F0029759E /* leafpile.png */,
 				5418FB2B14508B2600C8F16E /* jim_standing_cornfields.png */,
 			);
-			name = cornfields;
+			name = town;
 			sourceTree = "<group>";
 		};
 		5411C22D1458803A000C7D91 /* track */ = {
@@ -1799,6 +1802,8 @@
 				547BE76D145E563C00B11EB0 /* GameObjectFactory.m */,
 				547BE770145ED08B00B11EB0 /* ObstacleStatic.h */,
 				547BE771145ED08B00B11EB0 /* ObstacleStatic.m */,
+				5408FA94145EFAF80004FBB5 /* ObstacleChicken.h */,
+				5408FA95145EFAF80004FBB5 /* ObstacleChicken.m */,
 				547BE773145ED3A300B11EB0 /* Obstacle.h */,
 				547BE774145ED3A300B11EB0 /* Obstacle.m */,
 			);
@@ -1901,7 +1906,7 @@
 			children = (
 				5411C22D1458803A000C7D91 /* track */,
 				5411C22B14587FE4000C7D91 /* barn */,
-				5411C22C1458801E000C7D91 /* cornfields */,
+				5411C22C1458801E000C7D91 /* town */,
 				54D448FF144F6951006C6EBA /* disco */,
 				5411C22F14588068000C7D91 /* city */,
 				5411C22E1458804D000C7D91 /* zombies */,
@@ -2447,6 +2452,7 @@
 				547BE76E145E563C00B11EB0 /* GameObjectFactory.m in Sources */,
 				547BE772145ED08B00B11EB0 /* ObstacleStatic.m in Sources */,
 				547BE775145ED3A300B11EB0 /* Obstacle.m in Sources */,
+				5408FA96145EFAF80004FBB5 /* ObstacleChicken.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,10 +9,11 @@
 #import "GameObjectFactory.h"
 #import "GameObject.h"
 #import "ObstacleStatic.h"
+#import "ObstacleChicken.h"
 
 @implementation GameObjectFactory
 
--(id<ObstacleProtocol>)build:(GameObjectType)type atPoint:(CGPoint)point
++(id<ObstacleProtocol>)build:(GameObjectType)type atPoint:(CGPoint)point
 {
     id object;
     
@@ -20,8 +21,11 @@
         case OBSTACLE_GENERAL_STATIC:
             object = [ObstacleStatic instance];
             break;
-            
+        case OBSTACLE_BARN_CHICKEN:
+            object = [ObstacleChicken instance];
+            break;
         default:
+            object = nil;
             break;
     }
     
@@ -30,6 +34,19 @@
     }
     
     return object;
+}
+
++(id<ObstacleProtocol>)buildFromString:(NSString*)typeString atPoint:(CGPoint)point
+{
+    NSArray *typeArray = [NSArray arrayWithObjects:@"boStatic",@"boAnimated",@"boReactor",@"obStatic",@"obCharger",@"obFlyer",@"obChicken",@"obZombie",nil];
+    
+    GameObjectType type = [typeArray indexOfObject:typeString];
+    
+    id returnVal = [self build:type atPoint:point];
+    
+    NSAssert(returnVal!=nil, @"ERROR! GameObjectFactory -> created object is nil. verify that the typeString is in the array and the enum.");
+    
+    return returnVal;
 }
 
 
