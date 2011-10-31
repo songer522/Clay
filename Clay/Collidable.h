@@ -33,8 +33,10 @@ typedef enum {
 -(CGPoint)getPosition;
 -(void)startCollision;
 -(bool)getActive;
+-(void)reset;
 -(bool)getAggressive;
 -(bool)hasBeenHit;
 -(CollisionBehavior)getCollisionBehavior;
 -(CCSprite*)getCCSprite;
+-(void)setActive:(bool)active;
 @end

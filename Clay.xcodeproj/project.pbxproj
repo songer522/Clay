@@ -253,6 +253,13 @@
 		547330A51440AEE20072796C /* NewParticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 547330A41440AEE10072796C /* NewParticle.m */; };
 		547330A91441084F0072796C /* NewEmitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 547330A81441084D0072796C /* NewEmitter.m */; };
 		547472CA14228C0A00B0B0B7 /* levels.plist in Resources */ = {isa = PBXBuildFile; fileRef = 547472C914228C0A00B0B0B7 /* levels.plist */; };
+		547BE767145E55AF00B11EB0 /* townCrow-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 547BE763145E55AF00B11EB0 /* townCrow-hd.plist */; };
+		547BE768145E55AF00B11EB0 /* townCrow-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 547BE764145E55AF00B11EB0 /* townCrow-hd.png */; };
+		547BE769145E55AF00B11EB0 /* townCrow.plist in Resources */ = {isa = PBXBuildFile; fileRef = 547BE765145E55AF00B11EB0 /* townCrow.plist */; };
+		547BE76A145E55AF00B11EB0 /* townCrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 547BE766145E55AF00B11EB0 /* townCrow.png */; };
+		547BE76E145E563C00B11EB0 /* GameObjectFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 547BE76D145E563C00B11EB0 /* GameObjectFactory.m */; };
+		547BE772145ED08B00B11EB0 /* ObstacleStatic.m in Sources */ = {isa = PBXBuildFile; fileRef = 547BE771145ED08B00B11EB0 /* ObstacleStatic.m */; };
+		547BE775145ED3A300B11EB0 /* Obstacle.m in Sources */ = {isa = PBXBuildFile; fileRef = 547BE774145ED3A300B11EB0 /* Obstacle.m */; };
 		547F09771428FA5400E5D920 /* SavePoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 547F09761428FA5400E5D920 /* SavePoint.m */; };
 		5483C7191417CF140032BDDD /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = 5483C7181417CF140032BDDD /* Camera.m */; };
 		54861E5B1451FF7700717BC5 /* StoryText_1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 54861E571451FF7700717BC5 /* StoryText_1.mp4 */; };
@@ -797,6 +804,16 @@
 		547330A71441084C0072796C /* NewEmitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewEmitter.h; sourceTree = "<group>"; };
 		547330A81441084D0072796C /* NewEmitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewEmitter.m; sourceTree = "<group>"; };
 		547472C914228C0A00B0B0B7 /* levels.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = levels.plist; sourceTree = "<group>"; };
+		547BE763145E55AF00B11EB0 /* townCrow-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "townCrow-hd.plist"; path = "town/townCrow-hd.plist"; sourceTree = "<group>"; };
+		547BE764145E55AF00B11EB0 /* townCrow-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "townCrow-hd.png"; path = "town/townCrow-hd.png"; sourceTree = "<group>"; };
+		547BE765145E55AF00B11EB0 /* townCrow.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = townCrow.plist; path = town/townCrow.plist; sourceTree = "<group>"; };
+		547BE766145E55AF00B11EB0 /* townCrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = townCrow.png; path = town/townCrow.png; sourceTree = "<group>"; };
+		547BE76C145E563C00B11EB0 /* GameObjectFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObjectFactory.h; sourceTree = "<group>"; };
+		547BE76D145E563C00B11EB0 /* GameObjectFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameObjectFactory.m; sourceTree = "<group>"; };
+		547BE770145ED08B00B11EB0 /* ObstacleStatic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObstacleStatic.h; sourceTree = "<group>"; };
+		547BE771145ED08B00B11EB0 /* ObstacleStatic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObstacleStatic.m; sourceTree = "<group>"; };
+		547BE773145ED3A300B11EB0 /* Obstacle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Obstacle.h; sourceTree = "<group>"; };
+		547BE774145ED3A300B11EB0 /* Obstacle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Obstacle.m; sourceTree = "<group>"; };
 		547F09751428FA5400E5D920 /* SavePoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavePoint.h; sourceTree = "<group>"; };
 		547F09761428FA5400E5D920 /* SavePoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavePoint.m; sourceTree = "<group>"; };
 		5483C7171417CF140032BDDD /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
@@ -1031,6 +1048,10 @@
 		5411C22C1458801E000C7D91 /* cornfields */ = {
 			isa = PBXGroup;
 			children = (
+				547BE763145E55AF00B11EB0 /* townCrow-hd.plist */,
+				547BE764145E55AF00B11EB0 /* townCrow-hd.png */,
+				547BE765145E55AF00B11EB0 /* townCrow.plist */,
+				547BE766145E55AF00B11EB0 /* townCrow.png */,
 				54883BB11448985F0029759E /* haybale.png */,
 				54883BB21448985F0029759E /* leafpile.png */,
 				5418FB2B14508B2600C8F16E /* jim_standing_cornfields.png */,
@@ -1643,8 +1664,6 @@
 				54518F741406B761009D74AA /* GameClasses.m */,
 				54297895140C1F8900B3FFF4 /* GameController.h */,
 				54297896140C1F8900B3FFF4 /* GameController.m */,
-				54518F6B1406AEE6009D74AA /* GameObject.h */,
-				54518F6C1406AEE6009D74AA /* GameObject.m */,
 				572DB81F142000A400DDC493 /* GameObjectController.h */,
 				572DB820142000A400DDC493 /* GameObjectController.m */,
 				5499691D1416820000CB7800 /* Level.h */,
@@ -1774,6 +1793,14 @@
 		54675BFA144F317500436C06 /* GameObjects */ = {
 			isa = PBXGroup;
 			children = (
+				54518F6B1406AEE6009D74AA /* GameObject.h */,
+				54518F6C1406AEE6009D74AA /* GameObject.m */,
+				547BE76C145E563C00B11EB0 /* GameObjectFactory.h */,
+				547BE76D145E563C00B11EB0 /* GameObjectFactory.m */,
+				547BE770145ED08B00B11EB0 /* ObstacleStatic.h */,
+				547BE771145ED08B00B11EB0 /* ObstacleStatic.m */,
+				547BE773145ED3A300B11EB0 /* Obstacle.h */,
+				547BE774145ED3A300B11EB0 /* Obstacle.m */,
 			);
 			name = GameObjects;
 			sourceTree = "<group>";
@@ -2235,6 +2262,10 @@
 				54528C10145B4CC7009437C3 /* pig.png in Resources */,
 				54528C11145B4CC7009437C3 /* stoneChicken.png in Resources */,
 				543298AA145B5BC300223C3D /* test_level_6.tmx in Resources */,
+				547BE767145E55AF00B11EB0 /* townCrow-hd.plist in Resources */,
+				547BE768145E55AF00B11EB0 /* townCrow-hd.png in Resources */,
+				547BE769145E55AF00B11EB0 /* townCrow.plist in Resources */,
+				547BE76A145E55AF00B11EB0 /* townCrow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2413,6 +2444,9 @@
 				54FC28581455F47E00FD8B54 /* Button.m in Sources */,
 				5411C22A14587AF5000C7D91 /* Projectile.m in Sources */,
 				54528C04145B28E4009437C3 /* HudButton.m in Sources */,
+				547BE76E145E563C00B11EB0 /* GameObjectFactory.m in Sources */,
+				547BE772145ED08B00B11EB0 /* ObstacleStatic.m in Sources */,
+				547BE775145ED3A300B11EB0 /* Obstacle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -218,6 +218,11 @@
     return [_sprite getCCSprite];
 }
 
+-(void)setActive:(bool)active
+{
+    _isActive = active;
+}
+
 -(void)update:(float)dt
 {
     //update projectile regardless if active
