@@ -132,15 +132,15 @@ static Camera *_sharedCamera = nil;
         
         if (distance > 2.0f) {
             if (_trackingTarget) {
-                _x += (magnitude * (dx/distance));                
+                _x += (magnitude * (dx/distance));
             }
             _y += rate * (magnitude * (dy/distance));
             
         } else {
             if (_trackingTarget) {
-                _x = position.x;                
+                _x = position.x + 0.5f;                
             }
-            _y = position.y;
+            _y = position.y + 0.5f;
             
         }
     }
