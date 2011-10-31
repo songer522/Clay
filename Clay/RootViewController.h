@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <AVFoundation/AVFoundation.h>
 
 @interface RootViewController : UIViewController {
-
+    AVAudioPlayer *volumeOverridePlayer; //without this the ringer controls appear instead of normal volume control (issue #59)
 }
+
+@property (nonatomic, retain) AVAudioPlayer *volumeOverridePlayer;
 
 @end

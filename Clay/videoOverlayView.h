@@ -28,13 +28,16 @@
 
 #ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 
 // VideoOverlayView is view that added on video view and cancels video on touch.
 @interface VideoOverlayView : UIView {
     
     BOOL _touch;
-
+    AVAudioPlayer *volumeOverridePlayer; //without this the ringer controls appear instead of normal volume control (issue #59)
 }
+
+@property (nonatomic, retain) AVAudioPlayer *volumeOverridePlayer;
 
 @end
 

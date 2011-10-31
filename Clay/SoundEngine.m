@@ -29,12 +29,14 @@ static SoundEngine *_shared = nil;
         // Initialization code here.
         
         _audioEngine = [SimpleAudioEngine sharedEngine];
-        _audioEngine.mute = false;
+        //_audioEngine.mute = false;
         
         _soundMap = [[NSDictionary alloc] initWithDictionary:[PListLoader loadPlistWithName:@"sounds"]];
         _musicMap = [[NSDictionary alloc] initWithDictionary:[PListLoader loadPlistWithName:@"music"]];
         
         _soundMode = SOUND_MODE_NORMAL;
+        
+        _session = [AVAudioSession sharedInstance];
     }
     
     return self;
@@ -126,6 +128,7 @@ static SoundEngine *_shared = nil;
 {
     [_audioEngine release];
     [_soundMap release];
+    [_session release];
     [_musicMap release];
     [super dealloc];
 }

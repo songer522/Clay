@@ -32,6 +32,7 @@
 #import "CCVideoPlayer.h"
 #import "CCVideoPlayerImpliOS.h"
 #import "MediaPlayer/MediaPlayer.h"
+#import "CDAudioManager.h"
 #import "videoOverlayView.h"
 #import "cocos2d.h"
 
@@ -114,9 +115,8 @@
 	else if ( [theMovie respondsToSelector:@selector(setMovieControlMode:)] )
 	{
 		
-		//[theMovie setMovieControlMode: MPMovieControlModeHidden]; XECUDEV: deprecated, addeed the next linetheMovie.controlStyle = MPMovieControlStyleDefault; 
+        //XECUDEV: replaced deprecated code
         theMovie.controlStyle = MPMovieControlModeHidden;
-        
 	}
 //#endif
 //#endif
@@ -169,8 +169,12 @@
     
 	[_videoOverlayView removeFromSuperview];
     [_videoOverlayView release];
-	
-    [ _delegate moviePlaybackFinished]; 
+    
+    
+    //issue #59
+	[[CDAudioManager sharedManager] audioSessionResumed];
+    
+    [ _delegate moviePlaybackFinished];
 }
 
 
@@ -205,7 +209,9 @@
 - (void) cancelPlaying
 {
     if (_theMovie)
+    {
         [_theMovie stop];
+    }
     
     if ( _theMovie )
     {
