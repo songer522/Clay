@@ -10,5 +10,13 @@
 #import "Obstacle.h"
 
 @interface ObstacleChicken : Obstacle
+{
+    bool _madeSound;
+    
+    float _angle;
+    float _angularVelocity;
+}
+
+-(void)kickHen;
 
 @end
