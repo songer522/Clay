@@ -10,14 +10,14 @@
 #import "Obstacle.h"
 
 typedef enum {
-    BACKGROUND_OBJECT_STATIC,
-    BACKGROUND_OBJECT_ANIMATED,
-    BACKGROUND_OBJECT_REACTOR,
-    OBSTACLE_GENERAL_STATIC,
-    OBSTACLE_GENERAL_CHARGER,
-    OBSTACLE_GENERAL_FLYER,
-    OBSTACLE_BARN_CHICKEN,
-    OBSTACLE_ZOMBIES_ZOMBIE
+    BACKGROUND_OBJECT_STATIC = 0,
+    BACKGROUND_OBJECT_ANIMATED = 1,
+    BACKGROUND_OBJECT_REACTOR = 2,
+    OBSTACLE_GENERAL_STATIC = 3,
+    OBSTACLE_GENERAL_CHARGER = 4,
+    OBSTACLE_GENERAL_FLYER = 5,
+    OBSTACLE_BARN_CHICKEN = 6,
+    OBSTACLE_ZOMBIES_ZOMBIE = 7
 }GameObjectType;
 
 @interface GameObjectFactory : NSObject
@@ -25,6 +25,8 @@ typedef enum {
     
 }
 
--(id<ObstacleProtocol>)build:(GameObjectType)type atPoint:(CGPoint)point;
++(id<ObstacleProtocol>)build:(GameObjectType)type atPoint:(CGPoint)point;
+
++(id<ObstacleProtocol>)buildFromString:(NSString*)type atPoint:(CGPoint)point;
 
 @end

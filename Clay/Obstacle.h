@@ -47,5 +47,7 @@
 }
 
 
+-(void)updateMovement:(float)dt;
+
 
 @end
