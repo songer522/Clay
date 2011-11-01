@@ -164,16 +164,7 @@
     _chooseLevelScene = [ChooseLevelScreen scene];
     
     
-    
-    /*
-    int x;
-    [NSThread detachNewThreadSelector:@selector(test:) toTarget:[LevelThread class] withObject:nil];     
-    
-    for (x=0; x<250; ++x) {
-        printf("Main thread says x is %i\n",x);
-        usleep(1);
-    }*/
-    
+    [[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
     
     [[CCDirector sharedDirector] setProjection:CCDirectorProjection2D];
 }

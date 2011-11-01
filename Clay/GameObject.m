@@ -248,8 +248,6 @@
     
     [self updateLights:dt];
     
-    [self updateSuccessfullyCleared:dt];
-    
 }
 
 -(void)updateFadeOut:(float)dt
@@ -328,15 +326,6 @@
         }
     }
 
-}
-
--(void) updateSuccessfullyCleared:(float)dt
-{
-    GameLayer *gameLayer = (GameLayer*)[[LayerManager sharedLayers] currentLayer];
-    if(!_madeSound && _x < [gameLayer.player getPosition].x && !_collided && !gameLayer.player.isDead && !gameLayer.player.isTripping) {
-        [[SoundEngine shared] playSound:@"clearedObstacle"];
-        _madeSound = true;
-    }
 }
 
 -(void) updateFlags

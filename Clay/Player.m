@@ -334,6 +334,8 @@
     
     [self updateJump:dt];
     
+    [self updateInvulnerable:dt];
+    
     if (_adjustX != 0.0f) {
         self.x += _adjustX;
         _adjustX = 0.0f;
@@ -439,11 +441,14 @@
     _totalTime += dt;
     
     //make character blink to show that they're invulnerable
-    float blink = sinf(5.0f * _totalTime);
-    if (blink > 0.7f) {
+    float blink = sinf(8.0f * _totalTime);
+    if (blink < 0.95f) {
         [_sprite setAlpha:1.0f];
+        [[_sprite getCCSprite] setColor:ccc3(255, 255, 255)];
+
     } else {
-        [_sprite setAlpha:0.4f];
+        [_sprite setAlpha:1.0f];
+        [[_sprite getCCSprite] setColor:ccc3(200, 200, 0)];
     }
     
     
@@ -453,7 +458,8 @@
         
         if (_timeLeftBeforeVulnerable<=0.0f) {
             _isInvincible = false;
-            [_sprite setAlpha:1.0f];
+            [[_sprite getCCSprite] setColor:ccc3(255, 255, 255)];
+            //[_sprite setAlpha:1.0f];
         }
     }
 }

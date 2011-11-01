@@ -135,7 +135,5 @@ typedef enum {
 -(void) updateFadeOut:(float)dt;
 -(void) updateFlags;
 -(void) updateLights:(float)dt;
--(void) updateSuccessfullyCleared:(float)dt;
-
 
 @end
