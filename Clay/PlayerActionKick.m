@@ -36,7 +36,7 @@
     if (!_inAction && _canTrigger) {
         _duration = kPlayerActionDodgeFullDuration;
         _madeFootProjectile = false;
-        _cooldown = 1.0f;
+        _cooldown = 0.5f;
         [_parent endTurbo];
         [_kick reset];
         [[AnimationController sharedController] replaceSprite:[_parent getSprite] withAnimationNamed:@"kickingAnim"];

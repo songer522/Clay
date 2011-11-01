@@ -343,7 +343,6 @@
                 collision = [self testCollisionWithGameObject:obstacle Source:source];
                 if (collision) {
                     [gameLayer.player startCollision:[obstacle startCollision] Source:obstacle];
-                    break;
                 }
             }
 
@@ -425,7 +424,7 @@
     float sourceLeft = position.x - (boundingBox.origin.x * scale);
     float sourceRight = sourceLeft + (boundingBox.size.width * scale);
     float sourceBottom = position.y - (boundingBox.origin.y * scale);
-    float sourceTop = targetBottom + (boundingBox.size.height * scale);
+    float sourceTop = sourceBottom + (boundingBox.size.height * scale);
     
     
     //assume that a collision happened unless the sides of the

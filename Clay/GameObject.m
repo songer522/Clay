@@ -413,6 +413,7 @@
     } else if([behavior compare:@"anim"] == NSOrderedSame) {
         _collideBehavior = COLLISION_BEHAVIOR_PLAY_ANIMATION;
     } else if([behavior compare:@"cowCollapse"] == NSOrderedSame) {
+        _currentBehavior = COLLISION_BEHAVIOR_STATIC;
         _collideBehavior = COLLISION_BEHAVIOR_COW_COLLAPSE;
         _aggressiveCanHit = true;
     } else if([behavior isEqualToString:@"dancinManCollapse"]) {
