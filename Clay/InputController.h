@@ -36,7 +36,6 @@ typedef enum {
 -(void)interpretAndReactToInputEvent:(InputEvent*)event;
 
 -(void)reactMediumHold;
--(void)reactLongHold;
 
 
 @end

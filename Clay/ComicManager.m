@@ -118,6 +118,7 @@ static ComicManager *_shared = nil;
                 } else {
                     [_videoPlayer playMovie:_videoFileName];
                     [[CCDirector sharedDirector] stopAnimation];
+                    [self switchToPhase:COMIC_PHASE_BARS_OUT];
                 }
                 break;
             case COMIC_PHASE_BARS_OUT:

@@ -28,7 +28,7 @@
     self = [super init];
     if (self) {
         // Initialization code here.
-        sprite = [Sprite spriteWithFile:@"battery.png"];
+        sprite = [Sprite spriteWithFile:@"blank.png"];
         [self setFrame:1];
         [sprite setPositionAtX:462 Y:322];
         _wasLowBattery = false;

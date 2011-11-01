@@ -18,6 +18,8 @@
 
 @implementation RootViewController
 
+@synthesize volumeOverridePlayer;
+
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
  - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -135,6 +137,14 @@
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
+}
+
+-(void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    volumeOverridePlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL URLWithString:[[NSBundle mainBundle] pathForResource:@"hurt" ofType:@"caf"]] error:nil];
+    [volumeOverridePlayer prepareToPlay];
 }
 
 - (void)viewDidUnload {

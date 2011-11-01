@@ -34,6 +34,8 @@
 
 @implementation VideoOverlayView
 
+@synthesize volumeOverridePlayer;
+
 
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
@@ -63,6 +65,12 @@
         [CCVideoPlayer userCancelPlaying];
     }
     _touch = NO;
+}
+
+-(void)viewDidLoad
+{
+    volumeOverridePlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL URLWithString:[[NSBundle mainBundle] pathForResource:@"hurt" ofType:@"caf"]] error:nil];
+    [volumeOverridePlayer prepareToPlay];
 }
 
 

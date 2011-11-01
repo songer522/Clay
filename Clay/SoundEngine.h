@@ -16,6 +16,8 @@ typedef enum {
     SOUND_MODE_NORMAL
 }SoundMode;
 
+@class AVAudioSession;
+
 @interface SoundEngine : NSObject
 {
     SimpleAudioEngine *_audioEngine;
@@ -24,6 +26,8 @@ typedef enum {
     
     float _volume;
     SoundMode _soundMode;
+    
+    AVAudioSession *_session;
 }
 +(SoundEngine*)shared;
 

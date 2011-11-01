@@ -173,6 +173,9 @@
         printf("Main thread says x is %i\n",x);
         usleep(1);
     }*/
+    
+    
+    [[CCDirector sharedDirector] setProjection:CCDirectorProjection2D];
 }
 
 

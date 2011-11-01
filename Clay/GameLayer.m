@@ -72,12 +72,6 @@
         
         [self scheduleUpdate];
         
-        _dustTest = [[ParticleSystem alloc] init];
-        
-        
-        //[ParticleSystem testLimits];
-        
-        
         [self initForLevel];
         
         self.isTouchEnabled = YES;
@@ -249,7 +243,6 @@
     [_gameController release];
     [_inputController release];
     [_savePoint release];
-    [_dustTest release];
     [_hud release];
 	[super dealloc];
 }
