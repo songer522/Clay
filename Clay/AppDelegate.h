@@ -5,6 +5,8 @@
 //  Created by Brian Cable on 8/23/11.
 //  Copyright Xecudev, LLC 2011. All rights reserved.
 //
+//  Main entry point for the app. Where all the layers and scenes are initialized.
+
 
 #import <UIKit/UIKit.h>
 

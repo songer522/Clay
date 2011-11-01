@@ -5,6 +5,7 @@
 //  Created by Brian Cable on 10/12/11.
 //  Copyright 2011 Xecudev, LLC. All rights reserved.
 //
+//  Shows up at the end of the game. Not intended to work exactly like this in the final game.
 
 #import "CCLayer.h"
 #import "cocos2d.h"

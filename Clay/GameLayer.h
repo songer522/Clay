@@ -5,7 +5,7 @@
 //  Created by Brian Cable on 8/23/11.
 //  Copyright Xecudev, LLC 2011. All rights reserved.
 //
-
+//  Primary layer for the game. Where most of the real action gets called (player, obstacles, movement, collision, etc)
 
 // When you import this file, you import all the cocos2d classes
 #import "cocos2d.h"

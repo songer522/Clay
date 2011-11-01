@@ -47,7 +47,7 @@
         _targetPosition = 35.0f;
         _timeToWait = 1.0f;
     } else {
-        _position = 240.0f; //used to be 35.0f
+        _position = 240.0f;
         _targetPosition = 35.0f;
         _timeToWait = 0.00f;
     }

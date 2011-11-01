@@ -5,6 +5,10 @@
 //  Created by Brian Cable on 9/26/11.
 //  Copyright 2011 Xecudev, LLC. All rights reserved.
 //
+//  The layer where the black bars drop down and come back up before
+//  the videos are played (which are the comics). Was originally going to be displayed
+//  above the comics as well, hence the name.
+//
 
 #import <Foundation/Foundation.h>
 

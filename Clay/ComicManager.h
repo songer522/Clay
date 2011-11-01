@@ -5,6 +5,8 @@
 //  Created by Brian Cable on 9/26/11.
 //  Copyright 2011 Xecudev, LLC. All rights reserved.
 //
+//  Manages what needs to be done in order for the scene transitions between the end of one level, the displaying of the video (comic), and the transition back to gameplay for the next level.
+
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
