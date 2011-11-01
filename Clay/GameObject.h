@@ -52,7 +52,7 @@ typedef enum {
     bool _isInvincible;
     bool _fadeout;
     bool _rotateLights;
-    
+    bool _aggressiveCanHit;
     int _direction;
     
     CGRect _range;       //range in which this object can move on screen. absolute positions.
@@ -105,6 +105,9 @@ typedef enum {
 -(void) initialize:(NSString*)type;
 
 #pragma mark - getters and setters
+
+
+-(bool)canAggressiveHit;
 
 -(Collision*) getCollision;
 -(CGPoint) getPosition;

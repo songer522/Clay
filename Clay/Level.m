@@ -374,7 +374,7 @@
     
     for (MapObject *mapObject in _obstacleMapObjects) {
         GameObject *obstacle = mapObject.object;
-        if(![obstacle hasBeenHit] && ![obstacle getAggressive]) {
+        if(![obstacle hasBeenHit] && [obstacle canAggressiveHit]) {
             collision = [self testCollisionWithGameObject:obstacle Source:source];
             if (collision) {
                 if ([source getCollisionBehavior] == COLLISION_BEHAVIOR_HEN_KICKED) {

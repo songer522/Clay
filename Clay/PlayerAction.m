@@ -90,6 +90,7 @@
     _isActive = false;
 }
 
+
 -(void)endAction
 {
     _inAction = false;
@@ -97,6 +98,11 @@
     if (_hasKilledEnemy) {
         [_parent changeHealth:1];
     }
+}
+
+-(NSMutableArray*)getProjectiles
+{
+    return nil;
 }
 
 -(void)setParent:(Player*)player
@@ -117,6 +123,11 @@
 -(bool)shouldTriggerPlayerHurtCollision
 {
     return true;
+}
+
+-(bool)canAggressiveHit
+{
+    return false;
 }
 
 -(void)dealloc

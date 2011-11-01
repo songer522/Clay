@@ -58,7 +58,8 @@
         _isInMidAir = false;
         _waitToGetUp = 0.0f;
         _onLedge = false;
-        
+        _timeLeftBeforeVulnerable = 2.0f;
+        _isInvincible = false;
         _thirdAction = nil;
         
         _speed = [[RunningSpeed alloc] initWithSettings:settings];
@@ -192,9 +193,6 @@
                     if ([_thirdAction shouldTriggerPlayerHurtCollision]) {
                         [self private_StartPlayerCollision];                    
                     }
-                } else {
-                    GameObject *object = (GameObject*)source;
-                    [object special_kickHen];
                 }            
             }
         } else if (effect == PLAYER_EFFECT_COLLIDE) {
@@ -438,6 +436,8 @@
 
 -(void)updateInvulnerable:(float)dt
 {
+    return; //temporarily don't want to do;
+    
     _totalTime += dt;
     
     //make character blink to show that they're invulnerable
@@ -459,7 +459,6 @@
         if (_timeLeftBeforeVulnerable<=0.0f) {
             _isInvincible = false;
             [[_sprite getCCSprite] setColor:ccc3(255, 255, 255)];
-            //[_sprite setAlpha:1.0f];
         }
     }
 }

@@ -23,6 +23,8 @@
 -(void)setParent:(Player*)player;
 -(void)setKilledEnemy:(bool)killedEnemy;
 -(Player*)getParent;
+-(NSMutableArray*)getProjectiles;
+-(bool)canAggressiveHit;
 
 @end
 
