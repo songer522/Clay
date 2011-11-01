@@ -72,10 +72,6 @@
         
         [self scheduleUpdate];
         
-        
-        //[ParticleSystem testLimits];
-        
-        
         [self initForLevel];
         
         self.isTouchEnabled = YES;

@@ -95,121 +95,6 @@
     }
 }
 
--(void)update:(float)dt Level:(Level *)level
-{
-    [super update:dt];
-    
-    [self updateJump:dt];
-    
-    if (_adjustX != 0.0f) {
-        self.x += _adjustX;
-        _adjustX = 0.0f;
-        [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"runningAnim" FrameNumber:8];
-
-    }
-    
-    CGPoint newPosition = [level checkCollisionForObject:self];    
-
-    [self setPositionAtX:newPosition.x Y:newPosition.y];    //for some reason the y position jitters without
-                                                            //having this twice.
-    
-    //want it to follow slower on ledge
-    if ([[self getCollision] currentState] == COLLISION_STATE_LEDGE) {
-        _onLedge = true;
-        [[Camera sharedCamera] moveTowardsTarget:dt PlayerOnGround:false];
-    } else {
-        _onLedge = false;
-        [[Camera sharedCamera] moveTowardsTarget:dt PlayerOnGround:!_isInMidAir];
-    }
-    
-    [self setPositionAtX:newPosition.x Y:newPosition.y];
-    [_battery update:dt];
-    
-    if (_isTripping) {
-        _waitToGetUp -= dt;
-        if (_waitToGetUp <= 0.0f) {
-            _isTripping = false;
-            [self endTurbo];
-            [_speed start];
-            [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"runningAnim" FrameNumber:8];
-        }
-    }
-    
-    if(_speed.isStopped && !_isTripping) {
-        _waitToGetUp -= dt;
-        if (_waitToGetUp <= 0.0f) {
-            [_speed start];
-        }
-    }
-    
-    [_thirdAction update:dt];
-
-}
-
--(void)updateSlow:(float)dt
-{
-    if (_speed.isSlowedDown && !_isTripping) {
-        _waitToPlaySlowSound -= dt;
-        if (_waitToPlaySlowSound<=0.0f) {
-            [[SoundEngine shared] playSound:@"steppedInSand"];
-            _waitToPlaySlowSound = 0.4f;
-        }
-    }
-}
-
--(void)updateJump:(float)dt
-{
-
-    CollisionState state = [[self getCollision] currentState];
-
-    _isInMidAir = false;
-    
-    if (state == COLLISION_STATE_MIDAIR) {
-        _isInMidAir = true;
-    } else if (state == COLLISION_STATE_GROUNDED || state == COLLISION_STATE_LEDGE) {
-        
-        if (_isJumping && !_isTripping) {                
-            _isJumping = false;
-            
-            if (_speed.inTurbo) {
-                [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"turboAnim" FrameNumber:8];
-            } else {
-                [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"runningAnim" FrameNumber:8];
-            }
-            
-            //don't want high jump to execute if we're on the ledge, slows gameplay feel down too much
-            //(see github issue #46)
-            if (_isHighJump) {
-                _isHighJump = false;
-                if (state != COLLISION_STATE_LEDGE) {
-                    [_speed landFromHighJump];                    
-                }
-            }
-            
-            if (_speed.velocity < 0.0f) {
-                _speed.velocity = 4.0f;                
-            }
-            
-            _hasDoubleJumped = false;
-            
-            [[SoundEngine shared] playSound:@"jumpLand"];
-        } else if (_isJumping && _isTripping) {
-            _waitToGetUp = 1.5f;
-            _isJumping = false;
-            [[SoundEngine shared] playSound:@"timCollision"];
-            [_speed stop];
-        } else if(_waitToGetUp <=0.0f && !_isInMidAir && !_speed.inTurbo && !_isTripping && ![_thirdAction inAction] && [[_sprite getAnimation].name compare:@"runningAnim"]!=NSOrderedSame) {
-            [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"runningAnim"];
-        }
-        
-        _vy = 0;
-        _ay = 0;
-                
-    } else if(state == COLLISION_STATE_BUMPED_WALL) {
-        _vx = 0;
-        _vy = 0;
-    }
-}
 
 -(void)startJump:(RunnerJump)type
 {
@@ -365,6 +250,7 @@
     _isInMidAir = false;
     _hasDoubleJumped = false;
     _waitToGetUp = 0.0f;
+    _timeLeftBeforeVulnerable = 2.0f;
     _isDead = false;
     self.hasGravity = true;
     _firstFrameJumping = false;
@@ -441,6 +327,150 @@
 {
     return _thirdAction;
 }
+
+-(void)update:(float)dt Level:(Level *)level
+{
+    [super update:dt];
+    
+    [self updateJump:dt];
+    
+    if (_adjustX != 0.0f) {
+        self.x += _adjustX;
+        _adjustX = 0.0f;
+        [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"runningAnim" FrameNumber:8];
+        
+    }
+    
+    CGPoint newPosition = [level checkCollisionForObject:self];    
+    
+    [self setPositionAtX:newPosition.x Y:newPosition.y];    //for some reason the y position jitters without
+    //having this twice.
+    
+    //want it to follow slower on ledge
+    if ([[self getCollision] currentState] == COLLISION_STATE_LEDGE) {
+        _onLedge = true;
+        [[Camera sharedCamera] moveTowardsTarget:dt PlayerOnGround:false];
+    } else {
+        _onLedge = false;
+        [[Camera sharedCamera] moveTowardsTarget:dt PlayerOnGround:!_isInMidAir];
+    }
+    
+    [self setPositionAtX:newPosition.x Y:newPosition.y];
+    [_battery update:dt];
+    
+    if (_isTripping) {
+        _waitToGetUp -= dt;
+        if (_waitToGetUp <= 0.0f) {
+            _isTripping = false;
+            [self endTurbo];
+            [_speed start];
+            [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"runningAnim" FrameNumber:8];
+        }
+    }
+    
+    if(_speed.isStopped && !_isTripping) {
+        _waitToGetUp -= dt;
+        if (_waitToGetUp <= 0.0f) {
+            [_speed start];
+        }
+    }
+    
+    [_thirdAction update:dt];
+    
+}
+
+-(void)updateJump:(float)dt
+{
+    
+    CollisionState state = [[self getCollision] currentState];
+    
+    _isInMidAir = false;
+    
+    if (state == COLLISION_STATE_MIDAIR) {
+        _isInMidAir = true;
+    } else if (state == COLLISION_STATE_GROUNDED || state == COLLISION_STATE_LEDGE) {
+        
+        if (_isJumping && !_isTripping) {                
+            _isJumping = false;
+            
+            if (_speed.inTurbo) {
+                [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"turboAnim" FrameNumber:8];
+            } else {
+                [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"runningAnim" FrameNumber:8];
+            }
+            
+            //don't want high jump to execute if we're on the ledge, slows gameplay feel down too much
+            //(see github issue #46)
+            if (_isHighJump) {
+                _isHighJump = false;
+                if (state != COLLISION_STATE_LEDGE) {
+                    [_speed landFromHighJump];                    
+                }
+            }
+            
+            if (_speed.velocity < 0.0f) {
+                _speed.velocity = 4.0f;                
+            }
+            
+            _hasDoubleJumped = false;
+            
+            [[SoundEngine shared] playSound:@"jumpLand"];
+        } else if (_isJumping && _isTripping) {
+            _waitToGetUp = 1.5f;
+            _isJumping = false;
+            [[SoundEngine shared] playSound:@"timCollision"];
+            [_speed stop];
+        } else if(_waitToGetUp <=0.0f && !_isInMidAir && !_speed.inTurbo && !_isTripping && ![_thirdAction inAction] && [[_sprite getAnimation].name compare:@"runningAnim"]!=NSOrderedSame) {
+            [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"runningAnim"];
+        }
+        
+        _vy = 0;
+        _ay = 0;
+        
+    } else if(state == COLLISION_STATE_BUMPED_WALL) {
+        _vx = 0;
+        _vy = 0;
+    }
+}
+
+
+-(void)updateInvulnerable:(float)dt
+{
+    _totalTime += dt;
+    
+    //make character blink to show that they're invulnerable
+    float blink = sinf(5.0f * _totalTime);
+    if (blink > 0.7f) {
+        [_sprite setAlpha:1.0f];
+    } else {
+        [_sprite setAlpha:0.4f];
+    }
+    
+    
+    if (_timeLeftBeforeVulnerable >=0.0f) {
+        _timeLeftBeforeVulnerable -= dt;
+        _isInvincible = true;
+        
+        if (_timeLeftBeforeVulnerable<=0.0f) {
+            _isInvincible = false;
+            [_sprite setAlpha:1.0f];
+        }
+    }
+}
+
+
+
+-(void)updateSlow:(float)dt
+{
+    if (_speed.isSlowedDown && !_isTripping) {
+        _waitToPlaySlowSound -= dt;
+        if (_waitToPlaySlowSound<=0.0f) {
+            [[SoundEngine shared] playSound:@"steppedInSand"];
+            _waitToPlaySlowSound = 0.4f;
+        }
+    }
+}
+
 
 -(void)dealloc
 {

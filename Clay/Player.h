@@ -27,6 +27,8 @@ typedef enum {
 
 @interface Player : Runner
 {
+    float _totalTime; //used for equation-based movement
+    
     bool _isJumping;
     bool _isTripping;
     bool _firstFrameJumping;
@@ -98,6 +100,7 @@ typedef enum {
 -(void)pushAfterAnimation:(float)xAmount;
 
 -(void)updateSlow:(float)dt;
+-(void)updateInvulnerable:(float)dt;
 
 -(void)setThirdAction:(NSString*)action;
 -(id<PlayerActionProtocol>)getThirdAction;
