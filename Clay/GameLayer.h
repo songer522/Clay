@@ -36,8 +36,6 @@
     
     SavePoint *_savePoint;
     
-    ParticleSystem *_dustTest;
-    
     HudLayer *_hud;
     
     LaserShow *_laserShow;

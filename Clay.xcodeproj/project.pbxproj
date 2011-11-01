@@ -337,6 +337,8 @@
 		54C8633D143E164F007341B3 /* trailer.caf in Resources */ = {isa = PBXBuildFile; fileRef = 54C8633B143E164F007341B3 /* trailer.caf */; };
 		54CA0B19140D65DB0038B3E1 /* Runner.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CA0B18140D65DB0038B3E1 /* Runner.m */; };
 		54CA0B20140D698B0038B3E1 /* RunningSpeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CA0B1F140D698B0038B3E1 /* RunningSpeed.m */; };
+		54CB72531460506400311904 /* doublejump.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54CB72511460506400311904 /* doublejump.wav */; };
+		54CB72541460506400311904 /* supersonic.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54CB72521460506400311904 /* supersonic.wav */; };
 		54CC6D4A1448C3DE00882E78 /* Comic_Part02.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 54CC6D481448C3DE00882E78 /* Comic_Part02.mp4 */; };
 		54CC6D4B1448C3DE00882E78 /* Comic_Part03.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 54CC6D491448C3DE00882E78 /* Comic_Part03.mp4 */; };
 		54CD29DD143BA21400F805E0 /* UI_Button_Jumping.png in Resources */ = {isa = PBXBuildFile; fileRef = 54CD29DA143BA21400F805E0 /* UI_Button_Jumping.png */; };
@@ -366,7 +368,6 @@
 		54E0CE81141FC0A6005BFD5C /* hurdle.png in Resources */ = {isa = PBXBuildFile; fileRef = 54E0CE80141FC0A6005BFD5C /* hurdle.png */; };
 		54E11200144CBE1E00BBF32B /* blank.png in Resources */ = {isa = PBXBuildFile; fileRef = 54E111FF144CBE1E00BBF32B /* blank.png */; };
 		54E11204144CC04900BBF32B /* MapLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E11203144CC04900BBF32B /* MapLayer.m */; };
-		54E274B2142BE0D50030EE0B /* ParticleSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E274B1142BE0D50030EE0B /* ParticleSystem.m */; };
 		54E378811444A5830011D8F3 /* PlayerActionKick.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E378801444A5830011D8F3 /* PlayerActionKick.m */; };
 		54E378841444A6710011D8F3 /* PlayerActionFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E378831444A6710011D8F3 /* PlayerActionFactory.m */; };
 		54E378871444A77D0011D8F3 /* PlayerActionWoo.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E378861444A77D0011D8F3 /* PlayerActionWoo.m */; };
@@ -904,6 +905,8 @@
 		54CA0B18140D65DB0038B3E1 /* Runner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Runner.m; sourceTree = "<group>"; };
 		54CA0B1E140D698B0038B3E1 /* RunningSpeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RunningSpeed.h; sourceTree = "<group>"; };
 		54CA0B1F140D698B0038B3E1 /* RunningSpeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RunningSpeed.m; sourceTree = "<group>"; };
+		54CB72511460506400311904 /* doublejump.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = doublejump.wav; path = Resources/sounds/doublejump.wav; sourceTree = "<group>"; };
+		54CB72521460506400311904 /* supersonic.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = supersonic.wav; path = Resources/sounds/supersonic.wav; sourceTree = "<group>"; };
 		54CC6D481448C3DE00882E78 /* Comic_Part02.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = Comic_Part02.mp4; path = Resources/videos/Comic_Part02.mp4; sourceTree = "<group>"; };
 		54CC6D491448C3DE00882E78 /* Comic_Part03.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = Comic_Part03.mp4; path = Resources/videos/Comic_Part03.mp4; sourceTree = "<group>"; };
 		54CD29DA143BA21400F805E0 /* UI_Button_Jumping.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UI_Button_Jumping.png; sourceTree = "<group>"; };
@@ -935,8 +938,6 @@
 		54E111FF144CBE1E00BBF32B /* blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blank.png; sourceTree = "<group>"; };
 		54E11202144CC04900BBF32B /* MapLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapLayer.h; sourceTree = "<group>"; };
 		54E11203144CC04900BBF32B /* MapLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapLayer.m; sourceTree = "<group>"; };
-		54E274B0142BE0D50030EE0B /* ParticleSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticleSystem.h; sourceTree = "<group>"; };
-		54E274B1142BE0D50030EE0B /* ParticleSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticleSystem.m; sourceTree = "<group>"; };
 		54E3787F1444A5830011D8F3 /* PlayerActionKick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerActionKick.h; sourceTree = "<group>"; };
 		54E378801444A5830011D8F3 /* PlayerActionKick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerActionKick.m; sourceTree = "<group>"; };
 		54E378821444A6710011D8F3 /* PlayerActionFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerActionFactory.h; sourceTree = "<group>"; };
@@ -1637,8 +1638,6 @@
 				547330A41440AEE10072796C /* NewParticle.m */,
 				545CBC28142D084D00795FC9 /* Particle.h */,
 				545CBC29142D084D00795FC9 /* Particle.m */,
-				54E274B0142BE0D50030EE0B /* ParticleSystem.h */,
-				54E274B1142BE0D50030EE0B /* ParticleSystem.m */,
 				572DB822142004D500DDC493 /* PListLoader.h */,
 				572DB823142004D500DDC493 /* PListLoader.m */,
 				545CBC32142D260B00795FC9 /* SoundEngine.h */,
@@ -1697,6 +1696,8 @@
 		545CBC2F142D25AB00795FC9 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				54CB72511460506400311904 /* doublejump.wav */,
+				54CB72521460506400311904 /* supersonic.wav */,
 				54528C06145B466B009437C3 /* clearedObstacle.wav */,
 				54D8078B1459D11B0090F0DA /* shotgun_reload.caf */,
 				5411C23014588412000C7D91 /* shotgun.caf */,
@@ -2275,6 +2276,8 @@
 				547BE769145E55AF00B11EB0 /* townCrow.plist in Resources */,
 				547BE76A145E55AF00B11EB0 /* townCrow.png in Resources */,
 				546EEBCA145F632A008F1EAF /* tileset_level_1_extra_pixels.png in Resources */,
+				54CB72531460506400311904 /* doublejump.wav in Resources */,
+				54CB72541460506400311904 /* supersonic.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2409,7 +2412,6 @@
 				5421A2F8142A5C7E0078D861 /* Battery.m in Sources */,
 				5421A2FC142A63FF0078D861 /* CCXAnimate.m in Sources */,
 				54413573142B83460031C09E /* Trigger.m in Sources */,
-				54E274B2142BE0D50030EE0B /* ParticleSystem.m in Sources */,
 				545CBC2A142D084D00795FC9 /* Particle.m in Sources */,
 				545CBC34142D260B00795FC9 /* SoundEngine.m in Sources */,
 				54FBA2331430CA5D0010A91A /* VideoPlayer.m in Sources */,

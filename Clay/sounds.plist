@@ -5,7 +5,7 @@
 	<key>jumpLand</key>
 	<string>Footstep.wav</string>
 	<key>turboStart</key>
-	<string>Supercharge.wav</string>
+	<string>supersonic.wav</string>
 	<key>dead</key>
 	<string>UhOh.wav</string>
 	<key>collision</key>
@@ -42,5 +42,7 @@
 	<string>shotgun_reload.caf</string>
 	<key>clearedObstacle</key>
 	<string>clearedObstacle.wav</string>
+	<key>doubleJump</key>
+	<string>doublejump.wav</string>
 </dict>
 </plist>

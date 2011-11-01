@@ -59,7 +59,9 @@
 #pragma mark - public methods
 -(void)startCollision;
 -(void)startTurbo;
--(void)startJump;
+
+-(void)startJump; //gives a slight boost to velocity in case they're not moving too fast, especially if they're slowed down by sand pits
+
 -(void)slowDown;
 -(void)endTurbo;
 -(void)startKick;

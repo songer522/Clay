@@ -15,7 +15,6 @@
 #import "GameObject.h"
 #import "GameObjectController.h"
 #import "PListLoader.h"
-#import "ParticleSystem.h"
 #import "PlayerActionFactory.h"
 #import "Camera.h"
 #import "Battery.h"
@@ -31,6 +30,7 @@
 @synthesize isJumping = _isJumping;
 @synthesize isDead = _isDead;
 @synthesize isTripping = _isTripping;
+@synthesize hasDoubleJumped = _hasDoubleJumped;
 @synthesize battery = _battery;
 
 +(id) instance
@@ -66,16 +66,13 @@
         [_speed start];
         [self changeToRunnerState:RUNNER_STATE_RUNNING];
         
-        hitPoints = 4;
+        _hitPoints = 4;
         
         _isHighJump = false;
         
         _waitToPlaySlowSound = 0.0f;
         
         _adjustX = 0.0f;
-        
-        _particleSystem = [ParticleSystem instance];
-        
         
     }
     
@@ -84,15 +81,15 @@
 
 -(void)changeHealth:(int)amount
 {
-    if (amount > 0 && hitPoints<4) {
-        hitPoints+=1;
-        [_battery setFrame:(5-hitPoints)];
-    } else if(amount < 0 && hitPoints >= 0) {
-        hitPoints-=1;
-        [_battery setFrame:(5-hitPoints)];
+    if (amount > 0 && _hitPoints<4) {
+        _hitPoints+=1;
+        [_battery setFrame:(5-_hitPoints)];
+    } else if(amount < 0 && _hitPoints >= 0) {
+        _hitPoints-=1;
+        [_battery setFrame:(5-_hitPoints)];
     }
     
-    if (hitPoints <=0) {
+    if (_hitPoints <=0) {
         _isDead = true;
         [[SoundEngine shared] playSound:@"dead"];
     }
@@ -193,6 +190,8 @@
                 _speed.velocity = 4.0f;                
             }
             
+            _hasDoubleJumped = false;
+            
             [[SoundEngine shared] playSound:@"jumpLand"];
         } else if (_isJumping && _isTripping) {
             _waitToGetUp = 1.5f;
@@ -203,7 +202,6 @@
             [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"runningAnim"];
         }
         
-        _jumpAcceleration = 0;
         _vy = 0;
         _ay = 0;
                 
@@ -216,14 +214,13 @@
 -(void)startJump:(RunnerJump)type
 {
     //guard
+    //if ay is too high, it 
     if (_isTripping || _isDead || [_thirdAction inAction]) { return; }
-    
     self.hasGravity = false;
     _firstFrameJumping = true;
     _isHighJump = false;
-    _vy = -150.0f;
+    _vy = -115.0f;
     _y += 2.0f;
-    _jumpAcceleration = 0;
     _isJumping = true;
     [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"jumpingAnim"];
     [[self getCollision] processNewCollisionState:COLLISION_STATE_MIDAIR];
@@ -231,18 +228,30 @@
     [[SoundEngine shared] playSound:@"jumpStart"];
     
     [_speed startJump];
+}
+
+-(void)startDoubleJump
+{
+    if (_isTripping || _isDead || [_thirdAction inAction] || [_sprite getPosition].y <= 62) { return; }
+    self.hasGravity = true;
     
+    _vy = -250.0f;
+    _ay = 0.0f;
+    _isJumping = true;
+    
+    [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"jumpingAnim"];
+    [[SoundEngine shared] playSound:@"doubleJump"];
+    
+    _hasDoubleJumped = true;
+    _isHighJump = true;
+    
+    [_speed startJump];
 }
 
 -(void)boostJump:(RunnerJump)type
 {
     if (_isJumping) {
-        _jumpHeight = type;
-        
-        if(type == JUMP_HIGH) {
-            [self endJump];
-            _isHighJump = true;
-        }        
+        [self endJump];
     }
 }
 
@@ -262,12 +271,12 @@
     //guard
     if (_isTripping || _isDead || [_thirdAction inAction] || _isInMidAir || _waitToGetUp > 0.f) { return; }
     
-    if (hitPoints > 1) {
+    if (_hitPoints > 1) {
         [_speed startTurbo];
         [[SoundEngine shared] playSound:@"turboStart"];
         [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"turboAnim"];
-        hitPoints -=1;
-        [_battery setFrame:(5 - hitPoints)];        
+        _hitPoints -=1;
+        [_battery setFrame:(5 - _hitPoints)];        
     }
 
 }
@@ -347,13 +356,14 @@
 
 -(void)reset
 {
-    hitPoints = 4;
+    _hitPoints = 4;
     [_battery reset];
     [_speed reset];
     [_speed start];
     _isJumping = false;
     _isTripping = false;
     _isInMidAir = false;
+    _hasDoubleJumped = false;
     _waitToGetUp = 0.0f;
     _isDead = false;
     self.hasGravity = true;
@@ -436,7 +446,6 @@
 {
     [_speed release];
     [_battery release];
-    [_particleSystem release];
         
     [super dealloc];
 }

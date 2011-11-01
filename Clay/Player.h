@@ -33,17 +33,16 @@ typedef enum {
     bool _isDead;
     
     float _yPosition;
-    float _jumpAcceleration;
     float _waitToGetUp;
     bool _onLedge;
     
     bool _isHighJump;
+    bool _hasDoubleJumped;
     
+    float _timeLeftBeforeVulnerable;    //set to a time whenever tim gets back up, to allow proper time for him to get back up to speed before he has to jump on things
     
-    int hitPoints;
+    int _hitPoints;
     Battery *_battery;
-    
-    ParticleSystem *_particleSystem;
     
     RunnerJump _jumpHeight;
     
@@ -60,6 +59,7 @@ typedef enum {
 @property(nonatomic,assign) bool isDead;
 @property(nonatomic,assign) bool isTripping;
 @property(nonatomic,assign) bool isJumping;
+@property(nonatomic,assign) bool hasDoubleJumped;
 @property(nonatomic,retain) Battery *battery;
 
 +(id) instance;                                 //constructor
@@ -90,6 +90,8 @@ typedef enum {
 -(void)rechargeBattery;
 
 -(void)setVelocity:(float)velocity;
+-(void)startDoubleJump;
+
 
 -(void)private_StartPlayerCollision;
 

@@ -76,13 +76,14 @@
         
         switch (result) {
             case HUD_BUTTON_JUMP:
-                if (!_gameLayer.player.isJumping) {
+                if (type == INPUT_TOUCH_PRESSED && !_gameLayer.player.isJumping) {
                     [_gameLayer.player startJump:JUMP_SHORT];
                 } else {
-                    if (type == INPUT_TOUCH_HOLD_MEDIUM) {
+                    if (type == INPUT_TOUCH_PRESSED && !_gameLayer.player.hasDoubleJumped)
+                    {
+                        [_gameLayer.player startDoubleJump];
+                    } else if (type == INPUT_TOUCH_HOLD_MEDIUM) {
                         [_gameLayer.player boostJump:JUMP_MEDIUM];
-                    } else if(type == INPUT_TOUCH_HOLD_LONG) {
-                        [_gameLayer.player boostJump:JUMP_HIGH];
                     }
                 }
                 
