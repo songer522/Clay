@@ -230,7 +230,6 @@
 		54528C0F145B4CC7009437C3 /* pig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54528C0A145B4CC7009437C3 /* pig.plist */; };
 		54528C10145B4CC7009437C3 /* pig.png in Resources */ = {isa = PBXBuildFile; fileRef = 54528C0B145B4CC7009437C3 /* pig.png */; };
 		54528C11145B4CC7009437C3 /* stoneChicken.png in Resources */ = {isa = PBXBuildFile; fileRef = 54528C0C145B4CC7009437C3 /* stoneChicken.png */; };
-		545CBC2A142D084D00795FC9 /* Particle.m in Sources */ = {isa = PBXBuildFile; fileRef = 545CBC29142D084D00795FC9 /* Particle.m */; };
 		545CBC34142D260B00795FC9 /* SoundEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 545CBC33142D260B00795FC9 /* SoundEngine.m */; };
 		545CBC36142D267F00795FC9 /* sounds.plist in Resources */ = {isa = PBXBuildFile; fileRef = 545CBC35142D267F00795FC9 /* sounds.plist */; };
 		5461A0B01447801100D97D6C /* Comic_Part01.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5461A0AF1447801100D97D6C /* Comic_Part01.mp4 */; };
@@ -251,14 +250,9 @@
 		54675BF3144F264000436C06 /* PlayerActionShoot.m in Sources */ = {isa = PBXBuildFile; fileRef = 54675BF2144F264000436C06 /* PlayerActionShoot.m */; };
 		54675BF6144F264D00436C06 /* PlayerActionMagnet.m in Sources */ = {isa = PBXBuildFile; fileRef = 54675BF5144F264D00436C06 /* PlayerActionMagnet.m */; };
 		54675BF9144F26A400436C06 /* PlayerAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 54675BF8144F26A400436C06 /* PlayerAction.m */; };
-		546EEBCA145F632A008F1EAF /* tileset_level_1_extra_pixels.png in Resources */ = {isa = PBXBuildFile; fileRef = 546EEBC9145F632A008F1EAF /* tileset_level_1_extra_pixels.png */; };
 		547330A51440AEE20072796C /* NewParticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 547330A41440AEE10072796C /* NewParticle.m */; };
 		547330A91441084F0072796C /* NewEmitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 547330A81441084D0072796C /* NewEmitter.m */; };
 		547472CA14228C0A00B0B0B7 /* levels.plist in Resources */ = {isa = PBXBuildFile; fileRef = 547472C914228C0A00B0B0B7 /* levels.plist */; };
-		547BE767145E55AF00B11EB0 /* townCrow-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 547BE763145E55AF00B11EB0 /* townCrow-hd.plist */; };
-		547BE768145E55AF00B11EB0 /* townCrow-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 547BE764145E55AF00B11EB0 /* townCrow-hd.png */; };
-		547BE769145E55AF00B11EB0 /* townCrow.plist in Resources */ = {isa = PBXBuildFile; fileRef = 547BE765145E55AF00B11EB0 /* townCrow.plist */; };
-		547BE76A145E55AF00B11EB0 /* townCrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 547BE766145E55AF00B11EB0 /* townCrow.png */; };
 		547BE76E145E563C00B11EB0 /* GameObjectFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 547BE76D145E563C00B11EB0 /* GameObjectFactory.m */; };
 		547BE772145ED08B00B11EB0 /* ObstacleStatic.m in Sources */ = {isa = PBXBuildFile; fileRef = 547BE771145ED08B00B11EB0 /* ObstacleStatic.m */; };
 		547BE775145ED3A300B11EB0 /* Obstacle.m in Sources */ = {isa = PBXBuildFile; fileRef = 547BE774145ED3A300B11EB0 /* Obstacle.m */; };
@@ -337,8 +331,6 @@
 		54C8633D143E164F007341B3 /* trailer.caf in Resources */ = {isa = PBXBuildFile; fileRef = 54C8633B143E164F007341B3 /* trailer.caf */; };
 		54CA0B19140D65DB0038B3E1 /* Runner.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CA0B18140D65DB0038B3E1 /* Runner.m */; };
 		54CA0B20140D698B0038B3E1 /* RunningSpeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CA0B1F140D698B0038B3E1 /* RunningSpeed.m */; };
-		54CB72531460506400311904 /* doublejump.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54CB72511460506400311904 /* doublejump.wav */; };
-		54CB72541460506400311904 /* supersonic.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54CB72521460506400311904 /* supersonic.wav */; };
 		54CC6D4A1448C3DE00882E78 /* Comic_Part02.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 54CC6D481448C3DE00882E78 /* Comic_Part02.mp4 */; };
 		54CC6D4B1448C3DE00882E78 /* Comic_Part03.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 54CC6D491448C3DE00882E78 /* Comic_Part03.mp4 */; };
 		54CD29DD143BA21400F805E0 /* UI_Button_Jumping.png in Resources */ = {isa = PBXBuildFile; fileRef = 54CD29DA143BA21400F805E0 /* UI_Button_Jumping.png */; };
@@ -384,7 +376,6 @@
 		54FBA2451430D9AC0010A91A /* CCVideoPlayerImpliOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 54FBA2411430D9AC0010A91A /* CCVideoPlayerImpliOS.m */; };
 		54FBA2491430DAAC0010A91A /* videoOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 54FBA2481430DAAC0010A91A /* videoOverlayView.m */; };
 		54FBA24B1430DDF30010A91A /* bait.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 54FBA24A1430DDF30010A91A /* bait.m4v */; };
-		54FBA2531430E5850010A91A /* LevelThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 54FBA2521430E5850010A91A /* LevelThread.m */; };
 		54FBA2551430E9630010A91A /* comics.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54FBA2541430E9630010A91A /* comics.plist */; };
 		54FBA2581430EA130010A91A /* ComicManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 54FBA2571430EA120010A91A /* ComicManager.m */; };
 		54FBA25B1430F94C0010A91A /* ComicLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 54FBA25A1430F94C0010A91A /* ComicLayer.m */; };
@@ -770,8 +761,6 @@
 		54528C0A145B4CC7009437C3 /* pig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = pig.plist; path = barn/pig.plist; sourceTree = "<group>"; };
 		54528C0B145B4CC7009437C3 /* pig.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pig.png; path = barn/pig.png; sourceTree = "<group>"; };
 		54528C0C145B4CC7009437C3 /* stoneChicken.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stoneChicken.png; path = barn/stoneChicken.png; sourceTree = "<group>"; };
-		545CBC28142D084D00795FC9 /* Particle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Particle.h; sourceTree = "<group>"; };
-		545CBC29142D084D00795FC9 /* Particle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Particle.m; sourceTree = "<group>"; };
 		545CBC32142D260B00795FC9 /* SoundEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundEngine.h; sourceTree = "<group>"; };
 		545CBC33142D260B00795FC9 /* SoundEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundEngine.m; sourceTree = "<group>"; };
 		545CBC35142D267F00795FC9 /* sounds.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sounds.plist; sourceTree = "<group>"; };
@@ -810,10 +799,6 @@
 		547330A71441084C0072796C /* NewEmitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewEmitter.h; sourceTree = "<group>"; };
 		547330A81441084D0072796C /* NewEmitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewEmitter.m; sourceTree = "<group>"; };
 		547472C914228C0A00B0B0B7 /* levels.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = levels.plist; sourceTree = "<group>"; };
-		547BE763145E55AF00B11EB0 /* townCrow-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "townCrow-hd.plist"; path = "town/townCrow-hd.plist"; sourceTree = "<group>"; };
-		547BE764145E55AF00B11EB0 /* townCrow-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "townCrow-hd.png"; path = "town/townCrow-hd.png"; sourceTree = "<group>"; };
-		547BE765145E55AF00B11EB0 /* townCrow.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = townCrow.plist; path = town/townCrow.plist; sourceTree = "<group>"; };
-		547BE766145E55AF00B11EB0 /* townCrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = townCrow.png; path = town/townCrow.png; sourceTree = "<group>"; };
 		547BE76C145E563C00B11EB0 /* GameObjectFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObjectFactory.h; sourceTree = "<group>"; };
 		547BE76D145E563C00B11EB0 /* GameObjectFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameObjectFactory.m; sourceTree = "<group>"; };
 		547BE770145ED08B00B11EB0 /* ObstacleStatic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObstacleStatic.h; sourceTree = "<group>"; };
@@ -962,8 +947,6 @@
 		54FBA2471430DAAC0010A91A /* videoOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = videoOverlayView.h; sourceTree = "<group>"; };
 		54FBA2481430DAAC0010A91A /* videoOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = videoOverlayView.m; sourceTree = "<group>"; };
 		54FBA24A1430DDF30010A91A /* bait.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = bait.m4v; sourceTree = "<group>"; };
-		54FBA2511430E5850010A91A /* LevelThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelThread.h; sourceTree = "<group>"; };
-		54FBA2521430E5850010A91A /* LevelThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelThread.m; sourceTree = "<group>"; };
 		54FBA2541430E9630010A91A /* comics.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = comics.plist; sourceTree = "<group>"; };
 		54FBA2561430EA120010A91A /* ComicManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComicManager.h; sourceTree = "<group>"; };
 		54FBA2571430EA120010A91A /* ComicManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComicManager.m; sourceTree = "<group>"; };
@@ -1054,10 +1037,6 @@
 		5411C22C1458801E000C7D91 /* town */ = {
 			isa = PBXGroup;
 			children = (
-				547BE763145E55AF00B11EB0 /* townCrow-hd.plist */,
-				547BE764145E55AF00B11EB0 /* townCrow-hd.png */,
-				547BE765145E55AF00B11EB0 /* townCrow.plist */,
-				547BE766145E55AF00B11EB0 /* townCrow.png */,
 				54883BB11448985F0029759E /* haybale.png */,
 				54883BB21448985F0029759E /* leafpile.png */,
 				5418FB2B14508B2600C8F16E /* jim_standing_cornfields.png */,
@@ -1636,8 +1615,6 @@
 				547330A81441084D0072796C /* NewEmitter.m */,
 				547330A31440AEE00072796C /* NewParticle.h */,
 				547330A41440AEE10072796C /* NewParticle.m */,
-				545CBC28142D084D00795FC9 /* Particle.h */,
-				545CBC29142D084D00795FC9 /* Particle.m */,
 				572DB822142004D500DDC493 /* PListLoader.h */,
 				572DB823142004D500DDC493 /* PListLoader.m */,
 				545CBC32142D260B00795FC9 /* SoundEngine.h */,
@@ -1662,8 +1639,6 @@
 				54675BE4144F227900436C06 /* PlayerActions */,
 				54675BDC144F1B2700436C06 /* Bosses */,
 				54675BFA144F317500436C06 /* GameObjects */,
-				5421A2F6142A5C7E0078D861 /* Battery.h */,
-				5421A2F7142A5C7E0078D861 /* Battery.m */,
 				54518F731406B761009D74AA /* GameClasses.h */,
 				54518F741406B761009D74AA /* GameClasses.m */,
 				54297895140C1F8900B3FFF4 /* GameController.h */,
@@ -1675,8 +1650,6 @@
 				5411C23B1458ADF4000C7D91 /* Collidable.h */,
 				542361AC14228E5E0086E533 /* LevelManager.h */,
 				542361AD14228E5E0086E533 /* LevelManager.m */,
-				54FBA2511430E5850010A91A /* LevelThread.h */,
-				54FBA2521430E5850010A91A /* LevelThread.m */,
 				54518F681406AE64009D74AA /* Player.h */,
 				54518F691406AE64009D74AA /* Player.m */,
 				5411C22814587AF5000C7D91 /* Projectile.h */,
@@ -1687,8 +1660,6 @@
 				54CA0B1F140D698B0038B3E1 /* RunningSpeed.m */,
 				547F09751428FA5400E5D920 /* SavePoint.h */,
 				547F09761428FA5400E5D920 /* SavePoint.m */,
-				54A11929144349D60008A823 /* TrackTimer.h */,
-				54A1192A144349D60008A823 /* TrackTimer.m */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -2009,10 +1980,14 @@
 		54FC28591455F48900FD8B54 /* GUI */ = {
 			isa = PBXGroup;
 			children = (
+				5421A2F6142A5C7E0078D861 /* Battery.h */,
+				5421A2F7142A5C7E0078D861 /* Battery.m */,
 				54FC28561455F47E00FD8B54 /* Button.h */,
 				54FC28571455F47E00FD8B54 /* Button.m */,
 				54528C02145B28E4009437C3 /* HudButton.h */,
 				54528C03145B28E4009437C3 /* HudButton.m */,
+				54A11929144349D60008A823 /* TrackTimer.h */,
+				54A1192A144349D60008A823 /* TrackTimer.m */,
 			);
 			name = GUI;
 			sourceTree = "<group>";
@@ -2271,13 +2246,6 @@
 				54528C10145B4CC7009437C3 /* pig.png in Resources */,
 				54528C11145B4CC7009437C3 /* stoneChicken.png in Resources */,
 				543298AA145B5BC300223C3D /* test_level_6.tmx in Resources */,
-				547BE767145E55AF00B11EB0 /* townCrow-hd.plist in Resources */,
-				547BE768145E55AF00B11EB0 /* townCrow-hd.png in Resources */,
-				547BE769145E55AF00B11EB0 /* townCrow.plist in Resources */,
-				547BE76A145E55AF00B11EB0 /* townCrow.png in Resources */,
-				546EEBCA145F632A008F1EAF /* tileset_level_1_extra_pixels.png in Resources */,
-				54CB72531460506400311904 /* doublejump.wav in Resources */,
-				54CB72541460506400311904 /* supersonic.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2412,14 +2380,12 @@
 				5421A2F8142A5C7E0078D861 /* Battery.m in Sources */,
 				5421A2FC142A63FF0078D861 /* CCXAnimate.m in Sources */,
 				54413573142B83460031C09E /* Trigger.m in Sources */,
-				545CBC2A142D084D00795FC9 /* Particle.m in Sources */,
 				545CBC34142D260B00795FC9 /* SoundEngine.m in Sources */,
 				54FBA2331430CA5D0010A91A /* VideoPlayer.m in Sources */,
 				54FBA23C1430CE210010A91A /* VideoPlaybackScene.m in Sources */,
 				54FBA2441430D9AC0010A91A /* CCVideoPlayer.m in Sources */,
 				54FBA2451430D9AC0010A91A /* CCVideoPlayerImpliOS.m in Sources */,
 				54FBA2491430DAAC0010A91A /* videoOverlayView.m in Sources */,
-				54FBA2531430E5850010A91A /* LevelThread.m in Sources */,
 				54FBA2581430EA130010A91A /* ComicManager.m in Sources */,
 				54FBA25B1430F94C0010A91A /* ComicLayer.m in Sources */,
 				543250BC143CA40300F1F177 /* HudLayer.m in Sources */,

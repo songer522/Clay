@@ -5,6 +5,8 @@
 //  Created by Brian Cable on 8/30/11.
 //  Copyright 2011 Xecudev, LLC. All rights reserved.
 //
+//  This class is used by Runners, although since we haven't had any other runners it's become more and more built for the Player class. It determines how the velocity will be effected by different actions the player takes or encounters.
+
 
 #import <Foundation/Foundation.h>
 #import "BaseClasses.h"

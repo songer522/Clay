@@ -5,6 +5,7 @@
 //  Created by Brian Cable on 10/26/11.
 //  Copyright (c) 2011 Xecudev, LLC. All rights reserved.
 //
+//  Protocol (interface) for any objects that can be collided with (obstacles, player, projectiles). Currently collision behavior enum is in here as well, but it's probably not the best place for it.
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"

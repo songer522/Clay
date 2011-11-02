@@ -1,5 +1,5 @@
 //
-//  Bandages.m
+//  Battery.m
 //  Clay
 //
 //  Created by Brian Cable on 9/21/11.

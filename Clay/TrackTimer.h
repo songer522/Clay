@@ -5,6 +5,7 @@
 //  Created by Brian Cable on 10/10/11.
 //  Copyright 2011 Xecudev, LLC. All rights reserved.
 //
+//  The track timer displayed on both the Hud and at the end of the game.
 
 #import <Foundation/Foundation.h>
 

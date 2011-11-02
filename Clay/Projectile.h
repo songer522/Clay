@@ -5,6 +5,7 @@
 //  Created by Brian Cable on 10/26/11.
 //  Copyright (c) 2011 Xecudev, LLC. All rights reserved.
 //
+//  Handles any projectiles in the game. This has somewhat different behavior for every type, in particular when it is used for the player's kick to detect when the player has kicked something.
 
 #import <Foundation/Foundation.h>
 

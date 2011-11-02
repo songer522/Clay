@@ -5,6 +5,7 @@
 //  Created by Brian Cable on 9/15/11.
 //  Copyright 2011 Xecudev, LLC. All rights reserved.
 //
+//  Manages the loading and unloading of the current level, switching to the next level, as well as keeping track of the current level and scene, when other classes need to access them.
 
 #import <Foundation/Foundation.h>
 
