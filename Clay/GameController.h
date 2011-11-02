@@ -5,6 +5,8 @@
 //  Created by Brian Cable on 8/29/11.
 //  Copyright 2011 Xecudev, LLC. All rights reserved.
 //
+//  Manages the controlling of the game itself. Right now this basically means it handles pausing/unpausing the game, and reacting to the hud button inputs. Was also going to manage gamestate, but that seems to have been taken over by the ComicManager class.
+
 
 #import <Foundation/Foundation.h>
 #import "InputController.h"

@@ -1,10 +1,12 @@
 //
-//  Bandages.h
+//  Battery.h
 //  Clay
 //
 //  Created by Brian Cable on 9/21/11.
 //  Copyright 2011 Xecudev, LLC. All rights reserved.
 //
+//  Displays and handles the battery icon in the HudLayer during the game.
+//  The battery represents the users health, and has four segments. It is mostly controlled by the player class and the player action classes, where it can tell the battery that health has been gained or lost based on collisions with obstacles or successful completion of player actions.
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"

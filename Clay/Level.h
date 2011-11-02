@@ -5,6 +5,7 @@
 //  Created by Brian Cable on 9/6/11.
 //  Copyright 2011 Xecudev, LLC. All rights reserved.
 //
+//  Stores the data for the level, including all the obstacles and background objects. The level is stored in layers, and moves at different rates based on the player's world position.
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"

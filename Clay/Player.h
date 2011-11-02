@@ -5,7 +5,7 @@
 //  Created by Brian Cable on 8/25/11.
 //  Copyright 2011 Xecudev, LLC. All rights reserved.
 //
-//  The main player and runner in the game.
+//  The main player and runner in the game. He inherits from GameObject, then from Runner (since other runners are expected to be in the game at some point, although now they probably could just be GameObjects). So if something is not here, it's probably under Runner or GameObject.
 
 #import <Foundation/Foundation.h>
 #import "BaseClasses.h"
