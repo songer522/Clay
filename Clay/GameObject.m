@@ -424,6 +424,7 @@
     } else if([behavior isEqualToString:@"zombie"]) {
         _collideBehavior = COLLISION_BEHAVIOR_ZOMBIE_HEADLESS;
         _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_WALK;
+        _aggressiveCanHit = true;
     } else if([behavior isEqualToString:@"headless"]) {
         _collideBehavior = COLLISION_BEHAVIOR_ZOMBIE_FADE;
         _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_WALK_FAST;
