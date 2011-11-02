@@ -5,6 +5,7 @@
 //  Created by Brian Cable on 10/17/11.
 //  Copyright (c) 2011 Xecudev, LLC. All rights reserved.
 //
+//  A data structure created while the objects layer in our levels is scanned, that stores data needed to position them appropriately afterward, be added to the correct layer, and to iterate through them to check for collisions.
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"

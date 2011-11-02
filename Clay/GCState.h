@@ -3,8 +3,9 @@
 //  Clay
 //
 //  Created by Dustin Werner on 10/17/11.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2011 Xecudev, LLC. All rights reserved.
 //
+//  Records the current state of the achievements to be saved and loaded by the Database class between playthroughs.
 
 #import <Foundation/Foundation.h>
 

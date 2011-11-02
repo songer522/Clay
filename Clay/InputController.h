@@ -5,6 +5,8 @@
 //  Created by Brian Cable on 8/29/11.
 //  Copyright 2011 Xecudev, LLC. All rights reserved.
 //
+//  This is called by the scenes whenever there is input. This class then interprets that input (is it a tap of the button or a hold of the button, etc?) and reports it to the appropriate receiver (usually the GameController).
+
 
 #import <Foundation/Foundation.h>
 #import "InputEvent.h"

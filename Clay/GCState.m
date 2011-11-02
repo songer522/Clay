@@ -3,7 +3,7 @@
 //  Clay
 //
 //  Created by Dustin Werner on 10/17/11.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2011 Xecudev, LLC. All rights reserved.
 //
 
 #import "GCState.h"

@@ -5,6 +5,7 @@
 //  Created by Brian Cable on 8/29/11.
 //  Copyright 2011 Xecudev, LLC. All rights reserved.
 //
+//  A data structure for holding the interpreted touch data from the InputController to be passed to the receiver.
 
 #import <Foundation/Foundation.h>
 

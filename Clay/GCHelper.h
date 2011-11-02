@@ -3,8 +3,9 @@
 //  Clay
 //
 //  Created by Dustin Werner on 10/17/11.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2011 Xecudev, LLC. All rights reserved.
 //
+//  Helper class for using the Game Center. Used to verify that the current device supports game center, that the user has logged in and is authenticated, and to report achievements and leaderboard scores.
 
 #import <Foundation/Foundation.h>
 #import <GameKit/GameKit.h>

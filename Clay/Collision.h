@@ -5,6 +5,7 @@
 //  Created by Brian Cable on 9/9/11.
 //  Copyright 2011 Xecudev, LLC. All rights reserved.
 //
+//  Base class for collidable objects (obstacles, projectiles)
 
 #import <Foundation/Foundation.h>
 

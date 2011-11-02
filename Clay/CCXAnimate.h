@@ -5,6 +5,9 @@
 //  Created by Brian Cable on 9/21/11.
 //  Copyright 2011 Xecudev, LLC. All rights reserved.
 //
+//  A modification of the cocos CCAnimate class so that the current frame can be checked.
+
+//TODO: add ability to set the current frame of the animation, to make transitions between animations more fluid.
 
 #import "CCActionInterval.h"
 
