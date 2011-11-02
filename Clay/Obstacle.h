@@ -5,6 +5,7 @@
 //  Created by Brian Cable on 10/31/11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
+//  Base obstacle class that the other obstacles inherit from.
 
 #import <Foundation/Foundation.h>
 #import "Collidable.h"

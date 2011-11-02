@@ -7,7 +7,6 @@
 //
 //  Primary layer for the game. Where most of the real action gets called (player, obstacles, movement, collision, etc)
 
-// When you import this file, you import all the cocos2d classes
 #import "cocos2d.h"
 
 @class Level;

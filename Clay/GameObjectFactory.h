@@ -5,6 +5,7 @@
 //  Created by Brian Cable on 10/30/11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
+//  The new factory class for creating game objects. Work in progress.
 
 #import <Foundation/Foundation.h>
 #import "Obstacle.h"

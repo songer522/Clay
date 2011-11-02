@@ -5,7 +5,7 @@
 //  Created by Brian Cable on 8/25/11.
 //  Copyright 2011 Xecudev, LLC. All rights reserved.
 //
-//  An object in the game. Means it will have a sprite associated with it, an x/y position, maybe other things like animation and velocity
+//  An object in the game. Means it will have a sprite associated with it, an x/y position, and if it's an obstacle then it will respond to a collision depending on what type of obstacle it is. This class is in dire need of converting from state/enum based to having separate gameobject classes per type, and turning this class into a generic base class again. That process has been started, but is not complete yet.
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"

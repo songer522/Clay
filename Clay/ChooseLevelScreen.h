@@ -5,6 +5,7 @@
 //  Created by Brian Cable on 10/24/11.
 //  Copyright (c) 2011 Xecudev, LLC. All rights reserved.
 //
+//  The scene for choosing a level displayed after the main menu.
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"

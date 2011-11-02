@@ -222,7 +222,6 @@
 		54518F6A1406AE64009D74AA /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 54518F691406AE64009D74AA /* Player.m */; };
 		54518F6D1406AEE6009D74AA /* GameObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 54518F6C1406AEE6009D74AA /* GameObject.m */; };
 		54518F701406B061009D74AA /* BaseClasses.m in Sources */ = {isa = PBXBuildFile; fileRef = 54518F6F1406B061009D74AA /* BaseClasses.m */; };
-		54518F751406B761009D74AA /* GameClasses.m in Sources */ = {isa = PBXBuildFile; fileRef = 54518F741406B761009D74AA /* GameClasses.m */; };
 		54528C04145B28E4009437C3 /* HudButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 54528C03145B28E4009437C3 /* HudButton.m */; };
 		54528C07145B466B009437C3 /* clearedObstacle.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54528C06145B466B009437C3 /* clearedObstacle.wav */; };
 		54528C0D145B4CC7009437C3 /* pig-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54528C08145B4CC7009437C3 /* pig-hd.plist */; };
@@ -371,7 +370,6 @@
 		54F7F57F143CD0FD004EC10B /* 7 Segment.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 54F7F57E143CD0FD004EC10B /* 7 Segment.ttf */; };
 		54FBA2331430CA5D0010A91A /* VideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 54FBA2321430CA5D0010A91A /* VideoPlayer.m */; };
 		54FBA2361430CBBE0010A91A /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54FBA2351430CBBE0010A91A /* MediaPlayer.framework */; };
-		54FBA23C1430CE210010A91A /* VideoPlaybackScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 54FBA23B1430CE210010A91A /* VideoPlaybackScene.m */; };
 		54FBA2441430D9AC0010A91A /* CCVideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 54FBA23F1430D9AC0010A91A /* CCVideoPlayer.m */; };
 		54FBA2451430D9AC0010A91A /* CCVideoPlayerImpliOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 54FBA2411430D9AC0010A91A /* CCVideoPlayerImpliOS.m */; };
 		54FBA2491430DAAC0010A91A /* videoOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 54FBA2481430DAAC0010A91A /* videoOverlayView.m */; };
@@ -751,8 +749,6 @@
 		54518F6C1406AEE6009D74AA /* GameObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameObject.m; sourceTree = "<group>"; };
 		54518F6E1406B061009D74AA /* BaseClasses.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseClasses.h; sourceTree = "<group>"; };
 		54518F6F1406B061009D74AA /* BaseClasses.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseClasses.m; sourceTree = "<group>"; };
-		54518F731406B761009D74AA /* GameClasses.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameClasses.h; sourceTree = "<group>"; };
-		54518F741406B761009D74AA /* GameClasses.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameClasses.m; sourceTree = "<group>"; };
 		54528C02145B28E4009437C3 /* HudButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HudButton.h; sourceTree = "<group>"; };
 		54528C03145B28E4009437C3 /* HudButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HudButton.m; sourceTree = "<group>"; };
 		54528C06145B466B009437C3 /* clearedObstacle.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = clearedObstacle.wav; path = Resources/sounds/clearedObstacle.wav; sourceTree = "<group>"; };
@@ -938,8 +934,6 @@
 		54FBA2311430CA5D0010A91A /* VideoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayer.h; sourceTree = "<group>"; };
 		54FBA2321430CA5D0010A91A /* VideoPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayer.m; sourceTree = "<group>"; };
 		54FBA2351430CBBE0010A91A /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		54FBA23A1430CE210010A91A /* VideoPlaybackScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlaybackScene.h; sourceTree = "<group>"; };
-		54FBA23B1430CE210010A91A /* VideoPlaybackScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlaybackScene.m; sourceTree = "<group>"; };
 		54FBA23E1430D9AC0010A91A /* CCVideoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCVideoPlayer.h; sourceTree = "<group>"; };
 		54FBA23F1430D9AC0010A91A /* CCVideoPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCVideoPlayer.m; sourceTree = "<group>"; };
 		54FBA2401430D9AC0010A91A /* CCVideoPlayerImpliOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCVideoPlayerImpliOS.h; sourceTree = "<group>"; };
@@ -1572,8 +1566,6 @@
 				5441BECE143F8AEC003224FF /* MainMenuScene.m */,
 				5443303D142A39F80008898E /* PauseMenuScreen.h */,
 				5443303E142A39F80008898E /* PauseMenuScreen.m */,
-				54FBA23A1430CE210010A91A /* VideoPlaybackScene.h */,
-				54FBA23B1430CE210010A91A /* VideoPlaybackScene.m */,
 				54FC28531455F33F00FD8B54 /* ChooseLevelScreen.h */,
 				54FC28541455F33F00FD8B54 /* ChooseLevelScreen.m */,
 			);
@@ -1639,8 +1631,6 @@
 				54675BE4144F227900436C06 /* PlayerActions */,
 				54675BDC144F1B2700436C06 /* Bosses */,
 				54675BFA144F317500436C06 /* GameObjects */,
-				54518F731406B761009D74AA /* GameClasses.h */,
-				54518F741406B761009D74AA /* GameClasses.m */,
 				54297895140C1F8900B3FFF4 /* GameController.h */,
 				54297896140C1F8900B3FFF4 /* GameController.m */,
 				572DB81F142000A400DDC493 /* GameObjectController.h */,
@@ -2358,7 +2348,6 @@
 				54518F6A1406AE64009D74AA /* Player.m in Sources */,
 				54518F6D1406AEE6009D74AA /* GameObject.m in Sources */,
 				54518F701406B061009D74AA /* BaseClasses.m in Sources */,
-				54518F751406B761009D74AA /* GameClasses.m in Sources */,
 				5496A2421408343600186F3D /* Animation.m in Sources */,
 				54297897140C1F8900B3FFF4 /* GameController.m in Sources */,
 				5429789B140C233E00B3FFF4 /* InputController.m in Sources */,
@@ -2382,7 +2371,6 @@
 				54413573142B83460031C09E /* Trigger.m in Sources */,
 				545CBC34142D260B00795FC9 /* SoundEngine.m in Sources */,
 				54FBA2331430CA5D0010A91A /* VideoPlayer.m in Sources */,
-				54FBA23C1430CE210010A91A /* VideoPlaybackScene.m in Sources */,
 				54FBA2441430D9AC0010A91A /* CCVideoPlayer.m in Sources */,
 				54FBA2451430D9AC0010A91A /* CCVideoPlayerImpliOS.m in Sources */,
 				54FBA2491430DAAC0010A91A /* videoOverlayView.m in Sources */,

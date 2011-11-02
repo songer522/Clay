@@ -5,6 +5,7 @@
 //  Created by Brian Cable on 9/8/11.
 //  Copyright 2011 Xecudev, LLC. All rights reserved.
 //
+//  This is a singleton class that allows any class that needs access the current layer, or scene to be able to get to it. Also includes the ability to set a "working scene" or "working layer" that is just used for initialization, while not destroying the previous layer (like for example wanting to keep the gamelayer the current layer but have
 
 #import <Foundation/Foundation.h>
 

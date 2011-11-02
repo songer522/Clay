@@ -5,6 +5,8 @@
 //  Created by Brian Cable on 10/7/11.
 //  Copyright 2011 Xecudev, LLC. All rights reserved.
 //
+//  The scene (and layer) for the Main Menu. All main menu screens should utilize this scene (although be different classes). Eventually add credits, options, and flesh out the choose level screen.
+
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"

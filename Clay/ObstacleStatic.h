@@ -5,6 +5,7 @@
 //  Created by Brian Cable on 10/31/11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
+//  Generic class for static obstacles (hurdles, stone chickens, haybales, etc.)
 
 #import <Foundation/Foundation.h>
 #import "Obstacle.h"

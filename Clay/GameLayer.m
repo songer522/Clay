@@ -9,15 +9,14 @@
 
 // Import the interfaces
 #import "GameLayer.h"
-
 #import "BaseClasses.h"
-#import "GameClasses.h"
-
 #import "GCHelper.h"
 #import "ComicManager.h"
 #import "HudLayer.h"
 #import "Battery.h"
-
+#import "GameController.h"
+#import "Player.h"
+#import "SavePoint.h"
 #import "LaserShow.h"
 
 // HelloWorldLayer implementation
