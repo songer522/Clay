@@ -79,7 +79,7 @@
 
 -(void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    /*
+    
     if (_state == END_GAME_TRANSITION_IDLE) {
         bool shouldStart = false;
         NSSet *allTouches = [event allTouches];
@@ -91,7 +91,6 @@
             _state = END_GAME_TRANSITION_OUT;
         }
     }
-     */
 }
 
 -(void)update:(ccTime)dt
