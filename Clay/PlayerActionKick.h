@@ -9,9 +9,15 @@
 #import <Foundation/Foundation.h>
 #import "PlayerAction.h"
 
+@class Projectile;
+
 @interface PlayerActionKick : PlayerAction
 {
-    bool _madeNoise;
+    Projectile *_kick;
+    bool _madeFootProjectile;
+    
 }
+
+-(void)testKickCollisions;
 
 @end

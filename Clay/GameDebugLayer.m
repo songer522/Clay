@@ -15,6 +15,8 @@
 #import "Player.h"
 #import "Camera.h"
 #import "Projectile.h"
+#import "PlayerAction.h"
+#import "Projectile.h"
 
 @implementation GameDebugLayer
 
@@ -43,6 +45,17 @@
     
     CollisionDetection *_handler = [[LevelManager shared] currentLevel].collisionHandler;
     [self drawBoxForGameObject:(GameObject*)player Collisions:_handler.midpointCollisions];
+    
+    
+    //player action projectiles
+    NSMutableArray *projectiles = [[player getThirdAction] getProjectiles];
+    if (projectiles!=nil) {
+        for (Projectile *projectile in projectiles) {
+            if ([projectile getActive]) {
+                [self drawBoxForCollidable:projectile];                
+            }
+        }        
+    }
     
     //draw for obstacles
     glColor4ub(0, 255, 0, 255);

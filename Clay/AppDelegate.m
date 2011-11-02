@@ -24,7 +24,7 @@
 #import "LevelManager.h"
 #import "ChooseLevelScreen.h"
 
-#define DEBUG_DRAW_BOUNDING_BOXES 0
+#define DEBUG_DRAW_BOUNDING_BOXES 1
 
 @implementation AppDelegate
 
@@ -164,16 +164,7 @@
     _chooseLevelScene = [ChooseLevelScreen scene];
     
     
-    
-    /*
-    int x;
-    [NSThread detachNewThreadSelector:@selector(test:) toTarget:[LevelThread class] withObject:nil];     
-    
-    for (x=0; x<250; ++x) {
-        printf("Main thread says x is %i\n",x);
-        usleep(1);
-    }*/
-    
+    [[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
     
     [[CCDirector sharedDirector] setProjection:CCDirectorProjection2D];
 }

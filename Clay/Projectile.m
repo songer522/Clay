@@ -45,7 +45,8 @@
         
         switch (_behavior) {
             case PROJECTILE_BEHAVIOR_PLAYER_KICK:
-                _sprite = nil;
+                //make it blank so we can access the sprite position for debug drawing. for now at least.
+                _sprite = [Sprite spriteWithFile:@"blank.png"];
                 break;
             case PROJECTILE_BEHAVIOR_BULLET:
                 _sprite = [Sprite spriteWithFile:@"bullet.png"];
@@ -148,8 +149,9 @@
 -(void)disable
 {
     _isActive = false;
-    [[_sprite getCCSprite] setVisible:NO];
-    
+    if (_sprite !=nil) {
+        [[_sprite getCCSprite] setVisible:NO];   
+    }    
 }
 
 -(bool)hasBeenHit

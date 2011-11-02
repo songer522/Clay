@@ -70,6 +70,7 @@
         _direction = 1;
         _isInvincible = false;
         _projectile = nil;
+        _aggressiveCanHit = false;
     }
     
     return self;
@@ -153,14 +154,14 @@
         _vy = - magnitude * sinf((_angle * 3.14159)/180.0f);
         [[SoundEngine shared] playSound:@"collision"];
     } else if(_currentBehavior == COLLISION_BEHAVIOR_HEN_KICKED) {
-        //hen always dies, but don't actually kick hen unless player decides it's been kicked
-        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
         _hasGravity = false;
-        if ([gameLayer.player objectShouldReactToCollision]) {
-            _collided = true;
-            [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"henKicked"];
-            [[SoundEngine shared] playSound:@"henKicked"];
-        }
+        _vy = -150.0f;
+        _vx = rand()%40 + 15;
+        _alpha = 1.5f;
+        _fadeout = true;
+        _collided = true;
+        [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"henKicked"];
+        [[SoundEngine shared] playSound:@"henKicked"];
     } else if(_currentBehavior == COLLISION_BEHAVIOR_COW_COLLAPSE) {
         [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"cowDied"];  
         [[SoundEngine shared] playSound:@"cowDied"];
@@ -170,7 +171,6 @@
         [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"dancinManDied"];
         _alpha = 1.5f;
         _fadeout = true;
-        
         GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
         [[gameLayer.player getThirdAction] setKilledEnemy:YES];
     } else if(_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_HEADLESS) {
@@ -196,12 +196,8 @@
 {
     GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
     [gameLayer.player changeHealth:1];
-
-    if (!_madeSound) {
-        [[SoundEngine shared] playSound:@"henKicked"];
-        _madeSound = true;
-    }
-    [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"henKicked"];
+    _fadeout = false;
+    _alpha = 1.0f;
     _hasGravity = true;
     _collided = false;  //want it to remain aggressive
     float magnitude = 555.0f;
@@ -247,8 +243,6 @@
     [self updateFlags];
     
     [self updateLights:dt];
-    
-    [self updateSuccessfullyCleared:dt];
     
 }
 
@@ -328,15 +322,6 @@
         }
     }
 
-}
-
--(void) updateSuccessfullyCleared:(float)dt
-{
-    GameLayer *gameLayer = (GameLayer*)[[LayerManager sharedLayers] currentLayer];
-    if(!_madeSound && _x < [gameLayer.player getPosition].x && !_collided && !gameLayer.player.isDead && !gameLayer.player.isTripping) {
-        [[SoundEngine shared] playSound:@"clearedObstacle"];
-        _madeSound = true;
-    }
 }
 
 -(void) updateFlags
@@ -428,7 +413,9 @@
     } else if([behavior compare:@"anim"] == NSOrderedSame) {
         _collideBehavior = COLLISION_BEHAVIOR_PLAY_ANIMATION;
     } else if([behavior compare:@"cowCollapse"] == NSOrderedSame) {
+        _currentBehavior = COLLISION_BEHAVIOR_STATIC;
         _collideBehavior = COLLISION_BEHAVIOR_COW_COLLAPSE;
+        _aggressiveCanHit = true;
     } else if([behavior isEqualToString:@"dancinManCollapse"]) {
         _collideBehavior = COLLISION_BEHAVIOR_DANCIN_MAN_COLLAPSE;
     } else if([behavior isEqualToString:@"chargeAtPlayer"]) {
@@ -500,9 +487,14 @@
     return _collided;
 }
 
+-(bool)canAggressiveHit
+{
+    return _aggressiveCanHit;
+}
+
 -(CollisionBehavior)getCollisionBehavior
 {
-    return _currentBehavior;
+    return _collideBehavior;
 }
 
 -(void)dealloc
