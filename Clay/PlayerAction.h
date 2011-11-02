@@ -5,6 +5,7 @@
 //  Created by Brian Cable on 10/19/11.
 //  Copyright (c) 2011 Xecudev, LLC. All rights reserved.
 //
+//  The base class for all the custom third actions the player can use. These are managed and called by the Player class, and interacts with the HudLayer class as far as showing the correct HudButton for the level. Also the LevelManager might use it briefly when loading levels. Mostly controlled by the player, though.
 
 #import <Foundation/Foundation.h>
 

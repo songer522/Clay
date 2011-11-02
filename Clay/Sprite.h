@@ -5,6 +5,7 @@
 //  Created by Brian Cable on 8/25/11.
 //  Copyright 2011 Xecudev, LLC. All rights reserved.
 //
+//  A wrapper class that hides some of the ugly initialization of CCSprites into a single line of code (usually). Also allows for saving its position in the world, but displaying the sprite based on the current Camera position.
 
 #import "cocos2d.h"
 
