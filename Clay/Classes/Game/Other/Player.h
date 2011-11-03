@@ -23,7 +23,9 @@ typedef enum {
 
 @class RunningSpeed;
 @class Battery;
+@class Skin;
 @protocol PlayerActionProtocol;
+
 
 @interface Player : Runner
 {
@@ -53,6 +55,8 @@ typedef enum {
     
     
     NSMutableArray *projectiles;
+    
+    Skin *_skin;
     
     id <PlayerActionProtocol> _thirdAction; //playeraction
 

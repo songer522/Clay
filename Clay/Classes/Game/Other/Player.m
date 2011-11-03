@@ -18,6 +18,7 @@
 #import "PlayerActionFactory.h"
 #import "Camera.h"
 #import "Battery.h"
+#import "Skin.h"
 
 #define PLAYER_SPRITE_FILE @"player_idle_01.png"
 #define PLAYER_STARTING_VELOCITY 0
@@ -75,6 +76,9 @@
         
         _adjustX = 0.0f;
         
+        _skin = [Skin instance];
+        [_skin setSkin:@"regularTim"];
+        //[_skin setSkin:@"eightBitTim"];
     }
     
     return self;
@@ -108,7 +112,7 @@
     _vy = -115.0f;
     _y += 2.0f;
     _isJumping = true;
-    [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"jumpingAnim"];
+    [_skin setPlayerAnimation:PLAYER_ANIM_JUMPING ForSprite:_sprite];
     [[self getCollision] processNewCollisionState:COLLISION_STATE_MIDAIR];
     [self setPositionAtX:_x Y:_y];
     [[SoundEngine shared] playSound:@"jumpStart"];
@@ -125,7 +129,7 @@
     _ay = 0.0f;
     _isJumping = true;
     
-    [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"jumpingAnim"];
+    [_skin setPlayerAnimation:PLAYER_ANIM_JUMPING ForSprite:_sprite];
     [[SoundEngine shared] playSound:@"doubleJump"];
     
     _hasDoubleJumped = true;
@@ -146,7 +150,7 @@
 -(void)endJump
 {
     if (!_isTripping && _isInMidAir) {
-        [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"fallingAnim"];        
+        [_skin setPlayerAnimation:PLAYER_ANIM_FALLING ForSprite:_sprite];
     }
     self.hasGravity = true;
 }
@@ -160,7 +164,7 @@
     if (_hitPoints > 1) {
         [_speed startTurbo];
         [[SoundEngine shared] playSound:@"turboStart"];
-        [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"turboAnim"];
+        [_skin setPlayerAnimation:PLAYER_ANIM_SPRINTING ForSprite:_sprite];
         _hitPoints -=1;
         [_battery setFrame:(5 - _hitPoints)];        
     }
@@ -173,7 +177,7 @@
 
 -(void)endTurbo
 {
-    [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"runningAnim"];
+    [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];
     [_speed endTurbo];
     
 }
@@ -219,10 +223,10 @@
     [[SoundEngine shared] playSound:@"timHurt"];
     
     if (_isJumping) {
-        [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"trippedAnim"];
+        [_skin setPlayerAnimation:PLAYER_ANIM_TRIPPING ForSprite:_sprite];
         _isTripping = true;
     } else {
-        [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"hurtAnim"];
+        [_skin setPlayerAnimation:PLAYER_ANIM_HURTING ForSprite:_sprite];
         _vy = -250.0f;
         _y += 2.0f;
         _waitToGetUp = 0.3f;
@@ -254,8 +258,7 @@
     _firstFrameJumping = false;
     _isHighJump = false;
     _waitToPlaySlowSound = 0.0f;
-    [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"runningAnim"];
-
+    [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];
 }
 
 -(void)startThirdAction
@@ -337,8 +340,7 @@
     if (_adjustX != 0.0f) {
         self.x += _adjustX;
         _adjustX = 0.0f;
-        [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"runningAnim" FrameNumber:8];
-        
+        [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];
     }
     
     CGPoint newPosition = [level checkCollisionForObject:self];    
@@ -364,7 +366,7 @@
             _isTripping = false;
             [self endTurbo];
             [_speed start];
-            [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"runningAnim" FrameNumber:8];
+            [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];
         }
     }
     
@@ -394,9 +396,9 @@
             _isJumping = false;
             
             if (_speed.inTurbo) {
-                [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"turboAnim" FrameNumber:8];
+                [_skin setPlayerAnimation:PLAYER_ANIM_SPRINTING ForSprite:_sprite];
             } else {
-                [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"runningAnim" FrameNumber:8];
+                [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];
             }
             
             //don't want high jump to execute if we're on the ledge, slows gameplay feel down too much
@@ -420,8 +422,8 @@
             _isJumping = false;
             [[SoundEngine shared] playSound:@"timCollision"];
             [_speed stop];
-        } else if(_waitToGetUp <=0.0f && !_isInMidAir && !_speed.inTurbo && !_isTripping && ![_thirdAction inAction] && [[_sprite getAnimation].name compare:@"runningAnim"]!=NSOrderedSame) {
-            [[AnimationController sharedController] replaceSprite:[self getSprite] withAnimationNamed:@"runningAnim"];
+        } else if(![_skin isCurrentAnimationOfType:PLAYER_ANIM_RUNNING] && !_isInMidAir && !_speed.inTurbo && !_isTripping && ![_thirdAction inAction] && _waitToGetUp <=0.0f) {
+            [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];
         }
         
         _vy = 0;
