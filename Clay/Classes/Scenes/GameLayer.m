@@ -78,6 +78,9 @@
         
         [self updateLogic:0.001f];
         
+        [[CCTextureCache sharedTextureCache] removeAllTextures];
+        [[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
+
 	}
 	return self;
 }
@@ -193,6 +196,8 @@
         [event setTouchLocation:[self convertTouchToNodeSpace:touch]];
         [_inputController interpretAndReactToInputEvent:event];
     }
+    [[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
+
 }
 
 

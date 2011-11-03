@@ -797,7 +797,7 @@
 			<integer>0</integer>
 		</dict>
 		<key>imageName</key>
-		<string>character_idle.png</string>
+		<string>blank.png</string>
 		<key>offsetx</key>
 		<integer>0</integer>
 		<key>offsety</key>

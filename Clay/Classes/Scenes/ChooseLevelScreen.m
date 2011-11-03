@@ -94,6 +94,9 @@
     [[LevelManager shared] switchToNextLevel];
     [[ComicManager shared] startComic:@"intro" StartPhase:COMIC_PHASE_PLAY_VIDEO];    
     [[LayerManager sharedLayers] popAndPushSceneNamed:@"game"];
+    
+    [[CCTextureCache sharedTextureCache] removeAllTextures];
+    [[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
 }
 
 -(void)update:(ccTime)dt

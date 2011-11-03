@@ -28,6 +28,25 @@
     return self;
 }
 
++(id) spriteFromFrameCacheWithName:(NSString*)frameName
+{
+    return [[self alloc] initFromFrameCacheWithName:frameName];
+}
+           
+            
+-(id) initFromFrameCacheWithName:(NSString*)frameName
+{
+    if((self = [self init]))
+    {
+        sprite_cc = [CCSprite spriteWithSpriteFrameName:frameName];
+
+        [self initializeSpriteOnceLoaded];
+        
+        [[[LayerManager sharedLayers] currentLayer] addChild:sprite_cc];
+    }
+    return self;
+}
+
 +(id) spriteWithFile:(NSString*)filename
 {
     return [[self alloc] initWithFile:filename AddToLayer:YES];

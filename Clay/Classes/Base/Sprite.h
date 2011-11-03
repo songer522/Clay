@@ -25,7 +25,12 @@
 
 +(id) spriteWithFile:(NSString *)filename;
 +(id) spriteWithFile:(NSString *)filename AddToLayer:(bool)shouldAddToLayer;
++(id) spriteFromFrameCacheWithName:(NSString*)frameName;
+
 -(id) initWithFile:(NSString *)filename AddToLayer:(bool)shouldAddToLayer;
+-(id) initFromFrameCacheWithName:(NSString*)frameName;
+
+
 -(void) setCentered;
 -(void) setPositionAtX:(float)x Y:(float)y;
 -(void) setPosition:(CGPoint)position;
