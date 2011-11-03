@@ -75,12 +75,12 @@
         [_playButtonBlue getCCSprite].anchorPoint = ccp(0.5f,0.5f);
         [_playButtonBlue getCCSprite].position = ccp(240, 142);
         
-        _playButtonOrange = [Sprite spriteWithFile:@"Menu_PlayOrange.png"];
+        _playButtonOrange = [Sprite spriteFromFrameCacheWithName:@"Menu_PlayOrange.png"];
         [_playButtonOrange getCCSprite].anchorPoint = ccp(0.5f, 0.5f);
         [_playButtonOrange getCCSprite].position = ccp(240,142);
         [[_playButtonOrange getCCSprite] setVisible:NO];
         
-        _copyright = [Sprite spriteWithFile:@"Menu_Copyright.png"];
+        _copyright = [Sprite spriteFromFrameCacheWithName:@"Menu_Copyright.png"];
         [_copyright setAlpha:0.0f];
         [_copyright getCCSprite].anchorPoint = ccp(0.5f, 0.5f);
         [_copyright getCCSprite].position = ccp(240,24); //final 240,20
