@@ -21,18 +21,17 @@
     
     
 }
-+(id)buttonWithImage:(NSString*)image Position:(CGPoint)position;
--(HudButton*)initButton:(NSString*)image Position:(CGPoint)position;
+
++(id)instance;
+-(void)createSpriteFromImage:(NSString*)image;
+-(void)createSpriteFromAction:(NSString*)action;
+
 -(void)setOpacityAndScale;
 -(float)getButtonOpacity;
 -(float)getButtonScale;
 -(CCSprite*)getCCSpriteForButton;
 -(void)setButtonOpacity:(float)opacity;
 -(void)setButtonScale:(float)scale;
--(NSString *)setThirdAction:(NSString*)action;
-
-
-
-
+-(void)setPosition:(CGPoint)position;
 
 @end

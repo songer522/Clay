@@ -28,25 +28,54 @@
 */
 
 
-+(id)buttonWithImage:(NSString*)image Position:(CGPoint)position
++(id)instance;
 {
 
-    return [[self alloc] initButton:image Position:position];
+    return [[self alloc] init];
 }
--(HudButton*)initButton:(NSString*)image Position:(CGPoint)position
+
+-(id) init
 {
-    Sprite *sprite = [Sprite spriteWithFile:image];
-    [[sprite getCCSprite] setOpacity:HUD_LAYER_BUTTON_OPACITY];
-    [[sprite getCCSprite] setScale:[[UIScreen mainScreen] scale] / 2.0f];
-    [[sprite getCCSprite] setAnchorPoint:ccp(0.5f, 0.5f)];
-    [sprite getCCSprite].position = position;
-    _graphic=sprite;
-    return self;
+    if((self=[super init])){
+        
+    }
+   return self;
 }
+
+-(void)createSpriteFromImage:(NSString*)image
+{
+    _graphic = [Sprite spriteWithFile:image];
+    [[_graphic getCCSprite] setOpacity:HUD_LAYER_BUTTON_OPACITY];
+    [[_graphic getCCSprite] setScale:[[UIScreen mainScreen] scale] / 2.0f];
+    [[_graphic getCCSprite] setAnchorPoint:ccp(0.5f, 0.5f)];
+}
+
+-(void)setPosition:(CGPoint)position
+{
+    [_graphic getCCSprite].position = position;
+}
+
+-(void)createSpriteFromAction:(NSString*)action
+{
+    NSString *buttonImage;
+    if ([action isEqualToString:@"woo"]) {
+        buttonImage = @"UI_Button_Woo.png";
+    } else if([action isEqualToString:@"kick"]) {
+        buttonImage = @"UI_Button_Kicking.png";
+    } else if([action isEqualToString:@"dodge"]) {
+        buttonImage = @"UI_Button_Dodging.png";
+    } else if([action isEqualToString:@"shoot"]) {
+        buttonImage = @"UI_Button_Kicking.png";
+    }
+    
+    [self createSpriteFromImage:buttonImage];
+}
+
 -(CCSprite*)getCCSpriteForButton
 {
     return [_graphic getCCSprite];
 }
+
 -(void)setOpacityAndScale
 {
     [[_graphic getCCSprite] setOpacity:BUTTON_OPACITY];
@@ -70,20 +99,5 @@
 {
     [[_graphic getCCSprite] setScale:scale];
 }
--(NSString *)setThirdAction:(NSString*)action
-{
-    NSString *button;
-    if ([action compare:@"woo"] == NSOrderedSame) {
-        button = @"UI_Button_Woo.png";
-    } else if([action compare:@"kick"] == NSOrderedSame) {
-        button = @"UI_Button_Kicking.png";
-    } else if([action isEqualToString:@"dodge"]) {
-        button = @"UI_Button_Dodging.png";
-    } else if([action isEqualToString:@"shoot"]) {
-        button = @"UI_Button_Kicking.png";
-    }
-    return button;
-}
-
 
 @end

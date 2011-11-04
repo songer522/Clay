@@ -42,10 +42,16 @@
        // _buttonJump = [self initButton:@"UI_Button_Jumping.png" Position:CGPointMake(HUD_LAYER_JUMP_X, HUD_LAYER_BUTTON_Y)];
        // _buttonAction = [self initButton:@"UI_Button_Kicking.png" Position:CGPointMake(HUD_LAYER_ACTION_X, HUD_LAYER_BUTTON_Y)];
        // _buttonSprint = [self initButton:@"UI_Button_TurboBoost.png" Position:CGPointMake(HUD_LAYER_SPRINT_X, HUD_LAYER_BUTTON_Y)];
+        _buttonJump = [HudButton instance];
+        [_buttonJump createSpriteFromImage:@"UI_Button_Jumping.png"];
+        [_buttonJump setPosition:CGPointMake(HUD_LAYER_JUMP_X, HUD_LAYER_BUTTON_Y)];
+        /*
+        _buttonSprint = [HudButton instance];
+        _buttonAction = [HudButton instance];
         _buttonJump = [HudButton buttonWithImage:@"UI_Button_Jumping.png" Position:CGPointMake(HUD_LAYER_JUMP_X, HUD_LAYER_BUTTON_Y)];
         _buttonAction = [HudButton buttonWithImage:@"UI_Button_Kicking.png" Position:CGPointMake(HUD_LAYER_ACTION_X, HUD_LAYER_BUTTON_Y)];
         _buttonSprint = [HudButton buttonWithImage:@"UI_Button_TurboBoost.png" Position:CGPointMake(HUD_LAYER_SPRINT_X, HUD_LAYER_BUTTON_Y)];
-
+        */
         
         _trackTimer = [TrackTimer instance];
         [_trackTimer setupAnimationsAtX:10.0f Y:288.5f];
@@ -289,12 +295,13 @@
         button = @"UI_Button_Kicking.png";
     }
      */
-    
+    /*
     //_buttonAction = [self initButton:button Position:CGPointMake(HUD_LAYER_ACTION_X, HUD_LAYER_BUTTON_Y)];
-    _buttonAction=[HudButton buttonWithImage:[_buttonAction setThirdAction:action] Position:CGPointMake(HUD_LAYER_ACTION_X, HUD_LAYER_BUTTON_Y)];
+    _buttonAction=[HudButton buttonAtPosition:CGPointMake(HUD_LAYER_ACTION_X, HUD_LAYER_BUTTON_Y)];
+    [_buttonAction setThirdAction:action];
     //[[_buttonAction getCCSprite] setVisible:YES];
     [[_buttonAction getCCSpriteForButton] setVisible:YES];
-    
+    */
     [[LayerManager sharedLayers] forgetWorkingLayer];
 }
 
