@@ -44,10 +44,23 @@
         [_buttonJump createSpriteFromImage:@"UI_Button_Jumping.png"];
         [_buttonJump setPosition:CGPointMake(HUD_LAYER_JUMP_X, HUD_LAYER_BUTTON_Y)];
         
+        _overLayJump = [HudButton instance];
+        [_overLayJump createSpriteFromImage:@"UI_Button_GreenLight.png"];
+        [_overLayJump setPosition:CGPointMake(HUD_LAYER_JUMP_X, HUD_LAYER_BUTTON_Y)];
+        
         _buttonSprint = [HudButton instance];
         [_buttonSprint createSpriteFromImage:@"UI_Button_TurboBoost.png"];
         [_buttonSprint setPosition:CGPointMake(HUD_LAYER_SPRINT_X, HUD_LAYER_BUTTON_Y)];
-               
+        
+        _overLaySprint = [HudButton instance];
+        [_overLaySprint createSpriteFromImage:@"UI_Button_GreenLight.png"];
+        [_overLaySprint setPosition:CGPointMake(HUD_LAYER_SPRINT_X, HUD_LAYER_BUTTON_Y)];
+        
+       
+
+        
+        
+        
         _trackTimer = [TrackTimer instance];
         [_trackTimer setupAnimationsAtX:10.0f Y:288.5f];
         
@@ -73,7 +86,7 @@
     //test jump button
     if ([self testButtonPosition:CGPointMake(HUD_LAYER_JUMP_X, HUD_LAYER_BUTTON_Y) Test:point]) {
         if (type == INPUT_TOUCH_PRESSED) {
-            
+            [_overLayJump setOpacityAndScale];
             [_buttonJump setOpacityAndScale];
         }
         _resetButtons = true;
@@ -83,8 +96,9 @@
     //test action button
     if ([self testButtonPosition:CGPointMake(HUD_LAYER_ACTION_X, HUD_LAYER_BUTTON_Y) Test:point]) {
         if (type == INPUT_TOUCH_PRESSED) {
-            
-            [_buttonAction setOpacityAndScale];
+            if([_overLayAction getCCSpriteForButton].visible)
+            { [_buttonAction setOpacityAndScale];}
+            [_overLayAction setOpacityAndScale];
             _resetButtons = true;
             return HUD_BUTTON_ACTION;            
         }
@@ -93,7 +107,8 @@
     //test sprint button
     if ([self testButtonPosition:CGPointMake(HUD_LAYER_SPRINT_X, HUD_LAYER_BUTTON_Y) Test:point]) {
         if (type == INPUT_TOUCH_PRESSED) {
-                        [_buttonSprint setOpacityAndScale];
+            [_overLaySprint setOpacityAndScale];
+            [_buttonSprint setOpacityAndScale];
             _resetButtons = true;
             return HUD_BUTTON_SPRINT;            
         }
@@ -135,7 +150,7 @@
             opacity = HUD_LAYER_BUTTON_OPACITY;
         }
         
-        
+       
         [button setButtonOpacity:opacity];
         
         _resetButtons = true;
@@ -169,7 +184,10 @@
         _resetButtons = false; //gets reset to true in reduceButtonOpacity if still need to transition
         [self resettingButton:_buttonAction TimePassed:dt];
         [self resettingButton:_buttonJump TimePassed:dt];
-        [self resettingButton:_buttonSprint TimePassed:dt];        
+        [self resettingButton:_buttonSprint TimePassed:dt];  
+        [self resettingButton:_overLayAction TimePassed:dt];
+        [self resettingButton:_overLayJump TimePassed:dt];
+        [self resettingButton:_overLaySprint TimePassed:dt];
     }
     
     [self updateTransitions:dt];
@@ -258,13 +276,23 @@
     if (_buttonAction!=nil) {
         
         [[[LayerManager sharedLayers] currentLayer] removeChild:[_buttonAction getCCSpriteForButton] cleanup:NO];
+         [[[LayerManager sharedLayers] currentLayer] removeChild:[_overLayAction getCCSpriteForButton] cleanup:NO];
         [_buttonAction release];
         _buttonAction = nil;        
     }
+   
+    
     _buttonAction = [HudButton instance];
     [_buttonAction createSpriteFromAction:action];
     [_buttonAction setPosition:CGPointMake(HUD_LAYER_ACTION_X, HUD_LAYER_BUTTON_Y)];
     [[_buttonAction getCCSpriteForButton] setVisible:YES];
+    
+    _overLayAction=[HudButton instance];
+    [_overLayAction createSpriteFromImage:@"UI_Button_GreenLight.png"];
+    [_overLayAction setPosition:CGPointMake(HUD_LAYER_ACTION_X, HUD_LAYER_BUTTON_Y)];
+    [[_overLayAction  getCCSpriteForButton] setVisible:YES];
+   
+   
  
     [[LayerManager sharedLayers] forgetWorkingLayer];
 }
@@ -287,6 +315,17 @@
         case HUD_BUTTON_SPRINT:
            
              [[_buttonSprint getCCSpriteForButton] setVisible:enabled];
+            break;
+        case HUD_OVERLAY_SPRINT:
+            
+            [[_overLaySprint getCCSpriteForButton] setVisible:enabled];
+            break;
+        case HUD_OVERLAY_ACTION:
+            
+            [[_overLayAction getCCSpriteForButton] setVisible:enabled];
+        case HUD_OVERLAY_JUMP:
+            
+            [[_overLayJump getCCSpriteForButton] setVisible:enabled];
         default:
             break;
     }
@@ -303,6 +342,7 @@
     [_buttonJump release];
     [_buttonSprint release];
     [_buttonAction release];
+    [_overLayAction release];
     [_trackTimer release];
     [_battery release];
     [super dealloc];
