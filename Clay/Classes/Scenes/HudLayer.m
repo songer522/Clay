@@ -39,13 +39,6 @@
         [[[LayerManager sharedLayers] currentScene] addChild:self];
         
         [[LayerManager sharedLayers] setWorkingLayer:self];
-    
-        
-        
-       
-
-        
-        
         
         _trackTimer = [TrackTimer instance];
         [_trackTimer setupAnimationsAtX:10.0f Y:288.5f];
@@ -259,55 +252,65 @@
     }
 }
 
--(void)setThirdAction:(NSString*)action
+-(void)setHudButtonsAndThirdAction:(NSString*)action
 {
     [[LayerManager sharedLayers] setWorkingLayer:self];
     
     if (_buttonAction!=nil) {
         
-        [[[LayerManager sharedLayers] currentLayer] removeChild:[_buttonAction getCCSpriteForButton] cleanup:NO];
+        //[[[LayerManager sharedLayers] currentLayer] removeChild:[_buttonAction getCCSpriteForButton] cleanup:NO];
          [[[LayerManager sharedLayers] currentLayer] removeChild:[_overLayAction getCCSpriteForButton] cleanup:NO];
-        [_buttonAction release];
-        _buttonAction = nil;        
+        //[_buttonAction release];
+       // _buttonAction = nil;
+        _overLayAction=nil;
     }
     
-    if (_buttonJump!=nil) {
+    if (_overLayJump!=nil) {
         
-        [[[LayerManager sharedLayers] currentLayer] removeChild:[_buttonJump getCCSpriteForButton] cleanup:NO];
+        //[[[LayerManager sharedLayers] currentLayer] removeChild:[_buttonJump getCCSpriteForButton] cleanup:NO];
         [[[LayerManager sharedLayers] currentLayer] removeChild:[_overLayJump getCCSpriteForButton] cleanup:NO];
-        [_buttonJump release];
-        _buttonJump= nil;        
-    }
+       // [_buttonJump release];
+        //_buttonJump= nil;
+      _overLayJump=nil;
+       }
     
     if (_buttonSprint!=nil) {
         
         [[[LayerManager sharedLayers] currentLayer] removeChild:[_buttonSprint getCCSpriteForButton] cleanup:NO];
         [[[LayerManager sharedLayers] currentLayer] removeChild:[_overLaySprint getCCSpriteForButton] cleanup:NO];
         [_buttonSprint release];
-        _buttonSprint = nil;        
+        _buttonSprint = nil;
+        _overLaySprint=nil;
     }
    
-    _buttonJump = [HudButton instance];
-    [_buttonJump createSpriteFromImage:@"UI_Button_Jumping.png"];
-    [_buttonJump setPosition:CGPointMake(HUD_LAYER_JUMP_X, HUD_LAYER_BUTTON_Y)];
+   // _buttonJump = [HudButton instance];
+    //[_buttonJump createSpriteFromImage:@"UI_Button_Jumping.png"];
+    //[_buttonJump setPosition:CGPointMake(HUD_LAYER_JUMP_X, HUD_LAYER_BUTTON_Y)]
     
-    _overLayJump = [HudButton instance];
-    [_overLayJump createSpriteFromImage:@"UI_Button_GreenLight.png"];
-    [_overLayJump setPosition:CGPointMake(HUD_LAYER_JUMP_X, HUD_LAYER_BUTTON_Y)];
+    _buttonSprint=[HudButton getJumpButton];
+     
     
-    _buttonSprint = [HudButton instance];
-    [_buttonSprint createSpriteFromImage:@"UI_Button_TurboBoost.png"];
-    [_buttonSprint setPosition:CGPointMake(HUD_LAYER_SPRINT_X, HUD_LAYER_BUTTON_Y)];
+    //_overLayJump = [HudButton instance];
+    //[_overLayJump createSpriteFromImage:@"UI_Button_GreenLight.png"];
+    //[_overLayJump setPosition:CGPointMake(HUD_LAYER_JUMP_X, HUD_LAYER_BUTTON_Y)];
+    _overLayJump=[HudButton getJumpOverLay];
+    
+   // _buttonSprint = [HudButton instance];
+    //[_buttonSprint createSpriteFromImage:@"UI_Button_TurboBoost.png"];
+    //[_buttonSprint setPosition:CGPointMake(HUD_LAYER_SPRINT_X, HUD_LAYER_BUTTON_Y)];
+    
+    _buttonSprint=[HudButton getSprintButton];
     
     _overLaySprint = [HudButton instance];
     [_overLaySprint createSpriteFromImage:@"UI_Button_GreenLight.png"];
     [_overLaySprint setPosition:CGPointMake(HUD_LAYER_SPRINT_X, HUD_LAYER_BUTTON_Y)];
     
     
-    _buttonAction = [HudButton instance];
-    [_buttonAction createSpriteFromAction:action];
-    [_buttonAction setPosition:CGPointMake(HUD_LAYER_ACTION_X, HUD_LAYER_BUTTON_Y)];
-    [[_buttonAction getCCSpriteForButton] setVisible:YES];
+    //_buttonAction = [HudButton instance];
+    //[_buttonAction createSpriteFromAction:action];
+    //[_buttonAction setPosition:CGPointMake(HUD_LAYER_ACTION_X, HUD_LAYER_BUTTON_Y)];
+    //[[_buttonAction getCCSpriteForButton] setVisible:YES];
+    _buttonAction=[HudButton getActionButton:action];
     
     _overLayAction=[HudButton instance];
     [_overLayAction createSpriteFromImage:@"UI_Button_GreenLight.png"];
@@ -365,6 +368,8 @@
     [_buttonSprint release];
     [_buttonAction release];
     [_overLayAction release];
+    [_overLaySprint release];
+    [_overLayJump release];
     [_trackTimer release];
     [_battery release];
     [super dealloc];

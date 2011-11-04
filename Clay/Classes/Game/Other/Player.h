@@ -109,7 +109,7 @@ typedef enum {
 -(void)updateSlow:(float)dt;
 -(void)updateInvulnerable:(float)dt;
 
--(void)setThirdAction:(NSString*)action;
+-(void)setHudButtonsAndThirdAction:(NSString*)action;
 -(id<PlayerActionProtocol>)getThirdAction;
 
 @end
