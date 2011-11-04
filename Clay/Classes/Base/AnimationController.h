@@ -26,6 +26,9 @@
 
 -(void)loadAnimationsFromPlist:(NSString*)plist;
 
+-(void)addAnimationForSkinFromFile:(NSString*)filename UsingBaseAnim:(NSString*)baseAnim ForSequence:(NSString*)sequence;
+
+
 -(CCAnimationCache*)loadPlistForObjectName:(NSString*)objectName;
 -(CCAnimation*)loadPlistForAnimationWithName:(NSString*)animationName andObjectName:(NSString*)objectName;
 
