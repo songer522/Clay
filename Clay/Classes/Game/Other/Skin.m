@@ -54,7 +54,9 @@
         [controller addAnimationForSkinFromFile:_filename UsingBaseAnim:@"runningAnim" ForSequence:_running];
         [controller addAnimationForSkinFromFile:_filename UsingBaseAnim:@"turboAnim" ForSequence:_sprinting];
         [controller addAnimationForSkinFromFile:_filename UsingBaseAnim:@"trippedAnim" ForSequence:_tripping];
-        [controller addAnimationForSkinFromFile:_filename UsingBaseAnim:@"hurtAnim" ForSequence:_hurting];        
+        [controller addAnimationForSkinFromFile:_filename UsingBaseAnim:@"hurtAnim" ForSequence:_hurting];
+        [controller addAnimationForSkinFromFile:_filename UsingBaseAnim:@"jumpingAnim" ForSequence:_jumping];
+        [controller addAnimationForSkinFromFile:_filename UsingBaseAnim:@"fallingAnim" ForSequence:_falling];
     }
 }
 

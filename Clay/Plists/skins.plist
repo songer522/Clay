@@ -17,9 +17,9 @@
 			<key>wooAction</key>
 			<string>wooAnim</string>
 			<key>falling</key>
-			<string>fallingAnim</string>
+			<string>Retro_Falling_</string>
 			<key>jumping</key>
-			<string>jumpingAnim</string>
+			<string>Retro_Jumping_</string>
 			<key>sprinting</key>
 			<string>Retro_Turbo_</string>
 			<key>tripping</key>
