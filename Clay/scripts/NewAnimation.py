@@ -42,6 +42,7 @@ fullSequenceName = sequenceName + "1.png"
 #project dirs
 root = os.getenv("HOME") #get home directory, equivalent to "~" in terminal
 classesDir = os.path.join(os.getcwd(),os.path.pardir)
+plistsDir = os.path.join(classesDir,"Plists")
 templateDir = os.path.join(os.getcwd(),"templates")
 publicDir = os.path.join(root,"public")
 artUpdateDir = os.path.join(publicDir,"Art_Update")
@@ -99,7 +100,7 @@ if not os.path.isfile(fullAnimFilename):
 
 if creatingPlists:
 	#read anims.plist and add a new animation to the list
-	plistFilename = os.path.join(classesDir,"anims.plist")
+	plistFilename = os.path.join(plistsDir,"anims.plist")
 	plistAnims = plistlib.readPlist(plistFilename)
 
 	if isObstacle:
@@ -130,7 +131,7 @@ if creatingPlists:
 
 if creatingPlists and isPlayer is not True:
 	#edit objects.plist if not a player animation
-	plistFilenameObj = os.path.join(classesDir,"objects.plist")
+	plistFilenameObj = os.path.join(plistsDir,"objects.plist")
 	plistObjects = plistlib.readPlist(plistFilenameObj)
 
 	if isObstacle:

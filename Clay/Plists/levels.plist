@@ -23,23 +23,6 @@
 		<key>layerList</key>
 		<string>background-99,back-5,back-4,back-3,back-2,back-1,main0,actives,front1,front2,front3,meta</string>
 	</dict>
-	<key>platformTest</key>
-	<dict>
-		<key>music</key>
-		<string>track</string>
-		<key>worldType</key>
-		<string>testWorld</string>
-		<key>playerOffsetY</key>
-		<integer>-9</integer>
-		<key>fileName</key>
-		<string>platformtest-2.tmx</string>
-		<key>obstacleLayer</key>
-		<string>obstacles</string>
-		<key>nextLevelName</key>
-		<string>level1</string>
-		<key>layerList</key>
-		<string>main0,meta,obstacles</string>
-	</dict>
 	<key>level2</key>
 	<dict>
 		<key>thirdAction</key>
@@ -131,9 +114,9 @@
 		<key>thirdAction</key>
 		<string>shoot</string>
 		<key>music</key>
-		<string>computer</string>
+		<string>zombies</string>
 		<key>postLevelComic</key>
-		<string>endGame</string>
+		<string>beforeDisco</string>
 		<key>worldType</key>
 		<string>realWorld</string>
 		<key>playerOffsetY</key>
@@ -143,7 +126,7 @@
 		<key>obstacleLayer</key>
 		<string>objects</string>
 		<key>nextLevelName</key>
-		<string>endGame</string>
+		<string>level7</string>
 		<key>layerList</key>
 		<string>back-5,back-4,back-3,back-2,back-1,main0,ledges,actives,front-1,meta</string>
 	</dict>
@@ -158,15 +141,15 @@
 		<key>worldType</key>
 		<string>realWorld</string>
 		<key>playerOffsetY</key>
-		<integer>-9</integer>
+		<integer>0</integer>
 		<key>fileName</key>
-		<string>real_level_6.tmx</string>
+		<string>real_level_7.tmx</string>
 		<key>obstacleLayer</key>
 		<string>objects</string>
 		<key>nextLevelName</key>
 		<string>endGame</string>
 		<key>layerList</key>
-		<string>back-5,back-4,back-3,back-2,back-1,main0,ledges,actives,front-1,meta</string>
+		<string>back-4,back-3,back-2,back-1,main0,actives,front-1,meta</string>
 	</dict>
 	<key>startingLevel</key>
 	<string>level4</string>

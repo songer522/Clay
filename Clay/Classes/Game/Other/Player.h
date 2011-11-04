@@ -11,6 +11,7 @@
 #import "BaseClasses.h"
 #import "Runner.h"
 #import "cocos2d.h"
+#import "Skin.h"
 
 typedef enum {
     JUMP_HIGH = 3,
@@ -88,6 +89,8 @@ typedef enum {
 
 -(void)startThirdAction;
 -(void)startCollision:(PlayerEffect)effect Source:(id<Collidable>)source;
+
+-(void)setPlayerAnimation:(PlayerAnimation)animation;
 
 -(void)changeHealth:(int)amount;
 -(bool)objectShouldReactToCollision;

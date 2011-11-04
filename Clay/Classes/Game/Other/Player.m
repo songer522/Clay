@@ -77,8 +77,8 @@
         _adjustX = 0.0f;
         
         _skin = [Skin instance];
-        [_skin setSkin:@"regularTim"];
-        //[_skin setSkin:@"eightBitTim"];
+        //[_skin setSkin:@"regularTim"];
+        [_skin setSkin:@"eightBitTim"];
     }
     
     return self;
@@ -317,6 +317,11 @@
 -(void)removeProjectile:(id<Collidable>)projectile
 {
     [projectiles removeObject:projectile];
+}
+
+-(void)setPlayerAnimation:(PlayerAnimation)animation
+{
+    [_skin setPlayerAnimation:animation ForSprite:_sprite];
 }
 
 -(void)endKick

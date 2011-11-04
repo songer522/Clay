@@ -68,6 +68,7 @@
 
 -(void)cancelAction
 {
+    
     [[AnimationController sharedController] replaceSprite:[_parent getSprite] withAnimationNamed:@"runningAnim"];
     _parent.isInvincible = false;
     //[_parent setPosition:_preActionPlayerPosition];
