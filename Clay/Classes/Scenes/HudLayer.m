@@ -96,7 +96,7 @@
     if ([self testButtonPosition:CGPointMake(HUD_LAYER_SPRINT_X, HUD_LAYER_BUTTON_Y) Test:point]) {
         if (type == INPUT_TOUCH_PRESSED) {
               if([_overLaySprint getCCSpriteForButton].visible)
-              {[_buttonSprint setOpacityAndScale];}
+              { [_buttonSprint setOpacityAndScale];}
               [_overLaySprint setOpacityAndScale];
            
             _resetButtons = true;
