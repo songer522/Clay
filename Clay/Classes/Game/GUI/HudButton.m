@@ -64,6 +64,10 @@
 {
     return [_graphic getCCSprite];
 }
+-(CCSprite*)getCCSpriteForOverlay
+{
+    return [_greenOverlay getCCSprite];
+}
 
 -(void)setOpacityAndScale
 {

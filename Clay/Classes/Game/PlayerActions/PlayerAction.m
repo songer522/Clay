@@ -46,7 +46,10 @@
         _canTrigger = false;
         _hasKilledEnemy = false;
         GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
-        [[gameLayer getHud] setEnabled:false ForButton:HUD_BUTTON_ACTION];
+         
+        //[[gameLayer getHud] setEnabled:false ForButton:HUD_BUTTON_ACTION];
+        [[gameLayer getHud] setEnabled:false ForButton:HUD_OVERLAY_ACTION];
+       
     }
 }
 
@@ -71,7 +74,8 @@
 {
     _canTrigger = true;
     GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
-    [[gameLayer getHud] setEnabled:true ForButton:HUD_BUTTON_ACTION];    
+    //[[gameLayer getHud] setEnabled:true ForButton:HUD_BUTTON_ACTION];
+       [[gameLayer getHud] setEnabled:true ForButton:HUD_OVERLAY_ACTION];
 }
 
 -(bool)inAction

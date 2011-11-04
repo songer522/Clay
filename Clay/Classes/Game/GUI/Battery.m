@@ -53,13 +53,15 @@
         //disable sprint button in the hud
         _wasLowBattery = true;
         GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
-        [[gameLayer getHud] setEnabled:false ForButton:HUD_BUTTON_SPRINT];
+        
+        [[gameLayer getHud] setEnabled:false ForButton:HUD_OVERLAY_SPRINT];
     } else {
         
         //re-enable sprint button in the hud
         if (_wasLowBattery) {
             GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
-            [[gameLayer getHud] setEnabled:true ForButton:HUD_BUTTON_SPRINT];
+            
+            [[gameLayer getHud] setEnabled:true ForButton:HUD_OVERLAY_SPRINT];
             _wasLowBattery = false;
         }
         

@@ -19,6 +19,8 @@
 #import "Camera.h"
 #import "Battery.h"
 #import "Skin.h"
+#import "GameLayer.h"
+#import "HudLayer.h"
 
 #define PLAYER_SPRITE_FILE @"player_idle_01.png"
 #define PLAYER_STARTING_VELOCITY 0
@@ -116,9 +118,9 @@
     [[self getCollision] processNewCollisionState:COLLISION_STATE_MIDAIR];
     [self setPositionAtX:_x Y:_y];
     [[SoundEngine shared] playSound:@"jumpStart"];
-    
+   
     [_speed startJump];
-}
+   }
 
 -(void)startDoubleJump
 {
@@ -136,6 +138,10 @@
     _isHighJump = true;
     
     [_speed startJump];
+    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+    
+    [[gameLayer getHud] setEnabled:false ForButton:HUD_OVERLAY_JUMP];
+
 }
 
 -(void)boostJump:(RunnerJump)type
@@ -417,6 +423,10 @@
             _hasDoubleJumped = false;
             
             [[SoundEngine shared] playSound:@"jumpLand"];
+            GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+            
+            [[gameLayer getHud] setEnabled:true ForButton:HUD_OVERLAY_JUMP];
+
         } else if (_isJumping && _isTripping) {
             _waitToGetUp = 1.5f;
             _isJumping = false;
