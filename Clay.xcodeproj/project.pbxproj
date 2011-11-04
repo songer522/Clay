@@ -362,6 +362,10 @@
 		54FBA2361430CBBE0010A91A /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54FBA2351430CBBE0010A91A /* MediaPlayer.framework */; };
 		54FC28461455BFE900FD8B54 /* real_level_4.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 54FC28441455BFE900FD8B54 /* real_level_4.tmx */; };
 		57A03E9D1452173A00F2017F /* Menu_Ending_BestTime.png in Resources */ = {isa = PBXBuildFile; fileRef = 57A03E9C1452173A00F2017F /* Menu_Ending_BestTime.png */; };
+		5FF163B3146484CC00229483 /* real_level_1_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 5FF163B1146484CC00229483 /* real_level_1_hd.tmx */; };
+		5FF163B4146484CC00229483 /* tileset_level_1_hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FF163B2146484CC00229483 /* tileset_level_1_hd.png */; };
+		5FF163B71464859C00229483 /* meta_hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FF163B51464859C00229483 /* meta_hd.png */; };
+		5FF163B81464859C00229483 /* TrackLapse_Icons_hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FF163B61464859C00229483 /* TrackLapse_Icons_hd.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -914,6 +918,10 @@
 		54FBA2351430CBBE0010A91A /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		54FC28441455BFE900FD8B54 /* real_level_4.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = real_level_4.tmx; path = Resources/levels/real_level_4.tmx; sourceTree = "<group>"; };
 		57A03E9C1452173A00F2017F /* Menu_Ending_BestTime.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Menu_Ending_BestTime.png; sourceTree = "<group>"; };
+		5FF163B1146484CC00229483 /* real_level_1_hd.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = real_level_1_hd.tmx; path = Resources/levels/real_level_1_hd.tmx; sourceTree = "<group>"; };
+		5FF163B2146484CC00229483 /* tileset_level_1_hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tileset_level_1_hd.png; path = Resources/levels/tileset_level_1_hd.png; sourceTree = "<group>"; };
+		5FF163B51464859C00229483 /* meta_hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = meta_hd.png; path = Resources/levels/meta_hd.png; sourceTree = "<group>"; };
+		5FF163B61464859C00229483 /* TrackLapse_Icons_hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TrackLapse_Icons_hd.png; path = Resources/levels/TrackLapse_Icons_hd.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1469,6 +1477,7 @@
 				543298A9145B5BC300223C3D /* test_level_6.tmx */,
 				549AFF7A1459F0610097BE33 /* real_level_6.tmx */,
 				54883B91144885C40029759E /* real_level_1.tmx */,
+				5FF163B1146484CC00229483 /* real_level_1_hd.tmx */,
 				54883B92144885C40029759E /* real_level_2.tmx */,
 				54883B93144885C40029759E /* real_level_3.tmx */,
 				54FC28441455BFE900FD8B54 /* real_level_4.tmx */,
@@ -1536,12 +1545,15 @@
 				549AFF83145A03140097BE33 /* tileset_level_6.png */,
 				54D44911144F78ED006C6EBA /* TL_Disco_TileTextures.png */,
 				54883B9B144889100029759E /* tileset_level_1.png */,
+				5FF163B2146484CC00229483 /* tileset_level_1_hd.png */,
 				54883B9C144889100029759E /* tileset_level_2.png */,
 				54883B9D144889100029759E /* tileset_level_3.png */,
 				5411C22614586CDA000C7D91 /* tileset_level_5.png */,
 				54883B9E144889100029759E /* tileset_level_x.png */,
 				54883B9F144889100029759E /* TrackLapse_Icons.png */,
 				543C095A1420F3AA00F259BA /* meta.png */,
+				5FF163B51464859C00229483 /* meta_hd.png */,
+				5FF163B61464859C00229483 /* TrackLapse_Icons_hd.png */,
 			);
 			name = tilesets;
 			sourceTree = "<group>";
@@ -1969,6 +1981,7 @@
 			};
 			buildConfigurationList = 54484CCA140449B500D0D7D9 /* Build configuration list for PBXProject "Clay" */;
 			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -2165,6 +2178,10 @@
 				54916782146445B700DFA191 /* real_level_7.tmx in Resources */,
 				54916783146445B700DFA191 /* test_level_7.tmx in Resources */,
 				549167851464521B00DFA191 /* zombies.mp3 in Resources */,
+				5FF163B3146484CC00229483 /* real_level_1_hd.tmx in Resources */,
+				5FF163B4146484CC00229483 /* tileset_level_1_hd.png in Resources */,
+				5FF163B71464859C00229483 /* meta_hd.png in Resources */,
+				5FF163B81464859C00229483 /* TrackLapse_Icons_hd.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
