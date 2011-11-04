@@ -270,6 +270,22 @@
         [_buttonAction release];
         _buttonAction = nil;        
     }
+    
+    if (_buttonJump!=nil) {
+        
+        [[[LayerManager sharedLayers] currentLayer] removeChild:[_buttonJump getCCSpriteForButton] cleanup:NO];
+        [[[LayerManager sharedLayers] currentLayer] removeChild:[_overLayJump getCCSpriteForButton] cleanup:NO];
+        [_buttonJump release];
+        _buttonJump= nil;        
+    }
+    
+    if (_buttonSprint!=nil) {
+        
+        [[[LayerManager sharedLayers] currentLayer] removeChild:[_buttonSprint getCCSpriteForButton] cleanup:NO];
+        [[[LayerManager sharedLayers] currentLayer] removeChild:[_overLaySprint getCCSpriteForButton] cleanup:NO];
+        [_buttonSprint release];
+        _buttonSprint = nil;        
+    }
    
     _buttonJump = [HudButton instance];
     [_buttonJump createSpriteFromImage:@"UI_Button_Jumping.png"];
