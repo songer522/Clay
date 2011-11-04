@@ -79,11 +79,11 @@
     return self;
 }
 
--(void)setThirdAction:(NSString*)action
+-(void)setHudButtonsAndThirdAction:(NSString*)action
 {
     GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
-    [gameLayer.player setThirdAction:action];
-    [[gameLayer getHud] setThirdAction:action];
+    [gameLayer.player setHudButtonsAndThirdAction:action];
+    [[gameLayer getHud] setHudButtonsAndThirdAction:action];
 }
 
 -(void)loadLayers:(NSString*)layerList Player:(Player*)player

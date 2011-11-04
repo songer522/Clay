@@ -73,10 +73,11 @@ typedef enum {
 
 -(float)getCurrentTime;
 
--(void)setThirdAction:(NSString*)action;
+-(void)setHudButtonsAndThirdAction:(NSString*)action;
 
 -(void)fadeIn;
 -(void)fadeOut;
+
 
 -(Battery*)getBattery;
 -(TrackTimer*)getTrackTimer;

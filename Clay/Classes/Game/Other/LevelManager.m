@@ -54,7 +54,7 @@ static LevelManager *_shared = nil;
 //object exists. need to fix later
 -(void)initAfterPlayerAndHudInit
 {
-    [_loadedLevel setThirdAction:_thirdAction];
+    [_loadedLevel setHudButtonsAndThirdAction:_thirdAction];
     
 }
 

@@ -23,9 +23,16 @@
 }
 
 +(id)instance;
++(id)getJumpButton;
+-(HudButton *)createJumpButton;
++(id)getSprintButton;
+-(HudButton *)createSprintButton;
++(id)getActionButton:(NSString *)action;
+-(HudButton *)createActionButton:(NSString *)action;
++(id)getJumpOverLay;
+-(HudButton *)createJumpOverLay;
 -(void)createSpriteFromImage:(NSString*)image;
 -(void)createSpriteFromAction:(NSString*)action;
-
 -(void)setOpacityAndScale;
 -(float)getButtonOpacity;
 -(float)getButtonScale;

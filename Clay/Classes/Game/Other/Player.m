@@ -273,7 +273,7 @@
     }
 }
 
--(void)setThirdAction:(NSString*)action
+-(void)setHudButtonsAndThirdAction:(NSString*)action
 {
     if (_thirdAction != nil) {
         _thirdAction = nil;
