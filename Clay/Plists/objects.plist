@@ -49,7 +49,7 @@
 			<real>0.5</real>
 		</dict>
 		<key>animationName</key>
-		<string>jimSpaceShipAnim</string>
+		<string>jimSpaceshipAnim</string>
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
