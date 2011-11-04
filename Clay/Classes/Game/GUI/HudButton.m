@@ -21,19 +21,50 @@
 
 
 
-+(id)instance;
++(id)buttonWithType:(HudButtonType)type Action:(NSString*)action
 {
-
-    return [[self alloc] init];
+    return [[self alloc] initWithType:type Action:action];
 }
 
--(id) init
+-(id) initWithType:(HudButtonType)type Action:(NSString*)action
 {
     if((self=[super init])){
+        _initialized = true;
         
+        _greenOverlay = [Sprite spriteWithFile:@"UI_Button_GreenLight.png"];
+        [[_greenOverlay getCCSprite] setOpacity:HUD_LAYER_BUTTON_OPACITY];
+        [[_greenOverlay getCCSprite] setScale:[[UIScreen mainScreen] scale] / 2.0f];
+        [[_greenOverlay getCCSprite] setAnchorPoint:ccp(0.5f, 0.5f)];
+        
+        if (_initialized) {
+            [self reset];
+        }
+        
+        [self prepareButtonWithType:type Action:action];
     }
    return self;
 }
+
+-(void)prepareButtonWithType:(HudButtonType)type Action:(NSString*)action
+{
+    switch (type) {
+        case HUD_BUTTON_JUMP:
+            [self createSpriteFromImage:@"UI_Button_Jumping.png"];
+            [self setPosition:CGPointMake(HUD_LAYER_JUMP_X, HUD_LAYER_BUTTON_Y)];
+            break;
+        case HUD_BUTTON_SPRINT:
+            [self createSpriteFromImage:@"UI_Button_Sprinting.png"];
+            [self setPosition:CGPointMake(HUD_LAYER_SPRINT_X, HUD_LAYER_BUTTON_Y)];
+            break;
+        case HUD_OVERLAY_ACTION:
+            [self createSpriteFromAction:action];
+            [self setPosition:CGPointMake(HUD_LAYER_ACTION_X, HUD_LAYER_BUTTON_Y)];
+            break;
+        default:
+            break;
+    }
+}
+
 
 -(void)createSpriteFromImage:(NSString*)image
 {
@@ -41,12 +72,14 @@
     [[_graphic getCCSprite] setOpacity:HUD_LAYER_BUTTON_OPACITY];
     [[_graphic getCCSprite] setScale:[[UIScreen mainScreen] scale] / 2.0f];
     [[_graphic getCCSprite] setAnchorPoint:ccp(0.5f, 0.5f)];
+    [[_greenOverlay getCCSprite] setOpacity:HUD_LAYER_BUTTON_OPACITY];
+
 }
 
 -(void)setPosition:(CGPoint)position
 {
     [_graphic getCCSprite].position = position;
-
+    [_greenOverlay getCCSprite].position = position;
 }
 
 -(void)createSpriteFromAction:(NSString*)action
@@ -65,71 +98,11 @@
     [self createSpriteFromImage:buttonImage];
 }
 
-+(id)getJumpButton
+-(void)reset
 {
-    return [[self alloc] createJumpButton];
-}
-
--(HudButton *)createJumpButton
-{
-    [[[LayerManager sharedLayers] currentLayer] removeChild:[self getCCSpriteForButton] cleanup:NO];
-    self=nil;
-    
-    HudButton *button=[HudButton instance];
-    [button createSpriteFromImage:@"UI_Button_Jumping.png"];
-    [button setPosition:CGPointMake(HUD_LAYER_JUMP_X, HUD_LAYER_BUTTON_Y)];
-    
-    return button;
-}
-+(id)getJumpOverLay
-{
-    return [[self alloc] createJumpOverLay];
-}
-
--(HudButton *)createJumpOverLay
-{
-    [[[LayerManager sharedLayers] currentLayer] removeChild:[self getCCSpriteForButton] cleanup:NO];
-    self=nil;
-    
-    HudButton *button=[HudButton instance];
-    [button createSpriteFromImage:@"UI_Button_GreenLight.png"];
-    [button setPosition:CGPointMake(HUD_LAYER_JUMP_X, HUD_LAYER_BUTTON_Y)];
-    
-    return button;
-}
-
-+(id)getSprintButton
-{
-    return [[self alloc] createSprintButton];
-}
-
--(HudButton *)createSprintButton
-{
-    [[[LayerManager sharedLayers] currentLayer] removeChild:[self getCCSpriteForButton] cleanup:NO];
-    self=nil;
-    
-    HudButton *button=[HudButton instance];
-    [button createSpriteFromImage:@"UI_Button_TurboBoost.png"];
-    [button setPosition:CGPointMake(HUD_LAYER_SPRINT_X, HUD_LAYER_BUTTON_Y)];
-    
-    return button;
-}
-
-+(id)getActionButton:(NSString *)action
-{
-    return [[self alloc] createActionButton:action] ;
-}
-
--(HudButton *)createActionButton:(NSString *)action
-{
-    [[[LayerManager sharedLayers] currentLayer] removeChild:[self getCCSpriteForButton] cleanup:NO];
-    self=nil;
-    
-    HudButton *button=[HudButton instance];
-    [button createSpriteFromAction:action];
-    [button setPosition:CGPointMake(HUD_LAYER_ACTION_X, HUD_LAYER_BUTTON_Y)];
-    [[button getCCSpriteForButton] setVisible:YES];
-    return button;
+    [[[LayerManager sharedLayers] currentLayer] removeChild:[_graphic getCCSprite] cleanup:NO];
+    [_graphic release];
+    _graphic = nil;
 }
 
 -(CCSprite*)getCCSpriteForButton

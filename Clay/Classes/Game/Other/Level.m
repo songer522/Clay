@@ -82,7 +82,7 @@
 -(void)setHudButtonsAndThirdAction:(NSString*)action
 {
     GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
-    [gameLayer.player setHudButtonsAndThirdAction:action];
+    [gameLayer.player setThirdAction:action];
     [[gameLayer getHud] setHudButtonsAndThirdAction:action];
 }
 

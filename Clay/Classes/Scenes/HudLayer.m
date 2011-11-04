@@ -34,6 +34,10 @@
     if (self) {
         // Initialization code here.
         
+        _buttonSprint = [HudButton buttonWithType:HUD_BUTTON_SPRINT Action:@""];
+        _buttonJump = [HudButton buttonWithType:HUD_BUTTON_JUMP Action:@""];
+        _buttonAction = [HudButton buttonWithType:HUD_BUTTON_ACTION Action:@"woo"];
+        
         _buttonScale = [[UIScreen mainScreen] scale] / 2.0f;
         
         [[[LayerManager sharedLayers] currentScene] addChild:self];
@@ -46,12 +50,13 @@
         _battery = [Battery instance];
         
         [[LayerManager sharedLayers] forgetWorkingLayer];
-        
 
         _alpha = 0.0f;
         _currentTransition = HUD_TRANSITION_IDLE;
         _resetButtons = false;
         [self setOpacities:_alpha];
+        
+        
                 
     }
     
@@ -256,68 +261,12 @@
 {
     [[LayerManager sharedLayers] setWorkingLayer:self];
     
-    if (_buttonAction!=nil) {
-        
-        //[[[LayerManager sharedLayers] currentLayer] removeChild:[_buttonAction getCCSpriteForButton] cleanup:NO];
-         [[[LayerManager sharedLayers] currentLayer] removeChild:[_overLayAction getCCSpriteForButton] cleanup:NO];
-        //[_buttonAction release];
-       // _buttonAction = nil;
-        _overLayAction=nil;
-    }
+    [_buttonJump prepareButtonWithType:HUD_BUTTON_JUMP Action:@""];
+    [_buttonSprint prepareButtonWithType:HUD_BUTTON_SPRINT Action:@""];
+    [_buttonAction prepareButtonWithType:HUD_BUTTON_ACTION Action:action];
     
-    if (_overLayJump!=nil) {
-        
-        //[[[LayerManager sharedLayers] currentLayer] removeChild:[_buttonJump getCCSpriteForButton] cleanup:NO];
-        [[[LayerManager sharedLayers] currentLayer] removeChild:[_overLayJump getCCSpriteForButton] cleanup:NO];
-       // [_buttonJump release];
-        //_buttonJump= nil;
-      _overLayJump=nil;
-       }
-    
-    if (_buttonSprint!=nil) {
-        
-        [[[LayerManager sharedLayers] currentLayer] removeChild:[_buttonSprint getCCSpriteForButton] cleanup:NO];
-        [[[LayerManager sharedLayers] currentLayer] removeChild:[_overLaySprint getCCSpriteForButton] cleanup:NO];
-        [_buttonSprint release];
-        _buttonSprint = nil;
-        _overLaySprint=nil;
-    }
-   
-   // _buttonJump = [HudButton instance];
-    //[_buttonJump createSpriteFromImage:@"UI_Button_Jumping.png"];
-    //[_buttonJump setPosition:CGPointMake(HUD_LAYER_JUMP_X, HUD_LAYER_BUTTON_Y)]
-    
-    _buttonSprint=[HudButton getJumpButton];
-     
-    
-    //_overLayJump = [HudButton instance];
-    //[_overLayJump createSpriteFromImage:@"UI_Button_GreenLight.png"];
-    //[_overLayJump setPosition:CGPointMake(HUD_LAYER_JUMP_X, HUD_LAYER_BUTTON_Y)];
-    _overLayJump=[HudButton getJumpOverLay];
-    
-   // _buttonSprint = [HudButton instance];
-    //[_buttonSprint createSpriteFromImage:@"UI_Button_TurboBoost.png"];
-    //[_buttonSprint setPosition:CGPointMake(HUD_LAYER_SPRINT_X, HUD_LAYER_BUTTON_Y)];
-    
-    _buttonSprint=[HudButton getSprintButton];
-    
-    _overLaySprint = [HudButton instance];
-    [_overLaySprint createSpriteFromImage:@"UI_Button_GreenLight.png"];
-    [_overLaySprint setPosition:CGPointMake(HUD_LAYER_SPRINT_X, HUD_LAYER_BUTTON_Y)];
-    
-    
-    //_buttonAction = [HudButton instance];
-    //[_buttonAction createSpriteFromAction:action];
-    //[_buttonAction setPosition:CGPointMake(HUD_LAYER_ACTION_X, HUD_LAYER_BUTTON_Y)];
-    //[[_buttonAction getCCSpriteForButton] setVisible:YES];
-    _buttonAction=[HudButton getActionButton:action];
-    
-    _overLayAction=[HudButton instance];
-    [_overLayAction createSpriteFromImage:@"UI_Button_GreenLight.png"];
-    [_overLayAction setPosition:CGPointMake(HUD_LAYER_ACTION_X, HUD_LAYER_BUTTON_Y)];
-    [[_overLayAction  getCCSpriteForButton] setVisible:YES];
-   
-   
+    [[_buttonAction getCCSpriteForButton] setVisible:YES];
+    [[_buttonAction getCCSpriteForOverlay] setVisible:YES];
  
     [[LayerManager sharedLayers] forgetWorkingLayer];
 }
