@@ -69,9 +69,11 @@
     
     blackBackground = [Sprite spriteWithFile:@"black_background-hd.png"];
     
-    for (int i=0; i<6; i++) {
-        Button *button = [Button buttonWithText:[NSString stringWithFormat:@"Level %d",(i+1)] AtPoint:CGPointMake(100, 280.0f - i * 48.0f)];
-        [button setHitbox:CGRectMake(70.0f, (260.0f - i*48.0f), 150.0f, 48.0f)];
+    for (int i=0; i<7; i++) {
+        float startX = (i<6)? 100.0f : 300.0f;
+        float startY = (i % 6) * 48.0f;
+        Button *button = [Button buttonWithText:[NSString stringWithFormat:@"Level %d",(i+1)] AtPoint:CGPointMake(startX, 280.0f - startY)];
+        [button setHitbox:CGRectMake(startX - 30.0f, (260.0f - startY), 120.0f, 48.0f)];
         button.buttonId = i;
         [[button getLabel] setColor:ccc3(255, 255, 0)];
         [_buttons addObject:button];

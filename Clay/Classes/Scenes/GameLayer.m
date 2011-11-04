@@ -197,7 +197,7 @@
         [_inputController interpretAndReactToInputEvent:event];
     }
     [[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
-
+    
 }
 
 

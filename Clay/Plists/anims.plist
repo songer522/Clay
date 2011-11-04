@@ -2,6 +2,23 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>jimSpaceshipAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.075</string>
+		<key>group</key>
+		<string>computer</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Level7_JimSpaceCraft_</string>
+		<key>spritesheetPlist</key>
+		<string>computerLevel</string>
+	</dict>
 	<key>cowDied</key>
 	<dict>
 		<key>animationFrames</key>
@@ -104,6 +121,23 @@
 		<key>spritesheetPlist</key>
 		<string>characterAnims</string>
 	</dict>
+	<key>eightBitRunningAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3,4,5,6,7,8,9,10</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<real>0.075</real>
+		<key>group</key>
+		<string>Player</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Character_Running_</string>
+		<key>spritesheetPlist</key>
+		<string>eightBitTim</string>
+	</dict>
 	<key>fallingAnim</key>
 	<dict>
 		<key>animationFrames</key>
@@ -154,23 +188,6 @@
 		<string>Disco_BreakDancer_Red_</string>
 		<key>spritesheetPlist</key>
 		<string>disco_level</string>
-	</dict>
-	<key>townCrowAnim</key>
-	<dict>
-		<key>animationFrames</key>
-		<string>1,2,3,4</string>
-		<key>clearPreviousAnims</key>
-		<string>true</string>
-		<key>delay</key>
-		<string>0.15</string>
-		<key>group</key>
-		<string>Obstacle</string>
-		<key>looping</key>
-		<string>true</string>
-		<key>sequencePrefix</key>
-		<string>Town_Bird_</string>
-		<key>spritesheetPlist</key>
-		<string>townCrow</string>
 	</dict>
 	<key>femaleHeadlessZombieAnim</key>
 	<dict>
@@ -376,23 +393,6 @@
 		<key>spritesheetPlist</key>
 		<string>characterAnims</string>
 	</dict>
-	<key>eightBitRunningAnim</key>
-	<dict>
-		<key>animationFrames</key>
-		<string>1,2,3,4,5,6,7,8,9,10</string>
-		<key>clearPreviousAnims</key>
-		<string>true</string>
-		<key>delay</key>
-		<real>0.075</real>
-		<key>group</key>
-		<string>Player</string>
-		<key>looping</key>
-		<string>true</string>
-		<key>sequencePrefix</key>
-		<string>Character_Running_</string>
-		<key>spritesheetPlist</key>
-		<string>eightBitTim</string>
-	</dict>
 	<key>shootingAnim</key>
 	<dict>
 		<key>animationFrames</key>
@@ -426,6 +426,23 @@
 		<string>Small_</string>
 		<key>spritesheetPlist</key>
 		<string>TrackTimer</string>
+	</dict>
+	<key>townCrowAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3,4</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.15</string>
+		<key>group</key>
+		<string>Obstacle</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Town_Bird_</string>
+		<key>spritesheetPlist</key>
+		<string>townCrow</string>
 	</dict>
 	<key>trippedAnim</key>
 	<dict>
