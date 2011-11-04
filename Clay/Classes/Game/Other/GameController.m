@@ -67,7 +67,7 @@
         [self pauseGame];
     } else if(!_isPaused) {
         
-        HudButton result = [_hud testInput:location InputType:type];
+        HudButtons result = [_hud testInput:location InputType:type];
         
         if (type == INPUT_TOUCH_END) {
             [_gameLayer.player endJump];
