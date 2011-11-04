@@ -14,18 +14,7 @@
 #define BUTTON_OPACITY 255
 #define BUTTON_SCALE 0.85f
 @implementation HudButton
-/*
-- (id)init
-{
-    //super init already called within initWithFile under sprite
-    if ((self=[super init])) {
-        _graphic = nil;
-        _greenOverlay = nil;
-        
-    }    
-    return self;
-}
-*/
+
 
 
 +(id)instance;

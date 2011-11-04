@@ -21,7 +21,7 @@ typedef enum {
     HUD_BUTTON_JUMP,
     HUD_BUTTON_SPRINT,
     HUD_BUTTON_ACTION
-} HudButtons;
+} HudButtonType;
 
 typedef enum {
     HUD_TRANSITION_IN,
@@ -31,9 +31,7 @@ typedef enum {
 
 @interface HudLayer : CCLayer
 {
-    //Sprite *_buttonJump;
-    //Sprite *_buttonSprint;
-    //Sprite *_buttonAction;
+  
     HudButton *_buttonJump;
     HudButton *_buttonSprint;
     HudButton *_buttonAction;
@@ -55,12 +53,12 @@ typedef enum {
 
 +(id)instance;
 
-//-(Sprite*)initButton:(NSString*)image Position:(CGPoint)position;
 
--(HudButtons)testInput:(CGPoint)point InputType:(InputType)type;
+
+-(HudButtonType)testInput:(CGPoint)point InputType:(InputType)type;
 -(bool)testButtonPosition:(CGPoint)buttonPosition Test:(CGPoint)testPosition;
 
-//-(void)resettingButton:(Sprite*)button TimePassed:(float)dt;
+
 -(void)resettingButton:(HudButton*)button TimePassed:(float)dt;
 -(void)update:(float)dt;
 -(void)updateTransitions:(float)dt;
@@ -79,7 +77,7 @@ typedef enum {
 
 -(void)reset;
 
-//-(void)setEnabled:(bool)enabled ForButton:(HudButton)button;
--(void)setEnabled:(bool)enabled ForButton:(HudButtons)button;
+
+-(void)setEnabled:(bool)enabled ForButton:(HudButtonType)button;
 
 @end

@@ -39,20 +39,15 @@
         [[[LayerManager sharedLayers] currentScene] addChild:self];
         
         [[LayerManager sharedLayers] setWorkingLayer:self];
-       // _buttonJump = [self initButton:@"UI_Button_Jumping.png" Position:CGPointMake(HUD_LAYER_JUMP_X, HUD_LAYER_BUTTON_Y)];
-       // _buttonAction = [self initButton:@"UI_Button_Kicking.png" Position:CGPointMake(HUD_LAYER_ACTION_X, HUD_LAYER_BUTTON_Y)];
-       // _buttonSprint = [self initButton:@"UI_Button_TurboBoost.png" Position:CGPointMake(HUD_LAYER_SPRINT_X, HUD_LAYER_BUTTON_Y)];
+    
         _buttonJump = [HudButton instance];
         [_buttonJump createSpriteFromImage:@"UI_Button_Jumping.png"];
         [_buttonJump setPosition:CGPointMake(HUD_LAYER_JUMP_X, HUD_LAYER_BUTTON_Y)];
-        /*
-        _buttonSprint = [HudButton instance];
-        _buttonAction = [HudButton instance];
-        _buttonJump = [HudButton buttonWithImage:@"UI_Button_Jumping.png" Position:CGPointMake(HUD_LAYER_JUMP_X, HUD_LAYER_BUTTON_Y)];
-        _buttonAction = [HudButton buttonWithImage:@"UI_Button_Kicking.png" Position:CGPointMake(HUD_LAYER_ACTION_X, HUD_LAYER_BUTTON_Y)];
-        _buttonSprint = [HudButton buttonWithImage:@"UI_Button_TurboBoost.png" Position:CGPointMake(HUD_LAYER_SPRINT_X, HUD_LAYER_BUTTON_Y)];
-        */
         
+        _buttonSprint = [HudButton instance];
+        [_buttonSprint createSpriteFromImage:@"UI_Button_TurboBoost.png"];
+        [_buttonSprint setPosition:CGPointMake(HUD_LAYER_SPRINT_X, HUD_LAYER_BUTTON_Y)];
+               
         _trackTimer = [TrackTimer instance];
         [_trackTimer setupAnimationsAtX:10.0f Y:288.5f];
         
@@ -71,15 +66,14 @@
     return self;
 }
 
-//-(HudButton)testInput:(CGPoint)point InputType:(InputType)type
--(HudButtons)testInput:(CGPoint)point InputType:(InputType)type
+
+-(HudButtonType)testInput:(CGPoint)point InputType:(InputType)type
 
 {
     //test jump button
     if ([self testButtonPosition:CGPointMake(HUD_LAYER_JUMP_X, HUD_LAYER_BUTTON_Y) Test:point]) {
         if (type == INPUT_TOUCH_PRESSED) {
-            //[[_buttonJump getCCSprite] setOpacity:255];
-            //[[_buttonJump getCCSprite] setScale:0.85f * _buttonScale];
+            
             [_buttonJump setOpacityAndScale];
         }
         _resetButtons = true;
@@ -89,8 +83,7 @@
     //test action button
     if ([self testButtonPosition:CGPointMake(HUD_LAYER_ACTION_X, HUD_LAYER_BUTTON_Y) Test:point]) {
         if (type == INPUT_TOUCH_PRESSED) {
-            //[[_buttonAction getCCSprite] setOpacity:255];
-            //[[_buttonAction getCCSprite] setScale:0.85f * _buttonScale];
+            
             [_buttonAction setOpacityAndScale];
             _resetButtons = true;
             return HUD_BUTTON_ACTION;            
@@ -100,9 +93,7 @@
     //test sprint button
     if ([self testButtonPosition:CGPointMake(HUD_LAYER_SPRINT_X, HUD_LAYER_BUTTON_Y) Test:point]) {
         if (type == INPUT_TOUCH_PRESSED) {
-            //[[_buttonSprint getCCSprite] setOpacity:255];
-            //[[_buttonSprint getCCSprite] setScale:0.85f * _buttonScale];
-            [_buttonSprint setOpacityAndScale];
+                        [_buttonSprint setOpacityAndScale];
             _resetButtons = true;
             return HUD_BUTTON_SPRINT;            
         }
@@ -127,25 +118,14 @@
     
     return collision;
 }
-/*
--(Sprite*)initButton:(NSString*)image Position:(CGPoint)position
-{
-    Sprite *sprite = [Sprite spriteWithFile:image];
-    [[sprite getCCSprite] setOpacity:HUD_LAYER_BUTTON_OPACITY];
-    [[sprite getCCSprite] setScale:_buttonScale];
-    [[sprite getCCSprite] setAnchorPoint:ccp(0.5f, 0.5f)];
-    [sprite getCCSprite].position = position;
-    return sprite;
-}
- */
 
-//-(void)resettingButton:(Sprite*)button TimePassed:(float)dt
+
+
 -(void)resettingButton:(HudButton*)button TimePassed:(float)dt
 {
     float rate = 100.0f * dt;
     
-    //float opacity = [[button getCCSprite] opacity];
-    //float scale = [[button getCCSprite] scale];
+
     float opacity=[button getButtonOpacity];
     float scale=[button getButtonScale];
     
@@ -155,7 +135,7 @@
             opacity = HUD_LAYER_BUTTON_OPACITY;
         }
         
-        //[[button getCCSprite] setOpacity:opacity];
+        
         [button setButtonOpacity:opacity];
         
         _resetButtons = true;
@@ -257,9 +237,7 @@
 -(void)setOpacities:(float)alpha
 {
     int opacity = alpha * 255;
-    //[[_buttonJump getCCSprite] setOpacity:opacity];
-    //[[_buttonAction getCCSprite] setOpacity:opacity];
-    //[[_buttonSprint getCCSprite] setOpacity:opacity];
+
     [_buttonJump setButtonOpacity:opacity];
     [_buttonAction setButtonOpacity:opacity];
     [_buttonSprint setButtonOpacity:opacity];
@@ -278,30 +256,16 @@
     [[LayerManager sharedLayers] setWorkingLayer:self];
     
     if (_buttonAction!=nil) {
-        //[[[LayerManager sharedLayers] currentLayer] removeChild:[_buttonAction getCCSprite] cleanup:NO];
+        
         [[[LayerManager sharedLayers] currentLayer] removeChild:[_buttonAction getCCSpriteForButton] cleanup:NO];
         [_buttonAction release];
         _buttonAction = nil;        
     }
-    /*
-    NSString *button;
-    if ([action compare:@"woo"] == NSOrderedSame) {
-        button = @"UI_Button_Woo.png";
-    } else if([action compare:@"kick"] == NSOrderedSame) {
-        button = @"UI_Button_Kicking.png";
-    } else if([action isEqualToString:@"dodge"]) {
-        button = @"UI_Button_Dodging.png";
-    } else if([action isEqualToString:@"shoot"]) {
-        button = @"UI_Button_Kicking.png";
-    }
-     */
-    /*
-    //_buttonAction = [self initButton:button Position:CGPointMake(HUD_LAYER_ACTION_X, HUD_LAYER_BUTTON_Y)];
-    _buttonAction=[HudButton buttonAtPosition:CGPointMake(HUD_LAYER_ACTION_X, HUD_LAYER_BUTTON_Y)];
-    [_buttonAction setThirdAction:action];
-    //[[_buttonAction getCCSprite] setVisible:YES];
+    _buttonAction = [HudButton instance];
+    [_buttonAction createSpriteFromAction:action];
+    [_buttonAction setPosition:CGPointMake(HUD_LAYER_ACTION_X, HUD_LAYER_BUTTON_Y)];
     [[_buttonAction getCCSpriteForButton] setVisible:YES];
-    */
+ 
     [[LayerManager sharedLayers] forgetWorkingLayer];
 }
 
@@ -310,19 +274,18 @@
     return _trackTimer;
 }
 
--(void)setEnabled:(bool)enabled ForButton:(HudButtons)button
+-(void)setEnabled:(bool)enabled ForButton:(HudButtonType)button
 {
     switch (button) {
         case HUD_BUTTON_JUMP:
-            //[[_buttonJump getCCSprite] setVisible:enabled];
-            [[_buttonJump getCCSpriteForButton] setVisible:enabled];
+                        [[_buttonJump getCCSpriteForButton] setVisible:enabled];
             break;
         case HUD_BUTTON_ACTION:
-            //[[_buttonAction getCCSprite] setVisible:enabled];
+            
              [[_buttonAction getCCSpriteForButton] setVisible:enabled];
             break;
         case HUD_BUTTON_SPRINT:
-            //[[_buttonSprint getCCSprite] setVisible:enabled];
+           
              [[_buttonSprint getCCSpriteForButton] setVisible:enabled];
         default:
             break;
