@@ -1941,7 +1941,6 @@
 			};
 			buildConfigurationList = 54484CCA140449B500D0D7D9 /* Build configuration list for PBXProject "Clay" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
