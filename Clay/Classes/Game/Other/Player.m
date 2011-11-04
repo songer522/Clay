@@ -79,8 +79,7 @@
         _adjustX = 0.0f;
         
         _skin = [Skin instance];
-        //[_skin setSkin:@"regularTim"];
-        [_skin setSkin:@"eightBitTim"];
+        [self updateSkin:SKINTYPE_REGULAR];
     }
     
     return self;
@@ -493,6 +492,19 @@
     }
 }
 
+-(void)updateSkin:(SkinType)skin
+{
+    switch (skin) {
+        case SKINTYPE_REGULAR:
+            [_skin setSkin:@"regularTim"];
+            break;
+        case SKINTYPE_8BIT:
+            [_skin setSkin:@"eightBitTim"];
+            break;
+        default:
+            break;
+    }
+}
 
 -(void)dealloc
 {

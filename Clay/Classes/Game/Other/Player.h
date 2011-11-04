@@ -19,6 +19,11 @@ typedef enum {
     JUMP_SHORT = 1
 } RunnerJump;
 
+typedef enum {
+    SKINTYPE_REGULAR,
+    SKINTYPE_8BIT
+}SkinType;
+
 
 //TODO: Make player animations easier to predict by having it determined in only one location, governed by a state machine.
 
@@ -108,6 +113,8 @@ typedef enum {
 
 -(void)updateSlow:(float)dt;
 -(void)updateInvulnerable:(float)dt;
+
+-(void)updateSkin:(SkinType)skin;
 
 -(void)setThirdAction:(NSString*)action;
 -(id<PlayerActionProtocol>)getThirdAction;

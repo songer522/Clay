@@ -39,7 +39,7 @@
         _cooldown = 0.5f;
         [_parent endTurbo];
         [_kick reset];
-        [[AnimationController sharedController] replaceSprite:[_parent getSprite] withAnimationNamed:@"kickingAnim"];
+        [_parent setPlayerAnimation:PLAYER_ANIM_KICK];
     }
     [super startAction];
 }
@@ -90,7 +90,7 @@
 
 -(void)cancelAction
 {
-    [[AnimationController sharedController] replaceSprite:[_parent getSprite] withAnimationNamed:@"runningAnim"];
+    [_parent setPlayerAnimation:PLAYER_ANIM_RUNNING];
     [_kick disable];
     [super cancelAction];
 }
