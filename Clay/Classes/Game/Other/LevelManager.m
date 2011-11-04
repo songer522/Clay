@@ -117,6 +117,15 @@ static LevelManager *_shared = nil;
     _currentLevel = _nextLevel;
     [_levelToUnload unloadLevel];
     _levelToUnload = nil;
+
+    //show 8-bit skin if level 7, otherwise show regular skin
+    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+    int levelNumber = [[_currentLevel.name substringFromIndex:5] intValue];
+    if (levelNumber == 7) {
+        [gameLayer.player updateSkin:SKINTYPE_8BIT];
+    } else {
+        [gameLayer.player updateSkin:SKINTYPE_REGULAR];
+    }
     
     [[SoundEngine shared] playMusic:_currentLevel.musicName];
 

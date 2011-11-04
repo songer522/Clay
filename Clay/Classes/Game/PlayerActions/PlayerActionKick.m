@@ -18,9 +18,9 @@
 #import "LayerManager.h"
 #import "GameLayer.h"
 
-#define kPlayerActionDodgeMoveX 20.0f
-#define kPlayerActionDodgeFullDuration 0.4f;
-#define kPlayerActionDodgeActiveWhileDurationLessThan 0.2f
+#define kPlayerActionKickMoveX 20.0f
+#define kPlayerActionKickFullDuration 0.4f;
+#define kPlayerActionKickActiveWhileDurationLessThan 0.75f
 
 @implementation PlayerActionKick
 
@@ -34,7 +34,7 @@
 -(void)startAction
 {
     if (!_inAction && _canTrigger) {
-        _duration = kPlayerActionDodgeFullDuration;
+        _duration = kPlayerActionKickFullDuration;
         _madeFootProjectile = false;
         _cooldown = 0.5f;
         [_parent endTurbo];
@@ -47,7 +47,7 @@
 -(void)update:(float)dt
 {
     if (_inAction) {
-        if (_duration < kPlayerActionDodgeActiveWhileDurationLessThan) {
+        if (_duration < kPlayerActionKickActiveWhileDurationLessThan) {
             _isActive = true;
             [_kick setActive:YES];
             
@@ -97,7 +97,7 @@
 
 -(void)endAction
 {
-    [_parent pushAfterAnimation:kPlayerActionDodgeMoveX];
+    [_parent pushAfterAnimation:kPlayerActionKickMoveX];
     [_kick disable];
     [super endAction];
 }

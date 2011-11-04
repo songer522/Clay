@@ -70,7 +70,6 @@
 {
 
     [_parent setPlayerAnimation:PLAYER_ANIM_RUNNING];
-    [[AnimationController sharedController] replaceSprite:[_parent getSprite] withAnimationNamed:@"runningAnim"];
     _parent.isInvincible = false;
     //[_parent setPosition:_preActionPlayerPosition];
     [super cancelAction];
@@ -79,6 +78,7 @@
 -(void)endAction
 {
     _parent.isInvincible = false;
+    [_parent setPlayerAnimation:PLAYER_ANIM_RUNNING];
     //[[_parent getSprite] setPosition:_preActionPlayerPosition];
     [super endAction];
 }
