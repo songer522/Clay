@@ -29,36 +29,38 @@
 -(id) initWithType:(HudButtonType)type Action:(NSString*)action
 {
     if((self=[super init])){
-        _initialized = true;
         
         _greenOverlay = [Sprite spriteWithFile:@"UI_Button_GreenLight.png"];
         [[_greenOverlay getCCSprite] setOpacity:HUD_LAYER_BUTTON_OPACITY];
         [[_greenOverlay getCCSprite] setScale:[[UIScreen mainScreen] scale] / 2.0f];
         [[_greenOverlay getCCSprite] setAnchorPoint:ccp(0.5f, 0.5f)];
         
-        if (_initialized) {
-            [self reset];
-        }
-        
         [self prepareButtonWithType:type Action:action];
+        
+        _initialized = true;
     }
    return self;
 }
 
 -(void)prepareButtonWithType:(HudButtonType)type Action:(NSString*)action
 {
+    
+    if (_initialized) {
+        [self reset];
+    }
+    
     switch (type) {
         case HUD_BUTTON_JUMP:
             [self createSpriteFromImage:@"UI_Button_Jumping.png"];
-            [self setPosition:CGPointMake(HUD_LAYER_JUMP_X, HUD_LAYER_BUTTON_Y)];
+            [self setPosition:ccp(HUD_LAYER_JUMP_X, HUD_LAYER_BUTTON_Y)];
             break;
         case HUD_BUTTON_SPRINT:
             [self createSpriteFromImage:@"UI_Button_Sprinting.png"];
-            [self setPosition:CGPointMake(HUD_LAYER_SPRINT_X, HUD_LAYER_BUTTON_Y)];
+            [self setPosition:ccp(HUD_LAYER_SPRINT_X, HUD_LAYER_BUTTON_Y)];
             break;
-        case HUD_OVERLAY_ACTION:
+        case HUD_BUTTON_ACTION:
             [self createSpriteFromAction:action];
-            [self setPosition:CGPointMake(HUD_LAYER_ACTION_X, HUD_LAYER_BUTTON_Y)];
+            [self setPosition:ccp(HUD_LAYER_ACTION_X, HUD_LAYER_BUTTON_Y)];
             break;
         default:
             break;

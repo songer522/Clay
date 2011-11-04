@@ -38,6 +38,10 @@
         _buttonJump = [HudButton buttonWithType:HUD_BUTTON_JUMP Action:@""];
         _buttonAction = [HudButton buttonWithType:HUD_BUTTON_ACTION Action:@"woo"];
         
+        [[_buttonAction getCCSpriteForButton] setVisible:YES];
+        [[_buttonAction getCCSpriteForOverlay] setVisible:YES];
+
+        
         _buttonScale = [[UIScreen mainScreen] scale] / 2.0f;
         
         [[[LayerManager sharedLayers] currentScene] addChild:self];
