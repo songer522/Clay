@@ -8,18 +8,12 @@
 		<string>eightBitTim</string>
 		<key>animations</key>
 		<dict>
-			<key>shootAction</key>
-			<string>shootingAnim</string>
-			<key>dodgeAction</key>
-			<string>dodgingAnim</string>
-			<key>kickAction</key>
-			<string>kickingAnim</string>
-			<key>wooAction</key>
-			<string>wooAnim</string>
+			<key>magnetAction</key>
+			<string></string>
 			<key>falling</key>
-			<string>Retro_Falling_</string>
+			<string></string>
 			<key>jumping</key>
-			<string>Retro_Jumping_</string>
+			<string></string>
 			<key>sprinting</key>
 			<string>Retro_Turbo_</string>
 			<key>tripping</key>
@@ -37,25 +31,25 @@
 		<key>animations</key>
 		<dict>
 			<key>shootAction</key>
-			<string>shootingAnim</string>
+			<string>Character_Shooting_</string>
 			<key>dodgeAction</key>
-			<string>dodgingAnim</string>
+			<string>dodge_</string>
 			<key>kickAction</key>
-			<string>kickingAnim</string>
+			<string>character_kicking_</string>
 			<key>wooAction</key>
-			<string>wooAnim</string>
+			<string>Character_Woo_</string>
 			<key>falling</key>
-			<string>fallingAnim</string>
+			<string>character_falling_</string>
 			<key>jumping</key>
-			<string>jumpingAnim</string>
+			<string>character_jumping_</string>
 			<key>sprinting</key>
-			<string>turboAnim</string>
+			<string>Character_Turbo_</string>
 			<key>tripping</key>
-			<string>trippedAnim</string>
+			<string>Character_Tumble_</string>
 			<key>running</key>
-			<string>runningAnim</string>
+			<string>Character_Running_</string>
 			<key>hurting</key>
-			<string>hurtAnim</string>
+			<string>Character_Hurting_</string>
 		</dict>
 	</dict>
 </dict>

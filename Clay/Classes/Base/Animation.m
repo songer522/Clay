@@ -43,6 +43,7 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
         _looping = ANIMATION_DEFAULT_LOOPING;
         _clearPreviousAnimations = ANIMATION_DEFAULT_CLEAR_OLD_ANIMS;
         _sequence = [[NSString alloc] initWithString:sequence];
+        _frameList = [[NSString alloc] initWithString:framelist];
         
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:[name stringByAppendingString:ANIMATION_SPRITE_CACHE_SUFFIX]];
         
@@ -144,6 +145,16 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
 -(void)setFrame:(int)frame
 {
     [_animateAction setFrame:frame];
+}
+
+-(NSString*)getSequence
+{
+    return _sequence;
+}
+
+-(NSString*)getFrameList
+{
+    return _frameList;
 }
 
 -(void)dealloc

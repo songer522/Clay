@@ -26,7 +26,7 @@
     NSString *_firstFrameName;              //name of the first frame of the sequence
     
     NSString *_sequence;
-    
+    NSString *_frameList;
     
     
     CCXAnimate *_animateAction;             //extension of CCAnimate to allow to
@@ -60,6 +60,8 @@
 -(void)togglePauseAnimation;
 -(void)setFrame:(int)frame;
 -(void)setStaticFrame:(int)frame Sprite:(Sprite*)sprite;
+-(NSString*)getSequence;
+-(NSString*)getFrameList;
 
 //replaces the given sprite with this animation
 

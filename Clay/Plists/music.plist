@@ -14,5 +14,7 @@
 	<string>computer.mp3</string>
 	<key>city</key>
 	<string>city.mp3</string>
+	<key>zombies</key>
+	<string>zombies.mp3</string>
 </dict>
 </plist>

@@ -11,6 +11,7 @@
 #import "BaseClasses.h"
 #import "Runner.h"
 #import "cocos2d.h"
+#import "Skin.h"
 
 typedef enum {
     JUMP_HIGH = 3,
@@ -23,7 +24,9 @@ typedef enum {
 
 @class RunningSpeed;
 @class Battery;
+@class Skin;
 @protocol PlayerActionProtocol;
+
 
 @interface Player : Runner
 {
@@ -53,6 +56,8 @@ typedef enum {
     
     
     NSMutableArray *projectiles;
+    
+    Skin *_skin;
     
     id <PlayerActionProtocol> _thirdAction; //playeraction
 
@@ -84,6 +89,8 @@ typedef enum {
 
 -(void)startThirdAction;
 -(void)startCollision:(PlayerEffect)effect Source:(id<Collidable>)source;
+
+-(void)setPlayerAnimation:(PlayerAnimation)animation;
 
 -(void)changeHealth:(int)amount;
 -(bool)objectShouldReactToCollision;

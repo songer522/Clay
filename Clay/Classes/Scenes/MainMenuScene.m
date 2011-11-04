@@ -45,38 +45,42 @@
                 
         [[LayerManager sharedLayers] setWorkingLayer:self];
         
-        _trackBackground = [Sprite spriteWithFile:@"Menu_Background.png"];
+        CCSpriteFrameCache* frameCache = [CCSpriteFrameCache sharedSpriteFrameCache];
+        [frameCache addSpriteFramesWithFile:@"menuTextures.plist"];
+
+        
+        _trackBackground = [Sprite spriteFromFrameCacheWithName:@"Menu_Background.png"];
         [_trackBackground getCCSprite].position = ccp(0,0);
         [_trackBackground setAlpha:1.0f];
         
-        _blackCover = [Sprite spriteWithFile:@"black_background.png"];
+        _blackCover = [Sprite spriteWithFile:@"black_background-hd.png"];
         [_blackCover getCCSprite].position = ccp(0,0);
         [_blackCover setAlpha:0.0f];
         
-        _rain1 = [Sprite spriteWithFile:@"Menu_Rain_01.png"];
+        _rain1 = [Sprite spriteFromFrameCacheWithName:@"Menu_Rain_01.png"];
         [_rain1 getCCSprite].position = ccp(0, 0);
         [_rain1 setAlpha:0.0f];
         
-        _rain2 = [Sprite spriteWithFile:@"Menu_Rain_02.png"];
+        _rain2 = [Sprite spriteFromFrameCacheWithName:@"Menu_Rain_02.png"];
         [_rain2 getCCSprite].position = ccp(0, 0);
         [_rain2 setAlpha:0.0f];
         
-        _logo = [Sprite spriteWithFile:@"Menu_Logo.png"];
+        _logo = [Sprite spriteFromFrameCacheWithName:@"Menu_Logo.png"];
         [_logo setAlpha:0.0f];
         [_logo getCCSprite].anchorPoint = ccp(0.5f, 0.5f);
         [_logo getCCSprite].position = ccp(240, 258); //final 240, 262
         
-        _playButtonBlue = [Sprite spriteWithFile:@"Menu_PlayBlue.png"];
+        _playButtonBlue = [Sprite spriteFromFrameCacheWithName:@"Menu_PlayBlue.png"];
         [_playButtonBlue setAlpha:0.0f];
         [_playButtonBlue getCCSprite].anchorPoint = ccp(0.5f,0.5f);
         [_playButtonBlue getCCSprite].position = ccp(240, 142);
         
-        _playButtonOrange = [Sprite spriteWithFile:@"Menu_PlayOrange.png"];
+        _playButtonOrange = [Sprite spriteFromFrameCacheWithName:@"Menu_PlayOrange.png"];
         [_playButtonOrange getCCSprite].anchorPoint = ccp(0.5f, 0.5f);
         [_playButtonOrange getCCSprite].position = ccp(240,142);
         [[_playButtonOrange getCCSprite] setVisible:NO];
         
-        _copyright = [Sprite spriteWithFile:@"Menu_Copyright.png"];
+        _copyright = [Sprite spriteFromFrameCacheWithName:@"Menu_Copyright.png"];
         [_copyright setAlpha:0.0f];
         [_copyright getCCSprite].anchorPoint = ccp(0.5f, 0.5f);
         [_copyright getCCSprite].position = ccp(240,24); //final 240,20
@@ -94,6 +98,9 @@
         [self scheduleUpdate];
         self.isTouchEnabled = YES;
         
+        [[CCTextureCache sharedTextureCache] removeAllTextures];
+        [[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
+
     }
     
     return self;
@@ -166,6 +173,7 @@
     _totalTime += rate;
     _time += dt;
     
+    //oscillate between two image files
     float rainFrame = _totalTime - ((int)_totalTime);
     if (rainFrame <= 0.5f) {
         [[_rain1 getCCSprite] setVisible:YES];
@@ -226,7 +234,11 @@
 -(void)private_switchToChooseLevel
 {
     [self unscheduleUpdate];
-    [[LayerManager sharedLayers] pushSceneNamed:@"chooseLevel"];    
+    [[LayerManager sharedLayers] pushSceneNamed:@"chooseLevel"];   
+    
+    [[CCTextureCache sharedTextureCache] removeAllTextures];
+    [[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
+
 }
 
 

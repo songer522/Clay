@@ -7,8 +7,12 @@
 //
 
 #import "Button.h"
+#import "InputController.h"
+#import "Sprite.h"
 
 @class Sprite;
+
+
 
 @interface HudButton : Button
 {
@@ -18,5 +22,17 @@
     
 }
 
++(id)instance;
+-(void)createSpriteFromImage:(NSString*)image;
+-(void)createSpriteFromAction:(NSString*)action;
+
+-(void)setOpacityAndScale;
+-(float)getButtonOpacity;
+-(float)getButtonScale;
+-(CCSprite*)getCCSpriteForButton;
+-(CCSprite*)getCCSpriteForOverlay;
+-(void)setButtonOpacity:(float)opacity;
+-(void)setButtonScale:(float)scale;
+-(void)setPosition:(CGPoint)position;
 
 @end
