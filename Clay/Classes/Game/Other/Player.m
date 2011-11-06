@@ -139,7 +139,7 @@
     [_speed startJump];
     GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
     
-    [[gameLayer getHud] setEnabled:false ForButton:HUD_OVERLAY_JUMP];
+    [[gameLayer getHud] setEnabled:false ForButton:HUD_BUTTON_JUMP];
 
 }
 
@@ -429,12 +429,15 @@
             [[SoundEngine shared] playSound:@"jumpLand"];
             GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
             
-            [[gameLayer getHud] setEnabled:true ForButton:HUD_OVERLAY_JUMP];
+            [[gameLayer getHud] setEnabled:true ForButton:HUD_BUTTON_JUMP];
 
         } else if (_isJumping && _isTripping) {
             _waitToGetUp = 1.5f;
             _isJumping = false;
             [[SoundEngine shared] playSound:@"timCollision"];
+            GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+            
+            [[gameLayer getHud] setEnabled:true ForButton:HUD_BUTTON_JUMP];
             [_speed stop];
         } else if(![_skin isCurrentAnimationOfType:PLAYER_ANIM_RUNNING] && !_isInMidAir && !_speed.inTurbo && !_isTripping && ![_thirdAction inAction] && _waitToGetUp <=0.0f) {
             [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];
