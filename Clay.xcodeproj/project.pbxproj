@@ -155,6 +155,7 @@
 		54642B0D14337E5F001D8212 /* Battery_v2_s-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54642B0514337E5F001D8212 /* Battery_v2_s-hd.png */; };
 		54642B0E14337E5F001D8212 /* Battery_v2_s.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54642B0614337E5F001D8212 /* Battery_v2_s.plist */; };
 		54642B0F14337E5F001D8212 /* Battery_v2_s.png in Resources */ = {isa = PBXBuildFile; fileRef = 54642B0714337E5F001D8212 /* Battery_v2_s.png */; };
+		54652B6B1467E22A00067DC1 /* ObstacleZombie.m in Sources */ = {isa = PBXBuildFile; fileRef = 54652B6A1467E22A00067DC1 /* ObstacleZombie.m */; };
 		54861E5B1451FF7700717BC5 /* StoryText_1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 54861E571451FF7700717BC5 /* StoryText_1.mp4 */; };
 		54861E5C1451FF7700717BC5 /* StoryText_2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 54861E581451FF7700717BC5 /* StoryText_2.mp4 */; };
 		54861E5D1451FF7700717BC5 /* StoryText_3.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 54861E591451FF7700717BC5 /* StoryText_3.mp4 */; };
@@ -629,6 +630,8 @@
 		54642B0514337E5F001D8212 /* Battery_v2_s-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Battery_v2_s-hd.png"; sourceTree = "<group>"; };
 		54642B0614337E5F001D8212 /* Battery_v2_s.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Battery_v2_s.plist; sourceTree = "<group>"; };
 		54642B0714337E5F001D8212 /* Battery_v2_s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Battery_v2_s.png; sourceTree = "<group>"; };
+		54652B691467E22A00067DC1 /* ObstacleZombie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObstacleZombie.h; sourceTree = "<group>"; };
+		54652B6A1467E22A00067DC1 /* ObstacleZombie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObstacleZombie.m; sourceTree = "<group>"; };
 		546EEBC9145F632A008F1EAF /* tileset_level_1_extra_pixels.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tileset_level_1_extra_pixels.png; path = Resources/levels/tileset_level_1_extra_pixels.png; sourceTree = "<group>"; };
 		54861E571451FF7700717BC5 /* StoryText_1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = StoryText_1.mp4; path = Resources/videos/StoryText_1.mp4; sourceTree = "<group>"; };
 		54861E581451FF7700717BC5 /* StoryText_2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = StoryText_2.mp4; path = Resources/videos/StoryText_2.mp4; sourceTree = "<group>"; };
@@ -1684,6 +1687,8 @@
 				549ED7B91461D065008BCD98 /* ObstacleChicken.m */,
 				549ED7BA1461D065008BCD98 /* ObstacleStatic.h */,
 				549ED7BB1461D065008BCD98 /* ObstacleStatic.m */,
+				54652B691467E22A00067DC1 /* ObstacleZombie.h */,
+				54652B6A1467E22A00067DC1 /* ObstacleZombie.m */,
 			);
 			path = GameObjects;
 			sourceTree = "<group>";
@@ -2344,6 +2349,7 @@
 				549ED8481461D065008BCD98 /* MainMenuScene.m in Sources */,
 				549ED8491461D065008BCD98 /* PauseMenuScreen.m in Sources */,
 				548D2D1D1461E871005E1AC0 /* Skin.m in Sources */,
+				54652B6B1467E22A00067DC1 /* ObstacleZombie.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
