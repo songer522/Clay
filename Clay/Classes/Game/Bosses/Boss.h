@@ -14,6 +14,8 @@
 
 @end
 
+@class Sprite;
+
 @interface Boss : NSObject<BossProtocol>
 {
     bool _isActive;
@@ -26,5 +28,5 @@
 
 -(void)startBoss;
 -(void)update:(float)dt;
-
+-(void)setSprite:(Sprite*)sprite;
 @end

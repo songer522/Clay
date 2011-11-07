@@ -75,10 +75,6 @@
         [self initForLevel];
         
 
-        _boss = [BossFactory buildWithType:BOSS_SPACESHIP];
-        [_boss startBoss];
-
-        
         self.isTouchEnabled = YES;
         
         
@@ -109,8 +105,10 @@
     [_savePoint setSavePoint:_level.spawnPoint Level:_level.name];
     
     [self initCamera];
-
+    
     [_hud reset];
+    
+    
 
 }
 

@@ -62,7 +62,7 @@
 			<integer>0</integer>
 		</dict>
 		<key>collideBehavior</key>
-		<string>none</string>
+		<string>bossShip</string>
 		<key>imageName</key>
 		<string>blank.png</string>
 		<key>offsetx</key>

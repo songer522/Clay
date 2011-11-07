@@ -261,6 +261,7 @@
                 if (![objectName isEqualToString:@"lighting"]) {  //TEMPORARY: disabling lights until we decide we don't want them
                     
                     GameObject *object = [_gameObjects loadGameObjectWithName:objectName AddToLayer:NO];
+                    
                     CGPoint position = [self getXYPositionForCoordinates:coords];
                     [object setPositionAtX:position.x Y:position.y];
                     [object setStartingPosition:position];

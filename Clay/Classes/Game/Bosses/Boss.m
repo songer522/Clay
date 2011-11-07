@@ -7,6 +7,7 @@
 //
 
 #import "Boss.h"
+#import "Sprite.h"
 
 @implementation Boss
 
@@ -38,6 +39,10 @@
     
 }
 
+-(void)setSprite:(Sprite *)sprite
+{
+    
+}
 
 
 @end

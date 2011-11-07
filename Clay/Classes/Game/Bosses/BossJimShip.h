@@ -17,6 +17,11 @@
     CGPoint _velocity;
     CGRect _targetOnScreen;
     
+    int xthrust;
+    int ythrust;
+    
+    bool _firstUpdate;
+    
     CGPoint _thrust; //which directions the "thrusters" are going, -1,0,1 in X, or 1,0 in y
 }
 
