@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>eightBitTim</key>
+	<dict>
+		<key>filename</key>
+		<string>eightBitTim</string>
+		<key>animations</key>
+		<dict>
+			<key>shootAction</key>
+			<string>shootingAnim</string>
+			<key>dodgeAction</key>
+			<string>dodgingAnim</string>
+			<key>kickAction</key>
+			<string>kickingAnim</string>
+			<key>wooAction</key>
+			<string>wooAnim</string>
+			<key>falling</key>
+			<string>Retro_Falling_</string>
+			<key>jumping</key>
+			<string>Retro_Jumping_</string>
+			<key>sprinting</key>
+			<string>Retro_Turbo_</string>
+			<key>tripping</key>
+			<string>Retro_Tumble_</string>
+			<key>running</key>
+			<string>Retro_Running_</string>
+			<key>hurting</key>
+			<string>Retro_Hurting_</string>
+		</dict>
+	</dict>
+	<key>regularTim</key>
+	<dict>
+		<key>filename</key>
+		<string>characterAnims</string>
+		<key>animations</key>
+		<dict>
+			<key>shootAction</key>
+			<string>shootingAnim</string>
+			<key>dodgeAction</key>
+			<string>dodgingAnim</string>
+			<key>kickAction</key>
+			<string>kickingAnim</string>
+			<key>wooAction</key>
+			<string>wooAnim</string>
+			<key>falling</key>
+			<string>fallingAnim</string>
+			<key>jumping</key>
+			<string>jumpingAnim</string>
+			<key>sprinting</key>
+			<string>turboAnim</string>
+			<key>tripping</key>
+			<string>trippedAnim</string>
+			<key>running</key>
+			<string>runningAnim</string>
+			<key>hurting</key>
+			<string>hurtAnim</string>
+		</dict>
+	</dict>
+</dict>
+</plist>
