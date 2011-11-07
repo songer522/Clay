@@ -79,8 +79,8 @@
         _adjustX = 0.0f;
         
         _skin = [Skin instance];
-        //[_skin setSkin:@"regularTim"];
-        [_skin setSkin:@"eightBitTim"];
+        [_skin setSkin:@"regularTim"];
+        //[_skin setSkin:@"eightBitTim"];
     }
     
     return self;

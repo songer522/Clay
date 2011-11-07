@@ -60,8 +60,14 @@
         
         //[[[LayerManager sharedLayers] currentLayer] addChild:_map];
         
-        _scale = [[UIScreen mainScreen] scale] / 2.0f;
-        
+        if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
+        {
+            _scale = [[UIScreen mainScreen] scale] / 2.0f;
+        }
+        else
+        {
+            _scale = [[UIScreen mainScreen] scale];
+        }
         [self scanThroughMapAndAddObjects];
                 
         [self loadLayers:layerList Player:player];
