@@ -44,7 +44,7 @@
         _duration = 0.4f;
         _cooldown = 0.4f;
         [_parent endTurbo];
-        [[AnimationController sharedController] replaceSprite:[_parent getSprite] withAnimationNamed:@"shootingAnim"];
+        [_parent setPlayerAnimation:PLAYER_ANIM_SHOOT];
         [[SoundEngine shared] playSound:@"shootAction"];
         [self createBullet];
     }
@@ -74,7 +74,7 @@
 
 -(void)cancelAction
 {
-    [[AnimationController sharedController] replaceSprite:[_parent getSprite] withAnimationNamed:@"runningAnim"];
+    [_parent setPlayerAnimation:PLAYER_ANIM_RUNNING];
     _cooldown = 1.0f;
     [super cancelAction];
 }

@@ -335,6 +335,7 @@
 		54A1192014433D6B0008A823 /* TrackTimer-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A1191C14433D6B0008A823 /* TrackTimer-hd.png */; };
 		54A1192114433D6B0008A823 /* TrackTimer.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54A1191D14433D6B0008A823 /* TrackTimer.plist */; };
 		54A1192214433D6B0008A823 /* TrackTimer.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A1191E14433D6B0008A823 /* TrackTimer.png */; };
+		54A64A32146809D200853CFF /* BossJimShip.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A64A31146809D200853CFF /* BossJimShip.m */; };
 		54ABFD7114630876006F0C88 /* menuTextures-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54ABFD6D14630876006F0C88 /* menuTextures-hd.plist */; };
 		54ABFD7214630876006F0C88 /* menuTextures-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54ABFD6E14630876006F0C88 /* menuTextures-hd.png */; };
 		54ABFD7314630876006F0C88 /* menuTextures.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54ABFD6F14630876006F0C88 /* menuTextures.plist */; };
@@ -345,7 +346,7 @@
 		54CC6D4B1448C3DE00882E78 /* Comic_Part03.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 54CC6D491448C3DE00882E78 /* Comic_Part03.mp4 */; };
 		54CD29DD143BA21400F805E0 /* UI_Button_Jumping.png in Resources */ = {isa = PBXBuildFile; fileRef = 54CD29DA143BA21400F805E0 /* UI_Button_Jumping.png */; };
 		54CD29DE143BA21400F805E0 /* UI_Button_Kicking.png in Resources */ = {isa = PBXBuildFile; fileRef = 54CD29DB143BA21400F805E0 /* UI_Button_Kicking.png */; };
-		54CD29DF143BA21400F805E0 /* UI_Button_TurboBoost.png in Resources */ = {isa = PBXBuildFile; fileRef = 54CD29DC143BA21400F805E0 /* UI_Button_TurboBoost.png */; };
+		54CD29DF143BA21400F805E0 /* UI_Button_Sprinting.png in Resources */ = {isa = PBXBuildFile; fileRef = 54CD29DC143BA21400F805E0 /* UI_Button_Sprinting.png */; };
 		54CD29E5143BA9A800F805E0 /* battery-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54CD29E1143BA9A800F805E0 /* battery-hd.plist */; };
 		54CD29E6143BA9A800F805E0 /* battery-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54CD29E2143BA9A800F805E0 /* battery-hd.png */; };
 		54CD29E7143BA9A800F805E0 /* battery.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54CD29E3143BA9A800F805E0 /* battery.plist */; };
@@ -892,6 +893,8 @@
 		54A1191C14433D6B0008A823 /* TrackTimer-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TrackTimer-hd.png"; sourceTree = "<group>"; };
 		54A1191D14433D6B0008A823 /* TrackTimer.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TrackTimer.plist; sourceTree = "<group>"; };
 		54A1191E14433D6B0008A823 /* TrackTimer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrackTimer.png; sourceTree = "<group>"; };
+		54A64A30146809D200853CFF /* BossJimShip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BossJimShip.h; sourceTree = "<group>"; };
+		54A64A31146809D200853CFF /* BossJimShip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BossJimShip.m; sourceTree = "<group>"; };
 		54ABFD6D14630876006F0C88 /* menuTextures-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "menuTextures-hd.plist"; sourceTree = "<group>"; };
 		54ABFD6E14630876006F0C88 /* menuTextures-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuTextures-hd.png"; sourceTree = "<group>"; };
 		54ABFD6F14630876006F0C88 /* menuTextures.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = menuTextures.plist; sourceTree = "<group>"; };
@@ -904,7 +907,7 @@
 		54CC6D491448C3DE00882E78 /* Comic_Part03.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = Comic_Part03.mp4; path = Resources/videos/Comic_Part03.mp4; sourceTree = "<group>"; };
 		54CD29DA143BA21400F805E0 /* UI_Button_Jumping.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UI_Button_Jumping.png; sourceTree = "<group>"; };
 		54CD29DB143BA21400F805E0 /* UI_Button_Kicking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UI_Button_Kicking.png; sourceTree = "<group>"; };
-		54CD29DC143BA21400F805E0 /* UI_Button_TurboBoost.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UI_Button_TurboBoost.png; sourceTree = "<group>"; };
+		54CD29DC143BA21400F805E0 /* UI_Button_Sprinting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UI_Button_Sprinting.png; sourceTree = "<group>"; };
 		54CD29E1143BA9A800F805E0 /* battery-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "battery-hd.plist"; sourceTree = "<group>"; };
 		54CD29E2143BA9A800F805E0 /* battery-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "battery-hd.png"; sourceTree = "<group>"; };
 		54CD29E3143BA9A800F805E0 /* battery.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = battery.plist; sourceTree = "<group>"; };
@@ -1412,7 +1415,7 @@
 				54F11C1D14464E69003CF2CF /* UI_Button_Woo.png */,
 				54CD29DA143BA21400F805E0 /* UI_Button_Jumping.png */,
 				54CD29DB143BA21400F805E0 /* UI_Button_Kicking.png */,
-				54CD29DC143BA21400F805E0 /* UI_Button_TurboBoost.png */,
+				54CD29DC143BA21400F805E0 /* UI_Button_Sprinting.png */,
 			);
 			name = buttons;
 			sourceTree = "<group>";
@@ -1674,6 +1677,8 @@
 				549ED7A91461D065008BCD98 /* BossWhale.m */,
 				549ED7AA1461D065008BCD98 /* BossZombies.h */,
 				549ED7AB1461D065008BCD98 /* BossZombies.m */,
+				54A64A30146809D200853CFF /* BossJimShip.h */,
+				54A64A31146809D200853CFF /* BossJimShip.m */,
 			);
 			path = Bosses;
 			sourceTree = "<group>";
@@ -2031,7 +2036,7 @@
 				54642B0F14337E5F001D8212 /* Battery_v2_s.png in Resources */,
 				54CD29DD143BA21400F805E0 /* UI_Button_Jumping.png in Resources */,
 				54CD29DE143BA21400F805E0 /* UI_Button_Kicking.png in Resources */,
-				54CD29DF143BA21400F805E0 /* UI_Button_TurboBoost.png in Resources */,
+				54CD29DF143BA21400F805E0 /* UI_Button_Sprinting.png in Resources */,
 				54CD29E5143BA9A800F805E0 /* battery-hd.plist in Resources */,
 				54CD29E6143BA9A800F805E0 /* battery-hd.png in Resources */,
 				54CD29E7143BA9A800F805E0 /* battery.plist in Resources */,
@@ -2372,6 +2377,7 @@
 				549ED8481461D065008BCD98 /* MainMenuScene.m in Sources */,
 				549ED8491461D065008BCD98 /* PauseMenuScreen.m in Sources */,
 				548D2D1D1461E871005E1AC0 /* Skin.m in Sources */,
+				54A64A32146809D200853CFF /* BossJimShip.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

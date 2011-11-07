@@ -9,7 +9,7 @@
 		<key>clearPreviousAnims</key>
 		<string>true</string>
 		<key>delay</key>
-		<string>0.075</string>
+		<string>0.15</string>
 		<key>group</key>
 		<string>computer</string>
 		<key>looping</key>

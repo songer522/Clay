@@ -18,6 +18,7 @@
 #import "Player.h"
 #import "PlayerAction.h"
 #import "Projectile.h"
+#import "BossFactory.h"
 
 @implementation GameObject
 
@@ -60,6 +61,7 @@
         _fadeout = false;
         _offsetX = 0;
         _offsetY = 0;
+        _boss = nil;
         _madeSound = false;
         _boundingBox = CGRectMake(0, 0, 0, 0);
         _collisionState = [[Collision collisionNode] retain];
@@ -221,6 +223,12 @@
 
 -(void)update:(float)dt
 {
+    
+    if (_boss!=nil) {
+        [_boss update:dt];
+        return; //don't want to do the rest, boss takes care of everything
+    }
+
     //update projectile regardless if active
     if (_projectile !=nil) {
         [_projectile update:dt];
@@ -243,6 +251,8 @@
     [self updateFlags];
     
     [self updateLights:dt];
+    
+    
     
 }
 
@@ -363,6 +373,10 @@
 
 -(void) reset
 {
+    if (_boss!=nil) {
+        return;
+    }
+    
     _isActive = true;
     _angle = 0.0f;
     _vx = 0;
@@ -428,6 +442,11 @@
     } else if([behavior isEqualToString:@"headless"]) {
         _collideBehavior = COLLISION_BEHAVIOR_ZOMBIE_FADE;
         _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_WALK_FAST;
+    } else if([behavior isEqualToString:@"bossShip"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_NONE;
+        _boss = [BossFactory buildWithType:BOSS_SPACESHIP];
+        [_boss setSprite:_sprite];
+        [_boss startBoss];
     }
     else {
         _collideBehavior = COLLISION_BEHAVIOR_NONE;

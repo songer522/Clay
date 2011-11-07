@@ -493,6 +493,19 @@
     }
 }
 
+-(void)updateSkin:(SkinType)skin
+{
+    switch (skin) {
+        case SKINTYPE_REGULAR:
+            [_skin setSkin:@"regularTim"];
+            break;
+        case SKINTYPE_8BIT:
+            [_skin setSkin:@"eightBitTim"];
+            break;
+        default:
+            break;
+    }
+}
 
 -(void)dealloc
 {

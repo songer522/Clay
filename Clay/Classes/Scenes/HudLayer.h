@@ -10,21 +10,11 @@
 #import "cocos2d.h"
 #import "CCLayer.h"
 #import "InputController.h"
+#import "HudButton.h"
 
 @class Sprite;
-@class HudButton;
 @class TrackTimer;
 @class Battery;
-
-typedef enum {
-    HUD_BUTTON_NONE,
-    HUD_BUTTON_JUMP,
-    HUD_BUTTON_SPRINT,
-    HUD_BUTTON_ACTION,
-    HUD_OVERLAY_ACTION,
-    HUD_OVERLAY_SPRINT,
-    HUD_OVERLAY_JUMP
-} HudButtonType;
 
 typedef enum {
     HUD_TRANSITION_IN,
@@ -73,10 +63,11 @@ typedef enum {
 
 -(float)getCurrentTime;
 
--(void)setThirdAction:(NSString*)action;
+-(void)setHudButtonsAndThirdAction:(NSString*)action;
 
 -(void)fadeIn;
 -(void)fadeOut;
+
 
 -(Battery*)getBattery;
 -(TrackTimer*)getTrackTimer;

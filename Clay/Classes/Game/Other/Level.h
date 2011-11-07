@@ -95,7 +95,7 @@
 -(Trigger*)testTriggers:(Player*)player;
 -(void)unloadLevel;
 
--(void)setThirdAction:(NSString*)action;
+-(void)setHudButtonsAndThirdAction:(NSString*)action;
 
 #pragma mark - private methods
 -(void)initTiledMap:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer;

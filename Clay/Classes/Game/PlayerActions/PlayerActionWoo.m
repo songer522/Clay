@@ -25,7 +25,7 @@
         _duration = 0.75f;
         _cooldown = 3.0f;
         [_parent endTurbo];
-        [[AnimationController sharedController] replaceSprite:[_parent getSprite] withAnimationNamed:@"wooAnim"];
+        [_parent setPlayerAnimation:PLAYER_ANIM_WOO];
         [[SoundEngine shared] playSound:@"wooAction"];
     }
 }
@@ -38,7 +38,7 @@
 
 -(void)cancelAction
 {
-    [[AnimationController sharedController] replaceSprite:[_parent getSprite] withAnimationNamed:@"runningAnim"];
+    [_parent setPlayerAnimation:PLAYER_ANIM_RUNNING];
     _cooldown = 1.0f;
     [super cancelAction];
 }

@@ -85,11 +85,11 @@
     return self;
 }
 
--(void)setThirdAction:(NSString*)action
+-(void)setHudButtonsAndThirdAction:(NSString*)action
 {
     GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
     [gameLayer.player setThirdAction:action];
-    [[gameLayer getHud] setThirdAction:action];
+    [[gameLayer getHud] setHudButtonsAndThirdAction:action];
 }
 
 -(void)loadLayers:(NSString*)layerList Player:(Player*)player
@@ -267,6 +267,7 @@
                 if (![objectName isEqualToString:@"lighting"]) {  //TEMPORARY: disabling lights until we decide we don't want them
                     
                     GameObject *object = [_gameObjects loadGameObjectWithName:objectName AddToLayer:NO];
+                    
                     CGPoint position = [self getXYPositionForCoordinates:coords];
                     [object setPositionAtX:position.x Y:position.y];
                     [object setStartingPosition:position];
