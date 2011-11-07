@@ -68,9 +68,8 @@
     
     self.vx = RUNNER_VELOCITY_RATE * _speed.velocity * 20.0f * dt;
     self.vy += _ay * rate;
-    
-    _x += _vx * dt;    
-    _y -= _vy * dt;
+    [super update:dt];
+
 }
 
 -(Sprite*)getSprite
