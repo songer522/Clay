@@ -41,6 +41,7 @@
     float _turboVelocityMax;
     
     bool _isSlowedDown;
+    bool _atMax;
 }
 
 @property(nonatomic,assign) float velocity;
@@ -48,6 +49,7 @@
 @property(readonly,nonatomic,assign) bool isStopped;
 @property(nonatomic,retain) Player *parent;
 @property(nonatomic,assign) bool isSlowedDown;
+@property(nonatomic,assign) bool atMax;
 
 #pragma mark - inits
 +(id)node;

@@ -11,6 +11,14 @@
 
 @class Sprite;
 
+typedef enum {
+    RETRO_HURDLE = 0,
+    RETRO_PIG = 1,
+    RETRO_BIRD = 2,
+    RETRO_GARBAGE = 3,
+    RETRO_ZOMBIE = 4
+}RetroObstacleType;
+
 @interface BossJimShip : Boss
 {
     Sprite *_sprite;

@@ -40,6 +40,7 @@
 -(float) getWidth;
 -(float) getHeight;
 -(CGPoint) getPosition;
+-(CGPoint) getScreenPosition;
 -(void)move:(CGPoint)amount;
 -(int)getCurrentFrameNumber;
 

@@ -117,6 +117,11 @@
     return CGPointMake(_x, _y);
 }
 
+-(CGPoint) getScreenPosition
+{
+    return CGPointMake(sprite_cc.position.x, sprite_cc.position.y);
+}
+
 -(void)move:(CGPoint)amount
 {
     CCSprite *sprite = [self getCCSprite];

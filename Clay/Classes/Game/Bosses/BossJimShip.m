@@ -52,7 +52,7 @@
     CGPoint position = [_sprite getPosition];
     
     [_sprite setScreenPosition:CGPointMake(position.x + _velocity.x, position.y + _velocity.y)];
-    NSLog(@"BOSS VX: %f VY: %f PX: %f, PY: %f",_velocity.x, _velocity.y, position.x, position.y);
+    //NSLog(@"BOSS VX: %f VY: %f PX: %f, PY: %f",_velocity.x, _velocity.y, position.x, position.y);
 }
 
 -(void)updateVelocity:(float)dt
@@ -97,6 +97,19 @@
 
 -(void)updateCannon:(float)dt
 {
+    if (_waitToShoot <= 0.0f) {
+        _waitToShoot = rand()%20 + 30.0f;
+        
+        RetroObstacleType type = (int)(rand()%5);
+        switch (type) {
+            case RETRO_PIG:
+                
+                break;
+                
+            default:
+                break;
+        }
+    }
 }
 
 

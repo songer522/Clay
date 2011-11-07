@@ -128,23 +128,24 @@ static Camera *_sharedCamera = nil;
         
         float distance = sqrtf(dx*dx + dy*dy);
         
-        float magnitude = distance * CAMERA_MOVE_TO_TARGET_SPEED * dt;;
+        float magnitude = distance * CAMERA_MOVE_TO_TARGET_SPEED * dt;
+        NSLog(@"magnitude: %f",magnitude);
         
         if (distance > 2.0f) {
             if (_trackingTarget) {
-                _x += (magnitude * (dx/distance));
+                _x += rate * (magnitude * (dx/distance));
             }
             _y += rate * (magnitude * (dy/distance));
             
         } else {
             if (_trackingTarget) {
-                _x = position.x + 0.5f;                
+                _x = position.x;
             }
-            _y = position.y + 0.5f;
+            _y = position.y;
             
         }
     }
-    [self keepWithinBoundaries];
+    //[self keepWithinBoundaries];
 }
 
 -(void)snapToTarget
@@ -152,7 +153,6 @@ static Camera *_sharedCamera = nil;
     if (_target!=nil) {
         _x = _target.x;
         _y = _target.y;
-        [self keepWithinBoundaries];        
     }
 }
 
@@ -160,7 +160,6 @@ static Camera *_sharedCamera = nil;
 {
     if (_target!=nil) {
         _y = _target.y;
-        [self keepWithinBoundaries];        
     }
 }
 

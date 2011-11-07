@@ -59,8 +59,6 @@
         _inputController = [InputController inputController];
         [self addChild:_inputController];       //need to so its scheduled selectors will be trigger
         
-        
-        
         [[LayerManager sharedLayers] setCurrentLayer:self];
         
         _player = [Player instance];
@@ -77,11 +75,12 @@
 
         self.isTouchEnabled = YES;
         
-        
-        
-        [self updateLogic:0.001f];
+        [self updateLogic:0.001f];  //done to correctly position the camera and player before
+                                    //the first render cycle
         
 
+        
+        //[self schedule:@selector(updateLogic:) interval:(1.0f/30.0f)];
         [[CCTextureCache sharedTextureCache] removeAllTextures];
         [[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
         
@@ -107,9 +106,6 @@
     [self initCamera];
     
     [_hud reset];
-    
-    
-
 }
 
 -(void)setupHud:(HudLayer*)hud

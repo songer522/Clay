@@ -341,6 +341,11 @@
 
 -(void)update:(float)dt Level:(Level *)level
 {
+    
+    if (dt > 0.06f) {
+        _x = _x;
+    }
+    
     [super update:dt];
     
     [self updateJump:dt];
@@ -367,7 +372,28 @@
         [[Camera sharedCamera] moveTowardsTarget:dt PlayerOnGround:!_isInMidAir];
     }
     
-    [self setPositionAtX:newPosition.x Y:newPosition.y];
+    [self setPositionAtX:newPosition.x Y:newPosition.y];    
+    
+    //UGLY HACK: to make player look smoother left/right... remove if speed changes, will need to change
+    //for ipad (but probably not low-res)
+    //what it does, is that if the player is at maximum speed (relative to turbo), he should always show up on the same spot
+    //on the screen, but he doesn't when the "dt" values get bigger sometimes, which makes him show up jittery.
+    //it's hard to fix this otherwise, since the camera position is dependent on the player position, and the player position gets set
+    //on screen based on the camera position, so they screw each other up. there might be a better fix, but this gets the job done until we get there.
+    //if we're not at the maximum speed, then it doesn't matter, it looks pretty smooth normally
+    if (_speed.atMax) {
+        CGPoint screenPosition = [_sprite getScreenPosition];
+        NSLog(@"SX: %f, SY: %f",screenPosition.x, screenPosition.y);
+        if (!_speed.inTurbo) {
+            //[_sprite setScreenPosition:ccp(101,screenPosition.y)];
+        } else {
+            //[_sprite setScreenPosition:ccp(127,screenPosition.y)];
+        }
+    }
+    
+    
+    
+    
     [_battery update:dt];
     
     if (_isTripping) {
@@ -388,7 +414,6 @@
     }
     
     [_thirdAction update:dt];
-    
 }
 
 -(void)updateJump:(float)dt

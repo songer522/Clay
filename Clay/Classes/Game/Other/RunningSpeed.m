@@ -17,6 +17,7 @@
 @synthesize parent = _player;
 @synthesize isStopped = _isStopped;
 @synthesize isSlowedDown = _isSlowedDown;
+@synthesize atMax = _atMax;
 
 +(id)node
 {
@@ -156,6 +157,8 @@
 {
     if (!_isStopped) {
         
+        _atMax = false;
+        
         if (_inTurbo)
         {
             if (!_player.isInMidAir) {
@@ -171,6 +174,7 @@
                 }
 
                 if (_velocity > RUNNING_SPEED_MODIFIER_VELOCITY_MAX * _turboVelocityMax) {
+                    _atMax = true;
                     _velocity = RUNNING_SPEED_MODIFIER_VELOCITY_MAX * _turboVelocityMax;
                 }
 
@@ -197,6 +201,7 @@
                 
                 if (_velocity > RUNNING_SPEED_MODIFIER_VELOCITY_MAX * _normalVelocityMax) {
                     _velocity = RUNNING_SPEED_MODIFIER_VELOCITY_MAX * _normalVelocityMax;
+                    _atMax = true;
                 }
 
             }
