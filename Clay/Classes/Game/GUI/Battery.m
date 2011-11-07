@@ -119,12 +119,16 @@
 
 -(void)startRecharge
 {
-    [self setFrame:5];
+
+    if(_player.isDead) {
+        [self setFrame:5];
+    }
     _isRecharging = true;
     _alpha = 1.0f;
     [[sprite getCCSprite] setVisible:YES];
     [[sprite getCCSprite] setOpacity:255];
-    _wait = 0.6f;
+    _wait = 0.6f;        
+
 }
 
 -(void)recharging:(float)dt

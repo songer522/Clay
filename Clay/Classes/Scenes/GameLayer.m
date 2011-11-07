@@ -154,6 +154,9 @@
                 break;
             case TRIGGER_CHECKPOINT:
                 [_savePoint setSavePoint:trigger.position Level:_level.name];
+                [[SoundEngine shared] playSound:@"checkpoint"];
+                [_player rechargeBattery];
+                break;
             default:
                 break;
         }

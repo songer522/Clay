@@ -224,12 +224,21 @@
                     trigger.direction = CGPointMake(1,-1);
                     trigger.type = TRIGGER_NEXTLEVEL;
                     [_triggers addObject:trigger];
-                } else if([special compare:@"checkpoint"] == NSOrderedSame) {
+                } else if([special isEqualToString:@"checkpoint"]) { //checkpoint trigger
                     Trigger *trigger = [[Trigger alloc] init];
                     trigger.position = [self getXYPositionForCoordinates:CGPointMake(i,j)];
                     trigger.direction = CGPointMake(1, -1);
                     trigger.type = TRIGGER_CHECKPOINT;
                     [_triggers addObject:trigger];
+                    
+                    //SHOULD work by giving it an object property, but stupidly isn't. so doing manually
+                    GameObject *object = [_gameObjects loadGameObjectWithName:@"checkpoint" AddToLayer:NO];
+                    CGPoint position = [self getXYPositionForCoordinates:coords];
+                    [object setPositionAtX:position.x Y:position.y];
+                    [object setStartingPosition:position];
+                    [[object getCCSprite] setScale:_scale];
+                    MapObject *mapObject = [MapObject mapObjectWithSprite:object AboveLayer:@"main0"];
+                    [_otherMapObjects addObject:mapObject];
                 } else if([special compare:@"spawnpoint"] == NSOrderedSame) {
                     _spawnPoint = [self getXYPositionForCoordinates:CGPointMake(i, j)];
                 } else if([special compare:@"jimAppearance1"] == NSOrderedSame) {
@@ -257,24 +266,24 @@
             
             NSString *objectName = [self getPropertyForTileCoords:coords forKey:@"object"];
             
+            if (objectName!=nil && [objectName isEqualToString:@"checkpoint"]) {
+                NSLog(@"GOOD CHECKPOINT!");
+            }
+            
             if (objectName) {
-                if (![objectName isEqualToString:@"lighting"]) {  //TEMPORARY: disabling lights until we decide we don't want them
-                    
-                    GameObject *object = [_gameObjects loadGameObjectWithName:objectName AddToLayer:NO];
-                    
-                    CGPoint position = [self getXYPositionForCoordinates:coords];
-                    [object setPositionAtX:position.x Y:position.y];
-                    [object setStartingPosition:position];
-                    [[object getCCSprite] setScale:_scale];
-                    
-                    if (!layerBelow) {
-                        layerBelow = @"main0";
-                    }
-                    
-                    MapObject *mapObject = [MapObject mapObjectWithSprite:object AboveLayer:layerBelow];
-                    [_otherMapObjects addObject:mapObject];
-                                        
+                GameObject *object = [_gameObjects loadGameObjectWithName:objectName AddToLayer:NO];
+                
+                CGPoint position = [self getXYPositionForCoordinates:coords];
+                [object setPositionAtX:position.x Y:position.y];
+                [object setStartingPosition:position];
+                [[object getCCSprite] setScale:_scale];
+                
+                if (!layerBelow) {
+                    layerBelow = @"main0";
                 }
+                
+                MapObject *mapObject = [MapObject mapObjectWithSprite:object AboveLayer:layerBelow];
+                [_otherMapObjects addObject:mapObject];
             }
         }
     }
