@@ -16,7 +16,6 @@
 #import "RootViewController.h"
 #import "VideoPlayer.h"
 #import "CCVideoPlayer.h"
-#import "LevelThread.h"
 #import "ComicManager.h"
 #import "EndGameScene.h"
 #import "HudLayer.h"
