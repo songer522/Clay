@@ -56,6 +56,7 @@
     float _x;
     float _y;
     float _scale;
+    float _divide;
 }
 
 @property (nonatomic,retain) NSString *name;

@@ -78,8 +78,15 @@ static LevelManager *_shared = nil;
     _thirdAction = [levelSettings valueForKey:@"thirdAction"];
 
     NSString *layerList = [levelSettings valueForKey:@"layerList"];
-
-    _playerOffsetY = [[levelSettings valueForKey:@"playerOffsetY"] intValue];
+    
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
+    {
+        _playerOffsetY = [[levelSettings valueForKey:@"playerOffsetY"] intValue];
+    }
+    else
+    {
+        _playerOffsetY = [[levelSettings valueForKey:@"playerOffsetYLowRes"] intValue];
+    }
     
     GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
     

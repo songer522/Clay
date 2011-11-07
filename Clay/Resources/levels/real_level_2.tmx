@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="1000" height="14" tilewidth="64" tileheight="64">
- <tileset firstgid="1" name="Barn" tilewidth="64" tileheight="64">
-  <image source="tileset_level_2.png" width="1792" height="832"/>
+<map version="1.0" orientation="orthogonal" width="1000" height="14" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="Barn" tilewidth="32" tileheight="32">
+  <image source="tileset_level_2.png" width="896" height="416"/>
  </tileset>
- <tileset firstgid="365" name="Icons" tilewidth="64" tileheight="64">
-  <image source="TrackLapse_Icons.png" width="640" height="256"/>
+ <tileset firstgid="365" name="Icons" tilewidth="32" tileheight="32">
+  <image source="TrackLapse_Icons.png" width="320" height="128"/>
   <tile id="0">
    <properties>
     <property name="obstacle" value="hurdle"/>
@@ -57,8 +57,8 @@
    </properties>
   </tile>
  </tileset>
- <tileset firstgid="405" name="Meta" tilewidth="64" tileheight="64">
-  <image source="meta.png" width="256" height="192"/>
+ <tileset firstgid="405" name="Meta" tilewidth="32" tileheight="32">
+  <image source="meta.png" width="128" height="96"/>
   <tile id="0">
    <properties>
     <property name="collision" value="full"/>

@@ -62,12 +62,15 @@
         
         if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
         {
-            _scale = [[UIScreen mainScreen] scale] / 2.0f;
+            _divide = 2.0f;
         }
         else
         {
-            _scale = [[UIScreen mainScreen] scale];
+            _divide = 1.0f;
         }
+            
+        _scale = [[UIScreen mainScreen] scale] / _divide;
+        
         [self scanThroughMapAndAddObjects];
                 
         [self loadLayers:layerList Player:player];
@@ -114,7 +117,7 @@
             float speedx = [[tmxLayer propertyNamed:@"speedx"] floatValue] * _scale;
             float speedy = [[tmxLayer propertyNamed:@"speedy"] floatValue] * _scale;
             float offsety = [[tmxLayer propertyNamed:@"offsety"] floatValue];
-
+            
             CGPoint offsetPoint = ccp(0, 0);
             if (offsety && offsety!= 0.0f && speedy != 0.0f) {
                 offsetPoint = ccp(0, offsety * _map.tileSize.width);
@@ -303,8 +306,9 @@
 {
     //TODO: not sure why these need to be divided by 2 to get the right position yet
     //should make it clear what the 2.0 represents once figured out
-    int scaledTileWidth = _map.tileSize.width / 2;
-    int scaledTileHeight = _map.tileSize.height / 2;
+    
+    int scaledTileWidth = _map.tileSize.width / _divide;
+    int scaledTileHeight = _map.tileSize.height / _divide;
     
     float x = coords.x * scaledTileWidth;
     float y = (_map.mapSize.height * scaledTileHeight) - coords.y * scaledTileHeight;

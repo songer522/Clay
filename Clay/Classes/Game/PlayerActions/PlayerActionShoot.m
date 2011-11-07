@@ -16,6 +16,8 @@
 
 #define PLAYER_ACTION_SHOOT_OFFSET_BULLET_X 0
 #define PLAYER_ACTION_SHOOT_OFFSET_BULLET_Y 45
+#define PLAYER_ACTION_SHOOT_OFFSET_BULLET_X_LOWRES 0
+#define PLAYER_ACTION_SHOOT_OFFSET_BULLET_Y_LOWRES 77
 
 @implementation PlayerActionShoot
 
@@ -55,8 +57,14 @@
     Projectile *bullet = [_bullets objectAtIndex:_currentBulletIndex];
     
     [bullet reset];
-    [bullet setPosition:CGPointMake(_parent.x + PLAYER_ACTION_SHOOT_OFFSET_BULLET_X, _parent.y + PLAYER_ACTION_SHOOT_OFFSET_BULLET_Y)];
-    
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
+    {
+        [bullet setPosition:CGPointMake(_parent.x + PLAYER_ACTION_SHOOT_OFFSET_BULLET_X, _parent.y + PLAYER_ACTION_SHOOT_OFFSET_BULLET_Y)];
+    }
+    else
+    {
+        [bullet setPosition:CGPointMake(_parent.x + PLAYER_ACTION_SHOOT_OFFSET_BULLET_X_LOWRES, _parent.y + PLAYER_ACTION_SHOOT_OFFSET_BULLET_Y_LOWRES)];
+    }
     _currentBulletIndex = (_currentBulletIndex + 1) % 3;
     
 }

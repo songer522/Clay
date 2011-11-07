@@ -30,7 +30,15 @@
         // Initialization code here.
         sprite = [Sprite spriteWithFile:@"blank.png"];
         [self setFrame:1];
-        [sprite setPositionAtX:462 Y:322];
+        
+        if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
+        {
+            [sprite setPositionAtX:462 Y:322];
+        }
+        else
+        {
+            [sprite setPositionAtX:462 Y:355];
+        }
         _wasLowBattery = false;
     }
     
