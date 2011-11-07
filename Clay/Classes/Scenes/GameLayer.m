@@ -16,6 +16,7 @@
 #import "Battery.h"
 #import "GameController.h"
 #import "Player.h"
+#import "BossFactory.h"
 #import "SavePoint.h"
 #import "LaserShow.h"
 
@@ -73,13 +74,21 @@
         
         [self initForLevel];
         
+
+        _boss = [BossFactory buildWithType:BOSS_SPACESHIP];
+        [_boss startBoss];
+
+        
         self.isTouchEnabled = YES;
+        
         
         
         [self updateLogic:0.001f];
         
+
         [[CCTextureCache sharedTextureCache] removeAllTextures];
         [[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
+        
 
 	}
 	return self;
@@ -174,6 +183,9 @@
     if (_laserShow!=nil) {
         [_laserShow update:dt];
     }
+    
+    [_boss update:dt];
+    
 }
 
 -(void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

@@ -24,4 +24,7 @@
 
 +(id)instance;
 
+-(void)startBoss;
+-(void)update:(float)dt;
+
 @end
