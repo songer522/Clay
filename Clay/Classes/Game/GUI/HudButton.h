@@ -17,9 +17,7 @@ typedef enum {
     HUD_BUTTON_JUMP,
     HUD_BUTTON_SPRINT,
     HUD_BUTTON_ACTION,
-    HUD_OVERLAY_ACTION,
-    HUD_OVERLAY_SPRINT,
-    HUD_OVERLAY_JUMP
+  
 } HudButtonType;
 
 @interface HudButton : Button
