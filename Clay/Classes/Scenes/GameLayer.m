@@ -16,6 +16,7 @@
 #import "Battery.h"
 #import "GameController.h"
 #import "Player.h"
+#import "BossFactory.h"
 #import "SavePoint.h"
 #import "LaserShow.h"
 
@@ -73,13 +74,17 @@
         
         [self initForLevel];
         
+
         self.isTouchEnabled = YES;
+        
         
         
         [self updateLogic:0.001f];
         
+
         [[CCTextureCache sharedTextureCache] removeAllTextures];
         [[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
+        
 
 	}
 	return self;
@@ -100,8 +105,10 @@
     [_savePoint setSavePoint:_level.spawnPoint Level:_level.name];
     
     [self initCamera];
-
+    
     [_hud reset];
+    
+    
 
 }
 
@@ -174,6 +181,9 @@
     if (_laserShow!=nil) {
         [_laserShow update:dt];
     }
+    
+    [_boss update:dt];
+    
 }
 
 -(void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

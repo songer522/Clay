@@ -14,6 +14,7 @@
 #import "BossDevilJim.h"
 #import "BossWhale.h"
 #import "BossFinalJim.h"
+#import "BossJimShip.h"
 
 @implementation BossFactory
 
@@ -28,6 +29,9 @@
             break;
         case BOSS_ZOMBIES:
             return [BossZombies instance];
+            break;
+        case BOSS_SPACESHIP:
+            return [BossJimShip instance];
             break;
         case BOSS_DEVIL_JIM:
             return [BossDevilJim instance];

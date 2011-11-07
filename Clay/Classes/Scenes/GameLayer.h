@@ -21,6 +21,7 @@
 @class Sprite;
 @class HudLayer;
 @class LaserShow;
+@class Boss;
 
 // HelloWorldLayer
 @interface GameLayer : CCLayer
@@ -38,6 +39,8 @@
     HudLayer *_hud;
     
     LaserShow *_laserShow;
+    
+    Boss *_boss;
     
 }
 

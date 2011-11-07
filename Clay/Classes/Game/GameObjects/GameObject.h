@@ -16,6 +16,7 @@
 
 @class Collision;
 @class Projectile;
+@class Boss;
 
 typedef enum {
     PLAYER_EFFECT_COLLIDE,
@@ -29,6 +30,8 @@ typedef enum {
 @interface GameObject : NSObject<Collidable>
 {
     Sprite *_sprite;
+    
+    Boss *_boss;
     
     bool _isActive;      //starts true, but switched to false if we no longer
                          //want the object to be seen or updated
