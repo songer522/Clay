@@ -18,7 +18,7 @@
     int _buttonId;
     CGRect _hitbox;
     CGPoint _position;
-    CCLabelTTF *_buttonLabel;
+    CCLabelBMFont *_buttonLabel;
 }
 
 @property(nonatomic,assign) int buttonId;

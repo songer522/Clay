@@ -22,15 +22,18 @@
 -(id)initWithText:(NSString*)text AtPoint:(CGPoint)point
 {
     if ((self=[super init])) {
-        _buttonLabel = [CCLabelTTF labelWithString:text fontName:@"Marker Felt" fontSize:24];
-        _buttonLabel.position = ccp(point.x, point.y);
+       // _buttonLabel = [CCLabelTTF labelWithString:text fontName:@"Marker Felt" fontSize:24];
+       // _buttonLabel.position = ccp(point.x, point.y);
+        
+        _buttonLabel=[CCLabelBMFont labelWithString:text fntFile:@"GraphicFont.fnt"];
+        _buttonLabel.position=ccp(point.x, point.y);
         [[[LayerManager sharedLayers] currentLayer] addChild:_buttonLabel];
     }
     
     return self;
 }
 
--(CCLabelTTF*)getLabel
+-(CCLabelBMFont*)getLabel
 {
     return _buttonLabel;
 }
