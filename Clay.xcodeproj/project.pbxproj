@@ -396,6 +396,8 @@
 		5FF163B4146484CC00229483 /* tileset_level_1-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FF163B2146484CC00229483 /* tileset_level_1-hd.png */; };
 		5FF163B71464859C00229483 /* meta-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FF163B51464859C00229483 /* meta-hd.png */; };
 		5FF163B81464859C00229483 /* TrackLapse_Icons-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FF163B61464859C00229483 /* TrackLapse_Icons-hd.png */; };
+		61A2C0E614683B880049C88E /* GraphicFont.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 61A2C0E414683B880049C88E /* GraphicFont.fnt */; };
+		61A2C0E714683B880049C88E /* GraphicFont.png in Resources */ = {isa = PBXBuildFile; fileRef = 61A2C0E514683B880049C88E /* GraphicFont.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -983,6 +985,8 @@
 		5FF163B2146484CC00229483 /* tileset_level_1-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tileset_level_1-hd.png"; path = "Resources/levels/tileset_level_1-hd.png"; sourceTree = "<group>"; };
 		5FF163B51464859C00229483 /* meta-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "meta-hd.png"; path = "Resources/levels/meta-hd.png"; sourceTree = "<group>"; };
 		5FF163B61464859C00229483 /* TrackLapse_Icons-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "TrackLapse_Icons-hd.png"; path = "Resources/levels/TrackLapse_Icons-hd.png"; sourceTree = "<group>"; };
+		61A2C0E414683B880049C88E /* GraphicFont.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GraphicFont.fnt; sourceTree = "<group>"; };
+		61A2C0E514683B880049C88E /* GraphicFont.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GraphicFont.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2023,6 +2027,8 @@
 			isa = PBXGroup;
 			children = (
 				54F7F57E143CD0FD004EC10B /* 7 Segment.ttf */,
+				61A2C0E414683B880049C88E /* GraphicFont.fnt */,
+				61A2C0E514683B880049C88E /* GraphicFont.png */,
 			);
 			name = fonts;
 			sourceTree = "<group>";
@@ -2303,6 +2309,8 @@
 				5F8A449E1468803800CE1FC2 /* real_level_6_hd.tmx in Resources */,
 				5F8A44A01468804600CE1FC2 /* real_level_7_hd.tmx in Resources */,
 				5F8A44A21468805200CE1FC2 /* tileset_level_6-hd.png in Resources */,
+				61A2C0E614683B880049C88E /* GraphicFont.fnt in Resources */,
+				61A2C0E714683B880049C88E /* GraphicFont.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -73,9 +73,10 @@
         float startX = (i<6)? 100.0f : 300.0f;
         float startY = (i % 6) * 48.0f;
         Button *button = [Button buttonWithText:[NSString stringWithFormat:@"Level %d",(i+1)] AtPoint:CGPointMake(startX, 280.0f - startY)];
+       
         [button setHitbox:CGRectMake(startX - 30.0f, (260.0f - startY), 120.0f, 48.0f)];
         button.buttonId = i;
-        [[button getLabel] setColor:ccc3(255, 255, 0)];
+       // [[button getLabel] setColor:ccc3(255, 255, 0)];
         [_buttons addObject:button];
     }
     

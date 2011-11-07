@@ -30,13 +30,11 @@
 {
     if((self=[super init])){
         
-        _greenOverlay = [Sprite spriteWithFile:@"UI_Button_GreenLight.png"];
-        [[_greenOverlay getCCSprite] setOpacity:HUD_LAYER_BUTTON_OPACITY];
-        [[_greenOverlay getCCSprite] setScale:[[UIScreen mainScreen] scale] / 2.0f];
-        [[_greenOverlay getCCSprite] setAnchorPoint:ccp(0.5f, 0.5f)];
+     
         
         [self prepareButtonWithType:type Action:action];
-        
+     
+                
         _initialized = true;
     }
    return self;
@@ -52,7 +50,7 @@
     switch (type) {
         case HUD_BUTTON_JUMP:
             [self createSpriteFromImage:@"UI_Button_Jumping.png"];
-            [self setPosition:ccp(HUD_LAYER_JUMP_X, HUD_LAYER_BUTTON_Y)];
+           [self setPosition:ccp(HUD_LAYER_JUMP_X, HUD_LAYER_BUTTON_Y)];
             break;
         case HUD_BUTTON_SPRINT:
             [self createSpriteFromImage:@"UI_Button_Sprinting.png"];
@@ -71,12 +69,17 @@
 -(void)createSpriteFromImage:(NSString*)image
 {
     _graphic = [Sprite spriteWithFile:image];
-    [[_graphic getCCSprite] setOpacity:HUD_LAYER_BUTTON_OPACITY];
+    [[_graphic getCCSprite] setOpacity:BUTTON_OPACITY];
     [[_graphic getCCSprite] setScale:[[UIScreen mainScreen] scale] / 2.0f];
     [[_graphic getCCSprite] setAnchorPoint:ccp(0.5f, 0.5f)];
-    [[_greenOverlay getCCSprite] setOpacity:HUD_LAYER_BUTTON_OPACITY];
+    
+    _greenOverlay = [Sprite spriteWithFile:@"UI_Button_GreenLight.png"];
+    [[_greenOverlay getCCSprite] setOpacity:BUTTON_OPACITY];
+    [[_greenOverlay getCCSprite] setScale:[[UIScreen mainScreen] scale] / 2.0f];
+    [[_greenOverlay getCCSprite] setAnchorPoint:ccp(0.5f, 0.5f)];
 
 }
+
 
 -(void)setPosition:(CGPoint)position
 {
@@ -102,9 +105,13 @@
 
 -(void)reset
 {
+    [[[LayerManager sharedLayers] currentLayer] removeChild:[_greenOverlay getCCSprite] cleanup:NO];
+
     [[[LayerManager sharedLayers] currentLayer] removeChild:[_graphic getCCSprite] cleanup:NO];
-    [_graphic release];
+        [_graphic release];
     _graphic = nil;
+    [_greenOverlay release];
+    _greenOverlay=nil;
 }
 
 -(CCSprite*)getCCSpriteForButton
@@ -118,8 +125,14 @@
 
 -(void)setOpacityAndScale
 {
+     if ([self getCCSpriteForOverlay].visible)
+     {
     [[_graphic getCCSprite] setOpacity:BUTTON_OPACITY];
     [[_graphic getCCSprite] setScale:BUTTON_SCALE * [[UIScreen mainScreen] scale] / 2.0f]; 
+     }
+    [[_greenOverlay getCCSprite] setOpacity:BUTTON_OPACITY];
+    [[_greenOverlay getCCSprite] setScale:BUTTON_SCALE * [[UIScreen mainScreen] scale] / 2.0f];
+   
 }
 
 -(float)getButtonOpacity
@@ -133,11 +146,15 @@
 
 -(void)setButtonOpacity:(float)opacity
 {
+   
     [[_graphic getCCSprite] setOpacity:opacity];
+    //[[_greenOverlay getCCSprite] setOpacity:opacity];
+    
 }
 -(void)setButtonScale:(float)scale
 {
     [[_graphic getCCSprite] setScale:scale];
+     [[_greenOverlay getCCSprite] setScale:scale];
 }
 
 @end
