@@ -27,6 +27,7 @@
 -(id)initWithText:(NSString*)text AtPoint:(CGPoint)point;
 
 -(CCLabelTTF*)getLabel;
+-(void)setLabel:(NSString*)text;
 -(void)setHitbox:(CGRect)rect;
 
 -(bool)testCollision:(CGPoint)position;

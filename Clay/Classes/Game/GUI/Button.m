@@ -27,6 +27,7 @@
         
         _buttonLabel=[CCLabelBMFont labelWithString:text fntFile:@"GraphicFont.fnt"];
         _buttonLabel.position=ccp(point.x, point.y);
+    
         [[[LayerManager sharedLayers] currentLayer] addChild:_buttonLabel];
     }
     
@@ -36,6 +37,14 @@
 -(CCLabelBMFont*)getLabel
 {
     return _buttonLabel;
+}
+-(void)setLabel:(NSString*)text
+{
+    CGPoint labelPosition=_buttonLabel.position;
+    [[[LayerManager sharedLayers] currentLayer] removeChild:_buttonLabel cleanup:NO];
+    _buttonLabel=[CCLabelBMFont labelWithString:text fntFile:@"GraphicFont.fnt"];
+    _buttonLabel.position=labelPosition;
+    [[[LayerManager sharedLayers] currentLayer] addChild:_buttonLabel];
 }
 
 -(void)setHitbox:(CGRect)rect
