@@ -75,7 +75,7 @@
         _isHighJump = false;
         
         _waitToPlaySlowSound = 0.0f;
-        
+        _soundFalling = false;
         _adjustX = 0.0f;
         
         _skin = [Skin instance];
@@ -98,6 +98,16 @@
     if (_hitPoints <=0) {
         _isDead = true;
         [[SoundEngine shared] playSound:@"dead"];
+    }
+}
+
+-(void)dieIfFallenIntoPit
+{
+    if (!_soundFalling && _y < 10) {
+        [[SoundEngine shared] playSound:@"fallingDeath"];
+        _soundFalling = true;
+    } else if(_y < -160) {
+        _isDead = true;        
     }
 }
 
@@ -262,6 +272,7 @@
     self.hasGravity = true;
     _firstFrameJumping = false;
     _isHighJump = false;
+    _soundFalling = false;
     _waitToPlaySlowSound = 0.0f;
     [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];
 }
@@ -414,6 +425,8 @@
     }
     
     [_thirdAction update:dt];
+    
+    [self dieIfFallenIntoPit];
 }
 
 -(void)updateJump:(float)dt

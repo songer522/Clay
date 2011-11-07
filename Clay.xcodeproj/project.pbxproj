@@ -336,6 +336,7 @@
 		54A1192114433D6B0008A823 /* TrackTimer.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54A1191D14433D6B0008A823 /* TrackTimer.plist */; };
 		54A1192214433D6B0008A823 /* TrackTimer.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A1191E14433D6B0008A823 /* TrackTimer.png */; };
 		54A64A32146809D200853CFF /* BossJimShip.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A64A31146809D200853CFF /* BossJimShip.m */; };
+		54A680A614685637006F94A6 /* fallingDeath.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54A680A514685637006F94A6 /* fallingDeath.wav */; };
 		54ABFD7114630876006F0C88 /* menuTextures-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54ABFD6D14630876006F0C88 /* menuTextures-hd.plist */; };
 		54ABFD7214630876006F0C88 /* menuTextures-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54ABFD6E14630876006F0C88 /* menuTextures-hd.png */; };
 		54ABFD7314630876006F0C88 /* menuTextures.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54ABFD6F14630876006F0C88 /* menuTextures.plist */; };
@@ -890,6 +891,7 @@
 		54A1191E14433D6B0008A823 /* TrackTimer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrackTimer.png; sourceTree = "<group>"; };
 		54A64A30146809D200853CFF /* BossJimShip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BossJimShip.h; sourceTree = "<group>"; };
 		54A64A31146809D200853CFF /* BossJimShip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BossJimShip.m; sourceTree = "<group>"; };
+		54A680A514685637006F94A6 /* fallingDeath.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = fallingDeath.wav; path = Resources/sounds/fallingDeath.wav; sourceTree = "<group>"; };
 		54ABFD6D14630876006F0C88 /* menuTextures-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "menuTextures-hd.plist"; sourceTree = "<group>"; };
 		54ABFD6E14630876006F0C88 /* menuTextures-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuTextures-hd.png"; sourceTree = "<group>"; };
 		54ABFD6F14630876006F0C88 /* menuTextures.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = menuTextures.plist; sourceTree = "<group>"; };
@@ -1413,6 +1415,7 @@
 		545CBC2F142D25AB00795FC9 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				54A680A514685637006F94A6 /* fallingDeath.wav */,
 				54CB72511460506400311904 /* doublejump.wav */,
 				54CB72521460506400311904 /* supersonic.wav */,
 				54528C06145B466B009437C3 /* clearedObstacle.wav */,
@@ -2179,6 +2182,7 @@
 				549167851464521B00DFA191 /* zombies.mp3 in Resources */,
 				61A2C0E614683B880049C88E /* GraphicFont.fnt in Resources */,
 				61A2C0E714683B880049C88E /* GraphicFont.png in Resources */,
+				54A680A614685637006F94A6 /* fallingDeath.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

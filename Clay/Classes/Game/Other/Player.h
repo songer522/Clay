@@ -48,6 +48,7 @@ typedef enum {
     
     bool _isHighJump;
     bool _hasDoubleJumped;
+    bool _soundFalling;
     
     float _timeLeftBeforeVulnerable;    //set to a time whenever tim gets back up, to allow proper time for him to get back up to speed before he has to jump on things
     
@@ -106,6 +107,8 @@ typedef enum {
 -(void)setVelocity:(float)velocity;
 -(void)startDoubleJump;
 
+
+-(void)dieIfFallenIntoPit;
 
 -(void)private_StartPlayerCollision;
 

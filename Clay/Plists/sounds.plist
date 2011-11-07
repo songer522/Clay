@@ -44,5 +44,7 @@
 	<string>clearedObstacle.wav</string>
 	<key>doubleJump</key>
 	<string>doublejump.wav</string>
+	<key>fallingDeath</key>
+	<string>fallingDeath.wav</string>
 </dict>
 </plist>
