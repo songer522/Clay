@@ -95,5 +95,9 @@
     
 }
 
+-(void)updateCannon:(float)dt
+{
+}
+
 
 @end

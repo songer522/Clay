@@ -23,9 +23,11 @@
     bool _firstUpdate;
     
     CGPoint _thrust; //which directions the "thrusters" are going, -1,0,1 in X, or 1,0 in y
+    
+    float _waitToShoot;
 }
 
 -(void)updateVelocity:(float)dt;
-
+-(void)updateCannon:(float)dt;
 
 @end
