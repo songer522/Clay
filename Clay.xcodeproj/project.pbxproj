@@ -335,7 +335,6 @@
 		54A1192114433D6B0008A823 /* TrackTimer.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54A1191D14433D6B0008A823 /* TrackTimer.plist */; };
 		54A1192214433D6B0008A823 /* TrackTimer.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A1191E14433D6B0008A823 /* TrackTimer.png */; };
 		54A1B7B1146894C200A381B0 /* checkpoint.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A1B7B0146894C200A381B0 /* checkpoint.png */; };
-		54A1B7B414689C8F00A381B0 /* real_level_1a.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 54A1B7B314689C8F00A381B0 /* real_level_1a.tmx */; };
 		54A1B7B614689C9600A381B0 /* test_level_1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 54A1B7B514689C9600A381B0 /* test_level_1.tmx */; };
 		54A64A32146809D200853CFF /* BossJimShip.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A64A31146809D200853CFF /* BossJimShip.m */; };
 		54A680A614685637006F94A6 /* fallingDeath.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54A680A514685637006F94A6 /* fallingDeath.wav */; };
@@ -891,7 +890,6 @@
 		54A1191D14433D6B0008A823 /* TrackTimer.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TrackTimer.plist; sourceTree = "<group>"; };
 		54A1191E14433D6B0008A823 /* TrackTimer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrackTimer.png; sourceTree = "<group>"; };
 		54A1B7B0146894C200A381B0 /* checkpoint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkpoint.png; sourceTree = "<group>"; };
-		54A1B7B314689C8F00A381B0 /* real_level_1a.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = real_level_1a.tmx; path = Resources/levels/real_level_1a.tmx; sourceTree = "<group>"; };
 		54A1B7B514689C9600A381B0 /* test_level_1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = test_level_1.tmx; path = Resources/levels/test_level_1.tmx; sourceTree = "<group>"; };
 		54A64A30146809D200853CFF /* BossJimShip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BossJimShip.h; sourceTree = "<group>"; };
 		54A64A31146809D200853CFF /* BossJimShip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BossJimShip.m; sourceTree = "<group>"; };
@@ -1480,7 +1478,6 @@
 		548C3DBB141ABDBB000567A8 /* levels */ = {
 			isa = PBXGroup;
 			children = (
-				54A1B7B314689C8F00A381B0 /* real_level_1a.tmx */,
 				54916780146445B700DFA191 /* test_level_7.tmx */,
 				543298A9145B5BC300223C3D /* test_level_6.tmx */,
 				549AFF7A1459F0610097BE33 /* real_level_6.tmx */,
@@ -2189,7 +2186,6 @@
 				54A680A614685637006F94A6 /* fallingDeath.wav in Resources */,
 				547996EB1468803D009D3234 /* checkpoint.wav in Resources */,
 				54A1B7B1146894C200A381B0 /* checkpoint.png in Resources */,
-				54A1B7B414689C8F00A381B0 /* real_level_1a.tmx in Resources */,
 				54A1B7B614689C9600A381B0 /* test_level_1.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
