@@ -904,7 +904,7 @@
 		<key>offsetx</key>
 		<integer>-64</integer>
 		<key>offsety</key>
-		<integer>-85</integer>
+		<integer>-20</integer>
 		<key>playerEffect</key>
 		<string>slow</string>
 	</dict>
