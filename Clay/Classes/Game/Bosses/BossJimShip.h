@@ -10,6 +10,7 @@
 #import "Boss.h"
 
 @class Sprite;
+@class Level;
 
 typedef enum {
     RETRO_HURDLE = 0,
@@ -21,6 +22,8 @@ typedef enum {
 
 @interface BossJimShip : Boss
 {
+    Level *_level;
+    
     Sprite *_sprite;
     CGPoint _velocity;
     CGRect _targetOnScreen;
@@ -37,5 +40,6 @@ typedef enum {
 
 -(void)updateVelocity:(float)dt;
 -(void)updateCannon:(float)dt;
+-(void)createObstacle:(NSString*)name;
 
 @end

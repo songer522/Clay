@@ -66,15 +66,13 @@
         _ay += 200.0f * dt;        
     }
     
-    //self.vx = RUNNER_VELOCITY_RATE * _speed.velocity * 40.0f * dt;
-    self.vx = RUNNER_VELOCITY_RATE * _speed.velocity * 40.0f * dt;
-    
+    self.vx = RUNNER_VELOCITY_RATE * _speed.velocity * 45.0f * dt;    
     self.vy += _ay * rate;
-    //[super update:dt];
     
     _x += _vx * dt;    
     _y -= _vy * dt;
 
+    [self updateFlags]; //need to know if the player is falling
 
 }
 

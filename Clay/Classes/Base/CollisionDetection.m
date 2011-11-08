@@ -186,6 +186,7 @@
     } else if(y > (_map.mapSize.height - 1)) {
         y = _map.mapSize.height - 1;
     }
+    
     return ccp(x,y);
 }
 
@@ -198,22 +199,6 @@
     if ([property isEqualToString:@"full"])
     {
         returnVal = COLLISION_TYPE_FULL;
-    }
-    else if([property isEqualToString:@"leftslant"])
-    {
-        returnVal = COLLISION_TYPE_LEFT_SLANT;
-    }
-    else if([property isEqualToString:@"rightslant"])
-    {
-        returnVal = COLLISION_TYPE_RIGHT_SLANT;
-    }
-    else if([property isEqualToString:@"rs2tileL"])
-    {
-        returnVal = COLLISION_TYPE_RIGHT_SLANT_2TILE_L;
-    }
-    else if([property isEqualToString:@"rs2tileR"])
-    {
-        returnVal = COLLISION_TYPE_RIGHT_SLANT_2TILE_R;        
     }
     else if([property isEqualToString:@"ledgefull"])
     {
@@ -263,17 +248,6 @@
         {
             _testPosition.y = topOfTile;
             colliding = false;
-        }
-        else if([_tileCollision isEqualToString:@"leftslant"])
-        {
-            colliding = false;
-            _testPosition.y = topOfTile + _pointWithinTile.x;
-            
-        }
-        else if([_tileCollision isEqualToString:@"rightslant"])
-        {
-            colliding = false;
-            _testPosition.y = topOfTile + (32.0f - _pointWithinTile.x);
         }
         else if([_tileCollision isEqualToString:@"ledgefull"])
         {

@@ -6,17 +6,21 @@
 //  Copyright (c) 2011 Xecudev, LLC. All rights reserved.
 //
 
+#import "GameObject.h"
 #import "BossJimShip.h"
 #import "Animation.h"
 #import "AnimationController.h"
 #import "Sprite.h"
 #import "Camera.h"
+#import "LevelManager.h"
+#import "Level.h"
 
 @implementation BossJimShip
 
 
 -(void)startBoss
 {
+    _level = [[LevelManager shared] currentLevel];
     
     _velocity = CGPointMake(-5.0f, 0.0f);
     _targetOnScreen = CGRectMake(240, 100, 160, 400);
@@ -24,6 +28,8 @@
     [_sprite setAlpha:1.0f];
     [[_sprite getCCSprite] setVisible:YES];
 
+    
+    _waitToShoot = 5.0f;
     xthrust = -1;
     ythrust = 0;
     _firstUpdate = true;
@@ -34,6 +40,17 @@
     _sprite = sprite;
     [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"jimSpaceshipAnim"];    
     //[_sprite setPosition:ccp(300,200)];
+}
+
+
+-(void)createObstacle:(NSString*)name
+{
+    GameObject *object = [_level addObstacleNamed:name];
+    CGPoint point = [[Camera sharedCamera] convertToWorldXY:[_sprite getPosition]];
+    //[object setPosition:ccp(point.x + 50,point.y + 150)];
+    [object setPosition:[[Camera sharedCamera] convertToWorldXY:ccp(50,50)]];
+    [object setVx:50.0f];
+    [object setVy:5.0f];    
 }
 
 
@@ -48,11 +65,11 @@
     }
     
     [self updateVelocity:dt];
+    [self updateCannon:dt];
     
     CGPoint position = [_sprite getPosition];
     
     [_sprite setScreenPosition:CGPointMake(position.x + _velocity.x, position.y + _velocity.y)];
-    //NSLog(@"BOSS VX: %f VY: %f PX: %f, PY: %f",_velocity.x, _velocity.y, position.x, position.y);
 }
 
 -(void)updateVelocity:(float)dt
@@ -97,15 +114,27 @@
 
 -(void)updateCannon:(float)dt
 {
+    _waitToShoot -= dt;
     if (_waitToShoot <= 0.0f) {
-        _waitToShoot = rand()%20 + 30.0f;
+        _waitToShoot = rand()%5 + 2.0f;
         
         RetroObstacleType type = (int)(rand()%5);
         switch (type) {
             case RETRO_PIG:
-                
+                [self createObstacle:@"retroHurdle"];
                 break;
-                
+            case RETRO_BIRD:
+                [self createObstacle:@"retroHurdle"];
+                break;
+            case RETRO_HURDLE:
+                [self createObstacle:@"retroHurdle"];
+                break;
+            case RETRO_ZOMBIE:
+                [self createObstacle:@"retroHurdle"];
+                break;
+            case RETRO_GARBAGE:
+                [self createObstacle:@"retroHurdle"];
+                break;
             default:
                 break;
         }

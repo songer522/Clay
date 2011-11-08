@@ -275,10 +275,6 @@
             
             NSString *objectName = [self getPropertyForTileCoords:coords forKey:@"object"];
             
-            if (objectName!=nil && [objectName isEqualToString:@"checkpoint"]) {
-                NSLog(@"GOOD CHECKPOINT!");
-            }
-            
             if (objectName) {
                 GameObject *object = [_gameObjects loadGameObjectWithName:objectName AddToLayer:NO];
                 
@@ -461,7 +457,6 @@
 
 
 //TODO: only supporting one trigger per update, for now. not ideal though and we will eventually need to extend this
-//TODO: also only assumes each trigger will be triggered whenever the player goes to the right and above the trigger point. eventually support more directions.
 -(Trigger*)testTriggers:(Player*)player
 {
     Trigger *returnTrigger = nil;
@@ -479,6 +474,15 @@
     }
     
     return returnTrigger;
+}
+
+
+-(GameObject*)addObstacleNamed:(NSString*)name
+{
+    GameObject *obstacle = [_gameObjects loadGameObjectWithName:name];                          
+    MapObject *mapObject = [MapObject mapObjectWithSprite:obstacle AboveLayer:@"main0"];
+    [_obstacleMapObjects addObject:mapObject];
+    return obstacle;
 }
 
 -(void)update:(float)dt Velocity:(float)vx

@@ -22,7 +22,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{0, 419}, {20, 20}}</string>
+			<string>{{462, 418}, {20, 20}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -44,7 +44,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{383, 0}, {378, 414}}</string>
+			<string>{{382, 0}, {378, 414}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -71,6 +71,182 @@
 			<false/>
 		</dict>
 		
+		<key>Retro_Bird_1.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{6, 0}, {132, 78}}</string>
+			<key>spriteOffset</key>
+			<string>{3, -0}</string>
+			<key>spriteSize</key>
+			<string>{132, 78}</string>
+			<key>spriteSourceSize</key>
+			<string>{138, 78}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{462, 464}, {132, 78}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>Retro_Bird_2.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{6, 0}, {132, 78}}</string>
+			<key>spriteOffset</key>
+			<string>{3, -0}</string>
+			<key>spriteSize</key>
+			<string>{132, 78}</string>
+			<key>spriteSourceSize</key>
+			<string>{138, 78}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{118, 548}, {132, 78}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>Retro_Garbage_1.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{6, 0}, {114, 132}}</string>
+			<key>spriteOffset</key>
+			<string>{3, -0}</string>
+			<key>spriteSize</key>
+			<string>{114, 132}</string>
+			<key>spriteSourceSize</key>
+			<string>{120, 132}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{0, 418}, {114, 132}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>Retro_Hurdle_1.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {84, 114}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{84, 114}</string>
+			<key>spriteSourceSize</key>
+			<string>{84, 114}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{598, 464}, {84, 114}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>Retro_Pig_1.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {168, 126}}</string>
+			<key>spriteOffset</key>
+			<string>{-3, -0}</string>
+			<key>spriteSize</key>
+			<string>{168, 126}</string>
+			<key>spriteSourceSize</key>
+			<string>{174, 126}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{118, 418}, {168, 126}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>Retro_Pig_2.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {168, 126}}</string>
+			<key>spriteOffset</key>
+			<string>{-3, -0}</string>
+			<key>spriteSize</key>
+			<string>{168, 126}</string>
+			<key>spriteSourceSize</key>
+			<string>{174, 126}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{290, 418}, {168, 126}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>Retro_Zombie_1.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{52, 0}, {181, 252}}</string>
+			<key>spriteOffset</key>
+			<string>{26, -0}</string>
+			<key>spriteSize</key>
+			<string>{181, 252}</string>
+			<key>spriteSourceSize</key>
+			<string>{233, 252}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{764, 208}, {181, 252}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>Retro_Zombie_2.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 24}, {203, 204}}</string>
+			<key>spriteOffset</key>
+			<string>{-15, -0}</string>
+			<key>spriteSize</key>
+			<string>{203, 204}</string>
+			<key>spriteSourceSize</key>
+			<string>{233, 252}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{764, 0}, {203, 204}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
 	</dict>
 	<key>metadata</key>
 	<dict>
@@ -79,7 +255,7 @@
 		<key>format</key>
 		<integer>3</integer>
 		<key>size</key>
-		<string>{1024, 512}</string>
+		<string>{1024, 1024}</string>
 		<key>name</key>
 		<string>computerLevel.zwd</string>
 		<key>premultipliedAlpha</key>

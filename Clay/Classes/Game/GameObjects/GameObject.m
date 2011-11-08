@@ -239,7 +239,7 @@
     
     _prevLocation = CGPointMake(_x, _y);
     
-    _x += _vx * dt;    
+    _x += _vx * dt;
     _y -= _vy * dt;
     
     [self setPositionAtX:_x Y:_y];
@@ -327,6 +327,16 @@
         CGPoint position = [gameLayer.player getPosition];
         if (_x < (position.x + 550.0f) && _x > 0.0f) {
             _vx = -60.0f;
+        } else {
+            _vx = 0.0f;
+        }
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_RETRO_SHOT_FROM_CANNON) {
+        _vy += 500.0f * dt;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_FLYER) {
+        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+        CGPoint position = [gameLayer.player getPosition];
+        if (_x < (position.x + 550.0f) && _x > 0.0f) {
+            _vx = -250.0f;    
         } else {
             _vx = 0.0f;
         }
@@ -447,6 +457,12 @@
         _boss = [BossFactory buildWithType:BOSS_SPACESHIP];
         [_boss setSprite:_sprite];
         [_boss startBoss];
+    } else if([behavior isEqualToString:@"retroStatic"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_RETRO_HURDLE;
+        _currentBehavior = COLLISION_BEHAVIOR_RETRO_SHOT_FROM_CANNON;
+    } else if([behavior isEqualToString:@"flyer"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_FLYER_DEAD;
+        _currentBehavior = COLLISION_BEHAVIOR_FLYER;
     }
     else {
         _collideBehavior = COLLISION_BEHAVIOR_NONE;
