@@ -66,9 +66,15 @@
         _ay += 200.0f * dt;        
     }
     
-    self.vx = RUNNER_VELOCITY_RATE * _speed.velocity * 20.0f * dt;
+    //self.vx = RUNNER_VELOCITY_RATE * _speed.velocity * 40.0f * dt;
+    self.vx = RUNNER_VELOCITY_RATE * _speed.velocity * 40.0f * dt;
+    
     self.vy += _ay * rate;
-    [super update:dt];
+    //[super update:dt];
+    
+    _x += _vx * dt;    
+    _y -= _vy * dt;
+
 
 }
 

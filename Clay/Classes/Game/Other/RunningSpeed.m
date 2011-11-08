@@ -214,6 +214,7 @@
     
     [_player updateSlow:dt];
     _isSlowedDown = false;
+    
 }
 
 -(void)dealloc

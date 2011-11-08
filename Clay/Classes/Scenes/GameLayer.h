@@ -42,6 +42,8 @@
     
     Boss *_boss;
     
+    double time;
+    
 }
 
 @property(nonatomic,retain) Player *player;

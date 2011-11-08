@@ -136,7 +136,7 @@
    eJztwzERgEAQBLB/AzihxAUlTnCCE5zgBAuU9HfdTjKTbYyxFQMAAAAkOhoBAAAAEp2NAAAAAImuRgAAAIBEdyMAAABAoqcRAAAAINHbCAAAAJBomfUAAAAAidZZDwAAAJBon/UAAAAAAAAAAAAAAAAAAAAAAAAAAAD8PvGlQ/k=
   </data>
  </layer>
- <layer name="back-3" width="1100" height="14">
+ <layer name="back-3" width="1100" height="14" visible="0">
   <properties>
    <property name="speedx" value="0.1"/>
    <property name="speedy" value="1.0"/>

@@ -68,7 +68,9 @@
         _savePoint = [SavePoint instance];
         
         
-        [self scheduleUpdate];
+        //[self scheduleUpdate];
+        
+        [self schedule: @selector(update:)];
         
         [self initForLevel];
         
@@ -132,7 +134,13 @@
 
 -(void)update:(ccTime)dt
 {
-    [self updateLogic:dt];
+    double fixedTimeStep = 1.0f/60.0f;
+    float timeToRun = dt + time;
+    while(timeToRun >= fixedTimeStep) {
+        [self updateLogic:fixedTimeStep];
+        timeToRun = timeToRun - fixedTimeStep;
+    }
+    time = timeToRun;
 }
 
 -(void)updateLogic:(ccTime)dt
