@@ -355,6 +355,9 @@
 		54D44912144F78ED006C6EBA /* TL_Disco_TileTextures.png in Resources */ = {isa = PBXBuildFile; fileRef = 54D44911144F78ED006C6EBA /* TL_Disco_TileTextures.png */; };
 		54D8078C1459D11B0090F0DA /* shotgun_reload.caf in Resources */ = {isa = PBXBuildFile; fileRef = 54D8078B1459D11B0090F0DA /* shotgun_reload.caf */; };
 		54E11200144CBE1E00BBF32B /* blank.png in Resources */ = {isa = PBXBuildFile; fileRef = 54E111FF144CBE1E00BBF32B /* blank.png */; };
+		54EB68391469B2E50061D69D /* real_level_1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 54EB68341469B2E50061D69D /* real_level_1.tmx */; };
+		54EB683C1469B2E50061D69D /* TL_Disco_TileTextures-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54EB68371469B2E50061D69D /* TL_Disco_TileTextures-hd.png */; };
+		54EB683F1469B36D0061D69D /* real_level_1_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 54EB683E1469B36D0061D69D /* real_level_1_hd.tmx */; };
 		54EE34B0143CEB4A00734E58 /* BatteryFullCharge.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54EE34AC143CEB4A00734E58 /* BatteryFullCharge.wav */; };
 		54EE34B1143CEB4A00734E58 /* Error.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54EE34AD143CEB4A00734E58 /* Error.wav */; };
 		54EE34B2143CEB4A00734E58 /* LowBattery.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54EE34AE143CEB4A00734E58 /* LowBattery.wav */; };
@@ -946,6 +949,9 @@
 		54D44911144F78ED006C6EBA /* TL_Disco_TileTextures.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TL_Disco_TileTextures.png; path = Resources/levels/TL_Disco_TileTextures.png; sourceTree = "<group>"; };
 		54D8078B1459D11B0090F0DA /* shotgun_reload.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = shotgun_reload.caf; path = Resources/sounds/shotgun_reload.caf; sourceTree = "<group>"; };
 		54E111FF144CBE1E00BBF32B /* blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blank.png; sourceTree = "<group>"; };
+		54EB68341469B2E50061D69D /* real_level_1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = real_level_1.tmx; path = Resources/levels/real_level_1.tmx; sourceTree = "<group>"; };
+		54EB68371469B2E50061D69D /* TL_Disco_TileTextures-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "TL_Disco_TileTextures-hd.png"; path = "Resources/levels/TL_Disco_TileTextures-hd.png"; sourceTree = "<group>"; };
+		54EB683E1469B36D0061D69D /* real_level_1_hd.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = real_level_1_hd.tmx; path = Resources/levels/real_level_1_hd.tmx; sourceTree = "<group>"; };
 		54EE34AC143CEB4A00734E58 /* BatteryFullCharge.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = BatteryFullCharge.wav; path = Resources/sounds/BatteryFullCharge.wav; sourceTree = "<group>"; };
 		54EE34AD143CEB4A00734E58 /* Error.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Error.wav; path = Resources/sounds/Error.wav; sourceTree = "<group>"; };
 		54EE34AE143CEB4A00734E58 /* LowBattery.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = LowBattery.wav; path = Resources/sounds/LowBattery.wav; sourceTree = "<group>"; };
@@ -1544,6 +1550,8 @@
 		548C3DBB141ABDBB000567A8 /* levels */ = {
 			isa = PBXGroup;
 			children = (
+				54EB683E1469B36D0061D69D /* real_level_1_hd.tmx */,
+				54EB68341469B2E50061D69D /* real_level_1.tmx */,
 				54916780146445B700DFA191 /* test_level_7.tmx */,
 				543298A9145B5BC300223C3D /* test_level_6.tmx */,
 				549AFF7A1459F0610097BE33 /* real_level_6.tmx */,
@@ -1616,6 +1624,7 @@
 		549969181416749900CB7800 /* tilesets */ = {
 			isa = PBXGroup;
 			children = (
+				54EB68371469B2E50061D69D /* TL_Disco_TileTextures-hd.png */,
 				5F8A449B1468802100CE1FC2 /* Level7_TiledSheet-hd.png */,
 				5491677E146445B700DFA191 /* Level7_TiledSheet.png */,
 				546EEBC9145F632A008F1EAF /* tileset_level_1_extra_pixels.png */,
@@ -2319,6 +2328,9 @@
 				547996EB1468803D009D3234 /* checkpoint.wav in Resources */,
 				54A1B7B1146894C200A381B0 /* checkpoint.png in Resources */,
 				54A1B7B614689C9600A381B0 /* test_level_1.tmx in Resources */,
+				54EB68391469B2E50061D69D /* real_level_1.tmx in Resources */,
+				54EB683C1469B2E50061D69D /* TL_Disco_TileTextures-hd.png in Resources */,
+				54EB683F1469B36D0061D69D /* real_level_1_hd.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
