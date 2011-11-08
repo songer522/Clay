@@ -68,11 +68,25 @@ static LevelManager *_shared = nil;
     NSString *postLevelComicName = [levelSettings valueForKey:@"postLevelComic"];
     NSString *music = [levelSettings valueForKey:@"music"];
     
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2){
+        // Use HD level for High Res screens
+        NSMutableString *fileNameMuta = [NSMutableString stringWithString:fileName];
+        [fileNameMuta insertString:@"_hd" atIndex:12];
+        fileName = [NSString stringWithString:fileNameMuta];
+    }
+    
     _thirdAction = [levelSettings valueForKey:@"thirdAction"];
 
     NSString *layerList = [levelSettings valueForKey:@"layerList"];
-
-    _playerOffsetY = [[levelSettings valueForKey:@"playerOffsetY"] intValue];
+    
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
+    {
+        _playerOffsetY = [[levelSettings valueForKey:@"playerOffsetY"] intValue];
+    }
+    else
+    {
+        _playerOffsetY = [[levelSettings valueForKey:@"playerOffsetYLowRes"] intValue];
+    }
     
     GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
     

@@ -186,7 +186,6 @@
     } else if(y > (_map.mapSize.height - 1)) {
         y = _map.mapSize.height - 1;
     }
-    
     return ccp(x,y);
 }
 
