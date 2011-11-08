@@ -53,6 +53,91 @@
 		<key>spritesheetPlist</key>
 		<string>cow_idle</string>
 	</dict>
+	<key>retroHurdleAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>5.0</string>
+		<key>group</key>
+		<string>Obstacle</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Retro_Hurdle_</string>
+		<key>spritesheetPlist</key>
+		<string>computerLevel</string>
+	</dict>
+	<key>retroGarbageAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>5.0</string>
+		<key>group</key>
+		<string>Obstacle</string>
+		<key>looping</key>
+		<string>false</string>
+		<key>sequencePrefix</key>
+		<string>Retro_Garbage_</string>
+		<key>spritesheetPlist</key>
+		<string>computerLevel</string>
+	</dict>
+	<key>retroPigAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>Obstacle</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Retro_Pig_</string>
+		<key>spritesheetPlist</key>
+		<string>computerLevel</string>
+	</dict>
+	<key>retroZombieAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>5.0</string>
+		<key>group</key>
+		<string>Obstacle</string>
+		<key>looping</key>
+		<string>false</string>
+		<key>sequencePrefix</key>
+		<string>Retro_Zombie_</string>
+		<key>spritesheetPlist</key>
+		<string>computerLevel</string>
+	</dict>
+	<key>retroBirdAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>Obstacle</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Retro_Bird_</string>
+		<key>spritesheetPlist</key>
+		<string>computerLevel</string>
+	</dict>
 	<key>dancinManAnim</key>
 	<dict>
 		<key>animationFrames</key>
@@ -375,6 +460,23 @@
 		<string>Barn_Pig_</string>
 		<key>spritesheetPlist</key>
 		<string>pig</string>
+	</dict>
+	<key>crowAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3,4</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.075</string>
+		<key>group</key>
+		<string>Town</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Town_Bird_</string>
+		<key>spritesheetPlist</key>
+		<string>townCrow</string>
 	</dict>
 	<key>runningAnim</key>
 	<dict>

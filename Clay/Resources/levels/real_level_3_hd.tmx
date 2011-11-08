@@ -41,6 +41,11 @@
     <property name="obstacle" value="leafpile"/>
    </properties>
   </tile>
+  <tile id="31">
+   <properties>
+    <property name="obstacle" value="crow"/>
+   </properties>
+  </tile>
  </tileset>
  <tileset firstgid="301" name="Meta" tilewidth="64" tileheight="64">
   <image source="meta-hd.png" width="256" height="192"/>
@@ -166,7 +171,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1LsOwjAMBdCyFDb6/19bMbBEifJyIpDOGSv52o3THgcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAka5HfFZv5swM74HaXM0z8Bxyvb7vODJvLXO0fnVNWpvOu+rMc72jRe6z5JO9Mj9Vuk+557O7i/jv9JxNS79aXi2jd1e1/ab9WvrvvC8tXj82D/yT0/cDAAAAAGxyA5SqAlg=
+   eJzt1DsSgjAQAFBs1E4Pwf3P6FjQZIKbhA2jznslsB92A8sCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8N/WS/69T88+O+IiW67enEd6eAzE1mJuiXOo1drecaTfKOdo/OyYMrbsd9bMa7WzZe5zzzv3zPylvfNUu350dxn/nZ7ZtNSL8kU5encV7bes11L/zPPS4v5l/cAvufp+AAAAAICTvAAvnALs
   </data>
  </layer>
  <layer name="meta" width="660" height="14" opacity="0.34">

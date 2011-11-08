@@ -492,6 +492,41 @@
 		<key>playerEffect</key>
 		<string>collide</string>
 	</dict>
+	<key>retroHurdle</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>1</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>retroHurdleAnim</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>30</integer>
+			<key>width</key>
+			<integer>14</integer>
+			<key>x</key>
+			<integer>20</integer>
+			<key>y</key>
+			<integer>2</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>retroStatic</string>
+		<key>imageName</key>
+		<string>hurdle.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>-45</integer>
+		<key>playerEffect</key>
+		<string>collide</string>
+	</dict>
 	<key>jimBarn</key>
 	<dict>
 		<key>aggressive</key>
@@ -734,6 +769,41 @@
 		<integer>0</integer>
 		<key>offsety</key>
 		<integer>-8</integer>
+		<key>playerEffect</key>
+		<string>collide</string>
+	</dict>
+	<key>crow</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<real>0.5</real>
+			<key>y</key>
+			<real>0.5</real>
+		</dict>
+		<key>animationName</key>
+		<string>crowAnim</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>55</integer>
+			<key>width</key>
+			<integer>35</integer>
+			<key>x</key>
+			<integer>25</integer>
+			<key>y</key>
+			<integer>40</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>flyer</string>
+		<key>imageName</key>
+		<string>blank.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>135</integer>
 		<key>playerEffect</key>
 		<string>collide</string>
 	</dict>

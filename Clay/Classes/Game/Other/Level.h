@@ -98,6 +98,8 @@
 
 -(void)setHudButtonsAndThirdAction:(NSString*)action;
 
+-(GameObject*)addObstacleNamed:(NSString*)name;
+
 #pragma mark - private methods
 -(void)initTiledMap:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer;
 -(void)scanThroughMapAndAddObjects;
