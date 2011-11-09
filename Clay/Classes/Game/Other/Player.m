@@ -416,6 +416,8 @@
     if (state == COLLISION_STATE_MIDAIR) {
         _isInMidAir = true;
     } else if (state == COLLISION_STATE_GROUNDED || state == COLLISION_STATE_LEDGE) {
+
+        _hasDoubleJumped = false;
         
         if (_isJumping && !_isTripping) {                
             _isJumping = false;
@@ -438,8 +440,6 @@
             if (_speed.velocity < 0.0f) {
                 _speed.velocity = 4.0f;                
             }
-            
-            _hasDoubleJumped = false;
             
             [[SoundEngine shared] playSound:@"jumpLand"];
             GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];

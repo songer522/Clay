@@ -172,6 +172,8 @@
     }
     [_startButton update:dt];
     [_backButton update:dt];
+    [self popAndSwitchToLevel:@"level3"];
+
 }
 
 -(void)unload
