@@ -19,6 +19,15 @@
     bool _wantToSwitch;
     float _alpha;
     NSString *_levelToSwitchTo;
+    
+    
+    
+    Sprite *_background;
+    Sprite *_levelInfoFront;
+    
+    CCLabelBMFont *_levelSelectText;
+    
+    
 }
 
 +(CCScene*)scene;

@@ -40,7 +40,9 @@
 {
     if ((self = [super init])) {
         [[LayerManager sharedLayers] setScene:scene ForKey:@"chooseLevel"];
-        _buttons = [[NSMutableArray alloc] initWithCapacity:4];
+        
+        
+        _buttons = [[NSMutableArray alloc] initWithCapacity:11];
         _alpha = 1.0f;
         [self load];
     }
@@ -66,23 +68,35 @@
 -(void)load
 {
     [[LayerManager sharedLayers] setWorkingLayer:self];    
+
     
-    blackBackground = [Sprite spriteWithFile:@"black_background-hd.png"];
+    CCSpriteFrameCache* frameCache = [CCSpriteFrameCache sharedSpriteFrameCache];
+    [frameCache addSpriteFramesWithFile:@"chooseLevel.plist"];
     
-    for (int i=0; i<7; i++) {
-        float startX = (i<6)? 100.0f : 300.0f;
-        float startY = (i % 6) * 48.0f;
-        Button *button = [Button buttonWithText:[NSString stringWithFormat:@"Level %d",(i+1)] AtPoint:CGPointMake(startX, 280.0f - startY)];
-       
-        [button setHitbox:CGRectMake(startX - 30.0f, (260.0f - startY), 120.0f, 48.0f)];
-        button.buttonId = i;
-       // [[button getLabel] setColor:ccc3(255, 255, 0)];
-        [_buttons addObject:button];
-    }
+    _background = [Sprite spriteFromFrameCacheWithName:@"CL_Background.png"];
+    [_background setScreenPosition:ccp(0,0)];
+    
+    _levelInfoFront = [Sprite spriteFromFrameCacheWithName:@"CL_LevelInfo.png"];
+    [_levelInfoFront getCCSprite].anchorPoint = ccp(0.5f,0.5f);
+    [_levelInfoFront setScreenPosition:ccp(105.0f,152.0f)];
+    
+    
+    
+    
+    _levelSelectText = [CCLabelBMFont labelWithString:@"LEVEL SELECT" fntFile:@"GraphicFont.fnt"];
+    [_levelSelectText setScale:0.75f];
+    _levelSelectText.position = ccp(365.0f,278.0f);
+    [[[LayerManager sharedLayers] currentLayer] addChild:_levelSelectText];
+
+    
+    //blackBackground = [Sprite spriteWithFile:@"black_background-hd.png"];
+    
+    //[button setHitbox:CGRectMake(startX - 30.0f, (260.0f - startY), 120.0f, 48.0f)];
     
     [[LayerManager sharedLayers] forgetWorkingLayer];
     [self scheduleUpdate];
     self.isTouchEnabled = true;    
+    
 }
 
 
@@ -104,22 +118,12 @@
 
 -(void)update:(ccTime)dt
 {
-    if (_wantToSwitch) {
-        _alpha -= 5.0f * dt;
-        if (_alpha<=0.0f) {
-            [self popAndSwitchToLevel:_levelToSwitchTo];
-        }
-        
-        for (Button *button in _buttons) {
-            [[button getLabel] setOpacity:(int)(_alpha*255.0f)];
-        }
-    }
-    
+    [self popAndSwitchToLevel:@"level6"];
 }
 
 -(void)unload
 {
-    [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFrameByName:@"black_background-hd.png"];
+    //[[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFrameByName:@"black_background-hd.png"];
 }
 
 @end

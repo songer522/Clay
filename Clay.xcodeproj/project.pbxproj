@@ -197,6 +197,12 @@
 		549AFF801459FF060097BE33 /* title.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 549AFF7E1459FF060097BE33 /* title.mp3 */; };
 		549AFF84145A03140097BE33 /* tileset_level_6.png in Resources */ = {isa = PBXBuildFile; fileRef = 549AFF83145A03140097BE33 /* tileset_level_6.png */; };
 		549AFF86145A11A70097BE33 /* UI_Button_GreenLight.png in Resources */ = {isa = PBXBuildFile; fileRef = 549AFF85145A11A70097BE33 /* UI_Button_GreenLight.png */; };
+		549D84D91469DE9100A3599F /* chooseLevel-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 549D84D51469DE9100A3599F /* chooseLevel-hd.plist */; };
+		549D84DA1469DE9100A3599F /* chooseLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 549D84D61469DE9100A3599F /* chooseLevel-hd.png */; };
+		549D84DB1469DE9100A3599F /* chooseLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 549D84D71469DE9100A3599F /* chooseLevel.plist */; };
+		549D84DC1469DE9100A3599F /* chooseLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 549D84D81469DE9100A3599F /* chooseLevel.png */; };
+		549D84E01469E80000A3599F /* LevelButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 549D84DF1469E80000A3599F /* LevelButton.m */; };
+		549D84E21469F64000A3599F /* real_level_7_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 549D84E11469F64000A3599F /* real_level_7_hd.tmx */; };
 		549ED75D1461CD63008BCD98 /* anims.plist in Resources */ = {isa = PBXBuildFile; fileRef = 549ED7551461CD62008BCD98 /* anims.plist */; };
 		549ED75E1461CD63008BCD98 /* comics.plist in Resources */ = {isa = PBXBuildFile; fileRef = 549ED7561461CD62008BCD98 /* comics.plist */; };
 		549ED75F1461CD63008BCD98 /* levels.plist in Resources */ = {isa = PBXBuildFile; fileRef = 549ED7571461CD62008BCD98 /* levels.plist */; };
@@ -716,6 +722,13 @@
 		549AFF7E1459FF060097BE33 /* title.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = title.mp3; path = Resources/music/title.mp3; sourceTree = "<group>"; };
 		549AFF83145A03140097BE33 /* tileset_level_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tileset_level_6.png; path = Resources/levels/tileset_level_6.png; sourceTree = "<group>"; };
 		549AFF85145A11A70097BE33 /* UI_Button_GreenLight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UI_Button_GreenLight.png; sourceTree = "<group>"; };
+		549D84D51469DE9100A3599F /* chooseLevel-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "chooseLevel-hd.plist"; sourceTree = "<group>"; };
+		549D84D61469DE9100A3599F /* chooseLevel-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chooseLevel-hd.png"; sourceTree = "<group>"; };
+		549D84D71469DE9100A3599F /* chooseLevel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = chooseLevel.plist; sourceTree = "<group>"; };
+		549D84D81469DE9100A3599F /* chooseLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chooseLevel.png; sourceTree = "<group>"; };
+		549D84DE1469E80000A3599F /* LevelButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelButton.h; sourceTree = "<group>"; };
+		549D84DF1469E80000A3599F /* LevelButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelButton.m; sourceTree = "<group>"; };
+		549D84E11469F64000A3599F /* real_level_7_hd.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = real_level_7_hd.tmx; path = Resources/levels/real_level_7_hd.tmx; sourceTree = "<group>"; };
 		549ED7551461CD62008BCD98 /* anims.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = anims.plist; path = Plists/anims.plist; sourceTree = "<group>"; };
 		549ED7561461CD62008BCD98 /* comics.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = comics.plist; path = Plists/comics.plist; sourceTree = "<group>"; };
 		549ED7571461CD62008BCD98 /* levels.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = levels.plist; path = Plists/levels.plist; sourceTree = "<group>"; };
@@ -1082,6 +1095,10 @@
 		5441BED1143F8B75003224FF /* menu */ = {
 			isa = PBXGroup;
 			children = (
+				549D84D51469DE9100A3599F /* chooseLevel-hd.plist */,
+				549D84D61469DE9100A3599F /* chooseLevel-hd.png */,
+				549D84D71469DE9100A3599F /* chooseLevel.plist */,
+				549D84D81469DE9100A3599F /* chooseLevel.png */,
 				54ABFD6D14630876006F0C88 /* menuTextures-hd.plist */,
 				54ABFD6E14630876006F0C88 /* menuTextures-hd.png */,
 				54ABFD6F14630876006F0C88 /* menuTextures.plist */,
@@ -1808,6 +1825,8 @@
 				549ED7C21461D065008BCD98 /* HudButton.m */,
 				549ED7C31461D065008BCD98 /* TrackTimer.h */,
 				549ED7C41461D065008BCD98 /* TrackTimer.m */,
+				549D84DE1469E80000A3599F /* LevelButton.h */,
+				549D84DF1469E80000A3599F /* LevelButton.m */,
 			);
 			path = GUI;
 			sourceTree = "<group>";
@@ -2526,6 +2545,7 @@
 				549ED8491461D065008BCD98 /* PauseMenuScreen.m in Sources */,
 				548D2D1D1461E871005E1AC0 /* Skin.m in Sources */,
 				54A64A32146809D200853CFF /* BossJimShip.m in Sources */,
+				549D84E01469E80000A3599F /* LevelButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

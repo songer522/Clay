@@ -134,7 +134,7 @@
 		<key>playerOffsetYLowRes</key>
 		<integer>25</integer>
 		<key>fileName</key>
-		<string>test_level_6.tmx</string>
+		<string>real_level_6.tmx</string>
 		<key>obstacleLayer</key>
 		<string>objects</string>
 		<key>nextLevelName</key>
