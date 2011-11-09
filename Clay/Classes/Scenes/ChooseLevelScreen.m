@@ -112,8 +112,11 @@
     [[ComicManager shared] startComic:@"intro" StartPhase:COMIC_PHASE_PLAY_VIDEO];    
     [[LayerManager sharedLayers] popAndPushSceneNamed:@"game"];
     
-    [[CCTextureCache sharedTextureCache] removeAllTextures];
+    [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFramesFromFile:@"chooseLevel.plist"];
+    [[CCTextureCache sharedTextureCache] removeTextureForKey:@"chooseLevel.png"];
     [[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
+
+    
 }
 
 -(void)update:(ccTime)dt

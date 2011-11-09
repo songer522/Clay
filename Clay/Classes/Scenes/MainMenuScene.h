@@ -52,5 +52,6 @@ typedef enum {
 -(void)reinit;
 -(void)switchToTransitionIn;
 -(void)switchToTransitionOut;
+-(void)unload;
 
 @end

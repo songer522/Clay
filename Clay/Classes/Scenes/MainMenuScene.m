@@ -13,6 +13,8 @@
 #import "ComicManager.h"
 #import "SoundEngine.h"
 #import "GCHelper.h"
+#import "ChooseLevelScreen.h"
+
 
 @implementation MainMenuScene
 
@@ -37,6 +39,8 @@
     self = [super init];
     if (self) {
         // Initialization code here.
+        
+        NSAutoreleasePool *myPool = [[NSAutoreleasePool alloc] init];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pause) name:UIWindowDidResignKeyNotification object:nil];
         
@@ -98,8 +102,7 @@
         [self scheduleUpdate];
         self.isTouchEnabled = YES;
         
-        [[CCTextureCache sharedTextureCache] removeAllTextures];
-        [[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
+        [myPool drain];
 
     }
     
@@ -226,17 +229,27 @@
 {
     _reinit = true;
     [self unscheduleUpdate];
-    [[LayerManager sharedLayers] pushSceneNamed:@"game"];
+    //[[LayerManager sharedLayers] pushSceneNamed:@"game"];
     //[[LayerManager sharedLayers] popAndPushSceneNamed:@"game"];
-    [[ComicManager shared] startComic:@"intro" StartPhase:COMIC_PHASE_PLAY_VIDEO];    
+    [[ComicManager shared] startComic:@"intro" StartPhase:COMIC_PHASE_PLAY_VIDEO];
 }
 
 -(void)private_switchToChooseLevel
 {
+    //[[LayerManager sharedLayers] popAndPushSceneNamed:@"chooseLevel"];
+    //[self unscheduleUpdate];
+    //[[CCDirector sharedDirector] replaceScene:[CCTransitionFadeBL transitionWithDuration:0.0f scene:[ChooseLevelScreen scene]]];
+    [[LayerManager sharedLayers] pushSceneNamed:@"chooseLevel"];
+    //[[CCDirector sharedDirector] replaceScene:[ChooseLevelScreen scene]];
+
+    [self unload];
     [self unscheduleUpdate];
-    [[LayerManager sharedLayers] pushSceneNamed:@"chooseLevel"];   
-    
-    [[CCTextureCache sharedTextureCache] removeAllTextures];
+}
+
+-(void)unload
+{
+    [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFramesFromFile:@"menuTextures.plist"];
+    [[CCTextureCache sharedTextureCache] removeTextureForKey:@"menuTextures.png"];
     [[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
 
 }
@@ -244,6 +257,7 @@
 
 -(void)dealloc
 {
+    NSLog(@"YOUR LEVEL is being deallocated"); //just to make sure it gets called
     [_trackBackground release];
     [_rain1 release];
     [_rain2 release];
@@ -251,7 +265,9 @@
     [_playButtonBlue release];
     [_playButtonOrange release];
     [_copyright release];
+    
     [super dealloc];
+
 }
 
 @end
