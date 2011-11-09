@@ -58,7 +58,7 @@
             case PROJECTILE_BEHAVIOR_ZOMBIE_HEAD:
                 _sprite = [Sprite spriteWithFile:@"zombieHead.png"];
                 [_sprite getCCSprite].anchorPoint = ccp(0.5f, 0.5f);
-                
+                [[_sprite getCCSprite] setScale:0.9];
                 _vx = 250 + rand()%100;
                 _angularVelocity = rand()%10 + 10;                
                 _vy = 50.0f;

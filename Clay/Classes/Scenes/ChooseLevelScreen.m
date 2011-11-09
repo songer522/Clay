@@ -42,6 +42,7 @@
 {
     if ((self = [super init])) {
         [[LayerManager sharedLayers] setScene:scene ForKey:@"chooseLevel"];
+         _buttons = [[NSMutableArray alloc] initWithCapacity:4];
         
         _levelToSwitchTo = @"level1";
         _buttons = [[NSMutableArray alloc] initWithCapacity:11];
@@ -86,6 +87,20 @@
     [[LayerManager sharedLayers] setWorkingLayer:self];    
 
     
+    blackBackground = [Sprite spriteWithFile:@"black_background-hd.png"];
+    
+    for (int i=0; i<7; i++) {
+        float startX = (i<6)? 100.0f : 300.0f;
+        float startY = (i % 6) * 48.0f;
+        Button *button = [Button buttonWithText:[NSString stringWithFormat:@"Level %d",(i+1)] AtPoint:CGPointMake(startX, 280.0f - startY)];
+        
+        [button setHitbox:CGRectMake(startX - 30.0f, (260.0f - startY), 120.0f, 48.0f)];
+        button.buttonId = i;
+        // [[button getLabel] setColor:ccc3(255, 255, 0)];
+        [_buttons addObject:button];
+    }
+
+    /*
     CCSpriteFrameCache* frameCache = [CCSpriteFrameCache sharedSpriteFrameCache];
     [frameCache addSpriteFramesWithFile:@"chooseLevel.plist"];
     
@@ -161,7 +176,7 @@
     
     
 }
-
+/*
 -(void)update:(ccTime)dt
 {
     if (_waitToSwitch>0.0f) {
@@ -178,7 +193,7 @@
 
 -(void)unload
 {
-    //[[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFrameByName:@"black_background-hd.png"];
+    [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFrameByName:@"black_background-hd.png"];
 }
 
 @end

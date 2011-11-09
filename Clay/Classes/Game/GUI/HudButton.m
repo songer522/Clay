@@ -97,7 +97,7 @@
     } else if([action isEqualToString:@"dodge"]) {
         buttonImage = @"UI_Button_Dodging.png";
     } else if([action isEqualToString:@"shoot"]) {
-        buttonImage = @"UI_Button_Kicking.png";
+        buttonImage = @"UI_Button_Shooting.png";
     }
     
     [self createSpriteFromImage:buttonImage];
