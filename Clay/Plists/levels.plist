@@ -23,7 +23,7 @@
 		<key>nextLevelName</key>
 		<string>level2</string>
 		<key>layerList</key>
-		<string>background-99,back-5,back-4,back-3,back-2,back-1,main0,actives,front1,front2,front3,meta</string>
+		<string>background-99,back-5,back-4,back-2,back-1,main0,actives,front1,front2,front3,meta</string>
 	</dict>
 	<key>dummyLevel</key>
 	<dict>

@@ -564,7 +564,10 @@ typedef struct _KerningHashElement
 								(float)nextFontPositionY + yOffset - rect.size.height*0.5f );
 
 		// update kerning
-		nextFontPositionX += configuration_->BMFontArray_[c].xAdvance + kerningAmount;
+        
+        //XECUDEV HARDCODING A KERNING VALUE OF NEGATIVE CONSTANT VALUE BELOW
+		nextFontPositionX += configuration_->BMFontArray_[c].xAdvance + kerningAmount - 13;
+        
 		prev = c;
 
 		// Apply label properties

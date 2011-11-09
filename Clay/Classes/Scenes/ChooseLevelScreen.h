@@ -11,12 +11,13 @@
 #import "cocos2d.h"
 
 @class Sprite;
+@class ActionButton;
 
 @interface ChooseLevelScreen : CCLayer
 {
     Sprite *blackBackground;
     NSMutableArray *_buttons;
-    bool _wantToSwitch;
+    float _waitToSwitch;
     float _alpha;
     NSString *_levelToSwitchTo;
     
@@ -25,8 +26,13 @@
     Sprite *_background;
     Sprite *_levelInfoFront;
     
-    CCLabelBMFont *_levelSelectText;
+    Sprite *_selector;
     
+    CCLabelBMFont *_levelSelectText;
+    CCLabelBMFont *_levelPanelText;
+    
+    ActionButton *_startButton;
+    ActionButton *_backButton;
     
 }
 

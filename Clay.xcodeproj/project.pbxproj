@@ -363,6 +363,7 @@
 		54D44912144F78ED006C6EBA /* TL_Disco_TileTextures.png in Resources */ = {isa = PBXBuildFile; fileRef = 54D44911144F78ED006C6EBA /* TL_Disco_TileTextures.png */; };
 		54D8078C1459D11B0090F0DA /* shotgun_reload.caf in Resources */ = {isa = PBXBuildFile; fileRef = 54D8078B1459D11B0090F0DA /* shotgun_reload.caf */; };
 		54E11200144CBE1E00BBF32B /* blank.png in Resources */ = {isa = PBXBuildFile; fileRef = 54E111FF144CBE1E00BBF32B /* blank.png */; };
+		54E25D7B146B23910016ADEB /* ActionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E25D7A146B23910016ADEB /* ActionButton.m */; };
 		54EB68391469B2E50061D69D /* real_level_1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 54EB68341469B2E50061D69D /* real_level_1.tmx */; };
 		54EB683C1469B2E50061D69D /* TL_Disco_TileTextures-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54EB68371469B2E50061D69D /* TL_Disco_TileTextures-hd.png */; };
 		54EB683F1469B36D0061D69D /* real_level_1_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 54EB683E1469B36D0061D69D /* real_level_1_hd.tmx */; };
@@ -726,8 +727,8 @@
 		549D84D61469DE9100A3599F /* chooseLevel-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chooseLevel-hd.png"; sourceTree = "<group>"; };
 		549D84D71469DE9100A3599F /* chooseLevel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = chooseLevel.plist; sourceTree = "<group>"; };
 		549D84D81469DE9100A3599F /* chooseLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chooseLevel.png; sourceTree = "<group>"; };
-		549D84DE1469E80000A3599F /* LevelButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelButton.h; sourceTree = "<group>"; };
-		549D84DF1469E80000A3599F /* LevelButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelButton.m; sourceTree = "<group>"; };
+		549D84DE1469E80000A3599F /* LevelButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LevelButton.h; path = ../Game/GUI/LevelButton.h; sourceTree = "<group>"; };
+		549D84DF1469E80000A3599F /* LevelButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LevelButton.m; path = ../Game/GUI/LevelButton.m; sourceTree = "<group>"; };
 		549D84E11469F64000A3599F /* real_level_7_hd.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = real_level_7_hd.tmx; path = Resources/levels/real_level_7_hd.tmx; sourceTree = "<group>"; };
 		549ED7551461CD62008BCD98 /* anims.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = anims.plist; path = Plists/anims.plist; sourceTree = "<group>"; };
 		549ED7561461CD62008BCD98 /* comics.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = comics.plist; path = Plists/comics.plist; sourceTree = "<group>"; };
@@ -966,6 +967,8 @@
 		54D44911144F78ED006C6EBA /* TL_Disco_TileTextures.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TL_Disco_TileTextures.png; path = Resources/levels/TL_Disco_TileTextures.png; sourceTree = "<group>"; };
 		54D8078B1459D11B0090F0DA /* shotgun_reload.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = shotgun_reload.caf; path = Resources/sounds/shotgun_reload.caf; sourceTree = "<group>"; };
 		54E111FF144CBE1E00BBF32B /* blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blank.png; sourceTree = "<group>"; };
+		54E25D79146B23900016ADEB /* ActionButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionButton.h; sourceTree = "<group>"; };
+		54E25D7A146B23910016ADEB /* ActionButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionButton.m; sourceTree = "<group>"; };
 		54EB68341469B2E50061D69D /* real_level_1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = real_level_1.tmx; path = Resources/levels/real_level_1.tmx; sourceTree = "<group>"; };
 		54EB68371469B2E50061D69D /* TL_Disco_TileTextures-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "TL_Disco_TileTextures-hd.png"; path = "Resources/levels/TL_Disco_TileTextures-hd.png"; sourceTree = "<group>"; };
 		54EB683E1469B36D0061D69D /* real_level_1_hd.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = real_level_1_hd.tmx; path = Resources/levels/real_level_1_hd.tmx; sourceTree = "<group>"; };
@@ -1827,8 +1830,6 @@
 				549ED7C21461D065008BCD98 /* HudButton.m */,
 				549ED7C31461D065008BCD98 /* TrackTimer.h */,
 				549ED7C41461D065008BCD98 /* TrackTimer.m */,
-				549D84DE1469E80000A3599F /* LevelButton.h */,
-				549D84DF1469E80000A3599F /* LevelButton.m */,
 			);
 			path = GUI;
 			sourceTree = "<group>";
@@ -1889,6 +1890,10 @@
 				549ED7ED1461D065008BCD98 /* AppDelegate.m */,
 				549ED7EE1461D065008BCD98 /* ChooseLevelScreen.h */,
 				549ED7EF1461D065008BCD98 /* ChooseLevelScreen.m */,
+				54E25D79146B23900016ADEB /* ActionButton.h */,
+				54E25D7A146B23910016ADEB /* ActionButton.m */,
+				549D84DE1469E80000A3599F /* LevelButton.h */,
+				549D84DF1469E80000A3599F /* LevelButton.m */,
 				549ED7F01461D065008BCD98 /* ComicLayer.h */,
 				549ED7F11461D065008BCD98 /* ComicLayer.m */,
 				549ED7F21461D065008BCD98 /* ComicManager.h */,
@@ -2544,6 +2549,7 @@
 				548D2D1D1461E871005E1AC0 /* Skin.m in Sources */,
 				54A64A32146809D200853CFF /* BossJimShip.m in Sources */,
 				549D84E01469E80000A3599F /* LevelButton.m in Sources */,
+				54E25D7B146B23910016ADEB /* ActionButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

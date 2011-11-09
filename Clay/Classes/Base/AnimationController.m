@@ -32,7 +32,6 @@ static AnimationController *_sharedController = nil;
         //pretty much always needed
         [self loadAnimationsForGroup:@"player"];
         [self loadAnimationsForGroup:@"hud"];
-        [self loadAnimationsForGroup:@"level1"];
         [self loadAnimationsForGroup:@"player8"];
     }
     

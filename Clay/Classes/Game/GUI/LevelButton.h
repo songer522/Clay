@@ -28,4 +28,14 @@
 
 -(void)setTrophy:(int)trophyId;
 
+-(void)setCursor:(Sprite*)cursor;
+
+-(void)setPosition:(CGPoint)position;
+
+-(bool)checkIfSelected:(CGPoint)touch;
+
+-(void)setInitialPosition;
+
+-(void)setSelected;
+
 @end

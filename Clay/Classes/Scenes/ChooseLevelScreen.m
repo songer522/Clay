@@ -12,6 +12,8 @@
 #import "LayerManager.h"
 #import "Button.h"
 #import "ComicManager.h"
+#import "LevelButton.h"
+#import "ActionButton.h"
 
 @implementation ChooseLevelScreen
 
@@ -41,9 +43,10 @@
     if ((self = [super init])) {
         [[LayerManager sharedLayers] setScene:scene ForKey:@"chooseLevel"];
         
-        
+        _levelToSwitchTo = @"level1";
         _buttons = [[NSMutableArray alloc] initWithCapacity:11];
         _alpha = 1.0f;
+        _waitToSwitch = 0.0f;
         [self load];
     }
     return self;
@@ -53,15 +56,28 @@
 {
     NSSet *allTouches = [event allTouches];
     for(UITouch *touch in allTouches) {
-        for (Button *button in _buttons) {
-            bool touched = [button testCollision:[self convertTouchToNodeSpace:touch]];
-            if(touched) {
-                int levelNumber = button.buttonId + 1;
+        CGPoint position = [self convertTouchToNodeSpace:touch];
+        for (LevelButton *button in _buttons) {
+            if([button checkIfSelected:position]) {
+                int levelNumber = button.buttonId;
+                
+                if(_levelToSwitchTo) {
+                    [_levelToSwitchTo release];
+                    _levelToSwitchTo = nil;
+                }
                 _levelToSwitchTo = [[NSString alloc] initWithFormat:@"level%d",levelNumber];
-                _wantToSwitch = true;
+                
                 NSLog(@"SWITCH TO LEVEL %d",levelNumber);
             }
         }
+        
+        if([_startButton checkIfSelected:position]) {
+            _waitToSwitch = 0.75f;
+        }
+        
+        if([_backButton checkIfSelected:position]) {
+            NSLog(@"want to go back!");
+        }        
     }
 }
 
@@ -80,7 +96,27 @@
     [_levelInfoFront getCCSprite].anchorPoint = ccp(0.5f,0.5f);
     [_levelInfoFront setScreenPosition:ccp(105.0f,152.0f)];
     
+    _selector = [Sprite spriteFromFrameCacheWithName:@"CL_LevelSelected.png"];
+    [_selector setPosition:ccp(0,0)];
+    [[_selector getCCSprite] setVisible:NO];
     
+    _startButton = [ActionButton actionButtonWithText:@"START"];
+    [_startButton setPosition:ccp(430,18)];
+    
+    _backButton = [ActionButton actionButtonWithText:@"BACK"];
+    [_backButton setPosition:ccp(50, 18)];
+    
+    
+    for (int i=0; i<11; i++) {
+        LevelButton *button = [LevelButton levelButtonWithCache:frameCache andId:i];
+        [button setCursor:_selector];
+        
+        if(i==0) {
+            [button setSelected];
+        }
+        
+        [_buttons addObject:button];
+    }
     
     
     _levelSelectText = [CCLabelBMFont labelWithString:@"LEVEL SELECT" fntFile:@"GraphicFont.fnt"];
@@ -89,9 +125,15 @@
     [[[LayerManager sharedLayers] currentLayer] addChild:_levelSelectText];
 
     
-    //blackBackground = [Sprite spriteWithFile:@"black_background-hd.png"];
+    _levelPanelText = [CCLabelBMFont labelWithString:@"LEVEL 1" fntFile:@"GraphicFont.fnt"];
+    [_levelPanelText setScale:0.5f];
+    _levelPanelText.position = ccp(158,34.5f);
+    [[[LayerManager sharedLayers] currentLayer] addChild:_levelPanelText];
     
-    //[button setHitbox:CGRectMake(startX - 30.0f, (260.0f - startY), 120.0f, 48.0f)];
+    
+    
+    
+    
     
     [[LayerManager sharedLayers] forgetWorkingLayer];
     [self scheduleUpdate];
@@ -117,11 +159,19 @@
     [[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
 
     
+    
 }
 
 -(void)update:(ccTime)dt
 {
-    [self popAndSwitchToLevel:@"level1"];
+    if (_waitToSwitch>0.0f) {
+        _waitToSwitch -= dt;
+        if(_waitToSwitch<=0.0f) {
+            [self popAndSwitchToLevel:_levelToSwitchTo];
+        }
+    }
+    [_startButton update:dt];
+    [_backButton update:dt];
 }
 
 -(void)unload
