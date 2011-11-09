@@ -257,7 +257,7 @@
 
 -(void)dealloc
 {
-    NSLog(@"YOUR LEVEL is being deallocated"); //just to make sure it gets called
+    NSLog(@"MAIN MENU SCENE is being deallocated"); //just to make sure it gets called
     [_trackBackground release];
     [_rain1 release];
     [_rain2 release];

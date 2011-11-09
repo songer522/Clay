@@ -318,6 +318,7 @@
 -(void)rechargeBattery
 {
     [_battery startRecharge];
+    _hitPoints = 4;
 }
 
 -(RunningSpeed*)getSpeed
@@ -352,11 +353,6 @@
 
 -(void)update:(float)dt Level:(Level *)level
 {
-    
-    if (dt > 0.06f) {
-        _x = _x;
-    }
-    
     [super update:dt];
     
     [self updateJump:dt];
@@ -382,8 +378,6 @@
         _onLedge = false;
         [[Camera sharedCamera] moveTowardsTarget:dt PlayerOnGround:!_isInMidAir];
     }
-    
-    //[[Camera sharedCamera] snapToTarget];
     
     CGPoint screenPosition = [[Camera sharedCamera] convertToScreenXY:CGPointMake(newPosition.x,newPosition.y)];
     [_sprite getCCSprite].position = ccp(screenPosition.x + _offsetX, screenPosition.y + _offsetY);

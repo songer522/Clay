@@ -157,8 +157,8 @@
     [[CCDirector sharedDirector] runWithScene:_mainMenuScene]; 
     
     
-    _endGameScene = [EndGameScene scene];
-    [[LayerManager sharedLayers] setScene:_endGameScene ForKey:@"endGame"];
+    //_endGameScene = [EndGameScene scene];
+    //[[LayerManager sharedLayers] setScene:_endGameScene ForKey:@"endGame"];
     
     _chooseLevelScene = [ChooseLevelScreen scene];
     

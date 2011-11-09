@@ -60,6 +60,9 @@ static LevelManager *_shared = nil;
 
 -(Level*)prepareLevelNamed:(NSString*)levelName
 {
+    
+    [[AnimationController sharedController] loadAnimationsForGroup:levelName];
+    
     NSDictionary *levelSettings = [_levelSettings valueForKey:levelName];
     
     NSString *fileName = [levelSettings valueForKey:@"fileName"];
@@ -70,9 +73,13 @@ static LevelManager *_shared = nil;
     
     if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2){
         // Use HD level for High Res screens
-        NSMutableString *fileNameMuta = [NSMutableString stringWithString:fileName];
-        [fileNameMuta insertString:@"_hd" atIndex:12];
-        fileName = [NSString stringWithString:fileNameMuta];
+        NSArray *filenameParts = [fileName componentsSeparatedByString:@"."];
+        NSMutableString *filenameMuta = [[NSMutableString alloc] initWithString:[filenameParts objectAtIndex:0]];
+        [filenameMuta appendString:@"_hd."];
+        [filenameMuta appendString:[filenameParts objectAtIndex:1]];
+        
+        fileName = [NSString stringWithString:filenameMuta];
+        
     }
     
     _thirdAction = [levelSettings valueForKey:@"thirdAction"];

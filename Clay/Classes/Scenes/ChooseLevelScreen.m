@@ -121,7 +121,7 @@
 
 -(void)update:(ccTime)dt
 {
-    [self popAndSwitchToLevel:@"level6"];
+    [self popAndSwitchToLevel:@"level1"];
 }
 
 -(void)unload

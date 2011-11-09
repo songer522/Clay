@@ -29,15 +29,22 @@ static AnimationController *_sharedController = nil;
         // Initialization code here.
         animations = [[[NSMutableDictionary alloc] initWithCapacity:20] retain];
         
-        [self loadAnimationsFromPlist:@"anims"];
+        //pretty much always needed
+        [self loadAnimationsForGroup:@"player"];
+        [self loadAnimationsForGroup:@"hud"];
+        [self loadAnimationsForGroup:@"level1"];
+        [self loadAnimationsForGroup:@"player8"];
     }
     
     return self;
 }
 
--(void)loadAnimationsFromPlist:(NSString*)plist
+
+
+
+-(void)loadAnimationsForGroup:(NSString*)group
 {
-    NSString *path = [[NSBundle mainBundle] pathForResource:plist ofType:@"plist"];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"anims" ofType:@"plist"];
     
     //read plist
     NSDictionary *plistDictionary = [NSDictionary dictionaryWithContentsOfFile:path];
@@ -51,23 +58,28 @@ static AnimationController *_sharedController = nil;
         if (animationSettings == nil) {
             CCLOG(@"Could not locate AnimationWithName:%@", animationName);
         } else {
-            // get animation delay
-            float animationDelay = [[animationSettings objectForKey:@"delay"] floatValue];
+            NSString *groupName = [animationSettings objectForKey:@"group"];
+            if ([groupName isEqualToString:group]) {
+                
             
-            // add frames to animation
-            NSString *spritesheetPlist = [animationSettings objectForKey:@"spritesheetPlist"];
-            NSString *sequencePrefix = [animationSettings objectForKey:@"sequencePrefix"];
-            NSString *animationFrames = [animationSettings objectForKey:@"animationFrames"];
-            BOOL looping = [[animationSettings objectForKey:@"looping"] boolValue];
-            BOOL clearPreviousAnimations = [[animationSettings objectForKey:@"clearPreviousAnims"] boolValue];
-            
-            Animation *anim = [[Animation animationFromPlist:spritesheetPlist forSequence:sequencePrefix FrameList:animationFrames] retain];
-            anim.looping = looping;
-            anim.delay = animationDelay;
-            anim.clearPreviousAnimations = clearPreviousAnimations;
-            anim.name = animationName;
-            
-            [animations setValue:anim forKey:animationName];
+                // get animation delay
+                float animationDelay = [[animationSettings objectForKey:@"delay"] floatValue];
+                
+                // add frames to animation
+                NSString *spritesheetPlist = [animationSettings objectForKey:@"spritesheetPlist"];
+                NSString *sequencePrefix = [animationSettings objectForKey:@"sequencePrefix"];
+                NSString *animationFrames = [animationSettings objectForKey:@"animationFrames"];
+                BOOL looping = [[animationSettings objectForKey:@"looping"] boolValue];
+                BOOL clearPreviousAnimations = [[animationSettings objectForKey:@"clearPreviousAnims"] boolValue];
+                
+                Animation *anim = [[Animation animationFromPlist:spritesheetPlist forSequence:sequencePrefix FrameList:animationFrames] retain];
+                anim.looping = looping;
+                anim.delay = animationDelay;
+                anim.clearPreviousAnimations = clearPreviousAnimations;
+                anim.name = animationName;
+                
+                [animations setValue:anim forKey:animationName];
+            }
         }
     }
 }
