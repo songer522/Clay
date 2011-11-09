@@ -409,8 +409,7 @@
 		5FF163B81464859C00229483 /* TrackLapse_Icons-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FF163B61464859C00229483 /* TrackLapse_Icons-hd.png */; };
 		61A2C0E614683B880049C88E /* GraphicFont.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 61A2C0E414683B880049C88E /* GraphicFont.fnt */; };
 		61A2C0E714683B880049C88E /* GraphicFont.png in Resources */ = {isa = PBXBuildFile; fileRef = 61A2C0E514683B880049C88E /* GraphicFont.png */; };
-		E4CCF9A81469E82400410799 /* real_level_a_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = E4CCF9A61469E82400410799 /* real_level_a_hd.tmx */; };
-		E4CCF9A91469E82400410799 /* real_level_a.tmx in Resources */ = {isa = PBXBuildFile; fileRef = E4CCF9A71469E82400410799 /* real_level_a.tmx */; };
+		E4D9B608146A2A6E00DE707F /* real_level_2_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = E4D9B607146A2A6E00DE707F /* real_level_2_hd.tmx */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1012,8 +1011,7 @@
 		5FF163B61464859C00229483 /* TrackLapse_Icons-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "TrackLapse_Icons-hd.png"; path = "Resources/levels/TrackLapse_Icons-hd.png"; sourceTree = "<group>"; };
 		61A2C0E414683B880049C88E /* GraphicFont.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GraphicFont.fnt; sourceTree = "<group>"; };
 		61A2C0E514683B880049C88E /* GraphicFont.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GraphicFont.png; sourceTree = "<group>"; };
-		E4CCF9A61469E82400410799 /* real_level_a_hd.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = real_level_a_hd.tmx; sourceTree = "<group>"; };
-		E4CCF9A71469E82400410799 /* real_level_a.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = real_level_a.tmx; sourceTree = "<group>"; };
+		E4D9B607146A2A6E00DE707F /* real_level_2_hd.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = real_level_2_hd.tmx; path = Resources/levels/real_level_2_hd.tmx; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1571,7 +1569,8 @@
 		548C3DBB141ABDBB000567A8 /* levels */ = {
 			isa = PBXGroup;
 			children = (
-				E4CCF98F1469E5EB00410799 /* levels */,
+				E4D9B607146A2A6E00DE707F /* real_level_2_hd.tmx */,
+				549D84E11469F64000A3599F /* real_level_7_hd.tmx */,
 				54EB683E1469B36D0061D69D /* real_level_1_hd.tmx */,
 				54EB68341469B2E50061D69D /* real_level_1.tmx */,
 				54916780146445B700DFA191 /* test_level_7.tmx */,
@@ -2088,15 +2087,6 @@
 			name = videos;
 			sourceTree = "<group>";
 		};
-		E4CCF98F1469E5EB00410799 /* levels */ = {
-			isa = PBXGroup;
-			children = (
-				E4CCF9A61469E82400410799 /* real_level_a_hd.tmx */,
-				E4CCF9A71469E82400410799 /* real_level_a.tmx */,
-			);
-			path = levels;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2364,8 +2354,12 @@
 				54EB68391469B2E50061D69D /* real_level_1.tmx in Resources */,
 				54EB683C1469B2E50061D69D /* TL_Disco_TileTextures-hd.png in Resources */,
 				54EB683F1469B36D0061D69D /* real_level_1_hd.tmx in Resources */,
-				E4CCF9A81469E82400410799 /* real_level_a_hd.tmx in Resources */,
-				E4CCF9A91469E82400410799 /* real_level_a.tmx in Resources */,
+				549D84D91469DE9100A3599F /* chooseLevel-hd.plist in Resources */,
+				549D84DA1469DE9100A3599F /* chooseLevel-hd.png in Resources */,
+				549D84DB1469DE9100A3599F /* chooseLevel.plist in Resources */,
+				549D84DC1469DE9100A3599F /* chooseLevel.png in Resources */,
+				549D84E21469F64000A3599F /* real_level_7_hd.tmx in Resources */,
+				E4D9B608146A2A6E00DE707F /* real_level_2_hd.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
