@@ -60,14 +60,17 @@
         if (_cooldown > 0.0f) {
             _cooldown -= dt;
         }
+        _isActive = false;
     } else {
         Animation *_anim = [_shield getAnimation];
         int frame = [_anim getCurrentFrameNumber];
+        _isActive = true;
+        /*
         if (frame == 3) {
             _isActive = true;
         } else {
             _isActive = false;
-        }
+        }*/
         
         CGPoint position = [_parent getPosition];
         [_shield setPosition:CGPointMake(position.x + 2, position.y + 15)];

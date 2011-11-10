@@ -69,8 +69,10 @@
                 _offsetGroundDetectionY = 10.0f;
                 break;
             case PROJECTILE_BEHAVIOR_BOSS_SHIP_BULLET:
-                _sprite = [Sprite spriteWithFile:@"bullet.png"];
+                _sprite = [Sprite spriteWithFile:@"shipBullet2.png"];
                 [_sprite getCCSprite].anchorPoint = ccp(0,0);
+                _isAggressive = false;
+                break;
             default:
                 break;                
                 
@@ -80,20 +82,21 @@
     return self;
 }
 
+//so far used only by boss ship
 -(void)pointTowardPlayer
 {
     Player *player = [[LayerManager sharedLayers] getPlayer];
     CGPoint playerPos = [player getPosition];
     
-    float speed = 50.0f;
-    float dx = _x - playerPos.x;
-    float dy = _y - playerPos.y;
+    float speed = 350.0f;
+    float dx = playerPos.x - _x;
+    float dy = playerPos.y - _y;
     float angle = atan2f(dy, dx);
     
-    float angleInRads = (angle * 3.14159)/180.0f;
+    //float angleInRads = (angle * 3.14159)/180.0f;
     
-    _vx = cosf(angleInRads) * speed;
-    _vy = -sinf(angleInRads) * speed;
+    _vx = cosf(angle) * speed;
+    _vy = sinf(angle) * speed;
     
     NSLog(@"bullet angle: %f VX: %f, VY: %f",angle,_vx,_vy);
 }
@@ -116,6 +119,11 @@
 -(void)setBoundingBox:(CGRect)boundingBox
 {
     _boundingBox = boundingBox;
+}
+
+-(bool) isActive
+{
+    return _isActive;
 }
 
 -(void) setPosition:(CGPoint)point
