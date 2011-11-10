@@ -29,4 +29,5 @@
 -(void)startBoss;
 -(void)update:(float)dt;
 -(void)setSprite:(Sprite*)sprite;
+-(void)triggerAttack;
 @end

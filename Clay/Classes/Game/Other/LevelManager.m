@@ -14,6 +14,7 @@
 #import "Player.h"
 #import "GameLayer.h"
 #import "UserData.h"
+#import "Boss.h"
 
 @implementation LevelManager
 
@@ -124,6 +125,12 @@ static LevelManager *_shared = nil;
 -(void)loadNextLevel
 {
     [self loadLevelNamed:_currentLevel.nextLevelName];
+}
+
+-(void)receiveBoss:(Boss*)boss
+{
+    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+    [gameLayer setBoss:boss];
 }
 
 -(void)switchToNextLevel

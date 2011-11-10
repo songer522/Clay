@@ -52,13 +52,17 @@
 }
 
 
+-(void)triggerAttack
+{
+    [self shootBullet];
+}
+
 -(void)shootBullet
 {
     [[SoundEngine shared] playSound:@"jimShipShoot"];
     
     Projectile *bullet = [_bullets objectAtIndex:_replaceProjectileId];
     _replaceProjectileId = (_replaceProjectileId + 1) % 3;
-    
     
     CGPoint shipWorldPos = [[Camera sharedCamera] convertToWorldXY:[_sprite getScreenPosition]];    
     [bullet setPosition:CGPointMake(shipWorldPos.x - 120,shipWorldPos.y + 20.0f)];
@@ -67,11 +71,12 @@
 
 -(void)updateGun:(float)dt
 {
+    /*
     _waitToShoot -= dt;
     if (_waitToShoot<=0.0f) {
         _waitToShoot = rand()%4 + 0.5f;
         [self shootBullet];
-    }
+    }*/
 }
 
 -(void)update:(float)dt
@@ -109,6 +114,8 @@
             if (collision) {
                 if(![[_player getThirdAction] isActive]) {
                     [_player startCollision:PLAYER_EFFECT_COLLIDE Source:_bullet];
+                } else {
+                    [[_player getThirdAction] setKilledEnemy:YES];
                 }
                 [_bullet disable];
             }            

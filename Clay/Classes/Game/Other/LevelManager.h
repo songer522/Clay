@@ -10,6 +10,7 @@
 #import <Foundation/Foundation.h>
 
 @class Level;
+@class Boss;
 
 @class GameObjectController;
 
@@ -45,5 +46,6 @@
 
 -(NSMutableArray*)getObstacleArray;
 
+-(void)receiveBoss:(Boss*)boss;
 
 @end
