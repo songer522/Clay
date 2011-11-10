@@ -182,7 +182,8 @@
         _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_ZOMBIE_HEAD];
         [_projectile reset];
         [_projectile setPosition:CGPointMake(_x, _y + 41)];
-        [_projectile setBoundingBox:CGRectMake(15, 33, 30, 30)];
+       // [_projectile setBoundingBox:CGRectMake(15, 33, 30, 30)];
+        [_projectile setBoundingBox:CGRectMake(15, 33, 15, 30)];
         GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
         [[gameLayer.player getThirdAction] setKilledEnemy:YES];
     } else if(_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_FADE) {
