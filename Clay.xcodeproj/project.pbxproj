@@ -2381,6 +2381,9 @@
 				54A183BE146C2623009209EA /* hudGraphics2.png in Resources */,
 				E4F8380A146C360C00403D36 /* real_level_7a_hd.tmx in Resources */,
 				E4F8380B146C360C00403D36 /* real_level_7a.tmx in Resources */,
+				54A3D6CD146C377700BD081D /* checkpoint-hd.png in Resources */,
+				54A3D6D2146C37F400BD081D /* shipBullet2_hd.png in Resources */,
+				54A3D6D3146C37F400BD081D /* shipBullet2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
