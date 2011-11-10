@@ -147,6 +147,11 @@
     <property name="obstacle" value="retroHurdle"/>
    </properties>
   </tile>
+  <tile id="44">
+   <properties>
+    <property name="special" value="shootTrigger"/>
+   </properties>
+  </tile>
  </tileset>
  <tileset firstgid="63" name="computer" tilewidth="64" tileheight="64">
   <image source="tileset_level_7-hd.png" width="1984" height="768"/>

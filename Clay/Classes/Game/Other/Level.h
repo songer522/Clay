@@ -93,6 +93,7 @@
 -(void)addObstaclesToMap;
 
 -(void)resetObstacles;
+-(void)resetTriggers;
 -(Trigger*)testTriggers:(Player*)player;
 -(void)unloadLevel;
 

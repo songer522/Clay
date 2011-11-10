@@ -60,7 +60,7 @@
 
 -(void)setupHud:(HudLayer*)hud;
 -(HudLayer*)getHud;
-
+-(void)setBoss:(Boss*)boss;
 
 -(NSMutableArray*)getGameObjectsList;
 

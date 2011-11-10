@@ -12,7 +12,8 @@
 typedef enum {
     TRIGGER_CHECKPOINT,
     TRIGGER_NEXTLEVEL,
-    TRIGGER_SPAWNPOINT
+    TRIGGER_SPAWNPOINT,
+    TRIGGER_BOSS_SHOOT
 }TriggerType;
 
 @interface Trigger : NSObject
@@ -21,11 +22,12 @@ typedef enum {
     CGPoint _position;
     CGPoint _direction;
     TriggerType _type;
+    bool _canBeReset;
 }
 
 @property(nonatomic,assign) bool triggered;
 @property(nonatomic,assign) CGPoint position;
 @property(nonatomic,assign) CGPoint direction;
 @property(nonatomic,assign) TriggerType type;
-
+@property(nonatomic,assign) bool canBeReset;
 @end

@@ -258,6 +258,13 @@
                     [jim getCCSprite].scale = 0.75f;
                     MapObject *mapObject = [MapObject mapObjectWithSprite:jim AboveLayer:layerBelow];
                     [_otherMapObjects addObject:mapObject];
+                } else if([special isEqualToString:@"shootTrigger"]) {
+                    Trigger *trigger = [[Trigger alloc] init];
+                    trigger.position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
+                    trigger.direction = CGPointMake(1, -1);
+                    trigger.type = TRIGGER_BOSS_SHOOT;
+                    trigger.canBeReset = true;
+                    [_triggers addObject:trigger];
                 }
             }
             
@@ -276,7 +283,10 @@
             NSString *objectName = [self getPropertyForTileCoords:coords forKey:@"object"];
             
             if (objectName) {
+                
+                
                 GameObject *object = [_gameObjects loadGameObjectWithName:objectName AddToLayer:NO];
+                
                 
                 CGPoint position = [self getXYPositionForCoordinates:coords];
                 [object setPositionAtX:position.x Y:position.y];
@@ -285,6 +295,11 @@
                 
                 if (!layerBelow) {
                     layerBelow = @"main0";
+                }
+
+                
+                if ([objectName isEqualToString:@"jimSpaceShip"]) {
+                    [[LevelManager shared] receiveBoss:[object getBoss]];
                 }
                 
                 MapObject *mapObject = [MapObject mapObjectWithSprite:object AboveLayer:layerBelow];
@@ -342,6 +357,15 @@
 {
     for (GameObject *obstacle in _obstacleMapObjects) {
         [obstacle reset];
+    }
+}
+
+-(void)resetTriggers
+{
+    for (Trigger *trigger in _triggers) {
+        if (trigger.canBeReset) {
+            trigger.triggered = false;
+        }
     }
 }
 

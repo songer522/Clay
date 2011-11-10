@@ -506,6 +506,12 @@
     }
 }
 
+-(Boss*)getBoss
+{
+    NSAssert(_boss!=nil,@"Called before boss was set.");
+    return _boss;
+}
+
 -(void) setOriginalAnimation:(NSString*)animation
 {
     _originalAnimation = [NSString stringWithString:animation];

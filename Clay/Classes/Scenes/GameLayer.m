@@ -165,6 +165,9 @@
                 [[SoundEngine shared] playSound:@"checkpoint"];
                 [_player rechargeBattery];
                 break;
+            case TRIGGER_BOSS_SHOOT:
+                [_boss triggerAttack];
+                break;
             default:
                 break;
         }
@@ -180,6 +183,7 @@
             [_player rechargeBattery];
             
             [_level resetObstacles];
+            [_level resetTriggers];
         }        
     }
     
@@ -189,8 +193,13 @@
         [_laserShow update:dt];
     }
     
-    [_boss update:dt];
+    //[_boss update:dt];
     
+}
+
+-(void)setBoss:(Boss*)boss
+{
+    _boss = boss;
 }
 
 -(void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

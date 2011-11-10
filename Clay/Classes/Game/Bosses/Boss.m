@@ -44,5 +44,10 @@
     
 }
 
+-(void)triggerAttack
+{
+    
+}
+
 
 @end
