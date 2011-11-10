@@ -44,13 +44,13 @@ static SoundEngine *_shared = nil;
 
 -(void)preloadAudio
 {
-    
     NSEnumerator *enumerator = [_soundMap keyEnumerator];
     id key;
     while ((key = [enumerator nextObject])) {
         NSString *filename = [_soundMap objectForKey:key];
         [_audioEngine preloadEffect:filename];
     }
+    
     
     /*
     enumerator = [_musicMap keyEnumerator];

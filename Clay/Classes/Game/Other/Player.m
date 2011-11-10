@@ -318,6 +318,7 @@
 -(void)rechargeBattery
 {
     [_battery startRecharge];
+    _hitPoints = 4;
 }
 
 -(RunningSpeed*)getSpeed
@@ -352,11 +353,6 @@
 
 -(void)update:(float)dt Level:(Level *)level
 {
-    
-    if (dt > 0.06f) {
-        _x = _x;
-    }
-    
     [super update:dt];
     
     [self updateJump:dt];
@@ -382,8 +378,6 @@
         _onLedge = false;
         [[Camera sharedCamera] moveTowardsTarget:dt PlayerOnGround:!_isInMidAir];
     }
-    
-    //[[Camera sharedCamera] snapToTarget];
     
     CGPoint screenPosition = [[Camera sharedCamera] convertToScreenXY:CGPointMake(newPosition.x,newPosition.y)];
     [_sprite getCCSprite].position = ccp(screenPosition.x + _offsetX, screenPosition.y + _offsetY);
@@ -422,7 +416,9 @@
     if (state == COLLISION_STATE_MIDAIR) {
         _isInMidAir = true;
     } else if (state == COLLISION_STATE_GROUNDED || state == COLLISION_STATE_LEDGE) {
-         _hasDoubleJumped = false;
+
+        _hasDoubleJumped = false;
+        
         if (_isJumping && !_isTripping) {                
             _isJumping = false;
             
@@ -444,8 +440,6 @@
             if (_speed.velocity < 0.0f) {
                 _speed.velocity = 4.0f;                
             }
-            
-            _hasDoubleJumped = false;
             
             [[SoundEngine shared] playSound:@"jumpLand"];
             GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];

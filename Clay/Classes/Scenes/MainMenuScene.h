@@ -41,16 +41,17 @@ typedef enum {
     float _time;
     
     bool _reinit;
+    bool _switchSceneTriggered;
     
 }
 +(CCScene *) scene;
 
 
 #pragma mark - private methods
--(void)private_switchToGame;
 -(void)private_switchToChooseLevel;
 -(void)reinit;
 -(void)switchToTransitionIn;
 -(void)switchToTransitionOut;
+-(void)unload;
 
 @end

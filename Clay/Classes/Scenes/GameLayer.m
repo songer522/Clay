@@ -83,8 +83,8 @@
 
         
         //[self schedule:@selector(updateLogic:) interval:(1.0f/30.0f)];
-        [[CCTextureCache sharedTextureCache] removeAllTextures];
-        [[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
+        //[[CCTextureCache sharedTextureCache] removeAllTextures];
+        //[[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
         
 
 	}
@@ -213,7 +213,7 @@
         [event setTouchLocation:[self convertTouchToNodeSpace:touch]];
         [_inputController interpretAndReactToInputEvent:event];
     }
-    [[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
+    //[[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
     
 }
 

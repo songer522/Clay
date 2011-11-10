@@ -4,7 +4,7 @@
   <image source="tileset_level_3-hd.png" width="1280" height="832"/>
  </tileset>
  <tileset firstgid="261" name="Icons" tilewidth="64" tileheight="64">
-  <image source="TrackLapse_Icons-hd.png" width="640" height="256"/>
+  <image source="TrackLapse_Icons-hd.png" width="640" height="320"/>
   <tile id="0">
    <properties>
     <property name="obstacle" value="hurdle"/>
@@ -46,8 +46,13 @@
     <property name="obstacle" value="crow"/>
    </properties>
   </tile>
+  <tile id="42">
+   <properties>
+    <property name="obstacle" value="haybaleRolling"/>
+   </properties>
+  </tile>
  </tileset>
- <tileset firstgid="301" name="Meta" tilewidth="64" tileheight="64">
+ <tileset firstgid="311" name="Meta" tilewidth="64" tileheight="64">
   <image source="meta-hd.png" width="256" height="192"/>
   <tile id="0">
    <properties>
@@ -171,7 +176,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1ysOwCAQBUAwDa6X4P5nbBAISAUQCGbGbfL2YzcEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgtBTb+o3/uV4ezO2eV5SbZ/IrO1bnj/bV7EwPAAAAnPb4UQEAAAAAAACAyz5SfQHR
+   eJzt1zsOgCAQBUBobOUQ9t7/dlYmBGEjNsRkpuKzbyF0pAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHx15v685Od+Pd6b3MjRqSudtahfXd/rN3t+dI/ZM6La9m3rzCjXZu7aKPPW6D6r+gAAAPBfm78hAAAAAAAAALDYBQUZA4M=
   </data>
  </layer>
  <layer name="meta" width="1050" height="14" opacity="0.34">
@@ -180,7 +185,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztw0EJAAAIBLAzkP3rXQrBxwZLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgCs7qqqqqqqqqqq/Fgb4eWg=
+   eJztw0EJAAAIBLAzlf2bXQrBxwZLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgCs7qqqqqqqqqqq/Fs0my3A=
   </data>
  </layer>
 </map>

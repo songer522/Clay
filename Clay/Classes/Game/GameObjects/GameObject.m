@@ -189,6 +189,9 @@
     } else if(_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_FADE) {
         _alpha = 1.5f;
         _fadeout = true;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_ROLLING_HAYBALE) {
+        _alpha = 1.5f;
+        _fadeout = true;
     }
     
     return _playerEffect;
@@ -341,6 +344,14 @@
         } else {
             _vx = 0.0f;
         }
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_ROLLING_HAYBALE) {
+        int frame = [[_sprite getAnimation] getCurrentFrameNumber];
+        if (frame == 1) {
+            _direction = -1;
+        } else if(frame == 6) {
+            _direction = 1;
+        }
+        _vx = _direction * 100.0f;        
     }
 
 }
@@ -418,8 +429,10 @@
         _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_WALK_FAST;
     } else if(_currentBehavior == COLLISION_BEHAVIOR_FLYER_DEAD || _currentBehavior == COLLISION_BEHAVIOR_FLYER) {
         _currentBehavior = COLLISION_BEHAVIOR_FLYER;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_ROLLING_HAYBALE) {
+        _currentBehavior = COLLISION_BEHAVIOR_ROLLING_HAYBALE;
     } else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER) {
-        _currentBehavior = COLLISION_BEHAVIOR_STATIC;        
+        _currentBehavior = COLLISION_BEHAVIOR_STATIC;  
     }
     _collided = false;
 }
@@ -466,6 +479,9 @@
     } else if([behavior isEqualToString:@"flyer"]) {
         _collideBehavior = COLLISION_BEHAVIOR_FLYER_DEAD;
         _currentBehavior = COLLISION_BEHAVIOR_FLYER;
+    } else if([behavior isEqualToString:@"rolling"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_ROLLING_HAYBALE;
+        _currentBehavior = COLLISION_BEHAVIOR_ROLLING_HAYBALE;
     }
     else {
         _collideBehavior = COLLISION_BEHAVIOR_NONE;
