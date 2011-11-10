@@ -149,33 +149,34 @@
     [[ComicManager shared] startComic:@"intro" StartPhase:COMIC_PHASE_PLAY_VIDEO];
 
     //[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[[LayerManager sharedLayers] currentScene]]];
-    [self unload];
     [self unscheduleUpdate];
-
     
-    //[[LayerManager sharedLayers] popAndPushSceneNamed:@"game"];
     [[LayerManager sharedLayers] pushSceneNamed:@"game"];
      
 }
 
 -(void)unload
 {
-    [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFramesFromFile:@"chooseLevel.plist"];
-    [[CCTextureCache sharedTextureCache] removeTextureForKey:@"chooseLevel.png"];
-    [[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];    
+}
+
+-(void)onExit
+{
+    [self release];
 }
 
 -(void)update:(ccTime)dt
 {
+    [_startButton update:dt];
+    [_backButton update:dt];
+
     if (_waitToSwitch>0.0f) {
         _waitToSwitch-=dt;
         if(_waitToSwitch<=0.0f){
             _waitToSwitch = 0.0f;
             [self popAndSwitchToLevel:_levelToSwitchTo];
+            [self release];
         }
     }
-    [_startButton update:dt];
-    [_backButton update:dt];
 }
 
 -(void)dealloc
@@ -188,8 +189,8 @@
     //[_levelInfoFront release];
     //[_levelPanelText release];
     [_selector release];
-    
-    [super dealloc];
+    [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFramesFromFile:@"chooseLevel.plist"];
+    [[CCTextureCache sharedTextureCache] removeTextureForKey:@"chooseLevel.png"];    
 }
 
 @end

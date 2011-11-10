@@ -23,7 +23,7 @@
 #import "LevelManager.h"
 #import "ChooseLevelScreen.h"
 
-#define DEBUG_DRAW_BOUNDING_BOXES 1
+#define DEBUG_DRAW_BOUNDING_BOXES 0
 
 @implementation AppDelegate
 
@@ -149,14 +149,7 @@
     
     [[LevelManager shared] initAfterPlayerAndHudInit];
         
-    _mainMenuScene = [MainMenuScene scene];
-    [[LayerManager sharedLayers] setScene:_mainMenuScene ForKey:@"menu"];
-    [[LayerManager sharedLayers] setWorkingScene:_mainMenuScene];
-    [[LayerManager sharedLayers] forgetWorkingScene];
-
-    [[CCDirector sharedDirector] runWithScene:_mainMenuScene]; 
-    
-    
+    [[CCDirector sharedDirector] runWithScene:[MainMenuScene scene]]; 
     
     [[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
     

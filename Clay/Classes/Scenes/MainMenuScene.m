@@ -245,29 +245,27 @@
 
 -(void)unload
 {
-    [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFramesFromFile:@"menuTextures.plist"];
-    [[CCTextureCache sharedTextureCache] removeTextureForKey:@"menuTextures.png"];
-    [[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
 
 }
 
+-(void)onExit
+{
+    [self release];
+}
 
 -(void)dealloc
 {
     NSLog(@"MAIN MENU SCENE is being deallocated"); //just to make sure it gets called
-    /*
-    [_trackBackground r
-     elease];
+    
+    [_trackBackground release];
     [_rain1 release];
     [_rain2 release];
     [_logo release];
     [_playButtonBlue release];
     [_playButtonOrange release];
     [_copyright release];
-    */
-    
-    [super dealloc];
-
+    [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFramesFromFile:@"menuTextures.plist"];
+    [[CCTextureCache sharedTextureCache] removeTextureForKey:@"menuTextures.png"];
 }
 
 @end
