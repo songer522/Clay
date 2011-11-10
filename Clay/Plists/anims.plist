@@ -11,7 +11,7 @@
 		<key>delay</key>
 		<string>0.15</string>
 		<key>group</key>
-		<string>computer</string>
+		<string>level7</string>
 		<key>looping</key>
 		<string>true</string>
 		<key>sequencePrefix</key>
@@ -28,7 +28,7 @@
 		<key>delay</key>
 		<string>0.075</string>
 		<key>group</key>
-		<string>Obstacle</string>
+		<string>level2</string>
 		<key>looping</key>
 		<string>false</string>
 		<key>sequencePrefix</key>
@@ -45,13 +45,166 @@
 		<key>delay</key>
 		<string>0.15</string>
 		<key>group</key>
-		<string>Obstacle</string>
+		<string>level2</string>
 		<key>looping</key>
 		<string>true</string>
 		<key>sequencePrefix</key>
 		<string>cow_idle_</string>
 		<key>spritesheetPlist</key>
 		<string>cow_idle</string>
+	</dict>
+	<key>retroHurdleAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>5.0</string>
+		<key>group</key>
+		<string>level7</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Retro_Hurdle_</string>
+		<key>spritesheetPlist</key>
+		<string>computerLevel</string>
+	</dict>
+	<key>townJimAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>5.0</string>
+		<key>group</key>
+		<string>level3</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Town_Jim_</string>
+		<key>spritesheetPlist</key>
+		<string>townLevel</string>
+	</dict>
+	<key>townLeafpileAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>5.0</string>
+		<key>group</key>
+		<string>level3</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Town_Leafpile_</string>
+		<key>spritesheetPlist</key>
+		<string>townLevel</string>
+	</dict>
+	<key>townRollingHayAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3,4,5,6,5,4,3,2</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level3</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Town_Rolling_</string>
+		<key>spritesheetPlist</key>
+		<string>townLevel</string>
+	</dict>
+	<key>townHaybaleAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>5.0</string>
+		<key>group</key>
+		<string>level3</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Town_Haybale_</string>
+		<key>spritesheetPlist</key>
+		<string>townLevel</string>
+	</dict>
+	<key>retroGarbageAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>5.0</string>
+		<key>group</key>
+		<string>level7</string>
+		<key>looping</key>
+		<string>false</string>
+		<key>sequencePrefix</key>
+		<string>Retro_Garbage_</string>
+		<key>spritesheetPlist</key>
+		<string>computerLevel</string>
+	</dict>
+	<key>retroPigAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level7</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Retro_Pig_</string>
+		<key>spritesheetPlist</key>
+		<string>computerLevel</string>
+	</dict>
+	<key>retroZombieAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>5.0</string>
+		<key>group</key>
+		<string>level7</string>
+		<key>looping</key>
+		<string>false</string>
+		<key>sequencePrefix</key>
+		<string>Retro_Zombie_</string>
+		<key>spritesheetPlist</key>
+		<string>computerLevel</string>
+	</dict>
+	<key>retroBirdAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level7</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Retro_Bird_</string>
+		<key>spritesheetPlist</key>
+		<string>computerLevel</string>
 	</dict>
 	<key>dancinManAnim</key>
 	<dict>
@@ -62,7 +215,7 @@
 		<key>delay</key>
 		<string>0.2</string>
 		<key>group</key>
-		<string>Obstacle</string>
+		<string>level4</string>
 		<key>looping</key>
 		<string>true</string>
 		<key>sequencePrefix</key>
@@ -79,7 +232,7 @@
 		<key>delay</key>
 		<string>0.2</string>
 		<key>group</key>
-		<string>Obstacle</string>
+		<string>level4</string>
 		<key>looping</key>
 		<string>fale</string>
 		<key>sequencePrefix</key>
@@ -96,7 +249,7 @@
 		<key>delay</key>
 		<string>0.15</string>
 		<key>group</key>
-		<string>Background</string>
+		<string>level4</string>
 		<key>looping</key>
 		<string>true</string>
 		<key>sequencePrefix</key>
@@ -113,7 +266,7 @@
 		<key>delay</key>
 		<string>0.17</string>
 		<key>group</key>
-		<string>Player</string>
+		<string>player</string>
 		<key>looping</key>
 		<string>true</string>
 		<key>sequencePrefix</key>
@@ -130,7 +283,7 @@
 		<key>delay</key>
 		<real>0.075</real>
 		<key>group</key>
-		<string>Player</string>
+		<string>level7</string>
 		<key>looping</key>
 		<string>true</string>
 		<key>sequencePrefix</key>
@@ -147,7 +300,7 @@
 		<key>delay</key>
 		<string>0.075</string>
 		<key>group</key>
-		<string>Player</string>
+		<string>player</string>
 		<key>looping</key>
 		<string>false</string>
 		<key>sequencePrefix</key>
@@ -164,7 +317,7 @@
 		<key>delay</key>
 		<string>0.15</string>
 		<key>group</key>
-		<string>Background</string>
+		<string>level4</string>
 		<key>looping</key>
 		<string>true</string>
 		<key>sequencePrefix</key>
@@ -181,7 +334,7 @@
 		<key>delay</key>
 		<string>0.15</string>
 		<key>group</key>
-		<string>Background</string>
+		<string>level4</string>
 		<key>looping</key>
 		<string>true</string>
 		<key>sequencePrefix</key>
@@ -198,7 +351,7 @@
 		<key>delay</key>
 		<string>0.15</string>
 		<key>group</key>
-		<string>Obstacle</string>
+		<string>level6</string>
 		<key>looping</key>
 		<string>true</string>
 		<key>sequencePrefix</key>
@@ -215,7 +368,7 @@
 		<key>delay</key>
 		<string>0.15</string>
 		<key>group</key>
-		<string>Obstacle</string>
+		<string>level6</string>
 		<key>looping</key>
 		<string>true</string>
 		<key>sequencePrefix</key>
@@ -232,7 +385,7 @@
 		<key>delay</key>
 		<string>0.075</string>
 		<key>group</key>
-		<string>Obstacle</string>
+		<string>level6</string>
 		<key>looping</key>
 		<string>true</string>
 		<key>sequencePrefix</key>
@@ -249,7 +402,7 @@
 		<key>delay</key>
 		<string>0.04</string>
 		<key>group</key>
-		<string>Obstacles</string>
+		<string>level2</string>
 		<key>looping</key>
 		<string>true</string>
 		<key>sequencePrefix</key>
@@ -266,7 +419,7 @@
 		<key>delay</key>
 		<string>0.04</string>
 		<key>group</key>
-		<string>Obstacles</string>
+		<string>level2</string>
 		<key>looping</key>
 		<string>true</string>
 		<key>sequencePrefix</key>
@@ -283,7 +436,7 @@
 		<key>delay</key>
 		<string>0.075</string>
 		<key>group</key>
-		<string>Player</string>
+		<string>player</string>
 		<key>looping</key>
 		<string>false</string>
 		<key>sequencePrefix</key>
@@ -300,7 +453,7 @@
 		<key>delay</key>
 		<string>0.1</string>
 		<key>group</key>
-		<string>Player</string>
+		<string>player</string>
 		<key>looping</key>
 		<string>false</string>
 		<key>sequencePrefix</key>
@@ -317,7 +470,7 @@
 		<key>delay</key>
 		<string>0.1</string>
 		<key>group</key>
-		<string>Player</string>
+		<string>player</string>
 		<key>looping</key>
 		<string>false</string>
 		<key>sequencePrefix</key>
@@ -334,7 +487,7 @@
 		<key>delay</key>
 		<string>0.075</string>
 		<key>group</key>
-		<string>Timer</string>
+		<string>hud</string>
 		<key>looping</key>
 		<string>true</string>
 		<key>sequencePrefix</key>
@@ -351,7 +504,7 @@
 		<key>delay</key>
 		<string>0.15</string>
 		<key>group</key>
-		<string>Background</string>
+		<string>level4</string>
 		<key>looping</key>
 		<string>true</string>
 		<key>sequencePrefix</key>
@@ -368,13 +521,30 @@
 		<key>delay</key>
 		<string>0.075</string>
 		<key>group</key>
-		<string>Barn</string>
+		<string>level2</string>
 		<key>looping</key>
 		<string>true</string>
 		<key>sequencePrefix</key>
 		<string>Barn_Pig_</string>
 		<key>spritesheetPlist</key>
 		<string>pig</string>
+	</dict>
+	<key>crowAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3,4</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.075</string>
+		<key>group</key>
+		<string>level3</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Town_Bird_</string>
+		<key>spritesheetPlist</key>
+		<string>townLevel</string>
 	</dict>
 	<key>runningAnim</key>
 	<dict>
@@ -385,7 +555,7 @@
 		<key>delay</key>
 		<real>0.075</real>
 		<key>group</key>
-		<string>Player</string>
+		<string>player</string>
 		<key>looping</key>
 		<string>true</string>
 		<key>sequencePrefix</key>
@@ -402,7 +572,7 @@
 		<key>delay</key>
 		<string>0.1</string>
 		<key>group</key>
-		<string>Player</string>
+		<string>player</string>
 		<key>looping</key>
 		<string>false</string>
 		<key>sequencePrefix</key>
@@ -419,30 +589,13 @@
 		<key>delay</key>
 		<string>0.075</string>
 		<key>group</key>
-		<string>Timer</string>
+		<string>hud</string>
 		<key>looping</key>
 		<string>true</string>
 		<key>sequencePrefix</key>
 		<string>Small_</string>
 		<key>spritesheetPlist</key>
 		<string>TrackTimer</string>
-	</dict>
-	<key>townCrowAnim</key>
-	<dict>
-		<key>animationFrames</key>
-		<string>1,2,3,4</string>
-		<key>clearPreviousAnims</key>
-		<string>true</string>
-		<key>delay</key>
-		<string>0.15</string>
-		<key>group</key>
-		<string>Obstacle</string>
-		<key>looping</key>
-		<string>true</string>
-		<key>sequencePrefix</key>
-		<string>Town_Bird_</string>
-		<key>spritesheetPlist</key>
-		<string>townCrow</string>
 	</dict>
 	<key>trippedAnim</key>
 	<dict>
@@ -453,7 +606,7 @@
 		<key>delay</key>
 		<string>0.075</string>
 		<key>group</key>
-		<string>Player</string>
+		<string>player</string>
 		<key>looping</key>
 		<string>false</string>
 		<key>sequencePrefix</key>
@@ -470,7 +623,7 @@
 		<key>delay</key>
 		<string>0.075</string>
 		<key>group</key>
-		<string>Player</string>
+		<string>player</string>
 		<key>looping</key>
 		<string>true</string>
 		<key>sequencePrefix</key>
@@ -487,7 +640,7 @@
 		<key>delay</key>
 		<string>0.075</string>
 		<key>group</key>
-		<string>Background</string>
+		<string>level4</string>
 		<key>looping</key>
 		<string>true</string>
 		<key>sequencePrefix</key>
@@ -504,7 +657,7 @@
 		<key>delay</key>
 		<real>0.075</real>
 		<key>group</key>
-		<string>Player</string>
+		<string>player</string>
 		<key>looping</key>
 		<string>false</string>
 		<key>sequencePrefix</key>

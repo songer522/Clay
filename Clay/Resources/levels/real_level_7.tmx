@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="1100" height="14" tilewidth="64" tileheight="64">
- <tileset firstgid="1" name="meta" tilewidth="64" tileheight="64">
-  <image source="meta.png" width="256" height="192"/>
+<map version="1.0" orientation="orthogonal" width="1100" height="14" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="meta" tilewidth="32" tileheight="32">
+  <image source="meta.png" width="128" height="96"/>
   <tile id="0">
    <properties>
     <property name="collision" value="full"/>
@@ -28,8 +28,8 @@
    </properties>
   </tile>
  </tileset>
- <tileset firstgid="13" name="TrackLapse_Icons" tilewidth="64" tileheight="64">
-  <image source="TrackLapse_Icons.png" width="640" height="256"/>
+ <tileset firstgid="13" name="TrackLapse_Icons" tilewidth="32" tileheight="32">
+  <image source="TrackLapse_Icons.png" width="320" height="128"/>
   <tile id="0">
    <properties>
     <property name="obstacle" value="hurdle"/>
@@ -128,15 +128,15 @@
    </properties>
   </tile>
  </tileset>
- <tileset firstgid="53" name="Level7_TiledSheet" tilewidth="64" tileheight="64">
-  <image source="Level7_TiledSheet.png" width="1984" height="768"/>
+ <tileset firstgid="53" name="Level7_TiledSheet" tilewidth="32" tileheight="32">
+  <image source="Level7_TiledSheet.png" width="992" height="384"/>
  </tileset>
  <layer name="back-4" width="1100" height="14">
   <data encoding="base64" compression="zlib">
    eJztwzERgEAQBLB/AzihxAUlTnCCE5zgBAuU9HfdTjKTbYyxFQMAAAAkOhoBAAAAEp2NAAAAAImuRgAAAIBEdyMAAABAoqcRAAAAINHbCAAAAJBomfUAAAAAidZZDwAAAJBon/UAAAAAAAAAAAAAAAAAAAAAAAAAAAD8PvGlQ/k=
   </data>
  </layer>
- <layer name="back-3" width="1100" height="14">
+ <layer name="back-3" width="1100" height="14" visible="0">
   <properties>
    <property name="speedx" value="0.1"/>
    <property name="speedy" value="1.0"/>
@@ -187,7 +187,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt2sENgCAQRUEqQDuh/+5MvHsANLtZZyr4ZG/ktQYAAAAAAAAAALBmRA8AAAAAAAAAAKAkXQoAAAAAAAAA8GS1K9jtEd7sGbQRAAAAAAAAAAB8LVujkm0PAAAAAAAAAADzNCAAAAAAe/yvcEQP4OYOOVS+Q+W3ATDvjB4AP9WjBwAAAAAAAAAAkMoFx0UCMQ==
+   eJzt0UENACAMBEEUAE7w744EB7zatDMK9nJjAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAXZzoAAAAAAAAAAAAAAAAAAAAAAAAaGRFB/D4IYfKP1TeBsC/HR0ATc3oAAAAAAAAAAAAUrnipwCK
   </data>
  </layer>
  <layer name="meta" width="1100" height="14" opacity="0.66">
@@ -196,7 +196,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt0kENAAAIxDDwb5o3Cg6SNpmDVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPzQkiRJkiTpVOSlH5AkSZIkSTvyBqbbB9c=
+   eJztwzEJAAAMA7DWv+k62D9IIAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAPVVVVVVVVVVXV4wC+/AiZ
   </data>
  </layer>
 </map>

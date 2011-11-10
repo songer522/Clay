@@ -44,6 +44,11 @@ static Camera *_sharedCamera = nil;
 -(void)setBoundaries:(CGRect)rect
 {
     NSAssert(rect.origin.x < rect.size.width && rect.origin.y < rect.size.height, @"Invalid Rect for boundaries");
+    
+    //There is a blank row of tiles at the very bottom that we don't want to show, so the true camera
+    //boundary is actually one tile above the bottom of the screen, or (64 pixels/32 points) normally. may require an #IPADFIX.
+    rect.origin.y = 32;
+    
     _boundary = rect;
     
     [self keepWithinBoundaries];
@@ -66,8 +71,10 @@ static Camera *_sharedCamera = nil;
     
     if(top > (_boundary.origin.y + _boundary.size.height)) {
         _y = _boundary.origin.y + _boundary.size.height - winSize.height + _center.y;
+        NSLog(@"top?");
     } else if (bottom < _boundary.origin.y) {
         _y = _boundary.origin.y + _center.y;
+        NSLog(@"bottom?");
     }
 }
 
@@ -128,7 +135,7 @@ static Camera *_sharedCamera = nil;
         
         float distance = sqrtf(dx*dx + dy*dy);
         
-        float magnitude = distance * CAMERA_MOVE_TO_TARGET_SPEED * dt;;
+        float magnitude = distance * CAMERA_MOVE_TO_TARGET_SPEED * dt;
         
         if (distance > 2.0f) {
             if (_trackingTarget) {
@@ -138,9 +145,9 @@ static Camera *_sharedCamera = nil;
             
         } else {
             if (_trackingTarget) {
-                _x = position.x + 0.5f;                
+                _x = position.x;
             }
-            _y = position.y + 0.5f;
+            _y = position.y;
             
         }
     }
@@ -152,7 +159,8 @@ static Camera *_sharedCamera = nil;
     if (_target!=nil) {
         _x = _target.x;
         _y = _target.y;
-        [self keepWithinBoundaries];        
+        [self keepWithinBoundaries];
+
     }
 }
 
@@ -160,7 +168,7 @@ static Camera *_sharedCamera = nil;
 {
     if (_target!=nil) {
         _y = _target.y;
-        [self keepWithinBoundaries];        
+        [self keepWithinBoundaries];
     }
 }
 

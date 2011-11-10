@@ -56,6 +56,7 @@
     float _x;
     float _y;
     float _scale;
+    float _divide;
 }
 
 @property (nonatomic,retain) NSString *name;
@@ -95,7 +96,9 @@
 -(Trigger*)testTriggers:(Player*)player;
 -(void)unloadLevel;
 
--(void)setThirdAction:(NSString*)action;
+-(void)setHudButtonsAndThirdAction:(NSString*)action;
+
+-(GameObject*)addObstacleNamed:(NSString*)name;
 
 #pragma mark - private methods
 -(void)initTiledMap:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer;

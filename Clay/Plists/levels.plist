@@ -14,6 +14,8 @@
 		<string>realWorld</string>
 		<key>playerOffsetY</key>
 		<integer>-9</integer>
+		<key>playerOffsetYLowRes</key>
+		<integer>25</integer>
 		<key>fileName</key>
 		<string>real_level_1.tmx</string>
 		<key>obstacleLayer</key>
@@ -21,7 +23,30 @@
 		<key>nextLevelName</key>
 		<string>level2</string>
 		<key>layerList</key>
-		<string>background-99,back-5,back-4,back-3,back-2,back-1,main0,actives,front1,front2,front3,meta</string>
+		<string>background-99,back-5,back-4,back-2,back-1,main0,actives,front1,front2,front3,meta</string>
+	</dict>
+	<key>dummyLevel</key>
+	<dict>
+		<key>thirdAction</key>
+		<string>woo</string>
+		<key>music</key>
+		<string>track</string>
+		<key>postLevelComic</key>
+		<string>trackToFarm</string>
+		<key>worldType</key>
+		<string>realWorld</string>
+		<key>playerOffsetY</key>
+		<integer>-9</integer>
+		<key>playerOffsetYLowRes</key>
+		<integer>25</integer>
+		<key>fileName</key>
+		<string>dummyLevel.tmx</string>
+		<key>obstacleLayer</key>
+		<string>main0</string>
+		<key>nextLevelName</key>
+		<string>level1</string>
+		<key>layerList</key>
+		<string>main0</string>
 	</dict>
 	<key>level2</key>
 	<dict>
@@ -35,6 +60,8 @@
 		<string>dreamWorld</string>
 		<key>playerOffsetY</key>
 		<integer>-9</integer>
+		<key>playerOffsetYLowRes</key>
+		<integer>25</integer>
 		<key>fileName</key>
 		<string>real_level_2.tmx</string>
 		<key>obstacleLayer</key>
@@ -56,6 +83,8 @@
 		<string>realWorld</string>
 		<key>playerOffsetY</key>
 		<integer>-9</integer>
+		<key>playerOffsetYLowRes</key>
+		<integer>25</integer>
 		<key>fileName</key>
 		<string>real_level_3.tmx</string>
 		<key>obstacleLayer</key>
@@ -77,6 +106,8 @@
 		<string>realWorld</string>
 		<key>playerOffsetY</key>
 		<integer>-9</integer>
+		<key>playerOffsetYLowRes</key>
+		<integer>25</integer>
 		<key>fileName</key>
 		<string>real_level_4.tmx</string>
 		<key>obstacleLayer</key>
@@ -98,6 +129,8 @@
 		<string>realWorld</string>
 		<key>playerOffsetY</key>
 		<integer>-9</integer>
+		<key>playerOffsetYLowRes</key>
+		<integer>25</integer>
 		<key>fileName</key>
 		<string>real_level_5.tmx</string>
 		<key>obstacleLayer</key>
@@ -121,6 +154,8 @@
 		<string>realWorld</string>
 		<key>playerOffsetY</key>
 		<integer>-9</integer>
+		<key>playerOffsetYLowRes</key>
+		<integer>25</integer>
 		<key>fileName</key>
 		<string>real_level_6.tmx</string>
 		<key>obstacleLayer</key>
@@ -142,6 +177,8 @@
 		<string>realWorld</string>
 		<key>playerOffsetY</key>
 		<integer>0</integer>
+		<key>playerOffsetYLowRes</key>
+		<integer>34</integer>
 		<key>fileName</key>
 		<string>real_level_7.tmx</string>
 		<key>obstacleLayer</key>
@@ -152,6 +189,6 @@
 		<string>back-4,back-3,back-2,back-1,main0,actives,front-1,meta</string>
 	</dict>
 	<key>startingLevel</key>
-	<string>level4</string>
+	<string>dummyLevel</string>
 </dict>
 </plist>

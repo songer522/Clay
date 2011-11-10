@@ -22,7 +22,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{489, 1356}, {149, 270}}</string>
+			<string>{{654, 1390}, {149, 270}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -44,7 +44,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{1272, 832}, {141, 270}}</string>
+			<string>{{1414, 554}, {141, 270}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -66,7 +66,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{161, 1580}, {145, 270}}</string>
+			<string>{{1267, 278}, {145, 270}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -88,7 +88,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{1115, 556}, {141, 272}}</string>
+			<string>{{1119, 556}, {141, 272}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -110,7 +110,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{795, 1116}, {143, 270}}</string>
+			<string>{{1388, 0}, {143, 270}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -154,7 +154,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{332, 1302}, {151, 268}}</string>
+			<string>{{993, 836}, {151, 268}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -176,7 +176,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{1260, 1110}, {141, 270}}</string>
+			<string>{{1267, 554}, {141, 270}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -198,7 +198,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{943, 0}, {141, 274}}</string>
+			<string>{{846, 836}, {141, 274}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -254,17 +254,17 @@
 			
 			</array>
 			<key>spriteColorRect</key>
-			<string>{{44, 11}, {141, 272}}</string>
+			<string>{{44, 11}, {149, 272}}</string>
 			<key>spriteOffset</key>
-			<string>{2, 3}</string>
+			<string>{6, 3}</string>
 			<key>spriteSize</key>
-			<string>{141, 272}</string>
+			<string>{149, 272}</string>
 			<key>spriteSourceSize</key>
 			<string>{225, 300}</string>
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{1113, 1110}, {141, 272}}</string>
+			<string>{{964, 280}, {149, 272}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -276,17 +276,17 @@
 			
 			</array>
 			<key>spriteColorRect</key>
-			<string>{{44, 13}, {141, 272}}</string>
+			<string>{{44, 13}, {179, 272}}</string>
 			<key>spriteOffset</key>
-			<string>{2, 1}</string>
+			<string>{21, 1}</string>
 			<key>spriteSize</key>
-			<string>{141, 272}</string>
+			<string>{179, 272}</string>
 			<key>spriteSourceSize</key>
 			<string>{225, 300}</string>
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{966, 1110}, {141, 272}}</string>
+			<string>{{661, 836}, {179, 272}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -298,17 +298,17 @@
 			
 			</array>
 			<key>spriteColorRect</key>
-			<string>{{44, 13}, {143, 272}}</string>
+			<string>{{44, 13}, {155, 272}}</string>
 			<key>spriteOffset</key>
-			<string>{3, 1}</string>
+			<string>{9, 1}</string>
 			<key>spriteSize</key>
-			<string>{143, 272}</string>
+			<string>{155, 272}</string>
 			<key>spriteSourceSize</key>
 			<string>{225, 300}</string>
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{964, 558}, {143, 272}}</string>
+			<string>{{0, 1564}, {155, 272}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -320,17 +320,17 @@
 			
 			</array>
 			<key>spriteColorRect</key>
-			<string>{{44, 15}, {141, 268}}</string>
+			<string>{{44, 15}, {155, 268}}</string>
 			<key>spriteOffset</key>
-			<string>{2, 1}</string>
+			<string>{9, 1}</string>
 			<key>spriteSize</key>
-			<string>{141, 268}</string>
+			<string>{155, 268}</string>
 			<key>spriteSourceSize</key>
 			<string>{225, 300}</string>
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{1410, 552}, {141, 268}}</string>
+			<string>{{493, 1384}, {155, 268}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -352,7 +352,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{530, 1086}, {160, 264}}</string>
+			<string>{{530, 1114}, {160, 264}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -440,7 +440,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{661, 836}, {152, 244}}</string>
+			<string>{{161, 1580}, {152, 244}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -484,7 +484,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{563, 0}, {191, 274}}</string>
+			<string>{{429, 280}, {191, 274}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -638,7 +638,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{429, 280}, {191, 274}}</string>
+			<string>{{563, 0}, {191, 274}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -682,7 +682,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{1262, 556}, {141, 270}}</string>
+			<string>{{1291, 1106}, {141, 270}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -704,7 +704,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{1536, 0}, {141, 270}}</string>
+			<string>{{1537, 0}, {141, 270}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -726,7 +726,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{1263, 278}, {141, 272}}</string>
+			<string>{{993, 1110}, {141, 272}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -748,7 +748,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{1123, 834}, {143, 270}}</string>
+			<string>{{696, 1114}, {143, 270}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -792,7 +792,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{966, 836}, {151, 268}}</string>
+			<string>{{319, 1580}, {151, 268}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -814,7 +814,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{1410, 276}, {141, 270}}</string>
+			<string>{{1266, 830}, {141, 270}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -836,7 +836,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{819, 836}, {141, 274}}</string>
+			<string>{{943, 0}, {141, 274}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -880,7 +880,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{0, 1564}, {155, 270}}</string>
+			<string>{{332, 1302}, {155, 270}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -990,7 +990,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{1388, 0}, {142, 270}}</string>
+			<string>{{845, 1116}, {142, 270}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -1012,7 +1012,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{1115, 278}, {142, 272}}</string>
+			<string>{{1119, 278}, {142, 272}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -1034,7 +1034,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{644, 1356}, {145, 270}}</string>
+			<string>{{476, 1658}, {145, 270}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -1056,7 +1056,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{1090, 0}, {145, 272}}</string>
+			<string>{{964, 558}, {145, 272}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -1078,7 +1078,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{312, 1580}, {145, 270}}</string>
+			<string>{{1140, 1110}, {145, 270}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -1100,7 +1100,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{964, 280}, {145, 272}}</string>
+			<string>{{1090, 0}, {145, 272}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>

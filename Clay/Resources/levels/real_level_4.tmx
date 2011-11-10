@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="755" height="14" tilewidth="64" tileheight="64">
- <tileset firstgid="1" name="TL_Disco_TileTextures" tilewidth="64" tileheight="64">
-  <image source="TL_Disco_TileTextures.png" width="1088" height="896"/>
+<map version="1.0" orientation="orthogonal" width="755" height="14" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="TL_Disco_TileTextures" tilewidth="32" tileheight="32">
+  <image source="TL_Disco_TileTextures.png" width="544" height="448"/>
  </tileset>
- <tileset firstgid="239" name="Icons" tilewidth="64" tileheight="64">
-  <image source="TrackLapse_Icons.png" width="640" height="256"/>
+ <tileset firstgid="239" name="Icons" tilewidth="32" tileheight="32">
+  <image source="TrackLapse_Icons.png" width="320" height="128"/>
   <tile id="0">
    <properties>
     <property name="obstacle" value="hurdle"/>
@@ -92,8 +92,8 @@
    </properties>
   </tile>
  </tileset>
- <tileset firstgid="279" name="meta" tilewidth="64" tileheight="64">
-  <image source="meta.png" width="256" height="192"/>
+ <tileset firstgid="279" name="meta" tilewidth="32" tileheight="32">
+  <image source="meta.png" width="128" height="96"/>
   <tile id="0">
    <properties>
     <property name="collision" value="full"/>
@@ -189,7 +189,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt0rENwCAMAEGYIkX23zMlaY0wSOZO+o5ggmgNAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAMbx+d2PO/NuMskTmz5141PyKy36rZmfcT/Xb2n3a9NwAAAACgnqdLkiRJd1XF6XuUJEmSdlfFBwYyixU=
+   eJzt1DEOgCAQRUE4hYX3v6elth93sXAmeZ2yYAxjAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADQ4Zx3X6z5fLZjL8mc1X1XzU8k61XN7vw+6burZ9r1v0HKXfx+31XzE+5idzEAAAD/ckxJkiRJkiRJkrSrC81zm1k=
   </data>
  </layer>
 </map>

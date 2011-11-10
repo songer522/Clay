@@ -34,11 +34,13 @@
 -(void) setCentered;
 -(void) setPositionAtX:(float)x Y:(float)y;
 -(void) setPosition:(CGPoint)position;
+-(void) setScreenPosition:(CGPoint)position;
 -(CCSprite*) getCCSprite;
 -(void) initializeSpriteOnceLoaded;
 -(float) getWidth;
 -(float) getHeight;
 -(CGPoint) getPosition;
+-(CGPoint) getScreenPosition;
 -(void)move:(CGPoint)amount;
 -(int)getCurrentFrameNumber;
 

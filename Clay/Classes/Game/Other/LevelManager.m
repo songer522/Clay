@@ -54,12 +54,15 @@ static LevelManager *_shared = nil;
 //object exists. need to fix later
 -(void)initAfterPlayerAndHudInit
 {
-    [_loadedLevel setThirdAction:_thirdAction];
+    [_loadedLevel setHudButtonsAndThirdAction:_thirdAction];
     
 }
 
 -(Level*)prepareLevelNamed:(NSString*)levelName
 {
+    
+    [[AnimationController sharedController] loadAnimationsForGroup:levelName];
+    
     NSDictionary *levelSettings = [_levelSettings valueForKey:levelName];
     
     NSString *fileName = [levelSettings valueForKey:@"fileName"];
@@ -68,11 +71,29 @@ static LevelManager *_shared = nil;
     NSString *postLevelComicName = [levelSettings valueForKey:@"postLevelComic"];
     NSString *music = [levelSettings valueForKey:@"music"];
     
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2){
+        // Use HD level for High Res screens
+        NSArray *filenameParts = [fileName componentsSeparatedByString:@"."];
+        NSMutableString *filenameMuta = [[NSMutableString alloc] initWithString:[filenameParts objectAtIndex:0]];
+        [filenameMuta appendString:@"_hd."];
+        [filenameMuta appendString:[filenameParts objectAtIndex:1]];
+        
+        fileName = [NSString stringWithString:filenameMuta];
+        
+    }
+    
     _thirdAction = [levelSettings valueForKey:@"thirdAction"];
 
     NSString *layerList = [levelSettings valueForKey:@"layerList"];
-
-    _playerOffsetY = [[levelSettings valueForKey:@"playerOffsetY"] intValue];
+    
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
+    {
+        _playerOffsetY = [[levelSettings valueForKey:@"playerOffsetY"] intValue];
+    }
+    else
+    {
+        _playerOffsetY = [[levelSettings valueForKey:@"playerOffsetYLowRes"] intValue];
+    }
     
     GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
     

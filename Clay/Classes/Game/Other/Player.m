@@ -75,7 +75,7 @@
         _isHighJump = false;
         
         _waitToPlaySlowSound = 0.0f;
-        
+        _soundFalling = false;
         _adjustX = 0.0f;
         
         _skin = [Skin instance];
@@ -98,6 +98,16 @@
     if (_hitPoints <=0) {
         _isDead = true;
         [[SoundEngine shared] playSound:@"dead"];
+    }
+}
+
+-(void)dieIfFallenIntoPit
+{
+    if (!_soundFalling && _y < 10) {
+        [[SoundEngine shared] playSound:@"fallingDeath"];
+        _soundFalling = true;
+    } else if(_y < -160) {
+        _isDead = true;        
     }
 }
 
@@ -139,7 +149,7 @@
     [_speed startJump];
     GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
     
-    [[gameLayer getHud] setEnabled:false ForButton:HUD_OVERLAY_JUMP];
+    [[gameLayer getHud] setEnabled:false ForButton:HUD_BUTTON_JUMP];
 
 }
 
@@ -262,6 +272,7 @@
     self.hasGravity = true;
     _firstFrameJumping = false;
     _isHighJump = false;
+    _soundFalling = false;
     _waitToPlaySlowSound = 0.0f;
     [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];
 }
@@ -307,6 +318,7 @@
 -(void)rechargeBattery
 {
     [_battery startRecharge];
+    _hitPoints = 4;
 }
 
 -(RunningSpeed*)getSpeed
@@ -367,7 +379,9 @@
         [[Camera sharedCamera] moveTowardsTarget:dt PlayerOnGround:!_isInMidAir];
     }
     
-    [self setPositionAtX:newPosition.x Y:newPosition.y];
+    CGPoint screenPosition = [[Camera sharedCamera] convertToScreenXY:CGPointMake(newPosition.x,newPosition.y)];
+    [_sprite getCCSprite].position = ccp(screenPosition.x + _offsetX, screenPosition.y + _offsetY);
+    
     [_battery update:dt];
     
     if (_isTripping) {
@@ -389,6 +403,7 @@
     
     [_thirdAction update:dt];
     
+    [self dieIfFallenIntoPit];
 }
 
 -(void)updateJump:(float)dt
@@ -401,6 +416,8 @@
     if (state == COLLISION_STATE_MIDAIR) {
         _isInMidAir = true;
     } else if (state == COLLISION_STATE_GROUNDED || state == COLLISION_STATE_LEDGE) {
+
+        _hasDoubleJumped = false;
         
         if (_isJumping && !_isTripping) {                
             _isJumping = false;
@@ -424,18 +441,20 @@
                 _speed.velocity = 4.0f;                
             }
             
-            _hasDoubleJumped = false;
-            
             [[SoundEngine shared] playSound:@"jumpLand"];
             GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
             
-            [[gameLayer getHud] setEnabled:true ForButton:HUD_OVERLAY_JUMP];
+            [[gameLayer getHud] setEnabled:true ForButton:HUD_BUTTON_JUMP];
 
         } else if (_isJumping && _isTripping) {
             _waitToGetUp = 1.5f;
             _isJumping = false;
             [[SoundEngine shared] playSound:@"timCollision"];
+           
             [_speed stop];
+            GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+            
+            [[gameLayer getHud] setEnabled:true ForButton:HUD_BUTTON_JUMP];
         } else if(![_skin isCurrentAnimationOfType:PLAYER_ANIM_RUNNING] && !_isInMidAir && !_speed.inTurbo && !_isTripping && ![_thirdAction inAction] && _waitToGetUp <=0.0f) {
             [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];
         }

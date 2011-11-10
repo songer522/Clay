@@ -30,7 +30,15 @@
         // Initialization code here.
         sprite = [Sprite spriteWithFile:@"blank.png"];
         [self setFrame:1];
-        [sprite setPositionAtX:462 Y:322];
+        
+        if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
+        {
+            [sprite setPositionAtX:462 Y:322];
+        }
+        else
+        {
+            [sprite setPositionAtX:462 Y:355];
+        }
         _wasLowBattery = false;
     }
     
@@ -54,14 +62,14 @@
         _wasLowBattery = true;
         GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
         
-        [[gameLayer getHud] setEnabled:false ForButton:HUD_OVERLAY_SPRINT];
+        [[gameLayer getHud] setEnabled:false ForButton:HUD_BUTTON_SPRINT];
     } else {
         
         //re-enable sprint button in the hud
         if (_wasLowBattery) {
             GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
             
-            [[gameLayer getHud] setEnabled:true ForButton:HUD_OVERLAY_SPRINT];
+            [[gameLayer getHud] setEnabled:true ForButton:HUD_BUTTON_SPRINT];
             _wasLowBattery = false;
         }
         
@@ -119,12 +127,16 @@
 
 -(void)startRecharge
 {
-    [self setFrame:5];
+
+    if(_player.isDead) {
+        [self setFrame:5];
+    }
     _isRecharging = true;
     _alpha = 1.0f;
     [[sprite getCCSprite] setVisible:YES];
     [[sprite getCCSprite] setOpacity:255];
-    _wait = 0.6f;
+    _wait = 0.6f;        
+
 }
 
 -(void)recharging:(float)dt

@@ -92,6 +92,13 @@
     [self setPositionAtX:position.x Y:position.y];
 }
 
+-(void) setScreenPosition:(CGPoint)position
+{
+    _x = position.x;
+    _y = position.y;
+    sprite_cc.position = ccp(position.x,position.y);
+}
+
 -(void) setPositionAtX:(float)x Y:(float)y
 {
     _x = x;
@@ -108,6 +115,11 @@
 -(CGPoint) getPosition
 {
     return CGPointMake(_x, _y);
+}
+
+-(CGPoint) getScreenPosition
+{
+    return CGPointMake(sprite_cc.position.x, sprite_cc.position.y);
 }
 
 -(void)move:(CGPoint)amount

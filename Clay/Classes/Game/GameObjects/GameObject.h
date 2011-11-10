@@ -16,6 +16,7 @@
 
 @class Collision;
 @class Projectile;
+@class Boss;
 
 typedef enum {
     PLAYER_EFFECT_COLLIDE,
@@ -29,6 +30,8 @@ typedef enum {
 @interface GameObject : NSObject<Collidable>
 {
     Sprite *_sprite;
+    
+    Boss *_boss;
     
     bool _isActive;      //starts true, but switched to false if we no longer
                          //want the object to be seen or updated
@@ -48,12 +51,12 @@ typedef enum {
     float _rotationAmount;
     float _alpha;
     float _fallVelocity;
+    float _direction;
     bool _madeSound;
     bool _isInvincible;
     bool _fadeout;
     bool _rotateLights;
     bool _aggressiveCanHit;
-    int _direction;
     
     CGRect _range;       //range in which this object can move on screen. absolute positions.
     

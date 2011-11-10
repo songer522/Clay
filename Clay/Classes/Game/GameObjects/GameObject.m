@@ -18,6 +18,7 @@
 #import "Player.h"
 #import "PlayerAction.h"
 #import "Projectile.h"
+#import "BossFactory.h"
 
 @implementation GameObject
 
@@ -60,6 +61,7 @@
         _fadeout = false;
         _offsetX = 0;
         _offsetY = 0;
+        _boss = nil;
         _madeSound = false;
         _boundingBox = CGRectMake(0, 0, 0, 0);
         _collisionState = [[Collision collisionNode] retain];
@@ -186,6 +188,9 @@
     } else if(_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_FADE) {
         _alpha = 1.5f;
         _fadeout = true;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_ROLLING_HAYBALE) {
+        _alpha = 1.5f;
+        _fadeout = true;
     }
     
     return _playerEffect;
@@ -221,6 +226,12 @@
 
 -(void)update:(float)dt
 {
+    
+    if (_boss!=nil) {
+        [_boss update:dt];
+        return; //don't want to do the rest, boss takes care of everything
+    }
+
     //update projectile regardless if active
     if (_projectile !=nil) {
         [_projectile update:dt];
@@ -231,7 +242,7 @@
     
     _prevLocation = CGPointMake(_x, _y);
     
-    _x += _vx * dt;    
+    _x += _vx * dt;
     _y -= _vy * dt;
     
     [self setPositionAtX:_x Y:_y];
@@ -243,6 +254,8 @@
     [self updateFlags];
     
     [self updateLights:dt];
+    
+    
     
 }
 
@@ -320,6 +333,24 @@
         } else {
             _vx = 0.0f;
         }
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_RETRO_SHOT_FROM_CANNON) {
+        _vy += 500.0f * dt;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_FLYER) {
+        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+        CGPoint position = [gameLayer.player getPosition];
+        if (_x < (position.x + 550.0f) && _x > 0.0f) {
+            _vx = -250.0f;    
+        } else {
+            _vx = 0.0f;
+        }
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_ROLLING_HAYBALE) {
+        int frame = [[_sprite getAnimation] getCurrentFrameNumber];
+        if (frame == 1) {
+            _direction = -1;
+        } else if(frame == 6) {
+            _direction = 1;
+        }
+        _vx = _direction * 100.0f;        
     }
 
 }
@@ -363,6 +394,10 @@
 
 -(void) reset
 {
+    if (_boss!=nil) {
+        return;
+    }
+    
     _isActive = true;
     _angle = 0.0f;
     _vx = 0;
@@ -391,8 +426,12 @@
         _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_WALK;
     } else if(_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_WALK_FAST || _currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_FADE) {
         _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_WALK_FAST;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_FLYER_DEAD || _currentBehavior == COLLISION_BEHAVIOR_FLYER) {
+        _currentBehavior = COLLISION_BEHAVIOR_FLYER;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_ROLLING_HAYBALE) {
+        _currentBehavior = COLLISION_BEHAVIOR_ROLLING_HAYBALE;
     } else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER) {
-        _currentBehavior = COLLISION_BEHAVIOR_STATIC;        
+        _currentBehavior = COLLISION_BEHAVIOR_STATIC;  
     }
     _collided = false;
 }
@@ -428,6 +467,20 @@
     } else if([behavior isEqualToString:@"headless"]) {
         _collideBehavior = COLLISION_BEHAVIOR_ZOMBIE_FADE;
         _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_WALK_FAST;
+    } else if([behavior isEqualToString:@"bossShip"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_NONE;
+        _boss = [BossFactory buildWithType:BOSS_SPACESHIP];
+        [_boss setSprite:_sprite];
+        [_boss startBoss];
+    } else if([behavior isEqualToString:@"retroStatic"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_RETRO_HURDLE;
+        _currentBehavior = COLLISION_BEHAVIOR_RETRO_SHOT_FROM_CANNON;
+    } else if([behavior isEqualToString:@"flyer"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_FLYER_DEAD;
+        _currentBehavior = COLLISION_BEHAVIOR_FLYER;
+    } else if([behavior isEqualToString:@"rolling"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_ROLLING_HAYBALE;
+        _currentBehavior = COLLISION_BEHAVIOR_ROLLING_HAYBALE;
     }
     else {
         _collideBehavior = COLLISION_BEHAVIOR_NONE;

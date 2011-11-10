@@ -53,8 +53,18 @@
             
             GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
             CGPoint position = [gameLayer.player getPosition];
-            position.x += 10.0f;
-            position.y -= 5.0f;
+            
+            if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
+            {
+                position.x += 10.0f;
+                position.y -= 5.0f;
+            }
+            else
+            {
+                position.x += 10.0f;
+                position.y += 33.0f;
+                
+            }
             [_kick setPosition:position];
              
             if (!_madeFootProjectile) {

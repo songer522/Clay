@@ -7,6 +7,7 @@
 //
 
 #import "Boss.h"
+#import "Sprite.h"
 
 @implementation Boss
 
@@ -33,6 +34,15 @@
     
 }
 
+-(void)update:(float)dt
+{
+    
+}
+
+-(void)setSprite:(Sprite *)sprite
+{
+    
+}
 
 
 @end

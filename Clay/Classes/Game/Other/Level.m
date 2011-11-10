@@ -60,7 +60,16 @@
         
         //[[[LayerManager sharedLayers] currentLayer] addChild:_map];
         
-        _scale = [[UIScreen mainScreen] scale] / 2.0f;
+        if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
+        {
+            _divide = 2.0f;
+        }
+        else
+        {
+            _divide = 1.0f;
+        }
+            
+        _scale = [[UIScreen mainScreen] scale] / _divide;
         
         [self scanThroughMapAndAddObjects];
                 
@@ -79,11 +88,11 @@
     return self;
 }
 
--(void)setThirdAction:(NSString*)action
+-(void)setHudButtonsAndThirdAction:(NSString*)action
 {
     GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
     [gameLayer.player setThirdAction:action];
-    [[gameLayer getHud] setThirdAction:action];
+    [[gameLayer getHud] setHudButtonsAndThirdAction:action];
 }
 
 -(void)loadLayers:(NSString*)layerList Player:(Player*)player
@@ -108,7 +117,7 @@
             float speedx = [[tmxLayer propertyNamed:@"speedx"] floatValue] * _scale;
             float speedy = [[tmxLayer propertyNamed:@"speedy"] floatValue] * _scale;
             float offsety = [[tmxLayer propertyNamed:@"offsety"] floatValue];
-
+            
             CGPoint offsetPoint = ccp(0, 0);
             if (offsety && offsety!= 0.0f && speedy != 0.0f) {
                 offsetPoint = ccp(0, offsety * _map.tileSize.width);
@@ -224,12 +233,21 @@
                     trigger.direction = CGPointMake(1,-1);
                     trigger.type = TRIGGER_NEXTLEVEL;
                     [_triggers addObject:trigger];
-                } else if([special compare:@"checkpoint"] == NSOrderedSame) {
+                } else if([special isEqualToString:@"checkpoint"]) { //checkpoint trigger
                     Trigger *trigger = [[Trigger alloc] init];
                     trigger.position = [self getXYPositionForCoordinates:CGPointMake(i,j)];
                     trigger.direction = CGPointMake(1, -1);
                     trigger.type = TRIGGER_CHECKPOINT;
                     [_triggers addObject:trigger];
+                    
+                    //SHOULD work by giving it an object property, but stupidly isn't. so doing manually
+                    GameObject *object = [_gameObjects loadGameObjectWithName:@"checkpoint" AddToLayer:NO];
+                    CGPoint position = [self getXYPositionForCoordinates:coords];
+                    [object setPositionAtX:position.x Y:position.y];
+                    [object setStartingPosition:position];
+                    [[object getCCSprite] setScale:_scale];
+                    MapObject *mapObject = [MapObject mapObjectWithSprite:object AboveLayer:@"main0"];
+                    [_otherMapObjects addObject:mapObject];
                 } else if([special compare:@"spawnpoint"] == NSOrderedSame) {
                     _spawnPoint = [self getXYPositionForCoordinates:CGPointMake(i, j)];
                 } else if([special compare:@"jimAppearance1"] == NSOrderedSame) {
@@ -258,22 +276,19 @@
             NSString *objectName = [self getPropertyForTileCoords:coords forKey:@"object"];
             
             if (objectName) {
-                if (![objectName isEqualToString:@"lighting"]) {  //TEMPORARY: disabling lights until we decide we don't want them
-                    
-                    GameObject *object = [_gameObjects loadGameObjectWithName:objectName AddToLayer:NO];
-                    CGPoint position = [self getXYPositionForCoordinates:coords];
-                    [object setPositionAtX:position.x Y:position.y];
-                    [object setStartingPosition:position];
-                    [[object getCCSprite] setScale:_scale];
-                    
-                    if (!layerBelow) {
-                        layerBelow = @"main0";
-                    }
-                    
-                    MapObject *mapObject = [MapObject mapObjectWithSprite:object AboveLayer:layerBelow];
-                    [_otherMapObjects addObject:mapObject];
-                                        
+                GameObject *object = [_gameObjects loadGameObjectWithName:objectName AddToLayer:NO];
+                
+                CGPoint position = [self getXYPositionForCoordinates:coords];
+                [object setPositionAtX:position.x Y:position.y];
+                [object setStartingPosition:position];
+                [[object getCCSprite] setScale:_scale];
+                
+                if (!layerBelow) {
+                    layerBelow = @"main0";
                 }
+                
+                MapObject *mapObject = [MapObject mapObjectWithSprite:object AboveLayer:layerBelow];
+                [_otherMapObjects addObject:mapObject];
             }
         }
     }
@@ -296,8 +311,9 @@
 {
     //TODO: not sure why these need to be divided by 2 to get the right position yet
     //should make it clear what the 2.0 represents once figured out
-    int scaledTileWidth = _map.tileSize.width / 2;
-    int scaledTileHeight = _map.tileSize.height / 2;
+    
+    int scaledTileWidth = _map.tileSize.width / _divide;
+    int scaledTileHeight = _map.tileSize.height / _divide;
     
     float x = coords.x * scaledTileWidth;
     float y = (_map.mapSize.height * scaledTileHeight) - coords.y * scaledTileHeight;
@@ -441,7 +457,6 @@
 
 
 //TODO: only supporting one trigger per update, for now. not ideal though and we will eventually need to extend this
-//TODO: also only assumes each trigger will be triggered whenever the player goes to the right and above the trigger point. eventually support more directions.
 -(Trigger*)testTriggers:(Player*)player
 {
     Trigger *returnTrigger = nil;
@@ -461,8 +476,18 @@
     return returnTrigger;
 }
 
+
+-(GameObject*)addObstacleNamed:(NSString*)name
+{
+    GameObject *obstacle = [_gameObjects loadGameObjectWithName:name];                          
+    MapObject *mapObject = [MapObject mapObjectWithSprite:obstacle AboveLayer:@"main0"];
+    [_obstacleMapObjects addObject:mapObject];
+    return obstacle;
+}
+
 -(void)update:(float)dt Velocity:(float)vx
 {
+    NSLog(@"DT: %f",dt);
     [self setPositionAtX:_x Y:_y];
     for(MapObject *obstacle in _obstacleMapObjects) {
         [obstacle.object update:dt];

@@ -16,6 +16,7 @@
 #import "Battery.h"
 #import "GameController.h"
 #import "Player.h"
+#import "BossFactory.h"
 #import "SavePoint.h"
 #import "LaserShow.h"
 
@@ -58,8 +59,6 @@
         _inputController = [InputController inputController];
         [self addChild:_inputController];       //need to so its scheduled selectors will be trigger
         
-        
-        
         [[LayerManager sharedLayers] setCurrentLayer:self];
         
         _player = [Player instance];
@@ -69,17 +68,24 @@
         _savePoint = [SavePoint instance];
         
         
-        [self scheduleUpdate];
+        //[self scheduleUpdate];
+        
+        [self schedule: @selector(update:)];
         
         [self initForLevel];
         
+
         self.isTouchEnabled = YES;
         
+        [self updateLogic:0.001f];  //done to correctly position the camera and player before
+                                    //the first render cycle
         
-        [self updateLogic:0.001f];
+
         
-        [[CCTextureCache sharedTextureCache] removeAllTextures];
-        [[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
+        //[self schedule:@selector(updateLogic:) interval:(1.0f/30.0f)];
+        //[[CCTextureCache sharedTextureCache] removeAllTextures];
+        //[[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
+        
 
 	}
 	return self;
@@ -100,9 +106,8 @@
     [_savePoint setSavePoint:_level.spawnPoint Level:_level.name];
     
     [self initCamera];
-
+    
     [_hud reset];
-
 }
 
 -(void)setupHud:(HudLayer*)hud
@@ -129,7 +134,13 @@
 
 -(void)update:(ccTime)dt
 {
-    [self updateLogic:dt];
+    double fixedTimeStep = 1.0f/60.0f;
+    float timeToRun = dt + time;
+    while(timeToRun >= fixedTimeStep) {
+        [self updateLogic:fixedTimeStep];
+        timeToRun = timeToRun - fixedTimeStep;
+    }
+    time = timeToRun;
 }
 
 -(void)updateLogic:(ccTime)dt
@@ -151,6 +162,9 @@
                 break;
             case TRIGGER_CHECKPOINT:
                 [_savePoint setSavePoint:trigger.position Level:_level.name];
+                [[SoundEngine shared] playSound:@"checkpoint"];
+                [_player rechargeBattery];
+                break;
             default:
                 break;
         }
@@ -174,6 +188,9 @@
     if (_laserShow!=nil) {
         [_laserShow update:dt];
     }
+    
+    [_boss update:dt];
+    
 }
 
 -(void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -196,7 +213,7 @@
         [event setTouchLocation:[self convertTouchToNodeSpace:touch]];
         [_inputController interpretAndReactToInputEvent:event];
     }
-    [[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
+    //[[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
     
 }
 
