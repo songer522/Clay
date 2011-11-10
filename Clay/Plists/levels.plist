@@ -15,7 +15,7 @@
 		<key>playerOffsetY</key>
 		<integer>-9</integer>
 		<key>fileName</key>
-		<string>real_level_1.tmx</string>
+		<string>level1.tmx</string>
 		<key>obstacleLayer</key>
 		<string>front3</string>
 		<key>nextLevelName</key>
@@ -59,7 +59,7 @@
 		<key>playerOffsetY</key>
 		<integer>-9</integer>
 		<key>fileName</key>
-		<string>real_level_b.tmx</string>
+		<string>level2.tmx</string>
 		<key>obstacleLayer</key>
 		<string>front3</string>
 		<key>nextLevelName</key>
@@ -80,7 +80,7 @@
 		<key>playerOffsetY</key>
 		<integer>-9</integer>
 		<key>fileName</key>
-		<string>real_level_3.tmx</string>
+		<string>level3.tmx</string>
 		<key>obstacleLayer</key>
 		<string>front2</string>
 		<key>nextLevelName</key>
@@ -101,7 +101,7 @@
 		<key>playerOffsetY</key>
 		<integer>-9</integer>
 		<key>fileName</key>
-		<string>real_level_4.tmx</string>
+		<string>level4.tmx</string>
 		<key>obstacleLayer</key>
 		<string>objects</string>
 		<key>nextLevelName</key>
@@ -122,7 +122,7 @@
 		<key>playerOffsetY</key>
 		<integer>-9</integer>
 		<key>fileName</key>
-		<string>real_level_5.tmx</string>
+		<string>level5.tmx</string>
 		<key>obstacleLayer</key>
 		<string>objects</string>
 		<key>nextLevelName</key>
@@ -145,7 +145,7 @@
 		<key>playerOffsetY</key>
 		<integer>-9</integer>
 		<key>fileName</key>
-		<string>real_level_6.tmx</string>
+		<string>level6.tmx</string>
 		<key>obstacleLayer</key>
 		<string>objects</string>
 		<key>nextLevelName</key>
@@ -166,7 +166,7 @@
 		<key>playerOffsetY</key>
 		<integer>0</integer>
 		<key>fileName</key>
-		<string>real_level_7a.tmx</string>
+		<string>level7.tmx</string>
 		<key>obstacleLayer</key>
 		<string>objects</string>
 		<key>nextLevelName</key>

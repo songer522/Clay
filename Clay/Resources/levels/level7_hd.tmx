@@ -148,8 +148,8 @@
    </properties>
   </tile>
  </tileset>
- <tileset firstgid="63" name="Level7_TiledSheet" tilewidth="64" tileheight="64">
-  <image source="Level7_TiledSheet-hd.png" width="1984" height="768"/>
+ <tileset firstgid="63" name="computer" tilewidth="64" tileheight="64">
+  <image source="tileset_level_7-hd.png" width="1984" height="768"/>
  </tileset>
  <layer name="back-4" width="1100" height="14">
   <data encoding="base64" compression="zlib">
@@ -207,7 +207,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt20EOgyAQQFFP0PYEvUJT6/3P5qpJN4WZgIHoe4krED+wdlkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAICreI0OAAAAAOBwn9EBFbP11Xpae3vtd7ZzAwAAAAAAAAAAAAAAKHkG522JNTP/V7wTc6Otv0rdmbE18K1oX23PreNftZ5Ib+mMIu9HWrP3uv15erh3Woc27mEOZ76HM+8NgLzH6AC4qNvoAAAAAAAAAAAAprIDFJ0GJA==
+   eJzt3MEJwCAMBVAn6CpF2kv3X6ynXkQkoQcF34NcEuH/CSwFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZ2yQMAAAA2cs4uAAAAAAAAAAAAAAAAAAAAAAAs7/5xfwa37F+pNfBmlNfq9Y7uMnmR3l9ObwAAAIC8Y3YBAAAAAAAAAACW8gJRfwRT
   </data>
  </layer>
  <layer name="meta" width="1100" height="14" opacity="0.66">
