@@ -375,8 +375,6 @@
 		54FD5509146B360D00470807 /* townLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54FD5505146B360D00470807 /* townLevel-hd.png */; };
 		54FD550A146B360D00470807 /* townLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54FD5506146B360D00470807 /* townLevel.plist */; };
 		54FD550B146B360D00470807 /* townLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 54FD5507146B360D00470807 /* townLevel.png */; };
-		54FD5518146B5D8900470807 /* real_level_7a_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 54FD5516146B5D8900470807 /* real_level_7a_hd.tmx */; };
-		54FD5519146B5D8900470807 /* real_level_7a.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 54FD5517146B5D8900470807 /* real_level_7a.tmx */; };
 		57A03E9D1452173A00F2017F /* Menu_Ending_BestTime.png in Resources */ = {isa = PBXBuildFile; fileRef = 57A03E9C1452173A00F2017F /* Menu_Ending_BestTime.png */; };
 		5F8A447014684EE100CE1FC2 /* jim_standing_barn-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8A446D14684EE100CE1FC2 /* jim_standing_barn-hd.png */; };
 		5F8A447114684EE100CE1FC2 /* manure-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8A446E14684EE100CE1FC2 /* manure-hd.png */; };
@@ -404,13 +402,11 @@
 		5F8BE8E314649A170002C6CF /* bighurdle-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8BE8E014649A170002C6CF /* bighurdle-hd.png */; };
 		5F8BE8E414649A170002C6CF /* hurdle-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8BE8E114649A170002C6CF /* hurdle-hd.png */; };
 		5F8BE8E514649A170002C6CF /* sandpit-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8BE8E214649A170002C6CF /* sandpit-hd.png */; };
-		5FF163B3146484CC00229483 /* real_level_1_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 5FF163B1146484CC00229483 /* real_level_1_hd.tmx */; };
 		5FF163B4146484CC00229483 /* tileset_level_1-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FF163B2146484CC00229483 /* tileset_level_1-hd.png */; };
 		5FF163B71464859C00229483 /* meta-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FF163B51464859C00229483 /* meta-hd.png */; };
 		5FF163B81464859C00229483 /* TrackLapse_Icons-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FF163B61464859C00229483 /* TrackLapse_Icons-hd.png */; };
 		61A2C0E614683B880049C88E /* GraphicFont.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 61A2C0E414683B880049C88E /* GraphicFont.fnt */; };
 		61A2C0E714683B880049C88E /* GraphicFont.png in Resources */ = {isa = PBXBuildFile; fileRef = 61A2C0E514683B880049C88E /* GraphicFont.png */; };
-		E4C92002146C3C9B00FA85B1 /* real_level_7a_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = E4C92001146C3C9B00FA85B1 /* real_level_7a_hd.tmx */; };
 		E4F8380A146C360C00403D36 /* real_level_7a_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = E4F83808146C360C00403D36 /* real_level_7a_hd.tmx */; };
 		E4F8380B146C360C00403D36 /* real_level_7a.tmx in Resources */ = {isa = PBXBuildFile; fileRef = E4F83809146C360C00403D36 /* real_level_7a.tmx */; };
 /* End PBXBuildFile section */
@@ -981,8 +977,6 @@
 		54FD5505146B360D00470807 /* townLevel-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "townLevel-hd.png"; sourceTree = "<group>"; };
 		54FD5506146B360D00470807 /* townLevel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = townLevel.plist; sourceTree = "<group>"; };
 		54FD5507146B360D00470807 /* townLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = townLevel.png; sourceTree = "<group>"; };
-		54FD5516146B5D8900470807 /* real_level_7a_hd.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = real_level_7a_hd.tmx; path = Resources/levels/real_level_7a_hd.tmx; sourceTree = "<group>"; };
-		54FD5517146B5D8900470807 /* real_level_7a.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = real_level_7a.tmx; path = Resources/levels/real_level_7a.tmx; sourceTree = "<group>"; };
 		57A03E9C1452173A00F2017F /* Menu_Ending_BestTime.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Menu_Ending_BestTime.png; sourceTree = "<group>"; };
 		5F8A446D14684EE100CE1FC2 /* jim_standing_barn-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jim_standing_barn-hd.png"; sourceTree = "<group>"; };
 		5F8A446E14684EE100CE1FC2 /* manure-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "manure-hd.png"; sourceTree = "<group>"; };
@@ -1010,7 +1004,6 @@
 		5F8BE8E014649A170002C6CF /* bighurdle-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bighurdle-hd.png"; sourceTree = "<group>"; };
 		5F8BE8E114649A170002C6CF /* hurdle-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hurdle-hd.png"; sourceTree = "<group>"; };
 		5F8BE8E214649A170002C6CF /* sandpit-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sandpit-hd.png"; sourceTree = "<group>"; };
-		5FF163B1146484CC00229483 /* real_level_1_hd.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = real_level_1_hd.tmx; path = Resources/levels/real_level_1_hd.tmx; sourceTree = "<group>"; };
 		5FF163B2146484CC00229483 /* tileset_level_1-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tileset_level_1-hd.png"; path = "Resources/levels/tileset_level_1-hd.png"; sourceTree = "<group>"; };
 		5FF163B51464859C00229483 /* meta-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "meta-hd.png"; path = "Resources/levels/meta-hd.png"; sourceTree = "<group>"; };
 		5FF163B61464859C00229483 /* TrackLapse_Icons-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "TrackLapse_Icons-hd.png"; path = "Resources/levels/TrackLapse_Icons-hd.png"; sourceTree = "<group>"; };
@@ -2323,7 +2316,6 @@
 				54916781146445B700DFA191 /* Level7_TiledSheet.png in Resources */,
 				54916783146445B700DFA191 /* test_level_7.tmx in Resources */,
 				549167851464521B00DFA191 /* zombies.mp3 in Resources */,
-				5FF163B3146484CC00229483 /* real_level_1_hd.tmx in Resources */,
 				5FF163B4146484CC00229483 /* tileset_level_1-hd.png in Resources */,
 				5FF163B71464859C00229483 /* meta-hd.png in Resources */,
 				5FF163B81464859C00229483 /* TrackLapse_Icons-hd.png in Resources */,
@@ -2372,8 +2364,6 @@
 				54FD5509146B360D00470807 /* townLevel-hd.png in Resources */,
 				54FD550A146B360D00470807 /* townLevel.plist in Resources */,
 				54FD550B146B360D00470807 /* townLevel.png in Resources */,
-				54FD5518146B5D8900470807 /* real_level_7a_hd.tmx in Resources */,
-				54FD5519146B5D8900470807 /* real_level_7a.tmx in Resources */,
 				545CE6A0146C1E0C003EC9C1 /* JimShipShoot.wav in Resources */,
 				545CE6A1146C1E0C003EC9C1 /* Shield.wav in Resources */,
 				54A183BB146C2623009209EA /* hudGraphics2-hd.plist in Resources */,
@@ -2382,7 +2372,6 @@
 				54A183BE146C2623009209EA /* hudGraphics2.png in Resources */,
 				E4F8380A146C360C00403D36 /* real_level_7a_hd.tmx in Resources */,
 				E4F8380B146C360C00403D36 /* real_level_7a.tmx in Resources */,
-				E4C92002146C3C9B00FA85B1 /* real_level_7a_hd.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
