@@ -99,7 +99,7 @@
 		<key>collideBehavior</key>
 		<string>cowCollapse</string>
 		<key>imageName</key>
-		<string>cow.png</string>
+		<string>blank.png</string>
 		<key>offsetx</key>
 		<integer>0</integer>
 		<key>offsety</key>
@@ -519,7 +519,7 @@
 		<key>collideBehavior</key>
 		<string>kicked</string>
 		<key>imageName</key>
-		<string>hen_idle_1.png</string>
+		<string>blank.png</string>
 		<key>offsetx</key>
 		<integer>0</integer>
 		<key>offsety</key>

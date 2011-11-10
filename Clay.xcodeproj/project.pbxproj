@@ -309,6 +309,12 @@
 		549ED8F81461D145008BCD98 /* female_zombie.png in Resources */ = {isa = PBXBuildFile; fileRef = 549ED8A31461D145008BCD98 /* female_zombie.png */; };
 		549ED8F91461D145008BCD98 /* garbageZombie.png in Resources */ = {isa = PBXBuildFile; fileRef = 549ED8A41461D145008BCD98 /* garbageZombie.png */; };
 		549ED8FA1461D145008BCD98 /* zombieHead.png in Resources */ = {isa = PBXBuildFile; fileRef = 549ED8A51461D145008BCD98 /* zombieHead.png */; };
+		54A0A690146C6A1C002CCC26 /* smallhurdle-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A0A68E146C6A1C002CCC26 /* smallhurdle-hd.png */; };
+		54A0A691146C6A1C002CCC26 /* smallhurdle.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A0A68F146C6A1C002CCC26 /* smallhurdle.png */; };
+		54A0A696146C6A3F002CCC26 /* cityLevel-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54A0A692146C6A3F002CCC26 /* cityLevel-hd.plist */; };
+		54A0A697146C6A3F002CCC26 /* cityLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A0A693146C6A3F002CCC26 /* cityLevel-hd.png */; };
+		54A0A698146C6A3F002CCC26 /* cityLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54A0A694146C6A3F002CCC26 /* cityLevel.plist */; };
+		54A0A699146C6A3F002CCC26 /* cityLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A0A695146C6A3F002CCC26 /* cityLevel.png */; };
 		54A1191F14433D6B0008A823 /* TrackTimer-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54A1191B14433D6B0008A823 /* TrackTimer-hd.plist */; };
 		54A1192014433D6B0008A823 /* TrackTimer-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A1191C14433D6B0008A823 /* TrackTimer-hd.png */; };
 		54A1192114433D6B0008A823 /* TrackTimer.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54A1191D14433D6B0008A823 /* TrackTimer.plist */; };
@@ -902,6 +908,12 @@
 		549ED8A31461D145008BCD98 /* female_zombie.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = female_zombie.png; sourceTree = "<group>"; };
 		549ED8A41461D145008BCD98 /* garbageZombie.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = garbageZombie.png; sourceTree = "<group>"; };
 		549ED8A51461D145008BCD98 /* zombieHead.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zombieHead.png; sourceTree = "<group>"; };
+		54A0A68E146C6A1C002CCC26 /* smallhurdle-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "smallhurdle-hd.png"; sourceTree = "<group>"; };
+		54A0A68F146C6A1C002CCC26 /* smallhurdle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallhurdle.png; sourceTree = "<group>"; };
+		54A0A692146C6A3F002CCC26 /* cityLevel-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "cityLevel-hd.plist"; sourceTree = "<group>"; };
+		54A0A693146C6A3F002CCC26 /* cityLevel-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cityLevel-hd.png"; sourceTree = "<group>"; };
+		54A0A694146C6A3F002CCC26 /* cityLevel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cityLevel.plist; sourceTree = "<group>"; };
+		54A0A695146C6A3F002CCC26 /* cityLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cityLevel.png; sourceTree = "<group>"; };
 		54A1191B14433D6B0008A823 /* TrackTimer-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TrackTimer-hd.plist"; sourceTree = "<group>"; };
 		54A1191C14433D6B0008A823 /* TrackTimer-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TrackTimer-hd.png"; sourceTree = "<group>"; };
 		54A1191D14433D6B0008A823 /* TrackTimer.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TrackTimer.plist; sourceTree = "<group>"; };
@@ -1927,6 +1939,10 @@
 		549ED8651461D144008BCD98 /* city */ = {
 			isa = PBXGroup;
 			children = (
+				54A0A692146C6A3F002CCC26 /* cityLevel-hd.plist */,
+				54A0A693146C6A3F002CCC26 /* cityLevel-hd.png */,
+				54A0A694146C6A3F002CCC26 /* cityLevel.plist */,
+				54A0A695146C6A3F002CCC26 /* cityLevel.png */,
 				5F8A448D14687D8600CE1FC2 /* garbage-hd.png */,
 				549ED8661461D144008BCD98 /* garbage.png */,
 				5F8A448E14687D8600CE1FC2 /* water-hd.png */,
@@ -1970,6 +1986,8 @@
 		549ED89A1461D145008BCD98 /* track */ = {
 			isa = PBXGroup;
 			children = (
+				54A0A68E146C6A1C002CCC26 /* smallhurdle-hd.png */,
+				54A0A68F146C6A1C002CCC26 /* smallhurdle.png */,
 				549ED89B1461D145008BCD98 /* bighurdle.png */,
 				549ED89C1461D145008BCD98 /* hurdle.png */,
 				549ED89D1461D145008BCD98 /* sandpit.png */,
@@ -2339,6 +2357,12 @@
 				54E3D559146C4BA800C28C9F /* tileset_level_7.png in Resources */,
 				54E3D55A146C4BA800C28C9F /* TrackLapse_Icons-hd.png in Resources */,
 				54E3D55B146C4BA800C28C9F /* TrackLapse_Icons.png in Resources */,
+				54A0A690146C6A1C002CCC26 /* smallhurdle-hd.png in Resources */,
+				54A0A691146C6A1C002CCC26 /* smallhurdle.png in Resources */,
+				54A0A696146C6A3F002CCC26 /* cityLevel-hd.plist in Resources */,
+				54A0A697146C6A3F002CCC26 /* cityLevel-hd.png in Resources */,
+				54A0A698146C6A3F002CCC26 /* cityLevel.plist in Resources */,
+				54A0A699146C6A3F002CCC26 /* cityLevel.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2598,6 +2622,41 @@
 			};
 			name = Release;
 		};
+		54A0A68B146C5367002CCC26 /* Ad-Hoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: XecuDev LLC";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = NDEBUG;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6EF08227-3D2B-4A7A-9E07-B21B38232F94";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Ad-Hoc";
+		};
+		54A0A68C146C5367002CCC26 /* Ad-Hoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Clay/Prefix.pch;
+				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INFOPLIST_FILE = Clay/Resources/Info.plist;
+				OTHER_LDFLAGS = "-lz";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = "Ad-Hoc";
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -2606,6 +2665,7 @@
 			buildConfigurations = (
 				54484E40140449B700D0D7D9 /* Debug */,
 				54484E41140449B700D0D7D9 /* Release */,
+				54A0A68B146C5367002CCC26 /* Ad-Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2615,6 +2675,7 @@
 			buildConfigurations = (
 				54484E43140449B700D0D7D9 /* Debug */,
 				54484E44140449B700D0D7D9 /* Release */,
+				54A0A68C146C5367002CCC26 /* Ad-Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

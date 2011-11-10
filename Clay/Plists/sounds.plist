@@ -5,7 +5,7 @@
 	<key>jumpLand</key>
 	<string>Footstep.wav</string>
 	<key>turboStart</key>
-	<string>supersonic.wav</string>
+	<string>Supercharge.wav</string>
 	<key>dead</key>
 	<string>UhOh.wav</string>
 	<key>collision</key>

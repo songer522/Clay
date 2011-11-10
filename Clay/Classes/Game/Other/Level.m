@@ -393,7 +393,7 @@
             collision = [self testCollisionWithGameObject:obstacle Source:source];
             if (collision) {
                 if ([source getCollisionBehavior] == COLLISION_BEHAVIOR_HEN_KICKED) {
-                    NSLog(@"Counting Chicken Kicked Into Cow");
+                    //NSLog(@"Counting Chicken Kicked Into Cow");
                     int maxKicksIntoCow = 10;
                     
                     if ([GCState sharedInstance].chickensKickedIntoCows < maxKicksIntoCow) {
@@ -403,12 +403,12 @@
                         double pctComplete = ((double) [GCState sharedInstance].chickensKickedIntoCows / (int)maxKicksIntoCow) * 100.0;
                         [[GCHelper sharedInstance] reportAchievement:gcAchievementChickensKickedIntoCows percentComplete:pctComplete];
                         
-                        NSLog(@"Pct Complete - Chickens Kicked Into Cows: %f", pctComplete);
+                        //NSLog(@"Pct Complete - Chickens Kicked Into Cows: %f", pctComplete);
                     }
                     
                     if ([GCState sharedInstance].chickensKickedIntoCows >= maxKicksIntoCow) {
                         //ADD CODE TO DISPLAY ACHIEVEMENT
-                        NSLog(@"DISPLAY Chicken Kick Achievement");
+                        //NSLog(@"DISPLAY Chicken Kick Achievement");
                     }
                 
                 }
@@ -487,7 +487,7 @@
 
 -(void)update:(float)dt Velocity:(float)vx
 {
-    NSLog(@"DT: %f",dt);
+    //NSLog(@"DT: %f",dt);
     [self setPositionAtX:_x Y:_y];
     for(MapObject *obstacle in _obstacleMapObjects) {
         [obstacle.object update:dt];

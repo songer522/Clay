@@ -169,9 +169,9 @@ static ComicManager *_shared = nil;
 
 -(void)endTheGame
 {
-    CCScene *endGame = [[LayerManager sharedLayers] getSceneForKey:@"endGame"];
-    
-    [[CCDirector sharedDirector] pushScene:endGame];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[EndGameScene scene]]];
+    _showEndGame = false;
+    _introMovie = false;
 }
 
 -(void)dealloc
