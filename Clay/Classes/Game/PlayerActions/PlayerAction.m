@@ -133,6 +133,11 @@
     return false;
 }
 
+-(bool)canStartInMidAir
+{
+    return false;
+}
+
 -(void)dealloc
 {
     [super dealloc];

@@ -14,6 +14,8 @@
 #import "Camera.h"
 #import "LevelManager.h"
 #import "Level.h"
+#import "SoundEngine.h"
+#import "Projectile.h"
 
 @implementation BossJimShip
 
@@ -33,6 +35,12 @@
     xthrust = -1;
     ythrust = 0;
     _firstUpdate = true;
+    
+    for (int i=0; i<3; i++) {
+        Projectile *_bullet = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_BOSS_SHIP_BULLET];
+        [_bullet setActive:NO];
+    }
+    _replaceProjectileId = 0;
 }
 
 -(void)setSprite:(Sprite *)sprite
@@ -43,16 +51,28 @@
 }
 
 
--(void)createObstacle:(NSString*)name
+-(void)shootBullet
 {
+    [[SoundEngine shared] playSound:@"jimShipShoot"];
+    
+    /*
     GameObject *object = [_level addObstacleNamed:name];
     CGPoint point = [[Camera sharedCamera] convertToWorldXY:[_sprite getPosition]];
     //[object setPosition:ccp(point.x + 50,point.y + 150)];
     [object setPosition:[[Camera sharedCamera] convertToWorldXY:ccp(50,50)]];
     [object setVx:50.0f];
     [object setVy:5.0f];    
+    */
 }
 
+-(void)updateGun:(float)dt
+{
+    _waitToShoot -= dt;
+    if (_waitToShoot<=0.0f) {
+        _waitToShoot = rand()%4 + 0.5f;
+        [self shootBullet];
+    }
+}
 
 -(void)update:(float)dt
 {
@@ -65,7 +85,7 @@
     }
     
     [self updateVelocity:dt];
-    [self updateCannon:dt];
+    [self updateGun:dt];
     
     CGPoint position = [_sprite getPosition];
     
@@ -110,35 +130,6 @@
         _velocity.y = max;
     }
     
-}
-
--(void)updateCannon:(float)dt
-{
-    _waitToShoot -= dt;
-    if (_waitToShoot <= 0.0f) {
-        _waitToShoot = rand()%5 + 2.0f;
-        
-        RetroObstacleType type = (int)(rand()%5);
-        switch (type) {
-            case RETRO_PIG:
-                [self createObstacle:@"retroHurdle"];
-                break;
-            case RETRO_BIRD:
-                [self createObstacle:@"retroHurdle"];
-                break;
-            case RETRO_HURDLE:
-                [self createObstacle:@"retroHurdle"];
-                break;
-            case RETRO_ZOMBIE:
-                [self createObstacle:@"retroHurdle"];
-                break;
-            case RETRO_GARBAGE:
-                [self createObstacle:@"retroHurdle"];
-                break;
-            default:
-                break;
-        }
-    }
 }
 
 

@@ -10,6 +10,7 @@
 #import <Foundation/Foundation.h>
 
 @class CCScene;
+@class Player;
 
 @interface LayerManager : NSObject
 {
@@ -37,6 +38,9 @@
 
 -(void)pushSceneNamed:(NSString*)pushScene;
 -(void)popAndPushSceneNamed:(NSString*)pushScene;
+
+-(Player*)getPlayer; //this class is used so often for this just get it directly
+
 
 
 @end

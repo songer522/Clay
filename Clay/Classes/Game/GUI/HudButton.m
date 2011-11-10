@@ -8,7 +8,7 @@
 
 #import "HudButton.h"
 #import "BaseClasses.h"
-#define HUD_LAYER_BUTTON_OPACITY 170 //tian's suggestion: 204
+#define HUD_LAYER_BUTTON_OPACITY 170
 #define HUD_LAYER_BUTTON_Y 29
 #define HUD_LAYER_JUMP_X 32
 #define HUD_LAYER_ACTION_X 390
@@ -34,7 +34,6 @@
         
         [self prepareButtonWithType:type Action:action];
      
-                
         _initialized = true;
     }
    return self;
@@ -68,15 +67,16 @@
 
 -(void)createSpriteFromImage:(NSString*)image
 {
-    _graphic = [Sprite spriteWithFile:image];
+    _graphic = [Sprite spriteFromFrameCacheWithName:image];
+    //_graphic = [Sprite spriteWithFile:image];
     [[_graphic getCCSprite] setOpacity:BUTTON_OPACITY];
     [[_graphic getCCSprite] setScale:[[UIScreen mainScreen] scale] / 2.0f];
     [[_graphic getCCSprite] setAnchorPoint:ccp(0.5f, 0.5f)];
-    
-    _greenOverlay = [Sprite spriteWithFile:@"UI_Button_GreenLight.png"];
+
+    _greenOverlay = [Sprite spriteFromFrameCacheWithName:@"UI_Button_GreenLight.png"];
+    [[_greenOverlay getCCSprite] setAnchorPoint:ccp(0.5f, 0.5f)];
     [[_greenOverlay getCCSprite] setOpacity:BUTTON_OPACITY];
     [[_greenOverlay getCCSprite] setScale:[[UIScreen mainScreen] scale] / 2.0f];
-    [[_greenOverlay getCCSprite] setAnchorPoint:ccp(0.5f, 0.5f)];
 
 }
 
@@ -98,6 +98,8 @@
         buttonImage = @"UI_Button_Dodging.png";
     } else if([action isEqualToString:@"shoot"]) {
         buttonImage = @"UI_Button_Shooting.png";
+    } else if([action isEqualToString:@"block"]) {
+        buttonImage = @"UI_Button_Blocking.png";
     }
     
     [self createSpriteFromImage:buttonImage];
@@ -105,13 +107,13 @@
 
 -(void)reset
 {
-    [[[LayerManager sharedLayers] currentLayer] removeChild:[_greenOverlay getCCSprite] cleanup:NO];
-
-    [[[LayerManager sharedLayers] currentLayer] removeChild:[_graphic getCCSprite] cleanup:NO];
-        [_graphic release];
-    _graphic = nil;
-    [_greenOverlay release];
-    _greenOverlay=nil;
+    if (_graphic!=nil) {
+        [[[LayerManager sharedLayers] currentLayer] removeChild:[_graphic getCCSprite] cleanup:NO];
+    }
+    
+    if (_greenOverlay!=nil) {
+        [[[LayerManager sharedLayers] currentLayer] removeChild:[_greenOverlay getCCSprite] cleanup:NO];
+    }
 }
 
 -(CCSprite*)getCCSpriteForButton
