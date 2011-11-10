@@ -368,9 +368,9 @@
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>40</integer>
+			<integer>30</integer>
 			<key>width</key>
-			<integer>35</integer>
+			<integer>15</integer>
 			<key>x</key>
 			<integer>50</integer>
 			<key>y</key>
@@ -403,9 +403,9 @@
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>40</integer>
+			<integer>30</integer>
 			<key>width</key>
-			<integer>35</integer>
+			<integer>20</integer>
 			<key>x</key>
 			<integer>20</integer>
 			<key>y</key>
