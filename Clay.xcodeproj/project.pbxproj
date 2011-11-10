@@ -148,6 +148,9 @@
 		54484E35140449B700D0D7D9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 54484E34140449B700D0D7D9 /* main.m */; };
 		544B163E144E2E4600785C88 /* test_level_4.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 544B163D144E2E4600785C88 /* test_level_4.tmx */; };
 		54528C07145B466B009437C3 /* clearedObstacle.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54528C06145B466B009437C3 /* clearedObstacle.wav */; };
+		545CE69D146C1AA9003EC9C1 /* PlayerActionBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 545CE69C146C1AA9003EC9C1 /* PlayerActionBlock.m */; };
+		545CE6A0146C1E0C003EC9C1 /* JimShipShoot.wav in Resources */ = {isa = PBXBuildFile; fileRef = 545CE69E146C1E0C003EC9C1 /* JimShipShoot.wav */; };
+		545CE6A1146C1E0C003EC9C1 /* Shield.wav in Resources */ = {isa = PBXBuildFile; fileRef = 545CE69F146C1E0C003EC9C1 /* Shield.wav */; };
 		5461A0B01447801100D97D6C /* Comic_Part01.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5461A0AF1447801100D97D6C /* Comic_Part01.mp4 */; };
 		5461A0B314478A6C00D97D6C /* black_background-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5461A0B114478A6C00D97D6C /* black_background-hd.png */; };
 		5461A0B414478A6C00D97D6C /* black_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 5461A0B214478A6C00D97D6C /* black_background.png */; };
@@ -268,7 +271,6 @@
 		549ED8381461D065008BCD98 /* PlayerActionDodge.m in Sources */ = {isa = PBXBuildFile; fileRef = 549ED7DD1461D065008BCD98 /* PlayerActionDodge.m */; };
 		549ED8391461D065008BCD98 /* PlayerActionFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 549ED7DF1461D065008BCD98 /* PlayerActionFactory.m */; };
 		549ED83A1461D065008BCD98 /* PlayerActionKick.m in Sources */ = {isa = PBXBuildFile; fileRef = 549ED7E11461D065008BCD98 /* PlayerActionKick.m */; };
-		549ED83B1461D065008BCD98 /* PlayerActionMagnet.m in Sources */ = {isa = PBXBuildFile; fileRef = 549ED7E31461D065008BCD98 /* PlayerActionMagnet.m */; };
 		549ED83C1461D065008BCD98 /* PlayerActionShoot.m in Sources */ = {isa = PBXBuildFile; fileRef = 549ED7E51461D065008BCD98 /* PlayerActionShoot.m */; };
 		549ED83D1461D065008BCD98 /* PlayerActionWoo.m in Sources */ = {isa = PBXBuildFile; fileRef = 549ED7E71461D065008BCD98 /* PlayerActionWoo.m */; };
 		549ED83E1461D065008BCD98 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 549ED7EA1461D065008BCD98 /* RootViewController.m */; };
@@ -334,6 +336,10 @@
 		54A1192214433D6B0008A823 /* TrackTimer.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A1191E14433D6B0008A823 /* TrackTimer.png */; };
 		54A14B20146AFB0800E2F47A /* dummyLevel_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 54A14B1E146AFB0800E2F47A /* dummyLevel_hd.tmx */; };
 		54A14B21146AFB0800E2F47A /* dummyLevel.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 54A14B1F146AFB0800E2F47A /* dummyLevel.tmx */; };
+		54A183BB146C2623009209EA /* hudGraphics2-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54A183B7146C2623009209EA /* hudGraphics2-hd.plist */; };
+		54A183BC146C2623009209EA /* hudGraphics2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A183B8146C2623009209EA /* hudGraphics2-hd.png */; };
+		54A183BD146C2623009209EA /* hudGraphics2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54A183B9146C2623009209EA /* hudGraphics2.plist */; };
+		54A183BE146C2623009209EA /* hudGraphics2.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A183BA146C2623009209EA /* hudGraphics2.png */; };
 		54A1B7B1146894C200A381B0 /* checkpoint.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A1B7B0146894C200A381B0 /* checkpoint.png */; };
 		54A1B7B614689C9600A381B0 /* test_level_1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 54A1B7B514689C9600A381B0 /* test_level_1.tmx */; };
 		54A64A32146809D200853CFF /* BossJimShip.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A64A31146809D200853CFF /* BossJimShip.m */; };
@@ -669,6 +675,10 @@
 		54484E34140449B700D0D7D9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		544B163D144E2E4600785C88 /* test_level_4.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = test_level_4.tmx; path = Resources/levels/test_level_4.tmx; sourceTree = "<group>"; };
 		54528C06145B466B009437C3 /* clearedObstacle.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = clearedObstacle.wav; path = Resources/sounds/clearedObstacle.wav; sourceTree = "<group>"; };
+		545CE69B146C1AA9003EC9C1 /* PlayerActionBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerActionBlock.h; sourceTree = "<group>"; };
+		545CE69C146C1AA9003EC9C1 /* PlayerActionBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerActionBlock.m; sourceTree = "<group>"; };
+		545CE69E146C1E0C003EC9C1 /* JimShipShoot.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = JimShipShoot.wav; path = Resources/sounds/JimShipShoot.wav; sourceTree = "<group>"; };
+		545CE69F146C1E0C003EC9C1 /* Shield.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Shield.wav; path = Resources/sounds/Shield.wav; sourceTree = "<group>"; };
 		5461A0AF1447801100D97D6C /* Comic_Part01.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = Comic_Part01.mp4; path = Resources/videos/Comic_Part01.mp4; sourceTree = "<group>"; };
 		5461A0B114478A6C00D97D6C /* black_background-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "black_background-hd.png"; sourceTree = "<group>"; };
 		5461A0B214478A6C00D97D6C /* black_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = black_background.png; sourceTree = "<group>"; };
@@ -850,8 +860,6 @@
 		549ED7DF1461D065008BCD98 /* PlayerActionFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerActionFactory.m; sourceTree = "<group>"; };
 		549ED7E01461D065008BCD98 /* PlayerActionKick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerActionKick.h; sourceTree = "<group>"; };
 		549ED7E11461D065008BCD98 /* PlayerActionKick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerActionKick.m; sourceTree = "<group>"; };
-		549ED7E21461D065008BCD98 /* PlayerActionMagnet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerActionMagnet.h; sourceTree = "<group>"; };
-		549ED7E31461D065008BCD98 /* PlayerActionMagnet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerActionMagnet.m; sourceTree = "<group>"; };
 		549ED7E41461D065008BCD98 /* PlayerActionShoot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerActionShoot.h; sourceTree = "<group>"; };
 		549ED7E51461D065008BCD98 /* PlayerActionShoot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerActionShoot.m; sourceTree = "<group>"; };
 		549ED7E61461D065008BCD98 /* PlayerActionWoo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerActionWoo.h; sourceTree = "<group>"; };
@@ -932,6 +940,10 @@
 		54A1191E14433D6B0008A823 /* TrackTimer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrackTimer.png; sourceTree = "<group>"; };
 		54A14B1E146AFB0800E2F47A /* dummyLevel_hd.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = dummyLevel_hd.tmx; path = Resources/levels/dummyLevel_hd.tmx; sourceTree = "<group>"; };
 		54A14B1F146AFB0800E2F47A /* dummyLevel.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = dummyLevel.tmx; path = Resources/levels/dummyLevel.tmx; sourceTree = "<group>"; };
+		54A183B7146C2623009209EA /* hudGraphics2-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "hudGraphics2-hd.plist"; sourceTree = "<group>"; };
+		54A183B8146C2623009209EA /* hudGraphics2-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hudGraphics2-hd.png"; sourceTree = "<group>"; };
+		54A183B9146C2623009209EA /* hudGraphics2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = hudGraphics2.plist; sourceTree = "<group>"; };
+		54A183BA146C2623009209EA /* hudGraphics2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hudGraphics2.png; sourceTree = "<group>"; };
 		54A1B7B0146894C200A381B0 /* checkpoint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkpoint.png; sourceTree = "<group>"; };
 		54A1B7B514689C9600A381B0 /* test_level_1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = test_level_1.tmx; path = Resources/levels/test_level_1.tmx; sourceTree = "<group>"; };
 		54A64A30146809D200853CFF /* BossJimShip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BossJimShip.h; sourceTree = "<group>"; };
@@ -1482,6 +1494,10 @@
 		544D50DA1445E68E00BED4CE /* hud */ = {
 			isa = PBXGroup;
 			children = (
+				54A183B7146C2623009209EA /* hudGraphics2-hd.plist */,
+				54A183B8146C2623009209EA /* hudGraphics2-hd.png */,
+				54A183B9146C2623009209EA /* hudGraphics2.plist */,
+				54A183BA146C2623009209EA /* hudGraphics2.png */,
 				5441BED1143F8B75003224FF /* menu */,
 				54642AFF14337E5F001D8212 /* battery */,
 				544D50DB1445E6BD00BED4CE /* buttons */,
@@ -1507,6 +1523,8 @@
 		545CBC2F142D25AB00795FC9 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				545CE69E146C1E0C003EC9C1 /* JimShipShoot.wav */,
+				545CE69F146C1E0C003EC9C1 /* Shield.wav */,
 				547996EA1468803D009D3234 /* checkpoint.wav */,
 				54A680A514685637006F94A6 /* fallingDeath.wav */,
 				54CB72511460506400311904 /* doublejump.wav */,
@@ -1870,12 +1888,12 @@
 				549ED7DF1461D065008BCD98 /* PlayerActionFactory.m */,
 				549ED7E01461D065008BCD98 /* PlayerActionKick.h */,
 				549ED7E11461D065008BCD98 /* PlayerActionKick.m */,
-				549ED7E21461D065008BCD98 /* PlayerActionMagnet.h */,
-				549ED7E31461D065008BCD98 /* PlayerActionMagnet.m */,
 				549ED7E41461D065008BCD98 /* PlayerActionShoot.h */,
 				549ED7E51461D065008BCD98 /* PlayerActionShoot.m */,
 				549ED7E61461D065008BCD98 /* PlayerActionWoo.h */,
 				549ED7E71461D065008BCD98 /* PlayerActionWoo.m */,
+				545CE69B146C1AA9003EC9C1 /* PlayerActionBlock.h */,
+				545CE69C146C1AA9003EC9C1 /* PlayerActionBlock.m */,
 			);
 			path = PlayerActions;
 			sourceTree = "<group>";
@@ -2357,6 +2375,12 @@
 				E4D9B608146A2A6E00DE707F /* real_level_2_hd.tmx in Resources */,
 				54FD5518146B5D8900470807 /* real_level_7a_hd.tmx in Resources */,
 				54FD5519146B5D8900470807 /* real_level_7a.tmx in Resources */,
+				545CE6A0146C1E0C003EC9C1 /* JimShipShoot.wav in Resources */,
+				545CE6A1146C1E0C003EC9C1 /* Shield.wav in Resources */,
+				54A183BB146C2623009209EA /* hudGraphics2-hd.plist in Resources */,
+				54A183BC146C2623009209EA /* hudGraphics2-hd.png in Resources */,
+				54A183BD146C2623009209EA /* hudGraphics2.plist in Resources */,
+				54A183BE146C2623009209EA /* hudGraphics2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2519,7 +2543,6 @@
 				549ED8381461D065008BCD98 /* PlayerActionDodge.m in Sources */,
 				549ED8391461D065008BCD98 /* PlayerActionFactory.m in Sources */,
 				549ED83A1461D065008BCD98 /* PlayerActionKick.m in Sources */,
-				549ED83B1461D065008BCD98 /* PlayerActionMagnet.m in Sources */,
 				549ED83C1461D065008BCD98 /* PlayerActionShoot.m in Sources */,
 				549ED83D1461D065008BCD98 /* PlayerActionWoo.m in Sources */,
 				549ED83E1461D065008BCD98 /* RootViewController.m in Sources */,
@@ -2538,6 +2561,7 @@
 				54A64A32146809D200853CFF /* BossJimShip.m in Sources */,
 				549D84E01469E80000A3599F /* LevelButton.m in Sources */,
 				54E25D7B146B23910016ADEB /* ActionButton.m in Sources */,
+				545CE69D146C1AA9003EC9C1 /* PlayerActionBlock.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

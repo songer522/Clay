@@ -33,7 +33,7 @@
         
         if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
         {
-            [sprite setPositionAtX:462 Y:322];
+            [sprite setScreenPosition:ccp(412,285)];
         }
         else
         {

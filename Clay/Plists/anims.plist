@@ -493,7 +493,7 @@
 		<key>sequencePrefix</key>
 		<string>Large_</string>
 		<key>spritesheetPlist</key>
-		<string>TrackTimer</string>
+		<string>hudGraphics2</string>
 	</dict>
 	<key>maleBkgDancerAnim</key>
 	<dict>
@@ -563,6 +563,23 @@
 		<key>spritesheetPlist</key>
 		<string>computerLevel</string>
 	</dict>
+	<key>blockingAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3,3,3,3,3,3,4,5</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.075</string>
+		<key>group</key>
+		<string>level7</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Blocking_</string>
+		<key>spritesheetPlist</key>
+		<string>computerLevel</string>
+	</dict>
 	<key>runningAnim</key>
 	<dict>
 		<key>animationFrames</key>
@@ -612,7 +629,24 @@
 		<key>sequencePrefix</key>
 		<string>Small_</string>
 		<key>spritesheetPlist</key>
-		<string>TrackTimer</string>
+		<string>hudGraphics2</string>
+	</dict>
+	<key>battery</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3,4,5</string>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>delay</key>
+		<string>0.075</string>
+		<key>group</key>
+		<string>hud</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Battery_</string>
+		<key>spritesheetPlist</key>
+		<string>hudGraphics2</string>
 	</dict>
 	<key>trippedAnim</key>
 	<dict>

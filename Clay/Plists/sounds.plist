@@ -48,5 +48,9 @@
 	<string>fallingDeath.wav</string>
 	<key>checkpoint</key>
 	<string>checkpoint.wav</string>
+	<key>shield</key>
+	<string>Shield.wav</string>
+	<key>jimShipShoot</key>
+	<string>JimShipShoot.wav</string>
 </dict>
 </plist>

@@ -17,7 +17,8 @@ typedef enum {
     PROJECTILE_BEHAVIOR_BULLET,
     PROJECTILE_BEHAVIOR_DISCO_BALL,
     PROJECTILE_BEHAVIOR_ZOMBIE_HEAD,
-    PROJECTILE_BEHAVIOR_PLAYER_KICK
+    PROJECTILE_BEHAVIOR_PLAYER_KICK,
+    PROJECTILE_BEHAVIOR_BOSS_SHIP_BULLET
 }ProjectileBehavior;
 
 @class Sprite;
@@ -58,5 +59,6 @@ typedef enum {
 -(void) disable;
 -(void) reset;
 -(bool) checkIfOnScreen:(CGPoint)position;
+-(void) pointTowardPlayer;
 
 @end

@@ -28,6 +28,8 @@ typedef enum {
     CGPoint _velocity;
     CGRect _targetOnScreen;
     
+    NSMutableArray *_bullets;
+    
     int xthrust;
     int ythrust;
     
@@ -36,10 +38,11 @@ typedef enum {
     CGPoint _thrust; //which directions the "thrusters" are going, -1,0,1 in X, or 1,0 in y
     
     float _waitToShoot;
+    
+    int _replaceProjectileId;
 }
 
 -(void)updateVelocity:(float)dt;
--(void)updateCannon:(float)dt;
--(void)createObstacle:(NSString*)name;
-
+-(void)shootBullet;
+-(void)updateGun:(float)dt;
 @end

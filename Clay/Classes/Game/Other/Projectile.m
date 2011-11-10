@@ -12,7 +12,8 @@
 #import "Camera.h"
 #import "Level.h"
 #import "LevelManager.h"
-
+#import "LayerManager.h"
+#import "Player.h"
 
 @implementation Projectile
 
@@ -66,7 +67,10 @@
                 _isAggressive = false;
                 _offscreenPadding = 42;
                 _offsetGroundDetectionY = 10.0f;
-                
+                break;
+            case PROJECTILE_BEHAVIOR_BOSS_SHIP_BULLET:
+                _sprite = [Sprite spriteWithFile:@"bullet.png"];
+                [_sprite getCCSprite].anchorPoint = ccp(0,0);
             default:
                 break;                
                 
@@ -76,6 +80,23 @@
     return self;
 }
 
+-(void)pointTowardPlayer
+{
+    Player *player = [[LayerManager sharedLayers] getPlayer];
+    CGPoint playerPos = [player getPosition];
+    
+    float speed = 50.0f;
+    float dx = _x - playerPos.x;
+    float dy = _y - playerPos.y;
+    float angle = atan2f(dy, dx);
+    
+    float angleInRads = (angle * 3.14159)/180.0f;
+    
+    _vx = cosf(angleInRads) * speed;
+    _vy = -sinf(angleInRads) * speed;
+    
+    NSLog(@"bullet angle: %f VX: %f, VY: %f",angle,_vx,_vy);
+}
 
 -(void) setAttachedTo:(GameObject*)object
 {
