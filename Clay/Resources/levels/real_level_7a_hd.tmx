@@ -147,14 +147,9 @@
     <property name="obstacle" value="retroHurdle"/>
    </properties>
   </tile>
-  <tile id="44">
-   <properties>
-    <property name="special" value="shootTrigger"/>
-   </properties>
-  </tile>
  </tileset>
- <tileset firstgid="63" name="computer" tilewidth="64" tileheight="64">
-  <image source="tileset_level_7-hd.png" width="1984" height="768"/>
+ <tileset firstgid="63" name="Level7_TiledSheet" tilewidth="64" tileheight="64">
+  <image source="Level7_TiledSheet-hd.png" width="1984" height="768"/>
  </tileset>
  <layer name="back-4" width="1100" height="14">
   <data encoding="base64" compression="zlib">
@@ -212,7 +207,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1F1qwzAMAOCcYO1NRn9eev+LjcAMxsSx5HQ0sO+DvNhKbCmylwUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPgvvj+9AQAAAAAAAAAAAAAAAAAAAADg9J4H5l87c4/kPm6BmL31Wlv7jo7NrFdE8mhlanUPxvXy6uU06oOerXxn6hapwSimnh/VqcxH/1evPtnxWqROmVq2sTO9uLpMvPPu+mTvj+fvs/ffS0zUTG+P5kd5te9Hz/vqyB2avS96eezlH8mll8M7z0odF6lZ5q4Y9Vf7ja09Z/55bebctqLnI3Le6rhIbLHG9WqdHS/fK16B8RlH74Wo2xLrw0f1/OU6q73csnnX/XJk7ex46xqMA+Acvj69AQAAAAAAAAAATuUHtTAUTA==
+   eJzt3DEOgCAMAEBf4EtMjNHF/3/MnRBE0ADxbqRNW9K90wQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/7br19TSoGZtvETuHnrfFwAAAONbWw8AAAAAAAAAAAAAAAAAAAAAAHTvqIifidjT25tbRk6qXyg2d+5bSb9Qzn9ivrhZelezNv6m2D5ie6jJAwAAYHxz6wEAAAAAAAAAAOjKBWdDBgs=
   </data>
  </layer>
  <layer name="meta" width="1100" height="14" opacity="0.66">

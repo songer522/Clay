@@ -342,7 +342,7 @@
 			<integer>0</integer>
 		</dict>
 		<key>collideBehavior</key>
-		<string>static</string>
+		<string>falls</string>
 		<key>imageName</key>
 		<string>blank.png</string>
 		<key>offsetx</key>
@@ -368,9 +368,9 @@
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>36</integer>
+			<integer>30</integer>
 			<key>width</key>
-			<integer>31</integer>
+			<integer>18</integer>
 			<key>x</key>
 			<integer>50</integer>
 			<key>y</key>
@@ -489,6 +489,76 @@
 		<integer>0</integer>
 		<key>offsety</key>
 		<integer>-40</integer>
+		<key>playerEffect</key>
+		<string>collide</string>
+	</dict>
+	<key>dog</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>0</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>dogAnim</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>30</integer>
+			<key>width</key>
+			<integer>25</integer>
+			<key>x</key>
+			<integer>0</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>static</string>
+		<key>imageName</key>
+		<string>blank.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>-30</integer>
+		<key>playerEffect</key>
+		<string>none</string>
+	</dict>
+	<key>madDog</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>0</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>madDogAnim</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>30</integer>
+			<key>width</key>
+			<integer>25</integer>
+			<key>x</key>
+			<integer>-10</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>chargeAtPlayer</string>
+		<key>imageName</key>
+		<string>blank.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>-30</integer>
 		<key>playerEffect</key>
 		<string>collide</string>
 	</dict>
@@ -873,7 +943,7 @@
 		<key>offsetx</key>
 		<integer>0</integer>
 		<key>offsety</key>
-		<integer>-8</integer>
+		<integer>-3</integer>
 		<key>playerEffect</key>
 		<string>collide</string>
 	</dict>
