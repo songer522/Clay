@@ -14,8 +14,6 @@
 		<string>realWorld</string>
 		<key>playerOffsetY</key>
 		<integer>-9</integer>
-		<key>playerOffsetYLowRes</key>
-		<integer>25</integer>
 		<key>fileName</key>
 		<string>real_level_1.tmx</string>
 		<key>obstacleLayer</key>
@@ -60,8 +58,6 @@
 		<string>dreamWorld</string>
 		<key>playerOffsetY</key>
 		<integer>-9</integer>
-		<key>playerOffsetYLowRes</key>
-		<integer>25</integer>
 		<key>fileName</key>
 		<string>real_level_b.tmx</string>
 		<key>obstacleLayer</key>
@@ -83,8 +79,6 @@
 		<string>realWorld</string>
 		<key>playerOffsetY</key>
 		<integer>-9</integer>
-		<key>playerOffsetYLowRes</key>
-		<integer>25</integer>
 		<key>fileName</key>
 		<string>real_level_3.tmx</string>
 		<key>obstacleLayer</key>
@@ -106,8 +100,6 @@
 		<string>realWorld</string>
 		<key>playerOffsetY</key>
 		<integer>-9</integer>
-		<key>playerOffsetYLowRes</key>
-		<integer>25</integer>
 		<key>fileName</key>
 		<string>real_level_4.tmx</string>
 		<key>obstacleLayer</key>
@@ -129,8 +121,6 @@
 		<string>realWorld</string>
 		<key>playerOffsetY</key>
 		<integer>-9</integer>
-		<key>playerOffsetYLowRes</key>
-		<integer>25</integer>
 		<key>fileName</key>
 		<string>real_level_5.tmx</string>
 		<key>obstacleLayer</key>
@@ -154,8 +144,6 @@
 		<string>realWorld</string>
 		<key>playerOffsetY</key>
 		<integer>-9</integer>
-		<key>playerOffsetYLowRes</key>
-		<integer>25</integer>
 		<key>fileName</key>
 		<string>real_level_6.tmx</string>
 		<key>obstacleLayer</key>
@@ -177,8 +165,6 @@
 		<string>realWorld</string>
 		<key>playerOffsetY</key>
 		<integer>0</integer>
-		<key>playerOffsetYLowRes</key>
-		<integer>34</integer>
 		<key>fileName</key>
 		<string>real_level_7a.tmx</string>
 		<key>obstacleLayer</key>
