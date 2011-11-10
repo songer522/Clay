@@ -63,7 +63,7 @@
 		<key>playerOffsetYLowRes</key>
 		<integer>25</integer>
 		<key>fileName</key>
-		<string>real_level_2.tmx</string>
+		<string>real_level_b.tmx</string>
 		<key>obstacleLayer</key>
 		<string>front3</string>
 		<key>nextLevelName</key>
