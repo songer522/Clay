@@ -100,7 +100,7 @@
     _vx = cosf(angle) * speed;
     _vy = sinf(angle) * speed;
     
-   // NSLog(@"bullet angle: %f VX: %f, VY: %f",angle,_vx,_vy);
+    //NSLog(@"bullet angle: %f VX: %f, VY: %f",angle,_vx,_vy);
 }
 
 -(void) setAttachedTo:(GameObject*)object

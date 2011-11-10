@@ -188,7 +188,7 @@
     int x = position.x / scaledTileWidth;
     int y = ((_map.mapSize.height * scaledTileHeight) - position.y) / scaledTileHeight;
     
-   // NSLog(@"X: %d Y: %d", x, y);
+    //NSLog(@"X: %d Y: %d", x, y);
     if (x < 0) {
         x = 0;
     } else if(x > (_map.mapSize.width - 1)) {

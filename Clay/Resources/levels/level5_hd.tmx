@@ -111,6 +111,11 @@
     <property name="obstacle" value="headlessZombie"/>
    </properties>
   </tile>
+  <tile id="45">
+   <properties>
+    <property name="obstacle" value="dog"/>
+   </properties>
+  </tile>
  </tileset>
  <tileset firstgid="311" name="Meta" tilewidth="64" tileheight="64">
   <image source="meta-hd.png" width="256" height="192"/>
@@ -214,7 +219,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1ksOwiAQANC6US+h9z+m6aIJIXyGlqZG30tMXMDAzIC4LAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwLd43q7ewbVeWf7vwXps8/M4V2vtp5ZzdM76PR/bqkMaf6RO0bGRnqWx9vY49ZjQ715+o/VqGc15Ro2OjI/eyxl9qK3ZE7k3kfj53SndrfRTmtc6K7W4oz0+orS31m9FVG/8zPMxKnIuovmm/a3VsrZevkbpDEX2NPKm9ETek8i5jozr7TV6NqPxVme+D7X+jeS/522Z2f/Nv///PNtdfQEAAAAA4Od8AB4bCtU=
+   eJzt1ltqwzAQBdDkp80m2kVk/4sL/jAIYUlXtkpLeg4YDBm9ZiQrtxsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPCfPe/nfh+1S9uW719V/HcwRmlvX/fz23rzaa05bbO917G9PJT9z+QpjU1qVvZ1tsalzwX1Hq1vNl89s2tekaMr8em5XFGH1pgjyblJ+q/PztHZKp+jdr290up3tsZXHM2t961IjeJX7o9Zyb5I11vWt5XL1nj1GEd7KJnTzJ0yktwnyb5O4kZzTfdm2t/mJ++HVv1m1n/mbllZ/93jj/1vejcf8gsAAAAAAG/nBeAuC/4=
   </data>
  </layer>
  <layer name="meta" width="770" height="14" opacity="0.53">
