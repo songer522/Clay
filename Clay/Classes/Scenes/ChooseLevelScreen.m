@@ -93,10 +93,12 @@
     _background = [Sprite spriteFromFrameCacheWithName:@"CL_Background.png"];
     [_background setScreenPosition:ccp(0,0)];
     
+    /*
     _levelInfoFront = [Sprite spriteFromFrameCacheWithName:@"CL_LevelInfo.png"];
     [_levelInfoFront getCCSprite].anchorPoint = ccp(0.5f,0.5f);
     [_levelInfoFront setScreenPosition:ccp(105.0f,152.0f)];
-    
+    */
+     
     _selector = [Sprite spriteFromFrameCacheWithName:@"CL_LevelSelected.png"];
     [_selector setPosition:ccp(0,0)];
     [[_selector getCCSprite] setVisible:NO];
@@ -104,8 +106,8 @@
     _startButton = [ActionButton actionButtonWithText:@"START"];
     [_startButton setPosition:ccp(430,18)];
     
-    _backButton = [ActionButton actionButtonWithText:@"BACK"];
-    [_backButton setPosition:ccp(50, 18)];
+    //_backButton = [ActionButton actionButtonWithText:@"BACK"];
+    //[_backButton setPosition:ccp(50, 18)];
     
     
     for (int i=0; i<11; i++) {
@@ -125,12 +127,13 @@
     _levelSelectText.position = ccp(365.0f,278.0f);
     [[[LayerManager sharedLayers] currentLayer] addChild:_levelSelectText];
 
-    
+
+    /*
     _levelPanelText = [CCLabelBMFont labelWithString:@"LEVEL 1" fntFile:@"GraphicFont.fnt"];
     [_levelPanelText setScale:0.5f];
     _levelPanelText.position = ccp(158,34.5f);
     [[[LayerManager sharedLayers] currentLayer] addChild:_levelPanelText];
-    
+    */
     
     [[LayerManager sharedLayers] forgetWorkingLayer];
     [self scheduleUpdate];
@@ -180,10 +183,10 @@
     [_buttons removeAllObjects];
     [_buttons release];
     [_levelToSwitchTo release];
-    [_backButton release];
+    //[_backButton release];
     [_startButton release];
-    [_levelInfoFront release];
-    [_levelPanelText release];
+    //[_levelInfoFront release];
+    //[_levelPanelText release];
     [_selector release];
     
     [super dealloc];
