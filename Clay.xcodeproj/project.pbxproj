@@ -2369,12 +2369,15 @@
 				54FD5509146B360D00470807 /* townLevel-hd.png in Resources */,
 				54FD550A146B360D00470807 /* townLevel.plist in Resources */,
 				54FD550B146B360D00470807 /* townLevel.png in Resources */,
-				E485E14C146B84CD00A57F83 /* real_level_2.tmx in Resources */,
-				E485E14D146B84CD00A57F83 /* real_level_b_hd.tmx in Resources */,
-				E4EA6A9E146B871F009157E3 /* tileset_level_2-hd.png in Resources */,
-				E4EA6AA6146BACCD009157E3 /* real_level_c_hd.tmx in Resources */,
-				E4EA6AA7146BACCD009157E3 /* real_level_c.tmx in Resources */,
-				E4C987AD146C2E6C0043CAC5 /* real_level_7_hd.tmx in Resources */,
+				E4D9B608146A2A6E00DE707F /* real_level_2_hd.tmx in Resources */,
+				54FD5518146B5D8900470807 /* real_level_7a_hd.tmx in Resources */,
+				54FD5519146B5D8900470807 /* real_level_7a.tmx in Resources */,
+				545CE6A0146C1E0C003EC9C1 /* JimShipShoot.wav in Resources */,
+				545CE6A1146C1E0C003EC9C1 /* Shield.wav in Resources */,
+				54A183BB146C2623009209EA /* hudGraphics2-hd.plist in Resources */,
+				54A183BC146C2623009209EA /* hudGraphics2-hd.png in Resources */,
+				54A183BD146C2623009209EA /* hudGraphics2.plist in Resources */,
+				54A183BE146C2623009209EA /* hudGraphics2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -959,7 +959,7 @@
 			<real>0.5</real>
 		</dict>
 		<key>animationName</key>
-		<string>retroBirdAnim</string>
+		<string>retroCrowAnim</string>
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
