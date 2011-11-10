@@ -552,7 +552,7 @@
 			<integer>2</integer>
 		</dict>
 		<key>collideBehavior</key>
-		<string>static</string>
+		<string>falls</string>
 		<key>imageName</key>
 		<string>blank.png</string>
 		<key>offsetx</key>
@@ -587,7 +587,7 @@
 			<integer>2</integer>
 		</dict>
 		<key>collideBehavior</key>
-		<string>static</string>
+		<string>falls</string>
 		<key>imageName</key>
 		<string>blank.png</string>
 		<key>offsetx</key>
