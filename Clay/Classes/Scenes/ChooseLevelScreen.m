@@ -45,7 +45,7 @@
          _buttons = [[NSMutableArray alloc] initWithCapacity:4];
         
         _levelToSwitchTo = @"level1";
-        _buttons = [[NSMutableArray alloc] initWithCapacity:11];
+        _buttons = [[NSMutableArray alloc] initWithCapacity:7];
         _alpha = 1.0f;
         _waitToSwitch = 0.0f;
         [self load];
@@ -110,7 +110,7 @@
     //[_backButton setPosition:ccp(50, 18)];
     
     
-    for (int i=0; i<11; i++) {
+    for (int i=0; i<7; i++) {
         LevelButton *button = [LevelButton levelButtonWithCache:frameCache andId:i];
         [button setCursor:_selector];
         

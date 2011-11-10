@@ -44,8 +44,8 @@
 -(void)setInitialPosition
 {
     //initial position
-    float startX = 212;
-    float startY = 181;
+    float startX = 119; //was 212 for left panel
+    float startY = 152; //was 181 for left panel and 11 levels
     float row = floorf((_buttonId - 1) / 4);
     
     //for staggered effect, move that one down one
