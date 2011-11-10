@@ -1566,6 +1566,7 @@
 			children = (
 				54A14B1E146AFB0800E2F47A /* dummyLevel_hd.tmx */,
 				54A14B1F146AFB0800E2F47A /* dummyLevel.tmx */,
+				E4D9B607146A2A6E00DE707F /* real_level_2_hd.tmx */,
 				549D84E11469F64000A3599F /* real_level_7_hd.tmx */,
 				54EB683E1469B36D0061D69D /* real_level_1_hd.tmx */,
 				54EB68341469B2E50061D69D /* real_level_1.tmx */,
@@ -2347,6 +2348,7 @@
 				54FD5509146B360D00470807 /* townLevel-hd.png in Resources */,
 				54FD550A146B360D00470807 /* townLevel.plist in Resources */,
 				54FD550B146B360D00470807 /* townLevel.png in Resources */,
+				E4D9B608146A2A6E00DE707F /* real_level_2_hd.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

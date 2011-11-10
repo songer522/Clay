@@ -70,6 +70,74 @@
 		<key>spritesheetPlist</key>
 		<string>computerLevel</string>
 	</dict>
+	<key>townJimAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>5.0</string>
+		<key>group</key>
+		<string>level3</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Town_Jim_</string>
+		<key>spritesheetPlist</key>
+		<string>townLevel</string>
+	</dict>
+	<key>townLeafpileAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>5.0</string>
+		<key>group</key>
+		<string>level3</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Town_Leafpile_</string>
+		<key>spritesheetPlist</key>
+		<string>townLevel</string>
+	</dict>
+	<key>townRollingHayAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3,4,5,6,5,4,3,2</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level3</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Town_Rolling_</string>
+		<key>spritesheetPlist</key>
+		<string>townLevel</string>
+	</dict>
+	<key>townHaybaleAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>5.0</string>
+		<key>group</key>
+		<string>level3</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Town_Haybale_</string>
+		<key>spritesheetPlist</key>
+		<string>townLevel</string>
+	</dict>
 	<key>retroGarbageAnim</key>
 	<dict>
 		<key>animationFrames</key>
@@ -476,7 +544,7 @@
 		<key>sequencePrefix</key>
 		<string>Town_Bird_</string>
 		<key>spritesheetPlist</key>
-		<string>townCrow</string>
+		<string>townLevel</string>
 	</dict>
 	<key>runningAnim</key>
 	<dict>

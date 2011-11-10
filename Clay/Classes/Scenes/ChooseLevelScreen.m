@@ -73,7 +73,7 @@
         }
         
         if([_startButton checkIfSelected:position]) {
-            _waitToSwitch = 0.75f;
+            _waitToSwitch = 0.25f;
         }
         
         if([_backButton checkIfSelected:position]) {
@@ -87,20 +87,6 @@
     [[LayerManager sharedLayers] setWorkingLayer:self];    
 
     
-    blackBackground = [Sprite spriteWithFile:@"black_background-hd.png"];
-    
-    for (int i=0; i<7; i++) {
-        float startX = (i<6)? 100.0f : 300.0f;
-        float startY = (i % 6) * 48.0f;
-        Button *button = [Button buttonWithText:[NSString stringWithFormat:@"Level %d",(i+1)] AtPoint:CGPointMake(startX, 280.0f - startY)];
-        
-        [button setHitbox:CGRectMake(startX - 30.0f, (260.0f - startY), 120.0f, 48.0f)];
-        button.buttonId = i;
-        // [[button getLabel] setColor:ccc3(255, 255, 0)];
-        [_buttons addObject:button];
-    }
-
-    /*
     CCSpriteFrameCache* frameCache = [CCSpriteFrameCache sharedSpriteFrameCache];
     [frameCache addSpriteFramesWithFile:@"chooseLevel.plist"];
     
@@ -146,10 +132,6 @@
     [[[LayerManager sharedLayers] currentLayer] addChild:_levelPanelText];
     
     
-    
-    
-    
-    
     [[LayerManager sharedLayers] forgetWorkingLayer];
     [self scheduleUpdate];
     self.isTouchEnabled = true;    
@@ -159,41 +141,52 @@
 
 -(void)popAndSwitchToLevel:(NSString*)level
 {
-    [self unscheduleUpdate];
-    [self setVisible:NO];
-    for (Button *button in _buttons) {
-        [[button getLabel] setVisible:NO];
-    }
     [[LevelManager shared] loadLevelNamed:level];
     [[LevelManager shared] switchToNextLevel];
-    [[ComicManager shared] startComic:@"intro" StartPhase:COMIC_PHASE_PLAY_VIDEO];    
-    [[LayerManager sharedLayers] popAndPushSceneNamed:@"game"];
-    
-    [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFramesFromFile:@"chooseLevel.plist"];
-    [[CCTextureCache sharedTextureCache] removeTextureForKey:@"chooseLevel.png"];
-    [[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
+    [[ComicManager shared] startComic:@"intro" StartPhase:COMIC_PHASE_PLAY_VIDEO];
+
+    //[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[[LayerManager sharedLayers] currentScene]]];
+    [self unload];
+    [self unscheduleUpdate];
 
     
-    
+    //[[LayerManager sharedLayers] popAndPushSceneNamed:@"game"];
+    [[LayerManager sharedLayers] pushSceneNamed:@"game"];
+     
 }
-/*
+
+-(void)unload
+{
+    [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFramesFromFile:@"chooseLevel.plist"];
+    [[CCTextureCache sharedTextureCache] removeTextureForKey:@"chooseLevel.png"];
+    [[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];    
+}
+
 -(void)update:(ccTime)dt
 {
     if (_waitToSwitch>0.0f) {
-        _waitToSwitch -= dt;
-        if(_waitToSwitch<=0.0f) {
+        _waitToSwitch-=dt;
+        if(_waitToSwitch<=0.0f){
+            _waitToSwitch = 0.0f;
             [self popAndSwitchToLevel:_levelToSwitchTo];
         }
     }
     [_startButton update:dt];
     [_backButton update:dt];
-    [self popAndSwitchToLevel:@"level3"];
-
 }
 
--(void)unload
+-(void)dealloc
 {
-    [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFrameByName:@"black_background-hd.png"];
+    [_buttons removeAllObjects];
+    [_buttons release];
+    [_levelToSwitchTo release];
+    [_backButton release];
+    [_startButton release];
+    [_levelInfoFront release];
+    [_levelPanelText release];
+    [_selector release];
+    
+    [super dealloc];
 }
 
 @end

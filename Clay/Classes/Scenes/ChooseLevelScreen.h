@@ -15,7 +15,6 @@
 
 @interface ChooseLevelScreen : CCLayer
 {
-    Sprite *blackBackground;
     NSMutableArray *_buttons;
     float _waitToSwitch;
     float _alpha;
@@ -43,6 +42,6 @@
 -(void)load;
 
 -(void)popAndSwitchToLevel:(NSString*)level;
-
+-(void)unload;
 
 @end

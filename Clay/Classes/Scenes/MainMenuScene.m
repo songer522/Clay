@@ -97,6 +97,8 @@
         _transition = MAINMENU_TRANSITION_IN;
         
         
+        _switchSceneTriggered = false;
+        
         _reinit = false;
         
         [self scheduleUpdate];
@@ -177,8 +179,8 @@
     _time += dt;
     
     //oscillate between two image files
-    float rainFrame = _totalTime - ((int)_totalTime);
-    if (rainFrame <= 0.5f) {
+    float rainFrame = sinf(2.0f * _totalTime);
+    if (rainFrame > 0.0f) {
         [[_rain1 getCCSprite] setVisible:YES];
         [[_rain2 getCCSprite] setVisible:NO];
     } else {
@@ -204,13 +206,21 @@
             if (_time >=1.0f) {
                 _time = 1.0f;
             }
+            [_playButtonOrange setAlpha:(MAX(1.0f - 8.0f * _time, 0.0f))];
             [_logo setAlpha:(1.0f - _time)];
             [_rain1 setAlpha:(1.0f - _time)];
             [_rain2 setAlpha:(1.0f - _time)];
             [_copyright setAlpha:(1.0f - _time)];
             [_playButtonOrange setAlpha:(MAX(1.0f - 8.0f * _time, 0.0f))];
             [_playButtonBlue setAlpha:(MIN(1.0f,1.0f - 1.0f * _time))];
-            if (_time >=1.0f) {
+            if (!_switchSceneTriggered) {
+                if (_time >=1.0f) {
+                    [self private_switchToChooseLevel];
+                    _switchSceneTriggered = true;
+                }
+            }
+
+            /*
                 _blackFadeOut += 1.5f * dt;
                 if (_blackFadeOut >= 1.0f) {
                     _blackFadeOut = 1.0f;
@@ -218,30 +228,17 @@
                     [self private_switchToChooseLevel];
                 }
                 [_blackCover setAlpha:_blackFadeOut];
-            }
-            
+             */
+            break;
         default:
             break;
     }
 }
 
--(void)private_switchToGame
-{
-    _reinit = true;
-    [self unscheduleUpdate];
-    //[[LayerManager sharedLayers] pushSceneNamed:@"game"];
-    //[[LayerManager sharedLayers] popAndPushSceneNamed:@"game"];
-    [[ComicManager shared] startComic:@"intro" StartPhase:COMIC_PHASE_PLAY_VIDEO];
-}
 
 -(void)private_switchToChooseLevel
 {
-    //[[LayerManager sharedLayers] popAndPushSceneNamed:@"chooseLevel"];
-    //[self unscheduleUpdate];
-    //[[CCDirector sharedDirector] replaceScene:[CCTransitionFadeBL transitionWithDuration:0.0f scene:[ChooseLevelScreen scene]]];
-    [[LayerManager sharedLayers] pushSceneNamed:@"chooseLevel"];
-    //[[CCDirector sharedDirector] replaceScene:[ChooseLevelScreen scene]];
-
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ChooseLevelScreen scene]]];
     [self unload];
     [self unscheduleUpdate];
 }
