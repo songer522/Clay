@@ -172,9 +172,23 @@
 {
     int scaledTileWidth = _tileSize / 2.0f;
     int scaledTileHeight = _tileSize / 2.0f;
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
+    {
+        scaledTileWidth = _tileSize / 2.0f;
+        scaledTileHeight = _tileSize / 2.0f;
+    }
+    else
+    {
+        scaledTileWidth = _tileSize;
+        scaledTileHeight = _tileSize;
+        
+    }
+    
+    //NSLog(@"tilewidth: %d tileheight: %d", scaledTileWidth, scaledTileHeight);
     int x = position.x / scaledTileWidth;
     int y = ((_map.mapSize.height * scaledTileHeight) - position.y) / scaledTileHeight;
     
+    NSLog(@"X: %d Y: %d", x, y);
     if (x < 0) {
         x = 0;
     } else if(x > (_map.mapSize.width - 1)) {
@@ -186,7 +200,7 @@
     } else if(y > (_map.mapSize.height - 1)) {
         y = _map.mapSize.height - 1;
     }
-    
+    //NSLog(@"X: %d Y: %d", x, y);
     return ccp(x,y);
 }
 
@@ -234,14 +248,30 @@
 
         
         float topOfTile = (_map.mapSize.height - _coordinates.y - 1) * (_tileSize / 2.0f);
-        
+        if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
+        {
+            topOfTile = (_map.mapSize.height - _coordinates.y - 1) * (_tileSize / 2.0f);
+        }
+        else
+        {
+            topOfTile = (_map.mapSize.height - _coordinates.y - 1) * (_tileSize);
+        }
         //check if the test position collides with current tile
         if ([_tileCollision isEqualToString:@"full"])
         {
             _coordinates.y-=1;
 
             //NOTE: the "+1" at the end of the line below prevents an infinite loop
-            _testPosition.y = (_map.mapSize.height - _coordinates.y - 1) * (_tileSize / 2.0f) + 2;
+            
+            if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
+            {
+                _testPosition.y = (_map.mapSize.height - _coordinates.y - 1) * (_tileSize / 2.0f) + 2;
+            }
+            else
+            {
+                _testPosition.y = (_map.mapSize.height - _coordinates.y - 1) * (_tileSize) + 2;
+            
+            }
             
         }
         else if ([_tileCollision isEqualToString:@"none"])
@@ -251,7 +281,8 @@
         }
         else if([_tileCollision isEqualToString:@"ledgefull"])
         {
-            _testPosition.y = topOfTile + 32;
+//            _testPosition.y = topOfTile + 32;
+            _testPosition.y = topOfTile + 16;
             colliding = false;
             _landedOnLedge = true;
         }
