@@ -821,7 +821,7 @@
 		549ED7C21461D065008BCD98 /* HudButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HudButton.m; sourceTree = "<group>"; };
 		549ED7C31461D065008BCD98 /* TrackTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackTimer.h; sourceTree = "<group>"; };
 		549ED7C41461D065008BCD98 /* TrackTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackTimer.m; sourceTree = "<group>"; };
-		549ED7C61461D065008BCD98 /* Collidable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Collidable.h; sourceTree = "<group>"; };
+		549ED7C61461D065008BCD98 /* Collidable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Collidable.h; path = ../Other/Collidable.h; sourceTree = "<group>"; };
 		549ED7C71461D065008BCD98 /* GameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameController.h; sourceTree = "<group>"; };
 		549ED7C81461D065008BCD98 /* GameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameController.m; sourceTree = "<group>"; };
 		549ED7C91461D065008BCD98 /* GameObjectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObjectController.h; sourceTree = "<group>"; };
@@ -1796,6 +1796,7 @@
 		549ED7B11461D065008BCD98 /* GameObjects */ = {
 			isa = PBXGroup;
 			children = (
+				549ED7C61461D065008BCD98 /* Collidable.h */,
 				549ED7B21461D065008BCD98 /* GameObject.h */,
 				549ED7B31461D065008BCD98 /* GameObject.m */,
 				549ED7B41461D065008BCD98 /* GameObjectFactory.h */,
@@ -1828,7 +1829,6 @@
 		549ED7C51461D065008BCD98 /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				549ED7C61461D065008BCD98 /* Collidable.h */,
 				549ED7C71461D065008BCD98 /* GameController.h */,
 				549ED7C81461D065008BCD98 /* GameController.m */,
 				549ED7C91461D065008BCD98 /* GameObjectController.h */,
