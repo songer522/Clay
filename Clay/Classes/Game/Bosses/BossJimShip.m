@@ -65,7 +65,7 @@
     }
     
     [self updateVelocity:dt];
-    [self updateCannon:dt];
+    //[self updateCannon:dt];
     
     CGPoint position = [_sprite getPosition];
     

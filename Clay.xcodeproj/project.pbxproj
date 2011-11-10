@@ -372,6 +372,8 @@
 		54FD5509146B360D00470807 /* townLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54FD5505146B360D00470807 /* townLevel-hd.png */; };
 		54FD550A146B360D00470807 /* townLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54FD5506146B360D00470807 /* townLevel.plist */; };
 		54FD550B146B360D00470807 /* townLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 54FD5507146B360D00470807 /* townLevel.png */; };
+		54FD5518146B5D8900470807 /* real_level_7a_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 54FD5516146B5D8900470807 /* real_level_7a_hd.tmx */; };
+		54FD5519146B5D8900470807 /* real_level_7a.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 54FD5517146B5D8900470807 /* real_level_7a.tmx */; };
 		57A03E9D1452173A00F2017F /* Menu_Ending_BestTime.png in Resources */ = {isa = PBXBuildFile; fileRef = 57A03E9C1452173A00F2017F /* Menu_Ending_BestTime.png */; };
 		5F8A447014684EE100CE1FC2 /* jim_standing_barn-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8A446D14684EE100CE1FC2 /* jim_standing_barn-hd.png */; };
 		5F8A447114684EE100CE1FC2 /* manure-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8A446E14684EE100CE1FC2 /* manure-hd.png */; };
@@ -972,6 +974,8 @@
 		54FD5505146B360D00470807 /* townLevel-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "townLevel-hd.png"; sourceTree = "<group>"; };
 		54FD5506146B360D00470807 /* townLevel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = townLevel.plist; sourceTree = "<group>"; };
 		54FD5507146B360D00470807 /* townLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = townLevel.png; sourceTree = "<group>"; };
+		54FD5516146B5D8900470807 /* real_level_7a_hd.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = real_level_7a_hd.tmx; path = Resources/levels/real_level_7a_hd.tmx; sourceTree = "<group>"; };
+		54FD5517146B5D8900470807 /* real_level_7a.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = real_level_7a.tmx; path = Resources/levels/real_level_7a.tmx; sourceTree = "<group>"; };
 		57A03E9C1452173A00F2017F /* Menu_Ending_BestTime.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Menu_Ending_BestTime.png; sourceTree = "<group>"; };
 		5F8A446D14684EE100CE1FC2 /* jim_standing_barn-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jim_standing_barn-hd.png"; sourceTree = "<group>"; };
 		5F8A446E14684EE100CE1FC2 /* manure-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "manure-hd.png"; sourceTree = "<group>"; };
@@ -1564,6 +1568,8 @@
 		548C3DBB141ABDBB000567A8 /* levels */ = {
 			isa = PBXGroup;
 			children = (
+				54FD5516146B5D8900470807 /* real_level_7a_hd.tmx */,
+				54FD5517146B5D8900470807 /* real_level_7a.tmx */,
 				54A14B1E146AFB0800E2F47A /* dummyLevel_hd.tmx */,
 				54A14B1F146AFB0800E2F47A /* dummyLevel.tmx */,
 				E4D9B607146A2A6E00DE707F /* real_level_2_hd.tmx */,
@@ -2349,6 +2355,8 @@
 				54FD550A146B360D00470807 /* townLevel.plist in Resources */,
 				54FD550B146B360D00470807 /* townLevel.png in Resources */,
 				E4D9B608146A2A6E00DE707F /* real_level_2_hd.tmx in Resources */,
+				54FD5518146B5D8900470807 /* real_level_7a_hd.tmx in Resources */,
+				54FD5519146B5D8900470807 /* real_level_7a.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
