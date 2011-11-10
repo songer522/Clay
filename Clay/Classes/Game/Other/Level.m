@@ -487,7 +487,7 @@
 
 -(void)update:(float)dt Velocity:(float)vx
 {
-    NSLog(@"DT: %f",dt);
+    //NSLog(@"DT: %f",dt);
     [self setPositionAtX:_x Y:_y];
     for(MapObject *obstacle in _obstacleMapObjects) {
         [obstacle.object update:dt];
