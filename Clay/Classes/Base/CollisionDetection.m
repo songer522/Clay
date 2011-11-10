@@ -281,8 +281,7 @@
         }
         else if([_tileCollision isEqualToString:@"ledgefull"])
         {
-//            _testPosition.y = topOfTile + 32;
-            _testPosition.y = topOfTile + 16;
+            _testPosition.y = topOfTile + 32;
             colliding = false;
             _landedOnLedge = true;
         }
