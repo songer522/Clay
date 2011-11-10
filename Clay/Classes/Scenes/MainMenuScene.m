@@ -255,13 +255,16 @@
 -(void)dealloc
 {
     NSLog(@"MAIN MENU SCENE is being deallocated"); //just to make sure it gets called
-    [_trackBackground release];
+    /*
+    [_trackBackground r
+     elease];
     [_rain1 release];
     [_rain2 release];
     [_logo release];
     [_playButtonBlue release];
     [_playButtonOrange release];
     [_copyright release];
+    */
     
     [super dealloc];
 

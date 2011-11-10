@@ -14,6 +14,7 @@
 #import "GameLayer.h"
 #import "HudLayer.h"
 #import "UserData.h"
+#import "MainMenuScene.h"
 
 @implementation EndGameScene
 
@@ -88,7 +89,7 @@
         }
         
         if (shouldStart) {
-            _state = END_GAME_TRANSITION_OUT;
+            [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[MainMenuScene scene]]];
         }
     }
 }
@@ -128,16 +129,6 @@
             [_besttimer setAlpha:_alpha];
             break;
         case END_GAME_TRANSITION_OUT:
-            _alpha -= rate;
-            if (_alpha <= 0.0f) {
-                _alpha = 0.0f;
-                [[LayerManager sharedLayers] popAndPushSceneNamed:@"menu"];
-                [self unscheduleUpdate];
-            }
-            [_endGame setAlpha:_alpha];
-            [_bestTime setAlpha:_alpha];
-            [_timer setAlpha:_alpha];
-            [_besttimer setAlpha:_alpha];
             break;
         default:
             break;
