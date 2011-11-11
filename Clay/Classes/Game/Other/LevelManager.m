@@ -71,6 +71,7 @@ static LevelManager *_shared = nil;
     NSString *nextLevelName = [levelSettings valueForKey:@"nextLevelName"];
     NSString *postLevelComicName = [levelSettings valueForKey:@"postLevelComic"];
     NSString *music = [levelSettings valueForKey:@"music"];
+    NSString *preComicName = [levelSettings valueForKey:@"preComic"];
     
     if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2){
         // Use HD level for High Res screens
@@ -98,6 +99,7 @@ static LevelManager *_shared = nil;
     level.gameObjects = _gameObjects;
     level.name = levelName;
     level.musicName = music;
+    level.preComicName = preComicName;
     
     _loadedLevel = level;
     

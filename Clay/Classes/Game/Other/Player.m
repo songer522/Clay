@@ -78,6 +78,8 @@
         _soundFalling = false;
         _adjustX = 0.0f;
         
+        _y = 120; //just so the fall into pit sound doesn't go off at very beginning
+        
         _skin = [Skin instance];
         [self updateSkin:SKINTYPE_REGULAR];
     }

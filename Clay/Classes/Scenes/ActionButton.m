@@ -9,6 +9,7 @@
 #import "ActionButton.h"
 #import "LayerManager.h"
 #import "Sprite.h"
+#import "SoundEngine.h"
 
 @implementation ActionButton
 
@@ -65,6 +66,14 @@
         }
         [_buttonSelected setAlpha:_selectedAlpha];
     }
+}
+
+-(void)dealloc
+{
+    [_buttonIdle release];
+    [_buttonSelected release];
+    [_textLabel release];    
+    [super dealloc];
 }
 
 @end

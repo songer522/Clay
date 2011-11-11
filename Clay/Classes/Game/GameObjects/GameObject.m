@@ -36,6 +36,7 @@
 @synthesize isFalling = _isFalling;
 @synthesize isInvincible = _isInvincible;
 @synthesize rotateLights = _rotateLights;
+@synthesize beatsPlayerAction = _beatsPlayerAction;
 
 + (id) objectWithSprite:(Sprite*)sprite
 {
@@ -73,6 +74,7 @@
         _isInvincible = false;
         _projectile = nil;
         _aggressiveCanHit = false;
+        _beatsPlayerAction = false;
     }
     
     return self;
@@ -461,6 +463,7 @@
     } else if([behavior isEqualToString:@"chargeAtPlayer"]) {
         _collideBehavior = COLLISION_BEHAVIOR_CHARGE_AT_PLAYER;
         _currentBehavior = COLLISION_BEHAVIOR_CHARGE_AT_PLAYER;
+        _beatsPlayerAction = true;
     } else if([behavior isEqualToString:@"zombie"]) {
         _collideBehavior = COLLISION_BEHAVIOR_ZOMBIE_HEADLESS;
         _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_WALK;

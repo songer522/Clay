@@ -106,4 +106,12 @@
     [frameName release];
 }
 
+-(void)dealloc
+{
+    [_buttonGraphic release];
+    [_selector release];
+    [_trophy release];
+    [super dealloc];
+}
+
 @end

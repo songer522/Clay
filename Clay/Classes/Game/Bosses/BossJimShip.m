@@ -116,6 +116,7 @@
                     [_player startCollision:PLAYER_EFFECT_COLLIDE Source:_bullet];
                 } else {
                     [[_player getThirdAction] setKilledEnemy:YES];
+                    [[SoundEngine shared] playSound:@"deflected"];
                 }
                 [_bullet disable];
             }            
@@ -148,7 +149,7 @@
     _velocity.y = dragX * (_velocity.y + (ythrust * 7.0f - gravity) * rate);
     _velocity.x = (_velocity.x + (xthrust * 15.0f) * 0.4f * rate);
     
-    float max = 2.0f;
+    float max = 0.5f;
     if (_velocity.x < -max) {
         _velocity.x = -max;
     } else if(_velocity.x > max) {
