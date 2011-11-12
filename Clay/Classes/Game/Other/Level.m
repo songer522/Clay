@@ -36,6 +36,7 @@
 @synthesize musicName = _musicName;
 @synthesize collisionHandler = _collisionHandler;
 @synthesize playerThirdActionName = _playerThirdActionName;
+@synthesize preComicName = _preComicName;
 
 +(id)levelWithFilename:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer LayerList:(NSString*)layerList GameObjectController:(GameObjectController*)gameObjects Player:(Player*)player
 {
@@ -258,6 +259,13 @@
                     [jim getCCSprite].scale = 0.75f;
                     MapObject *mapObject = [MapObject mapObjectWithSprite:jim AboveLayer:layerBelow];
                     [_otherMapObjects addObject:mapObject];
+                } else if([special isEqualToString:@"shootTrigger"]) {
+                    Trigger *trigger = [[Trigger alloc] init];
+                    trigger.position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
+                    trigger.direction = CGPointMake(1, -1);
+                    trigger.type = TRIGGER_BOSS_SHOOT;
+                    trigger.canBeReset = true;
+                    [_triggers addObject:trigger];
                 }
             }
             
@@ -276,7 +284,10 @@
             NSString *objectName = [self getPropertyForTileCoords:coords forKey:@"object"];
             
             if (objectName) {
+                
+                
                 GameObject *object = [_gameObjects loadGameObjectWithName:objectName AddToLayer:NO];
+                
                 
                 CGPoint position = [self getXYPositionForCoordinates:coords];
                 [object setPositionAtX:position.x Y:position.y];
@@ -285,6 +296,11 @@
                 
                 if (!layerBelow) {
                     layerBelow = @"main0";
+                }
+
+                
+                if ([objectName isEqualToString:@"jimSpaceShip"]) {
+                    [[LevelManager shared] receiveBoss:[object getBoss]];
                 }
                 
                 MapObject *mapObject = [MapObject mapObjectWithSprite:object AboveLayer:layerBelow];
@@ -345,6 +361,15 @@
     }
 }
 
+-(void)resetTriggers
+{
+    for (Trigger *trigger in _triggers) {
+        if (trigger.canBeReset) {
+            trigger.triggered = false;
+        }
+    }
+}
+
 -(bool)testCollisions:(GameObject*)source
 {
     bool collision = false;
@@ -393,7 +418,7 @@
             collision = [self testCollisionWithGameObject:obstacle Source:source];
             if (collision) {
                 if ([source getCollisionBehavior] == COLLISION_BEHAVIOR_HEN_KICKED) {
-                    NSLog(@"Counting Chicken Kicked Into Cow");
+                    //NSLog(@"Counting Chicken Kicked Into Cow");
                     int maxKicksIntoCow = 10;
                     
                     if ([GCState sharedInstance].chickensKickedIntoCows < maxKicksIntoCow) {
@@ -403,12 +428,12 @@
                         double pctComplete = ((double) [GCState sharedInstance].chickensKickedIntoCows / (int)maxKicksIntoCow) * 100.0;
                         [[GCHelper sharedInstance] reportAchievement:gcAchievementChickensKickedIntoCows percentComplete:pctComplete];
                         
-                        NSLog(@"Pct Complete - Chickens Kicked Into Cows: %f", pctComplete);
+                        //NSLog(@"Pct Complete - Chickens Kicked Into Cows: %f", pctComplete);
                     }
                     
                     if ([GCState sharedInstance].chickensKickedIntoCows >= maxKicksIntoCow) {
                         //ADD CODE TO DISPLAY ACHIEVEMENT
-                        NSLog(@"DISPLAY Chicken Kick Achievement");
+                        //NSLog(@"DISPLAY Chicken Kick Achievement");
                     }
                 
                 }
@@ -487,7 +512,7 @@
 
 -(void)update:(float)dt Velocity:(float)vx
 {
-    NSLog(@"DT: %f",dt);
+    //NSLog(@"DT: %f",dt);
     [self setPositionAtX:_x Y:_y];
     for(MapObject *obstacle in _obstacleMapObjects) {
         [obstacle.object update:dt];

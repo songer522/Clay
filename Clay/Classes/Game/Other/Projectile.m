@@ -12,7 +12,8 @@
 #import "Camera.h"
 #import "Level.h"
 #import "LevelManager.h"
-
+#import "LayerManager.h"
+#import "Player.h"
 
 @implementation Projectile
 
@@ -58,7 +59,7 @@
             case PROJECTILE_BEHAVIOR_ZOMBIE_HEAD:
                 _sprite = [Sprite spriteWithFile:@"zombieHead.png"];
                 [_sprite getCCSprite].anchorPoint = ccp(0.5f, 0.5f);
-                [[_sprite getCCSprite] setScale:0.9];
+                [[_sprite getCCSprite] setScale:0.8];
                 _vx = 250 + rand()%100;
                 _angularVelocity = rand()%10 + 10;                
                 _vy = 50.0f;
@@ -66,7 +67,13 @@
                 _isAggressive = false;
                 _offscreenPadding = 42;
                 _offsetGroundDetectionY = 10.0f;
-                
+                break;
+            case PROJECTILE_BEHAVIOR_BOSS_SHIP_BULLET:
+                _sprite = [Sprite spriteWithFile:@"shipBullet2.png"];
+                [_sprite getCCSprite].anchorPoint = ccp(0,0);
+                [[_sprite getCCSprite] setVisible:NO];
+                _isAggressive = false;
+                break;
             default:
                 break;                
                 
@@ -76,6 +83,26 @@
     return self;
 }
 
+//so far used only by boss ship
+-(void)pointTowardPlayer
+{
+    Player *player = [[LayerManager sharedLayers] getPlayer];
+    CGPoint playerPos = [player getPosition];
+    
+    float speed = 280.0f;
+    float dx = (playerPos.x + 10.0f) - _x;
+    float dy = (playerPos.y + 20.0f) - _y;
+    float angle = atan2f(dy, dx);
+    
+    float angleInDegs = (angle * 180.0f)/3.14159f - 45;
+    
+    _vx = cosf(angle) * speed;
+    _vy = sinf(angle) * speed;
+    
+    [_sprite getCCSprite].rotation = angleInDegs;
+    
+    //NSLog(@"bullet angle: %f VX: %f, VY: %f",angle,_vx,_vy);
+}
 
 -(void) setAttachedTo:(GameObject*)object
 {
@@ -95,6 +122,11 @@
 -(void)setBoundingBox:(CGRect)boundingBox
 {
     _boundingBox = boundingBox;
+}
+
+-(bool) isActive
+{
+    return _isActive;
 }
 
 -(void) setPosition:(CGPoint)point

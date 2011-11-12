@@ -399,6 +399,7 @@ static CCTextureCache *sharedTextureCache;
 		return;
 	
     CCLOG(@"cocos2d: CCTextureCache: removing texture: %@", name);
+    NSLog(@"Retain Count: %d",[textures_ retainCount]);
 	[textures_ removeObjectForKey:name];
 }
 

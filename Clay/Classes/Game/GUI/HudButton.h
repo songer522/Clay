@@ -25,6 +25,7 @@ typedef enum {
     Sprite *_graphic;
     Sprite *_greenOverlay;
     
+    float _scale;
     bool _initialized;
 }
 

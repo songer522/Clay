@@ -122,6 +122,7 @@ static ComicManager *_shared = nil;
                 break;
             case COMIC_PHASE_BARS_OUT:
                 if(_loadNextLevel) { [[LevelManager shared] loadNextLevel]; }
+                
                 [Camera sharedCamera].trackingTarget = false;
                 [[Camera sharedCamera] snapToTarget];
                 [[SoundEngine shared] cueFadeIn];
@@ -129,6 +130,7 @@ static ComicManager *_shared = nil;
                 {
                     [[LevelManager shared] switchToNextLevel];
                 }
+                [_gameLayer unpause];
                 [_gameLayer initForLevel];
                 _gameLayer.visible = true;
                 [[CCDirector sharedDirector] startAnimation];
@@ -169,9 +171,9 @@ static ComicManager *_shared = nil;
 
 -(void)endTheGame
 {
-    CCScene *endGame = [[LayerManager sharedLayers] getSceneForKey:@"endGame"];
-    
-    [[CCDirector sharedDirector] pushScene:endGame];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[EndGameScene scene]]];
+    _showEndGame = false;
+    _introMovie = false;
 }
 
 -(void)dealloc

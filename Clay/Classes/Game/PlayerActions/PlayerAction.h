@@ -26,6 +26,7 @@
 -(Player*)getParent;
 -(NSMutableArray*)getProjectiles;
 -(bool)canAggressiveHit;
+-(bool)canStartInMidAir;
 
 @end
 
@@ -47,6 +48,7 @@
 -(void) initialize; //individual actions can setup specific vars here
 
 -(void) enableAction; //called when action can be called again
+
 
 
 @end

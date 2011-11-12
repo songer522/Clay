@@ -14,6 +14,11 @@
 #import "Camera.h"
 #import "LevelManager.h"
 #import "Level.h"
+#import "LayerManager.h"
+#import "SoundEngine.h"
+#import "Projectile.h"
+#import "Player.h"
+#import "PlayerAction.h"
 
 @implementation BossJimShip
 
@@ -28,11 +33,15 @@
     [_sprite setAlpha:1.0f];
     [[_sprite getCCSprite] setVisible:YES];
 
+    _bullets = [[NSMutableArray alloc] initWithCapacity:3];
     
     _waitToShoot = 5.0f;
     xthrust = -1;
     ythrust = 0;
     _firstUpdate = true;
+    
+
+    _replaceProjectileId = 0;
 }
 
 -(void)setSprite:(Sprite *)sprite
@@ -43,16 +52,32 @@
 }
 
 
--(void)createObstacle:(NSString*)name
+-(void)triggerAttack
 {
-    GameObject *object = [_level addObstacleNamed:name];
-    CGPoint point = [[Camera sharedCamera] convertToWorldXY:[_sprite getPosition]];
-    //[object setPosition:ccp(point.x + 50,point.y + 150)];
-    [object setPosition:[[Camera sharedCamera] convertToWorldXY:ccp(50,50)]];
-    [object setVx:50.0f];
-    [object setVy:5.0f];    
+    [self shootBullet];
 }
 
+-(void)shootBullet
+{
+    [[SoundEngine shared] playSound:@"jimShipShoot"];
+    
+    Projectile *bullet = [_bullets objectAtIndex:_replaceProjectileId];
+    _replaceProjectileId = (_replaceProjectileId + 1) % 3;
+    
+    CGPoint shipWorldPos = [[Camera sharedCamera] convertToWorldXY:[_sprite getScreenPosition]];    
+    [bullet setPosition:CGPointMake(shipWorldPos.x - 120,shipWorldPos.y + 20.0f)];
+    [bullet reset];
+}
+
+-(void)updateGun:(float)dt
+{
+    /*
+    _waitToShoot -= dt;
+    if (_waitToShoot<=0.0f) {
+        _waitToShoot = rand()%4 + 0.5f;
+        [self shootBullet];
+    }*/
+}
 
 -(void)update:(float)dt
 {
@@ -62,14 +87,41 @@
         _firstUpdate = false;
         _velocity = CGPointMake(-5.0f, 0.0f);
         [_sprite setScreenPosition:ccp(300,230)];
+        for (int i=0; i<3; i++) {
+            Projectile *_bullet = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_BOSS_SHIP_BULLET];
+            [_bullet setActive:NO];
+            [_bullets addObject:_bullet];
+        }
     }
     
     [self updateVelocity:dt];
-    [self updateCannon:dt];
+    [self updateGun:dt];
     
     CGPoint position = [_sprite getPosition];
     
     [_sprite setScreenPosition:CGPointMake(position.x + _velocity.x, position.y + _velocity.y)];
+    
+    for (Projectile *_bullet in _bullets) {
+        if ([_bullet isActive]) {
+            [_bullet pointTowardPlayer];
+            [_bullet update:dt];
+            
+            
+            Player *_player = [[LayerManager sharedLayers] getPlayer];
+            
+            Level *currentLevel = [[LevelManager shared] currentLevel];
+            bool collision = [currentLevel testCollisionWithGameObject:_bullet Source:_player];
+            if (collision) {
+                if(![[_player getThirdAction] isActive]) {
+                    [_player startCollision:PLAYER_EFFECT_COLLIDE Source:_bullet];
+                } else {
+                    [[_player getThirdAction] setKilledEnemy:YES];
+                    [[SoundEngine shared] playSound:@"deflected"];
+                }
+                [_bullet disable];
+            }            
+        }
+    }
 }
 
 -(void)updateVelocity:(float)dt
@@ -97,7 +149,7 @@
     _velocity.y = dragX * (_velocity.y + (ythrust * 7.0f - gravity) * rate);
     _velocity.x = (_velocity.x + (xthrust * 15.0f) * 0.4f * rate);
     
-    float max = 2.0f;
+    float max = 0.5f;
     if (_velocity.x < -max) {
         _velocity.x = -max;
     } else if(_velocity.x > max) {
@@ -110,35 +162,6 @@
         _velocity.y = max;
     }
     
-}
-
--(void)updateCannon:(float)dt
-{
-    _waitToShoot -= dt;
-    if (_waitToShoot <= 0.0f) {
-        _waitToShoot = rand()%5 + 2.0f;
-        
-        RetroObstacleType type = (int)(rand()%5);
-        switch (type) {
-            case RETRO_PIG:
-                [self createObstacle:@"retroHurdle"];
-                break;
-            case RETRO_BIRD:
-                [self createObstacle:@"retroHurdle"];
-                break;
-            case RETRO_HURDLE:
-                [self createObstacle:@"retroHurdle"];
-                break;
-            case RETRO_ZOMBIE:
-                [self createObstacle:@"retroHurdle"];
-                break;
-            case RETRO_GARBAGE:
-                [self createObstacle:@"retroHurdle"];
-                break;
-            default:
-                break;
-        }
-    }
 }
 
 

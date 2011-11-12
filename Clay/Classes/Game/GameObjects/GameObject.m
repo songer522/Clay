@@ -36,6 +36,7 @@
 @synthesize isFalling = _isFalling;
 @synthesize isInvincible = _isInvincible;
 @synthesize rotateLights = _rotateLights;
+@synthesize beatsPlayerAction = _beatsPlayerAction;
 
 + (id) objectWithSprite:(Sprite*)sprite
 {
@@ -73,6 +74,7 @@
         _isInvincible = false;
         _projectile = nil;
         _aggressiveCanHit = false;
+        _beatsPlayerAction = false;
     }
     
     return self;
@@ -182,7 +184,8 @@
         _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_ZOMBIE_HEAD];
         [_projectile reset];
         [_projectile setPosition:CGPointMake(_x, _y + 41)];
-        [_projectile setBoundingBox:CGRectMake(15, 33, 30, 30)];
+       // [_projectile setBoundingBox:CGRectMake(15, 33, 30, 30)];
+        [_projectile setBoundingBox:CGRectMake(15, 33, 15, 30)];
         GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
         [[gameLayer.player getThirdAction] setKilledEnemy:YES];
     } else if(_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_FADE) {
@@ -460,6 +463,7 @@
     } else if([behavior isEqualToString:@"chargeAtPlayer"]) {
         _collideBehavior = COLLISION_BEHAVIOR_CHARGE_AT_PLAYER;
         _currentBehavior = COLLISION_BEHAVIOR_CHARGE_AT_PLAYER;
+        _beatsPlayerAction = true;
     } else if([behavior isEqualToString:@"zombie"]) {
         _collideBehavior = COLLISION_BEHAVIOR_ZOMBIE_HEADLESS;
         _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_WALK;
@@ -503,6 +507,12 @@
     } else {
         _playerEffect = PLAYER_EFFECT_NONE;
     }
+}
+
+-(Boss*)getBoss
+{
+    NSAssert(_boss!=nil,@"Called before boss was set.");
+    return _boss;
 }
 
 -(void) setOriginalAnimation:(NSString*)animation

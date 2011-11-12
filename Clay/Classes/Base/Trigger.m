@@ -14,6 +14,7 @@
 @synthesize direction = _direction;
 @synthesize type = _type;
 @synthesize triggered = _triggered;
+@synthesize canBeReset = _canBeReset;
 
 - (id)init
 {
@@ -21,6 +22,7 @@
     if (self) {
         // Initialization code here.
         _triggered = false;
+        _canBeReset = false;
     }
     
     return self;

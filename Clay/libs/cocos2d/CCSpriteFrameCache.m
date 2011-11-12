@@ -232,7 +232,8 @@ static CCSpriteFrameCache *sharedSpriteFrameCache_=nil;
         texturePath = [plist stringByDeletingPathExtension];
         texturePath = [texturePath stringByAppendingPathExtension:@"png"];
 		
-		CCLOG(@"cocos2d: CCSpriteFrameCache: Trying to use file '%@' as texture", texturePath); 
+		//XECUDEV - commenting out so doesn't cause glitch in framerate
+        //CCLOG(@"cocos2d: CCSpriteFrameCache: Trying to use file '%@' as texture", texturePath); 
     }
 	
     CCTexture2D *texture = [[CCTextureCache sharedTextureCache] addImage:texturePath];

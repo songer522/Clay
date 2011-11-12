@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="1050" height="14" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" name="Barn" tilewidth="64" tileheight="64">
+  <image source="tileset_level_2-hd.png" width="1792" height="832"/>
+ </tileset>
+ <tileset firstgid="365" name="Icons" tilewidth="64" tileheight="64">
+  <image source="TrackLapse_Icons-hd.png" width="640" height="320"/>
+  <tile id="0">
+   <properties>
+    <property name="obstacle" value="hurdle"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="special" value="spawnpoint"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="special" value="checkpoint"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="special" value="nextlevelNE"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="layerBelow" value="back-1"/>
+    <property name="object" value="jimBarn"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="obstacle" value="hen"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="obstacle" value="cow"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="obstacle" value="manure"/>
+   </properties>
+  </tile>
+  <tile id="29">
+   <properties>
+    <property name="obstacle" value="stoneChicken"/>
+   </properties>
+  </tile>
+  <tile id="30">
+   <properties>
+    <property name="obstacle" value="pig"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="415" name="Meta" tilewidth="64" tileheight="64">
+  <image source="meta-hd.png" width="256" height="192"/>
+  <tile id="0">
+   <properties>
+    <property name="collision" value="full"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="collision" value="slantleft"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="collision" value="slantright"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="collision" value="none"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="back-2" width="1050" height="14">
+  <properties>
+   <property name="speedx" value=".60"/>
+   <property name="speedy" value="1.0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztz9ENgjAARVHqFoq4/1oqsAXocwBs+gMJOSe8NPTjJu06AAAAAAAAAAAAAAAAAAAAAAAAAAD28Mxe2Tsbsymb/9y3nvr6+vr6+vr6+vr6+vr6+vX+WSzZmn1+PyVfdinb962nvr6+vr6+vr6+vr6+vr5+vX8W17zllvXZPRuyR9m+bz319fX19fX19fX19fX19fXrfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADjCFxCa8NU=
+  </data>
+ </layer>
+ <layer name="back-1" width="1050" height="14">
+  <properties>
+   <property name="speedx" value="0.8"/>
+   <property name="speedy" value="1.0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztzcdRVgEAhdEfEUV7UMTUAyoK9gBme1Ax0YM59IABQw8YMNTkV8HbvIUzb843czd3c+Zms9mBNt8OtoV2qB1ui+1IOzrym2MwGAwGg8FgMBgMBoMx+E2lY+14W2on2nI72U610+1MOzvyYzAYDAaDwWAwGAwGgzH8TaWVdq6dbxfaarvYLrW1tt4uj/wYDAaDwWAwGAwGg8FgDH9TaaNttivtarvWrrcb7Wa71W6P/BgMBoPBYDAYDAaDwWAMf1PpTrvb7rWtdr89aA/bo/a4bY/8GAwGg8FgMBgMBoPBYAx/U+lJe9qeteftRXvZXrXX7U17O/JjMBgMBoPBYDAYDAaDMfxNpZ32rr1vH9rHtts+tc/tS/s68mMwGAwGg8FgMBgMBoMx/E2lvfatfW8/2s+233613+1P+zvyYzAYDAaDwWAwGAwGgzH8SZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSf+jf5B80fU=
+  </data>
+ </layer>
+ <layer name="main0" width="1050" height="14">
+  <properties>
+   <property name="speedx" value="1.0"/>
+   <property name="speedy" value="1.0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt1DlwFmUAh/F8lSi5uEJUOsEQjiQkEe0Qc3AECKCdaIBAEhIUeg8QFFToAW/w7OUWFJAewZNTey65USl4yqXYnWR212/n+55n5te+8+5/3tmSEjMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMyvGvsVu7MFe7MN+HMBBfIdDOIzv8QOO4CiO4UccT/CcrOU+0blPdO4TnftE5z7RuU907hOd+0TnPtG5T3TuE537ROc++W04SlGGclSgEiMwEqMwGmNQhbGoxqN4DI9jHE7gJ5zEKfyMX/ArfsPv+AOncQZncQ7ncQF/4q8Ez0nqu9LYJ3j/OPvEOcd93Md9inMf/8++H/dxH/dxH/dxH/fJ7j6FUg0mohaTMBlTMBV1qEcDpqERTWjGU5iOp/EMLuISLuMKruJvXMN13MBN3MJt3MFd/IN/8R/uJXhOUt811HPC7hz8ruD94+wT55ywe6a9z2DeTxb2ydf7cR/3SXufYv4/+37cx33cx33cx33cJ+v7FEotaEUb2jELszEHc9GBeZiPBejEQizCYjyPF/BQrqRkGB7GIxiOUpShHBWoxAiMxCiMxhhUYSyqc8mdk9R3DfWcsDsHvyt4/zj7xDkn7J5p7zOY95OFffL1ftzHfdLep5j/z74f93Ef93Ef93Ef98n6PoVSF5ZiGZajGyuwEj3oRR9WoR8DWI1X8CrWYC2eYLvxmIAnUYOJqMUkTMYUTEUd6tGAaWhEE5pzyZ2T1HcN9ZywOwe/K3j/OPvEOSfsnmnvM5j3k4V98vV+3Md90t6nmP/Pvh/3cR/3cR/3cR/3yfo+hdJreB1v4E2sw3q8hQ3YiLfxDjZhM97Fe3gfW7AVM9juWczEc2hBK9rQjlmYjTmYiw7Mw3wsQCcW5pI7J6nvGuo5YXcOflfw/nH2iXNO2D3T3mcw7ycL++Tr/biP+6S9TzH/n30/7uM+7uM+7uM+7pP1fQqlbdiOHfgAH+IjfIxP8Ck+w07swuf4Al/iK3yNb/Ai2y3BS3gZXViKZViObqzASvSgF31YhX4MYHUuuXOS+q445wTvHPyu4P3j7BPnnLBt/899wt5PFvbJwvtxH/fx/+z7cR/3cR/3cR/3cZ/i2sfMzMzMzMzMzB7sPmza3es=
+  </data>
+ </layer>
+ <layer name="front2" width="1050" height="14">
+  <properties>
+   <property name="speedx" value="1.2"/>
+   <property name="speedy" value="1.0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztx7ENACAMBLHsvyiEKfgZEOls6YqrAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKastFOn47333nvvvffee//wAAAAAL9dnmW3+g==
+  </data>
+ </layer>
+ <layer name="front3" width="1050" height="14">
+  <properties>
+   <property name="speedx" value="1.0"/>
+   <property name="speedy" value="1.0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt3EsOwiAQANB6YT+Jegi9tGHRDaGVf415L+mmKYWBGeoGlwUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADq3U5HjwAAAAAAAAAAAAAAAAAA4D89G89xvhPt75nvzHku9cxjwNnTOI6e/R4Vw6i2JfGU5ldqHK05mvKafH65ZH57rMV69XaZNG81a16a/1v7T+n9kj5q1+UXY2uVqsGWnE3lTO69FqVr07JPB99qfkTdB7Nqf1UzT73b9KrfWM8czP0NVjP23t+XGbk76lsbxOPf2sNaYwn9xGMbVd97e//eHl3brsTV/8xAd2d1BQAAAAAAAAAc7AONhywz
+  </data>
+ </layer>
+ <layer name="meta" width="1050" height="14" opacity="0.85">
+  <properties>
+   <property name="speedx" value="1.0"/>
+   <property name="speedy" value="1.0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt2EEJAEAMA8HWv4haPRNXAmUG1kCeqQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC2TEuSJEmSpHRXpHeUJEmSJEnpd+CfB4j94j0=
+  </data>
+ </layer>
+</map>

@@ -2,15 +2,21 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>trackToFarm</key>
-	<string>StoryText_2.mp4</string>
-	<key>farmToCornfields</key>
-	<string>StoryText_3.mp4</string>
+	<key>level1</key>
+	<string>Part2_AfterLv1.mp4</string>
+	<key>level2</key>
+	<string>Part3_AfterLv2.mp4</string>
 	<key>endGame</key>
 	<string>endGame</string>
 	<key>intro</key>
-	<string>StoryText_1.mp4</string>
-	<key>beforeDisco</key>
-	<string>StoryText_4.mp4</string>
+	<string>Part1_BeforeLv1.mp4</string>
+	<key>level3</key>
+	<string>Part4_AfterLv3.mp4</string>
+	<key>level4</key>
+	<string>Part5_AfterLv4.mp4</string>
+	<key>level5</key>
+	<string>Part6_AfterLv5.mp4</string>
+	<key>level6</key>
+	<string>Part7_AfterLv6.mp4</string>
 </dict>
 </plist>

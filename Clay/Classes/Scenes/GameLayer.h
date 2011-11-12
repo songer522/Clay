@@ -42,6 +42,8 @@
     
     Boss *_boss;
     
+    bool _paused;
+    
     double time;
     
 }
@@ -60,7 +62,8 @@
 
 -(void)setupHud:(HudLayer*)hud;
 -(HudLayer*)getHud;
-
+-(void)setBoss:(Boss*)boss;
+-(void)unpause;
 
 -(NSMutableArray*)getGameObjectsList;
 

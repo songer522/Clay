@@ -78,6 +78,8 @@
         _soundFalling = false;
         _adjustX = 0.0f;
         
+        _y = 120; //just so the fall into pit sound doesn't go off at very beginning
+        
         _skin = [Skin instance];
         [self updateSkin:SKINTYPE_REGULAR];
     }
@@ -279,8 +281,10 @@
 
 -(void)startThirdAction
 {
-    if (!_isJumping && !_isInMidAir && !_isTripping && _waitToGetUp <=0.0f) {        
-        [_thirdAction startAction];
+    if ((!_isJumping && !_isInMidAir) || [_thirdAction canStartInMidAir]){
+        if(!_isTripping && _waitToGetUp <=0.0f) {        
+            [_thirdAction startAction];
+        }
     }
 }
 
@@ -298,6 +302,8 @@
         _thirdAction = [PlayerActionFactory buildPlayerAction:PLAYER_ACTION_DODGE];
     } else if([action isEqualToString:@"shoot"]) {
         _thirdAction = [PlayerActionFactory buildPlayerAction:PLAYER_ACTION_SHOOT];
+    } else if([action isEqualToString:@"block"]) {
+        _thirdAction = [PlayerActionFactory buildPlayerAction:PLAYER_ACTION_BLOCK];
     }
     
     [_thirdAction setParent:self];

@@ -8,6 +8,7 @@
 
 #import "cocos2d.h"
 #import "LayerManager.h"
+#import "GameLayer.h"
 
 @implementation LayerManager
 
@@ -109,6 +110,12 @@ static LayerManager *_sharedLayers = nil;
 {
     [[CCDirector sharedDirector] popScene];
     [self pushSceneNamed:scene];
+}
+
+-(Player*)getPlayer
+{
+    GameLayer *gameLayer = _currentLayer;
+    return gameLayer.player;
 }
 
 @end
