@@ -16,5 +16,13 @@
 	<string>female_zombie</string>
 	<key>level7</key>
 	<string>computerLevel</string>
+	<key>dummyLevel</key>
+	<string>none</string>
+	<key>player</key>
+	<string>characterAnims</string>
+	<key>player8</key>
+	<string>eightBitSkin</string>
+	<key>hud</key>
+	<string>hudGraphics2</string>
 </dict>
 </plist>

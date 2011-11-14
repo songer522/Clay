@@ -30,11 +30,17 @@
 
 +(id) spriteFromFrameCacheWithName:(NSString*)frameName
 {
-    return [[self alloc] initFromFrameCacheWithName:frameName];
+    return [[self alloc] initFromFrameCacheWithName:frameName AddToLayer:YES];
 }
            
-            
--(id) initFromFrameCacheWithName:(NSString*)frameName
+
++(id) spriteFromFrameCacheWithName:(NSString*)frameName AddToLayer:(bool)shouldAddToLayer
+{
+    return [[self alloc] initFromFrameCacheWithName:frameName AddToLayer:shouldAddToLayer];
+}
+       
+
+-(id) initFromFrameCacheWithName:(NSString*)frameName AddToLayer:(bool)shouldAddToLayer
 {
     if((self = [self init]))
     {
@@ -42,7 +48,9 @@
 
         [self initializeSpriteOnceLoaded];
         
-        [[[LayerManager sharedLayers] currentLayer] addChild:sprite_cc];
+        if (shouldAddToLayer) {
+            [[[LayerManager sharedLayers] currentLayer] addChild:sprite_cc];            
+        }
     }
     return self;
 }
@@ -63,7 +71,6 @@
     
     if((self = [self init]))
     {
-        //NSLog(@"Image File: %@",filename);
         sprite_cc = [[CCSprite spriteWithFile:filename] retain];
         
         [self initializeSpriteOnceLoaded];

@@ -46,6 +46,8 @@
 
 -(NSMutableArray*)getObstacleArray;
 
+-(void)dumpMemoryForLevel:(Level*)level;
+
 -(void)receiveBoss:(Boss*)boss;
 
 @end

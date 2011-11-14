@@ -339,6 +339,15 @@
 		54ABFD7414630876006F0C88 /* menuTextures.png in Resources */ = {isa = PBXBuildFile; fileRef = 54ABFD7014630876006F0C88 /* menuTextures.png */; };
 		54AF542914438E7500EAA964 /* Menu_Ending_Temp.png in Resources */ = {isa = PBXBuildFile; fileRef = 54AF542814438E7500EAA964 /* Menu_Ending_Temp.png */; };
 		54CA7A6A1471A5C6002B01AA /* memory.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54CA7A691471A5C6002B01AA /* memory.plist */; };
+		54CA7A701471B8B9002B01AA /* barnLevel-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54CA7A6C1471B8B9002B01AA /* barnLevel-hd.plist */; };
+		54CA7A711471B8B9002B01AA /* barnLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54CA7A6D1471B8B9002B01AA /* barnLevel-hd.png */; };
+		54CA7A721471B8B9002B01AA /* barnLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54CA7A6E1471B8B9002B01AA /* barnLevel.plist */; };
+		54CA7A731471B8B9002B01AA /* barnLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 54CA7A6F1471B8B9002B01AA /* barnLevel.png */; };
+		54CA7A781471B8C6002B01AA /* trackLevel-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54CA7A741471B8C6002B01AA /* trackLevel-hd.plist */; };
+		54CA7A791471B8C6002B01AA /* trackLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54CA7A751471B8C6002B01AA /* trackLevel-hd.png */; };
+		54CA7A7A1471B8C6002B01AA /* trackLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54CA7A761471B8C6002B01AA /* trackLevel.plist */; };
+		54CA7A7B1471B8C6002B01AA /* trackLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 54CA7A771471B8C6002B01AA /* trackLevel.png */; };
+		54CA7A7E1471C97C002B01AA /* TextureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CA7A7D1471C97C002B01AA /* TextureManager.m */; };
 		54CD29DD143BA21400F805E0 /* UI_Button_Jumping.png in Resources */ = {isa = PBXBuildFile; fileRef = 54CD29DA143BA21400F805E0 /* UI_Button_Jumping.png */; };
 		54CD29DE143BA21400F805E0 /* UI_Button_Kicking.png in Resources */ = {isa = PBXBuildFile; fileRef = 54CD29DB143BA21400F805E0 /* UI_Button_Kicking.png */; };
 		54CD29DF143BA21400F805E0 /* UI_Button_Sprinting.png in Resources */ = {isa = PBXBuildFile; fileRef = 54CD29DC143BA21400F805E0 /* UI_Button_Sprinting.png */; };
@@ -939,6 +948,16 @@
 		54ABFD7014630876006F0C88 /* menuTextures.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuTextures.png; sourceTree = "<group>"; };
 		54AF542814438E7500EAA964 /* Menu_Ending_Temp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Menu_Ending_Temp.png; sourceTree = "<group>"; };
 		54CA7A691471A5C6002B01AA /* memory.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = memory.plist; sourceTree = "<group>"; };
+		54CA7A6C1471B8B9002B01AA /* barnLevel-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "barnLevel-hd.plist"; sourceTree = "<group>"; };
+		54CA7A6D1471B8B9002B01AA /* barnLevel-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "barnLevel-hd.png"; sourceTree = "<group>"; };
+		54CA7A6E1471B8B9002B01AA /* barnLevel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = barnLevel.plist; sourceTree = "<group>"; };
+		54CA7A6F1471B8B9002B01AA /* barnLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = barnLevel.png; sourceTree = "<group>"; };
+		54CA7A741471B8C6002B01AA /* trackLevel-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "trackLevel-hd.plist"; sourceTree = "<group>"; };
+		54CA7A751471B8C6002B01AA /* trackLevel-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trackLevel-hd.png"; sourceTree = "<group>"; };
+		54CA7A761471B8C6002B01AA /* trackLevel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = trackLevel.plist; sourceTree = "<group>"; };
+		54CA7A771471B8C6002B01AA /* trackLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trackLevel.png; sourceTree = "<group>"; };
+		54CA7A7C1471C97C002B01AA /* TextureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureManager.h; sourceTree = "<group>"; };
+		54CA7A7D1471C97C002B01AA /* TextureManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextureManager.m; sourceTree = "<group>"; };
 		54CB72511460506400311904 /* doublejump.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = doublejump.wav; path = Resources/sounds/doublejump.wav; sourceTree = "<group>"; };
 		54CB72521460506400311904 /* supersonic.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = supersonic.wav; path = Resources/sounds/supersonic.wav; sourceTree = "<group>"; };
 		54CD29DA143BA21400F805E0 /* UI_Button_Jumping.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UI_Button_Jumping.png; sourceTree = "<group>"; };
@@ -1829,6 +1848,8 @@
 				549ED7D81461D065008BCD98 /* SavePoint.m */,
 				548D2D1B1461E871005E1AC0 /* Skin.h */,
 				548D2D1C1461E871005E1AC0 /* Skin.m */,
+				54CA7A7C1471C97C002B01AA /* TextureManager.h */,
+				54CA7A7D1471C97C002B01AA /* TextureManager.m */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -1907,6 +1928,10 @@
 		549ED84B1461D144008BCD98 /* barn */ = {
 			isa = PBXGroup;
 			children = (
+				54CA7A6C1471B8B9002B01AA /* barnLevel-hd.plist */,
+				54CA7A6D1471B8B9002B01AA /* barnLevel-hd.png */,
+				54CA7A6E1471B8B9002B01AA /* barnLevel.plist */,
+				54CA7A6F1471B8B9002B01AA /* barnLevel.png */,
 				549ED84D1461D144008BCD98 /* cow_died-hd.plist */,
 				549ED84E1461D144008BCD98 /* cow_died-hd.png */,
 				549ED84F1461D144008BCD98 /* cow_died.plist */,
@@ -1988,6 +2013,10 @@
 		549ED89A1461D145008BCD98 /* track */ = {
 			isa = PBXGroup;
 			children = (
+				54CA7A741471B8C6002B01AA /* trackLevel-hd.plist */,
+				54CA7A751471B8C6002B01AA /* trackLevel-hd.png */,
+				54CA7A761471B8C6002B01AA /* trackLevel.plist */,
+				54CA7A771471B8C6002B01AA /* trackLevel.png */,
 				54A0A68E146C6A1C002CCC26 /* smallhurdle-hd.png */,
 				54A0A68F146C6A1C002CCC26 /* smallhurdle.png */,
 				549ED89B1461D145008BCD98 /* bighurdle.png */,
@@ -2363,6 +2392,14 @@
 				54A1B141146C9D89005BA189 /* chooseSelection.wav in Resources */,
 				54A1B143146CA971005BA189 /* shuffling.wav in Resources */,
 				54CA7A6A1471A5C6002B01AA /* memory.plist in Resources */,
+				54CA7A701471B8B9002B01AA /* barnLevel-hd.plist in Resources */,
+				54CA7A711471B8B9002B01AA /* barnLevel-hd.png in Resources */,
+				54CA7A721471B8B9002B01AA /* barnLevel.plist in Resources */,
+				54CA7A731471B8B9002B01AA /* barnLevel.png in Resources */,
+				54CA7A781471B8C6002B01AA /* trackLevel-hd.plist in Resources */,
+				54CA7A791471B8C6002B01AA /* trackLevel-hd.png in Resources */,
+				54CA7A7A1471B8C6002B01AA /* trackLevel.plist in Resources */,
+				54CA7A7B1471B8C6002B01AA /* trackLevel.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2544,6 +2581,7 @@
 				549D84E01469E80000A3599F /* LevelButton.m in Sources */,
 				54E25D7B146B23910016ADEB /* ActionButton.m in Sources */,
 				545CE69D146C1AA9003EC9C1 /* PlayerActionBlock.m in Sources */,
+				54CA7A7E1471C97C002B01AA /* TextureManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -207,8 +207,8 @@
     //[_levelInfoFront release];
     //[_levelPanelText release];
     [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFramesFromFile:@"chooseLevel.plist"];
-    //[[CCTextureCache sharedTextureCache] removeTextureForKey:@"chooseLevel.png"];
-    [[CCTextureCache sharedTextureCache] removeUnusedTextures];
+    [[CCTextureCache sharedTextureCache] removeTextureForKey:@"chooseLevel.png"];
+    //[[CCTextureCache sharedTextureCache] removeUnusedTextures];
 }
 
 @end
