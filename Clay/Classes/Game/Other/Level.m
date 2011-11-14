@@ -36,6 +36,7 @@
 @synthesize musicName = _musicName;
 @synthesize collisionHandler = _collisionHandler;
 @synthesize playerThirdActionName = _playerThirdActionName;
+@synthesize preComicName = _preComicName;
 
 +(id)levelWithFilename:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer LayerList:(NSString*)layerList GameObjectController:(GameObjectController*)gameObjects Player:(Player*)player
 {

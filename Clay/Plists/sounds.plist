@@ -40,7 +40,7 @@
 	<string>zombie_moan.caf</string>
 	<key>shootActionReload</key>
 	<string>shotgun_reload.caf</string>
-	<key>clearedObstacle</key>
+	<key>buttonPressed</key>
 	<string>clearedObstacle.wav</string>
 	<key>doubleJump</key>
 	<string>doublejump.wav</string>
@@ -52,5 +52,11 @@
 	<string>Shield.wav</string>
 	<key>jimShipShoot</key>
 	<string>JimShipShoot.wav</string>
+	<key>deflected</key>
+	<string>deflected.wav</string>
+	<key>chooseSelection</key>
+	<string>chooseSelection.wav</string>
+	<key>shuffling</key>
+	<string>shuffling.wav</string>
 </dict>
 </plist>

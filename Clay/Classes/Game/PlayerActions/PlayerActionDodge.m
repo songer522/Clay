@@ -11,6 +11,7 @@
 #import "AnimationController.h"
 #import "Player.h"
 #import "RunningSpeed.h"
+#import "SoundEngine.h"
 
 #define kPlayerActionDodgeMoveX 20.0f
 #define kPlayerActionDodgeFullDuration 1.0f;
@@ -26,6 +27,7 @@
         _parent.isInvincible = true;
         _preActionPlayerPosition = [_parent getPosition];
         [_parent endTurbo];
+        [[SoundEngine shared] playSound:@"shuffling"];
         [[AnimationController sharedController] replaceSprite:[_parent getSprite] withAnimationNamed:@"dodgingAnim"];
     }
     [super startAction];

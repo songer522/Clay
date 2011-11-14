@@ -14,6 +14,8 @@
 #import "ComicManager.h"
 #import "LevelButton.h"
 #import "ActionButton.h"
+#import "Level.h"
+#import "SoundEngine.h"
 
 @implementation ChooseLevelScreen
 
@@ -45,9 +47,11 @@
          _buttons = [[NSMutableArray alloc] initWithCapacity:4];
         
         _levelToSwitchTo = @"level1";
-        _buttons = [[NSMutableArray alloc] initWithCapacity:11];
+        _buttons = [[NSMutableArray alloc] initWithCapacity:7];
         _alpha = 1.0f;
+        _selected = 1;
         _waitToSwitch = 0.0f;
+        self.isTouchEnabled = YES;
         [self load];
     }
     return self;
@@ -60,20 +64,24 @@
         CGPoint position = [self convertTouchToNodeSpace:touch];
         for (LevelButton *button in _buttons) {
             if([button checkIfSelected:position]) {
-                int levelNumber = button.buttonId;
+                if (button.buttonId!=_selected) {
+                    [[SoundEngine shared] playSound:@"chooseSelection"];
+                }
+                _selected = button.buttonId;
                 
                 if(_levelToSwitchTo) {
                     [_levelToSwitchTo release];
                     _levelToSwitchTo = nil;
                 }
-                _levelToSwitchTo = [[NSString alloc] initWithFormat:@"level%d",levelNumber];
-                
-                NSLog(@"SWITCH TO LEVEL %d",levelNumber);
+                _levelToSwitchTo = [[NSString alloc] initWithFormat:@"level%d",_selected];
             }
         }
         
         if([_startButton checkIfSelected:position]) {
             _waitToSwitch = 0.25f;
+            [[SoundEngine shared] playSound:@"buttonPressed"];
+            self.isTouchEnabled = NO; //NOTE: CHOOSE LEVEL SCREEN STILL ACTIVE IN GAME???
+            
         }
         
         if([_backButton checkIfSelected:position]) {
@@ -110,7 +118,7 @@
     //[_backButton setPosition:ccp(50, 18)];
     
     
-    for (int i=0; i<11; i++) {
+    for (int i=0; i<7; i++) {
         LevelButton *button = [LevelButton levelButtonWithCache:frameCache andId:i];
         [button setCursor:_selector];
         
@@ -146,50 +154,57 @@
 {
     [[LevelManager shared] loadLevelNamed:level];
     [[LevelManager shared] switchToNextLevel];
-    [[ComicManager shared] startComic:@"intro" StartPhase:COMIC_PHASE_PLAY_VIDEO];
+    Level *levelObj = [[LevelManager shared] currentLevel];
+    
+    [[ComicManager shared] startComic:levelObj.preComicName StartPhase:COMIC_PHASE_PLAY_VIDEO];
 
     //[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[[LayerManager sharedLayers] currentScene]]];
-    [self unload];
     [self unscheduleUpdate];
-
     
-    //[[LayerManager sharedLayers] popAndPushSceneNamed:@"game"];
     [[LayerManager sharedLayers] pushSceneNamed:@"game"];
      
 }
 
 -(void)unload
 {
-    [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFramesFromFile:@"chooseLevel.plist"];
-    [[CCTextureCache sharedTextureCache] removeTextureForKey:@"chooseLevel.png"];
-    [[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];    
+}
+
+-(void)onExit
+{
+    [self release];
 }
 
 -(void)update:(ccTime)dt
 {
+    [_startButton update:dt];
+    [_backButton update:dt];
+
     if (_waitToSwitch>0.0f) {
         _waitToSwitch-=dt;
         if(_waitToSwitch<=0.0f){
             _waitToSwitch = 0.0f;
             [self popAndSwitchToLevel:_levelToSwitchTo];
+            [self release];
         }
     }
-    [_startButton update:dt];
-    [_backButton update:dt];
 }
 
 -(void)dealloc
 {
-    [_buttons removeAllObjects];
-    [_buttons release];
+    for (LevelButton *button in _buttons) {
+        [button release];
+    }
+    _buttons = nil;
+    [_background release];
     [_levelToSwitchTo release];
+    [_levelSelectText release];
     //[_backButton release];
     [_startButton release];
     //[_levelInfoFront release];
     //[_levelPanelText release];
     [_selector release];
-    
-    [super dealloc];
+    [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFramesFromFile:@"chooseLevel.plist"];
+    [[CCTextureCache sharedTextureCache] removeTextureForKey:@"chooseLevel.png"];    
 }
 
 @end

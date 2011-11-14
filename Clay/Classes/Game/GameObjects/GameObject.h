@@ -57,6 +57,7 @@ typedef enum {
     bool _fadeout;
     bool _rotateLights;
     bool _aggressiveCanHit;
+    bool _beatsPlayerAction;
     
     CGRect _range;       //range in which this object can move on screen. absolute positions.
     
@@ -99,6 +100,7 @@ typedef enum {
 @property(nonatomic,assign) bool isFalling;
 @property(nonatomic,assign) bool isInvincible;
 @property(nonatomic,assign) bool rotateLights;
+@property(nonatomic,assign) bool beatsPlayerAction;
 
 
 #pragma mark - initialization

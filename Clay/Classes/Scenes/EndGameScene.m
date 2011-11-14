@@ -85,11 +85,11 @@
         bool shouldStart = false;
         NSSet *allTouches = [event allTouches];
         for(UITouch *touch in allTouches) {
-            shouldStart = true;
+            //shouldStart = true;
         }
         
         if (shouldStart) {
-            [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[MainMenuScene scene]]];
+            //[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[MainMenuScene scene]]];
         }
     }
 }

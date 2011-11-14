@@ -53,6 +53,8 @@
     
     NSMutableArray *_triggers;
     
+    NSString *_preComicName;
+    
     float _x;
     float _y;
     float _scale;
@@ -68,6 +70,7 @@
 @property (nonatomic,readonly,retain) NSMutableArray *obstacleSprites;
 @property (nonatomic,readonly,retain) CollisionDetection *collisionHandler;
 @property (nonatomic,retain) NSString *playerThirdActionName;
+@property (nonatomic,retain) NSString *preComicName;
 
 #pragma mark - inits
 +(id)levelWithFilename:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer LayerList:(NSString*)layerList GameObjectController:(GameObjectController*)gameObjects Player:(Player*)player;

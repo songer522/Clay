@@ -72,6 +72,7 @@
                
                 _sprite = [Sprite spriteWithFile:@"shipBullet2.png"];
                 [_sprite getCCSprite].anchorPoint = ccp(0,0);
+                [[_sprite getCCSprite] setVisible:NO];
                 _isAggressive = false;
                 
                 break;
@@ -90,15 +91,17 @@
     Player *player = [[LayerManager sharedLayers] getPlayer];
     CGPoint playerPos = [player getPosition];
     
-    float speed = 350.0f;
-    float dx = playerPos.x - _x;
-    float dy = playerPos.y - _y;
+    float speed = 280.0f;
+    float dx = (playerPos.x + 10.0f) - _x;
+    float dy = (playerPos.y + 20.0f) - _y;
     float angle = atan2f(dy, dx);
     
-    //float angleInRads = (angle * 3.14159)/180.0f;
+    float angleInDegs = (angle * 180.0f)/3.14159f - 45;
     
     _vx = cosf(angle) * speed;
     _vy = sinf(angle) * speed;
+    
+    [_sprite getCCSprite].rotation = angleInDegs;
     
     //NSLog(@"bullet angle: %f VX: %f, VY: %f",angle,_vx,_vy);
 }

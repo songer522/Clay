@@ -149,14 +149,7 @@
     
     [[LevelManager shared] initAfterPlayerAndHudInit];
         
-    _mainMenuScene = [MainMenuScene scene];
-    [[LayerManager sharedLayers] setScene:_mainMenuScene ForKey:@"menu"];
-    [[LayerManager sharedLayers] setWorkingScene:_mainMenuScene];
-    [[LayerManager sharedLayers] forgetWorkingScene];
-
-    [[CCDirector sharedDirector] runWithScene:_mainMenuScene]; 
-    
-    
+    [[CCDirector sharedDirector] runWithScene:[MainMenuScene scene]]; 
     
     [[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
     

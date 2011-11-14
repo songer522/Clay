@@ -33,6 +33,8 @@
     ActionButton *_startButton;
     ActionButton *_backButton;
     
+    int _selected;
+    
 }
 
 +(CCScene*)scene;

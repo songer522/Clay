@@ -75,6 +75,8 @@
         [self initForLevel];
         
 
+        _paused = true;
+        
         self.isTouchEnabled = YES;
         
         [self updateLogic:0.001f];  //done to correctly position the camera and player before
@@ -143,26 +145,50 @@
     time = timeToRun;
 }
 
+-(void)unpause
+{
+    _paused = false;
+}
+
 -(void)updateLogic:(ccTime)dt
 {
     [[ComicManager shared] update:dt];
     [[SoundEngine shared] update:dt];
-    
-    [_player update:dt Level:_level];
-    
-    [_level update:dt Velocity:_player.vx];
-    
-    //check to see if any triggers have been hit
-    Trigger *trigger = [_level testTriggers:_player];
-    if (trigger) {
-        switch (trigger.type) {
-            case TRIGGER_NEXTLEVEL:
-                [[ComicManager shared] startComic:_level.postLevelComicName];
-                [ComicManager shared].loadNextLevel = true;
-                break;
-            case TRIGGER_CHECKPOINT:
-                [_savePoint setSavePoint:trigger.position Level:_level.name];
-                [[SoundEngine shared] playSound:@"checkpoint"];
+
+    if (!_paused) {
+
+        [_player update:dt Level:_level];
+        
+        [_level update:dt Velocity:_player.vx];
+        
+        //check to see if any triggers have been hit
+        Trigger *trigger = [_level testTriggers:_player];
+        if (trigger) {
+            switch (trigger.type) {
+                case TRIGGER_NEXTLEVEL:
+                    [[ComicManager shared] startComic:_level.postLevelComicName];
+                    [ComicManager shared].loadNextLevel = true;
+                    break;
+                case TRIGGER_CHECKPOINT:
+                    [_savePoint setSavePoint:trigger.position Level:_level.name];
+                    [[SoundEngine shared] playSound:@"checkpoint"];
+                    [_player rechargeBattery];
+                    break;
+                case TRIGGER_BOSS_SHOOT:
+                    [_boss triggerAttack];
+                    break;
+                default:
+                    break;
+            }
+        }
+        
+        [_level testCollisions:_player];
+        
+        if (![[ComicManager shared] isActive]) {
+            if(_player.isDead) {
+                [_player reset];
+                [_savePoint restoreSavePoint:_player];
+                _player.isDead = false;
                 [_player rechargeBattery];
                 
                /*
@@ -178,26 +204,13 @@
             default:
                 break;
         }
-    }
-    
-    [_level testCollisions:_player];
-    
-    if (![[ComicManager shared] isActive]) {
-        if(_player.isDead) {
-            [_player reset];
-            [_savePoint restoreSavePoint:_player];
-            _player.isDead = false;
-            [_player rechargeBattery];
-            
-            [_level resetObstacles];
-            [_level resetTriggers];
-        }        
-    }
-    
-    [_hud update:dt];
-    
-    if (_laserShow!=nil) {
-        [_laserShow update:dt];
+        
+        [_hud update:dt];
+        
+        if (_laserShow!=nil) {
+            [_laserShow update:dt];
+        }
+        
     }
     
     //[_boss update:dt];

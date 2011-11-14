@@ -4,12 +4,14 @@
 <dict>
 	<key>level1</key>
 	<dict>
+		<key>preComic</key>
+		<string>intro</string>
 		<key>thirdAction</key>
 		<string>woo</string>
 		<key>music</key>
 		<string>track</string>
 		<key>postLevelComic</key>
-		<string>trackToFarm</string>
+		<string>level1</string>
 		<key>worldType</key>
 		<string>realWorld</string>
 		<key>playerOffsetY</key>
@@ -25,12 +27,14 @@
 	</dict>
 	<key>dummyLevel</key>
 	<dict>
+		<key>preComic</key>
+		<string>level1</string>
 		<key>thirdAction</key>
 		<string>woo</string>
 		<key>music</key>
 		<string>track</string>
 		<key>postLevelComic</key>
-		<string>trackToFarm</string>
+		<string>level2</string>
 		<key>worldType</key>
 		<string>realWorld</string>
 		<key>playerOffsetY</key>
@@ -48,12 +52,14 @@
 	</dict>
 	<key>level2</key>
 	<dict>
+		<key>preComic</key>
+		<string>level1</string>
 		<key>thirdAction</key>
 		<string>kick</string>
 		<key>music</key>
 		<string>barn</string>
 		<key>postLevelComic</key>
-		<string>farmToCornfields</string>
+		<string>level2</string>
 		<key>worldType</key>
 		<string>dreamWorld</string>
 		<key>playerOffsetY</key>
@@ -69,12 +75,14 @@
 	</dict>
 	<key>level3</key>
 	<dict>
+		<key>preComic</key>
+		<string>level2</string>
 		<key>thirdAction</key>
 		<string>woo</string>
 		<key>music</key>
 		<string>cornfields</string>
 		<key>postLevelComic</key>
-		<string>beforeDisco</string>
+		<string>level3</string>
 		<key>worldType</key>
 		<string>realWorld</string>
 		<key>playerOffsetY</key>
@@ -90,12 +98,14 @@
 	</dict>
 	<key>level4</key>
 	<dict>
+		<key>preComic</key>
+		<string>level3</string>
 		<key>thirdAction</key>
 		<string>dodge</string>
 		<key>music</key>
 		<string>disco</string>
 		<key>postLevelComic</key>
-		<string>beforeDisco</string>
+		<string>level4</string>
 		<key>worldType</key>
 		<string>realWorld</string>
 		<key>playerOffsetY</key>
@@ -111,12 +121,14 @@
 	</dict>
 	<key>level5</key>
 	<dict>
+		<key>preComic</key>
+		<string>level4</string>
 		<key>thirdAction</key>
 		<string>woo</string>
 		<key>music</key>
 		<string>city</string>
 		<key>postLevelComic</key>
-		<string>beforeDisco</string>
+		<string>level5</string>
 		<key>worldType</key>
 		<string>realWorld</string>
 		<key>playerOffsetY</key>
@@ -132,6 +144,8 @@
 	</dict>
 	<key>level6</key>
 	<dict>
+		<key>preComic</key>
+		<string>level5</string>
 		<key>boss</key>
 		<string>zombies</string>
 		<key>thirdAction</key>
@@ -139,7 +153,7 @@
 		<key>music</key>
 		<string>zombies</string>
 		<key>postLevelComic</key>
-		<string>beforeDisco</string>
+		<string>level6</string>
 		<key>worldType</key>
 		<string>realWorld</string>
 		<key>playerOffsetY</key>
@@ -155,6 +169,8 @@
 	</dict>
 	<key>level7</key>
 	<dict>
+		<key>preComic</key>
+		<string>level6</string>
 		<key>thirdAction</key>
 		<string>block</string>
 		<key>music</key>
