@@ -241,7 +241,11 @@
     }
     
     //guard
-    if (!_isActive && _collideBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER) { return; }
+    if (!_isActive && _collideBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER) { 
+        
+        
+        
+        return; }
     
     _prevLocation = CGPointMake(_x, _y);
     
@@ -313,6 +317,31 @@
         CGPoint position = [gameLayer.player getPosition];
         if (_x < (position.x + 550.0f) && _x > 0.0f) {
             _vx = -150.0f;    
+        } else {
+            _vx = 0.0f;
+        }
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_MAD_DOG) {
+            GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+            CGPoint position = [gameLayer.player getPosition];
+            if (_x < (position.x + 250.0f) && _x > 0.0f) {
+                if(![self.originalAnimation isEqualToString:@"madDogAnim"])
+                    
+                { 
+                   
+                    [self setOriginalAnimation:@"madDogAnim"];
+                    [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"madDogAnim"];
+                }
+                                _vx = -150.0f;    
+            } else {
+                _vx = 0.0f;
+            }
+        
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_RETRO_ZOMBIE) {
+        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+        CGPoint position = [gameLayer.player getPosition];
+        if (_x < (position.x + 250.0f) && _x > 0.0f) {
+        
+            //_vx = -150.0f;    
         } else {
             _vx = 0.0f;
         }
@@ -427,7 +456,15 @@
     [self getCCSprite].rotation = _angle;
     if (_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_HEADLESS ||  _currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_WALK) {
         _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_WALK;
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_WALK_FAST || _currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_FADE) {
+    }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_MAD_DOG) {
+        _currentBehavior = COLLISION_BEHAVIOR_MAD_DOG;
+       // NSLog(@"%@", self.originalAnimation);
+        [self setOriginalAnimation:@"dogAnim"];
+        [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"dogAnim"];
+    }
+
+    else if(_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_WALK_FAST || _currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_FADE) {
         _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_WALK_FAST;
     } else if(_currentBehavior == COLLISION_BEHAVIOR_FLYER_DEAD || _currentBehavior == COLLISION_BEHAVIOR_FLYER) {
         _currentBehavior = COLLISION_BEHAVIOR_FLYER;
@@ -436,7 +473,7 @@
     } else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;  
     }
-    _collided = false;
+        _collided = false;
 }
 
 -(Collision*) getCollision
@@ -485,7 +522,15 @@
     } else if([behavior isEqualToString:@"rolling"]) {
         _collideBehavior = COLLISION_BEHAVIOR_ROLLING_HAYBALE;
         _currentBehavior = COLLISION_BEHAVIOR_ROLLING_HAYBALE;
+    } else if([behavior isEqualToString:@"madDog"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_MAD_DOG;
+        _currentBehavior = COLLISION_BEHAVIOR_MAD_DOG;
+    }else if([behavior isEqualToString:@"retroZombie"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_RETRO_ZOMBIE;
+        _currentBehavior = COLLISION_BEHAVIOR_RETRO_ZOMBIE;
     }
+
+    
     else {
         _collideBehavior = COLLISION_BEHAVIOR_NONE;
     }

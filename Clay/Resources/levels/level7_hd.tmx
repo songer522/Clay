@@ -147,6 +147,11 @@
     <property name="obstacle" value="retroHurdle"/>
    </properties>
   </tile>
+  <tile id="40">
+   <properties>
+    <property name="obstacle" value="retroZombie"/>
+   </properties>
+  </tile>
   <tile id="44">
    <properties>
     <property name="special" value="shootTrigger"/>
@@ -212,7 +217,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1F1qwzAMAOCcYO1NRn9eev+LjcAMxsSx5HQ0sO+DvNhKbCmylwUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPgvvj+9AQAAAAAAAAAAAAAAAAAAAADg9J4H5l87c4/kPm6BmL31Wlv7jo7NrFdE8mhlanUPxvXy6uU06oOerXxn6hapwSimnh/VqcxH/1evPtnxWqROmVq2sTO9uLpMvPPu+mTvj+fvs/ffS0zUTG+P5kd5te9Hz/vqyB2avS96eezlH8mll8M7z0odF6lZ5q4Y9Vf7ja09Z/55bebctqLnI3Le6rhIbLHG9WqdHS/fK16B8RlH74Wo2xLrw0f1/OU6q73csnnX/XJk7ex46xqMA+Acvj69AQAAAAAAAAAATuUHtTAUTA==
+   eJzt1F1qAyEQAOCcoO1NSpr0Ife/WFmoILLqjJuShX4f7IuOqzP+XC4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMB/8fnqBQAAAAAAAAAAAAAAAAAAAAAAp/Hdab9Pxo36H4O+2+S/rWsgZjRfa2/d0baV+YpIHq1Mrb6Ccb28ejnNzkHPXr4rdYvUYBZT98/qVPqj+9WrT7a9FqlTppZt7MpZ3LwvjHl2fbLvx/33G+17iYlaOduz/lle7fjofd8ceUOz70Uvj1H+kVx6OTzzrtRxkZpl3orZ+Wr/sbfmzJ7XVu5tK3o/IvetjovEFltcr9bZ9vK/4hFoX3H0XYi6XmLn8FZ9fznPZpRbNu/6vByZO9ve+gjGAXAOb69eAAAAAAAAAAAAp/IDUG0UgQ==
   </data>
  </layer>
  <layer name="meta" width="1100" height="14" opacity="0.66">
