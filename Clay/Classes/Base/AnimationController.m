@@ -29,10 +29,6 @@ static AnimationController *_sharedController = nil;
         // Initialization code here.
         animations = [[[NSMutableDictionary alloc] initWithCapacity:20] retain];
         
-        //pretty much always needed
-        [self loadAnimationsForGroup:@"player"];
-        [self loadAnimationsForGroup:@"hud"];
-        [self loadAnimationsForGroup:@"player8"];
     }
     
     return self;

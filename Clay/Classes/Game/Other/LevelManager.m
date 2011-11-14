@@ -43,6 +43,11 @@ static LevelManager *_shared = nil;
         
         NSString *startingLevel = [_levelSettings valueForKey:@"startingLevel"];
         
+        AnimationController *controller = [AnimationController sharedController];
+        [controller loadAnimationsForGroup:@"player"];
+        [controller loadAnimationsForGroup:@"hud"];
+        [controller loadAnimationsForGroup:@"player8"];
+        
         _currentLevel = [self prepareLevelNamed:startingLevel];
         
     }
@@ -61,8 +66,10 @@ static LevelManager *_shared = nil;
 
 -(Level*)prepareLevelNamed:(NSString*)levelName
 {
+    //pretty much always needed
     
-    [[AnimationController sharedController] loadAnimationsForGroup:levelName];
+    AnimationController *controller = [AnimationController sharedController];
+    [controller loadAnimationsForGroup:levelName];
     
     NSDictionary *levelSettings = [_levelSettings valueForKey:levelName];
     

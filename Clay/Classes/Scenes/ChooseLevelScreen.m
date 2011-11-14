@@ -195,9 +195,8 @@
 
 -(void)dealloc
 {
-    for (LevelButton *button in _buttons) {
-        [button release];
-    }
+    
+    [_buttons removeAllObjects];
     _buttons = nil;
     [_background release];
     [_levelToSwitchTo release];
@@ -208,7 +207,8 @@
     //[_levelInfoFront release];
     //[_levelPanelText release];
     [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFramesFromFile:@"chooseLevel.plist"];
-    [[CCTextureCache sharedTextureCache] removeTextureForKey:@"chooseLevel.png"];    
+    //[[CCTextureCache sharedTextureCache] removeTextureForKey:@"chooseLevel.png"];
+    [[CCTextureCache sharedTextureCache] removeUnusedTextures];
 }
 
 @end

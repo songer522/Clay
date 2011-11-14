@@ -118,6 +118,7 @@
             float speedx = [[tmxLayer propertyNamed:@"speedx"] floatValue] * _scale;
             float speedy = [[tmxLayer propertyNamed:@"speedy"] floatValue] * _scale;
             float offsety = [[tmxLayer propertyNamed:@"offsety"] floatValue];
+            bool isOpaque = [[tmxLayer propertyNamed:@"opaque"] boolValue];
             
             CGPoint offsetPoint = ccp(0, 0);
             if (offsety && offsety!= 0.0f && speedy != 0.0f) {
@@ -128,6 +129,12 @@
             [node addChild:tmxLayer z:currentZ parallaxRatio:ccp(speedx,speedy) positionOffset:offsetPoint];
             
             [_parallaxLayers addObject:node];
+            
+            if (isOpaque) {
+                //so far nothing i know that we can do to cctmxlayer to change it opaque, but the code
+                //to gain speed for it (with ccsprites) is: [background setBlendFunc:(ccBlendFunc) {GL_ONE,GL_ZERO}];
+                //according to: http://www.cocos2d-iphone.org/forum/topic/9910
+            }
             
             
             [[[LayerManager sharedLayers] currentLayer] addChild:node z:currentZ];
