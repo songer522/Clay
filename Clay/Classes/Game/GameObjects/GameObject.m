@@ -455,7 +455,15 @@
     [self getCCSprite].rotation = _angle;
     if (_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_HEADLESS ||  _currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_WALK) {
         _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_WALK;
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_WALK_FAST || _currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_FADE) {
+    }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_MAD_DOG) {
+        _currentBehavior = COLLISION_BEHAVIOR_MAD_DOG;
+       // NSLog(@"%@", self.originalAnimation);
+        [self setOriginalAnimation:@"dogAnim"];
+        [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"dogAnim"];
+    }
+
+    else if(_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_WALK_FAST || _currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_FADE) {
         _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_WALK_FAST;
     } else if(_currentBehavior == COLLISION_BEHAVIOR_FLYER_DEAD || _currentBehavior == COLLISION_BEHAVIOR_FLYER) {
         _currentBehavior = COLLISION_BEHAVIOR_FLYER;
@@ -464,7 +472,7 @@
     } else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;  
     }
-    _collided = false;
+        _collided = false;
 }
 
 -(Collision*) getCollision
