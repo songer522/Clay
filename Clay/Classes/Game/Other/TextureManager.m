@@ -25,7 +25,7 @@ static TextureManager *_shared = nil;
 -(id)init
 {
     if((self=[super init])) {
-        _memoryDictionary = [PListLoader loadPlistWithName:@"memory"];
+        _memoryDictionary = [[NSDictionary alloc] initWithDictionary:[PListLoader loadPlistWithName:@"memory"]];
     }
     return self;
 }

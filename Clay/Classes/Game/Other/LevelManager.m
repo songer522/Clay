@@ -44,10 +44,17 @@ static LevelManager *_shared = nil;
         
         NSString *startingLevel = [_levelSettings valueForKey:@"startingLevel"];
         
+
         TextureManager *manager = [TextureManager shared];
         [manager loadTexturesForKey:@"player"];
         [manager loadTexturesForKey:@"hud"];
         [manager loadTexturesForKey:@"player8"];
+
+        //textures must be loaded before the animations
+        AnimationController *animController = [AnimationController sharedController];
+        [animController loadAnimationsForGroup:@"player"];
+        [animController loadAnimationsForGroup:@"hud"];
+        
         
         _currentLevel = [self prepareLevelNamed:startingLevel];
         

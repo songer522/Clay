@@ -69,16 +69,6 @@
     [bullet reset];
 }
 
--(void)updateGun:(float)dt
-{
-    /*
-    _waitToShoot -= dt;
-    if (_waitToShoot<=0.0f) {
-        _waitToShoot = rand()%4 + 0.5f;
-        [self shootBullet];
-    }*/
-}
-
 -(void)update:(float)dt
 {
     //have to reposition for now because the position gets set like three times in gameobject, but for the time being we need to call it
@@ -95,7 +85,6 @@
     }
     
     [self updateVelocity:dt];
-    [self updateGun:dt];
     
     CGPoint position = [_sprite getPosition];
     
