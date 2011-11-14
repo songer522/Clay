@@ -23,6 +23,8 @@ void gluLookAt(float eyeX, float eyeY, float eyeZ, float lookAtX, float lookAtY,
 /** OpenGL gluPerspective implementation */
 void gluPerspective(GLfloat fovy, GLfloat aspect, GLfloat zNear, GLfloat zFar);
 
+void aglFrustumf(GLfloat left, GLfloat right, GLfloat bottom, GLfloat top, GLfloat nearval, GLfloat farval);
+
 #endif // __IPHONE_OS_VERSION_MAX_ALLOWED
 
 #endif /* __COCOS2D_GLU_H */

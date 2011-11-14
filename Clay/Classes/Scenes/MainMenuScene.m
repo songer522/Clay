@@ -46,7 +46,6 @@
         
         [[GCHelper sharedInstance] authenticateLocalUser];
     
-                
         [[LayerManager sharedLayers] setWorkingLayer:self];
         
         CCSpriteFrameCache* frameCache = [CCSpriteFrameCache sharedSpriteFrameCache];
