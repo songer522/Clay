@@ -91,6 +91,7 @@ typedef enum {
 @property(nonatomic,assign) float vy;
 @property(nonatomic,assign) CGRect boundingBox;
 @property(nonatomic,assign) CollisionBehavior CurrentBehavior;
+@property(nonatomic, retain)NSString *originalAnimation;
 @property(readonly,nonatomic,assign) bool collided;
 @property(nonatomic,assign) bool hasGravity;
 @property(nonatomic,assign) bool isAggressive;

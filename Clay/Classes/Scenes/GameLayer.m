@@ -164,6 +164,13 @@
                 [_savePoint setSavePoint:trigger.position Level:_level.name];
                 [[SoundEngine shared] playSound:@"checkpoint"];
                 [_player rechargeBattery];
+                
+               /*
+                CCNode *node;
+                for( node in self.children)
+                    
+                [self removeAllChildrenWithCleanup:YES];
+                */
                 break;
             case TRIGGER_BOSS_SHOOT:
                 [_boss triggerAttack];

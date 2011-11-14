@@ -282,6 +282,41 @@
 		<key>playerEffect</key>
 		<string>collide</string>
 	</dict>
+	<key>retroZombie</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<real>0.5</real>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>retroZombieAnim</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>110</integer>
+			<key>width</key>
+			<integer>40</integer>
+			<key>x</key>
+			<integer>20</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>retroZombie</string>
+		<key>imageName</key>
+		<string>blank.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>-40</integer>
+		<key>playerEffect</key>
+		<string>collide</string>
+	</dict>
 	<key>garbage</key>
 	<dict>
 		<key>aggressive</key>
@@ -539,7 +574,7 @@
 			<integer>0</integer>
 		</dict>
 		<key>animationName</key>
-		<string>madDogAnim</string>
+		<string>dogAnim</string>
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
@@ -552,7 +587,7 @@
 			<integer>0</integer>
 		</dict>
 		<key>collideBehavior</key>
-		<string>chargeAtPlayer</string>
+		<string>madDog</string>
 		<key>imageName</key>
 		<string>blank.png</string>
 		<key>offsetx</key>
