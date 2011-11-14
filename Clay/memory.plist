@@ -3,6 +3,18 @@
 <plist version="1.0">
 <dict>
 	<key>level1</key>
-	<dict/>
+	<string>trackLevel</string>
+	<key>level2</key>
+	<string>barnLevel</string>
+	<key>level3</key>
+	<string>townLevel</string>
+	<key>level4</key>
+	<string>discoLevel</string>
+	<key>level5</key>
+	<string>cityLevel</string>
+	<key>level6</key>
+	<string>female_zombie</string>
+	<key>level7</key>
+	<string>computerLevel</string>
 </dict>
 </plist>
