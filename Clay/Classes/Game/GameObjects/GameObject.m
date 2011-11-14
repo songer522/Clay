@@ -36,6 +36,7 @@
 @synthesize isFalling = _isFalling;
 @synthesize isInvincible = _isInvincible;
 @synthesize rotateLights = _rotateLights;
+@synthesize beatsPlayerAction = _beatsPlayerAction;
 @synthesize originalAnimation=_originalAnimation;
 
 + (id) objectWithSprite:(Sprite*)sprite
@@ -339,7 +340,7 @@
     } else if(_currentBehavior == COLLISION_BEHAVIOR_RETRO_ZOMBIE) {
         GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
         CGPoint position = [gameLayer.player getPosition];
-        if (_x < (position.x + 250.0f) && _x > 0.0f) {
+        if (_x < (position.x + 100.0f) && _x > 0.0f) {
         
             //_vx = -150.0f;    
         } else {

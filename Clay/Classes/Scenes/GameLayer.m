@@ -191,18 +191,9 @@
                 _player.isDead = false;
                 [_player rechargeBattery];
                 
-               /*
-                CCNode *node;
-                for( node in self.children)
-                    
-                [self removeAllChildrenWithCleanup:YES];
-                */
-                break;
-            case TRIGGER_BOSS_SHOOT:
-                [_boss triggerAttack];
-                break;
-            default:
-                break;
+                [_level resetObstacles];
+                [_level resetTriggers];
+            }        
         }
         
         [_hud update:dt];
