@@ -36,6 +36,7 @@
 @synthesize isFalling = _isFalling;
 @synthesize isInvincible = _isInvincible;
 @synthesize rotateLights = _rotateLights;
+@synthesize originalAnimation=_originalAnimation;
 @synthesize beatsPlayerAction = _beatsPlayerAction;
 
 + (id) objectWithSprite:(Sprite*)sprite
@@ -323,7 +324,7 @@
     } else if(_currentBehavior == COLLISION_BEHAVIOR_MAD_DOG) {
             GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
             CGPoint position = [gameLayer.player getPosition];
-            if (_x < (position.x + 250.0f) && _x > 0.0f) {
+            if (_x < (position.x + 200.0f) && _x > 0.0f) {
                 if(![self.originalAnimation isEqualToString:@"madDogAnim"])
                     
                 { 
@@ -339,7 +340,7 @@
     } else if(_currentBehavior == COLLISION_BEHAVIOR_RETRO_ZOMBIE) {
         GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
         CGPoint position = [gameLayer.player getPosition];
-        if (_x < (position.x + 250.0f) && _x > 0.0f) {
+        if (_x < (position.x + 150.0f) && _x > 0.0f) {
         
             //_vx = -150.0f;    
         } else {
