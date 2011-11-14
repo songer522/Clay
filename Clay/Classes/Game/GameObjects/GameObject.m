@@ -322,7 +322,7 @@
     } else if(_currentBehavior == COLLISION_BEHAVIOR_MAD_DOG) {
             GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
             CGPoint position = [gameLayer.player getPosition];
-            if (_x < (position.x + 250.0f) && _x > 0.0f) {
+            if (_x < (position.x + 200.0f) && _x > 0.0f) {
                 if(![self.originalAnimation isEqualToString:@"madDogAnim"])
                     
                 { 
