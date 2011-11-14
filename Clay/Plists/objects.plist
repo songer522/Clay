@@ -29,7 +29,7 @@
 		<key>collideBehavior</key>
 		<string>falls</string>
 		<key>imageName</key>
-		<string>bighurdle.png</string>
+		<string>Track_BigHurdle_1.png</string>
 		<key>offsetx</key>
 		<integer>0</integer>
 		<key>offsety</key>
@@ -624,7 +624,7 @@
 		<key>collideBehavior</key>
 		<string>falls</string>
 		<key>imageName</key>
-		<string>hurdle.png</string>
+		<string>Track_MediumHurdle_1.png</string>
 		<key>offsetx</key>
 		<integer>0</integer>
 		<key>offsety</key>
@@ -694,7 +694,7 @@
 		<key>collideBehavior</key>
 		<string>static</string>
 		<key>imageName</key>
-		<string>jim_standing_barn.png</string>
+		<string>Barn_Jim_1.png</string>
 		<key>offsetx</key>
 		<integer>-64</integer>
 		<key>offsety</key>
@@ -869,7 +869,7 @@
 		<key>collideBehavior</key>
 		<string>static</string>
 		<key>imageName</key>
-		<string>manure.png</string>
+		<string>Barn_Poop_1.png</string>
 		<key>offsetx</key>
 		<integer>0</integer>
 		<key>offsety</key>
@@ -1075,7 +1075,7 @@
 		<key>collideBehavior</key>
 		<string>static</string>
 		<key>imageName</key>
-		<string>sandpit.png</string>
+		<string>Track_Sandpit_1.png</string>
 		<key>offsetx</key>
 		<integer>0</integer>
 		<key>offsety</key>
@@ -1180,7 +1180,7 @@
 		<key>collideBehavior</key>
 		<string>none</string>
 		<key>imageName</key>
-		<string>checkpoint.png</string>
+		<string>Checkpoint_1.png</string>
 		<key>offsetx</key>
 		<integer>-64</integer>
 		<key>offsety</key>
@@ -1215,7 +1215,7 @@
 		<key>collideBehavior</key>
 		<string>falls</string>
 		<key>imageName</key>
-		<string>stoneChicken.png</string>
+		<string>Barn_Stone_Chicken_1.png</string>
 		<key>offsetx</key>
 		<integer>0</integer>
 		<key>offsety</key>

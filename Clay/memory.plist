@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>level1</key>
+	<string>trackLevel</string>
+	<key>level2</key>
+	<string>barnLevel</string>
+	<key>level3</key>
+	<string>townLevel</string>
+	<key>level4</key>
+	<string>discoLevel</string>
+	<key>level5</key>
+	<string>cityLevel</string>
+	<key>level6</key>
+	<string>female_zombie</string>
+	<key>level7</key>
+	<string>computerLevel</string>
+	<key>dummyLevel</key>
+	<string>none</string>
+	<key>player</key>
+	<string>characterAnims</string>
+	<key>player8</key>
+	<string>eightBitSkin</string>
+	<key>hud</key>
+	<string>hudGraphics2</string>
+</dict>
+</plist>

@@ -45,7 +45,7 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
         _sequence = [[NSString alloc] initWithString:sequence];
         _frameList = [[NSString alloc] initWithString:framelist];
         
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:[name stringByAppendingString:ANIMATION_SPRITE_CACHE_SUFFIX]];
+        //[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:[name stringByAppendingString:ANIMATION_SPRITE_CACHE_SUFFIX]];
         
         _spriteSheet = [CCSpriteBatchNode batchNodeWithFile:[name stringByAppendingString:ANIMATION_GRAPHIC_EXTENSION]];
         

@@ -14,6 +14,7 @@
 #import "Player.h"
 #import "GameLayer.h"
 #import "UserData.h"
+#import "TextureManager.h"
 #import "Boss.h"
 
 @implementation LevelManager
@@ -43,6 +44,18 @@ static LevelManager *_shared = nil;
         
         NSString *startingLevel = [_levelSettings valueForKey:@"startingLevel"];
         
+
+        TextureManager *manager = [TextureManager shared];
+        [manager loadTexturesForKey:@"player"];
+        [manager loadTexturesForKey:@"hud"];
+        [manager loadTexturesForKey:@"player8"];
+
+        //textures must be loaded before the animations
+        AnimationController *animController = [AnimationController sharedController];
+        [animController loadAnimationsForGroup:@"player"];
+        [animController loadAnimationsForGroup:@"hud"];
+        
+        
         _currentLevel = [self prepareLevelNamed:startingLevel];
         
     }
@@ -61,8 +74,13 @@ static LevelManager *_shared = nil;
 
 -(Level*)prepareLevelNamed:(NSString*)levelName
 {
+    //call before animations are loaded, as the animations assume these spriteframes are in memory
+    [[TextureManager shared] loadTexturesForKey:levelName];
     
-    [[AnimationController sharedController] loadAnimationsForGroup:levelName];
+    //pretty much always needed
+    AnimationController *controller = [AnimationController sharedController];
+    [controller loadAnimationsForGroup:levelName];
+    
     
     NSDictionary *levelSettings = [_levelSettings valueForKey:levelName];
     
@@ -137,11 +155,9 @@ static LevelManager *_shared = nil;
 
 -(void)switchToNextLevel
 {
-    Level *_levelToUnload = _currentLevel;
+    [self dumpMemoryForLevel:_currentLevel];
     _currentLevel = _nextLevel;
-    [_levelToUnload unloadLevel];
-    _levelToUnload = nil;
-
+    
     //show 8-bit skin if level 7, otherwise show regular skin
     GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
     int levelNumber = [[_currentLevel.name substringFromIndex:5] intValue];
@@ -153,6 +169,17 @@ static LevelManager *_shared = nil;
     
     [[SoundEngine shared] playMusic:_currentLevel.musicName];
 
+}
+
+-(void)dumpMemoryForLevel:(Level*)level
+{
+    NSString *levelName = [NSString stringWithString:level.name];
+
+    [level unloadLevel];
+    [level release];
+
+    //want to release level before try unloading textures, so nothing is hanging on to the textures
+    [[TextureManager shared] unloadTexturesForKey:levelName];
 }
 
 -(NSMutableArray*)getObstacleArray
