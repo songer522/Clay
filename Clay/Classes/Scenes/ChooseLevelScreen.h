@@ -44,6 +44,9 @@
 -(void)load;
 
 -(void)popAndSwitchToLevel:(NSString*)level;
+
+-(void)transitionOut;
+
 -(void)unload;
 
 @end

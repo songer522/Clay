@@ -158,11 +158,15 @@
     
     [[ComicManager shared] startComic:levelObj.preComicName StartPhase:COMIC_PHASE_PLAY_VIDEO];
 
-    //[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[[LayerManager sharedLayers] currentScene]]];
     [self unscheduleUpdate];
     
     [[LayerManager sharedLayers] pushSceneNamed:@"game"];
      
+}
+
+-(void)transitionOut
+{
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[[LayerManager sharedLayers] currentScene]]];
 }
 
 -(void)unload
@@ -198,11 +202,11 @@
     [_background release];
     [_levelToSwitchTo release];
     [_levelSelectText release];
-    //[_backButton release];
     [_startButton release];
+    [_selector release];
+    //[_backButton release];
     //[_levelInfoFront release];
     //[_levelPanelText release];
-    [_selector release];
     [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFramesFromFile:@"chooseLevel.plist"];
     [[CCTextureCache sharedTextureCache] removeTextureForKey:@"chooseLevel.png"];    
 }

@@ -57,10 +57,6 @@
         [_trackBackground getCCSprite].position = ccp(0,0);
         [_trackBackground setAlpha:1.0f];
         
-        _blackCover = [Sprite spriteWithFile:@"black_background-hd.png"];
-        [_blackCover getCCSprite].position = ccp(0,0);
-        [_blackCover setAlpha:0.0f];
-        
         _rain1 = [Sprite spriteFromFrameCacheWithName:@"Menu_Rain_01.png"];
         [_rain1 getCCSprite].position = ccp(0, 0);
         [_rain1 setAlpha:0.0f];
@@ -135,7 +131,6 @@
 {
     _time = 0.0f;
     _totalTime = 0.0f;
-    _blackFadeOut = 0.0f;
     
     _transition = MAINMENU_TRANSITION_IN;
     [[_playButtonOrange getCCSprite] setVisible:YES];
@@ -148,8 +143,6 @@
     
     [_logo setAlpha:0.0f];
 
-    [_blackCover setAlpha:0.0f];
-    
     [_playButtonBlue setAlpha:0.0f];
     [_playButtonOrange setAlpha:0.0f];
     
@@ -219,16 +212,6 @@
                     _switchSceneTriggered = true;
                 }
             }
-
-            /*
-                _blackFadeOut += 1.5f * dt;
-                if (_blackFadeOut >= 1.0f) {
-                    _blackFadeOut = 1.0f;
-                    //[self private_switchToGame];
-                    [self private_switchToChooseLevel];
-                }
-                [_blackCover setAlpha:_blackFadeOut];
-             */
             break;
         default:
             break;

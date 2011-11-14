@@ -700,8 +700,8 @@
 		549D84D61469DE9100A3599F /* chooseLevel-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chooseLevel-hd.png"; sourceTree = "<group>"; };
 		549D84D71469DE9100A3599F /* chooseLevel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = chooseLevel.plist; sourceTree = "<group>"; };
 		549D84D81469DE9100A3599F /* chooseLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chooseLevel.png; sourceTree = "<group>"; };
-		549D84DE1469E80000A3599F /* LevelButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LevelButton.h; path = ../Game/GUI/LevelButton.h; sourceTree = "<group>"; };
-		549D84DF1469E80000A3599F /* LevelButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LevelButton.m; path = ../Game/GUI/LevelButton.m; sourceTree = "<group>"; };
+		549D84DE1469E80000A3599F /* LevelButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelButton.h; sourceTree = "<group>"; };
+		549D84DF1469E80000A3599F /* LevelButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelButton.m; sourceTree = "<group>"; };
 		549ED7551461CD62008BCD98 /* anims.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = anims.plist; path = Plists/anims.plist; sourceTree = "<group>"; };
 		549ED7561461CD62008BCD98 /* comics.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = comics.plist; path = Plists/comics.plist; sourceTree = "<group>"; };
 		549ED7571461CD62008BCD98 /* levels.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = levels.plist; path = Plists/levels.plist; sourceTree = "<group>"; };
@@ -1795,6 +1795,8 @@
 				549ED7C01461D065008BCD98 /* Button.m */,
 				549ED7C11461D065008BCD98 /* HudButton.h */,
 				549ED7C21461D065008BCD98 /* HudButton.m */,
+				549D84DE1469E80000A3599F /* LevelButton.h */,
+				549D84DF1469E80000A3599F /* LevelButton.m */,
 				549ED7C31461D065008BCD98 /* TrackTimer.h */,
 				549ED7C41461D065008BCD98 /* TrackTimer.m */,
 			);
@@ -1854,12 +1856,10 @@
 			children = (
 				549ED7EC1461D065008BCD98 /* AppDelegate.h */,
 				549ED7ED1461D065008BCD98 /* AppDelegate.m */,
-				549ED7EE1461D065008BCD98 /* ChooseLevelScreen.h */,
-				549ED7EF1461D065008BCD98 /* ChooseLevelScreen.m */,
 				54E25D79146B23900016ADEB /* ActionButton.h */,
 				54E25D7A146B23910016ADEB /* ActionButton.m */,
-				549D84DE1469E80000A3599F /* LevelButton.h */,
-				549D84DF1469E80000A3599F /* LevelButton.m */,
+				549ED7EE1461D065008BCD98 /* ChooseLevelScreen.h */,
+				549ED7EF1461D065008BCD98 /* ChooseLevelScreen.m */,
 				549ED7F01461D065008BCD98 /* ComicLayer.h */,
 				549ED7F11461D065008BCD98 /* ComicLayer.m */,
 				549ED7F21461D065008BCD98 /* ComicManager.h */,
