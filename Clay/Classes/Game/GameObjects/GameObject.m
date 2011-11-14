@@ -340,7 +340,7 @@
         CGPoint position = [gameLayer.player getPosition];
         if (_x < (position.x + 250.0f) && _x > 0.0f) {
         
-            _vx = -150.0f;    
+            //_vx = -150.0f;    
         } else {
             _vx = 0.0f;
         }
