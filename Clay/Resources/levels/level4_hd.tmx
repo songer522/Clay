@@ -4,7 +4,7 @@
   <image source="tileset_level_4-hd.png" width="1088" height="896"/>
  </tileset>
  <tileset firstgid="239" name="Icons" tilewidth="64" tileheight="64">
-  <image source="TrackLapse_Icons-hd.png" width="640" height="256"/>
+  <image source="TrackLapse_Icons-hd.png" width="640" height="320"/>
   <tile id="0">
    <properties>
     <property name="obstacle" value="hurdle"/>
@@ -92,7 +92,7 @@
    </properties>
   </tile>
  </tileset>
- <tileset firstgid="279" name="meta" tilewidth="64" tileheight="64">
+ <tileset firstgid="289" name="meta" tilewidth="64" tileheight="64">
   <image source="meta-hd.png" width="256" height="192"/>
   <tile id="0">
    <properties>
@@ -180,7 +180,7 @@
  </layer>
  <layer name="objects" width="1050" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt3EFugzAQBdCkvf9d226rhooFEqIE8NgONn1vkyh84xljSFa53QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALiS+/3vZ28rnx0RHVdDyVrma/Ts/SuUnG9rfV7d15bIdSy5p0sptabzPs7saTl3Tn/Lc519rSZTHS3dDyVM/bSyzrmu1s+o9p5raU+XqKWlfkZX2ZNX6SOq9/5L19/7etSW+5uhpXWtfa1b2Uut1ME5fs4uoBJ99UVffdFXX/TVF331RV/9u3KvrfTWSh2l6QsAAACAHn3LycnJycnJycnJycnJycldLgcAAABAHe8Z/7+ROvYRnyo0X3T+tXmGxLmO1loit9fX3vHU3iJyr13OeY6Mya2v1v4Y5ezbFJ95w3dF9nruM2NuSKhh6bF4TVHyWTBlIvfsXg819/DWfFvzlsqkqH2/TeOiezv3eZ97PEWNZ0rKdR57yX3+Dwfer807f40o9b2VmkmpPbI2e/On1BBZ5yPfA3vnnR9fO9fe8aN1PBu3VdNWpkZuy1dwHBDzcXYBAAAAAAAAAMC/9wvt0bUy
+   eJzt3MtugzAQAMCk/f9/bXutGipUISFKDH6BTWYuicKa3bWNk156uwEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAl9/v/z95WPtsjdVwNJWuZz9Gz90comS80P0f3FZKyjiX3dCml5nTex5k9LXPn9Le819lrNZnqaOl5KGHqp5V5znW1fka191xLe7pELS31M7rKnrxKH6l67790/b3PR225vxlamtfaa93KXmqlDs7xc3YBleirL/rqi776oq++6Ksv+urflXttpbdW6ihNXwAAAAD06FucOHHixIkTJ06cOHHixIkTd7k4AAAAgFfzdVCe94z/vxE79pGeKilfav61PENkrr21lojb6mvremxvKXLXLuc+e8bk1ldrf4xy9m2Mz7zhm1L2eu6ZMTdE1LD0WLzGKHkWTDEpz+xWDzX3cChfKG+pmBi1n7dpXOrezj3vc6/HqHGmxKzz2Evu+T/seL+Wd/6aotT3VmxMTO0pc7OVP6aGlHne8z2wdd/59bV7bV3fW8ezcaGaQjE14kKO+jsG+PNxdgEAAAAAAAAAwMv7BT7KtiQ=
   </data>
  </layer>
  <layer name="meta" width="1050" height="14" opacity="0.62">
@@ -189,7 +189,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt2DEKwCAMQFE9RQfvf0/nQltQQonkPfibg2AEsTUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoKrRn6OWtzn4moU/15CbM8yl0j02e6w4/U5kfrNl20+EyHOOXgcAAAAAnOvqkiRJkiRJ9/wzSJIkSZKkqHZNUOfKdQ==
+   eJzt2DEKwCAMQFE9Sgfvf0XnQltQQonkPfibg2AEsTUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoKrRn6OWtzn4moU/15CbM8yl0j02e6w4/U5kfrNl20+EyHOOXgcAAAAAnOvqkiRJkiRJ9/wzSJIkSZKkqHZNpQQeYg==
   </data>
  </layer>
 </map>

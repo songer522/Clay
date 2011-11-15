@@ -565,6 +565,8 @@
 {
     [_sprite release];
     [_collisionState release];
+    [_boss release];
+    
     [super dealloc];
 }
 

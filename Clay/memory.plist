@@ -13,7 +13,7 @@
 	<key>level5</key>
 	<string>cityLevel</string>
 	<key>level6</key>
-	<string>female_zombie</string>
+	<string>zombieLevel</string>
 	<key>level7</key>
 	<string>computerLevel</string>
 	<key>dummyLevel</key>
@@ -21,7 +21,7 @@
 	<key>player</key>
 	<string>characterAnims</string>
 	<key>player8</key>
-	<string>eightBitSkin</string>
+	<string>eightBitTim</string>
 	<key>hud</key>
 	<string>hudGraphics2</string>
 </dict>

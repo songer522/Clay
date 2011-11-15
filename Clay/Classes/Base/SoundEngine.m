@@ -75,7 +75,7 @@ static SoundEngine *_shared = nil;
     NSString *filename = [_musicMap objectForKey:music];
     
     NSAssert(filename!=nil,@"Requested music file not in dictionary. Double-check music.plist");
-    [[SimpleAudioEngine sharedEngine] playBackgroundMusic:filename];
+    //[[SimpleAudioEngine sharedEngine] playBackgroundMusic:filename];
 }
 
 -(void)toggleMute

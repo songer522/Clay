@@ -12,8 +12,6 @@
 
 #import "Collidable.h"
 
-@class TrackBackground;
-
 @class GameObject;
 @class CollisionDetection;
 @class Player;
@@ -22,38 +20,41 @@
 
 @interface Level : NSObject
 {
-    NSString *_name;
+
+    //map references
+    CCTMXTiledMap *_map;
+    NSMutableDictionary *_mapLayers;    //stores references to map layers after removed from map by parallaxLayers
+    NSMutableArray *_parallaxLayers;    //stores CCParallaxNodes built from the map so the map can have parallax scrolling
+    
+    //convenient references to certain layers in the map
     CCTMXLayer *_main;
     CCTMXLayer *_meta;
     CCTMXLayer *_obstacles;
     
-    CCTMXTiledMap *_map;
-    
-    CCTMXObjectGroup *_objects;
-    
+    //handles the collision detection between the player and the ground
     CollisionDetection *_collisionHandler;
     
-    CGPoint _spawnPoint;
-    
+    //obstacle mapobjects
     NSMutableArray *_obstacleMapObjects;
+    
+    //background mapobjects, usually attached to a layer
     NSMutableArray *_otherMapObjects;
-    NSMutableArray *_parallaxLayers;
     
-    NSMutableDictionary *_mapLayers;
+    //any triggers in the level
+    NSMutableArray *_triggers;    
     
-    NSString *_postLevelComicName;
-    
-    NSString *_musicName;
-    
+    //external properties
+    CGPoint _spawnPoint;            //the world coordinates for where the player starts in the map
+    NSString *_name;                //name of the level as per the key name in levels.plist
+    NSString *_postLevelComicName;  //name of the comic to load after level complete
+    NSString *_preComicName;        //name of the comic to load before the level starts
+    NSString *_musicName;           //name of the music to play
     NSString *_nextLevelName;           //the name of the level to load after this one is about
                                         //to complete. will be used by the LevelManager
-    NSString *_playerThirdActionName;
+    NSString *_playerThirdActionName;   //the name of the third action (woo, shoot, dodge, etc)
     
-    GameObjectController *_gameObjects;
-    
-    NSMutableArray *_triggers;
-    
-    NSString *_preComicName;
+
+    GameObjectController *_gameObjects; //reference to the factory for building gameobjects
     
     float _x;
     float _y;

@@ -25,6 +25,7 @@
 +(AnimationController*)sharedController;
 
 -(void)loadAnimationsForGroup:(NSString*)group;
+-(void)unloadAnimationsForGroup:(NSString*)group;
 
 -(void)addAnimationForSkinFromFile:(NSString*)filename UsingBaseAnim:(NSString*)baseAnim ForSequence:(NSString*)sequence;
 

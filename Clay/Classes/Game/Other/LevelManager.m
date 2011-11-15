@@ -175,10 +175,13 @@ static LevelManager *_shared = nil;
 {
     NSString *levelName = [NSString stringWithString:level.name];
 
-    [level unloadLevel];
     [level release];
+    
+    //then we should get rid of the animations we loaded for this level
+    AnimationController *controller = [AnimationController sharedController];
+    [controller unloadAnimationsForGroup:levelName];
 
-    //want to release level before try unloading textures, so nothing is hanging on to the textures
+    //want to release level and animations before try unloading textures, so nothing is hanging on to the textures
     [[TextureManager shared] unloadTexturesForKey:levelName];
 }
 
