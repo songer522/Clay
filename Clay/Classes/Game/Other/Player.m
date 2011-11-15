@@ -535,6 +535,7 @@
 {
     [_speed release];
     [_battery release];
+    [_skin release];
         
     [super dealloc];
 }

@@ -59,12 +59,6 @@ static LayerManager *_sharedLayers = nil;
     }
 }
 
--(void)dealloc
-{
-    [_currentScene release];
-    [super dealloc];
-}
-
 -(void)setWorkingScene:(id)scene
 {
     _workingScene = scene;
@@ -116,6 +110,14 @@ static LayerManager *_sharedLayers = nil;
 {
     GameLayer *gameLayer = _currentLayer;
     return gameLayer.player;
+}
+
+-(void)dealloc
+{
+    [_currentScene release];
+    [_scenes removeAllObjects];
+    [_scenes release];
+    [super dealloc];
 }
 
 @end

@@ -302,8 +302,6 @@
 
 -(void)reset
 {
-    //[self removeChild:[_buttonJump getCCSprite] cleanup:NO];
-    //[self addChild:[_buttonJump getCCSprite]];
 }
 
 -(void)dealloc

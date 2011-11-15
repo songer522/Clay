@@ -166,4 +166,11 @@
      [[_greenOverlay getCCSprite] setScale:scale];
 }
 
+-(void)dealloc
+{
+    [_graphic release];
+    [_greenOverlay release];
+    [super dealloc];
+}
+
 @end
