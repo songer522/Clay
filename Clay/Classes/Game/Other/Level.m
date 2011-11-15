@@ -207,10 +207,14 @@
         [[[LayerManager sharedLayers] currentLayer] removeChild:node cleanup:YES];
     }
     
+    [self release];
+    
+    /*
     for (MapObject *mapObject in _obstacleMapObjects) {
         if (mapObject!=nil) {
-            [[mapObject.object getCCSprite] removeFromParentAndCleanup:YES];
-            mapObject = nil;            
+            [mapObject release];
+            //[[mapObject.object getCCSprite] removeFromParentAndCleanup:YES];
+            //mapObject = nil;            
         }
     }
     
@@ -220,6 +224,7 @@
             mapObject = nil;         
         }
     }
+    //[self release]*/
 }
 
 -(void)scanThroughMapAndAddObjects
@@ -532,20 +537,40 @@
 
 -(void)dealloc
 {
+    _main = nil;
+    _meta = nil;
+    _obstacles = nil;
+
     [_map release];
-    [_objects release];
-    [_parallaxLayers removeAllObjects];
-    [_parallaxLayers release];
-    [_postLevelComicName release];
-    [_musicName release];
-    [_gameObjects release];
-    [_triggers removeAllObjects];
-    [_triggers release];
+    
+    [_name release];
+    [_collisionHandler release];
+    
     [_obstacleMapObjects removeAllObjects];
     [_obstacleMapObjects release];
+    [_otherMapObjects removeAllObjects];
+    [_otherMapObjects release];
     [_triggers removeAllObjects];
     [_triggers release];
+    
+    [_parallaxLayers release];
+    [_mapLayers removeAllObjects];
+    [_mapLayers release];
+    
+    [_preComicName release];
+    [_postLevelComicName release];
+    [_musicName release];
     [_nextLevelName release];
+    [_playerThirdActionName release];
+
+    _gameObjects = nil; //is maintained throughout the game, so keep.
+    
+    
+    
+    
+    [_nextLevelName release];
+    
+    
     [super dealloc];
 }
 

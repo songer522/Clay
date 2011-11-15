@@ -219,9 +219,10 @@
 
 -(void)dealloc
 {
-    //[sprite_cc removeFromParentAndCleanup:YES];
-    [sprite_cc release];
     [_animation release];
+    [sprite_cc removeFromParentAndCleanup:YES];
+    sprite_cc = nil;
+    //[sprite_cc release];
     [super dealloc];
 }
 

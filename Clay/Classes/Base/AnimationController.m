@@ -79,6 +79,32 @@ static AnimationController *_sharedController = nil;
     }
 }
 
+-(void)unloadAnimationsForGroup:(NSString*)group
+{
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"anims" ofType:@"plist"];
+    
+    //read plist
+    NSDictionary *plistDictionary = [NSDictionary dictionaryWithContentsOfFile:path];
+    
+    NSAssert(plistDictionary!=nil,@"Error reading plist.");
+    
+    NSEnumerator *enumerator = [plistDictionary keyEnumerator];
+    id animationName;
+    while ((animationName = [enumerator nextObject])) {
+        NSDictionary *animationSettings = [plistDictionary objectForKey:animationName];
+        if (animationSettings == nil) {
+            CCLOG(@"Could not locate AnimationWithName:%@", animationName);
+        } else {
+            NSString *groupName = [animationSettings objectForKey:@"group"];
+            if ([groupName isEqualToString:group]) {
+                CCLOG(@"Unload Animation: %@",animationName);
+                [animations removeObjectForKey:animationName];
+            }
+        }
+    }
+
+}
+
 -(void)addAnimationForSkinFromFile:(NSString*)filename UsingBaseAnim:(NSString*)baseAnimName ForSequence:(NSString*)sequenceName
 {
     NSLog(@"Add animation sequence name: %@, base anim: %@, filename: %@",sequenceName,baseAnimName,filename);
