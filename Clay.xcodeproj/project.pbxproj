@@ -301,8 +301,6 @@
 		549ED8F81461D145008BCD98 /* female_zombie.png in Resources */ = {isa = PBXBuildFile; fileRef = 549ED8A31461D145008BCD98 /* female_zombie.png */; };
 		549ED8F91461D145008BCD98 /* garbageZombie.png in Resources */ = {isa = PBXBuildFile; fileRef = 549ED8A41461D145008BCD98 /* garbageZombie.png */; };
 		549ED8FA1461D145008BCD98 /* zombieHead.png in Resources */ = {isa = PBXBuildFile; fileRef = 549ED8A51461D145008BCD98 /* zombieHead.png */; };
-		54A0A690146C6A1C002CCC26 /* smallhurdle-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A0A68E146C6A1C002CCC26 /* smallhurdle-hd.png */; };
-		54A0A691146C6A1C002CCC26 /* smallhurdle.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A0A68F146C6A1C002CCC26 /* smallhurdle.png */; };
 		54A0A696146C6A3F002CCC26 /* cityLevel-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54A0A692146C6A3F002CCC26 /* cityLevel-hd.plist */; };
 		54A0A697146C6A3F002CCC26 /* cityLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A0A693146C6A3F002CCC26 /* cityLevel-hd.png */; };
 		54A0A698146C6A3F002CCC26 /* cityLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54A0A694146C6A3F002CCC26 /* cityLevel.plist */; };
@@ -410,6 +408,8 @@
 		5F8BE8E514649A170002C6CF /* sandpit-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8BE8E214649A170002C6CF /* sandpit-hd.png */; };
 		61A2C0E614683B880049C88E /* GraphicFont.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 61A2C0E414683B880049C88E /* GraphicFont.fnt */; };
 		61A2C0E714683B880049C88E /* GraphicFont.png in Resources */ = {isa = PBXBuildFile; fileRef = 61A2C0E514683B880049C88E /* GraphicFont.png */; };
+		E46B19D41472B971007DAF77 /* hurdleYellow-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = E46B19D21472B971007DAF77 /* hurdleYellow-hd.png */; };
+		E46B19D51472B971007DAF77 /* hurdleYellow.png in Resources */ = {isa = PBXBuildFile; fileRef = E46B19D31472B971007DAF77 /* hurdleYellow.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -899,8 +899,6 @@
 		549ED8A31461D145008BCD98 /* female_zombie.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = female_zombie.png; sourceTree = "<group>"; };
 		549ED8A41461D145008BCD98 /* garbageZombie.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = garbageZombie.png; sourceTree = "<group>"; };
 		549ED8A51461D145008BCD98 /* zombieHead.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zombieHead.png; sourceTree = "<group>"; };
-		54A0A68E146C6A1C002CCC26 /* smallhurdle-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "smallhurdle-hd.png"; sourceTree = "<group>"; };
-		54A0A68F146C6A1C002CCC26 /* smallhurdle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallhurdle.png; sourceTree = "<group>"; };
 		54A0A692146C6A3F002CCC26 /* cityLevel-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "cityLevel-hd.plist"; sourceTree = "<group>"; };
 		54A0A693146C6A3F002CCC26 /* cityLevel-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cityLevel-hd.png"; sourceTree = "<group>"; };
 		54A0A694146C6A3F002CCC26 /* cityLevel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cityLevel.plist; sourceTree = "<group>"; };
@@ -1012,6 +1010,8 @@
 		5F8BE8E214649A170002C6CF /* sandpit-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sandpit-hd.png"; sourceTree = "<group>"; };
 		61A2C0E414683B880049C88E /* GraphicFont.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GraphicFont.fnt; sourceTree = "<group>"; };
 		61A2C0E514683B880049C88E /* GraphicFont.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GraphicFont.png; sourceTree = "<group>"; };
+		E46B19D21472B971007DAF77 /* hurdleYellow-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hurdleYellow-hd.png"; sourceTree = "<group>"; };
+		E46B19D31472B971007DAF77 /* hurdleYellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hurdleYellow.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1985,8 +1985,8 @@
 		549ED89A1461D145008BCD98 /* track */ = {
 			isa = PBXGroup;
 			children = (
-				54A0A68E146C6A1C002CCC26 /* smallhurdle-hd.png */,
-				54A0A68F146C6A1C002CCC26 /* smallhurdle.png */,
+				E46B19D21472B971007DAF77 /* hurdleYellow-hd.png */,
+				E46B19D31472B971007DAF77 /* hurdleYellow.png */,
 				549ED89B1461D145008BCD98 /* bighurdle.png */,
 				549ED89C1461D145008BCD98 /* hurdle.png */,
 				549ED89D1461D145008BCD98 /* sandpit.png */,
@@ -2343,8 +2343,6 @@
 				54E3D559146C4BA800C28C9F /* tileset_level_7.png in Resources */,
 				54E3D55A146C4BA800C28C9F /* TrackLapse_Icons-hd.png in Resources */,
 				54E3D55B146C4BA800C28C9F /* TrackLapse_Icons.png in Resources */,
-				54A0A690146C6A1C002CCC26 /* smallhurdle-hd.png in Resources */,
-				54A0A691146C6A1C002CCC26 /* smallhurdle.png in Resources */,
 				54A0A696146C6A3F002CCC26 /* cityLevel-hd.plist in Resources */,
 				54A0A697146C6A3F002CCC26 /* cityLevel-hd.png in Resources */,
 				54A0A698146C6A3F002CCC26 /* cityLevel.plist in Resources */,
@@ -2359,6 +2357,8 @@
 				54A1B13F146C9C38005BA189 /* deflected.wav in Resources */,
 				54A1B141146C9D89005BA189 /* chooseSelection.wav in Resources */,
 				54A1B143146CA971005BA189 /* shuffling.wav in Resources */,
+				E46B19D41472B971007DAF77 /* hurdleYellow-hd.png in Resources */,
+				E46B19D51472B971007DAF77 /* hurdleYellow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
