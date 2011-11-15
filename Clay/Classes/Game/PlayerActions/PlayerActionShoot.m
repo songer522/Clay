@@ -106,6 +106,7 @@
 
 -(void)dealloc
 {
+    [_bullets release];
     [super dealloc];
 }
 

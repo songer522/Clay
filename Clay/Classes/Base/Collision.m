@@ -35,7 +35,6 @@
 
 -(void)dealloc
 {
-    [_previousTile release];
     [super dealloc];
 }
 

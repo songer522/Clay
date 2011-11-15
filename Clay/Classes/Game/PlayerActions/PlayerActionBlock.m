@@ -77,7 +77,7 @@
 
 -(void)dealloc
 {
-    //[_shield release];
+    [_shield release];
     [super dealloc];
 }
 

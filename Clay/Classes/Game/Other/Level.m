@@ -565,9 +565,6 @@
 
     _gameObjects = nil; //is maintained throughout the game, so keep.
     
-    
-    
-    
     [_nextLevelName release];
     
     
