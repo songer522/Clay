@@ -176,7 +176,7 @@ static LevelManager *_shared = nil;
     NSString *levelName = [NSString stringWithString:level.name];
 
     [level unloadLevel];
-    [level release];
+    //[level release];
 
     //want to release level before try unloading textures, so nothing is hanging on to the textures
     [[TextureManager shared] unloadTexturesForKey:levelName];

@@ -309,7 +309,7 @@
 		<key>collideBehavior</key>
 		<string>falls</string>
 		<key>imageName</key>
-		<string>garbage.png</string>
+		<string>City_Garbage_1.png</string>
 		<key>offsetx</key>
 		<integer>90</integer>
 		<key>offsety</key>
@@ -379,7 +379,7 @@
 		<key>collideBehavior</key>
 		<string>falls</string>
 		<key>imageName</key>
-		<string>garbageZombie.png</string>
+		<string>Zombies_Garbage.png</string>
 		<key>offsetx</key>
 		<integer>90</integer>
 		<key>offsety</key>
@@ -1110,7 +1110,7 @@
 		<key>collideBehavior</key>
 		<string>static</string>
 		<key>imageName</key>
-		<string>water.png</string>
+		<string>City_Water_1.png</string>
 		<key>offsetx</key>
 		<integer>-60</integer>
 		<key>offsety</key>
@@ -1145,7 +1145,7 @@
 		<key>collideBehavior</key>
 		<string>static</string>
 		<key>imageName</key>
-		<string>spilleddrink.png</string>
+		<string>Disco_SpilledDrink_1.png</string>
 		<key>offsetx</key>
 		<integer>-64</integer>
 		<key>offsety</key>
