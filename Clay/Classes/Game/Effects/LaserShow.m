@@ -43,9 +43,6 @@
 
 -(void)dealloc
 {
-    for (Laser *laser in _lasers) {
-        [laser release];
-    }
     [_lasers removeAllObjects];
     [_lasers release];
     [super dealloc];
