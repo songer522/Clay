@@ -207,24 +207,17 @@
         [[[LayerManager sharedLayers] currentLayer] removeChild:node cleanup:YES];
     }
     
-    [self release];
-    
-    /*
     for (MapObject *mapObject in _obstacleMapObjects) {
         if (mapObject!=nil) {
-            [mapObject release];
-            //[[mapObject.object getCCSprite] removeFromParentAndCleanup:YES];
-            //mapObject = nil;            
+            [[mapObject.object getCCSprite] removeFromParentAndCleanup:YES];
         }
     }
     
     for (MapObject *mapObject in _otherMapObjects) {
         if (mapObject!=nil) {
             [[mapObject.object getCCSprite] removeFromParentAndCleanup:YES];
-            mapObject = nil;         
         }
     }
-    //[self release]*/
 }
 
 -(void)scanThroughMapAndAddObjects
@@ -540,7 +533,9 @@
     _main = nil;
     _meta = nil;
     _obstacles = nil;
-
+    
+    [self unloadLevel];
+    
     [_map release];
     
     [_name release];
@@ -553,6 +548,7 @@
     [_triggers removeAllObjects];
     [_triggers release];
     
+    [_parallaxLayers removeAllObjects];
     [_parallaxLayers release];
     [_mapLayers removeAllObjects];
     [_mapLayers release];
