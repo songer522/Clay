@@ -37,6 +37,8 @@ typedef enum {
 {
     float _totalTime; //used for equation-based movement
     
+    
+   
     bool _isJumping;
     bool _isTripping;
     bool _firstFrameJumping;
@@ -73,6 +75,8 @@ typedef enum {
 @property(nonatomic,assign) bool isTripping;
 @property(nonatomic,assign) bool isJumping;
 @property(nonatomic,assign) bool hasDoubleJumped;
+
+
 @property(nonatomic,retain) Battery *battery;
 
 +(id) instance;                                 //constructor

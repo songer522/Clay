@@ -91,6 +91,7 @@
             case HUD_BUTTON_SPRINT:
                 if(![_gameLayer.player getIsTurbo]) {
                     [_gameLayer.player startTurbo];
+                   
                 } else {
                     [_gameLayer.player endTurbo];
                 }

@@ -186,7 +186,8 @@
         [_projectile reset];
         [_projectile setPosition:CGPointMake(_x, _y + 41)];
        // [_projectile setBoundingBox:CGRectMake(15, 33, 30, 30)];
-        [_projectile setBoundingBox:CGRectMake(15, 33, 15, 30)];
+        [_projectile setBoundingBox:CGRectMake(15, 33, 14, 28)];
+        
         GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
         [[gameLayer.player getThirdAction] setKilledEnemy:YES];
     } else if(_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_FADE) {
@@ -321,6 +322,15 @@
         } else {
             _vx = 0.0f;
         }
+        
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST) {
+            GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+            CGPoint position = [gameLayer.player getPosition];
+            if (_x < (position.x + 550.0f) && _x > 0.0f) {
+                _vx = -200.0f;    
+            } else {
+                _vx = 0.0f;
+            }
     } else if(_currentBehavior == COLLISION_BEHAVIOR_MAD_DOG) {
             GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
             CGPoint position = [gameLayer.player getPosition];
@@ -471,10 +481,9 @@
         _currentBehavior = COLLISION_BEHAVIOR_FLYER;
     } else if(_currentBehavior == COLLISION_BEHAVIOR_ROLLING_HAYBALE) {
         _currentBehavior = COLLISION_BEHAVIOR_ROLLING_HAYBALE;
-    } else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER) {
-        _currentBehavior = COLLISION_BEHAVIOR_STATIC;  
-    }
-        _collided = false;
+    } else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST) {
+        _currentBehavior = COLLISION_BEHAVIOR_STATIC;     
+}         _collided = false;
 }
 
 -(Collision*) getCollision
@@ -501,6 +510,10 @@
     } else if([behavior isEqualToString:@"chargeAtPlayer"]) {
         _collideBehavior = COLLISION_BEHAVIOR_CHARGE_AT_PLAYER;
         _currentBehavior = COLLISION_BEHAVIOR_CHARGE_AT_PLAYER;
+        _beatsPlayerAction = true;
+    } else if([behavior isEqualToString:@"chargeAtPlayerFast"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST;
+        _currentBehavior =COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST;
         _beatsPlayerAction = true;
     } else if([behavior isEqualToString:@"zombie"]) {
         _collideBehavior = COLLISION_BEHAVIOR_ZOMBIE_HEADLESS;

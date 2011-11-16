@@ -37,6 +37,41 @@
 		<key>playerEffect</key>
 		<string>collide</string>
 	</dict>
+	<key>smallHurdle</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>1</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>none</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>15</integer>
+			<key>width</key>
+			<integer>15</integer>
+			<key>x</key>
+			<integer>20</integer>
+			<key>y</key>
+			<integer>2</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>falls</string>
+		<key>imageName</key>
+		<string>hurdleYellow.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>-45</integer>
+		<key>playerEffect</key>
+		<string>collide</string>
+	</dict>
 	<key>jimSpaceShip</key>
 	<dict>
 		<key>aggressive</key>
@@ -212,7 +247,7 @@
 		<key>playerEffect</key>
 		<string>none</string>
 	</dict>
-	<key>femaleBreakdancer</key>
+	<key>femaleBreakdancerRed</key>
 	<dict>
 		<key>aggressive</key>
 		<string>false</string>
@@ -224,13 +259,13 @@
 			<real>0.5</real>
 		</dict>
 		<key>animationName</key>
-		<string>femaleBreakdancerAnim</string>
+		<string>femaleBreakdancerRedAnim</string>
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
 			<integer>35</integer>
 			<key>width</key>
-			<integer>45</integer>
+			<integer>30</integer>
 			<key>x</key>
 			<integer>30</integer>
 			<key>y</key>
@@ -238,6 +273,41 @@
 		</dict>
 		<key>collideBehavior</key>
 		<string>chargeAtPlayer</string>
+		<key>imageName</key>
+		<string>blank.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>5</integer>
+		<key>playerEffect</key>
+		<string>collide</string>
+	</dict>
+	<key>femaleBreakdancerBlue</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<real>0.5</real>
+			<key>y</key>
+			<real>0.5</real>
+		</dict>
+		<key>animationName</key>
+		<string>femaleBreakdancerBlueAnim</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>35</integer>
+			<key>width</key>
+			<integer>30</integer>
+			<key>x</key>
+			<integer>30</integer>
+			<key>y</key>
+			<integer>50</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>chargeAtPlayerFast</string>
 		<key>imageName</key>
 		<string>blank.png</string>
 		<key>offsetx</key>
@@ -263,7 +333,7 @@
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>110</integer>
+			<integer>60</integer>
 			<key>width</key>
 			<integer>40</integer>
 			<key>x</key>
@@ -333,9 +403,9 @@
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>36</integer>
+			<integer>30</integer>
 			<key>width</key>
-			<integer>31</integer>
+			<integer>14</integer>
 			<key>x</key>
 			<integer>50</integer>
 			<key>y</key>
@@ -368,9 +438,9 @@
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>36</integer>
+			<integer>30</integer>
 			<key>width</key>
-			<integer>31</integer>
+			<integer>14</integer>
 			<key>x</key>
 			<integer>50</integer>
 			<key>y</key>
@@ -405,7 +475,7 @@
 			<key>height</key>
 			<integer>30</integer>
 			<key>width</key>
-			<integer>18</integer>
+			<integer>14</integer>
 			<key>x</key>
 			<integer>50</integer>
 			<key>y</key>
@@ -457,6 +527,41 @@
 		<key>playerEffect</key>
 		<string>collide</string>
 	</dict>
+	<key>haybaleSmall</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>1</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>townHaybaleSmaillAnim</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>15</integer>
+			<key>width</key>
+			<integer>15</integer>
+			<key>x</key>
+			<integer>50</integer>
+			<key>y</key>
+			<integer>2</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>falls</string>
+		<key>imageName</key>
+		<string>blank.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>-45</integer>
+		<key>playerEffect</key>
+		<string>collide</string>
+	</dict>
 	<key>haybaleRolling</key>
 	<dict>
 		<key>aggressive</key>
@@ -473,9 +578,9 @@
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>30</integer>
+			<integer>25</integer>
 			<key>width</key>
-			<integer>20</integer>
+			<integer>14</integer>
 			<key>x</key>
 			<integer>20</integer>
 			<key>y</key>
@@ -508,9 +613,9 @@
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>48</integer>
+			<integer>30</integer>
 			<key>width</key>
-			<integer>25</integer>
+			<integer>15</integer>
 			<key>x</key>
 			<integer>-50</integer>
 			<key>y</key>
@@ -578,7 +683,7 @@
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>30</integer>
+			<integer>20</integer>
 			<key>width</key>
 			<integer>25</integer>
 			<key>x</key>
@@ -613,9 +718,9 @@
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>38</integer>
-			<key>width</key>
 			<integer>30</integer>
+			<key>width</key>
+			<integer>20</integer>
 			<key>x</key>
 			<integer>32</integer>
 			<key>y</key>
@@ -928,9 +1033,9 @@
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>25</integer>
+			<integer>20</integer>
 			<key>width</key>
-			<integer>50</integer>
+			<integer>35</integer>
 			<key>x</key>
 			<integer>25</integer>
 			<key>y</key>
@@ -1239,9 +1344,9 @@
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>38</integer>
-			<key>width</key>
 			<integer>30</integer>
+			<key>width</key>
+			<integer>20</integer>
 			<key>x</key>
 			<integer>32</integer>
 			<key>y</key>
