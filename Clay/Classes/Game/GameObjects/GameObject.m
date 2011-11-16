@@ -38,7 +38,6 @@
 @synthesize rotateLights = _rotateLights;
 @synthesize beatsPlayerAction = _beatsPlayerAction;
 @synthesize originalAnimation=_originalAnimation;
-@synthesize beatsPlayerAction = _beatsPlayerAction;
 
 + (id) objectWithSprite:(Sprite*)sprite
 {
