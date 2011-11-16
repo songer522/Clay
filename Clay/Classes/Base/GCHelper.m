@@ -149,4 +149,13 @@ static GCHelper *sharedHelper = nil;
     return [self initWithLeaderboardToReport:theLeaderboardToReport achievementsToReport:theAchievementsToReport];
 }
 
+-(void)dealloc
+{
+    [leaderboardToReport removeAllObjects];
+    [leaderboardToReport release];
+    [achievementsToReport removeAllObjects];
+    [achievementsToReport release];
+    [super dealloc];
+}
+
 @end

@@ -54,7 +54,7 @@
 
 -(void)dealloc
 {
-    [_parent release];
+    _parent = nil; //weak
     [super dealloc];
 }
 

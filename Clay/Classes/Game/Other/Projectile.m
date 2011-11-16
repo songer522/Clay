@@ -262,5 +262,11 @@
     return false;
 }
 
+-(void)dealloc
+{
+    [_sprite release];
+    [super dealloc];
+}
+
 
 @end

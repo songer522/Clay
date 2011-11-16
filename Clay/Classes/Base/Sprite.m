@@ -222,7 +222,6 @@
     [_animation release];
     [sprite_cc removeFromParentAndCleanup:YES];
     sprite_cc = nil;
-    //[sprite_cc release];
     [super dealloc];
 }
 

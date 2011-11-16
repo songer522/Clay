@@ -99,7 +99,6 @@ static LevelManager *_shared = nil;
         [filenameMuta appendString:[filenameParts objectAtIndex:1]];
         
         fileName = [NSString stringWithString:filenameMuta];
-        
     }
     
     _thirdAction = [levelSettings valueForKey:@"thirdAction"];

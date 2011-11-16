@@ -16,6 +16,7 @@
 #import "ActionButton.h"
 #import "Level.h"
 #import "SoundEngine.h"
+#import "Twitter/Twitter.h"
 
 @implementation ChooseLevelScreen
 
@@ -57,6 +58,16 @@
     return self;
 }
 
+-(void)tweet:(NSString*)levelName
+{
+    if ([TWTweetComposeViewController canSendTweet]) {
+        TWTweetComposeViewController *tweetSheet = [[TWTweetComposeViewController alloc] init];
+        [tweetSheet setInitialText:[NSString stringWithFormat:@"I just beat %@",levelName]];
+        //[[[CCDirector sharedDirector] openGLView] addSubview:(UIViewController*)tweetSheet];
+    }
+}
+
+
 -(void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     NSSet *allTouches = [event allTouches];
@@ -74,6 +85,7 @@
                     _levelToSwitchTo = nil;
                 }
                 _levelToSwitchTo = [[NSString alloc] initWithFormat:@"level%d",_selected];
+                [self tweet:_levelToSwitchTo];
             }
         }
         

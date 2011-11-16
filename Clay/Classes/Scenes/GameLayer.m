@@ -68,12 +68,9 @@
         _savePoint = [SavePoint instance];
         
         
-        //[self scheduleUpdate];
-        
         [self schedule: @selector(update:)];
         
         [self initForLevel];
-        
 
         _paused = true;
         
@@ -83,13 +80,7 @@
                                     //the first render cycle
         
 
-        
-        //[self schedule:@selector(updateLogic:) interval:(1.0f/30.0f)];
-        //[[CCTextureCache sharedTextureCache] removeAllTextures];
-        //[[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
-        
-
-	}
+    }
 	return self;
 }
 
@@ -233,7 +224,6 @@
         [event setTouchLocation:[self convertTouchToNodeSpace:touch]];
         [_inputController interpretAndReactToInputEvent:event];
     }
-    //[[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
     
 }
 
@@ -270,15 +260,8 @@
     }
 }
 
-
-// on "dealloc" you need to release all your retained objects
 - (void) dealloc
 {
-	// in case you have something to dealloc, do it in this method
-	// in this particular example nothing needs to be released.
-	// cocos2d will automatically release all the children (Label)
-	
-	// don't forget to call "super dealloc"
     [_level release];
     [_player release];
     [_gameController release];
