@@ -14,6 +14,7 @@
 #import "SoundEngine.h"
 #import "GCHelper.h"
 #import "ChooseLevelScreen.h"
+#import "TextureManager.h"
 
 
 @implementation MainMenuScene
@@ -48,9 +49,7 @@
     
         [[LayerManager sharedLayers] setWorkingLayer:self];
         
-        CCSpriteFrameCache* frameCache = [CCSpriteFrameCache sharedSpriteFrameCache];
-        [frameCache addSpriteFramesWithFile:@"menuTextures.plist"];
-
+        [[TextureManager shared] loadMemoryForKey:@"mainMenu"];
         
         _trackBackground = [Sprite spriteFromFrameCacheWithName:@"Menu_Background.png"];
         [_trackBackground getCCSprite].position = ccp(0,0);
@@ -98,7 +97,7 @@
         
         [self scheduleUpdate];
         self.isTouchEnabled = YES;
-        
+                
         [myPool drain];
 
     }
@@ -246,8 +245,8 @@
     [_playButtonBlue release];
     [_playButtonOrange release];
     [_copyright release];
-    [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFramesFromFile:@"menuTextures.plist"];
-    [[CCTextureCache sharedTextureCache] removeTextureForKey:@"menuTextures.png"];
+    
+    [[TextureManager shared] unloadMemoryForKey:@"mainMenu"];
 }
 
 @end

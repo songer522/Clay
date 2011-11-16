@@ -19,6 +19,10 @@
 #import "BossFactory.h"
 #import "SavePoint.h"
 #import "LaserShow.h"
+#import "TextureManager.h"
+#import "GameSettings.h"
+
+#define DEBUG_DRAW_BOUNDING_BOXES 0
 
 // HelloWorldLayer implementation
 @implementation GameLayer
@@ -47,11 +51,14 @@
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super init])) {
+        
         [self setVisible:NO];
 
         [[CCDirector sharedDirector] setProjection:CCDirectorProjection2D];
         
-        [[SoundEngine shared] preloadAudio];
+        [[TextureManager shared] loadMemoryForKey:@"gameScene"];
+
+        [[LayerManager sharedLayers] setCurrentLayer:self];
         
         _gameController = [GameController gameController];
         [_gameController setGameLayer:self];
@@ -59,29 +66,48 @@
         _inputController = [InputController inputController];
         [self addChild:_inputController];       //need to so its scheduled selectors will be trigger
         
-        [[LayerManager sharedLayers] setCurrentLayer:self];
-        
         _player = [Player instance];
-        
-        _level = [[LevelManager shared] currentLevel];
         
         _savePoint = [SavePoint instance];
         
-        
         [self schedule: @selector(update:)];
         
-        [self initForLevel];
-
         _paused = true;
         
         self.isTouchEnabled = YES;
         
         [self updateLogic:0.001f];  //done to correctly position the camera and player before
                                     //the first render cycle
+        [self setupLayers];
         
-
+        NSString *startingLevel = [[GameSettings shared] getGlobalForKey:@"startingLevel"];
+        
+        [self startLevel:startingLevel];
     }
 	return self;
+}
+
+-(void)setupLayers
+{
+    // Run the intro Scene
+    
+    [[ComicManager shared] preload];
+    [ComicManager shared].gameLayer = [[LayerManager sharedLayers] currentLayer];
+    
+    _hud = [HudLayer instance];    
+    
+#if DEBUG_DRAW_BOUNDING_BOXES
+    _debugLayer = [GameDebugLayer debugLayerForScene:[[LayerManager sharedLayers] currentScene] GameLayer:[[LayerManager sharedLayers] currentLayer]];
+#endif
+
+}
+
+-(void)startLevel:(NSString*)levelName
+{
+    [[LevelManager shared] loadLevelNamed:levelName];
+    [self initForLevel];
+    Level *levelObj = [[LevelManager shared] currentLevel];
+    [[ComicManager shared] startComic:levelObj.preComicName StartPhase:COMIC_PHASE_STARTING_VIDEO];
 }
 
 -(void)initForLevel
@@ -103,15 +129,13 @@
     [_hud reset];
 }
 
--(void)setupHud:(HudLayer*)hud
+-(void)setupHud
 {
-    _hud = hud;
-    
     _player.battery = [_hud getBattery];
     [_hud getBattery].parent = _player;
     
     //pass on the hud to the gamecontroller
-    [_gameController setHud:hud];
+    [_gameController setHud:_hud];
 }
 
 -(HudLayer*)getHud
@@ -268,6 +292,9 @@
     [_inputController release];
     [_savePoint release];
     [_hud release];
+    
+    [[TextureManager shared] unloadMemoryForKey:@"gameScene"];
+    
 	[super dealloc];
 }
 

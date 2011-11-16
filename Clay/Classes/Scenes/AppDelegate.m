@@ -23,8 +23,6 @@
 #import "LevelManager.h"
 #import "ChooseLevelScreen.h"
 
-#define DEBUG_DRAW_BOUNDING_BOXES 0
-
 @implementation AppDelegate
 
 @synthesize window;
@@ -124,31 +122,6 @@
 	// Removes the startup flicker
 	[self removeStartupFlicker];
 	
-	// Run the intro Scene
-    gameScene = [GameLayer scene];
-    [[LayerManager sharedLayers] setScene:gameScene ForKey:@"game"];
-    [[LayerManager sharedLayers] setCurrentScene:gameScene];
-    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
-    
-    
-#if DEBUG_DRAW_BOUNDING_BOXES
-    _debugLayer = [GameDebugLayer debugLayerForScene:[[LayerManager sharedLayers] currentScene] GameLayer:[[LayerManager sharedLayers] currentLayer]];
-#endif
-    
-    _hudLayer = [HudLayer instance];
-    [gameLayer setupHud:_hudLayer];
-    
-
-    [[ComicManager shared] preload];
-    [ComicManager shared].gameLayer = [[LayerManager sharedLayers] currentLayer];
-    
-	
-    
-    [_hudLayer reset];
-
-    
-    [[LevelManager shared] initAfterPlayerAndHudInit];
-        
     [[CCDirector sharedDirector] runWithScene:[MainMenuScene scene]]; 
     
     [[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];

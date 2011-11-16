@@ -40,7 +40,6 @@
 -(void)loadLevelNamed:(NSString*) levelName;
 
 -(void)loadNextLevel;
--(void)switchToNextLevel;
 
 -(void)initAfterPlayerAndHudInit;
 

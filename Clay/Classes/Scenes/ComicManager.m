@@ -112,6 +112,10 @@ static ComicManager *_shared = nil;
                 [_gameLayer.player setHasGravity:true];
                 [[_gameLayer getHud] fadeOut];
                 break;
+            case COMIC_PHASE_STARTING_VIDEO:
+                //basically we need to wait for the scene transition before calling playvideo
+                [_comicLayer waitToPlayVideo:1.0f];
+                break;
             case COMIC_PHASE_PLAY_VIDEO:
                 if (_showEndGame) {
                     [self endTheGame];
@@ -121,15 +125,13 @@ static ComicManager *_shared = nil;
                 }
                 break;
             case COMIC_PHASE_BARS_OUT:
-                if(_loadNextLevel) { [[LevelManager shared] loadNextLevel]; }
-                
+                if(_loadNextLevel)
+                {
+                    [[LevelManager shared] loadNextLevel];
+                }
                 [Camera sharedCamera].trackingTarget = false;
                 [[Camera sharedCamera] snapToTarget];
                 [[SoundEngine shared] cueFadeIn];
-                if(_loadNextLevel)
-                {
-                    [[LevelManager shared] switchToNextLevel];
-                }
                 [_gameLayer unpause];
                 [_gameLayer initForLevel];
                 _gameLayer.visible = true;
@@ -156,6 +158,9 @@ static ComicManager *_shared = nil;
     if (_isActive) {
         switch (_phase) {
             case COMIC_PHASE_BARS_IN:
+                [self switchToPhase:COMIC_PHASE_PLAY_VIDEO];
+                break;
+            case COMIC_PHASE_STARTING_VIDEO:
                 [self switchToPhase:COMIC_PHASE_PLAY_VIDEO];
                 break;
             case COMIC_PHASE_PLAY_VIDEO:

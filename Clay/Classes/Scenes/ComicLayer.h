@@ -20,6 +20,7 @@
 typedef enum {
     BLACKBOX_IN = 1,
     BLACKBOX_OUT = -1,
+    BLACKBOX_WAIT = 2,
     BLACKBOX_IDLE = 0
 }BlackBoxTransition;
 
@@ -52,5 +53,6 @@ typedef enum {
 -(void)secondTierBars;
 -(void)moveBars:(ccTime)dt;
 -(void)update:(ccTime)dt;
+-(void)waitToPlayVideo:(float)time;
 
 @end

@@ -56,7 +56,10 @@
 }
 
 
-
+-(void)waitToPlayVideo:(float)time
+{
+    _timeToWait = time;
+}
 
 
 -(void)update:(ccTime)dt
@@ -67,6 +70,12 @@
             break;
         case BLACKBOX_OUT:
             [self blackBoxOut:dt];
+        case BLACKBOX_WAIT:
+            _timeToWait-=dt;
+            _transition = BLACKBOX_IDLE;
+            if (_timeToWait<=0.0f) {
+                [_parent finishedAction];
+            }
         default:
             break;
     }

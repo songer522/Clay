@@ -1029,7 +1029,7 @@
 			<integer>0</integer>
 		</dict>
 		<key>animationName</key>
-		<string>runningAnim</string>
+		<string>none</string>
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>

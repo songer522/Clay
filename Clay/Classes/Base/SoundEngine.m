@@ -61,6 +61,25 @@ static SoundEngine *_shared = nil;
     }*/
 }
 
+
+-(void)loadSoundForKey:(NSString*)key
+{
+    NSString *filename = [_soundMap objectForKey:key];
+    
+    NSAssert(filename!=nil,@"Sound could not be found. Is it in the sounds.plist?");
+    
+    [_audioEngine preloadEffect:filename];
+}
+
+-(void)unloadSoundForKey:(NSString*)key
+{
+    NSString *filename = [_soundMap objectForKey:key];
+    
+    NSAssert(filename!=nil,@"Sound could not be found. Is it in the sounds.plist?");
+    
+    [_audioEngine unloadEffect:filename];
+}
+
 -(void) playSound:(NSString*)sound
 {
     NSString *filename = [_soundMap objectForKey:sound];
@@ -75,7 +94,7 @@ static SoundEngine *_shared = nil;
     NSString *filename = [_musicMap objectForKey:music];
     
     NSAssert(filename!=nil,@"Requested music file not in dictionary. Double-check music.plist");
-    //[[SimpleAudioEngine sharedEngine] playBackgroundMusic:filename];
+    [[SimpleAudioEngine sharedEngine] playBackgroundMusic:filename];
 }
 
 -(void)toggleMute

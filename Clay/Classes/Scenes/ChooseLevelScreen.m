@@ -16,7 +16,10 @@
 #import "ActionButton.h"
 #import "Level.h"
 #import "SoundEngine.h"
+#import "TextureManager.h"
 #import "Twitter/Twitter.h"
+#import "GameSettings.h"
+#import "GameLayer.h"
 
 @implementation ChooseLevelScreen
 
@@ -90,9 +93,9 @@
         }
         
         if([_startButton checkIfSelected:position]) {
-            _waitToSwitch = 0.25f;
+            _waitToSwitch = 0.05f;
             [[SoundEngine shared] playSound:@"buttonPressed"];
-            self.isTouchEnabled = NO; //NOTE: CHOOSE LEVEL SCREEN STILL ACTIVE IN GAME???
+            //self.isTouchEnabled = NO; //NOTE: CHOOSE LEVEL SCREEN STILL ACTIVE IN GAME???
             
         }
         
@@ -106,9 +109,7 @@
 {
     [[LayerManager sharedLayers] setWorkingLayer:self];    
 
-    
-    CCSpriteFrameCache* frameCache = [CCSpriteFrameCache sharedSpriteFrameCache];
-    [frameCache addSpriteFramesWithFile:@"chooseLevel.plist"];
+    [[TextureManager shared] loadMemoryForKey:@"chooseLevel"];
     
     _background = [Sprite spriteFromFrameCacheWithName:@"CL_Background.png"];
     [_background setScreenPosition:ccp(0,0)];
@@ -131,7 +132,7 @@
     
     
     for (int i=0; i<7; i++) {
-        LevelButton *button = [LevelButton levelButtonWithCache:frameCache andId:i];
+        LevelButton *button = [LevelButton levelButtonWithId:i];
         [button setCursor:_selector];
         
         if(i==0) {
@@ -164,21 +165,12 @@
 
 -(void)popAndSwitchToLevel:(NSString*)level
 {
-    [[LevelManager shared] loadLevelNamed:level];
-    [[LevelManager shared] switchToNextLevel];
-    Level *levelObj = [[LevelManager shared] currentLevel];
-    
-    [[ComicManager shared] startComic:levelObj.preComicName StartPhase:COMIC_PHASE_PLAY_VIDEO];
-
-    [self unscheduleUpdate];
-    
-    [[LayerManager sharedLayers] pushSceneNamed:@"game"];
-     
+    [[GameSettings shared] setGlobal:level ForKey:@"startingLevel"];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[GameLayer scene]]];
 }
 
 -(void)transitionOut
 {
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[[LayerManager sharedLayers] currentScene]]];
 }
 
 -(void)unload
@@ -200,7 +192,6 @@
         if(_waitToSwitch<=0.0f){
             _waitToSwitch = 0.0f;
             [self popAndSwitchToLevel:_levelToSwitchTo];
-            [self release];
         }
     }
 }
@@ -218,9 +209,8 @@
     //[_backButton release];
     //[_levelInfoFront release];
     //[_levelPanelText release];
-    [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFramesFromFile:@"chooseLevel.plist"];
-    [[CCTextureCache sharedTextureCache] removeTextureForKey:@"chooseLevel.png"];
-    //[[CCTextureCache sharedTextureCache] removeUnusedTextures];
+    
+    [[TextureManager shared] unloadMemoryForKey:@"chooseLevel"];
 }
 
 @end

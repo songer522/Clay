@@ -30,6 +30,7 @@ typedef enum {
 @class RunningSpeed;
 @class Battery;
 @class Skin;
+@class PlayerAction;
 @protocol PlayerActionProtocol;
 
 
@@ -65,7 +66,7 @@ typedef enum {
     
     Skin *_skin;
     
-    id <PlayerActionProtocol> _thirdAction; //playeraction
+    PlayerAction *_thirdAction; //playeraction
 
 }
 

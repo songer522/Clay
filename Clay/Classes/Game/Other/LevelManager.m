@@ -44,19 +44,7 @@ static LevelManager *_shared = nil;
         
         NSString *startingLevel = [_levelSettings valueForKey:@"startingLevel"];
         
-
-        TextureManager *manager = [TextureManager shared];
-        [manager loadTexturesForKey:@"player"];
-        [manager loadTexturesForKey:@"hud"];
-        [manager loadTexturesForKey:@"player8"];
-
-        //textures must be loaded before the animations
-        AnimationController *animController = [AnimationController sharedController];
-        [animController loadAnimationsForGroup:@"player"];
-        [animController loadAnimationsForGroup:@"hud"];
-        
-        
-        _currentLevel = [self prepareLevelNamed:startingLevel];
+        //_currentLevel = [self prepareLevelNamed:startingLevel];
         
     }
     
@@ -68,20 +56,12 @@ static LevelManager *_shared = nil;
 //object exists. need to fix later
 -(void)initAfterPlayerAndHudInit
 {
-    [_loadedLevel setHudButtonsAndThirdAction:_thirdAction];
+    //[_loadedLevel setHudButtonsAndThirdAction:_thirdAction];
     
 }
 
 -(Level*)prepareLevelNamed:(NSString*)levelName
 {
-    //call before animations are loaded, as the animations assume these spriteframes are in memory
-    [[TextureManager shared] loadTexturesForKey:levelName];
-    
-    //pretty much always needed
-    AnimationController *controller = [AnimationController sharedController];
-    [controller loadAnimationsForGroup:levelName];
-    
-    
     NSDictionary *levelSettings = [_levelSettings valueForKey:levelName];
     
     NSString *fileName = [levelSettings valueForKey:@"fileName"];
@@ -136,26 +116,18 @@ static LevelManager *_shared = nil;
 
 -(void)loadLevelNamed:(NSString*) levelName
 {
+    //this method gets called on the first level loaded, before currentlevel is set
+    if(_currentLevel !=nil) {
+        [self dumpMemoryForLevel:_currentLevel];        
+    }
+    
+    [[TextureManager shared] loadMemoryForKey:levelName];    
+    
     _nextLevel = [self prepareLevelNamed:levelName];
+    _currentLevel = _nextLevel;
+    
     [UserData sharedInstance].currentLevel = [[_currentLevel.name substringFromIndex:5] intValue];
     [[UserData sharedInstance] save];
-}
-
--(void)loadNextLevel
-{
-    [self loadLevelNamed:_currentLevel.nextLevelName];
-}
-
--(void)receiveBoss:(Boss*)boss
-{
-    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
-    [gameLayer setBoss:boss];
-}
-
--(void)switchToNextLevel
-{
-    [self dumpMemoryForLevel:_currentLevel];
-    _currentLevel = _nextLevel;
     
     //show 8-bit skin if level 7, otherwise show regular skin
     GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
@@ -170,18 +142,24 @@ static LevelManager *_shared = nil;
 
 }
 
+-(void)loadNextLevel
+{
+    [self loadLevelNamed:_currentLevel.nextLevelName];
+}
+
+-(void)receiveBoss:(Boss*)boss
+{
+    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+    [gameLayer setBoss:boss];
+}
+
 -(void)dumpMemoryForLevel:(Level*)level
 {
     NSString *levelName = [NSString stringWithString:level.name];
 
     [level release];
     
-    //then we should get rid of the animations we loaded for this level
-    AnimationController *controller = [AnimationController sharedController];
-    [controller unloadAnimationsForGroup:levelName];
-
-    //want to release level and animations before try unloading textures, so nothing is hanging on to the textures
-    [[TextureManager shared] unloadTexturesForKey:levelName];
+    [[TextureManager shared] unloadMemoryForKey:levelName];
 }
 
 -(NSMutableArray*)getObstacleArray
