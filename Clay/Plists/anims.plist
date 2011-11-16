@@ -196,7 +196,7 @@
 		<key>clearPreviousAnims</key>
 		<string>true</string>
 		<key>delay</key>
-		<string>2.5</string>
+		<string>3.5</string>
 		<key>group</key>
 		<string>level7</string>
 		<key>looping</key>
