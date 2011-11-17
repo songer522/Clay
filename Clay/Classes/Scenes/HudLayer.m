@@ -19,7 +19,7 @@
 #define HUD_LAYER_JUMP_X 32
 #define HUD_LAYER_ACTION_X 390
 #define HUD_LAYER_SPRINT_X 450
-#define HUD_LAYER_BUTTON_SIZE 55
+#define HUD_LAYER_BUTTON_SIZE 110
 
 @implementation HudLayer
 
@@ -64,7 +64,7 @@
 
 {
     //test jump button
-    if ([self testButtonPosition:CGPointMake(HUD_LAYER_JUMP_X, HUD_LAYER_BUTTON_Y) Test:point]) {
+    if ([_buttonJump testCollision:point]) {
         if (type == INPUT_TOUCH_PRESSED) {
             if([_buttonJump getCCSpriteForOverlay].visible)
             {[_buttonJump setOpacityAndScale];}
@@ -76,7 +76,7 @@
     }
     
     //test action button
-    if ([self testButtonPosition:CGPointMake(HUD_LAYER_ACTION_X, HUD_LAYER_BUTTON_Y) Test:point]) {
+    if ([_buttonAction testCollision:point]) {
         if (type == INPUT_TOUCH_PRESSED) {
             
               if([_buttonAction getCCSpriteForOverlay].visible)
@@ -88,7 +88,7 @@
     }
     
     //test sprint button
-    if ([self testButtonPosition:CGPointMake(HUD_LAYER_SPRINT_X, HUD_LAYER_BUTTON_Y) Test:point]) {
+    if ([_buttonSprint testCollision:point]) {
         if (type == INPUT_TOUCH_PRESSED) {
              
               if([_buttonSprint getCCSpriteForOverlay].visible)

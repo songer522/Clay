@@ -73,7 +73,7 @@
 {
     [_buttonGraphic setScreenPosition:position];
     [_trophy setScreenPosition:position];
-    [self setHitbox:CGRectMake(position.x, position.y, 55, 55)];
+    [self setHitbox:CGRectMake(position.x, position.y, 190, 190)];
 }
 
 -(bool)checkIfSelected:(CGPoint)touch
