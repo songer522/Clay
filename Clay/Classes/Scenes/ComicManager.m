@@ -59,7 +59,7 @@ static ComicManager *_shared = nil;
     _videoPlayer.parent = self;
     
     _comicLayer = [ComicLayer instance];
-    _comicLayer.parent = self;
+    _comicLayer.comicManager = self;
     
     _isActive = false;
     _showEndGame = false;
@@ -174,6 +174,11 @@ static ComicManager *_shared = nil;
                 break;
         }        
     }
+}
+
+-(void)resetComicLayer
+{
+    [_comicLayer resetLayer];
 }
 
 -(void)endTheGame

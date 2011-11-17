@@ -59,6 +59,7 @@ typedef enum {
 -(void)switchToPhase:(ComicPhase)phase;
 
 -(void)finishedAction;
+-(void)resetComicLayer;
 
 -(void)endTheGame;
 

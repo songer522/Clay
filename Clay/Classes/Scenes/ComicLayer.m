@@ -12,7 +12,7 @@
 
 @implementation ComicLayer
 
-@synthesize parent = _parent;
+@synthesize comicManager = _comicManager;
 
 +(id)instance
 {
@@ -75,7 +75,7 @@
             _timeToWait-=dt;
             if (_timeToWait<=0.0f) {
                 _transition = BLACKBOX_IDLE;
-                [_parent finishedAction];
+                [_comicManager finishedAction];
             }
         default:
             break;
@@ -93,7 +93,7 @@
                 [self secondTierBars];
             } else {
                 _transition = BLACKBOX_IDLE;
-                [_parent finishedAction];
+                [_comicManager finishedAction];
             }
         }
     }
@@ -110,7 +110,7 @@
                 [self secondTierBars];
             } else {
                 _transition = BLACKBOX_IDLE;
-                [_parent finishedAction];                
+                [_comicManager finishedAction];                
             }
         }
     }
@@ -184,9 +184,15 @@
     glEnable(GL_TEXTURE_2D);
 }
 
+-(void)resetLayer
+{
+    [[[LayerManager sharedLayers] currentScene] removeChild:self cleanup:NO];
+    [[[LayerManager sharedLayers] currentScene] addChild:self];
+}
+
 -(void)dealloc
 {
-    [_parent release];
+    [_comicManager release];
     [super dealloc];
 }
 

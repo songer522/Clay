@@ -33,12 +33,12 @@ typedef enum {
     int _phase;
     float _rate;
     
-    ComicManager *_parent;
+    ComicManager *_comicManager;
     
     BlackBoxTransition _transition;
 }
 
-@property (nonatomic,retain) ComicManager *parent;
+@property (nonatomic,retain) ComicManager *comicManager;
 
 
 +(id)instance;
@@ -54,5 +54,7 @@ typedef enum {
 -(void)moveBars:(ccTime)dt;
 -(void)update:(ccTime)dt;
 -(void)waitToPlayVideo:(float)time;
+
+-(void)resetLayer;
 
 @end

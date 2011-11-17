@@ -129,7 +129,9 @@
     
     [self initCamera];
     
+    [[LevelManager shared] initAfterPlayerAndHudInit];
     [_hud reset];
+    [[ComicManager shared] resetComicLayer];
 }
 
 -(void)setupHud

@@ -302,6 +302,8 @@
 
 -(void)reset
 {
+    [self removeFromParentAndCleanup:NO];
+    [[[LayerManager sharedLayers] currentScene] addChild:self];    
 }
 
 -(void)dealloc
