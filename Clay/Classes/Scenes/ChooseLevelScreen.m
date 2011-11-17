@@ -17,7 +17,6 @@
 #import "Level.h"
 #import "SoundEngine.h"
 #import "TextureManager.h"
-#import "Twitter/Twitter.h"
 #import "GameSettings.h"
 #import "GameLayer.h"
 
@@ -47,9 +46,7 @@
 -(id) initWithScene:(CCScene*)scene
 {
     if ((self = [super init])) {
-        [[LayerManager sharedLayers] setScene:scene ForKey:@"chooseLevel"];
-         _buttons = [[NSMutableArray alloc] initWithCapacity:4];
-        
+         _buttons = [[NSMutableArray alloc] initWithCapacity:4];        
         _levelToSwitchTo = @"level1";
         _buttons = [[NSMutableArray alloc] initWithCapacity:7];
         _alpha = 1.0f;
@@ -60,16 +57,6 @@
     }
     return self;
 }
-
--(void)tweet:(NSString*)levelName
-{
-    if ([TWTweetComposeViewController canSendTweet]) {
-        TWTweetComposeViewController *tweetSheet = [[TWTweetComposeViewController alloc] init];
-        [tweetSheet setInitialText:[NSString stringWithFormat:@"I just beat %@",levelName]];
-        //[[[CCDirector sharedDirector] openGLView] addSubview:(UIViewController*)tweetSheet];
-    }
-}
-
 
 -(void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -88,7 +75,6 @@
                     _levelToSwitchTo = nil;
                 }
                 _levelToSwitchTo = [[NSString alloc] initWithFormat:@"level%d",_selected];
-                [self tweet:_levelToSwitchTo];
             }
         }
         
@@ -179,6 +165,9 @@
 
 -(void)onExit
 {
+    [self unscheduleUpdate];
+    self.isTouchEnabled = false;
+
     [self release];
 }
 
@@ -198,8 +187,7 @@
 
 -(void)dealloc
 {
-    [self unscheduleUpdate];
-    self.isTouchEnabled = false;
+    NSLog(@"Dealloc: ChooseLevelScreen");
     
     [_buttons removeAllObjects];
     _buttons = nil;
@@ -208,9 +196,6 @@
     [_levelSelectText release];
     [_startButton release];
     [_selector release];
-    //[_backButton release];
-    //[_levelInfoFront release];
-    //[_levelPanelText release];
     
     [[TextureManager shared] unloadMemoryForKey:@"chooseLevel"];
 }

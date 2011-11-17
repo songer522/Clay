@@ -220,23 +220,19 @@
 -(void)private_switchToChooseLevel
 {
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ChooseLevelScreen scene]]];
-    [self unload];
-    [self unscheduleUpdate];
-}
-
--(void)unload
-{
-
 }
 
 -(void)onExit
 {
+    [self unscheduleUpdate];
+    self.isTouchEnabled = false;
+    
     [self release];
 }
 
 -(void)dealloc
 {
-    //NSLog(@"MAIN MENU SCENE is being deallocated"); //just to make sure it gets called
+    NSLog(@"Dealloc: MainMenuScene");
     
     [_trackBackground release];
     [_rain1 release];

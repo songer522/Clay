@@ -138,8 +138,18 @@
     }
 }
 
+-(void)onExit
+{
+    [self unscheduleUpdate];
+    self.isTouchEnabled = false;
+
+    [self release];
+}
+
 -(void)dealloc
 {
+    NSLog(@"Dealloc: EndGameScene");
+    
     [_endGame release];
     [_bestTime release];
     [_timer release];

@@ -264,7 +264,6 @@
 -(void)onExit
 {
     if (!_gameController.isPaused) {
-        //[super onExit];
         [self release];
     }
 }
@@ -290,6 +289,7 @@
 
 - (void) dealloc
 {
+    //can't put these in onexit like the others for some reason
     [self unscheduleUpdate];
     self.isTouchEnabled = false;
     

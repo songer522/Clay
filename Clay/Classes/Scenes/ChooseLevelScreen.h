@@ -52,8 +52,6 @@
 
 -(void)unload;
 
--(void)tweet:(NSString*)levelName;
-
 
 
 @end
