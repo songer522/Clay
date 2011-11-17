@@ -198,6 +198,8 @@
 
 -(void)dealloc
 {
+    [self unscheduleUpdate];
+    self.isTouchEnabled = false;
     
     [_buttons removeAllObjects];
     _buttons = nil;

@@ -70,9 +70,9 @@ static TextureManager *_shared = nil;
 
 -(void)unloadMemoryForKey:(NSString*)key
 {
-    NSDictionary *dict = [_memoryDictionary objectForKey:key];
-    
     NSLog(@"Unloading memory for key: %@",key);
+
+    NSDictionary *dict = [_memoryDictionary objectForKey:key];
     
     //unload textures
     NSString *textureList = [dict objectForKey:@"textures"];

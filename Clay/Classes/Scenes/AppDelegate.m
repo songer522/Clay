@@ -20,6 +20,7 @@
 #import "EndGameScene.h"
 #import "HudLayer.h"
 #import "MainMenuScene.h"
+#import "TextureManager.h"
 #import "LevelManager.h"
 #import "ChooseLevelScreen.h"
 
@@ -122,6 +123,9 @@
 	// Removes the startup flicker
 	[self removeStartupFlicker];
 	
+    
+    [[TextureManager shared] loadMemoryForKey:@"launch"];
+    
     [[CCDirector sharedDirector] runWithScene:[MainMenuScene scene]]; 
     
     [[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
@@ -151,7 +155,9 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-	CCDirector *director = [CCDirector sharedDirector];
+	[[TextureManager shared] unloadMemoryForKey:@"launch"];
+    
+    CCDirector *director = [CCDirector sharedDirector];
 	
 	[[director openGLView] removeFromSuperview];
 	

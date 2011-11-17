@@ -166,7 +166,8 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
     
     [_firstFrameName release];
     [_sequence release];
-    [_animateAction release];
+    
+    _animateAction = nil;
     
     [super dealloc];
 }

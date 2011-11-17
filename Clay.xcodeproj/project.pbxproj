@@ -168,6 +168,10 @@
 		54883BAC14488D900029759E /* tim_hit_something.caf in Resources */ = {isa = PBXBuildFile; fileRef = 54883BAB14488D900029759E /* tim_hit_something.caf */; };
 		54883BAF14488F720029759E /* hurt.caf in Resources */ = {isa = PBXBuildFile; fileRef = 54883BAD14488F710029759E /* hurt.caf */; };
 		54883BB014488F720029759E /* sand_step.caf in Resources */ = {isa = PBXBuildFile; fileRef = 54883BAE14488F720029759E /* sand_step.caf */; };
+		548A72CB1474720200D7F4B1 /* endGameTextures-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 548A72C71474720200D7F4B1 /* endGameTextures-hd.plist */; };
+		548A72CC1474720200D7F4B1 /* endGameTextures-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 548A72C81474720200D7F4B1 /* endGameTextures-hd.png */; };
+		548A72CD1474720200D7F4B1 /* endGameTextures.plist in Resources */ = {isa = PBXBuildFile; fileRef = 548A72C91474720200D7F4B1 /* endGameTextures.plist */; };
+		548A72CE1474720200D7F4B1 /* endGameTextures.png in Resources */ = {isa = PBXBuildFile; fileRef = 548A72CA1474720200D7F4B1 /* endGameTextures.png */; };
 		548D2D151461DF04005E1AC0 /* eightBitTim-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 548D2D111461DF04005E1AC0 /* eightBitTim-hd.plist */; };
 		548D2D161461DF04005E1AC0 /* eightBitTim-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 548D2D121461DF04005E1AC0 /* eightBitTim-hd.png */; };
 		548D2D171461DF04005E1AC0 /* eightBitTim.plist in Resources */ = {isa = PBXBuildFile; fileRef = 548D2D131461DF04005E1AC0 /* eightBitTim.plist */; };
@@ -651,6 +655,10 @@
 		54883BAB14488D900029759E /* tim_hit_something.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = tim_hit_something.caf; path = Resources/sounds/tim_hit_something.caf; sourceTree = "<group>"; };
 		54883BAD14488F710029759E /* hurt.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = hurt.caf; path = Resources/sounds/hurt.caf; sourceTree = "<group>"; };
 		54883BAE14488F720029759E /* sand_step.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = sand_step.caf; path = Resources/sounds/sand_step.caf; sourceTree = "<group>"; };
+		548A72C71474720200D7F4B1 /* endGameTextures-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "endGameTextures-hd.plist"; path = "Clay/Resources/other/endGameTextures-hd.plist"; sourceTree = SOURCE_ROOT; };
+		548A72C81474720200D7F4B1 /* endGameTextures-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "endGameTextures-hd.png"; path = "Clay/Resources/other/endGameTextures-hd.png"; sourceTree = SOURCE_ROOT; };
+		548A72C91474720200D7F4B1 /* endGameTextures.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = endGameTextures.plist; path = Clay/Resources/other/endGameTextures.plist; sourceTree = SOURCE_ROOT; };
+		548A72CA1474720200D7F4B1 /* endGameTextures.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = endGameTextures.png; path = Clay/Resources/other/endGameTextures.png; sourceTree = SOURCE_ROOT; };
 		548D2D111461DF04005E1AC0 /* eightBitTim-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "eightBitTim-hd.plist"; sourceTree = "<group>"; };
 		548D2D121461DF04005E1AC0 /* eightBitTim-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "eightBitTim-hd.png"; sourceTree = "<group>"; };
 		548D2D131461DF04005E1AC0 /* eightBitTim.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = eightBitTim.plist; sourceTree = "<group>"; };
@@ -1013,6 +1021,10 @@
 		5441BED1143F8B75003224FF /* menu */ = {
 			isa = PBXGroup;
 			children = (
+				548A72C71474720200D7F4B1 /* endGameTextures-hd.plist */,
+				548A72C81474720200D7F4B1 /* endGameTextures-hd.png */,
+				548A72C91474720200D7F4B1 /* endGameTextures.plist */,
+				548A72CA1474720200D7F4B1 /* endGameTextures.png */,
 				549D84D51469DE9100A3599F /* chooseLevel-hd.plist */,
 				549D84D61469DE9100A3599F /* chooseLevel-hd.png */,
 				549D84D71469DE9100A3599F /* chooseLevel.plist */,
@@ -2197,6 +2209,10 @@
 				5416FA511472C27900DDC8ED /* zombieLevel-hd.png in Resources */,
 				5416FA521472C27900DDC8ED /* zombieLevel.plist in Resources */,
 				5416FA531472C27900DDC8ED /* zombieLevel.png in Resources */,
+				548A72CB1474720200D7F4B1 /* endGameTextures-hd.plist in Resources */,
+				548A72CC1474720200D7F4B1 /* endGameTextures-hd.png in Resources */,
+				548A72CD1474720200D7F4B1 /* endGameTextures.plist in Resources */,
+				548A72CE1474720200D7F4B1 /* endGameTextures.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

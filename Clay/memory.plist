@@ -20,59 +20,68 @@
 		<key>textures</key>
 		<string>hudGraphics2</string>
 	</dict>
+	<key>launch</key>
+	<dict>
+		<key>animations</key>
+		<string>hud,player</string>
+		<key>sounds</key>
+		<string>none</string>
+		<key>textures</key>
+		<string>hudGraphics2,characterAnims</string>
+	</dict>
 	<key>level1</key>
 	<dict>
 		<key>animations</key>
-		<string>player,level1</string>
+		<string>level1</string>
 		<key>sounds</key>
 		<string>wooAction</string>
 		<key>textures</key>
-		<string>characterAnims,trackLevel</string>
+		<string>trackLevel</string>
 	</dict>
 	<key>level2</key>
 	<dict>
 		<key>animations</key>
-		<string>player,level2</string>
+		<string>level2</string>
 		<key>sounds</key>
 		<string>henKicked,cowDied</string>
 		<key>textures</key>
-		<string>characterAnims,barnLevel</string>
+		<string>barnLevel</string>
 	</dict>
 	<key>level3</key>
 	<dict>
 		<key>animations</key>
-		<string>player,level3</string>
+		<string>level3</string>
 		<key>sounds</key>
 		<string>wooAction</string>
 		<key>textures</key>
-		<string>characterAnims,townLevel</string>
+		<string>townLevel</string>
 	</dict>
 	<key>level4</key>
 	<dict>
 		<key>animations</key>
-		<string>player,level4</string>
+		<string>level4</string>
 		<key>sounds</key>
 		<string>shuffling</string>
 		<key>textures</key>
-		<string>characterAnims,discoLevel</string>
+		<string>discoLevel</string>
 	</dict>
 	<key>level5</key>
 	<dict>
 		<key>animations</key>
-		<string>player,level5</string>
+		<string>level5</string>
 		<key>sounds</key>
 		<string>wooAction</string>
 		<key>textures</key>
-		<string>characterAnims,cityLevel</string>
+		<string>cityLevel</string>
 	</dict>
 	<key>level6</key>
 	<dict>
 		<key>animations</key>
-		<string>player,level6</string>
+		<string>level6</string>
 		<key>sounds</key>
 		<string>zombieMoan,shootActionReload,shootAction</string>
 		<key>textures</key>
-		<string>characterAnims,zombieLevel</string>
+		<string>zombieLevel</string>
 	</dict>
 	<key>level7</key>
 	<dict>
@@ -100,6 +109,15 @@
 		<string>buttonPressed,chooseSelection</string>
 		<key>textures</key>
 		<string>chooseLevel</string>
+	</dict>
+	<key>endGame</key>
+	<dict>
+		<key>animations</key>
+		<string>none</string>
+		<key>sounds</key>
+		<string>none</string>
+		<key>textures</key>
+		<string>endGameTextures</string>
 	</dict>
 </dict>
 </plist>

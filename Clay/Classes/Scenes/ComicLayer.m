@@ -24,9 +24,8 @@
     self = [super init];
     if (self) {
         // Initialization code here.
-        
-        //[self scheduleUpdate];
-        [[[LayerManager sharedLayers] currentScene] addChild:self];
+        CCScene *scene = [[LayerManager sharedLayers] currentScene];
+        [scene addChild:self];
         
         self.isTouchEnabled = YES;
         _transition = BLACKBOX_IDLE;
@@ -59,6 +58,7 @@
 -(void)waitToPlayVideo:(float)time
 {
     _timeToWait = time;
+    _transition = BLACKBOX_WAIT;
 }
 
 
@@ -70,10 +70,11 @@
             break;
         case BLACKBOX_OUT:
             [self blackBoxOut:dt];
+            break;
         case BLACKBOX_WAIT:
             _timeToWait-=dt;
-            _transition = BLACKBOX_IDLE;
             if (_timeToWait<=0.0f) {
+                _transition = BLACKBOX_IDLE;
                 [_parent finishedAction];
             }
         default:

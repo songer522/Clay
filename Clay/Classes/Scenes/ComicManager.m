@@ -18,6 +18,8 @@
 #import "Camera.h"
 #import "HudLayer.h"
 #import "EndGameScene.h"
+#import "GameSettings.h"
+#import "TrackTimer.h"
 
 @implementation ComicManager
 
@@ -176,6 +178,12 @@ static ComicManager *_shared = nil;
 
 -(void)endTheGame
 {
+    //set the final total time for the end game screen
+    float finalTime = [[[_gameLayer getHud] getTrackTimer] getTime];
+    [[GameSettings shared] setGlobal:[NSString stringWithFormat:@"%f", finalTime] ForKey:@"finalTime"];
+    
+    
+    [_gameLayer release];
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[EndGameScene scene]]];
     _showEndGame = false;
     _introMovie = false;
@@ -183,7 +191,6 @@ static ComicManager *_shared = nil;
 
 -(void)dealloc
 {
-    [_gameLayer release];
     [_videoList release];
     [_videoPlayer release];
     [_comicLayer release];

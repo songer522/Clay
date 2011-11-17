@@ -20,9 +20,10 @@
 #import "SavePoint.h"
 #import "LaserShow.h"
 #import "TextureManager.h"
+#import "GameDebugLayer.h"
 #import "GameSettings.h"
 
-#define DEBUG_DRAW_BOUNDING_BOXES 0
+#define DEBUG_DRAW_BOUNDING_BOXES 1
 
 // HelloWorldLayer implementation
 @implementation GameLayer
@@ -34,10 +35,12 @@
 {
 	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
+    [[LayerManager sharedLayers] setCurrentScene:scene];
 	
 	// 'layer' is an autorelease object.
 	GameLayer *layer = [GameLayer node];
 	
+    
 	// add layer as a child to scene
 	[scene addChild: layer];
 	
@@ -55,10 +58,10 @@
         [self setVisible:NO];
 
         [[CCDirector sharedDirector] setProjection:CCDirectorProjection2D];
-        
-        [[TextureManager shared] loadMemoryForKey:@"gameScene"];
 
         [[LayerManager sharedLayers] setCurrentLayer:self];
+        
+        [[TextureManager shared] loadMemoryForKey:@"gameScene"];
         
         _gameController = [GameController gameController];
         [_gameController setGameLayer:self];
@@ -89,7 +92,7 @@
 
 -(void)setupLayers
 {
-    // Run the intro Scene
+    // Run the intro Scene    
     
     [[ComicManager shared] preload];
     [ComicManager shared].gameLayer = [[LayerManager sharedLayers] currentLayer];
@@ -261,7 +264,8 @@
 -(void)onExit
 {
     if (!_gameController.isPaused) {
-        [super onExit];
+        //[super onExit];
+        [self release];
     }
 }
 
@@ -286,6 +290,9 @@
 
 - (void) dealloc
 {
+    [self unscheduleUpdate];
+    self.isTouchEnabled = false;
+    
     [_level release];
     [_player release];
     [_gameController release];

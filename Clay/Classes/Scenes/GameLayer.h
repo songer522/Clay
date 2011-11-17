@@ -21,6 +21,7 @@
 @class Sprite;
 @class HudLayer;
 @class LaserShow;
+@class GameDebugLayer;
 @class Boss;
 
 // HelloWorldLayer
@@ -37,6 +38,8 @@
     SavePoint *_savePoint;
     
     HudLayer *_hud;
+    
+    GameDebugLayer *_debugLayer;
     
     LaserShow *_laserShow;
     
