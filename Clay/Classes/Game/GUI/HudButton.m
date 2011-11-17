@@ -107,6 +107,7 @@
         buttonImage = @"UI_Button_Shooting.png";
     } else if([action isEqualToString:@"block"]) {
         buttonImage = @"UI_Button_Blocking.png";
+        
     }
     
     [self createSpriteFromImage:buttonImage];

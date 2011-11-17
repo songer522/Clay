@@ -350,8 +350,14 @@
     } else if(_currentBehavior == COLLISION_BEHAVIOR_RETRO_ZOMBIE) {
         GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
         CGPoint position = [gameLayer.player getPosition];
-        if (_x < (position.x + 20.0f) && _x > 0.0f) {
-            
+        if (_x < (position.x + 100.0f) && _x > 0.0f) {
+            if(![self.originalAnimation isEqualToString:@"retroZombieAnim"])
+                
+            { 
+                
+                [self setOriginalAnimation:@"retroZombieAnim"];
+                [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"retroZombieAnim"];
+            }
             //_vx = -150.0f;    
         } else {
             _vx = 0.0f;
@@ -437,10 +443,12 @@
 
 -(void) reset
 {
-    if (_boss!=nil) {
+    if (_boss!=nil) { 
+      
         return;
     }
-    
+    //_boss= [self getBoss];
+     //[_boss reset];
     _isActive = true;
     _angle = 0.0f;
     _vx = 0;
@@ -449,7 +457,7 @@
     _fadeout = false;
     _madeSound = false;
     [_sprite setAlpha:1.0f];
-    
+     
     if ([_originalAnimation compare:@"none"] != NSOrderedSame) {
         [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:_originalAnimation];        
     }
@@ -468,13 +476,19 @@
     if (_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_HEADLESS ||  _currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_WALK) {
         _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_WALK;
     }
+    
     else if(_currentBehavior == COLLISION_BEHAVIOR_MAD_DOG) {
         _currentBehavior = COLLISION_BEHAVIOR_MAD_DOG;
        // NSLog(@"%@", self.originalAnimation);
         [self setOriginalAnimation:@"dogAnim"];
         [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"dogAnim"];
     }
-
+    else if(_currentBehavior == COLLISION_BEHAVIOR_RETRO_ZOMBIE) {
+        _currentBehavior = COLLISION_BEHAVIOR_RETRO_ZOMBIE;
+        // NSLog(@"%@", self.originalAnimation);
+        [self setOriginalAnimation:@"retroZombieStatic"];
+        [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"retroZombieStatic"];
+    }
     else if(_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_WALK_FAST || _currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_FADE) {
         _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_WALK_FAST;
     } else if(_currentBehavior == COLLISION_BEHAVIOR_FLYER_DEAD || _currentBehavior == COLLISION_BEHAVIOR_FLYER) {

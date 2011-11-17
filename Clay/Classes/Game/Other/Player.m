@@ -87,6 +87,7 @@
         
         _skin = [Skin instance];
         [self updateSkin:SKINTYPE_REGULAR];
+      
     }
     
     return self;
@@ -188,6 +189,8 @@
 -(void)startTurbo
 {
     //guard
+   
+    
     if (_isTripping || _isDead || [_thirdAction inAction] || _isInMidAir || _waitToGetUp > 0.f) { return; }
     
     if (_hitPoints > 1) {
@@ -396,6 +399,12 @@
 -(void)update:(float)dt Level:(Level *)level
 {
     [super update:dt];
+    if([[[LevelManager shared] currentLevel].name isEqualToString:@"level7"])
+    {
+        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+        
+        [[gameLayer getHud] setEnabled:false ForButton:HUD_BUTTON_SPRINT];
+    }
     
     [self updateJump:dt];
     

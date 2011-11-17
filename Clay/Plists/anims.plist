@@ -196,7 +196,24 @@
 		<key>clearPreviousAnims</key>
 		<string>true</string>
 		<key>delay</key>
-		<string>3.5</string>
+		<string>0</string>
+		<key>group</key>
+		<string>level7</string>
+		<key>looping</key>
+		<string>false</string>
+		<key>sequencePrefix</key>
+		<string>Retro_Zombie_</string>
+		<key>spritesheetPlist</key>
+		<string>computerLevel</string>
+	</dict>
+	<key>retroZombieStatic</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.2</string>
 		<key>group</key>
 		<string>level7</string>
 		<key>looping</key>

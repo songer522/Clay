@@ -18,7 +18,7 @@
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>40</integer>
+			<integer>45</integer>
 			<key>width</key>
 			<integer>14</integer>
 			<key>x</key>
@@ -364,7 +364,7 @@
 			<integer>0</integer>
 		</dict>
 		<key>animationName</key>
-		<string>retroZombieAnim</string>
+		<string>retroZombieStatic</string>
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
@@ -442,9 +442,9 @@
 			<key>width</key>
 			<integer>14</integer>
 			<key>x</key>
-			<integer>50</integer>
+			<integer>35</integer>
 			<key>y</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<key>collideBehavior</key>
 		<string>falls</string>
@@ -1033,7 +1033,7 @@
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>20</integer>
+			<integer>30</integer>
 			<key>width</key>
 			<integer>35</integer>
 			<key>x</key>

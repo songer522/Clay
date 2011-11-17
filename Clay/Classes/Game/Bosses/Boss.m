@@ -49,5 +49,10 @@
     
 }
 
+-(void)reset
+{
+    NSLog(@"reset got called");
+}
+
 
 @end

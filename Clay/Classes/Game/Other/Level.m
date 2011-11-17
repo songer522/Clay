@@ -24,6 +24,7 @@
 #import "GCState.h"
 #import "GCHelper.h"
 #import "Projectile.h"
+#import "HudLayer.h"
 
 @implementation Level
 
@@ -58,6 +59,7 @@
         _parallaxLayers = [[NSMutableArray alloc] initWithCapacity:12];
         
         [self initTiledMap:filename ObstacleLayer:obstacleLayer];
+       
         
         //[[[LayerManager sharedLayers] currentLayer] addChild:_map];
         

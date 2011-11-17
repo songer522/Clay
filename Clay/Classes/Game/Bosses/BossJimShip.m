@@ -110,6 +110,8 @@
             Player *_player = [[LayerManager sharedLayers] getPlayer];
             
             Level *currentLevel = [[LevelManager shared] currentLevel];
+          
+            
             bool collision = [currentLevel testCollisionWithGameObject:_bullet Source:_player];
             if (collision) {
                 if(![[_player getThirdAction] isActive]) {
@@ -119,9 +121,19 @@
                     [[SoundEngine shared] playSound:@"deflected"];
                 }
                 [_bullet disable];
-            }            
+            }
+            
+          
         }
     }
+}
+
+-(void)reset
+{
+    for (Projectile *_bullet in _bullets)
+        [_bullet disable];
+    NSLog(@"bossJimShip has been reset");
+    
 }
 
 -(void)updateVelocity:(float)dt
