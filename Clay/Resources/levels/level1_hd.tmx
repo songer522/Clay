@@ -55,6 +55,11 @@
     <property name="obstacle" value="manure"/>
    </properties>
   </tile>
+  <tile id="41">
+   <properties>
+    <property name="obstacle" value="smallHurdle"/>
+   </properties>
+  </tile>
  </tileset>
  <tileset firstgid="128" name="Meta" tilewidth="64" tileheight="64">
   <image source="meta-hd.png" width="256" height="192"/>
@@ -85,7 +90,7 @@
    <property name="speedy" value="0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztzLkNAlEUBMEfxXp4eBhIGBwGh7PkHxJJzJOQpkpqt7e11hYKAAAA6HYIBgAAAHQ7BgMAAAC6nYIBAAAA3S7BAAAAgG6PYAAAAEC3TzAAAACg2y0YAAAA0O0VDAAAAOi2BwMAAAC63YNNOQ++AQAAgJx3sCnXwTcAAACQ8w025Tn4BgAAAAAAAAD+zw83rzLP
+   eJztwyESQFAABcB/Ck3TNAUFhfsfySVee7szO40xplAAAACg2xwMAAAAdFuCAQAAgG5rMAAAANBtCwYAAAC6ncEAAABAtycYAAAA6LYHAwAAAN2uYAAAAKDbGwwAAAB0O4IBAACAbncwAAAA0O0LBgAAAAAAAABI+AFd9TIt
   </data>
  </layer>
  <layer name="back-5" width="1050" height="14">
@@ -140,7 +145,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt0LENgDAQBEF3ROaMBJwA/fdDE2fJes9Im55e3xoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA1HFIkiRJkiSF6kW6Ntu7F70tuTXCP5MkSZIkze8s0rPZ3rvobcmtL/wzSZIkSdL8AAAAAFJ+tMOZQQ==
+   eJzt0bEJgEAQRNHryMzMRE3U/vuR62HhhuU9+OmwsGMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQB+bJEmSJElSUXuT7vC92Rm6V33XteD/kiRJkqSMjiZ94XuzJ3Sv+q53wf8lSZIkSRkBAAAAVPkBv36ZLQ==
   </data>
  </layer>
  <layer name="front1" width="1050" height="14">

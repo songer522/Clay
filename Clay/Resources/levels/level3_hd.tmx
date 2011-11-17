@@ -51,6 +51,11 @@
     <property name="obstacle" value="haybaleRolling"/>
    </properties>
   </tile>
+  <tile id="43">
+   <properties>
+    <property name="obstacle" value="haybaleSmall"/>
+   </properties>
+  </tile>
  </tileset>
  <tileset firstgid="311" name="Meta" tilewidth="64" tileheight="64">
   <image source="meta-hd.png" width="256" height="192"/>

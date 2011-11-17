@@ -231,7 +231,7 @@
         //want to disable projectile if it's offscreen so it doesn't hurt things before they appear,
         //otherwise we test to see if it collided with anything
         if (![self checkIfOnScreen:newPosition]) {
-            [self disable];
+          //  [self disable];
         } else {
             if (_isAggressive) {
                 bool collision = [[[LevelManager shared] currentLevel] testCollisionsForAggressive:self];

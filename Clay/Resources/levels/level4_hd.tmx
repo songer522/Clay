@@ -88,7 +88,12 @@
   </tile>
   <tile id="20">
    <properties>
-    <property name="obstacle" value="femaleBreakdancer"/>
+    <property name="obstacle" value="femaleBreakdancerRed"/>
+   </properties>
+  </tile>
+  <tile id="21">
+   <properties>
+    <property name="obstacle" value="femaleBreakdancerBlue"/>
    </properties>
   </tile>
  </tileset>
@@ -161,7 +166,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1klOxDAQBdC+K8MJGE7AcChm1sysoZnuwWcfRUnLTkz0nvTlRduKpapSe7UCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/pOz5Dy5SC6Tq+Q6uZnxTkxvK9lOdjrW3QFnau+hbWrYlq55Xuoc6z3GmLLfa/Rm35vtttA3NrXEWSxZ59L7AFp3l9wnD8lj8pQ8Jy9zXooqXnt+20v2k4OO9XDAmdp7aJsatqVrnpc6x3qPMabs9xq92fdm6/uPn8ISZ7FknUvvA2jdW/KerJOP5DP5Sr5nvBPTO0qOk5OO9XTAmdp7aJsatqVrnpc6x3qPMabs9xq92fdm+yn0jU0tcRZL1rn0PgAAAAAAAAAAgD+/E5CWWg==
+   eJzt1kduwzAQBVDfNeUEKSdIOVR61ulZJ067R2ajHSFIBknRxHvABxcmIQIzA3O1AgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALbJReQychW5jtxEbiN3C96J+nYiu5G9xLo/4UzpPbRNDduSmude51jvMUfNfi/Rm2NvtvtM39hUj7OYq85D3XLtA9gGD5HHyFPkOfISeY28LXkpingf+e0gchg5SqzHE86U3kPb1LAtqXnudY71HnPU7PcSvTn2Zhv7j6+hx1nMVeehbrn2AWyDj8hnZB35inxHfiK/C96J+k4ip5GzxHo+4UzpPbRNDduSmude51jvMUfNfi/Rm2Nvtr9M39hUj7OYq85D3XLtAwAAAAAAAAAAGPwD46+dRA==
   </data>
  </layer>
  <layer name="front-1" width="1050" height="14">

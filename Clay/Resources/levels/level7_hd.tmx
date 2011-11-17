@@ -147,6 +147,11 @@
     <property name="obstacle" value="retroHurdle"/>
    </properties>
   </tile>
+  <tile id="40">
+   <properties>
+    <property name="obstacle" value="retroZombie"/>
+   </properties>
+  </tile>
   <tile id="44">
    <properties>
     <property name="special" value="shootTrigger"/>

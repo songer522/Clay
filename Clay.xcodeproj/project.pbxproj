@@ -372,6 +372,8 @@
 		5F8A449A14687FF200CE1FC2 /* zombieHead-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8A449714687FF200CE1FC2 /* zombieHead-hd.png */; };
 		61A2C0E614683B880049C88E /* GraphicFont.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 61A2C0E414683B880049C88E /* GraphicFont.fnt */; };
 		61A2C0E714683B880049C88E /* GraphicFont.png in Resources */ = {isa = PBXBuildFile; fileRef = 61A2C0E514683B880049C88E /* GraphicFont.png */; };
+		E46B19D41472B971007DAF77 /* hurdleYellow-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = E46B19D21472B971007DAF77 /* hurdleYellow-hd.png */; };
+		E46B19D51472B971007DAF77 /* hurdleYellow.png in Resources */ = {isa = PBXBuildFile; fileRef = E46B19D31472B971007DAF77 /* hurdleYellow.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -939,6 +941,8 @@
 		5F8A449714687FF200CE1FC2 /* zombieHead-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zombieHead-hd.png"; sourceTree = "<group>"; };
 		61A2C0E414683B880049C88E /* GraphicFont.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GraphicFont.fnt; sourceTree = "<group>"; };
 		61A2C0E514683B880049C88E /* GraphicFont.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GraphicFont.png; sourceTree = "<group>"; };
+		E46B19D21472B971007DAF77 /* hurdleYellow-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hurdleYellow-hd.png"; sourceTree = "<group>"; };
+		E46B19D31472B971007DAF77 /* hurdleYellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hurdleYellow.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
