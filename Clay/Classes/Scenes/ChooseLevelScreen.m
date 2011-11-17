@@ -79,10 +79,8 @@
         }
         
         if([_startButton checkIfSelected:position]) {
-            _waitToSwitch = 0.05f;
-            [[SoundEngine shared] playSound:@"buttonPressed"];
-            //self.isTouchEnabled = NO; //NOTE: CHOOSE LEVEL SCREEN STILL ACTIVE IN GAME???
-            
+            _waitToSwitch = 0.25f;
+            [[SoundEngine shared] playSound:@"buttonPressed"];            
         }
         
         if([_backButton checkIfSelected:position]) {

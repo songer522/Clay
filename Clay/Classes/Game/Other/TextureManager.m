@@ -83,6 +83,17 @@ static TextureManager *_shared = nil;
         }
     }
     
+    //unload extra textures (stated by removeTextures key... these are not loaded by TextureManager but should be removed)
+    textureList = [dict objectForKey:@"removeTextures"];
+    textureArray = [NSArray arrayWithArray:[textureList componentsSeparatedByString:@","]];
+    for (NSString *texture in textureArray) {
+        if (![texture isEqualToString:@"none"]) {
+            [self unloadTexturesForFile:texture];
+        }
+    }
+    
+    [[CCTextureCache sharedTextureCache] removeUnusedTextures];    
+    
     //unload animations
     NSString *animList = [dict objectForKey:@"animations"];
     NSArray *animArray = [NSArray arrayWithArray:[animList componentsSeparatedByString:@","]];

@@ -25,7 +25,7 @@
 	<key>level1</key>
 	<dict>
 		<key>removeTextures</key>
-		<string>tileset_level_1.png</string>
+		<string>tileset_level_1</string>
 		<key>animations</key>
 		<string>level1</string>
 		<key>sounds</key>
@@ -36,7 +36,7 @@
 	<key>level2</key>
 	<dict>
 		<key>removeTextures</key>
-		<string>tileset_level2.png</string>
+		<string>tileset_level2</string>
 		<key>animations</key>
 		<string>level2</string>
 		<key>sounds</key>
@@ -47,7 +47,7 @@
 	<key>level3</key>
 	<dict>
 		<key>removeTextures</key>
-		<string>tileset_level_3.png</string>
+		<string>tileset_level_3</string>
 		<key>animations</key>
 		<string>level3</string>
 		<key>sounds</key>
@@ -58,7 +58,7 @@
 	<key>level4</key>
 	<dict>
 		<key>removeTextures</key>
-		<string>tileset_level_4.png</string>
+		<string>tileset_level_4</string>
 		<key>animations</key>
 		<string>level4</string>
 		<key>sounds</key>
@@ -69,7 +69,7 @@
 	<key>level5</key>
 	<dict>
 		<key>removeTextures</key>
-		<string>tileset_level_5.png</string>
+		<string>tileset_level_5</string>
 		<key>animations</key>
 		<string>level5</string>
 		<key>sounds</key>
@@ -80,7 +80,7 @@
 	<key>level6</key>
 	<dict>
 		<key>removeTextures</key>
-		<string>tileset_level_6.png</string>
+		<string>tileset_level_6</string>
 		<key>animations</key>
 		<string>level6</string>
 		<key>sounds</key>
@@ -91,7 +91,7 @@
 	<key>level7</key>
 	<dict>
 		<key>removeTextures</key>
-		<string>tileset_level_7.png</string>
+		<string>tileset_level_7</string>
 		<key>animations</key>
 		<string>player8,level7</string>
 		<key>sounds</key>
