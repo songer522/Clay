@@ -186,7 +186,7 @@
         [_projectile reset];
         [_projectile setPosition:CGPointMake(_x, _y + 41)];
        // [_projectile setBoundingBox:CGRectMake(15, 33, 30, 30)];
-        [_projectile setBoundingBox:CGRectMake(15, 33, 14, 28)];
+        [_projectile setBoundingBox:CGRectMake(15, 33, 14, 40)];
         
         GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
         [[gameLayer.player getThirdAction] setKilledEnemy:YES];
