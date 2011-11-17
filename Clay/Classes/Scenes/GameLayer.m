@@ -97,7 +97,8 @@
     [[ComicManager shared] preload];
     [ComicManager shared].gameLayer = [[LayerManager sharedLayers] currentLayer];
     
-    _hud = [HudLayer instance];    
+    _hud = [HudLayer instance];
+    [self setupHud];
     
 #if DEBUG_DRAW_BOUNDING_BOXES
     _debugLayer = [GameDebugLayer debugLayerForScene:[[LayerManager sharedLayers] currentScene] GameLayer:[[LayerManager sharedLayers] currentLayer]];
@@ -223,8 +224,6 @@
         }
         
     }
-    
-    //[_boss update:dt];
     
 }
 
