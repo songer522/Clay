@@ -142,8 +142,6 @@
 {
     [self unscheduleUpdate];
     self.isTouchEnabled = false;
-
-    [self release];
 }
 
 -(void)dealloc

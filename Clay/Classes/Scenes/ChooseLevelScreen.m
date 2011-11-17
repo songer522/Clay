@@ -165,10 +165,9 @@
 
 -(void)onExit
 {
+    [self release];
     [self unscheduleUpdate];
     self.isTouchEnabled = false;
-
-    [self release];
 }
 
 -(void)update:(ccTime)dt

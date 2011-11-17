@@ -295,7 +295,6 @@
 		54A1B13F146C9C38005BA189 /* deflected.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54A1B13E146C9C38005BA189 /* deflected.wav */; };
 		54A1B141146C9D89005BA189 /* chooseSelection.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54A1B140146C9D89005BA189 /* chooseSelection.wav */; };
 		54A1B143146CA971005BA189 /* shuffling.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54A1B142146CA971005BA189 /* shuffling.wav */; };
-		54A2863D147313BD00A2E8A6 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54A2863A147313A500A2E8A6 /* Twitter.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		54A3D6D2146C37F400BD081D /* shipBullet2_hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A3D6D0146C37F400BD081D /* shipBullet2_hd.png */; };
 		54A3D6D3146C37F400BD081D /* shipBullet2.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A3D6D1146C37F400BD081D /* shipBullet2.png */; };
 		54A64A32146809D200853CFF /* BossJimShip.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A64A31146809D200853CFF /* BossJimShip.m */; };
@@ -947,7 +946,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				54A2863D147313BD00A2E8A6 /* Twitter.framework in Frameworks */,
 				54FBA2361430CBBE0010A91A /* MediaPlayer.framework in Frameworks */,
 				54179E2D142BC92400D3A79E /* GameKit.framework in Frameworks */,
 				54484CD5140449B500D0D7D9 /* QuartzCore.framework in Frameworks */,

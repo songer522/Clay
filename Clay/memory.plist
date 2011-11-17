@@ -2,15 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>dummyLevel</key>
-	<dict>
-		<key>animations</key>
-		<string>none</string>
-		<key>sounds</key>
-		<string>none</string>
-		<key>textures</key>
-		<string>none</string>
-	</dict>
 	<key>gameScene</key>
 	<dict>
 		<key>animations</key>
@@ -22,6 +13,8 @@
 	</dict>
 	<key>launch</key>
 	<dict>
+		<key>removeTextures</key>
+		<string>none</string>
 		<key>animations</key>
 		<string>hud,player</string>
 		<key>sounds</key>
@@ -31,6 +24,8 @@
 	</dict>
 	<key>level1</key>
 	<dict>
+		<key>removeTextures</key>
+		<string>tileset_level_1.png</string>
 		<key>animations</key>
 		<string>level1</string>
 		<key>sounds</key>
@@ -40,6 +35,8 @@
 	</dict>
 	<key>level2</key>
 	<dict>
+		<key>removeTextures</key>
+		<string>tileset_level2.png</string>
 		<key>animations</key>
 		<string>level2</string>
 		<key>sounds</key>
@@ -49,6 +46,8 @@
 	</dict>
 	<key>level3</key>
 	<dict>
+		<key>removeTextures</key>
+		<string>tileset_level_3.png</string>
 		<key>animations</key>
 		<string>level3</string>
 		<key>sounds</key>
@@ -58,6 +57,8 @@
 	</dict>
 	<key>level4</key>
 	<dict>
+		<key>removeTextures</key>
+		<string>tileset_level_4.png</string>
 		<key>animations</key>
 		<string>level4</string>
 		<key>sounds</key>
@@ -67,6 +68,8 @@
 	</dict>
 	<key>level5</key>
 	<dict>
+		<key>removeTextures</key>
+		<string>tileset_level_5.png</string>
 		<key>animations</key>
 		<string>level5</string>
 		<key>sounds</key>
@@ -76,6 +79,8 @@
 	</dict>
 	<key>level6</key>
 	<dict>
+		<key>removeTextures</key>
+		<string>tileset_level_6.png</string>
 		<key>animations</key>
 		<string>level6</string>
 		<key>sounds</key>
@@ -85,6 +90,8 @@
 	</dict>
 	<key>level7</key>
 	<dict>
+		<key>removeTextures</key>
+		<string>tileset_level_7.png</string>
 		<key>animations</key>
 		<string>player8,level7</string>
 		<key>sounds</key>
@@ -94,6 +101,8 @@
 	</dict>
 	<key>mainMenu</key>
 	<dict>
+		<key>removeTextures</key>
+		<string>none</string>
 		<key>animations</key>
 		<string>none</string>
 		<key>sounds</key>
@@ -103,6 +112,8 @@
 	</dict>
 	<key>chooseLevel</key>
 	<dict>
+		<key>removeTextures</key>
+		<string>none</string>
 		<key>animations</key>
 		<string>none</string>
 		<key>sounds</key>
@@ -112,6 +123,8 @@
 	</dict>
 	<key>endGame</key>
 	<dict>
+		<key>removeTextures</key>
+		<string>none</string>
 		<key>animations</key>
 		<string>none</string>
 		<key>sounds</key>

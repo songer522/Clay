@@ -127,6 +127,8 @@ static LevelManager *_shared = nil;
     }
     
     [[SoundEngine shared] playMusic:_currentLevel.musicName];
+    
+    [[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
 
 }
 
