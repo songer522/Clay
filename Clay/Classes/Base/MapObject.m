@@ -62,7 +62,8 @@
 -(void)dealloc
 {
     [_object release];
-    [_layerAbove release];
+    //[_layerAbove release];    //TODO: crashed here when released. commented out for now, but technically a memory leak
+    _layerAbove = nil;
     [super dealloc];
 }
 

@@ -24,7 +24,6 @@ typedef enum {
 {
     Sprite *_endGame;
     Sprite *_bestTime;
-    ComicLayer *_comicLayer;
     
     CCScene *_scene;
     

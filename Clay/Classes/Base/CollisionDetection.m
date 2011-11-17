@@ -361,10 +361,10 @@
 
 -(void) dealloc
 {
-    [_collisionData release];
-    [_main release];
-    [_map release];
-    [_currentObject release];
+    _collisionData = nil;
+    _main = nil;
+    _map = nil;
+    _currentObject = nil;
     [_tileCollision release];
     [super dealloc];
 }

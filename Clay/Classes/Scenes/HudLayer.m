@@ -302,8 +302,8 @@
 
 -(void)reset
 {
-    //[self removeChild:[_buttonJump getCCSprite] cleanup:NO];
-    //[self addChild:[_buttonJump getCCSprite]];
+    [self removeFromParentAndCleanup:NO];
+    [[[LayerManager sharedLayers] currentScene] addChild:self];    
 }
 
 -(void)dealloc

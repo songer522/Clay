@@ -336,13 +336,11 @@
             CGPoint position = [gameLayer.player getPosition];
             if (_x < (position.x + 200.0f) && _x > 0.0f) {
                 if(![self.originalAnimation isEqualToString:@"madDogAnim"])
-                    
-                { 
-                   
+                {
                     [self setOriginalAnimation:@"madDogAnim"];
                     [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"madDogAnim"];
                 }
-                                _vx = -150.0f;    
+                _vx = -150.0f;    
             } else {
                 _vx = 0.0f;
             }
@@ -352,9 +350,7 @@
         CGPoint position = [gameLayer.player getPosition];
         if (_x < (position.x + 100.0f) && _x > 0.0f) {
             if(![self.originalAnimation isEqualToString:@"retroZombieAnim"])
-                
             { 
-                
                 [self setOriginalAnimation:@"retroZombieAnim"];
                 [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"retroZombieAnim"];
             }
@@ -444,11 +440,9 @@
 -(void) reset
 {
     if (_boss!=nil) { 
-      
+        [_boss reset];
         return;
     }
-    //_boss= [self getBoss];
-     //[_boss reset];
     _isActive = true;
     _angle = 0.0f;
     _vx = 0;
@@ -638,6 +632,8 @@
 {
     [_sprite release];
     [_collisionState release];
+    [_boss release];
+    
     [super dealloc];
 }
 

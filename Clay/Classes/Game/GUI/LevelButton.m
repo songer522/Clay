@@ -11,12 +11,12 @@
 
 @implementation LevelButton
 
-+(id)levelButtonWithCache:(CCSpriteFrameCache*)cache andId:(int)buttonId
++(id)levelButtonWithId:(int)buttonId
 {
-    return [[self alloc] initWithCache:cache andId:buttonId];
+    return [[self alloc] initWithId:buttonId];
 }
             
--(id)initWithCache:(CCSpriteFrameCache*)cache andId:(int)buttonId
+-(id)initWithId:(int)buttonId
 {
     if ((self=[super init])) {
         _buttonId = buttonId + 1;

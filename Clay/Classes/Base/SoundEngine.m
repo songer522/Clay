@@ -61,6 +61,25 @@ static SoundEngine *_shared = nil;
     }*/
 }
 
+
+-(void)loadSoundForKey:(NSString*)key
+{
+    NSString *filename = [_soundMap objectForKey:key];
+    
+    NSAssert(filename!=nil,@"Sound could not be found. Is it in the sounds.plist?");
+    
+    [_audioEngine preloadEffect:filename];
+}
+
+-(void)unloadSoundForKey:(NSString*)key
+{
+    NSString *filename = [_soundMap objectForKey:key];
+    
+    NSAssert(filename!=nil,@"Sound could not be found. Is it in the sounds.plist?");
+    
+    [_audioEngine unloadEffect:filename];
+}
+
 -(void) playSound:(NSString*)sound
 {
     NSString *filename = [_soundMap objectForKey:sound];

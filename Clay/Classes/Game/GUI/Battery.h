@@ -24,7 +24,7 @@
     float _waitToIncrease;
     bool _isRecharging;
     bool _wasLowBattery;
-    Player *_player;
+    Player *_player;  //weak
 }
 
 @property(nonatomic,retain) Player *parent;

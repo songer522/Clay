@@ -139,9 +139,10 @@
 
 -(void)dealloc
 {
-    [_gameLayer release];
+    //[_gameLayer release];
+    _gameLayer = nil;
     [_pauseMenu release];
-    [_hud release];
+    _hud = nil;
     [super dealloc];
 }
 

@@ -123,10 +123,11 @@
     return true;
 }
 
+
 -(void)dealloc
 {
+    [_kick release];
     [super dealloc];
 }
-
 
 @end

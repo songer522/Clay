@@ -10,6 +10,7 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
+
 @class Sprite;
 @class ActionButton;
 
@@ -33,6 +34,8 @@
     ActionButton *_startButton;
     ActionButton *_backButton;
     
+    
+    
     int _selected;
     
 }
@@ -44,6 +47,11 @@
 -(void)load;
 
 -(void)popAndSwitchToLevel:(NSString*)level;
+
+-(void)transitionOut;
+
 -(void)unload;
+
+
 
 @end

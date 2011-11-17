@@ -334,15 +334,15 @@
     }
     
     if ([action compare:@"woo"] == NSOrderedSame) {
-        _thirdAction = [PlayerActionFactory buildPlayerAction:PLAYER_ACTION_WOO];
+        _thirdAction = (PlayerAction*)[PlayerActionFactory buildPlayerAction:PLAYER_ACTION_WOO];
     } else if([action compare:@"kick"] == NSOrderedSame) {
-        _thirdAction = [PlayerActionFactory buildPlayerAction:PLAYER_ACTION_KICK];
+        _thirdAction = (PlayerAction*)[PlayerActionFactory buildPlayerAction:PLAYER_ACTION_KICK];
     } else if([action isEqualToString:@"dodge"]) {
-        _thirdAction = [PlayerActionFactory buildPlayerAction:PLAYER_ACTION_DODGE];
+        _thirdAction = (PlayerAction*)[PlayerActionFactory buildPlayerAction:PLAYER_ACTION_DODGE];
     } else if([action isEqualToString:@"shoot"]) {
-        _thirdAction = [PlayerActionFactory buildPlayerAction:PLAYER_ACTION_SHOOT];
+        _thirdAction = (PlayerAction*)[PlayerActionFactory buildPlayerAction:PLAYER_ACTION_SHOOT];
     } else if([action isEqualToString:@"block"]) {
-        _thirdAction = [PlayerActionFactory buildPlayerAction:PLAYER_ACTION_BLOCK];
+        _thirdAction = (PlayerAction*)[PlayerActionFactory buildPlayerAction:PLAYER_ACTION_BLOCK];
     }
     
     [_thirdAction setParent:self];
@@ -583,6 +583,7 @@
 {
     [_speed release];
     [_battery release];
+    [_skin release];
         
     [super dealloc];
 }

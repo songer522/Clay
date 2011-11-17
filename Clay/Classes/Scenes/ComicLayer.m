@@ -12,7 +12,7 @@
 
 @implementation ComicLayer
 
-@synthesize parent = _parent;
+@synthesize comicManager = _comicManager;
 
 +(id)instance
 {
@@ -24,9 +24,8 @@
     self = [super init];
     if (self) {
         // Initialization code here.
-        
-        //[self scheduleUpdate];
-        [[[LayerManager sharedLayers] currentScene] addChild:self];
+        CCScene *scene = [[LayerManager sharedLayers] currentScene];
+        [scene addChild:self];
         
         self.isTouchEnabled = YES;
         _transition = BLACKBOX_IDLE;
@@ -56,7 +55,11 @@
 }
 
 
-
+-(void)waitToPlayVideo:(float)time
+{
+    _timeToWait = time;
+    _transition = BLACKBOX_WAIT;
+}
 
 
 -(void)update:(ccTime)dt
@@ -67,6 +70,13 @@
             break;
         case BLACKBOX_OUT:
             [self blackBoxOut:dt];
+            break;
+        case BLACKBOX_WAIT:
+            _timeToWait-=dt;
+            if (_timeToWait<=0.0f) {
+                _transition = BLACKBOX_IDLE;
+                [_comicManager finishedAction];
+            }
         default:
             break;
     }
@@ -83,7 +93,7 @@
                 [self secondTierBars];
             } else {
                 _transition = BLACKBOX_IDLE;
-                [_parent finishedAction];
+                [_comicManager finishedAction];
             }
         }
     }
@@ -100,7 +110,7 @@
                 [self secondTierBars];
             } else {
                 _transition = BLACKBOX_IDLE;
-                [_parent finishedAction];                
+                [_comicManager finishedAction];                
             }
         }
     }
@@ -174,9 +184,15 @@
     glEnable(GL_TEXTURE_2D);
 }
 
+-(void)resetLayer
+{
+    [[[LayerManager sharedLayers] currentScene] removeChild:self cleanup:NO];
+    [[[LayerManager sharedLayers] currentScene] addChild:self];
+}
+
 -(void)dealloc
 {
-    [_parent release];
+    _comicManager = nil; //weak
     [super dealloc];
 }
 

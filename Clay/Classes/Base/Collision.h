@@ -20,7 +20,6 @@ typedef enum {
 @interface Collision : NSObject
 {
     CollisionState _currentState;
-    NSString *_previousTile;
 }
 
 @property(nonatomic,assign) CollisionState currentState;

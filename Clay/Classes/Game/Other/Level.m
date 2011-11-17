@@ -120,6 +120,7 @@
             float speedx = [[tmxLayer propertyNamed:@"speedx"] floatValue] * _scale;
             float speedy = [[tmxLayer propertyNamed:@"speedy"] floatValue] * _scale;
             float offsety = [[tmxLayer propertyNamed:@"offsety"] floatValue];
+            bool isOpaque = [[tmxLayer propertyNamed:@"opaque"] boolValue];
             
             CGPoint offsetPoint = ccp(0, 0);
             if (offsety && offsety!= 0.0f && speedy != 0.0f) {
@@ -130,6 +131,12 @@
             [node addChild:tmxLayer z:currentZ parallaxRatio:ccp(speedx,speedy) positionOffset:offsetPoint];
             
             [_parallaxLayers addObject:node];
+            
+            if (isOpaque) {
+                //so far nothing i know that we can do to cctmxlayer to change it opaque, but the code
+                //to gain speed for it (with ccsprites) is: [background setBlendFunc:(ccBlendFunc) {GL_ONE,GL_ZERO}];
+                //according to: http://www.cocos2d-iphone.org/forum/topic/9910
+            }
             
             
             [[[LayerManager sharedLayers] currentLayer] addChild:node z:currentZ];
@@ -205,14 +212,12 @@
     for (MapObject *mapObject in _obstacleMapObjects) {
         if (mapObject!=nil) {
             [[mapObject.object getCCSprite] removeFromParentAndCleanup:YES];
-            mapObject = nil;            
         }
     }
     
     for (MapObject *mapObject in _otherMapObjects) {
         if (mapObject!=nil) {
             [[mapObject.object getCCSprite] removeFromParentAndCleanup:YES];
-            mapObject = nil;         
         }
     }
 }
@@ -527,20 +532,39 @@
 
 -(void)dealloc
 {
+    _main = nil;
+    _meta = nil;
+    _obstacles = nil;
+    
+    [self unloadLevel];
+    
     [_map release];
-    [_objects release];
-    [_parallaxLayers removeAllObjects];
-    [_parallaxLayers release];
-    [_postLevelComicName release];
-    [_musicName release];
-    [_gameObjects release];
-    [_triggers removeAllObjects];
-    [_triggers release];
+    
+    [_name release];
+    [_collisionHandler release];
+    
     [_obstacleMapObjects removeAllObjects];
     [_obstacleMapObjects release];
+    [_otherMapObjects removeAllObjects];
+    [_otherMapObjects release];
     [_triggers removeAllObjects];
     [_triggers release];
+    
+    [_parallaxLayers removeAllObjects];
+    [_parallaxLayers release];
+    [_mapLayers removeAllObjects];
+    [_mapLayers release];
+    
+    [_preComicName release];
+    [_postLevelComicName release];
+    [_musicName release];
     [_nextLevelName release];
+    [_playerThirdActionName release];
+
+    _gameObjects = nil; //is maintained throughout the game, so keep.
+    
+    [_nextLevelName release];
+    
     [super dealloc];
 }
 

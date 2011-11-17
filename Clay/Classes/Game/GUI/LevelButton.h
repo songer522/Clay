@@ -20,9 +20,9 @@
     
 }
 
-+(id)levelButtonWithCache:(CCSpriteFrameCache*)cache andId:(int)buttonId;
++(id)levelButtonWithId:(int)buttonId;
 
--(id)initWithCache:(CCSpriteFrameCache*)cache andId:(int)buttonId;
+-(id)initWithId:(int)buttonId;
 
 -(void)initButton;
 

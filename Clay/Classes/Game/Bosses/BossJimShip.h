@@ -44,6 +44,4 @@ typedef enum {
 
 -(void)updateVelocity:(float)dt;
 -(void)shootBullet;
--(void)updateGun:(float)dt;
--(void)reset;
 @end
