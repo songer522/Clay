@@ -64,7 +64,7 @@
 		<key>collideBehavior</key>
 		<string>falls</string>
 		<key>imageName</key>
-		<string>hurdleYellow.png</string>
+		<string>Track_SmallHurdle_1.png</string>
 		<key>offsetx</key>
 		<integer>0</integer>
 		<key>offsety</key>

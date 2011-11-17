@@ -140,7 +140,6 @@
  </layer>
  <layer name="main0" width="1050" height="14">
   <properties>
-   <property name="opaque" value="true"/>
    <property name="speedx" value="1.0"/>
    <property name="speedy" value="1.0"/>
   </properties>
@@ -172,7 +171,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt11sKgzAQBVBX2Aft/tdShBZKsW1mMiGC53yKmVxNxuCyAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI11nB3g6HazerbBWZbaKWvcBc7bmyuSvXIvos6+imSP3V++NynqXwlq9ttatd19k3tWeenlrfOu1d6/3mOmN6Fyj7qvInp27atyver29PXuvf67PiPVazfxmZc6JEedmdL9kc7fMkc1dfZZF9Xxbv+X+1wOZntjL/wEw13l2AAAAAAAAAADg8B5JFhWw
+   eJzt1G0KgzAMAFBP6DbmXXb9/R3D2qQfm+B7IGgtMcaYZQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK7gdfJ460njjc7rOThexNG3ar3XY0QNjr5L6709W3L/nmwdoznW6nhPPjeipx7Z2tf2j6pTKVZ0rcVWOO8x+7+K7svWaPRMzOYW+T9nzu1sLxzlsvcu0bWR9t4jUsMZMyujVJdST83qi9LzeudPLd/evlg/jqienm3Jt3V2ffd07boW9xdrRx7J/cA8t38nAAAAAAAAAABc3hvBhhlK
   </data>
  </layer>
  <layer name="meta" width="1050" height="14" opacity="0.85">
