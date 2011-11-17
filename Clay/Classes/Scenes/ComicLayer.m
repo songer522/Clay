@@ -192,7 +192,7 @@
 
 -(void)dealloc
 {
-    [_comicManager release];
+    _comicManager = nil; //weak
     [super dealloc];
 }
 

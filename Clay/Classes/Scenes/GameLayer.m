@@ -93,9 +93,7 @@
 -(void)setupLayers
 {
     // Run the intro Scene    
-    
     [[ComicManager shared] preload];
-    [ComicManager shared].gameLayer = [[LayerManager sharedLayers] currentLayer];
     
     _hud = [HudLayer instance];
     [self setupHud];
@@ -108,6 +106,7 @@
 
 -(void)startLevel:(NSString*)levelName
 {
+    [[LevelManager shared] reset];
     [[LevelManager shared] loadLevelNamed:levelName];
     [self initForLevel];
     Level *levelObj = [[LevelManager shared] currentLevel];

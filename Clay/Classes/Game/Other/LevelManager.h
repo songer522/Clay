@@ -21,9 +21,6 @@
     NSDictionary *_levelSettings;
     
     Level *_currentLevel;
-    Level *_nextLevel;
-    
-    Level *_loadedLevel;
     
     GameObjectController *_gameObjects;
     NSString *_thirdAction;
@@ -48,5 +45,7 @@
 -(void)dumpMemoryForLevel:(Level*)level;
 
 -(void)receiveBoss:(Boss*)boss;
+
+-(void)reset;
 
 @end

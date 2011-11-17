@@ -33,7 +33,7 @@ typedef enum {
     int _phase;
     float _rate;
     
-    ComicManager *_comicManager;
+    ComicManager *_comicManager; //weak reference
     
     BlackBoxTransition _transition;
 }
