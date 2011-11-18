@@ -374,7 +374,7 @@
 		61B0B34C1476F54D006887AB /* level4.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61B0B3461476F54D006887AB /* level4.tmx */; };
 		61B0B34D1476F54D006887AB /* level5.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61B0B3471476F54D006887AB /* level5.tmx */; };
 		61B0B34E1476F54D006887AB /* level6.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61B0B3481476F54D006887AB /* level6.tmx */; };
-		61B0B34F1476F54D006887AB /* level7.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61B0B3491476F54D006887AB /* level7.tmx */; };
+		61B0B358147714A7006887AB /* level7.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61B0B357147714A7006887AB /* level7.tmx */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -944,7 +944,7 @@
 		61B0B3461476F54D006887AB /* level4.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level4.tmx; path = Resources/levels/level4.tmx; sourceTree = "<group>"; };
 		61B0B3471476F54D006887AB /* level5.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level5.tmx; path = Resources/levels/level5.tmx; sourceTree = "<group>"; };
 		61B0B3481476F54D006887AB /* level6.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level6.tmx; path = Resources/levels/level6.tmx; sourceTree = "<group>"; };
-		61B0B3491476F54D006887AB /* level7.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level7.tmx; path = Resources/levels/level7.tmx; sourceTree = "<group>"; };
+		61B0B357147714A7006887AB /* level7.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level7.tmx; path = Resources/levels/level7.tmx; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1522,7 +1522,7 @@
 				61B0B3461476F54D006887AB /* level4.tmx */,
 				61B0B3471476F54D006887AB /* level5.tmx */,
 				61B0B3481476F54D006887AB /* level6.tmx */,
-				61B0B3491476F54D006887AB /* level7.tmx */,
+				61B0B357147714A7006887AB /* level7.tmx */,
 				54E3D51E146C4B9200C28C9F /* level2_hd.tmx */,
 				61B0B3421476F305006887AB /* level2.tmx */,
 				54E3D520146C4B9200C28C9F /* level3_hd.tmx */,
@@ -2222,7 +2222,7 @@
 				61B0B34C1476F54D006887AB /* level4.tmx in Resources */,
 				61B0B34D1476F54D006887AB /* level5.tmx in Resources */,
 				61B0B34E1476F54D006887AB /* level6.tmx in Resources */,
-				61B0B34F1476F54D006887AB /* level7.tmx in Resources */,
+				61B0B358147714A7006887AB /* level7.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
