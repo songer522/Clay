@@ -82,12 +82,15 @@
     //_graphic = [Sprite spriteWithFile:image];
     [[_graphic getCCSprite] setOpacity:BUTTON_OPACITY];
     [[_graphic getCCSprite] setScale:[[UIScreen mainScreen] scale] / _scale];
+   
     [[_graphic getCCSprite] setAnchorPoint:ccp(0.5f, 0.5f)];
 
     _greenOverlay = [Sprite spriteFromFrameCacheWithName:@"UI_Button_GreenLight.png"];
     [[_greenOverlay getCCSprite] setAnchorPoint:ccp(0.5f, 0.5f)];
     [[_greenOverlay getCCSprite] setOpacity:BUTTON_OPACITY];
     [[_greenOverlay getCCSprite] setScale:[[UIScreen mainScreen] scale] / _scale];
+   
+
 
 }
 
@@ -141,12 +144,15 @@
 {
      if ([self getCCSpriteForOverlay].visible)
      {
-    [[_graphic getCCSprite] setOpacity:BUTTON_OPACITY];
-    [[_graphic getCCSprite] setScale:BUTTON_SCALE * [[UIScreen mainScreen] scale] / _scale]; 
+        [[_graphic getCCSprite] setOpacity:BUTTON_OPACITY];
+        [[_graphic getCCSprite] setScale:BUTTON_SCALE * [[UIScreen mainScreen] scale] / _scale]; 
+          
+          
+         
      }
     [[_greenOverlay getCCSprite] setOpacity:BUTTON_OPACITY];
     [[_greenOverlay getCCSprite] setScale:BUTTON_SCALE * [[UIScreen mainScreen] scale] / _scale];
-   
+    
 }
 
 -(float)getButtonOpacity
