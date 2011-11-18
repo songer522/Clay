@@ -58,14 +58,9 @@
     Projectile *bullet = [_bullets objectAtIndex:_currentBulletIndex];
     
     [bullet reset];
-    if ([GameSettings usingHighResolutionGraphics])
-    {
-        [bullet setPosition:CGPointMake(_parent.x + PLAYER_ACTION_SHOOT_OFFSET_BULLET_X, _parent.y + PLAYER_ACTION_SHOOT_OFFSET_BULLET_Y)];
-    }
-    else
-    {
-        [bullet setPosition:CGPointMake(_parent.x + PLAYER_ACTION_SHOOT_OFFSET_BULLET_X_LOWRES, _parent.y + PLAYER_ACTION_SHOOT_OFFSET_BULLET_Y_LOWRES)];
-    }
+  
+    [bullet setPosition:CGPointMake(_parent.x + PLAYER_ACTION_SHOOT_OFFSET_BULLET_X, _parent.y + PLAYER_ACTION_SHOOT_OFFSET_BULLET_Y)];
+   
     _currentBulletIndex = (_currentBulletIndex + 1) % 3;
     
 }

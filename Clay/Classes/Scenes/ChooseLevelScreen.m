@@ -128,7 +128,7 @@
     
     
     _levelSelectText = [CCLabelBMFont labelWithString:@"LEVEL SELECT" fntFile:@"GraphicFont.fnt"];
-    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
+    if ([GameSettings usingHighResolutionGraphics])
     { [_levelSelectText setScale:0.75f];}
     else
     { [_levelSelectText setScale:0.375f];}

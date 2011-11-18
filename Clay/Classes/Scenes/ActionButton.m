@@ -10,6 +10,7 @@
 #import "LayerManager.h"
 #import "Sprite.h"
 #import "SoundEngine.h"
+#import "GameSettings.h"
 
 @implementation ActionButton
 
@@ -28,7 +29,7 @@
         [_buttonSelected getCCSprite].anchorPoint = ccp(0.5f,0.5f);
         
         _textLabel = [CCLabelBMFont labelWithString:text fntFile:@"GraphicFont.fnt"];
-        if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2){
+        if ([GameSettings usingHighResolutionGraphics]){
             [_textLabel setScale:0.65f];
         }
         else 
