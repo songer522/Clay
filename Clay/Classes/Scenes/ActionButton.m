@@ -28,7 +28,13 @@
         [_buttonSelected getCCSprite].anchorPoint = ccp(0.5f,0.5f);
         
         _textLabel = [CCLabelBMFont labelWithString:text fntFile:@"GraphicFont.fnt"];
-        [_textLabel setScale:0.65f];
+        if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2){
+            [_textLabel setScale:0.65f];
+        }
+        else 
+        {[_textLabel setScale:0.325f];
+        }
+        
         _textLabel.anchorPoint = ccp(0.5f,0.5f);
         [[[LayerManager sharedLayers] currentLayer] addChild:_textLabel];
         
