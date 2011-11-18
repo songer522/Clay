@@ -370,11 +370,11 @@
 		61A2C0E714683B880049C88E /* GraphicFont.png in Resources */ = {isa = PBXBuildFile; fileRef = 61A2C0E514683B880049C88E /* GraphicFont.png */; };
 		61B0B3431476F305006887AB /* level2.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61B0B3421476F305006887AB /* level2.tmx */; };
 		61B0B34A1476F54D006887AB /* level1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61B0B3441476F54D006887AB /* level1.tmx */; };
-		61B0B34B1476F54D006887AB /* level3.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61B0B3451476F54D006887AB /* level3.tmx */; };
 		61B0B34C1476F54D006887AB /* level4.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61B0B3461476F54D006887AB /* level4.tmx */; };
 		61B0B34D1476F54D006887AB /* level5.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61B0B3471476F54D006887AB /* level5.tmx */; };
 		61B0B34E1476F54D006887AB /* level6.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61B0B3481476F54D006887AB /* level6.tmx */; };
-		61B0B34F1476F54D006887AB /* level7.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61B0B3491476F54D006887AB /* level7.tmx */; };
+		61B0B358147714A7006887AB /* level7.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61B0B357147714A7006887AB /* level7.tmx */; };
+		61B0B35A14771858006887AB /* level3.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61B0B35914771858006887AB /* level3.tmx */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -940,11 +940,11 @@
 		61A2C0E514683B880049C88E /* GraphicFont.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GraphicFont.png; sourceTree = "<group>"; };
 		61B0B3421476F305006887AB /* level2.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level2.tmx; path = Resources/levels/level2.tmx; sourceTree = "<group>"; };
 		61B0B3441476F54D006887AB /* level1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level1.tmx; path = Resources/levels/level1.tmx; sourceTree = "<group>"; };
-		61B0B3451476F54D006887AB /* level3.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level3.tmx; path = Resources/levels/level3.tmx; sourceTree = "<group>"; };
 		61B0B3461476F54D006887AB /* level4.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level4.tmx; path = Resources/levels/level4.tmx; sourceTree = "<group>"; };
 		61B0B3471476F54D006887AB /* level5.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level5.tmx; path = Resources/levels/level5.tmx; sourceTree = "<group>"; };
 		61B0B3481476F54D006887AB /* level6.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level6.tmx; path = Resources/levels/level6.tmx; sourceTree = "<group>"; };
-		61B0B3491476F54D006887AB /* level7.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level7.tmx; path = Resources/levels/level7.tmx; sourceTree = "<group>"; };
+		61B0B357147714A7006887AB /* level7.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level7.tmx; path = Resources/levels/level7.tmx; sourceTree = "<group>"; };
+		61B0B35914771858006887AB /* level3.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level3.tmx; path = Resources/levels/level3.tmx; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1518,11 +1518,11 @@
 				54E3D55C146C4BAE00C28C9F /* tilesets */,
 				54E3D51C146C4B9200C28C9F /* level1_hd.tmx */,
 				61B0B3441476F54D006887AB /* level1.tmx */,
-				61B0B3451476F54D006887AB /* level3.tmx */,
+				61B0B35914771858006887AB /* level3.tmx */,
 				61B0B3461476F54D006887AB /* level4.tmx */,
 				61B0B3471476F54D006887AB /* level5.tmx */,
 				61B0B3481476F54D006887AB /* level6.tmx */,
-				61B0B3491476F54D006887AB /* level7.tmx */,
+				61B0B357147714A7006887AB /* level7.tmx */,
 				54E3D51E146C4B9200C28C9F /* level2_hd.tmx */,
 				61B0B3421476F305006887AB /* level2.tmx */,
 				54E3D520146C4B9200C28C9F /* level3_hd.tmx */,
@@ -2218,11 +2218,11 @@
 				54AFB2571475DE6E00DA4A59 /* Level8_TiledSheet.png in Resources */,
 				61B0B3431476F305006887AB /* level2.tmx in Resources */,
 				61B0B34A1476F54D006887AB /* level1.tmx in Resources */,
-				61B0B34B1476F54D006887AB /* level3.tmx in Resources */,
 				61B0B34C1476F54D006887AB /* level4.tmx in Resources */,
 				61B0B34D1476F54D006887AB /* level5.tmx in Resources */,
 				61B0B34E1476F54D006887AB /* level6.tmx in Resources */,
-				61B0B34F1476F54D006887AB /* level7.tmx in Resources */,
+				61B0B358147714A7006887AB /* level7.tmx in Resources */,
+				61B0B35A14771858006887AB /* level3.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
