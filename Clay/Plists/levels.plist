@@ -12,8 +12,6 @@
 		<string>track</string>
 		<key>postLevelComic</key>
 		<string>level1</string>
-		<key>worldType</key>
-		<string>realWorld</string>
 		<key>playerOffsetY</key>
 		<integer>-9</integer>
 		<key>fileName</key>
@@ -35,8 +33,6 @@
 		<string>barn</string>
 		<key>postLevelComic</key>
 		<string>level2</string>
-		<key>worldType</key>
-		<string>dreamWorld</string>
 		<key>playerOffsetY</key>
 		<integer>-9</integer>
 		<key>fileName</key>
@@ -58,8 +54,6 @@
 		<string>cornfields</string>
 		<key>postLevelComic</key>
 		<string>level3</string>
-		<key>worldType</key>
-		<string>realWorld</string>
 		<key>playerOffsetY</key>
 		<integer>-9</integer>
 		<key>fileName</key>
@@ -81,8 +75,6 @@
 		<string>disco</string>
 		<key>postLevelComic</key>
 		<string>level4</string>
-		<key>worldType</key>
-		<string>realWorld</string>
 		<key>playerOffsetY</key>
 		<integer>-9</integer>
 		<key>fileName</key>
@@ -104,8 +96,6 @@
 		<string>city</string>
 		<key>postLevelComic</key>
 		<string>level5</string>
-		<key>worldType</key>
-		<string>realWorld</string>
 		<key>playerOffsetY</key>
 		<integer>-9</integer>
 		<key>fileName</key>
@@ -129,8 +119,6 @@
 		<string>zombies</string>
 		<key>postLevelComic</key>
 		<string>level6</string>
-		<key>worldType</key>
-		<string>realWorld</string>
 		<key>playerOffsetY</key>
 		<integer>-9</integer>
 		<key>fileName</key>
@@ -157,13 +145,34 @@
 		<key>playerOffsetY</key>
 		<integer>0</integer>
 		<key>fileName</key>
-		<string>level7.tmx</string>
+		<string>level8.tmx</string>
 		<key>obstacleLayer</key>
 		<string>objects</string>
 		<key>nextLevelName</key>
 		<string>endGame</string>
 		<key>layerList</key>
 		<string>back-4,back-3,back-2,back-1,main0,actives,front-1,meta</string>
+	</dict>
+	<key>level8</key>
+	<dict>
+		<key>preComic</key>
+		<string>level6</string>
+		<key>thirdAction</key>
+		<string>block</string>
+		<key>music</key>
+		<string>computer</string>
+		<key>postLevelComic</key>
+		<string>endGame</string>
+		<key>playerOffsetY</key>
+		<integer>-9</integer>
+		<key>fileName</key>
+		<string>level8.tmx</string>
+		<key>obstacleLayer</key>
+		<string>objects</string>
+		<key>nextLevelName</key>
+		<string>endGame</string>
+		<key>layerList</key>
+		<string>back-3,back-2,back-1,main0,ledges,actives,front-1,meta</string>
 	</dict>
 	<key>startingLevel</key>
 	<string>dummyLevel</string>
