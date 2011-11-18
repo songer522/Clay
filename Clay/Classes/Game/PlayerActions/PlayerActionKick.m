@@ -63,7 +63,7 @@
             GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
             CGPoint position = [gameLayer.player getPosition];
             
-            if ([GameSettings usingHighResolutionGraphics])
+            if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
             {
                 position.x += 10.0f;
                 position.y -= 5.0f;
