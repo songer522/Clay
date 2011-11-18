@@ -158,8 +158,8 @@
    </properties>
   </tile>
  </tileset>
- <tileset firstgid="63" name="computer" tilewidth="64" tileheight="64">
-  <image source="tileset_level_7-hd.png" width="1984" height="768"/>
+ <tileset firstgid="63" name="computer" tilewidth="32" tileheight="32">
+  <image source="tileset_level_7.png" width="1984" height="768"/>
  </tileset>
  <layer name="back-4" width="1100" height="14">
   <data encoding="base64" compression="zlib">

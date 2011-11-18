@@ -50,14 +50,14 @@
                 _sprite = [Sprite spriteWithFile:@"blank.png"];
                 break;
             case PROJECTILE_BEHAVIOR_BULLET:
-                _sprite = [Sprite spriteWithFile:@"bullet.png"];
+                _sprite = [Sprite spriteFromFrameCacheWithName:@"Zombies_Bullet.png"];
                 //[[_sprite getCCSprite] setScale:0.1f];
                 [[_sprite getCCSprite] setVisible:NO];
                 _vx = 800.0f;
                 _offscreenPadding = 20;
                 break;
             case PROJECTILE_BEHAVIOR_ZOMBIE_HEAD:
-                _sprite = [Sprite spriteWithFile:@"zombieHead.png"];
+                _sprite = [Sprite spriteFromFrameCacheWithName:@"F_Zombie_Head.png"];
                 [_sprite getCCSprite].anchorPoint = ccp(0.5f, 0.5f);
                 [[_sprite getCCSprite] setScale:0.8];
                 _vx = 250 + rand()%100;
@@ -69,7 +69,7 @@
                 _offsetGroundDetectionY = 10.0f;
                 break;
             case PROJECTILE_BEHAVIOR_BOSS_SHIP_BULLET:
-                _sprite = [Sprite spriteWithFile:@"shipBullet2.png"];
+                _sprite = [Sprite spriteFromFrameCacheWithName:@"Level7_JimSpaceCraft_Bullet.png"];
                 [_sprite getCCSprite].anchorPoint = ccp(0,0);
                 [[_sprite getCCSprite] setVisible:NO];
                 _isAggressive = false;
