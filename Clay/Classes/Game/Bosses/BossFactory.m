@@ -43,7 +43,7 @@
             return [BossFinalJim instance];
             break;
         default:
-            NSLog(@"BossFactory:build - Error! Not yet implemented.");
+            //NSLog(@"BossFactory:build - Error! Not yet implemented.");
             break;
     }
     

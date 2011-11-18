@@ -102,7 +102,7 @@
 #endif
 	
 	[director setAnimationInterval:1.0f/60.0f];
-	[director setDisplayFPS:YES];
+	[director setDisplayFPS:NO];
     
 	
 	
@@ -119,7 +119,6 @@
 	// You can change anytime.
 	[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
     //[CCTexture2D setDefaultAlphaPixelFormat:kTexture2DPixelFormat_RGB5A1];
-    //[CCTexture2D setDefaultAlphaPixelFormat:kTexture2DPixelFormat_RGB565];
 	
 	// Removes the startup flicker
 	[self removeStartupFlicker];

@@ -146,7 +146,7 @@
 
 -(void)dealloc
 {
-    NSLog(@"Dealloc: EndGameScene");
+    //NSLog(@"Dealloc: EndGameScene");
     
     [_endGame release];
     [_bestTime release];
