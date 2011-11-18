@@ -40,6 +40,7 @@
 #import "Support/base64.h"
 #import "Support/ZipUtils.h"
 #import "Support/CCFileUtils.h"
+#import "GameSettings.h"
 
 #pragma mark -
 #pragma mark TMXLayerInfo
@@ -164,7 +165,7 @@
 
 - (void) parseXMLFile:(NSString *)xmlFilename
 {
-  NSURL *url = [NSURL fileURLWithPath:[CCFileUtils fullPathFromRelativePath:xmlFilename] ];
+  NSURL *url = [NSURL fileURLWithPath:[CCFileUtils fullPathFromRelativePath:xmlFilename]];
   NSData *data = [NSData dataWithContentsOfURL:url];
   NSXMLParser *parser = [[NSXMLParser alloc] initWithData:data];
 

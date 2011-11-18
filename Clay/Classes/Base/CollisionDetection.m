@@ -9,6 +9,7 @@
 #import "CollisionDetection.h"
 #import "Collision.h"
 #import "GameObject.h"
+#import "GameSettings.h"
 
 #define COLLISION_DETECTION_TEST_LEFT_COLLISIONS 0
 
@@ -172,7 +173,7 @@
 {
     int scaledTileWidth = _tileSize / 2.0f;
     int scaledTileHeight = _tileSize / 2.0f;
-    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
+    if ([GameSettings usingHighResolutionGraphics])
     {
         scaledTileWidth = _tileSize / 2.0f;
         scaledTileHeight = _tileSize / 2.0f;
@@ -248,7 +249,7 @@
 
         
         float topOfTile = (_map.mapSize.height - _coordinates.y - 1) * (_tileSize / 2.0f);
-        if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
+        if ([GameSettings usingHighResolutionGraphics])
         {
             topOfTile = (_map.mapSize.height - _coordinates.y - 1) * (_tileSize / 2.0f);
         }
@@ -263,7 +264,7 @@
 
             //NOTE: the "+1" at the end of the line below prevents an infinite loop
             
-            if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
+            if ([GameSettings usingHighResolutionGraphics])
             {
                 _testPosition.y = (_map.mapSize.height - _coordinates.y - 1) * (_tileSize / 2.0f) + 2;
             }

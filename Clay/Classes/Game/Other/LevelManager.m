@@ -16,6 +16,7 @@
 #import "UserData.h"
 #import "TextureManager.h"
 #import "Boss.h"
+#import "GameSettings.h"
 
 @implementation LevelManager
 
@@ -61,7 +62,7 @@ static LevelManager *_shared = nil;
     NSString *fileName = [levelSettings valueForKey:@"fileName"];
     NSString *obstacleLayer = [levelSettings valueForKey:@"obstacleLayer"];
     
-    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2){
+    if ([GameSettings usingHighResolutionGraphics]){
         // Use HD level for High Res screens
         NSArray *filenameParts = [fileName componentsSeparatedByString:@"."];
         NSMutableString *filenameMuta = [[NSMutableString alloc] initWithString:[filenameParts objectAtIndex:0]];

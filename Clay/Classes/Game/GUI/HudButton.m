@@ -8,6 +8,7 @@
 
 #import "HudButton.h"
 #import "BaseClasses.h"
+#import "GameSettings.h"
 #define HUD_LAYER_BUTTON_OPACITY 170
 #define HUD_LAYER_BUTTON_Y 29
 #define HUD_LAYER_JUMP_X 32

@@ -23,7 +23,7 @@
 #import "GameDebugLayer.h"
 #import "GameSettings.h"
 
-#define DEBUG_DRAW_BOUNDING_BOXES 0
+#define DEBUG_DRAW_BOUNDING_BOXES 1
 
 // HelloWorldLayer implementation
 @implementation GameLayer
@@ -132,6 +132,11 @@
     [[LevelManager shared] initAfterPlayerAndHudInit];
     [_hud reset];
     [[ComicManager shared] resetComicLayer];
+    
+#if DEBUG_DRAW_BOUNDING_BOXES
+    [_debugLayer removeFromParentAndCleanup:NO];
+    [[[LayerManager sharedLayers] currentScene] addChild:_debugLayer];
+#endif
 }
 
 -(void)setupHud

@@ -17,6 +17,7 @@
 #import "GameObject.h"
 #import "LayerManager.h"
 #import "GameLayer.h"
+#import "GameSettings.h"
 
 #define kPlayerActionKickMoveX 20.0f
 #define kPlayerActionKickFullDuration 0.4f;
@@ -54,7 +55,7 @@
             GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
             CGPoint position = [gameLayer.player getPosition];
             
-            if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
+            if ([GameSettings usingHighResolutionGraphics])
             {
                 position.x += 10.0f;
                 position.y -= 5.0f;

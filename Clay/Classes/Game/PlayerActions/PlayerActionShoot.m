@@ -11,6 +11,7 @@
 #import "Player.h"
 #import "Projectile.h"
 #import "LevelManager.h"
+#import "GameSettings.h"
 
 #define PLAYER_ACTION_SHOOT_MAX_BULLETS 3
 
@@ -57,7 +58,7 @@
     Projectile *bullet = [_bullets objectAtIndex:_currentBulletIndex];
     
     [bullet reset];
-    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
+    if ([GameSettings usingHighResolutionGraphics])
     {
         [bullet setPosition:CGPointMake(_parent.x + PLAYER_ACTION_SHOOT_OFFSET_BULLET_X, _parent.y + PLAYER_ACTION_SHOOT_OFFSET_BULLET_Y)];
     }

@@ -25,6 +25,7 @@
 #import "GCHelper.h"
 #import "Projectile.h"
 #import "HudLayer.h"
+#import "GameSettings.h"
 
 @implementation Level
 
@@ -62,7 +63,7 @@
        
         
         //[[[LayerManager sharedLayers] currentLayer] addChild:_map];
-        
+    
         if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
         {
             _divide = 2.0f;
@@ -73,6 +74,15 @@
         }
             
         _scale = [[UIScreen mainScreen] scale] / _divide;
+        
+        if ([GameSettings usingHighResolutionGraphics])
+        {
+            _divide = 2.0f;
+        }
+        else
+        {
+            _divide = 1.0f;
+        }
         
         [self scanThroughMapAndAddObjects];
                 

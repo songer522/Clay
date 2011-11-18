@@ -16,13 +16,9 @@
 #import "RootViewController.h"
 #import "VideoPlayer.h"
 #import "CCVideoPlayer.h"
-#import "ComicManager.h"
-#import "EndGameScene.h"
-#import "HudLayer.h"
-#import "MainMenuScene.h"
 #import "TextureManager.h"
-#import "LevelManager.h"
-#import "ChooseLevelScreen.h"
+#import "GameSettings.h"
+#import "MainMenuScene.h"
 
 @implementation AppDelegate
 
@@ -47,6 +43,7 @@
 //	[[director openGLView] swapBuffers];
 //	CC_ENABLE_DEFAULT_GL_STATES();
 	
+    
 #endif // GAME_AUTOROTATION == kGameAutorotationUIViewController	
 }
 - (void) applicationDidFinishLaunching:(UIApplication*)application
@@ -83,7 +80,7 @@
 	[director setOpenGLView:glView];
 	
 //	// Enables High Res mode (Retina Display) on iPhone 4 and maintains low res on all other devices
-	if( ! [director enableRetinaDisplay:YES] )
+	if( ! [director enableRetinaDisplay:[GameSettings shouldUseRetinaForDevice]] )
 		CCLOG(@"Retina Display Not supported");
 	
 	//
@@ -131,8 +128,9 @@
     [[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
     
     [[CCDirector sharedDirector] setProjection:CCDirectorProjection2D];
-}
+    //[[CCDirector sharedDirector] setDepthBufferFormat:CCDepthBuffer16]; 
 
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
 	[[CCDirector sharedDirector] pause];
@@ -172,6 +170,9 @@
 - (void)applicationSignificantTimeChange:(UIApplication *)application {
 	[[CCDirector sharedDirector] setNextDeltaTimeZero:YES];
 }
+
+
+
 
 - (void)dealloc {
     [window release];
