@@ -76,11 +76,11 @@ static GCHelper *sharedHelper = nil;
     dispatch_async(dispatch_get_main_queue(), ^(void)
                    {
                        if ([GKLocalPlayer localPlayer].isAuthenticated && !userAuthenticated) {
-                           NSLog(@"Authentication changed: player authenticated.");
+                           //NSLog(@"Authentication changed: player authenticated.");
                            userAuthenticated = TRUE;
                            [self resendData];
                        } else if (![GKLocalPlayer localPlayer].isAuthenticated && userAuthenticated) {
-                           NSLog(@"Authentication changed: player not authenticated.");
+                           //NSLog(@"Authentication changed: player not authenticated.");
                        }
                    });
 }
@@ -90,10 +90,10 @@ static GCHelper *sharedHelper = nil;
         dispatch_async(dispatch_get_main_queue(), ^(void)
                        {
                            if (error == NULL) {
-                               NSLog(@"Successfully sent achievement!");
+                               //NSLog(@"Successfully sent achievement!");
                                [achievementsToReport removeObject:achievement];
                            } else {
-                               NSLog(@"Achievement failed to send... will try again later. Reason: %@", error.localizedDescription);
+                               //NSLog(@"Achievement failed to send... will try again later. Reason: %@", error.localizedDescription);
                            }
                        });
     }];

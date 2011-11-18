@@ -121,7 +121,7 @@
 {
     for (Projectile *_bullet in _bullets)
         [_bullet disable];
-    NSLog(@"bossJimShip has been reset");
+    //NSLog(@"bossJimShip has been reset");
     
 }
 

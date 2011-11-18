@@ -51,7 +51,7 @@
 
 -(void)reset
 {
-    NSLog(@"reset got called");
+    //NSLog(@"reset got called");
 }
 
 
