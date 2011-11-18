@@ -186,7 +186,7 @@
     
     //round position to eliminate white artifacts (note, this is in points, so with retina, we want to round based
     //on pixels, so round based on double the size first, then half the size for point pixel value
-    if ([[UIScreen mainScreen] scale] == 2) {
+    if ([GameSettings usingHighResolutionGraphics]) {
         position.x = roundf(position.x * 2.0f) / 2.0f;
         position.y = roundf(position.y * 2.0f) / 2.0f;
     } else {

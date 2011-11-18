@@ -11,6 +11,7 @@
 #import "LayerManager.h"
 #import "GameLayer.h"
 #import "Player.h"
+#import "GameSettings.h"
 
 @implementation Laser
 
@@ -59,7 +60,15 @@
     GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
     
     CGPoint playerPosition = [gameLayer.player getPosition];    
-    _position = CGPointMake(playerPosition.x + rand()%600, 200.0f);
+    
+    if ([GameSettings usingHighResolutionGraphics]) {
+        _position = CGPointMake(playerPosition.x + rand()%600, 200.0f);        
+    } else {
+        _position = CGPointMake(playerPosition.x + rand()%600, 200.0f);
+    }
+
+    
+    
     [_sprite setPosition:_position];
     [_sprite getCCSprite].rotation = (rand() % 80) - 40;
     [_sprite setAlpha:_alpha];
