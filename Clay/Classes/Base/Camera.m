@@ -180,7 +180,7 @@ static Camera *_sharedCamera = nil;
 
 -(void)dealloc
 {
-    [_target release];
+    _target = nil;
     [super dealloc];
 }
 

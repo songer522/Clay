@@ -20,6 +20,7 @@ typedef enum {
     COMIC_PHASE_PLAY_VIDEO,
     COMIC_PHASE_LOAD_LEVEL,
     COMIC_PHASE_BARS_OUT,
+    COMIC_PHASE_STARTING_VIDEO,
     COMIC_PHASE_PLAY_LEVEL
 }ComicPhase;
 
@@ -28,8 +29,6 @@ typedef enum {
     bool _isActive;
     bool _loadNextLevel;
     
-    
-    GameLayer *_gameLayer;
     VideoPlayer *_videoPlayer;
     NSDictionary *_videoList;
     ComicLayer *_comicLayer;
@@ -42,7 +41,6 @@ typedef enum {
     NSString *_videoFileName;
 }
 
-@property(nonatomic,retain)GameLayer *gameLayer;
 @property(nonatomic,assign)bool loadNextLevel;
 @property(nonatomic,assign)bool isActive;
 
@@ -58,6 +56,7 @@ typedef enum {
 -(void)switchToPhase:(ComicPhase)phase;
 
 -(void)finishedAction;
+-(void)resetComicLayer;
 
 -(void)endTheGame;
 

@@ -174,7 +174,7 @@
 -(void)dealloc
 {
     [sprite release];
-    [_player release];
+    _player = nil;
     [super dealloc];
 }
 

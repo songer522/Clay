@@ -140,6 +140,7 @@
 
 -(void)dealloc
 {
+    _parent = nil;
     [super dealloc];
 }
 

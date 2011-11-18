@@ -11,12 +11,12 @@
 
 @implementation LevelButton
 
-+(id)levelButtonWithCache:(CCSpriteFrameCache*)cache andId:(int)buttonId
++(id)levelButtonWithId:(int)buttonId
 {
-    return [[self alloc] initWithCache:cache andId:buttonId];
+    return [[self alloc] initWithId:buttonId];
 }
             
--(id)initWithCache:(CCSpriteFrameCache*)cache andId:(int)buttonId
+-(id)initWithId:(int)buttonId
 {
     if ((self=[super init])) {
         _buttonId = buttonId + 1;
@@ -73,7 +73,7 @@
 {
     [_buttonGraphic setScreenPosition:position];
     [_trophy setScreenPosition:position];
-    [self setHitbox:CGRectMake(position.x, position.y, 55, 55)];
+    [self setHitbox:CGRectMake(position.x, position.y, 190, 190)];
 }
 
 -(bool)checkIfSelected:(CGPoint)touch

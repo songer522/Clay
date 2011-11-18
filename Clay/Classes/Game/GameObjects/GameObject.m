@@ -186,7 +186,7 @@
         [_projectile reset];
         [_projectile setPosition:CGPointMake(_x, _y + 41)];
        // [_projectile setBoundingBox:CGRectMake(15, 33, 30, 30)];
-        [_projectile setBoundingBox:CGRectMake(15, 33, 14, 28)];
+        [_projectile setBoundingBox:CGRectMake(15, 33, 14, 40)];
         
         GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
         [[gameLayer.player getThirdAction] setKilledEnemy:YES];
@@ -336,13 +336,11 @@
             CGPoint position = [gameLayer.player getPosition];
             if (_x < (position.x + 200.0f) && _x > 0.0f) {
                 if(![self.originalAnimation isEqualToString:@"madDogAnim"])
-                    
-                { 
-                   
+                {
                     [self setOriginalAnimation:@"madDogAnim"];
                     [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"madDogAnim"];
                 }
-                                _vx = -150.0f;    
+                _vx = -150.0f;    
             } else {
                 _vx = 0.0f;
             }
@@ -351,7 +349,11 @@
         GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
         CGPoint position = [gameLayer.player getPosition];
         if (_x < (position.x + 100.0f) && _x > 0.0f) {
-        
+            if(![self.originalAnimation isEqualToString:@"retroZombieAnim"])
+            { 
+                [self setOriginalAnimation:@"retroZombieAnim"];
+                [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"retroZombieAnim"];
+            }
             //_vx = -150.0f;    
         } else {
             _vx = 0.0f;
@@ -437,10 +439,10 @@
 
 -(void) reset
 {
-    if (_boss!=nil) {
+    if (_boss!=nil) { 
+        [_boss reset];
         return;
     }
-    
     _isActive = true;
     _angle = 0.0f;
     _vx = 0;
@@ -449,7 +451,7 @@
     _fadeout = false;
     _madeSound = false;
     [_sprite setAlpha:1.0f];
-    
+     
     if ([_originalAnimation compare:@"none"] != NSOrderedSame) {
         [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:_originalAnimation];        
     }
@@ -468,13 +470,19 @@
     if (_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_HEADLESS ||  _currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_WALK) {
         _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_WALK;
     }
+    
     else if(_currentBehavior == COLLISION_BEHAVIOR_MAD_DOG) {
         _currentBehavior = COLLISION_BEHAVIOR_MAD_DOG;
        // NSLog(@"%@", self.originalAnimation);
         [self setOriginalAnimation:@"dogAnim"];
         [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"dogAnim"];
     }
-
+    else if(_currentBehavior == COLLISION_BEHAVIOR_RETRO_ZOMBIE) {
+        _currentBehavior = COLLISION_BEHAVIOR_RETRO_ZOMBIE;
+        // NSLog(@"%@", self.originalAnimation);
+        [self setOriginalAnimation:@"retroZombieStatic"];
+        [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"retroZombieStatic"];
+    }
     else if(_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_WALK_FAST || _currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_FADE) {
         _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_WALK_FAST;
     } else if(_currentBehavior == COLLISION_BEHAVIOR_FLYER_DEAD || _currentBehavior == COLLISION_BEHAVIOR_FLYER) {
@@ -624,6 +632,8 @@
 {
     [_sprite release];
     [_collisionState release];
+    [_boss release];
+    
     [super dealloc];
 }
 

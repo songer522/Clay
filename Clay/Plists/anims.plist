@@ -22,7 +22,7 @@
 	<key>cowDied</key>
 	<dict>
 		<key>animationFrames</key>
-		<string>1,2</string>
+		<string>1</string>
 		<key>clearPreviousAnims</key>
 		<string>true</string>
 		<key>delay</key>
@@ -32,9 +32,9 @@
 		<key>looping</key>
 		<string>false</string>
 		<key>sequencePrefix</key>
-		<string>cow_died_</string>
+		<string>Barn_Cow_Died_</string>
 		<key>spritesheetPlist</key>
-		<string>cow_died</string>
+		<string>barnLevel</string>
 	</dict>
 	<key>cowIdle</key>
 	<dict>
@@ -49,9 +49,9 @@
 		<key>looping</key>
 		<string>true</string>
 		<key>sequencePrefix</key>
-		<string>cow_idle_</string>
+		<string>Barn_Cow_Idle_</string>
 		<key>spritesheetPlist</key>
-		<string>cow_idle</string>
+		<string>barnLevel</string>
 	</dict>
 	<key>retroHurdleAnim</key>
 	<dict>
@@ -196,7 +196,24 @@
 		<key>clearPreviousAnims</key>
 		<string>true</string>
 		<key>delay</key>
-		<string>2.5</string>
+		<string>0</string>
+		<key>group</key>
+		<string>level7</string>
+		<key>looping</key>
+		<string>false</string>
+		<key>sequencePrefix</key>
+		<string>Retro_Zombie_</string>
+		<key>spritesheetPlist</key>
+		<string>computerLevel</string>
+	</dict>
+	<key>retroZombieStatic</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.2</string>
 		<key>group</key>
 		<string>level7</string>
 		<key>looping</key>
@@ -238,7 +255,7 @@
 		<key>sequencePrefix</key>
 		<string>Disco_Dancer_</string>
 		<key>spritesheetPlist</key>
-		<string>disco_level</string>
+		<string>discoLevel</string>
 	</dict>
 	<key>dancinManDied</key>
 	<dict>
@@ -255,7 +272,7 @@
 		<key>sequencePrefix</key>
 		<string>Disco_Dancer_Hit_</string>
 		<key>spritesheetPlist</key>
-		<string>disco_level</string>
+		<string>discoLevel</string>
 	</dict>
 	<key>discoDancersAnim</key>
 	<dict>
@@ -272,7 +289,7 @@
 		<key>sequencePrefix</key>
 		<string>Disco_DancingAnimation_Key0</string>
 		<key>spritesheetPlist</key>
-		<string>disco_level</string>
+		<string>discoLevel</string>
 	</dict>
 	<key>dodgingAnim</key>
 	<dict>
@@ -340,7 +357,7 @@
 		<key>sequencePrefix</key>
 		<string>FemaleDancer_</string>
 		<key>spritesheetPlist</key>
-		<string>disco_level</string>
+		<string>discoLevel</string>
 	</dict>
 	<key>femaleBreakdancerRedAnim</key>
 	<dict>
@@ -357,7 +374,7 @@
 		<key>sequencePrefix</key>
 		<string>Disco_BreakDancer_Red_</string>
 		<key>spritesheetPlist</key>
-		<string>disco_level</string>
+		<string>discoLevel</string>
 	</dict>
 	<key>femaleBreakdancerBlueAnim</key>
 	<dict>
@@ -430,7 +447,7 @@
 	<key>henIdle</key>
 	<dict>
 		<key>animationFrames</key>
-		<string>1,2</string>
+		<string>1</string>
 		<key>clearPreviousAnims</key>
 		<string>false</string>
 		<key>delay</key>
@@ -440,26 +457,26 @@
 		<key>looping</key>
 		<string>true</string>
 		<key>sequencePrefix</key>
-		<string>hen_idle_</string>
+		<string>Barn_Hen_Idle_</string>
 		<key>spritesheetPlist</key>
-		<string>hen_idle</string>
+		<string>barnLevel</string>
 	</dict>
 	<key>henKicked</key>
 	<dict>
 		<key>animationFrames</key>
-		<string>1,2</string>
+		<string>1</string>
 		<key>clearPreviousAnims</key>
 		<string>false</string>
 		<key>delay</key>
-		<string>0.04</string>
+		<string>1.0</string>
 		<key>group</key>
 		<string>level2</string>
 		<key>looping</key>
 		<string>true</string>
 		<key>sequencePrefix</key>
-		<string>hen_kicked_</string>
+		<string>Barn_Hen_Kicked_</string>
 		<key>spritesheetPlist</key>
-		<string>hen_kicked</string>
+		<string>barnLevel</string>
 	</dict>
 	<key>hurtAnim</key>
 	<dict>
@@ -544,7 +561,7 @@
 		<key>sequencePrefix</key>
 		<string>MaleDancer_</string>
 		<key>spritesheetPlist</key>
-		<string>disco_level</string>
+		<string>discoLevel</string>
 	</dict>
 	<key>pigAnim</key>
 	<dict>
@@ -561,7 +578,7 @@
 		<key>sequencePrefix</key>
 		<string>Barn_Pig_</string>
 		<key>spritesheetPlist</key>
-		<string>pig</string>
+		<string>barnLevel</string>
 	</dict>
 	<key>crowAnim</key>
 	<dict>
@@ -731,7 +748,7 @@
 		<key>sequencePrefix</key>
 		<string>tv_</string>
 		<key>spritesheetPlist</key>
-		<string>disco_level</string>
+		<string>discoLevel</string>
 	</dict>
 	<key>wooAnim</key>
 	<dict>

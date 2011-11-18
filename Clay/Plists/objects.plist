@@ -18,7 +18,7 @@
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>40</integer>
+			<integer>45</integer>
 			<key>width</key>
 			<integer>14</integer>
 			<key>x</key>
@@ -29,7 +29,7 @@
 		<key>collideBehavior</key>
 		<string>falls</string>
 		<key>imageName</key>
-		<string>bighurdle.png</string>
+		<string>Track_BigHurdle_1.png</string>
 		<key>offsetx</key>
 		<integer>0</integer>
 		<key>offsety</key>
@@ -64,7 +64,7 @@
 		<key>collideBehavior</key>
 		<string>falls</string>
 		<key>imageName</key>
-		<string>hurdleYellow.png</string>
+		<string>Track_SmallHurdle_1.png</string>
 		<key>offsetx</key>
 		<integer>0</integer>
 		<key>offsety</key>
@@ -364,13 +364,13 @@
 			<integer>0</integer>
 		</dict>
 		<key>animationName</key>
-		<string>retroZombieAnim</string>
+		<string>retroZombieStatic</string>
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>40</integer>
+			<integer>30</integer>
 			<key>width</key>
-			<integer>15</integer>
+			<integer>25</integer>
 			<key>x</key>
 			<integer>20</integer>
 			<key>y</key>
@@ -414,7 +414,7 @@
 		<key>collideBehavior</key>
 		<string>falls</string>
 		<key>imageName</key>
-		<string>garbage.png</string>
+		<string>City_Garbage_1.png</string>
 		<key>offsetx</key>
 		<integer>90</integer>
 		<key>offsety</key>
@@ -442,9 +442,9 @@
 			<key>width</key>
 			<integer>14</integer>
 			<key>x</key>
-			<integer>50</integer>
+			<integer>35</integer>
 			<key>y</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<key>collideBehavior</key>
 		<string>falls</string>
@@ -484,7 +484,7 @@
 		<key>collideBehavior</key>
 		<string>falls</string>
 		<key>imageName</key>
-		<string>garbageZombie.png</string>
+		<string>Zombies_Garbage.png</string>
 		<key>offsetx</key>
 		<integer>90</integer>
 		<key>offsety</key>
@@ -508,11 +508,11 @@
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>30</integer>
+			<integer>45</integer>
 			<key>width</key>
 			<integer>15</integer>
 			<key>x</key>
-			<integer>50</integer>
+			<integer>35</integer>
 			<key>y</key>
 			<integer>2</integer>
 		</dict>
@@ -547,7 +547,7 @@
 			<key>width</key>
 			<integer>15</integer>
 			<key>x</key>
-			<integer>50</integer>
+			<integer>35</integer>
 			<key>y</key>
 			<integer>2</integer>
 		</dict>
@@ -613,7 +613,7 @@
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>30</integer>
+			<integer>45</integer>
 			<key>width</key>
 			<integer>15</integer>
 			<key>x</key>
@@ -764,7 +764,7 @@
 		<key>collideBehavior</key>
 		<string>falls</string>
 		<key>imageName</key>
-		<string>hurdle.png</string>
+		<string>Track_MediumHurdle_1.png</string>
 		<key>offsetx</key>
 		<integer>0</integer>
 		<key>offsety</key>
@@ -834,7 +834,7 @@
 		<key>collideBehavior</key>
 		<string>static</string>
 		<key>imageName</key>
-		<string>jim_standing_barn.png</string>
+		<string>Barn_Jim_1.png</string>
 		<key>offsetx</key>
 		<integer>-64</integer>
 		<key>offsety</key>
@@ -1009,7 +1009,7 @@
 		<key>collideBehavior</key>
 		<string>static</string>
 		<key>imageName</key>
-		<string>manure.png</string>
+		<string>Barn_Poop_1.png</string>
 		<key>offsetx</key>
 		<integer>0</integer>
 		<key>offsety</key>
@@ -1033,7 +1033,7 @@
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>20</integer>
+			<integer>30</integer>
 			<key>width</key>
 			<integer>35</integer>
 			<key>x</key>
@@ -1068,9 +1068,9 @@
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>25</integer>
+			<integer>20</integer>
 			<key>width</key>
-			<integer>50</integer>
+			<integer>35</integer>
 			<key>x</key>
 			<integer>25</integer>
 			<key>y</key>
@@ -1169,7 +1169,7 @@
 			<integer>0</integer>
 		</dict>
 		<key>animationName</key>
-		<string>runningAnim</string>
+		<string>none</string>
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
@@ -1215,7 +1215,7 @@
 		<key>collideBehavior</key>
 		<string>static</string>
 		<key>imageName</key>
-		<string>sandpit.png</string>
+		<string>Track_Sandpit_1.png</string>
 		<key>offsetx</key>
 		<integer>0</integer>
 		<key>offsety</key>
@@ -1250,7 +1250,7 @@
 		<key>collideBehavior</key>
 		<string>static</string>
 		<key>imageName</key>
-		<string>water.png</string>
+		<string>City_Water_1.png</string>
 		<key>offsetx</key>
 		<integer>-60</integer>
 		<key>offsety</key>
@@ -1285,7 +1285,7 @@
 		<key>collideBehavior</key>
 		<string>static</string>
 		<key>imageName</key>
-		<string>spilleddrink.png</string>
+		<string>Disco_SpilledDrink_1.png</string>
 		<key>offsetx</key>
 		<integer>-64</integer>
 		<key>offsety</key>
@@ -1320,7 +1320,7 @@
 		<key>collideBehavior</key>
 		<string>none</string>
 		<key>imageName</key>
-		<string>checkpoint.png</string>
+		<string>Checkpoint_1.png</string>
 		<key>offsetx</key>
 		<integer>-64</integer>
 		<key>offsety</key>
@@ -1355,7 +1355,7 @@
 		<key>collideBehavior</key>
 		<string>falls</string>
 		<key>imageName</key>
-		<string>stoneChicken.png</string>
+		<string>Barn_Stone_Chicken_1.png</string>
 		<key>offsetx</key>
 		<integer>0</integer>
 		<key>offsety</key>

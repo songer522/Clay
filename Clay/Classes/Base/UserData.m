@@ -57,5 +57,10 @@ static UserData *sharedInstance = nil;
     return self;
 }
 
+-(void)dealloc
+{
+    [super dealloc];
+}
+
 
 @end

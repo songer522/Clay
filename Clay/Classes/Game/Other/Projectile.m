@@ -69,12 +69,10 @@
                 _offsetGroundDetectionY = 10.0f;
                 break;
             case PROJECTILE_BEHAVIOR_BOSS_SHIP_BULLET:
-               
                 _sprite = [Sprite spriteWithFile:@"shipBullet2.png"];
                 [_sprite getCCSprite].anchorPoint = ccp(0,0);
                 [[_sprite getCCSprite] setVisible:NO];
                 _isAggressive = false;
-                
                 break;
             default:
                 break;                
@@ -262,6 +260,12 @@
         }
     }
     return false;
+}
+
+-(void)dealloc
+{
+    [_sprite release];
+    [super dealloc];
 }
 
 

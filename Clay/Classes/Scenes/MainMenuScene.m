@@ -14,6 +14,7 @@
 #import "SoundEngine.h"
 #import "GCHelper.h"
 #import "ChooseLevelScreen.h"
+#import "TextureManager.h"
 
 
 @implementation MainMenuScene
@@ -46,20 +47,13 @@
         
         [[GCHelper sharedInstance] authenticateLocalUser];
     
-                
         [[LayerManager sharedLayers] setWorkingLayer:self];
         
-        CCSpriteFrameCache* frameCache = [CCSpriteFrameCache sharedSpriteFrameCache];
-        [frameCache addSpriteFramesWithFile:@"menuTextures.plist"];
-
+        [[TextureManager shared] loadMemoryForKey:@"mainMenu"];
         
         _trackBackground = [Sprite spriteFromFrameCacheWithName:@"Menu_Background.png"];
         [_trackBackground getCCSprite].position = ccp(0,0);
         [_trackBackground setAlpha:1.0f];
-        
-        _blackCover = [Sprite spriteWithFile:@"black_background-hd.png"];
-        [_blackCover getCCSprite].position = ccp(0,0);
-        [_blackCover setAlpha:0.0f];
         
         _rain1 = [Sprite spriteFromFrameCacheWithName:@"Menu_Rain_01.png"];
         [_rain1 getCCSprite].position = ccp(0, 0);
@@ -103,7 +97,7 @@
         
         [self scheduleUpdate];
         self.isTouchEnabled = YES;
-        
+                
         [myPool drain];
 
     }
@@ -135,7 +129,6 @@
 {
     _time = 0.0f;
     _totalTime = 0.0f;
-    _blackFadeOut = 0.0f;
     
     _transition = MAINMENU_TRANSITION_IN;
     [[_playButtonOrange getCCSprite] setVisible:YES];
@@ -148,8 +141,6 @@
     
     [_logo setAlpha:0.0f];
 
-    [_blackCover setAlpha:0.0f];
-    
     [_playButtonBlue setAlpha:0.0f];
     [_playButtonOrange setAlpha:0.0f];
     
@@ -219,16 +210,6 @@
                     _switchSceneTriggered = true;
                 }
             }
-
-            /*
-                _blackFadeOut += 1.5f * dt;
-                if (_blackFadeOut >= 1.0f) {
-                    _blackFadeOut = 1.0f;
-                    //[self private_switchToGame];
-                    [self private_switchToChooseLevel];
-                }
-                [_blackCover setAlpha:_blackFadeOut];
-             */
             break;
         default:
             break;
@@ -239,23 +220,18 @@
 -(void)private_switchToChooseLevel
 {
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ChooseLevelScreen scene]]];
-    [self unload];
-    [self unscheduleUpdate];
-}
-
--(void)unload
-{
-
 }
 
 -(void)onExit
-{
-    [self release];
+{    
+    [self unscheduleUpdate];
+    self.isTouchEnabled = false;
 }
 
 -(void)dealloc
 {
-    NSLog(@"MAIN MENU SCENE is being deallocated"); //just to make sure it gets called
+    NSLog(@"Dealloc: MainMenuScene");
+ 
     
     [_trackBackground release];
     [_rain1 release];
@@ -264,8 +240,8 @@
     [_playButtonBlue release];
     [_playButtonOrange release];
     [_copyright release];
-    [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFramesFromFile:@"menuTextures.plist"];
-    [[CCTextureCache sharedTextureCache] removeTextureForKey:@"menuTextures.png"];
+    
+    [[TextureManager shared] unloadMemoryForKey:@"mainMenu"];
 }
 
 @end

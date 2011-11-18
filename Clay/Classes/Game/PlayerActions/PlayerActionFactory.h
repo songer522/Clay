@@ -18,7 +18,7 @@ typedef enum {
     PLAYER_ACTION_BLOCK
 }PlayerActionType;
 
-@interface PlayerActionFactory : NSObject
+@interface PlayerActionFactory : PlayerAction
 {
     
 }

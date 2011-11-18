@@ -89,6 +89,11 @@
                 
                 break;
             case HUD_BUTTON_SPRINT:
+                if([[[LevelManager shared] currentLevel].name isEqualToString:@"level7"])
+                {
+                    return;
+                }
+                
                 if(![_gameLayer.player getIsTurbo]) {
                     [_gameLayer.player startTurbo];
                    
@@ -134,9 +139,10 @@
 
 -(void)dealloc
 {
-    [_gameLayer release];
+    //[_gameLayer release];
+    _gameLayer = nil;
     [_pauseMenu release];
-    [_hud release];
+    _hud = nil;
     [super dealloc];
 }
 

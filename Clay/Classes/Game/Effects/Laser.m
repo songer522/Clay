@@ -25,8 +25,8 @@
     if (self) {
         // Initialization code here.
         
-        NSString *filename = [NSString stringWithFormat:@"disco_laser_%d.png",num];
-        _sprite = [Sprite spriteWithFile:filename];
+        NSString *filename = [NSString stringWithFormat:@"Disco_Laser_%d.png",num];
+        _sprite = [Sprite spriteFromFrameCacheWithName:filename];
         _alpha = 0.0f;
         [[_sprite getCCSprite] setAnchorPoint:ccp(0.5f,0.5f)];
         [self reset];

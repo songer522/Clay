@@ -20,10 +20,9 @@
 #import "EndGameScene.h"
 #import "HudLayer.h"
 #import "MainMenuScene.h"
+#import "TextureManager.h"
 #import "LevelManager.h"
 #import "ChooseLevelScreen.h"
-
-#define DEBUG_DRAW_BOUNDING_BOXES 0
 
 @implementation AppDelegate
 
@@ -119,36 +118,15 @@
 	// It can be RGBA8888, RGBA4444, RGB5_A1, RGB565
 	// You can change anytime.
 	[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
-    //[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA4444];
+    //[CCTexture2D setDefaultAlphaPixelFormat:kTexture2DPixelFormat_RGB5A1];
+    //[CCTexture2D setDefaultAlphaPixelFormat:kTexture2DPixelFormat_RGB565];
 	
 	// Removes the startup flicker
 	[self removeStartupFlicker];
 	
-	// Run the intro Scene
-    gameScene = [GameLayer scene];
-    [[LayerManager sharedLayers] setScene:gameScene ForKey:@"game"];
-    [[LayerManager sharedLayers] setCurrentScene:gameScene];
-    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
     
+    [[TextureManager shared] loadMemoryForKey:@"launch"];
     
-#if DEBUG_DRAW_BOUNDING_BOXES
-    _debugLayer = [GameDebugLayer debugLayerForScene:[[LayerManager sharedLayers] currentScene] GameLayer:[[LayerManager sharedLayers] currentLayer]];
-#endif
-    
-    _hudLayer = [HudLayer instance];
-    [gameLayer setupHud:_hudLayer];
-    
-
-    [[ComicManager shared] preload];
-    [ComicManager shared].gameLayer = [[LayerManager sharedLayers] currentLayer];
-    
-	
-    
-    [_hudLayer reset];
-
-    
-    [[LevelManager shared] initAfterPlayerAndHudInit];
-        
     [[CCDirector sharedDirector] runWithScene:[MainMenuScene scene]]; 
     
     [[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
@@ -166,6 +144,7 @@
 }
 
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
+    [[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
 	[[CCDirector sharedDirector] purgeCachedData];
 }
 
@@ -178,7 +157,9 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-	CCDirector *director = [CCDirector sharedDirector];
+	[[TextureManager shared] unloadMemoryForKey:@"launch"];
+    
+    CCDirector *director = [CCDirector sharedDirector];
 	
 	[[director openGLView] removeFromSuperview];
 	

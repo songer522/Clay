@@ -87,6 +87,7 @@
         
         _skin = [Skin instance];
         [self updateSkin:SKINTYPE_REGULAR];
+      
     }
     
     return self;
@@ -188,6 +189,8 @@
 -(void)startTurbo
 {
     //guard
+   
+    
     if (_isTripping || _isDead || [_thirdAction inAction] || _isInMidAir || _waitToGetUp > 0.f) { return; }
     
     if (_hitPoints > 1) {
@@ -331,15 +334,15 @@
     }
     
     if ([action compare:@"woo"] == NSOrderedSame) {
-        _thirdAction = [PlayerActionFactory buildPlayerAction:PLAYER_ACTION_WOO];
+        _thirdAction = (PlayerAction*)[PlayerActionFactory buildPlayerAction:PLAYER_ACTION_WOO];
     } else if([action compare:@"kick"] == NSOrderedSame) {
-        _thirdAction = [PlayerActionFactory buildPlayerAction:PLAYER_ACTION_KICK];
+        _thirdAction = (PlayerAction*)[PlayerActionFactory buildPlayerAction:PLAYER_ACTION_KICK];
     } else if([action isEqualToString:@"dodge"]) {
-        _thirdAction = [PlayerActionFactory buildPlayerAction:PLAYER_ACTION_DODGE];
+        _thirdAction = (PlayerAction*)[PlayerActionFactory buildPlayerAction:PLAYER_ACTION_DODGE];
     } else if([action isEqualToString:@"shoot"]) {
-        _thirdAction = [PlayerActionFactory buildPlayerAction:PLAYER_ACTION_SHOOT];
+        _thirdAction = (PlayerAction*)[PlayerActionFactory buildPlayerAction:PLAYER_ACTION_SHOOT];
     } else if([action isEqualToString:@"block"]) {
-        _thirdAction = [PlayerActionFactory buildPlayerAction:PLAYER_ACTION_BLOCK];
+        _thirdAction = (PlayerAction*)[PlayerActionFactory buildPlayerAction:PLAYER_ACTION_BLOCK];
     }
     
     [_thirdAction setParent:self];
@@ -396,6 +399,12 @@
 -(void)update:(float)dt Level:(Level *)level
 {
     [super update:dt];
+    if([[[LevelManager shared] currentLevel].name isEqualToString:@"level7"])
+    {
+        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+        
+        [[gameLayer getHud] setEnabled:false ForButton:HUD_BUTTON_SPRINT];
+    }
     
     [self updateJump:dt];
     
@@ -574,6 +583,7 @@
 {
     [_speed release];
     [_battery release];
+    [_skin release];
         
     [super dealloc];
 }

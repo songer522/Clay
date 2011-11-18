@@ -45,9 +45,15 @@
     NSDictionary *gameobjectSettings = [_objectSettings objectForKey:objectName];
     NSAssert(gameobjectSettings != nil, @"Object could not be found. Please ensure %@ is in objects.plist",objectName);
 
-    NSString *imageName = [self getRandomImageFromList:[gameobjectSettings objectForKey:@"imageName"]];
+    NSString *frameName = [self getRandomImageFromList:[gameobjectSettings objectForKey:@"imageName"]];
     
-    Sprite *gameSprite = [Sprite spriteWithFile:imageName AddToLayer:shouldAddToLayer];
+    Sprite *gameSprite;
+    if ([frameName isEqualToString:@"blank.png"]) {
+        gameSprite = [Sprite spriteWithFile:frameName AddToLayer:shouldAddToLayer];        
+    } else {
+        gameSprite = [Sprite spriteFromFrameCacheWithName:frameName AddToLayer:shouldAddToLayer];    
+    }
+    
     [gameObject setSprite:gameSprite];
     
     NSString *animation = [NSString stringWithString:[gameobjectSettings objectForKey:@"animationName"]];

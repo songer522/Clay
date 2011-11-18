@@ -8,13 +8,14 @@
 
 #import "EndGameScene.h"
 #import "LayerManager.h"
-#import "ComicLayer.h"
 #import "TrackTimer.h"
 #import "Sprite.h"
 #import "GameLayer.h"
 #import "HudLayer.h"
 #import "UserData.h"
 #import "MainMenuScene.h"
+#import "TextureManager.h"
+#import "GameSettings.h"
 
 @implementation EndGameScene
 
@@ -45,14 +46,17 @@
     if (self) {
         // Initialization code here.
         
+        
         _state = END_GAME_TRANSITION_IN;
         _alpha = 0.0f;
         
         
         [[LayerManager sharedLayers] setWorkingLayer:self];
         
-        _endGame = [Sprite spriteWithFile:@"Menu_Ending_Temp.png"];
-        _bestTime = [Sprite spriteWithFile:@"Menu_Ending_BestTime.png"];
+        [[TextureManager shared] loadMemoryForKey:@"endGame"];
+        
+        _endGame = [Sprite spriteFromFrameCacheWithName:@"Menu_Ending_Temp.png"];
+        _bestTime = [Sprite spriteFromFrameCacheWithName:@"Menu_Ending_BestTime.png"];
         [_bestTime getCCSprite].position = ccp(350.0f, 145.0f);
         _timer = [TrackTimer instance];
         [_timer setupAnimationsAtX:232.0f Y:125.0f];
@@ -85,11 +89,11 @@
         bool shouldStart = false;
         NSSet *allTouches = [event allTouches];
         for(UITouch *touch in allTouches) {
-            //shouldStart = true;
+            shouldStart = true;
         }
         
         if (shouldStart) {
-            //[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[MainMenuScene scene]]];
+            [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[MainMenuScene scene]]];
         }
     }
 }
@@ -99,19 +103,18 @@
     float rate = 2.0f * dt;
     
     if (!_initialized) {
-        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
-        float _finalTime = [[[gameLayer getHud] getTrackTimer] getTime];
-        if ([[UserData sharedInstance] bestTime] > _finalTime)
+        float finalTime = [[[GameSettings shared] getGlobalForKey:@"finalTime"] floatValue];
+        if ([[UserData sharedInstance] bestTime] > finalTime)
         {
-            [UserData sharedInstance].bestTime = _finalTime;
+            [UserData sharedInstance].bestTime = finalTime;
             [[UserData sharedInstance] save];
         }
         else if ([[UserData sharedInstance] bestTime] == 0.0f)
         {
-            [UserData sharedInstance].bestTime = _finalTime;
+            [UserData sharedInstance].bestTime = finalTime;
             [[UserData sharedInstance] save];
         }
-        [_timer setTime:_finalTime];
+        [_timer setTime:finalTime];
         [_besttimer setTime:[[UserData sharedInstance] bestTime]];
         _initialized = true;
     }
@@ -133,6 +136,23 @@
         default:
             break;
     }
+}
+
+-(void)onExit
+{
+    [self unscheduleUpdate];
+    self.isTouchEnabled = false;
+}
+
+-(void)dealloc
+{
+    NSLog(@"Dealloc: EndGameScene");
+    
+    [_endGame release];
+    [_bestTime release];
+    [_timer release];
+    [_besttimer release];
+    [[TextureManager shared] unloadMemoryForKey:@"endGame"];
 }
 
 
