@@ -227,7 +227,7 @@
    eJzt2ksSgjAMAFDdqJfQQ+j97+a4YxihSWj9DO+tHK0hkCYL4HAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgP91P347AyCjd88+djwDzD9+2as399yfAAAAAAB7d53dI64815jHqIoeu3Jfe5rjUr63lbjRc1xbtxY/Gitbn161mRrxXKGa59L/3n3fuv6V/1RFzjey5jywvtE6z6/RyBkSWTc/fnZvZfZ3dP8t7aOe/ZnJu1WjLT0+omd6zpzWNa/m34q79feK1rlk9uWWuvaYU9k9kJlD2ZmVzSW6fi2PHjEq8arrI/E+8Z7CiNpWcp72T+TzVhfvf8BQJz0GAAAAAAAAAHzZE1bCDCI=
   </data>
  </layer>
- <layer name="meta" width="1050" height="14" visible="0" opacity="0.53">
+ <layer name="meta" width="1050" height="14" opacity="0.53">
   <properties>
    <property name="speedx" value="1.0"/>
    <property name="speedy" value="1.0"/>
