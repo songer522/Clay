@@ -9,6 +9,7 @@
 #import "ComicLayer.h"
 #import "ComicManager.h"
 #import "LayerManager.h"
+#import "GameSettings.h"
 
 @implementation ComicLayer
 
@@ -161,7 +162,10 @@
 
 -(void)drawBars:(float)position
 {
-    float scale = [[UIScreen mainScreen] scale];
+    float scale = 1.0f;
+    if ([GameSettings usingHighResolutionGraphics]) {
+        scale = 2.0f;        
+    }
     [self ccDrawFilledRectFrom:ccp(0,0) To:ccp(960,position * scale)];
     [self ccDrawFilledRectFrom:ccp(0,640) To:ccp(960,(320.0f - position) * scale)];    
 }
