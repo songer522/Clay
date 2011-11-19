@@ -128,7 +128,11 @@
     
     
     _levelSelectText = [CCLabelBMFont labelWithString:@"LEVEL SELECT" fntFile:@"GraphicFont.fnt"];
-    [_levelSelectText setScale:0.75f];
+    if ([GameSettings usingHighResolutionGraphics])
+    { [_levelSelectText setScale:0.75f];}
+    else
+    { [_levelSelectText setScale:0.375f];}
+    
     _levelSelectText.position = ccp(365.0f,278.0f);
     [[[LayerManager sharedLayers] currentLayer] addChild:_levelSelectText];
 

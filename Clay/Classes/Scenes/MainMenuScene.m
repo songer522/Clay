@@ -230,7 +230,7 @@
 
 -(void)dealloc
 {
-    NSLog(@"Dealloc: MainMenuScene");
+    //NSLog(@"Dealloc: MainMenuScene");
  
     
     [_trackBackground release];

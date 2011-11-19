@@ -157,6 +157,11 @@
     <property name="special" value="shootTrigger"/>
    </properties>
   </tile>
+  <tile id="47">
+   <properties>
+    <property name="special" value="checkpoint8bit"/>
+   </properties>
+  </tile>
  </tileset>
  <tileset firstgid="63" name="computer" tilewidth="64" tileheight="64">
   <image source="tileset_level_7-hd.png" width="1984" height="768"/>
@@ -217,7 +222,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt11FugzAMAFBOsO0mU1f20ftfbKq0SAjBsE0ipu09qT80JE4cB5gmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgv3i/OgAAAAAAAAAAAAAAAAAAAAAA4HLz4P+3PJLtPwf1u3Y/eX/UbWDfH8F2lbw1Z9e5okduln0crVN0HZvoHm3OrP9SJhe98vZauGdvvtnra9E5RfLTKydPezWeyUHPeJ4i5052j/Q8C5Y1l62nSBzRWLNz2jsrttb7p3ll59xE463U7Vp0T87fv6NzdE60jag8W5fjPnauHzlbB73q6Dbl1qD6XM2MM6rumsocqmMd1Wil32z8vWPIjt/7/e9oH436XqiOs263dU6Mfkd+G9w//EUvVwcAAAAAAAAAAMCv8gXvZBCW
+   eJzt11FqhDAQAFBPUHqTsq37sdD7n6ssVBDRZmZMsLTvwf64MZlkMlGnCQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+C/erg4AAAAAAAAAAAAAAAAAAAAAALjcPPj/PY9k+/ugfrc+Tt4fdRvY93uwXSVvi7PrXNEjN+s+WusUXcdFdI8uzqz/WiYXvfL2WbjnaL7Z61vROUXy0ysnT0c1nslBz3ieIudOdo/0PAvWNZetp0gc0Vizczo6K/bW+6d5Zee8iMZbqdut6J6cv3+tc3ROtI2oPFvX4z4OrrecrYNedXSbcmtQfa5mxhlVd4vKHKpjtWq00m82/t4xZMfv/f7X2kejvheq42zb7Z0To9+RXwf3D3/Ry9UBAAAAAAAAAADwq3wB0zQQ8A==
   </data>
  </layer>
  <layer name="meta" width="1100" height="14" opacity="0.66">

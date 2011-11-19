@@ -10,6 +10,7 @@
 #import "LayerManager.h"
 #import "Sprite.h"
 #import "SoundEngine.h"
+#import "GameSettings.h"
 
 @implementation ActionButton
 
@@ -28,7 +29,13 @@
         [_buttonSelected getCCSprite].anchorPoint = ccp(0.5f,0.5f);
         
         _textLabel = [CCLabelBMFont labelWithString:text fntFile:@"GraphicFont.fnt"];
-        [_textLabel setScale:0.65f];
+        if ([GameSettings usingHighResolutionGraphics]){
+            [_textLabel setScale:0.65f];
+        }
+        else 
+        {[_textLabel setScale:0.325f];
+        }
+        
         _textLabel.anchorPoint = ccp(0.5f,0.5f);
         [[[LayerManager sharedLayers] currentLayer] addChild:_textLabel];
         

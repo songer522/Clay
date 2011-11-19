@@ -132,6 +132,11 @@
     [[LevelManager shared] initAfterPlayerAndHudInit];
     [_hud reset];
     [[ComicManager shared] resetComicLayer];
+    
+#if DEBUG_DRAW_BOUNDING_BOXES
+    [_debugLayer removeFromParentAndCleanup:NO];
+    [[[LayerManager sharedLayers] currentScene] addChild:_debugLayer];
+#endif
 }
 
 -(void)setupHud

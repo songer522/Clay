@@ -64,7 +64,7 @@
         _waitToGetUp = 0.0f;
         _onLedge = false;
        
-        NSLog(@"spring is ");
+        //NSLog(@"spring is ");
         _timeLeftBeforeVulnerable = 2.0f;
         _isInvincible = false;
         
@@ -286,7 +286,7 @@
         _y += 2.0f;
         _waitToGetUp = 0.3f;
     }
-    NSLog(@"%d",_speed.inTurbo);
+    //NSLog(@"%d",_speed.inTurbo);
   
 }
 

@@ -1328,6 +1328,41 @@
 		<key>playerEffect</key>
 		<string>slow</string>
 	</dict>
+	<key>checkpoint8bit</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>0</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>none</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>15</integer>
+			<key>width</key>
+			<integer>87</integer>
+			<key>x</key>
+			<integer>-12</integer>
+			<key>y</key>
+			<integer>2</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>none</string>
+		<key>imageName</key>
+		<string>Retro_WaterTable_1.png</string>
+		<key>offsetx</key>
+		<integer>-64</integer>
+		<key>offsety</key>
+		<integer>-20</integer>
+		<key>playerEffect</key>
+		<string>slow</string>
+	</dict>
 	<key>stoneChicken</key>
 	<dict>
 		<key>aggressive</key>

@@ -459,7 +459,6 @@
     
     //for now just kill the projectile. we apparently can't add it on initialization of the object.
     if (_projectile !=nil) {
-        [[_projectile getCCSprite] removeFromParentAndCleanup:YES];
         [_projectile release];
         _projectile = nil;
     }

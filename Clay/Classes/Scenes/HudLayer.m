@@ -33,8 +33,14 @@
     self = [super init];
     if (self) {
         // Initialization code here.
-      
+       if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
+       {
         _buttonScale = [[UIScreen mainScreen] scale] / 2.0f;
+       }
+        else
+        {
+            _buttonScale = [[UIScreen mainScreen] scale];
+        }
         
         [[[LayerManager sharedLayers] currentScene] addChild:self];
         
@@ -144,6 +150,7 @@
     
     if (scale < _buttonScale) {
         scale += 0.01f * rate * _buttonScale;
+        
         if (scale > _buttonScale) {
             scale = _buttonScale;
         }
@@ -311,9 +318,7 @@
     [_buttonJump release];
     [_buttonSprint release];
     [_buttonAction release];
-    [_overLayAction release];
-    [_overLaySprint release];
-    [_overLayJump release];
+   
     [_trackTimer release];
     [_battery release];
     [super dealloc];

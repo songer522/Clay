@@ -107,7 +107,7 @@ static AnimationController *_sharedController = nil;
 
 -(void)addAnimationForSkinFromFile:(NSString*)filename UsingBaseAnim:(NSString*)baseAnimName ForSequence:(NSString*)sequenceName
 {
-    NSLog(@"Add animation sequence name: %@, base anim: %@, filename: %@",sequenceName,baseAnimName,filename);
+    //NSLog(@"Add animation sequence name: %@, base anim: %@, filename: %@",sequenceName,baseAnimName,filename);
 
     Animation *baseAnim = (Animation*)[animations objectForKey:baseAnimName];
     Animation *newAnim = [Animation animationFromPlist:filename forSequence:sequenceName FrameList:[baseAnim getFrameList]];
@@ -121,7 +121,7 @@ static AnimationController *_sharedController = nil;
 
 -(void)replaceSprite:(Sprite*)sprite withAnimationNamed:(NSString*)name
 {
-    NSLog(@"Animation Named: %@",name);
+    //NSLog(@"Animation Named: %@",name);
     Animation *anim = (Animation*)[animations objectForKey:name];
     NSAssert(anim!=nil,@"Animation not loaded.");
     [sprite setAnimation:anim Delay:anim.delay];
@@ -129,7 +129,7 @@ static AnimationController *_sharedController = nil;
 
 -(void)replaceSprite:(Sprite*)sprite withAnimationNamed:(NSString*)name FrameNumber:(int)frameNumber
 {
-    NSLog(@"Animation Named: %@",name);
+    //NSLog(@"Animation Named: %@",name);
     Animation *anim = (Animation*)[animations objectForKey:name];
     NSAssert(anim!=nil,@"Animation not loaded.");
     [sprite setAnimation:anim Delay:anim.delay StartingFrameNumber:frameNumber];

@@ -6,6 +6,7 @@
 //  Copyright (c) 2011 Xecudev, LLC. All rights reserved.
 //
 
+#import "cocos2d.h"
 #import "Skin.h"
 #import "PListLoader.h"
 #import "Sprite.h"

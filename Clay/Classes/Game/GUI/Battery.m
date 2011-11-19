@@ -11,6 +11,7 @@
 #import "Player.h"
 #import "HudLayer.h"
 #import "GameLayer.h"
+#import "GameSettings.h"
 
 #define N(x) [NSNumber numberWithFloat: x]
 
@@ -31,14 +32,8 @@
         sprite = [Sprite spriteWithFile:@"blank.png"];
         [self setFrame:1];
         
-        if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
-        {
-            [sprite setScreenPosition:ccp(412,285)];
-        }
-        else
-        {
-            [sprite setPositionAtX:462 Y:355];
-        }
+        [sprite setScreenPosition:ccp(412,285)];
+        
         _wasLowBattery = false;
     }
     

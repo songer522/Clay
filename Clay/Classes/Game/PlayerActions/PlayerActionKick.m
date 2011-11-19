@@ -17,6 +17,7 @@
 #import "GameObject.h"
 #import "LayerManager.h"
 #import "GameLayer.h"
+#import "GameSettings.h"
 
 #define kPlayerActionKickMoveX 20.0f
 #define kPlayerActionKickFullDuration 0.4f;
@@ -28,7 +29,15 @@
 {
     [super initialize];
     _kick = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_PLAYER_KICK];
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
+    {
     [_kick setBoundingBox:CGRectMake(0, 0, 35, 35)];
+    }
+    else
+    {
+    [_kick setBoundingBox:CGRectMake(0, 35, 35, 35)];
+    }
+
 }
 
 -(void)startAction
