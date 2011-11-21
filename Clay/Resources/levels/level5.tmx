@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="1050" height="14" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="City" tilewidth="32" tileheight="32">
-  <image source="tileset_level_5.png" width="1280" height="832"/>
+  <image source="tileset_level_5.png" width="640" height="416"/>
  </tileset>
  <tileset firstgid="261" name="Icons" tilewidth="32" tileheight="32">
-  <image source="TrackLapse_Icons-hd.png" width="320" height="128"/>
+  <image source="TrackLapse_Icons-hd.png" width="640" height="320"/>
   <tile id="0">
    <properties>
     <property name="obstacle" value="hurdle"/>
@@ -122,8 +122,8 @@
    </properties>
   </tile>
  </tileset>
- <tileset firstgid="311" name="Meta" tilewidth="32" tileheight="32">
-  <image source="meta.png" width="256" height="192"/>
+ <tileset firstgid="461" name="Meta" tilewidth="32" tileheight="32">
+  <image source="meta.png" width="128" height="96"/>
   <tile id="0">
    <properties>
     <property name="collision" value="full"/>
@@ -227,13 +227,13 @@
    eJzt2ksSgjAMAFDdqJfQQ+j97+a4YxihSWj9DO+tHK0hkCYL4HAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgP91P347AyCjd88+djwDzD9+2as399yfAAAAAAB7d53dI64815jHqIoeu3Jfe5rjUr63lbjRc1xbtxY/Gitbn161mRrxXKGa59L/3n3fuv6V/1RFzjey5jywvtE6z6/RyBkSWTc/fnZvZfZ3dP8t7aOe/ZnJu1WjLT0+omd6zpzWNa/m34q79feK1rlk9uWWuvaYU9k9kJlD2ZmVzSW6fi2PHjEq8arrI/E+8Z7CiNpWcp72T+TzVhfvf8BQJz0GAAAAAAAAAHzZE1bCDCI=
   </data>
  </layer>
- <layer name="meta" width="1050" height="14" visible="0" opacity="0.53">
+ <layer name="meta" width="1050" height="14" opacity="0.53">
   <properties>
    <property name="speedx" value="1.0"/>
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1jkOgCAAAEF4lYX//5eFjYUJEA4FZpJtTPBENAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYFZnvBt9vGczeDvv3GtIjc1pVr3OP7XfHs+ldGwvf54Tu8zrWrVrQOn23bVcf3eZ172+WSvdI8Zq8S9l7gEAAAAAKziiJEmSJGlksLKv3y9JkiRJ2i1Y2QWaI57M
+   eJzt1jkOgCAAAEH4/9ss/JGFjYUJEA4FZpJtTPBENAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYFZnvBt9vGczeDvv3GtIjc1pVr3OP7XfHs+ldGwvf54Tu8zrWrVrQOn23bVcf3eZ172+WSvdI8Zq8S9l7gEAAAAAKziiJEmSJGlksLKv3y9JkiRJ2i1Y2QX7dO+G
   </data>
  </layer>
 </map>
