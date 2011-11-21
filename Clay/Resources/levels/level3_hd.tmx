@@ -148,7 +148,7 @@
    eJzt1ltOxiAQBlAXrq5BXYO6BnV18twX+AeGS3NOQlLaMF86NKRPTwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcH/PZbyU8dp4Hanb8ux6rzZvyYmui7xvTUbNWu3MzBNk9yW7vyPq99Z4dH1P3in7skvuzLwVPY2e7adlrsiI5mb1Z0T2Tmaeu5E9mXXWtuaM/sccufZu3ybATG9lvJfx0Xgdqdvy7HqvNm/Jia6LvG9NRs1a7czME2T3Jbu/I+r31nh0fU/eKfuyS+7MvBU9jZ7tp2WuyIjmZvVnRPZOZp67kT2Zdda25oz+xxy59m7fJsBMn2V8lfHdeB2p2/Lseq82b8mJrou8b01GzVrtzMwTZPclu78j6vfWeHR9T94p+7JL7sy8FT2Nnu2nZa7IiOZm9WdE9k5mnruRPZl11rbmjP7HHLn2bt8mwEw/ZfyW8dd4Hanb8ux6rzZvyYmui7xvTUbNWu3MzBNk9yW7vyPq99Z4dH1P3in7skvuzLwVPY2e7adlrsiI5mb1Z0T2Tmaeu5E9mXXWtuaM/sccufZu3yYAAAAAAAAAAAAAAECGf5+ea1g=
   </data>
  </layer>
- <layer name="back-1" width="1050" height="14">
+ <layer name="back-1" width="1050" height="14" visible="0">
   <properties>
    <property name="speedx" value="1.0"/>
    <property name="speedy" value="1.0"/>

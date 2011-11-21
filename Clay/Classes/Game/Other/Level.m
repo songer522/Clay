@@ -123,7 +123,7 @@
     for (NSString *layerName in layers) {
         if ([layerName compare:@"actives"] == NSOrderedSame) {
             [self addObstaclesToMapAndRegion];
-            [_obstacleManager printDescription];
+            //[_obstacleManager printDescription];
             [player resetSprite:[[LayerManager sharedLayers] currentLayer]];
             //currentZ -= 1;
             continue;
@@ -164,6 +164,8 @@
             
         }
     }
+    
+    [_backgroundManager printDescription];
 }
 
 -(void)addObstaclesToMapAndRegion
@@ -365,6 +367,10 @@
             mapObject.parallaxRatio = ratio;
             [[[LayerManager sharedLayers] currentLayer] addChild:[mapObject.object getCCSprite]];
             mapObject.placed = true;
+            
+            //add to background regionmanager
+            [_backgroundManager addGameObject:mapObject.object];
+            [[mapObject.object getCCSprite] pauseSchedulerAndActions];
         }
     }
 }
@@ -405,6 +411,10 @@
     for (MapObject *obstacle in _obstacleMapObjects) {
         [obstacle reset];
         
+    }
+    
+    for (MapObject *object in _otherMapObjects) {
+        [object reset];
     }
 }
 
@@ -564,15 +574,25 @@
     
     CGPoint playerPos = [[[LayerManager sharedLayers] getPlayer] getPosition];
     [_obstacleManager changeRegionsBasedOnX:(playerPos.x - 128)];
+    [_backgroundManager changeRegionsBasedOnX:(playerPos.x - 128)];
     
     NSMutableArray *obstacles = [_obstacleManager getActiveGameObjectList];
     for (GameObject *obstacle in obstacles) {
         [obstacle update:dt];
     }
     
+    NSMutableArray *objects = [_backgroundManager getActiveGameObjectList];
+    for (GameObject *object in objects) {
+        [object update:dt];
+        //[[object getCCSprite] pauseSchedulerAndActions];
+    }
+    
+    /*
     for (MapObject *objects in _otherMapObjects) {
         [objects.object update:dt];
-    }
+    }*/
+    
+    
 }
 
 -(void)dealloc

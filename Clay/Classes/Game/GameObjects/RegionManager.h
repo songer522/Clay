@@ -32,7 +32,7 @@
 
 -(NSMutableArray*)getActiveGameObjectList;
 
--(void)printDescription;
+-(void)printDescription; //better to call after game objects are added
 
 
 @end

@@ -11,7 +11,7 @@
 #import "MapObject.h"
 #import "GameObject.h"
 
-#define REGION_MANAGER_TILES_PER_REGION 18 //should allow for ipad as well, plus some bleeding
+#define REGION_MANAGER_TILES_PER_REGION 20 //should allow for ipad as well, plus some bleeding
 
 @implementation RegionManager
 
@@ -56,7 +56,7 @@
 
     _currentIndex = newIndex;
     
-    NSLog(@"REGION MANAGER -> NEW INDEX: %d",newIndex);
+    //NSLog(@"REGION MANAGER -> NEW INDEX: %d",newIndex);
     
     _leftRegion = [_regions objectAtIndex:newIndex];
     _rightRegion = [_regions objectAtIndex:(newIndex+1)];
