@@ -11,6 +11,9 @@
 #import "Sprite.h"
 #import "SoundEngine.h"
 #import "GameSettings.h"
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
+#define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 
 @implementation ActionButton
 
@@ -51,7 +54,7 @@
     [_buttonIdle setScreenPosition:position];
     [_buttonSelected setScreenPosition:position];
     _textLabel.position = ccp(position.x,position.y - 3.0f);
-    [self setHitbox:CGRectMake(position.x - 48, position.y - 15, 95, 30)];
+    [self setHitbox:CGRectMake(position.x - 48, position.y - 15, 95 * MULTIPLIERX, 30 * MULTIPLIERY)];
 }
 
 -(bool)checkIfSelected:(CGPoint)touch

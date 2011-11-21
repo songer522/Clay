@@ -13,6 +13,9 @@
 #import "GameLayer.h"
 #import "GameSettings.h"
 
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
+#define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 #define N(x) [NSNumber numberWithFloat: x]
 
 @implementation Battery
@@ -32,7 +35,7 @@
         sprite = [Sprite spriteWithFile:@"blank.png"];
         [self setFrame:1];
         
-        [sprite setScreenPosition:ccp(412,285)];
+        [sprite setScreenPosition:ccp(412 * MULTIPLIERX,285 * MULTIPLIERY)];
         
         _wasLowBattery = false;
     }

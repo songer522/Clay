@@ -9,6 +9,7 @@
 #import "Camera.h"
 #import "Sprite.h"
 
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 @implementation Camera
 
 @synthesize trackingTarget = _trackingTarget;
@@ -47,8 +48,13 @@ static Camera *_sharedCamera = nil;
     
     //There is a blank row of tiles at the very bottom that we don't want to show, so the true camera
     //boundary is actually one tile above the bottom of the screen, or (64 pixels/32 points) normally. may require an #IPADFIX.
-    rect.origin.y = 32;
-    
+    if (IS_IPAD) {
+        rect.origin.y = 0;
+    }
+    else
+    {
+        rect.origin.y = 32;
+    }
     _boundary = rect;
     
     [self keepWithinBoundaries];

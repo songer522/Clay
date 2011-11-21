@@ -15,7 +15,9 @@
 #import "GCHelper.h"
 #import "ChooseLevelScreen.h"
 #import "TextureManager.h"
-
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
+#define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 
 @implementation MainMenuScene
 
@@ -66,22 +68,22 @@
         _logo = [Sprite spriteFromFrameCacheWithName:@"Menu_Logo.png"];
         [_logo setAlpha:0.0f];
         [_logo getCCSprite].anchorPoint = ccp(0.5f, 0.5f);
-        [_logo getCCSprite].position = ccp(240, 258); //final 240, 262
+        [_logo getCCSprite].position = ccp(240 * MULTIPLIERX, 258 * MULTIPLIERY); //final 240, 262
         
         _playButtonBlue = [Sprite spriteFromFrameCacheWithName:@"Menu_PlayBlue.png"];
         [_playButtonBlue setAlpha:0.0f];
         [_playButtonBlue getCCSprite].anchorPoint = ccp(0.5f,0.5f);
-        [_playButtonBlue getCCSprite].position = ccp(240, 142);
+        [_playButtonBlue getCCSprite].position = ccp(240 * MULTIPLIERX, 142 * MULTIPLIERY);
         
         _playButtonOrange = [Sprite spriteFromFrameCacheWithName:@"Menu_PlayOrange.png"];
         [_playButtonOrange getCCSprite].anchorPoint = ccp(0.5f, 0.5f);
-        [_playButtonOrange getCCSprite].position = ccp(240,142);
+        [_playButtonOrange getCCSprite].position = ccp(240 * MULTIPLIERX,142 * MULTIPLIERY);
         [[_playButtonOrange getCCSprite] setVisible:NO];
         
         _copyright = [Sprite spriteFromFrameCacheWithName:@"Menu_Copyright.png"];
         [_copyright setAlpha:0.0f];
         [_copyright getCCSprite].anchorPoint = ccp(0.5f, 0.5f);
-        [_copyright getCCSprite].position = ccp(240,24); //final 240,20
+        [_copyright getCCSprite].position = ccp(240 * MULTIPLIERX,24 * MULTIPLIERY); //final 240,20
         
         [[LayerManager sharedLayers] forgetWorkingLayer];
         
@@ -164,8 +166,7 @@
 
 -(void)update:(ccTime)dt
 {
-    float rate = 12.0f * dt;
-    
+    float rate = 12.0f * MULTIPLIERX * dt;
     _totalTime += rate;
     _time += dt;
     

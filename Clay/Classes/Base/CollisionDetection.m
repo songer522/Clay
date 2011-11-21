@@ -11,6 +11,9 @@
 #import "GameObject.h"
 #import "GameSettings.h"
 
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
+#define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 #define COLLISION_DETECTION_TEST_LEFT_COLLISIONS 0
 
 @implementation CollisionDetection
@@ -173,7 +176,12 @@
 {
     int scaledTileWidth = _tileSize / 2.0f;
     int scaledTileHeight = _tileSize / 2.0f;
-    if ([GameSettings usingHighResolutionGraphics])
+    if (IS_IPAD)
+    {
+        scaledTileWidth = _tileSize;
+        scaledTileHeight = _tileSize;
+    }
+    else if ([GameSettings usingHighResolutionGraphics])
     {
         scaledTileWidth = _tileSize / 2.0f;
         scaledTileHeight = _tileSize / 2.0f;
@@ -249,7 +257,10 @@
 
         
         float topOfTile = (_map.mapSize.height - _coordinates.y - 1) * (_tileSize / 2.0f);
-        if ([GameSettings usingHighResolutionGraphics])
+        if (IS_IPAD) {
+            topOfTile = (_map.mapSize.height - _coordinates.y - 1) * (_tileSize);
+        }
+        else if ([GameSettings usingHighResolutionGraphics])
         {
             topOfTile = (_map.mapSize.height - _coordinates.y - 1) * (_tileSize / 2.0f);
         }
@@ -263,8 +274,11 @@
             _coordinates.y-=1;
 
             //NOTE: the "+1" at the end of the line below prevents an infinite loop
-            
-            if ([GameSettings usingHighResolutionGraphics])
+            if (IS_IPAD)
+            {
+                _testPosition.y = (_map.mapSize.height - _coordinates.y - 1) * (_tileSize) + 2;                
+            }
+            else if ([GameSettings usingHighResolutionGraphics])
             {
                 _testPosition.y = (_map.mapSize.height - _coordinates.y - 1) * (_tileSize / 2.0f) + 2;
             }

@@ -18,6 +18,8 @@
 #import "Boss.h"
 #import "GameSettings.h"
 
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+
 @implementation LevelManager
 
 @synthesize currentLevel = _currentLevel;
@@ -75,8 +77,13 @@ static LevelManager *_shared = nil;
     _thirdAction = [NSString stringWithString:[levelSettings valueForKey:@"thirdAction"]];
 
     NSString *layerList = [NSString stringWithString:[levelSettings valueForKey:@"layerList"]];
-    
-    _playerOffsetY = [[levelSettings valueForKey:@"playerOffsetY"] intValue];
+    if (IS_IPAD) {
+        _playerOffsetY = [[levelSettings valueForKey:@"playerOffsetY"] intValue] + 55;
+    }
+    else
+    {
+        _playerOffsetY = [[levelSettings valueForKey:@"playerOffsetY"] intValue];   
+    }
     
     GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
     

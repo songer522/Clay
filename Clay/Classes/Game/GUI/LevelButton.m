@@ -8,6 +8,9 @@
 
 #import "LevelButton.h"
 #import "Sprite.h"
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
+#define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 
 @implementation LevelButton
 
@@ -44,8 +47,8 @@
 -(void)setInitialPosition
 {
     //initial position
-    float startX = 119; //was 212 for left panel
-    float startY = 152; //was 181 for left panel and 11 levels
+    float startX = 119 * MULTIPLIERX; //was 212 for left panel
+    float startY = 152 * MULTIPLIERY; //was 181 for left panel and 11 levels
     float row = floorf((_buttonId - 1) / 4);
     
     //for staggered effect, move that one down one
@@ -65,7 +68,7 @@
         column += 0.5f;
     }
     
-    CGPoint position = ccp(startX + 64 * column, startY - 64 * row);
+    CGPoint position = ccp(startX + (64 * MULTIPLIERX) * column, startY - (64 * MULTIPLIERY) * row);
     [self setPosition:position];
 }
 
@@ -73,7 +76,7 @@
 {
     [_buttonGraphic setScreenPosition:position];
     [_trophy setScreenPosition:position];
-    [self setHitbox:CGRectMake(position.x, position.y, 55, 55)];
+    [self setHitbox:CGRectMake(position.x, position.y, 55 * MULTIPLIERX, 55 * MULTIPLIERY)];
 }
 
 -(bool)checkIfSelected:(CGPoint)touch
@@ -88,8 +91,8 @@
 -(void)setSelected
 {
     CGPoint position = [_buttonGraphic getCCSprite].position;
-    position.x -= 3.5f;
-    position.y -= 4.0f;
+    position.x -= 3.5f * MULTIPLIERX;
+    position.y -= 4.0f * MULTIPLIERY;
     [_selector setScreenPosition:position];
     [[_selector getCCSprite] setVisible:YES];    
 }

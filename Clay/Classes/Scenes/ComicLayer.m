@@ -11,6 +11,9 @@
 #import "LayerManager.h"
 #import "GameSettings.h"
 
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
+#define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 @implementation ComicLayer
 
 @synthesize comicManager = _comicManager;
@@ -163,11 +166,11 @@
 -(void)drawBars:(float)position
 {
     float scale = 1.0f;
-    if ([GameSettings usingHighResolutionGraphics]) {
+    if (([GameSettings usingHighResolutionGraphics]) && (!IS_IPAD)) {
         scale = 2.0f;        
     }
-    [self ccDrawFilledRectFrom:ccp(0,0) To:ccp(960,position * scale)];
-    [self ccDrawFilledRectFrom:ccp(0,640) To:ccp(960,(320.0f - position) * scale)];    
+    [self ccDrawFilledRectFrom:ccp(0 * MULTIPLIERX,0 * MULTIPLIERY) To:ccp(960 * MULTIPLIERX,(position * MULTIPLIERY) * scale)];
+    [self ccDrawFilledRectFrom:ccp(0 * MULTIPLIERX,640 * MULTIPLIERY) To:ccp(960 * MULTIPLIERX,((320.0f - position) * MULTIPLIERY) * scale)];    
 }
 
 

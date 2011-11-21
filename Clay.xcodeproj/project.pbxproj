@@ -364,6 +364,10 @@
 		54FD550A146B360D00470807 /* townLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54FD5506146B360D00470807 /* townLevel.plist */; };
 		54FD550B146B360D00470807 /* townLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 54FD5507146B360D00470807 /* townLevel.png */; };
 		57A03E9D1452173A00F2017F /* Menu_Ending_BestTime.png in Resources */ = {isa = PBXBuildFile; fileRef = 57A03E9C1452173A00F2017F /* Menu_Ending_BestTime.png */; };
+		57A0A015147AC82000B461EB /* menuTextures-ipad.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57A0A013147AC81D00B461EB /* menuTextures-ipad.plist */; };
+		57A0A016147AC82000B461EB /* menuTextures-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 57A0A014147AC81E00B461EB /* menuTextures-ipad.png */; };
+		57A0A019147AC9EF00B461EB /* chooseLevel-ipad.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57A0A017147AC9ED00B461EB /* chooseLevel-ipad.plist */; };
+		57A0A01A147AC9EF00B461EB /* chooseLevel-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 57A0A018147AC9EE00B461EB /* chooseLevel-ipad.png */; };
 		5F8A449814687FF200CE1FC2 /* bullet-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8A449514687FF200CE1FC2 /* bullet-hd.png */; };
 		5F8A449A14687FF200CE1FC2 /* zombieHead-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8A449714687FF200CE1FC2 /* zombieHead-hd.png */; };
 		61A2C0E614683B880049C88E /* GraphicFont.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 61A2C0E414683B880049C88E /* GraphicFont.fnt */; };
@@ -934,6 +938,10 @@
 		54FD5506146B360D00470807 /* townLevel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = townLevel.plist; sourceTree = "<group>"; };
 		54FD5507146B360D00470807 /* townLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = townLevel.png; sourceTree = "<group>"; };
 		57A03E9C1452173A00F2017F /* Menu_Ending_BestTime.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Menu_Ending_BestTime.png; sourceTree = "<group>"; };
+		57A0A013147AC81D00B461EB /* menuTextures-ipad.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "menuTextures-ipad.plist"; sourceTree = "<group>"; };
+		57A0A014147AC81E00B461EB /* menuTextures-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuTextures-ipad.png"; sourceTree = "<group>"; };
+		57A0A017147AC9ED00B461EB /* chooseLevel-ipad.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "chooseLevel-ipad.plist"; sourceTree = "<group>"; };
+		57A0A018147AC9EE00B461EB /* chooseLevel-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chooseLevel-ipad.png"; sourceTree = "<group>"; };
 		5F8A449514687FF200CE1FC2 /* bullet-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bullet-hd.png"; sourceTree = "<group>"; };
 		5F8A449714687FF200CE1FC2 /* zombieHead-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zombieHead-hd.png"; sourceTree = "<group>"; };
 		61A2C0E414683B880049C88E /* GraphicFont.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GraphicFont.fnt; sourceTree = "<group>"; };
@@ -1029,10 +1037,14 @@
 				548A72C81474720200D7F4B1 /* endGameTextures-hd.png */,
 				548A72C91474720200D7F4B1 /* endGameTextures.plist */,
 				548A72CA1474720200D7F4B1 /* endGameTextures.png */,
+				57A0A017147AC9ED00B461EB /* chooseLevel-ipad.plist */,
+				57A0A018147AC9EE00B461EB /* chooseLevel-ipad.png */,
 				549D84D51469DE9100A3599F /* chooseLevel-hd.plist */,
 				549D84D61469DE9100A3599F /* chooseLevel-hd.png */,
 				549D84D71469DE9100A3599F /* chooseLevel.plist */,
 				549D84D81469DE9100A3599F /* chooseLevel.png */,
+				57A0A013147AC81D00B461EB /* menuTextures-ipad.plist */,
+				57A0A014147AC81E00B461EB /* menuTextures-ipad.png */,
 				54ABFD6D14630876006F0C88 /* menuTextures-hd.plist */,
 				54ABFD6E14630876006F0C88 /* menuTextures-hd.png */,
 				54ABFD6F14630876006F0C88 /* menuTextures.plist */,
@@ -2223,6 +2235,10 @@
 				61B0B358147714A7006887AB /* level7.tmx in Resources */,
 				61B0B35A14771858006887AB /* level3.tmx in Resources */,
 				61B0B35E147732D2006887AB /* level5.tmx in Resources */,
+				57A0A015147AC82000B461EB /* menuTextures-ipad.plist in Resources */,
+				57A0A016147AC82000B461EB /* menuTextures-ipad.png in Resources */,
+				57A0A019147AC9EF00B461EB /* chooseLevel-ipad.plist in Resources */,
+				57A0A01A147AC9EF00B461EB /* chooseLevel-ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2463,9 +2479,10 @@
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = Clay/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2480,9 +2497,10 @@
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = Clay/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -2518,9 +2536,10 @@
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = Clay/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

@@ -27,6 +27,7 @@
 #import "HudLayer.h"
 #import "GameSettings.h"
 
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 @implementation Level
 
 @synthesize name = _name;
@@ -63,17 +64,6 @@
        
         
         //[[[LayerManager sharedLayers] currentLayer] addChild:_map];
-    
-        if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
-        {
-            _divide = 2.0f;
-        }
-        else
-        {
-            _divide = 1.0f;
-        }
-            
-        _scale = [[UIScreen mainScreen] scale] / _divide;
         
         if ([GameSettings usingHighResolutionGraphics])
         {
@@ -83,6 +73,9 @@
         {
             _divide = 1.0f;
         }
+        
+        
+        _scale = [[UIScreen mainScreen] scale] / _divide;
         
         [self scanThroughMapAndAddObjects];
                 
@@ -186,7 +179,10 @@
     
     //round position to eliminate white artifacts (note, this is in points, so with retina, we want to round based
     //on pixels, so round based on double the size first, then half the size for point pixel value
-    if ([GameSettings usingHighResolutionGraphics]) {
+    if (IS_IPAD)
+    {
+    }
+    else if ([GameSettings usingHighResolutionGraphics]) {
         position.x = roundf(position.x * 2.0f) / 2.0f;
         position.y = roundf(position.y * 2.0f) / 2.0f;
     } else {

@@ -19,6 +19,9 @@
 #import "TextureManager.h"
 #import "GameSettings.h"
 #import "GameLayer.h"
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
+#define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 
 @implementation ChooseLevelScreen
 
@@ -109,7 +112,7 @@
     [[_selector getCCSprite] setVisible:NO];
     
     _startButton = [ActionButton actionButtonWithText:@"START"];
-    [_startButton setPosition:ccp(430,18)];
+    [_startButton setPosition:ccp(430 * MULTIPLIERX,18 * MULTIPLIERY)];
     
     //_backButton = [ActionButton actionButtonWithText:@"BACK"];
     //[_backButton setPosition:ccp(50, 18)];
@@ -133,7 +136,7 @@
     else
     { [_levelSelectText setScale:0.375f];}
     
-    _levelSelectText.position = ccp(365.0f,278.0f);
+    _levelSelectText.position = ccp(365.0f * MULTIPLIERX,278.0f * MULTIPLIERY);
     [[[LayerManager sharedLayers] currentLayer] addChild:_levelSelectText];
 
 

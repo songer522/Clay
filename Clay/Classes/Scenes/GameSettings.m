@@ -10,6 +10,8 @@
 //#import "UIDeviceHardware.h"
 #include <sys/types.h>
 #include <sys/sysctl.h>
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIER (IS_IPAD ? 2 : 1)
 
 @implementation GameSettings
 
@@ -54,7 +56,7 @@ static GameSettings *_shared = nil;
 
 +(bool)usingHighResolutionGraphics
 {
-    return [[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2 && [GameSettings shouldUseRetinaForDevice];
+    return [GameSettings shouldUseRetinaForDevice];
 }
 
 +(bool)shouldUseRetinaForDevice
@@ -69,10 +71,10 @@ static GameSettings *_shared = nil;
     if ([platform isEqualToString:@"iPod2,1"]) return NO;       //ipod touch 2g
     if ([platform isEqualToString:@"iPod3,1"]) return NO;       //ipod touch 3g
     if ([platform isEqualToString:@"iPod4,1"]) return NO;       //ipod touch 4g
-    if ([platform isEqualToString:@"iPad1,1"]) return NO;       //ipad
-    if ([platform isEqualToString:@"iPad2,1"]) return NO;      //ipad 2 (wifi)
-    if ([platform isEqualToString:@"iPad2,2"]) return NO;      //ipad 2 (gsm)
-    if ([platform isEqualToString:@"iPad2,3"]) return NO;      //ipad 2 (cdma)
+    if ([platform isEqualToString:@"iPad1,1"]) return YES;       //ipad
+    if ([platform isEqualToString:@"iPad2,1"]) return YES;      //ipad 2 (wifi)
+    if ([platform isEqualToString:@"iPad2,2"]) return YES;      //ipad 2 (gsm)
+    if ([platform isEqualToString:@"iPad2,3"]) return YES;     //ipad 2 (cdma)
     if ([platform isEqualToString:@"i386"]) return YES;         //simulator, which can always be changed manually
     if ([platform isEqualToString:@"iPod touch"]) return NO;
     return YES; //assume future devices can all handle the retina display

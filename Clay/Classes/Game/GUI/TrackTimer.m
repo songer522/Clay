@@ -16,6 +16,10 @@
 #define TRACK_TIMER_STARTY 288.5
 #define TRACK_TIMER_WIDTH 20
 
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
+#define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
+
 @implementation TrackTimer
 
 @synthesize isStopped = _isStopped;
@@ -44,7 +48,7 @@
     _timerAnimations = [[NSMutableArray alloc] initWithCapacity:7];
     for (int i=0; i<5; i++) {
         Sprite *sprite2 = [Sprite spriteWithFile:@"blank.png"];
-        [sprite2 getCCSprite].position = ccp(_currentX, y);
+        [sprite2 getCCSprite].position = ccp(_currentX * MULTIPLIERX, y * MULTIPLIERY);
         [[AnimationController sharedController] replaceSprite:sprite2 withAnimationNamed:@"largeTimer"];
         [[sprite2 getAnimation] togglePauseAnimation];
         [_timerAnimations addObject:sprite2];
@@ -64,7 +68,7 @@
     _currentX -= 3;
 
     Sprite *sprite = [Sprite spriteWithFile:@"blank.png"];
-    [sprite getCCSprite].position = ccp(_currentX, y);
+    [sprite getCCSprite].position = ccp(_currentX * MULTIPLIERX, y * MULTIPLIERY);
     [[AnimationController sharedController] replaceSprite:sprite withAnimationNamed:@"smallTimer"];
     [[sprite getAnimation] togglePauseAnimation];
     [_timerAnimations addObject:sprite];
@@ -72,7 +76,7 @@
     _currentX += 11;
     
     sprite = [Sprite spriteWithFile:@"blank.png"];
-    [sprite getCCSprite].position = ccp(_currentX, y);
+    [sprite getCCSprite].position = ccp(_currentX * MULTIPLIERX, y * MULTIPLIERY);
     [[AnimationController sharedController] replaceSprite:sprite withAnimationNamed:@"smallTimer"];
     [[sprite getAnimation] togglePauseAnimation];
     [_timerAnimations addObject:sprite];
