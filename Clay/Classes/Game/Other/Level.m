@@ -171,6 +171,7 @@
     for (MapObject *mapObject in _obstacleMapObjects) {
         GameObject *obstacle = mapObject.object;
         [[[LayerManager sharedLayers] currentLayer] addChild:[obstacle getCCSprite]];
+        [[obstacle getCCSprite] setVisible:NO];
         [_obstacleManager addGameObject:obstacle];
     }
 }
@@ -401,8 +402,9 @@
 
 -(void)resetObstacles
 {
-    for (GameObject *obstacle in _obstacleMapObjects) {
+    for (MapObject *obstacle in _obstacleMapObjects) {
         [obstacle reset];
+        
     }
 }
 
@@ -561,7 +563,7 @@
     [self setPositionAtX:_x Y:_y];
     
     CGPoint playerPos = [[[LayerManager sharedLayers] getPlayer] getPosition];
-    [_obstacleManager changeRegionsBasedOnX:playerPos.x];
+    [_obstacleManager changeRegionsBasedOnX:(playerPos.x - 128)];
     
     NSMutableArray *obstacles = [_obstacleManager getActiveGameObjectList];
     for (GameObject *obstacle in obstacles) {

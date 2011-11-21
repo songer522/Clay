@@ -48,7 +48,7 @@
     
     int newIndex = [self getRegionIndex:x];
     
-    if (newIndex == _currentIndex) { return; }
+    if (newIndex == _currentIndex || newIndex<0) { return; }
     
     if (_combinedRegion!=nil) {
         [_combinedRegion release];
@@ -64,9 +64,11 @@
     //create combined region from left and right region
     _combinedRegion = [[NSMutableArray alloc] initWithCapacity:10];
     for (GameObject *object in _leftRegion) {
+        [[object getCCSprite] setVisible:YES];
         [_combinedRegion addObject:object];
     }
     for(GameObject *object in _rightRegion) {
+        [[object getCCSprite] setVisible:YES];
         [_combinedRegion addObject:object];
     }
 }
