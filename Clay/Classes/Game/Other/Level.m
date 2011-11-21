@@ -26,6 +26,7 @@
 #import "Projectile.h"
 #import "HudLayer.h"
 #import "GameSettings.h"
+#import "RegionManager.h"
 
 @implementation Level
 
@@ -59,8 +60,14 @@
         _mapLayers = [[NSMutableDictionary alloc] initWithCapacity:12];
         _parallaxLayers = [[NSMutableArray alloc] initWithCapacity:12];
         
+        _obstacleManager = [[RegionManager alloc] init];
+        _backgroundManager = [[RegionManager alloc] init];
+        
         [self initTiledMap:filename ObstacleLayer:obstacleLayer];
        
+        
+        [_obstacleManager prepareArrays:_map.mapSize.width];
+        [_backgroundManager prepareArrays:_map.mapSize.width];
         
         //[[[LayerManager sharedLayers] currentLayer] addChild:_map];
     
@@ -115,7 +122,8 @@
     NSArray *layers = [layerList componentsSeparatedByString:@","];
     for (NSString *layerName in layers) {
         if ([layerName compare:@"actives"] == NSOrderedSame) {
-            [self addObstaclesToMap];
+            [self addObstaclesToMapAndRegion];
+            [_obstacleManager printDescription];
             [player resetSprite:[[LayerManager sharedLayers] currentLayer]];
             //currentZ -= 1;
             continue;
@@ -158,11 +166,12 @@
     }
 }
 
--(void)addObstaclesToMap
+-(void)addObstaclesToMapAndRegion
 {
     for (MapObject *mapObject in _obstacleMapObjects) {
         GameObject *obstacle = mapObject.object;
         [[[LayerManager sharedLayers] currentLayer] addChild:[obstacle getCCSprite]];
+        [_obstacleManager addGameObject:obstacle];
     }
 }
 
@@ -182,6 +191,7 @@
 {
     _x = x;
     _y = y;
+    
     CGPoint position = [[Camera sharedCamera] convertToScreenXY:CGPointMake(_x,_y)];
     
     //round position to eliminate white artifacts (note, this is in points, so with retina, we want to round based
@@ -410,8 +420,8 @@
     bool collision = false;
     GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
     
-    for (MapObject *mapObject in _obstacleMapObjects) {
-        GameObject *obstacle = mapObject.object;
+    NSMutableArray *obstacles = [_obstacleManager getActiveGameObjectList];
+    for (GameObject *obstacle in obstacles) {
         if(!obstacle.collided) {
             
             int dist = abs([source getPosition].x - [obstacle getPosition].x);
@@ -447,8 +457,8 @@
 {
     bool collision = false;
     
-    for (MapObject *mapObject in _obstacleMapObjects) {
-        GameObject *obstacle = mapObject.object;
+    NSMutableArray *obstacles = [_obstacleManager getActiveGameObjectList];
+    for (GameObject *obstacle in obstacles) {
         if(![obstacle hasBeenHit] && [obstacle canAggressiveHit]) {
             collision = [self testCollisionWithGameObject:obstacle Source:source];
             if (collision) {
@@ -549,8 +559,13 @@
 {
     //NSLog(@"DT: %f",dt);
     [self setPositionAtX:_x Y:_y];
-    for(MapObject *obstacle in _obstacleMapObjects) {
-        [obstacle.object update:dt];
+    
+    CGPoint playerPos = [[[LayerManager sharedLayers] getPlayer] getPosition];
+    [_obstacleManager changeRegionsBasedOnX:playerPos.x];
+    
+    NSMutableArray *obstacles = [_obstacleManager getActiveGameObjectList];
+    for (GameObject *obstacle in obstacles) {
+        [obstacle update:dt];
     }
     
     for (MapObject *objects in _otherMapObjects) {

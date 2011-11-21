@@ -36,6 +36,7 @@
 		54179E27142BBFA400D3A79E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 54179E26142BBFA400D3A79E /* Default@2x.png */; };
 		54179E2D142BC92400D3A79E /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54179E2C142BC92300D3A79E /* GameKit.framework */; };
 		5418FB2F145093A300C8F16E /* UI_Button_Dodging.png in Resources */ = {isa = PBXBuildFile; fileRef = 5418FB2E145093A300C8F16E /* UI_Button_Dodging.png */; };
+		54229083147AB30D0096C809 /* RegionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 54229082147AB30D0096C809 /* RegionManager.m */; };
 		5424F85A1450D86D00802354 /* disco.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5424F8591450D86D00802354 /* disco.mp3 */; };
 		5424F85E1450D89700802354 /* barn.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5424F85C1450D89700802354 /* barn.mp3 */; };
 		5424F85F1450D89700802354 /* computer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5424F85D1450D89700802354 /* computer.mp3 */; };
@@ -407,6 +408,8 @@
 		54179E26142BBFA400D3A79E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Resources/Default@2x.png"; sourceTree = "<group>"; };
 		54179E2C142BC92300D3A79E /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		5418FB2E145093A300C8F16E /* UI_Button_Dodging.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UI_Button_Dodging.png; sourceTree = "<group>"; };
+		54229081147AB30D0096C809 /* RegionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; path = RegionManager.h; sourceTree = "<group>"; };
+		54229082147AB30D0096C809 /* RegionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegionManager.m; sourceTree = "<group>"; };
 		5424F8591450D86D00802354 /* disco.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = disco.mp3; path = Resources/music/disco.mp3; sourceTree = "<group>"; };
 		5424F85C1450D89700802354 /* barn.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = barn.mp3; path = Resources/music/barn.mp3; sourceTree = "<group>"; };
 		5424F85D1450D89700802354 /* computer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = computer.mp3; path = Resources/music/computer.mp3; sourceTree = "<group>"; };
@@ -1722,6 +1725,8 @@
 				549ED7B91461D065008BCD98 /* ObstacleChicken.m */,
 				549ED7BA1461D065008BCD98 /* ObstacleStatic.h */,
 				549ED7BB1461D065008BCD98 /* ObstacleStatic.m */,
+				54229081147AB30D0096C809 /* RegionManager.h */,
+				54229082147AB30D0096C809 /* RegionManager.m */,
 			);
 			path = GameObjects;
 			sourceTree = "<group>";
@@ -2406,6 +2411,7 @@
 				545CE69D146C1AA9003EC9C1 /* PlayerActionBlock.m in Sources */,
 				54CA7A7E1471C97C002B01AA /* TextureManager.m in Sources */,
 				5474D4AE147453A10038B358 /* GameSettings.m in Sources */,
+				54229083147AB30D0096C809 /* RegionManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
