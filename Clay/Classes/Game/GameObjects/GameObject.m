@@ -20,6 +20,8 @@
 #import "Projectile.h"
 #import "BossFactory.h"
 
+#define GAME_OBJECT_DISTANCE_ONSCREEN 550.0f
+
 @implementation GameObject
 
 @synthesize sprite = _sprite;
@@ -315,78 +317,54 @@
         _vy += 500.0f * dt;
         
     } else if(_currentBehavior == COLLISION_BEHAVIOR_CHARGE_AT_PLAYER) {
-        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
-        CGPoint position = [gameLayer.player getPosition];
-        if (_x < (position.x + 550.0f) && _x > 0.0f) {
-            _vx = -150.0f;    
-        } else {
-            _vx = 0.0f;
+        _vx = 0.0f;
+        if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+            _vx = -150.0f;
         }
-        
     } else if(_currentBehavior == COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST) {
-            GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
-            CGPoint position = [gameLayer.player getPosition];
-            if (_x < (position.x + 550.0f) && _x > 0.0f) {
-                _vx = -200.0f;    
-            } else {
-                _vx = 0.0f;
-            }
+        _vx = 0.0f;
+        if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+            _vx = -200.0f;
+        }
     } else if(_currentBehavior == COLLISION_BEHAVIOR_MAD_DOG) {
-            GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
-            CGPoint position = [gameLayer.player getPosition];
-            if (_x < (position.x + 200.0f) && _x > 0.0f) {
-                if(![self.originalAnimation isEqualToString:@"madDogAnim"])
-                {
-                    [self setOriginalAnimation:@"madDogAnim"];
-                    [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"madDogAnim"];
-                }
-                _vx = -150.0f;    
-            } else {
-                _vx = 0.0f;
+        _vx = 0.0f;
+        if ([self closeToPlayer:200.0f]) {
+            if(![self.originalAnimation isEqualToString:@"madDogAnim"])
+            {
+                [self setOriginalAnimation:@"madDogAnim"];
+                [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"madDogAnim"];
             }
-        
+            _vx = -150.0f;    
+        }
     } else if(_currentBehavior == COLLISION_BEHAVIOR_RETRO_ZOMBIE) {
-        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
-        CGPoint position = [gameLayer.player getPosition];
-        if (_x < (position.x + 100.0f) && _x > 0.0f) {
+        _vx = 0.0f;
+        if ([self closeToPlayer:100.0f]) {
             if(![self.originalAnimation isEqualToString:@"retroZombieAnim"])
             { 
                 [self setOriginalAnimation:@"retroZombieAnim"];
                 [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"retroZombieAnim"];
             }
-            //_vx = -150.0f;    
-        } else {
-            _vx = 0.0f;
         }
     } else if(_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_WALK) {
-        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
-        CGPoint position = [gameLayer.player getPosition];
-        if (_x < (position.x + 550.0f) && _x > 0.0f) {
+        _vx = 0.0f;
+        if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
             if (!_madeSound) {
                 _madeSound = true;
                 [[SoundEngine shared] playSound:@"zombieMoan"];
             }
             _vx = -40.0f;
-        } else {
-            _vx = 0.0f;
         }
     } else if(_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_WALK_FAST) {
-        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
-        CGPoint position = [gameLayer.player getPosition];
-        if (_x < (position.x + 550.0f) && _x > 0.0f) {
+        _vx = 0.0f;
+        if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
             _vx = -60.0f;
-        } else {
-            _vx = 0.0f;
         }
     } else if(_currentBehavior == COLLISION_BEHAVIOR_RETRO_SHOT_FROM_CANNON) {
         _vy += 500.0f * dt;
     } else if(_currentBehavior == COLLISION_BEHAVIOR_FLYER) {
-        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
-        CGPoint position = [gameLayer.player getPosition];
-        if (_x < (position.x + 550.0f) && _x > 0.0f) {
-            _vx = -250.0f;    
-        } else {
-            _vx = 0.0f;
+        _vx = 0.0f;
+        if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+            _vx = -250.0f;
         }
     } else if(_currentBehavior == COLLISION_BEHAVIOR_ROLLING_HAYBALE) {
         int frame = [[_sprite getAnimation] getCurrentFrameNumber];
@@ -396,8 +374,29 @@
             _direction = 1;
         }
         _vx = _direction * 100.0f;        
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON) {
+        _vx = 0.0f;
+        if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+            _vx = -250.0f;
+        }
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR) {
+        _vx = 0.0f;
+        if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+            _vx = -250.0f;
+        }
     }
 
+}
+
+-(bool) closeToPlayer:(float)closerThan
+{
+    Player *player = [[LayerManager sharedLayers] getPlayer];
+    CGPoint position = [player getPosition];
+    if (_x < (position.x + closerThan)) {
+        return true;
+    }
+    
+    return false;
 }
 
 -(void) updateFlags
@@ -549,6 +548,12 @@
     }else if([behavior isEqualToString:@"retroZombie"]) {
         _collideBehavior = COLLISION_BEHAVIOR_RETRO_ZOMBIE;
         _currentBehavior = COLLISION_BEHAVIOR_RETRO_ZOMBIE;
+    } else if([behavior isEqualToString:@"fireDemon"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_FIRE_DEMON;
+        _currentBehavior = COLLISION_BEHAVIOR_FIRE_DEMON;
+    } else if([behavior isEqualToString:@"fireDemonWithArmor"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR;
+        _currentBehavior = COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR;
     }
 
     

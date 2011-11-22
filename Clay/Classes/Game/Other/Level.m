@@ -61,13 +61,13 @@
         _parallaxLayers = [[NSMutableArray alloc] initWithCapacity:12];
         
         _obstacleManager = [[RegionManager alloc] init];
-        _backgroundManager = [[RegionManager alloc] init];
+        //_backgroundManager = [[RegionManager alloc] init];
         
         [self initTiledMap:filename ObstacleLayer:obstacleLayer];
        
         
         [_obstacleManager prepareArrays:_map.mapSize.width];
-        [_backgroundManager prepareArrays:_map.mapSize.width];
+        //[_backgroundManager prepareArrays:_map.mapSize.width];
         
         //[[[LayerManager sharedLayers] currentLayer] addChild:_map];
     
@@ -122,7 +122,6 @@
     NSArray *layers = [layerList componentsSeparatedByString:@","];
     for (NSString *layerName in layers) {
         if ([layerName compare:@"actives"] == NSOrderedSame) {
-            [player setLedgeSprite:[sprite spriteWithFile:@"blank.png"]];j
             [self addObstaclesToMapAndRegion];
             //[_obstacleManager printDescription];
             [player resetSprite:[[LayerManager sharedLayers] currentLayer]];
@@ -166,7 +165,6 @@
         }
     }
     
-    [_backgroundManager printDescription];
 }
 
 -(void)addObstaclesToMapAndRegion
@@ -370,7 +368,7 @@
             mapObject.placed = true;
             
             //add to background regionmanager
-            [_backgroundManager addGameObject:mapObject.object];
+            //[_backgroundManager addGameObject:mapObject.object];
             [[mapObject.object getCCSprite] pauseSchedulerAndActions];
         }
     }
@@ -413,10 +411,10 @@
         [obstacle reset];
         
     }
-    
+    /*
     for (MapObject *object in _otherMapObjects) {
         [object reset];
-    }
+    }*/
 }
 
 -(void)resetTriggers
@@ -575,25 +573,21 @@
     
     CGPoint playerPos = [[[LayerManager sharedLayers] getPlayer] getPosition];
     [_obstacleManager changeRegionsBasedOnX:(playerPos.x - 128)];
-    [_backgroundManager changeRegionsBasedOnX:(playerPos.x - 128)];
+    //[_backgroundManager changeRegionsBasedOnX:(playerPos.x - 128)];
     
     NSMutableArray *obstacles = [_obstacleManager getActiveGameObjectList];
     for (GameObject *obstacle in obstacles) {
         [obstacle update:dt];
     }
     
-    NSMutableArray *objects = [_backgroundManager getActiveGameObjectList];
-    for (GameObject *object in objects) {
-        [object update:dt];
-        //[[object getCCSprite] pauseSchedulerAndActions];
-    }
+    //NSMutableArray *objects = [_backgroundManager getActiveGameObjectList];
+    //for (GameObject *object in objects) {
+    //    [object update:dt];
+    //}
     
-    /*
     for (MapObject *objects in _otherMapObjects) {
         [objects.object update:dt];
-    }*/
-    
-    
+    }
 }
 
 -(void)dealloc
@@ -626,6 +620,8 @@
     [_musicName release];
     [_nextLevelName release];
     [_playerThirdActionName release];
+    
+    [_obstacleManager release];
 
     _gameObjects = nil; //is maintained throughout the game, so keep.
     

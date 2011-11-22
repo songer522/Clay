@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		
+		<key>FireDShield_1.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{8, 2}, {92, 105}}</string>
+			<key>spriteOffset</key>
+			<string>{1, -1}</string>
+			<key>spriteSize</key>
+			<string>{92, 105}</string>
+			<key>spriteSourceSize</key>
+			<string>{106, 107}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{313, 107}, {92, 105}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>FireDShield_2.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{6, 0}, {98, 107}}</string>
+			<key>spriteOffset</key>
+			<string>{2, -0}</string>
+			<key>spriteSize</key>
+			<string>{98, 107}</string>
+			<key>spriteSourceSize</key>
+			<string>{106, 107}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{213, 108}, {98, 107}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>FireDShield_3.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {106, 107}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{106, 107}</string>
+			<key>spriteSourceSize</key>
+			<string>{106, 107}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{0, 0}, {106, 107}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>FireDShield_4.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{8, 2}, {92, 105}}</string>
+			<key>spriteOffset</key>
+			<string>{1, -1}</string>
+			<key>spriteSize</key>
+			<string>{92, 105}</string>
+			<key>spriteSourceSize</key>
+			<string>{106, 107}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{402, 0}, {92, 105}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>FireDShield_5.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{1, 0}, {94, 107}}</string>
+			<key>spriteOffset</key>
+			<string>{-5, -0}</string>
+			<key>spriteSize</key>
+			<string>{94, 107}</string>
+			<key>spriteSourceSize</key>
+			<string>{106, 107}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{206, 0}, {94, 107}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>FireDShield_6.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{1, 0}, {104, 107}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{104, 107}</string>
+			<key>spriteSourceSize</key>
+			<string>{106, 107}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{0, 108}, {104, 107}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>FireDShield_7.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{1, 0}, {94, 107}}</string>
+			<key>spriteOffset</key>
+			<string>{-5, -0}</string>
+			<key>spriteSize</key>
+			<string>{94, 107}</string>
+			<key>spriteSourceSize</key>
+			<string>{106, 107}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{108, 0}, {94, 107}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>FireDShield_Bullet_1.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{1, 0}, {24, 23}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{24, 23}</string>
+			<key>spriteSourceSize</key>
+			<string>{26, 23}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{28, 217}, {24, 23}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>FireDShield_Bullet_2.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {26, 23}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{26, 23}</string>
+			<key>spriteSourceSize</key>
+			<string>{26, 23}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{0, 217}, {26, 23}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>FireDShield_Bullet_3.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{1, 5}, {20, 15}}</string>
+			<key>spriteOffset</key>
+			<string>{-2, -1}</string>
+			<key>spriteSize</key>
+			<string>{20, 15}</string>
+			<key>spriteSourceSize</key>
+			<string>{26, 23}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{55, 217}, {20, 15}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>FireD_1.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{9, 2}, {92, 105}}</string>
+			<key>spriteOffset</key>
+			<string>{2, -1}</string>
+			<key>spriteSize</key>
+			<string>{92, 105}</string>
+			<key>spriteSourceSize</key>
+			<string>{106, 107}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{409, 107}, {92, 105}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>FireD_2.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{8, 0}, {96, 107}}</string>
+			<key>spriteOffset</key>
+			<string>{3, -0}</string>
+			<key>spriteSize</key>
+			<string>{96, 107}</string>
+			<key>spriteSourceSize</key>
+			<string>{106, 107}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{303, 0}, {96, 107}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>FireD_3.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{3, 0}, {102, 107}}</string>
+			<key>spriteOffset</key>
+			<string>{1, -0}</string>
+			<key>spriteSize</key>
+			<string>{102, 107}</string>
+			<key>spriteSourceSize</key>
+			<string>{106, 107}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{107, 108}, {102, 107}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>version</key>
+		<string>1.5 GM</string>
+		<key>format</key>
+		<integer>3</integer>
+		<key>size</key>
+		<string>{512, 256}</string>
+		<key>name</key>
+		<string>fireLevel</string>
+		<key>premultipliedAlpha</key>
+		<false/>
+		<key>target</key>
+		<dict>
+			<key>name</key>
+			<string>s</string>
+			<key>textureFileName</key>
+			<string>s</string>
+			<key>textureFileExtension</key>
+			<string>.png</string>
+			<key>coordinatesFileName</key>
+			<string>s</string>
+			<key>coordinatesFileExtension</key>
+			<string>.plist</string>
+			<key>premultipliedAlpha</key>
+			<false/>
+		</dict>
+	</dict>
+</dict>
+</plist>

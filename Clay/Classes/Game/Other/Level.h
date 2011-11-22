@@ -42,7 +42,7 @@
     
     //background mapobjects, usually attached to a layer
     NSMutableArray *_otherMapObjects;
-    RegionManager *_backgroundManager;
+    //RegionManager *_backgroundManager;
     
     
     //any triggers in the level

@@ -137,6 +137,7 @@ typedef enum {
 -(PlayerEffect) startCollision;
 -(void) special_kickHen;
 -(void) update:(float)dt;
+-(bool) closeToPlayer:(float)closerThan;
 
 #pragma mark - private methods
 -(void) switchToInactive;

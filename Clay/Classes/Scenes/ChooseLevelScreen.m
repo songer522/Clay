@@ -115,7 +115,7 @@
     //[_backButton setPosition:ccp(50, 18)];
     
     
-    for (int i=0; i<7; i++) {
+    for (int i=0; i<11; i++) {
         LevelButton *button = [LevelButton levelButtonWithId:i];
         [button setCursor:_selector];
         

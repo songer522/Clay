@@ -31,7 +31,7 @@
 		<key>sounds</key>
 		<string>wooAction</string>
 		<key>textures</key>
-		<string>trackLevel</string>
+		<string>trackLevel,characterWoo</string>
 	</dict>
 	<key>level2</key>
 	<dict>
@@ -42,7 +42,7 @@
 		<key>sounds</key>
 		<string>henKicked,cowDied</string>
 		<key>textures</key>
-		<string>barnLevel</string>
+		<string>barnLevel,characterKicking</string>
 	</dict>
 	<key>level3</key>
 	<dict>
@@ -53,7 +53,7 @@
 		<key>sounds</key>
 		<string>wooAction</string>
 		<key>textures</key>
-		<string>townLevel</string>
+		<string>townLevel,characterWoo</string>
 	</dict>
 	<key>level4</key>
 	<dict>
@@ -64,7 +64,7 @@
 		<key>sounds</key>
 		<string>shuffling</string>
 		<key>textures</key>
-		<string>discoLevel</string>
+		<string>discoLevel,characterDodging</string>
 	</dict>
 	<key>level5</key>
 	<dict>
@@ -75,7 +75,7 @@
 		<key>sounds</key>
 		<string>wooAction</string>
 		<key>textures</key>
-		<string>cityLevel</string>
+		<string>cityLevel,characterWoo</string>
 	</dict>
 	<key>level6</key>
 	<dict>
@@ -86,7 +86,7 @@
 		<key>sounds</key>
 		<string>zombieMoan,shootActionReload,shootAction</string>
 		<key>textures</key>
-		<string>zombieLevel</string>
+		<string>zombieLevel,characterShooting</string>
 	</dict>
 	<key>level7</key>
 	<dict>

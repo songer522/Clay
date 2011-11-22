@@ -99,4 +99,10 @@
     NSLog(@"*** REGION MANAGER ***");
 }
 
+-(void)dealloc
+{
+    
+    [super dealloc];
+}
+
 @end

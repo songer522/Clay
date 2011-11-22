@@ -74,7 +74,7 @@
 								   depthFormat:0						// GL_DEPTH_COMPONENT16_OES
 						];
 	
-    glView.opaque = NO;
+//    glView.opaque = YES;
     
 	// attach the openglView to the director
 	[director setOpenGLView:glView];
