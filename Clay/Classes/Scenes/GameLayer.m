@@ -22,6 +22,8 @@
 #import "TextureManager.h"
 #import "GameDebugLayer.h"
 #import "GameSettings.h"
+#import "Appirater.h"
+
 
 #define DEBUG_DRAW_BOUNDING_BOXES 0
 
@@ -191,8 +193,10 @@
         if (trigger) {
             switch (trigger.type) {
                 case TRIGGER_NEXTLEVEL:
+                    
                     [[ComicManager shared] startComic:_level.postLevelComicName];
                     [ComicManager shared].loadNextLevel = true;
+                    
                     break;
                 case TRIGGER_CHECKPOINT:
                     [_savePoint setSavePoint:trigger.position Level:_level.name];

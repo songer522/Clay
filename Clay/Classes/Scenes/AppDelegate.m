@@ -19,6 +19,7 @@
 #import "TextureManager.h"
 #import "GameSettings.h"
 #import "MainMenuScene.h"
+#import "Appirater.h"
 
 @implementation AppDelegate
 
@@ -50,8 +51,10 @@
 {
 	// Init the window
 	window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+  
 	
-	// Try to use CADisplayLink director
+    // Try to use CADisplayLink director
 	// if it fails (SDK < 3.1) use the default director
 	if( ! [CCDirector setDirectorType:kCCDirectorTypeDisplayLink] )
 		[CCDirector setDirectorType:kCCDirectorTypeDefault];
@@ -129,6 +132,8 @@
     
     [[CCDirector sharedDirector] setProjection:CCDirectorProjection2D];
     //[[CCDirector sharedDirector] setDepthBufferFormat:CCDepthBuffer16]; 
+    
+    [Appirater appLaunched:YES];
 
 }
 
@@ -150,7 +155,9 @@
 }
 
 -(void) applicationWillEnterForeground:(UIApplication*)application {
-	[[CCDirector sharedDirector] startAnimation];
+	
+    [[CCDirector sharedDirector] startAnimation];
+    [Appirater appEnteredForeground:YES];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

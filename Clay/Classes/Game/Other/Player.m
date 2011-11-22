@@ -22,6 +22,7 @@
 #import "GameLayer.h"
 #import "HudLayer.h"
 
+
 #define PLAYER_SPRITE_FILE @"player_idle_01.png"
 #define PLAYER_STARTING_VELOCITY 0
 #define PLAYER_STARTING_Y_POSITION 40
@@ -124,6 +125,7 @@
 
 -(void)startJump:(RunnerJump)type
 {
+     [[CCDirector sharedDirector] resume];
     //guard
     //if ay is too high, it 
     if (_isTripping || _isDead || [_thirdAction inAction]) { return; }
