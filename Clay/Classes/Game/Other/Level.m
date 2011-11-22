@@ -122,6 +122,7 @@
     NSArray *layers = [layerList componentsSeparatedByString:@","];
     for (NSString *layerName in layers) {
         if ([layerName compare:@"actives"] == NSOrderedSame) {
+            [player setLedgeSprite:[sprite spriteWithFile:@"blank.png"]];j
             [self addObstaclesToMapAndRegion];
             //[_obstacleManager printDescription];
             [player resetSprite:[[LayerManager sharedLayers] currentLayer]];
