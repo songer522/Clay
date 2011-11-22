@@ -64,8 +64,8 @@
         _isInMidAir = false;
         _waitToGetUp = 0.0f;
         _onLedge = false;
+        _offLedge=false;
        
-        //NSLog(@"spring is ");
         _timeLeftBeforeVulnerable = 2.0f;
         _isInvincible = false;
         
@@ -87,6 +87,8 @@
         _y = 120; //just so the fall into pit sound doesn't go off at very beginning
         
         _skin = [Skin instance];
+        _playerOnledge=[Sprite spriteWithFile:@"blank.png"]; 
+        _tempSprite=_sprite;
         [self updateSkin:SKINTYPE_REGULAR];
       
     }
@@ -125,7 +127,6 @@
 
 -(void)startJump:(RunnerJump)type
 {
-     [[CCDirector sharedDirector] resume];
     //guard
     //if ay is too high, it 
     if (_isTripping || _isDead || [_thirdAction inAction]) { return; }
@@ -362,6 +363,22 @@
     [layer addChild:playerSprite];
 }
 
+-(void)setLedgeSprite:(CCLayer*)layer
+{
+    CCSprite *ledgeSprite=[_playerOnledge getCCSprite];
+    [layer removeChild:ledgeSprite cleanup:NO];
+    [layer addChild:ledgeSprite];
+
+}
+
+-(void)setCurrentSprite:(Sprite *)newSprite
+{
+        _sprite=newSprite;
+     
+    
+}
+
+
 -(void)rechargeBattery
 {
     [_battery startRecharge];
@@ -407,7 +424,8 @@
         
         [[gameLayer getHud] setEnabled:false ForButton:HUD_BUTTON_SPRINT];
     }
-    
+        
+
     [self updateJump:dt];
     
     [self updateInvulnerable:dt];
@@ -437,7 +455,7 @@
     
     [_battery update:dt];
     
-    if (_isTripping) {
+       if (_isTripping) {
         _waitToGetUp -= dt;
         if (_waitToGetUp <= 0.0f) {
             _isTripping = false;
@@ -446,6 +464,39 @@
             [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];
         }
     }
+    
+    if(_onLedge)
+    {
+        if(_isActive){
+          
+            [self switchToInactive];
+            
+        }
+        
+        [self setCurrentSprite:_playerOnledge];
+       //[_playerOnledge setScreenPosition:[_sprite getScreenPosition]];
+       [_playerOnledge getCCSprite].visible =YES;
+                 
+        [[Camera sharedCamera] setTarget:_sprite];
+        _offLedge=true;
+        
+    }
+    else
+    {
+        
+        
+    if(_offLedge)
+        {
+            [_playerOnledge getCCSprite].visible=NO;
+            
+            _sprite=_tempSprite;
+            [_sprite getCCSprite].visible=YES;
+            _isActive=true;
+            _offLedge=false;
+        }
+    }
+ [[Camera sharedCamera] setTarget:_sprite];
+    
     
     if(_speed.isStopped && !_isTripping) {
         _waitToGetUp -= dt;
