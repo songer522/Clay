@@ -46,7 +46,7 @@ static TextureManager *_shared = nil;
     }
     else if([GameSettings usingHighResolutionGraphics])
     {
-        appendhd = @"-hd";
+        	appendhd = @"-hd";
     }
     else
     {
@@ -66,7 +66,7 @@ static TextureManager *_shared = nil;
     }   
     
     //load animations
-    NSString *animList = [dict objectForKey:@"animations"];
+    NSString *animList = [dict objectForKey:@"animations"];	
     NSArray *animArray = [NSArray arrayWithArray:[animList componentsSeparatedByString:@","]];
     for (NSString *anim in animArray) {
         if (![anim isEqualToString:@"none"]) {

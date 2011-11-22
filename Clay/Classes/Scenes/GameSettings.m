@@ -56,7 +56,18 @@ static GameSettings *_shared = nil;
 
 +(bool)usingHighResolutionGraphics
 {
-    return [GameSettings shouldUseRetinaForDevice];
+    if (IS_IPAD)
+    {
+        return [GameSettings shouldUseRetinaForDevice];
+    }
+    else if ((([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)) && [GameSettings shouldUseRetinaForDevice])
+    {
+        return YES;
+    }
+    else
+    {
+        return [GameSettings shouldUseRetinaForDevice];
+    }
 }
 
 +(bool)shouldUseRetinaForDevice
@@ -75,8 +86,9 @@ static GameSettings *_shared = nil;
     if ([platform isEqualToString:@"iPad2,1"]) return YES;      //ipad 2 (wifi)
     if ([platform isEqualToString:@"iPad2,2"]) return YES;      //ipad 2 (gsm)
     if ([platform isEqualToString:@"iPad2,3"]) return YES;     //ipad 2 (cdma)
-    if ([platform isEqualToString:@"i386"]) return YES;         //simulator, which can always be changed manually
+    if ([platform isEqualToString:@"i386"]) return NO;         //simulator, which can always be changed manually
     if ([platform isEqualToString:@"iPod touch"]) return NO;
+    if ([platform isEqualToString:@"x86_64"]) return YES; //simulator
     return YES; //assume future devices can all handle the retina display
 }
 

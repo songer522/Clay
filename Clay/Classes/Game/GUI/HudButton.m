@@ -66,17 +66,18 @@
             [self createSpriteFromImage:@"UI_Button_Jumping.png"];
            [self setPosition:ccp(HUD_LAYER_JUMP_X * MULTIPLIERX, HUD_LAYER_BUTTON_Y * MULTIPLIERY)];
             float size = 200.0f;
-            [self setHitbox:CGRectMake(HUD_LAYER_JUMP_X - 0.5f * size, HUD_LAYER_BUTTON_Y - 0.5F * size, size, size)];
+            
+            [self setHitbox:CGRectMake((HUD_LAYER_JUMP_X - 0.5f * size) * MULTIPLIERX, (HUD_LAYER_BUTTON_Y - 0.5F * size) * MULTIPLIERY, size * MULTIPLIERX, size * MULTIPLIERY)];
             break;
         case HUD_BUTTON_SPRINT:
             [self createSpriteFromImage:@"UI_Button_Sprinting.png"];
             [self setPosition:ccp(HUD_LAYER_SPRINT_X * MULTIPLIERX, HUD_LAYER_BUTTON_Y * MULTIPLIERY)];
-            [self setHitbox:CGRectMake(HUD_LAYER_SPRINT_X - 0.5f * HUD_LAYER_BUTTON_SIZE, HUD_LAYER_BUTTON_Y - 0.5F * HUD_LAYER_BUTTON_SIZE, HUD_LAYER_BUTTON_SIZE, HUD_LAYER_BUTTON_SIZE)];
+            [self setHitbox:CGRectMake((HUD_LAYER_SPRINT_X - 0.5f * HUD_LAYER_BUTTON_SIZE) * MULTIPLIERX, (HUD_LAYER_BUTTON_Y - 0.5F * HUD_LAYER_BUTTON_SIZE) * MULTIPLIERY, HUD_LAYER_BUTTON_SIZE * MULTIPLIERX, HUD_LAYER_BUTTON_SIZE * MULTIPLIERY)];
             break;
         case HUD_BUTTON_ACTION:
             [self createSpriteFromAction:action];
             [self setPosition:ccp(HUD_LAYER_ACTION_X * MULTIPLIERX, HUD_LAYER_BUTTON_Y * MULTIPLIERY)];
-            [self setHitbox:CGRectMake(HUD_LAYER_ACTION_X - 0.5f * HUD_LAYER_BUTTON_SIZE, HUD_LAYER_BUTTON_Y - 0.5F * HUD_LAYER_BUTTON_SIZE, HUD_LAYER_BUTTON_SIZE, HUD_LAYER_BUTTON_SIZE)];
+            [self setHitbox:CGRectMake((HUD_LAYER_ACTION_X - 0.5f * HUD_LAYER_BUTTON_SIZE) * MULTIPLIERX, (HUD_LAYER_BUTTON_Y - 0.5F * HUD_LAYER_BUTTON_SIZE) * MULTIPLIERY, HUD_LAYER_BUTTON_SIZE * MULTIPLIERX, HUD_LAYER_BUTTON_SIZE * MULTIPLIERY)];
             break;
         default:
             break;
