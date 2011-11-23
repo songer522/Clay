@@ -40,7 +40,7 @@
 		<key>animations</key>
 		<string>level2,kick</string>
 		<key>sounds</key>
-		<string>henKicked,cowDied</string>
+		<string>henKicked,cowDied,pigAppears</string>
 		<key>textures</key>
 		<string>barnLevel,characterKicking</string>
 	</dict>
@@ -51,7 +51,7 @@
 		<key>animations</key>
 		<string>level3,woo</string>
 		<key>sounds</key>
-		<string>wooAction</string>
+		<string>wooAction,crowAppears</string>
 		<key>textures</key>
 		<string>townLevel,characterWoo</string>
 	</dict>
@@ -73,7 +73,7 @@
 		<key>animations</key>
 		<string>level5,woo</string>
 		<key>sounds</key>
-		<string>wooAction</string>
+		<string>wooAction,maddogBark</string>
 		<key>textures</key>
 		<string>cityLevel,characterWoo</string>
 	</dict>
@@ -106,7 +106,7 @@
 		<key>animations</key>
 		<string>level8,blow</string>
 		<key>sounds</key>
-		<string>none</string>
+		<string>blowAction</string>
 		<key>textures</key>
 		<string>fireLevel,characterBlowing</string>
 	</dict>

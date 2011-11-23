@@ -177,6 +177,10 @@
   </data>
  </layer>
  <layer name="pits" width="1000" height="14">
+  <properties>
+   <property name="speedx" value="1.0"/>
+   <property name="speedy" value="1.0"/>
+  </properties>
   <data encoding="base64" compression="zlib">
    eJzt10sOgjAUQFFYgML+9+ZnA6gb8PNqwqQBgk2FyTnJTWDQ9nXYpgEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACWnKJz1qVwXa3WnL+l8a5pruu+o0x6Rq/onX7a+e9vhXsCAADwX0N0y7oXrqvVmvO3NN41zfXYeZYph3g/H6Mu6he++x/e2fmeAAAAAAAAADV9AOC2R/0=
   </data>
