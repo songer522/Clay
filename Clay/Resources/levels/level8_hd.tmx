@@ -128,7 +128,7 @@
   </tile>
   <tile id="50">
    <properties>
-    <property name="obstacle" value="fireComet"/>
+    <property name="obstacle" value="fireball"/>
    </properties>
   </tile>
   <tile id="51">
@@ -178,7 +178,7 @@
  </layer>
  <layer name="pits" width="1000" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt10sOgjAUQFFYgML+9+ZnA6gb8PNqwqQBgk2FyTnJTWDQ9nXYpgEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACWnKJz1qVwXa3WnL+l8a5pruu+o0x6Rq/onX7a+e9vhXsCAADwX0N0y7oXrqvVmvO3NN41zfXYeZYph3g/H6Mu6he++x/e2fmeAAAAAAAAADV9AOC2R/0=
+   eJzt10EKwjAURdG6ALX735vVDWjdgK1PoROphUokHZwDF5LJ55NZmgYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABYckpd7SU2bnqjc7rUXWXWIw1pfF1238/vfpwJAADAf13TreC8krO2YnqjPt0r7zJnn//zIR1Tu3BuV/yzP2cCAAAAAAAAlPQEYMsWmQ==
   </data>
  </layer>
  <layer name="ledges" width="1000" height="14">
@@ -205,7 +205,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt2rENwCAMRUEmiLIQ8f5bpaJDUH5ZuutsuXgDeAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACSvnQAAAAANDDTAQAAAAAAAAAAAAAAtFSXefevvnZ1uAHo7E0HAADQ1pMOAAAAAAAAAICAHx/jAg4=
+   eJztzrENwCAMRUEmQCxE2H8r+hShiMQX6K5zYfuVAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQNKTDgAAAIAD9HQAAAAAAAAAAAAAAADXGZtv/Pn33l3NAF9aOgAAgGPVdAAAAAAAAAAABEyN7wIU
   </data>
  </layer>
  <layer name="meta" width="1000" height="14" opacity="0.75">
@@ -214,7 +214,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt2UEKgCAQBdBadP8rt5WwIYzS0ffg70ycv1LaNgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEZ0JMgIRjsPAAAA/5r93dtq9vkAAACIrfbfeBStvVy/u9vn6bq35wEAACDmvQwAAAAAAADASvbJ8qXes2VL2VutQx2LxAEAYC2975+Z7rO9Z8uWsrdahzoWiQMAwFpOv/oFGw==
+   eJzt2TEKgDAMQNE4eP8rO7kEWqSi1uY9+CBEpTpZjAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGBG+w+awWzrAQAA4F2r73tHrf58AAAA9FX7bzyL0feSr2vd5+p5d9cDAABAn/0yAAAAAAAAAJVs0kOd8nGeR2MuVQ8AgFq+/v7Uup3ycZ5HYy5VDwCAWg7JDgVJ
   </data>
  </layer>
 </map>
