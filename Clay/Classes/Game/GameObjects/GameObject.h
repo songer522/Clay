@@ -39,7 +39,7 @@ typedef enum {
     bool _hasGravity;
     bool _isInMidAir;
     bool _isFalling;
-    
+    float _waiting;
     float _rate;
     float _x;
     float _y;

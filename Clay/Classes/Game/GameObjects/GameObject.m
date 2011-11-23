@@ -66,6 +66,7 @@
         _offsetX = 0;
         _rate = 1.0f;
         _offsetY = 0;
+        _waiting = -1.0f;
         _boss = nil;
         _madeSound = false;
         _boundingBox = CGRectMake(0, 0, 0, 0);
@@ -204,14 +205,18 @@
         _vy = -50.0f;
         _vx = 50.0f;
         _rate = 2.0f;
-        //_rotationAmount = 500;
         _fadeout = true;
+        [[[[LayerManager sharedLayers] getPlayer] getThirdAction] setKilledEnemy:YES];
     } else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR) {
         _alpha = 1.0f;
         _fadeout = true;
     } else if(_currentBehavior == COLLISION_BEHAVIOR_FIREBALL_LANDED) {
         _alpha = 1.2f;
         _fadeout = true;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR || _currentBehavior ==  COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR_WAITTOSHOOT) {
+        _alpha = 1.2f;
+        _fadeout = true;
+        _currentBehavior = COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR;
     }
     
     return _playerEffect;
@@ -403,9 +408,6 @@
         }
     } else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR) {
         _vx = 0.0f;
-        if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
-            _vx = -0.0f;
-        }
     } else if(_currentBehavior == COLLISION_BEHAVIOR_FIREBALL_START) {
         if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
             Player *player = [[LayerManager sharedLayers] getPlayer];
@@ -429,6 +431,26 @@
             _currentBehavior = COLLISION_BEHAVIOR_FIREBALL_LANDED;
             [self setPlayerEffect:@"collide"];
             [[SoundEngine shared] playSound:@"fireballLand"];
+        }
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR_WAITTOSHOOT) {
+        if(_waiting > 0.0f) {
+            _waiting -= dt;
+            if(_waiting<= 0.0f){
+                _currentBehavior = COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR;
+                _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_FIRE_DEMON_BULLET];
+                [_projectile reset];
+                [_projectile setPosition:CGPointMake(_x, _y + 5)];
+                [_projectile setBoundingBox:CGRectMake(15, 33, 10, 10)];
+            }
+        } else {
+            if ([self closeToPlayer:400.0f]) {
+                [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"fireDemonWithArmorShooting"];
+                _waiting = 0.2f;
+            }
+            else if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+                _vx = -25.0f;
+            }
+            
         }
     }
 
@@ -494,6 +516,7 @@
     _vy = 0;
     _alpha = 1.0f;
     _fadeout = false;
+    _waiting = -1.0f;
     if(self )
     _madeSound = false;
     [_sprite setAlpha:1.0f];
@@ -539,6 +562,9 @@
     } else if(_currentBehavior == COLLISION_BEHAVIOR_FIREBALL_START || _currentBehavior == COLLISION_BEHAVIOR_FIREBALL_MOVING || _currentBehavior == COLLISION_BEHAVIOR_FIREBALL_LANDED) {
         _currentBehavior = COLLISION_BEHAVIOR_FIREBALL_START;
         [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"fireballMovingAnim"];
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR_WAITTOSHOOT || _currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR) {
+        _currentBehavior = COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR_WAITTOSHOOT;
+        [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"fireDemonWithArmorWalking"];
     } else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;     
 }         _collided = false;

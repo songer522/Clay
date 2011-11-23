@@ -78,6 +78,13 @@
                 [[_sprite getCCSprite] setVisible:NO];
                 _isAggressive = false;
                 break;
+            case PROJECTILE_BEHAVIOR_FIRE_DEMON_BULLET:
+                _sprite = [Sprite spriteWithFile:@"blank.png"];
+                [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"fireBullet"];
+                [[_sprite getCCSprite] setVisible:NO];
+                _vx = -250.0f;
+                _isAggressive = false;
+                break;
             default:
                 break;                
                 
@@ -268,7 +275,9 @@
 
 -(void)dealloc
 {
-    [_sprite release];
+    //[_sprite release];
+    [[_sprite getCCSprite] removeFromParentAndCleanup:YES];
+    _sprite = nil;
     [super dealloc];
 }
 
