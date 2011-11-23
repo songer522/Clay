@@ -20,6 +20,7 @@
 #import "GameSettings.h"
 #import "MainMenuScene.h"
 #import "Appirater.h"
+#import "SoundEngine.h"
 
 @implementation AppDelegate
 

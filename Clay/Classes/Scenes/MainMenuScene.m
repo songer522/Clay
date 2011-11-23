@@ -16,7 +16,8 @@
 #import "ChooseLevelScreen.h"
 #import "TextureManager.h"
 #import "Appirater.h"
-
+#import "SoundEngine.h"
+#import "GameSettings.h"
 
 @implementation MainMenuScene
 
@@ -98,7 +99,13 @@
         
         [self scheduleUpdate];
         self.isTouchEnabled = YES;
-       
+        
+        NSString *musicStarted = [[GameSettings shared] getGlobalForKey:@"titleMusicStarted"];
+        if (![musicStarted isEqualToString:@"YES"]) {
+            [[SoundEngine shared] playMusic:@"title"];
+            [[GameSettings shared] setGlobal:@"YES" ForKey:@"titleMusicStarted"];
+        }
+                
         [myPool drain];
 
     }

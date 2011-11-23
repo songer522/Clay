@@ -2385,6 +2385,11 @@
 				61A9E19B147D63C0008D2179 /* TrackLapse_Icons.png in Resources */,
 				61675C2C147D771F0076DA64 /* tileset_level_8-hd.png in Resources */,
 				61675C2D147D771F0076DA64 /* tileset_level_8.png in Resources */,
+				5450735B147D6C840081D394 /* crow.mp3 in Resources */,
+				54507360147D6E790081D394 /* blowAction.wav in Resources */,
+				54507362147D71000081D394 /* maddogBark.wav in Resources */,
+				54507365147D733F0081D394 /* town.mp3 in Resources */,
+				54507366147D733F0081D394 /* track.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
