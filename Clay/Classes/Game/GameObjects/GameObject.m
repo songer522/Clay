@@ -428,6 +428,7 @@
             NSLog(@"fireball stop");
             _currentBehavior = COLLISION_BEHAVIOR_FIREBALL_LANDED;
             [self setPlayerEffect:@"collide"];
+            [[SoundEngine shared] playSound:@"fireballLand"];
         }
     }
 

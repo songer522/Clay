@@ -22,7 +22,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{97, 217}, {92, 105}}</string>
+			<string>{{196, 213}, {92, 105}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -88,7 +88,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{196, 213}, {92, 105}}</string>
+			<string>{{97, 217}, {92, 105}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -287,6 +287,50 @@
 			<true/>
 			<key>textureRect</key>
 			<string>{{216, 0}, {102, 107}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>Fire_BabyFireDemon_1.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {42, 56}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{42, 56}</string>
+			<key>spriteSourceSize</key>
+			<string>{42, 56}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{238, 321}, {42, 56}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>Fire_BabyFireDemon_2.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {42, 56}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{42, 56}</string>
+			<key>spriteSourceSize</key>
+			<string>{42, 56}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{193, 321}, {42, 56}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -550,7 +594,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{193, 321}, {39, 44}}</string>
+			<string>{{283, 321}, {39, 44}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -572,7 +616,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{234, 321}, {39, 44}}</string>
+			<string>{{324, 321}, {39, 44}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
