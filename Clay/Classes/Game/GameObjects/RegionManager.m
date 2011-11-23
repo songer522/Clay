@@ -30,7 +30,7 @@
 -(void)prepareArrays:(int)mapWidthInTiles
 {
     int numberOfRegions = mapWidthInTiles / REGION_MANAGER_TILES_PER_REGION;
-    for (int i=0; i<numberOfRegions;i++) {
+    for (int i=0; i<numberOfRegions*2;i++) {
         NSMutableArray *region = [[NSMutableArray alloc] initWithCapacity:3];
         [_regions addObject:region];
     }
