@@ -97,8 +97,6 @@
         
         _map.scale = _scale;
         
-        [[Camera sharedCamera] setBoundaries:[self getLevelBoundaries]];
-        
         [_obstacles releaseMap];
         
         _collisionHandler = [CollisionDetection collisionHandlerWithMetaLayer:_meta Map:_map];
