@@ -26,6 +26,7 @@
 #import "Projectile.h"
 #import "HudLayer.h"
 #import "GameSettings.h"
+#import "RegionManager.h"
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
@@ -62,8 +63,14 @@
         _mapLayers = [[NSMutableDictionary alloc] initWithCapacity:12];
         _parallaxLayers = [[NSMutableArray alloc] initWithCapacity:12];
         
+        _obstacleManager = [[RegionManager alloc] init];
+        //_backgroundManager = [[RegionManager alloc] init];
+        
         [self initTiledMap:filename ObstacleLayer:obstacleLayer];
        
+        
+        [_obstacleManager prepareArrays:_map.mapSize.width];
+        //[_backgroundManager prepareArrays:_map.mapSize.width];
         
         //[[[LayerManager sharedLayers] currentLayer] addChild:_map];
         if (IS_IPAD)
@@ -113,7 +120,8 @@
     NSArray *layers = [layerList componentsSeparatedByString:@","];
     for (NSString *layerName in layers) {
         if ([layerName compare:@"actives"] == NSOrderedSame) {
-            [self addObstaclesToMap];
+            [self addObstaclesToMapAndRegion];
+            //[_obstacleManager printDescription];
             [player resetSprite:[[LayerManager sharedLayers] currentLayer]];
             //currentZ -= 1;
             continue;
@@ -154,13 +162,16 @@
             
         }
     }
+    
 }
 
--(void)addObstaclesToMap
+-(void)addObstaclesToMapAndRegion
 {
     for (MapObject *mapObject in _obstacleMapObjects) {
         GameObject *obstacle = mapObject.object;
         [[[LayerManager sharedLayers] currentLayer] addChild:[obstacle getCCSprite]];
+        [[obstacle getCCSprite] setVisible:NO];
+        [_obstacleManager addGameObject:obstacle];
     }
 }
 
@@ -180,6 +191,7 @@
 {
     _x = x;
     _y = y;
+    
     CGPoint position = [[Camera sharedCamera] convertToScreenXY:CGPointMake(_x,_y)];
     
     //round position to eliminate white artifacts (note, this is in points, so with retina, we want to round based
@@ -355,6 +367,10 @@
             mapObject.parallaxRatio = ratio;
             [[[LayerManager sharedLayers] currentLayer] addChild:[mapObject.object getCCSprite]];
             mapObject.placed = true;
+            
+            //add to background regionmanager
+            //[_backgroundManager addGameObject:mapObject.object];
+            [[mapObject.object getCCSprite] pauseSchedulerAndActions];
         }
     }
 }
@@ -392,9 +408,19 @@
 
 -(void)resetObstacles
 {
-    for (GameObject *obstacle in _obstacleMapObjects) {
+    for (MapObject *obstacle in _obstacleMapObjects) {
         [obstacle reset];
+        
     }
+    
+    /*
+    for (MapObject *object in _otherMapObjects) {
+        [object reset];
+    }*/
+    
+    CGPoint playerPos = [[[LayerManager sharedLayers] getPlayer] getPosition];
+    [_obstacleManager resetCurrentRegion];
+    [_obstacleManager changeRegionsBasedOnX:(playerPos.x - 256)];
 }
 
 -(void)resetTriggers
@@ -411,8 +437,8 @@
     bool collision = false;
     GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
     
-    for (MapObject *mapObject in _obstacleMapObjects) {
-        GameObject *obstacle = mapObject.object;
+    NSMutableArray *obstacles = [_obstacleManager getActiveGameObjectList];
+    for (GameObject *obstacle in obstacles) {
         if(!obstacle.collided) {
             
             int dist = abs([source getPosition].x - [obstacle getPosition].x);
@@ -448,8 +474,8 @@
 {
     bool collision = false;
     
-    for (MapObject *mapObject in _obstacleMapObjects) {
-        GameObject *obstacle = mapObject.object;
+    NSMutableArray *obstacles = [_obstacleManager getActiveGameObjectList];
+    for (GameObject *obstacle in obstacles) {
         if(![obstacle hasBeenHit] && [obstacle canAggressiveHit]) {
             collision = [self testCollisionWithGameObject:obstacle Source:source];
             if (collision) {
@@ -546,13 +572,28 @@
     return obstacle;
 }
 
+-(NSMutableArray*)getActiveGameObjectList
+{
+    return [_obstacleManager getActiveGameObjectList];
+}
+
 -(void)update:(float)dt Velocity:(float)vx
 {
-    //NSLog(@"DT: %f",dt);
     [self setPositionAtX:_x Y:_y];
-    for(MapObject *obstacle in _obstacleMapObjects) {
-        [obstacle.object update:dt];
+    
+    CGPoint playerPos = [[[LayerManager sharedLayers] getPlayer] getPosition];
+    [_obstacleManager changeRegionsBasedOnX:(playerPos.x - 256)];
+    //[_backgroundManager changeRegionsBasedOnX:(playerPos.x - 128)];
+    
+    NSMutableArray *obstacles = [_obstacleManager getActiveGameObjectList];
+    for (GameObject *obstacle in obstacles) {
+        [obstacle update:dt];
     }
+    
+    //NSMutableArray *objects = [_backgroundManager getActiveGameObjectList];
+    //for (GameObject *object in objects) {
+    //    [object update:dt];
+    //}
     
     for (MapObject *objects in _otherMapObjects) {
         [objects.object update:dt];
@@ -589,6 +630,8 @@
     [_musicName release];
     [_nextLevelName release];
     [_playerThirdActionName release];
+    
+    [_obstacleManager release];
 
     _gameObjects = nil; //is maintained throughout the game, so keep.
     

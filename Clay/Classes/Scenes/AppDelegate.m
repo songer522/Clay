@@ -19,6 +19,7 @@
 #import "TextureManager.h"
 #import "GameSettings.h"
 #import "MainMenuScene.h"
+#import "SoundEngine.h"
 
 @implementation AppDelegate
 
@@ -74,7 +75,7 @@
 								   depthFormat:0						// GL_DEPTH_COMPONENT16_OES
 						];
 	
-    glView.opaque = NO;
+//    glView.opaque = YES;
     
 	// attach the openglView to the director
 	[director setOpenGLView:glView];
@@ -99,7 +100,7 @@
 #endif
 	
 	[director setAnimationInterval:1.0f/60.0f];
-	[director setDisplayFPS:NO];
+	[director setDisplayFPS:YES];
     
 	
 	
@@ -121,6 +122,8 @@
 	[self removeStartupFlicker];
 	
     
+    [[GameSettings shared] setGlobal:@"YES" ForKey:@"titleMusicStarted"];
+    [[SoundEngine shared] playMusic:@"title"];
     [[TextureManager shared] loadMemoryForKey:@"launch"];
     
     [[CCDirector sharedDirector] runWithScene:[MainMenuScene scene]]; 

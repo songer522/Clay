@@ -49,6 +49,10 @@
                 //make it blank so we can access the sprite position for debug drawing. for now at least.
                 _sprite = [Sprite spriteWithFile:@"blank.png"];
                 break;
+            case PROJECTILE_BEHAVIOR_PLAYER_BLOWING:
+                //using a separate sprite to represent the animation
+                _sprite = [Sprite spriteWithFile:@"blank.png"];
+                break;
             case PROJECTILE_BEHAVIOR_BULLET:
                 _sprite = [Sprite spriteFromFrameCacheWithName:@"Zombies_Bullet.png"];
                 //[[_sprite getCCSprite] setScale:0.1f];

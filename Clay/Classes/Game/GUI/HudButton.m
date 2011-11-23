@@ -123,7 +123,8 @@
         buttonImage = @"UI_Button_Shooting.png";
     } else if([action isEqualToString:@"block"]) {
         buttonImage = @"UI_Button_Blocking.png";
-        
+    } else if([action isEqualToString:@"blow"]) {
+        buttonImage = @"UI_Button_Blowing.png";
     }
     
     [self createSpriteFromImage:buttonImage];

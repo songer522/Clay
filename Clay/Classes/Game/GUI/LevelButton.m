@@ -33,7 +33,7 @@
 {
     NSString *frameName;
     bool unlocked = true; //for now, eventually check storage
-    if (unlocked && _buttonId < 8) {
+    if (unlocked && _buttonId < 9) {
         frameName = [NSString stringWithFormat:@"CL_Level%d.png",_buttonId];
     } else {
         frameName = @"CL_LevelLocked.png";
@@ -81,7 +81,7 @@
 
 -(bool)checkIfSelected:(CGPoint)touch
 {
-    if ([self testCollision:touch]) {
+    if ([self testCollision:touch] && _buttonId < 9) {
         [self setSelected];
         return true;
     }

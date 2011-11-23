@@ -228,7 +228,7 @@
 -(bool)objectShouldReactToCollision
 {
     
-    return ([_thirdAction shouldTriggerPlayerHurtCollision] && _onLedge);
+    return ([_thirdAction shouldTriggerPlayerHurtCollision]); //CHANGED: used to be '&& _onLedge' to enable collisions on ledge again
 }
 
 -(void)startCollision:(PlayerEffect)effect Source:(id<Collidable>)source
@@ -262,22 +262,20 @@
 {
     if(_speed.inTurbo)
     {
-      
         [self changeHealth:-2];
-       
     }
     else
     {
-      
         [self changeHealth:-1];
     }
+
     [_speed startCollision];
     
     _waitToGetUp = 100.0f;
     
     [[SoundEngine shared] playSound:@"timHurt"];
     
-    if (_isJumping) {
+    if (_isJumping && [_speed inTurbo]) {
         [_skin setPlayerAnimation:PLAYER_ANIM_TRIPPING ForSprite:_sprite];
         _isTripping = true;
     } else {
@@ -343,6 +341,8 @@
         _thirdAction = (PlayerAction*)[PlayerActionFactory buildPlayerAction:PLAYER_ACTION_SHOOT];
     } else if([action isEqualToString:@"block"]) {
         _thirdAction = (PlayerAction*)[PlayerActionFactory buildPlayerAction:PLAYER_ACTION_BLOCK];
+    } else if([action isEqualToString:@"blow"]) {
+        _thirdAction = (PlayerAction*)[PlayerActionFactory buildPlayerAction:PLAYER_ACTION_BLOW];
     }
     
     [_thirdAction setParent:self];

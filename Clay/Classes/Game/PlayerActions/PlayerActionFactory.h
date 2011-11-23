@@ -15,7 +15,8 @@ typedef enum {
     PLAYER_ACTION_WOO,
     PLAYER_ACTION_DODGE,
     PLAYER_ACTION_SHOOT,
-    PLAYER_ACTION_BLOCK
+    PLAYER_ACTION_BLOCK,
+    PLAYER_ACTION_BLOW
 }PlayerActionType;
 
 @interface PlayerActionFactory : PlayerAction
