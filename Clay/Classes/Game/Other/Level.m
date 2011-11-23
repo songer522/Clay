@@ -572,7 +572,7 @@
     [self setPositionAtX:_x Y:_y];
     
     CGPoint playerPos = [[[LayerManager sharedLayers] getPlayer] getPosition];
-    [_obstacleManager changeRegionsBasedOnX:(playerPos.x - 128)];
+    [_obstacleManager changeRegionsBasedOnX:(playerPos.x - 256)];
     //[_backgroundManager changeRegionsBasedOnX:(playerPos.x - 128)];
     
     NSMutableArray *obstacles = [_obstacleManager getActiveGameObjectList];

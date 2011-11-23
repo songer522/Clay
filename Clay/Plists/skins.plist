@@ -8,6 +8,8 @@
 		<string>eightBitTim</string>
 		<key>animations</key>
 		<dict>
+			<key>blowAction</key>
+			<string>blowingAnim</string>
 			<key>shootAction</key>
 			<string>shootingAnim</string>
 			<key>dodgeAction</key>
@@ -36,6 +38,8 @@
 		<string>characterAnims</string>
 		<key>animations</key>
 		<dict>
+			<key>blowAction</key>
+			<string>blowingAnim</string>
 			<key>shootAction</key>
 			<string>shootingAnim</string>
 			<key>dodgeAction</key>

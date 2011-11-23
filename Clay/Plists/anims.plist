@@ -515,9 +515,9 @@
 	<key>blowingAnim</key>
 	<dict>
 		<key>animationFrames</key>
-		<string>1,1,2,2,2,2,2,2,2,2,2,2</string>
+		<string>1,1,2,2,2,2,2,2,2,2</string>
 		<key>clearPreviousAnims</key>
-		<string>true</string>
+		<string>false</string>
 		<key>delay</key>
 		<string>0.05</string>
 		<key>group</key>
@@ -525,7 +525,7 @@
 		<key>looping</key>
 		<string>false</string>
 		<key>sequencePrefix</key>
-		<string>BlowingWind_</string>
+		<string>Character_Blowing_</string>
 		<key>spritesheetPlist</key>
 		<string>characterBlowing</string>
 	</dict>
