@@ -605,7 +605,7 @@
         _currentBehavior = COLLISION_BEHAVIOR_FIRE_DEMON;
     } else if([behavior isEqualToString:@"fireDemonWithArmor"]) {
         _collideBehavior = COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR;
-        _currentBehavior = COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR;
+        _currentBehavior = COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR_WAITTOSHOOT;
     } else if([behavior isEqualToString:@"fireball"]) {
         _collideBehavior = COLLISION_BEHAVIOR_FIREBALL_LANDED;
         _currentBehavior = COLLISION_BEHAVIOR_FIREBALL_START;

@@ -11,6 +11,7 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
+@class Level;
 @class Sprite;
 
 @interface Camera : NSObject
@@ -36,7 +37,7 @@
 
 #pragma mark - public methods
 -(void)moveByX:(float)x Y:(float)y;
--(void)setBoundaries:(CGRect)rect;
+-(void)setBoundaries:(CGRect)rect Level:(Level*)level;
 
 -(CGPoint)convertToScreenXY:(CGPoint)worldXY;
 -(float)convertToScreenX:(float)worldX;

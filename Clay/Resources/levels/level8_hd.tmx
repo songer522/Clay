@@ -121,6 +121,11 @@
     <property name="obstacle" value="femaleBreakdancer"/>
    </properties>
   </tile>
+  <tile id="41">
+   <properties>
+    <property name="obstacle" value="fireBabyDemon"/>
+   </properties>
+  </tile>
   <tile id="48">
    <properties>
     <property name="obstacle" value="fireDemon"/>

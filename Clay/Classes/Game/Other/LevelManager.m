@@ -82,6 +82,7 @@ static LevelManager *_shared = nil;
     GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
     
     Level *level = [Level levelWithFilename:fileName ObstacleLayer:obstacleLayer LayerList:layerList GameObjectController:_gameObjects Player:gameLayer.player];
+    
     level.nextLevelName = [NSString stringWithString:[levelSettings valueForKey:@"nextLevelName"]];
     level.postLevelComicName = [NSString stringWithString:[levelSettings valueForKey:@"postLevelComic"]];
     level.gameObjects = _gameObjects;
@@ -89,7 +90,8 @@ static LevelManager *_shared = nil;
     level.musicName = [NSString stringWithString:[levelSettings valueForKey:@"music"]];
     level.preComicName = [NSString stringWithString:[levelSettings valueForKey:@"preComic"]];
 
-    
+    //camera needs to know what the level name is so call after level data is created
+    [[Camera sharedCamera] setBoundaries:[level getLevelBoundaries] Level:level];
 
     return level;
 }
