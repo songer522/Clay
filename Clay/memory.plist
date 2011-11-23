@@ -27,7 +27,7 @@
 		<key>removeTextures</key>
 		<string>tileset_level_1</string>
 		<key>animations</key>
-		<string>level1</string>
+		<string>level1,woo</string>
 		<key>sounds</key>
 		<string>wooAction</string>
 		<key>textures</key>
@@ -38,7 +38,7 @@
 		<key>removeTextures</key>
 		<string>tileset_level2</string>
 		<key>animations</key>
-		<string>level2</string>
+		<string>level2,kick</string>
 		<key>sounds</key>
 		<string>henKicked,cowDied</string>
 		<key>textures</key>
@@ -49,7 +49,7 @@
 		<key>removeTextures</key>
 		<string>tileset_level_3</string>
 		<key>animations</key>
-		<string>level3</string>
+		<string>level3,woo</string>
 		<key>sounds</key>
 		<string>wooAction</string>
 		<key>textures</key>
@@ -60,7 +60,7 @@
 		<key>removeTextures</key>
 		<string>tileset_level_4</string>
 		<key>animations</key>
-		<string>level4</string>
+		<string>level4,dodge</string>
 		<key>sounds</key>
 		<string>shuffling</string>
 		<key>textures</key>
@@ -71,7 +71,7 @@
 		<key>removeTextures</key>
 		<string>tileset_level_5</string>
 		<key>animations</key>
-		<string>level5</string>
+		<string>level5,woo</string>
 		<key>sounds</key>
 		<string>wooAction</string>
 		<key>textures</key>
@@ -82,7 +82,7 @@
 		<key>removeTextures</key>
 		<string>tileset_level_6</string>
 		<key>animations</key>
-		<string>level6</string>
+		<string>level6,shoot</string>
 		<key>sounds</key>
 		<string>zombieMoan,shootActionReload,shootAction</string>
 		<key>textures</key>
@@ -98,6 +98,17 @@
 		<string>shield,jimShipShoot,deflected</string>
 		<key>textures</key>
 		<string>eightBitTim,computerLevel</string>
+	</dict>
+	<key>level8</key>
+	<dict>
+		<key>removeTextures</key>
+		<string>tileset_level_8</string>
+		<key>animations</key>
+		<string>level8,blow</string>
+		<key>sounds</key>
+		<string>none</string>
+		<key>textures</key>
+		<string>fireLevel,characterBlowing</string>
 	</dict>
 	<key>mainMenu</key>
 	<dict>

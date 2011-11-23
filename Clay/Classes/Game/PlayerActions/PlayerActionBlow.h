@@ -8,6 +8,11 @@
 
 #import "PlayerAction.h"
 
+@class Sprite;
+
 @interface PlayerActionBlow : PlayerAction
+{
+    Sprite *_wind;
+}
 
 @end

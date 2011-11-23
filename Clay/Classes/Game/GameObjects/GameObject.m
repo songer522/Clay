@@ -198,6 +198,12 @@
     } else if(_currentBehavior == COLLISION_BEHAVIOR_ROLLING_HAYBALE) {
         _alpha = 1.5f;
         _fadeout = true;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON) {
+        _alpha = 1.5f;
+        _fadeout = true;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR) {
+        _alpha = 1.5f;
+        _fadeout = true;
     }
     
     return _playerEffect;
@@ -471,13 +477,11 @@
     
     else if(_currentBehavior == COLLISION_BEHAVIOR_MAD_DOG) {
         _currentBehavior = COLLISION_BEHAVIOR_MAD_DOG;
-       // NSLog(@"%@", self.originalAnimation);
         [self setOriginalAnimation:@"dogAnim"];
         [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"dogAnim"];
     }
     else if(_currentBehavior == COLLISION_BEHAVIOR_RETRO_ZOMBIE) {
         _currentBehavior = COLLISION_BEHAVIOR_RETRO_ZOMBIE;
-        // NSLog(@"%@", self.originalAnimation);
         [self setOriginalAnimation:@"retroZombieStatic"];
         [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"retroZombieStatic"];
     }
@@ -487,6 +491,10 @@
         _currentBehavior = COLLISION_BEHAVIOR_FLYER;
     } else if(_currentBehavior == COLLISION_BEHAVIOR_ROLLING_HAYBALE) {
         _currentBehavior = COLLISION_BEHAVIOR_ROLLING_HAYBALE;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON) {
+        _currentBehavior = COLLISION_BEHAVIOR_FIRE_DEMON;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR) {
+        _currentBehavior = COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR;
     } else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;     
 }         _collided = false;

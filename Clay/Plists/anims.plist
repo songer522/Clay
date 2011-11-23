@@ -300,7 +300,7 @@
 		<key>delay</key>
 		<string>0.17</string>
 		<key>group</key>
-		<string>player</string>
+		<string>dodge</string>
 		<key>looping</key>
 		<string>true</string>
 		<key>sequencePrefix</key>
@@ -495,6 +495,40 @@
 		<key>spritesheetPlist</key>
 		<string>fireLevel</string>
 	</dict>
+	<key>blowingWindAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3,4,5,6,7,8,9</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.05</string>
+		<key>group</key>
+		<string>blow</string>
+		<key>looping</key>
+		<string>false</string>
+		<key>sequencePrefix</key>
+		<string>BlowingWind_</string>
+		<key>spritesheetPlist</key>
+		<string>characterBlowing</string>
+	</dict>
+	<key>blowingAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,1,2,2,2,2,2,2,2,2,2,2</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.05</string>
+		<key>group</key>
+		<string>blow</string>
+		<key>looping</key>
+		<string>false</string>
+		<key>sequencePrefix</key>
+		<string>BlowingWind_</string>
+		<key>spritesheetPlist</key>
+		<string>characterBlowing</string>
+	</dict>
 	<key>headlessZombieAnim</key>
 	<dict>
 		<key>animationFrames</key>
@@ -589,7 +623,7 @@
 		<key>delay</key>
 		<string>0.1</string>
 		<key>group</key>
-		<string>player</string>
+		<string>kick</string>
 		<key>looping</key>
 		<string>false</string>
 		<key>sequencePrefix</key>
@@ -725,7 +759,7 @@
 		<key>delay</key>
 		<string>0.1</string>
 		<key>group</key>
-		<string>player</string>
+		<string>shoot</string>
 		<key>looping</key>
 		<string>false</string>
 		<key>sequencePrefix</key>
@@ -827,7 +861,7 @@
 		<key>delay</key>
 		<real>0.075</real>
 		<key>group</key>
-		<string>player</string>
+		<string>woo</string>
 		<key>looping</key>
 		<string>false</string>
 		<key>sequencePrefix</key>
