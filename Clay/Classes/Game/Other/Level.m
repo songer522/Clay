@@ -411,10 +411,15 @@
         [obstacle reset];
         
     }
+    
     /*
     for (MapObject *object in _otherMapObjects) {
         [object reset];
     }*/
+    
+    CGPoint playerPos = [[[LayerManager sharedLayers] getPlayer] getPosition];
+    [_obstacleManager resetCurrentRegion];
+    [_obstacleManager changeRegionsBasedOnX:(playerPos.x - 256)];
 }
 
 -(void)resetTriggers

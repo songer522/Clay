@@ -228,7 +228,7 @@
 -(bool)objectShouldReactToCollision
 {
     
-    return ([_thirdAction shouldTriggerPlayerHurtCollision] && _onLedge);
+    return ([_thirdAction shouldTriggerPlayerHurtCollision]); //CHANGED: used to be '&& _onLedge' to enable collisions on ledge again
 }
 
 -(void)startCollision:(PlayerEffect)effect Source:(id<Collidable>)source
