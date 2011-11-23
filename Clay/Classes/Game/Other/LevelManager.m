@@ -78,7 +78,7 @@ static LevelManager *_shared = nil;
 
     NSString *layerList = [NSString stringWithString:[levelSettings valueForKey:@"layerList"]];
     if (IS_IPAD) {
-        _playerOffsetY = [[levelSettings valueForKey:@"playerOffsetY"] intValue] + 55;
+        _playerOffsetY = [[levelSettings valueForKey:@"playerOffsetY"] intValue];
     }
     else
     {

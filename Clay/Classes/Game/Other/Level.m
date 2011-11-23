@@ -321,7 +321,7 @@
             if (obstacle) {
                 GameObject *object = [_gameObjects loadGameObjectWithName:obstacle AddToLayer:NO];
                 CGPoint position = [self getXYPositionForCoordinates:coords];
-                [object setPositionAtX:position.x Y:position.y];
+                [object setPositionAtX:position.x Y:position.y * MULTIPLIERY];
                 [object setStartingPosition:position];
                 [[object getCCSprite] setScale:_scale];                
                 

@@ -13,7 +13,7 @@
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
 #define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
-#define RUNNER_VELOCITY_RATE  (IS_IPAD ? 42.0f : 14.0f)
+#define RUNNER_VELOCITY_RATE  14.0f * MULTIPLIERX
 #define RUNNER_STARTING_X_POSITION 20
 
 @implementation Runner

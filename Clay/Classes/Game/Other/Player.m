@@ -22,6 +22,9 @@
 #import "GameLayer.h"
 #import "HudLayer.h"
 
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
+#define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 #define PLAYER_SPRITE_FILE @"player_idle_01.png"
 #define PLAYER_STARTING_VELOCITY 0
 #define PLAYER_STARTING_Y_POSITION 40
@@ -53,7 +56,7 @@
         NSDictionary *cameraTracking = [settings objectForKey:@"cameraTracking"];
         int cameraX = [[cameraTracking objectForKey:@"x"] intValue];
         int cameraY = [[cameraTracking objectForKey:@"y"] intValue];
-        [[Camera sharedCamera] setCenter:CGPointMake(cameraX, cameraY)];
+        [[Camera sharedCamera] setCenter:CGPointMake(cameraX * MULTIPLIERX, cameraY * MULTIPLIERY)];
         
         GameObjectController *factory = [LevelManager shared].gameObjectFactory;
         [factory initializeGameObject:self Name:@"player" AddToLayer:YES];
@@ -130,8 +133,16 @@
     self.hasGravity = false;
     _firstFrameJumping = true;
     _isHighJump = false;
-    _vy = -115.0f;
-    _y += 2.0f;
+    if (IS_IPAD)
+    {
+        _vy = -225.0f;
+        _y += 2.0f;
+    }
+    else
+    {
+        _vy = -115.0f;
+        _y += 2.0f;
+    } 
     _isJumping = true;
     [_skin setPlayerAnimation:PLAYER_ANIM_JUMPING ForSprite:_sprite];
     [[self getCollision] processNewCollisionState:COLLISION_STATE_MIDAIR];
@@ -148,7 +159,14 @@
         return; }
     self.hasGravity = true;
     
-    _vy = -250.0f;
+    if (IS_IPAD)
+    {
+        _vy = -360.0f;
+    }
+    else
+    {
+        _vy = -250.0f;
+    }
     _ay = 0.0f;
     _isJumping = true;
     

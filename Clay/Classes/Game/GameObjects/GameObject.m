@@ -20,6 +20,9 @@
 #import "Projectile.h"
 #import "BossFactory.h"
 
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
+#define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 #define GAME_OBJECT_DISTANCE_ONSCREEN 550.0f
 
 @implementation GameObject
@@ -116,8 +119,8 @@
 
 -(void) setOffsetForX:(float)x Y:(float)y
 {
-    _offsetX = x;
-    _offsetY = y;
+    _offsetX = x * MULTIPLIERX;
+    _offsetY = y * MULTIPLIERY;
 }
 
 -(void) setPosition:(CGPoint)position

@@ -19,6 +19,7 @@
 #import "TextureManager.h"
 #import "GameSettings.h"
 #import "GameLayer.h"
+#import "MainMenuScene.h"
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
 #define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
@@ -119,7 +120,7 @@
     [_startButton setPosition:ccp(430 * MULTIPLIERX,18 * MULTIPLIERY)];
     
     _backButton = [ActionButton actionButtonWithText:@"BACK"];
-    [_backButton setPosition:ccp(50, 18)];
+    [_backButton setPosition:ccp(50 * MULTIPLIERX, 18 * MULTIPLIERY)];
     
     
     for (int i=0; i<11; i++) {

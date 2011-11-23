@@ -157,7 +157,6 @@
 		54507362147D71000081D394 /* maddogBark.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54507361147D71000081D394 /* maddogBark.wav */; };
 		54507365147D733F0081D394 /* town.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 54507363147D733F0081D394 /* town.mp3 */; };
 		54507366147D733F0081D394 /* track.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 54507364147D733F0081D394 /* track.mp3 */; };
-		54507368147D91FD0081D394 /* fireballLand.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54507367147D91FD0081D394 /* fireballLand.wav */; };
 		54528C07145B466B009437C3 /* clearedObstacle.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54528C06145B466B009437C3 /* clearedObstacle.wav */; };
 		545CE69D146C1AA9003EC9C1 /* PlayerActionBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 545CE69C146C1AA9003EC9C1 /* PlayerActionBlock.m */; };
 		545CE6A0146C1E0C003EC9C1 /* JimShipShoot.wav in Resources */ = {isa = PBXBuildFile; fileRef = 545CE69E146C1E0C003EC9C1 /* JimShipShoot.wav */; };
@@ -396,6 +395,7 @@
 		54FD5509146B360D00470807 /* townLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54FD5505146B360D00470807 /* townLevel-hd.png */; };
 		54FD550A146B360D00470807 /* townLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54FD5506146B360D00470807 /* townLevel.plist */; };
 		54FD550B146B360D00470807 /* townLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 54FD5507146B360D00470807 /* townLevel.png */; };
+		575D82A9147DA2400046AC57 /* fireballLand.wav in Resources */ = {isa = PBXBuildFile; fileRef = 575D82A8147DA2400046AC57 /* fireballLand.wav */; };
 		57A03E9D1452173A00F2017F /* Menu_Ending_BestTime.png in Resources */ = {isa = PBXBuildFile; fileRef = 57A03E9C1452173A00F2017F /* Menu_Ending_BestTime.png */; };
 		57A0A015147AC82000B461EB /* menuTextures-ipad.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57A0A013147AC81D00B461EB /* menuTextures-ipad.plist */; };
 		57A0A016147AC82000B461EB /* menuTextures-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 57A0A014147AC81E00B461EB /* menuTextures-ipad.png */; };
@@ -682,7 +682,6 @@
 		54507361147D71000081D394 /* maddogBark.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = maddogBark.wav; path = Resources/sounds/maddogBark.wav; sourceTree = "<group>"; };
 		54507363147D733F0081D394 /* town.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = town.mp3; path = Resources/music/town.mp3; sourceTree = "<group>"; };
 		54507364147D733F0081D394 /* track.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = track.mp3; path = Resources/music/track.mp3; sourceTree = "<group>"; };
-		54507367147D91FD0081D394 /* fireballLand.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = fireballLand.wav; path = Resources/sounds/fireballLand.wav; sourceTree = "<group>"; };
 		54528C06145B466B009437C3 /* clearedObstacle.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = clearedObstacle.wav; path = Resources/sounds/clearedObstacle.wav; sourceTree = "<group>"; };
 		545CE69B146C1AA9003EC9C1 /* PlayerActionBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerActionBlock.h; sourceTree = "<group>"; };
 		545CE69C146C1AA9003EC9C1 /* PlayerActionBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerActionBlock.m; sourceTree = "<group>"; };
@@ -1005,6 +1004,7 @@
 		54FD5505146B360D00470807 /* townLevel-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "townLevel-hd.png"; sourceTree = "<group>"; };
 		54FD5506146B360D00470807 /* townLevel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = townLevel.plist; sourceTree = "<group>"; };
 		54FD5507146B360D00470807 /* townLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = townLevel.png; sourceTree = "<group>"; };
+		575D82A8147DA2400046AC57 /* fireballLand.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = fireballLand.wav; sourceTree = "<group>"; };
 		57A03E9C1452173A00F2017F /* Menu_Ending_BestTime.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Menu_Ending_BestTime.png; sourceTree = "<group>"; };
 		57A0A013147AC81D00B461EB /* menuTextures-ipad.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "menuTextures-ipad.plist"; sourceTree = "<group>"; };
 		57A0A014147AC81E00B461EB /* menuTextures-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuTextures-ipad.png"; sourceTree = "<group>"; };
@@ -1544,7 +1544,7 @@
 		545CBC2F142D25AB00795FC9 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
-				54507367147D91FD0081D394 /* fireballLand.wav */,
+				575D82A8147DA2400046AC57 /* fireballLand.wav */,
 				54507361147D71000081D394 /* maddogBark.wav */,
 				5450735F147D6E790081D394 /* blowAction.wav */,
 				54507357147D6C840081D394 /* crow.mp3 */,
@@ -2344,10 +2344,43 @@
 				61B0B358147714A7006887AB /* level7.tmx in Resources */,
 				61B0B35A14771858006887AB /* level3.tmx in Resources */,
 				61B0B35E147732D2006887AB /* level5.tmx in Resources */,
+				54767C35147C04450025F46F /* characterBlowing-hd.plist in Resources */,
+				54767C36147C04450025F46F /* characterBlowing-hd.png in Resources */,
+				54767C37147C04450025F46F /* characterBlowing.plist in Resources */,
+				54767C38147C04450025F46F /* characterBlowing.png in Resources */,
+				54767C39147C04450025F46F /* characterDodging-hd.plist in Resources */,
+				54767C3A147C04450025F46F /* characterDodging-hd.png in Resources */,
+				54767C3B147C04450025F46F /* characterDodging.plist in Resources */,
+				54767C3C147C04450025F46F /* characterDodging.png in Resources */,
+				54767C3D147C04450025F46F /* characterKicking-hd.plist in Resources */,
+				54767C3E147C04450025F46F /* characterKicking-hd.png in Resources */,
+				54767C3F147C04450025F46F /* characterKicking.plist in Resources */,
+				54767C40147C04450025F46F /* characterKicking.png in Resources */,
+				54767C41147C04450025F46F /* characterShooting-hd.plist in Resources */,
+				54767C42147C04450025F46F /* characterShooting-hd.png in Resources */,
+				54767C43147C04450025F46F /* characterShooting.plist in Resources */,
+				54767C44147C04450025F46F /* characterShooting.png in Resources */,
+				54767C45147C04450025F46F /* characterWoo-hd.plist in Resources */,
+				54767C46147C04450025F46F /* characterWoo-hd.png in Resources */,
+				54767C47147C04450025F46F /* characterWoo.plist in Resources */,
+				54767C48147C04450025F46F /* characterWoo.png in Resources */,
+				54767C4B147C07930025F46F /* fire.mp3 in Resources */,
+				54063760147C440B00EA982B /* fireLevel-hd.plist in Resources */,
+				54063761147C440B00EA982B /* fireLevel-hd.png in Resources */,
+				54063762147C440B00EA982B /* fireLevel.plist in Resources */,
+				54063763147C440B00EA982B /* fireLevel.png in Resources */,
+				54AFD9A9147D4584005FC00C /* tileset_level_8.png in Resources */,
+				54AFD9AC147D45E5005FC00C /* level8.tmx in Resources */,
+				5450735B147D6C840081D394 /* crow.mp3 in Resources */,
+				54507360147D6E790081D394 /* blowAction.wav in Resources */,
+				54507362147D71000081D394 /* maddogBark.wav in Resources */,
+				54507365147D733F0081D394 /* town.mp3 in Resources */,
+				54507366147D733F0081D394 /* track.mp3 in Resources */,
 				57A0A015147AC82000B461EB /* menuTextures-ipad.plist in Resources */,
 				57A0A016147AC82000B461EB /* menuTextures-ipad.png in Resources */,
 				57A0A019147AC9EF00B461EB /* chooseLevel-ipad.plist in Resources */,
 				57A0A01A147AC9EF00B461EB /* chooseLevel-ipad.png in Resources */,
+				575D82A9147DA2400046AC57 /* fireballLand.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

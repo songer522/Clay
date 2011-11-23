@@ -15,6 +15,8 @@
 #import "GCHelper.h"
 #import "ChooseLevelScreen.h"
 #import "TextureManager.h"
+#import "SoundEngine.h"
+#import "GameSettings.h"
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
 #define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
