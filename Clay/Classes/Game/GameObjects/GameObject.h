@@ -40,6 +40,7 @@ typedef enum {
     bool _isInMidAir;
     bool _isFalling;
     
+    float _rate;
     float _x;
     float _y;
     CGPoint _startingPosition;
