@@ -2367,8 +2367,8 @@
 				54063761147C440B00EA982B /* fireLevel-hd.png in Resources */,
 				54063762147C440B00EA982B /* fireLevel.plist in Resources */,
 				54063763147C440B00EA982B /* fireLevel.png in Resources */,
-				61A58597147D47DA00608121 /* level8.tmx in Resources */,
-				61A5859A147D47EC00608121 /* tileset_level_8.png in Resources */,
+				54AFD9A9147D4584005FC00C /* tileset_level_8.png in Resources */,
+				54AFD9AC147D45E5005FC00C /* level8.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
