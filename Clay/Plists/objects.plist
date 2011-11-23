@@ -679,7 +679,7 @@
 			<integer>0</integer>
 		</dict>
 		<key>animationName</key>
-		<string>fireballAnim</string>
+		<string>fireballMovingAnim</string>
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>

@@ -209,6 +209,9 @@
     } else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR) {
         _alpha = 1.0f;
         _fadeout = true;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_FIREBALL_LANDED) {
+        _alpha = 1.2f;
+        _fadeout = true;
     }
     
     return _playerEffect;
@@ -403,6 +406,29 @@
         if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
             _vx = -0.0f;
         }
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_FIREBALL_START) {
+        if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+            Player *player = [[LayerManager sharedLayers] getPlayer];
+            CGPoint position = [player getPosition];
+            [self setPositionAtX:(position.x - 100.0f) Y:350.0f];
+            [self setPlayerEffect:@"none"];
+            _currentBehavior = COLLISION_BEHAVIOR_FIREBALL_MOVING;
+            
+        }
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_FIREBALL_MOVING) {
+        _vx += 160.0f;
+        _vy += 100.0f;
+        if (_y <= 75.0f) {
+            _vx = 0.0f;
+            _vy = 0.0f;
+            _x = _prevLocation.x;
+            _y = 90.0f;
+            [self setPositionAtX:_x Y:_y];
+            [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"fireballLandingAnim"];
+            NSLog(@"fireball stop");
+            _currentBehavior = COLLISION_BEHAVIOR_FIREBALL_LANDED;
+            [self setPlayerEffect:@"collide"];
+        }
     }
 
 }
@@ -509,6 +535,9 @@
         _currentBehavior = COLLISION_BEHAVIOR_FIRE_DEMON;
     } else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR) {
         _currentBehavior = COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_FIREBALL_START || _currentBehavior == COLLISION_BEHAVIOR_FIREBALL_MOVING || _currentBehavior == COLLISION_BEHAVIOR_FIREBALL_LANDED) {
+        _currentBehavior = COLLISION_BEHAVIOR_FIREBALL_START;
+        [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"fireballMovingAnim"];
     } else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;     
 }         _collided = false;
@@ -576,6 +605,9 @@
     } else if([behavior isEqualToString:@"fireDemonWithArmor"]) {
         _collideBehavior = COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR;
         _currentBehavior = COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR;
+    } else if([behavior isEqualToString:@"fireball"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_FIREBALL_LANDED;
+        _currentBehavior = COLLISION_BEHAVIOR_FIREBALL_START;
     }
 
     
