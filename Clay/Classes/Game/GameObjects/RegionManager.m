@@ -47,6 +47,8 @@
 {
     
     int newIndex = [self getRegionIndex:x];
+
+    if (newIndex < 0) newIndex = 0; //force it to always be at least the minimum.
     
     if (newIndex == _currentIndex || newIndex<0) { return; }
     

@@ -353,6 +353,8 @@
         _thirdAction = (PlayerAction*)[PlayerActionFactory buildPlayerAction:PLAYER_ACTION_SHOOT];
     } else if([action isEqualToString:@"block"]) {
         _thirdAction = (PlayerAction*)[PlayerActionFactory buildPlayerAction:PLAYER_ACTION_BLOCK];
+    } else if([action isEqualToString:@"blow"]) {
+        _thirdAction = (PlayerAction*)[PlayerActionFactory buildPlayerAction:PLAYER_ACTION_BLOW];
     }
     
     [_thirdAction setParent:self];

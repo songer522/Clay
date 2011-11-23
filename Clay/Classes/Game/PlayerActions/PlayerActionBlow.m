@@ -8,6 +8,8 @@
 
 #import "PlayerActionBlow.h"
 #import "Sprite.h"
+#import "Skin.h"
+#import "Player.h"
 #import "AnimationController.h"
 
 @implementation PlayerActionBlow
@@ -28,10 +30,11 @@
         
         CGPoint position = [_parent getPosition];
         [_wind setPosition:CGPointMake(position.x + 2, position.y + 15)];
-        
-        _duration = 0.75f;
+
+        [_parent setPlayerAnimation:PLAYER_ANIM_BLOW];
+
+        _duration = 0.45f;
         _cooldown = 0.4f;
-        //[[SoundEngine shared] playSound:@"shield"];
     }
 }
 
@@ -43,6 +46,7 @@
 
 -(void)cancelAction
 {
+    [_parent setPlayerAnimation:PLAYER_ANIM_RUNNING];
     _cooldown = 0.4f;
     [[_wind getCCSprite] setVisible:NO];
     [super cancelAction];
