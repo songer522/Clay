@@ -20,7 +20,7 @@
 #import "GameSettings.h"
 
 #define kPlayerActionKickMoveX 20.0f
-#define kPlayerActionKickFullDuration 0.4f;
+#define kPlayerActionKickFullDuration 0.38f;
 #define kPlayerActionKickActiveWhileDurationLessThan 0.75f
 
 @implementation PlayerActionKick
@@ -31,11 +31,11 @@
     _kick = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_PLAYER_KICK];
     if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
     {
-    [_kick setBoundingBox:CGRectMake(0, 0, 35, 35)];
+    [_kick setBoundingBox:CGRectMake(0, 0, 0, 0)];
     }
     else
     {
-    [_kick setBoundingBox:CGRectMake(0, 35, 35, 35)];
+    [_kick setBoundingBox:CGRectMake(0, 0, 0, 0)];
     }
 
 }
@@ -59,6 +59,8 @@
         if (_duration < kPlayerActionKickActiveWhileDurationLessThan) {
             _isActive = true;
             [_kick setActive:YES];
+            
+            [self updateBoundingBox];
             
             GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
             CGPoint position = [gameLayer.player getPosition];
@@ -91,11 +93,45 @@
     [super update:dt];
 }
 
+-(void)updateBoundingBox
+{
+    int startX = 0;
+    int projWidth = 35;
+    
+    int frame = [[[_parent getSprite] getAnimation] getCurrentFrameNumber];
+    switch (frame) {
+        case 1:
+            startX = 55;
+            projWidth = 15;
+            break;
+        case 2:
+            startX = 30;
+            projWidth = 25;
+            break;
+        case 3:
+            startX = 0;
+            projWidth = 35;
+            break;
+        default:
+            projWidth = 0;
+            break;
+    }
+    
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
+    {
+        [_kick setBoundingBox:CGRectMake(startX, 0, projWidth, 35)];
+    }
+    else
+    {
+        [_kick setBoundingBox:CGRectMake(startX, 35, projWidth, 35)];
+    }
+
+}
+
 -(void)testKickCollisions
 {
-    NSMutableArray *obstacles = [[LevelManager shared] getObstacleArray];
-    for (MapObject *mapObject in obstacles) {
-        GameObject *object = mapObject.object;
+    NSMutableArray *obstacles = [[[LevelManager shared] currentLevel] getActiveGameObjectList];
+    for (GameObject *object in obstacles) {
         if([object getCollisionBehavior] == COLLISION_BEHAVIOR_HEN_KICKED)
         {
            if([[[LevelManager shared] currentLevel] testCollisionWithGameObject:object Source:_kick])

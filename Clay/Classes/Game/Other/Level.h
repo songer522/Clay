@@ -116,4 +116,7 @@
 -(void)initTiledMap:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer;
 -(void)scanThroughMapAndAddObjects;
 -(void)setPositionAtX:(float)x Y:(float)y;
+
+-(NSMutableArray*)getActiveGameObjectList;
+
 @end

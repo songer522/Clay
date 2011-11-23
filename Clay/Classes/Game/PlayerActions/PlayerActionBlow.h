@@ -9,9 +9,12 @@
 #import "PlayerAction.h"
 
 @class Sprite;
+@class Projectile;
 
 @interface PlayerActionBlow : PlayerAction
 {
+    Projectile *_windProjectile;
+
     Sprite *_wind;
 }
 

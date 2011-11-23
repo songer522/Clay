@@ -566,9 +566,13 @@
     return obstacle;
 }
 
+-(NSMutableArray*)getActiveGameObjectList
+{
+    return [_obstacleManager getActiveGameObjectList];
+}
+
 -(void)update:(float)dt Velocity:(float)vx
 {
-    //NSLog(@"DT: %f",dt);
     [self setPositionAtX:_x Y:_y];
     
     CGPoint playerPos = [[[LayerManager sharedLayers] getPlayer] getPosition];

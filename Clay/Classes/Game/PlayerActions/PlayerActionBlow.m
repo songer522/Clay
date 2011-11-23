@@ -9,6 +9,7 @@
 #import "PlayerActionBlow.h"
 #import "Sprite.h"
 #import "Skin.h"
+#import "Projectile.h"
 #import "Player.h"
 #import "AnimationController.h"
 
@@ -17,12 +18,24 @@
 {
     _cooldown = 0.0f;
     _wind = [Sprite spriteWithFile:@"blank.png"];
+    _windProjectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_PLAYER_BLOWING];
+    
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
+    {
+        [_windProjectile setBoundingBox:CGRectMake(0, 0, 35, 35)];
+    }
+    else
+    {
+        [_windProjectile setBoundingBox:CGRectMake(0, 35, 35, 35)];
+    }
+    [super initialize];    
 }
 
 -(void)startAction
 {
     if (!_inAction && _canTrigger) {
         [super startAction];
+        
         
         [[AnimationController sharedController] replaceSprite:_wind withAnimationNamed:@"blowingWindAnim"];
         
@@ -32,6 +45,7 @@
         [_wind setPosition:CGPointMake(position.x + 2, position.y + 15)];
 
         [_parent setPlayerAnimation:PLAYER_ANIM_BLOW];
+        [_parent endTurbo];
 
         _duration = 0.45f;
         _cooldown = 0.4f;
@@ -64,7 +78,7 @@
         _isActive = true;
         
         CGPoint position = [_parent getPosition];
-        [_wind setPosition:CGPointMake(position.x + 2, position.y + 15)];
+        [_wind setPosition:CGPointMake(position.x + 5, position.y + 30)];
     }
     [super update:dt];
 }
