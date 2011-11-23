@@ -28,6 +28,8 @@
 #import "GameSettings.h"
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
+#define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 @implementation Level
 
 @synthesize name = _name;
@@ -64,7 +66,10 @@
        
         
         //[[[LayerManager sharedLayers] currentLayer] addChild:_map];
-        
+        if (IS_IPAD)
+        {
+            _divide = 1.0f;
+        }
         if ([GameSettings usingHighResolutionGraphics])
         {
             _divide = 2.0f;
@@ -131,7 +136,7 @@
             }
             
             [tmxLayer removeFromParentAndCleanup:NO];
-            [node addChild:tmxLayer z:currentZ parallaxRatio:ccp(speedx,speedy) positionOffset:offsetPoint];
+            [node addChild:tmxLayer z:currentZ parallaxRatio:ccp(speedx * MULTIPLIERX,speedy * MULTIPLIERY) positionOffset:offsetPoint];
             
             [_parallaxLayers addObject:node];
             
@@ -144,7 +149,7 @@
             
             [[[LayerManager sharedLayers] currentLayer] addChild:node z:currentZ];
             
-            [self addMapObjectsAboveLayer:tmxLayer ParallaxRatio:ccp(speedx,speedy)];
+            [self addMapObjectsAboveLayer:tmxLayer ParallaxRatio:ccp(speedx * MULTIPLIERX,speedy * MULTIPLIERY)];
             //currentZ += 1;
             
         }
