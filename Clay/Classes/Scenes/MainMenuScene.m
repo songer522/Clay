@@ -15,6 +15,7 @@
 #import "GCHelper.h"
 #import "ChooseLevelScreen.h"
 #import "TextureManager.h"
+#import "SoundEngine.h"
 
 
 @implementation MainMenuScene
@@ -97,6 +98,8 @@
         
         [self scheduleUpdate];
         self.isTouchEnabled = YES;
+        
+        [[SoundEngine shared] playMusic:@"title"];
                 
         [myPool drain];
 

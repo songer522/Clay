@@ -153,9 +153,10 @@
 		54484E30140449B700D0D7D9 /* ZFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 54484E2F140449B700D0D7D9 /* ZFont.m */; };
 		54484E35140449B700D0D7D9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 54484E34140449B700D0D7D9 /* main.m */; };
 		5450735B147D6C840081D394 /* crow.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 54507357147D6C840081D394 /* crow.mp3 */; };
-		5450735D147D6C840081D394 /* pig.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 54507359147D6C840081D394 /* pig.mp3 */; };
 		54507360147D6E790081D394 /* blowAction.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5450735F147D6E790081D394 /* blowAction.wav */; };
 		54507362147D71000081D394 /* maddogBark.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54507361147D71000081D394 /* maddogBark.wav */; };
+		54507365147D733F0081D394 /* town.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 54507363147D733F0081D394 /* town.mp3 */; };
+		54507366147D733F0081D394 /* track.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 54507364147D733F0081D394 /* track.mp3 */; };
 		54528C07145B466B009437C3 /* clearedObstacle.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54528C06145B466B009437C3 /* clearedObstacle.wav */; };
 		545CE69D146C1AA9003EC9C1 /* PlayerActionBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 545CE69C146C1AA9003EC9C1 /* PlayerActionBlock.m */; };
 		545CE6A0146C1E0C003EC9C1 /* JimShipShoot.wav in Resources */ = {isa = PBXBuildFile; fileRef = 545CE69E146C1E0C003EC9C1 /* JimShipShoot.wav */; };
@@ -672,9 +673,10 @@
 		54484E33140449B700D0D7D9 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		54484E34140449B700D0D7D9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		54507357147D6C840081D394 /* crow.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = crow.mp3; path = Resources/sounds/crow.mp3; sourceTree = "<group>"; };
-		54507359147D6C840081D394 /* pig.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = pig.mp3; path = Resources/sounds/pig.mp3; sourceTree = "<group>"; };
 		5450735F147D6E790081D394 /* blowAction.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = blowAction.wav; path = Resources/sounds/blowAction.wav; sourceTree = "<group>"; };
 		54507361147D71000081D394 /* maddogBark.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = maddogBark.wav; path = Resources/sounds/maddogBark.wav; sourceTree = "<group>"; };
+		54507363147D733F0081D394 /* town.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = town.mp3; path = Resources/music/town.mp3; sourceTree = "<group>"; };
+		54507364147D733F0081D394 /* track.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = track.mp3; path = Resources/music/track.mp3; sourceTree = "<group>"; };
 		54528C06145B466B009437C3 /* clearedObstacle.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = clearedObstacle.wav; path = Resources/sounds/clearedObstacle.wav; sourceTree = "<group>"; };
 		545CE69B146C1AA9003EC9C1 /* PlayerActionBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerActionBlock.h; sourceTree = "<group>"; };
 		545CE69C146C1AA9003EC9C1 /* PlayerActionBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerActionBlock.m; sourceTree = "<group>"; };
@@ -1054,6 +1056,8 @@
 		54133A0D143231AF00E433FC /* music */ = {
 			isa = PBXGroup;
 			children = (
+				54507363147D733F0081D394 /* town.mp3 */,
+				54507364147D733F0081D394 /* track.mp3 */,
 				54767C4A147C07930025F46F /* fire.mp3 */,
 				549167841464521B00DFA191 /* zombies.mp3 */,
 				549AFF7D1459FF060097BE33 /* city.mp3 */,
@@ -1529,7 +1533,6 @@
 				54507361147D71000081D394 /* maddogBark.wav */,
 				5450735F147D6E790081D394 /* blowAction.wav */,
 				54507357147D6C840081D394 /* crow.mp3 */,
-				54507359147D6C840081D394 /* pig.mp3 */,
 				54A1B142146CA971005BA189 /* shuffling.wav */,
 				54A1B140146C9D89005BA189 /* chooseSelection.wav */,
 				54A1B13E146C9C38005BA189 /* deflected.wav */,
@@ -2354,9 +2357,10 @@
 				54AFD9A9147D4584005FC00C /* tileset_level_8.png in Resources */,
 				54AFD9AC147D45E5005FC00C /* level8.tmx in Resources */,
 				5450735B147D6C840081D394 /* crow.mp3 in Resources */,
-				5450735D147D6C840081D394 /* pig.mp3 in Resources */,
 				54507360147D6E790081D394 /* blowAction.wav in Resources */,
 				54507362147D71000081D394 /* maddogBark.wav in Resources */,
+				54507365147D733F0081D394 /* town.mp3 in Resources */,
+				54507366147D733F0081D394 /* track.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
