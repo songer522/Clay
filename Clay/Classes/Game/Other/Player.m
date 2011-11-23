@@ -476,7 +476,7 @@
             [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];
         }
     }
-    
+    /*
     if(_onLedge)
     {
         [[_playerOnledge getCCSprite] setAnchorPoint:ccp(0.5,0)];
@@ -511,7 +511,7 @@
         [[Camera sharedCamera] setTarget:_sprite];
     }
  
-    
+    */
     
     if(_speed.isStopped && !_isTripping) {
         _waitToGetUp -= dt;

@@ -396,6 +396,8 @@
 		611293F3147AC93500AC017F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 611293F2147AC93500AC017F /* SystemConfiguration.framework */; };
 		61A2C0E614683B880049C88E /* GraphicFont.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 61A2C0E414683B880049C88E /* GraphicFont.fnt */; };
 		61A2C0E714683B880049C88E /* GraphicFont.png in Resources */ = {isa = PBXBuildFile; fileRef = 61A2C0E514683B880049C88E /* GraphicFont.png */; };
+		61A58597147D47DA00608121 /* level8.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61A58596147D47DA00608121 /* level8.tmx */; };
+		61A5859A147D47EC00608121 /* tileset_level_8.png in Resources */ = {isa = PBXBuildFile; fileRef = 61A58599147D47EC00608121 /* tileset_level_8.png */; };
 		61B0B3431476F305006887AB /* level2.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61B0B3421476F305006887AB /* level2.tmx */; };
 		61B0B34A1476F54D006887AB /* level1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61B0B3441476F54D006887AB /* level1.tmx */; };
 		61B0B34C1476F54D006887AB /* level4.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61B0B3461476F54D006887AB /* level4.tmx */; };
@@ -997,6 +999,8 @@
 		611293F2147AC93500AC017F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		61A2C0E414683B880049C88E /* GraphicFont.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GraphicFont.fnt; sourceTree = "<group>"; };
 		61A2C0E514683B880049C88E /* GraphicFont.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GraphicFont.png; sourceTree = "<group>"; };
+		61A58596147D47DA00608121 /* level8.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level8.tmx; path = Resources/levels/level8.tmx; sourceTree = "<group>"; };
+		61A58599147D47EC00608121 /* tileset_level_8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tileset_level_8.png; path = Resources/levels/tileset_level_8.png; sourceTree = "<group>"; };
 		61B0B3421476F305006887AB /* level2.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level2.tmx; path = Resources/levels/level2.tmx; sourceTree = "<group>"; };
 		61B0B3441476F54D006887AB /* level1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level1.tmx; path = Resources/levels/level1.tmx; sourceTree = "<group>"; };
 		61B0B3461476F54D006887AB /* level4.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level4.tmx; path = Resources/levels/level4.tmx; sourceTree = "<group>"; };
@@ -1118,6 +1122,7 @@
 		54484CC5140449B500D0D7D9 = {
 			isa = PBXGroup;
 			children = (
+				54A2C5A8147C70D600A0CB18 /* tileset_level_8-hd.png */,
 				611293F2147AC93500AC017F /* SystemConfiguration.framework */,
 				611293F0147AC92A00AC017F /* CFNetwork.framework */,
 				54484CE4140449B500D0D7D9 /* Clay */,
@@ -1607,6 +1612,7 @@
 				54E3D526146C4B9200C28C9F /* level6_hd.tmx */,
 				54E3D528146C4B9200C28C9F /* level7_hd.tmx */,
 				54AFB2511475DAA900DA4A59 /* level8_hd.tmx */,
+				61A58596147D47DA00608121 /* level8.tmx */,
 			);
 			name = levels;
 			sourceTree = "<group>";
@@ -2039,6 +2045,7 @@
 		54E3D55C146C4BAE00C28C9F /* tilesets */ = {
 			isa = PBXGroup;
 			children = (
+				61A58599147D47EC00608121 /* tileset_level_8.png */,
 				54A2C5A6147C6FFA00A0CB18 /* tileset_level_8-hd.png */,
 				54E3D538146C4BA800C28C9F /* meta-hd.png */,
 				54E3D539146C4BA800C28C9F /* meta.png */,
@@ -2353,6 +2360,8 @@
 				54063761147C440B00EA982B /* fireLevel-hd.png in Resources */,
 				54063762147C440B00EA982B /* fireLevel.plist in Resources */,
 				54063763147C440B00EA982B /* fireLevel.png in Resources */,
+				61A58597147D47DA00608121 /* level8.tmx in Resources */,
+				61A5859A147D47EC00608121 /* tileset_level_8.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2536,6 +2545,8 @@
 				545CE69D146C1AA9003EC9C1 /* PlayerActionBlock.m in Sources */,
 				54CA7A7E1471C97C002B01AA /* TextureManager.m in Sources */,
 				5474D4AE147453A10038B358 /* GameSettings.m in Sources */,
+				54229083147AB30D0096C809 /* RegionManager.m in Sources */,
+				54767C51147C08660025F46F /* PlayerActionBlow.m in Sources */,
 				611293DF147AC42200AC017F /* Appirater.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -123,7 +123,9 @@
     for (NSString *layerName in layers) {
         if ([layerName compare:@"actives"] == NSOrderedSame) {
             [player setLedgeSprite:[[LayerManager sharedLayers] currentLayer]];
-            [self addObstaclesToMap];
+            
+            [self addObstaclesToMapAndRegion];
+            //[_obstacleManager printDescription];
             [player resetSprite:[[LayerManager sharedLayers] currentLayer]];
             //currentZ -= 1;
             continue;
