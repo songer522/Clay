@@ -27,66 +27,66 @@
 		<key>removeTextures</key>
 		<string>tileset_level_1</string>
 		<key>animations</key>
-		<string>level1</string>
+		<string>level1,woo</string>
 		<key>sounds</key>
 		<string>wooAction</string>
 		<key>textures</key>
-		<string>trackLevel</string>
+		<string>trackLevel,characterWoo</string>
 	</dict>
 	<key>level2</key>
 	<dict>
 		<key>removeTextures</key>
 		<string>tileset_level2</string>
 		<key>animations</key>
-		<string>level2</string>
+		<string>level2,kick</string>
 		<key>sounds</key>
 		<string>henKicked,cowDied</string>
 		<key>textures</key>
-		<string>barnLevel</string>
+		<string>barnLevel,characterKicking</string>
 	</dict>
 	<key>level3</key>
 	<dict>
 		<key>removeTextures</key>
 		<string>tileset_level_3</string>
 		<key>animations</key>
-		<string>level3</string>
+		<string>level3,woo</string>
 		<key>sounds</key>
 		<string>wooAction</string>
 		<key>textures</key>
-		<string>townLevel</string>
+		<string>townLevel,characterWoo</string>
 	</dict>
 	<key>level4</key>
 	<dict>
 		<key>removeTextures</key>
 		<string>tileset_level_4</string>
 		<key>animations</key>
-		<string>level4</string>
+		<string>level4,dodge</string>
 		<key>sounds</key>
 		<string>shuffling</string>
 		<key>textures</key>
-		<string>discoLevel</string>
+		<string>discoLevel,characterDodging</string>
 	</dict>
 	<key>level5</key>
 	<dict>
 		<key>removeTextures</key>
 		<string>tileset_level_5</string>
 		<key>animations</key>
-		<string>level5</string>
+		<string>level5,woo</string>
 		<key>sounds</key>
 		<string>wooAction</string>
 		<key>textures</key>
-		<string>cityLevel</string>
+		<string>cityLevel,characterWoo</string>
 	</dict>
 	<key>level6</key>
 	<dict>
 		<key>removeTextures</key>
 		<string>tileset_level_6</string>
 		<key>animations</key>
-		<string>level6</string>
+		<string>level6,shoot</string>
 		<key>sounds</key>
 		<string>zombieMoan,shootActionReload,shootAction</string>
 		<key>textures</key>
-		<string>zombieLevel</string>
+		<string>zombieLevel,characterShooting</string>
 	</dict>
 	<key>level7</key>
 	<dict>
@@ -98,6 +98,17 @@
 		<string>shield,jimShipShoot,deflected</string>
 		<key>textures</key>
 		<string>eightBitTim,computerLevel</string>
+	</dict>
+	<key>level8</key>
+	<dict>
+		<key>removeTextures</key>
+		<string>tileset_level_8</string>
+		<key>animations</key>
+		<string>level8,blow</string>
+		<key>sounds</key>
+		<string>none</string>
+		<key>textures</key>
+		<string>fireLevel,characterBlowing</string>
 	</dict>
 	<key>mainMenu</key>
 	<dict>

@@ -12,6 +12,7 @@
 #import "PlayerActionDodge.h"
 #import "PlayerActionShoot.h"
 #import "PlayerActionBlock.h"
+#import "PlayerActionBlow.h"
 
 
 @implementation PlayerActionFactory
@@ -34,6 +35,10 @@
             break;
         case PLAYER_ACTION_BLOCK:
             return [PlayerActionBlock instance];
+            break;
+        case PLAYER_ACTION_BLOW:
+            return [PlayerActionBlow instance];
+            break;
         default:
             NSLog(@"PlayerActionFactory:buildPlayerAction - Error! Wrong type selected");
             break;

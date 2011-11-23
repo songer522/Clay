@@ -16,6 +16,7 @@
 @class CollisionDetection;
 @class Player;
 @class Trigger;
+@class RegionManager;
 @class GameObjectController;
 
 @interface Level : NSObject
@@ -34,14 +35,20 @@
     //handles the collision detection between the player and the ground
     CollisionDetection *_collisionHandler;
     
+    
     //obstacle mapobjects
     NSMutableArray *_obstacleMapObjects;
+    RegionManager *_obstacleManager;
     
     //background mapobjects, usually attached to a layer
     NSMutableArray *_otherMapObjects;
+    //RegionManager *_backgroundManager;
+    
     
     //any triggers in the level
-    NSMutableArray *_triggers;    
+    NSMutableArray *_triggers;
+    
+    
     
     //external properties
     CGPoint _spawnPoint;            //the world coordinates for where the player starts in the map
@@ -94,7 +101,7 @@
 
 
 -(void)addMapObjectsAboveLayer:(CCTMXLayer*)layer ParallaxRatio:(CGPoint)ratio;
--(void)addObstaclesToMap;
+-(void)addObstaclesToMapAndRegion;
 
 -(void)resetObstacles;
 -(void)resetTriggers;

@@ -101,6 +101,11 @@
     [ _delegate movieStartsPlaying]; //< was pause here
 	
     MPMoviePlayerController* theMovie = [[MPMoviePlayerController alloc] initWithContentURL:theURL];
+    
+    //XECUDEV: solves sound problem but need to re-init music if do so.
+    //theMovie.useApplicationAudioSession = NO;
+    theMovie.useApplicationAudioSession = YES;
+    
     if (! theMovie)
 		_playing = NO;
 	

@@ -77,7 +77,7 @@
 								   depthFormat:0						// GL_DEPTH_COMPONENT16_OES
 						];
 	
-    glView.opaque = NO;
+//    glView.opaque = YES;
     
 	// attach the openglView to the director
 	[director setOpenGLView:glView];
@@ -102,7 +102,7 @@
 #endif
 	
 	[director setAnimationInterval:1.0f/60.0f];
-	[director setDisplayFPS:NO];
+	[director setDisplayFPS:YES];
     
 	
 	

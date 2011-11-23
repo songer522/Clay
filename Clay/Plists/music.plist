@@ -16,5 +16,7 @@
 	<string>city.mp3</string>
 	<key>zombies</key>
 	<string>zombies.mp3</string>
+	<key>fire</key>
+	<string>fire.mp3</string>
 </dict>
 </plist>

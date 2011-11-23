@@ -272,22 +272,20 @@
 {
     if(_speed.inTurbo)
     {
-      
         [self changeHealth:-2];
-       
     }
     else
     {
-      
         [self changeHealth:-1];
     }
+
     [_speed startCollision];
     
     _waitToGetUp = 100.0f;
     
     [[SoundEngine shared] playSound:@"timHurt"];
     
-    if (_isJumping) {
+    if (_isJumping && [_speed inTurbo]) {
         [_skin setPlayerAnimation:PLAYER_ANIM_TRIPPING ForSprite:_sprite];
         _isTripping = true;
     } else {
