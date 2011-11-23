@@ -101,6 +101,7 @@
                 _startedWindAnimation = true;
                 [_windProjectile reset];
 
+                [[SoundEngine shared] playSound:@"blowAction"];
                 [[AnimationController sharedController] replaceSprite:_wind withAnimationNamed:@"blowingWindAnim"];
                 [[_wind getCCSprite] setVisible:YES];            
                 CGPoint position = [_parent getPosition];

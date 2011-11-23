@@ -55,6 +55,7 @@
         _buttons = [[NSMutableArray alloc] initWithCapacity:7];
         _alpha = 1.0f;
         _selected = 1;
+        _backToMainMenu = false;
         _waitToSwitch = 0.0f;
         self.isTouchEnabled = YES;
         [self load];
@@ -87,11 +88,14 @@
         
         if([_startButton checkIfSelected:position]) {
             _waitToSwitch = 0.25f;
-            [[SoundEngine shared] playSound:@"buttonPressed"];            
+            [[SoundEngine shared] playSound:@"buttonPressed"];     
+            //[[SoundEngine shared] cueFadeOut];
         }
         
         if([_backButton checkIfSelected:position]) {
-            NSLog(@"want to go back!");
+            _waitToSwitch = 0.25f;
+            _backToMainMenu = true;
+            [[SoundEngine shared] playSound:@"buttonPressed"];     
         }        
     }
 }
@@ -118,8 +122,8 @@
     _startButton = [ActionButton actionButtonWithText:@"START"];
     [_startButton setPosition:ccp(430,18)];
     
-    //_backButton = [ActionButton actionButtonWithText:@"BACK"];
-    //[_backButton setPosition:ccp(50, 18)];
+    _backButton = [ActionButton actionButtonWithText:@"BACK"];
+    [_backButton setPosition:ccp(50, 18)];
     
     
     for (int i=0; i<11; i++) {
@@ -162,8 +166,14 @@
 
 -(void)popAndSwitchToLevel:(NSString*)level
 {
+    [[GameSettings shared] setGlobal:@"NO" ForKey:@"titleMusicStarted"];
     [[GameSettings shared] setGlobal:level ForKey:@"startingLevel"];
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[GameLayer scene]]];
+}
+
+-(void)switchToMainMenu
+{
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[MainMenuScene scene]]];
 }
 
 -(void)transitionOut
@@ -183,6 +193,8 @@
 
 -(void)update:(ccTime)dt
 {
+    [[SoundEngine shared] update:dt];
+
     [_startButton update:dt];
     [_backButton update:dt];
 
@@ -190,7 +202,11 @@
         _waitToSwitch-=dt;
         if(_waitToSwitch<=0.0f){
             _waitToSwitch = 0.0f;
-            [self popAndSwitchToLevel:_levelToSwitchTo];
+            if (_backToMainMenu) {
+                [self switchToMainMenu];
+            } else {
+                [self popAndSwitchToLevel:_levelToSwitchTo];                
+            }
         }
     }
 }
@@ -205,6 +221,7 @@
     [_levelToSwitchTo release];
     [_levelSelectText release];
     [_startButton release];
+    [_backButton release];
     [_selector release];
     
     [[TextureManager shared] unloadMemoryForKey:@"chooseLevel"];

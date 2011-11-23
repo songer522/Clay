@@ -343,6 +343,7 @@
         if ([self closeToPlayer:200.0f]) {
             if(![self.originalAnimation isEqualToString:@"madDogAnim"])
             {
+                [[SoundEngine shared] playSound:@"maddogBark"];
                 [self setOriginalAnimation:@"madDogAnim"];
                 [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"madDogAnim"];
             }
@@ -376,6 +377,10 @@
     } else if(_currentBehavior == COLLISION_BEHAVIOR_FLYER) {
         _vx = 0.0f;
         if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+            if (!_madeSound) {
+                _madeSound = true;
+                [[SoundEngine shared] playSound:@"crowAppears"];
+            }
             _vx = -250.0f;
         }
     } else if(_currentBehavior == COLLISION_BEHAVIOR_ROLLING_HAYBALE) {

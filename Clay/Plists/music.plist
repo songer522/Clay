@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>track</key>
-	<string>title.mp3</string>
+	<string>track.mp3</string>
 	<key>barn</key>
 	<string>barn.mp3</string>
 	<key>cornfields</key>
-	<string>darkness.mp3</string>
+	<string>town.mp3</string>
 	<key>disco</key>
 	<string>disco.mp3</string>
 	<key>computer</key>
@@ -18,5 +18,7 @@
 	<string>zombies.mp3</string>
 	<key>fire</key>
 	<string>fire.mp3</string>
+	<key>title</key>
+	<string>title.mp3</string>
 </dict>
 </plist>

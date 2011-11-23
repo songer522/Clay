@@ -19,6 +19,7 @@
     NSMutableArray *_buttons;
     float _waitToSwitch;
     float _alpha;
+    bool _backToMainMenu;
     NSString *_levelToSwitchTo;
     
     
@@ -47,6 +48,7 @@
 -(void)load;
 
 -(void)popAndSwitchToLevel:(NSString*)level;
+-(void)switchToMainMenu;
 
 -(void)transitionOut;
 

@@ -43,6 +43,14 @@
     [region addObject:object];    
 }
 
+-(void)resetCurrentRegion
+{
+    _currentIndex = -1;
+    //note, allows for and requires 'changeregionsbasedonx' to be called afterwards to get the right region again
+    
+}
+    
+
 -(void)changeRegionsBasedOnX:(float)x
 {
     

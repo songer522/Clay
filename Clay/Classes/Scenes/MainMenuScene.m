@@ -123,6 +123,7 @@
         if (shouldStart) {
             [self switchToTransitionOut];
             [[SoundEngine shared] playSound:@"menuPlayButton"];
+            
         }
     }
     
@@ -168,6 +169,7 @@
 
 -(void)update:(ccTime)dt
 {
+    
     float rate = 12.0f * dt;
     
     _totalTime += rate;
