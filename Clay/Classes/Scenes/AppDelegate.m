@@ -19,6 +19,7 @@
 #import "TextureManager.h"
 #import "GameSettings.h"
 #import "MainMenuScene.h"
+#import "SoundEngine.h"
 
 @implementation AppDelegate
 
@@ -121,6 +122,8 @@
 	[self removeStartupFlicker];
 	
     
+    [[GameSettings shared] setGlobal:@"YES" ForKey:@"titleMusicStarted"];
+    [[SoundEngine shared] playMusic:@"title"];
     [[TextureManager shared] loadMemoryForKey:@"launch"];
     
     [[CCDirector sharedDirector] runWithScene:[MainMenuScene scene]]; 
