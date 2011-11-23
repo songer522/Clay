@@ -133,7 +133,7 @@
   </tile>
   <tile id="51">
    <properties>
-    <property name="obstacle" value="VolcanoBBQSmall"/>
+    <property name="obstacle" value="fireball"/>
    </properties>
   </tile>
   <tile id="52">

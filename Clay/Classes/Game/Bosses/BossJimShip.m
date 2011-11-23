@@ -105,6 +105,7 @@
             if (collision) {
                 if(![[_player getThirdAction] isActive]) {
                     [_player startCollision:PLAYER_EFFECT_COLLIDE Source:_bullet];
+                 
                 } else {
                     [[_player getThirdAction] setKilledEnemy:YES];
                     [[SoundEngine shared] playSound:@"deflected"];
