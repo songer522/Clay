@@ -22,6 +22,7 @@
 #import "GameLayer.h"
 #import "HudLayer.h"
 
+
 #define PLAYER_SPRITE_FILE @"player_idle_01.png"
 #define PLAYER_STARTING_VELOCITY 0
 #define PLAYER_STARTING_Y_POSITION 40
@@ -63,8 +64,8 @@
         _isInMidAir = false;
         _waitToGetUp = 0.0f;
         _onLedge = false;
+        _offLedge=false;
        
-        //NSLog(@"spring is ");
         _timeLeftBeforeVulnerable = 2.0f;
         _isInvincible = false;
         
@@ -86,6 +87,15 @@
         _y = 120; //just so the fall into pit sound doesn't go off at very beginning
         
         _skin = [Skin instance];
+        _playerOnledge=[Sprite spriteWithFile:@"blank.png"]; 
+       
+        _tempSprite=_sprite;
+         //[[_tempSprite getCCSprite] setAnchorPoint:ccp(0,0)];
+        //[_tempSprite getCCSprite].position=[_sprite getCCSprite].position;
+        //[_tempSprite getCCSprite].anchorPoint=[_sprite getCCSprite].anchorPoint;
+        
+        //[_tempSprite setOffsetForX:0 Y:-201];
+        //_ay = 0.0f;
         [self updateSkin:SKINTYPE_REGULAR];
       
     }
@@ -296,10 +306,12 @@
 
 -(void)reset
 {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"player died" object:nil];
     _hitPoints = 4;
     [_battery reset];
     [_speed reset];
     [_speed start];
+    [_boss reset];
     _isJumping = false;
     _isTripping = false;
     _isInMidAir = false;
@@ -360,6 +372,22 @@
     [layer addChild:playerSprite];
 }
 
+-(void)setLedgeSprite:(CCLayer*)layer
+{
+    CCSprite *ledgeSprite=[_playerOnledge getCCSprite];
+    [layer removeChild:ledgeSprite cleanup:NO];
+    [layer addChild:ledgeSprite];
+
+}
+
+-(void)setCurrentSprite:(Sprite *)newSprite
+{
+        _sprite=newSprite;
+     
+    
+}
+
+
 -(void)rechargeBattery
 {
     [_battery startRecharge];
@@ -390,6 +418,10 @@
 {
     [_speed start];
 }
+-(int)getHitPoints
+{
+    return _hitPoints;
+}
 
 -(id<PlayerActionProtocol>)getThirdAction
 {
@@ -399,13 +431,15 @@
 -(void)update:(float)dt Level:(Level *)level
 {
     [super update:dt];
+    /*
     if([[[LevelManager shared] currentLevel].name isEqualToString:@"level7"])
     {
         GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
         
         [[gameLayer getHud] setEnabled:false ForButton:HUD_BUTTON_SPRINT];
     }
-    
+     */   
+
     [self updateJump:dt];
     
     [self updateInvulnerable:dt];
@@ -435,7 +469,7 @@
     
     [_battery update:dt];
     
-    if (_isTripping) {
+       if (_isTripping) {
         _waitToGetUp -= dt;
         if (_waitToGetUp <= 0.0f) {
             _isTripping = false;
@@ -444,6 +478,42 @@
             [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];
         }
     }
+    /*
+    if(_onLedge)
+    {
+        [[_playerOnledge getCCSprite] setAnchorPoint:ccp(0.5,0)];
+        if(_isActive){
+          
+            [self switchToInactive];
+            
+        }
+        
+        [self setCurrentSprite:_playerOnledge];
+        //[_playerOnledge getCCSprite].anchorPoint=[_sprite getCCSprite].anchorPoint;
+       [_playerOnledge getCCSprite].visible =YES;
+                 
+        [[Camera sharedCamera] setTarget:_playerOnledge];
+        _offLedge=true;
+        
+    }
+    else
+    {
+        
+        
+    if(_offLedge)
+        {
+            [_playerOnledge getCCSprite].visible=NO;
+            
+            _sprite=_tempSprite;
+            [_sprite getCCSprite].visible=YES;
+            //[[_sprite getCCSprite] setAnchorPoint:ccp(0,1)];
+            _isActive=true;
+            _offLedge=false;
+        }
+        [[Camera sharedCamera] setTarget:_sprite];
+    }
+ 
+    */
     
     if(_speed.isStopped && !_isTripping) {
         _waitToGetUp -= dt;

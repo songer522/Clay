@@ -17,6 +17,7 @@
 #import "TextureManager.h"
 #import "Boss.h"
 #import "GameSettings.h"
+#import "Appirater.h"
 
 @implementation LevelManager
 
@@ -135,7 +136,10 @@ static LevelManager *_shared = nil;
 
 -(void)loadNextLevel
 {
+   
+    
     [self loadLevelNamed:_currentLevel.nextLevelName];
+   
 }
 
 -(void)receiveBoss:(Boss*)boss

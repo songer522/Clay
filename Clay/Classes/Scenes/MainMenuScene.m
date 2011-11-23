@@ -15,6 +15,7 @@
 #import "GCHelper.h"
 #import "ChooseLevelScreen.h"
 #import "TextureManager.h"
+#import "Appirater.h"
 #import "SoundEngine.h"
 #import "GameSettings.h"
 
@@ -44,8 +45,8 @@
         
         NSAutoreleasePool *myPool = [[NSAutoreleasePool alloc] init];
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pause) name:UIWindowDidResignKeyNotification object:nil];
-        
+        //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pause) name:UIWindowDidResignKeyNotification object:nil];
+        [self pause];
         [[GCHelper sharedInstance] authenticateLocalUser];
     
         [[LayerManager sharedLayers] setWorkingLayer:self];
@@ -108,7 +109,8 @@
         [myPool drain];
 
     }
-    
+   
+   
     return self;
 }
 
@@ -118,7 +120,7 @@
 }
 -(void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    if (_transition == MAINMENU_TRANSITION_IDLE) {
+        if (_transition == MAINMENU_TRANSITION_IDLE) {
         bool shouldStart = false;
         NSSet *allTouches = [event allTouches];
         for(UITouch *touch in allTouches) {
@@ -131,6 +133,8 @@
             
         }
     }
+    
+   
 }
 
 -(void)switchToTransitionIn

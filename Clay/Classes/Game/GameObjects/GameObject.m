@@ -494,6 +494,7 @@
     _vy = 0;
     _alpha = 1.0f;
     _fadeout = false;
+    if(self )
     _madeSound = false;
     [_sprite setAlpha:1.0f];
      

@@ -42,6 +42,7 @@
     
 
     _replaceProjectileId = 0;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reset) name:@"player died" object:nil];
 }
 
 -(void)setSprite:(Sprite *)sprite
@@ -89,8 +90,7 @@
     CGPoint position = [_sprite getPosition];
     
     [_sprite setScreenPosition:CGPointMake(position.x + _velocity.x, position.y + _velocity.y)];
-    
-    for (Projectile *_bullet in _bullets) {
+           for (Projectile *_bullet in _bullets) {
         if ([_bullet isActive]) {
             [_bullet pointTowardPlayer];
             [_bullet update:dt];
@@ -105,6 +105,7 @@
             if (collision) {
                 if(![[_player getThirdAction] isActive]) {
                     [_player startCollision:PLAYER_EFFECT_COLLIDE Source:_bullet];
+                 
                 } else {
                     [[_player getThirdAction] setKilledEnemy:YES];
                     [[SoundEngine shared] playSound:@"deflected"];
@@ -114,6 +115,7 @@
             
           
         }
+        
     }
 }
 

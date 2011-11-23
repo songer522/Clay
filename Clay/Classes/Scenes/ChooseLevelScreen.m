@@ -19,7 +19,9 @@
 #import "TextureManager.h"
 #import "GameSettings.h"
 #import "GameLayer.h"
+#import "Appirater.h"
 #import "MainMenuScene.h"
+
 
 @implementation ChooseLevelScreen
 
@@ -46,6 +48,8 @@
 
 -(id) initWithScene:(CCScene*)scene
 {
+    
+   
     if ((self = [super init])) {
          _buttons = [[NSMutableArray alloc] initWithCapacity:4];        
         _levelToSwitchTo = @"level1";
@@ -56,12 +60,15 @@
         _waitToSwitch = 0.0f;
         self.isTouchEnabled = YES;
         [self load];
+       
     }
     return self;
 }
 
 -(void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+   
+    
     NSSet *allTouches = [event allTouches];
     for(UITouch *touch in allTouches) {
         CGPoint position = [self convertTouchToNodeSpace:touch];
@@ -129,6 +136,8 @@
         }
         
         [_buttons addObject:button];
+        
+       
     }
     
     

@@ -4,7 +4,7 @@
   <image source="tileset_level_1-hd.png" width="448" height="704"/>
  </tileset>
  <tileset firstgid="78" name="Icons" tilewidth="64" tileheight="64">
-  <image source="TrackLapse_Icons-hd.png" width="640" height="320"/>
+  <image source="TrackLapse_Icons-hd.png" width="640" height="384"/>
   <tile id="0">
    <properties>
     <property name="obstacle" value="hurdle"/>
@@ -61,7 +61,7 @@
    </properties>
   </tile>
  </tileset>
- <tileset firstgid="128" name="Meta" tilewidth="64" tileheight="64">
+ <tileset firstgid="138" name="Meta" tilewidth="64" tileheight="64">
   <image source="meta-hd.png" width="256" height="192"/>
   <tile id="0">
    <properties>
@@ -171,7 +171,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1G0KgzAMAFBP6DbmXXb9/R3D2qQfm+B7IGgtMcaYZQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK7gdfJ460njjc7rOThexNG3ar3XY0QNjr5L6709W3L/nmwdoznW6nhPPjeipx7Z2tf2j6pTKVZ0rcVWOO8x+7+K7svWaPRMzOYW+T9nzu1sLxzlsvcu0bWR9t4jUsMZMyujVJdST83qi9LzeudPLd/evlg/jqienm3Jt3V2ffd07boW9xdrRx7J/cA8t38nAAAAAAAAAABc3hvBhhlK
+   eJzt1EkOgzAMAEBe2EXlL/1+71VC7CwtEjMnCJFjjPG2AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAV/A+ebzbSePNzus1OV7E0bfqfTZiRg2Ovkvvs5I9ub8kW8dojq06PpLnRozUI1v71v5ZdarFiq712CvXI1b/V9F92RrNnonZ3CL/58q5ne2Fo1xK7xJdm6n0HpEarphZGbW61HpqVV/UzhudP618Z/bFSC+u7OPe2fXd0637VtxfrB15JvcD69z/nQAAAAAAAAAAcHkfSLkZTg==
   </data>
  </layer>
  <layer name="meta" width="1050" height="14" opacity="0.85">
@@ -180,7 +180,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt10EKgCAURVGXHrjx5qKlgfmVc+BSQ/ONSgkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANhdXn2AQi6eq+TGe2Q57XnumtrZd/6eU7U2sdV3T3fnXtd5u3vbxNezkR3/0XvP9phj5F5tENPoLqfuGO27Zv/HXpIkSZIkSZIkSZIkScG6AaPNKA4=
+   eJzt10EKgCAURVHXH7jn5qKlgfmVc+BSQ/ONSgkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANhdXn2AQi6eq+TGe2Q57XnumtrZd/6eU7U2sdV3T3fnXtd5u3vbxNezkR3/0XvP9phj5F5tENPoLqfuGO27Zv/HXpIkSZIkSZIkSZIkScG6AWLWeyQ=
   </data>
  </layer>
 </map>

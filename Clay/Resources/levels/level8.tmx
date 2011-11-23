@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="1000" height="14" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="Meta" tilewidth="32" tileheight="32">
-  <image source="meta.png" width="128" height="96"/>
+  <image source="meta.png" width="256" height="192"/>
   <tile id="0">
    <properties>
     <property name="collision" value="full"/>
@@ -29,7 +29,7 @@
   </tile>
  </tileset>
  <tileset firstgid="13" name="Icons" tilewidth="32" tileheight="32">
-  <image source="TrackLapse_Icons.png" width="320" height="192"/>
+  <image source="TrackLapse_Icons-hd.png" width="640" height="384"/>
   <tile id="0">
    <properties>
     <property name="obstacle" value="hurdle"/>
@@ -137,8 +137,8 @@
    </properties>
   </tile>
  </tileset>
- <tileset firstgid="73" name="Fire" tilewidth="32" tileheight="32">
-  <image source="tileset_level_8.png" width="512" height="416"/>
+ <tileset firstgid="73" name="Level8_TiledSheet-hd" tilewidth="32" tileheight="32">
+  <image source="tileset_level_8.png" width="1024" height="832"/>
  </tileset>
  <layer name="back-3" width="1000" height="14">
   <properties>
