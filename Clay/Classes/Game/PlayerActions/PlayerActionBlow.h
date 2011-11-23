@@ -16,6 +16,9 @@
     Projectile *_windProjectile;
 
     Sprite *_wind;
+    bool _startedWindAnimation;
 }
+
+-(void)testBlowCollisions;
 
 @end

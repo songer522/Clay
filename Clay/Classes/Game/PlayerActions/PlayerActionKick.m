@@ -62,8 +62,7 @@
             
             [self updateBoundingBox];
             
-            GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
-            CGPoint position = [gameLayer.player getPosition];
+            CGPoint position = [[[LayerManager sharedLayers] getPlayer] getPosition];
             
             if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
             {

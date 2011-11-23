@@ -657,7 +657,7 @@
 			<integer>0</integer>
 		</dict>
 		<key>collideBehavior</key>
-		<string>shrinkFades</string>
+		<string>fireDemon</string>
 		<key>imageName</key>
 		<string>blank.png</string>
 		<key>offsetx</key>
@@ -692,7 +692,7 @@
 			<integer>0</integer>
 		</dict>
 		<key>collideBehavior</key>
-		<string>shrinkFades</string>
+		<string>fireDemonWithArmor</string>
 		<key>imageName</key>
 		<string>blank.png</string>
 		<key>offsetx</key>

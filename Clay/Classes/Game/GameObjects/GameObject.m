@@ -64,6 +64,7 @@
         _alpha = 1.0f;
         _fadeout = false;
         _offsetX = 0;
+        _rate = 1.0f;
         _offsetY = 0;
         _boss = nil;
         _madeSound = false;
@@ -199,10 +200,14 @@
         _alpha = 1.5f;
         _fadeout = true;
     } else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON) {
-        _alpha = 1.5f;
+        _alpha = 1.0f;
+        _vy = -50.0f;
+        _vx = 50.0f;
+        _rate = 2.0f;
+        //_rotationAmount = 500;
         _fadeout = true;
     } else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR) {
-        _alpha = 1.5f;
+        _alpha = 1.0f;
         _fadeout = true;
     }
     
@@ -280,7 +285,7 @@
 {
     if (_fadeout) {
         float _setAlpha;
-        _alpha -= 2.0f * dt;
+        _alpha -= 2.0f * _rate * dt;
         //TODO: build this into setAlpha method
         if (_alpha <= 0.0f) {
             _alpha = 0.0f;
@@ -306,6 +311,7 @@
             _angle = 0;
             _fallVelocity = -0.8f * _fallVelocity;
         }
+        
         [self getCCSprite].rotation = _angle;
     } else if(_currentBehavior == COLLISION_BEHAVIOR_FLYING_SHURIKEN) {
         _angle += _rotationAmount * dt;
@@ -382,13 +388,15 @@
         _vx = _direction * 100.0f;        
     } else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON) {
         _vx = 0.0f;
+        _angle += _rotationAmount * dt;
+        [self getCCSprite].rotation = _angle;
         if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
-            _vx = -250.0f;
+            _vx = -25.0f;
         }
     } else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR) {
         _vx = 0.0f;
         if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
-            _vx = -250.0f;
+            _vx = -0.0f;
         }
     }
 

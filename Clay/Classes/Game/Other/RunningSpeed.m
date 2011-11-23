@@ -157,6 +157,12 @@
     _acceleration *= 0.1f;
 }
 
+-(void)startBlow
+{
+    _velocity = 0.0f;
+    _acceleration = 0.0f;
+}
+
 -(void)update:(float)dt
 {
     if (!_isStopped) {
