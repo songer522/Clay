@@ -116,7 +116,7 @@ typedef enum {
 
 -(void)setVelocity:(float)velocity;
 -(void)startDoubleJump;
-
+-(int)getHitPoints;
 
 -(void)dieIfFallenIntoPit;
 

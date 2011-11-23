@@ -10,6 +10,7 @@
 #import "ComicManager.h"
 #import "LayerManager.h"
 #import "Appirater.h"
+#import "GameSettings.h"
 
 @implementation ComicLayer
 

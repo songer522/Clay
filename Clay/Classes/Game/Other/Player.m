@@ -88,7 +88,14 @@
         
         _skin = [Skin instance];
         _playerOnledge=[Sprite spriteWithFile:@"blank.png"]; 
+       
         _tempSprite=_sprite;
+         //[[_tempSprite getCCSprite] setAnchorPoint:ccp(0,0)];
+        //[_tempSprite getCCSprite].position=[_sprite getCCSprite].position;
+        //[_tempSprite getCCSprite].anchorPoint=[_sprite getCCSprite].anchorPoint;
+        
+        //[_tempSprite setOffsetForX:0 Y:-201];
+        //_ay = 0.0f;
         [self updateSkin:SKINTYPE_REGULAR];
       
     }
@@ -301,10 +308,12 @@
 
 -(void)reset
 {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"player died" object:nil];
     _hitPoints = 4;
     [_battery reset];
     [_speed reset];
     [_speed start];
+    [_boss reset];
     _isJumping = false;
     _isTripping = false;
     _isInMidAir = false;
@@ -409,6 +418,10 @@
 {
     [_speed start];
 }
+-(int)getHitPoints
+{
+    return _hitPoints;
+}
 
 -(id<PlayerActionProtocol>)getThirdAction
 {
@@ -418,13 +431,14 @@
 -(void)update:(float)dt Level:(Level *)level
 {
     [super update:dt];
+    /*
     if([[[LevelManager shared] currentLevel].name isEqualToString:@"level7"])
     {
         GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
         
         [[gameLayer getHud] setEnabled:false ForButton:HUD_BUTTON_SPRINT];
     }
-        
+     */   
 
     [self updateJump:dt];
     
@@ -467,6 +481,7 @@
     
     if(_onLedge)
     {
+        [[_playerOnledge getCCSprite] setAnchorPoint:ccp(0.5,0)];
         if(_isActive){
           
             [self switchToInactive];
@@ -474,10 +489,10 @@
         }
         
         [self setCurrentSprite:_playerOnledge];
-       //[_playerOnledge setScreenPosition:[_sprite getScreenPosition]];
+        //[_playerOnledge getCCSprite].anchorPoint=[_sprite getCCSprite].anchorPoint;
        [_playerOnledge getCCSprite].visible =YES;
                  
-        [[Camera sharedCamera] setTarget:_sprite];
+        [[Camera sharedCamera] setTarget:_playerOnledge];
         _offLedge=true;
         
     }
@@ -491,11 +506,13 @@
             
             _sprite=_tempSprite;
             [_sprite getCCSprite].visible=YES;
+            //[[_sprite getCCSprite] setAnchorPoint:ccp(0,1)];
             _isActive=true;
             _offLedge=false;
         }
+        [[Camera sharedCamera] setTarget:_sprite];
     }
- [[Camera sharedCamera] setTarget:_sprite];
+ 
     
     
     if(_speed.isStopped && !_isTripping) {
