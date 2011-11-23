@@ -66,5 +66,7 @@
 	<string>maddogBark.wav</string>
 	<key>pigAppears</key>
 	<string>pig.mp3</string>
+	<key>fireballLand</key>
+	<string>fireballLand.wav</string>
 </dict>
 </plist>
