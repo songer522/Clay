@@ -208,6 +208,8 @@
         _rate = 2.0f;
         _fadeout = true;
         [[[[LayerManager sharedLayers] getPlayer] getThirdAction] setKilledEnemy:YES];
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_FIREBALL_MOVING || _currentBehavior == COLLISION_BEHAVIOR_FIREBALL_START) {
+        _collided = false;
     } else if(_currentBehavior == COLLISION_BEHAVIOR_FIREBALL_LANDED) {
         _alpha = 1.2f;
         _fadeout = true;
@@ -412,6 +414,7 @@
             [self setPositionAtX:(position.x - 100.0f) Y:350.0f];
             [self setPlayerEffect:@"none"];
             _currentBehavior = COLLISION_BEHAVIOR_FIREBALL_MOVING;
+            _isInvincible = true;
             
         }
     } else if(_currentBehavior == COLLISION_BEHAVIOR_FIREBALL_MOVING) {
@@ -422,10 +425,12 @@
             _vy = 0.0f;
             _x = _prevLocation.x;
             _y = 90.0f;
+            _isInvincible = false;
             [self setPositionAtX:_x Y:_y];
             [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"fireballLandingAnim"];
             NSLog(@"fireball stop");
             _currentBehavior = COLLISION_BEHAVIOR_FIREBALL_LANDED;
+            _collideBehavior = COLLISION_BEHAVIOR_FIREBALL_LANDED;
             [self setPlayerEffect:@"collide"];
             [[SoundEngine shared] playSound:@"fireballLand"];
         }
@@ -436,7 +441,7 @@
             if(_waitToTrigger > 0.0f) {
                 _waitToTrigger -= dt;
                 if(_waitToTrigger<= 0.0f){
-                    _reloading = 1.75f;
+                    _reloading = 1.4f;
                     if(_projectile!=nil) {
                         [_projectile release];
                     }
@@ -636,7 +641,7 @@
         _collideBehavior = COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR;
         _currentBehavior = COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR_WAITTOSHOOT;
     } else if([behavior isEqualToString:@"fireball"]) {
-        _collideBehavior = COLLISION_BEHAVIOR_FIREBALL_LANDED;
+        _collideBehavior = COLLISION_BEHAVIOR_FIREBALL_MOVING;
         _currentBehavior = COLLISION_BEHAVIOR_FIREBALL_START;
     }
 

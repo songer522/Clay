@@ -438,7 +438,7 @@
     
     NSMutableArray *obstacles = [_obstacleManager getActiveGameObjectList];
     for (GameObject *obstacle in obstacles) {
-        if(!obstacle.collided) {
+        if(!obstacle.collided && !obstacle.isInvincible) {
             
             int dist = abs([source getPosition].x - [obstacle getPosition].x);
             if (dist < 250) { //don't do the full collision detection if they're not even close to each other.
