@@ -66,7 +66,7 @@
         _offsetX = 0;
         _rate = 1.0f;
         _offsetY = 0;
-        _waiting = -1.0f;
+        _waitToTrigger = -1.0f;
         _boss = nil;
         _madeSound = false;
         _boundingBox = CGRectMake(0, 0, 0, 0);
@@ -78,6 +78,7 @@
         _direction = 1;
         _isInvincible = false;
         _projectile = nil;
+        _reloading = 0;
         _aggressiveCanHit = false;
         _beatsPlayerAction = false;
     }
@@ -207,16 +208,12 @@
         _rate = 2.0f;
         _fadeout = true;
         [[[[LayerManager sharedLayers] getPlayer] getThirdAction] setKilledEnemy:YES];
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR) {
-        _alpha = 1.0f;
-        _fadeout = true;
     } else if(_currentBehavior == COLLISION_BEHAVIOR_FIREBALL_LANDED) {
         _alpha = 1.2f;
         _fadeout = true;
     } else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR || _currentBehavior ==  COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR_WAITTOSHOOT) {
         _alpha = 1.2f;
         _fadeout = true;
-        _currentBehavior = COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR;
     }
     
     return _playerEffect;
@@ -433,24 +430,31 @@
             [[SoundEngine shared] playSound:@"fireballLand"];
         }
     } else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR_WAITTOSHOOT) {
-        if(_waiting > 0.0f) {
-            _waiting -= dt;
-            if(_waiting<= 0.0f){
-                _currentBehavior = COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR;
-                _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_FIRE_DEMON_BULLET];
-                [_projectile reset];
-                [_projectile setPosition:CGPointMake(_x, _y + 5)];
-                [_projectile setBoundingBox:CGRectMake(15, 33, 10, 10)];
-            }
+        if (_reloading >=0.0f) {
+            _reloading -= dt;
         } else {
-            if ([self closeToPlayer:400.0f]) {
-                [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"fireDemonWithArmorShooting"];
-                _waiting = 0.2f;
+            if(_waitToTrigger > 0.0f) {
+                _waitToTrigger -= dt;
+                if(_waitToTrigger<= 0.0f){
+                    _reloading = 1.75f;
+                    if(_projectile!=nil) {
+                        [_projectile release];
+                    }
+                    _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_FIRE_DEMON_BULLET];
+                    [_projectile reset];
+                    [_projectile setPosition:CGPointMake(_x + 53, _y - 20)];
+                    [_projectile setBoundingBox:CGRectMake(-7, 12, 16, 16)];
+                }
+            } else {
+                if ([self closeToPlayer:300.0f]) {
+                    [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"fireDemonWithArmorShooting"];
+                    _waitToTrigger = 0.28f;
+                }
+                else if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+                    _vx = -0.0f;
+                }
+                
             }
-            else if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
-                _vx = -25.0f;
-            }
-            
         }
     }
 
@@ -516,7 +520,8 @@
     _vy = 0;
     _alpha = 1.0f;
     _fadeout = false;
-    _waiting = -1.0f;
+    _waitToTrigger = -1.0f;
+    _reloading = 0.0f;
     if(self )
     _madeSound = false;
     [_sprite setAlpha:1.0f];
@@ -557,8 +562,6 @@
         _currentBehavior = COLLISION_BEHAVIOR_ROLLING_HAYBALE;
     } else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON) {
         _currentBehavior = COLLISION_BEHAVIOR_FIRE_DEMON;
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR) {
-        _currentBehavior = COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR;
     } else if(_currentBehavior == COLLISION_BEHAVIOR_FIREBALL_START || _currentBehavior == COLLISION_BEHAVIOR_FIREBALL_MOVING || _currentBehavior == COLLISION_BEHAVIOR_FIREBALL_LANDED) {
         _currentBehavior = COLLISION_BEHAVIOR_FIREBALL_START;
         [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"fireballMovingAnim"];
