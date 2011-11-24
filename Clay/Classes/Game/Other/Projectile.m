@@ -100,7 +100,7 @@
     Player *player = [[LayerManager sharedLayers] getPlayer];
     CGPoint playerPos = [player getPosition];
     
-    float speed = 280.0f;
+    float speed = 450.0f;
     float dx = (playerPos.x + 10.0f) - _x;
     float dy = (playerPos.y + 20.0f) - _y;
     float angle = atan2f(dy, dx);

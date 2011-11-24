@@ -25,6 +25,7 @@ typedef enum {
     Level *_level;
     
     Sprite *_sprite;
+    Sprite *_cannonAnim;
     CGPoint _velocity;
     CGRect _targetOnScreen;
     
@@ -43,5 +44,6 @@ typedef enum {
 }
 
 -(void)updateVelocity:(float)dt;
+-(void)updateCannon:(float)dt;
 -(void)shootBullet;
 @end

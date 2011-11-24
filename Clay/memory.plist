@@ -95,7 +95,7 @@
 		<key>animations</key>
 		<string>player8,level7</string>
 		<key>sounds</key>
-		<string>shield,jimShipShoot,deflected</string>
+		<string>shield,jimShipShoot,jimShipCharge,deflected</string>
 		<key>textures</key>
 		<string>eightBitTim,computerLevel</string>
 	</dict>
