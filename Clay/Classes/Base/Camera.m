@@ -53,6 +53,11 @@ static Camera *_sharedCamera = nil;
     
     //restrict the camera in level 8
     NSString *levelName = level.name;
+    if ([levelName isEqualToString:@"level6"]) {
+        rect.size.height = 352;
+    }
+
+    
     if ([levelName isEqualToString:@"level8"]) {
         rect.size.height = 352;
     }
