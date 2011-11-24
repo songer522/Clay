@@ -428,7 +428,6 @@
             _isInvincible = false;
             [self setPositionAtX:_x Y:_y];
             [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"fireballLandingAnim"];
-            NSLog(@"fireball stop");
             _currentBehavior = COLLISION_BEHAVIOR_FIREBALL_LANDED;
             _collideBehavior = COLLISION_BEHAVIOR_FIREBALL_LANDED;
             [self setPlayerEffect:@"collide"];
