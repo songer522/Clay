@@ -63,6 +63,7 @@
         _isDead = false;
         _isInMidAir = false;
         _waitToGetUp = 0.0f;
+        _waitToTurbo=-1.0f;
         _onLedge = false;
         _offLedge=false;
        
@@ -229,8 +230,10 @@
 {
     [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];
     [_speed endTurbo];
-    
-    
+    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+    gameLayer.gameController.isSprintEnabled=false;
+    [[gameLayer getHud] setEnabled:false ForButton:HUD_BUTTON_SPRINT];
+    _waitToTurbo=3.0f;
     
     
 }
@@ -442,6 +445,16 @@
         [[gameLayer getHud] setEnabled:false ForButton:HUD_BUTTON_SPRINT];
     }
      */   
+    
+    if (_waitToTurbo > 0.0f) {
+        _waitToTurbo -= dt;
+        if (_waitToTurbo<=0.0f) {
+            GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+            gameLayer.gameController.isSprintEnabled=true;
+            [[gameLayer getHud] setEnabled:true ForButton:HUD_BUTTON_SPRINT];
+        }
+        
+    }
 
     [self updateJump:dt];
     

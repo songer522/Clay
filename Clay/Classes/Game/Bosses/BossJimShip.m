@@ -142,8 +142,10 @@
 
 -(void)reset
 {
+    _waitToShoot = -1.0f;
     for (Projectile *_bullet in _bullets)
-        [_bullet disable];
+    {[_bullet disable];}
+    
     NSLog(@"bossJimShip has been reset");
     
 }
