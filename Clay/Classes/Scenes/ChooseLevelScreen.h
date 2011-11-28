@@ -22,23 +22,15 @@
     bool _backToMainMenu;
     NSString *_levelToSwitchTo;
     
-    
-    
-    Sprite *_background;
-    Sprite *_levelInfoFront;
-    
+    Sprite *_background;    
     Sprite *_selector;
     
     CCLabelBMFont *_levelSelectText;
-    CCLabelBMFont *_levelPanelText;
     
     ActionButton *_startButton;
     ActionButton *_backButton;
     
-    
-    
     int _selected;
-    
 }
 
 +(CCScene*)scene;
@@ -46,11 +38,13 @@
 -(id) initWithScene:(CCScene*)scene;
 
 -(void)load;
+-(void)loadMedals;
 
 -(void)popAndSwitchToLevel:(NSString*)level;
 -(void)switchToMainMenu;
 
 -(void)transitionOut;
+
 
 -(void)unload;
 

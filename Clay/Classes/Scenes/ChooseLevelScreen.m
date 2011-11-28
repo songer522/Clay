@@ -21,6 +21,7 @@
 #import "GameLayer.h"
 #import "Appirater.h"
 #import "MainMenuScene.h"
+#import "PListLoader.h"
 
 
 @implementation ChooseLevelScreen
@@ -110,12 +111,6 @@
     _background = [Sprite spriteFromFrameCacheWithName:@"CL_Background.png"];
     [_background setScreenPosition:ccp(0,0)];
     
-    /*
-    _levelInfoFront = [Sprite spriteFromFrameCacheWithName:@"CL_LevelInfo.png"];
-    [_levelInfoFront getCCSprite].anchorPoint = ccp(0.5f,0.5f);
-    [_levelInfoFront setScreenPosition:ccp(105.0f,152.0f)];
-    */
-     
     _selector = [Sprite spriteFromFrameCacheWithName:@"CL_LevelSelected.png"];
     [_selector setPosition:ccp(0,0)];
     [[_selector getCCSprite] setVisible:NO];
@@ -130,14 +125,13 @@
     for (int i=0; i<11; i++) {
         LevelButton *button = [LevelButton levelButtonWithId:i];
         [button setCursor:_selector];
-        
+
+        //by default have the first level selected
         if(i==0) {
             [button setSelected];
         }
         
         [_buttons addObject:button];
-        
-       
     }
     
     
@@ -150,17 +144,56 @@
     _levelSelectText.position = ccp(365.0f,278.0f);
     [[[LayerManager sharedLayers] currentLayer] addChild:_levelSelectText];
 
-
-    /*
-    _levelPanelText = [CCLabelBMFont labelWithString:@"LEVEL 1" fntFile:@"GraphicFont.fnt"];
-    [_levelPanelText setScale:0.5f];
-    _levelPanelText.position = ccp(158,34.5f);
-    [[[LayerManager sharedLayers] currentLayer] addChild:_levelPanelText];
-    */
+    //load any medals earned
+    [self loadMedals];
+    
+    
     
     [[LayerManager sharedLayers] forgetWorkingLayer];
     [self scheduleUpdate];
     self.isTouchEnabled = true;    
+    
+}
+
+-(void)loadMedals
+{
+    
+    
+    NSString *mode = [[GameSettings shared] getGlobalForKey:@"gameMode"];
+    NSString *difficulty = [[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
+    
+    if ([mode isEqualToString:@"timed"]) {
+        NSDictionary *medalsDict = [PListLoader loadPlistWithName:@"medals"];
+        NSDictionary *modeDict = [medalsDict objectForKey:mode];
+        
+        for (LevelButton *button in _buttons)
+        {
+            int bestTime = rand()%75 + 165;
+            int i = button.buttonId;
+            
+            //get the level name for the button and get the data for that
+            NSString *levelName = [NSString stringWithFormat:@"level%d",i];
+            NSDictionary *levelDict = [modeDict objectForKey:levelName];
+            
+            //get medal data based on the levels difficulty
+            NSDictionary *medals = [levelDict objectForKey:difficulty];
+            
+            int bronzeTime = [[medals objectForKey:@"bronze"] intValue];
+            int silverTime = [[medals objectForKey:@"silver"] intValue];
+            int goldTime = [[medals objectForKey:@"gold"] intValue];
+            
+            
+            //set trophy based on what player's best time is for that level
+            if (bestTime<goldTime) {
+                [button setTrophy:3];
+            } else if(bestTime<silverTime) {
+                [button setTrophy:2];
+            } else if(bestTime<bronzeTime) {
+                [button setTrophy:1];
+            }
+        }
+
+    }
     
 }
 
@@ -209,6 +242,10 @@
                 [self popAndSwitchToLevel:_levelToSwitchTo];                
             }
         }
+    }
+    
+    for (LevelButton *button in _buttons) {
+        
     }
 }
 

@@ -225,6 +225,7 @@
 		549D84DB1469DE9100A3599F /* chooseLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 549D84D71469DE9100A3599F /* chooseLevel.plist */; };
 		549D84DC1469DE9100A3599F /* chooseLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 549D84D81469DE9100A3599F /* chooseLevel.png */; };
 		549D84E01469E80000A3599F /* LevelButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 549D84DF1469E80000A3599F /* LevelButton.m */; };
+		549E5DB614843CC6006D4CAE /* BestTimes.m in Sources */ = {isa = PBXBuildFile; fileRef = 549E5DB514843CC6006D4CAE /* BestTimes.m */; };
 		549ED75D1461CD63008BCD98 /* anims.plist in Resources */ = {isa = PBXBuildFile; fileRef = 549ED7551461CD62008BCD98 /* anims.plist */; };
 		549ED75E1461CD63008BCD98 /* comics.plist in Resources */ = {isa = PBXBuildFile; fileRef = 549ED7561461CD62008BCD98 /* comics.plist */; };
 		549ED75F1461CD63008BCD98 /* levels.plist in Resources */ = {isa = PBXBuildFile; fileRef = 549ED7571461CD62008BCD98 /* levels.plist */; };
@@ -761,6 +762,8 @@
 		549D84D81469DE9100A3599F /* chooseLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chooseLevel.png; sourceTree = "<group>"; };
 		549D84DE1469E80000A3599F /* LevelButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelButton.h; sourceTree = "<group>"; };
 		549D84DF1469E80000A3599F /* LevelButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelButton.m; sourceTree = "<group>"; };
+		549E5DB414843CC6006D4CAE /* BestTimes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BestTimes.h; sourceTree = "<group>"; };
+		549E5DB514843CC6006D4CAE /* BestTimes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BestTimes.m; sourceTree = "<group>"; };
 		549ED7551461CD62008BCD98 /* anims.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = anims.plist; path = Plists/anims.plist; sourceTree = "<group>"; };
 		549ED7561461CD62008BCD98 /* comics.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = comics.plist; path = Plists/comics.plist; sourceTree = "<group>"; };
 		549ED7571461CD62008BCD98 /* levels.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = levels.plist; path = Plists/levels.plist; sourceTree = "<group>"; };
@@ -1883,6 +1886,8 @@
 		549ED7C51461D065008BCD98 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				549E5DB414843CC6006D4CAE /* BestTimes.h */,
+				549E5DB514843CC6006D4CAE /* BestTimes.m */,
 				549ED7C71461D065008BCD98 /* GameController.h */,
 				549ED7C81461D065008BCD98 /* GameController.m */,
 				549ED7C91461D065008BCD98 /* GameObjectController.h */,
@@ -2596,6 +2601,7 @@
 				54229083147AB30D0096C809 /* RegionManager.m in Sources */,
 				54767C51147C08660025F46F /* PlayerActionBlow.m in Sources */,
 				611293DF147AC42200AC017F /* Appirater.m in Sources */,
+				549E5DB614843CC6006D4CAE /* BestTimes.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
