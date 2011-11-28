@@ -39,11 +39,8 @@
     xthrust = -1;
     ythrust = 0;
     _firstUpdate = true;
-    
 
-    
     _replaceProjectileId = 0;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reset) name:@"player died" object:nil];
 }
 
 -(void)setSprite:(Sprite *)sprite
@@ -144,10 +141,9 @@
 
 -(void)reset
 {
-    for (Projectile *_bullet in _bullets)
-        [_bullet disable];
-    //NSLog(@"bossJimShip has been reset");
-    
+    for (Projectile *_bullet in _bullets) {
+        [_bullet disable];        
+    }
 }
 
 -(void)updateVelocity:(float)dt

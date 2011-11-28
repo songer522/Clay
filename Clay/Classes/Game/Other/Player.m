@@ -294,8 +294,6 @@
         _y += 2.0f;
         _waitToGetUp = 0.3f;
     }
-    //NSLog(@"%d",_speed.inTurbo);
-  
 }
 
 //used by background layers for scrolling
@@ -306,7 +304,6 @@
 
 -(void)reset
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"player died" object:nil];
     _hitPoints = 4;
     [_battery reset];
     [_speed reset];

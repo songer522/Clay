@@ -27,6 +27,7 @@
 -(void)initButton;
 
 -(void)setTrophy:(int)trophyId;
+-(void)setTrophyPosition;
 
 -(void)setCursor:(Sprite*)cursor;
 

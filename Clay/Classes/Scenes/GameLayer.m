@@ -108,6 +108,12 @@
 
 -(void)startLevel:(NSString*)levelName
 {
+    //reset boss before loading level
+    if (_boss !=nil) {
+        [_boss release];
+        _boss = nil;
+    }
+    
     [[LevelManager shared] reset];
     [[LevelManager shared] loadLevelNamed:levelName];
     [self initForLevel];
@@ -222,6 +228,10 @@
                 
                 [_level resetObstacles];
                 [_level resetTriggers];
+                
+                if (_boss !=nil) {
+                    [_boss reset];
+                }
             }        
         }
         

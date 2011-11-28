@@ -64,15 +64,15 @@
     if (row == 1) {
         column += 0.5f;
     }
-    
+
     CGPoint position = ccp(startX + 64 * column, startY - 64 * row);
-    [self setPosition:position];
+    [self setPosition:position];    
 }
 
 -(void)setPosition:(CGPoint)position
 {
     [_buttonGraphic setScreenPosition:position];
-    [_trophy setScreenPosition:position];
+    [self setTrophyPosition];
     [self setHitbox:CGRectMake(position.x, position.y, 55, 55)];
 }
 
@@ -101,10 +101,19 @@
 
 -(void)setTrophy:(int)trophyId
 {
-    NSString *frameName = [NSString stringWithFormat:@"CL_Trophy_%f.png",trophyId];
+    NSString *frameName = [NSString stringWithFormat:@"CL_Trophy_%d.png",trophyId];
     _trophy = [Sprite spriteFromFrameCacheWithName:frameName];
-    [frameName release];
+    [self setTrophyPosition];
 }
+
+-(void)setTrophyPosition
+{
+    if (_trophy!=nil) {
+        CGPoint position = [_buttonGraphic getPosition];
+        [_trophy setScreenPosition:ccp(position.x + 34.0f,position.y - 2.0f)];            
+    }
+}
+
 
 -(void)dealloc
 {
