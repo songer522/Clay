@@ -202,15 +202,16 @@
                     
                     [[ComicManager shared] startComic:_level.postLevelComicName];
                     [ComicManager shared].loadNextLevel = true;
-                    
                     break;
                 case TRIGGER_CHECKPOINT:
                     [_savePoint setSavePoint:trigger.position Level:_level.name];
+                    [_level disablePassedTrigger];
                     [[SoundEngine shared] playSound:@"checkpoint"];
                     [_player rechargeBattery];
                     break;
                 case TRIGGER_BOSS_SHOOT:
                     [_boss triggerAttack];
+                    trigger.triggered=true;
                     break;
                 default:
                     break;
@@ -222,6 +223,8 @@
         if (![[ComicManager shared] isActive]) {
             if(_player.isDead) {
                 [_player reset];
+                if(_boss){
+                    [_boss reset];}
                 [_savePoint restoreSavePoint:_player];
                 _player.isDead = false;
                 [_player rechargeBattery];

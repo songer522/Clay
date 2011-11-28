@@ -430,7 +430,14 @@
         }
     }
 }
+-(void)disablePassedTrigger
+{
+    for (Trigger *trigger in _triggers) {
+        if (trigger.triggered) {
+            trigger.canBeReset=false;    }
 
+}
+}
 -(bool)testCollisions:(GameObject*)source
 {
     bool collision = false;

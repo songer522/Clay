@@ -101,9 +101,7 @@
         if ([_bullet isActive]) {
             [_bullet pointTowardPlayer];
             [_bullet update:dt];
-            
-            
-            Player *_player = [[LayerManager sharedLayers] getPlayer];
+                        Player *_player = [[LayerManager sharedLayers] getPlayer];
             
             Level *currentLevel = [[LevelManager shared] currentLevel];
           
@@ -122,7 +120,7 @@
             
           
         }
-        
+                       
     }
 }
 
