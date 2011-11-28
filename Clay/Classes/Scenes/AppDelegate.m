@@ -103,7 +103,7 @@
 #endif
 	
 	[director setAnimationInterval:1.0f/60.0f];
-	[director setDisplayFPS:NO];
+	[director setDisplayFPS:YES];
     
 	
 	

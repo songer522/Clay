@@ -68,6 +68,9 @@
 
 #define kDefaultFPS		60.0	// 60 frames per second
 
+//XECUDEV ADD
+#import "GameSettings.h"
+
 extern NSString * cocos2dVersion(void);
 
 
@@ -515,7 +518,8 @@ static CCDirector *_sharedDirector = nil;
 //		[FPSLabel setCString:format];
 
         //XECUDEV: change to show memory also the only change in showFPS is this line:
-        NSString *str = [[NSString alloc] initWithFormat:@"%.1f   %.1f", frameRate_, [CCDirector getAvailableMegaBytes]];
+        NSString *versionNumber = [[GameSettings shared] getGlobalForKey:@"versionNumber"];
+        NSString *str = [[NSString alloc] initWithFormat:@"%@   %.1f   %.1f, ", versionNumber, frameRate_, [CCDirector getAvailableMegaBytes]];
         
 		//NSString *str = [[NSString alloc] initWithFormat:@"%.1f", frameRate_];
 		[FPSLabel_ setString:str];
