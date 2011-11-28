@@ -58,5 +58,17 @@
 	<string>chooseSelection.wav</string>
 	<key>shuffling</key>
 	<string>shuffling.wav</string>
+	<key>blowAction</key>
+	<string>blowAction.wav</string>
+	<key>crowAppears</key>
+	<string>crow.mp3</string>
+	<key>maddogBark</key>
+	<string>maddogBark.wav</string>
+	<key>pigAppears</key>
+	<string>pig.mp3</string>
+	<key>fireballLand</key>
+	<string>fireballLand.wav</string>
+	<key>jimShipCharge</key>
+	<string>jimShipCharge.wav</string>
 </dict>
 </plist>

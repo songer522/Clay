@@ -16,14 +16,11 @@
 #import "RootViewController.h"
 #import "VideoPlayer.h"
 #import "CCVideoPlayer.h"
-#import "ComicManager.h"
-#import "EndGameScene.h"
-#import "HudLayer.h"
+#import "TextureManager.h"
+#import "GameSettings.h"
 #import "MainMenuScene.h"
-#import "LevelManager.h"
-#import "ChooseLevelScreen.h"
-
-#define DEBUG_DRAW_BOUNDING_BOXES 0
+#import "Appirater.h"
+#import "SoundEngine.h"
 
 @implementation AppDelegate
 
@@ -48,14 +45,17 @@
 //	[[director openGLView] swapBuffers];
 //	CC_ENABLE_DEFAULT_GL_STATES();
 	
+    
 #endif // GAME_AUTOROTATION == kGameAutorotationUIViewController	
 }
 - (void) applicationDidFinishLaunching:(UIApplication*)application
 {
 	// Init the window
 	window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+  
 	
-	// Try to use CADisplayLink director
+    // Try to use CADisplayLink director
 	// if it fails (SDK < 3.1) use the default director
 	if( ! [CCDirector setDirectorType:kCCDirectorTypeDisplayLink] )
 		[CCDirector setDirectorType:kCCDirectorTypeDefault];
@@ -78,13 +78,13 @@
 								   depthFormat:0						// GL_DEPTH_COMPONENT16_OES
 						];
 	
-    glView.opaque = NO;
+//    glView.opaque = YES;
     
 	// attach the openglView to the director
 	[director setOpenGLView:glView];
 	
 //	// Enables High Res mode (Retina Display) on iPhone 4 and maintains low res on all other devices
-	if( ! [director enableRetinaDisplay:YES] )
+	if( ! [director enableRetinaDisplay:[GameSettings shouldUseRetinaForDevice]] )
 		CCLOG(@"Retina Display Not supported");
 	
 	//
@@ -103,7 +103,7 @@
 #endif
 	
 	[director setAnimationInterval:1.0f/60.0f];
-	[director setDisplayFPS:YES];
+	[director setDisplayFPS:NO];
     
 	
 	
@@ -119,43 +119,26 @@
 	// It can be RGBA8888, RGBA4444, RGB5_A1, RGB565
 	// You can change anytime.
 	[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
-    //[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA4444];
+    //[CCTexture2D setDefaultAlphaPixelFormat:kTexture2DPixelFormat_RGB5A1];
 	
 	// Removes the startup flicker
 	[self removeStartupFlicker];
 	
-	// Run the intro Scene
-    gameScene = [GameLayer scene];
-    [[LayerManager sharedLayers] setScene:gameScene ForKey:@"game"];
-    [[LayerManager sharedLayers] setCurrentScene:gameScene];
-    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
     
+    [[GameSettings shared] setGlobal:@"YES" ForKey:@"titleMusicStarted"];
+    [[SoundEngine shared] playMusic:@"title"];
+    [[TextureManager shared] loadMemoryForKey:@"launch"];
     
-#if DEBUG_DRAW_BOUNDING_BOXES
-    _debugLayer = [GameDebugLayer debugLayerForScene:[[LayerManager sharedLayers] currentScene] GameLayer:[[LayerManager sharedLayers] currentLayer]];
-#endif
-    
-    _hudLayer = [HudLayer instance];
-    [gameLayer setupHud:_hudLayer];
-    
-
-    [[ComicManager shared] preload];
-    [ComicManager shared].gameLayer = [[LayerManager sharedLayers] currentLayer];
-    
-	
-    
-    [_hudLayer reset];
-
-    
-    [[LevelManager shared] initAfterPlayerAndHudInit];
-        
     [[CCDirector sharedDirector] runWithScene:[MainMenuScene scene]]; 
     
     [[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
     
     [[CCDirector sharedDirector] setProjection:CCDirectorProjection2D];
-}
+    //[[CCDirector sharedDirector] setDepthBufferFormat:CCDepthBuffer16]; 
+    
+    [Appirater appLaunched:YES];
 
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
 	[[CCDirector sharedDirector] pause];
@@ -166,6 +149,7 @@
 }
 
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
+    [[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
 	[[CCDirector sharedDirector] purgeCachedData];
 }
 
@@ -174,11 +158,15 @@
 }
 
 -(void) applicationWillEnterForeground:(UIApplication*)application {
-	[[CCDirector sharedDirector] startAnimation];
+	
+    [[CCDirector sharedDirector] startAnimation];
+    [Appirater appEnteredForeground:YES];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-	CCDirector *director = [CCDirector sharedDirector];
+	[[TextureManager shared] unloadMemoryForKey:@"launch"];
+    
+    CCDirector *director = [CCDirector sharedDirector];
 	
 	[[director openGLView] removeFromSuperview];
 	
@@ -192,6 +180,9 @@
 - (void)applicationSignificantTimeChange:(UIApplication *)application {
 	[[CCDirector sharedDirector] setNextDeltaTimeZero:YES];
 }
+
+
+
 
 - (void)dealloc {
     [window release];

@@ -8,6 +8,8 @@
 
 #import "TextureManager.h"
 #import "PListLoader.h"
+#import "SoundEngine.h"
+#import "AnimationController.h"
 
 @implementation TextureManager
 
@@ -30,29 +32,111 @@ static TextureManager *_shared = nil;
     return self;
 }
 
--(void)loadTexturesForKey:(NSString*)key
+
+-(void)loadMemoryForKey:(NSString*)key
 {
-    NSString *basename = [_memoryDictionary objectForKey:key];
+    NSDictionary *dict = [_memoryDictionary objectForKey:key];
     
-    if (![basename isEqualToString:@"none"]) {
-        NSString *filename = [NSString stringWithFormat:@"%@.plist",[_memoryDictionary objectForKey:key]];
-        
-        CCSpriteFrameCache* frameCache = [CCSpriteFrameCache sharedSpriteFrameCache];
-        [frameCache addSpriteFramesWithFile:filename];        
+    //NSLog(@"Loading memory for key: %@",key);
+    
+    //load textures
+    NSString *textureList = [dict objectForKey:@"textures"];
+    NSArray *textureArray = [NSArray arrayWithArray:[textureList componentsSeparatedByString:@","]];
+    for (NSString *texture in textureArray) {
+        if (![texture isEqualToString:@"none"]) {
+            [self loadTexturesForFile:texture];            
+        }
+    }
+    
+    //load animations
+    NSString *animList = [dict objectForKey:@"animations"];
+    NSArray *animArray = [NSArray arrayWithArray:[animList componentsSeparatedByString:@","]];
+    for (NSString *anim in animArray) {
+        if (![anim isEqualToString:@"none"]) {
+            [[AnimationController sharedController] loadAnimationsForGroup:anim];            
+        }
+    }
+    
+    //load sounds
+    NSString *soundlist = [dict objectForKey:@"sounds"];
+    NSArray *soundArray = [NSArray arrayWithArray:[soundlist componentsSeparatedByString:@","]];
+    for (NSString *sound in soundArray) {
+        if (![sound isEqualToString:@"none"]) {
+            [[SoundEngine shared] loadSoundForKey:sound];            
+        }
     }
 }
 
--(void)unloadTexturesForKey:(NSString*)key
+
+-(void)unloadMemoryForKey:(NSString*)key
 {
-    NSString *basename = [_memoryDictionary objectForKey:key];
+    //NSLog(@"Unloading memory for key: %@",key);
+
+    NSDictionary *dict = [_memoryDictionary objectForKey:key];
     
-    if (![basename isEqualToString:@"none"]) {
-        NSString *plistname = [NSString stringWithFormat:@"%@.plist",basename];
-        NSString *texturename = [NSString stringWithFormat:@"%@.png",basename];
-        
-        [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFramesFromFile:plistname];
-        [[CCTextureCache sharedTextureCache] removeTextureForKey:texturename];    
+    //unload textures
+    NSString *textureList = [dict objectForKey:@"textures"];
+    NSArray *textureArray = [NSArray arrayWithArray:[textureList componentsSeparatedByString:@","]];
+    for (NSString *texture in textureArray) {
+        if (![texture isEqualToString:@"none"]) {
+            [self unloadTexturesForFile:texture];
+        }
+    }
+    
+    //unload extra textures (stated by removeTextures key... these are not loaded by TextureManager but should be removed)
+    textureList = [dict objectForKey:@"removeTextures"];
+    textureArray = [NSArray arrayWithArray:[textureList componentsSeparatedByString:@","]];
+    for (NSString *texture in textureArray) {
+        if (![texture isEqualToString:@"none"]) {
+            [self unloadTexturesForFile:texture];
+        }
+    }
+    
+    [[CCTextureCache sharedTextureCache] removeUnusedTextures];    
+    
+    //unload animations
+    NSString *animList = [dict objectForKey:@"animations"];
+    NSArray *animArray = [NSArray arrayWithArray:[animList componentsSeparatedByString:@","]];
+    for (NSString *anim in animArray) {
+        if (![anim isEqualToString:@"none"]) {
+            [[AnimationController sharedController] unloadAnimationsForGroup:anim];
+        }
+    }
+    
+    //unload sounds
+    NSString *soundlist = [dict objectForKey:@"sounds"];
+    NSArray *soundArray = [NSArray arrayWithArray:[soundlist componentsSeparatedByString:@","]];
+    for (NSString *sound in soundArray) {
+        if (![sound isEqualToString:@"none"]) {
+            [[SoundEngine shared] unloadSoundForKey:sound];                        
+        }
     }
 }
+
+
+
+
+
+////////////////////////
+//  PRIVATE METHODS
+////////////////////////
+
+-(void)loadTexturesForFile:(NSString*)filename
+{
+    NSString *fullFilename = [NSString stringWithFormat:@"%@.plist",filename];
+    CCSpriteFrameCache* frameCache = [CCSpriteFrameCache sharedSpriteFrameCache];
+    [frameCache addSpriteFramesWithFile:fullFilename];        
+}
+
+-(void)unloadTexturesForFile:(NSString*)filename
+{
+    NSString *plistname = [NSString stringWithFormat:@"%@.plist",filename];
+    NSString *texturename = [NSString stringWithFormat:@"%@.png",filename];
+    
+    [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFramesFromFile:plistname];
+    [[CCTextureCache sharedTextureCache] removeTextureForKey:texturename];    
+}
+
+
 
 @end

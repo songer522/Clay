@@ -16,6 +16,8 @@
 #import "UserData.h"
 #import "TextureManager.h"
 #import "Boss.h"
+#import "GameSettings.h"
+#import "Appirater.h"
 
 @implementation LevelManager
 
@@ -40,24 +42,7 @@ static LevelManager *_shared = nil;
         // Initialization code here.
         _gameObjects = [[GameObjectController alloc] init];
         
-        _levelSettings = [[NSDictionary alloc] initWithDictionary:[PListLoader loadPlistWithName:@"levels"]];
-        
-        NSString *startingLevel = [_levelSettings valueForKey:@"startingLevel"];
-        
-
-        TextureManager *manager = [TextureManager shared];
-        [manager loadTexturesForKey:@"player"];
-        [manager loadTexturesForKey:@"hud"];
-        [manager loadTexturesForKey:@"player8"];
-
-        //textures must be loaded before the animations
-        AnimationController *animController = [AnimationController sharedController];
-        [animController loadAnimationsForGroup:@"player"];
-        [animController loadAnimationsForGroup:@"hud"];
-        
-        
-        _currentLevel = [self prepareLevelNamed:startingLevel];
-        
+        _levelSettings = [[[NSDictionary alloc] initWithDictionary:[PListLoader loadPlistWithName:@"levels"]] retain];
     }
     
     return self;
@@ -68,30 +53,17 @@ static LevelManager *_shared = nil;
 //object exists. need to fix later
 -(void)initAfterPlayerAndHudInit
 {
-    [_loadedLevel setHudButtonsAndThirdAction:_thirdAction];
-    
+    [_currentLevel setHudButtonsAndThirdAction:_thirdAction];
 }
 
 -(Level*)prepareLevelNamed:(NSString*)levelName
 {
-    //call before animations are loaded, as the animations assume these spriteframes are in memory
-    [[TextureManager shared] loadTexturesForKey:levelName];
-    
-    //pretty much always needed
-    AnimationController *controller = [AnimationController sharedController];
-    [controller loadAnimationsForGroup:levelName];
-    
-    
     NSDictionary *levelSettings = [_levelSettings valueForKey:levelName];
     
     NSString *fileName = [levelSettings valueForKey:@"fileName"];
     NSString *obstacleLayer = [levelSettings valueForKey:@"obstacleLayer"];
-    NSString *nextLevelName = [levelSettings valueForKey:@"nextLevelName"];
-    NSString *postLevelComicName = [levelSettings valueForKey:@"postLevelComic"];
-    NSString *music = [levelSettings valueForKey:@"music"];
-    NSString *preComicName = [levelSettings valueForKey:@"preComic"];
     
-    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2){
+    if ([GameSettings usingHighResolutionGraphics]){
         // Use HD level for High Res screens
         NSArray *filenameParts = [fileName componentsSeparatedByString:@"."];
         NSMutableString *filenameMuta = [[NSMutableString alloc] initWithString:[filenameParts objectAtIndex:0]];
@@ -101,25 +73,44 @@ static LevelManager *_shared = nil;
         fileName = [NSString stringWithString:filenameMuta];
     }
     
-    _thirdAction = [levelSettings valueForKey:@"thirdAction"];
+    _thirdAction = [NSString stringWithString:[levelSettings valueForKey:@"thirdAction"]];
 
-    NSString *layerList = [levelSettings valueForKey:@"layerList"];
+    NSString *layerList = [NSString stringWithString:[levelSettings valueForKey:@"layerList"]];
     
     _playerOffsetY = [[levelSettings valueForKey:@"playerOffsetY"] intValue];
-    
     
     GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
     
     Level *level = [Level levelWithFilename:fileName ObstacleLayer:obstacleLayer LayerList:layerList GameObjectController:_gameObjects Player:gameLayer.player];
-    level.nextLevelName = nextLevelName;
-    level.postLevelComicName = postLevelComicName;
+    
+    level.nextLevelName = [NSString stringWithString:[levelSettings valueForKey:@"nextLevelName"]];
+    level.postLevelComicName = [NSString stringWithString:[levelSettings valueForKey:@"postLevelComic"]];
     level.gameObjects = _gameObjects;
-    level.name = levelName;
-    level.musicName = music;
-    level.preComicName = preComicName;
+    level.name = [NSString stringWithString:levelName];
+    level.musicName = [NSString stringWithString:[levelSettings valueForKey:@"music"]];
+    level.preComicName = [NSString stringWithString:[levelSettings valueForKey:@"preComic"]];
+
+    //camera needs to know what the level name is so call after level data is created
+    [[Camera sharedCamera] setBoundaries:[level getLevelBoundaries] Level:level];
+
+    return level;
+}
+
+-(void)loadLevelNamed:(NSString*) levelName
+{
+    //this method gets called on the first level loaded, before currentlevel is set
+    if(_currentLevel !=nil) {
+        [self dumpMemoryForLevel:_currentLevel];        
+    }
     
-    _loadedLevel = level;
+    [[TextureManager shared] loadMemoryForKey:levelName];    
     
+    _currentLevel = [self prepareLevelNamed:levelName];
+
+    [UserData sharedInstance].currentLevel = [[_currentLevel.name substringFromIndex:5] intValue];
+    [[UserData sharedInstance] save];
+    
+    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
     if (gameLayer.player != nil) {
         [self initAfterPlayerAndHudInit];
     }
@@ -131,34 +122,7 @@ static LevelManager *_shared = nil;
     } else {
     }
     
-    return level;
-}
-
--(void)loadLevelNamed:(NSString*) levelName
-{
-    _nextLevel = [self prepareLevelNamed:levelName];
-    [UserData sharedInstance].currentLevel = [[_currentLevel.name substringFromIndex:5] intValue];
-    [[UserData sharedInstance] save];
-}
-
--(void)loadNextLevel
-{
-    [self loadLevelNamed:_currentLevel.nextLevelName];
-}
-
--(void)receiveBoss:(Boss*)boss
-{
-    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
-    [gameLayer setBoss:boss];
-}
-
--(void)switchToNextLevel
-{
-    [self dumpMemoryForLevel:_currentLevel];
-    _currentLevel = _nextLevel;
-    
     //show 8-bit skin if level 7, otherwise show regular skin
-    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
     int levelNumber = [[_currentLevel.name substringFromIndex:5] intValue];
     if (levelNumber == 7) {
         [gameLayer.player updateSkin:SKINTYPE_8BIT];
@@ -167,7 +131,23 @@ static LevelManager *_shared = nil;
     }
     
     [[SoundEngine shared] playMusic:_currentLevel.musicName];
+    
+    [[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
 
+}
+
+-(void)loadNextLevel
+{
+   
+    
+    [self loadLevelNamed:_currentLevel.nextLevelName];
+   
+}
+
+-(void)receiveBoss:(Boss*)boss
+{
+    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+    [gameLayer setBoss:boss];
 }
 
 -(void)dumpMemoryForLevel:(Level*)level
@@ -176,17 +156,23 @@ static LevelManager *_shared = nil;
 
     [level release];
     
-    //then we should get rid of the animations we loaded for this level
-    AnimationController *controller = [AnimationController sharedController];
-    [controller unloadAnimationsForGroup:levelName];
-
-    //want to release level and animations before try unloading textures, so nothing is hanging on to the textures
-    [[TextureManager shared] unloadTexturesForKey:levelName];
+    [[TextureManager shared] unloadMemoryForKey:levelName];
 }
 
 -(NSMutableArray*)getObstacleArray
 {
     return _currentLevel.obstacleSprites;
+}
+
+-(void)reset
+{
+    _currentLevel = nil;
+    
+    //did this because some string values are not sticking around after going restarting the game a few times
+    if (_levelSettings!=nil) {
+        //[_levelSettings release]; can't do because something is deallocating it
+        _levelSettings = [[NSDictionary alloc] initWithDictionary:[PListLoader loadPlistWithName:@"levels"]];        
+    }
 }
 
 -(void)dealloc
@@ -195,7 +181,6 @@ static LevelManager *_shared = nil;
     [_levels release];
     [_levelSettings release];
     [_currentLevel release];
-    [_nextLevel release];
     [_gameObjects release];
     [super dealloc];
 }

@@ -16,7 +16,12 @@
 #import "ActionButton.h"
 #import "Level.h"
 #import "SoundEngine.h"
-#import "Twitter/Twitter.h"
+#import "TextureManager.h"
+#import "GameSettings.h"
+#import "GameLayer.h"
+#import "Appirater.h"
+#import "MainMenuScene.h"
+
 
 @implementation ChooseLevelScreen
 
@@ -43,33 +48,27 @@
 
 -(id) initWithScene:(CCScene*)scene
 {
+    
+   
     if ((self = [super init])) {
-        [[LayerManager sharedLayers] setScene:scene ForKey:@"chooseLevel"];
-         _buttons = [[NSMutableArray alloc] initWithCapacity:4];
-        
+         _buttons = [[NSMutableArray alloc] initWithCapacity:4];        
         _levelToSwitchTo = @"level1";
         _buttons = [[NSMutableArray alloc] initWithCapacity:7];
         _alpha = 1.0f;
         _selected = 1;
+        _backToMainMenu = false;
         _waitToSwitch = 0.0f;
         self.isTouchEnabled = YES;
         [self load];
+       
     }
     return self;
 }
 
--(void)tweet:(NSString*)levelName
-{
-    if ([TWTweetComposeViewController canSendTweet]) {
-        TWTweetComposeViewController *tweetSheet = [[TWTweetComposeViewController alloc] init];
-        [tweetSheet setInitialText:[NSString stringWithFormat:@"I just beat %@",levelName]];
-        //[[[CCDirector sharedDirector] openGLView] addSubview:(UIViewController*)tweetSheet];
-    }
-}
-
-
 -(void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+   
+    
     NSSet *allTouches = [event allTouches];
     for(UITouch *touch in allTouches) {
         CGPoint position = [self convertTouchToNodeSpace:touch];
@@ -85,19 +84,19 @@
                     _levelToSwitchTo = nil;
                 }
                 _levelToSwitchTo = [[NSString alloc] initWithFormat:@"level%d",_selected];
-                [self tweet:_levelToSwitchTo];
             }
         }
         
         if([_startButton checkIfSelected:position]) {
             _waitToSwitch = 0.25f;
-            [[SoundEngine shared] playSound:@"buttonPressed"];
-            self.isTouchEnabled = NO; //NOTE: CHOOSE LEVEL SCREEN STILL ACTIVE IN GAME???
-            
+            [[SoundEngine shared] playSound:@"buttonPressed"];     
+            //[[SoundEngine shared] cueFadeOut];
         }
         
         if([_backButton checkIfSelected:position]) {
-            NSLog(@"want to go back!");
+            _waitToSwitch = 0.25f;
+            _backToMainMenu = true;
+            [[SoundEngine shared] playSound:@"buttonPressed"];     
         }        
     }
 }
@@ -106,9 +105,7 @@
 {
     [[LayerManager sharedLayers] setWorkingLayer:self];    
 
-    
-    CCSpriteFrameCache* frameCache = [CCSpriteFrameCache sharedSpriteFrameCache];
-    [frameCache addSpriteFramesWithFile:@"chooseLevel.plist"];
+    [[TextureManager shared] loadMemoryForKey:@"chooseLevel"];
     
     _background = [Sprite spriteFromFrameCacheWithName:@"CL_Background.png"];
     [_background setScreenPosition:ccp(0,0)];
@@ -126,12 +123,12 @@
     _startButton = [ActionButton actionButtonWithText:@"START"];
     [_startButton setPosition:ccp(430,18)];
     
-    //_backButton = [ActionButton actionButtonWithText:@"BACK"];
-    //[_backButton setPosition:ccp(50, 18)];
+    _backButton = [ActionButton actionButtonWithText:@"BACK"];
+    [_backButton setPosition:ccp(50, 18)];
     
     
-    for (int i=0; i<7; i++) {
-        LevelButton *button = [LevelButton levelButtonWithCache:frameCache andId:i];
+    for (int i=0; i<11; i++) {
+        LevelButton *button = [LevelButton levelButtonWithId:i];
         [button setCursor:_selector];
         
         if(i==0) {
@@ -139,11 +136,17 @@
         }
         
         [_buttons addObject:button];
+        
+       
     }
     
     
     _levelSelectText = [CCLabelBMFont labelWithString:@"LEVEL SELECT" fntFile:@"GraphicFont.fnt"];
-    [_levelSelectText setScale:0.75f];
+    if ([GameSettings usingHighResolutionGraphics])
+    { [_levelSelectText setScale:0.75f];}
+    else
+    { [_levelSelectText setScale:0.375f];}
+    
     _levelSelectText.position = ccp(365.0f,278.0f);
     [[[LayerManager sharedLayers] currentLayer] addChild:_levelSelectText];
 
@@ -164,21 +167,18 @@
 
 -(void)popAndSwitchToLevel:(NSString*)level
 {
-    [[LevelManager shared] loadLevelNamed:level];
-    [[LevelManager shared] switchToNextLevel];
-    Level *levelObj = [[LevelManager shared] currentLevel];
-    
-    [[ComicManager shared] startComic:levelObj.preComicName StartPhase:COMIC_PHASE_PLAY_VIDEO];
+    [[GameSettings shared] setGlobal:@"NO" ForKey:@"titleMusicStarted"];
+    [[GameSettings shared] setGlobal:level ForKey:@"startingLevel"];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[GameLayer scene]]];
+}
 
-    [self unscheduleUpdate];
-    
-    [[LayerManager sharedLayers] pushSceneNamed:@"game"];
-     
+-(void)switchToMainMenu
+{
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[MainMenuScene scene]]];
 }
 
 -(void)transitionOut
 {
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[[LayerManager sharedLayers] currentScene]]];
 }
 
 -(void)unload
@@ -188,10 +188,14 @@
 -(void)onExit
 {
     [self release];
+    [self unscheduleUpdate];
+    self.isTouchEnabled = false;
 }
 
 -(void)update:(ccTime)dt
 {
+    [[SoundEngine shared] update:dt];
+
     [_startButton update:dt];
     [_backButton update:dt];
 
@@ -199,14 +203,18 @@
         _waitToSwitch-=dt;
         if(_waitToSwitch<=0.0f){
             _waitToSwitch = 0.0f;
-            [self popAndSwitchToLevel:_levelToSwitchTo];
-            [self release];
+            if (_backToMainMenu) {
+                [self switchToMainMenu];
+            } else {
+                [self popAndSwitchToLevel:_levelToSwitchTo];                
+            }
         }
     }
 }
 
 -(void)dealloc
 {
+    NSLog(@"Dealloc: ChooseLevelScreen");
     
     [_buttons removeAllObjects];
     _buttons = nil;
@@ -214,13 +222,10 @@
     [_levelToSwitchTo release];
     [_levelSelectText release];
     [_startButton release];
+    [_backButton release];
     [_selector release];
-    //[_backButton release];
-    //[_levelInfoFront release];
-    //[_levelPanelText release];
-    [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFramesFromFile:@"chooseLevel.plist"];
-    [[CCTextureCache sharedTextureCache] removeTextureForKey:@"chooseLevel.png"];
-    //[[CCTextureCache sharedTextureCache] removeUnusedTextures];
+    
+    [[TextureManager shared] unloadMemoryForKey:@"chooseLevel"];
 }
 
 @end

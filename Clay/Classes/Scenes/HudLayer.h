@@ -28,9 +28,7 @@ typedef enum {
     HudButton *_buttonJump;
     HudButton *_buttonSprint;
     HudButton *_buttonAction;
-    HudButton *_overLayJump;
-    HudButton *_overLaySprint;
-    HudButton *_overLayAction;
+ 
     
     float _buttonScale;
     

@@ -78,17 +78,17 @@
 			
 			</array>
 			<key>spriteColorRect</key>
-			<string>{{5, 0}, {68, 73}}</string>
+			<string>{{3, 0}, {74, 75}}</string>
 			<key>spriteOffset</key>
-			<string>{0, 1}</string>
+			<string>{1, -0}</string>
 			<key>spriteSize</key>
-			<string>{68, 73}</string>
+			<string>{74, 75}</string>
 			<key>spriteSourceSize</key>
 			<string>{78, 75}</string>
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{166, 65}, {68, 73}}</string>
+			<string>{{166, 65}, {74, 75}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>

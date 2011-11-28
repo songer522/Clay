@@ -19,6 +19,13 @@
 #import "BossFactory.h"
 #import "SavePoint.h"
 #import "LaserShow.h"
+#import "TextureManager.h"
+#import "GameDebugLayer.h"
+#import "GameSettings.h"
+#import "Appirater.h"
+
+
+#define DEBUG_DRAW_BOUNDING_BOXES 0
 
 // HelloWorldLayer implementation
 @implementation GameLayer
@@ -30,10 +37,12 @@
 {
 	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
+    [[LayerManager sharedLayers] setCurrentScene:scene];
 	
 	// 'layer' is an autorelease object.
 	GameLayer *layer = [GameLayer node];
 	
+    
 	// add layer as a child to scene
 	[scene addChild: layer];
 	
@@ -47,11 +56,14 @@
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super init])) {
+        
         [self setVisible:NO];
 
         [[CCDirector sharedDirector] setProjection:CCDirectorProjection2D];
+
+        [[LayerManager sharedLayers] setCurrentLayer:self];
         
-        [[SoundEngine shared] preloadAudio];
+        [[TextureManager shared] loadMemoryForKey:@"gameScene"];
         
         _gameController = [GameController gameController];
         [_gameController setGameLayer:self];
@@ -59,29 +71,48 @@
         _inputController = [InputController inputController];
         [self addChild:_inputController];       //need to so its scheduled selectors will be trigger
         
-        [[LayerManager sharedLayers] setCurrentLayer:self];
-        
         _player = [Player instance];
-        
-        _level = [[LevelManager shared] currentLevel];
         
         _savePoint = [SavePoint instance];
         
-        
         [self schedule: @selector(update:)];
         
-        [self initForLevel];
-
         _paused = true;
         
         self.isTouchEnabled = YES;
         
         [self updateLogic:0.001f];  //done to correctly position the camera and player before
                                     //the first render cycle
+        [self setupLayers];
         
-
+        NSString *startingLevel = [[GameSettings shared] getGlobalForKey:@"startingLevel"];
+        
+        [self startLevel:startingLevel];
     }
 	return self;
+}
+
+-(void)setupLayers
+{
+    // Run the intro Scene    
+    [[ComicManager shared] preload];
+    
+    _hud = [HudLayer instance];
+    [self setupHud];
+    
+#if DEBUG_DRAW_BOUNDING_BOXES
+    _debugLayer = [GameDebugLayer debugLayerForScene:[[LayerManager sharedLayers] currentScene] GameLayer:[[LayerManager sharedLayers] currentLayer]];
+#endif
+
+}
+
+-(void)startLevel:(NSString*)levelName
+{
+    [[LevelManager shared] reset];
+    [[LevelManager shared] loadLevelNamed:levelName];
+    [self initForLevel];
+    Level *levelObj = [[LevelManager shared] currentLevel];
+    [[ComicManager shared] startComic:levelObj.preComicName StartPhase:COMIC_PHASE_STARTING_VIDEO];
 }
 
 -(void)initForLevel
@@ -100,18 +131,23 @@
     
     [self initCamera];
     
+    [[LevelManager shared] initAfterPlayerAndHudInit];
     [_hud reset];
+    [[ComicManager shared] resetComicLayer];
+    
+#if DEBUG_DRAW_BOUNDING_BOXES
+    [_debugLayer removeFromParentAndCleanup:NO];
+    [[[LayerManager sharedLayers] currentScene] addChild:_debugLayer];
+#endif
 }
 
--(void)setupHud:(HudLayer*)hud
+-(void)setupHud
 {
-    _hud = hud;
-    
     _player.battery = [_hud getBattery];
     [_hud getBattery].parent = _player;
     
     //pass on the hud to the gamecontroller
-    [_gameController setHud:hud];
+    [_gameController setHud:_hud];
 }
 
 -(HudLayer*)getHud
@@ -157,8 +193,10 @@
         if (trigger) {
             switch (trigger.type) {
                 case TRIGGER_NEXTLEVEL:
+                    
                     [[ComicManager shared] startComic:_level.postLevelComicName];
                     [ComicManager shared].loadNextLevel = true;
+                    
                     break;
                 case TRIGGER_CHECKPOINT:
                     [_savePoint setSavePoint:trigger.position Level:_level.name];
@@ -194,8 +232,6 @@
         }
         
     }
-    
-    //[_boss update:dt];
     
 }
 
@@ -237,7 +273,8 @@
 -(void)onExit
 {
     if (!_gameController.isPaused) {
-        [super onExit];
+        [self unscheduleUpdate];
+        self.isTouchEnabled = false;
     }
 }
 
@@ -262,12 +299,17 @@
 
 - (void) dealloc
 {
+    //can't put these in onexit like the others for some reason
+    
     [_level release];
     [_player release];
     [_gameController release];
     [_inputController release];
     [_savePoint release];
     [_hud release];
+    
+    [[TextureManager shared] unloadMemoryForKey:@"gameScene"];
+    
 	[super dealloc];
 }
 

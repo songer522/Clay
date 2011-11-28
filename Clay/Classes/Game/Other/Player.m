@@ -22,6 +22,7 @@
 #import "GameLayer.h"
 #import "HudLayer.h"
 
+
 #define PLAYER_SPRITE_FILE @"player_idle_01.png"
 #define PLAYER_STARTING_VELOCITY 0
 #define PLAYER_STARTING_Y_POSITION 40
@@ -35,6 +36,8 @@
 @synthesize isTripping = _isTripping;
 @synthesize hasDoubleJumped = _hasDoubleJumped;
 @synthesize battery = _battery;
+
+
 
 +(id) instance
 {
@@ -61,8 +64,11 @@
         _isInMidAir = false;
         _waitToGetUp = 0.0f;
         _onLedge = false;
+        _offLedge=false;
+       
         _timeLeftBeforeVulnerable = 2.0f;
         _isInvincible = false;
+        
         _thirdAction = nil;
         
         _speed = [[RunningSpeed alloc] initWithSettings:settings];
@@ -81,7 +87,17 @@
         _y = 120; //just so the fall into pit sound doesn't go off at very beginning
         
         _skin = [Skin instance];
+        _playerOnledge=[Sprite spriteWithFile:@"blank.png"]; 
+       
+        _tempSprite=_sprite;
+         //[[_tempSprite getCCSprite] setAnchorPoint:ccp(0,0)];
+        //[_tempSprite getCCSprite].position=[_sprite getCCSprite].position;
+        //[_tempSprite getCCSprite].anchorPoint=[_sprite getCCSprite].anchorPoint;
+        
+        //[_tempSprite setOffsetForX:0 Y:-201];
+        //_ay = 0.0f;
         [self updateSkin:SKINTYPE_REGULAR];
+      
     }
     
     return self;
@@ -93,7 +109,9 @@
         _hitPoints+=1;
         [_battery setFrame:(5-_hitPoints)];
     } else if(amount < 0 && _hitPoints >= 0) {
-        _hitPoints-=1;
+        
+            _hitPoints+=amount;
+        
         [_battery setFrame:(5-_hitPoints)];
     }
     
@@ -135,7 +153,9 @@
 
 -(void)startDoubleJump
 {
-    if (_isTripping || _isDead || [_thirdAction inAction] || [_sprite getPosition].y <= 62) { return; }
+    if (_isTripping || _isDead || [_thirdAction inAction] || [_sprite getPosition].y <= 62) { 
+        
+        return; }
     self.hasGravity = true;
     
     _vy = -250.0f;
@@ -166,6 +186,9 @@
 
 -(void)endJump
 {
+    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+    
+    [[gameLayer getHud] setEnabled:true ForButton:HUD_BUTTON_JUMP];
     if (!_isTripping && _isInMidAir) {
         [_skin setPlayerAnimation:PLAYER_ANIM_FALLING ForSprite:_sprite];
     }
@@ -176,14 +199,24 @@
 -(void)startTurbo
 {
     //guard
+   
+    
     if (_isTripping || _isDead || [_thirdAction inAction] || _isInMidAir || _waitToGetUp > 0.f) { return; }
     
     if (_hitPoints > 1) {
+        
         [_speed startTurbo];
+      
+        
         [[SoundEngine shared] playSound:@"turboStart"];
         [_skin setPlayerAnimation:PLAYER_ANIM_SPRINTING ForSprite:_sprite];
-        _hitPoints -=1;
-        [_battery setFrame:(5 - _hitPoints)];        
+        
+      
+        
+        
+       
+        //_hitPoints -=1;
+        //[_battery setFrame:(5 - _hitPoints)];        
     }
 
 }
@@ -197,29 +230,33 @@
     [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];
     [_speed endTurbo];
     
+    
+    
+    
 }
 
 -(bool)objectShouldReactToCollision
 {
     
-    return ([_thirdAction shouldTriggerPlayerHurtCollision] && _onLedge);
+    return ([_thirdAction shouldTriggerPlayerHurtCollision]); //CHANGED: used to be '&& _onLedge' to enable collisions on ledge again
 }
 
 -(void)startCollision:(PlayerEffect)effect Source:(id<Collidable>)source
 {
-    if (!_isInvincible && !_onLedge) {
+    if (!_isInvincible) {
         if (effect == PLAYER_EFFECT_ACTION_OR_COLLIDE) {
             if (!_isTripping && !_isDead) {
                 if (![_thirdAction isActive]) {
                     if ([_thirdAction shouldTriggerPlayerHurtCollision]) {
-                        [self private_StartPlayerCollision];                    
+                        [self private_StartPlayerCollision];  
+                      
                     }
                 }            
             }
         } else if (effect == PLAYER_EFFECT_COLLIDE) {
             if (!_isTripping && !_isDead) {
-                [self private_StartPlayerCollision];    
-            }
+                [self private_StartPlayerCollision];
+                            }
         } else if(effect == PLAYER_EFFECT_SLOWDOWN) {
             [_speed slowDown];
         }
@@ -233,13 +270,22 @@
 
 -(void)private_StartPlayerCollision
 {
+    if(_speed.inTurbo)
+    {
+        [self changeHealth:-2];
+    }
+    else
+    {
+        [self changeHealth:-1];
+    }
+
     [_speed startCollision];
     
     _waitToGetUp = 100.0f;
     
     [[SoundEngine shared] playSound:@"timHurt"];
     
-    if (_isJumping) {
+    if (_isJumping && [_speed inTurbo]) {
         [_skin setPlayerAnimation:PLAYER_ANIM_TRIPPING ForSprite:_sprite];
         _isTripping = true;
     } else {
@@ -248,8 +294,8 @@
         _y += 2.0f;
         _waitToGetUp = 0.3f;
     }
-    
-    [self changeHealth:-1];
+    //NSLog(@"%d",_speed.inTurbo);
+  
 }
 
 //used by background layers for scrolling
@@ -260,14 +306,17 @@
 
 -(void)reset
 {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"player died" object:nil];
     _hitPoints = 4;
     [_battery reset];
     [_speed reset];
     [_speed start];
+    [_boss reset];
     _isJumping = false;
     _isTripping = false;
     _isInMidAir = false;
     _hasDoubleJumped = false;
+    
     _waitToGetUp = 0.0f;
     _timeLeftBeforeVulnerable = 2.0f;
     _isDead = false;
@@ -295,15 +344,17 @@
     }
     
     if ([action compare:@"woo"] == NSOrderedSame) {
-        _thirdAction = [PlayerActionFactory buildPlayerAction:PLAYER_ACTION_WOO];
+        _thirdAction = (PlayerAction*)[PlayerActionFactory buildPlayerAction:PLAYER_ACTION_WOO];
     } else if([action compare:@"kick"] == NSOrderedSame) {
-        _thirdAction = [PlayerActionFactory buildPlayerAction:PLAYER_ACTION_KICK];
+        _thirdAction = (PlayerAction*)[PlayerActionFactory buildPlayerAction:PLAYER_ACTION_KICK];
     } else if([action isEqualToString:@"dodge"]) {
-        _thirdAction = [PlayerActionFactory buildPlayerAction:PLAYER_ACTION_DODGE];
+        _thirdAction = (PlayerAction*)[PlayerActionFactory buildPlayerAction:PLAYER_ACTION_DODGE];
     } else if([action isEqualToString:@"shoot"]) {
-        _thirdAction = [PlayerActionFactory buildPlayerAction:PLAYER_ACTION_SHOOT];
+        _thirdAction = (PlayerAction*)[PlayerActionFactory buildPlayerAction:PLAYER_ACTION_SHOOT];
     } else if([action isEqualToString:@"block"]) {
-        _thirdAction = [PlayerActionFactory buildPlayerAction:PLAYER_ACTION_BLOCK];
+        _thirdAction = (PlayerAction*)[PlayerActionFactory buildPlayerAction:PLAYER_ACTION_BLOCK];
+    } else if([action isEqualToString:@"blow"]) {
+        _thirdAction = (PlayerAction*)[PlayerActionFactory buildPlayerAction:PLAYER_ACTION_BLOW];
     }
     
     [_thirdAction setParent:self];
@@ -320,6 +371,22 @@
     [layer removeChild:playerSprite cleanup:NO];
     [layer addChild:playerSprite];
 }
+
+-(void)setLedgeSprite:(CCLayer*)layer
+{
+    CCSprite *ledgeSprite=[_playerOnledge getCCSprite];
+    [layer removeChild:ledgeSprite cleanup:NO];
+    [layer addChild:ledgeSprite];
+
+}
+
+-(void)setCurrentSprite:(Sprite *)newSprite
+{
+        _sprite=newSprite;
+     
+    
+}
+
 
 -(void)rechargeBattery
 {
@@ -351,6 +418,10 @@
 {
     [_speed start];
 }
+-(int)getHitPoints
+{
+    return _hitPoints;
+}
 
 -(id<PlayerActionProtocol>)getThirdAction
 {
@@ -360,7 +431,15 @@
 -(void)update:(float)dt Level:(Level *)level
 {
     [super update:dt];
-    
+    /*
+    if([[[LevelManager shared] currentLevel].name isEqualToString:@"level7"])
+    {
+        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+        
+        [[gameLayer getHud] setEnabled:false ForButton:HUD_BUTTON_SPRINT];
+    }
+     */   
+
     [self updateJump:dt];
     
     [self updateInvulnerable:dt];
@@ -390,7 +469,7 @@
     
     [_battery update:dt];
     
-    if (_isTripping) {
+       if (_isTripping) {
         _waitToGetUp -= dt;
         if (_waitToGetUp <= 0.0f) {
             _isTripping = false;
@@ -399,6 +478,42 @@
             [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];
         }
     }
+    /*
+    if(_onLedge)
+    {
+        [[_playerOnledge getCCSprite] setAnchorPoint:ccp(0.5,0)];
+        if(_isActive){
+          
+            [self switchToInactive];
+            
+        }
+        
+        [self setCurrentSprite:_playerOnledge];
+        //[_playerOnledge getCCSprite].anchorPoint=[_sprite getCCSprite].anchorPoint;
+       [_playerOnledge getCCSprite].visible =YES;
+                 
+        [[Camera sharedCamera] setTarget:_playerOnledge];
+        _offLedge=true;
+        
+    }
+    else
+    {
+        
+        
+    if(_offLedge)
+        {
+            [_playerOnledge getCCSprite].visible=NO;
+            
+            _sprite=_tempSprite;
+            [_sprite getCCSprite].visible=YES;
+            //[[_sprite getCCSprite] setAnchorPoint:ccp(0,1)];
+            _isActive=true;
+            _offLedge=false;
+        }
+        [[Camera sharedCamera] setTarget:_sprite];
+    }
+ 
+    */
     
     if(_speed.isStopped && !_isTripping) {
         _waitToGetUp -= dt;
@@ -421,6 +536,7 @@
     
     if (state == COLLISION_STATE_MIDAIR) {
         _isInMidAir = true;
+        
     } else if (state == COLLISION_STATE_GROUNDED || state == COLLISION_STATE_LEDGE) {
 
         _hasDoubleJumped = false;
@@ -463,6 +579,8 @@
             [[gameLayer getHud] setEnabled:true ForButton:HUD_BUTTON_JUMP];
         } else if(![_skin isCurrentAnimationOfType:PLAYER_ANIM_RUNNING] && !_isInMidAir && !_speed.inTurbo && !_isTripping && ![_thirdAction inAction] && _waitToGetUp <=0.0f) {
             [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];
+           
+            
         }
         
         _vy = 0;

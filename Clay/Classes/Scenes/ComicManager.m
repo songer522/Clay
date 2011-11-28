@@ -18,10 +18,12 @@
 #import "Camera.h"
 #import "HudLayer.h"
 #import "EndGameScene.h"
+#import "GameSettings.h"
+#import "TrackTimer.h"
+#import "Appirater.h"
 
 @implementation ComicManager
 
-@synthesize gameLayer = _gameLayer;
 @synthesize loadNextLevel = _loadNextLevel;
 @synthesize isActive = _isActive;
 
@@ -57,7 +59,7 @@ static ComicManager *_shared = nil;
     _videoPlayer.parent = self;
     
     _comicLayer = [ComicLayer instance];
-    _comicLayer.parent = self;
+    _comicLayer.comicManager = self;
     
     _isActive = false;
     _showEndGame = false;
@@ -101,16 +103,22 @@ static ComicManager *_shared = nil;
 
 -(void)switchToPhase:(ComicPhase)phase
 {
+    GameLayer *gameLayer = (GameLayer*)[[LayerManager sharedLayers] currentLayer];
+    
     _phase = phase;
     if (_isActive) {
         switch (phase) {
             case COMIC_PHASE_BARS_IN:
                 [_comicLayer startTransition:BLACKBOX_IN];
                 [[SoundEngine shared] cueFadeOut];
-                _gameLayer.gameController.isInputEnabled = false;
+                gameLayer.gameController.isInputEnabled = false;
                 [Camera sharedCamera].trackingTarget = false;
-                [_gameLayer.player setHasGravity:true];
-                [[_gameLayer getHud] fadeOut];
+                [gameLayer.player setHasGravity:true];
+                [[gameLayer getHud] fadeOut];
+                break;
+            case COMIC_PHASE_STARTING_VIDEO:
+                //basically we need to wait for the scene transition before calling playvideo
+                [_comicLayer waitToPlayVideo:1.0f];
                 break;
             case COMIC_PHASE_PLAY_VIDEO:
                 if (_showEndGame) {
@@ -121,26 +129,24 @@ static ComicManager *_shared = nil;
                 }
                 break;
             case COMIC_PHASE_BARS_OUT:
-                if(_loadNextLevel) { [[LevelManager shared] loadNextLevel]; }
-                
+                if(_loadNextLevel)
+                {
+                    [[LevelManager shared] loadNextLevel];
+                }
                 [Camera sharedCamera].trackingTarget = false;
                 [[Camera sharedCamera] snapToTarget];
                 [[SoundEngine shared] cueFadeIn];
-                if(_loadNextLevel)
-                {
-                    [[LevelManager shared] switchToNextLevel];
-                }
-                [_gameLayer unpause];
-                [_gameLayer initForLevel];
-                _gameLayer.visible = true;
+                [gameLayer unpause];
+                [gameLayer initForLevel];
+                gameLayer.visible = true;
                 [[CCDirector sharedDirector] startAnimation];
                 
                 [_comicLayer startTransition:BLACKBOX_OUT];
-                _gameLayer.gameController.isInputEnabled = false;
-                [[_gameLayer getHud] fadeIn];
+                gameLayer.gameController.isInputEnabled = false;
+                [[gameLayer getHud] fadeIn];
                 break;
             case COMIC_PHASE_PLAY_LEVEL:
-                _gameLayer.gameController.isInputEnabled = true;
+                gameLayer.gameController.isInputEnabled = true;
                 _phase = COMIC_PHASE_PLAY_LEVEL;
                 _isActive = false;
                 _loadNextLevel = false;
@@ -156,6 +162,10 @@ static ComicManager *_shared = nil;
     if (_isActive) {
         switch (_phase) {
             case COMIC_PHASE_BARS_IN:
+               // [Appirater appEnteredForeground:YES];
+                [self switchToPhase:COMIC_PHASE_PLAY_VIDEO];
+                break;
+            case COMIC_PHASE_STARTING_VIDEO:
                 [self switchToPhase:COMIC_PHASE_PLAY_VIDEO];
                 break;
             case COMIC_PHASE_PLAY_VIDEO:
@@ -169,8 +179,19 @@ static ComicManager *_shared = nil;
     }
 }
 
+-(void)resetComicLayer
+{
+    [_comicLayer resetLayer];
+}
+
 -(void)endTheGame
 {
+    GameLayer *gameLayer = (GameLayer*)[[LayerManager sharedLayers] currentLayer];
+    
+    //set the final total time for the end game screen
+    float finalTime = [[[gameLayer getHud] getTrackTimer] getTime];
+    [[GameSettings shared] setGlobal:[NSString stringWithFormat:@"%f", finalTime] ForKey:@"finalTime"];
+    
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[EndGameScene scene]]];
     _showEndGame = false;
     _introMovie = false;
@@ -178,7 +199,6 @@ static ComicManager *_shared = nil;
 
 -(void)dealloc
 {
-    [_gameLayer release];
     [_videoList release];
     [_videoPlayer release];
     [_comicLayer release];

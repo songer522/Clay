@@ -14,7 +14,10 @@
 #import "SoundEngine.h"
 #import "GCHelper.h"
 #import "ChooseLevelScreen.h"
-
+#import "TextureManager.h"
+#import "Appirater.h"
+#import "SoundEngine.h"
+#import "GameSettings.h"
 
 @implementation MainMenuScene
 
@@ -42,15 +45,13 @@
         
         NSAutoreleasePool *myPool = [[NSAutoreleasePool alloc] init];
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pause) name:UIWindowDidResignKeyNotification object:nil];
-        
+        //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pause) name:UIWindowDidResignKeyNotification object:nil];
+        [self pause];
         [[GCHelper sharedInstance] authenticateLocalUser];
     
         [[LayerManager sharedLayers] setWorkingLayer:self];
         
-        CCSpriteFrameCache* frameCache = [CCSpriteFrameCache sharedSpriteFrameCache];
-        [frameCache addSpriteFramesWithFile:@"menuTextures.plist"];
-
+        [[TextureManager shared] loadMemoryForKey:@"mainMenu"];
         
         _trackBackground = [Sprite spriteFromFrameCacheWithName:@"Menu_Background.png"];
         [_trackBackground getCCSprite].position = ccp(0,0);
@@ -99,10 +100,17 @@
         [self scheduleUpdate];
         self.isTouchEnabled = YES;
         
+        NSString *musicStarted = [[GameSettings shared] getGlobalForKey:@"titleMusicStarted"];
+        if (![musicStarted isEqualToString:@"YES"]) {
+            [[SoundEngine shared] playMusic:@"title"];
+            [[GameSettings shared] setGlobal:@"YES" ForKey:@"titleMusicStarted"];
+        }
+                
         [myPool drain];
 
     }
-    
+   
+   
     return self;
 }
 
@@ -112,7 +120,7 @@
 }
 -(void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    if (_transition == MAINMENU_TRANSITION_IDLE) {
+        if (_transition == MAINMENU_TRANSITION_IDLE) {
         bool shouldStart = false;
         NSSet *allTouches = [event allTouches];
         for(UITouch *touch in allTouches) {
@@ -122,8 +130,11 @@
         if (shouldStart) {
             [self switchToTransitionOut];
             [[SoundEngine shared] playSound:@"menuPlayButton"];
+            
         }
     }
+    
+   
 }
 
 -(void)switchToTransitionIn
@@ -165,6 +176,7 @@
 
 -(void)update:(ccTime)dt
 {
+    
     float rate = 12.0f * dt;
     
     _totalTime += rate;
@@ -221,23 +233,18 @@
 -(void)private_switchToChooseLevel
 {
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ChooseLevelScreen scene]]];
-    [self unload];
-    [self unscheduleUpdate];
-}
-
--(void)unload
-{
-
 }
 
 -(void)onExit
-{
-    [self release];
+{    
+    [self unscheduleUpdate];
+    self.isTouchEnabled = false;
 }
 
 -(void)dealloc
 {
-    //NSLog(@"MAIN MENU SCENE is being deallocated"); //just to make sure it gets called
+    //NSLog(@"Dealloc: MainMenuScene");
+ 
     
     [_trackBackground release];
     [_rain1 release];
@@ -246,8 +253,8 @@
     [_playButtonBlue release];
     [_playButtonOrange release];
     [_copyright release];
-    [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFramesFromFile:@"menuTextures.plist"];
-    [[CCTextureCache sharedTextureCache] removeTextureForKey:@"menuTextures.png"];
+    
+    [[TextureManager shared] unloadMemoryForKey:@"mainMenu"];
 }
 
 @end

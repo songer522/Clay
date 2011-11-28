@@ -19,7 +19,7 @@
 #define HUD_LAYER_JUMP_X 32
 #define HUD_LAYER_ACTION_X 390
 #define HUD_LAYER_SPRINT_X 450
-#define HUD_LAYER_BUTTON_SIZE 55
+#define HUD_LAYER_BUTTON_SIZE 110
 
 @implementation HudLayer
 
@@ -33,8 +33,14 @@
     self = [super init];
     if (self) {
         // Initialization code here.
-      
+       if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
+       {
         _buttonScale = [[UIScreen mainScreen] scale] / 2.0f;
+       }
+        else
+        {
+            _buttonScale = [[UIScreen mainScreen] scale];
+        }
         
         [[[LayerManager sharedLayers] currentScene] addChild:self];
         
@@ -64,7 +70,7 @@
 
 {
     //test jump button
-    if ([self testButtonPosition:CGPointMake(HUD_LAYER_JUMP_X, HUD_LAYER_BUTTON_Y) Test:point]) {
+    if ([_buttonJump testCollision:point]) {
         if (type == INPUT_TOUCH_PRESSED) {
             if([_buttonJump getCCSpriteForOverlay].visible)
             {[_buttonJump setOpacityAndScale];}
@@ -76,7 +82,7 @@
     }
     
     //test action button
-    if ([self testButtonPosition:CGPointMake(HUD_LAYER_ACTION_X, HUD_LAYER_BUTTON_Y) Test:point]) {
+    if ([_buttonAction testCollision:point]) {
         if (type == INPUT_TOUCH_PRESSED) {
             
               if([_buttonAction getCCSpriteForOverlay].visible)
@@ -88,7 +94,7 @@
     }
     
     //test sprint button
-    if ([self testButtonPosition:CGPointMake(HUD_LAYER_SPRINT_X, HUD_LAYER_BUTTON_Y) Test:point]) {
+    if ([_buttonSprint testCollision:point]) {
         if (type == INPUT_TOUCH_PRESSED) {
              
               if([_buttonSprint getCCSpriteForOverlay].visible)
@@ -144,6 +150,7 @@
     
     if (scale < _buttonScale) {
         scale += 0.01f * rate * _buttonScale;
+        
         if (scale > _buttonScale) {
             scale = _buttonScale;
         }
@@ -302,6 +309,8 @@
 
 -(void)reset
 {
+    [self removeFromParentAndCleanup:NO];
+    [[[LayerManager sharedLayers] currentScene] addChild:self];    
 }
 
 -(void)dealloc
@@ -309,9 +318,7 @@
     [_buttonJump release];
     [_buttonSprint release];
     [_buttonAction release];
-    [_overLayAction release];
-    [_overLaySprint release];
-    [_overLayJump release];
+   
     [_trackTimer release];
     [_battery release];
     [super dealloc];

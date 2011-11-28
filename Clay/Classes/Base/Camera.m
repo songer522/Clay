@@ -8,6 +8,8 @@
 
 #import "Camera.h"
 #import "Sprite.h"
+#import "LevelManager.h"
+#import "Level.h"
 
 @implementation Camera
 
@@ -41,13 +43,24 @@ static Camera *_sharedCamera = nil;
     return self;
 }
 
--(void)setBoundaries:(CGRect)rect
+-(void)setBoundaries:(CGRect)rect Level:(Level*)level
 {
     NSAssert(rect.origin.x < rect.size.width && rect.origin.y < rect.size.height, @"Invalid Rect for boundaries");
     
     //There is a blank row of tiles at the very bottom that we don't want to show, so the true camera
     //boundary is actually one tile above the bottom of the screen, or (64 pixels/32 points) normally. may require an #IPADFIX.
     rect.origin.y = 32;
+    
+    //restrict the camera in level 8
+    NSString *levelName = level.name;
+    if ([levelName isEqualToString:@"level6"]) {
+        rect.size.height = 352;
+    }
+
+    
+    if ([levelName isEqualToString:@"level8"]) {
+        rect.size.height = 352;
+    }
     
     _boundary = rect;
     
@@ -71,10 +84,10 @@ static Camera *_sharedCamera = nil;
     
     if(top > (_boundary.origin.y + _boundary.size.height)) {
         _y = _boundary.origin.y + _boundary.size.height - winSize.height + _center.y;
-        NSLog(@"top?");
+        //NSLog(@"top?");
     } else if (bottom < _boundary.origin.y) {
         _y = _boundary.origin.y + _center.y;
-        NSLog(@"bottom?");
+        //NSLog(@"bottom?");
     }
 }
 

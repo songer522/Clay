@@ -30,6 +30,7 @@ typedef enum {
 @class RunningSpeed;
 @class Battery;
 @class Skin;
+@class PlayerAction;
 @protocol PlayerActionProtocol;
 
 
@@ -37,10 +38,14 @@ typedef enum {
 {
     float _totalTime; //used for equation-based movement
     
+    
+   
     bool _isJumping;
     bool _isTripping;
     bool _firstFrameJumping;
     bool _isDead;
+    bool _offLedge;
+    
     
     float _yPosition;
     float _waitToGetUp;
@@ -49,7 +54,6 @@ typedef enum {
     bool _isHighJump;
     bool _hasDoubleJumped;
     bool _soundFalling;
-    
     float _timeLeftBeforeVulnerable;    //set to a time whenever tim gets back up, to allow proper time for him to get back up to speed before he has to jump on things
     
     int _hitPoints;
@@ -65,14 +69,18 @@ typedef enum {
     
     Skin *_skin;
     
-    id <PlayerActionProtocol> _thirdAction; //playeraction
-
+    PlayerAction *_thirdAction; //playeraction
+    
+    Sprite *_playerOnledge;
+    Sprite *_tempSprite;
 }
 
 @property(nonatomic,assign) bool isDead;
 @property(nonatomic,assign) bool isTripping;
 @property(nonatomic,assign) bool isJumping;
 @property(nonatomic,assign) bool hasDoubleJumped;
+
+
 @property(nonatomic,retain) Battery *battery;
 
 +(id) instance;                                 //constructor
@@ -102,11 +110,13 @@ typedef enum {
 -(bool)objectShouldReactToCollision;
 -(void)reset;
 -(void)resetSprite:(CCLayer*)layer;
+-(void)setLedgeSprite:(CCLayer*)layer;
+-(void)setCurrentSprite:(Sprite *)sprite;
 -(void)rechargeBattery;
 
 -(void)setVelocity:(float)velocity;
 -(void)startDoubleJump;
-
+-(int)getHitPoints;
 
 -(void)dieIfFallenIntoPit;
 

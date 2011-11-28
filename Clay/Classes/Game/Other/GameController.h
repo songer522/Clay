@@ -30,7 +30,7 @@ typedef enum {
 {
     GameState _currentGameState;
     GameLayer *_gameLayer;
-    HudLayer *_hud;
+    HudLayer *_hud; //weak reference
     PauseMenuScreen *_pauseMenu;
     
     

@@ -89,13 +89,17 @@
 
 -(void)startCollision
 {
-    if (_player.isJumping) {
+    if (_player.isJumping && _inTurbo) {
         _acceleration = 1.0f;
+    } else if(_player.isJumping) {
+        _velocity = -0.9f * _velocity;
+        _acceleration = 0.35f;      
+        [self stop];
     } else {
         if (_inTurbo) {
             [_player endTurbo];            
         }
-        _velocity = -0.8f * _velocity;
+        _velocity = -0.5f * _velocity;
         _acceleration = 0.5f;
         [self stop];
     }
@@ -151,6 +155,12 @@
 {
     _velocity *= 0.1f;
     _acceleration *= 0.1f;
+}
+
+-(void)startBlow
+{
+    _velocity = 0.0f;
+    _acceleration = 0.0f;
 }
 
 -(void)update:(float)dt

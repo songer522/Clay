@@ -107,7 +107,7 @@ static AnimationController *_sharedController = nil;
 
 -(void)addAnimationForSkinFromFile:(NSString*)filename UsingBaseAnim:(NSString*)baseAnimName ForSequence:(NSString*)sequenceName
 {
-    NSLog(@"Add animation sequence name: %@, base anim: %@, filename: %@",sequenceName,baseAnimName,filename);
+    //NSLog(@"Add animation sequence name: %@, base anim: %@, filename: %@",sequenceName,baseAnimName,filename);
 
     Animation *baseAnim = (Animation*)[animations objectForKey:baseAnimName];
     Animation *newAnim = [Animation animationFromPlist:filename forSequence:sequenceName FrameList:[baseAnim getFrameList]];

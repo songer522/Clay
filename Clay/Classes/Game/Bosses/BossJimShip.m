@@ -32,29 +32,33 @@
     
     [_sprite setAlpha:1.0f];
     [[_sprite getCCSprite] setVisible:YES];
-
+    
     _bullets = [[NSMutableArray alloc] initWithCapacity:3];
     
-    _waitToShoot = 5.0f;
+    _waitToShoot = -1.0f;
     xthrust = -1;
     ythrust = 0;
     _firstUpdate = true;
     
 
+    
     _replaceProjectileId = 0;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reset) name:@"player died" object:nil];
 }
 
 -(void)setSprite:(Sprite *)sprite
 {
     _sprite = sprite;
-    [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"jimSpaceshipAnim"];    
-    //[_sprite setPosition:ccp(300,200)];
+    [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"jimSpaceshipAnim"];
 }
 
 
 -(void)triggerAttack
 {
-    [self shootBullet];
+    [[_cannonAnim getCCSprite] setVisible:YES];
+    [[AnimationController sharedController] replaceSprite:_cannonAnim withAnimationNamed:@"jimSpaceshipWarningAnim"];
+    _waitToShoot = 0.55f;
+    [[SoundEngine shared] playSound:@"jimShipCharge"];
 }
 
 -(void)shootBullet
@@ -63,6 +67,8 @@
     
     Projectile *bullet = [_bullets objectAtIndex:_replaceProjectileId];
     _replaceProjectileId = (_replaceProjectileId + 1) % 3;
+    
+    [[_cannonAnim getCCSprite] setVisible:NO];
     
     CGPoint shipWorldPos = [[Camera sharedCamera] convertToWorldXY:[_sprite getScreenPosition]];    
     [bullet setPosition:CGPointMake(shipWorldPos.x - 120,shipWorldPos.y + 20.0f)];
@@ -77,6 +83,9 @@
         _firstUpdate = false;
         _velocity = CGPointMake(-5.0f, 0.0f);
         [_sprite setScreenPosition:ccp(300,230)];
+        _cannonAnim = [Sprite spriteWithFile:@"blank.png"];
+        //[[_cannonAnim getCCSprite] setVisible:NO];
+
         for (int i=0; i<3; i++) {
             Projectile *_bullet = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_BOSS_SHIP_BULLET];
             [_bullet setActive:NO];
@@ -85,12 +94,13 @@
     }
     
     [self updateVelocity:dt];
+    [self updateCannon:dt];
+
     
     CGPoint position = [_sprite getPosition];
     
     [_sprite setScreenPosition:CGPointMake(position.x + _velocity.x, position.y + _velocity.y)];
-    
-    for (Projectile *_bullet in _bullets) {
+           for (Projectile *_bullet in _bullets) {
         if ([_bullet isActive]) {
             [_bullet pointTowardPlayer];
             [_bullet update:dt];
@@ -99,18 +109,45 @@
             Player *_player = [[LayerManager sharedLayers] getPlayer];
             
             Level *currentLevel = [[LevelManager shared] currentLevel];
+          
+            
             bool collision = [currentLevel testCollisionWithGameObject:_bullet Source:_player];
             if (collision) {
                 if(![[_player getThirdAction] isActive]) {
                     [_player startCollision:PLAYER_EFFECT_COLLIDE Source:_bullet];
+                 
                 } else {
                     [[_player getThirdAction] setKilledEnemy:YES];
                     [[SoundEngine shared] playSound:@"deflected"];
                 }
                 [_bullet disable];
-            }            
+            }
+            
+          
+        }
+        
+    }
+}
+
+-(void)updateCannon:(float)dt
+{
+    CGPoint shipPos = [_sprite getScreenPosition];
+    [_cannonAnim setScreenPosition:CGPointMake(shipPos.x - 120, shipPos.y + 12.0f)];        
+    
+    if (_waitToShoot > 0.0f) {
+        _waitToShoot -= dt;
+        if (_waitToShoot<=0.0f) {
+            [self shootBullet];
         }
     }
+}
+
+-(void)reset
+{
+    for (Projectile *_bullet in _bullets)
+        [_bullet disable];
+    //NSLog(@"bossJimShip has been reset");
+    
 }
 
 -(void)updateVelocity:(float)dt

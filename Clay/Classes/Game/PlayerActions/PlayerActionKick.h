@@ -20,5 +20,7 @@
 }
 
 -(void)testKickCollisions;
+-(void)updateBoundingBox;
+
 
 @end

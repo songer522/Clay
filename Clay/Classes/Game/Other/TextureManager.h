@@ -16,8 +16,15 @@
 
 +(TextureManager*)shared;
 
--(void)loadTexturesForKey:(NSString*)key;
--(void)unloadTexturesForKey:(NSString*)key;
+
+#pragma mark - public methods
+-(void)loadMemoryForKey:(NSString*)key;
+-(void)unloadMemoryForKey:(NSString*)key;
+
+
+#pragma mark - private methods
+-(void)loadTexturesForFile:(NSString*)filename;
+-(void)unloadTexturesForFile:(NSString*)filename;
 
 
 @end

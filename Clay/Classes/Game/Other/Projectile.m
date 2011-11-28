@@ -49,15 +49,19 @@
                 //make it blank so we can access the sprite position for debug drawing. for now at least.
                 _sprite = [Sprite spriteWithFile:@"blank.png"];
                 break;
+            case PROJECTILE_BEHAVIOR_PLAYER_BLOWING:
+                //using a separate sprite to represent the animation
+                _sprite = [Sprite spriteWithFile:@"blank.png"];
+                break;
             case PROJECTILE_BEHAVIOR_BULLET:
-                _sprite = [Sprite spriteWithFile:@"bullet.png"];
+                _sprite = [Sprite spriteFromFrameCacheWithName:@"Zombies_Bullet.png"];
                 //[[_sprite getCCSprite] setScale:0.1f];
                 [[_sprite getCCSprite] setVisible:NO];
                 _vx = 800.0f;
                 _offscreenPadding = 20;
                 break;
             case PROJECTILE_BEHAVIOR_ZOMBIE_HEAD:
-                _sprite = [Sprite spriteWithFile:@"zombieHead.png"];
+                _sprite = [Sprite spriteFromFrameCacheWithName:@"F_Zombie_Head.png"];
                 [_sprite getCCSprite].anchorPoint = ccp(0.5f, 0.5f);
                 [[_sprite getCCSprite] setScale:0.8];
                 _vx = 250 + rand()%100;
@@ -69,9 +73,16 @@
                 _offsetGroundDetectionY = 10.0f;
                 break;
             case PROJECTILE_BEHAVIOR_BOSS_SHIP_BULLET:
-                _sprite = [Sprite spriteWithFile:@"shipBullet2.png"];
+                _sprite = [Sprite spriteFromFrameCacheWithName:@"Level7_JimSpaceCraft_Bullet.png"];
                 [_sprite getCCSprite].anchorPoint = ccp(0,0);
                 [[_sprite getCCSprite] setVisible:NO];
+                _isAggressive = false;
+                break;
+            case PROJECTILE_BEHAVIOR_FIRE_DEMON_BULLET:
+                _sprite = [Sprite spriteWithFile:@"blank.png"];
+                [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"fireBullet"];
+                [[_sprite getCCSprite] setVisible:NO];
+                _vx = -250.0f;
                 _isAggressive = false;
                 break;
             default:
@@ -89,7 +100,7 @@
     Player *player = [[LayerManager sharedLayers] getPlayer];
     CGPoint playerPos = [player getPosition];
     
-    float speed = 280.0f;
+    float speed = 450.0f;
     float dx = (playerPos.x + 10.0f) - _x;
     float dy = (playerPos.y + 20.0f) - _y;
     float angle = atan2f(dy, dx);
@@ -231,7 +242,7 @@
         //want to disable projectile if it's offscreen so it doesn't hurt things before they appear,
         //otherwise we test to see if it collided with anything
         if (![self checkIfOnScreen:newPosition]) {
-            [self disable];
+          //  [self disable];
         } else {
             if (_isAggressive) {
                 bool collision = [[[LevelManager shared] currentLevel] testCollisionsForAggressive:self];
@@ -264,7 +275,9 @@
 
 -(void)dealloc
 {
-    [_sprite release];
+    //[_sprite release];
+    [[_sprite getCCSprite] removeFromParentAndCleanup:YES];
+    _sprite = nil;
     [super dealloc];
 }
 

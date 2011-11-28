@@ -6,6 +6,7 @@
 //  Copyright (c) 2011 Xecudev, LLC. All rights reserved.
 //
 
+#import "cocos2d.h"
 #import "Skin.h"
 #import "PListLoader.h"
 #import "Sprite.h"
@@ -48,6 +49,7 @@
     _kickAction = [[NSString stringWithString:[anims objectForKey:@"kickAction"]] retain];
     _dodgeAction = [[NSString stringWithString:[anims objectForKey:@"dodgeAction"]] retain];
     _shootAction = [[NSString stringWithString:[anims objectForKey:@"shootAction"]] retain];
+    _blowAction = [[NSString stringWithString:[anims objectForKey:@"blowAction"]] retain];
     
     if (![_filename isEqualToString:@"characterAnims"]) {
         AnimationController *controller = [AnimationController sharedController];
@@ -97,6 +99,9 @@
         case PLAYER_ANIM_SHOOT:
             animName = _shootAction;
             break;
+        case PLAYER_ANIM_BLOW:
+            animName = _blowAction;
+            break;
         default:
             break;
     }
@@ -106,7 +111,7 @@
     if(animName !=nil) {
         [[AnimationController sharedController] replaceSprite:sprite withAnimationNamed:animName];
     } else {
-        NSLog(@"ERROR! Player animation not available for skin: %@",_filename);
+        //NSLog(@"ERROR! Player animation not available for skin: %@",_filename);
     }
 }
 
@@ -131,6 +136,7 @@
     [_kickAction release];
     [_dodgeAction release];
     [_shootAction release];
+    [_blowAction release];
     
     [super dealloc];
 }

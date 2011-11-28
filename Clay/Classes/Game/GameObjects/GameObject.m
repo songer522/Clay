@@ -20,6 +20,8 @@
 #import "Projectile.h"
 #import "BossFactory.h"
 
+#define GAME_OBJECT_DISTANCE_ONSCREEN 550.0f
+
 @implementation GameObject
 
 @synthesize sprite = _sprite;
@@ -37,6 +39,7 @@
 @synthesize isInvincible = _isInvincible;
 @synthesize rotateLights = _rotateLights;
 @synthesize beatsPlayerAction = _beatsPlayerAction;
+@synthesize originalAnimation=_originalAnimation;
 
 + (id) objectWithSprite:(Sprite*)sprite
 {
@@ -61,7 +64,9 @@
         _alpha = 1.0f;
         _fadeout = false;
         _offsetX = 0;
+        _rate = 1.0f;
         _offsetY = 0;
+        _waitToTrigger = -1.0f;
         _boss = nil;
         _madeSound = false;
         _boundingBox = CGRectMake(0, 0, 0, 0);
@@ -73,6 +78,7 @@
         _direction = 1;
         _isInvincible = false;
         _projectile = nil;
+        _reloading = 0;
         _aggressiveCanHit = false;
         _beatsPlayerAction = false;
     }
@@ -185,7 +191,8 @@
         [_projectile reset];
         [_projectile setPosition:CGPointMake(_x, _y + 41)];
        // [_projectile setBoundingBox:CGRectMake(15, 33, 30, 30)];
-        [_projectile setBoundingBox:CGRectMake(15, 33, 15, 30)];
+        [_projectile setBoundingBox:CGRectMake(15, 33, 14, 40)];
+        
         GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
         [[gameLayer.player getThirdAction] setKilledEnemy:YES];
     } else if(_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_FADE) {
@@ -193,6 +200,21 @@
         _fadeout = true;
     } else if(_currentBehavior == COLLISION_BEHAVIOR_ROLLING_HAYBALE) {
         _alpha = 1.5f;
+        _fadeout = true;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON) {
+        _alpha = 1.0f;
+        _vy = -50.0f;
+        _vx = 50.0f;
+        _rate = 2.0f;
+        _fadeout = true;
+        [[[[LayerManager sharedLayers] getPlayer] getThirdAction] setKilledEnemy:YES];
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_FIREBALL_MOVING || _currentBehavior == COLLISION_BEHAVIOR_FIREBALL_START) {
+        _collided = false;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_FIREBALL_LANDED) {
+        _alpha = 1.2f;
+        _fadeout = true;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR || _currentBehavior ==  COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR_WAITTOSHOOT) {
+        _alpha = 1.2f;
         _fadeout = true;
     }
     
@@ -241,7 +263,11 @@
     }
     
     //guard
-    if (!_isActive && _collideBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER) { return; }
+    if (!_isActive && _collideBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER) { 
+        
+        
+        
+        return; }
     
     _prevLocation = CGPointMake(_x, _y);
     
@@ -266,7 +292,7 @@
 {
     if (_fadeout) {
         float _setAlpha;
-        _alpha -= 2.0f * dt;
+        _alpha -= 2.0f * _rate * dt;
         //TODO: build this into setAlpha method
         if (_alpha <= 0.0f) {
             _alpha = 0.0f;
@@ -292,6 +318,7 @@
             _angle = 0;
             _fallVelocity = -0.8f * _fallVelocity;
         }
+        
         [self getCCSprite].rotation = _angle;
     } else if(_currentBehavior == COLLISION_BEHAVIOR_FLYING_SHURIKEN) {
         _angle += _rotationAmount * dt;
@@ -309,42 +336,59 @@
         _vy += 500.0f * dt;
         
     } else if(_currentBehavior == COLLISION_BEHAVIOR_CHARGE_AT_PLAYER) {
-        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
-        CGPoint position = [gameLayer.player getPosition];
-        if (_x < (position.x + 550.0f) && _x > 0.0f) {
+        _vx = 0.0f;
+        if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+            _vx = -150.0f;
+        }
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST) {
+        _vx = 0.0f;
+        if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+            _vx = -200.0f;
+        }
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_MAD_DOG) {
+        _vx = 0.0f;
+        if ([self closeToPlayer:200.0f]) {
+            if(![self.originalAnimation isEqualToString:@"madDogAnim"])
+            {
+                [[SoundEngine shared] playSound:@"maddogBark"];
+                [self setOriginalAnimation:@"madDogAnim"];
+                [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"madDogAnim"];
+            }
             _vx = -150.0f;    
-        } else {
-            _vx = 0.0f;
+        }
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_RETRO_ZOMBIE) {
+        _vx = 0.0f;
+        if ([self closeToPlayer:100.0f]) {
+            if(![self.originalAnimation isEqualToString:@"retroZombieAnim"])
+            { 
+                [self setOriginalAnimation:@"retroZombieAnim"];
+                [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"retroZombieAnim"];
+            }
         }
     } else if(_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_WALK) {
-        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
-        CGPoint position = [gameLayer.player getPosition];
-        if (_x < (position.x + 550.0f) && _x > 0.0f) {
+        _vx = 0.0f;
+        if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
             if (!_madeSound) {
                 _madeSound = true;
                 [[SoundEngine shared] playSound:@"zombieMoan"];
             }
             _vx = -40.0f;
-        } else {
-            _vx = 0.0f;
         }
     } else if(_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_WALK_FAST) {
-        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
-        CGPoint position = [gameLayer.player getPosition];
-        if (_x < (position.x + 550.0f) && _x > 0.0f) {
+        _vx = 0.0f;
+        if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
             _vx = -60.0f;
-        } else {
-            _vx = 0.0f;
         }
     } else if(_currentBehavior == COLLISION_BEHAVIOR_RETRO_SHOT_FROM_CANNON) {
         _vy += 500.0f * dt;
     } else if(_currentBehavior == COLLISION_BEHAVIOR_FLYER) {
-        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
-        CGPoint position = [gameLayer.player getPosition];
-        if (_x < (position.x + 550.0f) && _x > 0.0f) {
-            _vx = -250.0f;    
-        } else {
-            _vx = 0.0f;
+        _vx = 0.0f;
+        if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+            if (!_madeSound) {
+                _madeSound = true;
+                [[SoundEngine shared] playSound:@"crowAppears"];
+            }
+            _vx = -250.0f;
         }
     } else if(_currentBehavior == COLLISION_BEHAVIOR_ROLLING_HAYBALE) {
         int frame = [[_sprite getAnimation] getCurrentFrameNumber];
@@ -354,8 +398,81 @@
             _direction = 1;
         }
         _vx = _direction * 100.0f;        
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON) {
+        _vx = 0.0f;
+        _angle += _rotationAmount * dt;
+        [self getCCSprite].rotation = _angle;
+        if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+            _vx = -25.0f;
+        }
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR) {
+        _vx = 0.0f;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_FIREBALL_START) {
+        if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+            Player *player = [[LayerManager sharedLayers] getPlayer];
+            CGPoint position = [player getPosition];
+            [self setPositionAtX:(position.x - 100.0f) Y:350.0f];
+            [self setPlayerEffect:@"none"];
+            _currentBehavior = COLLISION_BEHAVIOR_FIREBALL_MOVING;
+            _isInvincible = true;
+            
+        }
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_FIREBALL_MOVING) {
+        _vx += 160.0f;
+        _vy += 100.0f;
+        if (_y <= 75.0f) {
+            _vx = 0.0f;
+            _vy = 0.0f;
+            _x = _prevLocation.x;
+            _y = 90.0f;
+            _isInvincible = false;
+            [self setPositionAtX:_x Y:_y];
+            [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"fireballLandingAnim"];
+            _currentBehavior = COLLISION_BEHAVIOR_FIREBALL_LANDED;
+            _collideBehavior = COLLISION_BEHAVIOR_FIREBALL_LANDED;
+            [self setPlayerEffect:@"collide"];
+            [[SoundEngine shared] playSound:@"fireballLand"];
+        }
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR_WAITTOSHOOT) {
+        if (_reloading >=0.0f) {
+            _reloading -= dt;
+        } else {
+            if(_waitToTrigger > 0.0f) {
+                _waitToTrigger -= dt;
+                if(_waitToTrigger<= 0.0f){
+                    _reloading = 1.4f;
+                    if(_projectile!=nil) {
+                        [_projectile release];
+                    }
+                    _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_FIRE_DEMON_BULLET];
+                    [_projectile reset];
+                    [_projectile setPosition:CGPointMake(_x + 53, _y - 20)];
+                    [_projectile setBoundingBox:CGRectMake(-7, 12, 16, 16)];
+                }
+            } else {
+                if ([self closeToPlayer:300.0f]) {
+                    [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"fireDemonWithArmorShooting"];
+                    _waitToTrigger = 0.28f;
+                }
+                else if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+                    _vx = -0.0f;
+                }
+                
+            }
+        }
     }
 
+}
+
+-(bool) closeToPlayer:(float)closerThan
+{
+    Player *player = [[LayerManager sharedLayers] getPlayer];
+    CGPoint position = [player getPosition];
+    if (_x < (position.x + closerThan)) {
+        return true;
+    }
+    
+    return false;
 }
 
 -(void) updateFlags
@@ -397,19 +514,22 @@
 
 -(void) reset
 {
-    if (_boss!=nil) {
+    if (_boss!=nil) { 
+        [_boss reset];
         return;
     }
-    
     _isActive = true;
     _angle = 0.0f;
     _vx = 0;
     _vy = 0;
     _alpha = 1.0f;
     _fadeout = false;
+    _waitToTrigger = -1.0f;
+    _reloading = 0.0f;
+    if(self )
     _madeSound = false;
     [_sprite setAlpha:1.0f];
-    
+     
     if ([_originalAnimation compare:@"none"] != NSOrderedSame) {
         [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:_originalAnimation];        
     }
@@ -417,7 +537,6 @@
     
     //for now just kill the projectile. we apparently can't add it on initialization of the object.
     if (_projectile !=nil) {
-        [[_projectile getCCSprite] removeFromParentAndCleanup:YES];
         [_projectile release];
         _projectile = nil;
     }
@@ -427,16 +546,35 @@
     [self getCCSprite].rotation = _angle;
     if (_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_HEADLESS ||  _currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_WALK) {
         _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_WALK;
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_WALK_FAST || _currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_FADE) {
+    }
+    
+    else if(_currentBehavior == COLLISION_BEHAVIOR_MAD_DOG) {
+        _currentBehavior = COLLISION_BEHAVIOR_MAD_DOG;
+        [self setOriginalAnimation:@"dogAnim"];
+        [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"dogAnim"];
+    }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_RETRO_ZOMBIE) {
+        _currentBehavior = COLLISION_BEHAVIOR_RETRO_ZOMBIE;
+        [self setOriginalAnimation:@"retroZombieStatic"];
+        [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"retroZombieStatic"];
+    }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_WALK_FAST || _currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_FADE) {
         _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_WALK_FAST;
     } else if(_currentBehavior == COLLISION_BEHAVIOR_FLYER_DEAD || _currentBehavior == COLLISION_BEHAVIOR_FLYER) {
         _currentBehavior = COLLISION_BEHAVIOR_FLYER;
     } else if(_currentBehavior == COLLISION_BEHAVIOR_ROLLING_HAYBALE) {
         _currentBehavior = COLLISION_BEHAVIOR_ROLLING_HAYBALE;
-    } else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER) {
-        _currentBehavior = COLLISION_BEHAVIOR_STATIC;  
-    }
-    _collided = false;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON) {
+        _currentBehavior = COLLISION_BEHAVIOR_FIRE_DEMON;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_FIREBALL_START || _currentBehavior == COLLISION_BEHAVIOR_FIREBALL_MOVING || _currentBehavior == COLLISION_BEHAVIOR_FIREBALL_LANDED) {
+        _currentBehavior = COLLISION_BEHAVIOR_FIREBALL_START;
+        [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"fireballMovingAnim"];
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR_WAITTOSHOOT || _currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR) {
+        _currentBehavior = COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR_WAITTOSHOOT;
+        [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"fireDemonWithArmorWalking"];
+    } else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST) {
+        _currentBehavior = COLLISION_BEHAVIOR_STATIC;     
+}         _collided = false;
 }
 
 -(Collision*) getCollision
@@ -464,6 +602,10 @@
         _collideBehavior = COLLISION_BEHAVIOR_CHARGE_AT_PLAYER;
         _currentBehavior = COLLISION_BEHAVIOR_CHARGE_AT_PLAYER;
         _beatsPlayerAction = true;
+    } else if([behavior isEqualToString:@"chargeAtPlayerFast"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST;
+        _currentBehavior =COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST;
+        _beatsPlayerAction = true;
     } else if([behavior isEqualToString:@"zombie"]) {
         _collideBehavior = COLLISION_BEHAVIOR_ZOMBIE_HEADLESS;
         _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_WALK;
@@ -485,7 +627,24 @@
     } else if([behavior isEqualToString:@"rolling"]) {
         _collideBehavior = COLLISION_BEHAVIOR_ROLLING_HAYBALE;
         _currentBehavior = COLLISION_BEHAVIOR_ROLLING_HAYBALE;
+    } else if([behavior isEqualToString:@"madDog"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_MAD_DOG;
+        _currentBehavior = COLLISION_BEHAVIOR_MAD_DOG;
+    }else if([behavior isEqualToString:@"retroZombie"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_RETRO_ZOMBIE;
+        _currentBehavior = COLLISION_BEHAVIOR_RETRO_ZOMBIE;
+    } else if([behavior isEqualToString:@"fireDemon"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_FIRE_DEMON;
+        _currentBehavior = COLLISION_BEHAVIOR_FIRE_DEMON;
+    } else if([behavior isEqualToString:@"fireDemonWithArmor"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR;
+        _currentBehavior = COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR_WAITTOSHOOT;
+    } else if([behavior isEqualToString:@"fireball"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_FIREBALL_MOVING;
+        _currentBehavior = COLLISION_BEHAVIOR_FIREBALL_START;
     }
+
+    
     else {
         _collideBehavior = COLLISION_BEHAVIOR_NONE;
     }

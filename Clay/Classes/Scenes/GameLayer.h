@@ -21,6 +21,7 @@
 @class Sprite;
 @class HudLayer;
 @class LaserShow;
+@class GameDebugLayer;
 @class Boss;
 
 // HelloWorldLayer
@@ -38,6 +39,8 @@
     
     HudLayer *_hud;
     
+    GameDebugLayer *_debugLayer;
+    
     LaserShow *_laserShow;
     
     Boss *_boss;
@@ -53,6 +56,7 @@
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
+-(void)setupLayers;
 -(void)initForLevel;
 -(void)initCamera;
 -(void)updateLogic:(ccTime)dt;
@@ -60,10 +64,12 @@
 -(void)initializeLaserShow;
 -(void)stopLaserShow;
 
--(void)setupHud:(HudLayer*)hud;
+-(void)setupHud;
 -(HudLayer*)getHud;
 -(void)setBoss:(Boss*)boss;
 -(void)unpause;
+
+-(void)startLevel:(NSString*)levelName;
 
 -(NSMutableArray*)getGameObjectsList;
 

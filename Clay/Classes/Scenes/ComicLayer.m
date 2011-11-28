@@ -9,10 +9,12 @@
 #import "ComicLayer.h"
 #import "ComicManager.h"
 #import "LayerManager.h"
+#import "Appirater.h"
+#import "GameSettings.h"
 
 @implementation ComicLayer
 
-@synthesize parent = _parent;
+@synthesize comicManager = _comicManager;
 
 +(id)instance
 {
@@ -24,9 +26,8 @@
     self = [super init];
     if (self) {
         // Initialization code here.
-        
-        //[self scheduleUpdate];
-        [[[LayerManager sharedLayers] currentScene] addChild:self];
+        CCScene *scene = [[LayerManager sharedLayers] currentScene];
+        [scene addChild:self];
         
         self.isTouchEnabled = YES;
         _transition = BLACKBOX_IDLE;
@@ -56,7 +57,11 @@
 }
 
 
-
+-(void)waitToPlayVideo:(float)time
+{
+    _timeToWait = time;
+    _transition = BLACKBOX_WAIT;
+}
 
 
 -(void)update:(ccTime)dt
@@ -64,9 +69,17 @@
     switch (_transition) {
         case BLACKBOX_IN:
             [self blackBoxIn:dt];
+              
             break;
         case BLACKBOX_OUT:
             [self blackBoxOut:dt];
+            break;
+        case BLACKBOX_WAIT:
+            _timeToWait-=dt;
+            if (_timeToWait<=0.0f) {
+                _transition = BLACKBOX_IDLE;
+                [_comicManager finishedAction];
+            }
         default:
             break;
     }
@@ -83,7 +96,7 @@
                 [self secondTierBars];
             } else {
                 _transition = BLACKBOX_IDLE;
-                [_parent finishedAction];
+                [_comicManager finishedAction];
             }
         }
     }
@@ -100,7 +113,8 @@
                 [self secondTierBars];
             } else {
                 _transition = BLACKBOX_IDLE;
-                [_parent finishedAction];                
+                [_comicManager finishedAction];  
+                
             }
         }
     }
@@ -151,7 +165,10 @@
 
 -(void)drawBars:(float)position
 {
-    float scale = [[UIScreen mainScreen] scale];
+    float scale = 1.0f;
+    if ([GameSettings usingHighResolutionGraphics]) {
+        scale = 2.0f;        
+    }
     [self ccDrawFilledRectFrom:ccp(0,0) To:ccp(960,position * scale)];
     [self ccDrawFilledRectFrom:ccp(0,640) To:ccp(960,(320.0f - position) * scale)];    
 }
@@ -174,9 +191,15 @@
     glEnable(GL_TEXTURE_2D);
 }
 
+-(void)resetLayer
+{
+    [[[LayerManager sharedLayers] currentScene] removeChild:self cleanup:NO];
+    [[[LayerManager sharedLayers] currentScene] addChild:self];
+}
+
 -(void)dealloc
 {
-    [_parent release];
+    _comicManager = nil; //weak
     [super dealloc];
 }
 

@@ -39,7 +39,8 @@ typedef enum {
     bool _hasGravity;
     bool _isInMidAir;
     bool _isFalling;
-    
+    float _waitToTrigger;
+    float _rate;
     float _x;
     float _y;
     CGPoint _startingPosition;
@@ -52,6 +53,7 @@ typedef enum {
     float _alpha;
     float _fallVelocity;
     float _direction;
+    float _reloading;
     bool _madeSound;
     bool _isInvincible;
     bool _fadeout;
@@ -92,6 +94,7 @@ typedef enum {
 @property(nonatomic,assign) float vy;
 @property(nonatomic,assign) CGRect boundingBox;
 @property(nonatomic,assign) CollisionBehavior CurrentBehavior;
+@property(nonatomic, retain)NSString *originalAnimation;
 @property(readonly,nonatomic,assign) bool collided;
 @property(nonatomic,assign) bool hasGravity;
 @property(nonatomic,assign) bool isAggressive;
@@ -136,6 +139,7 @@ typedef enum {
 -(PlayerEffect) startCollision;
 -(void) special_kickHen;
 -(void) update:(float)dt;
+-(bool) closeToPlayer:(float)closerThan;
 
 #pragma mark - private methods
 -(void) switchToInactive;
