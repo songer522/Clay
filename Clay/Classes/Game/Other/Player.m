@@ -243,7 +243,7 @@
 
 -(void)startCollision:(PlayerEffect)effect Source:(id<Collidable>)source
 {
-    if (!_isInvincible && !_onLedge) {
+    if (!_isInvincible) {
         if (effect == PLAYER_EFFECT_ACTION_OR_COLLIDE) {
             if (!_isTripping && !_isDead) {
                 if (![_thirdAction isActive]) {
