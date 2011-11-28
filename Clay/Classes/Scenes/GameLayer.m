@@ -216,6 +216,8 @@
         if (![[ComicManager shared] isActive]) {
             if(_player.isDead) {
                 [_player reset];
+                if(_boss){
+                    [_boss reset];}
                 [_savePoint restoreSavePoint:_player];
                 _player.isDead = false;
                 [_player rechargeBattery];

@@ -9,12 +9,26 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Clay/Classes/Game/Bosses/BossJimShip.m"
-         timestampString = "343774937.238208"
+         timestampString = "344202326.711716"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "126"
-         endingLineNumber = "126"
+         startingLineNumber = "123"
+         endingLineNumber = "123"
          landmarkName = "-reset"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Clay/Classes/Scenes/GameLayer.m"
+         timestampString = "344202388.145383"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "220"
+         endingLineNumber = "220"
+         landmarkName = "-updateLogic:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

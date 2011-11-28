@@ -306,7 +306,10 @@
 
 -(void)reset
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"player died" object:nil];
+    //if([[[LevelManager shared] currentLevel].name isEqualToString:@"level7"] )
+    //{
+    //[[NSNotificationCenter defaultCenter] postNotificationName:@"player died" object:nil];
+   // }
     _hitPoints = 4;
     [_battery reset];
     [_speed reset];

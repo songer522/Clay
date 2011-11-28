@@ -156,7 +156,7 @@
 	<key>level8</key>
 	<dict>
 		<key>preComic</key>
-		<string>level4</string>
+		<string>level2</string>
 		<key>thirdAction</key>
 		<string>blow</string>
 		<key>music</key>
