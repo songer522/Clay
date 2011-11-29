@@ -18,10 +18,6 @@ static BestTimes *_shared = nil;
 {
 	if (!_shared) {
         _shared = [[self alloc] init];
-        NSDictionary *levelData = loadData(@"levelData");
-        if(levelData!=nil) {
-            NSLog(@"dictionary loaded");
-        }
 	}
 	return _shared;
 }
@@ -29,29 +25,42 @@ static BestTimes *_shared = nil;
 -(id)init
 {
     if ((self=[super init])) {
-        _bestTimeData = [[NSMutableDictionary alloc] initWithCapacity:20];        
+        _bestTimeData = [[NSMutableDictionary alloc] initWithCapacity:20];
+        NSDictionary *levelData = loadData(@"levelData");
+        if(levelData!=nil) {
+            NSLog(@"dictionary loaded");
+            _bestTimeData = [[NSMutableDictionary alloc] initWithDictionary:levelData];
+        }
     }
     return self;
 }
 
--(void)reportTime:(float)time forLevel:(NSString*)levelName
+
+-(void)reportTime:(float)time forLevel:(NSString*)levelName forDifficulty:(NSString*)difficulty;
 {
-    float currentBestTime = [self getBestTimeForLevelName:levelName];
-    if (time < currentBestTime) {
-        [self storeNewBestTime:time forLevelNamed:levelName];
+    float currentBestTime = [self getBestTimeForLevelName:levelName forDifficulty:difficulty];
+    if ((time > 0.0f && time < currentBestTime) || currentBestTime == 0.0f) {
+        [self storeNewBestTime:time forLevelNamed:levelName forDifficulty:difficulty];
     }
 }
 
--(float)getBestTimeForLevelName:(NSString*)name
+-(float)getBestTimeForLevelName:(NSString*)name forDifficulty:(NSString*)difficulty
 {
-    float time = [[_bestTimeData objectForKey:name] floatValue];;
+    NSString *key = [NSString stringWithFormat:@"%@%@",difficulty,name];
+    float time = [[_bestTimeData objectForKey:key] floatValue];
     return time;
 }
 
--(void)storeNewBestTime:(float)time forLevelNamed:(NSString*)levelName
+-(void)storeNewBestTime:(float)time forLevelNamed:(NSString*)levelName forDifficulty:(NSString*)difficulty
 {
+    NSString *key = [NSString stringWithFormat:@"%@%@",difficulty,levelName];
     NSString *timeString = [NSString stringWithFormat:@"%f",time];
-    [_bestTimeData setObject:timeString forKey:levelName];
+    [_bestTimeData setObject:timeString forKey:key];
+}
+
+-(void)saveData
+{
+    saveData(_bestTimeData, @"levelData");
 }
 
 @end

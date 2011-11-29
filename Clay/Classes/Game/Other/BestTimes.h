@@ -15,9 +15,13 @@
 
 +(BestTimes*)shared;
 
--(void)reportTime:(float)time forLevel:(NSString*)levelName;
+-(void)reportTime:(float)time forLevel:(NSString*)levelName forDifficulty:(NSString*)difficulty;
 
--(float)getBestTimeForLevelName:(NSString*)name;
--(void)storeNewBestTime:(float)time forLevelNamed:(NSString*)levelName;
+-(float)getBestTimeForLevelName:(NSString*)name forDifficulty:(NSString*)difficulty;
+
+-(void)storeNewBestTime:(float)time forLevelNamed:(NSString*)levelName forDifficulty:(NSString*)difficulty;
+
+-(void)saveData;
+
 
 @end

@@ -14,6 +14,7 @@
     NSMutableArray *_timerAnimations;
     
     float _totalTime;
+    float _levelTime;
     bool _isStopped;
 }
 
@@ -33,6 +34,9 @@
 -(float)getTime;
 
 -(void)setAlpha:(float)alpha;
+
+-(void)startLevel;
+-(float)getLevelTime;
 
 -(void)setupAnimationsAtX:(float)x Y:(float)y;
 

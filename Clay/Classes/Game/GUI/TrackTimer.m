@@ -30,7 +30,7 @@
     self = [super init];
     if (self) {
         // Initialization code here.
-        
+        _levelTime = 0.0f;
         _isStopped = false;        
     }
     
@@ -86,7 +86,7 @@
 {
     if (!_isStopped) {
         _totalTime += dt;
-        
+        _levelTime += dt;
         [self setTimerSprites];
         
     }
@@ -109,6 +109,17 @@
         [sprite setAlpha:alpha];
     }
 }
+
+-(void)startLevel
+{
+    _levelTime = 0.0f;
+}
+
+-(float)getLevelTime
+{
+    return _levelTime;
+}
+
 
 -(void)setTimerSprites
 {

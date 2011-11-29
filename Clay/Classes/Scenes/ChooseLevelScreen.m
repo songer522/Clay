@@ -174,7 +174,7 @@
             //get the level name for the button and get the data for that
             NSString *levelName = [NSString stringWithFormat:@"level%d",i];
 
-            float bestTime = [[BestTimes shared] getBestTimeForLevelName:levelName];
+            float bestTime = [[BestTimes shared] getBestTimeForLevelName:levelName forDifficulty:difficulty];
             
             NSDictionary *levelDict = [modeDict objectForKey:levelName];
             
@@ -187,12 +187,14 @@
             
             
             //set trophy based on what player's best time is for that level
-            if (bestTime<goldTime) {
-                [button setTrophy:3];
-            } else if(bestTime<silverTime) {
-                [button setTrophy:2];
-            } else if(bestTime<bronzeTime) {
-                [button setTrophy:1];
+            if (bestTime!=0) {
+                if (bestTime<goldTime) {
+                    [button setTrophy:3];
+                } else if(bestTime<silverTime) {
+                    [button setTrophy:2];
+                } else if(bestTime<bronzeTime) {
+                    [button setTrophy:1];
+                }                
             }
         }
     }

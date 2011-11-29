@@ -23,7 +23,7 @@
 #import "GameDebugLayer.h"
 #import "GameSettings.h"
 #import "Appirater.h"
-
+#import "TrackTimer.h"
 
 #define DEBUG_DRAW_BOUNDING_BOXES 0
 
@@ -199,9 +199,7 @@
         if (trigger) {
             switch (trigger.type) {
                 case TRIGGER_NEXTLEVEL:
-                    
-                    [[ComicManager shared] startComic:_level.postLevelComicName];
-                    [ComicManager shared].loadNextLevel = true;
+                    [self endLevel];
                     break;
                 case TRIGGER_CHECKPOINT:
                     [_savePoint setSavePoint:trigger.position Level:_level.name];
@@ -246,6 +244,15 @@
         
     }
     
+}
+                     
+-(void)endLevel
+{
+    float finalLevelTime = [[_hud getTrackTimer] getLevelTime];
+    [[LevelManager shared] recordLevelTime:finalLevelTime];
+
+    [[ComicManager shared] startComic:_level.postLevelComicName];
+    [ComicManager shared].loadNextLevel = true;
 }
 
 -(void)setBoss:(Boss*)boss

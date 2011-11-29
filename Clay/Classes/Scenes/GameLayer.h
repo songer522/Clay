@@ -69,7 +69,9 @@
 -(void)setBoss:(Boss*)boss;
 -(void)unpause;
 
+
 -(void)startLevel:(NSString*)levelName;
+-(void)endLevel;
 
 -(NSMutableArray*)getGameObjectsList;
 
