@@ -23,10 +23,16 @@
 #import "MainMenuScene.h"
 #import "PListLoader.h"
 #import "BestTimes.h"
+#import "GameLabel.h"
+#import "TrackTimer.h"
+#import "BestTimes.h"
 
 
 @implementation ChooseLevelScreen
 
+//////////////////////
+//BEGIN INIT METHODS
+//////////////////////
 
 +(CCScene *) scene
 {
@@ -67,6 +73,11 @@
     return self;
 }
 
+////////////////////
+//END INIT METHODS
+////////////////////
+
+
 -(void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
    
@@ -86,13 +97,13 @@
                     _levelToSwitchTo = nil;
                 }
                 _levelToSwitchTo = [[NSString alloc] initWithFormat:@"level%d",_selected];
+                [self updateBestTimeTextWithLevel:_selected];
             }
         }
         
         if([_startButton checkIfSelected:position]) {
             _waitToSwitch = 0.25f;
-            [[SoundEngine shared] playSound:@"buttonPressed"];     
-            //[[SoundEngine shared] cueFadeOut];
+            [[SoundEngine shared] playSound:@"buttonPressed"];
         }
         
         if([_backButton checkIfSelected:position]) {
@@ -122,7 +133,11 @@
     _backButton = [ActionButton actionButtonWithText:@"BACK"];
     [_backButton setPosition:ccp(50, 18)];
     
+    _bestLevelTimeText = [GameLabel gameLabelWithText:@"" Scale:0.6f Position:ccp(240.0f,35.0f)];
+    [_bestLevelTimeText setCentered];
     
+    
+    //load level buttons (init best level time text first because it gets set in here)
     for (int i=0; i<11; i++) {
         LevelButton *button = [LevelButton levelButtonWithId:i];
         [button setCursor:_selector];
@@ -130,21 +145,14 @@
         //by default have the first level selected
         if(i==0) {
             [button setSelected];
+            [self updateBestTimeTextWithLevel:(i+1)];
         }
         
         [_buttons addObject:button];
     }
     
+    _levelSelectText = [GameLabel gameLabelWithText:@"LEVEL SELECT" Scale:0.75f Position:ccp(365.0f,278.0f)];
     
-    _levelSelectText = [CCLabelBMFont labelWithString:@"LEVEL SELECT" fntFile:@"GraphicFont.fnt"];
-    if ([GameSettings usingHighResolutionGraphics])
-    { [_levelSelectText setScale:0.75f];}
-    else
-    { [_levelSelectText setScale:0.375f];}
-    
-    _levelSelectText.position = ccp(365.0f,278.0f);
-    [[[LayerManager sharedLayers] currentLayer] addChild:_levelSelectText];
-
     //load any medals earned
     [self loadMedals];
     
@@ -201,6 +209,12 @@
     
 }
 
+-(void)onExit
+{
+    [self release];
+    [self unscheduleUpdate];
+    self.isTouchEnabled = false;
+}
 
 -(void)popAndSwitchToLevel:(NSString*)level
 {
@@ -222,12 +236,16 @@
 {
 }
 
--(void)onExit
+-(void)updateBestTimeTextWithLevel:(int)level
 {
-    [self release];
-    [self unscheduleUpdate];
-    self.isTouchEnabled = false;
+    float bestTime = [[BestTimes shared] getBestTimeForLevelNumber:level];
+    if (bestTime == 0.0f) {
+        [_bestLevelTimeText setText:[NSString stringWithFormat:@""]];
+    } else {
+        [_bestLevelTimeText setText:[NSString stringWithFormat:@"BEST TIME: %@",[TrackTimer getTimeStringFromFloat:bestTime]]];
+    }
 }
+
 
 -(void)update:(ccTime)dt
 {

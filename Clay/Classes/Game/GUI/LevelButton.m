@@ -45,7 +45,7 @@
 {
     //initial position
     float startX = 119; //was 212 for left panel
-    float startY = 186; //was 181 for left panel and 11 levels, and 152
+    float startY = 190; //was 181 for left panel and 11 levels, and 186 without
     float row = floorf((_buttonId - 1) / 4);
     
     //for staggered effect, move that one down one

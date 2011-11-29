@@ -38,6 +38,8 @@
 -(void)startLevel;
 -(float)getLevelTime;
 
++(NSString*)getTimeStringFromFloat:(float)time;
+
 -(void)setupAnimationsAtX:(float)x Y:(float)y;
 
 @end

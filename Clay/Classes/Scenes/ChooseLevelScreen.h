@@ -11,6 +11,7 @@
 #import "cocos2d.h"
 
 
+@class GameLabel;
 @class Sprite;
 @class ActionButton;
 
@@ -25,7 +26,11 @@
     Sprite *_background;    
     Sprite *_selector;
     
-    CCLabelBMFont *_levelSelectText;
+    //CCLabelBMFont *_levelSelectText;
+    //CCLabelBMFont *_bestTimeForLevelText;
+    
+    GameLabel *_levelSelectText;
+    GameLabel *_bestLevelTimeText;
     
     ActionButton *_startButton;
     ActionButton *_backButton;
@@ -44,7 +49,7 @@
 -(void)switchToMainMenu;
 
 -(void)transitionOut;
-
+-(void)updateBestTimeTextWithLevel:(int)level;
 
 -(void)unload;
 

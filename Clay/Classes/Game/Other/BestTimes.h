@@ -19,6 +19,8 @@
 
 -(float)getBestTimeForLevelName:(NSString*)name forDifficulty:(NSString*)difficulty;
 
+-(float)getBestTimeForLevelNumber:(int)number;
+
 -(void)storeNewBestTime:(float)time forLevelNamed:(NSString*)levelName forDifficulty:(NSString*)difficulty;
 
 -(void)saveData;

@@ -8,6 +8,7 @@
 
 #import "BestTimes.h"
 #import "Database.h"
+#import "GameSettings.h"
 
 @implementation BestTimes
 
@@ -35,6 +36,13 @@ static BestTimes *_shared = nil;
     return self;
 }
 
+-(float)getBestTimeForLevelNumber:(int)number
+{
+    NSString *levelName = [NSString stringWithFormat:@"level%d",number];
+    NSString *difficulty = [[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
+    float time = [self getBestTimeForLevelName:levelName forDifficulty:difficulty];
+    return time;
+}
 
 -(void)reportTime:(float)time forLevel:(NSString*)levelName forDifficulty:(NSString*)difficulty;
 {
