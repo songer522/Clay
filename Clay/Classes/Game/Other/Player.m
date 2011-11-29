@@ -435,16 +435,11 @@
 
 -(void)update:(float)dt Level:(Level *)level
 {
-    [super update:dt];
-    /*
-    if([[[LevelManager shared] currentLevel].name isEqualToString:@"level7"])
-    {
-        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
-        
-        [[gameLayer getHud] setEnabled:false ForButton:HUD_BUTTON_SPRINT];
-    }
-     */   
+  
+
+    [super update:dt];  
     
+    //wait for turbo
     if (_waitToTurbo > 0.0f) {
         _waitToTurbo -= dt;
         if (_waitToTurbo<=0.0f) {
@@ -458,7 +453,7 @@
     [self updateJump:dt];
     
     [self updateInvulnerable:dt];
-    
+
     if (_adjustX != 0.0f) {
         self.x += _adjustX;
         _adjustX = 0.0f;
@@ -540,6 +535,7 @@
     [_thirdAction update:dt];
     
     [self dieIfFallenIntoPit];
+
 }
 
 -(void)updateJump:(float)dt

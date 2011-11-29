@@ -11,8 +11,6 @@
 #import "GameObject.h"
 #import "GameSettings.h"
 
-#define COLLISION_DETECTION_TEST_LEFT_COLLISIONS 0
-
 @implementation CollisionDetection
 
 @synthesize midpointCollisions = _currentMidpoints;
@@ -41,14 +39,29 @@
 //entry point for this class each update
 -(CGPoint)checkCollisionForObject:(GameObject *)object
 {
+  
+    
+
+
     _desiredPosition = [object getPosition];
     _testPosition = [object getPosition];
     _currentObject = object;
     _objectBoundingBox = object.boundingBox;
     
     _landedOnLedge = false;
+   
+    
+#if CC_ENABLE_PROFILERS
+    CCProfilingTimer *timer2 = [CCProfiler timerWithName:@"collisions" andInstance:self];
+    CCProfilingBeginTimingBlock(timer2);
+#endif  
     
     _currentMidpoints = [self getMidpointCollisionsForPoint:[_currentObject getPosition]];
+    
+    
+#if CC_ENABLE_PROFILERS
+    CCProfilingEndTimingBlock(timer2);
+#endif    
     
     if(!_currentMidpoints.hasCollision) {
         _testPosition = _desiredPosition;
@@ -81,6 +94,7 @@
         }
     }
     
+
     
     return _testPosition;
 }
@@ -88,36 +102,23 @@
 
 -(XDCollision)getMidpointCollisionsForPoint:(CGPoint)position
 {
-    float scale = 1;
-    
-    float left = position.x - (_objectBoundingBox.origin.x * scale);
-    float bottom = position.y + (_objectBoundingBox.origin.y * scale);
-    float right = left + (_objectBoundingBox.size.width * scale);
-    float top = bottom + (_objectBoundingBox.size.height * scale);
+    float left = position.x - _objectBoundingBox.origin.x;
+    float bottom = position.y + _objectBoundingBox.origin.y;
+    float right = left + _objectBoundingBox.size.width;
+    float top = bottom + _objectBoundingBox.size.height;
     float middleX = (left + right) / 2.0f;
     float middleY = (top + bottom) / 2.0f;
     
-    bool leftCollision = false;
-    
-#if COLLISION_DETECTION_TEST_LEFT_COLLISIONS
-    leftCollision = [self checkCollisionAtPoint:CGPointMake(left, middleY) BoundingBoxPoint:BOX_LEFT_MIDDLE];
-#endif
-    
     bool bottomCollision = [self checkCollisionAtPoint:CGPointMake(middleX, bottom) BoundingBoxPoint:BOX_BOTTOM_MIDDLE];
     
-    bool topCollision = [self checkCollisionAtPoint:CGPointMake(middleX,top) BoundingBoxPoint:BOX_TOP_MIDDLE];
     bool rightCollision = [self checkCollisionAtPoint:CGPointMake(right, middleY) BoundingBoxPoint:BOX_RIGHT_MIDDLE];
     
-    //want to offset Y position as this test is used for left/right collisions and don't want to do left/right just because it
-    //always says true while on the ground
-    //bool bottomRightCollision = [self checkCollisionAtPoint:CGPointMake(right, bottom + 3.0f)];
-    
     bool hasCollision = false;
-    if (leftCollision||rightCollision||topCollision||bottomCollision) {
+    if (rightCollision||bottomCollision) {
         hasCollision = true;
     }
     
-    XDCollision returnVal = XDCollisionMake(hasCollision, leftCollision, rightCollision, topCollision, bottomCollision);
+    XDCollision returnVal = XDCollisionMake(hasCollision, false, rightCollision, false, bottomCollision);
     
     return returnVal;
 }
@@ -128,7 +129,6 @@
     bool returnVal = false;
     
     CGPoint coords = [self accurateCoords:point];
-    _pointWithinTile = CGPointMake((int)point.x % (_tileSize/2), (int)point.y % (_tileSize/2));
 
     CollisionType collision = [self getCollisionTypeForCoords:coords];
     
@@ -138,20 +138,6 @@
             break;
         case COLLISION_TYPE_FULL:
             returnVal = true;
-            break;
-        case COLLISION_TYPE_LEFT_SLANT:
-            if (_pointWithinTile.y < _pointWithinTile.x) {
-                returnVal = true;
-            } else {
-                returnVal = false;
-            }
-            break;
-        case COLLISION_TYPE_RIGHT_SLANT:
-            if (_pointWithinTile.y < _pointWithinTile.x) {
-                returnVal = true;
-            } else {
-                returnVal = false;
-            }
             break;
         case COLLISION_TYPE_LEDGE_FULL:
             //don't want this true unless it's the bottom edge when falling or not in midair.
@@ -328,7 +314,6 @@
 {
     CGPoint collisionPoint = [self getPointForObject:_currentObject AtPosition:position ForBoundingBoxEdge:edge];
     _testPosition = CGPointMake(position.x, position.y);
-    _pointWithinTile = CGPointMake((int)collisionPoint.x % (_tileSize/2), (int)collisionPoint.y % _tileSize/2);
     _coordinates = [self accurateCoords:collisionPoint];
     _tileCollision = [self getCollisionPropertyForTileCoords:_coordinates];
     

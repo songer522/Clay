@@ -68,7 +68,9 @@
 -(HudLayer*)getHud;
 -(void)setBoss:(Boss*)boss;
 -(void)unpause;
+-(void)updateTriggers:(float)dt;
 
+-(void)updatePlayerDeath:(float)dt;
 
 -(void)startLevel:(NSString*)levelName;
 -(void)endLevel;

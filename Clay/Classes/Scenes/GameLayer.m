@@ -187,57 +187,30 @@
 }
 
 -(void)updateLogic:(ccTime)dt
-{
+{    
+#if CC_ENABLE_PROFILERS
+    CCProfilingTimer *timer = [CCProfiler timerWithName:@"pfull" andInstance:self];
+    CCProfilingBeginTimingBlock(timer);
+#endif  
+
     [[ComicManager shared] update:dt];
     [[SoundEngine shared] update:dt];
 
     if (!_paused) {
 
-        [_player update:dt Level:_level];
+        
         
         [_level update:dt Velocity:_player.vx];
+
         
-        //check to see if any triggers have been hit
-        Trigger *trigger = [_level testTriggers:_player];
-        if (trigger) {
-            switch (trigger.type) {
-                case TRIGGER_NEXTLEVEL:
-                    [self endLevel];
-                    break;
-                case TRIGGER_CHECKPOINT:
-                    [_savePoint setSavePoint:trigger.position Level:_level.name];
-                    [_level disablePassedTrigger];
-                    [[SoundEngine shared] playSound:@"checkpoint"];
-                    [_player rechargeBattery];
-                    break;
-                case TRIGGER_BOSS_SHOOT:
-                    [_boss triggerAttack];
-                    trigger.triggered=true;
-                    break;
-                default:
-                    break;
-            }
-        }
+        [_player update:dt Level:_level];
+        
+        
+        [self updateTriggers:dt];
         
         [_level testCollisions:_player];
         
-        if (![[ComicManager shared] isActive]) {
-            if(_player.isDead) {
-                [_player reset];
-                if(_boss){
-                    [_boss reset];}
-                [_savePoint restoreSavePoint:_player];
-                _player.isDead = false;
-                [_player rechargeBattery];
-                
-                [_level resetObstacles];
-                [_level resetTriggers];
-                
-                if (_boss !=nil) {
-                    [_boss reset];
-                }
-            }        
-        }
+        [self updatePlayerDeath:dt];
         
         [_hud update:dt];
         
@@ -247,6 +220,57 @@
         
     }
     
+    
+#if CC_ENABLE_PROFILERS
+    CCProfilingEndTimingBlock(timer);
+#endif
+
+}
+
+-(void)updatePlayerDeath:(float)dt
+{
+    if (![[ComicManager shared] isActive]) {
+        if(_player.isDead) {
+            [_player reset];
+            if(_boss){
+                [_boss reset];}
+            [_savePoint restoreSavePoint:_player];
+            _player.isDead = false;
+            [_player rechargeBattery];
+            
+            [_level resetObstacles];
+            [_level resetTriggers];
+            
+            if (_boss !=nil) {
+                [_boss reset];
+            }
+        }        
+    }
+}
+
+-(void)updateTriggers:(float)dt
+{
+    //check to see if any triggers have been hit
+    Trigger *trigger = [_level testTriggers:_player];
+    if (trigger) {
+        switch (trigger.type) {
+            case TRIGGER_NEXTLEVEL:
+                [self endLevel];
+                break;
+            case TRIGGER_CHECKPOINT:
+                [_savePoint setSavePoint:trigger.position Level:_level.name];
+                [_level disablePassedTrigger];
+                [[SoundEngine shared] playSound:@"checkpoint"];
+                [_player rechargeBattery];
+                break;
+            case TRIGGER_BOSS_SHOOT:
+                [_boss triggerAttack];
+                trigger.triggered=true;
+                break;
+            default:
+                break;
+        }
+    }
 }
                      
 -(void)endLevel
