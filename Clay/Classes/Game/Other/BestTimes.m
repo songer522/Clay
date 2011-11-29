@@ -7,6 +7,7 @@
 //
 
 #import "BestTimes.h"
+#import "Database.h"
 
 @implementation BestTimes
 
@@ -17,6 +18,10 @@ static BestTimes *_shared = nil;
 {
 	if (!_shared) {
         _shared = [[self alloc] init];
+        NSDictionary *levelData = loadData(@"levelData");
+        if(levelData!=nil) {
+            NSLog(@"dictionary loaded");
+        }
 	}
 	return _shared;
 }
@@ -24,10 +29,29 @@ static BestTimes *_shared = nil;
 -(id)init
 {
     if ((self=[super init])) {
-        //_settings = [[NSMutableDictionary alloc] initWithCapacity:30];
-        //[self loadFromSettingsPlist];
+        _bestTimeData = [[NSMutableDictionary alloc] initWithCapacity:20];        
     }
     return self;
+}
+
+-(void)reportTime:(float)time forLevel:(NSString*)levelName
+{
+    float currentBestTime = [self getBestTimeForLevelName:levelName];
+    if (time < currentBestTime) {
+        [self storeNewBestTime:time forLevelNamed:levelName];
+    }
+}
+
+-(float)getBestTimeForLevelName:(NSString*)name
+{
+    float time = [[_bestTimeData objectForKey:name] floatValue];;
+    return time;
+}
+
+-(void)storeNewBestTime:(float)time forLevelNamed:(NSString*)levelName
+{
+    NSString *timeString = [NSString stringWithFormat:@"%f",time];
+    [_bestTimeData setObject:timeString forKey:levelName];
 }
 
 @end

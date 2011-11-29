@@ -22,6 +22,7 @@
 #import "Appirater.h"
 #import "MainMenuScene.h"
 #import "PListLoader.h"
+#import "BestTimes.h"
 
 
 @implementation ChooseLevelScreen
@@ -168,11 +169,13 @@
         
         for (LevelButton *button in _buttons)
         {
-            int bestTime = rand()%75 + 165;
             int i = button.buttonId;
             
             //get the level name for the button and get the data for that
             NSString *levelName = [NSString stringWithFormat:@"level%d",i];
+
+            float bestTime = [[BestTimes shared] getBestTimeForLevelName:levelName];
+            
             NSDictionary *levelDict = [modeDict objectForKey:levelName];
             
             //get medal data based on the levels difficulty
@@ -192,7 +195,6 @@
                 [button setTrophy:1];
             }
         }
-
     }
     
 }

@@ -10,10 +10,14 @@
 
 @interface BestTimes : NSObject
 {
-    NSMutableDictionary *bestTimeData;
+    NSMutableDictionary *_bestTimeData;
 }
 
 +(BestTimes*)shared;
 
+-(void)reportTime:(float)time forLevel:(NSString*)levelName;
+
+-(float)getBestTimeForLevelName:(NSString*)name;
+-(void)storeNewBestTime:(float)time forLevelNamed:(NSString*)levelName;
 
 @end
