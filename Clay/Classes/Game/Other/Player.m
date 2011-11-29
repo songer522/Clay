@@ -66,6 +66,7 @@
         _waitToTurbo=-1.0f;
         _onLedge = false;
         _offLedge=false;
+        _isTurbo=false;
        
         _timeLeftBeforeVulnerable = 2.0f;
         _isInvincible = false;
@@ -207,7 +208,7 @@
     if (_hitPoints > 1) {
         
         [_speed startTurbo];
-      
+        _isTurbo=true;
         
         [[SoundEngine shared] playSound:@"turboStart"];
         [_skin setPlayerAnimation:PLAYER_ANIM_SPRINTING ForSprite:_sprite];
@@ -230,11 +231,15 @@
 {
     [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];
     [_speed endTurbo];
+    
+    if(_isTurbo)
+    {
     GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
     gameLayer.gameController.isSprintEnabled=false;
     [[gameLayer getHud] setEnabled:false ForButton:HUD_BUTTON_SPRINT];
     _waitToTurbo=3.0f;
-    
+    _isTurbo=false;
+    }
     
 }
 
