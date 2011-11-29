@@ -2442,6 +2442,9 @@
 				5450737D147DEE7C0081D394 /* jimShipCharge.wav in Resources */,
 				54A60BDE1483E55F00EA2F3B /* settings.plist in Resources */,
 				544DB1FD148416BE006F373E /* medals.plist in Resources */,
+				61DE5BFD1485526800D325CF /* image1.png in Resources */,
+				61DE5BFE1485526800D325CF /* image2.png in Resources */,
+				61DE5BFF1485526800D325CF /* image3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2630,6 +2633,7 @@
 				611293DF147AC42200AC017F /* Appirater.m in Sources */,
 				549E5DB614843CC6006D4CAE /* BestTimes.m in Sources */,
 				540E8065148547790079BFDA /* GameLabel.m in Sources */,
+				61DE5BF914853CCC00D325CF /* CCScrollLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -192,6 +192,7 @@
     //load any medals earned
     [self loadMedals];
     
+    [self loadTutorial];
     
     
     [[LayerManager sharedLayers] forgetWorkingLayer];
@@ -306,8 +307,7 @@
                 [self switchToTutorial];
             }  else {
                 [self popAndSwitchToLevel:_levelToSwitchTo]; 
-                
-                            }
+            }
         }
     }
     

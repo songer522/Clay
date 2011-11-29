@@ -38,6 +38,8 @@
     ActionButton *_backButton;
     ActionButton *_closeTutorial;
     
+    CCScrollLayer *scroller;
+    
     int _selected;
 }
 
