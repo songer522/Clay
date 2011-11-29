@@ -59,6 +59,7 @@
         _selected = 1;
         _backToMainMenu = false;
         _backToLevelSelect =false;
+        _inTutorial=false;
         _waitToSwitch = 0.0f;
         self.isTouchEnabled = YES;
         
@@ -216,8 +217,17 @@
 
 -(void)switchToTutorial
 {
+    if(!_inTutorial){
     [scroller setVisible:YES];
     scroller.showPagesIndicator=YES;
+        _inTutorial=true;
+    }
+    else
+    {
+        [scroller setVisible:NO];
+        scroller.showPagesIndicator=NO;
+        _inTutorial=false;
+    }
 }
 
 -(void)transitionOut
@@ -249,10 +259,10 @@
             _waitToSwitch = 0.0f;
             if (_backToMainMenu) {
                 //[self switchToMainMenu];
+                
                 [self switchToTutorial];
             }  else {
                 [self popAndSwitchToLevel:_levelToSwitchTo]; 
-                
                             }
         }
     }

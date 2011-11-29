@@ -22,6 +22,7 @@
     float _alpha;
     bool _backToMainMenu;
     bool _backToLevelSelect;
+    bool _inTutorial;
     NSString *_levelToSwitchTo;
     
     
