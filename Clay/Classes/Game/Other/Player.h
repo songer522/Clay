@@ -53,6 +53,7 @@ typedef enum {
     bool _onLedge;
     
     bool _isHighJump;
+    bool _isTurbo;
     bool _hasDoubleJumped;
     bool _soundFalling;
     float _timeLeftBeforeVulnerable;    //set to a time whenever tim gets back up, to allow proper time for him to get back up to speed before he has to jump on things

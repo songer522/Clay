@@ -101,7 +101,7 @@
                 }
                 }
                 else {
-                    return;
+                    
                 }
                 break;
             case HUD_BUTTON_ACTION:

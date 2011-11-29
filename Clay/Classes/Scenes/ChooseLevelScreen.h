@@ -9,6 +9,7 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "CCScrollLayer.h"
 
 
 @class GameLabel;
@@ -21,6 +22,7 @@
     float _waitToSwitch;
     float _alpha;
     bool _backToMainMenu;
+    bool _backToLevelSelect;
     NSString *_levelToSwitchTo;
     
     Sprite *_background;    
@@ -34,6 +36,7 @@
     
     ActionButton *_startButton;
     ActionButton *_backButton;
+    ActionButton *_closeTutorial;
     
     int _selected;
 }

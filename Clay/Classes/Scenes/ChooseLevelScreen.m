@@ -28,6 +28,7 @@
 #import "BestTimes.h"
 
 
+
 @implementation ChooseLevelScreen
 
 //////////////////////
@@ -65,8 +66,12 @@
         _alpha = 1.0f;
         _selected = 1;
         _backToMainMenu = false;
+        _backToLevelSelect =false;
         _waitToSwitch = 0.0f;
         self.isTouchEnabled = YES;
+        
+        
+      
         [self load];
        
     }
@@ -110,8 +115,39 @@
             _waitToSwitch = 0.25f;
             _backToMainMenu = true;
             [[SoundEngine shared] playSound:@"buttonPressed"];     
-        }        
-    }
+        }
+        
+            }
+}
+
+-(void)loadTutorial
+{
+    CCLayer *pageOne = [[CCLayer alloc] init];
+    CCSprite *image1=[CCSprite spriteWithFile:@"image1.png"];
+    [image1 setPosition:ccp(240,160)];
+    [pageOne addChild:image1];
+    
+    CCLayer *pageTwo = [[CCLayer alloc] init];
+    CCSprite *image2=[CCSprite spriteWithFile:@"image2.png"];
+    [image2 setPosition:ccp(240,160)];
+    [pageTwo addChild:image2];
+    
+    CCLayer *pageThree = [[CCLayer alloc] init];
+    CCSprite *image3=[CCSprite spriteWithFile:@"image3.png"];
+    [image3 setPosition:ccp(240,160)];
+    [pageThree addChild:image3];
+    _closeTutorial=[ActionButton buttonWithText:@"Done" AtPoint:ccp(430,18) inLayer:pageThree];
+    
+    
+ 
+        
+    scroller = [[CCScrollLayer alloc] initWithLayers:[NSMutableArray arrayWithObjects: pageOne,pageTwo,pageThree,nil] widthOffset: 200];
+    
+    [self addChild:scroller];
+    [scroller setVisible:NO];
+    scroller.showPagesIndicator=NO;
+    
+
 }
 
 -(void)load
@@ -228,6 +264,12 @@
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[MainMenuScene scene]]];
 }
 
+-(void)switchToTutorial
+{
+    [scroller setVisible:YES];
+    scroller.showPagesIndicator=YES;
+}
+
 -(void)transitionOut
 {
 }
@@ -253,16 +295,19 @@
 
     [_startButton update:dt];
     [_backButton update:dt];
+    [_closeTutorial update:dt];
 
     if (_waitToSwitch>0.0f) {
         _waitToSwitch-=dt;
         if(_waitToSwitch<=0.0f){
             _waitToSwitch = 0.0f;
             if (_backToMainMenu) {
-                [self switchToMainMenu];
-            } else {
-                [self popAndSwitchToLevel:_levelToSwitchTo];                
-            }
+                //[self switchToMainMenu];
+                [self switchToTutorial];
+            }  else {
+                [self popAndSwitchToLevel:_levelToSwitchTo]; 
+                
+                            }
         }
     }
     
@@ -277,6 +322,8 @@
     
     [_buttons removeAllObjects];
     _buttons = nil;
+    [scroller release];
+    [_closeTutorial release];
     [_background release];
     [_levelToSwitchTo release];
     [_levelSelectText release];
