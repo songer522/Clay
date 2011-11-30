@@ -3,7 +3,7 @@
 //  Clay
 //
 //  Created by Dustin Werner on 9/13/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 Xecudev, LLC. All rights reserved.
 //
 
 #import "PListLoader.h"

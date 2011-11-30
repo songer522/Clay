@@ -111,7 +111,7 @@
     if(animName !=nil) {
         [[AnimationController sharedController] replaceSprite:sprite withAnimationNamed:animName];
     } else {
-        NSLog(@"ERROR! Player animation not available for skin: %@",_filename);
+        //NSLog(@"ERROR! Player animation not available for skin: %@",_filename);
     }
 }
 

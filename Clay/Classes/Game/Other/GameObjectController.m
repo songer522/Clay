@@ -3,7 +3,7 @@
 //  Clay
 //
 //  Created by Dustin Werner on 9/13/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 Xecudev, LLC. All rights reserved.
 //
 
 #import "GameObjectController.h"
@@ -40,7 +40,7 @@
 
 -(void)initializeGameObject:(GameObject*)gameObject Name:(NSString*)objectName AddToLayer:(bool)shouldAddToLayer
 {
-    NSLog(@"Game Object Loading: %@",objectName);
+    //NSLog(@"Game Object Loading: %@",objectName);
 
     NSDictionary *gameobjectSettings = [_objectSettings objectForKey:objectName];
     NSAssert(gameobjectSettings != nil, @"Object could not be found. Please ensure %@ is in objects.plist",objectName);

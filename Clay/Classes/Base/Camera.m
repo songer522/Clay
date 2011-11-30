@@ -8,6 +8,8 @@
 
 #import "Camera.h"
 #import "Sprite.h"
+#import "LevelManager.h"
+#import "Level.h"
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 @implementation Camera
@@ -42,7 +44,7 @@ static Camera *_sharedCamera = nil;
     return self;
 }
 
--(void)setBoundaries:(CGRect)rect
+-(void)setBoundaries:(CGRect)rect Level:(Level*)level
 {
     NSAssert(rect.origin.x < rect.size.width && rect.origin.y < rect.size.height, @"Invalid Rect for boundaries");
     

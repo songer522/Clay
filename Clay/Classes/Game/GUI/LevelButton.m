@@ -104,10 +104,19 @@
 
 -(void)setTrophy:(int)trophyId
 {
-    NSString *frameName = [NSString stringWithFormat:@"CL_Trophy_%f.png",trophyId];
+    NSString *frameName = [NSString stringWithFormat:@"CL_Trophy_%d.png",trophyId];
     _trophy = [Sprite spriteFromFrameCacheWithName:frameName];
-    [frameName release];
+    [self setTrophyPosition];
 }
+
+-(void)setTrophyPosition
+{
+    if (_trophy!=nil) {
+        CGPoint position = [_buttonGraphic getPosition];
+        [_trophy setScreenPosition:ccp(position.x + 34.0f,position.y - 2.0f)];            
+    }
+}
+
 
 -(void)dealloc
 {

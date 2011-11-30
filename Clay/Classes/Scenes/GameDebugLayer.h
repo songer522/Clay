@@ -23,6 +23,5 @@
 +(id) debugLayerForScene:(CCScene*)scene GameLayer:(GameLayer*)gameLayer;
 
 -(void)drawBoxForCollidable:(id<Collidable>)object;
--(void)drawBoxForGameObject:(GameObject*)object Collisions:(XDCollision)collisions;
 
 @end

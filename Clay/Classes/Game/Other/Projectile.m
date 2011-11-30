@@ -78,6 +78,13 @@
                 [[_sprite getCCSprite] setVisible:NO];
                 _isAggressive = false;
                 break;
+            case PROJECTILE_BEHAVIOR_FIRE_DEMON_BULLET:
+                _sprite = [Sprite spriteWithFile:@"blank.png"];
+                [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"fireBullet"];
+                [[_sprite getCCSprite] setVisible:NO];
+                _vx = -250.0f;
+                _isAggressive = false;
+                break;
             default:
                 break;                
                 
@@ -93,7 +100,7 @@
     Player *player = [[LayerManager sharedLayers] getPlayer];
     CGPoint playerPos = [player getPosition];
     
-    float speed = 280.0f;
+    float speed = 450.0f;
     float dx = (playerPos.x + 10.0f) - _x;
     float dy = (playerPos.y + 20.0f) - _y;
     float angle = atan2f(dy, dx);
@@ -268,7 +275,9 @@
 
 -(void)dealloc
 {
-    [_sprite release];
+    //[_sprite release];
+    [[_sprite getCCSprite] removeFromParentAndCleanup:YES];
+    _sprite = nil;
     [super dealloc];
 }
 

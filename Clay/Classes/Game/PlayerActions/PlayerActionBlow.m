@@ -42,7 +42,7 @@
         [_parent setPlayerAnimation:PLAYER_ANIM_BLOW];
 
         _duration = 0.78f;
-        _cooldown = 0.6f;
+        _cooldown = 1.0f;
         _startedWindAnimation = false;
         
         

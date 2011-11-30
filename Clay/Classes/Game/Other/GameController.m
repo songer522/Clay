@@ -18,6 +18,7 @@
 @synthesize layer = _gameLayer;
 @synthesize isPaused = _isPaused;
 @synthesize isInputEnabled = _isInputEnabled;
+@synthesize isSprintEnabled=_isSprintEnabled;
 
 - (id)init
 {
@@ -27,6 +28,7 @@
         [self changeGameState:GAMESTATE_INITIALIZE];
         _isPaused = false;
         _isInputEnabled = true;
+        _isSprintEnabled = true;
     }
     
     return self;
@@ -89,16 +91,17 @@
                 
                 break;
             case HUD_BUTTON_SPRINT:
-                if([[[LevelManager shared] currentLevel].name isEqualToString:@"level7"])
+                if(_isSprintEnabled)
                 {
-                    return;
-                }
-                
                 if(![_gameLayer.player getIsTurbo]) {
                     [_gameLayer.player startTurbo];
                    
                 } else {
                     [_gameLayer.player endTurbo];
+                }
+                }
+                else {
+                    
                 }
                 break;
             case HUD_BUTTON_ACTION:
@@ -110,6 +113,10 @@
     
 }
 
+-(void)enableSprint:(bool)Enable
+{
+    _isSprintEnabled=Enable;
+}
 -(void)setHud:(HudLayer*)hud
 {
     _hud = hud;

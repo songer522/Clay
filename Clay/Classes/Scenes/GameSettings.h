@@ -25,4 +25,6 @@
 +(bool)usingHighResolutionGraphics;  //use throughout code to check high res, includes 'shouldUseRetinaForDevice' method
 
 
+-(void)loadFromSettingsPlist;
+
 @end

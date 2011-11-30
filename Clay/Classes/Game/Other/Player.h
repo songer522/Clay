@@ -44,15 +44,18 @@ typedef enum {
     bool _isTripping;
     bool _firstFrameJumping;
     bool _isDead;
+    bool _offLedge;
+    
     
     float _yPosition;
     float _waitToGetUp;
+    float _waitToTurbo;
     bool _onLedge;
     
     bool _isHighJump;
+    bool _isTurbo;
     bool _hasDoubleJumped;
     bool _soundFalling;
-    
     float _timeLeftBeforeVulnerable;    //set to a time whenever tim gets back up, to allow proper time for him to get back up to speed before he has to jump on things
     
     int _hitPoints;
@@ -69,7 +72,9 @@ typedef enum {
     Skin *_skin;
     
     PlayerAction *_thirdAction; //playeraction
-
+    
+    Sprite *_playerOnledge;
+    Sprite *_tempSprite;
 }
 
 @property(nonatomic,assign) bool isDead;
@@ -107,11 +112,13 @@ typedef enum {
 -(bool)objectShouldReactToCollision;
 -(void)reset;
 -(void)resetSprite:(CCLayer*)layer;
+-(void)setLedgeSprite:(CCLayer*)layer;
+-(void)setCurrentSprite:(Sprite *)sprite;
 -(void)rechargeBattery;
 
 -(void)setVelocity:(float)velocity;
 -(void)startDoubleJump;
-
+-(int)getHitPoints;
 
 -(void)dieIfFallenIntoPit;
 
@@ -119,6 +126,7 @@ typedef enum {
 
 -(void)pushAfterAnimation:(float)xAmount;
 
+-(void)updatePitFalling:(float)dt;
 -(void)updateSlow:(float)dt;
 -(void)updateInvulnerable:(float)dt;
 

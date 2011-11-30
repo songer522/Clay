@@ -26,6 +26,9 @@
 +(id)buttonWithText:(NSString*)text AtPoint:(CGPoint)point;
 -(id)initWithText:(NSString*)text AtPoint:(CGPoint)point;
 
++(id)buttonWithText:(NSString*)text AtPoint:(CGPoint)point inLayer:(CCLayer *)layer;
+-(id)initWithText:(NSString*)text AtPoint:(CGPoint)point inLayer:(CCLayer *)layer;
+
 -(CCLabelTTF*)getLabel;
 -(void)setLabel:(NSString*)text;
 -(void)setHitbox:(CGRect)rect;

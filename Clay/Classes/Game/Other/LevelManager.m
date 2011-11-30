@@ -17,6 +17,8 @@
 #import "TextureManager.h"
 #import "Boss.h"
 #import "GameSettings.h"
+#import "Appirater.h"
+#import "BestTimes.h"
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 
@@ -88,6 +90,7 @@ static LevelManager *_shared = nil;
     GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
     
     Level *level = [Level levelWithFilename:fileName ObstacleLayer:obstacleLayer LayerList:layerList GameObjectController:_gameObjects Player:gameLayer.player];
+    
     level.nextLevelName = [NSString stringWithString:[levelSettings valueForKey:@"nextLevelName"]];
     level.postLevelComicName = [NSString stringWithString:[levelSettings valueForKey:@"postLevelComic"]];
     level.gameObjects = _gameObjects;
@@ -95,7 +98,8 @@ static LevelManager *_shared = nil;
     level.musicName = [NSString stringWithString:[levelSettings valueForKey:@"music"]];
     level.preComicName = [NSString stringWithString:[levelSettings valueForKey:@"preComic"]];
 
-    
+    //camera needs to know what the level name is so call after level data is created
+    [[Camera sharedCamera] setBoundaries:[level getLevelBoundaries] Level:level];
 
     return level;
 }
@@ -142,7 +146,10 @@ static LevelManager *_shared = nil;
 
 -(void)loadNextLevel
 {
+   
+    
     [self loadLevelNamed:_currentLevel.nextLevelName];
+   
 }
 
 -(void)receiveBoss:(Boss*)boss
@@ -158,6 +165,13 @@ static LevelManager *_shared = nil;
     [level release];
     
     [[TextureManager shared] unloadMemoryForKey:levelName];
+}
+
+-(void)recordLevelTime:(float)time
+{
+    NSString *levelName = [NSString stringWithString:_currentLevel.name];
+    NSString *difficulty = [[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
+    [[BestTimes shared] reportTime:time forLevel:levelName forDifficulty:difficulty];
 }
 
 -(NSMutableArray*)getObstacleArray

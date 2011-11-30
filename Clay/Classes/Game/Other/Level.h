@@ -103,6 +103,7 @@
 -(void)addMapObjectsAboveLayer:(CCTMXLayer*)layer ParallaxRatio:(CGPoint)ratio;
 -(void)addObstaclesToMapAndRegion;
 
+-(void)disablePassedTrigger;
 -(void)resetObstacles;
 -(void)resetTriggers;
 -(Trigger*)testTriggers:(Player*)player;

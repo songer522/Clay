@@ -3,12 +3,13 @@
 //  Clay
 //
 //  Created by Dustin Werner on 10/17/11.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2011 Xecudev, LLC. All rights reserved.
 //
 
 #import "GCHelper.h"
 #import "Database.h"
 #import "cocos2d.h"
+#import "Appirater.h"
 @implementation GCHelper
 @synthesize leaderboardToReport;
 @synthesize achievementsToReport;
@@ -83,6 +84,7 @@ static GCHelper *sharedHelper = nil;
                            //NSLog(@"Authentication changed: player not authenticated.");
                        }
                    });
+     
 }
 
 -(void)sendAchievement:(GKAchievement *)achievement {
@@ -119,6 +121,7 @@ static GCHelper *sharedHelper = nil;
     } else {
         NSLog(@"Already authenticated!");
     }
+     
 }
 
 - (void)reportLeaderboard:(NSString *)identifier score:(int)score {

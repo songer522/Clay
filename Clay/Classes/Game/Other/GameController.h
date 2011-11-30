@@ -37,11 +37,13 @@ typedef enum {
     
     bool _isPaused;
     bool _isInputEnabled;
+    bool _isSprintEnabled;
 }
 
 @property(nonatomic,retain) GameLayer *layer;
 @property(readonly,nonatomic,assign) bool isPaused;
 @property(nonatomic,assign) bool isInputEnabled;
+@property(nonatomic,assign) bool isSprintEnabled;
 
 +(id)gameController;
 
@@ -50,5 +52,6 @@ typedef enum {
 -(void)setGameLayer:(GameLayer*)layer;
 -(void)setHud:(HudLayer*)hud;
 -(void)pauseGame;
+-(void)enableSprint:(bool)Enable;
 
 @end

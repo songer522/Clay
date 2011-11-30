@@ -34,6 +34,28 @@
     return self;
 }
 
+
++(id)buttonWithText:(NSString*)text AtPoint:(CGPoint)point inLayer:(CCLayer *)layer
+{
+    return [[self alloc] initWithText:text AtPoint:point inLayer:(CCLayer *)layer];
+}
+
+-(id)initWithText:(NSString*)text AtPoint:(CGPoint)point inLayer:(CCLayer *)layer
+{
+    if ((self=[super init])) {
+        // _buttonLabel = [CCLabelTTF labelWithString:text fontName:@"Marker Felt" fontSize:24];
+        // _buttonLabel.position = ccp(point.x, point.y);
+        
+        _buttonLabel=[CCLabelBMFont labelWithString:text fntFile:@"GraphicFont.fnt"];
+        _buttonLabel.position=ccp(point.x, point.y);
+        
+        [layer addChild:_buttonLabel];
+    }
+    
+    return self;
+}
+
+
 -(CCLabelBMFont*)getLabel
 {
     return _buttonLabel;

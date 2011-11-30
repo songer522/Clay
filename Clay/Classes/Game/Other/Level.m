@@ -95,8 +95,6 @@
         
         _map.scale = _scale;
         
-        [[Camera sharedCamera] setBoundaries:[self getLevelBoundaries]];
-        
         [_obstacles releaseMap];
         
         _collisionHandler = [CollisionDetection collisionHandlerWithMetaLayer:_meta Map:_map];
@@ -120,6 +118,8 @@
     NSArray *layers = [layerList componentsSeparatedByString:@","];
     for (NSString *layerName in layers) {
         if ([layerName compare:@"actives"] == NSOrderedSame) {
+            [player setLedgeSprite:[[LayerManager sharedLayers] currentLayer]];
+            
             [self addObstaclesToMapAndRegion];
             //[_obstacleManager printDescription];
             [player resetSprite:[[LayerManager sharedLayers] currentLayer]];
@@ -184,7 +184,19 @@
 
 -(CGPoint)checkCollisionForObject:(GameObject*)object
 {
-    return [_collisionHandler checkCollisionForObject:object];
+#if CC_ENABLE_PROFILERS
+    CCProfilingTimer *timer2 = [CCProfiler timerWithName:@"collisions" andInstance:self];
+    CCProfilingBeginTimingBlock(timer2);
+#endif 
+    
+    CGPoint position = [_collisionHandler checkCollisionForObject:object];
+    
+#if CC_ENABLE_PROFILERS
+    CCProfilingEndTimingBlock(timer2);
+#endif  
+
+    return position;
+
 }
 
 -(void)setPositionAtX:(float)x Y:(float)y
@@ -431,7 +443,14 @@
         }
     }
 }
+-(void)disablePassedTrigger
+{
+    for (Trigger *trigger in _triggers) {
+        if (trigger.triggered) {
+            trigger.canBeReset=false;    }
 
+}
+}
 -(bool)testCollisions:(GameObject*)source
 {
     bool collision = false;
@@ -439,7 +458,7 @@
     
     NSMutableArray *obstacles = [_obstacleManager getActiveGameObjectList];
     for (GameObject *obstacle in obstacles) {
-        if(!obstacle.collided) {
+        if(!obstacle.collided && !obstacle.isInvincible) {
             
             int dist = abs([source getPosition].x - [obstacle getPosition].x);
             if (dist < 250) { //don't do the full collision detection if they're not even close to each other.

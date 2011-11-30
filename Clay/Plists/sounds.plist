@@ -68,5 +68,7 @@
 	<string>pig.mp3</string>
 	<key>fireballLand</key>
 	<string>fireballLand.wav</string>
+	<key>jimShipCharge</key>
+	<string>jimShipCharge.wav</string>
 </dict>
 </plist>

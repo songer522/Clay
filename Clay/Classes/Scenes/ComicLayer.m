@@ -9,6 +9,7 @@
 #import "ComicLayer.h"
 #import "ComicManager.h"
 #import "LayerManager.h"
+#import "Appirater.h"
 #import "GameSettings.h"
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
@@ -71,6 +72,7 @@
     switch (_transition) {
         case BLACKBOX_IN:
             [self blackBoxIn:dt];
+              
             break;
         case BLACKBOX_OUT:
             [self blackBoxOut:dt];
@@ -114,7 +116,8 @@
                 [self secondTierBars];
             } else {
                 _transition = BLACKBOX_IDLE;
-                [_comicManager finishedAction];                
+                [_comicManager finishedAction];  
+                
             }
         }
     }

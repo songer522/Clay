@@ -5,9 +5,9 @@
 //  Created by Brian Cable on 9/16/11.
 //  Copyright 2011 Xecudev, LLC. All rights reserved.
 //
-//  Handles the player collisions with the world, and designed to eventually allow for game objects to have collision detection as well (although so far it hasn't been necessary, and it's better for performance if this doesn't have to be calculated.
+//  Handles the player collisions with the world. Detects whether the player is on the ground, on a ledge, in midair, or has fallen into a death pit, and adjusts the player's position as necessary. Theoretically can be used for other game objects, but we can't do it for performance reasons, for now.
 
-//  NOTE: there's some quirks to how the CCTMXTiledMap class works with Retina displays, and there's some dead code in here from when we were going to make the levels more dynamic (slopes, ability to hit head on something above him, etc.) that we don't really need anymore. Could use cleaning up or rewriting at some point. Also not terribly efficient right now, as a lot of this collision detection is overkill for how often Tim is on a flat surface. Needs to be rewritten so it's a simple check if he's below a certain Y value, except for when he's reached death pits.
+//  NOTE: there's some quirks to how the CCTMXTiledMap class works with Retina displays
 
 
 #import <Foundation/Foundation.h>
@@ -15,84 +15,23 @@
 
 @class GameObject;
 
-typedef enum {
-    COLLISION_TYPE_FULL,
-    COLLISION_TYPE_LEFT_SLANT,
-    COLLISION_TYPE_RIGHT_SLANT,
-    COLLISION_TYPE_RIGHT_SLANT_2TILE_L,
-    COLLISION_TYPE_RIGHT_SLANT_2TILE_R,
-    COLLISION_TYPE_LEDGE_FULL,
-    COLLISION_TYPE_NONE
-}CollisionType;
-
-typedef enum {
-    BOX_RIGHT_MIDDLE,
-    BOX_RIGHT_BOTTOM,
-    BOX_LEFT_MIDDLE,
-    BOX_BOTTOM_MIDDLE,
-    BOX_TOP_MIDDLE,
-    BOX_NONE
-}BoundingBoxPoint;
-
-struct XDCollision {
-    bool left;
-    bool right;
-    bool top;
-    bool bottom;
-    bool hasCollision;
-};
-typedef struct XDCollision XDCollision;
-
-CG_INLINE XDCollision
-XDCollisionMake(bool hasCollision, bool left, bool right, bool top, bool bottom)
-{
-    XDCollision c; c.hasCollision = hasCollision; c.left = left; c.right = right; c.top = top; c.bottom = bottom; return c;
-}
-
 @interface CollisionDetection : NSObject
 {
-    CCTMXLayer *_collisionData;
-    CCTMXLayer *_main;
-    CCTMXTiledMap *_map;
-    int _tileSize;
+    CCTMXLayer *_collisionData; //the layer that contains the collision properties (usually 'meta'). weak reference.
+    CCTMXTiledMap *_map; //weak reference to the loaded map
     
-    bool _landedOnLedge;
-    
-    float _amountToReachGround;
-    
-    GameObject *_currentObject;
-    
-    CGPoint _desiredPosition;
-    CGPoint _testPosition;
-    CGPoint _pointWithinTile;
-    
-    CGPoint _coordinates;
-    
-    CGRect _objectBoundingBox;
-    
-    NSString *_tileCollision;
-    
-    XDCollision _currentMidpoints;
+    int _tileSize; //the tilesize for the map
+    int _halfTileSize;
+    int _mapHeight; //height of the map
+    int _mapWidth; //width of the map
 }
-
-@property(nonatomic,assign) XDCollision midpointCollisions;
 
 +(id) collisionHandlerWithMetaLayer:(CCTMXLayer*)collisionLayer Map:(CCTMXTiledMap*)map;
 - (id)initWithCollisionLayer:(CCTMXLayer*)collisionLayer Map:(CCTMXTiledMap*)map;
 
--(CGPoint)checkCollisionForObject:(GameObject*)object;
+-(CGPoint)checkCollisionForObject:(GameObject*)object; //entry point for the class, what gets called every update to check the player's collision with the level
 
--(XDCollision)getMidpointCollisionsForPoint:(CGPoint)position;
+-(CGPoint)accurateCoords:(CGPoint)position; //determine which coordinate needs to be checked, bounded by the edges of the map
+-(NSString*)getCollisionPropertyForTileCoords:(CGPoint)coords; //get the value stored under the "collision" tile property on the Tiled map at these coordinates. default to 'none', but can also return 'ground' or 'ledge'.
 
--(bool)checkCollisionAtPoint:(CGPoint)point BoundingBoxPoint:(BoundingBoxPoint)edge;
--(CGPoint)accurateCoords:(CGPoint)position;
--(CollisionType)getCollisionTypeForCoords:(CGPoint)coords;
--(NSString*)getCollisionPropertyForTileCoords:(CGPoint)coords;
-
-
-
--(bool)pushUp;
--(bool)pushLeft;
--(void)prepareDataForPosition:(CGPoint)position BoundingBoxPoint:(BoundingBoxPoint)edge;
--(CGPoint)getPointForObject:(GameObject*)object AtPosition:(CGPoint)position ForBoundingBoxEdge:(BoundingBoxPoint)edge;
 @end

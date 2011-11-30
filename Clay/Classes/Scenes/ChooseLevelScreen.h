@@ -9,8 +9,10 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "CCScrollLayer.h"
 
 
+@class GameLabel;
 @class Sprite;
 @class ActionButton;
 
@@ -20,25 +22,26 @@
     float _waitToSwitch;
     float _alpha;
     bool _backToMainMenu;
+    bool _backToLevelSelect;
+    bool _inTutorial;
     NSString *_levelToSwitchTo;
     
-    
-    
-    Sprite *_background;
-    Sprite *_levelInfoFront;
-    
+    Sprite *_background;    
     Sprite *_selector;
     
-    CCLabelBMFont *_levelSelectText;
-    CCLabelBMFont *_levelPanelText;
+    //CCLabelBMFont *_levelSelectText;
+    //CCLabelBMFont *_bestTimeForLevelText;
+    
+    GameLabel *_levelSelectText;
+    GameLabel *_bestLevelTimeText;
     
     ActionButton *_startButton;
     ActionButton *_backButton;
+    ActionButton *_closeTutorial;
     
-    
+    CCScrollLayer *scroller;
     
     int _selected;
-    
 }
 
 +(CCScene*)scene;
@@ -46,11 +49,13 @@
 -(id) initWithScene:(CCScene*)scene;
 
 -(void)load;
+-(void)loadMedals;
 
 -(void)popAndSwitchToLevel:(NSString*)level;
 -(void)switchToMainMenu;
 
 -(void)transitionOut;
+-(void)updateBestTimeTextWithLevel:(int)level;
 
 -(void)unload;
 
