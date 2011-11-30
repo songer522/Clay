@@ -35,7 +35,6 @@
         [_label setOpacity:0];
         [self addChild:_label];
         
-        
         self.isTouchEnabled = YES;
     }
 

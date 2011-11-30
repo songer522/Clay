@@ -54,8 +54,6 @@
 
 -(void)update:(float)dt
 {
-
-    
     if (!_inAction) {
         if (_cooldown > 0.0f) {
             _cooldown -= dt;

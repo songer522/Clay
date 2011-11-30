@@ -172,6 +172,69 @@
 				<string>200</string>
 			</dict>
 		</dict>
+		<key>level9</key>
+		<dict>
+			<key>normal</key>
+			<dict>
+				<key>bronze</key>
+				<string>225</string>
+				<key>silver</key>
+				<string>200</string>
+				<key>gold</key>
+				<string>175</string>
+			</dict>
+			<key>hard</key>
+			<dict>
+				<key>bronze</key>
+				<string>275</string>
+				<key>silver</key>
+				<string>240</string>
+				<key>gold</key>
+				<string>200</string>
+			</dict>
+		</dict>
+		<key>level10</key>
+		<dict>
+			<key>normal</key>
+			<dict>
+				<key>bronze</key>
+				<string>225</string>
+				<key>silver</key>
+				<string>200</string>
+				<key>gold</key>
+				<string>175</string>
+			</dict>
+			<key>hard</key>
+			<dict>
+				<key>bronze</key>
+				<string>275</string>
+				<key>silver</key>
+				<string>240</string>
+				<key>gold</key>
+				<string>200</string>
+			</dict>
+		</dict>
+		<key>level11</key>
+		<dict>
+			<key>normal</key>
+			<dict>
+				<key>bronze</key>
+				<string>225</string>
+				<key>silver</key>
+				<string>200</string>
+				<key>gold</key>
+				<string>175</string>
+			</dict>
+			<key>hard</key>
+			<dict>
+				<key>bronze</key>
+				<string>275</string>
+				<key>silver</key>
+				<string>240</string>
+				<key>gold</key>
+				<string>200</string>
+			</dict>
+		</dict>
 	</dict>
 </dict>
 </plist>
