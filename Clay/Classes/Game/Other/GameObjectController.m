@@ -46,7 +46,6 @@
     NSAssert(gameobjectSettings != nil, @"Object could not be found. Please ensure %@ is in objects.plist",objectName);
 
     NSString *frameName = [self getRandomImageFromList:[gameobjectSettings objectForKey:@"imageName"]];
-    
     Sprite *gameSprite;
     if ([frameName isEqualToString:@"blank.png"]) {
         gameSprite = [Sprite spriteWithFile:frameName AddToLayer:shouldAddToLayer];        

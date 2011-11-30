@@ -77,7 +77,7 @@
         {
             _divide = 1.0f;
         }
-        if ([GameSettings usingHighResolutionGraphics])
+        else if ([GameSettings usingHighResolutionGraphics])
         {
             _divide = 2.0f;
         }
@@ -144,7 +144,7 @@
             }
             
             [tmxLayer removeFromParentAndCleanup:NO];
-            [node addChild:tmxLayer z:currentZ parallaxRatio:ccp(speedx * MULTIPLIERX,speedy * MULTIPLIERY) positionOffset:offsetPoint];
+            [node addChild:tmxLayer z:currentZ parallaxRatio:ccp(speedx,speedy) positionOffset:offsetPoint];
             
             [_parallaxLayers addObject:node];
             
@@ -157,7 +157,7 @@
             
             [[[LayerManager sharedLayers] currentLayer] addChild:node z:currentZ];
             
-            [self addMapObjectsAboveLayer:tmxLayer ParallaxRatio:ccp(speedx * MULTIPLIERX,speedy * MULTIPLIERY)];
+            [self addMapObjectsAboveLayer:tmxLayer ParallaxRatio:ccp(speedx,speedy)];
             //currentZ += 1;
             
         }
@@ -333,7 +333,7 @@
             if (obstacle) {
                 GameObject *object = [_gameObjects loadGameObjectWithName:obstacle AddToLayer:NO];
                 CGPoint position = [self getXYPositionForCoordinates:coords];
-                [object setPositionAtX:position.x Y:position.y * MULTIPLIERY];
+                [object setPositionAtX:position.x Y:position.y];
                 [object setStartingPosition:position];
                 [[object getCCSprite] setScale:_scale];                
                 

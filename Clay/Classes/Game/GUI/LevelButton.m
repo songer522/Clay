@@ -48,7 +48,7 @@
 {
     //initial position
     float startX = 119 * MULTIPLIERX; //was 212 for left panel
-    float startY = 186 * MULTIPLIERY; //was 181 for left panel and 11 levels
+    float startY = 190 * MULTIPLIERY; //was 181 for left panel and 11 levels
     float row = floorf((_buttonId - 1) / 4);
     
     //for staggered effect, move that one down one
@@ -75,7 +75,7 @@
 -(void)setPosition:(CGPoint)position
 {
     [_buttonGraphic setScreenPosition:position];
-    [_trophy setScreenPosition:position];
+    [self setTrophyPosition];
     [self setHitbox:CGRectMake(position.x, position.y, 55 * MULTIPLIERX, 55 * MULTIPLIERY)];
 }
 

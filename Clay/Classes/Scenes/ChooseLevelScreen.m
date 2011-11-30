@@ -21,9 +21,16 @@
 #import "GameLayer.h"
 #import "Appirater.h"
 #import "MainMenuScene.h"
+#import "PListLoader.h"
+#import "BestTimes.h"
+#import "GameLabel.h"
+#import "TrackTimer.h"
+#import "BestTimes.h"
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
 #define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
+
+
 
 @implementation ChooseLevelScreen
 
@@ -166,7 +173,7 @@
     _backButton = [ActionButton actionButtonWithText:@"BACK"];
     [_backButton setPosition:ccp(50 * MULTIPLIERX, 18 * MULTIPLIERY)];
     
-    _bestLevelTimeText = [GameLabel gameLabelWithText:@"" Scale:0.6f Position:ccp(240.0f,35.0f)];
+    _bestLevelTimeText = [GameLabel gameLabelWithText:@"" Scale:0.6f Position:ccp(512.0f,84.0f)];
     [_bestLevelTimeText setCentered];
     
     
@@ -184,15 +191,12 @@
         [_buttons addObject:button];
     }
     
-    _levelSelectText = [GameLabel gameLabelWithText:@"LEVEL SELECT" Scale:0.75f Position:ccp(365.0f,278.0f)];
+    _levelSelectText = [GameLabel gameLabelWithText:@"LEVEL SELECT" Scale:0.75f Position:ccp(778.0f,667.0f)];
     
     //load any medals earned
     [self loadMedals];
     
     [self loadTutorial];
-    
-    _levelSelectText.position = ccp(365.0f * MULTIPLIERX,278.0f * MULTIPLIERY);
-    [[[LayerManager sharedLayers] currentLayer] addChild:_levelSelectText];
 
 
     /*
@@ -201,6 +205,7 @@
     _levelPanelText.position = ccp(158,34.5f);
     [[[LayerManager sharedLayers] currentLayer] addChild:_levelPanelText];
     */
+    
     
     [[LayerManager sharedLayers] forgetWorkingLayer];
     [self scheduleUpdate];

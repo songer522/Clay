@@ -9,6 +9,7 @@
 #import "GameSettings.h"
 #include <sys/types.h>
 #include <sys/sysctl.h>
+#import "PListLoader.h"
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define MULTIPLIER (IS_IPAD ? 2 : 1)
 

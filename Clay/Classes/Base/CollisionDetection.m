@@ -12,9 +12,7 @@
 #import "GameSettings.h"
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-#define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
-#define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
-#define COLLISION_DETECTION_TEST_LEFT_COLLISIONS 0
+#define COLLISION_PLAYER_GROUND_Y_POSITION 64.0f
 
 @implementation CollisionDetection
 
@@ -46,7 +44,7 @@
 {
     CGPoint desiredPosition = [object getPosition];
     CGPoint testPosition = CGPointMake(desiredPosition.x - 4.0f, desiredPosition.y); //the bottom middle point of the character is at object.x - 4, object.y
-   
+    
     //if on the ground, test if a deathpit or not.
     if (testPosition.y < COLLISION_PLAYER_GROUND_Y_POSITION) {
         testPosition.y -= 4.0f; //bump the position a bit lower just to make sure we're grabbing the tile below and not the tile above
@@ -67,6 +65,10 @@
         
         //if landed on the ledge, put them on top of that ledge
         if ([tileCollision isEqualToString:@"ledgefull"]) {
+            if (IS_IPAD)
+            {
+                desiredPosition.y = (_mapHeight - coords.y - 1) * _tileSize + 32.0f;
+            }
             if ([GameSettings usingHighResolutionGraphics])
             {
                 desiredPosition.y = (_mapHeight - coords.y - 1) * _halfTileSize  + 32.0f;
@@ -90,14 +92,10 @@
 
 -(CGPoint)accurateCoords:(CGPoint)position
 {
-    int scaledTileWidth = _tileSize / 2.0f;
-    int scaledTileHeight = _tileSize / 2.0f;
-    if (IS_IPAD)
-    {
-        scaledTileWidth = _tileSize;
-        scaledTileHeight = _tileSize;
-    }
-    else if ([GameSettings usingHighResolutionGraphics])
+    int x;
+    int y;
+    
+    if ([GameSettings usingHighResolutionGraphics])
     {
         x = position.x / _halfTileSize;
         y = ((_mapHeight * _halfTileSize) - position.y) / _halfTileSize;
@@ -111,11 +109,11 @@
     //keep x between 0 and _mapWidth - 1
     x = MAX(0, x);
     x = MIN((_mapWidth - 1),x);
-
+    
     //keep y between 0 and _mapHeight - 1
     y = MAX(0,y);
     y = MIN((_mapHeight - 1),y);
-        
+    
     return ccp(x,y);
 }
 
@@ -130,92 +128,6 @@
         
         if (properties) {
             returnVal = [properties valueForKey:@"collision"];
-        }
-    }
-    
-    return returnVal;
-}
-
--(bool)pushUp
-{
-    bool colliding = true;    
-    while (colliding) {
-        
-        [self prepareDataForPosition:_testPosition BoundingBoxPoint:BOX_BOTTOM_MIDDLE];
-
-        
-        float topOfTile = (_map.mapSize.height - _coordinates.y - 1) * (_tileSize / 2.0f);
-        if (IS_IPAD) {
-            topOfTile = (_map.mapSize.height - _coordinates.y - 1) * (_tileSize);
-        }
-        else if ([GameSettings usingHighResolutionGraphics])
-        {
-            topOfTile = (_map.mapSize.height - _coordinates.y - 1) * (_tileSize / 2.0f);
-        }
-        else
-        {
-            topOfTile = (_map.mapSize.height - _coordinates.y - 1) * (_tileSize);
-        }
-        //check if the test position collides with current tile
-        if ([_tileCollision isEqualToString:@"full"])
-        {
-            _coordinates.y-=1;
-
-            //NOTE: the "+1" at the end of the line below prevents an infinite loop
-            if (IS_IPAD)
-            {
-                _testPosition.y = (_map.mapSize.height - _coordinates.y - 1) * (_tileSize) + 2;                
-            }
-            else if ([GameSettings usingHighResolutionGraphics])
-            {
-                _testPosition.y = (_map.mapSize.height - _coordinates.y - 1) * (_tileSize / 2.0f) + 2;
-            }
-            else
-            {
-                _testPosition.y = (_map.mapSize.height - _coordinates.y - 1) * (_tileSize) + 2;
-            
-            }
-            
-        }
-        else if ([_tileCollision isEqualToString:@"none"])
-        {
-            _testPosition.y = topOfTile;
-            colliding = false;
-        }
-        else if([_tileCollision isEqualToString:@"ledgefull"])
-        {
-            _testPosition.y = topOfTile + 32;
-            colliding = false;
-            _landedOnLedge = true;
-        }
-        
-    }
-
-    return true;
-}
-
--(bool)pushLeft
-{
-    bool returnVal = true;
-    bool movedLeftOnce = false;     //most circumstances, if we need to move left more than one block, then we should be testing the top collision instead
-    bool colliding = true;
-    while (colliding) {
-        [self prepareDataForPosition:_testPosition BoundingBoxPoint:BOX_RIGHT_MIDDLE];
-        
-        float leftOfTile = _coordinates.x * (_tileSize / 2.0f) + 6.0f;
-        
-        if ([_tileCollision isEqualToString:@"full"]) {
-            if (!movedLeftOnce) {
-                movedLeftOnce = true;
-                _coordinates.x -= 1;
-                _testPosition.x = _coordinates.x * (_tileSize / 2.0f) -1;                
-            } else {
-                colliding = false;
-                returnVal = false;
-            }
-        } else if([_tileCollision isEqualToString:@"none"]) {
-            colliding = false;
-            _testPosition.x = leftOfTile;
         } else {
             returnVal = [NSString stringWithString:@"none"];
         }
