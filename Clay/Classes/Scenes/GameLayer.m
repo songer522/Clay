@@ -107,13 +107,7 @@
 }
 
 -(void)startLevel:(NSString*)levelName
-{
-    //reset boss before loading level
-    if (_boss !=nil) {
-        [_boss release];
-        _boss = nil;
-    }
-    
+{    
     [[LevelManager shared] reset];
     [[LevelManager shared] loadLevelNamed:levelName];
     [self initForLevel];
@@ -197,14 +191,10 @@
     [[SoundEngine shared] update:dt];
 
     if (!_paused) {
-
-        
         
         [_level update:dt Velocity:_player.vx];
-
         
         [_player update:dt Level:_level];
-        
         
         [self updateTriggers:dt];
         
@@ -232,18 +222,17 @@
     if (![[ComicManager shared] isActive]) {
         if(_player.isDead) {
             [_player reset];
+            
             if(_boss){
-                [_boss reset];}
+                [_boss reset];
+            }
+            
             [_savePoint restoreSavePoint:_player];
             _player.isDead = false;
             [_player rechargeBattery];
             
             [_level resetObstacles];
             [_level resetTriggers];
-            
-            if (_boss !=nil) {
-                [_boss reset];
-            }
         }        
     }
 }
@@ -347,7 +336,6 @@
 - (void) dealloc
 {
     //can't put these in onexit like the others for some reason
-    
     [_level release];
     [_player release];
     [_gameController release];

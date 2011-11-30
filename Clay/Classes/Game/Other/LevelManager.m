@@ -99,6 +99,8 @@ static LevelManager *_shared = nil;
 
 -(void)loadLevelNamed:(NSString*) levelName
 {
+    [self receiveBoss:nil];
+    
     //this method gets called on the first level loaded, before currentlevel is set
     if(_currentLevel !=nil) {
         [self dumpMemoryForLevel:_currentLevel];        
@@ -138,11 +140,8 @@ static LevelManager *_shared = nil;
 }
 
 -(void)loadNextLevel
-{
-   
-    
+{    
     [self loadLevelNamed:_currentLevel.nextLevelName];
-   
 }
 
 -(void)receiveBoss:(Boss*)boss
