@@ -126,6 +126,7 @@ typedef enum {
 
 -(void)pushAfterAnimation:(float)xAmount;
 
+-(void)updatePitFalling:(float)dt;
 -(void)updateSlow:(float)dt;
 -(void)updateInvulnerable:(float)dt;
 

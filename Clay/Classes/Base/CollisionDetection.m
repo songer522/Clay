@@ -27,8 +27,12 @@
         // Initialization code here.
         _collisionData = collisionLayer;
         _map = map;
-        _tileSize = _map.tileSize.width;
         
+        //bring these local to optimize a bit
+        _tileSize = _map.tileSize.width;
+        _halfTileSize = _tileSize / 2.0f;
+        _mapHeight = _map.mapSize.height;
+        _mapWidth = _map.mapSize.width;
     }
     
     return self;
@@ -62,11 +66,11 @@
         if ([tileCollision isEqualToString:@"ledgefull"]) {
             if ([GameSettings usingHighResolutionGraphics])
             {
-                desiredPosition.y = (_map.mapSize.height - coords.y - 1) * (_tileSize / 2.0f)  + 32.0f;
+                desiredPosition.y = (_mapHeight - coords.y - 1) * _halfTileSize  + 32.0f;
             }
             else
             {
-                desiredPosition.y = (_map.mapSize.height - coords.y - 1) * (_tileSize) + 32.0f;
+                desiredPosition.y = (_mapHeight - coords.y - 1) * _tileSize + 32.0f;
             }
             
             [[object getCollision] setCurrentState:COLLISION_STATE_LEDGE];
@@ -83,43 +87,34 @@
 
 -(CGPoint)accurateCoords:(CGPoint)position
 {
-    int scaledTileWidth = _tileSize / 2.0f;
-    int scaledTileHeight = _tileSize / 2.0f;
+    int x;
+    int y;
+    
     if ([GameSettings usingHighResolutionGraphics])
     {
-        scaledTileWidth = _tileSize / 2.0f;
-        scaledTileHeight = _tileSize / 2.0f;
+        x = position.x / _halfTileSize;
+        y = ((_mapHeight * _halfTileSize) - position.y) / _halfTileSize;
     }
     else
     {
-        scaledTileWidth = _tileSize;
-        scaledTileHeight = _tileSize;
+        x = position.x / _tileSize;
+        y = ((_mapHeight * _tileSize) - position.y) / _tileSize;
+    }
+    
+    //keep x between 0 and _mapWidth - 1
+    x = MAX(0, x);
+    x = MIN((_mapWidth - 1),x);
+
+    //keep y between 0 and _mapHeight - 1
+    y = MAX(0,y);
+    y = MIN((_mapHeight - 1),y);
         
-    }
-    
-    //NSLog(@"tilewidth: %d tileheight: %d", scaledTileWidth, scaledTileHeight);
-    int x = position.x / scaledTileWidth;
-    int y = ((_map.mapSize.height * scaledTileHeight) - position.y) / scaledTileHeight;
-    
-    //NSLog(@"X: %d Y: %d", x, y);
-    if (x < 0) {
-        x = 0;
-    } else if(x > (_map.mapSize.width - 1)) {
-        x = _map.mapSize.width - 1;
-    }
-    
-    if (y < 0) {
-        y = 0;
-    } else if(y > (_map.mapSize.height - 1)) {
-        y = _map.mapSize.height - 1;
-    }
-    //NSLog(@"X: %d Y: %d", x, y);
     return ccp(x,y);
 }
 
 -(NSString*)getCollisionPropertyForTileCoords:(CGPoint)coords
 {
-    NSString *returnVal = [NSString stringWithString:@"none"];
+    NSString *returnVal;
     
     int tileGid = [_collisionData tileGIDAt:coords];
     
@@ -128,7 +123,11 @@
         
         if (properties) {
             returnVal = [properties valueForKey:@"collision"];
+        } else {
+            returnVal = [NSString stringWithString:@"none"];
         }
+    } else {
+        returnVal = [NSString stringWithString:@"none"];
     }
     
     return returnVal;

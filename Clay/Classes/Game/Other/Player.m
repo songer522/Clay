@@ -436,7 +436,7 @@
 -(void)update:(float)dt Level:(Level *)level
 {
   
-    [self updateJump:dt];
+    [self updatePitFalling:dt]; //need to call before super so it can kill the VX if falling into the pit
 
     [super update:dt];  
     
@@ -451,7 +451,8 @@
         
     }
 
-    
+    [self updateJump:dt];
+
     [self updateInvulnerable:dt];
 
     if (_adjustX != 0.0f) {
@@ -534,8 +535,17 @@
     
     [_thirdAction update:dt];
 
-    [self dieIfFallenIntoPit]; //is it safe to put this under updateJump method?
+}
 
+-(void)updatePitFalling:(float)dt
+{
+    CollisionState state = [[self getCollision] currentState];
+
+    if (state == COLLISION_STATE_DEATHPIT) {
+        _vx = 0.0f; //if in the death pit he shouldn't move forward
+        [_speed stop];
+        [self dieIfFallenIntoPit]; //is it safe to put this under updateJump method?
+    }
 }
 
 -(void)updateJump:(float)dt
@@ -546,8 +556,6 @@
     _isInMidAir = false;
     
     if (state == COLLISION_STATE_DEATHPIT) {
-        _vx = 0.0f; //if in the death pit he shouldn't move forward
-        [_speed stop];
         _isInMidAir = true;
     } else if (state == COLLISION_STATE_MIDAIR) {
         _isInMidAir = true;
@@ -601,9 +609,6 @@
         _vy = 0;
         _ay = 0;
         
-    } else if(state == COLLISION_STATE_BUMPED_WALL) {
-        _vx = 0;
-        _vy = 0;
     }
 }
 

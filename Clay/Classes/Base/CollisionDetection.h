@@ -21,6 +21,9 @@
     CCTMXTiledMap *_map; //weak reference to the loaded map
     
     int _tileSize; //the tilesize for the map
+    int _halfTileSize;
+    int _mapHeight; //height of the map
+    int _mapWidth; //width of the map
 }
 
 +(id) collisionHandlerWithMetaLayer:(CCTMXLayer*)collisionLayer Map:(CCTMXTiledMap*)map;
