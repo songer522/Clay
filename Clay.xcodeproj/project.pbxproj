@@ -169,7 +169,29 @@
 		54642B0D14337E5F001D8212 /* Battery_v2_s-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54642B0514337E5F001D8212 /* Battery_v2_s-hd.png */; };
 		54642B0E14337E5F001D8212 /* Battery_v2_s.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54642B0614337E5F001D8212 /* Battery_v2_s.plist */; };
 		54642B0F14337E5F001D8212 /* Battery_v2_s.png in Resources */ = {isa = PBXBuildFile; fileRef = 54642B0714337E5F001D8212 /* Battery_v2_s.png */; };
-		54652B6B1467E22A00067DC1 /* ObstacleZombie.m in Sources */ = {isa = PBXBuildFile; fileRef = 54652B6A1467E22A00067DC1 /* ObstacleZombie.m */; };
+		5474D4AE147453A10038B358 /* GameSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 5474D4AD147453A10038B358 /* GameSettings.m */; };
+		54767C35147C04450025F46F /* characterBlowing-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54767C21147C04450025F46F /* characterBlowing-hd.plist */; };
+		54767C36147C04450025F46F /* characterBlowing-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54767C22147C04450025F46F /* characterBlowing-hd.png */; };
+		54767C37147C04450025F46F /* characterBlowing.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54767C23147C04450025F46F /* characterBlowing.plist */; };
+		54767C38147C04450025F46F /* characterBlowing.png in Resources */ = {isa = PBXBuildFile; fileRef = 54767C24147C04450025F46F /* characterBlowing.png */; };
+		54767C39147C04450025F46F /* characterDodging-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54767C25147C04450025F46F /* characterDodging-hd.plist */; };
+		54767C3A147C04450025F46F /* characterDodging-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54767C26147C04450025F46F /* characterDodging-hd.png */; };
+		54767C3B147C04450025F46F /* characterDodging.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54767C27147C04450025F46F /* characterDodging.plist */; };
+		54767C3C147C04450025F46F /* characterDodging.png in Resources */ = {isa = PBXBuildFile; fileRef = 54767C28147C04450025F46F /* characterDodging.png */; };
+		54767C3D147C04450025F46F /* characterKicking-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54767C29147C04450025F46F /* characterKicking-hd.plist */; };
+		54767C3E147C04450025F46F /* characterKicking-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54767C2A147C04450025F46F /* characterKicking-hd.png */; };
+		54767C3F147C04450025F46F /* characterKicking.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54767C2B147C04450025F46F /* characterKicking.plist */; };
+		54767C40147C04450025F46F /* characterKicking.png in Resources */ = {isa = PBXBuildFile; fileRef = 54767C2C147C04450025F46F /* characterKicking.png */; };
+		54767C41147C04450025F46F /* characterShooting-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54767C2D147C04450025F46F /* characterShooting-hd.plist */; };
+		54767C42147C04450025F46F /* characterShooting-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54767C2E147C04450025F46F /* characterShooting-hd.png */; };
+		54767C43147C04450025F46F /* characterShooting.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54767C2F147C04450025F46F /* characterShooting.plist */; };
+		54767C44147C04450025F46F /* characterShooting.png in Resources */ = {isa = PBXBuildFile; fileRef = 54767C30147C04450025F46F /* characterShooting.png */; };
+		54767C45147C04450025F46F /* characterWoo-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54767C31147C04450025F46F /* characterWoo-hd.plist */; };
+		54767C46147C04450025F46F /* characterWoo-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54767C32147C04450025F46F /* characterWoo-hd.png */; };
+		54767C47147C04450025F46F /* characterWoo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54767C33147C04450025F46F /* characterWoo.plist */; };
+		54767C48147C04450025F46F /* characterWoo.png in Resources */ = {isa = PBXBuildFile; fileRef = 54767C34147C04450025F46F /* characterWoo.png */; };
+		54767C4B147C07930025F46F /* fire.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 54767C4A147C07930025F46F /* fire.mp3 */; };
+		54767C51147C08660025F46F /* PlayerActionBlow.m in Sources */ = {isa = PBXBuildFile; fileRef = 54767C50147C08660025F46F /* PlayerActionBlow.m */; };
 		547996EB1468803D009D3234 /* checkpoint.wav in Resources */ = {isa = PBXBuildFile; fileRef = 547996EA1468803D009D3234 /* checkpoint.wav */; };
 		54883B8A14487ED80029759E /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 54883B8414487ED80029759E /* Icon-72.png */; };
 		54883B8B14487ED80029759E /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 54883B8514487ED80029759E /* Icon-Small-50.png */; };
@@ -677,9 +699,31 @@
 		54642B0514337E5F001D8212 /* Battery_v2_s-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Battery_v2_s-hd.png"; sourceTree = "<group>"; };
 		54642B0614337E5F001D8212 /* Battery_v2_s.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Battery_v2_s.plist; sourceTree = "<group>"; };
 		54642B0714337E5F001D8212 /* Battery_v2_s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Battery_v2_s.png; sourceTree = "<group>"; };
-		54652B691467E22A00067DC1 /* ObstacleZombie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObstacleZombie.h; sourceTree = "<group>"; };
-		54652B6A1467E22A00067DC1 /* ObstacleZombie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObstacleZombie.m; sourceTree = "<group>"; };
-		546EEBC9145F632A008F1EAF /* tileset_level_1_extra_pixels.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tileset_level_1_extra_pixels.png; path = Resources/levels/tileset_level_1_extra_pixels.png; sourceTree = "<group>"; };
+		5474D4AC147453A00038B358 /* GameSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSettings.h; sourceTree = "<group>"; };
+		5474D4AD147453A10038B358 /* GameSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSettings.m; sourceTree = "<group>"; };
+		54767C21147C04450025F46F /* characterBlowing-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "characterBlowing-hd.plist"; sourceTree = "<group>"; };
+		54767C22147C04450025F46F /* characterBlowing-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "characterBlowing-hd.png"; sourceTree = "<group>"; };
+		54767C23147C04450025F46F /* characterBlowing.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = characterBlowing.plist; sourceTree = "<group>"; };
+		54767C24147C04450025F46F /* characterBlowing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = characterBlowing.png; sourceTree = "<group>"; };
+		54767C25147C04450025F46F /* characterDodging-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "characterDodging-hd.plist"; sourceTree = "<group>"; };
+		54767C26147C04450025F46F /* characterDodging-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "characterDodging-hd.png"; sourceTree = "<group>"; };
+		54767C27147C04450025F46F /* characterDodging.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = characterDodging.plist; sourceTree = "<group>"; };
+		54767C28147C04450025F46F /* characterDodging.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = characterDodging.png; sourceTree = "<group>"; };
+		54767C29147C04450025F46F /* characterKicking-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "characterKicking-hd.plist"; sourceTree = "<group>"; };
+		54767C2A147C04450025F46F /* characterKicking-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "characterKicking-hd.png"; sourceTree = "<group>"; };
+		54767C2B147C04450025F46F /* characterKicking.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = characterKicking.plist; sourceTree = "<group>"; };
+		54767C2C147C04450025F46F /* characterKicking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = characterKicking.png; sourceTree = "<group>"; };
+		54767C2D147C04450025F46F /* characterShooting-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "characterShooting-hd.plist"; sourceTree = "<group>"; };
+		54767C2E147C04450025F46F /* characterShooting-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "characterShooting-hd.png"; sourceTree = "<group>"; };
+		54767C2F147C04450025F46F /* characterShooting.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = characterShooting.plist; sourceTree = "<group>"; };
+		54767C30147C04450025F46F /* characterShooting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = characterShooting.png; sourceTree = "<group>"; };
+		54767C31147C04450025F46F /* characterWoo-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "characterWoo-hd.plist"; sourceTree = "<group>"; };
+		54767C32147C04450025F46F /* characterWoo-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "characterWoo-hd.png"; sourceTree = "<group>"; };
+		54767C33147C04450025F46F /* characterWoo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = characterWoo.plist; sourceTree = "<group>"; };
+		54767C34147C04450025F46F /* characterWoo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = characterWoo.png; sourceTree = "<group>"; };
+		54767C4A147C07930025F46F /* fire.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = fire.mp3; path = Resources/music/fire.mp3; sourceTree = "<group>"; };
+		54767C4F147C08660025F46F /* PlayerActionBlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerActionBlow.h; sourceTree = "<group>"; };
+		54767C50147C08660025F46F /* PlayerActionBlow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerActionBlow.m; sourceTree = "<group>"; };
 		547996EA1468803D009D3234 /* checkpoint.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = checkpoint.wav; path = Resources/sounds/checkpoint.wav; sourceTree = "<group>"; };
 		54883B8414487ED80029759E /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "Resources/icons/Icon-72.png"; sourceTree = "<group>"; };
 		54883B8514487ED80029759E /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small-50.png"; path = "Resources/icons/Icon-Small-50.png"; sourceTree = "<group>"; };
@@ -1805,8 +1849,8 @@
 				549ED7B91461D065008BCD98 /* ObstacleChicken.m */,
 				549ED7BA1461D065008BCD98 /* ObstacleStatic.h */,
 				549ED7BB1461D065008BCD98 /* ObstacleStatic.m */,
-				54652B691467E22A00067DC1 /* ObstacleZombie.h */,
-				54652B6A1467E22A00067DC1 /* ObstacleZombie.m */,
+				54229081147AB30D0096C809 /* RegionManager.h */,
+				54229082147AB30D0096C809 /* RegionManager.m */,
 			);
 			path = GameObjects;
 			sourceTree = "<group>";
