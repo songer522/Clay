@@ -34,6 +34,7 @@ typedef enum {
     PauseMenuScreen *_pauseMenu;
     
     bool _isPaused;
+    bool _isHandlingPause; //game layer checks this to know whether the scene is either being killed or game controller wants to pause
     bool _isInputEnabled;
     bool _isSprintEnabled;
 }
@@ -42,6 +43,7 @@ typedef enum {
 @property(readonly,nonatomic,assign) bool isPaused;
 @property(nonatomic,assign) bool isInputEnabled;
 @property(nonatomic,assign) bool isSprintEnabled;
+@property(nonatomic,assign) bool isHandlingPause;
 
 +(id)gameController;
 

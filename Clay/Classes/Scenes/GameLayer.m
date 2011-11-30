@@ -308,17 +308,19 @@
 
 -(void)onExit
 {
-    if (!_gameController.isPaused) {
+    if (!_gameController.isHandlingPause) {
         [self unscheduleUpdate];
         self.isTouchEnabled = false;
+    } else {
+        [super onExit];
     }
 }
 
 -(void)onEnter
 {
-    if (!_gameController.isPaused) {
+    //if (!_gameController.isHandlingPause) {
         [super onEnter];
-    }
+    //}
 }
 
 -(void)initializeLaserShow
