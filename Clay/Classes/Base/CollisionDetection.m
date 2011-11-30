@@ -11,6 +11,8 @@
 #import "GameObject.h"
 #import "GameSettings.h"
 
+#define COLLISION_PLAYER_GROUND_Y_POSITION 64.0f
+
 @implementation CollisionDetection
 
 +(id) collisionHandlerWithMetaLayer:(CCTMXLayer*)collisionLayer Map:(CCTMXTiledMap*)map
@@ -39,8 +41,8 @@
     CGPoint testPosition = CGPointMake(desiredPosition.x - 4.0f, desiredPosition.y); //the bottom middle point of the character is at object.x - 4, object.y
    
     //if on the ground, test if a deathpit or not.
-    if (testPosition.y < 64) {
-        testPosition.y -= 4.0f; //just to make sure we're on the tile below
+    if (testPosition.y < COLLISION_PLAYER_GROUND_Y_POSITION) {
+        testPosition.y -= 4.0f; //bump the position a bit lower just to make sure we're grabbing the tile below and not the tile above
         CGPoint coords = [self accurateCoords:testPosition];
         NSString *tileCollision = [self getCollisionPropertyForTileCoords:coords];
         if ([tileCollision isEqualToString:@"none"]) {
@@ -48,7 +50,7 @@
             [[object getCollision] setCurrentState:COLLISION_STATE_DEATHPIT];
         } else {
             //otherwise assume we're on the ground and ground the player
-            desiredPosition.y = 64;         
+            desiredPosition.y = COLLISION_PLAYER_GROUND_Y_POSITION;         
             [[object getCollision] setCurrentState:COLLISION_STATE_GROUNDED];
         }
     } else {
