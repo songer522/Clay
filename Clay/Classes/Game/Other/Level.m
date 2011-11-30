@@ -186,7 +186,19 @@
 
 -(CGPoint)checkCollisionForObject:(GameObject*)object
 {
-    return [_collisionHandler checkCollisionForObject:object];
+#if CC_ENABLE_PROFILERS
+    CCProfilingTimer *timer2 = [CCProfiler timerWithName:@"collisions" andInstance:self];
+    CCProfilingBeginTimingBlock(timer2);
+#endif 
+    
+    CGPoint position = [_collisionHandler checkCollisionForObject:object];
+    
+#if CC_ENABLE_PROFILERS
+    CCProfilingEndTimingBlock(timer2);
+#endif  
+
+    return position;
+
 }
 
 -(void)setPositionAtX:(float)x Y:(float)y

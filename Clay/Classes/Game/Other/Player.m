@@ -436,6 +436,7 @@
 -(void)update:(float)dt Level:(Level *)level
 {
   
+    [self updateJump:dt];
 
     [super update:dt];  
     
@@ -450,7 +451,6 @@
         
     }
 
-    [self updateJump:dt];
     
     [self updateInvulnerable:dt];
 
@@ -533,8 +533,8 @@
     }
     
     [_thirdAction update:dt];
-    
-    [self dieIfFallenIntoPit];
+
+    [self dieIfFallenIntoPit]; //is it safe to put this under updateJump method?
 
 }
 
@@ -545,7 +545,11 @@
     
     _isInMidAir = false;
     
-    if (state == COLLISION_STATE_MIDAIR) {
+    if (state == COLLISION_STATE_DEATHPIT) {
+        _vx = 0.0f; //if in the death pit he shouldn't move forward
+        [_speed stop];
+        _isInMidAir = true;
+    } else if (state == COLLISION_STATE_MIDAIR) {
         _isInMidAir = true;
         
     } else if (state == COLLISION_STATE_GROUNDED || state == COLLISION_STATE_LEDGE) {
