@@ -7,9 +7,9 @@
 //
 
 #import "GameSettings.h"
-//#import "UIDeviceHardware.h"
 #include <sys/types.h>
 #include <sys/sysctl.h>
+#import "PListLoader.h"
 
 @implementation GameSettings
 
@@ -28,6 +28,7 @@ static GameSettings *_shared = nil;
 {
     if ((self=[super init])) {
         _settings = [[NSMutableDictionary alloc] initWithCapacity:30];
+        [self loadFromSettingsPlist];
     }
     return self;
 }
@@ -76,6 +77,14 @@ static GameSettings *_shared = nil;
     if ([platform isEqualToString:@"i386"]) return YES;         //simulator, which can always be changed manually
     if ([platform isEqualToString:@"iPod touch"]) return NO;
     return YES; //assume future devices can all handle the retina display
+}
+
+-(void)loadFromSettingsPlist
+{
+    NSDictionary *settings = [PListLoader loadPlistWithName:@"settings"];
+    NSDictionary *appSettings = [settings objectForKey:@"app"];
+    NSString *versionNumber = [appSettings objectForKey:@"versionNumber"];
+    [self setGlobal:versionNumber ForKey:@"versionNumber"];
 }
 
 -(void)dealloc

@@ -3,7 +3,7 @@
 //  Clay
 //
 //  Created by Brian Cable on 10/8/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 Xecudev, LLC. All rights reserved.
 //
 
 #import "ParticleEmitter.h"

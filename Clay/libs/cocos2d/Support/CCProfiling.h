@@ -30,12 +30,14 @@
 @class CCProfilingTimer;
 
 @interface CCProfiler : NSObject {
-	NSMutableArray* activeTimers;
+//	NSMutableArray* activeTimers; MPT - commented out
+    NSMutableDictionary *activeTimers;
 }
 
 + (CCProfiler*)sharedProfiler;
 + (CCProfilingTimer*)timerWithName:(NSString*)timerName andInstance:(id)instance;
 + (void)releaseTimer:(CCProfilingTimer*)timer;
++ (void)releaseTimerWithName:(NSString *)timerName andInstance:(id)instance; // MPT - added method
 - (void)displayTimers;
 
 @end
@@ -46,6 +48,8 @@
 	struct timeval startTime;
 	double averageTime;
 }
+
+@property (nonatomic, readonly) NSString *name; // MPT - added property
 
 @end
 

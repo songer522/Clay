@@ -21,6 +21,7 @@
 #import "MainMenuScene.h"
 #import "Appirater.h"
 #import "SoundEngine.h"
+#import "BestTimes.h"
 
 @implementation AppDelegate
 
@@ -103,7 +104,7 @@
 #endif
 	
 	[director setAnimationInterval:1.0f/60.0f];
-	[director setDisplayFPS:NO];
+	[director setDisplayFPS:YES];
     
 	
 	
@@ -154,6 +155,7 @@
 }
 
 -(void) applicationDidEnterBackground:(UIApplication*)application {
+    [[BestTimes shared] saveData];
 	[[CCDirector sharedDirector] stopAnimation];
 }
 
@@ -165,6 +167,8 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
 	[[TextureManager shared] unloadMemoryForKey:@"launch"];
+    
+    [[BestTimes shared] saveData];
     
     CCDirector *director = [CCDirector sharedDirector];
 	

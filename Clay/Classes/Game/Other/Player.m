@@ -63,8 +63,10 @@
         _isDead = false;
         _isInMidAir = false;
         _waitToGetUp = 0.0f;
+        _waitToTurbo=-1.0f;
         _onLedge = false;
         _offLedge=false;
+        _isTurbo=false;
        
         _timeLeftBeforeVulnerable = 2.0f;
         _isInvincible = false;
@@ -206,7 +208,7 @@
     if (_hitPoints > 1) {
         
         [_speed startTurbo];
-      
+        _isTurbo=true;
         
         [[SoundEngine shared] playSound:@"turboStart"];
         [_skin setPlayerAnimation:PLAYER_ANIM_SPRINTING ForSprite:_sprite];
@@ -230,8 +232,14 @@
     [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];
     [_speed endTurbo];
     
-    
-    
+    if(_isTurbo)
+    {
+    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+    gameLayer.gameController.isSprintEnabled=false;
+    [[gameLayer getHud] setEnabled:false ForButton:HUD_BUTTON_SPRINT];
+    _waitToTurbo=3.0f;
+    _isTurbo=false;
+    }
     
 }
 
@@ -294,8 +302,6 @@
         _y += 2.0f;
         _waitToGetUp = 0.3f;
     }
-    //NSLog(@"%d",_speed.inTurbo);
-  
 }
 
 //used by background layers for scrolling
@@ -306,7 +312,6 @@
 
 -(void)reset
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"player died" object:nil];
     _hitPoints = 4;
     [_battery reset];
     [_speed reset];
@@ -430,20 +435,26 @@
 
 -(void)update:(float)dt Level:(Level *)level
 {
-    [super update:dt];
-    /*
-    if([[[LevelManager shared] currentLevel].name isEqualToString:@"level7"])
-    {
-        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+  
+    [self updatePitFalling:dt]; //need to call before super so it can kill the VX if falling into the pit
+
+    [super update:dt];  
+    
+    //wait for turbo
+    if (_waitToTurbo > 0.0f) {
+        _waitToTurbo -= dt;
+        if (_waitToTurbo<=0.0f) {
+            GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+            gameLayer.gameController.isSprintEnabled=true;
+            [[gameLayer getHud] setEnabled:true ForButton:HUD_BUTTON_SPRINT];
+        }
         
-        [[gameLayer getHud] setEnabled:false ForButton:HUD_BUTTON_SPRINT];
     }
-     */   
 
     [self updateJump:dt];
-    
+
     [self updateInvulnerable:dt];
-    
+
     if (_adjustX != 0.0f) {
         self.x += _adjustX;
         _adjustX = 0.0f;
@@ -523,8 +534,18 @@
     }
     
     [_thirdAction update:dt];
-    
-    [self dieIfFallenIntoPit];
+
+}
+
+-(void)updatePitFalling:(float)dt
+{
+    CollisionState state = [[self getCollision] currentState];
+
+    if (state == COLLISION_STATE_DEATHPIT) {
+        _vx = 0.0f; //if in the death pit he shouldn't move forward
+        [_speed stop];
+        [self dieIfFallenIntoPit]; //is it safe to put this under updateJump method?
+    }
 }
 
 -(void)updateJump:(float)dt
@@ -534,7 +555,9 @@
     
     _isInMidAir = false;
     
-    if (state == COLLISION_STATE_MIDAIR) {
+    if (state == COLLISION_STATE_DEATHPIT) {
+        _isInMidAir = true;
+    } else if (state == COLLISION_STATE_MIDAIR) {
         _isInMidAir = true;
         
     } else if (state == COLLISION_STATE_GROUNDED || state == COLLISION_STATE_LEDGE) {
@@ -586,9 +609,6 @@
         _vy = 0;
         _ay = 0;
         
-    } else if(state == COLLISION_STATE_BUMPED_WALL) {
-        _vx = 0;
-        _vy = 0;
     }
 }
 

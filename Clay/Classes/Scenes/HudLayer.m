@@ -311,6 +311,7 @@
 {
     [self removeFromParentAndCleanup:NO];
     [[[LayerManager sharedLayers] currentScene] addChild:self];    
+    [[self getTrackTimer] startLevel]; //reset level timer (but NOT total time)
 }
 
 -(void)dealloc

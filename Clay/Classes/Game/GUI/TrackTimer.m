@@ -30,7 +30,7 @@
     self = [super init];
     if (self) {
         // Initialization code here.
-        
+        _levelTime = 0.0f;
         _isStopped = false;        
     }
     
@@ -86,7 +86,7 @@
 {
     if (!_isStopped) {
         _totalTime += dt;
-        
+        _levelTime += dt;
         [self setTimerSprites];
         
     }
@@ -110,6 +110,17 @@
     }
 }
 
+-(void)startLevel
+{
+    _levelTime = 0.0f;
+}
+
+-(float)getLevelTime
+{
+    return _levelTime;
+}
+
+//TODO: milliseconds should be 3 characters, not 2
 -(void)setTimerSprites
 {
     int seconds = ((int)floorf(_totalTime)) % 60;
@@ -142,6 +153,36 @@
     
     [self setSpriteAtIndex:6 withNumber:(milliseconds % 10)];
     
+}
+
+//TODO: milliseconds should be 3 characters, not 2
++(NSString*)getTimeStringFromFloat:(float)time
+{
+    int seconds = ((int)floorf(time)) % 60;
+    int minutes = ((int)floorf(time)) / 60;
+    int milliseconds = floor((time - (int)time) * 100);
+    
+    NSMutableString *timeString = [[NSMutableString alloc] init];
+    
+    //minutes
+    if (minutes < 10) {
+        [timeString appendString:@"0"];
+    }
+    [timeString appendFormat:@"%d:",minutes];
+    
+    //seconds
+    if (seconds < 10) {
+        [timeString appendString:@"0"];
+    }
+    [timeString appendFormat:@"%d:",seconds];
+    
+    //milliseconds
+    if (milliseconds < 10) {
+        [timeString appendString:@"0"];
+    }
+    [timeString appendFormat:@"%d",milliseconds];
+
+    return timeString;
 }
 
 -(void)setSpriteAtIndex:(int)index withNumber:(int)number

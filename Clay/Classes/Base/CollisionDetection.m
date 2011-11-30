@@ -11,11 +11,9 @@
 #import "GameObject.h"
 #import "GameSettings.h"
 
-#define COLLISION_DETECTION_TEST_LEFT_COLLISIONS 0
+#define COLLISION_PLAYER_GROUND_Y_POSITION 64.0f
 
 @implementation CollisionDetection
-
-@synthesize midpointCollisions = _currentMidpoints;
 
 +(id) collisionHandlerWithMetaLayer:(CCTMXLayer*)collisionLayer Map:(CCTMXTiledMap*)map
 {
@@ -29,203 +27,94 @@
         // Initialization code here.
         _collisionData = collisionLayer;
         _map = map;
-        _tileSize = _map.tileSize.width;
         
+        //bring these local to optimize a bit
+        _tileSize = _map.tileSize.width;
+        _halfTileSize = _tileSize / 2.0f;
+        _mapHeight = _map.mapSize.height;
+        _mapWidth = _map.mapSize.width;
     }
     
     return self;
 }
 
 
-
-//entry point for this class each update
 -(CGPoint)checkCollisionForObject:(GameObject *)object
 {
-    _desiredPosition = [object getPosition];
-    _testPosition = [object getPosition];
-    _currentObject = object;
-    _objectBoundingBox = object.boundingBox;
-    
-    _landedOnLedge = false;
-    
-    _currentMidpoints = [self getMidpointCollisionsForPoint:[_currentObject getPosition]];
-    
-    if(!_currentMidpoints.hasCollision) {
-        _testPosition = _desiredPosition;
-        [[_currentObject getCollision] setCurrentState:COLLISION_STATE_MIDAIR];
+    CGPoint desiredPosition = [object getPosition];
+    CGPoint testPosition = CGPointMake(desiredPosition.x - 4.0f, desiredPosition.y); //the bottom middle point of the character is at object.x - 4, object.y
+   
+    //if on the ground, test if a deathpit or not.
+    if (testPosition.y < COLLISION_PLAYER_GROUND_Y_POSITION) {
+        testPosition.y -= 4.0f; //bump the position a bit lower just to make sure we're grabbing the tile below and not the tile above
+        CGPoint coords = [self accurateCoords:testPosition];
+        NSString *tileCollision = [self getCollisionPropertyForTileCoords:coords];
+        if ([tileCollision isEqualToString:@"none"]) {
+            //we're in a death pit
+            [[object getCollision] setCurrentState:COLLISION_STATE_DEATHPIT];
+        } else {
+            //otherwise assume we're on the ground and ground the player
+            desiredPosition.y = COLLISION_PLAYER_GROUND_Y_POSITION;         
+            [[object getCollision] setCurrentState:COLLISION_STATE_GROUNDED];
+        }
     } else {
-        if (_currentMidpoints.right) {
-            _testPosition = _desiredPosition;
-            if ([self pushLeft]) {
-                [[_currentObject getCollision] setCurrentState:COLLISION_STATE_BUMPED_WALL];
-            } else {
-                _testPosition = _desiredPosition;
-                if([self pushUp]) {
-                    if (_landedOnLedge) {
-                        [[_currentObject getCollision] setCurrentState:COLLISION_STATE_LEDGE];
-                    } else {
-                        [[_currentObject getCollision] setCurrentState:COLLISION_STATE_GROUNDED];
-                    }
-                }
-                [[_currentObject getCollision] setCurrentState:COLLISION_STATE_MIDAIR];
+        //in the air, test to see if they landed on a ledge
+        CGPoint coords = [self accurateCoords:testPosition];
+        NSString *tileCollision = [self getCollisionPropertyForTileCoords:coords];
+        
+        //if landed on the ledge, put them on top of that ledge
+        if ([tileCollision isEqualToString:@"ledgefull"]) {
+            if ([GameSettings usingHighResolutionGraphics])
+            {
+                desiredPosition.y = (_mapHeight - coords.y - 1) * _halfTileSize  + 32.0f;
             }
+            else
+            {
+                desiredPosition.y = (_mapHeight - coords.y - 1) * _tileSize + 32.0f;
+            }
+            
+            [[object getCollision] setCurrentState:COLLISION_STATE_LEDGE];
+        } else {
+            //otherwise they're in midair, don't change their position
+            [[object getCollision] setCurrentState:COLLISION_STATE_MIDAIR];
         }
-        if (_currentMidpoints.bottom) {
-            if([self pushUp]) {
-                if(_landedOnLedge) {
-                    [[_currentObject getCollision] setCurrentState:COLLISION_STATE_LEDGE];
-                } else {
-                    [[_currentObject getCollision] setCurrentState:COLLISION_STATE_GROUNDED];
-                }
-            }
-        }
+        
     }
     
-    
-    return _testPosition;
-}
-
-
--(XDCollision)getMidpointCollisionsForPoint:(CGPoint)position
-{
-    float scale = 1;
-    
-    float left = position.x - (_objectBoundingBox.origin.x * scale);
-    float bottom = position.y + (_objectBoundingBox.origin.y * scale);
-    float right = left + (_objectBoundingBox.size.width * scale);
-    float top = bottom + (_objectBoundingBox.size.height * scale);
-    float middleX = (left + right) / 2.0f;
-    float middleY = (top + bottom) / 2.0f;
-    
-    bool leftCollision = false;
-    
-#if COLLISION_DETECTION_TEST_LEFT_COLLISIONS
-    leftCollision = [self checkCollisionAtPoint:CGPointMake(left, middleY) BoundingBoxPoint:BOX_LEFT_MIDDLE];
-#endif
-    
-    bool bottomCollision = [self checkCollisionAtPoint:CGPointMake(middleX, bottom) BoundingBoxPoint:BOX_BOTTOM_MIDDLE];
-    
-    bool topCollision = [self checkCollisionAtPoint:CGPointMake(middleX,top) BoundingBoxPoint:BOX_TOP_MIDDLE];
-    bool rightCollision = [self checkCollisionAtPoint:CGPointMake(right, middleY) BoundingBoxPoint:BOX_RIGHT_MIDDLE];
-    
-    //want to offset Y position as this test is used for left/right collisions and don't want to do left/right just because it
-    //always says true while on the ground
-    //bool bottomRightCollision = [self checkCollisionAtPoint:CGPointMake(right, bottom + 3.0f)];
-    
-    bool hasCollision = false;
-    if (leftCollision||rightCollision||topCollision||bottomCollision) {
-        hasCollision = true;
-    }
-    
-    XDCollision returnVal = XDCollisionMake(hasCollision, leftCollision, rightCollision, topCollision, bottomCollision);
-    
-    return returnVal;
-}
-
-
--(bool)checkCollisionAtPoint:(CGPoint)point BoundingBoxPoint:(BoundingBoxPoint)edge
-{
-    bool returnVal = false;
-    
-    CGPoint coords = [self accurateCoords:point];
-    _pointWithinTile = CGPointMake((int)point.x % (_tileSize/2), (int)point.y % (_tileSize/2));
-
-    CollisionType collision = [self getCollisionTypeForCoords:coords];
-    
-    switch (collision) {
-        case COLLISION_TYPE_NONE:
-            returnVal = false;
-            break;
-        case COLLISION_TYPE_FULL:
-            returnVal = true;
-            break;
-        case COLLISION_TYPE_LEFT_SLANT:
-            if (_pointWithinTile.y < _pointWithinTile.x) {
-                returnVal = true;
-            } else {
-                returnVal = false;
-            }
-            break;
-        case COLLISION_TYPE_RIGHT_SLANT:
-            if (_pointWithinTile.y < _pointWithinTile.x) {
-                returnVal = true;
-            } else {
-                returnVal = false;
-            }
-            break;
-        case COLLISION_TYPE_LEDGE_FULL:
-            //don't want this true unless it's the bottom edge when falling or not in midair.
-            if (edge == BOX_BOTTOM_MIDDLE && (_currentObject.isFalling || !_currentObject.isInMidAir)) {
-                returnVal = true;
-            } else {
-                returnVal = false;
-            }
-            break;
-        default:
-            break;
-    }
-    
-    return returnVal;
+    return desiredPosition;
     
 }
 
 -(CGPoint)accurateCoords:(CGPoint)position
 {
-    int scaledTileWidth = _tileSize / 2.0f;
-    int scaledTileHeight = _tileSize / 2.0f;
+    int x;
+    int y;
+    
     if ([GameSettings usingHighResolutionGraphics])
     {
-        scaledTileWidth = _tileSize / 2.0f;
-        scaledTileHeight = _tileSize / 2.0f;
+        x = position.x / _halfTileSize;
+        y = ((_mapHeight * _halfTileSize) - position.y) / _halfTileSize;
     }
     else
     {
-        scaledTileWidth = _tileSize;
-        scaledTileHeight = _tileSize;
-        
+        x = position.x / _tileSize;
+        y = ((_mapHeight * _tileSize) - position.y) / _tileSize;
     }
     
-    //NSLog(@"tilewidth: %d tileheight: %d", scaledTileWidth, scaledTileHeight);
-    int x = position.x / scaledTileWidth;
-    int y = ((_map.mapSize.height * scaledTileHeight) - position.y) / scaledTileHeight;
-    
-    //NSLog(@"X: %d Y: %d", x, y);
-    if (x < 0) {
-        x = 0;
-    } else if(x > (_map.mapSize.width - 1)) {
-        x = _map.mapSize.width - 1;
-    }
-    
-    if (y < 0) {
-        y = 0;
-    } else if(y > (_map.mapSize.height - 1)) {
-        y = _map.mapSize.height - 1;
-    }
-    //NSLog(@"X: %d Y: %d", x, y);
-    return ccp(x,y);
-}
+    //keep x between 0 and _mapWidth - 1
+    x = MAX(0, x);
+    x = MIN((_mapWidth - 1),x);
 
--(CollisionType)getCollisionTypeForCoords:(CGPoint)coords
-{
-    CollisionType returnVal = COLLISION_TYPE_NONE;
-    
-    NSString *property = [self getCollisionPropertyForTileCoords:coords];
-    
-    if ([property isEqualToString:@"full"])
-    {
-        returnVal = COLLISION_TYPE_FULL;
-    }
-    else if([property isEqualToString:@"ledgefull"])
-    {
-        returnVal = COLLISION_TYPE_LEDGE_FULL;
-    }
-    
-    return returnVal;
+    //keep y between 0 and _mapHeight - 1
+    y = MAX(0,y);
+    y = MIN((_mapHeight - 1),y);
+        
+    return ccp(x,y);
 }
 
 -(NSString*)getCollisionPropertyForTileCoords:(CGPoint)coords
 {
-    NSString *returnVal = [NSString stringWithString:@"none"];
+    NSString *returnVal;
     
     int tileGid = [_collisionData tileGIDAt:coords];
     
@@ -234,139 +123,19 @@
         
         if (properties) {
             returnVal = [properties valueForKey:@"collision"];
-        }
-    }
-    
-    return returnVal;
-}
-
--(bool)pushUp
-{
-    bool colliding = true;    
-    while (colliding) {
-        
-        [self prepareDataForPosition:_testPosition BoundingBoxPoint:BOX_BOTTOM_MIDDLE];
-
-        
-        float topOfTile = (_map.mapSize.height - _coordinates.y - 1) * (_tileSize / 2.0f);
-        if ([GameSettings usingHighResolutionGraphics])
-        {
-            topOfTile = (_map.mapSize.height - _coordinates.y - 1) * (_tileSize / 2.0f);
-        }
-        else
-        {
-            topOfTile = (_map.mapSize.height - _coordinates.y - 1) * (_tileSize);
-        }
-        //check if the test position collides with current tile
-        if ([_tileCollision isEqualToString:@"full"])
-        {
-            _coordinates.y-=1;
-
-            //NOTE: the "+1" at the end of the line below prevents an infinite loop
-            
-            if ([GameSettings usingHighResolutionGraphics])
-            {
-                _testPosition.y = (_map.mapSize.height - _coordinates.y - 1) * (_tileSize / 2.0f) + 2;
-            }
-            else
-            {
-                _testPosition.y = (_map.mapSize.height - _coordinates.y - 1) * (_tileSize) + 2;
-            
-            }
-            
-        }
-        else if ([_tileCollision isEqualToString:@"none"])
-        {
-            _testPosition.y = topOfTile;
-            colliding = false;
-        }
-        else if([_tileCollision isEqualToString:@"ledgefull"])
-        {
-            _testPosition.y = topOfTile + 32;
-            colliding = false;
-            _landedOnLedge = true;
-        }
-        
-    }
-
-    return true;
-}
-
--(bool)pushLeft
-{
-    bool returnVal = true;
-    bool movedLeftOnce = false;     //most circumstances, if we need to move left more than one block, then we should be testing the top collision instead
-    bool colliding = true;
-    while (colliding) {
-        [self prepareDataForPosition:_testPosition BoundingBoxPoint:BOX_RIGHT_MIDDLE];
-        
-        float leftOfTile = _coordinates.x * (_tileSize / 2.0f) + 6.0f;
-        
-        if ([_tileCollision isEqualToString:@"full"]) {
-            if (!movedLeftOnce) {
-                movedLeftOnce = true;
-                _coordinates.x -= 1;
-                _testPosition.x = _coordinates.x * (_tileSize / 2.0f) -1;                
-            } else {
-                colliding = false;
-                returnVal = false;
-            }
-        } else if([_tileCollision isEqualToString:@"none"]) {
-            colliding = false;
-            _testPosition.x = leftOfTile;
         } else {
-            colliding = false;
-            returnVal = false;
+            returnVal = [NSString stringWithString:@"none"];
         }
+    } else {
+        returnVal = [NSString stringWithString:@"none"];
     }
+    
     return returnVal;
 }
-                                 
-
-
--(void)prepareDataForPosition:(CGPoint)position BoundingBoxPoint:(BoundingBoxPoint)edge
-{
-    CGPoint collisionPoint = [self getPointForObject:_currentObject AtPosition:position ForBoundingBoxEdge:edge];
-    _testPosition = CGPointMake(position.x, position.y);
-    _pointWithinTile = CGPointMake((int)collisionPoint.x % (_tileSize/2), (int)collisionPoint.y % _tileSize/2);
-    _coordinates = [self accurateCoords:collisionPoint];
-    _tileCollision = [self getCollisionPropertyForTileCoords:_coordinates];
-    
-}
-
-
--(CGPoint)getPointForObject:(GameObject*)object AtPosition:(CGPoint)position ForBoundingBoxEdge:(BoundingBoxPoint)edge
-{
-    float left = position.x - (_objectBoundingBox.origin.x);
-    float bottom = position.y + (_objectBoundingBox.origin.y);
-    float right = left + (_objectBoundingBox.size.width);
-    float top = bottom + (_objectBoundingBox.size.height);
-
-    float middleX = (left + right) / 2.0f;
-    float middleY = (top + bottom) / 2.0f;
-
-    switch (edge) {
-        case BOX_BOTTOM_MIDDLE:
-            return CGPointMake(middleX, bottom);
-            break;
-        case BOX_RIGHT_BOTTOM:
-            return CGPointMake(right, bottom);
-            break;
-        case BOX_RIGHT_MIDDLE:
-            return CGPointMake(right, middleY);
-        default:
-            return position;
-            break;
-    }
-}
-
 -(void) dealloc
 {
     _collisionData = nil;
-    _main = nil;
     _map = nil;
-    _currentObject = nil;
-    [_tileCollision release];
     [super dealloc];
 }
 

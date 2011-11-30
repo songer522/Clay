@@ -845,7 +845,7 @@
 	<key>hen</key>
 	<dict>
 		<key>aggressive</key>
-		<string>true</string>
+		<string>false</string>
 		<key>anchorpoint</key>
 		<dict>
 			<key>x</key>

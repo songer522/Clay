@@ -39,11 +39,9 @@
     xthrust = -1;
     ythrust = 0;
     _firstUpdate = true;
-    
 
-    
     _replaceProjectileId = 0;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reset) name:@"player died" object:nil];
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reset) name:@"player died" object:nil];
 }
 
 -(void)setSprite:(Sprite *)sprite
@@ -104,9 +102,7 @@
         if ([_bullet isActive]) {
             [_bullet pointTowardPlayer];
             [_bullet update:dt];
-            
-            
-            Player *_player = [[LayerManager sharedLayers] getPlayer];
+                        Player *_player = [[LayerManager sharedLayers] getPlayer];
             
             Level *currentLevel = [[LevelManager shared] currentLevel];
           
@@ -125,7 +121,7 @@
             
           
         }
-        
+                       
     }
 }
 
@@ -144,9 +140,11 @@
 
 -(void)reset
 {
+    _waitToShoot = -1.0f;
     for (Projectile *_bullet in _bullets)
-        [_bullet disable];
-    //NSLog(@"bossJimShip has been reset");
+    {[_bullet disable];}
+    
+    NSLog(@"bossJimShip has been reset");
     
 }
 
