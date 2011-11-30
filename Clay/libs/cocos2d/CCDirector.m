@@ -68,6 +68,9 @@
 
 #define kDefaultFPS		60.0	// 60 frames per second
 
+//XECUDEV ADD
+#import "GameSettings.h"
+
 extern NSString * cocos2dVersion(void);
 
 
@@ -163,6 +166,7 @@ static CCDirector *_sharedDirector = nil;
 
 #if CC_DIRECTOR_FAST_FPS
 	[FPSLabel_ release];
+    [FPSLabel2_ release];
 #endif
 	[runningScene_ release];
 	[notificationNode_ release];
@@ -181,18 +185,22 @@ static CCDirector *_sharedDirector = nil;
 	NSAssert( openGLView_, @"openGLView_ must be initialized");
 
 	[self setAlphaBlending: YES];
-	[self setDepthTest: YES];
+	[self setDepthTest: NO];
 	[self setProjection: projection_];
 	
 	// set other opengl default values
     //XECUDEV: changed to 0.0f alpha to support video playback per http://stackoverflow.com/questions/4454758/cocos2d-playing-a-video-in-the-background-of-a-menu/4479700#4479700
-	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+	//glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+    //NOTE 11-11-28: but this doesn't seem to affect anything by resetting to 1.0f, the video still plays
+    glClearColor(0.0f, 0.0f, 0.0f,1.0f);
 	
 #if CC_DIRECTOR_FAST_FPS
     if (!FPSLabel_) {
 		CCTexture2DPixelFormat currentFormat = [CCTexture2D defaultAlphaPixelFormat];
 		[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA4444];
 		FPSLabel_ = [[CCLabelAtlas labelWithString:@"00.0" charMapFile:@"fps_images.png" itemWidth:16 itemHeight:24 startCharMap:'.'] retain];
+        FPSLabel2_ = [[CCLabelBMFont labelWithString:@"FPS: " fntFile:@"GraphicFont.fnt"] retain];
+        [FPSLabel2_ setScale:0.05f];
 		[CCTexture2D setDefaultAlphaPixelFormat:currentFormat];		
 	}
 #endif	// CC_DIRECTOR_FAST_FPS
@@ -515,14 +523,18 @@ static CCDirector *_sharedDirector = nil;
 //		[FPSLabel setCString:format];
 
         //XECUDEV: change to show memory also the only change in showFPS is this line:
-        NSString *str = [[NSString alloc] initWithFormat:@"%.1f   %.1f", frameRate_, [CCDirector getAvailableMegaBytes]];
+        NSString *versionNumber = [[GameSettings shared] getGlobalForKey:@"versionNumber"];
+        NSString *str = [[NSString alloc] initWithFormat:@"%@  %.1f  %.1f", versionNumber, frameRate_, [CCDirector getAvailableMegaBytes]];
         
 		//NSString *str = [[NSString alloc] initWithFormat:@"%.1f", frameRate_];
 		[FPSLabel_ setString:str];
+        //[FPSLabel2_ setString:str];
+
 		[str release];
 	}
 
 	[FPSLabel_ draw];
+    //[FPSLabel2_ draw];
 }
 #else
 // display the FPS using a manually generated Texture (very slow)

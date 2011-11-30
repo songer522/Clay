@@ -169,7 +169,8 @@
         if (shouldStart) {
             [self switchToTransitionOut];
             [[SoundEngine shared] playSound:@"menuPlayButton"];
-            
+            [[GameSettings shared] setGlobal:@"timed" ForKey:@"gameMode"];
+            [[GameSettings shared] setGlobal:@"normal" ForKey:@"gameDifficulty"];
         }
     
 

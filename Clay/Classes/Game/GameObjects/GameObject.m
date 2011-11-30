@@ -225,11 +225,12 @@
 -(void)special_kickHen
 {
     GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
-    [gameLayer.player changeHealth:1];
+    [[gameLayer.player getThirdAction] setKilledEnemy:true];
     _fadeout = false;
     _alpha = 1.0f;
     _hasGravity = true;
     _collided = false;  //want it to remain aggressive
+    _isAggressive = true;
     float magnitude = 555.0f;
     _angle = -20; //old was -30
     _rotationAmount = 75;
@@ -544,6 +545,13 @@
     [self setPosition:_startingPosition];
     [self getCCSprite].visible = true;
     [self getCCSprite].rotation = _angle;
+
+    //reset aggressive
+    if (_currentBehavior == COLLISION_BEHAVIOR_HEN_KICKED) {
+        _isAggressive = false;
+    }
+    
+    
     if (_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_HEADLESS ||  _currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_WALK) {
         _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_WALK;
     }

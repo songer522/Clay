@@ -48,4 +48,6 @@
 
 -(void)reset;
 
+-(void)recordLevelTime:(float)time;
+
 @end

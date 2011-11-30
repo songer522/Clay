@@ -39,9 +39,7 @@
     xthrust = -1;
     ythrust = 0;
     _firstUpdate = true;
-    
 
-    
     _replaceProjectileId = 0;
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reset) name:@"player died" object:nil];
 }

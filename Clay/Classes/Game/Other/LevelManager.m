@@ -18,6 +18,7 @@
 #import "Boss.h"
 #import "GameSettings.h"
 #import "Appirater.h"
+#import "BestTimes.h"
 
 @implementation LevelManager
 
@@ -157,6 +158,13 @@ static LevelManager *_shared = nil;
     [level release];
     
     [[TextureManager shared] unloadMemoryForKey:levelName];
+}
+
+-(void)recordLevelTime:(float)time
+{
+    NSString *levelName = [NSString stringWithString:_currentLevel.name];
+    NSString *difficulty = [[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
+    [[BestTimes shared] reportTime:time forLevel:levelName forDifficulty:difficulty];
 }
 
 -(NSMutableArray*)getObstacleArray
