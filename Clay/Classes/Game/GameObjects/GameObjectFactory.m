@@ -10,7 +10,7 @@
 #import "GameObject.h"
 #import "ObstacleStatic.h"
 #import "ObstacleChicken.h"
-#import "ObstacleZombie.h"
+//#import "ObstacleZombie.h"
 
 @implementation GameObjectFactory
 
@@ -26,7 +26,7 @@
             object = [ObstacleChicken instance];
             break;
         case OBSTACLE_ZOMBIES_ZOMBIE:
-            object = [ObstacleZombie instance];
+            //object = [ObstacleZombie instance];
             break;
         default:
             object = nil;
