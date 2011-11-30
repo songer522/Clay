@@ -2648,6 +2648,7 @@
 				549ED8481461D065008BCD98 /* MainMenuScene.m in Sources */,
 				549ED8491461D065008BCD98 /* PauseMenuScreen.m in Sources */,
 				548D2D1D1461E871005E1AC0 /* Skin.m in Sources */,
+				54652B6B1467E22A00067DC1 /* ObstacleZombie.m in Sources */,
 				54A64A32146809D200853CFF /* BossJimShip.m in Sources */,
 				549D84E01469E80000A3599F /* LevelButton.m in Sources */,
 				54E25D7B146B23910016ADEB /* ActionButton.m in Sources */,

@@ -33,8 +33,6 @@ typedef enum {
     HudLayer *_hud; //weak reference
     PauseMenuScreen *_pauseMenu;
     
-    
-    
     bool _isPaused;
     bool _isInputEnabled;
     bool _isSprintEnabled;
