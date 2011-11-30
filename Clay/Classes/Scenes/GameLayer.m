@@ -109,6 +109,7 @@
 -(void)startLevel:(NSString*)levelName
 {
     [[LevelManager shared] reset];
+   
     [[LevelManager shared] loadLevelNamed:levelName];
     [self initForLevel];
     Level *levelObj = [[LevelManager shared] currentLevel];
@@ -217,15 +218,18 @@
         if (![[ComicManager shared] isActive]) {
             if(_player.isDead) {
                 [_player reset];
+                
                 if(_boss){
                     [_boss reset];}
+
+                
                 [_savePoint restoreSavePoint:_player];
                 _player.isDead = false;
                 [_player rechargeBattery];
                 
                 [_level resetObstacles];
                 [_level resetTriggers];
-            }        
+                            }        
         }
         
         [_hud update:dt];

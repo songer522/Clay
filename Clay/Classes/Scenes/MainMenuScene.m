@@ -19,6 +19,8 @@
 #import "SoundEngine.h"
 #import "GameSettings.h"
 
+
+
 @implementation MainMenuScene
 
 
@@ -52,6 +54,9 @@
         [[LayerManager sharedLayers] setWorkingLayer:self];
         
         [[TextureManager shared] loadMemoryForKey:@"mainMenu"];
+          
+        
+      
         
         _trackBackground = [Sprite spriteFromFrameCacheWithName:@"Menu_Background.png"];
         [_trackBackground getCCSprite].position = ccp(0,0);
@@ -84,9 +89,14 @@
         [_copyright setAlpha:0.0f];
         [_copyright getCCSprite].anchorPoint = ccp(0.5f, 0.5f);
         [_copyright getCCSprite].position = ccp(240,24); //final 240,20
+        /*
+        _tutorialButton = [ActionButton actionButtonWithText:@"TUTORIAL"];
+        [_tutorialButton setPosition:ccp(50, 18)];
+        
+        _tutorial=[Tutorial TutorialWithinLayer:self];
+        */
         
         [[LayerManager sharedLayers] forgetWorkingLayer];
-        
         
         _totalTime = 0.0f;
         _time = 0.0f;
@@ -120,21 +130,51 @@
 }
 -(void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-        if (_transition == MAINMENU_TRANSITION_IDLE) {
+        if (_transition == MAINMENU_TRANSITION_IDLE) 
+    {
         bool shouldStart = false;
         NSSet *allTouches = [event allTouches];
-        for(UITouch *touch in allTouches) {
-            shouldStart = true;
+        for(UITouch *touch in allTouches)
+        /*
+        {
+        CGPoint position = [self convertTouchToNodeSpace:touch];
+            if([_tutorialButton checkIfSelected:position]) 
+            {
+              //bring on the tutorial
+                
+                [_tutorial switchToTutorial];
+            
+            [[SoundEngine shared] playSound:@"buttonPressed"]; 
+           
+            }
+            else if(position.x < 300 && position.x > 180 && position.y > 122 && position.y < 162)
+            {
+                 shouldStart = true;
+            }
+        
+        if (shouldStart) 
+            {
+            [self switchToTransitionOut];
+            [[SoundEngine shared] playSound:@"menuPlayButton"];
+            
+           }
         }
+         */
+    
+            
+            {
+                shouldStart = true;
+            }
         
         if (shouldStart) {
             [self switchToTransitionOut];
             [[SoundEngine shared] playSound:@"menuPlayButton"];
             
         }
-    }
     
+
    
+    }
 }
 
 -(void)switchToTransitionIn

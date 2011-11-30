@@ -409,6 +409,7 @@
 		61DE5BFD1485526800D325CF /* image1.png in Resources */ = {isa = PBXBuildFile; fileRef = 61DE5BFA1485526800D325CF /* image1.png */; };
 		61DE5BFE1485526800D325CF /* image2.png in Resources */ = {isa = PBXBuildFile; fileRef = 61DE5BFB1485526800D325CF /* image2.png */; };
 		61DE5BFF1485526800D325CF /* image3.png in Resources */ = {isa = PBXBuildFile; fileRef = 61DE5BFC1485526800D325CF /* image3.png */; };
+		61DE5C051485869100D325CF /* Tutorial.m in Sources */ = {isa = PBXBuildFile; fileRef = 61DE5C041485869000D325CF /* Tutorial.m */; };
 		61DE5CDF147DA21400E8A892 /* fireballLand.wav in Resources */ = {isa = PBXBuildFile; fileRef = 61DE5CDE147DA21400E8A892 /* fireballLand.wav */; };
 		61DE5CEB147DA5C700E8A892 /* TrackLapse_Icons-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 61DE5CEA147DA5C700E8A892 /* TrackLapse_Icons-hd.png */; };
 		61DE5D04147DBBD800E8A892 /* level1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61DE5CFC147DBBD800E8A892 /* level1.tmx */; };
@@ -1027,6 +1028,8 @@
 		61DE5BFA1485526800D325CF /* image1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image1.png; sourceTree = "<group>"; };
 		61DE5BFB1485526800D325CF /* image2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image2.png; sourceTree = "<group>"; };
 		61DE5BFC1485526800D325CF /* image3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image3.png; sourceTree = "<group>"; };
+		61DE5C031485868F00D325CF /* Tutorial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tutorial.h; sourceTree = "<group>"; };
+		61DE5C041485869000D325CF /* Tutorial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tutorial.m; sourceTree = "<group>"; };
 		61DE5CDE147DA21400E8A892 /* fireballLand.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = fireballLand.wav; path = Resources/sounds/fireballLand.wav; sourceTree = "<group>"; };
 		61DE5CEA147DA5C700E8A892 /* TrackLapse_Icons-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "TrackLapse_Icons-hd.png"; path = "Resources/levels/TrackLapse_Icons-hd.png"; sourceTree = "<group>"; };
 		61DE5CFC147DBBD800E8A892 /* level1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level1.tmx; path = Resources/levels/level1.tmx; sourceTree = "<group>"; };
@@ -1882,6 +1885,8 @@
 				549D84DF1469E80000A3599F /* LevelButton.m */,
 				549ED7C31461D065008BCD98 /* TrackTimer.h */,
 				549ED7C41461D065008BCD98 /* TrackTimer.m */,
+				61DE5C031485868F00D325CF /* Tutorial.h */,
+				61DE5C041485869000D325CF /* Tutorial.m */,
 			);
 			path = GUI;
 			sourceTree = "<group>";
@@ -2614,6 +2619,7 @@
 				54767C51147C08660025F46F /* PlayerActionBlow.m in Sources */,
 				611293DF147AC42200AC017F /* Appirater.m in Sources */,
 				61DE5BF914853CCC00D325CF /* CCScrollLayer.m in Sources */,
+				61DE5C051485869100D325CF /* Tutorial.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

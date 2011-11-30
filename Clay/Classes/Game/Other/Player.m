@@ -237,7 +237,7 @@
     GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
     gameLayer.gameController.isSprintEnabled=false;
     [[gameLayer getHud] setEnabled:false ForButton:HUD_BUTTON_SPRINT];
-    _waitToTurbo=3.0f;
+    _waitToTurbo=1.0f;
     _isTurbo=false;
     }
     
@@ -327,7 +327,9 @@
     _isTripping = false;
     _isInMidAir = false;
     _hasDoubleJumped = false;
-    
+    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+    gameLayer.gameController.isSprintEnabled=true;
+    [[gameLayer getHud] setEnabled:true ForButton:HUD_BUTTON_SPRINT];
     _waitToGetUp = 0.0f;
     _timeLeftBeforeVulnerable = 2.0f;
     _isDead = false;
@@ -453,13 +455,19 @@
     
     if (_waitToTurbo > 0.0f) {
         _waitToTurbo -= dt;
-        if (_waitToTurbo<=0.0f) {
+        if (_waitToTurbo<=0.0f && _hitPoints>1) {
+         
             GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
             gameLayer.gameController.isSprintEnabled=true;
-            [[gameLayer getHud] setEnabled:true ForButton:HUD_BUTTON_SPRINT];
-        }
+                [[gameLayer getHud] setEnabled:true ForButton:HUD_BUTTON_SPRINT];}
         
+        else if(_waitToTurbo<= 0.0f ){
+            _waitToTurbo=1.0f;
+        }
     }
+    
+   
+    
 
     [self updateJump:dt];
     
