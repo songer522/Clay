@@ -56,17 +56,17 @@
     [[_wind getCCSprite] setVisible:NO];
     [[_parent getSpeed] start];
     [_windProjectile disable];
+    _cooldown = 0.6f;
     [super endAction];
 }
 
 -(void)cancelAction
 {
-    [_parent setPlayerAnimation:PLAYER_ANIM_RUNNING];
+    //[_parent setPlayerAnimation:PLAYER_ANIM_RUNNING];
     [[_parent getSpeed] start];
-    [_windProjectile disable];
-    
-    _cooldown = 0.6f;
     [[_wind getCCSprite] setVisible:NO];
+    [_windProjectile disable];    
+    _cooldown = 0.6f;
     [super cancelAction];
 }
 
