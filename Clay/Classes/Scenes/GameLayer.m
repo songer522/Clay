@@ -19,6 +19,7 @@
 #import "BossFactory.h"
 #import "SavePoint.h"
 #import "LaserShow.h"
+#import "RainyLevelEffects.h"
 #import "TextureManager.h"
 #import "GameDebugLayer.h"
 #import "GameSettings.h"
@@ -206,6 +207,8 @@
         
         if (_laserShow!=nil) {
             [_laserShow update:dt];
+        } else if(_rainyLevelEffects !=nil) {
+            [_rainyLevelEffects update:dt];
         }
         
     }
@@ -334,6 +337,20 @@
         _laserShow = nil;
     }
 }
+
+-(void)initializeRainyLevel
+{
+    _rainyLevelEffects = [RainyLevelEffects instance];
+}
+
+-(void)stopRainyLevel
+{
+    if (_rainyLevelEffects!=nil) {
+        [_rainyLevelEffects release];
+        _rainyLevelEffects = nil;
+    }
+}
+
 
 - (void) dealloc
 {

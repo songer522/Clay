@@ -41,13 +41,13 @@
 @synthesize playerThirdActionName = _playerThirdActionName;
 @synthesize preComicName = _preComicName;
 
-+(id)levelWithFilename:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer LayerList:(NSString*)layerList GameObjectController:(GameObjectController*)gameObjects Player:(Player*)player
++(id)levelWithFilename:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer LayerList:(NSString*)layerList GameObjectController:(GameObjectController*)gameObjects Player:(Player*)player Name:(NSString*)levelName
 {
-    return [[self alloc] initWithFilename:filename ObstacleLayer:obstacleLayer LayerList:layerList GameObjectController:gameObjects Player:player];
+    return [[self alloc] initWithFilename:filename ObstacleLayer:obstacleLayer LayerList:layerList GameObjectController:gameObjects Player:player Name:levelName];
 }
 
 
--(id)initWithFilename:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer LayerList:(NSString*)layerList GameObjectController:(GameObjectController*)gameObjects Player:(Player*)player
+-(id)initWithFilename:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer LayerList:(NSString*)layerList GameObjectController:(GameObjectController*)gameObjects Player:(Player*)player Name:(NSString*)levelName
 {
     self = [super init];
     if (self) {
@@ -57,8 +57,8 @@
         
         _obstacleMapObjects = [[NSMutableArray alloc] initWithCapacity:100];
         _otherMapObjects = [[NSMutableArray alloc] initWithCapacity:100];
-        _mapLayers = [[NSMutableDictionary alloc] initWithCapacity:12];
-        _parallaxLayers = [[NSMutableArray alloc] initWithCapacity:12];
+        _mapLayers = [[NSMutableDictionary alloc] initWithCapacity:7];
+        _parallaxLayers = [[NSMutableArray alloc] initWithCapacity:7];
         
         _obstacleManager = [[RegionManager alloc] init];
         //_backgroundManager = [[RegionManager alloc] init];
@@ -69,8 +69,6 @@
         [_obstacleManager prepareArrays:_map.mapSize.width];
         //[_backgroundManager prepareArrays:_map.mapSize.width];
         
-        //[[[LayerManager sharedLayers] currentLayer] addChild:_map];
-    
         if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
         {
             _divide = 2.0f;
@@ -93,7 +91,7 @@
         
         [self scanThroughMapAndAddObjects];
                 
-        [self loadLayers:layerList Player:player];
+        [self loadLayers:layerList Player:player Name:levelName];
         
         _map.scale = _scale;
         
@@ -113,13 +111,23 @@
     [[gameLayer getHud] setHudButtonsAndThirdAction:action];
 }
 
--(void)loadLayers:(NSString*)layerList Player:(Player*)player
+-(void)loadLayers:(NSString*)layerList Player:(Player*)player Name:(NSString*)levelName
 {
     int currentZ = 0;
 
     NSArray *layers = [layerList componentsSeparatedByString:@","];
     for (NSString *layerName in layers) {
         if ([layerName compare:@"actives"] == NSOrderedSame) {
+            
+            GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+            //stop existing rainylevel, and start new one if right level
+            [gameLayer stopRainyLevel];
+            if([levelName isEqualToString:@"level9"]) {
+                [gameLayer initializeRainyLevel];
+            }
+            
+            
+            
             [player setLedgeSprite:[[LayerManager sharedLayers] currentLayer]];
             
             [self addObstaclesToMapAndRegion];

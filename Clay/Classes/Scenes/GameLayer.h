@@ -23,6 +23,7 @@
 @class LaserShow;
 @class GameDebugLayer;
 @class Boss;
+@class RainyLevelEffects;
 
 // HelloWorldLayer
 @interface GameLayer : CCLayer
@@ -42,6 +43,7 @@
     GameDebugLayer *_debugLayer;
     
     LaserShow *_laserShow;
+    RainyLevelEffects *_rainyLevelEffects;
     
     Boss *_boss;
     
@@ -63,6 +65,9 @@
 
 -(void)initializeLaserShow;
 -(void)stopLaserShow;
+
+-(void)initializeRainyLevel;
+-(void)stopRainyLevel;
 
 -(void)setupHud;
 -(HudLayer*)getHud;

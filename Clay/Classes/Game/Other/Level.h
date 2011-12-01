@@ -81,16 +81,16 @@
 @property (nonatomic,retain) NSString *preComicName;
 
 #pragma mark - inits
-+(id)levelWithFilename:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer LayerList:(NSString*)layerList GameObjectController:(GameObjectController*)gameObjects Player:(Player*)player;
++(id)levelWithFilename:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer LayerList:(NSString*)layerList GameObjectController:(GameObjectController*)gameObjects Player:(Player*)player Name:(NSString*)levelName;
 
--(id)initWithFilename:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer LayerList:(NSString*)layerList GameObjectController:(GameObjectController*)gameObjects Player:(Player*)player;
+-(id)initWithFilename:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer LayerList:(NSString*)layerList GameObjectController:(GameObjectController*)gameObjects Player:(Player*)player Name:(NSString*)levelName;
 
 #pragma mark - public methods
 -(CGPoint)checkCollisionForObject:(GameObject*)object;
 -(void)update:(float)dt Velocity:(float)vx;
 -(CGRect)getLevelBoundaries;
 -(CGPoint)getXYPositionForCoordinates:(CGPoint)coords;
--(void)loadLayers:(NSString*)layerList Player:(Player*)player;
+-(void)loadLayers:(NSString*)layerList Player:(Player*)player Name:(NSString*)levelName;
 -(NSString*)getPropertyForTileCoords:(CGPoint)coords forKey:(NSString*)key;
 -(bool)testCollisions:(GameObject*)source;
 

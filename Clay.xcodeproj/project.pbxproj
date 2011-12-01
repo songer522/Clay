@@ -357,6 +357,7 @@
 		54C71D1A1486E64C00A47565 /* rainyLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54C71D161486E64C00A47565 /* rainyLevel.plist */; };
 		54C71D1B1486E64C00A47565 /* rainyLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 54C71D171486E64C00A47565 /* rainyLevel.png */; };
 		54C71D1E1486EA1800A47565 /* RainyLevelEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C71D1D1486EA1800A47565 /* RainyLevelEffects.m */; };
+		54C71D211486EED300A47565 /* Raindrop.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C71D201486EED200A47565 /* Raindrop.m */; };
 		54CA7A6A1471A5C6002B01AA /* memory.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54CA7A691471A5C6002B01AA /* memory.plist */; };
 		54CA7A701471B8B9002B01AA /* barnLevel-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54CA7A6C1471B8B9002B01AA /* barnLevel-hd.plist */; };
 		54CA7A711471B8B9002B01AA /* barnLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54CA7A6D1471B8B9002B01AA /* barnLevel-hd.png */; };
@@ -993,6 +994,8 @@
 		54C71D171486E64C00A47565 /* rainyLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rainyLevel.png; sourceTree = "<group>"; };
 		54C71D1C1486EA1800A47565 /* RainyLevelEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RainyLevelEffects.h; sourceTree = "<group>"; };
 		54C71D1D1486EA1800A47565 /* RainyLevelEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RainyLevelEffects.m; sourceTree = "<group>"; };
+		54C71D1F1486EED200A47565 /* Raindrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Raindrop.h; sourceTree = "<group>"; };
+		54C71D201486EED200A47565 /* Raindrop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Raindrop.m; sourceTree = "<group>"; };
 		54CA7A691471A5C6002B01AA /* memory.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = memory.plist; sourceTree = "<group>"; };
 		54CA7A6C1471B8B9002B01AA /* barnLevel-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "barnLevel-hd.plist"; sourceTree = "<group>"; };
 		54CA7A6D1471B8B9002B01AA /* barnLevel-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "barnLevel-hd.png"; sourceTree = "<group>"; };
@@ -1894,6 +1897,8 @@
 				549ED7AE1461D065008BCD98 /* Laser.m */,
 				549ED7AF1461D065008BCD98 /* LaserShow.h */,
 				549ED7B01461D065008BCD98 /* LaserShow.m */,
+				54C71D1F1486EED200A47565 /* Raindrop.h */,
+				54C71D201486EED200A47565 /* Raindrop.m */,
 				54C71D1C1486EA1800A47565 /* RainyLevelEffects.h */,
 				54C71D1D1486EA1800A47565 /* RainyLevelEffects.m */,
 			);
@@ -2708,6 +2713,7 @@
 				54C71CFE1486BF1C00A47565 /* PlayerActionSpin.m in Sources */,
 				54C71D011486BF2D00A47565 /* PlayerActionSlowTime.m in Sources */,
 				54C71D1E1486EA1800A47565 /* RainyLevelEffects.m in Sources */,
+				54C71D211486EED300A47565 /* Raindrop.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

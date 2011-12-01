@@ -82,7 +82,7 @@ static LevelManager *_shared = nil;
     
     GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
     
-    Level *level = [Level levelWithFilename:fileName ObstacleLayer:obstacleLayer LayerList:layerList GameObjectController:_gameObjects Player:gameLayer.player];
+    Level *level = [Level levelWithFilename:fileName ObstacleLayer:obstacleLayer LayerList:layerList GameObjectController:_gameObjects Player:gameLayer.player Name:levelName];
     
     level.nextLevelName = [NSString stringWithString:[levelSettings valueForKey:@"nextLevelName"]];
     level.postLevelComicName = [NSString stringWithString:[levelSettings valueForKey:@"postLevelComic"]];
@@ -99,6 +99,8 @@ static LevelManager *_shared = nil;
 
 -(void)loadLevelNamed:(NSString*) levelName
 {
+    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+    
     [self receiveBoss:nil];
     
     //this method gets called on the first level loaded, before currentlevel is set
@@ -113,7 +115,7 @@ static LevelManager *_shared = nil;
     [UserData sharedInstance].currentLevel = [[_currentLevel.name substringFromIndex:5] intValue];
     [[UserData sharedInstance] save];
     
-    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+
     if (gameLayer.player != nil) {
         [self initAfterPlayerAndHudInit];
     }
@@ -122,7 +124,6 @@ static LevelManager *_shared = nil;
     [gameLayer stopLaserShow];
     if([levelName isEqualToString:@"level4"]) {
         [gameLayer initializeLaserShow];
-    } else {
     }
     
     //show 8-bit skin if level 7, otherwise show regular skin

@@ -7,6 +7,7 @@
 //
 
 #import "RainyLevelEffects.h"
+#import "Raindrop.h"
 #import "Sprite.h"
 #import "Animation.h"
 #import "AnimationController.h"
@@ -27,8 +28,7 @@
         _raindrops = [[NSMutableArray alloc] initWithCapacity:6];
         
         for (int i=0; i<6; i++) {
-            Sprite *raindrop = [Sprite spriteWithFile:@"blank.png"];
-            [[AnimationController sharedController] replaceSprite:raindrop withAnimationNamed:@"rainyRaindropAnim"];
+            Raindrop *raindrop = [Raindrop instance];
             [_raindrops addObject:raindrop];
         }
     }
@@ -38,20 +38,16 @@
 
 -(void)update:(float)dt
 {
-    for (Sprite *raindrop in _raindrops) {
-        if ([[raindrop getAnimation] getCurrentFrameNumber] == 5) {
-            ccp
-        }
-    }
-    for (Laser *laser in _lasers) {
-        [laser update:dt];
+    for (Raindrop *raindrop in _raindrops) {
+        [raindrop update:dt];
     }
 }
 
 -(void)dealloc
 {
-    [_lasers removeAllObjects];
-    [_lasers release];
+    [_raindrops removeAllObjects];
+    [_rainBehindTim release];
+    [_lightning release];
     [super dealloc];
 }
 
