@@ -329,7 +329,7 @@
 
 -(void)dealloc
 {
-    NSLog(@"Dealloc: ChooseLevelScreen");
+    //NSLog(@"Dealloc: ChooseLevelScreen");
     
     [_buttons removeAllObjects];
     _buttons = nil;

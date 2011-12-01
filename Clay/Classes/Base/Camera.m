@@ -84,10 +84,8 @@ static Camera *_sharedCamera = nil;
     
     if(top > (_boundary.origin.y + _boundary.size.height)) {
         _y = _boundary.origin.y + _boundary.size.height - winSize.height + _center.y;
-        //NSLog(@"top?");
     } else if (bottom < _boundary.origin.y) {
         _y = _boundary.origin.y + _center.y;
-        //NSLog(@"bottom?");
     }
 }
 
