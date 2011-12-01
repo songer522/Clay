@@ -26,6 +26,8 @@
         // Initialization code here.
         _inAction = false;
         _cooldown = 0.0f;
+        _cooldownStart = 0.1f;
+        _canTrigger = true;
         [self initialize];
     }
     
@@ -60,13 +62,20 @@
         if (_duration <= 0.0f) {
             [self endAction];
         }
-    } else {
+        
+        [[[[[LayerManager sharedLayers] currentLayer] getHud] getActionButton] updateOverlayImageByPercentage:0.0f]; 
+    }
+    
+    if (_cooldown>0.0f) {            
         _cooldown -= dt;
         if (_cooldown<=0.0f && !_canTrigger) {
             [self enableAction];
+            _cooldown = 0.0f;
         }
+        
+        float percent = (_cooldownStart - _cooldown)/_cooldownStart;
+        [[[[[LayerManager sharedLayers] currentLayer] getHud] getActionButton] updateOverlayImageByPercentage:percent];
     }
-    
 }
 
 -(void) enableAction
@@ -91,6 +100,7 @@
 {
     _inAction = false;
     _isActive = false;
+    _cooldown = _cooldownStart;
 }
 
 
@@ -98,6 +108,7 @@
 {
     _inAction = false;
     _isActive = false;
+    _cooldown = _cooldownStart;
     if (_hasKilledEnemy) {
         [_parent changeHealth:1];
     }

@@ -29,6 +29,8 @@
 #define PLAYER_STARTING_X_POSITION 0
 #define PLAYER_VELOCITY_MULTIPLIER 2
 
+#define PLAYER_SPRINT_COOLDOWN 1.0
+
 @implementation Player
 
 @synthesize isJumping = _isJumping;
@@ -108,12 +110,10 @@
 -(void)changeHealth:(int)amount
 {
     if (amount > 0 && _hitPoints<4) {
-        _hitPoints+=1;
+        _hitPoints+=1; //POSSIBLE BUG: why is this +=1 instead of +=amount like the negative?
         [_battery setFrame:(5-_hitPoints)];
     } else if(amount < 0 && _hitPoints >= 0) {
-        
-            _hitPoints+=amount;
-        
+        _hitPoints+=amount;
         [_battery setFrame:(5-_hitPoints)];
     }
     
@@ -201,9 +201,8 @@
 -(void)startTurbo
 {
     //guard
-   
-    
     if (_isTripping || _isDead || [_thirdAction inAction] || _isInMidAir || _waitToGetUp > 0.f) { return; }
+
     
     if (_hitPoints > 1) {
         
@@ -212,13 +211,6 @@
         
         [[SoundEngine shared] playSound:@"turboStart"];
         [_skin setPlayerAnimation:PLAYER_ANIM_SPRINTING ForSprite:_sprite];
-        
-      
-        
-        
-       
-        //_hitPoints -=1;
-        //[_battery setFrame:(5 - _hitPoints)];        
     }
 
 }
@@ -234,11 +226,11 @@
     
     if(_isTurbo)
     {
-    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
-    gameLayer.gameController.isSprintEnabled=false;
-    [[gameLayer getHud] setEnabled:false ForButton:HUD_BUTTON_SPRINT];
-    _waitToTurbo=3.0f;
-    _isTurbo=false;
+        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+        gameLayer.gameController.isSprintEnabled=false;
+        [[gameLayer getHud] setEnabled:false ForButton:HUD_BUTTON_SPRINT];
+        _waitToTurbo=PLAYER_SPRINT_COOLDOWN;
+        _isTurbo=false;
     }
     
 }
@@ -442,12 +434,16 @@
     
     //wait for turbo
     if (_waitToTurbo > 0.0f) {
+        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+
         _waitToTurbo -= dt;
         if (_waitToTurbo<=0.0f) {
-            GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
             gameLayer.gameController.isSprintEnabled=true;
             [[gameLayer getHud] setEnabled:true ForButton:HUD_BUTTON_SPRINT];
         }
+        
+        float cooldownPercent = (PLAYER_SPRINT_COOLDOWN - _waitToTurbo)/PLAYER_SPRINT_COOLDOWN;
+        [[[gameLayer getHud] getSprintButton] updateOverlayImageByPercentage:cooldownPercent];
         
     }
 

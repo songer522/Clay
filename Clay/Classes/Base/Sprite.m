@@ -202,6 +202,11 @@
     [_animation setFrame:frame];    
 }
 
+-(void)setImageByName:(NSString*)frameName
+{
+    [sprite_cc setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName]];
+}
+
 -(int)getCurrentFrameNumber
 {
     return [_animation getCurrentFrameNumber];

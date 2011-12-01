@@ -25,6 +25,9 @@
 -(void)initialize
 {
     _cooldown = 0.0f;
+    _cooldownStart = 0.3f;
+    _canTrigger = true;
+
     
     //setup projectiles (trying to avoid need for mutable array)
     Projectile *b1 = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_BULLET];
@@ -45,7 +48,6 @@
     if (!_inAction && _canTrigger) {
         [super startAction];
         _duration = 0.4f;
-        _cooldown = 0.4f;
         [_parent endTurbo];
         [_parent setPlayerAnimation:PLAYER_ANIM_SHOOT];
         [[SoundEngine shared] playSound:@"shootAction"];
@@ -79,19 +81,12 @@
 -(void)cancelAction
 {
     [_parent setPlayerAnimation:PLAYER_ANIM_RUNNING];
-    _cooldown = 1.0f;
     [super cancelAction];
 }
 
 
 -(void)update:(float)dt
 {
-    if (!_inAction) {
-        if (_cooldown > 0.0f) {
-            _cooldown -= dt;
-        }
-    }
-    
     for (Projectile *bullet in _bullets) {
         [bullet update:dt];
     }

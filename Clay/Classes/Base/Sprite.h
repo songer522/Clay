@@ -47,6 +47,7 @@
 -(CGPoint) getScreenPosition;
 -(void)move:(CGPoint)amount;
 -(int)getCurrentFrameNumber;
+-(void)setImageByName:(NSString*)frameName;
 
 -(void)setAlpha:(float)alpha;
 

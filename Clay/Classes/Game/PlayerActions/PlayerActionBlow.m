@@ -19,6 +19,7 @@
 -(void)initialize
 {
     _cooldown = 0.0f;
+    _cooldownStart = 0.6f;
     _wind = [Sprite spriteWithFile:@"blank.png"];
     _windProjectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_PLAYER_BLOWING];
     
@@ -42,9 +43,7 @@
         [_parent setPlayerAnimation:PLAYER_ANIM_BLOW];
 
         _duration = 0.78f;
-        _cooldown = 1.0f;
         _startedWindAnimation = false;
-        
         
         [[_parent getSpeed] startBlow];
         [[_parent getSpeed] stop];
@@ -56,7 +55,6 @@
     [[_wind getCCSprite] setVisible:NO];
     [[_parent getSpeed] start];
     [_windProjectile disable];
-    _cooldown = 0.6f;
     [super endAction];
 }
 
@@ -66,7 +64,6 @@
     [[_parent getSpeed] start];
     [[_wind getCCSprite] setVisible:NO];
     [_windProjectile disable];    
-    _cooldown = 0.6f;
     [super cancelAction];
 }
 
@@ -89,9 +86,6 @@
 -(void)update:(float)dt
 {
     if (!_inAction) {
-        if (_cooldown > 0.0f) {
-            _cooldown -= dt;
-        }
         _isActive = false;
     } else {
         _isActive = true;

@@ -18,6 +18,7 @@
 -(void)initialize
 {
     _cooldown = 0.0f;
+    _cooldownStart = 0.4f;
     _shield = [Sprite spriteWithFile:@"blank.png"];
 }
 
@@ -33,7 +34,6 @@
         [_shield setPosition:CGPointMake(position.x + 2, position.y + 15)];
         
         _duration = 0.75f;
-        _cooldown = 0.4f;
         [[SoundEngine shared] playSound:@"shield"];
     }
 }
@@ -46,7 +46,6 @@
 
 -(void)cancelAction
 {
-    _cooldown = 0.4f;
     [[_shield getCCSprite] setVisible:NO];
     [super cancelAction];
 }
@@ -55,9 +54,6 @@
 -(void)update:(float)dt
 {
     if (!_inAction) {
-        if (_cooldown > 0.0f) {
-            _cooldown -= dt;
-        }
         _isActive = false;
     } else {
         _isActive = true;
