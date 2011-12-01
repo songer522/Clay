@@ -1,0 +1,95 @@
+//
+//  Lightning.m
+//  Clay
+//
+//  Created by Brian Cable on 12/1/11.
+//  Copyright (c) 2011 Xecudev, LLC. All rights reserved.
+//
+
+#import "Lightning.h"
+#import "Sprite.h"
+#import "Animation.h"
+#import "AnimationController.h"
+#import "Camera.h"
+
+@implementation Lightning
+
+
++(id)instance
+{
+    return [[self alloc] init];
+}
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        // Initialization code here.
+        
+        _sprite = [Sprite spriteWithFile:@"blank.png"];
+        [self repositionSprite];
+        [_sprite setAlpha:0.0f];
+        
+        _waitUntilNewStrike = 4.0f + rand()%5;
+    }
+    
+    return self;
+}
+
+
+-(void)update:(float)dt
+{
+    if (_waitUntilNewStrike >0.0f) {
+        _waitUntilNewStrike-=dt;
+        if (_waitUntilNewStrike<=0.0f) {
+            [self startStrike];
+        }
+    } else {
+        _timeIntoAnimation+=dt;
+        
+        //full alpha until 0.7seconds, then 50% opacity for 0.1 seconds, then 100% opacity for 0.1 seconds, then 50% opacity for 0.1 seconds.
+        
+        if(_timeIntoAnimation>=1.0f) {
+            [self endStrike];
+        } else if (_timeIntoAnimation>=0.9f) {
+            [_sprite setAlpha:0.5f];
+        } else if (_timeIntoAnimation>=0.8f) {
+            [_sprite setAlpha:1.0f];
+        } else if (_timeIntoAnimation>=0.7f) {
+            [_sprite setAlpha:0.5f];
+        } 
+    }
+}
+
+-(void)startStrike
+{
+    [_sprite setAnimationByName:@"rainyLightning1Anim"];
+    [self repositionSprite];
+    [_sprite setAlpha:1.0f];
+    [[_sprite getCCSprite] setVisible:YES];
+    _timeIntoAnimation = 0.0f;
+    
+}
+
+-(void)endStrike
+{
+    [[_sprite getCCSprite] setVisible:NO];
+    _waitUntilNewStrike = 8.0f + rand()%8;
+}
+
+-(void)repositionSprite
+{
+    //IPAD FIX: should be positioned at a random position on the track in front of Tim with enough of a gap that the raindrop disappears before it reaches Tim's position most of the time.
+    
+    [_sprite setScreenPosition:ccp(50 + rand()%400, 200)];
+    
+    
+}
+
+-(void)dealloc
+{
+    [_sprite release];
+    [super dealloc];
+}
+
+@end

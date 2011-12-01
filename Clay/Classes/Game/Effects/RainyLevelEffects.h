@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class Sprite;
+@class Lightning;
 
 @interface RainyLevelEffects : NSObject
 {
@@ -16,7 +17,7 @@
     
     Sprite *_rainBehindTim;
     
-    Sprite *_lightning;
+    Lightning *_lightning;
 }
 
 +(id)instance;

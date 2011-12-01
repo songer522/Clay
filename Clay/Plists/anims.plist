@@ -965,7 +965,7 @@
 		<key>group</key>
 		<string>level9</string>
 		<key>looping</key>
-		<string>true</string>
+		<string>false</string>
 		<key>sequencePrefix</key>
 		<string>Level9_Thunder_TypeA_</string>
 		<key>spritesheetPlist</key>
@@ -982,7 +982,7 @@
 		<key>group</key>
 		<string>level9</string>
 		<key>looping</key>
-		<string>true</string>
+		<string>false</string>
 		<key>sequencePrefix</key>
 		<string>Level9_Thunder_TypeB_</string>
 		<key>spritesheetPlist</key>
@@ -999,20 +999,20 @@
 		<key>group</key>
 		<string>level9</string>
 		<key>looping</key>
-		<string>true</string>
+		<string>false</string>
 		<key>sequencePrefix</key>
 		<string>Level9_Thunder_TypeC_</string>
 		<key>spritesheetPlist</key>
 		<string>rainyLevel</string>
 	</dict>
-	<key>rainyTree1IdleAnim</key>
+	<key>rainyTreeAIdleAnim</key>
 	<dict>
 		<key>animationFrames</key>
 		<string>1,2,1,2,1,1</string>
 		<key>clearPreviousAnims</key>
 		<string>true</string>
 		<key>delay</key>
-		<string>0.15</string>
+		<string>0.25</string>
 		<key>group</key>
 		<string>level9</string>
 		<key>looping</key>
@@ -1022,7 +1022,7 @@
 		<key>spritesheetPlist</key>
 		<string>rainyLevel</string>
 	</dict>
-	<key>rainyTree1WindAnim</key>
+	<key>rainyTreeAWindAnim</key>
 	<dict>
 		<key>animationFrames</key>
 		<string>2,3,2,3,2,3,1</string>
@@ -1039,14 +1039,14 @@
 		<key>spritesheetPlist</key>
 		<string>rainyLevel</string>
 	</dict>
-	<key>rainyTree2IdleAnim</key>
+	<key>rainyTreeBIdleAnim</key>
 	<dict>
 		<key>animationFrames</key>
 		<string>1,2,1,2,1,1</string>
 		<key>clearPreviousAnims</key>
 		<string>true</string>
 		<key>delay</key>
-		<string>0.1</string>
+		<string>0.25</string>
 		<key>group</key>
 		<string>level9</string>
 		<key>looping</key>
@@ -1056,7 +1056,7 @@
 		<key>spritesheetPlist</key>
 		<string>rainyLevel</string>
 	</dict>
-	<key>rainyTree2WindAnim</key>
+	<key>rainyTreeBWindAnim</key>
 	<dict>
 		<key>animationFrames</key>
 		<string>2,3,2,3,2,3,1</string>
