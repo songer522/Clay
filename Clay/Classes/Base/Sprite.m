@@ -9,6 +9,7 @@
 #import "cocos2d.h"
 #import "Sprite.h"
 #import "Animation.h"
+#import "AnimationController.h"
 #import "Camera.h"
 #import "LayerManager.h"
 
@@ -53,6 +54,11 @@
         }
     }
     return self;
+}
+
++(id) instance
+{
+    return [[self alloc] initWithFile:@"blank.png" AddToLayer:YES];
 }
 
 +(id) spriteWithFile:(NSString*)filename
@@ -165,6 +171,11 @@
 -(float) getHeight
 {
     return [sprite_cc boundingBox].size.height;
+}
+
+-(void)setAnimationByName:(NSString*)animName
+{
+    [[AnimationController sharedController] replaceSprite:self withAnimationNamed:animName];
 }
 
 -(void)setAnimation:(Animation*)animation Delay:(float)delay

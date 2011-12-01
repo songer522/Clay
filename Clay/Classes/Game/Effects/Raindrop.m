@@ -10,6 +10,7 @@
 #import "Sprite.h"
 #import "Animation.h"
 #import "AnimationController.h"
+#import "Camera.h"
 
 @implementation Raindrop
 
@@ -49,6 +50,8 @@
         //if the animation has restarted, reposition the sprite
         if (currentFrame == 1 && _prevFrame != 1) {
             [self repositionSprite];            
+        } else {
+            [_sprite setPosition:_position];
         }
     }
     
@@ -58,7 +61,10 @@
 
 -(void)repositionSprite
 {
-    [_sprite setScreenPosition:ccp(140 + rand()%420, rand()%16 + 20)];
+    //IPAD FIX: should be positioned at a random position on the track in front of Tim with enough of a gap that the raindrop disappears before it reaches Tim's position most of the time.
+    _position = [[Camera sharedCamera] convertToWorldXY:ccp(180 + rand()%420,rand()%16 + 20)];
+    
+    [_sprite setScreenPosition:_position];
 }
 
 -(void)dealloc

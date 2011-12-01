@@ -14,8 +14,7 @@
 {
     Sprite *_sprite;
     
-    int x;
-    int y;
+    CGPoint _position;
     
     float _waitToLoadAnim; //don't want to load immediately so it's not always on the same frame of animation as the other raindrops
     

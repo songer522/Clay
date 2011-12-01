@@ -23,10 +23,13 @@
 @property (nonatomic,assign) float x;
 @property (nonatomic,assign) float y;
 
++(id) instance;
 +(id) spriteWithFile:(NSString *)filename;
 +(id) spriteWithFile:(NSString *)filename AddToLayer:(bool)shouldAddToLayer;
 +(id) spriteFromFrameCacheWithName:(NSString*)frameName;
 +(id) spriteFromFrameCacheWithName:(NSString*)frameName AddToLayer:(bool)shouldAddToLayer;
+
+
 
 -(id) initWithFile:(NSString *)filename AddToLayer:(bool)shouldAddToLayer;
 -(id) initFromFrameCacheWithName:(NSString*)frameName AddToLayer:(bool)shouldAddToLayer;
@@ -58,4 +61,6 @@
 -(Animation*)getAnimation;
 -(void)setAnimation:(Animation*)animation Delay:(float)delay;
 -(void)setAnimation:(Animation*)animation Delay:(float)delay StartingFrameNumber:(int)frameNumber;
+-(void)setAnimationByName:(NSString*)animName;
+
 @end

@@ -11,6 +11,8 @@
 #import "Sprite.h"
 #import "Animation.h"
 #import "AnimationController.h"
+#import "LevelManager.h"
+#import "Player.h"
 
 @implementation RainyLevelEffects
 
@@ -31,6 +33,11 @@
             Raindrop *raindrop = [Raindrop instance];
             [_raindrops addObject:raindrop];
         }
+        
+        _rainBehindTim = [Sprite instance];
+        [_rainBehindTim setAnimationByName:@"rainyBehindTimAnim"];
+        [[_rainBehindTim getCCSprite] setAnchorPoint:ccp(0.5f,0)];
+        
     }
     
     return self;
@@ -38,6 +45,17 @@
 
 -(void)update:(float)dt
 {
+    Player *player = [[LayerManager sharedLayers] getPlayer];
+    
+    //IPAD FIX
+    //place underneath tim's feet
+    [_rainBehindTim setPosition:CGPointMake(player.x - 40, player.y - 12)];
+    if (player.isInMidAir) {
+        [[_rainBehindTim getCCSprite] setVisible:NO];
+    } else {
+        [[_rainBehindTim getCCSprite] setVisible:YES];
+    }
+    
     for (Raindrop *raindrop in _raindrops) {
         [raindrop update:dt];
     }
