@@ -115,6 +115,7 @@ typedef enum {
 -(void)setLedgeSprite:(CCLayer*)layer;
 -(void)setCurrentSprite:(Sprite *)sprite;
 -(void)rechargeBattery;
+-(void)resetSprint;
 
 -(void)setVelocity:(float)velocity;
 -(void)startDoubleJump;

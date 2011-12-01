@@ -392,14 +392,23 @@
             _vx = -250.0f;
         }
     } else if(_currentBehavior == COLLISION_BEHAVIOR_ROLLING_HAYBALE) {
+        /*
         int frame = [[_sprite getAnimation] getCurrentFrameNumber];
+        
         if (frame == 1) {
             _direction = -1;
         } else if(frame == 6) {
             _direction = 1;
         }
         _vx = _direction * 100.0f;        
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON) {
+    } */
+        
+            _vx = 0.0f;
+            if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+                _vx = -150.0f;
+            }
+    }
+         else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON) {
         _vx = 0.0f;
         _angle += _rotationAmount * dt;
         [self getCCSprite].rotation = _angle;

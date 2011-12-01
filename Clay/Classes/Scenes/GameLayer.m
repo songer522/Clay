@@ -109,11 +109,7 @@
 -(void)startLevel:(NSString*)levelName
 {
     //reset boss before loading level
-    if (_boss !=nil) {
-        [_boss release];
-        _boss = nil;
-    }
-    
+        
     [[LevelManager shared] reset];
    
     [[LevelManager shared] loadLevelNamed:levelName];
@@ -211,22 +207,7 @@
         
         [_level testCollisions:_player];
         
-        if (![[ComicManager shared] isActive]) {
-            if(_player.isDead) {
-                [_player reset];
-                
-                if(_boss){
-                    [_boss reset];}
-
-                
-                [_savePoint restoreSavePoint:_player];
-                _player.isDead = false;
-                [_player rechargeBattery];
-                
-                [_level resetObstacles];
-                [_level resetTriggers];
-                            }        
-        }
+        [self updatePlayerDeath:dt];
         
         [_hud update:dt];
         
@@ -278,6 +259,7 @@
                 [_level disablePassedTrigger];
                 [[SoundEngine shared] playSound:@"checkpoint"];
                 [_player rechargeBattery];
+                [_player resetSprint];
                 break;
             case TRIGGER_BOSS_SHOOT:
                 [_boss triggerAttack];
@@ -300,6 +282,9 @@
 
 -(void)setBoss:(Boss*)boss
 {
+    
+   
+
     _boss = boss;
 }
 
