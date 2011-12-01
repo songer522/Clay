@@ -130,7 +130,9 @@ typedef enum {
 -(void)updatePitFalling:(float)dt;
 -(void)updateSlow:(float)dt;
 -(void)updateInvulnerable:(float)dt;
-
+-(void)updateTurbo:(float)dt;
+-(void)updateLedge:(float)dt;
+-(void)updatePlayerPosition:(float)dt Level:(Level*)level;
 -(void)updateSkin:(SkinType)skin;
 
 -(void)setThirdAction:(NSString*)action;

@@ -2519,6 +2519,13 @@
 				54C71D191486E64C00A47565 /* rainyLevel-hd.png in Resources */,
 				54C71D1A1486E64C00A47565 /* rainyLevel.plist in Resources */,
 				54C71D1B1486E64C00A47565 /* rainyLevel.png in Resources */,
+				61A667B01487E33800FB0A80 /* townLevel-hd.plist in Resources */,
+				61A667B11487E33800FB0A80 /* townLevel-hd.png in Resources */,
+				61A667B21487E33800FB0A80 /* townLevel.plist in Resources */,
+				61A667B31487E33800FB0A80 /* townLevel.png in Resources */,
+				61D82FC314880C96000B54F0 /* level1.tmx in Resources */,
+				61D82FC414880C96000B54F0 /* level2.tmx in Resources */,
+				61D82FC514880C96000B54F0 /* level3.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2712,6 +2719,7 @@
 				54C71D011486BF2D00A47565 /* PlayerActionSlowTime.m in Sources */,
 				54C71D1E1486EA1800A47565 /* RainyLevelEffects.m in Sources */,
 				54C71D211486EED300A47565 /* Raindrop.m in Sources */,
+				61DE5C051485869100D325CF /* Tutorial.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
