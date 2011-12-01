@@ -15,7 +15,9 @@
 
 -(void)initialize
 {
-    _cooldown = 0.0f;    
+    _cooldown = 0.0f;
+    _canTrigger = true;
+    _cooldownStart = 3.0f;
 }
 
 -(void)startAction
@@ -23,7 +25,6 @@
     if (!_inAction && _canTrigger) {
         [super startAction];
         _duration = 0.75f;
-        _cooldown = 3.0f;
         [_parent endTurbo];
         [_parent setPlayerAnimation:PLAYER_ANIM_WOO];
         [[SoundEngine shared] playSound:@"wooAction"];
@@ -39,18 +40,12 @@
 -(void)cancelAction
 {
     [_parent setPlayerAnimation:PLAYER_ANIM_RUNNING];
-    _cooldown = 1.0f;
     [super cancelAction];
 }
 
 
 -(void)update:(float)dt
 {
-    if (!_inAction) {
-        if (_cooldown > 0.0f) {
-            _cooldown -= dt;
-        }
-    }
     [super update:dt];
 }
 

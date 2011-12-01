@@ -78,7 +78,7 @@
 
 -(bool)checkIfSelected:(CGPoint)touch
 {
-    if ([self testCollision:touch] && _buttonId < 9) {
+    if ([self testCollision:touch] && _buttonId <= 8) {
         [self setSelected];
         return true;
     }

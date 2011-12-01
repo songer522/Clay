@@ -23,6 +23,7 @@
 @end
 
 @class Sprite;
+@class Projectile;
 
 @interface Obstacle : NSObject<ObstacleProtocol>
 {
@@ -49,6 +50,6 @@
 
 
 -(void)updateMovement:(float)dt;
-
+-(Projectile*) getProjectile;
 
 @end

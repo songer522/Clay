@@ -23,7 +23,8 @@
 {
     if (!_inAction && _canTrigger) {
         _duration = kPlayerActionDodgeFullDuration;
-        _cooldown = 0.7f;
+        _cooldown = 0.0f;
+        _cooldownStart = 0.7f;
         _parent.isInvincible = true;
         _preActionPlayerPosition = [_parent getPosition];
         [_parent endTurbo];

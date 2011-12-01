@@ -338,6 +338,7 @@
     [_background release];
     [_levelToSwitchTo release];
     [_levelSelectText release];
+    [_bestLevelTimeText release];
     [_startButton release];
     [_backButton release];
     [_selector release];

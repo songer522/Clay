@@ -29,6 +29,8 @@
 #define PLAYER_STARTING_X_POSITION 0
 #define PLAYER_VELOCITY_MULTIPLIER 2
 
+#define PLAYER_SPRINT_COOLDOWN 1.0
+
 @implementation Player
 
 @synthesize isJumping = _isJumping;
@@ -108,12 +110,10 @@
 -(void)changeHealth:(int)amount
 {
     if (amount > 0 && _hitPoints<4) {
-        _hitPoints+=1;
+        _hitPoints+=1; //POSSIBLE BUG: why is this +=1 instead of +=amount like the negative?
         [_battery setFrame:(5-_hitPoints)];
     } else if(amount < 0 && _hitPoints >= 0) {
-        
-            _hitPoints+=amount;
-        
+        _hitPoints+=amount;
         [_battery setFrame:(5-_hitPoints)];
     }
     
@@ -199,9 +199,8 @@
 -(void)startTurbo
 {
     //guard
-   
-    
     if (_isTripping || _isDead || [_thirdAction inAction] || _isInMidAir || _waitToGetUp > 0.f) { return; }
+
     
     if (_hitPoints > 1) {
         
@@ -210,13 +209,6 @@
         
         [[SoundEngine shared] playSound:@"turboStart"];
         [_skin setPlayerAnimation:PLAYER_ANIM_SPRINTING ForSprite:_sprite];
-        
-      
-        
-        
-       
-        //_hitPoints -=1;
-        //[_battery setFrame:(5 - _hitPoints)];        
     }
 
 }
@@ -232,11 +224,11 @@
     
     if(_isTurbo)
     {
-    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
-    gameLayer.gameController.isSprintEnabled=false;
-    [[gameLayer getHud] setEnabled:false ForButton:HUD_BUTTON_SPRINT];
-    _waitToTurbo=1.0f;
-    _isTurbo=false;
+        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+        gameLayer.gameController.isSprintEnabled=false;
+        [[gameLayer getHud] setEnabled:false ForButton:HUD_BUTTON_SPRINT];
+        _waitToTurbo=PLAYER_SPRINT_COOLDOWN;
+        _isTurbo=false;
     }
     
 }
@@ -444,25 +436,11 @@
 -(void)update:(float)dt Level:(Level *)level
 {
   
-    [self updatePitFalling:dt]; //need to call before super so it can kill the VX if falling into the pit
+    [self updatePitFalling:dt]; //need to call before super so it can kill the x-velocity if falling into the pit
 
     [super update:dt];  
     
-    //wait for turbo
-    if (_waitToTurbo > 0.0f) {
-        _waitToTurbo -= dt;
-        if (_waitToTurbo<=0.0f && _hitPoints>1) {
-         
-            [self resetSprint];
-        }
-        
-        else if(_waitToTurbo<= 0.0f ){
-            _waitToTurbo=1.0f;
-        }
-    }
-    
-   
-    
+    [self updateTurbo:dt];
 
     [self updateJump:dt];
 
@@ -474,6 +452,35 @@
         [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];
     }
     
+    [self updatePlayerPosition:dt Level:level];
+
+    [_battery update:dt];
+    
+    if (_isTripping) {
+        _waitToGetUp -= dt;
+        if (_waitToGetUp <= 0.0f) {
+            _isTripping = false;
+            [self endTurbo];
+            [_speed start];
+            [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];
+        }
+    }
+
+    [self updateLedge:dt];
+    
+    if(_speed.isStopped && !_isTripping) {
+        _waitToGetUp -= dt;
+        if (_waitToGetUp <= 0.0f) {
+            [_speed start];
+        }
+    }
+    
+    [_thirdAction update:dt];
+
+}
+
+-(void)updatePlayerPosition:(float)dt Level:(Level*)level
+{
     CGPoint newPosition = [level checkCollisionForObject:self];    
     
     [self setPositionAtX:newPosition.x Y:newPosition.y];    //for some reason the y position jitters without
@@ -491,63 +498,64 @@
     CGPoint screenPosition = [[Camera sharedCamera] convertToScreenXY:CGPointMake(newPosition.x,newPosition.y)];
     [_sprite getCCSprite].position = ccp(screenPosition.x + _offsetX, screenPosition.y + _offsetY);
     
-    [_battery update:dt];
-    
-       if (_isTripping) {
-        _waitToGetUp -= dt;
-        if (_waitToGetUp <= 0.0f) {
-            _isTripping = false;
-            [self endTurbo];
-            [_speed start];
-            [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];
-        }
-    }
-    /*
-    if(_onLedge)
-    {
-        [[_playerOnledge getCCSprite] setAnchorPoint:ccp(0.5,0)];
-        if(_isActive){
-          
-            [self switchToInactive];
-            
-        }
-        
-        [self setCurrentSprite:_playerOnledge];
-        //[_playerOnledge getCCSprite].anchorPoint=[_sprite getCCSprite].anchorPoint;
-       [_playerOnledge getCCSprite].visible =YES;
-                 
-        [[Camera sharedCamera] setTarget:_playerOnledge];
-        _offLedge=true;
-        
-    }
-    else
-    {
-        
-        
-    if(_offLedge)
-        {
-            [_playerOnledge getCCSprite].visible=NO;
-            
-            _sprite=_tempSprite;
-            [_sprite getCCSprite].visible=YES;
-            //[[_sprite getCCSprite] setAnchorPoint:ccp(0,1)];
-            _isActive=true;
-            _offLedge=false;
-        }
-        [[Camera sharedCamera] setTarget:_sprite];
-    }
- 
-    */
-    
-    if(_speed.isStopped && !_isTripping) {
-        _waitToGetUp -= dt;
-        if (_waitToGetUp <= 0.0f) {
-            [_speed start];
-        }
-    }
-    
-    [_thirdAction update:dt];
+}
 
+-(void)updateTurbo:(float)dt
+{
+    //wait for turbo
+    if (_waitToTurbo > 0.0f) {
+        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+        
+        _waitToTurbo -= dt;
+        if (_waitToTurbo<=0.0f) {
+            gameLayer.gameController.isSprintEnabled=true;
+            [[gameLayer getHud] setEnabled:true ForButton:HUD_BUTTON_SPRINT];
+        }
+        
+        float cooldownPercent = (PLAYER_SPRINT_COOLDOWN - _waitToTurbo)/PLAYER_SPRINT_COOLDOWN;
+        [[[gameLayer getHud] getSprintButton] updateOverlayImageByPercentage:cooldownPercent];
+        
+    }
+}
+
+-(void)updateLedge:(float)dt
+{
+    /*
+     if(_onLedge)
+     {
+     [[_playerOnledge getCCSprite] setAnchorPoint:ccp(0.5,0)];
+     if(_isActive){
+     
+     [self switchToInactive];
+     
+     }
+     
+     [self setCurrentSprite:_playerOnledge];
+     //[_playerOnledge getCCSprite].anchorPoint=[_sprite getCCSprite].anchorPoint;
+     [_playerOnledge getCCSprite].visible =YES;
+     
+     [[Camera sharedCamera] setTarget:_playerOnledge];
+     _offLedge=true;
+     
+     }
+     else
+     {
+     
+     
+     if(_offLedge)
+     {
+     [_playerOnledge getCCSprite].visible=NO;
+     
+     _sprite=_tempSprite;
+     [_sprite getCCSprite].visible=YES;
+     //[[_sprite getCCSprite] setAnchorPoint:ccp(0,1)];
+     _isActive=true;
+     _offLedge=false;
+     }
+     [[Camera sharedCamera] setTarget:_sprite];
+     }
+     
+     */
 }
 
 -(void)updatePitFalling:(float)dt

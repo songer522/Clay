@@ -24,6 +24,8 @@ typedef enum {
 {
     Sprite *_graphic;
     Sprite *_greenOverlay;
+    bool _overlayVisible;
+    int _currentOverlayFrame;
     
     float _scale;
     bool _initialized;
@@ -43,5 +45,7 @@ typedef enum {
 -(void)setButtonScale:(float)scale;
 -(void)setPosition:(CGPoint)position;
 -(void)reset;
+
+-(void)updateOverlayImageByPercentage:(float)percent; //0 to 1, not 0 to 100%
 
 @end

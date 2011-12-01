@@ -19,6 +19,7 @@
 @synthesize isPaused = _isPaused;
 @synthesize isInputEnabled = _isInputEnabled;
 @synthesize isSprintEnabled=_isSprintEnabled;
+@synthesize isHandlingPause=_isHandlingPause;
 
 - (id)init
 {
@@ -29,6 +30,7 @@
         _isPaused = false;
         _isInputEnabled = true;
         _isSprintEnabled = true;
+        _isHandlingPause = false;
     }
     
     return self;
@@ -66,7 +68,7 @@
     if (!_isInputEnabled) { return; }
     
     if (location.x > 400 && location.y > 270) {
-        [self pauseGame];
+        //[self pauseGame];
     } else if(!_isPaused) {
         
         HudButtonType result = [_hud testInput:location InputType:type];
@@ -127,24 +129,24 @@
 
 -(void)pauseGame
 {
-    /*
     //toggles. if paused, then unpause, and vice versa
     if (!_isPaused) {
+        _isHandlingPause = true;
         [_gameLayer onExit];
         _pauseMenu = [PauseMenuScreen instance];
         _pauseMenu.gameController = self;
         _isPaused = true;
         [[SoundEngine shared] playSound:@"pause"];
     } else {
+        _isHandlingPause = true;
         [[[LayerManager sharedLayers] currentScene] removeChild:_pauseMenu cleanup:YES];
         _isPaused = false;
         [_gameLayer onEnter];
-    }*/
+    }
 }
 
 -(void)dealloc
 {
-    //[_gameLayer release];
     _gameLayer = nil;
     [_pauseMenu release];
     _hud = nil;

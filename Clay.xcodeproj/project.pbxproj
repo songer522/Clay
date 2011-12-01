@@ -1097,6 +1097,10 @@
 		54133A0D143231AF00E433FC /* music */ = {
 			isa = PBXGroup;
 			children = (
+				54C71CFA1486BC2800A47565 /* underwater.mp3 */,
+				54C71CF31486BAC500A47565 /* credits.mp3 */,
+				54C71CF41486BAC500A47565 /* cutscene.mp3 */,
+				54C71CF51486BAC500A47565 /* rainy.mp3 */,
 				54507363147D733F0081D394 /* town.mp3 */,
 				54507364147D733F0081D394 /* track.mp3 */,
 				54767C4A147C07930025F46F /* fire.mp3 */,
@@ -1858,6 +1862,10 @@
 				549ED7AE1461D065008BCD98 /* Laser.m */,
 				549ED7AF1461D065008BCD98 /* LaserShow.h */,
 				549ED7B01461D065008BCD98 /* LaserShow.m */,
+				54C71D1F1486EED200A47565 /* Raindrop.h */,
+				54C71D201486EED200A47565 /* Raindrop.m */,
+				54C71D1C1486EA1800A47565 /* RainyLevelEffects.h */,
+				54C71D1D1486EA1800A47565 /* RainyLevelEffects.m */,
 			);
 			path = Effects;
 			sourceTree = "<group>";
@@ -1941,6 +1949,10 @@
 			children = (
 				549ED7DA1461D065008BCD98 /* PlayerAction.h */,
 				549ED7DB1461D065008BCD98 /* PlayerAction.m */,
+				545CE69B146C1AA9003EC9C1 /* PlayerActionBlock.h */,
+				545CE69C146C1AA9003EC9C1 /* PlayerActionBlock.m */,
+				54767C4F147C08660025F46F /* PlayerActionBlow.h */,
+				54767C50147C08660025F46F /* PlayerActionBlow.m */,
 				549ED7DC1461D065008BCD98 /* PlayerActionDodge.h */,
 				549ED7DD1461D065008BCD98 /* PlayerActionDodge.m */,
 				549ED7DE1461D065008BCD98 /* PlayerActionFactory.h */,
@@ -1949,12 +1961,12 @@
 				549ED7E11461D065008BCD98 /* PlayerActionKick.m */,
 				549ED7E41461D065008BCD98 /* PlayerActionShoot.h */,
 				549ED7E51461D065008BCD98 /* PlayerActionShoot.m */,
+				54C71CFF1486BF2D00A47565 /* PlayerActionSlowTime.h */,
+				54C71D001486BF2D00A47565 /* PlayerActionSlowTime.m */,
+				54C71CFC1486BF1C00A47565 /* PlayerActionSpin.h */,
+				54C71CFD1486BF1C00A47565 /* PlayerActionSpin.m */,
 				549ED7E61461D065008BCD98 /* PlayerActionWoo.h */,
 				549ED7E71461D065008BCD98 /* PlayerActionWoo.m */,
-				545CE69B146C1AA9003EC9C1 /* PlayerActionBlock.h */,
-				545CE69C146C1AA9003EC9C1 /* PlayerActionBlock.m */,
-				54767C4F147C08660025F46F /* PlayerActionBlow.h */,
-				54767C50147C08660025F46F /* PlayerActionBlow.m */,
 			);
 			path = PlayerActions;
 			sourceTree = "<group>";
@@ -1993,6 +2005,7 @@
 		549ED84A1461D144008BCD98 /* objects */ = {
 			isa = PBXGroup;
 			children = (
+				54C71D131486E64C00A47565 /* rainy */,
 				5406375A147C43DE00EA982B /* fire */,
 				54A3D6D0146C37F400BD081D /* shipBullet2_hd.png */,
 				54A3D6D1146C37F400BD081D /* shipBullet2.png */,
@@ -2102,13 +2115,22 @@
 			path = ../other;
 			sourceTree = "<group>";
 		};
+		54C71D131486E64C00A47565 /* rainy */ = {
+			isa = PBXGroup;
+			children = (
+				54C71D141486E64C00A47565 /* rainyLevel-hd.plist */,
+				54C71D151486E64C00A47565 /* rainyLevel-hd.png */,
+				54C71D161486E64C00A47565 /* rainyLevel.plist */,
+				54C71D171486E64C00A47565 /* rainyLevel.png */,
+			);
+			path = rainy;
+			sourceTree = "<group>";
+		};
 		54E3D55C146C4BAE00C28C9F /* tilesets */ = {
 			isa = PBXGroup;
 			children = (
 				61DE5CEA147DA5C700E8A892 /* TrackLapse_Icons-hd.png */,
 				61675C40147D9AA80076DA64 /* TrackLapse_Icons.png */,
-				61675C2A147D771F0076DA64 /* tileset_level_8-hd.png */,
-				61675C2B147D771F0076DA64 /* tileset_level_8.png */,
 				61A9E194147D63C0008D2179 /* dummyLevel_hd.tmx */,
 				61A9E195147D63C0008D2179 /* dummyLevel.tmx */,
 				54E3D538146C4BA800C28C9F /* meta-hd.png */,
@@ -2127,6 +2149,10 @@
 				54E3D545146C4BA800C28C9F /* tileset_level_6.png */,
 				54E3D546146C4BA800C28C9F /* tileset_level_7-hd.png */,
 				54E3D547146C4BA800C28C9F /* tileset_level_7.png */,
+				61675C2A147D771F0076DA64 /* tileset_level_8-hd.png */,
+				61675C2B147D771F0076DA64 /* tileset_level_8.png */,
+				54C71D0B1486DBE300A47565 /* tileset_level_9-hd.png */,
+				54C71D111486E06600A47565 /* tileset_level_9.png */,
 			);
 			name = tilesets;
 			sourceTree = "<group>";
@@ -2437,6 +2463,18 @@
 				61DE5BFD1485526800D325CF /* image1.png in Resources */,
 				61DE5BFE1485526800D325CF /* image2.png in Resources */,
 				61DE5BFF1485526800D325CF /* image3.png in Resources */,
+				54C71CF61486BAC500A47565 /* credits.mp3 in Resources */,
+				54C71CF71486BAC500A47565 /* cutscene.mp3 in Resources */,
+				54C71CF81486BAC500A47565 /* rainy.mp3 in Resources */,
+				54C71CFB1486BC2800A47565 /* underwater.mp3 in Resources */,
+				54C71D0C1486DBE300A47565 /* level9_hd.tmx in Resources */,
+				54C71D0D1486DBE300A47565 /* tileset_level_9-hd.png in Resources */,
+				54C71D101486DFAC00A47565 /* level9.tmx in Resources */,
+				54C71D121486E06600A47565 /* tileset_level_9.png in Resources */,
+				54C71D181486E64C00A47565 /* rainyLevel-hd.plist in Resources */,
+				54C71D191486E64C00A47565 /* rainyLevel-hd.png in Resources */,
+				54C71D1A1486E64C00A47565 /* rainyLevel.plist in Resources */,
+				54C71D1B1486E64C00A47565 /* rainyLevel.png in Resources */,
 				61A667B01487E33800FB0A80 /* townLevel-hd.plist in Resources */,
 				61A667B11487E33800FB0A80 /* townLevel-hd.png in Resources */,
 				61A667B21487E33800FB0A80 /* townLevel.plist in Resources */,
@@ -2639,6 +2677,10 @@
 				549E5DB614843CC6006D4CAE /* BestTimes.m in Sources */,
 				540E8065148547790079BFDA /* GameLabel.m in Sources */,
 				61DE5BF914853CCC00D325CF /* CCScrollLayer.m in Sources */,
+				54C71CFE1486BF1C00A47565 /* PlayerActionSpin.m in Sources */,
+				54C71D011486BF2D00A47565 /* PlayerActionSlowTime.m in Sources */,
+				54C71D1E1486EA1800A47565 /* RainyLevelEffects.m in Sources */,
+				54C71D211486EED300A47565 /* Raindrop.m in Sources */,
 				61DE5C051485869100D325CF /* Tutorial.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
