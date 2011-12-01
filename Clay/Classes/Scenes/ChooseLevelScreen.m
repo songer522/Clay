@@ -137,7 +137,7 @@
     CCSprite *image3=[CCSprite spriteWithFile:@"image3.png"];
     [image3 setPosition:ccp(240,160)];
     [pageThree addChild:image3];
-    _closeTutorial=[ActionButton buttonWithText:@"Done" AtPoint:ccp(430,18) inLayer:pageThree];
+    _closeTutorial=[ActionButton buttonWithText:@"Done" AtPoint:ccp(320,70) inLayer:pageThree];
     
     
  

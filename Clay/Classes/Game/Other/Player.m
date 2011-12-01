@@ -188,9 +188,7 @@
 
 -(void)endJump
 {
-    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
     
-    [[gameLayer getHud] setEnabled:true ForButton:HUD_BUTTON_JUMP];
     if (!_isTripping && _isInMidAir) {
         [_skin setPlayerAnimation:PLAYER_ANIM_FALLING ForSprite:_sprite];
     }
@@ -309,11 +307,14 @@
     [_speed reset];
     [_speed start];
     [_boss reset];
+    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+    
+    [[gameLayer getHud] setEnabled:true ForButton:HUD_BUTTON_JUMP];
     _isJumping = false;
     _isTripping = false;
     _isInMidAir = false;
     _hasDoubleJumped = false;
-    
+    [self resetSprint];
     _waitToGetUp = 0.0f;
     _timeLeftBeforeVulnerable = 2.0f;
     _isDead = false;
@@ -391,6 +392,13 @@
     _hitPoints = 4;
 }
 
+-(void)resetSprint
+{
+    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+    gameLayer.gameController.isSprintEnabled=true;
+    [[gameLayer getHud] setEnabled:true ForButton:HUD_BUTTON_SPRINT];
+}
+
 -(RunningSpeed*)getSpeed
 {
     return _speed;
@@ -446,6 +454,9 @@
         [[[gameLayer getHud] getSprintButton] updateOverlayImageByPercentage:cooldownPercent];
         
     }
+    
+   
+    
 
     [self updateJump:dt];
 

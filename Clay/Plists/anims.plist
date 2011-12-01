@@ -117,14 +117,14 @@
 		<key>looping</key>
 		<string>true</string>
 		<key>sequencePrefix</key>
-		<string>Town_Leafpile_</string>
+		<string>Env_Town_Leaf_</string>
 		<key>spritesheetPlist</key>
 		<string>townLevel</string>
 	</dict>
 	<key>townRollingHayAnim</key>
 	<dict>
 		<key>animationFrames</key>
-		<string>1,2,3,4,5,6,5,4,3,2</string>
+		<string>1,2,3,4,5,6,7,8,9,10,11,12</string>
 		<key>clearPreviousAnims</key>
 		<string>true</string>
 		<key>delay</key>
@@ -134,7 +134,7 @@
 		<key>looping</key>
 		<string>true</string>
 		<key>sequencePrefix</key>
-		<string>Town_Rolling_</string>
+		<string>Env_Town_CHay_</string>
 		<key>spritesheetPlist</key>
 		<string>townLevel</string>
 	</dict>
@@ -151,7 +151,7 @@
 		<key>looping</key>
 		<string>true</string>
 		<key>sequencePrefix</key>
-		<string>Town_Haybale_</string>
+		<string>Env_Town_Haybale_</string>
 		<key>spritesheetPlist</key>
 		<string>townLevel</string>
 	</dict>
@@ -168,7 +168,7 @@
 		<key>looping</key>
 		<string>true</string>
 		<key>sequencePrefix</key>
-		<string>Town_Small_Haybale_</string>
+		<string>Env_Town_SmallHaybale_</string>
 		<key>spritesheetPlist</key>
 		<string>townLevel</string>
 	</dict>

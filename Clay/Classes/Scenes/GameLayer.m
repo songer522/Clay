@@ -110,6 +110,7 @@
 -(void)startLevel:(NSString*)levelName
 {    
     [[LevelManager shared] reset];
+   
     [[LevelManager shared] loadLevelNamed:levelName];
     [self initForLevel];
     Level *levelObj = [[LevelManager shared] currentLevel];
@@ -254,6 +255,7 @@
                 [_level disablePassedTrigger];
                 [[SoundEngine shared] playSound:@"checkpoint"];
                 [_player rechargeBattery];
+                [_player resetSprint];
                 break;
             case TRIGGER_BOSS_SHOOT:
                 [_boss triggerAttack];
@@ -276,6 +278,9 @@
 
 -(void)setBoss:(Boss*)boss
 {
+    
+   
+
     _boss = boss;
 }
 

@@ -102,9 +102,7 @@
                     [_gameLayer.player endTurbo];
                 }
                 }
-                else {
-                    
-                }
+                
                 break;
             case HUD_BUTTON_ACTION:
                 [_gameLayer.player startThirdAction];

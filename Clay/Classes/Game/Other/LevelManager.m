@@ -175,7 +175,7 @@ static LevelManager *_shared = nil;
 -(void)reset
 {
     _currentLevel = nil;
-    
+
     //did this because some string values are not sticking around after going restarting the game a few times
     if (_levelSettings!=nil) {
         //[_levelSettings release]; can't do because something is deallocating it
