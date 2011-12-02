@@ -162,6 +162,9 @@
 		5450737A147DE8020081D394 /* Part8_AfterLv7.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 54507379147DE8020081D394 /* Part8_AfterLv7.mp4 */; };
 		5450737D147DEE7C0081D394 /* jimShipCharge.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5450737C147DEE7C0081D394 /* jimShipCharge.wav */; };
 		54528C07145B466B009437C3 /* clearedObstacle.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54528C06145B466B009437C3 /* clearedObstacle.wav */; };
+		545392EA1489700200B7DB47 /* wind2_long.wav in Resources */ = {isa = PBXBuildFile; fileRef = 545392E41489700200B7DB47 /* wind2_long.wav */; };
+		545392EB1489700200B7DB47 /* wind2_medium.wav in Resources */ = {isa = PBXBuildFile; fileRef = 545392E51489700200B7DB47 /* wind2_medium.wav */; };
+		545392EC1489700200B7DB47 /* wind2_short.wav in Resources */ = {isa = PBXBuildFile; fileRef = 545392E61489700200B7DB47 /* wind2_short.wav */; };
 		545CE69D146C1AA9003EC9C1 /* PlayerActionBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 545CE69C146C1AA9003EC9C1 /* PlayerActionBlock.m */; };
 		545CE6A0146C1E0C003EC9C1 /* JimShipShoot.wav in Resources */ = {isa = PBXBuildFile; fileRef = 545CE69E146C1E0C003EC9C1 /* JimShipShoot.wav */; };
 		545CE6A1146C1E0C003EC9C1 /* Shield.wav in Resources */ = {isa = PBXBuildFile; fileRef = 545CE69F146C1E0C003EC9C1 /* Shield.wav */; };
@@ -721,6 +724,9 @@
 		54507379147DE8020081D394 /* Part8_AfterLv7.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = Part8_AfterLv7.mp4; path = Resources/videos/Part8_AfterLv7.mp4; sourceTree = "<group>"; };
 		5450737C147DEE7C0081D394 /* jimShipCharge.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = jimShipCharge.wav; path = Resources/sounds/jimShipCharge.wav; sourceTree = "<group>"; };
 		54528C06145B466B009437C3 /* clearedObstacle.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = clearedObstacle.wav; path = Resources/sounds/clearedObstacle.wav; sourceTree = "<group>"; };
+		545392E41489700200B7DB47 /* wind2_long.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = wind2_long.wav; path = Resources/sounds/wind2_long.wav; sourceTree = "<group>"; };
+		545392E51489700200B7DB47 /* wind2_medium.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = wind2_medium.wav; path = Resources/sounds/wind2_medium.wav; sourceTree = "<group>"; };
+		545392E61489700200B7DB47 /* wind2_short.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = wind2_short.wav; path = Resources/sounds/wind2_short.wav; sourceTree = "<group>"; };
 		545CE69B146C1AA9003EC9C1 /* PlayerActionBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerActionBlock.h; sourceTree = "<group>"; };
 		545CE69C146C1AA9003EC9C1 /* PlayerActionBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerActionBlock.m; sourceTree = "<group>"; };
 		545CE69E146C1E0C003EC9C1 /* JimShipShoot.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = JimShipShoot.wav; path = Resources/sounds/JimShipShoot.wav; sourceTree = "<group>"; };
@@ -1625,6 +1631,9 @@
 		545CBC2F142D25AB00795FC9 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				545392E41489700200B7DB47 /* wind2_long.wav */,
+				545392E51489700200B7DB47 /* wind2_medium.wav */,
+				545392E61489700200B7DB47 /* wind2_short.wav */,
 				5499541D1488671400E61078 /* frogSquish1.mp3 */,
 				5499541E1488671400E61078 /* frogSquish2.mp3 */,
 				5499541F1488671400E61078 /* lightning.mp3 */,

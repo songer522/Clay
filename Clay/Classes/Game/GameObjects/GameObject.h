@@ -55,6 +55,7 @@ typedef enum {
     float _fallVelocity;
     float _direction;
     float _reloading;
+    float _magnitude;
     bool _madeSound;
     bool _isInvincible;
     bool _fadeout;
@@ -104,6 +105,7 @@ typedef enum {
 @property(nonatomic,assign) bool isInvincible;
 @property(nonatomic,assign) bool rotateLights;
 @property(nonatomic,assign) bool beatsPlayerAction;
+@property(nonatomic,assign) float magnitude;
 
 
 #pragma mark - initialization

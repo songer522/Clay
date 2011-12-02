@@ -45,6 +45,7 @@
         _lightning = [Lightning instance];
         
         _player = [[LayerManager sharedLayers] getPlayer];
+        
     }
     
     return self;
@@ -100,12 +101,15 @@
     switch (duration) {
         case TRIGGER_WIND_SHORT:
             _windDuration = 1.0f;
+            [[SoundEngine shared] playSound:@"windShort"];
             break;
         case TRIGGER_WIND_MEDIUM:
             _windDuration = 2.0f;
+            [[SoundEngine shared] playSound:@"windMedium"];
             break;
         case TRIGGER_WIND_LONG:
             _windDuration = 4.0f;
+            [[SoundEngine shared] playSound:@"windLong"];
             break;
         default:
             break;
@@ -124,6 +128,16 @@
             [[AnimationController sharedController] replaceSprite:tree.sprite withAnimationNamed:@"rainyTreeBWindAnim"];             
         }
     }
+    
+    //speed up umbrellas
+    NSMutableArray *mapObjects = [[LevelManager shared] currentLevel].obstacleSprites;
+    for(MapObject *mapObject in mapObjects) {
+        GameObject *obstacle = mapObject.object; 
+        if (obstacle.CurrentBehavior == COLLISION_BEHAVIOR_UMBRELLA_FLY_ACROSS || obstacle.CurrentBehavior == COLLISION_BEHAVIOR_UMBRELLA_FLY_UP) {
+            obstacle.magnitude = 350.0f;
+        }
+    }
+
 }
 
 -(void)endWindEffect
@@ -138,6 +152,15 @@
             [[AnimationController sharedController] replaceSprite:tree.sprite withAnimationNamed:@"rainyTreeAIdleAnim"];
         } else if(tree.CurrentBehavior == COLLISION_BEHAVIOR_RAINY_TREE_B) {
             [[AnimationController sharedController] replaceSprite:tree.sprite withAnimationNamed:@"rainyTreeBIdleAnim"];             
+        }
+    }
+
+    //slow down umbrellas again
+    NSMutableArray *mapObjects = [[LevelManager shared] currentLevel].obstacleSprites;
+    for(MapObject *mapObject in mapObjects) {
+        GameObject *obstacle = mapObject.object; 
+        if (obstacle.CurrentBehavior == COLLISION_BEHAVIOR_UMBRELLA_FLY_ACROSS || obstacle.CurrentBehavior == COLLISION_BEHAVIOR_UMBRELLA_FLY_UP) {
+            obstacle.magnitude = 200.0f;
         }
     }
 }

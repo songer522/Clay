@@ -22,7 +22,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{0, 284}, {88, 138}}</string>
+			<string>{{191, 0}, {88, 138}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -66,7 +66,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{334, 281}, {78, 138}}</string>
+			<string>{{236, 281}, {78, 138}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -88,7 +88,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{182, 140}, {78, 138}}</string>
+			<string>{{212, 140}, {78, 138}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -110,78 +110,12 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{414, 281}, {76, 138}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>Retro_Running_10.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{18, 6}, {78, 138}}</string>
-			<key>spriteOffset</key>
-			<string>{0, -0}</string>
-			<key>spriteSize</key>
-			<string>{78, 138}</string>
-			<key>spriteSourceSize</key>
-			<string>{114, 150}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{343, 140}, {78, 138}}</string>
+			<string>{{80, 373}, {76, 138}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
 		<key>Retro_Running_2.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{21, 6}, {76, 138}}</string>
-			<key>spriteOffset</key>
-			<string>{2, -0}</string>
-			<key>spriteSize</key>
-			<string>{76, 138}</string>
-			<key>spriteSourceSize</key>
-			<string>{114, 150}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{352, 0}, {76, 138}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>Retro_Running_3.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{21, 6}, {76, 136}}</string>
-			<key>spriteOffset</key>
-			<string>{2, 1}</string>
-			<key>spriteSize</key>
-			<string>{76, 136}</string>
-			<key>spriteSourceSize</key>
-			<string>{114, 150}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{659, 275}, {76, 136}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>Retro_Running_4.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -198,34 +132,12 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{507, 0}, {84, 136}}</string>
+			<string>{{316, 278}, {84, 136}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
-		<key>Retro_Running_5.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{18, 6}, {78, 136}}</string>
-			<key>spriteOffset</key>
-			<string>{0, 1}</string>
-			<key>spriteSize</key>
-			<string>{78, 136}</string>
-			<key>spriteSourceSize</key>
-			<string>{114, 150}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{578, 278}, {78, 136}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>Retro_Running_6.png</key>
+		<key>Retro_Running_3.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -242,56 +154,12 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{423, 140}, {76, 138}}</string>
+			<string>{{158, 373}, {76, 138}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
-		<key>Retro_Running_7.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{21, 6}, {76, 138}}</string>
-			<key>spriteOffset</key>
-			<string>{2, -0}</string>
-			<key>spriteSize</key>
-			<string>{76, 138}</string>
-			<key>spriteSourceSize</key>
-			<string>{114, 150}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{429, 0}, {76, 138}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>Retro_Running_8.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{15, 6}, {82, 138}}</string>
-			<key>spriteOffset</key>
-			<string>{-1, -0}</string>
-			<key>spriteSize</key>
-			<string>{82, 138}</string>
-			<key>spriteSourceSize</key>
-			<string>{114, 150}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{98, 140}, {82, 138}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>Retro_Running_9.png</key>
+		<key>Retro_Running_4.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -308,7 +176,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{0, 143}, {96, 138}}</string>
+			<string>{{113, 140}, {96, 138}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -330,7 +198,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{492, 281}, {87, 136}}</string>
+			<string>{{292, 140}, {87, 136}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -352,7 +220,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{674, 0}, {107, 118}}</string>
+			<string>{{0, 248}, {107, 118}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -374,7 +242,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{173, 421}, {127, 92}}</string>
+			<string>{{107, 281}, {127, 92}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -396,7 +264,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{781, 0}, {113, 104}}</string>
+			<string>{{0, 143}, {113, 104}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -418,7 +286,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{668, 137}, {81, 126}}</string>
+			<string>{{379, 137}, {81, 126}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -440,78 +308,12 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{271, 0}, {78, 138}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>Retro_Turbo_10.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{18, 6}, {78, 138}}</string>
-			<key>spriteOffset</key>
-			<string>{0, -0}</string>
-			<key>spriteSize</key>
-			<string>{78, 138}</string>
-			<key>spriteSourceSize</key>
-			<string>{114, 150}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{173, 281}, {78, 138}}</string>
+			<string>{{0, 367}, {78, 138}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
 		<key>Retro_Turbo_2.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{18, 6}, {78, 138}}</string>
-			<key>spriteOffset</key>
-			<string>{0, -0}</string>
-			<key>spriteSize</key>
-			<string>{78, 138}</string>
-			<key>spriteSourceSize</key>
-			<string>{114, 150}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{262, 140}, {78, 138}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>Retro_Turbo_3.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{18, 6}, {78, 136}}</string>
-			<key>spriteOffset</key>
-			<string>{0, 1}</string>
-			<key>spriteSize</key>
-			<string>{78, 136}</string>
-			<key>spriteSourceSize</key>
-			<string>{114, 150}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{593, 0}, {78, 136}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>Retro_Turbo_4.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -528,34 +330,12 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{501, 140}, {84, 136}}</string>
+			<string>{{361, 0}, {84, 136}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
-		<key>Retro_Turbo_5.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{18, 6}, {78, 136}}</string>
-			<key>spriteOffset</key>
-			<string>{0, 1}</string>
-			<key>spriteSize</key>
-			<string>{78, 136}</string>
-			<key>spriteSourceSize</key>
-			<string>{114, 150}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{587, 137}, {78, 136}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>Retro_Turbo_6.png</key>
+		<key>Retro_Turbo_3.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -572,56 +352,12 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{253, 281}, {78, 138}}</string>
+			<string>{{280, 0}, {78, 138}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
-		<key>Retro_Turbo_7.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{18, 6}, {78, 138}}</string>
-			<key>spriteOffset</key>
-			<string>{0, -0}</string>
-			<key>spriteSize</key>
-			<string>{78, 138}</string>
-			<key>spriteSourceSize</key>
-			<string>{114, 150}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{191, 0}, {78, 138}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>Retro_Turbo_8.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{15, 6}, {82, 138}}</string>
-			<key>spriteOffset</key>
-			<string>{-1, -0}</string>
-			<key>spriteSize</key>
-			<string>{82, 138}</string>
-			<key>spriteSourceSize</key>
-			<string>{114, 150}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{89, 284}, {82, 138}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>Retro_Turbo_9.png</key>
+		<key>Retro_Turbo_4.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -651,7 +387,7 @@
 		<key>format</key>
 		<integer>3</integer>
 		<key>size</key>
-		<string>{1024, 512}</string>
+		<string>{512, 512}</string>
 		<key>name</key>
 		<string>eightBitTim.zwd</string>
 		<key>premultipliedAlpha</key>
