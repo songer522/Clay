@@ -161,22 +161,18 @@
     <property name="special" value="wind"/>
    </properties>
   </tile>
+  <tile id="69">
+   <properties>
+    <property name="obstacle" value="rainyUmbrellaFlyAcross"/>
+   </properties>
+  </tile>
  </tileset>
  <tileset firstgid="83" name="Level9_TiledSheet-hd" tilewidth="64" tileheight="64">
   <image source="tileset_level_9-hd.png" width="1024" height="1024"/>
  </tileset>
- <layer name="back-2" width="1000" height="14">
-  <properties>
-   <property name="speedx" value="0.0"/>
-   <property name="speedy" value="1.0"/>
-  </properties>
-  <data encoding="base64" compression="zlib">
-   eJztw1ERQFAABMDXUQQRRBBBBBFEEEEEERTQwd2X2Z3ZaYwxfQwAAAB0zEEAAACgYwkCAAAAHWsQAAAA6NiCAAAAQMceBAAAADqOIAAAANBxBgEAAICOKwgAAAB03EEAAACg4wkCAAAAAAAAAAAAAAAAAADwHy/pOmkQ
-  </data>
- </layer>
  <layer name="back-1" width="1000" height="14">
   <properties>
-   <property name="speedx" value="0.5"/>
+   <property name="speedx" value="0.1"/>
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
@@ -198,7 +194,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztzbcNQzEQRMHffytyBcgVIFeAXCvakAkBBhcI4AzwosPilgUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACg1iqt0yZt065g0957jf4CAACAGezTIR3TKZ0LNu291+gvAAAAmMElXdMt3dOjYNPee43+AgAAgBk80yu90yd9CzbtvdfoLwAAAAAAAAAAAAAA/tsPVThApQ==
+   eJztzjENAAAIA7D5t4JJRIyEp1XQBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAODWfAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEoLTZkArA==
   </data>
  </layer>
  <layer name="front-1" width="1000" height="14">
@@ -216,7 +212,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztz8sRgCAMBUAqcGxKvdh/PTYgo4AQdXaPkM9LSgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQI0l87429tfMytWX9p/pkfOulrm9MgEAAPBu+8X/NiRFuehcT+wfcUOvHV+5n3JzdAAAAPiRKToAAAAAAAAAAAQ4AK32BRU=
+   eJzt0LENgDAMBMBMwFaEBhr2H4Y2ogHkKBbKXWv59XYpAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAbNbsAj9UswsAAAAwzDZo527vkPHFGdh9ujc6f+PokNGK/AMAAGAGS3YBAAAAAAAAAEhwAcbOAzo=
   </data>
  </layer>
  <layer name="meta" width="1000" height="14" opacity="0.67">
@@ -225,7 +221,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1jsKACAMRMFY5P5XtrUU/AWcgVduvxEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAJObRrkxMBAAAAAAAAwKomSR8EAADVvf7MknQjAACorgOnJgLC
+   eJztzsEJAEAIBLG1/6YPX5bggQnMfxIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGCVJkiRJklbLBw+SJEmSJF2vPfPeB88=
   </data>
  </layer>
 </map>
