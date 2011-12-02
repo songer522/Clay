@@ -218,6 +218,9 @@
 		5491677B14643E3900DFA191 /* computerLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5491677714643E3900DFA191 /* computerLevel.plist */; };
 		5491677C14643E3900DFA191 /* computerLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 5491677814643E3900DFA191 /* computerLevel.png */; };
 		549167851464521B00DFA191 /* zombies.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 549167841464521B00DFA191 /* zombies.mp3 */; };
+		549954201488671400E61078 /* frogSquish1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5499541D1488671400E61078 /* frogSquish1.mp3 */; };
+		549954211488671400E61078 /* frogSquish2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5499541E1488671400E61078 /* frogSquish2.mp3 */; };
+		549954221488671400E61078 /* lightning.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5499541F1488671400E61078 /* lightning.mp3 */; };
 		549AFF7F1459FF060097BE33 /* city.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 549AFF7D1459FF060097BE33 /* city.mp3 */; };
 		549AFF801459FF060097BE33 /* title.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 549AFF7E1459FF060097BE33 /* title.mp3 */; };
 		549AFF86145A11A70097BE33 /* UI_Button_GreenLight.png in Resources */ = {isa = PBXBuildFile; fileRef = 549AFF85145A11A70097BE33 /* UI_Button_GreenLight.png */; };
@@ -778,6 +781,9 @@
 		5491677714643E3900DFA191 /* computerLevel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = computerLevel.plist; sourceTree = "<group>"; };
 		5491677814643E3900DFA191 /* computerLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = computerLevel.png; sourceTree = "<group>"; };
 		549167841464521B00DFA191 /* zombies.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = zombies.mp3; path = Resources/music/zombies.mp3; sourceTree = "<group>"; };
+		5499541D1488671400E61078 /* frogSquish1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = frogSquish1.mp3; path = Resources/sounds/frogSquish1.mp3; sourceTree = "<group>"; };
+		5499541E1488671400E61078 /* frogSquish2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = frogSquish2.mp3; path = Resources/sounds/frogSquish2.mp3; sourceTree = "<group>"; };
+		5499541F1488671400E61078 /* lightning.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = lightning.mp3; path = Resources/sounds/lightning.mp3; sourceTree = "<group>"; };
 		549AFF7D1459FF060097BE33 /* city.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = city.mp3; path = Resources/music/city.mp3; sourceTree = "<group>"; };
 		549AFF7E1459FF060097BE33 /* title.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = title.mp3; path = Resources/music/title.mp3; sourceTree = "<group>"; };
 		549AFF85145A11A70097BE33 /* UI_Button_GreenLight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UI_Button_GreenLight.png; sourceTree = "<group>"; };
@@ -1619,6 +1625,9 @@
 		545CBC2F142D25AB00795FC9 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				5499541D1488671400E61078 /* frogSquish1.mp3 */,
+				5499541E1488671400E61078 /* frogSquish2.mp3 */,
+				5499541F1488671400E61078 /* lightning.mp3 */,
 				5450737C147DEE7C0081D394 /* jimShipCharge.wav */,
 				61DE5CDE147DA21400E8A892 /* fireballLand.wav */,
 				54507367147D91FD0081D394 /* fireballLand.wav */,

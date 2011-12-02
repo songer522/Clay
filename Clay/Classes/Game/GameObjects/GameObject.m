@@ -216,6 +216,11 @@
     } else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR || _currentBehavior ==  COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR_WAITTOSHOOT) {
         _alpha = 1.2f;
         _fadeout = true;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_FROG_SQUASH) {
+        [self.sprite setAnimationByName:@"rainyFrogSquashAnim"];
+        [[SoundEngine shared] playSound:@"frogSquish"];
+        _alpha = 1.2f;
+        _fadeout = true;
     }
     
     return _playerEffect;
@@ -589,6 +594,9 @@
     } else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR_WAITTOSHOOT || _currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR) {
         _currentBehavior = COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR_WAITTOSHOOT;
         [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"fireDemonWithArmorWalking"];
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_FROG_SQUASH) {
+        _currentBehavior = COLLISION_BEHAVIOR_STATIC;
+        [self.sprite setAnimationByName:@"rainyFrogIdleAnim"];
     } else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;     
 }         _collided = false;
@@ -659,6 +667,9 @@
     } else if([behavior isEqualToString:@"fireball"]) {
         _collideBehavior = COLLISION_BEHAVIOR_FIREBALL_MOVING;
         _currentBehavior = COLLISION_BEHAVIOR_FIREBALL_START;
+    } else if([behavior isEqualToString:@"frogSquash"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_FROG_SQUASH;
+        _currentBehavior = COLLISION_BEHAVIOR_STATIC;
     }
 
     

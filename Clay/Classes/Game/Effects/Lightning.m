@@ -11,6 +11,7 @@
 #import "Animation.h"
 #import "AnimationController.h"
 #import "Camera.h"
+#import "SoundEngine.h"
 
 @implementation Lightning
 
@@ -63,7 +64,18 @@
 
 -(void)startStrike
 {
-    [_sprite setAnimationByName:@"rainyLightning1Anim"];
+    [[SoundEngine shared] playSound:@"lightning"];
+    
+    int lightningAnim = rand()%3;
+    
+    if (lightningAnim == 0) {
+        [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"rainyLightning1Anim"];
+    } else if(lightningAnim == 1) {
+        [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"rainyLightning2Anim"];
+    } else if(lightningAnim == 2) {
+        [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"rainyLightning3Anim"];
+    }
+    
     [self repositionSprite];
     [_sprite setAlpha:1.0f];
     [[_sprite getCCSprite] setVisible:YES];
@@ -74,14 +86,13 @@
 -(void)endStrike
 {
     [[_sprite getCCSprite] setVisible:NO];
-    _waitUntilNewStrike = 8.0f + rand()%8;
+    _waitUntilNewStrike = 6.0f + rand()%6;
 }
 
 -(void)repositionSprite
 {
     //IPAD FIX: should be positioned at a random position on the track in front of Tim with enough of a gap that the raindrop disappears before it reaches Tim's position most of the time.
-    
-    [_sprite setScreenPosition:ccp(50 + rand()%400, 200)];
+    [_sprite setScreenPosition:ccp(50 + rand()%330, 193)];
     
     
 }

@@ -128,22 +128,18 @@
     <property name="object" value="rainyTreeB"/>
    </properties>
   </tile>
+  <tile id="58">
+   <properties>
+    <property name="obstacle" value="rainyFrog"/>
+   </properties>
+  </tile>
  </tileset>
  <tileset firstgid="83" name="Level9_TiledSheet-hd" tilewidth="64" tileheight="64">
   <image source="tileset_level_9-hd.png" width="1024" height="1024"/>
  </tileset>
- <layer name="back-2" width="1000" height="14">
-  <properties>
-   <property name="speedx" value="0.0"/>
-   <property name="speedy" value="1.0"/>
-  </properties>
-  <data encoding="base64" compression="zlib">
-   eJztw1ERQFAABMDXUQQRRBBBBBFEEEEEERTQwd2X2Z3ZaYwxfQwAAAB0zEEAAACgYwkCAAAAHWsQAAAA6NiCAAAAQMceBAAAADqOIAAAANBxBgEAAICOKwgAAAB03EEAAACg4wkCAAAAAAAAAAAAAAAAAADwHy/pOmkQ
-  </data>
- </layer>
  <layer name="back-1" width="1000" height="14">
   <properties>
-   <property name="speedx" value="0.5"/>
+   <property name="speedx" value="0.1"/>
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
@@ -183,7 +179,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztzssJACEMQEErWGxq92T/9djACn6QiMwcQxJeSgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwIy3Mf8W72d+tfZH7//s6Oy18ndXEwAAAGcr0QHAUXJ0AAAAXOSJDgAAAAAAAACAABXrSgMk
+   eJztzsENgCAQBEAqMDalfuy/Hj++jIhAyBkz8yHA3WZTAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWiyZ97VzvyUrN1+7f2dEz7d6ckd1AgAA4Lu26AIF+3k+9bz+1d5Leb1zrfMQZY4uAAAAPzJFFwAAAAAAAACAAAcNQwWj
   </data>
  </layer>
  <layer name="meta" width="1000" height="14" opacity="0.67">

@@ -117,7 +117,7 @@
 		<key>animations</key>
 		<string>level9,woo</string>
 		<key>sounds</key>
-		<string>wooAction</string>
+		<string>wooAction,frogSquish,lightning</string>
 		<key>textures</key>
 		<string>rainyLevel,characterWoo</string>
 	</dict>

@@ -51,15 +51,14 @@ static Camera *_sharedCamera = nil;
     //boundary is actually one tile above the bottom of the screen, or (64 pixels/32 points) normally. may require an #IPADFIX.
     rect.origin.y = 32;
     
-    //restrict the camera in level 8
+    //restrict the camera in certain levels
     NSString *levelName = level.name;
     if ([levelName isEqualToString:@"level6"]) {
         rect.size.height = 352;
-    }
-
-    
-    if ([levelName isEqualToString:@"level8"]) {
+    } else if ([levelName isEqualToString:@"level8"]) {
         rect.size.height = 330;
+    } else if([levelName isEqualToString:@"level9"]) {
+        rect.size.height = 352;
     }
     
     _boundary = rect;
