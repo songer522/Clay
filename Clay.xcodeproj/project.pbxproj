@@ -2542,6 +2542,7 @@
 				549954201488671400E61078 /* frogSquish1.mp3 in Resources */,
 				549954211488671400E61078 /* frogSquish2.mp3 in Resources */,
 				549954221488671400E61078 /* lightning.mp3 in Resources */,
+				61DC60841489264100F65B78 /* level5_hd.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

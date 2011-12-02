@@ -626,6 +626,10 @@
         _currentBehavior = COLLISION_BEHAVIOR_UMBRELLA_FLY_UP;
     } else if(_currentBehavior == COLLISION_BEHAVIOR_UMBRELLA_FLY_ACROSS) {
         _currentBehavior = COLLISION_BEHAVIOR_UMBRELLA_FLY_ACROSS;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_RAINY_TREE_A) {
+        _currentBehavior = COLLISION_BEHAVIOR_RAINY_TREE_A;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_RAINY_TREE_B) {
+        _currentBehavior = COLLISION_BEHAVIOR_RAINY_TREE_B;
     } else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;     
 }         _collided = false;
@@ -705,6 +709,12 @@
     } else if([behavior isEqualToString:@"umbrellaFlyAcross"]) {
         _collideBehavior = COLLISION_BEHAVIOR_UMBRELLA_FLY_ACROSS;
         _currentBehavior = COLLISION_BEHAVIOR_UMBRELLA_FLY_ACROSS;
+    } else if([behavior isEqualToString:@"rainyTreeA"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_RAINY_TREE_A;
+        _currentBehavior = COLLISION_BEHAVIOR_RAINY_TREE_A;
+    } else if([behavior isEqualToString:@"rainyTreeB"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_RAINY_TREE_B;
+        _currentBehavior = COLLISION_BEHAVIOR_RAINY_TREE_B;
     }
 
     

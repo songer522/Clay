@@ -611,6 +611,11 @@
     return [_obstacleManager getActiveGameObjectList];
 }
 
+-(NSMutableArray*)getBackgroundObjectsList
+{
+    return _otherMapObjects;
+}
+
 -(void)update:(float)dt Velocity:(float)vx
 {
     [self setPositionAtX:_x Y:_y];

@@ -37,6 +37,7 @@
 @synthesize isDead = _isDead;
 @synthesize isTripping = _isTripping;
 @synthesize hasDoubleJumped = _hasDoubleJumped;
+@synthesize isWindy = _isWindy;
 @synthesize battery = _battery;
 
 
@@ -84,6 +85,7 @@
         
         _isHighJump = false;
         
+        _isWindy = false;
         _waitToPlaySlowSound = 0.0f;
         _soundFalling = false;
         _adjustX = 0.0f;
@@ -692,7 +694,9 @@
 
 -(void)updateSlow:(float)dt
 {
-    if (_speed.isSlowedDown && !_isTripping) {
+    //play the sound effect for walking in sand pit if slowed down (unless it's the wind level) and it's the wind
+    //slowing tim down
+    if (_speed.isSlowedDown && !_isTripping && !_isWindy) {
         _waitToPlaySlowSound -= dt;
         if (_waitToPlaySlowSound<=0.0f) {
             [[SoundEngine shared] playSound:@"steppedInSand"];

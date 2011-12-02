@@ -167,9 +167,9 @@ static LevelManager *_shared = nil;
     [[BestTimes shared] reportTime:time forLevel:levelName forDifficulty:difficulty];
 }
 
--(NSMutableArray*)getObstacleArray
+-(NSMutableArray*)getActiveGameObjectList
 {
-    return _currentLevel.obstacleSprites;
+    return [_currentLevel getActiveGameObjectList];
 }
 
 -(void)reset

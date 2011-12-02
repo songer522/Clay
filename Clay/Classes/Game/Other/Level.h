@@ -119,5 +119,6 @@
 -(void)setPositionAtX:(float)x Y:(float)y;
 
 -(NSMutableArray*)getActiveGameObjectList;
+-(NSMutableArray*)getBackgroundObjectsList;
 
 @end

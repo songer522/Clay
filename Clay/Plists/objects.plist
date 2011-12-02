@@ -1322,7 +1322,7 @@
 			<integer>1</integer>
 		</dict>
 		<key>collideBehavior</key>
-		<string>none</string>
+		<string>rainyTreeA</string>
 		<key>imageName</key>
 		<string>blank.png</string>
 		<key>offsetx</key>
@@ -1357,7 +1357,7 @@
 			<integer>1</integer>
 		</dict>
 		<key>collideBehavior</key>
-		<string>none</string>
+		<string>rainyTreeB</string>
 		<key>imageName</key>
 		<string>blank.png</string>
 		<key>offsetx</key>

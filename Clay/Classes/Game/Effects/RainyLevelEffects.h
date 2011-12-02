@@ -11,6 +11,7 @@
 
 @class Sprite;
 @class Lightning;
+@class Player;
 
 @interface RainyLevelEffects : NSObject
 {
@@ -21,6 +22,8 @@
     Lightning *_lightning;
     
     float _windDuration;
+    
+    Player *_player; //weak reference
 }
 
 +(id)instance;
