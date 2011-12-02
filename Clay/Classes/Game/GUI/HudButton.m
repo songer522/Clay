@@ -32,9 +32,8 @@
 
 -(id) initWithType:(HudButtonType)type Action:(NSString*)action
 {
-    if((self=[super init])){
-        
-        
+    if((self=[super init]))
+    {
         if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
         {
             _scale = 2.0f;
@@ -84,7 +83,6 @@
 -(void)createSpriteFromImage:(NSString*)image
 {
     _graphic = [Sprite spriteFromFrameCacheWithName:image];
-    //_graphic = [Sprite spriteWithFile:image];
     [[_graphic getCCSprite] setOpacity:BUTTON_OPACITY];
     [[_graphic getCCSprite] setScale:[[UIScreen mainScreen] scale] / _scale];
    
@@ -94,8 +92,6 @@
     [[_greenOverlay getCCSprite] setAnchorPoint:ccp(0.5f, 0.5f)];
     [[_greenOverlay getCCSprite] setOpacity:BUTTON_OPACITY];
     [[_greenOverlay getCCSprite] setScale:[[UIScreen mainScreen] scale] / _scale];
-   
-
 
 }
 
@@ -152,9 +148,6 @@
      {
         [[_graphic getCCSprite] setOpacity:BUTTON_OPACITY];
         [[_graphic getCCSprite] setScale:BUTTON_SCALE * [[UIScreen mainScreen] scale] / _scale]; 
-          
-          
-         
      }
     [[_greenOverlay getCCSprite] setOpacity:BUTTON_OPACITY];
     [[_greenOverlay getCCSprite] setScale:BUTTON_SCALE * [[UIScreen mainScreen] scale] / _scale];
@@ -174,13 +167,12 @@
 {
    
     [[_graphic getCCSprite] setOpacity:opacity];
-    //[[_greenOverlay getCCSprite] setOpacity:opacity];
     
 }
 -(void)setButtonScale:(float)scale
 {
     [[_graphic getCCSprite] setScale:scale];
-     [[_greenOverlay getCCSprite] setScale:scale];
+    [[_greenOverlay getCCSprite] setScale:scale];
 }
 
 -(void)updateOverlayImageByPercentage:(float)percent

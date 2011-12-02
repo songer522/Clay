@@ -621,8 +621,11 @@
     //    [object update:dt];
     //}
     
-    for (MapObject *objects in _otherMapObjects) {
-        [objects.object update:dt];
+    for (MapObject *object in _otherMapObjects) {
+        [object.object update:dt];
+        //TODO: should be calling setposition. this is resulting in 
+        //background objects not moving in parallax.
+        //[object setPosition:CGPointMake(_x, _y)];
     }
 }
 

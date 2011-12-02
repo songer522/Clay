@@ -13,6 +13,7 @@
 #import "AnimationController.h"
 #import "LevelManager.h"
 #import "Player.h"
+#import "Lightning.h"
 
 @implementation RainyLevelEffects
 
@@ -38,6 +39,7 @@
         [_rainBehindTim setAnimationByName:@"rainyBehindTimAnim"];
         [[_rainBehindTim getCCSprite] setAnchorPoint:ccp(0.5f,0)];
         
+        _lightning = [Lightning instance];
     }
     
     return self;
@@ -59,6 +61,8 @@
     for (Raindrop *raindrop in _raindrops) {
         [raindrop update:dt];
     }
+    
+    [_lightning update:dt];
 }
 
 -(void)dealloc
