@@ -80,6 +80,7 @@
         _isInMidAir = false;
         _direction = 1;
         _isInvincible = false;
+        _stopCurve=false;
         _projectile = nil;
         _reloading = 0;
         _aggressiveCanHit = false;
@@ -506,19 +507,24 @@
         _vx = 0.0f;
         if ([self closeToPlayer:275]) {
             _angle-=200.0f*dt;
-            if(_angle>100.0f) {
-                _angle = 100.0f;
+            if(_angle < -230.0f) {
+                _angle = - 230.0f;
+                _stopCurve=true;
+               _vx = -1 * _magnitude;
             }
             //[_sprite getCCSprite].rotation = -30.0f + ((_angle + 180.0f) / (2.66667f));
-            _vx = _magnitude * cosf((_angle * 3.14159)/180.0f);
-            _vy = _magnitude * sinf((_angle * 3.14159)/180.0f);
+            if(!_stopCurve)
+            {
+                _vx = _magnitude * cosf((_angle * 3.14159)/180.0f);
+                _vy = _magnitude * sinf((_angle * 3.14159)/180.0f);
+            }
             
         } else if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
             _vx = -1 * _magnitude;
-            _angle = -180.0f;
+            _angle = -180;
             //[_sprite getCCSprite].rotation = -30.0f;
-        }        
     } 
+    }
 
 }
 
@@ -642,13 +648,19 @@
         [self.sprite setAnimationByName:@"rainyFrogIdleAnim"];
     } else if(_currentBehavior == COLLISION_BEHAVIOR_UMBRELLA_FLY_UP) {
         _currentBehavior = COLLISION_BEHAVIOR_UMBRELLA_FLY_UP;
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_UMBRELLA_FLY_ACROSS) {
+    } 
+    else if(_currentBehavior == COLLISION_BEHAVIOR_PAPERPLANE) {
+        _currentBehavior = COLLISION_BEHAVIOR_PAPERPLANE;
+        _magnitude=200;
+    }else if(_currentBehavior == COLLISION_BEHAVIOR_UMBRELLA_FLY_ACROSS) {
         _currentBehavior = COLLISION_BEHAVIOR_UMBRELLA_FLY_ACROSS;
     } else if(_currentBehavior == COLLISION_BEHAVIOR_RAINY_TREE_A) {
         _currentBehavior = COLLISION_BEHAVIOR_RAINY_TREE_A;
     } else if(_currentBehavior == COLLISION_BEHAVIOR_RAINY_TREE_B) {
         _currentBehavior = COLLISION_BEHAVIOR_RAINY_TREE_B;
-    } else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST) {
+    } 
+    
+    else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;     
 }         _collided = false;
 }
@@ -739,6 +751,7 @@
     else if([behavior isEqualToString:@"rainyPaperPlane"]) {
         _collideBehavior = COLLISION_BEHAVIOR_PAPERPLANE;
         _currentBehavior = COLLISION_BEHAVIOR_PAPERPLANE;
+        _magnitude = 200.0f;
     }
 
 

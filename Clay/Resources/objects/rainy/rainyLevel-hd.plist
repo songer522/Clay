@@ -80,10 +80,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 		<key>Level9_PaperPlane.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{0, 0}, {184, 93}}</string>
 			<key>spriteOffset</key>
@@ -99,10 +102,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 		<key>Level9_Squirrel_1.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{6, 0}, {142, 130}}</string>
 			<key>spriteOffset</key>
@@ -118,10 +124,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 		<key>Level9_Squirrel_2.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{0, 1}, {148, 128}}</string>
 			<key>spriteOffset</key>
@@ -137,10 +146,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 		<key>Level9_Squirrel_Nut.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{0, 0}, {39, 51}}</string>
 			<key>spriteOffset</key>
@@ -156,6 +168,7 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 		<key>Level9_Thunder_TypeA_1.png</key>
 		<dict>
 			<key>aliases</key>
