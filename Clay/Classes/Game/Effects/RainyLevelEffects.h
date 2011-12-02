@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Trigger.h"
 
 @class Sprite;
 @class Lightning;
@@ -18,9 +19,14 @@
     Sprite *_rainBehindTim;
     
     Lightning *_lightning;
+    
+    float _windDuration;
 }
 
 +(id)instance;
 -(void)update:(float)dt;
+
+-(void)triggerWind:(TriggerType)duration;
+-(void)updateWind:(float)dt;
 
 @end

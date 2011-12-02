@@ -28,8 +28,8 @@
    </properties>
   </tile>
  </tileset>
- <tileset firstgid="13" name="TrackLapse_Icons" tilewidth="64" tileheight="64">
-  <image source="TrackLapse_Icons.png" width="640" height="448"/>
+ <tileset firstgid="13" name="Icons" tilewidth="64" tileheight="64">
+  <image source="TrackLapse_Icons-hd.png" width="640" height="448"/>
   <tile id="0">
    <properties>
     <property name="obstacle" value="hurdle"/>
@@ -133,6 +133,34 @@
     <property name="obstacle" value="rainyFrog"/>
    </properties>
   </tile>
+  <tile id="59">
+   <properties>
+    <property name="obstacle" value="rainyUmbrellaFlyUp"/>
+   </properties>
+  </tile>
+  <tile id="60">
+   <properties>
+    <property name="obstacle" value="rainyUmbrellaFlyAcross"/>
+   </properties>
+  </tile>
+  <tile id="63">
+   <properties>
+    <property name="duration" value="short"/>
+    <property name="special" value="wind"/>
+   </properties>
+  </tile>
+  <tile id="64">
+   <properties>
+    <property name="duration" value="medium"/>
+    <property name="special" value="wind"/>
+   </properties>
+  </tile>
+  <tile id="65">
+   <properties>
+    <property name="duration" value="long"/>
+    <property name="special" value="wind"/>
+   </properties>
+  </tile>
  </tileset>
  <tileset firstgid="83" name="Level9_TiledSheet-hd" tilewidth="64" tileheight="64">
   <image source="tileset_level_9-hd.png" width="1024" height="1024"/>
@@ -179,7 +207,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztzsENgCAQBEAqMDalfuy/Hj++jIhAyBkz8yHA3WZTAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWiyZ97VzvyUrN1+7f2dEz7d6ckd1AgAA4Lu26AIF+3k+9bz+1d5Leb1zrfMQZY4uAAAAPzJFFwAAAAAAAACAAAcNQwWj
+   eJztzksOQDAUBVArEJvyS+x/PSZMxKM0UuScSVPufX1VBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA3NEG37vM/p1ZUf5qf88Te6bKmfvUTgAAAHzXkNkfE2dH70zL2Z9kj96J/m/nrPd+Gwz6e7mjXkoe3qApvQAAAPxIXXoBAAAAAAAAAChgBi2sB10=
   </data>
  </layer>
  <layer name="meta" width="1000" height="14" opacity="0.67">

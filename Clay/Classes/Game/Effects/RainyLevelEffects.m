@@ -65,6 +65,23 @@
     [_lightning update:dt];
 }
 
+-(void)triggerWind:(TriggerType)duration
+{
+    switch (duration) {
+        case TRIGGER_WIND_SHORT:
+            _windDuration = 1.0f;
+            break;
+        case TRIGGER_WIND_MEDIUM:
+            _windDuration = 2.0f;
+            break;
+        case TRIGGER_WIND_LONG:
+            _windDuration = 4.0f;
+            break;
+        default:
+            break;
+    }
+}
+
 -(void)dealloc
 {
     [_raindrops removeAllObjects];

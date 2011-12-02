@@ -22,6 +22,8 @@
 
 #define GAME_OBJECT_DISTANCE_ONSCREEN 550.0f
 
+#define MULTIPLIER_ANGLE_TO_RADS 0.1745328f //pre-calculation for Math.pi/180
+
 @implementation GameObject
 
 @synthesize sprite = _sprite;
@@ -475,6 +477,29 @@
                 
             }
         }
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_UMBRELLA_FLY_UP) {
+        _vx = 0.0f;
+        if ([self closeToPlayer:275]) {
+            _angle+=200.0f*dt;
+            if(_angle>-100.0f) {
+                _angle = -100.0f;
+            }
+            [_sprite getCCSprite].rotation = -30.0f + ((_angle + 180.0f) / (2.66667f));
+            float magnitude = 250.0f;
+            _vx = magnitude * cosf((_angle * 3.14159)/180.0f);
+            _vy = magnitude * sinf((_angle * 3.14159)/180.0f);
+
+        } else if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+            _vx = -200.0f;
+            _angle = -180.0f;
+            [_sprite getCCSprite].rotation = -30.0f;
+        }        
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_UMBRELLA_FLY_ACROSS) {
+        if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+            _vx = -220.0f;
+            _angle = -180.0f;
+            [_sprite getCCSprite].rotation = -30.0f;
+        }
     }
 
 }
@@ -597,6 +622,10 @@
     } else if(_currentBehavior == COLLISION_BEHAVIOR_FROG_SQUASH) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;
         [self.sprite setAnimationByName:@"rainyFrogIdleAnim"];
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_UMBRELLA_FLY_UP) {
+        _currentBehavior = COLLISION_BEHAVIOR_UMBRELLA_FLY_UP;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_UMBRELLA_FLY_ACROSS) {
+        _currentBehavior = COLLISION_BEHAVIOR_UMBRELLA_FLY_ACROSS;
     } else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;     
 }         _collided = false;
@@ -670,6 +699,12 @@
     } else if([behavior isEqualToString:@"frogSquash"]) {
         _collideBehavior = COLLISION_BEHAVIOR_FROG_SQUASH;
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;
+    } else if([behavior isEqualToString:@"umbrellaFlyUp"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_UMBRELLA_FLY_UP;
+        _currentBehavior = COLLISION_BEHAVIOR_UMBRELLA_FLY_UP;
+    } else if([behavior isEqualToString:@"umbrellaFlyAcross"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_UMBRELLA_FLY_ACROSS;
+        _currentBehavior = COLLISION_BEHAVIOR_UMBRELLA_FLY_ACROSS;
     }
 
     
