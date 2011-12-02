@@ -5,6 +5,94 @@
 	<key>frames</key>
 	<dict>
 		
+		<key>Level9_Frog_1.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{2, 0}, {101, 84}}</string>
+			<key>spriteOffset</key>
+			<string>{1, 1}</string>
+			<key>spriteSize</key>
+			<string>{101, 84}</string>
+			<key>spriteSourceSize</key>
+			<string>{103, 86}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{239, 528}, {101, 84}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>Level9_Frog_2.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{2, 1}, {101, 84}}</string>
+			<key>spriteOffset</key>
+			<string>{1, -0}</string>
+			<key>spriteSize</key>
+			<string>{101, 84}</string>
+			<key>spriteSourceSize</key>
+			<string>{103, 86}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{346, 528}, {101, 84}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>Level9_Frog_3.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{2, 14}, {101, 72}}</string>
+			<key>spriteOffset</key>
+			<string>{1, -7}</string>
+			<key>spriteSize</key>
+			<string>{101, 72}</string>
+			<key>spriteSourceSize</key>
+			<string>{103, 86}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{0, 808}, {101, 72}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>Level9_Frog_4.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 26}, {103, 60}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -13}</string>
+			<key>spriteSize</key>
+			<string>{103, 60}</string>
+			<key>spriteSourceSize</key>
+			<string>{103, 86}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{0, 742}, {103, 60}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
 		<key>Level9_Thunder_TypeA_1.png</key>
 		<dict>
 			<key>aliases</key>
@@ -44,7 +132,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{63, 710}, {29, 60}}</string>
+			<string>{{109, 742}, {29, 60}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -66,7 +154,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{0, 814}, {25, 112}}</string>
+			<string>{{0, 886}, {25, 112}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -132,7 +220,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{94, 776}, {23, 54}}</string>
+			<string>{{144, 742}, {23, 54}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -154,7 +242,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{0, 710}, {57, 98}}</string>
+			<string>{{107, 808}, {57, 98}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -264,7 +352,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{31, 814}, {57, 56}}</string>
+			<string>{{31, 886}, {57, 56}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -484,7 +572,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{239, 528}, {168, 26}}</string>
+			<string>{{239, 618}, {168, 26}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -528,7 +616,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{239, 560}, {166, 26}}</string>
+			<string>{{0, 710}, {166, 26}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>

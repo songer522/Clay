@@ -117,16 +117,14 @@
 
     NSArray *layers = [layerList componentsSeparatedByString:@","];
     for (NSString *layerName in layers) {
-        if ([layerName compare:@"actives"] == NSOrderedSame) {
-            
+        if ([layerName isEqualToString :@"ledges"]) {
             GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
             //stop existing rainylevel, and start new one if right level
             [gameLayer stopRainyLevel];
             if([levelName isEqualToString:@"level9"]) {
                 [gameLayer initializeRainyLevel];
             }
-            
-            
+        } else if ([layerName compare:@"actives"] == NSOrderedSame) {
             
             [player setLedgeSprite:[[LayerManager sharedLayers] currentLayer]];
             
