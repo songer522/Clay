@@ -261,6 +261,11 @@
                 [_boss triggerAttack];
                 trigger.triggered=true;
                 break;
+            case TRIGGER_WIND_SHORT:
+            case TRIGGER_WIND_MEDIUM:
+            case TRIGGER_WIND_LONG:
+                [_rainyLevelEffects triggerWind:trigger.type];
+                break;
             default:
                 break;
         }

@@ -1322,7 +1322,7 @@
 			<integer>1</integer>
 		</dict>
 		<key>collideBehavior</key>
-		<string>none</string>
+		<string>rainyTreeA</string>
 		<key>imageName</key>
 		<string>blank.png</string>
 		<key>offsetx</key>
@@ -1357,7 +1357,7 @@
 			<integer>1</integer>
 		</dict>
 		<key>collideBehavior</key>
-		<string>none</string>
+		<string>rainyTreeB</string>
 		<key>imageName</key>
 		<string>blank.png</string>
 		<key>offsetx</key>
@@ -1710,6 +1710,76 @@
 		<integer>0</integer>
 		<key>offsety</key>
 		<integer>-41</integer>
+		<key>playerEffect</key>
+		<string>collide</string>
+	</dict>
+	<key>rainyUmbrellaFlyUp</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<real>0.5</real>
+			<key>y</key>
+			<real>0.6</real>
+		</dict>
+		<key>animationName</key>
+		<string>none</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>30</integer>
+			<key>width</key>
+			<integer>20</integer>
+			<key>x</key>
+			<integer>32</integer>
+			<key>y</key>
+			<integer>13</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>umbrellaFlyUp</string>
+		<key>imageName</key>
+		<string>Level9_Umbrella.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>20</integer>
+		<key>playerEffect</key>
+		<string>collide</string>
+	</dict>
+	<key>rainyUmbrellaFlyAcross</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<real>0.5</real>
+			<key>y</key>
+			<real>0.6</real>
+		</dict>
+		<key>animationName</key>
+		<string>none</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>30</integer>
+			<key>width</key>
+			<integer>20</integer>
+			<key>x</key>
+			<integer>32</integer>
+			<key>y</key>
+			<integer>13</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>umbrellaFlyAcross</string>
+		<key>imageName</key>
+		<string>Level9_Umbrella.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>20</integer>
 		<key>playerEffect</key>
 		<string>collide</string>
 	</dict>

@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Trigger.h"
 
 @class Sprite;
 @class Lightning;
+@class Player;
 
 @interface RainyLevelEffects : NSObject
 {
@@ -18,9 +20,17 @@
     Sprite *_rainBehindTim;
     
     Lightning *_lightning;
+    
+    float _windDuration;
+    
+    Player *_player; //weak reference
 }
 
 +(id)instance;
 -(void)update:(float)dt;
+
+-(void)triggerWind:(TriggerType)duration;
+-(void)updateWind:(float)dt;
+-(void)endWindEffect;
 
 @end
