@@ -355,10 +355,6 @@
 		54C71D011486BF2D00A47565 /* PlayerActionSlowTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C71D001486BF2D00A47565 /* PlayerActionSlowTime.m */; };
 		54C71D0D1486DBE300A47565 /* tileset_level_9-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54C71D0B1486DBE300A47565 /* tileset_level_9-hd.png */; };
 		54C71D121486E06600A47565 /* tileset_level_9.png in Resources */ = {isa = PBXBuildFile; fileRef = 54C71D111486E06600A47565 /* tileset_level_9.png */; };
-		54C71D181486E64C00A47565 /* rainyLevel-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54C71D141486E64C00A47565 /* rainyLevel-hd.plist */; };
-		54C71D191486E64C00A47565 /* rainyLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54C71D151486E64C00A47565 /* rainyLevel-hd.png */; };
-		54C71D1A1486E64C00A47565 /* rainyLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54C71D161486E64C00A47565 /* rainyLevel.plist */; };
-		54C71D1B1486E64C00A47565 /* rainyLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 54C71D171486E64C00A47565 /* rainyLevel.png */; };
 		54C71D1E1486EA1800A47565 /* RainyLevelEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C71D1D1486EA1800A47565 /* RainyLevelEffects.m */; };
 		54C71D211486EED300A47565 /* Raindrop.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C71D201486EED200A47565 /* Raindrop.m */; };
 		54CA7A6A1471A5C6002B01AA /* memory.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54CA7A691471A5C6002B01AA /* memory.plist */; };
@@ -439,6 +435,10 @@
 		61DC609A148966F100F65B78 /* TrackLapse_Icons.png in Resources */ = {isa = PBXBuildFile; fileRef = 61DC6098148966F100F65B78 /* TrackLapse_Icons.png */; };
 		61DC609D1489706200F65B78 /* level9_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61DC609B1489706200F65B78 /* level9_hd.tmx */; };
 		61DC609E1489706200F65B78 /* level9.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61DC609C1489706200F65B78 /* level9.tmx */; };
+		61DC60AC14897B5E00F65B78 /* rainyLevel-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 61DC60A814897B5E00F65B78 /* rainyLevel-hd.plist */; };
+		61DC60AD14897B5E00F65B78 /* rainyLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 61DC60A914897B5E00F65B78 /* rainyLevel-hd.png */; };
+		61DC60AE14897B5E00F65B78 /* rainyLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 61DC60AA14897B5E00F65B78 /* rainyLevel.plist */; };
+		61DC60AF14897B5E00F65B78 /* rainyLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 61DC60AB14897B5E00F65B78 /* rainyLevel.png */; };
 		61DE5BF914853CCC00D325CF /* CCScrollLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 61DE5BF814853CCC00D325CF /* CCScrollLayer.m */; };
 		61DE5BFD1485526800D325CF /* image1.png in Resources */ = {isa = PBXBuildFile; fileRef = 61DE5BFA1485526800D325CF /* image1.png */; };
 		61DE5BFE1485526800D325CF /* image2.png in Resources */ = {isa = PBXBuildFile; fileRef = 61DE5BFB1485526800D325CF /* image2.png */; };
@@ -999,10 +999,6 @@
 		54C71D001486BF2D00A47565 /* PlayerActionSlowTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerActionSlowTime.m; sourceTree = "<group>"; };
 		54C71D0B1486DBE300A47565 /* tileset_level_9-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tileset_level_9-hd.png"; path = "Resources/levels/tileset_level_9-hd.png"; sourceTree = "<group>"; };
 		54C71D111486E06600A47565 /* tileset_level_9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tileset_level_9.png; path = Resources/levels/tileset_level_9.png; sourceTree = "<group>"; };
-		54C71D141486E64C00A47565 /* rainyLevel-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "rainyLevel-hd.plist"; sourceTree = "<group>"; };
-		54C71D151486E64C00A47565 /* rainyLevel-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rainyLevel-hd.png"; sourceTree = "<group>"; };
-		54C71D161486E64C00A47565 /* rainyLevel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = rainyLevel.plist; sourceTree = "<group>"; };
-		54C71D171486E64C00A47565 /* rainyLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rainyLevel.png; sourceTree = "<group>"; };
 		54C71D1C1486EA1800A47565 /* RainyLevelEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RainyLevelEffects.h; sourceTree = "<group>"; };
 		54C71D1D1486EA1800A47565 /* RainyLevelEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RainyLevelEffects.m; sourceTree = "<group>"; };
 		54C71D1F1486EED200A47565 /* Raindrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Raindrop.h; sourceTree = "<group>"; };
@@ -1091,6 +1087,10 @@
 		61DC6098148966F100F65B78 /* TrackLapse_Icons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TrackLapse_Icons.png; path = Resources/levels/TrackLapse_Icons.png; sourceTree = "<group>"; };
 		61DC609B1489706200F65B78 /* level9_hd.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level9_hd.tmx; path = Resources/levels/level9_hd.tmx; sourceTree = "<group>"; };
 		61DC609C1489706200F65B78 /* level9.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level9.tmx; path = Resources/levels/level9.tmx; sourceTree = "<group>"; };
+		61DC60A814897B5E00F65B78 /* rainyLevel-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "rainyLevel-hd.plist"; sourceTree = "<group>"; };
+		61DC60A914897B5E00F65B78 /* rainyLevel-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rainyLevel-hd.png"; sourceTree = "<group>"; };
+		61DC60AA14897B5E00F65B78 /* rainyLevel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = rainyLevel.plist; sourceTree = "<group>"; };
+		61DC60AB14897B5E00F65B78 /* rainyLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rainyLevel.png; sourceTree = "<group>"; };
 		61DE5BF714853CCC00D325CF /* CCScrollLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCScrollLayer.h; sourceTree = "<group>"; };
 		61DE5BF814853CCC00D325CF /* CCScrollLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCScrollLayer.m; sourceTree = "<group>"; };
 		61DE5BFA1485526800D325CF /* image1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image1.png; sourceTree = "<group>"; };
@@ -2179,10 +2179,10 @@
 		54C71D131486E64C00A47565 /* rainy */ = {
 			isa = PBXGroup;
 			children = (
-				54C71D141486E64C00A47565 /* rainyLevel-hd.plist */,
-				54C71D151486E64C00A47565 /* rainyLevel-hd.png */,
-				54C71D161486E64C00A47565 /* rainyLevel.plist */,
-				54C71D171486E64C00A47565 /* rainyLevel.png */,
+				61DC60A814897B5E00F65B78 /* rainyLevel-hd.plist */,
+				61DC60A914897B5E00F65B78 /* rainyLevel-hd.png */,
+				61DC60AA14897B5E00F65B78 /* rainyLevel.plist */,
+				61DC60AB14897B5E00F65B78 /* rainyLevel.png */,
 			);
 			path = rainy;
 			sourceTree = "<group>";
@@ -2527,10 +2527,6 @@
 				54C71CFB1486BC2800A47565 /* underwater.mp3 in Resources */,
 				54C71D0D1486DBE300A47565 /* tileset_level_9-hd.png in Resources */,
 				54C71D121486E06600A47565 /* tileset_level_9.png in Resources */,
-				54C71D181486E64C00A47565 /* rainyLevel-hd.plist in Resources */,
-				54C71D191486E64C00A47565 /* rainyLevel-hd.png in Resources */,
-				54C71D1A1486E64C00A47565 /* rainyLevel.plist in Resources */,
-				54C71D1B1486E64C00A47565 /* rainyLevel.png in Resources */,
 				61A667B01487E33800FB0A80 /* townLevel-hd.plist in Resources */,
 				61A667B11487E33800FB0A80 /* townLevel-hd.png in Resources */,
 				61A667B21487E33800FB0A80 /* townLevel.plist in Resources */,
@@ -2548,10 +2544,18 @@
 				549954201488671400E61078 /* frogSquish1.mp3 in Resources */,
 				549954211488671400E61078 /* frogSquish2.mp3 in Resources */,
 				549954221488671400E61078 /* lightning.mp3 in Resources */,
+				61DC60841489264100F65B78 /* level5_hd.tmx in Resources */,
+				545392EA1489700200B7DB47 /* wind2_long.wav in Resources */,
+				545392EB1489700200B7DB47 /* wind2_medium.wav in Resources */,
+				545392EC1489700200B7DB47 /* wind2_short.wav in Resources */,
 				61DC6099148966F100F65B78 /* TrackLapse_Icons-hd.png in Resources */,
 				61DC609A148966F100F65B78 /* TrackLapse_Icons.png in Resources */,
 				61DC609D1489706200F65B78 /* level9_hd.tmx in Resources */,
 				61DC609E1489706200F65B78 /* level9.tmx in Resources */,
+				61DC60AC14897B5E00F65B78 /* rainyLevel-hd.plist in Resources */,
+				61DC60AD14897B5E00F65B78 /* rainyLevel-hd.png in Resources */,
+				61DC60AE14897B5E00F65B78 /* rainyLevel.plist in Resources */,
+				61DC60AF14897B5E00F65B78 /* rainyLevel.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

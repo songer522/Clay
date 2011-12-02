@@ -143,6 +143,11 @@
     <property name="obstacle" value="rainyUmbrellaFlyAcross"/>
    </properties>
   </tile>
+  <tile id="61">
+   <properties>
+    <property name="obstacle" value="rainyPaperPlane"/>
+   </properties>
+  </tile>
   <tile id="63">
    <properties>
     <property name="duration" value="short"/>

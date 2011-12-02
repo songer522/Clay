@@ -502,6 +502,23 @@
             [_sprite getCCSprite].rotation = -30.0f;
         }
     }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_PAPERPLANE) {
+        _vx = 0.0f;
+        if ([self closeToPlayer:275]) {
+            _angle-=200.0f*dt;
+            if(_angle>100.0f) {
+                _angle = 100.0f;
+            }
+            //[_sprite getCCSprite].rotation = -30.0f + ((_angle + 180.0f) / (2.66667f));
+            _vx = _magnitude * cosf((_angle * 3.14159)/180.0f);
+            _vy = _magnitude * sinf((_angle * 3.14159)/180.0f);
+            
+        } else if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+            _vx = -1 * _magnitude;
+            _angle = -180.0f;
+            //[_sprite getCCSprite].rotation = -30.0f;
+        }        
+    } 
 
 }
 
@@ -719,6 +736,11 @@
         _collideBehavior = COLLISION_BEHAVIOR_RAINY_TREE_B;
         _currentBehavior = COLLISION_BEHAVIOR_RAINY_TREE_B;
     }
+    else if([behavior isEqualToString:@"rainyPaperPlane"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_PAPERPLANE;
+        _currentBehavior = COLLISION_BEHAVIOR_PAPERPLANE;
+    }
+
 
     
     else {
