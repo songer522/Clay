@@ -69,7 +69,7 @@
         _onLedge = false;
         _offLedge=false;
         _isTurbo=false;
-       
+        _isCooldown=true;
         _timeLeftBeforeVulnerable = 2.0f;
         _isInvincible = false;
         
@@ -222,12 +222,21 @@
     [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];
     [_speed endTurbo];
     
-    if(_isTurbo)
+    if(_isTurbo && _hitPoints>1 )
     {
         GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
         gameLayer.gameController.isSprintEnabled=false;
         [[gameLayer getHud] setEnabled:false ForButton:HUD_BUTTON_SPRINT];
         _waitToTurbo=PLAYER_SPRINT_COOLDOWN;
+        _isTurbo=false;
+    }
+    
+    else if(_isTurbo)
+    {
+        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+        gameLayer.gameController.isSprintEnabled=false;
+        [[gameLayer getHud] setEnabled:false ForButton:HUD_BUTTON_SPRINT];
+        _waitToTurbo=1;
         _isTurbo=false;
     }
     
@@ -307,9 +316,12 @@
     [_speed reset];
     [_speed start];
     [_boss reset];
-    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+    _waitToTurbo=-1;
     
+    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
     [[gameLayer getHud] setEnabled:true ForButton:HUD_BUTTON_JUMP];
+    
+    [[[[gameLayer getHud] getSprintButton] getCCSpriteForOverlay] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"UI_Button_GreenLight_7.png"]];  
     _isJumping = false;
     _isTripping = false;
     _isInMidAir = false;
@@ -474,6 +486,14 @@
             [_speed start];
         }
     }
+    if(_hitPoints<=1)
+    {
+        _isCooldown=false;
+    }
+    else
+    {
+        _isCooldown=true;
+    }
     
     [_thirdAction update:dt];
 
@@ -511,10 +531,15 @@
             gameLayer.gameController.isSprintEnabled=true;
             [[gameLayer getHud] setEnabled:true ForButton:HUD_BUTTON_SPRINT];
         }
-        
+        if(_isCooldown)
+        {
         float cooldownPercent = (PLAYER_SPRINT_COOLDOWN - _waitToTurbo)/PLAYER_SPRINT_COOLDOWN;
         [[[gameLayer getHud] getSprintButton] updateOverlayImageByPercentage:cooldownPercent];
-        
+        }
+        else
+        {
+            [[[gameLayer getHud] getSprintButton] updateOverlayImageByPercentage:0];
+        }
     }
 }
 
