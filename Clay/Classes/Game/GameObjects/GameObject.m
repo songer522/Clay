@@ -506,10 +506,11 @@
     else if(_currentBehavior == COLLISION_BEHAVIOR_PAPERPLANE) {
         _vx = 0.0f;
         if ([self closeToPlayer:275]) {
-            _angle-=200.0f*dt;
-            if(_angle < -230.0f) {
-                _angle = - 230.0f;
+            _angle-=180.0f*dt;
+            if(_angle < -360.0f) {
                 _stopCurve=true;
+                _angle = - 360.0f;
+                
                _vx = -1 * _magnitude;
             }
             //[_sprite getCCSprite].rotation = -30.0f + ((_angle + 180.0f) / (2.66667f));
@@ -752,6 +753,7 @@
         _collideBehavior = COLLISION_BEHAVIOR_PAPERPLANE;
         _currentBehavior = COLLISION_BEHAVIOR_PAPERPLANE;
         _magnitude = 200.0f;
+        _angle=180;
     }
 
 

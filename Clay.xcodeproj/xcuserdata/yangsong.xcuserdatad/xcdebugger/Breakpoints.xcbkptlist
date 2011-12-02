@@ -17,5 +17,19 @@
          landmarkName = "-setOpacityAndScale"
          landmarkType = "5">
       </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Clay/Classes/Game/GameObjects/GameObject.m"
+         timestampString = "344559384.505883"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "519"
+         endingLineNumber = "519"
+         landmarkName = "-updateCollisionBehavior:"
+         landmarkType = "5">
+      </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>
