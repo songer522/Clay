@@ -262,10 +262,9 @@
                 trigger.triggered=true;
                 break;
             case TRIGGER_WIND_SHORT:
-                break;
             case TRIGGER_WIND_MEDIUM:
-                break;
             case TRIGGER_WIND_LONG:
+                [_rainyLevelEffects triggerWind:trigger.type];
                 break;
             default:
                 break;

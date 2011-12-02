@@ -278,13 +278,11 @@
                 if ([special compare:@"nextlevelNE"] == NSOrderedSame) {
                     Trigger *trigger = [[Trigger alloc] init];
                     trigger.position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
-                    trigger.direction = CGPointMake(1,-1);
                     trigger.type = TRIGGER_NEXTLEVEL;
                     [_triggers addObject:trigger];
                 } else if([special isEqualToString:@"checkpoint"]) { //checkpoint trigger
                     Trigger *trigger = [[Trigger alloc] init];
                     trigger.position = [self getXYPositionForCoordinates:CGPointMake(i,j)];
-                    trigger.direction = CGPointMake(1, -1);
                     trigger.type = TRIGGER_CHECKPOINT;
                     [_triggers addObject:trigger];
                     
@@ -300,7 +298,6 @@
                 }else if([special isEqualToString:@"checkpoint8bit"]) { //checkpoint trigger
                     Trigger *trigger = [[Trigger alloc] init];
                     trigger.position = [self getXYPositionForCoordinates:CGPointMake(i,j)];
-                    trigger.direction = CGPointMake(1, -1);
                     trigger.type = TRIGGER_CHECKPOINT;
                     [_triggers addObject:trigger];
                     
@@ -313,8 +310,7 @@
                     MapObject *mapObject = [MapObject mapObjectWithSprite:object AboveLayer:@"main0"];
                     [_otherMapObjects addObject:mapObject];
                     
-                } 
-                else if([special compare:@"spawnpoint"] == NSOrderedSame) {
+                } else if([special compare:@"spawnpoint"] == NSOrderedSame) {
                     _spawnPoint = [self getXYPositionForCoordinates:CGPointMake(i, j)];
                 } else if([special compare:@"jimAppearance1"] == NSOrderedSame) {
                     CGPoint position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
@@ -327,8 +323,22 @@
                 } else if([special isEqualToString:@"shootTrigger"]) {
                     Trigger *trigger = [[Trigger alloc] init];
                     trigger.position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
-                    trigger.direction = CGPointMake(1, -1);
                     trigger.type = TRIGGER_BOSS_SHOOT;
+                    trigger.canBeReset = true;
+                    [_triggers addObject:trigger];
+                } else if([special isEqualToString:@"wind"]) {
+                    Trigger *trigger = [[Trigger alloc] init];
+                    trigger.position = [self getXYPositionForCoordinates:CGPointMake(i,j)];
+
+                    NSString *duration = [self getPropertyForTileCoords:coords forKey:@"duration"];
+                    if ([duration isEqualToString:@"short"]) {
+                        trigger.type = TRIGGER_WIND_SHORT;
+                    } else if([duration isEqualToString:@"medium"]) {
+                        trigger.type = TRIGGER_WIND_MEDIUM;
+                    } else if([duration isEqualToString:@"long"]) {
+                        trigger.type = TRIGGER_WIND_LONG;
+                    }
+                    
                     trigger.canBeReset = true;
                     [_triggers addObject:trigger];
                 }

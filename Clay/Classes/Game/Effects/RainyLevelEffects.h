@@ -28,5 +28,6 @@
 
 -(void)triggerWind:(TriggerType)duration;
 -(void)updateWind:(float)dt;
+-(void)endWindEffect;
 
 @end

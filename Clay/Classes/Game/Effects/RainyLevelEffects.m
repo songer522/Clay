@@ -65,8 +65,18 @@
     [_lightning update:dt];
 }
 
+-(void)updateWind:(float)dt
+{
+    //slow down tim by triggering same code as sand pits
+    
+    //speed up umbrella obstacles (and maybe others)
+    
+    //if the time expired, end the wind effect
+}
+
 -(void)triggerWind:(TriggerType)duration
 {
+    //set how long the wind will last and which sound to play
     switch (duration) {
         case TRIGGER_WIND_SHORT:
             _windDuration = 1.0f;
@@ -80,6 +90,14 @@
         default:
             break;
     }
+    
+    //tell trees in background to change animation
+
+}
+
+-(void)endWindEffect
+{
+    //tell the trees in background to go back to normal animation
 }
 
 -(void)dealloc
