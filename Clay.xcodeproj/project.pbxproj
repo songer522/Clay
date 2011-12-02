@@ -2540,6 +2540,9 @@
 				61D82FD914882756000B54F0 /* level7_hd.tmx in Resources */,
 				61D82FDA14882756000B54F0 /* level8_hd.tmx in Resources */,
 				61DC60841489264100F65B78 /* level5_hd.tmx in Resources */,
+				549954201488671400E61078 /* frogSquish1.mp3 in Resources */,
+				549954211488671400E61078 /* frogSquish2.mp3 in Resources */,
+				549954221488671400E61078 /* lightning.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
