@@ -698,7 +698,7 @@
 		<key>offsetx</key>
 		<integer>0</integer>
 		<key>offsety</key>
-		<integer>-25</integer>
+		<integer>-40</integer>
 		<key>playerEffect</key>
 		<string>collide</string>
 	</dict>
@@ -753,7 +753,7 @@
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>40</integer>
+			<integer>45</integer>
 			<key>width</key>
 			<integer>15</integer>
 			<key>x</key>
@@ -768,7 +768,7 @@
 		<key>offsetx</key>
 		<integer>0</integer>
 		<key>offsety</key>
-		<integer>-25</integer>
+		<integer>-40</integer>
 		<key>playerEffect</key>
 		<string>collide</string>
 	</dict>

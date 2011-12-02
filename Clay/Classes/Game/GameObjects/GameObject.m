@@ -456,8 +456,8 @@
                     }
                     _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_FIRE_DEMON_BULLET];
                     [_projectile reset];
-                    [_projectile setPosition:CGPointMake(_x + 53, _y - 5 )];
-                    [_projectile setBoundingBox:CGRectMake(-7, -3, 16, 16)];
+                    [_projectile setPosition:CGPointMake(_x + 53, _y - 20 )];
+                    [_projectile setBoundingBox:CGRectMake(-7, 12, 16, 16)];
                 }
             } else {
                 if ([self closeToPlayer:300.0f]) {
