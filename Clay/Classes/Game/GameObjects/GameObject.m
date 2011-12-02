@@ -42,6 +42,7 @@
 @synthesize rotateLights = _rotateLights;
 @synthesize beatsPlayerAction = _beatsPlayerAction;
 @synthesize originalAnimation=_originalAnimation;
+@synthesize magnitude = _magnitude;
 
 + (id) objectWithSprite:(Sprite*)sprite
 {
@@ -83,6 +84,7 @@
         _reloading = 0;
         _aggressiveCanHit = false;
         _beatsPlayerAction = false;
+        _magnitude = 0.0f;
     }
     
     return self;
@@ -485,18 +487,17 @@
                 _angle = -100.0f;
             }
             [_sprite getCCSprite].rotation = -30.0f + ((_angle + 180.0f) / (2.66667f));
-            float magnitude = 250.0f;
-            _vx = magnitude * cosf((_angle * 3.14159)/180.0f);
-            _vy = magnitude * sinf((_angle * 3.14159)/180.0f);
+            _vx = _magnitude * cosf((_angle * 3.14159)/180.0f);
+            _vy = _magnitude * sinf((_angle * 3.14159)/180.0f);
 
         } else if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
-            _vx = -200.0f;
+            _vx = -1 * _magnitude;
             _angle = -180.0f;
             [_sprite getCCSprite].rotation = -30.0f;
         }        
     } else if(_currentBehavior == COLLISION_BEHAVIOR_UMBRELLA_FLY_ACROSS) {
         if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
-            _vx = -220.0f;
+            _vx = -1 * _magnitude;
             _angle = -180.0f;
             [_sprite getCCSprite].rotation = -30.0f;
         }
@@ -706,9 +707,11 @@
     } else if([behavior isEqualToString:@"umbrellaFlyUp"]) {
         _collideBehavior = COLLISION_BEHAVIOR_UMBRELLA_FLY_UP;
         _currentBehavior = COLLISION_BEHAVIOR_UMBRELLA_FLY_UP;
+        _magnitude = 200.0f;
     } else if([behavior isEqualToString:@"umbrellaFlyAcross"]) {
         _collideBehavior = COLLISION_BEHAVIOR_UMBRELLA_FLY_ACROSS;
         _currentBehavior = COLLISION_BEHAVIOR_UMBRELLA_FLY_ACROSS;
+        _magnitude = 200.0f;
     } else if([behavior isEqualToString:@"rainyTreeA"]) {
         _collideBehavior = COLLISION_BEHAVIOR_RAINY_TREE_A;
         _currentBehavior = COLLISION_BEHAVIOR_RAINY_TREE_A;
