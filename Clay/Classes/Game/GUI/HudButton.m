@@ -45,7 +45,7 @@
         [self prepareButtonWithType:type Action:action];
      
         _initialized = true;
-        _currentOverlayFrame = -1;
+        _currentOverlayFrame = 7;
     }
    return self;
 }
@@ -144,14 +144,15 @@
 
 -(void)setOpacityAndScale
 {
-     if ([self getCCSpriteForOverlay].visible)
+    if ([self getCCSpriteForOverlay].visible && _currentOverlayFrame==7)
+    
      {
         [[_graphic getCCSprite] setOpacity:BUTTON_OPACITY];
         [[_graphic getCCSprite] setScale:BUTTON_SCALE * [[UIScreen mainScreen] scale] / _scale]; 
-     }
+     
     [[_greenOverlay getCCSprite] setOpacity:BUTTON_OPACITY];
     [[_greenOverlay getCCSprite] setScale:BUTTON_SCALE * [[UIScreen mainScreen] scale] / _scale];
-    
+     }
 }
 
 -(float)getButtonOpacity

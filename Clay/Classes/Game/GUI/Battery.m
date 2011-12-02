@@ -86,7 +86,8 @@
             _waitToIncrease -= dt;
         }
         if (_waitToIncrease <=0.0f) {
-            [_player changeHealth:1];
+            //automatic recharging is currently disabled
+            //[_player changeHealth:1];
         }
         
         if (_currentFrame == 4) {
