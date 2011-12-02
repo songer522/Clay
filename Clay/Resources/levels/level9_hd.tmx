@@ -161,6 +161,11 @@
     <property name="special" value="wind"/>
    </properties>
   </tile>
+  <tile id="66">
+   <properties>
+    <property name="obstacle" value="rainySquirrel"/>
+   </properties>
+  </tile>
  </tileset>
  <tileset firstgid="83" name="Level9_TiledSheet-hd" tilewidth="64" tileheight="64">
   <image source="tileset_level_9-hd.png" width="1024" height="1024"/>
@@ -207,7 +212,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztzksKhTAMBVBXIG7KH/je/pfjRCdialWkIudMSpvkNlUFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABc0Qbv3c35K1lR/9n5PU/smetO7lM7AQAA8G5TojYkar+M7DEzO/rnv5z9QW/qn6i+zVnv/bYxmN/rS83l9MMbNKUXAACAD6lLLwAAAAAAAAAABcxajAf4
+   eJzt0EEOQDAQBVAnEJfCRkjc/zD2okypNOG9XSfz059pGgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoIS+8N7TTCo3BGdH86seuT0j+6luAAAAcGZKzMdgfrn5793cG+bde83MR24VvWfJ7JM/+Z+udgEAAPiQtnYBAAAAAAAAAKhgA4WuBgc=
   </data>
  </layer>
  <layer name="meta" width="1000" height="14" opacity="0.67">

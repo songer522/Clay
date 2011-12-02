@@ -80,6 +80,8 @@ typedef enum {
     
     bool _isAggressive;
     
+    bool _persistsBetweenRegions;
+    
     Collision *_collisionState;     //used to keep track of whether the object is in midair or on
                                     //the ground.
     
@@ -106,6 +108,7 @@ typedef enum {
 @property(nonatomic,assign) bool rotateLights;
 @property(nonatomic,assign) bool beatsPlayerAction;
 @property(nonatomic,assign) float magnitude;
+@property(nonatomic,assign) bool persistsBetweenRegions;
 
 
 #pragma mark - initialization

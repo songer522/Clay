@@ -1713,6 +1713,41 @@
 		<key>playerEffect</key>
 		<string>collide</string>
 	</dict>
+	<key>rainySquirrel</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>1</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>rainySquirrelAnim</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>30</integer>
+			<key>width</key>
+			<integer>20</integer>
+			<key>x</key>
+			<integer>32</integer>
+			<key>y</key>
+			<integer>13</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>rainySquirrel</string>
+		<key>imageName</key>
+		<string>blank.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>-35</integer>
+		<key>playerEffect</key>
+		<string>collide</string>
+	</dict>
 	<key>rainyUmbrellaFlyUp</key>
 	<dict>
 		<key>aggressive</key>

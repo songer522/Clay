@@ -17,7 +17,8 @@
     
     NSMutableArray *_leftRegion; //weak reference
     NSMutableArray *_rightRegion; //weak reference
-    NSMutableArray *_combinedRegion;
+    NSMutableSet *_combinedRegion;
+    NSMutableSet *_persistentObjects;
     
     int _currentIndex;
 }
@@ -36,5 +37,6 @@
 
 -(void)printDescription; //better to call after game objects are added
 
+-(void)resetPersistentObjects;
 
 @end

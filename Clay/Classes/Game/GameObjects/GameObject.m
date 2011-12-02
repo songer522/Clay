@@ -43,6 +43,7 @@
 @synthesize beatsPlayerAction = _beatsPlayerAction;
 @synthesize originalAnimation=_originalAnimation;
 @synthesize magnitude = _magnitude;
+@synthesize persistsBetweenRegions = _persistsBetweenRegions;
 
 + (id) objectWithSprite:(Sprite*)sprite
 {
@@ -84,6 +85,7 @@
         _reloading = 0;
         _aggressiveCanHit = false;
         _beatsPlayerAction = false;
+        _persistsBetweenRegions = false;
         _magnitude = 0.0f;
     }
     
@@ -223,6 +225,9 @@
     } else if(_currentBehavior == COLLISION_BEHAVIOR_FROG_SQUASH) {
         [self.sprite setAnimationByName:@"rainyFrogSquashAnim"];
         [[SoundEngine shared] playSound:@"frogSquish"];
+        _alpha = 1.2f;
+        _fadeout = true;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_RAINY_SQUIRREL) {
         _alpha = 1.2f;
         _fadeout = true;
     }
@@ -467,7 +472,7 @@
                     [_projectile reset];
                     [_projectile setPosition:CGPointMake(_x + 53, _y - 20 )];
                     [_projectile setBoundingBox:CGRectMake(-7, 12, 16, 16)];
-                }
+                } 
             } else {
                 if ([self closeToPlayer:300.0f]) {
                     [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"fireDemonWithArmorShooting"];
@@ -500,6 +505,10 @@
             _vx = -1 * _magnitude;
             _angle = -180.0f;
             [_sprite getCCSprite].rotation = -30.0f;
+        }
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_RAINY_SQUIRREL) {
+        if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+            _vx = 100.0f;
         }
     }
 
@@ -631,9 +640,13 @@
         _currentBehavior = COLLISION_BEHAVIOR_RAINY_TREE_A;
     } else if(_currentBehavior == COLLISION_BEHAVIOR_RAINY_TREE_B) {
         _currentBehavior = COLLISION_BEHAVIOR_RAINY_TREE_B;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_RAINY_SQUIRREL) {
+        _currentBehavior = COLLISION_BEHAVIOR_RAINY_SQUIRREL;
+        _persistsBetweenRegions = true;
     } else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;     
-}         _collided = false;
+    }   
+    _collided = false;
 }
 
 -(Collision*) getCollision
@@ -718,9 +731,11 @@
     } else if([behavior isEqualToString:@"rainyTreeB"]) {
         _collideBehavior = COLLISION_BEHAVIOR_RAINY_TREE_B;
         _currentBehavior = COLLISION_BEHAVIOR_RAINY_TREE_B;
+    } else if([behavior isEqualToString:@"rainySquirrel"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_RAINY_SQUIRREL;
+        _currentBehavior = COLLISION_BEHAVIOR_RAINY_SQUIRREL;
+        _persistsBetweenRegions = true;
     }
-
-    
     else {
         _collideBehavior = COLLISION_BEHAVIOR_NONE;
     }
