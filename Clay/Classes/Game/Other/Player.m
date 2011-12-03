@@ -547,7 +547,7 @@
 
 -(void)updateLedge:(float)dt
 {
-    /*
+ /*   
      if(_onLedge)
      {
      [[_playerOnledge getCCSprite] setAnchorPoint:ccp(0.5,0)];
@@ -581,8 +581,8 @@
      }
      [[Camera sharedCamera] setTarget:_sprite];
      }
+   */  
      
-     */
 }
 
 -(void)updatePitFalling:(float)dt

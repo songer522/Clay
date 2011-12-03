@@ -56,6 +56,7 @@ typedef enum {
     float _direction;
     float _reloading;
     float _magnitude;
+    bool _stopCurve;
     bool _madeSound;
     bool _isInvincible;
     bool _fadeout;
