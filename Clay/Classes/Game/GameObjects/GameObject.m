@@ -489,8 +489,8 @@
         _vx = 0.0f;
         if ([self closeToPlayer:275]) {
             _angle+=200.0f*dt;
-            if(_angle>-100.0f) {
-                _angle = -100.0f;
+            if(_angle>-120.0f) {
+                _angle = -120.0f;
             }
             [_sprite getCCSprite].rotation = -30.0f + ((_angle + 180.0f) / (2.66667f));
             _vx = _magnitude * cosf((_angle * 3.14159)/180.0f);
@@ -507,12 +507,9 @@
             _angle = -180.0f;
             [_sprite getCCSprite].rotation = -30.0f;
         }
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_RAINY_SQUIRREL) {
-        if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
-            _vx = 100.0f;
-        }
     }
-    else if(_currentBehavior == COLLISION_BEHAVIOR_PAPERPLANE) {
+    else if(_currentBehavior == COLLISION_BEHAVIOR_PAPERPLANE)
+    {
         _vx = 0.0f;
         if ([self closeToPlayer:275]) {
             _angle-=180.0f*dt;
@@ -533,7 +530,44 @@
             _vx = -1 * _magnitude;
             _angle = -180;
             //[_sprite getCCSprite].rotation = -30.0f;
-    } 
+        }
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_RAINY_SQUIRREL) {
+        if (_reloading >=0.0f) {
+            _reloading -= dt;
+        } else {
+            if(_waitToTrigger > 0.0f && !_collided) {
+                _waitToTrigger -= dt;
+                if(_waitToTrigger<= 0.0f){
+                    _reloading = 4.0f;
+                    if(_projectile!=nil) {
+                        [_projectile release];
+                    }
+                    _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_RAINY_SQUIRREL_NUT];
+                    [_projectile reset];
+                    [_projectile setPosition:CGPointMake(_x - 25.0f, _y + 19)];
+                    [_projectile setBoundingBox:CGRectMake(0, 12, 16, 16)];
+                    [_projectile setInitialVelocity];
+                } 
+            } else {
+                if ([self closeToPlayer:400.0f]) {
+                    _waitToTrigger = 0.28f;
+                }
+                else if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+                    _vx = 100.0f;
+                }
+                
+            }
+        }
+
+        
+        
+        
+        
+        
+        
+        
+        
+
     }
 
 }

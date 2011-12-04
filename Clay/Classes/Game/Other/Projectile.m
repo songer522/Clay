@@ -57,16 +57,12 @@
                 _sprite = [Sprite spriteFromFrameCacheWithName:@"Zombies_Bullet.png"];
                 //[[_sprite getCCSprite] setScale:0.1f];
                 [[_sprite getCCSprite] setVisible:NO];
-                _vx = 800.0f;
                 _offscreenPadding = 20;
                 break;
             case PROJECTILE_BEHAVIOR_ZOMBIE_HEAD:
                 _sprite = [Sprite spriteFromFrameCacheWithName:@"F_Zombie_Head.png"];
                 [_sprite getCCSprite].anchorPoint = ccp(0.5f, 0.5f);
                 [[_sprite getCCSprite] setScale:0.8];
-                _vx = 250 + rand()%100;
-                _angularVelocity = rand()%10 + 10;                
-                _vy = 50.0f;
                 _hasGravity = true;
                 _isAggressive = false;
                 _offscreenPadding = 42;
@@ -82,17 +78,51 @@
                 _sprite = [Sprite spriteWithFile:@"blank.png"];
                 [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"fireBullet"];
                 [[_sprite getCCSprite] setVisible:NO];
-                _vx = -250.0f;
                 _isAggressive = false;
                 break;
+            case PROJECTILE_BEHAVIOR_RAINY_SQUIRREL_NUT:
+                _sprite = [Sprite spriteFromFrameCacheWithName:@"Level9_Squirrel_Nut.png"];
+                [_sprite getCCSprite].anchorPoint = ccp(0.5f,0.5f);
+                [[_sprite getCCSprite] setVisible:NO];
+                _hasGravity = true;
+                _offscreenPadding = 20.0f;
+                _offsetGroundDetectionY = -13.0f;
+                _isAggressive = false;
             default:
                 break;                
                 
         }        
     }
     
+    [self setInitialVelocity];
+    
     return self;
 }
+
+-(void) setInitialVelocity
+{
+    switch (_behavior) {
+        case PROJECTILE_BEHAVIOR_BULLET:
+            _vx = 800.0f;
+            break;
+        case PROJECTILE_BEHAVIOR_ZOMBIE_HEAD:
+            _vx = 250 + rand()%100;
+            _angularVelocity = rand()%10 + 10;                
+            _vy = 50.0f;
+            break;
+        case PROJECTILE_BEHAVIOR_FIRE_DEMON_BULLET:
+            _vx = -250.0f;
+            break;
+        case PROJECTILE_BEHAVIOR_RAINY_SQUIRREL_NUT:
+            _angularVelocity = -1 * (rand()%10 + 10);
+            _vy = 75.0f;
+            _vx = -1.0f * (50.0f + rand()%100);
+            break;
+        default:
+            break;                
+    }        
+}
+
 
 //so far used only by boss ship
 -(void)pointTowardPlayer
@@ -208,7 +238,7 @@
         if ([_sprite reachedMinAfterModifyAlpha:-2.0f * dt]) {
             [[_sprite getCCSprite] setVisible:NO];
         } else {
-            [_sprite move:CGPointMake(100.0f *dt, 200.0f*dt)];
+            [_sprite move:CGPointMake(100.0f *dt, 200.0f*dt)];                
         }
     }
     
@@ -243,6 +273,7 @@
         //otherwise we test to see if it collided with anything
         if (![self checkIfOnScreen:newPosition]) {
           //  [self disable];
+          //??? the above line shouldn't be commented out. the projectile still goes through the update cycle even when it's offscreen with this
         } else {
             if (_isAggressive) {
                 bool collision = [[[LevelManager shared] currentLevel] testCollisionsForAggressive:self];
