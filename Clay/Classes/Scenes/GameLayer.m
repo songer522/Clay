@@ -283,9 +283,6 @@
 
 -(void)setBoss:(Boss*)boss
 {
-    
-   
-
     _boss = boss;
 }
 
