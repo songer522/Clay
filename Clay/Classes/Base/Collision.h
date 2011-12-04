@@ -1,0 +1,32 @@
+//
+//  Collision.h
+//  Clay
+//
+//  Created by Brian Cable on 9/9/11.
+//  Copyright 2011 Xecudev, LLC. All rights reserved.
+//
+//  Base class for collidable objects (obstacles, projectiles)
+
+#import <Foundation/Foundation.h>
+
+typedef enum {
+    COLLISION_STATE_MIDAIR = 0,
+    COLLISION_STATE_GROUNDED = 1,
+    COLLISION_STATE_BUMPED_OBJECT = 2,
+    COLLISION_STATE_BUMPED_WALL = 3,
+    COLLISION_STATE_LEDGE = 4,
+    COLLISION_STATE_DEATHPIT = 5
+} CollisionState;
+
+@interface Collision : NSObject
+{
+    CollisionState _currentState;
+}
+
+@property(nonatomic,assign) CollisionState currentState;
+
+
++(id)collisionNode;
+-(void)processNewCollisionState:(CollisionState)state;
+
+@end

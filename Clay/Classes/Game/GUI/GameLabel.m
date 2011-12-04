@@ -1,0 +1,86 @@
+//
+//  GameLabel.m
+//  Clay
+//
+//  Created by Brian Cable on 11/29/11.
+//  Copyright (c) 2011 Xecudev, LLC. All rights reserved.
+//
+
+#import "GameLabel.h"
+#import "LayerManager.h"
+#import "GameSettings.h"
+
+@implementation GameLabel
+
+
++(id)gameLabelWithText:(NSString*)text Scale:(float)scale
+{
+    return [[self alloc] initWithText:text Scale:scale Position:ccp(0,0)];
+}
+
++(id)gameLabelWithText:(NSString*)text Scale:(float)scale Position:(CGPoint)position
+{
+    return [[self alloc] initWithText:text Scale:scale Position:position];
+}
+
+-(id)initWithText:(NSString*)text Scale:(float)scale Position:(CGPoint)position
+{
+    if((self=[super init])) {        
+        _label = [CCLabelBMFont labelWithString:text fntFile:@"GraphicFont.fnt"];
+        [self setScale:scale];
+        [self setPosition:position];
+        [[[LayerManager sharedLayers] currentLayer] addChild:_label];
+    }
+    return self;
+}
+
+-(void)setPosition:(CGPoint)position
+{
+    _label.position = position;
+}
+
+-(void)setScale:(float)scale
+{
+    if ([GameSettings usingHighResolutionGraphics])
+    {
+        [_label setScale:scale];
+    }
+    else
+    {
+        [_label setScale:(scale/2.0f)];
+    }
+}
+
+-(void)setHorizontalAlignment:(TextAlignment)alignment
+{
+    float anchorValue = alignment / 2.0f;
+    CGPoint currentAnchorPoint = _label.anchorPoint;
+    _label.anchorPoint = ccp(anchorValue, currentAnchorPoint.y);
+}
+
+-(void)setVerticalAlignment:(TextAlignment)alignment
+{
+    float anchorValue = alignment / 2.0f;
+    CGPoint currentAnchorPoint = _label.anchorPoint;
+    _label.anchorPoint = ccp(currentAnchorPoint.x, anchorValue);    
+}
+
+-(void)setCentered
+{
+    [self setHorizontalAlignment:TEXT_ALIGN_CENTER];
+    [self setVerticalAlignment:TEXT_ALIGN_CENTER];
+}
+
+
+-(void)setText:(NSString*)text
+{
+    [_label setString:text];
+}
+
+-(void)dealloc
+{
+    [_label release];
+    [super dealloc];
+}
+
+@end

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>track</key>
+	<string>track.mp3</string>
+	<key>barn</key>
+	<string>barn.mp3</string>
+	<key>cornfields</key>
+	<string>town.mp3</string>
+	<key>disco</key>
+	<string>disco.mp3</string>
+	<key>computer</key>
+	<string>computer.mp3</string>
+	<key>city</key>
+	<string>city.mp3</string>
+	<key>zombies</key>
+	<string>zombies.mp3</string>
+	<key>fire</key>
+	<string>fire.mp3</string>
+	<key>title</key>
+	<string>title.mp3</string>
+	<key>credits</key>
+	<string>credits.mp3</string>
+	<key>cutscene</key>
+	<string>cutscene.mp3</string>
+	<key>rainy</key>
+	<string>rainy.mp3</string>
+</dict>
+</plist>

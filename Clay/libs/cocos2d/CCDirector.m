@@ -30,6 +30,10 @@
 #import <unistd.h>
 #import <Availability.h>
 
+#include <sys/sysctl.h>  
+#import <mach/mach.h>
+#import <mach/mach_host.h>
+
 // cocos2d imports
 #import "CCDirector.h"
 #import "CCScheduler.h"
@@ -63,6 +67,9 @@
 #import "Support/CCProfiling.h"
 
 #define kDefaultFPS		60.0	// 60 frames per second
+
+//XECUDEV ADD
+#import "GameSettings.h"
 
 extern NSString * cocos2dVersion(void);
 
@@ -159,6 +166,7 @@ static CCDirector *_sharedDirector = nil;
 
 #if CC_DIRECTOR_FAST_FPS
 	[FPSLabel_ release];
+    [FPSLabel2_ release];
 #endif
 	[runningScene_ release];
 	[notificationNode_ release];
@@ -177,17 +185,22 @@ static CCDirector *_sharedDirector = nil;
 	NSAssert( openGLView_, @"openGLView_ must be initialized");
 
 	[self setAlphaBlending: YES];
-	[self setDepthTest: YES];
+	[self setDepthTest: NO];
 	[self setProjection: projection_];
 	
 	// set other opengl default values
-	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    //XECUDEV: changed to 0.0f alpha to support video playback per http://stackoverflow.com/questions/4454758/cocos2d-playing-a-video-in-the-background-of-a-menu/4479700#4479700
+	//glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+    //NOTE 11-11-28: but this doesn't seem to affect anything by resetting to 1.0f, the video still plays
+    glClearColor(0.0f, 0.0f, 0.0f,1.0f);
 	
 #if CC_DIRECTOR_FAST_FPS
     if (!FPSLabel_) {
 		CCTexture2DPixelFormat currentFormat = [CCTexture2D defaultAlphaPixelFormat];
 		[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA4444];
 		FPSLabel_ = [[CCLabelAtlas labelWithString:@"00.0" charMapFile:@"fps_images.png" itemWidth:16 itemHeight:24 startCharMap:'.'] retain];
+        FPSLabel2_ = [[CCLabelBMFont labelWithString:@"FPS: " fntFile:@"GraphicFont.fnt"] retain];
+        [FPSLabel2_ setScale:0.05f];
 		[CCTexture2D setDefaultAlphaPixelFormat:currentFormat];		
 	}
 #endif	// CC_DIRECTOR_FAST_FPS
@@ -509,12 +522,19 @@ static CCDirector *_sharedDirector = nil;
 //		sprintf(format,"%.1f",frameRate);
 //		[FPSLabel setCString:format];
 
-		NSString *str = [[NSString alloc] initWithFormat:@"%.1f", frameRate_];
+        //XECUDEV: change to show memory also the only change in showFPS is this line:
+        NSString *versionNumber = [[GameSettings shared] getGlobalForKey:@"versionNumber"];
+        NSString *str = [[NSString alloc] initWithFormat:@"%@  %.1f  %.1f", versionNumber, frameRate_, [CCDirector getAvailableMegaBytes]];
+        
+		//NSString *str = [[NSString alloc] initWithFormat:@"%.1f", frameRate_];
 		[FPSLabel_ setString:str];
+        //[FPSLabel2_ setString:str];
+
 		[str release];
 	}
 
 	[FPSLabel_ draw];
+    //[FPSLabel2_ draw];
 }
 #else
 // display the FPS using a manually generated Texture (very slow)
@@ -560,6 +580,37 @@ static CCDirector *_sharedDirector = nil;
 	}
 #endif // CC_ENABLE_PROFILERS
 }
+
+
+
+//XECUDEV: added methods for showing memory per: http://www.learn-cocos2d.com/2010/07/coding-cocos/
+
++(double) getAvailableBytes
+{
+    vm_statistics_data_t vmStats;
+    mach_msg_type_number_t infoCount = HOST_VM_INFO_COUNT;
+    kern_return_t kernReturn = host_statistics(mach_host_self(), HOST_VM_INFO, (host_info_t)&vmStats, &infoCount);
+    
+    if (kernReturn != KERN_SUCCESS)
+    {
+        return NSNotFound;
+    }
+    
+    return (vm_page_size * vmStats.free_count);
+}
+
++(double) getAvailableKiloBytes
+{
+    return [CCDirector getAvailableBytes] / 1024.0;
+}
+
++(double) getAvailableMegaBytes
+{
+    return [CCDirector getAvailableKiloBytes] / 1024.0;
+}
+
+
+
 
 @end
 

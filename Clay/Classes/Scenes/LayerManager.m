@@ -1,0 +1,123 @@
+//
+//  LayerManager.m
+//  Clay
+//
+//  Created by Brian Cable on 9/8/11.
+//  Copyright 2011 Xecudev, LLC. All rights reserved.
+//
+
+#import "cocos2d.h"
+#import "LayerManager.h"
+#import "GameLayer.h"
+
+@implementation LayerManager
+
+
+static LayerManager *_sharedLayers = nil;
+
++(LayerManager*)sharedLayers
+{
+	if (!_sharedLayers) {
+        _sharedLayers = [[self alloc] init];
+	}
+	return _sharedLayers;
+}
+
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        // Initialization code here.
+        _scenes = [[NSMutableDictionary alloc] initWithCapacity:5];
+    }
+    
+    return self;
+}
+
+-(void)setWorkingLayer:(id)layer
+{
+    _workingLayer = layer;
+}
+
+-(void)forgetWorkingLayer
+{
+    _workingLayer = nil;
+}
+
+-(void)setCurrentLayer:(id)layer
+{
+    _currentLayer = layer;
+}
+
+-(id)currentLayer
+{
+    if (_workingLayer!=nil) {
+        return _workingLayer;
+    } else {
+        return _currentLayer;        
+    }
+}
+
+-(void)setWorkingScene:(id)scene
+{
+    _workingScene = scene;
+}
+
+-(void)forgetWorkingScene
+{
+    _workingScene = nil;
+}
+
+-(id)currentScene
+{
+    if (_workingScene!=nil) {
+        return _workingScene;
+    } else {
+        return _currentScene;
+    }
+}
+
+-(void)setCurrentScene:(CCScene*)scene
+{
+    _currentScene = scene;
+}
+
+-(void)setScene:(CCScene*)scene ForKey:(NSString*)key
+{
+    [_scenes setObject:scene forKey:key];
+}
+
+-(id)getSceneForKey:(NSString*)key
+{
+    return [_scenes objectForKey:key];
+}
+
+-(void)pushSceneNamed:(NSString*)scene
+{
+    id pushScene = [_scenes objectForKey:scene];
+    [[CCDirector sharedDirector] pushScene:pushScene];
+    //[pushScene scheduleUpdate];
+}
+
+-(void)popAndPushSceneNamed:(NSString*)scene
+{
+    [[CCDirector sharedDirector] popScene];
+    [self pushSceneNamed:scene];
+}
+
+-(Player*)getPlayer
+{
+    GameLayer *gameLayer = _currentLayer;
+    return gameLayer.player;
+}
+
+-(void)dealloc
+{
+    [_currentScene release];
+    [_scenes removeAllObjects];
+    [_scenes release];
+    [super dealloc];
+}
+
+@end

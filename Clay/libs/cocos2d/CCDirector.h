@@ -31,6 +31,8 @@
 #import "Platforms/CCGL.h"
 #import "CCProtocols.h"
 
+@class CCLabelBMFont;
+
 /** @typedef ccDirectorProjection
  Possible OpenGL projections used by director
  */
@@ -95,6 +97,7 @@ and when to execute the Scenes.
 	ccTime frameRate_;
 #if	CC_DIRECTOR_FAST_FPS
 	CCLabelAtlas *FPSLabel_;
+    CCLabelBMFont *FPSLabel2_; //XECUDEV
 #endif
 	
 	/* is the running scene paused */
@@ -143,6 +146,11 @@ and when to execute the Scenes.
 	ccTime accumDtForProfiler_;
 #endif
 }
+
+
++(double) getAvailableBytes;
++(double) getAvailableKiloBytes;
++(double) getAvailableMegaBytes;
 
 /** returns the cocos2d thread.
  If you want to run any cocos2d task, run it in this thread.

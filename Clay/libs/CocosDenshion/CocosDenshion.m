@@ -180,7 +180,7 @@ static BOOL _mixerRateSet = NO;
 }
 
 /**
- * Internal method called during init
+ * Internal method called during in
  */
 - (BOOL) _initOpenAL
 {

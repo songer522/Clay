@@ -1,0 +1,105 @@
+//
+//  GameObjectController.m
+//  Clay
+//
+//  Created by Dustin Werner on 9/13/11.
+//  Copyright 2011 Xecudev, LLC. All rights reserved.
+//
+
+#import "GameObjectController.h"
+#import "PListLoader.h"
+#import "GameObject.h"
+#import "Sprite.h"
+#import "AnimationController.h"
+
+@implementation GameObjectController
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _objectSettings = [[PListLoader loadPlistWithName:@"objects"] retain];
+    }
+    
+    return self;
+}
+
+-(GameObject*)loadGameObjectWithName:(NSString *)objectName
+{
+    GameObject *gameObject = [GameObject instance];
+    [self initializeGameObject:gameObject Name:objectName AddToLayer:YES];
+    return gameObject;
+}
+
+-(GameObject*)loadGameObjectWithName:(NSString *)objectName AddToLayer:(bool)shouldAddToLayer
+{
+    GameObject *gameObject = [GameObject instance];
+    [self initializeGameObject:gameObject Name:objectName AddToLayer:shouldAddToLayer];
+    return gameObject;
+}
+
+-(void)initializeGameObject:(GameObject*)gameObject Name:(NSString*)objectName AddToLayer:(bool)shouldAddToLayer
+{
+    //NSLog(@"Game Object Loading: %@",objectName);
+
+    NSDictionary *gameobjectSettings = [_objectSettings objectForKey:objectName];
+    NSAssert(gameobjectSettings != nil, @"Object could not be found. Please ensure %@ is in objects.plist",objectName);
+
+    NSString *frameName = [self getRandomImageFromList:[gameobjectSettings objectForKey:@"imageName"]];
+    
+    Sprite *gameSprite;
+    if ([frameName isEqualToString:@"blank.png"]) {
+        gameSprite = [Sprite spriteWithFile:frameName AddToLayer:shouldAddToLayer];        
+    } else {
+        gameSprite = [Sprite spriteFromFrameCacheWithName:frameName AddToLayer:shouldAddToLayer];    
+    }
+    
+    [gameObject setSprite:gameSprite];
+    
+    NSString *animation = [NSString stringWithString:[gameobjectSettings objectForKey:@"animationName"]];
+    if (animation && [animation compare:@"none"] != NSOrderedSame) {
+        [[AnimationController sharedController] replaceSprite:gameSprite withAnimationNamed:animation];
+        [gameObject setOriginalAnimation:animation];
+    } else {
+        [gameObject setOriginalAnimation:@"none"];
+    }
+    
+    [gameObject setOffsetForX:[[gameobjectSettings objectForKey:@"offsetx"] floatValue] Y:[[gameobjectSettings objectForKey:@"offsety"] floatValue]];
+    
+    bool aggressive = [[gameobjectSettings objectForKey:@"aggressive"] boolValue];
+    gameObject.isAggressive = aggressive;
+    
+    NSString *collideBehavior = [gameobjectSettings objectForKey:@"collideBehavior"];
+    [gameObject setCollideBehavior:collideBehavior];
+    
+    NSString *playerEffect = [gameobjectSettings objectForKey:@"playerEffect"];
+    [gameObject setPlayerEffect:playerEffect];
+    
+    NSDictionary *anchorPoint = [gameobjectSettings objectForKey:@"anchorpoint"];
+    [[gameObject getCCSprite] setAnchorPoint:ccp([[anchorPoint objectForKey:@"x"] floatValue], [[anchorPoint objectForKey:@"y"] floatValue])];
+    NSDictionary *boundingBox = [gameobjectSettings objectForKey:@"boundingBox"];
+    gameObject.boundingBox = CGRectMake([[boundingBox objectForKey:@"x"] floatValue], [[boundingBox objectForKey:@"y"] floatValue], [[boundingBox objectForKey:@"width"] floatValue], [[boundingBox objectForKey:@"height"] floatValue]);
+    
+    [gameObject initialize:objectName];
+
+}
+
+-(NSString*)getRandomImageFromList:(NSString*)list
+{
+    NSArray *options = [list componentsSeparatedByString:@","];
+    int numberOfOptions = [options count];
+    if (numberOfOptions == 1) {
+        return list;
+    } else {
+        int choice = rand() % numberOfOptions;
+        return [options objectAtIndex:choice];
+    }
+}
+                           
+-(void)dealloc
+{
+    [_objectSettings release];
+    [super dealloc];
+}
+
+@end

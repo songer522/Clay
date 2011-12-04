@@ -40,4 +40,5 @@
 @interface CCScene : CCNode
 {
 }
+
 @end
