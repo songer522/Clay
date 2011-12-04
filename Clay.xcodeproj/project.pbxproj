@@ -1222,11 +1222,8 @@
 		54484CC5140449B500D0D7D9 = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
-=======
 				611293F2147AC93500AC017F /* SystemConfiguration.framework */,
 				611293F0147AC92A00AC017F /* CFNetwork.framework */,
->>>>>>> 98ad1f7efb1a64653e4575604a811ac8df84a188
 				54484CE4140449B500D0D7D9 /* Clay */,
 				54484CD3140449B500D0D7D9 /* Frameworks */,
 				54484CD1140449B500D0D7D9 /* Products */,
@@ -1244,11 +1241,8 @@
 		54484CD3140449B500D0D7D9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
-=======
 				54A2863A147313A500A2E8A6 /* Twitter.framework */,
 				54FBA2351430CBBE0010A91A /* MediaPlayer.framework */,
->>>>>>> 98ad1f7efb1a64653e4575604a811ac8df84a188
 				54179E2C142BC92300D3A79E /* GameKit.framework */,
 				54484CD4140449B500D0D7D9 /* QuartzCore.framework */,
 				54484CD6140449B500D0D7D9 /* OpenGLES.framework */,
@@ -2804,10 +2798,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv7,
-					armv6,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2827,10 +2818,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv7,
-					armv6,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Clay/Prefix.pch;
@@ -2870,10 +2858,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv7,
-					armv6,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Clay/Prefix.pch;
