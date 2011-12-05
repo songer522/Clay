@@ -9,5 +9,10 @@
 #import "PlayerAction.h"
 
 @interface PlayerActionSlowTime : PlayerAction
+{
+    float _slowdown;
+}
+
+-(void)updateSlowdown:(float)modifier;
 
 @end

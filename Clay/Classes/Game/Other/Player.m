@@ -367,6 +367,10 @@
         _thirdAction = (PlayerAction*)[PlayerActionFactory buildPlayerAction:PLAYER_ACTION_BLOCK];
     } else if([action isEqualToString:@"blow"]) {
         _thirdAction = (PlayerAction*)[PlayerActionFactory buildPlayerAction:PLAYER_ACTION_BLOW];
+    } else if([action isEqualToString:@"spin"]) {
+        _thirdAction = (PlayerAction*)[PlayerActionFactory buildPlayerAction:PLAYER_ACTION_SPIN];
+    } else if([action isEqualToString:@"slowtime"]) {
+        _thirdAction = (PlayerAction*)[PlayerActionFactory buildPlayerAction:PLAYER_ACTION_SLOW_TIME];
     }
     
     [_thirdAction setParent:self];

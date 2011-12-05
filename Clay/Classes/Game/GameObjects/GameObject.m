@@ -44,6 +44,7 @@
 @synthesize originalAnimation=_originalAnimation;
 @synthesize magnitude = _magnitude;
 @synthesize persistsBetweenRegions = _persistsBetweenRegions;
+@synthesize slowTimeModifier = _slowTimeModifier;
 
 + (id) objectWithSprite:(Sprite*)sprite
 {
@@ -82,6 +83,7 @@
         _direction = 1;
         _isInvincible = false;
         _stopCurve=false;
+        _slowTimeModifier = 1.0f;
         _projectile = nil;
         _reloading = 0;
         _aggressiveCanHit = false;
@@ -267,6 +269,11 @@
 
 -(void)update:(float)dt
 {
+    //if time is slowed down, modify the dt by the modifier
+    //(must be called first because the rest relies on the dt value)
+    if (_slowTimeModifier!= 1.0f) {
+        dt = dt * _slowTimeModifier;
+    }
     
     if (_boss!=nil) {
         [_boss update:dt];
@@ -633,6 +640,7 @@
     _alpha = 1.0f;
     _fadeout = false;
     _waitToTrigger = -1.0f;
+    _slowTimeModifier = 1.0f;
     _reloading = 0.0f;
     if(self )
     _madeSound = false;

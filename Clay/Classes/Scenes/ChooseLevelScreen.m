@@ -118,7 +118,7 @@
             [[SoundEngine shared] playSound:@"buttonPressed"];     
         }
         
-            }
+    }
 }
 
 -(void)loadTutorial
