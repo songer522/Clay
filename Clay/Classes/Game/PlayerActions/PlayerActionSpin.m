@@ -28,15 +28,16 @@
 {
     if (!_inAction && _canTrigger) {
         [super startAction];
-        [_parent setPlayerAnimation:PLAYER_ANIM_SPIN_UP];
         [_parent setPlayerAnimation:PLAYER_ANIM_SPIN];
-        _duration = 0.75f;
+        [_parent setPlayerAnimation:PLAYER_ANIM_SPIN_UP];
+        _duration = 10.75f;
     }
 }
 
 -(void)endAction
 {
     [_parent setPlayerAnimation:PLAYER_ANIM_RUNNING];
+    _duration = 0.0f;
     [super endAction];
     
 }
@@ -44,6 +45,7 @@
 -(void)cancelAction
 {
     [_parent setPlayerAnimation:PLAYER_ANIM_RUNNING];
+    _duration = 0.0f;
     [super cancelAction];
 }
 

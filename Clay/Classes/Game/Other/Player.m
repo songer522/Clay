@@ -265,7 +265,7 @@
         } else if (effect == PLAYER_EFFECT_COLLIDE) {
             if (!_isTripping && !_isDead) {
                 [self private_StartPlayerCollision];
-                            }
+        }
         } else if(effect == PLAYER_EFFECT_SLOWDOWN) {
             [_speed slowDown];
         }
@@ -302,6 +302,10 @@
         _vy = -250.0f;
         _y += 2.0f;
         _waitToGetUp = 0.3f;
+    }
+    
+    if (_thirdAction.inAction) {
+        [_thirdAction cancelAction];
     }
 }
 

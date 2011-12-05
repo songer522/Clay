@@ -143,6 +143,11 @@
     <property name="obstacle" value="rainyUmbrellaFlyAcross"/>
    </properties>
   </tile>
+  <tile id="61">
+   <properties>
+    <property name="obstacle" value="waterBubbles"/>
+   </properties>
+  </tile>
   <tile id="63">
    <properties>
     <property name="duration" value="short"/>
@@ -217,7 +222,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt0l0OgjAMAGBOoF7KnwfRxPsfxpDIC2FbB9Ml5vteCKVNy9ZhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWjg3zttbk6q7BGNr8dIctXNG8lOz7a3J5XzzLluq6Z/KrTnfFvdb6pf7XrsLqfze9wYAAPR1DeY9G/e9Z769GveaPVZit2BsEjmrUs6xsnb8PFMzlXrO/5yrT9lSM5nudsu+RHcxOtdyj8bFe6lfbg9TtVvP7JdOvQcAAIA/cug9AAAAAAAAAAB08AY1PA6I
+   eJztzjENADAMA8EgqIqr/AGVQjYr0d1oL18FAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAc73m1vmAXW46AAAAFjnpAAAAAAAAAAAI+KP7AP0=
   </data>
  </layer>
  <layer name="meta" width="1000" height="14" opacity="0.67">

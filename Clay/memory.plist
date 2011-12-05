@@ -130,7 +130,7 @@
 		<key>sounds</key>
 		<string>none</string>
 		<key>textures</key>
-		<string>rainyLevel</string>
+		<string>rainyLevel,characterSpinning</string>
 	</dict>
 	<key>level11</key>
 	<dict>
