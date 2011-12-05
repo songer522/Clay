@@ -518,19 +518,20 @@
     else if(_currentBehavior == COLLISION_BEHAVIOR_PAPERPLANE)
     {
         _vx = 0.0f;
-        if ([self closeToPlayer:275]) {
-            _angle-=180.0f*dt;
-            if(_angle < -360.0f) {
+        if ([self closeToPlayer:375]) {
+            _angle+=130.0f*dt;
+            if(_angle > -60.0f) {
                 _stopCurve=true;
-                _angle = - 360.0f;
+                _angle = - 60.0f;
                 
                _vx = -1 * _magnitude;
+                _vy=0;
             }
             //[_sprite getCCSprite].rotation = -30.0f + ((_angle + 180.0f) / (2.66667f));
             if(!_stopCurve)
             {
                 _vx = _magnitude * cosf((_angle * 3.14159)/180.0f);
-                _vy = _magnitude * sinf((_angle * 3.14159)/180.0f);
+                _vy = -1*_magnitude * sinf((_angle * 3.14159)/180.0f);
             }
             
         } else if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
@@ -642,6 +643,7 @@
     _waitToTrigger = -1.0f;
     _slowTimeModifier = 1.0f;
     _reloading = 0.0f;
+    _stopCurve=false;
     if(self )
     _madeSound = false;
     [_sprite setAlpha:1.0f];
@@ -704,6 +706,7 @@
     else if(_currentBehavior == COLLISION_BEHAVIOR_PAPERPLANE) {
         _currentBehavior = COLLISION_BEHAVIOR_PAPERPLANE;
         _magnitude=200;
+        _angle=-180;
     }else if(_currentBehavior == COLLISION_BEHAVIOR_UMBRELLA_FLY_ACROSS) {
         _currentBehavior = COLLISION_BEHAVIOR_UMBRELLA_FLY_ACROSS;
     } else if(_currentBehavior == COLLISION_BEHAVIOR_RAINY_TREE_A) {
