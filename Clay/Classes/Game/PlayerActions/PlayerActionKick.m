@@ -23,13 +23,20 @@
 #define kPlayerActionKickFullDuration 0.38f;
 #define kPlayerActionKickActiveWhileDurationLessThan 0.75f
 
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
+#define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 @implementation PlayerActionKick
 
 -(void) initialize
 {
     [super initialize];
     _kick = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_PLAYER_KICK];
-    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
+    if (IS_IPAD)
+    {
+        [_kick setBoundingBox:CGRectMake(0, 10, 35* MULTIPLIERX, 35 * MULTIPLIERY)];
+    }
+    else if ([GameSettings usingHighResolutionGraphics])
     {
     [_kick setBoundingBox:CGRectMake(0, 0, 35, 35)];
     }
@@ -64,8 +71,12 @@
             [self updateBoundingBox];
             
             CGPoint position = [[[LayerManager sharedLayers] getPlayer] getPosition];
-            
-            if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
+            if (IS_IPAD)
+            {
+                position.x += 10.0f * MULTIPLIERX;
+                position.y += 33.0f * MULTIPLIERY;
+            }
+            else if ([GameSettings usingHighResolutionGraphics])
             {
                 position.x += 10.0f;
                 position.y -= 5.0f;
@@ -116,8 +127,11 @@
             projWidth = 0;
             break;
     }
-    
-    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
+    if (IS_IPAD)
+    {
+        [_kick setBoundingBox:CGRectMake(startX, 10, projWidth * MULTIPLIERX, 35 * MULTIPLIERY)];
+    }
+    else if ([GameSettings usingHighResolutionGraphics])
     {
         [_kick setBoundingBox:CGRectMake(startX, 0, projWidth, 35)];
     }

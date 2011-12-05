@@ -69,7 +69,7 @@
             {
                 desiredPosition.y = (_mapHeight - coords.y - 1) * _tileSize + 32.0f;
             }
-            if ([GameSettings usingHighResolutionGraphics])
+            else if ([GameSettings usingHighResolutionGraphics])
             {
                 desiredPosition.y = (_mapHeight - coords.y - 1) * _halfTileSize  + 32.0f;
             }
@@ -94,8 +94,12 @@
 {
     int x;
     int y;
-    
-    if ([GameSettings usingHighResolutionGraphics])
+    if (IS_IPAD)
+    {
+        x = position.x / _tileSize;
+        y = ((_mapHeight * _tileSize) - position.y) / _tileSize;
+    }
+    else if ([GameSettings usingHighResolutionGraphics])
     {
         x = position.x / _halfTileSize;
         y = ((_mapHeight * _halfTileSize) - position.y) / _halfTileSize;

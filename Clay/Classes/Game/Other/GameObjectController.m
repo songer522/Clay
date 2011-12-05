@@ -86,7 +86,7 @@
     NSDictionary *anchorPoint = [gameobjectSettings objectForKey:@"anchorpoint"];
     [[gameObject getCCSprite] setAnchorPoint:ccp([[anchorPoint objectForKey:@"x"] floatValue], [[anchorPoint objectForKey:@"y"] floatValue])];
     NSDictionary *boundingBox = [gameobjectSettings objectForKey:@"boundingBox"];
-    gameObject.boundingBox = CGRectMake([[boundingBox objectForKey:@"x"] floatValue] * MULTIPLIERX, [[boundingBox objectForKey:@"y"] floatValue] * MULTIPLIERY, [[boundingBox objectForKey:@"width"] floatValue] * MULTIPLIERX, [[boundingBox objectForKey:@"height"] floatValue] * MULTIPLIERY);
+    gameObject.boundingBox = CGRectMake([[boundingBox objectForKey:@"x"] floatValue] * MULTIPLIERX, [[boundingBox objectForKey:@"y"] floatValue], [[boundingBox objectForKey:@"width"] floatValue] * MULTIPLIERX, [[boundingBox objectForKey:@"height"] floatValue] * MULTIPLIERY);
     
     [gameObject initialize:objectName];
 

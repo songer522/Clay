@@ -23,7 +23,7 @@
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
 #define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
-#define GAME_OBJECT_DISTANCE_ONSCREEN 550.0f
+#define GAME_OBJECT_DISTANCE_ONSCREEN 1000.0f
 
 #define MULTIPLIER_ANGLE_TO_RADS 0.1745328f //pre-calculation for Math.pi/180
 
@@ -251,7 +251,7 @@
     _hasGravity = true;
     _collided = false;  //want it to remain aggressive
     _isAggressive = true;
-    float magnitude = 555.0f;
+    float magnitude = 880.0f;
     _angle = -20; //old was -30
     _rotationAmount = 75;
     _vx = magnitude * cosf((_angle * 3.14159)/180.0f);
@@ -364,7 +364,7 @@
     } else if(_currentBehavior == COLLISION_BEHAVIOR_CHARGE_AT_PLAYER) {
         _vx = 0.0f;
         if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
-            _vx = -150.0f;
+            _vx = -150.0f * MULTIPLIERX;
         }
     } else if(_currentBehavior == COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST) {
         _vx = 0.0f;
@@ -735,6 +735,7 @@
         _collideBehavior = COLLISION_BEHAVIOR_FALL_OVER;
     } else if([behavior compare:@"kicked"] == NSOrderedSame) {
         _collideBehavior = COLLISION_BEHAVIOR_HEN_KICKED;
+        _persistsBetweenRegions = true;
     } else if([behavior compare:@"anim"] == NSOrderedSame) {
         _collideBehavior = COLLISION_BEHAVIOR_PLAY_ANIMATION;
     } else if([behavior compare:@"cowCollapse"] == NSOrderedSame) {

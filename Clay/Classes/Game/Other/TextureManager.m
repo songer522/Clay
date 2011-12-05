@@ -97,7 +97,7 @@ static TextureManager *_shared = nil;
     }
     else if([GameSettings usingHighResolutionGraphics])
     {
-        //appendhd = @"-hd";
+        appendhd = @"-hd";
     }
     else
     {
