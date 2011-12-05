@@ -28,6 +28,7 @@
 {
     if (!_inAction && _canTrigger) {
         [super startAction];
+        [_parent setPlayerAnimation:PLAYER_ANIM_SPIN_UP];
         [_parent setPlayerAnimation:PLAYER_ANIM_SPIN];
         _duration = 0.75f;
     }

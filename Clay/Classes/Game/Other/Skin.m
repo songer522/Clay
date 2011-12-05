@@ -119,6 +119,9 @@
         case PLAYER_ANIM_SPIN:
             animName = _spinAction;
             break;
+        case PLAYER_ANIM_SPIN_UP:
+            animName = _spinUp;
+            break;
         case PLAYER_ANIM_SLOWTIME:
             animName = _slowTimeAction;
             break;
@@ -161,6 +164,7 @@
     [_shootAction release];
     [_blowAction release];
     [_spinAction release];
+    [_spinUp release];
     [_slowTimeAction release];
     [super dealloc];
 }
