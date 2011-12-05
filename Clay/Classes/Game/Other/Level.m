@@ -212,12 +212,14 @@
     _x = x;
     _y = y;
     
-    CGPoint position = [[Camera sharedCamera] convertToScreenXY:CGPointMake(_x,_y)];
+    CGPoint position = [[Camera sharedCamera] convertToScreenXY:CGPointMake(_x * MULTIPLIERX,_y * MULTIPLIERY)];
     
     //round position to eliminate white artifacts (note, this is in points, so with retina, we want to round based
     //on pixels, so round based on double the size first, then half the size for point pixel value
     if (IS_IPAD)
     {
+        position.x = roundf(position.x);
+        position.y = roundf(position.y); 
     }
     else if ([GameSettings usingHighResolutionGraphics]) {
         position.x = roundf(position.x * 2.0f) / 2.0f;

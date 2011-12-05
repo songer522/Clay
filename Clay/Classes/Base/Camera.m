@@ -56,8 +56,9 @@ static Camera *_sharedCamera = nil;
     NSString *levelName = level.name;
     if ([levelName isEqualToString:@"level6"]) {
         rect.size.height = 352;
-    }
-    if ([levelName isEqualToString:@"level8"]) {
+    } else if ([levelName isEqualToString:@"level8"]) {
+        rect.size.height = 330;
+    } else if([levelName isEqualToString:@"level9"]) {
         rect.size.height = 352;
     }
     

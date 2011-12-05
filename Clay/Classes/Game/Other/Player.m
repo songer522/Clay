@@ -58,7 +58,7 @@
         
         NSDictionary *cameraTracking = [settings objectForKey:@"cameraTracking"];
         int cameraX = [[cameraTracking objectForKey:@"x"] intValue];
-        int cameraY = [[cameraTracking objectForKey:@"y"] intValue];
+        int cameraY = [[cameraTracking objectForKey:@"y"] intValue] - 5;
         [[Camera sharedCamera] setCenter:CGPointMake(cameraX * MULTIPLIERX, cameraY * MULTIPLIERY)];
         
         GameObjectController *factory = [LevelManager shared].gameObjectFactory;

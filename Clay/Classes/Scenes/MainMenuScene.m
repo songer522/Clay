@@ -92,7 +92,10 @@
         [_copyright setAlpha:0.0f];
         [_copyright getCCSprite].anchorPoint = ccp(0.5f, 0.5f);
         [_copyright getCCSprite].position = ccp(240 * MULTIPLIERX,24 * MULTIPLIERY); //final 240,20
-        
+        /*
+         _tutorialButton = [ActionButton actionButtonWithText:@"TUTORIAL"];
+         [_tutorialButton setPosition:ccp(50, 18)];
+         
         _tutorial=[Tutorial TutorialWithinLayer:self];
         */
         

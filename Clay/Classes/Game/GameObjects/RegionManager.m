@@ -11,7 +11,7 @@
 #import "MapObject.h"
 #import "GameObject.h"
 
-#define REGION_MANAGER_TILES_PER_REGION 23 //should allow for ipad as well, plus some bleeding
+#define REGION_MANAGER_TILES_PER_REGION 35 //should allow for ipad as well, plus some bleeding
 
 @implementation RegionManager
 

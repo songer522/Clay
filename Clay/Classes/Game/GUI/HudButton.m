@@ -19,6 +19,8 @@
 #define BUTTON_OPACITY 255
 #define BUTTON_SCALE 0.85f
 
+#define HUD_LAYER_NUMBER_OF_OVERLAY_FRAMES 7
+
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
 #define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
