@@ -238,7 +238,7 @@
         GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
         gameLayer.gameController.isSprintEnabled=false;
         [[gameLayer getHud] setEnabled:false ForButton:HUD_BUTTON_SPRINT];
-        _waitToTurbo=1;
+        _waitToTurbo=-1;
         _isTurbo=false;
     }
     
@@ -537,12 +537,11 @@
             gameLayer.gameController.isSprintEnabled=true;
             [[gameLayer getHud] setEnabled:true ForButton:HUD_BUTTON_SPRINT];
         }
-        if(_isCooldown)
-        {
+        
         float cooldownPercent = (PLAYER_SPRINT_COOLDOWN - _waitToTurbo)/PLAYER_SPRINT_COOLDOWN;
         [[[gameLayer getHud] getSprintButton] updateOverlayImageByPercentage:cooldownPercent];
-        }
-        else
+        
+        if(!_isCooldown)
         {
             [[[gameLayer getHud] getSprintButton] updateOverlayImageByPercentage:0];
         }

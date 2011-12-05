@@ -519,7 +519,7 @@
     {
         _vx = 0.0f;
         if ([self closeToPlayer:375]) {
-            _angle+=130.0f*dt;
+            _angle+=110.0f*dt;
             if(_angle > -60.0f) {
                 _stopCurve=true;
                 _angle = - 60.0f;
