@@ -39,6 +39,7 @@ typedef enum {
     bool _hasGravity;
     bool _isInMidAir;
     bool _isFalling;
+    bool _isCooldown;
     float _waitToTrigger;
     float _rate;
     float _x;
@@ -54,6 +55,9 @@ typedef enum {
     float _fallVelocity;
     float _direction;
     float _reloading;
+    float _magnitude;
+    float _slowTimeModifier;
+    bool _stopCurve;
     bool _madeSound;
     bool _isInvincible;
     bool _fadeout;
@@ -77,6 +81,8 @@ typedef enum {
                         //so the player can't keep colliding with it
     
     bool _isAggressive;
+    
+    bool _persistsBetweenRegions;
     
     Collision *_collisionState;     //used to keep track of whether the object is in midair or on
                                     //the ground.
@@ -103,6 +109,9 @@ typedef enum {
 @property(nonatomic,assign) bool isInvincible;
 @property(nonatomic,assign) bool rotateLights;
 @property(nonatomic,assign) bool beatsPlayerAction;
+@property(nonatomic,assign) float magnitude;
+@property(nonatomic,assign) bool persistsBetweenRegions;
+@property(nonatomic,assign) float slowTimeModifier;
 
 
 #pragma mark - initialization
@@ -123,6 +132,7 @@ typedef enum {
 -(CCSprite*) getCCSprite;
 -(Projectile*) getProjectile;
 -(Boss*)getBoss;
+-(Sprite*) getSprite;
 
 -(void) setOffsetForX:(float)x Y:(float)y;
 -(void) setPosition:(CGPoint)position;

@@ -70,5 +70,15 @@
 	<string>fireballLand.wav</string>
 	<key>jimShipCharge</key>
 	<string>jimShipCharge.wav</string>
+	<key>frogSquish</key>
+	<string>frogSquish1.mp3</string>
+	<key>lightning</key>
+	<string>lightning.mp3</string>
+	<key>windShort</key>
+	<string>wind2_short.wav</string>
+	<key>windMedium</key>
+	<string>wind2_medium.wav</string>
+	<key>windLong</key>
+	<string>wind2_long.wav</string>
 </dict>
 </plist>

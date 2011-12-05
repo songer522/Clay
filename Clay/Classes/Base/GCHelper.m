@@ -112,14 +112,14 @@ static GCHelper *sharedHelper = nil;
 - (void)authenticateLocalUser {
     if (!gameCenterAvailable) return;
     
-    NSLog(@"Authenticating local user...");
+    //NSLog(@"Authenticating local user...");
     if ([GKLocalPlayer localPlayer].authenticated == NO) {
         [[GKLocalPlayer localPlayer] authenticateWithCompletionHandler:^(NSError* error)
          {
              [[CCDirector sharedDirector] resume];
          }];
     } else {
-        NSLog(@"Already authenticated!");
+        //NSLog(@"Already authenticated!");
     }
      
 }

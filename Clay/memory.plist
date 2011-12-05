@@ -110,6 +110,39 @@
 		<key>textures</key>
 		<string>fireLevel,characterBlowing</string>
 	</dict>
+	<key>level9</key>
+	<dict>
+		<key>removeTextures</key>
+		<string>tileset_level_9</string>
+		<key>animations</key>
+		<string>level9,woo</string>
+		<key>sounds</key>
+		<string>wooAction,frogSquish,lightning,windShort,windMedium,windLong</string>
+		<key>textures</key>
+		<string>rainyLevel,characterWoo</string>
+	</dict>
+	<key>level10</key>
+	<dict>
+		<key>removeTextures</key>
+		<string>tileset_level_9</string>
+		<key>animations</key>
+		<string>level9,spin</string>
+		<key>sounds</key>
+		<string>none</string>
+		<key>textures</key>
+		<string>rainyLevel</string>
+	</dict>
+	<key>level11</key>
+	<dict>
+		<key>removeTextures</key>
+		<string>tileset_level_9</string>
+		<key>animations</key>
+		<string>level9,slowtime</string>
+		<key>sounds</key>
+		<string>none</string>
+		<key>textures</key>
+		<string>rainyLevel</string>
+	</dict>
 	<key>mainMenu</key>
 	<dict>
 		<key>removeTextures</key>

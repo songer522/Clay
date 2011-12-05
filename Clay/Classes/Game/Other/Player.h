@@ -54,6 +54,7 @@ typedef enum {
     
     bool _isHighJump;
     bool _isTurbo;
+    bool _isWindy;
     bool _hasDoubleJumped;
     bool _soundFalling;
     float _timeLeftBeforeVulnerable;    //set to a time whenever tim gets back up, to allow proper time for him to get back up to speed before he has to jump on things
@@ -80,6 +81,7 @@ typedef enum {
 @property(nonatomic,assign) bool isDead;
 @property(nonatomic,assign) bool isTripping;
 @property(nonatomic,assign) bool isJumping;
+@property(nonatomic,assign) bool isWindy;
 @property(nonatomic,assign) bool hasDoubleJumped;
 
 
@@ -115,6 +117,7 @@ typedef enum {
 -(void)setLedgeSprite:(CCLayer*)layer;
 -(void)setCurrentSprite:(Sprite *)sprite;
 -(void)rechargeBattery;
+-(void)resetSprint;
 
 -(void)setVelocity:(float)velocity;
 -(void)startDoubleJump;
@@ -129,7 +132,9 @@ typedef enum {
 -(void)updatePitFalling:(float)dt;
 -(void)updateSlow:(float)dt;
 -(void)updateInvulnerable:(float)dt;
-
+-(void)updateTurbo:(float)dt;
+-(void)updateLedge:(float)dt;
+-(void)updatePlayerPosition:(float)dt Level:(Level*)level;
 -(void)updateSkin:(SkinType)skin;
 
 -(void)setThirdAction:(NSString*)action;

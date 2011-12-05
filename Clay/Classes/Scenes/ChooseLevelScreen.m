@@ -121,7 +121,7 @@
             [[SoundEngine shared] playSound:@"buttonPressed"];     
         }
         
-            }
+    }
 }
 
 -(void)loadTutorial
@@ -140,7 +140,7 @@
     CCSprite *image3=[CCSprite spriteWithFile:@"image3.png"];
     [image3 setPosition:ccp(240,160)];
     [pageThree addChild:image3];
-    _closeTutorial=[ActionButton buttonWithText:@"Done" AtPoint:ccp(430,18) inLayer:pageThree];
+    _closeTutorial=[ActionButton buttonWithText:@"Done" AtPoint:ccp(320,70) inLayer:pageThree];
     
     
  
@@ -340,7 +340,7 @@
 
 -(void)dealloc
 {
-    NSLog(@"Dealloc: ChooseLevelScreen");
+    //NSLog(@"Dealloc: ChooseLevelScreen");
     
     [_buttons removeAllObjects];
     _buttons = nil;
@@ -349,6 +349,7 @@
     [_background release];
     [_levelToSwitchTo release];
     [_levelSelectText release];
+    [_bestLevelTimeText release];
     [_startButton release];
     [_backButton release];
     [_selector release];

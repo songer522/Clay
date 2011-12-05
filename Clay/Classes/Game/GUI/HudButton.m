@@ -50,6 +50,7 @@
         [self prepareButtonWithType:type Action:action];
      
         _initialized = true;
+        _currentOverlayFrame = 7;
     }
    return self;
 }
@@ -88,18 +89,15 @@
 -(void)createSpriteFromImage:(NSString*)image
 {
     _graphic = [Sprite spriteFromFrameCacheWithName:image];
-    //_graphic = [Sprite spriteWithFile:image];
     [[_graphic getCCSprite] setOpacity:BUTTON_OPACITY];
     [[_graphic getCCSprite] setScale:[[UIScreen mainScreen] scale] / _scale];
    
     [[_graphic getCCSprite] setAnchorPoint:ccp(0.5f, 0.5f)];
 
-    _greenOverlay = [Sprite spriteFromFrameCacheWithName:@"UI_Button_GreenLight.png"];
+    _greenOverlay = [Sprite spriteFromFrameCacheWithName:@"UI_Button_GreenLight_7.png"];
     [[_greenOverlay getCCSprite] setAnchorPoint:ccp(0.5f, 0.5f)];
     [[_greenOverlay getCCSprite] setOpacity:BUTTON_OPACITY];
     [[_greenOverlay getCCSprite] setScale:[[UIScreen mainScreen] scale] / _scale];
-   
-
 
 }
 
@@ -124,6 +122,10 @@
     } else if([action isEqualToString:@"block"]) {
         buttonImage = @"UI_Button_Blocking.png";
     } else if([action isEqualToString:@"blow"]) {
+        buttonImage = @"UI_Button_Blowing.png";
+    } else if([action isEqualToString:@"spin"]) {
+        buttonImage = @"UI_Button_Blowing.png";
+    } else if([action isEqualToString:@"slowtime"]) {
         buttonImage = @"UI_Button_Blowing.png";
     }
     
@@ -152,17 +154,15 @@
 
 -(void)setOpacityAndScale
 {
-     if ([self getCCSpriteForOverlay].visible)
+    if ([self getCCSpriteForOverlay].visible && _currentOverlayFrame==7)
+    
      {
         [[_graphic getCCSprite] setOpacity:BUTTON_OPACITY];
         [[_graphic getCCSprite] setScale:BUTTON_SCALE * [[UIScreen mainScreen] scale] / _scale]; 
-          
-          
-         
-     }
+     
     [[_greenOverlay getCCSprite] setOpacity:BUTTON_OPACITY];
     [[_greenOverlay getCCSprite] setScale:BUTTON_SCALE * [[UIScreen mainScreen] scale] / _scale];
-    
+     }
 }
 
 -(float)getButtonOpacity
@@ -178,13 +178,37 @@
 {
    
     [[_graphic getCCSprite] setOpacity:opacity];
-    //[[_greenOverlay getCCSprite] setOpacity:opacity];
     
 }
 -(void)setButtonScale:(float)scale
 {
     [[_graphic getCCSprite] setScale:scale];
-     [[_greenOverlay getCCSprite] setScale:scale];
+    [[_greenOverlay getCCSprite] setScale:scale];
+}
+
+-(void)updateOverlayImageByPercentage:(float)percent
+{
+    //basically this sets which frame to display to represent to the player how long they need to wait until
+    //the cooldown expires. if it's at the very beginning, we don't want to show anything, otherwise we want to show
+    //the frame that represents the appropriate percentage of the cooldown    
+    
+    int frameNumber = floor(percent * HUD_LAYER_NUMBER_OF_OVERLAY_FRAMES);
+    if (frameNumber == 0) {
+        [[_greenOverlay getCCSprite] setVisible:NO];
+        _overlayVisible = false;
+    } else if (_currentOverlayFrame != frameNumber) {
+            
+        NSString *frameName = [NSString stringWithFormat:@"UI_Button_GreenLight_%d.png",frameNumber];
+        [_greenOverlay setImageByName:frameName];
+        
+        //set visible if not already
+        if (!_overlayVisible) {
+            _overlayVisible = true;
+            [[_greenOverlay getCCSprite] setVisible:YES];
+        }
+        
+        _currentOverlayFrame = frameNumber;
+    }
 }
 
 -(void)dealloc

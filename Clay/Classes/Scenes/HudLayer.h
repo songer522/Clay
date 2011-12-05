@@ -66,6 +66,9 @@ typedef enum {
 -(void)fadeIn;
 -(void)fadeOut;
 
+-(HudButton*)getSprintButton;
+-(HudButton*)getActionButton;
+
 
 -(Battery*)getBattery;
 -(TrackTimer*)getTrackTimer;

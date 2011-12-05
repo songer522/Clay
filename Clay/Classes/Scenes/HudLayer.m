@@ -280,6 +280,15 @@
     [[LayerManager sharedLayers] forgetWorkingLayer];
 }
 
+-(HudButton*)getSprintButton
+{
+    return _buttonSprint;
+}
+-(HudButton*)getActionButton
+{
+    return _buttonAction;
+}
+
 -(TrackTimer*)getTrackTimer
 {
     return _trackTimer;

@@ -37,7 +37,9 @@
     {
     [_kick setBoundingBox:CGRectMake(0, 35, 35, 35)];
     }
-
+    _cooldownStart = 0.6f;
+    _cooldown = 0.0f;
+    _canTrigger = true;
 }
 
 -(void)startAction
@@ -45,7 +47,6 @@
     if (!_inAction && _canTrigger) {
         _duration = kPlayerActionKickFullDuration;
         _madeFootProjectile = false;
-        _cooldown = 0.5f;
         [_parent endTurbo];
         [_kick reset];
         [_parent setPlayerAnimation:PLAYER_ANIM_KICK];

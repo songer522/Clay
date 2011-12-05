@@ -30,14 +30,10 @@
         [self scheduleUpdate];
         [[[LayerManager sharedLayers] currentScene] addChild:self];
 
-        _bkg = [Sprite spriteWithFile:@"black_background.png"];
-        [_bkg setAlpha:0.0f];
-        
         _label = [CCLabelTTF labelWithString:@"zzz..." fontName:@"Helvetica-Bold" fontSize:32];
         _label.position = ccp(240, 160);
         [_label setOpacity:0];
         [self addChild:_label];
-        
         
         self.isTouchEnabled = YES;
     }
@@ -62,7 +58,7 @@
     if (_alpha > 1.0f) {
         _alpha = 1.0f;
     }
-    [_bkg setAlpha:0.4f * _alpha];
+    //[_bkg setAlpha:0.4f * _alpha];
     [_label setOpacity:(int)(255 * _alpha)];
 }
 

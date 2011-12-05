@@ -22,6 +22,8 @@
 #define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
 #define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 
+
+
 @implementation MainMenuScene
 
 
@@ -55,6 +57,9 @@
         [[LayerManager sharedLayers] setWorkingLayer:self];
         
         [[TextureManager shared] loadMemoryForKey:@"mainMenu"];
+          
+        
+      
         
         _trackBackground = [Sprite spriteFromFrameCacheWithName:@"Menu_Background.png"];
         [_trackBackground getCCSprite].position = ccp(0,0);
@@ -88,8 +93,10 @@
         [_copyright getCCSprite].anchorPoint = ccp(0.5f, 0.5f);
         [_copyright getCCSprite].position = ccp(240 * MULTIPLIERX,24 * MULTIPLIERY); //final 240,20
         
-        [[LayerManager sharedLayers] forgetWorkingLayer];
+        _tutorial=[Tutorial TutorialWithinLayer:self];
+        */
         
+        [[LayerManager sharedLayers] forgetWorkingLayer];
         
         _totalTime = 0.0f;
         _time = 0.0f;
@@ -123,12 +130,41 @@
 }
 -(void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-        if (_transition == MAINMENU_TRANSITION_IDLE) {
+        if (_transition == MAINMENU_TRANSITION_IDLE) 
+    {
         bool shouldStart = false;
         NSSet *allTouches = [event allTouches];
-        for(UITouch *touch in allTouches) {
-            shouldStart = true;
+        for(UITouch *touch in allTouches)
+        /*
+        {
+        CGPoint position = [self convertTouchToNodeSpace:touch];
+            if([_tutorialButton checkIfSelected:position]) 
+            {
+              //bring on the tutorial
+                
+                [_tutorial switchToTutorial];
+            
+            [[SoundEngine shared] playSound:@"buttonPressed"]; 
+           
+            }
+            else if(position.x < 300 && position.x > 180 && position.y > 122 && position.y < 162)
+            {
+                 shouldStart = true;
+            }
+        
+        if (shouldStart) 
+            {
+            [self switchToTransitionOut];
+            [[SoundEngine shared] playSound:@"menuPlayButton"];
+            
+           }
         }
+         */
+    
+            
+            {
+                shouldStart = true;
+            }
         
         if (shouldStart) {
             [self switchToTransitionOut];
@@ -136,9 +172,10 @@
             [[GameSettings shared] setGlobal:@"timed" ForKey:@"gameMode"];
             [[GameSettings shared] setGlobal:@"normal" ForKey:@"gameDifficulty"];
         }
-    }
     
+
    
+    }
 }
 
 -(void)switchToTransitionIn

@@ -42,6 +42,7 @@
     bool _hasKilledEnemy;
     float _duration;
     float _cooldown;
+    float _cooldownStart; //used to determine percentage the cooldown is complete
     bool _canTrigger;
 }
 

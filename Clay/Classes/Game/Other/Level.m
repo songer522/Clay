@@ -44,13 +44,13 @@
 @synthesize playerThirdActionName = _playerThirdActionName;
 @synthesize preComicName = _preComicName;
 
-+(id)levelWithFilename:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer LayerList:(NSString*)layerList GameObjectController:(GameObjectController*)gameObjects Player:(Player*)player
++(id)levelWithFilename:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer LayerList:(NSString*)layerList GameObjectController:(GameObjectController*)gameObjects Player:(Player*)player Name:(NSString*)levelName
 {
-    return [[self alloc] initWithFilename:filename ObstacleLayer:obstacleLayer LayerList:layerList GameObjectController:gameObjects Player:player];
+    return [[self alloc] initWithFilename:filename ObstacleLayer:obstacleLayer LayerList:layerList GameObjectController:gameObjects Player:player Name:levelName];
 }
 
 
--(id)initWithFilename:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer LayerList:(NSString*)layerList GameObjectController:(GameObjectController*)gameObjects Player:(Player*)player
+-(id)initWithFilename:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer LayerList:(NSString*)layerList GameObjectController:(GameObjectController*)gameObjects Player:(Player*)player Name:(NSString*)levelName
 {
     self = [super init];
     if (self) {
@@ -60,8 +60,8 @@
         
         _obstacleMapObjects = [[NSMutableArray alloc] initWithCapacity:100];
         _otherMapObjects = [[NSMutableArray alloc] initWithCapacity:100];
-        _mapLayers = [[NSMutableDictionary alloc] initWithCapacity:12];
-        _parallaxLayers = [[NSMutableArray alloc] initWithCapacity:12];
+        _mapLayers = [[NSMutableDictionary alloc] initWithCapacity:7];
+        _parallaxLayers = [[NSMutableArray alloc] initWithCapacity:7];
         
         _obstacleManager = [[RegionManager alloc] init];
         //_backgroundManager = [[RegionManager alloc] init];
@@ -91,7 +91,7 @@
         
         [self scanThroughMapAndAddObjects];
                 
-        [self loadLayers:layerList Player:player];
+        [self loadLayers:layerList Player:player Name:levelName];
         
         _map.scale = _scale;
         
@@ -111,13 +111,21 @@
     [[gameLayer getHud] setHudButtonsAndThirdAction:action];
 }
 
--(void)loadLayers:(NSString*)layerList Player:(Player*)player
+-(void)loadLayers:(NSString*)layerList Player:(Player*)player Name:(NSString*)levelName
 {
     int currentZ = 0;
 
     NSArray *layers = [layerList componentsSeparatedByString:@","];
     for (NSString *layerName in layers) {
-        if ([layerName compare:@"actives"] == NSOrderedSame) {
+        if ([layerName isEqualToString :@"ledges"]) {
+            GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+            //stop existing rainylevel, and start new one if right level
+            [gameLayer stopRainyLevel];
+            if([levelName isEqualToString:@"level9"]) {
+                [gameLayer initializeRainyLevel];
+            }
+        } else if ([layerName compare:@"actives"] == NSOrderedSame) {
+            
             [player setLedgeSprite:[[LayerManager sharedLayers] currentLayer]];
             
             [self addObstaclesToMapAndRegion];
@@ -273,13 +281,11 @@
                 if ([special compare:@"nextlevelNE"] == NSOrderedSame) {
                     Trigger *trigger = [[Trigger alloc] init];
                     trigger.position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
-                    trigger.direction = CGPointMake(1,-1);
                     trigger.type = TRIGGER_NEXTLEVEL;
                     [_triggers addObject:trigger];
                 } else if([special isEqualToString:@"checkpoint"]) { //checkpoint trigger
                     Trigger *trigger = [[Trigger alloc] init];
                     trigger.position = [self getXYPositionForCoordinates:CGPointMake(i,j)];
-                    trigger.direction = CGPointMake(1, -1);
                     trigger.type = TRIGGER_CHECKPOINT;
                     [_triggers addObject:trigger];
                     
@@ -295,7 +301,6 @@
                 }else if([special isEqualToString:@"checkpoint8bit"]) { //checkpoint trigger
                     Trigger *trigger = [[Trigger alloc] init];
                     trigger.position = [self getXYPositionForCoordinates:CGPointMake(i,j)];
-                    trigger.direction = CGPointMake(1, -1);
                     trigger.type = TRIGGER_CHECKPOINT;
                     [_triggers addObject:trigger];
                     
@@ -308,8 +313,7 @@
                     MapObject *mapObject = [MapObject mapObjectWithSprite:object AboveLayer:@"main0"];
                     [_otherMapObjects addObject:mapObject];
                     
-                } 
-                else if([special compare:@"spawnpoint"] == NSOrderedSame) {
+                } else if([special compare:@"spawnpoint"] == NSOrderedSame) {
                     _spawnPoint = [self getXYPositionForCoordinates:CGPointMake(i, j)];
                 } else if([special compare:@"jimAppearance1"] == NSOrderedSame) {
                     CGPoint position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
@@ -322,8 +326,22 @@
                 } else if([special isEqualToString:@"shootTrigger"]) {
                     Trigger *trigger = [[Trigger alloc] init];
                     trigger.position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
-                    trigger.direction = CGPointMake(1, -1);
                     trigger.type = TRIGGER_BOSS_SHOOT;
+                    trigger.canBeReset = true;
+                    [_triggers addObject:trigger];
+                } else if([special isEqualToString:@"wind"]) {
+                    Trigger *trigger = [[Trigger alloc] init];
+                    trigger.position = [self getXYPositionForCoordinates:CGPointMake(i,j)];
+
+                    NSString *duration = [self getPropertyForTileCoords:coords forKey:@"duration"];
+                    if ([duration isEqualToString:@"short"]) {
+                        trigger.type = TRIGGER_WIND_SHORT;
+                    } else if([duration isEqualToString:@"medium"]) {
+                        trigger.type = TRIGGER_WIND_MEDIUM;
+                    } else if([duration isEqualToString:@"long"]) {
+                        trigger.type = TRIGGER_WIND_LONG;
+                    }
+                    
                     trigger.canBeReset = true;
                     [_triggers addObject:trigger];
                 }
@@ -596,6 +614,11 @@
     return [_obstacleManager getActiveGameObjectList];
 }
 
+-(NSMutableArray*)getBackgroundObjectsList
+{
+    return _otherMapObjects;
+}
+
 -(void)update:(float)dt Velocity:(float)vx
 {
     [self setPositionAtX:_x Y:_y];
@@ -614,8 +637,11 @@
     //    [object update:dt];
     //}
     
-    for (MapObject *objects in _otherMapObjects) {
-        [objects.object update:dt];
+    for (MapObject *object in _otherMapObjects) {
+        [object.object update:dt];
+        //TODO: should be calling setposition. this is resulting in 
+        //background objects not moving in parallax.
+        //[object setPosition:CGPointMake(_x, _y)];
     }
 }
 

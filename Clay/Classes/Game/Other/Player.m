@@ -31,12 +31,15 @@
 #define PLAYER_STARTING_X_POSITION 0
 #define PLAYER_VELOCITY_MULTIPLIER 2
 
+#define PLAYER_SPRINT_COOLDOWN 1.0
+
 @implementation Player
 
 @synthesize isJumping = _isJumping;
 @synthesize isDead = _isDead;
 @synthesize isTripping = _isTripping;
 @synthesize hasDoubleJumped = _hasDoubleJumped;
+@synthesize isWindy = _isWindy;
 @synthesize battery = _battery;
 
 
@@ -69,7 +72,7 @@
         _onLedge = false;
         _offLedge=false;
         _isTurbo=false;
-       
+        _isCooldown=true;
         _timeLeftBeforeVulnerable = 2.0f;
         _isInvincible = false;
         
@@ -84,6 +87,7 @@
         
         _isHighJump = false;
         
+        _isWindy = false;
         _waitToPlaySlowSound = 0.0f;
         _soundFalling = false;
         _adjustX = 0.0f;
@@ -110,12 +114,10 @@
 -(void)changeHealth:(int)amount
 {
     if (amount > 0 && _hitPoints<4) {
-        _hitPoints+=1;
+        _hitPoints+=1; //POSSIBLE BUG: why is this +=1 instead of +=amount like the negative?
         [_battery setFrame:(5-_hitPoints)];
     } else if(amount < 0 && _hitPoints >= 0) {
-        
-            _hitPoints+=amount;
-        
+        _hitPoints+=amount;
         [_battery setFrame:(5-_hitPoints)];
     }
     
@@ -205,9 +207,7 @@
 
 -(void)endJump
 {
-    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
     
-    [[gameLayer getHud] setEnabled:true ForButton:HUD_BUTTON_JUMP];
     if (!_isTripping && _isInMidAir) {
         [_skin setPlayerAnimation:PLAYER_ANIM_FALLING ForSprite:_sprite];
     }
@@ -218,9 +218,8 @@
 -(void)startTurbo
 {
     //guard
-   
-    
     if (_isTripping || _isDead || [_thirdAction inAction] || _isInMidAir || _waitToGetUp > 0.f) { return; }
+
     
     if (_hitPoints > 1) {
         
@@ -229,13 +228,6 @@
         
         [[SoundEngine shared] playSound:@"turboStart"];
         [_skin setPlayerAnimation:PLAYER_ANIM_SPRINTING ForSprite:_sprite];
-        
-      
-        
-        
-       
-        //_hitPoints -=1;
-        //[_battery setFrame:(5 - _hitPoints)];        
     }
 
 }
@@ -249,13 +241,22 @@
     [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];
     [_speed endTurbo];
     
-    if(_isTurbo)
+    if(_isTurbo && _hitPoints>1 )
     {
-    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
-    gameLayer.gameController.isSprintEnabled=false;
-    [[gameLayer getHud] setEnabled:false ForButton:HUD_BUTTON_SPRINT];
-    _waitToTurbo=3.0f;
-    _isTurbo=false;
+        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+        gameLayer.gameController.isSprintEnabled=false;
+        [[gameLayer getHud] setEnabled:false ForButton:HUD_BUTTON_SPRINT];
+        _waitToTurbo=PLAYER_SPRINT_COOLDOWN;
+        _isTurbo=false;
+    }
+    
+    else if(_isTurbo)
+    {
+        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+        gameLayer.gameController.isSprintEnabled=false;
+        [[gameLayer getHud] setEnabled:false ForButton:HUD_BUTTON_SPRINT];
+        _waitToTurbo=1;
+        _isTurbo=false;
     }
     
 }
@@ -334,11 +335,17 @@
     [_speed reset];
     [_speed start];
     [_boss reset];
+    _waitToTurbo=-1;
+    
+    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+    [[gameLayer getHud] setEnabled:true ForButton:HUD_BUTTON_JUMP];
+    
+    [[[[gameLayer getHud] getSprintButton] getCCSpriteForOverlay] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"UI_Button_GreenLight_7.png"]];  
     _isJumping = false;
     _isTripping = false;
     _isInMidAir = false;
     _hasDoubleJumped = false;
-    
+    [self resetSprint];
     _waitToGetUp = 0.0f;
     _timeLeftBeforeVulnerable = 2.0f;
     _isDead = false;
@@ -377,6 +384,10 @@
         _thirdAction = (PlayerAction*)[PlayerActionFactory buildPlayerAction:PLAYER_ACTION_BLOCK];
     } else if([action isEqualToString:@"blow"]) {
         _thirdAction = (PlayerAction*)[PlayerActionFactory buildPlayerAction:PLAYER_ACTION_BLOW];
+    } else if([action isEqualToString:@"spin"]) {
+        _thirdAction = (PlayerAction*)[PlayerActionFactory buildPlayerAction:PLAYER_ACTION_SPIN];
+    } else if([action isEqualToString:@"slowtime"]) {
+        _thirdAction = (PlayerAction*)[PlayerActionFactory buildPlayerAction:PLAYER_ACTION_SLOW_TIME];
     }
     
     [_thirdAction setParent:self];
@@ -416,6 +427,13 @@
     _hitPoints = 4;
 }
 
+-(void)resetSprint
+{
+    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+    gameLayer.gameController.isSprintEnabled=true;
+    [[gameLayer getHud] setEnabled:true ForButton:HUD_BUTTON_SPRINT];
+}
+
 -(RunningSpeed*)getSpeed
 {
     return _speed;
@@ -453,20 +471,11 @@
 -(void)update:(float)dt Level:(Level *)level
 {
   
-    [self updatePitFalling:dt]; //need to call before super so it can kill the VX if falling into the pit
+    [self updatePitFalling:dt]; //need to call before super so it can kill the x-velocity if falling into the pit
 
     [super update:dt];  
     
-    //wait for turbo
-    if (_waitToTurbo > 0.0f) {
-        _waitToTurbo -= dt;
-        if (_waitToTurbo<=0.0f) {
-            GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
-            gameLayer.gameController.isSprintEnabled=true;
-            [[gameLayer getHud] setEnabled:true ForButton:HUD_BUTTON_SPRINT];
-        }
-        
-    }
+    [self updateTurbo:dt];
 
     [self updateJump:dt];
 
@@ -478,6 +487,43 @@
         [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];
     }
     
+    [self updatePlayerPosition:dt Level:level];
+
+    [_battery update:dt];
+    
+    if (_isTripping) {
+        _waitToGetUp -= dt;
+        if (_waitToGetUp <= 0.0f) {
+            _isTripping = false;
+            [self endTurbo];
+            [_speed start];
+            [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];
+        }
+    }
+
+    [self updateLedge:dt];
+    
+    if(_speed.isStopped && !_isTripping) {
+        _waitToGetUp -= dt;
+        if (_waitToGetUp <= 0.0f) {
+            [_speed start];
+        }
+    }
+    if(_hitPoints<=1)
+    {
+        _isCooldown=false;
+    }
+    else
+    {
+        _isCooldown=true;
+    }
+    
+    [_thirdAction update:dt];
+
+}
+
+-(void)updatePlayerPosition:(float)dt Level:(Level*)level
+{
     CGPoint newPosition = [level checkCollisionForObject:self];    
     
     [self setPositionAtX:newPosition.x Y:newPosition.y];    //for some reason the y position jitters without
@@ -495,63 +541,69 @@
     CGPoint screenPosition = [[Camera sharedCamera] convertToScreenXY:CGPointMake(newPosition.x,newPosition.y)];
     [_sprite getCCSprite].position = ccp(screenPosition.x + _offsetX, screenPosition.y + _offsetY);
     
-    [_battery update:dt];
-    
-       if (_isTripping) {
-        _waitToGetUp -= dt;
-        if (_waitToGetUp <= 0.0f) {
-            _isTripping = false;
-            [self endTurbo];
-            [_speed start];
-            [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];
-        }
-    }
-    /*
-    if(_onLedge)
-    {
-        [[_playerOnledge getCCSprite] setAnchorPoint:ccp(0.5,0)];
-        if(_isActive){
-          
-            [self switchToInactive];
-            
-        }
-        
-        [self setCurrentSprite:_playerOnledge];
-        //[_playerOnledge getCCSprite].anchorPoint=[_sprite getCCSprite].anchorPoint;
-       [_playerOnledge getCCSprite].visible =YES;
-                 
-        [[Camera sharedCamera] setTarget:_playerOnledge];
-        _offLedge=true;
-        
-    }
-    else
-    {
-        
-        
-    if(_offLedge)
-        {
-            [_playerOnledge getCCSprite].visible=NO;
-            
-            _sprite=_tempSprite;
-            [_sprite getCCSprite].visible=YES;
-            //[[_sprite getCCSprite] setAnchorPoint:ccp(0,1)];
-            _isActive=true;
-            _offLedge=false;
-        }
-        [[Camera sharedCamera] setTarget:_sprite];
-    }
- 
-    */
-    
-    if(_speed.isStopped && !_isTripping) {
-        _waitToGetUp -= dt;
-        if (_waitToGetUp <= 0.0f) {
-            [_speed start];
-        }
-    }
-    
-    [_thirdAction update:dt];
+}
 
+-(void)updateTurbo:(float)dt
+{
+    //wait for turbo
+    if (_waitToTurbo > 0.0f) {
+        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+        
+        _waitToTurbo -= dt;
+        if (_waitToTurbo<=0.0f) {
+            gameLayer.gameController.isSprintEnabled=true;
+            [[gameLayer getHud] setEnabled:true ForButton:HUD_BUTTON_SPRINT];
+        }
+        if(_isCooldown)
+        {
+        float cooldownPercent = (PLAYER_SPRINT_COOLDOWN - _waitToTurbo)/PLAYER_SPRINT_COOLDOWN;
+        [[[gameLayer getHud] getSprintButton] updateOverlayImageByPercentage:cooldownPercent];
+        }
+        else
+        {
+            [[[gameLayer getHud] getSprintButton] updateOverlayImageByPercentage:0];
+        }
+    }
+}
+
+-(void)updateLedge:(float)dt
+{
+ /*   
+     if(_onLedge)
+     {
+     [[_playerOnledge getCCSprite] setAnchorPoint:ccp(0.5,0)];
+     if(_isActive){
+     
+     [self switchToInactive];
+     
+     }
+     
+     [self setCurrentSprite:_playerOnledge];
+     //[_playerOnledge getCCSprite].anchorPoint=[_sprite getCCSprite].anchorPoint;
+     [_playerOnledge getCCSprite].visible =YES;
+     
+     [[Camera sharedCamera] setTarget:_playerOnledge];
+     _offLedge=true;
+     
+     }
+     else
+     {
+     
+     
+     if(_offLedge)
+     {
+     [_playerOnledge getCCSprite].visible=NO;
+     
+     _sprite=_tempSprite;
+     [_sprite getCCSprite].visible=YES;
+     //[[_sprite getCCSprite] setAnchorPoint:ccp(0,1)];
+     _isActive=true;
+     _offLedge=false;
+     }
+     [[Camera sharedCamera] setTarget:_sprite];
+     }
+   */  
+     
 }
 
 -(void)updatePitFalling:(float)dt
@@ -663,7 +715,9 @@
 
 -(void)updateSlow:(float)dt
 {
-    if (_speed.isSlowedDown && !_isTripping) {
+    //play the sound effect for walking in sand pit if slowed down (unless it's the wind level) and it's the wind
+    //slowing tim down
+    if (_speed.isSlowedDown && !_isTripping && !_isWindy) {
         _waitToPlaySlowSound -= dt;
         if (_waitToPlaySlowSound<=0.0f) {
             [[SoundEngine shared] playSound:@"steppedInSand"];

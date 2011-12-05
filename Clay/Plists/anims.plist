@@ -117,14 +117,14 @@
 		<key>looping</key>
 		<string>true</string>
 		<key>sequencePrefix</key>
-		<string>Town_Leafpile_</string>
+		<string>Env_Town_Leaf_</string>
 		<key>spritesheetPlist</key>
 		<string>townLevel</string>
 	</dict>
 	<key>townRollingHayAnim</key>
 	<dict>
 		<key>animationFrames</key>
-		<string>1,2,3,4,5,6,5,4,3,2</string>
+		<string>1,2,3,4,5,6,7,8,9,10,11,12</string>
 		<key>clearPreviousAnims</key>
 		<string>true</string>
 		<key>delay</key>
@@ -134,7 +134,7 @@
 		<key>looping</key>
 		<string>true</string>
 		<key>sequencePrefix</key>
-		<string>Town_Rolling_</string>
+		<string>Env_Town_CHay_</string>
 		<key>spritesheetPlist</key>
 		<string>townLevel</string>
 	</dict>
@@ -151,7 +151,7 @@
 		<key>looping</key>
 		<string>true</string>
 		<key>sequencePrefix</key>
-		<string>Town_Haybale_</string>
+		<string>Env_Town_Haybale_</string>
 		<key>spritesheetPlist</key>
 		<string>townLevel</string>
 	</dict>
@@ -168,7 +168,7 @@
 		<key>looping</key>
 		<string>true</string>
 		<key>sequencePrefix</key>
-		<string>Town_Small_Haybale_</string>
+		<string>Env_Town_SmallHaybale_</string>
 		<key>spritesheetPlist</key>
 		<string>townLevel</string>
 	</dict>
@@ -597,6 +597,57 @@
 		<key>spritesheetPlist</key>
 		<string>characterBlowing</string>
 	</dict>
+	<key>spinningAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,1,1,1,1,1,1,1</string>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>spin</string>
+		<key>looping</key>
+		<string>false</string>
+		<key>sequencePrefix</key>
+		<string>Character_Spinning_</string>
+		<key>spritesheetPlist</key>
+		<string>characterSpinning</string>
+	</dict>
+	<key>floatingAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,1,2,2</string>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>spin</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Character_Floating_</string>
+		<key>spritesheetPlist</key>
+		<string>characterSpinning</string>
+	</dict>
+	<key>slowTimeAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3,4,5</string>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>delay</key>
+		<string>0.065</string>
+		<key>group</key>
+		<string>slowtime</string>
+		<key>looping</key>
+		<string>false</string>
+		<key>sequencePrefix</key>
+		<string>Character_Running_</string>
+		<key>spritesheetPlist</key>
+		<string>characterAnims</string>
+	</dict>
 	<key>headlessZombieAnim</key>
 	<dict>
 		<key>animationFrames</key>
@@ -919,6 +970,227 @@
 		<string>tv_</string>
 		<key>spritesheetPlist</key>
 		<string>discoLevel</string>
+	</dict>
+	<key>rainyBehindTimAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.075</string>
+		<key>group</key>
+		<string>level9</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Rain_BT_</string>
+		<key>spritesheetPlist</key>
+		<string>rainyLevel</string>
+	</dict>
+	<key>rainyFrogIdleAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.3</string>
+		<key>group</key>
+		<string>level9</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Level9_Frog_</string>
+		<key>spritesheetPlist</key>
+		<string>rainyLevel</string>
+	</dict>
+	<key>rainyFrogSquashAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>3,4,4,4,4,4</string>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level9</string>
+		<key>looping</key>
+		<string>false</string>
+		<key>sequencePrefix</key>
+		<string>Level9_Frog_</string>
+		<key>spritesheetPlist</key>
+		<string>rainyLevel</string>
+	</dict>
+	<key>rainySquirrelAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,1,2</string>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>delay</key>
+		<string>0.15</string>
+		<key>group</key>
+		<string>level9</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Level9_Squirrel_</string>
+		<key>spritesheetPlist</key>
+		<string>rainyLevel</string>
+	</dict>
+	<key>rainyRaindropAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3,4,5</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.075</string>
+		<key>group</key>
+		<string>level9</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Rain_RP_</string>
+		<key>spritesheetPlist</key>
+		<string>rainyLevel</string>
+	</dict>
+	<key>rainyLightning1Anim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3,4,5,5,5,5,5,5</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level9</string>
+		<key>looping</key>
+		<string>false</string>
+		<key>sequencePrefix</key>
+		<string>Level9_Thunder_TypeA_</string>
+		<key>spritesheetPlist</key>
+		<string>rainyLevel</string>
+	</dict>
+	<key>rainyLightning2Anim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3,4,5,5,5,5,5,5</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level9</string>
+		<key>looping</key>
+		<string>false</string>
+		<key>sequencePrefix</key>
+		<string>Level9_Thunder_TypeB_</string>
+		<key>spritesheetPlist</key>
+		<string>rainyLevel</string>
+	</dict>
+	<key>rainyLightning3Anim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3,4,5,5,5,5,5,5</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level9</string>
+		<key>looping</key>
+		<string>false</string>
+		<key>sequencePrefix</key>
+		<string>Level9_Thunder_TypeC_</string>
+		<key>spritesheetPlist</key>
+		<string>rainyLevel</string>
+	</dict>
+	<key>rainyTreeAIdleAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,1,2,1,1</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.25</string>
+		<key>group</key>
+		<string>level9</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Level9_Tree_TypeA_</string>
+		<key>spritesheetPlist</key>
+		<string>rainyLevel</string>
+	</dict>
+	<key>rainyTreeAWindAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>2,3,2,3,2,3,1</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level9</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Level9_Tree_TypeA_</string>
+		<key>spritesheetPlist</key>
+		<string>rainyLevel</string>
+	</dict>
+	<key>rainyTreeBIdleAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,1,2,1,1</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.25</string>
+		<key>group</key>
+		<string>level9</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Level9_Tree_TypeB_</string>
+		<key>spritesheetPlist</key>
+		<string>rainyLevel</string>
+	</dict>
+	<key>rainyTreeBWindAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>2,3,2,3,2,3,1</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level9</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Level9_Tree_TypeB_</string>
+		<key>spritesheetPlist</key>
+		<string>rainyLevel</string>
+	</dict>
+	<key>waterBubblesAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>2,3,2,3,2,3,1</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level10</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Level10_Bubbles_</string>
+		<key>spritesheetPlist</key>
+		<string>waterLevel</string>
 	</dict>
 	<key>wooAnim</key>
 	<dict>

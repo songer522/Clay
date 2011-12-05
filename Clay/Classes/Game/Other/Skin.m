@@ -50,6 +50,9 @@
     _dodgeAction = [[NSString stringWithString:[anims objectForKey:@"dodgeAction"]] retain];
     _shootAction = [[NSString stringWithString:[anims objectForKey:@"shootAction"]] retain];
     _blowAction = [[NSString stringWithString:[anims objectForKey:@"blowAction"]] retain];
+    _spinAction = [[NSString stringWithString:[anims objectForKey:@"spinAction"]] retain];
+    _slowTimeAction = [[NSString stringWithString:[anims objectForKey:@"slowTimeAction"]] retain];
+    _floating = [[NSString stringWithString:[anims objectForKey:@"floating"]] retain];
     
     if (![_filename isEqualToString:@"characterAnims"]) {
         AnimationController *controller = [AnimationController sharedController];
@@ -102,6 +105,15 @@
         case PLAYER_ANIM_BLOW:
             animName = _blowAction;
             break;
+        case PLAYER_ANIM_SPIN:
+            animName = _spinAction;
+            break;
+        case PLAYER_ANIM_SLOWTIME:
+            animName = _slowTimeAction;
+            break;
+        case PLAYER_ANIM_FLOATING:
+            animName = _floating;
+            break;
         default:
             break;
     }
@@ -137,7 +149,8 @@
     [_dodgeAction release];
     [_shootAction release];
     [_blowAction release];
-    
+    [_spinAction release];
+    [_slowTimeAction release];
     [super dealloc];
 }
 

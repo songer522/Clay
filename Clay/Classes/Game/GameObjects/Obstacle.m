@@ -9,6 +9,7 @@
 #import "Obstacle.h"
 #import "AnimationController.h"
 #import "Sprite.h"
+#import "Projectile.h"
 
 @implementation Obstacle
 
@@ -100,6 +101,11 @@
 -(CGPoint) getPosition
 {
     return _position;
+}
+
+-(Projectile*)getProjectile
+{
+    return nil;
 }
 
 -(bool) hasBeenHit

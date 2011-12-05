@@ -7,13 +7,14 @@
 //
 
 #import "PlayerActionFactory.h"
-#import "PlayerActionKick.h"
-#import "PlayerActionWoo.h"
-#import "PlayerActionDodge.h"
-#import "PlayerActionShoot.h"
 #import "PlayerActionBlock.h"
 #import "PlayerActionBlow.h"
-
+#import "PlayerActionDodge.h"
+#import "PlayerActionKick.h"
+#import "PlayerActionShoot.h"
+#import "PlayerActionSlowTime.h"
+#import "PlayerActionSpin.h"
+#import "PlayerActionWoo.h"
 
 @implementation PlayerActionFactory
 
@@ -21,23 +22,29 @@
 +(id<PlayerActionProtocol>)buildPlayerAction:(PlayerActionType)type
 {
     switch (type) {
-        case PLAYER_ACTION_KICK:
-            return [PlayerActionKick instance];
-            break;
-        case PLAYER_ACTION_WOO:
-            return [PlayerActionWoo instance];
-            break;
-        case PLAYER_ACTION_DODGE:
-            return [PlayerActionDodge instance];
-            break;
-        case PLAYER_ACTION_SHOOT:
-            return [PlayerActionShoot instance];
-            break;
         case PLAYER_ACTION_BLOCK:
             return [PlayerActionBlock instance];
             break;
         case PLAYER_ACTION_BLOW:
             return [PlayerActionBlow instance];
+            break;
+        case PLAYER_ACTION_DODGE:
+            return [PlayerActionDodge instance];
+            break;
+        case PLAYER_ACTION_KICK:
+            return [PlayerActionKick instance];
+            break;
+        case PLAYER_ACTION_SHOOT:
+            return [PlayerActionShoot instance];
+            break;
+        case PLAYER_ACTION_SLOW_TIME:
+            return [PlayerActionSlowTime instance];
+            break;
+        case PLAYER_ACTION_SPIN:
+            return [PlayerActionSpin instance];
+            break;
+        case PLAYER_ACTION_WOO:
+            return [PlayerActionWoo instance];
             break;
         default:
             NSLog(@"PlayerActionFactory:buildPlayerAction - Error! Wrong type selected");

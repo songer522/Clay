@@ -25,6 +25,8 @@
 #define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 #define GAME_OBJECT_DISTANCE_ONSCREEN 550.0f
 
+#define MULTIPLIER_ANGLE_TO_RADS 0.1745328f //pre-calculation for Math.pi/180
+
 @implementation GameObject
 
 @synthesize sprite = _sprite;
@@ -43,6 +45,9 @@
 @synthesize rotateLights = _rotateLights;
 @synthesize beatsPlayerAction = _beatsPlayerAction;
 @synthesize originalAnimation=_originalAnimation;
+@synthesize magnitude = _magnitude;
+@synthesize persistsBetweenRegions = _persistsBetweenRegions;
+@synthesize slowTimeModifier = _slowTimeModifier;
 
 + (id) objectWithSprite:(Sprite*)sprite
 {
@@ -80,10 +85,14 @@
         _isInMidAir = false;
         _direction = 1;
         _isInvincible = false;
+        _stopCurve=false;
+        _slowTimeModifier = 1.0f;
         _projectile = nil;
         _reloading = 0;
         _aggressiveCanHit = false;
         _beatsPlayerAction = false;
+        _persistsBetweenRegions = false;
+        _magnitude = 0.0f;
     }
     
     return self;
@@ -219,6 +228,14 @@
     } else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR || _currentBehavior ==  COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR_WAITTOSHOOT) {
         _alpha = 1.2f;
         _fadeout = true;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_FROG_SQUASH) {
+        [self.sprite setAnimationByName:@"rainyFrogSquashAnim"];
+        [[SoundEngine shared] playSound:@"frogSquish"];
+        _alpha = 1.2f;
+        _fadeout = true;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_RAINY_SQUIRREL) {
+        _alpha = 1.2f;
+        _fadeout = true;
     }
     
     return _playerEffect;
@@ -255,6 +272,11 @@
 
 -(void)update:(float)dt
 {
+    //if time is slowed down, modify the dt by the modifier
+    //(must be called first because the rest relies on the dt value)
+    if (_slowTimeModifier!= 1.0f) {
+        dt = dt * _slowTimeModifier;
+    }
     
     if (_boss!=nil) {
         [_boss update:dt];
@@ -395,14 +417,23 @@
             _vx = -250.0f;
         }
     } else if(_currentBehavior == COLLISION_BEHAVIOR_ROLLING_HAYBALE) {
+        /*
         int frame = [[_sprite getAnimation] getCurrentFrameNumber];
+        
         if (frame == 1) {
             _direction = -1;
         } else if(frame == 6) {
             _direction = 1;
         }
         _vx = _direction * 100.0f;        
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON) {
+    } */
+        
+            _vx = 0.0f;
+            if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+                _vx = -150.0f;
+            }
+    }
+         else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON) {
         _vx = 0.0f;
         _angle += _rotationAmount * dt;
         [self getCCSprite].rotation = _angle;
@@ -450,9 +481,9 @@
                     }
                     _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_FIRE_DEMON_BULLET];
                     [_projectile reset];
-                    [_projectile setPosition:CGPointMake(_x + 53, _y - 20)];
+                    [_projectile setPosition:CGPointMake(_x + 53, _y - 20 )];
                     [_projectile setBoundingBox:CGRectMake(-7, 12, 16, 16)];
-                }
+                } 
             } else {
                 if ([self closeToPlayer:300.0f]) {
                     [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"fireDemonWithArmorShooting"];
@@ -464,6 +495,89 @@
                 
             }
         }
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_UMBRELLA_FLY_UP) {
+        _vx = 0.0f;
+        if ([self closeToPlayer:275]) {
+            _angle+=200.0f*dt;
+            if(_angle>-120.0f) {
+                _angle = -120.0f;
+            }
+            [_sprite getCCSprite].rotation = -30.0f + ((_angle + 180.0f) / (2.66667f));
+            _vx = _magnitude * cosf((_angle * 3.14159)/180.0f);
+            _vy = _magnitude * sinf((_angle * 3.14159)/180.0f);
+
+        } else if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+            _vx = -1 * _magnitude;
+            _angle = -180.0f;
+            [_sprite getCCSprite].rotation = -30.0f;
+        }        
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_UMBRELLA_FLY_ACROSS) {
+        if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+            _vx = -1 * _magnitude;
+            _angle = -180.0f;
+            [_sprite getCCSprite].rotation = -30.0f;
+        }
+    }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_PAPERPLANE)
+    {
+        _vx = 0.0f;
+        if ([self closeToPlayer:275]) {
+            _angle-=180.0f*dt;
+            if(_angle < -360.0f) {
+                _stopCurve=true;
+                _angle = - 360.0f;
+                
+               _vx = -1 * _magnitude;
+            }
+            //[_sprite getCCSprite].rotation = -30.0f + ((_angle + 180.0f) / (2.66667f));
+            if(!_stopCurve)
+            {
+                _vx = _magnitude * cosf((_angle * 3.14159)/180.0f);
+                _vy = _magnitude * sinf((_angle * 3.14159)/180.0f);
+            }
+            
+        } else if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+            _vx = -1 * _magnitude;
+            _angle = -180;
+            //[_sprite getCCSprite].rotation = -30.0f;
+        }
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_RAINY_SQUIRREL) {
+        if (_reloading >=0.0f) {
+            _reloading -= dt;
+        } else {
+            if(_waitToTrigger > 0.0f && !_collided) {
+                _waitToTrigger -= dt;
+                if(_waitToTrigger<= 0.0f){
+                    _reloading = 4.0f;
+                    if(_projectile!=nil) {
+                        [_projectile release];
+                    }
+                    _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_RAINY_SQUIRREL_NUT];
+                    [_projectile reset];
+                    [_projectile setPosition:CGPointMake(_x - 25.0f, _y + 19)];
+                    [_projectile setBoundingBox:CGRectMake(0, 12, 16, 16)];
+                    [_projectile setInitialVelocity];
+                } 
+            } else {
+                if ([self closeToPlayer:400.0f]) {
+                    _waitToTrigger = 0.28f;
+                }
+                else if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+                    _vx = 100.0f;
+                }
+                
+            }
+        }
+
+        
+        
+        
+        
+        
+        
+        
+        
+
     }
 
 }
@@ -529,6 +643,7 @@
     _alpha = 1.0f;
     _fadeout = false;
     _waitToTrigger = -1.0f;
+    _slowTimeModifier = 1.0f;
     _reloading = 0.0f;
     if(self )
     _madeSound = false;
@@ -583,9 +698,28 @@
     } else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR_WAITTOSHOOT || _currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR) {
         _currentBehavior = COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR_WAITTOSHOOT;
         [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"fireDemonWithArmorWalking"];
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_FROG_SQUASH) {
+        _currentBehavior = COLLISION_BEHAVIOR_STATIC;
+        [self.sprite setAnimationByName:@"rainyFrogIdleAnim"];
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_UMBRELLA_FLY_UP) {
+        _currentBehavior = COLLISION_BEHAVIOR_UMBRELLA_FLY_UP;
+    } 
+    else if(_currentBehavior == COLLISION_BEHAVIOR_PAPERPLANE) {
+        _currentBehavior = COLLISION_BEHAVIOR_PAPERPLANE;
+        _magnitude=200;
+    }else if(_currentBehavior == COLLISION_BEHAVIOR_UMBRELLA_FLY_ACROSS) {
+        _currentBehavior = COLLISION_BEHAVIOR_UMBRELLA_FLY_ACROSS;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_RAINY_TREE_A) {
+        _currentBehavior = COLLISION_BEHAVIOR_RAINY_TREE_A;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_RAINY_TREE_B) {
+        _currentBehavior = COLLISION_BEHAVIOR_RAINY_TREE_B;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_RAINY_SQUIRREL) {
+        _currentBehavior = COLLISION_BEHAVIOR_RAINY_SQUIRREL;
+        _persistsBetweenRegions = true;
     } else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;     
-}         _collided = false;
+    }   
+    _collided = false;
 }
 
 -(Collision*) getCollision
@@ -653,7 +787,35 @@
     } else if([behavior isEqualToString:@"fireball"]) {
         _collideBehavior = COLLISION_BEHAVIOR_FIREBALL_MOVING;
         _currentBehavior = COLLISION_BEHAVIOR_FIREBALL_START;
+    } else if([behavior isEqualToString:@"frogSquash"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_FROG_SQUASH;
+        _currentBehavior = COLLISION_BEHAVIOR_STATIC;
+    } else if([behavior isEqualToString:@"umbrellaFlyUp"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_UMBRELLA_FLY_UP;
+        _currentBehavior = COLLISION_BEHAVIOR_UMBRELLA_FLY_UP;
+        _magnitude = 200.0f;
+    } else if([behavior isEqualToString:@"umbrellaFlyAcross"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_UMBRELLA_FLY_ACROSS;
+        _currentBehavior = COLLISION_BEHAVIOR_UMBRELLA_FLY_ACROSS;
+        _magnitude = 200.0f;
+    } else if([behavior isEqualToString:@"rainyTreeA"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_RAINY_TREE_A;
+        _currentBehavior = COLLISION_BEHAVIOR_RAINY_TREE_A;
+    } else if([behavior isEqualToString:@"rainyTreeB"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_RAINY_TREE_B;
+        _currentBehavior = COLLISION_BEHAVIOR_RAINY_TREE_B;
+    } else if([behavior isEqualToString:@"rainySquirrel"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_RAINY_SQUIRREL;
+        _currentBehavior = COLLISION_BEHAVIOR_RAINY_SQUIRREL;
+        _persistsBetweenRegions = true;
     }
+    else if([behavior isEqualToString:@"rainyPaperPlane"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_PAPERPLANE;
+        _currentBehavior = COLLISION_BEHAVIOR_PAPERPLANE;
+        _magnitude = 200.0f;
+        _angle=180;
+    }
+
 
     
     else {
@@ -729,6 +891,11 @@
 -(CollisionBehavior)getCollisionBehavior
 {
     return _collideBehavior;
+}
+
+-(Sprite*) getSprite
+{
+    return _sprite;
 }
 
 -(void)dealloc

@@ -40,7 +40,7 @@
 
 -(void)initAfterPlayerAndHudInit;
 
--(NSMutableArray*)getObstacleArray;
+-(NSMutableArray*)getActiveGameObjectList;
 
 -(void)dumpMemoryForLevel:(Level*)level;
 

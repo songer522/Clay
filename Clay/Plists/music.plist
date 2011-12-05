@@ -20,5 +20,15 @@
 	<string>fire.mp3</string>
 	<key>title</key>
 	<string>title.mp3</string>
+	<key>credits</key>
+	<string>credits.mp3</string>
+	<key>cutscene</key>
+	<string>cutscene.mp3</string>
+	<key>rainy</key>
+	<string>rainy.mp3</string>
+	<key>darkness</key>
+	<string>darkness.mp3</string>
+	<key>underwater</key>
+	<string>underwater.mp3</string>
 </dict>
 </plist>

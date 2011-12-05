@@ -8,6 +8,10 @@
 		<string>eightBitTim</string>
 		<key>animations</key>
 		<dict>
+			<key>slowTimeAction</key>
+			<string>slowTimeAnim</string>
+			<key>spinAction</key>
+			<string>spinningAnim</string>
 			<key>blowAction</key>
 			<string>blowingAnim</string>
 			<key>shootAction</key>
@@ -38,6 +42,12 @@
 		<string>characterAnims</string>
 		<key>animations</key>
 		<dict>
+			<key>slowTimeAction</key>
+			<string>slowTimeAnim</string>
+			<key>floating</key>
+			<string>floatingAnim</string>
+			<key>spinAction</key>
+			<string>spinningAnim</string>
 			<key>blowAction</key>
 			<string>blowingAnim</string>
 			<key>shootAction</key>

@@ -23,6 +23,7 @@
         // Initialization code here.
         _triggered = false;
         _canBeReset = false;
+        _direction = CGPointMake(1, -1);
     }
     
     return self;

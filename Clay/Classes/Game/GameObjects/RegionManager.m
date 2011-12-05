@@ -23,6 +23,7 @@
         _rightRegion = nil;
         _combinedRegion = nil;
         _currentIndex = -1;
+        [self resetPersistentObjects];
     }
     return self;
 }
@@ -46,6 +47,7 @@
 -(void)resetCurrentRegion
 {
     _currentIndex = -1;
+    [self resetPersistentObjects];
     //note, allows for and requires 'changeregionsbasedonx' to be called afterwards to get the right region again
     
 }
@@ -72,13 +74,23 @@
     _rightRegion = [_regions objectAtIndex:(newIndex+1)];
     
     //create combined region from left and right region
-    _combinedRegion = [[NSMutableArray alloc] initWithCapacity:10];
+    _combinedRegion = [[NSMutableSet alloc] initWithCapacity:10];    
     for (GameObject *object in _leftRegion) {
         [[object getCCSprite] setVisible:YES];
         [_combinedRegion addObject:object];
+        if (object.persistsBetweenRegions) {
+            [_persistentObjects addObject:object];
+        }
     }
     for(GameObject *object in _rightRegion) {
         [[object getCCSprite] setVisible:YES];
+        [_combinedRegion addObject:object];
+        if (object.persistsBetweenRegions) {
+            [_persistentObjects addObject:object];
+        }
+    }
+    
+    for (GameObject *object in _persistentObjects) {
         [_combinedRegion addObject:object];
     }
 }
@@ -88,9 +100,17 @@
     return floor(xPosition / (32 * REGION_MANAGER_TILES_PER_REGION));
 }
 
--(NSMutableArray*)getActiveGameObjectList
+-(NSArray*)getActiveGameObjectList
 {
-    return _combinedRegion;
+    return [_combinedRegion allObjects];
+}
+
+-(void)resetPersistentObjects
+{
+    if (_persistentObjects!=nil) {
+        [_persistentObjects release];
+    }
+    _persistentObjects = [[NSMutableSet alloc] initWithCapacity:4];
 }
 
 -(void)printDescription
