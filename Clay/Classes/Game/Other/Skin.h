@@ -21,7 +21,8 @@ typedef enum {
     PLAYER_ANIM_SHOOT,
     PLAYER_ANIM_BLOW,
     PLAYER_ANIM_SPIN,
-    PLAYER_ANIM_SLOWTIME
+    PLAYER_ANIM_SLOWTIME,
+    PLAYER_ANIM_FLOATING
 }PlayerAnimation;
 
 @class Sprite;
@@ -39,6 +40,7 @@ typedef enum {
     NSString *_sprinting;
     NSString *_tripping;
     NSString *_hurting;
+    NSString *_floating;
     
     //action animations
     NSString *_wooAction;

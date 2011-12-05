@@ -28,19 +28,21 @@
 {
     if (!_inAction && _canTrigger) {
         [super startAction];
-        //[[AnimationController sharedController] replaceSprite:_shield withAnimationNamed:@"spinningAnim"];
-        
+        [_parent setPlayerAnimation:PLAYER_ANIM_SPIN];
         _duration = 0.75f;
     }
 }
 
 -(void)endAction
 {
+    [_parent setPlayerAnimation:PLAYER_ANIM_RUNNING];
     [super endAction];
+    
 }
 
 -(void)cancelAction
 {
+    [_parent setPlayerAnimation:PLAYER_ANIM_RUNNING];
     [super cancelAction];
 }
 

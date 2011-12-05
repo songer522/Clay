@@ -52,7 +52,7 @@
     _blowAction = [[NSString stringWithString:[anims objectForKey:@"blowAction"]] retain];
     _spinAction = [[NSString stringWithString:[anims objectForKey:@"spinAction"]] retain];
     _slowTimeAction = [[NSString stringWithString:[anims objectForKey:@"slowTimeAction"]] retain];
-    
+    _floating = [[NSString stringWithString:[anims objectForKey:@"floating"]] retain];
     
     if (![_filename isEqualToString:@"characterAnims"]) {
         AnimationController *controller = [AnimationController sharedController];
@@ -110,6 +110,9 @@
             break;
         case PLAYER_ANIM_SLOWTIME:
             animName = _slowTimeAction;
+            break;
+        case PLAYER_ANIM_FLOATING:
+            animName = _floating;
             break;
         default:
             break;
