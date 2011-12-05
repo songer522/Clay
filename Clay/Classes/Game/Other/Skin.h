@@ -49,6 +49,7 @@ typedef enum {
     NSString *_shootAction;
     NSString *_blowAction;
     NSString *_spinAction;
+    NSString *_spinUp;
     NSString *_slowTimeAction;
 }
 

@@ -48,10 +48,12 @@ static Camera *_sharedCamera = nil;
     NSAssert(rect.origin.x < rect.size.width && rect.origin.y < rect.size.height, @"Invalid Rect for boundaries");
     
     //There is a blank row of tiles at the very bottom that we don't want to show, so the true camera
-    //boundary is actually one tile above the bottom of the screen, or (64 pixels/32 points) normally. may require an #IPADFIX.
+    //boundary is actually one tile above the bottom of the screen, or (64 pixels/32 points) normally.
+    //IPAD FIX: may not be 32 for ipad
     rect.origin.y = 32;
-    
+
     //restrict the camera in certain levels
+    //IPAD FIX: may need a different greater height for ipad, since the ipad has more pixels in the y plane.
     NSString *levelName = level.name;
     if ([levelName isEqualToString:@"level6"]) {
         rect.size.height = 352;

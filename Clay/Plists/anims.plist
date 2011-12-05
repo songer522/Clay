@@ -600,11 +600,28 @@
 	<key>spinningAnim</key>
 	<dict>
 		<key>animationFrames</key>
-		<string>1,1,1,1,1,1,1,1</string>
+		<string>2,3,2,3,2,3</string>
 		<key>clearPreviousAnims</key>
 		<string>false</string>
 		<key>delay</key>
 		<string>0.1</string>
+		<key>group</key>
+		<string>spin</string>
+		<key>looping</key>
+		<string>false</string>
+		<key>sequencePrefix</key>
+		<string>Character_Spinning_</string>
+		<key>spritesheetPlist</key>
+		<string>characterSpinning</string>
+	</dict>
+	<key>spinUpAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1</string>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>delay</key>
+		<string>0.15</string>
 		<key>group</key>
 		<string>spin</string>
 		<key>looping</key>

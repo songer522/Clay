@@ -55,9 +55,9 @@
 {
     Player *player = [[LayerManager sharedLayers] getPlayer];
     
-    //IPAD FIX
-    //place underneath tim's feet
+    //IPAD FIX: place underneath tim's feet
     [_rainBehindTim setPosition:CGPointMake(player.x - 40, player.y - 12)];
+    
     if (player.isInMidAir) {
         [[_rainBehindTim getCCSprite] setVisible:NO];
     } else {
