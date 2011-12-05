@@ -11,6 +11,8 @@
 #import "Level.h"
 #import "MapObject.h"
 #import "GameObject.h"
+#import "Sprite.h"
+#import "Animation.h"
 
 @implementation PlayerActionSlowTime
 
@@ -60,6 +62,7 @@
     for (MapObject *mapObject in mapObjects) {
         GameObject *obstacle = mapObject.object;
         obstacle.slowTimeModifier = modifier;
+        [[[obstacle getSprite] getAnimation] changeDelayModifier:modifier];        
     }
 }
 
