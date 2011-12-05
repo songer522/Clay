@@ -117,6 +117,10 @@
         buttonImage = @"UI_Button_Blocking.png";
     } else if([action isEqualToString:@"blow"]) {
         buttonImage = @"UI_Button_Blowing.png";
+    } else if([action isEqualToString:@"spin"]) {
+        buttonImage = @"UI_Button_Blowing.png";
+    } else if([action isEqualToString:@"slowtime"]) {
+        buttonImage = @"UI_Button_Blowing.png";
     }
     
     [self createSpriteFromImage:buttonImage];

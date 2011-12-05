@@ -8,6 +8,12 @@
 
 #import "PlayerAction.h"
 
+@class Sprite;
+@class Player;
+
 @interface PlayerActionSpin : PlayerAction
+{
+    Player *_player; //weak reference
+}
 
 @end

@@ -44,8 +44,7 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
         _clearPreviousAnimations = ANIMATION_DEFAULT_CLEAR_OLD_ANIMS;
         _sequence = [[NSString alloc] initWithString:sequence];
         _frameList = [[NSString alloc] initWithString:framelist];
-        
-        //[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:[name stringByAppendingString:ANIMATION_SPRITE_CACHE_SUFFIX]];
+        _currentDelayModifier = 1.0f;
         
         _spriteSheet = [CCSpriteBatchNode batchNodeWithFile:[name stringByAppendingString:ANIMATION_GRAPHIC_EXTENSION]];
         
@@ -94,11 +93,12 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
     [self useAnimationToReplaceSprite:sprite FrameName:frameName];
 }
 
+
 -(void)useAnimationToReplaceSprite:(Sprite*)sprite FrameName:(NSString*)frameName
 {
     [[sprite getCCSprite] setBatchNode:_spriteSheet];
     [[sprite getCCSprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName]];
-    CCAnimation *_anim = [CCAnimation animationWithFrames:_frames delay:_delay];
+    _anim = [CCAnimation animationWithFrames:_frames delay:_delay]; //memory leak from previous?
     
     _animateAction = [CCXAnimate actionWithAnimation:_anim restoreOriginalFrame:NO];
     
@@ -115,6 +115,34 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
     
     [[sprite getCCSprite] runAction:action];
 }
+
+/*
+-(void)useAnimationToReplaceSprite:(Sprite*)sprite FrameName:(NSString*)frameName
+{
+    if (_anim!=nil) {
+        [_anim release];
+    }
+    
+    CCSprite *sprite_cc = [sprite getCCSprite];
+    
+    _currentSprite = sprite;
+    
+    [sprite_cc setBatchNode:_spriteSheet];
+    [sprite_cc setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName]];
+    _anim = [CCAnimation animationWithFrames:_frames delay:_delay * _currentDelayModifier];
+    
+    _animateAction = [CCXAnimate actionWithAnimation:_anim restoreOriginalFrame:NO];
+
+    
+    CCAction *action;
+    if (_looping) {
+        action = [CCRepeatForever actionWithAction:_animateAction];
+    } else {
+        action = [CCRepeat actionWithAction:_animateAction times:1];
+    }
+    
+    [sprite_cc runAction:action];
+}*/
 
 -(int)getTotalFramesCount
 {
@@ -140,6 +168,27 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
     NSString *frameName = [_sequence stringByAppendingFormat:@"%d%@%@",frameNumber, ANIMATION_HD_SUFFIX,ANIMATION_GRAPHIC_EXTENSION];
     [[sprite getCCSprite] setBatchNode:_spriteSheet];
     [[sprite getCCSprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName]];
+}
+
+-(void)changeDelayModifier:(float)modifier
+{
+    [_anim setDelay:(_delay * modifier)];
+    /*
+    _animateAction = [[CCXAnimate actionWithAnimation:_anim restoreOriginalFrame:NO] retain];
+    
+    CCAction *action;
+    if (_looping) {
+        action = [CCRepeatForever actionWithAction:_animateAction];
+    } else {
+        action = [CCRepeat actionWithAction:_animateAction times:1];
+    }
+    
+    if (_clearPreviousAnimations) {
+        [[_currentSprite getCCSprite] stopAllActions];        
+    }
+    
+    [[_currentSprite getCCSprite] runAction:action];
+     */
 }
 
 -(void)setFrame:(int)frame
