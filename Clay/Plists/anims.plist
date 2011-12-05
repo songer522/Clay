@@ -597,6 +597,40 @@
 		<key>spritesheetPlist</key>
 		<string>characterBlowing</string>
 	</dict>
+	<key>spinningAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3,4,5</string>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>delay</key>
+		<string>0.065</string>
+		<key>group</key>
+		<string>spin</string>
+		<key>looping</key>
+		<string>false</string>
+		<key>sequencePrefix</key>
+		<string>Character_Running_</string>
+		<key>spritesheetPlist</key>
+		<string>characterAnims</string>
+	</dict>
+	<key>slowTimeAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3,4,5</string>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>delay</key>
+		<string>0.065</string>
+		<key>group</key>
+		<string>slowtime</string>
+		<key>looping</key>
+		<string>false</string>
+		<key>sequencePrefix</key>
+		<string>Character_Running_</string>
+		<key>spritesheetPlist</key>
+		<string>characterAnims</string>
+	</dict>
 	<key>headlessZombieAnim</key>
 	<dict>
 		<key>animationFrames</key>

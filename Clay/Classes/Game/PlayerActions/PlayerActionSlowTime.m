@@ -62,7 +62,10 @@
     for (MapObject *mapObject in mapObjects) {
         GameObject *obstacle = mapObject.object;
         obstacle.slowTimeModifier = modifier;
-        [[[obstacle getSprite] getAnimation] changeDelayModifier:modifier];        
+        
+        //not working yet
+        //[[[obstacle getSprite] getAnimation] changeDelayModifier:modifier];
+        
     }
 }
 

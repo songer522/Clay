@@ -9,10 +9,11 @@
 #import "PlayerAction.h"
 
 @class Sprite;
+@class Player;
 
 @interface PlayerActionSpin : PlayerAction
 {
-    Sprite *_shield;
+    Player *_player; //weak reference
 }
 
 @end

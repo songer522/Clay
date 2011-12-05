@@ -19,7 +19,9 @@ typedef enum {
     PLAYER_ANIM_KICK,
     PLAYER_ANIM_DODGE,
     PLAYER_ANIM_SHOOT,
-    PLAYER_ANIM_BLOW
+    PLAYER_ANIM_BLOW,
+    PLAYER_ANIM_SPIN,
+    PLAYER_ANIM_SLOWTIME
 }PlayerAnimation;
 
 @class Sprite;
@@ -44,6 +46,8 @@ typedef enum {
     NSString *_dodgeAction;
     NSString *_shootAction;
     NSString *_blowAction;
+    NSString *_spinAction;
+    NSString *_slowTimeAction;
 }
 
 +(id)instance;
