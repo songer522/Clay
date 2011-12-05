@@ -8,6 +8,11 @@
 
 #import "PlayerAction.h"
 
+@class Sprite;
+
 @interface PlayerActionSpin : PlayerAction
+{
+    Sprite *_shield;
+}
 
 @end

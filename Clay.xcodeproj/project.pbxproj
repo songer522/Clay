@@ -397,6 +397,10 @@
 		54E3D557146C4BA800C28C9F /* tileset_level_6.png in Resources */ = {isa = PBXBuildFile; fileRef = 54E3D545146C4BA800C28C9F /* tileset_level_6.png */; };
 		54E3D558146C4BA800C28C9F /* tileset_level_7-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54E3D546146C4BA800C28C9F /* tileset_level_7-hd.png */; };
 		54E3D559146C4BA800C28C9F /* tileset_level_7.png in Resources */ = {isa = PBXBuildFile; fileRef = 54E3D547146C4BA800C28C9F /* tileset_level_7.png */; };
+		54EB13AE148C4ABF00D94191 /* level10_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 54EB13AA148C4ABF00D94191 /* level10_hd.tmx */; };
+		54EB13AF148C4ABF00D94191 /* level10.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 54EB13AB148C4ABF00D94191 /* level10.tmx */; };
+		54EB13B0148C4ABF00D94191 /* level11_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 54EB13AC148C4ABF00D94191 /* level11_hd.tmx */; };
+		54EB13B1148C4ABF00D94191 /* level11.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 54EB13AD148C4ABF00D94191 /* level11.tmx */; };
 		54EE34B0143CEB4A00734E58 /* BatteryFullCharge.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54EE34AC143CEB4A00734E58 /* BatteryFullCharge.wav */; };
 		54EE34B1143CEB4A00734E58 /* Error.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54EE34AD143CEB4A00734E58 /* Error.wav */; };
 		54EE34B2143CEB4A00734E58 /* LowBattery.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54EE34AE143CEB4A00734E58 /* LowBattery.wav */; };
@@ -430,11 +434,8 @@
 		61D82FD814882756000B54F0 /* level6_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61D82FD514882756000B54F0 /* level6_hd.tmx */; };
 		61D82FD914882756000B54F0 /* level7_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61D82FD614882756000B54F0 /* level7_hd.tmx */; };
 		61D82FDA14882756000B54F0 /* level8_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61D82FD714882756000B54F0 /* level8_hd.tmx */; };
-		61DC60841489264100F65B78 /* level5_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61DC60831489264100F65B78 /* level5_hd.tmx */; };
 		61DC6099148966F100F65B78 /* TrackLapse_Icons-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 61DC6097148966F100F65B78 /* TrackLapse_Icons-hd.png */; };
 		61DC609A148966F100F65B78 /* TrackLapse_Icons.png in Resources */ = {isa = PBXBuildFile; fileRef = 61DC6098148966F100F65B78 /* TrackLapse_Icons.png */; };
-		61DC609D1489706200F65B78 /* level9_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61DC609B1489706200F65B78 /* level9_hd.tmx */; };
-		61DC609E1489706200F65B78 /* level9.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61DC609C1489706200F65B78 /* level9.tmx */; };
 		61DC60AC14897B5E00F65B78 /* rainyLevel-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 61DC60A814897B5E00F65B78 /* rainyLevel-hd.plist */; };
 		61DC60AD14897B5E00F65B78 /* rainyLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 61DC60A914897B5E00F65B78 /* rainyLevel-hd.png */; };
 		61DC60AE14897B5E00F65B78 /* rainyLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 61DC60AA14897B5E00F65B78 /* rainyLevel.plist */; };
@@ -447,6 +448,8 @@
 		61DE5CDF147DA21400E8A892 /* fireballLand.wav in Resources */ = {isa = PBXBuildFile; fileRef = 61DE5CDE147DA21400E8A892 /* fireballLand.wav */; };
 		61DE5D07147DBBD800E8A892 /* level4.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61DE5CFF147DBBD800E8A892 /* level4.tmx */; };
 		61DE5D08147DBBD800E8A892 /* level5.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61DE5D00147DBBD800E8A892 /* level5.tmx */; };
+		E485F746148C69ED00D98C14 /* level9_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = E485F745148C69ED00D98C14 /* level9_hd.tmx */; };
+		E485F748148C8F6800D98C14 /* level9.tmx in Resources */ = {isa = PBXBuildFile; fileRef = E485F747148C8F6800D98C14 /* level9.tmx */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1047,6 +1050,10 @@
 		54E3D545146C4BA800C28C9F /* tileset_level_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tileset_level_6.png; path = Resources/levels/tileset_level_6.png; sourceTree = "<group>"; };
 		54E3D546146C4BA800C28C9F /* tileset_level_7-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tileset_level_7-hd.png"; path = "Resources/levels/tileset_level_7-hd.png"; sourceTree = "<group>"; };
 		54E3D547146C4BA800C28C9F /* tileset_level_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tileset_level_7.png; path = Resources/levels/tileset_level_7.png; sourceTree = "<group>"; };
+		54EB13AA148C4ABF00D94191 /* level10_hd.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level10_hd.tmx; path = Resources/levels/level10_hd.tmx; sourceTree = "<group>"; };
+		54EB13AB148C4ABF00D94191 /* level10.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level10.tmx; path = Resources/levels/level10.tmx; sourceTree = "<group>"; };
+		54EB13AC148C4ABF00D94191 /* level11_hd.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level11_hd.tmx; path = Resources/levels/level11_hd.tmx; sourceTree = "<group>"; };
+		54EB13AD148C4ABF00D94191 /* level11.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level11.tmx; path = Resources/levels/level11.tmx; sourceTree = "<group>"; };
 		54EE34AC143CEB4A00734E58 /* BatteryFullCharge.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = BatteryFullCharge.wav; path = Resources/sounds/BatteryFullCharge.wav; sourceTree = "<group>"; };
 		54EE34AD143CEB4A00734E58 /* Error.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Error.wav; path = Resources/sounds/Error.wav; sourceTree = "<group>"; };
 		54EE34AE143CEB4A00734E58 /* LowBattery.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = LowBattery.wav; path = Resources/sounds/LowBattery.wav; sourceTree = "<group>"; };
@@ -1085,8 +1092,6 @@
 		61DC60831489264100F65B78 /* level5_hd.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level5_hd.tmx; path = Resources/levels/level5_hd.tmx; sourceTree = "<group>"; };
 		61DC6097148966F100F65B78 /* TrackLapse_Icons-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "TrackLapse_Icons-hd.png"; path = "Resources/levels/TrackLapse_Icons-hd.png"; sourceTree = "<group>"; };
 		61DC6098148966F100F65B78 /* TrackLapse_Icons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TrackLapse_Icons.png; path = Resources/levels/TrackLapse_Icons.png; sourceTree = "<group>"; };
-		61DC609B1489706200F65B78 /* level9_hd.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level9_hd.tmx; path = Resources/levels/level9_hd.tmx; sourceTree = "<group>"; };
-		61DC609C1489706200F65B78 /* level9.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level9.tmx; path = Resources/levels/level9.tmx; sourceTree = "<group>"; };
 		61DC60A814897B5E00F65B78 /* rainyLevel-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "rainyLevel-hd.plist"; sourceTree = "<group>"; };
 		61DC60A914897B5E00F65B78 /* rainyLevel-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rainyLevel-hd.png"; sourceTree = "<group>"; };
 		61DC60AA14897B5E00F65B78 /* rainyLevel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = rainyLevel.plist; sourceTree = "<group>"; };
@@ -1101,6 +1106,8 @@
 		61DE5CDE147DA21400E8A892 /* fireballLand.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = fireballLand.wav; path = Resources/sounds/fireballLand.wav; sourceTree = "<group>"; };
 		61DE5CFF147DBBD800E8A892 /* level4.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level4.tmx; path = Resources/levels/level4.tmx; sourceTree = "<group>"; };
 		61DE5D00147DBBD800E8A892 /* level5.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level5.tmx; path = Resources/levels/level5.tmx; sourceTree = "<group>"; };
+		E485F745148C69ED00D98C14 /* level9_hd.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level9_hd.tmx; path = Resources/levels/level9_hd.tmx; sourceTree = "<group>"; };
+		E485F747148C8F6800D98C14 /* level9.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level9.tmx; path = Resources/levels/level9.tmx; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1709,6 +1716,7 @@
 		548C3DBB141ABDBB000567A8 /* levels */ = {
 			isa = PBXGroup;
 			children = (
+				E485F747148C8F6800D98C14 /* level9.tmx */,
 				54E3D55C146C4BAE00C28C9F /* tilesets */,
 				61D82FC014880C96000B54F0 /* level1.tmx */,
 				61D82FC114880C96000B54F0 /* level2.tmx */,
@@ -1718,7 +1726,6 @@
 				61D82FCF14882608000B54F0 /* level6.tmx */,
 				61D82FD014882608000B54F0 /* level7.tmx */,
 				61D82FD114882608000B54F0 /* level8.tmx */,
-				61DC609C1489706200F65B78 /* level9.tmx */,
 				54E3D51C146C4B9200C28C9F /* level1_hd.tmx */,
 				54E3D51E146C4B9200C28C9F /* level2_hd.tmx */,
 				54E3D520146C4B9200C28C9F /* level3_hd.tmx */,
@@ -1727,7 +1734,11 @@
 				61D82FD514882756000B54F0 /* level6_hd.tmx */,
 				61D82FD614882756000B54F0 /* level7_hd.tmx */,
 				61D82FD714882756000B54F0 /* level8_hd.tmx */,
-				61DC609B1489706200F65B78 /* level9_hd.tmx */,
+				E485F745148C69ED00D98C14 /* level9_hd.tmx */,
+				54EB13AA148C4ABF00D94191 /* level10_hd.tmx */,
+				54EB13AB148C4ABF00D94191 /* level10.tmx */,
+				54EB13AC148C4ABF00D94191 /* level11_hd.tmx */,
+				54EB13AD148C4ABF00D94191 /* level11.tmx */,
 			);
 			name = levels;
 			sourceTree = "<group>";
@@ -2540,22 +2551,24 @@
 				61D82FD814882756000B54F0 /* level6_hd.tmx in Resources */,
 				61D82FD914882756000B54F0 /* level7_hd.tmx in Resources */,
 				61D82FDA14882756000B54F0 /* level8_hd.tmx in Resources */,
-				61DC60841489264100F65B78 /* level5_hd.tmx in Resources */,
 				549954201488671400E61078 /* frogSquish1.mp3 in Resources */,
 				549954211488671400E61078 /* frogSquish2.mp3 in Resources */,
 				549954221488671400E61078 /* lightning.mp3 in Resources */,
-				61DC60841489264100F65B78 /* level5_hd.tmx in Resources */,
 				545392EA1489700200B7DB47 /* wind2_long.wav in Resources */,
 				545392EB1489700200B7DB47 /* wind2_medium.wav in Resources */,
 				545392EC1489700200B7DB47 /* wind2_short.wav in Resources */,
 				61DC6099148966F100F65B78 /* TrackLapse_Icons-hd.png in Resources */,
 				61DC609A148966F100F65B78 /* TrackLapse_Icons.png in Resources */,
-				61DC609D1489706200F65B78 /* level9_hd.tmx in Resources */,
-				61DC609E1489706200F65B78 /* level9.tmx in Resources */,
 				61DC60AC14897B5E00F65B78 /* rainyLevel-hd.plist in Resources */,
 				61DC60AD14897B5E00F65B78 /* rainyLevel-hd.png in Resources */,
 				61DC60AE14897B5E00F65B78 /* rainyLevel.plist in Resources */,
 				61DC60AF14897B5E00F65B78 /* rainyLevel.png in Resources */,
+				54EB13AE148C4ABF00D94191 /* level10_hd.tmx in Resources */,
+				54EB13AF148C4ABF00D94191 /* level10.tmx in Resources */,
+				54EB13B0148C4ABF00D94191 /* level11_hd.tmx in Resources */,
+				54EB13B1148C4ABF00D94191 /* level11.tmx in Resources */,
+				E485F746148C69ED00D98C14 /* level9_hd.tmx in Resources */,
+				E485F748148C8F6800D98C14 /* level9.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2801,10 +2814,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv7,
-					armv6,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2824,10 +2834,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv7,
-					armv6,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Clay/Prefix.pch;
@@ -2867,10 +2874,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv7,
-					armv6,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Clay/Prefix.pch;

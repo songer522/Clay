@@ -43,6 +43,8 @@
 @synthesize beatsPlayerAction = _beatsPlayerAction;
 @synthesize originalAnimation=_originalAnimation;
 @synthesize magnitude = _magnitude;
+@synthesize persistsBetweenRegions = _persistsBetweenRegions;
+@synthesize slowTimeModifier = _slowTimeModifier;
 
 + (id) objectWithSprite:(Sprite*)sprite
 {
@@ -81,10 +83,12 @@
         _direction = 1;
         _isInvincible = false;
         _stopCurve=false;
+        _slowTimeModifier = 1.0f;
         _projectile = nil;
         _reloading = 0;
         _aggressiveCanHit = false;
         _beatsPlayerAction = false;
+        _persistsBetweenRegions = false;
         _magnitude = 0.0f;
     }
     
@@ -226,6 +230,9 @@
         [[SoundEngine shared] playSound:@"frogSquish"];
         _alpha = 1.2f;
         _fadeout = true;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_RAINY_SQUIRREL) {
+        _alpha = 1.2f;
+        _fadeout = true;
     }
     
     return _playerEffect;
@@ -262,6 +269,11 @@
 
 -(void)update:(float)dt
 {
+    //if time is slowed down, modify the dt by the modifier
+    //(must be called first because the rest relies on the dt value)
+    if (_slowTimeModifier!= 1.0f) {
+        dt = dt * _slowTimeModifier;
+    }
     
     if (_boss!=nil) {
         [_boss update:dt];
@@ -468,7 +480,7 @@
                     [_projectile reset];
                     [_projectile setPosition:CGPointMake(_x + 53, _y - 20 )];
                     [_projectile setBoundingBox:CGRectMake(-7, 12, 16, 16)];
-                }
+                } 
             } else {
                 if ([self closeToPlayer:300.0f]) {
                     [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"fireDemonWithArmorShooting"];
@@ -484,8 +496,8 @@
         _vx = 0.0f;
         if ([self closeToPlayer:275]) {
             _angle+=200.0f*dt;
-            if(_angle>-100.0f) {
-                _angle = -100.0f;
+            if(_angle>-120.0f) {
+                _angle = -120.0f;
             }
             [_sprite getCCSprite].rotation = -30.0f + ((_angle + 180.0f) / (2.66667f));
             _vx = _magnitude * cosf((_angle * 3.14159)/180.0f);
@@ -503,28 +515,67 @@
             [_sprite getCCSprite].rotation = -30.0f;
         }
     }
-    else if(_currentBehavior == COLLISION_BEHAVIOR_PAPERPLANE) {
+    else if(_currentBehavior == COLLISION_BEHAVIOR_PAPERPLANE)
+    {
         _vx = 0.0f;
-        if ([self closeToPlayer:275]) {
-            _angle-=180.0f*dt;
-            if(_angle < -360.0f) {
+        if ([self closeToPlayer:375]) {
+            _angle+=130.0f*dt;
+            if(_angle > -60.0f) {
                 _stopCurve=true;
-                _angle = - 360.0f;
+                _angle = - 60.0f;
                 
                _vx = -1 * _magnitude;
+                _vy=0;
             }
             //[_sprite getCCSprite].rotation = -30.0f + ((_angle + 180.0f) / (2.66667f));
             if(!_stopCurve)
             {
                 _vx = _magnitude * cosf((_angle * 3.14159)/180.0f);
-                _vy = _magnitude * sinf((_angle * 3.14159)/180.0f);
+                _vy = -1*_magnitude * sinf((_angle * 3.14159)/180.0f);
             }
             
         } else if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
             _vx = -1 * _magnitude;
             _angle = -180;
             //[_sprite getCCSprite].rotation = -30.0f;
-    } 
+        }
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_RAINY_SQUIRREL) {
+        if (_reloading >=0.0f) {
+            _reloading -= dt;
+        } else {
+            if(_waitToTrigger > 0.0f && !_collided) {
+                _waitToTrigger -= dt;
+                if(_waitToTrigger<= 0.0f){
+                    _reloading = 4.0f;
+                    if(_projectile!=nil) {
+                        [_projectile release];
+                    }
+                    _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_RAINY_SQUIRREL_NUT];
+                    [_projectile reset];
+                    [_projectile setPosition:CGPointMake(_x - 25.0f, _y + 19)];
+                    [_projectile setBoundingBox:CGRectMake(0, 12, 16, 16)];
+                    [_projectile setInitialVelocity];
+                } 
+            } else {
+                if ([self closeToPlayer:400.0f]) {
+                    _waitToTrigger = 0.28f;
+                }
+                else if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+                    _vx = 100.0f;
+                }
+                
+            }
+        }
+
+        
+        
+        
+        
+        
+        
+        
+        
+
     }
 
 }
@@ -590,7 +641,9 @@
     _alpha = 1.0f;
     _fadeout = false;
     _waitToTrigger = -1.0f;
+    _slowTimeModifier = 1.0f;
     _reloading = 0.0f;
+    _stopCurve=false;
     if(self )
     _madeSound = false;
     [_sprite setAlpha:1.0f];
@@ -653,17 +706,20 @@
     else if(_currentBehavior == COLLISION_BEHAVIOR_PAPERPLANE) {
         _currentBehavior = COLLISION_BEHAVIOR_PAPERPLANE;
         _magnitude=200;
+        _angle=-180;
     }else if(_currentBehavior == COLLISION_BEHAVIOR_UMBRELLA_FLY_ACROSS) {
         _currentBehavior = COLLISION_BEHAVIOR_UMBRELLA_FLY_ACROSS;
     } else if(_currentBehavior == COLLISION_BEHAVIOR_RAINY_TREE_A) {
         _currentBehavior = COLLISION_BEHAVIOR_RAINY_TREE_A;
     } else if(_currentBehavior == COLLISION_BEHAVIOR_RAINY_TREE_B) {
         _currentBehavior = COLLISION_BEHAVIOR_RAINY_TREE_B;
-    } 
-    
-    else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST) {
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_RAINY_SQUIRREL) {
+        _currentBehavior = COLLISION_BEHAVIOR_RAINY_SQUIRREL;
+        _persistsBetweenRegions = true;
+    } else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;     
-}         _collided = false;
+    }   
+    _collided = false;
 }
 
 -(Collision*) getCollision
@@ -748,6 +804,10 @@
     } else if([behavior isEqualToString:@"rainyTreeB"]) {
         _collideBehavior = COLLISION_BEHAVIOR_RAINY_TREE_B;
         _currentBehavior = COLLISION_BEHAVIOR_RAINY_TREE_B;
+    } else if([behavior isEqualToString:@"rainySquirrel"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_RAINY_SQUIRREL;
+        _currentBehavior = COLLISION_BEHAVIOR_RAINY_SQUIRREL;
+        _persistsBetweenRegions = true;
     }
     else if([behavior isEqualToString:@"rainyPaperPlane"]) {
         _collideBehavior = COLLISION_BEHAVIOR_PAPERPLANE;
