@@ -91,7 +91,7 @@
 
 -(void)repositionSprite
 {
-    //IPAD FIX: should be positioned at a random position on the track in front of Tim with enough of a gap that the raindrop disappears before it reaches Tim's position most of the time.
+    //IPAD FIX: should be positioned at a random position in the background at a height where the top of the lightning bolt is just off the top of the screen
     [_sprite setScreenPosition:ccp(50 + rand()%330, 193)];
     
     

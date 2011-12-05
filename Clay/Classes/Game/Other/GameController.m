@@ -68,7 +68,9 @@
     if (!_isInputEnabled) { return; }
     
     if (location.x > 400 && location.y > 270) {
-        //[self pauseGame];
+        if (type == INPUT_TOUCH_END) {
+            [self pauseGame];            
+        }
     } else if(!_isPaused) {
         
         HudButtonType result = [_hud testInput:location InputType:type];

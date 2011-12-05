@@ -597,6 +597,74 @@
 		<key>spritesheetPlist</key>
 		<string>characterBlowing</string>
 	</dict>
+	<key>spinningAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>2,3,2,3,2,3</string>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>spin</string>
+		<key>looping</key>
+		<string>false</string>
+		<key>sequencePrefix</key>
+		<string>Character_Spinning_</string>
+		<key>spritesheetPlist</key>
+		<string>characterSpinning</string>
+	</dict>
+	<key>spinUpAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1</string>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>delay</key>
+		<string>0.15</string>
+		<key>group</key>
+		<string>spin</string>
+		<key>looping</key>
+		<string>false</string>
+		<key>sequencePrefix</key>
+		<string>Character_Spinning_</string>
+		<key>spritesheetPlist</key>
+		<string>characterSpinning</string>
+	</dict>
+	<key>floatingAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,1,2,2</string>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>spin</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Character_Floating_</string>
+		<key>spritesheetPlist</key>
+		<string>characterSpinning</string>
+	</dict>
+	<key>slowTimeAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3,4,5</string>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>delay</key>
+		<string>0.065</string>
+		<key>group</key>
+		<string>slowtime</string>
+		<key>looping</key>
+		<string>false</string>
+		<key>sequencePrefix</key>
+		<string>Character_Running_</string>
+		<key>spritesheetPlist</key>
+		<string>characterAnims</string>
+	</dict>
 	<key>headlessZombieAnim</key>
 	<dict>
 		<key>animationFrames</key>
@@ -1123,6 +1191,23 @@
 		<string>Level9_Tree_TypeB_</string>
 		<key>spritesheetPlist</key>
 		<string>rainyLevel</string>
+	</dict>
+	<key>waterBubblesAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>2,3,2,3,2,3,1</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level10</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Level10_Bubbles_</string>
+		<key>spritesheetPlist</key>
+		<string>waterLevel</string>
 	</dict>
 	<key>wooAnim</key>
 	<dict>

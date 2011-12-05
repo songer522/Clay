@@ -19,7 +19,11 @@
     NSMutableArray *_frames;                //the frames of the animation
     CCSpriteBatchNode *_spriteSheet;        //a reference to the spritesheet
     
+    CCAnimation *_anim;
+    Sprite *_currentSprite;                 //weak reference, keeping for delay modification
+    
     float _delay;                           //number of seconds between frames
+    float _currentDelayModifier;
     
     NSString *_name;
     
@@ -35,6 +39,8 @@
     bool _looping;                          //does the animation loop (true), or play through once and stop (false)
     
     bool _clearPreviousAnimations;          //when adding the new animation, do we want to remove all the previous ones? usually this will be yes, but sometimes we want the animation to play and revert to the previous one (like when the character gets hurt)
+    
+    CCActionInterval *_speedAction;
 }
 
 #pragma mark - properties
@@ -62,6 +68,7 @@
 -(void)setStaticFrame:(int)frame Sprite:(Sprite*)sprite;
 -(NSString*)getSequence;
 -(NSString*)getFrameList;
+-(void)changeDelayModifier:(float)modifier;
 
 //replaces the given sprite with this animation
 

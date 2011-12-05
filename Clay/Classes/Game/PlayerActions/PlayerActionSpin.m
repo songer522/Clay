@@ -21,34 +21,29 @@
 {
     _cooldown = 0.0f;
     _cooldownStart = 0.4f;
-    _shield = [Sprite spriteWithFile:@"blank.png"];
+    _player = [[LayerManager sharedLayers] getPlayer];
 }
 
 -(void)startAction
 {
     if (!_inAction && _canTrigger) {
         [super startAction];
-        
-        [[AnimationController sharedController] replaceSprite:_shield withAnimationNamed:@"blockingAnim"];
-        [[_shield getCCSprite] setVisible:YES];
-        
-        CGPoint position = [_parent getPosition];
-        [_shield setPosition:CGPointMake(position.x + 2, position.y + 15)];
-        
+        [_parent setPlayerAnimation:PLAYER_ANIM_SPIN_UP];
+        [_parent setPlayerAnimation:PLAYER_ANIM_SPIN];
         _duration = 0.75f;
-        [[SoundEngine shared] playSound:@"shield"];
     }
 }
 
 -(void)endAction
 {
-    [[_shield getCCSprite] setVisible:NO];
+    [_parent setPlayerAnimation:PLAYER_ANIM_RUNNING];
     [super endAction];
+    
 }
 
 -(void)cancelAction
 {
-    [[_shield getCCSprite] setVisible:NO];
+    [_parent setPlayerAnimation:PLAYER_ANIM_RUNNING];
     [super cancelAction];
 }
 
@@ -59,9 +54,6 @@
         _isActive = false;
     } else {
         _isActive = true;
-        
-        CGPoint position = [_parent getPosition];
-        [_shield setPosition:CGPointMake(position.x + 2, position.y + 15)];
     }
     [super update:dt];
 }
@@ -73,7 +65,6 @@
 
 -(void)dealloc
 {
-    [_shield release];
     [super dealloc];
 }
 

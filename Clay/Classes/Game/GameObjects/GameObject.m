@@ -893,6 +893,11 @@
     return _collideBehavior;
 }
 
+-(Sprite*) getSprite
+{
+    return _sprite;
+}
+
 -(void)dealloc
 {
     [_sprite release];
