@@ -44,7 +44,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{216, 418}, {95, 30}}</string>
+			<string>{{220, 371}, {95, 30}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -66,7 +66,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{198, 322}, {95, 30}}</string>
+			<string>{{218, 480}, {95, 30}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -88,7 +88,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{108, 439}, {53, 53}}</string>
+			<string>{{111, 377}, {53, 53}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -110,7 +110,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{162, 430}, {53, 53}}</string>
+			<string>{{0, 442}, {53, 53}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -132,7 +132,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{117, 322}, {53, 53}}</string>
+			<string>{{109, 441}, {53, 53}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -154,7 +154,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{63, 322}, {53, 53}}</string>
+			<string>{{54, 442}, {53, 53}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -176,7 +176,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{110, 376}, {53, 53}}</string>
+			<string>{{56, 386}, {53, 53}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -198,7 +198,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{56, 385}, {53, 53}}</string>
+			<string>{{64, 322}, {53, 53}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -220,7 +220,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{54, 440}, {53, 53}}</string>
+			<string>{{163, 431}, {53, 53}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -242,29 +242,29 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{0, 440}, {53, 53}}</string>
+			<string>{{165, 377}, {53, 53}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
-		<key>CL_LevelInfo.png</key>
+		<key>CL_Level9.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
 			
 			</array>
 			<key>spriteColorRect</key>
-			<string>{{0, 0}, {195, 258}}</string>
+			<string>{{1, 2}, {53, 53}}</string>
 			<key>spriteOffset</key>
-			<string>{0, -0}</string>
+			<string>{0, -1}</string>
 			<key>spriteSize</key>
-			<string>{195, 258}</string>
+			<string>{53, 53}</string>
 			<key>spriteSourceSize</key>
-			<string>{195, 258}</string>
+			<string>{55, 55}</string>
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{482, 0}, {195, 258}}</string>
+			<string>{{118, 322}, {53, 53}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -286,7 +286,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{0, 385}, {55, 53}}</string>
+			<string>{{0, 386}, {55, 53}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -330,7 +330,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{171, 322}, {25, 47}}</string>
+			<string>{{173, 322}, {25, 47}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -352,7 +352,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{164, 376}, {25, 47}}</string>
+			<string>{{218, 431}, {25, 47}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -374,7 +374,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{190, 370}, {25, 47}}</string>
+			<string>{{200, 322}, {25, 47}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -387,7 +387,7 @@
 		<key>format</key>
 		<integer>3</integer>
 		<key>size</key>
-		<string>{1024, 512}</string>
+		<string>{512, 512}</string>
 		<key>name</key>
 		<string>chooseLevel</string>
 		<key>premultipliedAlpha</key>

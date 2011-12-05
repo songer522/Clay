@@ -8,6 +8,8 @@
 		<string>eightBitTim</string>
 		<key>animations</key>
 		<dict>
+			<key>floating</key>
+			<string>floatingAnim</string>
 			<key>slowTimeAction</key>
 			<string>slowTimeAnim</string>
 			<key>spinAction</key>

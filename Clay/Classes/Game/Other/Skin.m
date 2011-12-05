@@ -39,29 +39,39 @@
     
     NSDictionary *anims = [skin objectForKey:@"animations"];
     
-    _running = [[NSString stringWithString:[anims objectForKey:@"running"]] retain];
-    _jumping = [[NSString stringWithString:[anims objectForKey:@"jumping"]] retain];
-    _falling = [[NSString stringWithString:[anims objectForKey:@"falling"]] retain];
-    _sprinting = [[NSString stringWithString:[anims objectForKey:@"sprinting"]] retain];
-    _tripping = [[NSString stringWithString:[anims objectForKey:@"tripping"]] retain];
-    _hurting = [[NSString stringWithString:[anims objectForKey:@"hurting"]] retain];
-    _wooAction = [[NSString stringWithString:[anims objectForKey:@"wooAction"]] retain];
-    _kickAction = [[NSString stringWithString:[anims objectForKey:@"kickAction"]] retain];
-    _dodgeAction = [[NSString stringWithString:[anims objectForKey:@"dodgeAction"]] retain];
-    _shootAction = [[NSString stringWithString:[anims objectForKey:@"shootAction"]] retain];
-    _blowAction = [[NSString stringWithString:[anims objectForKey:@"blowAction"]] retain];
-    _spinAction = [[NSString stringWithString:[anims objectForKey:@"spinAction"]] retain];
-    _slowTimeAction = [[NSString stringWithString:[anims objectForKey:@"slowTimeAction"]] retain];
-    _floating = [[NSString stringWithString:[anims objectForKey:@"floating"]] retain];
+    @try
+    {
+        _running = [[NSString stringWithString:[anims objectForKey:@"running"]] retain];
+        _jumping = [[NSString stringWithString:[anims objectForKey:@"jumping"]] retain];
+        _falling = [[NSString stringWithString:[anims objectForKey:@"falling"]] retain];
+        _sprinting = [[NSString stringWithString:[anims objectForKey:@"sprinting"]] retain];
+        _tripping = [[NSString stringWithString:[anims objectForKey:@"tripping"]] retain];
+        _hurting = [[NSString stringWithString:[anims objectForKey:@"hurting"]] retain];
+        _wooAction = [[NSString stringWithString:[anims objectForKey:@"wooAction"]] retain];
+        _kickAction = [[NSString stringWithString:[anims objectForKey:@"kickAction"]] retain];
+        _dodgeAction = [[NSString stringWithString:[anims objectForKey:@"dodgeAction"]] retain];
+        _shootAction = [[NSString stringWithString:[anims objectForKey:@"shootAction"]] retain];
+        _blowAction = [[NSString stringWithString:[anims objectForKey:@"blowAction"]] retain];
+        _spinAction = [[NSString stringWithString:[anims objectForKey:@"spinAction"]] retain];
+        _slowTimeAction = [[NSString stringWithString:[anims objectForKey:@"slowTimeAction"]] retain];
+        _floating = [[NSString stringWithString:[anims objectForKey:@"floating"]] retain];
+        
+        if (![_filename isEqualToString:@"characterAnims"]) {
+            
+            [[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
+            
+            AnimationController *controller = [AnimationController sharedController];
+            [controller addAnimationForSkinFromFile:_filename UsingBaseAnim:@"runningAnim" ForSequence:_running];
+            [controller addAnimationForSkinFromFile:_filename UsingBaseAnim:@"turboAnim" ForSequence:_sprinting];
+            [controller addAnimationForSkinFromFile:_filename UsingBaseAnim:@"trippedAnim" ForSequence:_tripping];
+            [controller addAnimationForSkinFromFile:_filename UsingBaseAnim:@"hurtAnim" ForSequence:_hurting];
+            [controller addAnimationForSkinFromFile:_filename UsingBaseAnim:@"jumpingAnim" ForSequence:_jumping];
+            [controller addAnimationForSkinFromFile:_filename UsingBaseAnim:@"fallingAnim" ForSequence:_falling];
+        }
+    }
     
-    if (![_filename isEqualToString:@"characterAnims"]) {
-        AnimationController *controller = [AnimationController sharedController];
-        [controller addAnimationForSkinFromFile:_filename UsingBaseAnim:@"runningAnim" ForSequence:_running];
-        [controller addAnimationForSkinFromFile:_filename UsingBaseAnim:@"turboAnim" ForSequence:_sprinting];
-        [controller addAnimationForSkinFromFile:_filename UsingBaseAnim:@"trippedAnim" ForSequence:_tripping];
-        [controller addAnimationForSkinFromFile:_filename UsingBaseAnim:@"hurtAnim" ForSequence:_hurting];
-        [controller addAnimationForSkinFromFile:_filename UsingBaseAnim:@"jumpingAnim" ForSequence:_jumping];
-        [controller addAnimationForSkinFromFile:_filename UsingBaseAnim:@"fallingAnim" ForSequence:_falling];
+    @catch (NSException *ex) {
+        NSLog(@"ERROR: Skin.m - Check skins.plist under '%@'. There appears to be some missing values for required values.",name);
     }
 }
 

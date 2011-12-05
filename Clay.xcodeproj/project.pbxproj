@@ -2607,6 +2607,8 @@
 				54EB13C0148C8B0600D94191 /* characterSpinning-hd.png in Resources */,
 				54EB13C1148C8B0600D94191 /* characterSpinning.plist in Resources */,
 				54EB13C2148C8B0600D94191 /* characterSpinning.png in Resources */,
+				E485F746148C69ED00D98C14 /* level9_hd.tmx in Resources */,
+				E485F748148C8F6800D98C14 /* level9.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
