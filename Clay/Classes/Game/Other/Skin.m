@@ -52,14 +52,12 @@
         _dodgeAction = [[NSString stringWithString:[anims objectForKey:@"dodgeAction"]] retain];
         _shootAction = [[NSString stringWithString:[anims objectForKey:@"shootAction"]] retain];
         _blowAction = [[NSString stringWithString:[anims objectForKey:@"blowAction"]] retain];
-        _spinAction = [[NSString stringWithString:[anims objectForKey:@"spinAction"]] retain];
+        _spinAction = [[NSString stringWithString:[anims objectForKey:@"spinDown"]] retain];
         _spinUp = [[NSString stringWithString:[anims objectForKey:@"spinUp"]] retain];
         _slowTimeAction = [[NSString stringWithString:[anims objectForKey:@"slowTimeAction"]] retain];
         _floating = [[NSString stringWithString:[anims objectForKey:@"floating"]] retain];
         
         if (![_filename isEqualToString:@"characterAnims"]) {
-            
-            [[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
             
             AnimationController *controller = [AnimationController sharedController];
             [controller addAnimationForSkinFromFile:_filename UsingBaseAnim:@"runningAnim" ForSequence:_running];
