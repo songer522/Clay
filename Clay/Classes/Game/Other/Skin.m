@@ -36,6 +36,7 @@
     _filename = [[NSString stringWithString:[skin objectForKey:@"filename"]] retain];
     
     _currentAnimation = PLAYER_ANIM_RUNNING;
+    _previousAnimation = PLAYER_ANIM_RUNNING;
     
     NSDictionary *anims = [skin objectForKey:@"animations"];
     
@@ -52,14 +53,12 @@
         _dodgeAction = [[NSString stringWithString:[anims objectForKey:@"dodgeAction"]] retain];
         _shootAction = [[NSString stringWithString:[anims objectForKey:@"shootAction"]] retain];
         _blowAction = [[NSString stringWithString:[anims objectForKey:@"blowAction"]] retain];
-        _spinAction = [[NSString stringWithString:[anims objectForKey:@"spinAction"]] retain];
+        _spinAction = [[NSString stringWithString:[anims objectForKey:@"spinDown"]] retain];
         _spinUp = [[NSString stringWithString:[anims objectForKey:@"spinUp"]] retain];
         _slowTimeAction = [[NSString stringWithString:[anims objectForKey:@"slowTimeAction"]] retain];
         _floating = [[NSString stringWithString:[anims objectForKey:@"floating"]] retain];
         
         if (![_filename isEqualToString:@"characterAnims"]) {
-            
-            [[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
             
             AnimationController *controller = [AnimationController sharedController];
             [controller addAnimationForSkinFromFile:_filename UsingBaseAnim:@"runningAnim" ForSequence:_running];
@@ -80,6 +79,9 @@
 
 -(void)setPlayerAnimation:(PlayerAnimation)type ForSprite:(Sprite*)sprite
 {
+    //guard
+    //if ([self isCurrentAnimationOfType:type]) { return; }
+    
     NSString *animName;
     
     switch (type) {
@@ -132,7 +134,9 @@
             break;
     }
     
+    _previousAnimation = _currentAnimation;
     _currentAnimation = type;
+    _currentSprite = sprite;
     
     if(animName !=nil) {
         [[AnimationController sharedController] replaceSprite:sprite withAnimationNamed:animName];
@@ -148,6 +152,11 @@
     } else {
         return false;
     }
+}
+
+-(void)restorePreviousAnimation
+{
+    [self setPlayerAnimation:_previousAnimation ForSprite:_currentSprite];
 }
 
 

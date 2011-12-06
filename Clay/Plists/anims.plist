@@ -600,15 +600,15 @@
 	<key>spinningAnim</key>
 	<dict>
 		<key>animationFrames</key>
-		<string>2,3,2,3,2,3</string>
+		<string>2,3,3,2,3,3</string>
 		<key>clearPreviousAnims</key>
 		<string>false</string>
 		<key>delay</key>
-		<string>0.1</string>
+		<string>0.125</string>
 		<key>group</key>
 		<string>spin</string>
 		<key>looping</key>
-		<string>false</string>
+		<string>true</string>
 		<key>sequencePrefix</key>
 		<string>Character_Spinning_</string>
 		<key>spritesheetPlist</key>
@@ -621,7 +621,7 @@
 		<key>clearPreviousAnims</key>
 		<string>false</string>
 		<key>delay</key>
-		<string>0.15</string>
+		<string>0.1</string>
 		<key>group</key>
 		<string>spin</string>
 		<key>looping</key>
@@ -1195,7 +1195,7 @@
 	<key>waterBubblesAnim</key>
 	<dict>
 		<key>animationFrames</key>
-		<string>2,3,2,3,2,3,1</string>
+		<string>1,2,3,4,5,6</string>
 		<key>clearPreviousAnims</key>
 		<string>true</string>
 		<key>delay</key>
@@ -1205,7 +1205,7 @@
 		<key>looping</key>
 		<string>true</string>
 		<key>sequencePrefix</key>
-		<string>Level10_Bubbles_</string>
+		<string>Level10_Bubble_</string>
 		<key>spritesheetPlist</key>
 		<string>waterLevel</string>
 	</dict>

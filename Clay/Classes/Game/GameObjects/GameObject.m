@@ -857,6 +857,9 @@
         _playerEffect = PLAYER_EFFECT_SLOWDOWN;
     } else if([effect compare:@"actionOrCollide"] == NSOrderedSame) {
         _playerEffect = PLAYER_EFFECT_ACTION_OR_COLLIDE;
+    } else if([effect isEqualToString:@"vaccuum"]) {
+        //so far just used by water bubbles in underwater level (level 10)
+        _playerEffect = PLAYER_EFFECT_VACCUUM;
     } else {
         _playerEffect = PLAYER_EFFECT_NONE;
     }

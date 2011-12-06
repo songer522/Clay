@@ -65,7 +65,7 @@
 -(void)reactToTouchAt:(CGPoint)location InputType:(InputType)type
 {
     //guards
-    if (!_isInputEnabled) { return; }
+    if (!_isInputEnabled || _handledPauseEvent) { return; }
     
     if (location.x > 400 && location.y > 270) {
         if (type == INPUT_TOUCH_END) {
@@ -75,7 +75,10 @@
         
         HudButtonType result = [_hud testInput:location InputType:type];
         
-        if (type == INPUT_TOUCH_END) {
+        //??? for some reason this is called whenever a touch is released....
+        //this is causing issues with endJump being called when it shouldn't, like when
+        //the spin action is called
+        if (type == INPUT_TOUCH_END && result == HUD_BUTTON_JUMP) {
             [_gameLayer.player endJump];
             return;
         }
@@ -115,6 +118,11 @@
     
 }
 
+-(void)update
+{
+    _handledPauseEvent = false;
+}
+
 -(void)enableSprint:(bool)Enable
 {
     _isSprintEnabled=Enable;
@@ -141,10 +149,13 @@
         [[SoundEngine shared] playSound:@"pause"];
     } else {
         _isHandlingPause = true;
-        [[[LayerManager sharedLayers] currentScene] removeChild:_pauseMenu cleanup:YES];
+        [[[LayerManager sharedLayers] currentScene] removeChild:_pauseMenu cleanup:NO];
         _isPaused = false;
         [_gameLayer onEnter];
+        _gameLayer.isTouchEnabled = true;
     }
+    _isHandlingPause = false;
+    _handledPauseEvent = true;
 }
 
 -(void)dealloc

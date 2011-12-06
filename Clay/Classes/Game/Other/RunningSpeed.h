@@ -41,6 +41,7 @@
     float _turboVelocityMax;
     
     bool _isSlowedDown;
+    bool _isUnderwater;
     bool _atMax;
 }
 
@@ -49,6 +50,7 @@
 @property(readonly,nonatomic,assign) bool isStopped;
 @property(nonatomic,retain) Player *parent;
 @property(nonatomic,assign) bool isSlowedDown;
+@property(nonatomic,assign) bool isUnderwater;
 @property(nonatomic,assign) bool atMax;
 
 #pragma mark - inits

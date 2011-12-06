@@ -12,17 +12,36 @@
 
 @class GameController;
 @class Sprite;
+@class GameLabel;
+@class Button;
+@class ActionButton;
+
+typedef enum {
+    PAUSE_ACTION_RESUME,
+    PAUSE_ACTION_RESTART,
+    PAUSE_ACTION_MENU
+}PauseAction;
 
 @interface PauseMenuScreen : CCLayer
 {
     float _alpha;
     GameController *_gameController;
-    CCLabelTTF *_label;
+        
+    GameLabel *_pausedText;
+
+    ActionButton *_resumeButton;
+    ActionButton *_restartButton;
+    ActionButton *_menuButton;
+    
+    PauseAction _action;
+    float _waitToSwitch;
 }
 
 @property(nonatomic,retain) GameController *gameController;
 
 +(id)instance;
 //- (id)initWithColor:(ccColor4B)color;
+-(void) ccDrawFilledRectFrom:(CGPoint)v1 To:(CGPoint)v2;
+
 
 @end

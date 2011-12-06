@@ -9,6 +9,16 @@
 #import "cocos2d.h"
 #import "Button.h"
 #import "LayerManager.h"
+#import "GameLabel.h"
+
+//private methods
+@interface Button()
+
+-(id)initWithText:(NSString*)text AtPoint:(CGPoint)point;
+-(id)initWithText:(NSString*)text AtPoint:(CGPoint)point inLayer:(CCLayer *)layer;
+-(id)initWithGameLabelText:(NSString*)text AtPoint:(CGPoint)point;
+
+@end
 
 @implementation Button
 
@@ -19,12 +29,30 @@
     return [[self alloc] initWithText:text AtPoint:point];
 }
 
++(id)buttonWithText:(NSString*)text AtPoint:(CGPoint)point inLayer:(CCLayer *)layer
+{
+    return [[self alloc] initWithText:text AtPoint:point inLayer:(CCLayer *)layer];
+}
+
++(id)buttonWithGameLabelText:(NSString*)text AtPoint:(CGPoint)point
+{
+    return [[self alloc] initWithGameLabelText:text AtPoint:point];
+}
+
+-(id)initWithGameLabelText:(NSString*)text AtPoint:(CGPoint)point
+{
+    if ((self=[super init])) {
+        _gameLabel = [GameLabel gameLabelWithText:text Scale:1.0f];
+        [_gameLabel setPosition:point];
+    }
+    
+    return self;
+}
+
+
 -(id)initWithText:(NSString*)text AtPoint:(CGPoint)point
 {
     if ((self=[super init])) {
-       // _buttonLabel = [CCLabelTTF labelWithString:text fontName:@"Marker Felt" fontSize:24];
-       // _buttonLabel.position = ccp(point.x, point.y);
-
         _buttonLabel=[CCLabelBMFont labelWithString:text fntFile:@"GraphicFont.fnt"];
         _buttonLabel.position=ccp(point.x, point.y);
     
@@ -35,10 +63,7 @@
 }
 
 
-+(id)buttonWithText:(NSString*)text AtPoint:(CGPoint)point inLayer:(CCLayer *)layer
-{
-    return [[self alloc] initWithText:text AtPoint:point inLayer:(CCLayer *)layer];
-}
+
 
 -(id)initWithText:(NSString*)text AtPoint:(CGPoint)point inLayer:(CCLayer *)layer
 {
@@ -87,6 +112,18 @@
         return false;
     }
 
+}
+
+-(GameLabel*)getGameLabel
+{
+    return _gameLabel;
+}
+
+-(void)dealloc
+{
+    [_buttonLabel release];
+    [_gameLabel release];
+    [super dealloc];
 }
 
 @end

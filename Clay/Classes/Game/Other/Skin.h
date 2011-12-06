@@ -33,6 +33,9 @@ typedef enum {
     NSString *_filename;
     
     PlayerAnimation _currentAnimation;
+    PlayerAnimation _previousAnimation;
+    
+    Sprite *_currentSprite; //weak reference
     
     //animations
     NSString *_running;
@@ -62,5 +65,6 @@ typedef enum {
 
 -(void)setPlayerAnimation:(PlayerAnimation)type ForSprite:(Sprite*)sprite;
 
+-(void)restorePreviousAnimation;
 
 @end

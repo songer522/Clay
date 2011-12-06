@@ -19,10 +19,10 @@
 }
 
 +(id)actionButtonWithText:(NSString*)text;
-
--(id)initWithText:(NSString*)text;
++(id)actionButtonInGameWithText:(NSString*)text;
 
 -(void)setPosition:(CGPoint)position;
+-(void)setAlpha:(float)alpha;
 
 -(bool)checkIfSelected:(CGPoint)touch;
 

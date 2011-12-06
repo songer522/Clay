@@ -39,6 +39,8 @@
 @synthesize hasDoubleJumped = _hasDoubleJumped;
 @synthesize isWindy = _isWindy;
 @synthesize battery = _battery;
+@synthesize hadCollisionThisUpdate = _hadCollisionThisUpdate;
+@synthesize inVaccuum = _inVaccuum;
 
 
 
@@ -73,6 +75,7 @@
         _isCooldown=true;
         _timeLeftBeforeVulnerable = 2.0f;
         _isInvincible = false;
+        _inVaccuum = false;
         
         _thirdAction = nil;
         
@@ -159,6 +162,7 @@
     [[self getCollision] processNewCollisionState:COLLISION_STATE_MIDAIR];
     [self setPositionAtX:_x Y:_y];
     [[SoundEngine shared] playSound:@"jumpStart"];
+    _waitToEndJump = 0.2f;
    
     [_speed startJump];
    }
@@ -264,6 +268,19 @@
 
 -(void)startCollision:(PlayerEffect)effect Source:(id<Collidable>)source
 {
+    //update vaccuum effect
+    if(effect == PLAYER_EFFECT_VACCUUM) {
+        //don't want this set if in spin action
+        if(!_thirdAction.inAction) {
+            _speed.velocity *= 0.98f;
+            self.vy = -20.0f;
+        }
+        [_speed stop];
+        if (!_inVaccuum) {
+            [self startVaccuum];
+        }
+    }
+    
     if (!_isInvincible) {
         if (effect == PLAYER_EFFECT_ACTION_OR_COLLIDE) {
             if (!_isTripping && !_isDead) {
@@ -277,13 +294,30 @@
         } else if (effect == PLAYER_EFFECT_COLLIDE) {
             if (!_isTripping && !_isDead) {
                 [self private_StartPlayerCollision];
-                            }
+            }
         } else if(effect == PLAYER_EFFECT_SLOWDOWN) {
             [_speed slowDown];
         }
     }
 }
 
+-(void)startVaccuum
+{
+    _inVaccuum = true;
+    self.hasGravity = false;
+    [_skin setPlayerAnimation:PLAYER_ANIM_FLOATING ForSprite:_sprite];    
+}
+    
+-(void)endVaccuum
+{
+    _inVaccuum = false;
+    self.hasGravity = true;
+    [_speed start];
+    [_skin restorePreviousAnimation];
+}
+
+//right now this is only called by the falling animation, sinc tim actually
+//moves forward in the graphic when he gets back up, so he should be in a different position
 -(void)pushAfterAnimation:(float)xAmount
 {
     _adjustX = xAmount;
@@ -314,6 +348,10 @@
         _vy = -250.0f;
         _y += 2.0f;
         _waitToGetUp = 0.3f;
+    }
+    
+    if (_thirdAction.inAction) {
+        [_thirdAction cancelAction];
     }
 }
 
@@ -348,6 +386,7 @@
     _firstFrameJumping = false;
     _isHighJump = false;
     _soundFalling = false;
+    _inVaccuum = false;
     _waitToPlaySlowSound = 0.0f;
     [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];
 }
@@ -622,6 +661,13 @@
         _isInMidAir = true;
     } else if (state == COLLISION_STATE_MIDAIR) {
         _isInMidAir = true;
+        
+        if (_isJumping && !_isTripping && !_hasDoubleJumped && _waitToEndJump>0.0f) {
+            _waitToEndJump-=dt;
+            if (_waitToEndJump<=0.0f) {
+                [self endJump];
+            }
+        }
         
     } else if (state == COLLISION_STATE_GROUNDED || state == COLLISION_STATE_LEDGE) {
 

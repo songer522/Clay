@@ -23,16 +23,19 @@
 #import "TextureManager.h"
 #import "GameDebugLayer.h"
 #import "GameSettings.h"
+#import "GameController.h"
 #import "Appirater.h"
 #import "TrackTimer.h"
+#import "RunningSpeed.h"
 
-#define DEBUG_DRAW_BOUNDING_BOXES 0
+#define DEBUG_DRAW_BOUNDING_BOXES 1
 
 // HelloWorldLayer implementation
 @implementation GameLayer
 
 @synthesize player = _player;
 @synthesize gameController = _gameController;
+@synthesize handledPauseEvent = _handledPauseEvent;
 
 +(CCScene *) scene
 {
@@ -127,6 +130,13 @@
     
     [_player setPositionAtX:_level.spawnPoint.x Y:_level.spawnPoint.y];
     
+    //check to see if underwater physics should be set
+    if ([_level.name isEqualToString:@"level10"]){
+        [[_player getSpeed] setIsUnderwater:true];
+    } else {
+        [[_player getSpeed] setIsUnderwater:false];
+    }
+    
     [_player reset];
     
     [_savePoint setSavePoint:_level.spawnPoint Level:_level.name];
@@ -213,6 +223,9 @@
         }
         
     }
+    
+    _handledPauseEvent = false;
+    [_gameController update];
     
     
 #if CC_ENABLE_PROFILERS
@@ -321,16 +334,18 @@
     if (!_gameController.isHandlingPause) {
         [self unscheduleUpdate];
         self.isTouchEnabled = false;
-    } else {
+    } else if(!_paused) {
+        _paused = true;
         [super onExit];
     }
+    _handledPauseEvent = true;
 }
 
 -(void)onEnter
 {
-    //if (!_gameController.isHandlingPause) {
-        [super onEnter];
-    //}
+    _paused = false;
+    [super onEnter];
+    _handledPauseEvent = true;
 }
 
 -(void)initializeLaserShow

@@ -55,9 +55,14 @@ typedef enum {
     bool _isHighJump;
     bool _isTurbo;
     bool _isWindy;
+    bool _inVaccuum; //used only by water bubbles, sucks tim in place
     bool _hasDoubleJumped;
     bool _soundFalling;
+    bool _hadCollisionThisUpdate;
+    
     float _timeLeftBeforeVulnerable;    //set to a time whenever tim gets back up, to allow proper time for him to get back up to speed before he has to jump on things
+    
+    float _waitToEndJump;
     
     int _hitPoints;
     Battery *_battery;
@@ -67,6 +72,7 @@ typedef enum {
     float _adjustX;
     float _waitToPlaySlowSound;
     
+    NSString *_previousAnimation;
     
     NSMutableArray *projectiles;
     
@@ -83,6 +89,8 @@ typedef enum {
 @property(nonatomic,assign) bool isJumping;
 @property(nonatomic,assign) bool isWindy;
 @property(nonatomic,assign) bool hasDoubleJumped;
+@property(nonatomic,assign) bool inVaccuum;
+@property(nonatomic,assign) bool hadCollisionThisUpdate;
 
 
 @property(nonatomic,retain) Battery *battery;
@@ -136,6 +144,9 @@ typedef enum {
 -(void)updateLedge:(float)dt;
 -(void)updatePlayerPosition:(float)dt Level:(Level*)level;
 -(void)updateSkin:(SkinType)skin;
+
+-(void)startVaccuum;
+-(void)endVaccuum;
 
 -(void)setThirdAction:(NSString*)action;
 -(id<PlayerActionProtocol>)getThirdAction;
