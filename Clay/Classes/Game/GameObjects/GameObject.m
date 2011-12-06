@@ -578,15 +578,6 @@
             _hasAppeared=false;
         }
 
-        
-        
-        
-        
-        
-        
-        
-        
-
     }
 
 }
@@ -745,6 +736,7 @@
     } else if(_currentBehavior == COLLISION_BEHAVIOR_RAINY_SQUIRREL) {
         _currentBehavior = COLLISION_BEHAVIOR_RAINY_SQUIRREL;
         _persistsBetweenRegions = true;
+        _hasAppeared=false;
     } else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;     
     }   

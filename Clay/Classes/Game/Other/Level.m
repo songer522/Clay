@@ -397,7 +397,7 @@
             
             //add to background regionmanager
             //[_backgroundManager addGameObject:mapObject.object];
-            [[mapObject.object getCCSprite] pauseSchedulerAndActions];
+            //[[mapObject.object getCCSprite] pauseSchedulerAndActions];
         }
     }
 }
