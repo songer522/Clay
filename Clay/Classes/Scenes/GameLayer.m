@@ -25,8 +25,9 @@
 #import "GameSettings.h"
 #import "Appirater.h"
 #import "TrackTimer.h"
+#import "RunningSpeed.h"
 
-#define DEBUG_DRAW_BOUNDING_BOXES 0
+#define DEBUG_DRAW_BOUNDING_BOXES 1
 
 // HelloWorldLayer implementation
 @implementation GameLayer
@@ -126,6 +127,13 @@
     [_player setOffsetForX:0 Y:[[LevelManager shared] playerOffsetY]];
     
     [_player setPositionAtX:_level.spawnPoint.x Y:_level.spawnPoint.y];
+    
+    //check to see if underwater physics should be set
+    if ([_level.name isEqualToString:@"level10"]){
+        [[_player getSpeed] setIsUnderwater:true];
+    } else {
+        [[_player getSpeed] setIsUnderwater:false];
+    }
     
     [_player reset];
     

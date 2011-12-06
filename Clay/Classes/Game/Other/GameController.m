@@ -75,7 +75,10 @@
         
         HudButtonType result = [_hud testInput:location InputType:type];
         
-        if (type == INPUT_TOUCH_END) {
+        //??? for some reason this is called whenever a touch is released....
+        //this is causing issues with endJump being called when it shouldn't, like when
+        //the spin action is called
+        if (type == INPUT_TOUCH_END && result == HUD_BUTTON_JUMP) {
             [_gameLayer.player endJump];
             return;
         }

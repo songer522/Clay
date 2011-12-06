@@ -126,11 +126,11 @@
 		<key>removeTextures</key>
 		<string>tileset_level_9</string>
 		<key>animations</key>
-		<string>level9,spin</string>
+		<string>level10,spin</string>
 		<key>sounds</key>
 		<string>none</string>
 		<key>textures</key>
-		<string>rainyLevel,characterSpinning</string>
+		<string>waterLevel,characterSpinning</string>
 	</dict>
 	<key>level11</key>
 	<dict>

@@ -36,6 +36,7 @@
     _filename = [[NSString stringWithString:[skin objectForKey:@"filename"]] retain];
     
     _currentAnimation = PLAYER_ANIM_RUNNING;
+    _previousAnimation = PLAYER_ANIM_RUNNING;
     
     NSDictionary *anims = [skin objectForKey:@"animations"];
     
@@ -78,6 +79,9 @@
 
 -(void)setPlayerAnimation:(PlayerAnimation)type ForSprite:(Sprite*)sprite
 {
+    //guard
+    //if ([self isCurrentAnimationOfType:type]) { return; }
+    
     NSString *animName;
     
     switch (type) {
@@ -130,7 +134,9 @@
             break;
     }
     
+    _previousAnimation = _currentAnimation;
     _currentAnimation = type;
+    _currentSprite = sprite;
     
     if(animName !=nil) {
         [[AnimationController sharedController] replaceSprite:sprite withAnimationNamed:animName];
@@ -146,6 +152,11 @@
     } else {
         return false;
     }
+}
+
+-(void)restorePreviousAnimation
+{
+    [self setPlayerAnimation:_previousAnimation ForSprite:_currentSprite];
 }
 
 

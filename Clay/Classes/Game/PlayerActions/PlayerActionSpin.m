@@ -14,6 +14,8 @@
 #import "SoundEngine.h"
 #import "Player.h"
 
+#define SPIN_PLAYER_GROUND_Y 64
+
 @implementation PlayerActionSpin
 
 
@@ -36,10 +38,14 @@
 
 -(void)endAction
 {
-    [_parent setPlayerAnimation:PLAYER_ANIM_RUNNING];
+    if(_player.inVaccuum) {
+        _player.inVaccuum = false;
+    } else {
+        [_parent setPlayerAnimation:PLAYER_ANIM_RUNNING];
+        [_parent setPlayerAnimation:PLAYER_ANIM_SPIN_UP];
+    }
     _duration = 0.0f;
-    [super endAction];
-    
+    [super endAction];    
 }
 
 -(void)cancelAction
@@ -56,6 +62,15 @@
         _isActive = false;
     } else {
         _isActive = true;
+        NSLog(@"Player Y: %f",_player.y);
+        
+        //IPAD FIX: check when on the ground
+        if (_player.y <= SPIN_PLAYER_GROUND_Y) {
+            [self endAction];
+        } else {
+            [_player setVelocity:30.0f];
+            [_player setVy:50.0f];
+        }
     }
     [super update:dt];
 }
