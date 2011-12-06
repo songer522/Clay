@@ -96,6 +96,14 @@ static ComicManager *_shared = nil;
     }
 }
 
+-(void)restartLevel
+{
+    if (!_isActive) {
+        _isActive = true;
+        [self switchToPhase:COMIC_PHASE_BARS_OUT];        
+    }
+}
+
 -(void)update:(ccTime)dt
 {
     [_comicLayer update:dt];
@@ -127,6 +135,10 @@ static ComicManager *_shared = nil;
                     [_videoPlayer playMovie:_videoFileName];
                     [[CCDirector sharedDirector] stopAnimation];
                 }
+                
+                //set to false if transitioning levels
+                [[GameSettings shared] setGlobal:@"false" ForKey:@"restarting"];
+                
                 break;
             case COMIC_PHASE_BARS_OUT:
                 if(_loadNextLevel)
@@ -138,15 +150,23 @@ static ComicManager *_shared = nil;
                 [[SoundEngine shared] cueFadeIn];
                 [gameLayer unpause];
                 [gameLayer initForLevel];
-                gameLayer.visible = true;
-                [[CCDirector sharedDirector] startAnimation];
                 
+                bool isRestarting = [[[GameSettings shared] getGlobalForKey:@"restarting"] boolValue];
+                if (!isRestarting) {
+                    [[CCDirector sharedDirector] startAnimation];                    
+                }
+
+                //set to false after checked when init the level
+                [[GameSettings shared] setGlobal:@"false" ForKey:@"restarting"];
+                
+                gameLayer.visible = true;
                 [_comicLayer startTransition:BLACKBOX_OUT];
                 gameLayer.gameController.isInputEnabled = false;
                 [[gameLayer getHud] fadeIn];
                 break;
             case COMIC_PHASE_PLAY_LEVEL:
                 gameLayer.gameController.isInputEnabled = true;
+                gameLayer.visible = true;
                 _phase = COMIC_PHASE_PLAY_LEVEL;
                 _isActive = false;
                 _loadNextLevel = false;

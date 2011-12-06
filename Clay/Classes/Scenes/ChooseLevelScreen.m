@@ -71,7 +71,12 @@
         _waitToSwitch = 0.0f;
         self.isTouchEnabled = YES;
         
-        
+        NSString *musicStarted = [[GameSettings shared] getGlobalForKey:@"titleMusicStarted"];
+        if (![musicStarted isEqualToString:@"YES"]) {
+            [[SoundEngine shared] cueFadeIn];
+            [[SoundEngine shared] playMusic:@"title"];
+            [[GameSettings shared] setGlobal:@"YES" ForKey:@"titleMusicStarted"];
+        }
       
         [self load];
        
@@ -109,6 +114,7 @@
         
         if([_startButton checkIfSelected:position]) {
             _waitToSwitch = 0.25f;
+            _backToMainMenu = false;
             [[SoundEngine shared] playSound:@"buttonPressed"];
         }
         
@@ -193,7 +199,7 @@
     //load any medals earned
     [self loadMedals];
     
-    [self loadTutorial];
+    //[self loadTutorial];
     
     
     [[LayerManager sharedLayers] forgetWorkingLayer];
@@ -313,9 +319,9 @@
         if(_waitToSwitch<=0.0f){
             _waitToSwitch = 0.0f;
             if (_backToMainMenu) {
-                //[self switchToMainMenu];
+                [self switchToMainMenu];
                 
-                [self switchToTutorial];
+                //[self switchToTutorial];
             }  else {
                 [self popAndSwitchToLevel:_levelToSwitchTo]; 
             }

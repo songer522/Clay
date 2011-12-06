@@ -69,6 +69,8 @@
         
          [[LayerManager sharedLayers] forgetWorkingLayer];
          
+        [[SoundEngine shared] cueFadeOut];
+        
         self.isTouchEnabled = YES;
     }
 
@@ -106,6 +108,7 @@
     switch (_action) {
         case PAUSE_ACTION_RESUME:
             [_gameController pauseGame];
+            [[SoundEngine shared] cueFadeIn];
             break;
         case PAUSE_ACTION_RESTART:
             [_gameController pauseGame];
@@ -130,7 +133,7 @@
 {
     CGPoint poli[] = {v1, CGPointMake(v1.x,v2.y),v2,CGPointMake(v2.x,v1.y)};
     
-    GLubyte rectAlpha = floor(_alpha * 75);
+    GLubyte rectAlpha = floor(_alpha * 180);
     glColor4ub(0, 0, 0, rectAlpha);
     glDisable(GL_TEXTURE_2D);
     glDisableClientState(GL_TEXTURE_COORD_ARRAY);
@@ -156,6 +159,7 @@
 
 -(void)update:(ccTime)dt
 {
+    [[SoundEngine shared] update:dt];
     
     if (_waitToSwitch>0.0f) {
         _waitToSwitch-=dt;

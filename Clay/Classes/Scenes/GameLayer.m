@@ -34,7 +34,6 @@
 @interface GameLayer()
 
 -(void)setupLayers;
--(void)startOrResetLevel;
 -(void)initCamera;
 
 -(void)updateTriggers:(float)dt;
@@ -80,6 +79,8 @@
         
         [[TextureManager shared] loadMemoryForKey:@"gameScene"];
         
+        [[GameSettings shared] setGlobal:@"false" ForKey:@"restarting"];
+        
         _gameController = [GameController gameController];
         [_gameController setGameLayer:self];
         
@@ -123,18 +124,8 @@
 
 -(void)restartLevel
 {
-    [self startOrResetLevel];
-    
-    [_hud reset:true];
-    
-    [[ComicManager shared] resetComicLayer];
-    
-#if DEBUG_DRAW_BOUNDING_BOXES
-    [_debugLayer removeFromParentAndCleanup:NO];
-    [[[LayerManager sharedLayers] currentScene] addChild:_debugLayer];
-#endif
-    
-    [[ComicManager shared] switchToPhase:COMIC_PHASE_PLAY_LEVEL];
+    [[GameSettings shared] setGlobal:@"true" ForKey:@"restarting"];
+    [[ComicManager shared] restartLevel];
 }
 
 -(void)startLevel:(NSString*)levelName
@@ -148,20 +139,6 @@
 }
 
 -(void)initForLevel
-{
-    [self startOrResetLevel];
-    
-    [_hud reset:false];
-    
-    [[ComicManager shared] resetComicLayer];
-    
-#if DEBUG_DRAW_BOUNDING_BOXES
-    [_debugLayer removeFromParentAndCleanup:NO];
-    [[[LayerManager sharedLayers] currentScene] addChild:_debugLayer];
-#endif
-}
-
--(void)startOrResetLevel
 {
     [self setVisible:NO]; //let comic manager make it visible
     
@@ -186,6 +163,19 @@
     
     [[LevelManager shared] initAfterPlayerAndHudInit];
 
+    bool isRestarting = [[[GameSettings shared] getGlobalForKey:@"restarting"] boolValue];
+    if (isRestarting) {        
+        [_hud reset:true];
+    } else {
+        [_hud reset:false];
+    }
+    
+    [[ComicManager shared] resetComicLayer];
+    
+#if DEBUG_DRAW_BOUNDING_BOXES
+    [_debugLayer removeFromParentAndCleanup:NO];
+    [[[LayerManager sharedLayers] currentScene] addChild:_debugLayer];
+#endif
 }
 
 -(void)setupHud

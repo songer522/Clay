@@ -57,6 +57,7 @@ typedef enum {
 
 -(void)finishedAction;
 -(void)resetComicLayer;
+-(void)restartLevel;
 
 -(void)endTheGame;
 
