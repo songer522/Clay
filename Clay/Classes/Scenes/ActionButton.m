@@ -66,6 +66,13 @@
     [self setHitbox:CGRectMake(position.x - 48, position.y - 15, 95, 30)];
 }
 
+-(void)setAlpha:(float)alpha
+{
+    GLubyte opacity = floor(alpha * 255);
+    [[_buttonIdle getCCSprite] setOpacity:opacity];
+    [_textLabel setOpacity:opacity];
+}
+
 -(bool)checkIfSelected:(CGPoint)touch
 {
     if ([self testCollision:touch]) {

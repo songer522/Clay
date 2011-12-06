@@ -22,6 +22,7 @@
 +(id)actionButtonInGameWithText:(NSString*)text;
 
 -(void)setPosition:(CGPoint)position;
+-(void)setAlpha:(float)alpha;
 
 -(bool)checkIfSelected:(CGPoint)touch;
 

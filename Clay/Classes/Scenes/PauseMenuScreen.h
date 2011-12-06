@@ -26,7 +26,6 @@ typedef enum {
 {
     float _alpha;
     GameController *_gameController;
-    CCLabelTTF *_label;
         
     GameLabel *_pausedText;
 

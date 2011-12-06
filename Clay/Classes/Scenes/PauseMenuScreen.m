@@ -39,18 +39,22 @@
         
         [[LayerManager sharedLayers] setWorkingLayer:self];
 
-        _pausedText = [GameLabel gameLabelWithText:@"PAUSED" Scale:0.9f];
-        [_pausedText setPosition:ccp(240,220)];
         
+        
+        _pausedText = [GameLabel gameLabelWithText:@"PAUSED" Scale:1.0f];
         _resumeButton = [ActionButton actionButtonInGameWithText:@"RESUME"];
-        [_resumeButton setPosition:ccp(140,130)];
-        
-        
-        _restartButton = [ActionButton actionButtonInGameWithText:@"RESTART"];
-        [_restartButton setPosition:ccp(240,130)];
-        
+        _restartButton = [ActionButton actionButtonInGameWithText:@"REDO"];
         _menuButton = [ActionButton actionButtonInGameWithText:@"MENU"];
-        [_menuButton setPosition:ccp(340,130)];
+        
+        //IPAD FIX: reposition so paused text is centered on x, and slightly above center on y, and buttons are side by side, with the middle button centered on x, and each one slightly below center on y
+        CGSize winSize = [[CCDirector sharedDirector] winSize];
+        float centerX = winSize.width/2.0f;
+        float centerY = winSize.height/2.0f;
+        [_pausedText setPosition:ccp(centerX,centerY+30.0f)];
+        [_resumeButton setPosition:ccp(centerX - 115.0f,centerY - 30.0f)];
+        [_restartButton setPosition:ccp(centerX,centerY - 30.0f)];
+        [_menuButton setPosition:ccp(centerX + 115.0f,centerY - 30.0f)];
+        
         
         _waitToSwitch = -1.0f;
         
@@ -71,7 +75,7 @@
         if([_resumeButton checkIfSelected:position]) {
             [[SoundEngine shared] playSound:@"buttonPressed"];
             _action = PAUSE_ACTION_RESUME;
-            _waitToSwitch = 0.25f;
+            _waitToSwitch = 0.35f;
         } else if([_restartButton checkIfSelected:position]) {
             //[_gameController pauseGame];
             [[SoundEngine shared] playSound:@"buttonPressed"];
@@ -131,9 +135,12 @@
                 default:
                     break;
             }
+            
         }
         
-        _alpha = 4.0f * _waitToSwitch;
+        if (_waitToSwitch<=0.20f) {
+            _alpha = 5.0f * _waitToSwitch;            
+        }
         
     } else {
         _alpha += 3.0f * dt;
@@ -142,7 +149,11 @@
         }        
     }
     
-    [_label setOpacity:(int)(255 * _alpha)];
+    [_pausedText setAlpha:_alpha];
+    
+    [_resumeButton setAlpha:_alpha];
+    [_restartButton setAlpha:_alpha];
+    [_menuButton setAlpha:_alpha];
     
     [_resumeButton update:dt];
     [_restartButton update:dt];
@@ -152,7 +163,6 @@
 -(void)dealloc
 {
     [_pausedText release];
-    [_label release];
     _gameController = nil;
     //[super dealloc];
 }

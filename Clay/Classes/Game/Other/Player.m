@@ -154,6 +154,7 @@
     [[self getCollision] processNewCollisionState:COLLISION_STATE_MIDAIR];
     [self setPositionAtX:_x Y:_y];
     [[SoundEngine shared] playSound:@"jumpStart"];
+    _waitToEndJump = 0.2f;
    
     [_speed startJump];
    }
@@ -648,6 +649,13 @@
         _isInMidAir = true;
     } else if (state == COLLISION_STATE_MIDAIR) {
         _isInMidAir = true;
+        
+        if (_isJumping && !_isTripping && !_hasDoubleJumped && _waitToEndJump>0.0f) {
+            _waitToEndJump-=dt;
+            if (_waitToEndJump<=0.0f) {
+                [self endJump];
+            }
+        }
         
     } else if (state == COLLISION_STATE_GROUNDED || state == COLLISION_STATE_LEDGE) {
 
