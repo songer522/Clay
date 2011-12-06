@@ -111,22 +111,22 @@
 
 -(void)changeHealth:(int)amount
 {
-    /*
+    
     if (amount > 0 && _hitPoints<4) {
-        _hitPoints+=1; //POSSIBLE BUG: why is this +=1 instead of +=amount like the negative?
+        _hitPoints+=amount; //POSSIBLE BUG: why is this +=1 instead of +=amount like the negative?
         [_battery setFrame:(5-_hitPoints)];
     } else if(amount < 0 && _hitPoints >= 0) {
         _hitPoints+=amount;
         [_battery setFrame:(5-_hitPoints)];
     }
-     */
-    
+     
+    /*
     if(_hitPoints < 4 || _hitPoints >=0 )
     {
         _hitPoints+=amount;
         [_battery setFrame:(5-_hitPoints)];
     }
-    
+    */
     if (_hitPoints <=0) {
         _isDead = true;
         [[SoundEngine shared] playSound:@"dead"];
@@ -240,7 +240,7 @@
         _waitToTurbo=PLAYER_SPRINT_COOLDOWN;
         _isTurbo=false;
     }
-    
+    /*
     else if(_isTurbo)
     {
         GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
@@ -249,6 +249,7 @@
         _waitToTurbo=-1;
         _isTurbo=false;
     }
+     */
     
 }
 

@@ -508,7 +508,7 @@
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>45</integer>
+			<integer>40</integer>
 			<key>width</key>
 			<integer>15</integer>
 			<key>x</key>
@@ -1569,7 +1569,7 @@
 		<key>offsetx</key>
 		<integer>-64</integer>
 		<key>offsety</key>
-		<integer>-45</integer>
+		<integer>-52</integer>
 		<key>playerEffect</key>
 		<string>slow</string>
 	</dict>
