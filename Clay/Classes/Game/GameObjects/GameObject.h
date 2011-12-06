@@ -64,6 +64,7 @@ typedef enum {
     bool _rotateLights;
     bool _aggressiveCanHit;
     bool _beatsPlayerAction;
+    bool _hasAppeared;
     
     CGRect _range;       //range in which this object can move on screen. absolute positions.
     
@@ -142,6 +143,7 @@ typedef enum {
 -(void) setPlayerEffect:(NSString*)effect;
 -(void) setOriginalAnimation:(NSString*)animation;
 -(void) setRange:(CGRect)rect;
+-(bool) checkIfOffScreen:(CGPoint)position;
 
 #pragma mark - public methods
 -(void) move:(CGPoint)amount;
