@@ -55,5 +55,6 @@ typedef enum {
 -(void)setHud:(HudLayer*)hud;
 -(void)pauseGame;
 -(void)enableSprint:(bool)Enable;
+-(void)update;
 
 @end

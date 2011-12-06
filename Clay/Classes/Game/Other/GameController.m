@@ -149,7 +149,7 @@
         [[SoundEngine shared] playSound:@"pause"];
     } else {
         _isHandlingPause = true;
-        [[[LayerManager sharedLayers] currentScene] removeChild:_pauseMenu cleanup:YES];
+        [[[LayerManager sharedLayers] currentScene] removeChild:_pauseMenu cleanup:NO];
         _isPaused = false;
         [_gameLayer onEnter];
         _gameLayer.isTouchEnabled = true;

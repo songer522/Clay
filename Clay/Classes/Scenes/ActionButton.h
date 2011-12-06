@@ -19,8 +19,7 @@
 }
 
 +(id)actionButtonWithText:(NSString*)text;
-
--(id)initWithText:(NSString*)text;
++(id)actionButtonInGameWithText:(NSString*)text;
 
 -(void)setPosition:(CGPoint)position;
 

@@ -12,20 +12,32 @@
 #import "SoundEngine.h"
 #import "GameSettings.h"
 
+@interface ActionButton()
+
+-(id)initWithText:(NSString*)text ButtonImageName:(NSString*)buttonName ButtonPressedImageName:(NSString*)buttonPressedName;
+
+@end
+
+
 @implementation ActionButton
 
 +(id)actionButtonWithText:(NSString*)text
 {
-    return [[self alloc] initWithText:text];
+    return [[self alloc] initWithText:text ButtonImageName:@"CL_Button.png" ButtonPressedImageName:@"CL_ButtonPressed.png"];
 }
 
--(id)initWithText:(NSString*)text
++(id)actionButtonInGameWithText:(NSString*)text
+{
+    return [[self alloc] initWithText:text ButtonImageName:@"Button.png" ButtonPressedImageName:@"ButtonPressed.png"];
+}
+
+-(id)initWithText:(NSString*)text ButtonImageName:(NSString*)buttonName ButtonPressedImageName:(NSString*)buttonPressedName
 {
     if ((self=[super init])) {
         
-        _buttonIdle = [Sprite spriteFromFrameCacheWithName:@"CL_Button.png"];
+        _buttonIdle = [Sprite spriteFromFrameCacheWithName:buttonName];
         [_buttonIdle getCCSprite].anchorPoint = ccp(0.5f,0.5f);
-        _buttonSelected = [Sprite spriteFromFrameCacheWithName:@"CL_ButtonPressed.png"];
+        _buttonSelected = [Sprite spriteFromFrameCacheWithName:buttonPressedName];
         [_buttonSelected getCCSprite].anchorPoint = ccp(0.5f,0.5f);
         
         _textLabel = [CCLabelBMFont labelWithString:text fntFile:@"GraphicFont.fnt"];

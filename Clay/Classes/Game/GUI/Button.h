@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
+@class GameLabel;
+
 @interface Button : NSObject
 {
     //NOTE: While the goal of this class is to be used for all buttons in the game eventually,
@@ -19,20 +21,24 @@
     CGRect _hitbox;
     CGPoint _position;
     CCLabelBMFont *_buttonLabel;
+    
+    GameLabel *_gameLabel;
 }
 
 @property(nonatomic,assign) int buttonId;
 
+#pragma mark - initialization
 +(id)buttonWithText:(NSString*)text AtPoint:(CGPoint)point;
--(id)initWithText:(NSString*)text AtPoint:(CGPoint)point;
-
 +(id)buttonWithText:(NSString*)text AtPoint:(CGPoint)point inLayer:(CCLayer *)layer;
--(id)initWithText:(NSString*)text AtPoint:(CGPoint)point inLayer:(CCLayer *)layer;
++(id)buttonWithGameLabelText:(NSString*)text AtPoint:(CGPoint)point;
 
+#pragma mark - accessors
 -(CCLabelTTF*)getLabel;
+-(GameLabel*)getGameLabel;
 -(void)setLabel:(NSString*)text;
 -(void)setHitbox:(CGRect)rect;
 
+#pragma mark - public methods
 -(bool)testCollision:(CGPoint)position;
 
 @end
