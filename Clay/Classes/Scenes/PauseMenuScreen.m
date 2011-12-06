@@ -41,7 +41,7 @@
     return self;
 }
 
--(void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+-(void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     NSSet *allTouches = [event allTouches];
     for(UITouch *touch in allTouches) {

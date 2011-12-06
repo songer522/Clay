@@ -23,6 +23,7 @@
 #import "TextureManager.h"
 #import "GameDebugLayer.h"
 #import "GameSettings.h"
+#import "GameController.h"
 #import "Appirater.h"
 #import "TrackTimer.h"
 #import "RunningSpeed.h"
@@ -34,6 +35,7 @@
 
 @synthesize player = _player;
 @synthesize gameController = _gameController;
+@synthesize handledPauseEvent = _handledPauseEvent;
 
 +(CCScene *) scene
 {
@@ -222,6 +224,9 @@
         
     }
     
+    _handledPauseEvent = false;
+    [_gameController update];
+    
     
 #if CC_ENABLE_PROFILERS
     CCProfilingEndTimingBlock(timer);
@@ -329,16 +334,18 @@
     if (!_gameController.isHandlingPause) {
         [self unscheduleUpdate];
         self.isTouchEnabled = false;
-    } else {
+    } else if(!_paused) {
+        _paused = true;
         [super onExit];
     }
+    _handledPauseEvent = true;
 }
 
 -(void)onEnter
 {
-    //if (!_gameController.isHandlingPause) {
-        [super onEnter];
-    //}
+    _paused = false;
+    [super onEnter];
+    _handledPauseEvent = true;
 }
 
 -(void)initializeLaserShow

@@ -65,7 +65,7 @@
 -(void)reactToTouchAt:(CGPoint)location InputType:(InputType)type
 {
     //guards
-    if (!_isInputEnabled) { return; }
+    if (!_isInputEnabled || _handledPauseEvent) { return; }
     
     if (location.x > 400 && location.y > 270) {
         if (type == INPUT_TOUCH_END) {
@@ -118,6 +118,11 @@
     
 }
 
+-(void)update
+{
+    _handledPauseEvent = false;
+}
+
 -(void)enableSprint:(bool)Enable
 {
     _isSprintEnabled=Enable;
@@ -147,7 +152,10 @@
         [[[LayerManager sharedLayers] currentScene] removeChild:_pauseMenu cleanup:YES];
         _isPaused = false;
         [_gameLayer onEnter];
+        _gameLayer.isTouchEnabled = true;
     }
+    _isHandlingPause = false;
+    _handledPauseEvent = true;
 }
 
 -(void)dealloc
