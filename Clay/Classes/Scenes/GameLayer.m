@@ -27,8 +27,27 @@
 #import "Appirater.h"
 #import "TrackTimer.h"
 #import "RunningSpeed.h"
+#import "ChooseLevelScreen.h"
 
-#define DEBUG_DRAW_BOUNDING_BOXES 1
+#define DEBUG_DRAW_BOUNDING_BOXES 0
+
+@interface GameLayer()
+
+-(void)setupLayers;
+-(void)startOrResetLevel;
+-(void)initCamera;
+
+-(void)updateTriggers:(float)dt;
+-(void)updatePlayerDeath:(float)dt;
+-(void)updateLogic:(ccTime)dt;
+
+//the following serve as our pause and unpause functions
+//based on code posted at: http://www.cocos2d-iphone.org/forum/topic/1232
+-(void)onEnter;
+-(void)onExit;
+
+@end
+
 
 // HelloWorldLayer implementation
 @implementation GameLayer
@@ -39,30 +58,22 @@
 
 +(CCScene *) scene
 {
-	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
     [[LayerManager sharedLayers] setCurrentScene:scene];
 	
-	// 'layer' is an autorelease object.
 	GameLayer *layer = [GameLayer node];
 	
+    [scene addChild: layer];
     
-	// add layer as a child to scene
-	[scene addChild: layer];
-	
-	// return the scene
 	return scene;
 }
 
-// on "init" you need to initialize your instance
 -(id) init
 {
-	// always call "super" init
-	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super init])) {
         
         [self setVisible:NO];
-
+        
         [[CCDirector sharedDirector] setProjection:CCDirectorProjection2D];
 
         [[LayerManager sharedLayers] setCurrentLayer:self];
@@ -110,6 +121,22 @@
 
 }
 
+-(void)restartLevel
+{
+    [self startOrResetLevel];
+    
+    [_hud reset:true];
+    
+    [[ComicManager shared] resetComicLayer];
+    
+#if DEBUG_DRAW_BOUNDING_BOXES
+    [_debugLayer removeFromParentAndCleanup:NO];
+    [[[LayerManager sharedLayers] currentScene] addChild:_debugLayer];
+#endif
+    
+    [[ComicManager shared] switchToPhase:COMIC_PHASE_PLAY_LEVEL];
+}
+
 -(void)startLevel:(NSString*)levelName
 {    
     [[LevelManager shared] reset];
@@ -121,6 +148,20 @@
 }
 
 -(void)initForLevel
+{
+    [self startOrResetLevel];
+    
+    [_hud reset:false];
+    
+    [[ComicManager shared] resetComicLayer];
+    
+#if DEBUG_DRAW_BOUNDING_BOXES
+    [_debugLayer removeFromParentAndCleanup:NO];
+    [[[LayerManager sharedLayers] currentScene] addChild:_debugLayer];
+#endif
+}
+
+-(void)startOrResetLevel
 {
     [self setVisible:NO]; //let comic manager make it visible
     
@@ -144,13 +185,7 @@
     [self initCamera];
     
     [[LevelManager shared] initAfterPlayerAndHudInit];
-    [_hud reset];
-    [[ComicManager shared] resetComicLayer];
-    
-#if DEBUG_DRAW_BOUNDING_BOXES
-    [_debugLayer removeFromParentAndCleanup:NO];
-    [[[LayerManager sharedLayers] currentScene] addChild:_debugLayer];
-#endif
+
 }
 
 -(void)setupHud
@@ -371,6 +406,11 @@
         [_rainyLevelEffects release];
         _rainyLevelEffects = nil;
     }
+}
+
+-(void)switchToChooseLevel
+{
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[ChooseLevelScreen scene]]];
 }
 
 

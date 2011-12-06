@@ -17,9 +17,10 @@
 @class ActionButton;
 
 typedef enum {
-    PAUSE_ACTION_RESUME,
-    PAUSE_ACTION_RESTART,
-    PAUSE_ACTION_MENU
+    PAUSE_ACTION_RESUME = 0,
+    PAUSE_ACTION_RESTART = 1,
+    PAUSE_ACTION_MENU = 2,
+    PAUSE_ACTION_NONE = 3
 }PauseAction;
 
 @interface PauseMenuScreen : CCLayer
@@ -40,8 +41,6 @@ typedef enum {
 @property(nonatomic,retain) GameController *gameController;
 
 +(id)instance;
-//- (id)initWithColor:(ccColor4B)color;
--(void) ccDrawFilledRectFrom:(CGPoint)v1 To:(CGPoint)v2;
 
 
 @end
