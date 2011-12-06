@@ -665,11 +665,7 @@
             [[gameLayer getHud] setEnabled:true ForButton:HUD_BUTTON_JUMP];
         }
         
-        else if(![_skin isCurrentAnimationOfType:PLAYER_ANIM_RUNNING] && !_isInMidAir && !_speed.inTurbo && !_isTripping && ![_thirdAction inAction] && _waitToGetUp <=0.0f) {
-            [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];
-           
-            
-        }
+    
          
         else if(![_skin isCurrentAnimationOfType:PLAYER_ANIM_RUNNING] && !_isInMidAir && !_speed.inTurbo && !_isTripping && !_inVaccuum && ![_thirdAction inAction] && _waitToGetUp <=0.0f) {
             [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];
