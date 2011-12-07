@@ -102,15 +102,15 @@
     switch (frame) {
         case 1:
             startX = 55;
-            projWidth = 15;
+            projWidth = 25;
             break;
         case 2:
             startX = 30;
-            projWidth = 25;
+            projWidth = 35;
             break;
         case 3:
             startX = 0;
-            projWidth = 35;
+            projWidth = 45;
             break;
         default:
             projWidth = 0;

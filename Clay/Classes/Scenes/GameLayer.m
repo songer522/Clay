@@ -47,6 +47,7 @@
 
 @end
 
+#define DEBUG_DRAW_BOUNDING_BOXES 0
 
 // HelloWorldLayer implementation
 @implementation GameLayer

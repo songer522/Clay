@@ -41,6 +41,7 @@
 @synthesize battery = _battery;
 @synthesize hadCollisionThisUpdate = _hadCollisionThisUpdate;
 @synthesize inVaccuum = _inVaccuum;
+@synthesize onLedge =_onLedge;
 
 
 
@@ -114,14 +115,22 @@
 
 -(void)changeHealth:(int)amount
 {
+    
     if (amount > 0 && _hitPoints<4) {
-        _hitPoints+=1; //POSSIBLE BUG: why is this +=1 instead of +=amount like the negative?
+        _hitPoints+=amount; //POSSIBLE BUG: why is this +=1 instead of +=amount like the negative?
         [_battery setFrame:(5-_hitPoints)];
     } else if(amount < 0 && _hitPoints >= 0) {
         _hitPoints+=amount;
         [_battery setFrame:(5-_hitPoints)];
     }
-    
+     
+    /*
+    if(_hitPoints < 4 || _hitPoints >=0 )
+    {
+        _hitPoints+=amount;
+        [_battery setFrame:(5-_hitPoints)];
+    }
+    */
     if (_hitPoints <=0) {
         _isDead = true;
         [[SoundEngine shared] playSound:@"dead"];
@@ -154,7 +163,7 @@
     [[self getCollision] processNewCollisionState:COLLISION_STATE_MIDAIR];
     [self setPositionAtX:_x Y:_y];
     [[SoundEngine shared] playSound:@"jumpStart"];
-    _waitToEndJump = 0.2f;
+    _waitToEndJump =0.2f;
    
     [_speed startJump];
    }
@@ -195,8 +204,8 @@
 -(void)endJump
 {
     
-    if (!_isTripping && _isInMidAir) {
-        [_skin setPlayerAnimation:PLAYER_ANIM_FALLING ForSprite:_sprite];
+    if (!_isTripping && _isInMidAir ) {
+     [_skin setPlayerAnimation:PLAYER_ANIM_FALLING ForSprite:_sprite];
     }
     self.hasGravity = true;
 }
@@ -236,7 +245,7 @@
         _waitToTurbo=PLAYER_SPRINT_COOLDOWN;
         _isTurbo=false;
     }
-    
+    /*
     else if(_isTurbo)
     {
         GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
@@ -245,6 +254,7 @@
         _waitToTurbo=-1;
         _isTurbo=false;
     }
+     */
     
 }
 
@@ -261,7 +271,8 @@
         //don't want this set if in spin action
         if(!_thirdAction.inAction) {
             _speed.velocity *= 0.98f;
-            self.vy = -20.0f;
+            self.hasGravity = false;
+            self.vy = -50.0f;
         }
         [_speed stop];
         if (!_inVaccuum) {
@@ -496,11 +507,10 @@
     [self updatePitFalling:dt]; //need to call before super so it can kill the x-velocity if falling into the pit
 
     [super update:dt];  
-    
-    [self updateTurbo:dt];
+        [self updateTurbo:dt];
 
     [self updateJump:dt];
-
+    
     [self updateInvulnerable:dt];
 
     if (_adjustX != 0.0f) {
@@ -508,8 +518,8 @@
         _adjustX = 0.0f;
         [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];
     }
-    
     [self updatePlayerPosition:dt Level:level];
+  
 
     [_battery update:dt];
     
@@ -642,7 +652,8 @@
 {
     
     CollisionState state = [[self getCollision] currentState];
-    
+  
+   
     _isInMidAir = false;
     
     if (state == COLLISION_STATE_DEATHPIT) {
@@ -697,12 +708,22 @@
             GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
             
             [[gameLayer getHud] setEnabled:true ForButton:HUD_BUTTON_JUMP];
-        } else if(![_skin isCurrentAnimationOfType:PLAYER_ANIM_RUNNING] && !_isInMidAir && !_speed.inTurbo && !_isTripping && !_inVaccuum && ![_thirdAction inAction] && _waitToGetUp <=0.0f) {
-            [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];
-           
-            
         }
         
+    
+         
+        else if(![_skin isCurrentAnimationOfType:PLAYER_ANIM_RUNNING] && !_isInMidAir && !_speed.inTurbo && !_isTripping && !_inVaccuum && ![_thirdAction inAction] && _waitToGetUp <=0.0f) {
+            [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];
+            
+            
+        }
+        /*
+        else if(![_skin isCurrentAnimationOfType:PLAYER_ANIM_SPRINTING] && !_isInMidAir && _speed.inTurbo && !_isTripping &&  !_inVaccuum &&![_thirdAction inAction] && _waitToGetUp <=0.0f) {
+            [_skin setPlayerAnimation:PLAYER_ANIM_SPRINTING ForSprite:_sprite];
+            
+            
+        }   
+         */
         _vy = 0;
         _ay = 0;
         

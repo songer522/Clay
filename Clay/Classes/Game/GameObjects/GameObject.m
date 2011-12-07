@@ -90,6 +90,7 @@
         _beatsPlayerAction = false;
         _persistsBetweenRegions = false;
         _magnitude = 0.0f;
+        _hasAppeared=false;
     }
     
     return self;
@@ -543,9 +544,11 @@
             //[_sprite getCCSprite].rotation = -30.0f;
         }
     } else if(_currentBehavior == COLLISION_BEHAVIOR_RAINY_SQUIRREL) {
-        if (_reloading >=0.0f) {
+        if (_reloading >=0.0f)
+        {
             _reloading -= dt;
-        } else {
+        }
+        else {
             if(_waitToTrigger > 0.0f && !_collided) {
                 _waitToTrigger -= dt;
                 if(_waitToTrigger<= 0.0f){
@@ -562,22 +565,21 @@
             } else {
                 if ([self closeToPlayer:400.0f]) {
                     _waitToTrigger = 0.28f;
+                    _hasAppeared=true;
                 }
                 else if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
                     _vx = 100.0f;
+                    
                 }
                 
             }
         }
-
         
-        
-        
-        
-        
-        
-        
-        
+        if(_hasAppeared && [self checkIfOffScreen:[self getPosition]])
+        {
+            [self switchToInactive];
+            _hasAppeared=false;
+        }
 
     }
 
@@ -593,6 +595,24 @@
     
     return false;
 }
+
+-(bool) checkIfOffScreen:(CGPoint)position
+{
+    CGPoint screenPosition = [[Camera sharedCamera] convertToScreenXY:position];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        //float minAmount = 
+        
+        if (screenPosition.x < 0 ) {
+            return true;
+        }
+    } else if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        if (screenPosition.x < 0) {
+            return true;
+        }
+    }
+    return false;
+}
+
 
 -(void) updateFlags
 {
