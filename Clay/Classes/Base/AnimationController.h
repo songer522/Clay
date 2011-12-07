@@ -27,7 +27,7 @@
 -(void)loadAnimationsForGroup:(NSString*)group;
 -(void)unloadAnimationsForGroup:(NSString*)group;
 
--(void)addAnimationForSkinFromFile:(NSString*)filename UsingBaseAnim:(NSString*)baseAnim ForSequence:(NSString*)sequence;
+-(void)addAnimationForSkinFromFile:(NSString*)filename UsingBaseAnim:(NSString*)baseAnimName ForSequence:(NSString*)sequenceName FrameList:(NSString*)frameList Delay:(float)delay;
 
 
 -(CCAnimationCache*)loadPlistForObjectName:(NSString*)objectName;
