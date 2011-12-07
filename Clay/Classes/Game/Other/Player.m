@@ -271,7 +271,8 @@
         //don't want this set if in spin action
         if(!_thirdAction.inAction) {
             _speed.velocity *= 0.98f;
-            self.vy = -20.0f;
+            self.hasGravity = false;
+            self.vy = -50.0f;
         }
         [_speed stop];
         if (!_inVaccuum) {
