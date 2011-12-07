@@ -118,7 +118,7 @@ typedef enum {
 -(void)startCollision:(PlayerEffect)effect Source:(id<Collidable>)source;
 
 -(void)setPlayerAnimation:(PlayerAnimation)animation;
-
+-(void)setKilledEnemy:(bool)killEnemy;
 -(void)changeHealth:(int)amount;
 -(bool)objectShouldReactToCollision;
 -(void)reset;

@@ -30,8 +30,10 @@
 {
     if (!_inAction && _canTrigger) {
         [super startAction];
+        [_parent endTurbo];
         [_parent setPlayerAnimation:PLAYER_ANIM_SPIN];
         [_parent setPlayerAnimation:PLAYER_ANIM_SPIN_UP];
+         
         _duration = 10.75f;
     }
 }
@@ -44,12 +46,20 @@
         [_parent setPlayerAnimation:PLAYER_ANIM_RUNNING];
         [_parent setPlayerAnimation:PLAYER_ANIM_SPIN_UP];
     }
+    if(!_player.isTripping)
+    {
+        [_player setKilledEnemy:true];
+    }
     _duration = 0.0f;
+    _parent.hasGravity=true;
+    
     [super endAction];    
 }
 
 -(void)cancelAction
 {
+    _parent.hasGravity=true;
+    [_player endVaccuum];
     [_parent setPlayerAnimation:PLAYER_ANIM_RUNNING];
     _duration = 0.0f;
     [super cancelAction];

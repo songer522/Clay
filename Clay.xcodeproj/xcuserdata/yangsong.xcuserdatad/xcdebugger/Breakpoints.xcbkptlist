@@ -8,13 +8,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "Clay/Classes/Game/Other/GameController.m"
-         timestampString = "344907230.960896"
+         filePath = "Clay/Classes/Game/PlayerActions/PlayerActionSpin.m"
+         timestampString = "344985704.105049"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "82"
-         endingLineNumber = "82"
-         landmarkName = "-reactToTouchAt:InputType:"
+         startingLineNumber = "61"
+         endingLineNumber = "61"
+         landmarkName = "-cancelAction"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
