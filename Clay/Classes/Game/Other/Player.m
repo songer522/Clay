@@ -313,6 +313,7 @@
     self.hasGravity = true;
     [_speed start];
     [_skin restorePreviousAnimation];
+    
 }
 
 //right now this is only called by the falling animation, sinc tim actually

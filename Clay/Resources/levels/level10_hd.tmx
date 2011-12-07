@@ -173,7 +173,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztzrkNgEAMRcFdoP9SuWPg08AmBCA0Iz/ZoUsBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAnhrTlOa0pLWxt7S/8yYAAAD82pHO+6iZ1DV2n4b68sMAAAAAAAAAfNoFgzQOXA==
+   eJzt1zsOgzAURFG7AEKo+STsf3usIVMjd4lcROdIt7Y13SsFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+NbV8a2hljKmKT3SnJ5pqR0/8cda+9oZAACAuzX34Zb2dKRXeqfT3fgTrX3tDAAAAAAAAPT2ARPdAxE=
   </data>
  </layer>
  <layer name="ledges" width="1000" height="14">
@@ -182,7 +182,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztzscNgEAQBEHyzwyTACYBTAKYBxvB/tAhXZXUmu80DQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB/0kZd1Cc7FHsHAAAAdRijKZqTXYq9AwAAgDqs0RbtyR7F3gEAAEAdzuiK7mSfYu8AAAAAAAAAAAAAAL73AkqQI2U=
+   eJzt0skNg0AUREHyzwybBDBOwEACLAc6B4/0NVKV9O596GEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+M+YXumdpuIt0IpfAwAAvZnTJy3pW7wFWvFrAACgN7+0pi3txVugFb8GAAB6c6QzXeku3gKt+DUAAAAAAAAAAAAA1HkA1Z8cUQ==
   </data>
  </layer>
  <layer name="front-1" width="1000" height="14">
@@ -200,7 +200,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt3MEJgDAQRcFUIJbmSfvvRBQ8CkrirgszBYSf4yNiawAAAAAAAAAAAAAAAAAAAAAAAADwnS17QKA1ewAAAABw0ugAAABUU7Fln3wPUPFeAAAAAAAAANDDWzkAAABZ/v7Pt+h9Gh0AAIDLXSO+accRXbsMOONQrXmr7QUAAOLM2QPoMmUPAAAAAAAAAIAEO1QPBX4=
+   eJzt28ENgzAQBEAqCCktL+i/ExpIFGyOnOObeSLr8Fp8FsGyAAAAAAAAAAAAAAAAAAAAAAAAADC7LWDGHjCDOUQ8TwAAAFX1dqrqvbx6/nf0cwAAAMinnwMAAAAAAAAAlfnfAwAA+vz7d8hVu8AIuV/ZG/hihDO6aoYMAADAeREdfbSeH9EdezL98hxa7nXX2tG19ttP2aOu3601b8v6yHcFa+AsAIBZPLM3wCWP7A0AAAAAAAAAQIIDv5YKmA==
   </data>
  </layer>
  <layer name="meta" width="1000" height="14" opacity="0.68">
@@ -209,7 +209,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt0TEOACAIBEEs/P+XbS21kSAzyfaQiwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYDcPAgAAAAAAAAAAAAD42Shclz8lSZIkqVrcy97s1d7Zt0qSJElSp7i3AHUfB04=
+   eJzt0rENACAIRUEs3H9lGwfQBgK5S94CHyIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAn2DSbx1wAAAAAAAAAAAABQY+kp2+Xva2dJkiSpb/yrvlmXbJe/r50lSZKkvvHvAOkvBzM=
   </data>
  </layer>
 </map>

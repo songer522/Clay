@@ -170,7 +170,7 @@
 {
     float modifier = 1.0;
     if (_isUnderwater && _player.isInMidAir) {
-        modifier = 1.75f;
+        modifier = 1.5f;
     }
     
     if (!_isStopped) {

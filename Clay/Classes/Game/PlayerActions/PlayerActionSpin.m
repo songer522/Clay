@@ -30,8 +30,10 @@
 {
     if (!_inAction && _canTrigger) {
         [super startAction];
+        [_parent endTurbo];
         [_parent setPlayerAnimation:PLAYER_ANIM_SPIN];
         [_parent setPlayerAnimation:PLAYER_ANIM_SPIN_UP];
+         
         _duration = 10.75f;
     }
 }
@@ -45,6 +47,8 @@
         [_parent setPlayerAnimation:PLAYER_ANIM_SPIN_UP];
     }
     _duration = 0.0f;
+    _parent.hasGravity=true;
+    
     [super endAction];    
 }
 
