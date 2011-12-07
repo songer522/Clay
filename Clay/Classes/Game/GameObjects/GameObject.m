@@ -581,6 +581,19 @@
             _hasAppeared=false;
         }
 
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_SEAHORSE) {
+        if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+            _vy *= 0.955f;
+            if (ABS(_vy) <= 0.1f) {
+                if (_direction == 1) {
+                    _direction = -1;
+                    _vy = -430.0f;
+                } else {
+                    _direction = 1;
+                    _vy = 430.0f;
+                }
+            }
+        }
     }
 
 }
@@ -743,6 +756,9 @@
     } else if(_currentBehavior == COLLISION_BEHAVIOR_FADES) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;
         _collideBehavior = COLLISION_BEHAVIOR_FADES;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_SEAHORSE) {
+        _currentBehavior = COLLISION_BEHAVIOR_WATER_SEAHORSE;
+        _direction = 1;
     } else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;     
     }
@@ -844,6 +860,10 @@
     } else if([behavior isEqualToString:@"fades"]) {
         _collideBehavior = COLLISION_BEHAVIOR_FADES;
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;
+    } else if([behavior isEqualToString:@"seahorse"]) {
+        _currentBehavior = COLLISION_BEHAVIOR_WATER_SEAHORSE;
+        _collideBehavior = COLLISION_BEHAVIOR_WATER_SEAHORSE;
+        _direction = 1;
     }
 
 

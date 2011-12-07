@@ -126,6 +126,11 @@
     <property name="obstacle" value="waterBubbles"/>
    </properties>
   </tile>
+  <tile id="68">
+   <properties>
+    <property name="obstacle" value="waterSeaHorse"/>
+   </properties>
+  </tile>
   <tile id="70">
    <properties>
     <property name="object" value="waterBubbles2"/>
@@ -210,7 +215,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt2kEKgDAMBEBfID5NUPT/PxEEL0LRojSkzNwaetgel3QYAAAAAAAAAAAAAAAAAAAAAAAAAOA/6+28F+Y92qIDAAAAACcdHQAAgGwydtn9+UrKdwEAANCXpXIOAAAA8JVdOQAAAFHe/PGO1Dqfjg4AAMCl1BFruuMfvXaunJdk67zZ8gIAAO1M0QH4ZIwOAAAAAAAAAAABDryxBxw=
+   eJzt2kEKgCAQBdBOEB2tKOr+NwlaRpJaJBPvbcTBxXf50a4DAAAAAAAAAAAAAAAAAAAAAAAAgPcsp/2WmP/R2joAAAAAcNDRAQAAiCZil93uj4S8FwAAAP8yF84BAAAAnvJWDgAAANdy/qC/SUcHAACgxlS55hgL5ynROm+0vAAAwHeG1gF4pG8dAAAAAAAAAAAa2AFcwgf5
   </data>
  </layer>
  <layer name="meta" width="1000" height="14" opacity="0.68">
