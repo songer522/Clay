@@ -2617,6 +2617,8 @@
 				61E72B37148D43350056499B /* rainyLevel.plist in Resources */,
 				61E72B38148D43350056499B /* rainyLevel.png in Resources */,
 				61E72B3A148D45730056499B /* level9.tmx in Resources */,
+				546E830E148EE9F500154AE7 /* tileset_level_10-hd.png in Resources */,
+				546E830F148EE9F500154AE7 /* tileset_level_10.png in Resources */,
 				61F22CCF148D8576008B4A09 /* level4.tmx in Resources */,
 				6170B36D148EE86A00B6364C /* level8_hd.tmx in Resources */,
 				6170B36F148EE9F200B6364C /* level8.tmx in Resources */,

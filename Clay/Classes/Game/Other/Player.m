@@ -716,12 +716,13 @@
             
             
         }
-        
+        /*
         else if(![_skin isCurrentAnimationOfType:PLAYER_ANIM_SPRINTING] && !_isInMidAir && _speed.inTurbo && !_isTripping &&  !_inVaccuum &&![_thirdAction inAction] && _waitToGetUp <=0.0f) {
             [_skin setPlayerAnimation:PLAYER_ANIM_SPRINTING ForSprite:_sprite];
             
             
-        }                
+        }   
+         */
         _vy = 0;
         _ay = 0;
         
