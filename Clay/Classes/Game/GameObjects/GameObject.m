@@ -739,6 +739,7 @@
     } else if(_currentBehavior == COLLISION_BEHAVIOR_RAINY_SQUIRREL) {
         _currentBehavior = COLLISION_BEHAVIOR_RAINY_SQUIRREL;
         _persistsBetweenRegions = true;
+        _hasAppeared=false;
     } else if(_currentBehavior == COLLISION_BEHAVIOR_FADES) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;
         _collideBehavior = COLLISION_BEHAVIOR_FADES;
