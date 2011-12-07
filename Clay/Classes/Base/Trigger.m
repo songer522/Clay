@@ -11,7 +11,6 @@
 @implementation Trigger
 
 @synthesize position = _position;
-@synthesize direction = _direction;
 @synthesize type = _type;
 @synthesize triggered = _triggered;
 @synthesize canBeReset = _canBeReset;
@@ -25,7 +24,6 @@
         _triggered = false;
         _canBeReset = false;
         _disabled = false;
-        _direction = CGPointMake(1, -1);
     }
     
     return self;

@@ -587,14 +587,11 @@
     
     for (Trigger *trigger in _triggers) {
         if (!trigger.triggered) {
-            if (player.x < trigger.position.x ^ trigger.direction.x == 1) {
-                if(player.y < trigger.position.y ^ trigger.direction.y == 1) {
-                    returnTrigger = trigger;
-                    trigger.triggered = true;                    
-                }
+            if (player.x >= trigger.position.x) {
+                returnTrigger = trigger;
+                trigger.triggered = true;                    
             }            
-        }
-        
+        }        
     }
     
     return returnTrigger;

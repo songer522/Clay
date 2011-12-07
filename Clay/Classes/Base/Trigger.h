@@ -24,7 +24,6 @@ typedef enum {
     bool _triggered; //whether the trigger has been set off yet
     
     CGPoint _position;
-    CGPoint _direction;
     TriggerType _type;
     
     bool _canBeReset; //whether a trigger can normally be reset in the level
@@ -33,7 +32,6 @@ typedef enum {
 
 @property(nonatomic,assign) bool triggered;
 @property(nonatomic,assign) CGPoint position;
-@property(nonatomic,assign) CGPoint direction;
 @property(nonatomic,assign) TriggerType type;
 @property(nonatomic,assign) bool canBeReset;
 @property(nonatomic,assign) bool disabled;
