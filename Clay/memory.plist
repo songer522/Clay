@@ -124,7 +124,7 @@
 	<key>level10</key>
 	<dict>
 		<key>removeTextures</key>
-		<string>tileset_level_9</string>
+		<string>tileset_level_10</string>
 		<key>animations</key>
 		<string>level10,spin</string>
 		<key>sounds</key>

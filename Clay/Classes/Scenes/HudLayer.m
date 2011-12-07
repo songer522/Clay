@@ -316,11 +316,16 @@
     }
 }
 
--(void)reset
+-(void)reset:(bool)isRestarting
 {
     [self removeFromParentAndCleanup:NO];
-    [[[LayerManager sharedLayers] currentScene] addChild:self];    
-    [[self getTrackTimer] startLevel]; //reset level timer (but NOT total time)
+    [[[LayerManager sharedLayers] currentScene] addChild:self];
+    
+    if (isRestarting) {
+        [[self getTrackTimer] restartLevel];
+    } else {
+        [[self getTrackTimer] startLevel]; //reset level timer (but NOT total time)        
+    }
 }
 
 -(void)dealloc

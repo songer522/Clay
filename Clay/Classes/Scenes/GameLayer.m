@@ -27,6 +27,25 @@
 #import "Appirater.h"
 #import "TrackTimer.h"
 #import "RunningSpeed.h"
+#import "ChooseLevelScreen.h"
+
+#define DEBUG_DRAW_BOUNDING_BOXES 0
+
+@interface GameLayer()
+
+-(void)setupLayers;
+-(void)initCamera;
+
+-(void)updateTriggers:(float)dt;
+-(void)updatePlayerDeath:(float)dt;
+-(void)updateLogic:(ccTime)dt;
+
+//the following serve as our pause and unpause functions
+//based on code posted at: http://www.cocos2d-iphone.org/forum/topic/1232
+-(void)onEnter;
+-(void)onExit;
+
+@end
 
 #define DEBUG_DRAW_BOUNDING_BOXES 0
 
@@ -39,35 +58,29 @@
 
 +(CCScene *) scene
 {
-	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
     [[LayerManager sharedLayers] setCurrentScene:scene];
 	
-	// 'layer' is an autorelease object.
 	GameLayer *layer = [GameLayer node];
 	
+    [scene addChild: layer];
     
-	// add layer as a child to scene
-	[scene addChild: layer];
-	
-	// return the scene
 	return scene;
 }
 
-// on "init" you need to initialize your instance
 -(id) init
 {
-	// always call "super" init
-	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super init])) {
         
         [self setVisible:NO];
-
+        
         [[CCDirector sharedDirector] setProjection:CCDirectorProjection2D];
 
         [[LayerManager sharedLayers] setCurrentLayer:self];
         
         [[TextureManager shared] loadMemoryForKey:@"gameScene"];
+        
+        [[GameSettings shared] setGlobal:@"false" ForKey:@"restarting"];
         
         _gameController = [GameController gameController];
         [_gameController setGameLayer:self];
@@ -110,6 +123,12 @@
 
 }
 
+-(void)restartLevel
+{
+    [[GameSettings shared] setGlobal:@"true" ForKey:@"restarting"];
+    [[ComicManager shared] restartLevel];
+}
+
 -(void)startLevel:(NSString*)levelName
 {    
     [[LevelManager shared] reset];
@@ -144,7 +163,14 @@
     [self initCamera];
     
     [[LevelManager shared] initAfterPlayerAndHudInit];
-    [_hud reset];
+
+    bool isRestarting = [[[GameSettings shared] getGlobalForKey:@"restarting"] boolValue];
+    if (isRestarting) {        
+        [_hud reset:true];
+    } else {
+        [_hud reset:false];
+    }
+    
     [[ComicManager shared] resetComicLayer];
     
 #if DEBUG_DRAW_BOUNDING_BOXES
@@ -371,6 +397,11 @@
         [_rainyLevelEffects release];
         _rainyLevelEffects = nil;
     }
+}
+
+-(void)switchToChooseLevel
+{
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[ChooseLevelScreen scene]]];
 }
 
 

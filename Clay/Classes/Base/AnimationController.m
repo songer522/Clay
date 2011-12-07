@@ -105,14 +105,26 @@ static AnimationController *_sharedController = nil;
 
 }
 
--(void)addAnimationForSkinFromFile:(NSString*)filename UsingBaseAnim:(NSString*)baseAnimName ForSequence:(NSString*)sequenceName
+-(void)addAnimationForSkinFromFile:(NSString*)filename UsingBaseAnim:(NSString*)baseAnimName ForSequence:(NSString*)sequenceName FrameList:(NSString*)frameList Delay:(float)delay
 {
     //NSLog(@"Add animation sequence name: %@, base anim: %@, filename: %@",sequenceName,baseAnimName,filename);
 
     Animation *baseAnim = (Animation*)[animations objectForKey:baseAnimName];
-    Animation *newAnim = [Animation animationFromPlist:filename forSequence:sequenceName FrameList:[baseAnim getFrameList]];
+    
+    //use base animation's frame list if a custom framelist is not provided
+    if ([frameList isEqualToString:@""]) {
+        frameList = [baseAnim getFrameList];
+    }
+    
+    Animation *newAnim = [Animation animationFromPlist:filename forSequence:sequenceName FrameList:frameList];
     newAnim.looping = baseAnim.looping;
-    newAnim.delay = baseAnim.delay;
+    
+    //use base animation's delay if one isn't provided
+    if (delay == 0.0f) {
+        delay = baseAnim.delay;
+    }
+    newAnim.delay = delay;
+    
     newAnim.clearPreviousAnimations = baseAnim.clearPreviousAnimations;
     newAnim.name = sequenceName;
     [animations setValue:newAnim forKey:sequenceName];
@@ -121,9 +133,9 @@ static AnimationController *_sharedController = nil;
 
 -(void)replaceSprite:(Sprite*)sprite withAnimationNamed:(NSString*)name
 {
-    NSLog(@"Animation Named: %@",name);
+    //NSLog(@"Animation Named: %@",name);
     Animation *anim = (Animation*)[animations objectForKey:name];
-    NSAssert(anim!=nil,@"Animation not loaded.");
+    //NSAssert(anim!=nil,@"Animation not loaded.");
     [sprite setAnimation:anim Delay:anim.delay];
 }
 

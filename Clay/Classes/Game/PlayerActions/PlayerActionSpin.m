@@ -62,8 +62,7 @@
         _isActive = false;
     } else {
         _isActive = true;
-        NSLog(@"Player Y: %f",_player.y);
-        
+
         //IPAD FIX: check when on the ground
         if (_player.y <= SPIN_PLAYER_GROUND_Y) {
             [self endAction];

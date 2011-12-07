@@ -59,10 +59,6 @@
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
--(void)setupLayers;
--(void)initForLevel;
--(void)initCamera;
--(void)updateLogic:(ccTime)dt;
 
 -(void)initializeLaserShow;
 -(void)stopLaserShow;
@@ -74,18 +70,15 @@
 -(HudLayer*)getHud;
 -(void)setBoss:(Boss*)boss;
 -(void)unpause;
--(void)updateTriggers:(float)dt;
-
--(void)updatePlayerDeath:(float)dt;
 
 -(void)startLevel:(NSString*)levelName;
+-(void)initForLevel; //called by comic manager when switching levels
+-(void)restartLevel; //called by pause screen when restarting the level
 -(void)endLevel;
+
+-(void)switchToChooseLevel;
 
 -(NSMutableArray*)getGameObjectsList;
 
-//the following serve as our pause and unpause functions
-//based on code posted at: http://www.cocos2d-iphone.org/forum/topic/1232
--(void)onEnter;
--(void)onExit;
 
 @end

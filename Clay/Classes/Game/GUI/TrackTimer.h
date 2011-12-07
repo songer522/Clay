@@ -14,6 +14,7 @@
     NSMutableArray *_timerAnimations;
     
     float _totalTime;
+    float _totalTimeBeforeLevel;
     float _levelTime;
     bool _isStopped;
 }
@@ -37,6 +38,8 @@
 
 -(void)startLevel;
 -(float)getLevelTime;
+
+-(void)restartLevel;
 
 +(NSString*)getTimeStringFromFloat:(float)time;
 

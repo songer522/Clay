@@ -10,10 +10,18 @@
 #import "LayerManager.h"
 #import "GameController.h"
 #import "GameLabel.h"
+#import "GameLayer.h"
 #import "Button.h"
 #import "ActionButton.h"
 #import "Sprite.h"
 #import "SoundEngine.h"
+
+@interface PauseMenuScreen()
+
+-(void) ccDrawFilledRectFrom:(CGPoint)v1 To:(CGPoint)v2;
+-(void) doButtonAction;
+
+@end
 
 @implementation PauseMenuScreen
 
@@ -56,10 +64,13 @@
         [_menuButton setPosition:ccp(centerX + 115.0f,centerY - 30.0f)];
         
         
+        _action = PAUSE_ACTION_NONE;
         _waitToSwitch = -1.0f;
         
          [[LayerManager sharedLayers] forgetWorkingLayer];
          
+        [[SoundEngine shared] cueFadeOut];
+        
         self.isTouchEnabled = YES;
     }
 
@@ -77,13 +88,38 @@
             _action = PAUSE_ACTION_RESUME;
             _waitToSwitch = 0.35f;
         } else if([_restartButton checkIfSelected:position]) {
-            //[_gameController pauseGame];
             [[SoundEngine shared] playSound:@"buttonPressed"];
+            _action = PAUSE_ACTION_RESTART;
+            _waitToSwitch = 0.35f;
         } else if([_menuButton checkIfSelected:position]) {
             [[SoundEngine shared] playSound:@"buttonPressed"];
+            _action = PAUSE_ACTION_MENU;
+            _waitToSwitch = 0.35f;
         }
         
         break;
+    }
+}
+
+-(void) doButtonAction
+{
+    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+
+    switch (_action) {
+        case PAUSE_ACTION_RESUME:
+            [_gameController pauseGame];
+            [[SoundEngine shared] cueFadeIn];
+            break;
+        case PAUSE_ACTION_RESTART:
+            [_gameController pauseGame];
+            [gameLayer restartLevel];
+            break;
+        case PAUSE_ACTION_MENU:
+            [_gameController pauseGame];
+            [gameLayer switchToChooseLevel];
+            break;            
+        default:
+            break;
     }
 }
 
@@ -97,7 +133,7 @@
 {
     CGPoint poli[] = {v1, CGPointMake(v1.x,v2.y),v2,CGPointMake(v2.x,v1.y)};
     
-    GLubyte rectAlpha = floor(_alpha * 75);
+    GLubyte rectAlpha = floor(_alpha * 180);
     glColor4ub(0, 0, 0, rectAlpha);
     glDisable(GL_TEXTURE_2D);
     glDisableClientState(GL_TEXTURE_COORD_ARRAY);
@@ -111,6 +147,8 @@
     glEnable(GL_TEXTURE_2D);
 }
 
+
+
 -(void)onExit
 {
     [self release];
@@ -121,6 +159,7 @@
 
 -(void)update:(ccTime)dt
 {
+    [[SoundEngine shared] update:dt];
     
     if (_waitToSwitch>0.0f) {
         _waitToSwitch-=dt;
@@ -128,17 +167,10 @@
         
         if (_waitToSwitch<=0.0f) {
             _waitToSwitch = 0.0f;
-            switch (_action) {
-                case PAUSE_ACTION_RESUME:
-                    [_gameController pauseGame];
-                    break;
-                default:
-                    break;
-            }
-            
+            [self doButtonAction];
         }
         
-        if (_waitToSwitch<=0.20f) {
+        if (_action != PAUSE_ACTION_MENU && _waitToSwitch<=0.20f) {
             _alpha = 5.0f * _waitToSwitch;            
         }
         
