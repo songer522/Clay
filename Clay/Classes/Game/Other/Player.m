@@ -41,6 +41,7 @@
 @synthesize battery = _battery;
 @synthesize hadCollisionThisUpdate = _hadCollisionThisUpdate;
 @synthesize inVaccuum = _inVaccuum;
+@synthesize onLedge =_onLedge;
 
 
 
@@ -162,7 +163,7 @@
     [[self getCollision] processNewCollisionState:COLLISION_STATE_MIDAIR];
     [self setPositionAtX:_x Y:_y];
     [[SoundEngine shared] playSound:@"jumpStart"];
-    _waitToEndJump = 0.2f;
+    _waitToEndJump =0.2f;
    
     [_speed startJump];
    }
@@ -204,10 +205,7 @@
 {
     
     if (!_isTripping && _isInMidAir ) {
-        if(_onLedge)
-        {return;}
-        
-            [_skin setPlayerAnimation:PLAYER_ANIM_FALLING ForSprite:_sprite];
+     [_skin setPlayerAnimation:PLAYER_ANIM_FALLING ForSprite:_sprite];
     }
     self.hasGravity = true;
 }
@@ -508,11 +506,10 @@
     [self updatePitFalling:dt]; //need to call before super so it can kill the x-velocity if falling into the pit
 
     [super update:dt];  
-    
-    [self updateTurbo:dt];
+        [self updateTurbo:dt];
 
     [self updateJump:dt];
-
+    
     [self updateInvulnerable:dt];
 
     if (_adjustX != 0.0f) {
@@ -520,8 +517,8 @@
         _adjustX = 0.0f;
         [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];
     }
-    
     [self updatePlayerPosition:dt Level:level];
+  
 
     [_battery update:dt];
     
@@ -654,7 +651,8 @@
 {
     
     CollisionState state = [[self getCollision] currentState];
-    
+  
+   
     _isInMidAir = false;
     
     if (state == COLLISION_STATE_DEATHPIT) {

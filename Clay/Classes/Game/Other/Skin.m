@@ -83,7 +83,7 @@
     //if ([self isCurrentAnimationOfType:type]) { return; }
     
     NSString *animName;
-    
+    bool switchAnimation= true;
     switch (type) {
         case PLAYER_ANIM_RUNNING:
             animName = _running;
@@ -98,7 +98,15 @@
             animName = _jumping;
             break;
         case PLAYER_ANIM_FALLING:
+            if(_currentAnimation == PLAYER_ANIM_JUMPING)
+            {
             animName = _falling;
+            }
+            else
+            {
+                switchAnimation =false;
+            }
+           
             break;
         case PLAYER_ANIM_WOO:
             animName = _wooAction;
@@ -133,15 +141,16 @@
         default:
             break;
     }
-    
-    _previousAnimation = _currentAnimation;
-    _currentAnimation = type;
-    _currentSprite = sprite;
-    
-    if(animName !=nil) {
-        [[AnimationController sharedController] replaceSprite:sprite withAnimationNamed:animName];
-    } else {
-        //NSLog(@"ERROR! Player animation not available for skin: %@",_filename);
+    if(switchAnimation){ 
+        _previousAnimation = _currentAnimation;
+        _currentAnimation = type;
+        _currentSprite = sprite;
+        
+        if(animName !=nil) {
+            [[AnimationController sharedController] replaceSprite:sprite withAnimationNamed:animName];
+        } else {
+            //NSLog(@"ERROR! Player animation not available for skin: %@",_filename);
+        }
     }
 }
 

@@ -91,6 +91,7 @@ typedef enum {
 @property(nonatomic,assign) bool hasDoubleJumped;
 @property(nonatomic,assign) bool inVaccuum;
 @property(nonatomic,assign) bool hadCollisionThisUpdate;
+@property(nonatomic,assign) bool onLedge;
 
 
 @property(nonatomic,retain) Battery *battery;
