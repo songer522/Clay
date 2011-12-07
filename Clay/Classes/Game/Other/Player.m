@@ -312,7 +312,7 @@
     self.hasGravity = true;
     [_speed start];
     if(_thirdAction.inAction) {
-        [_thirdAction setKilledEnemy:TRUE];
+        [_thirdAction setKilledEnemy:true];
     }
     //[_skin restorePreviousAnimation];
 }
@@ -455,6 +455,10 @@
     
 }
 
+-(void)setKilledEnemy:(bool)killEnemy
+{
+    [_thirdAction setKilledEnemy:killEnemy];
+}
 
 -(void)rechargeBattery
 {
@@ -774,13 +778,8 @@
             [[SoundEngine shared] playSound:@"steppedInSand"];
             _waitToPlaySlowSound = 0.4f;
         }
+     }
     }
-    
-    else if(_inVaccuum && !_speed.isSlowedDown)
-    {
-        [self endVaccuum];
-    }
-}
 
 -(void)updateSkin:(SkinType)skin
 {

@@ -173,7 +173,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1zsOgzAURFG7AEKo+STsf3usIVMjd4lcROdIt7Y13SsFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+NbV8a2hljKmKT3SnJ5pqR0/8cda+9oZAACAuzX34Zb2dKRXeqfT3fgTrX3tDAAAAAAAAPT2ARPdAxE=
+   eJzt1rkOgkAYhVFwX2r3938991q91GJnUOCc5EuoBuYvhikKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA6KZxWRSTNE2zNE+LtCy//67j95f8qMl99VHdfM0Z+sMZ+676x53SOV3SNd3S/ZcfBQC0yip3qXXapG3apX06tPyO1dV9/Yu6+Zoz9Icz9t0jPauHzKBMgzRMox7PBAAAAAAAmvACU/oNkA==
   </data>
  </layer>
  <layer name="ledges" width="1000" height="14">
@@ -182,7 +182,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt0skNg0AUREHyzwybBDBOwEACLAc6B4/0NVKV9O596GEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+M+YXumdpuIt0IpfAwAAvZnTJy3pW7wFWvFrAACgN7+0pi3txVugFb8GAAB6c6QzXeku3gKt+DUAAAAAAAAAAAAA1HkA1Z8cUQ==
+   eJzt1LkRg0AURMHNPzMJJYAgAY4EOAzGJoE1fnfV88ea1gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAt0/6piH9Om8BavNHAABUNqZ/mtLceQtQmz8CAKCyJa1pS3vnLUBt/ggAgMqOdKYr3Z23ALX5IwAAAAAAAAAAACp6APc4HFE=
   </data>
  </layer>
  <layer name="front-1" width="1000" height="14">
@@ -200,7 +200,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt28ENgzAQBEAqCCktL+i/ExpIFGyOnOObeSLr8Fp8FsGyAAAAAAAAAAAAAAAAAAAAAAAAADC7LWDGHjCDOUQ8TwAAAFX1dqrqvbx6/nf0cwAAAMinnwMAAAAAAAAAlfnfAwAA+vz7d8hVu8AIuV/ZG/hihDO6aoYMAADAeREdfbSeH9EdezL98hxa7nXX2tG19ttP2aOu3601b8v6yHcFa+AsAIBZPLM3wCWP7A0AAAAAAAAAQIIDv5YKmA==
+   eJzt2jsOwjAMANCeADgaE73/TZhYqiLI30nfW5AABdspwaHZNgAAAAAAAAAAAAAAAAAAAACAuF4Nx94bjt1Dy9oAAOvL6SVm75+oRy/KKqxraXp892edE+siAFDi315i1l6plqvnf0YfyiiuvfHMAQBAG/oscrhursv/VfT0HB0AAAAAAACwNPc9AQAAoL+zs4Ez7dGvepY2Qt7Rz5VGqFGpFXKYiXrni/67sR8ee4peGwAgvtR+Ilr/UWPvmJNTtDp8pMQVNYcc+5bWj3/LvdbzraXuPVLeX3Nfc6841tGo2v/63Navl6oxvzVjHLmfbmGldRWAdh6jA6DIbXQAAFxW9DM0AAAAAADA2t7AxxRO
   </data>
  </layer>
  <layer name="meta" width="1000" height="14" opacity="0.68">
@@ -209,7 +209,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt0rENACAIRUEs3H9lGwfQBgK5S94CHyIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAn2DSbx1wAAAAAAAAAAAABQY+kp2+Xva2dJkiSpb/yrvlmXbJe/r50lSZKkvvHvAOkvBzM=
+   eJzt1DsKwCAURUFTZP9bTpNSBCF6Nc7AqX1+sBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFjT/QaQ5j8CAAAAAAAAAADgNNfHzVgj0V/3tUot6dkkja8mPVM6ZyJJ2j36zbiD9Luwr/VrSc8maXw16ZnSORNJ0u7R7wFxqQcV
   </data>
  </layer>
 </map>
