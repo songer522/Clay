@@ -210,6 +210,9 @@
     } else if(_currentBehavior == COLLISION_BEHAVIOR_ROLLING_HAYBALE) {
         _alpha = 1.5f;
         _fadeout = true;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_FADES) {
+        _alpha = 1.5f;
+        _fadeout = true;            
     } else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON) {
         _alpha = 1.0f;
         _vy = -50.0f;
@@ -716,9 +719,12 @@
     } else if(_currentBehavior == COLLISION_BEHAVIOR_RAINY_SQUIRREL) {
         _currentBehavior = COLLISION_BEHAVIOR_RAINY_SQUIRREL;
         _persistsBetweenRegions = true;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_FADES) {
+        _currentBehavior = COLLISION_BEHAVIOR_STATIC;
+        _collideBehavior = COLLISION_BEHAVIOR_FADES;
     } else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;     
-    }   
+    }
     _collided = false;
 }
 
@@ -814,6 +820,9 @@
         _currentBehavior = COLLISION_BEHAVIOR_PAPERPLANE;
         _magnitude = 200.0f;
         _angle=180;
+    } else if([behavior isEqualToString:@"fades"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_FADES;
+        _currentBehavior = COLLISION_BEHAVIOR_STATIC;
     }
 
 

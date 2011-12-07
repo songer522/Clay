@@ -58,7 +58,7 @@
   </tile>
   <tile id="7">
    <properties>
-    <property name="obstacle" value="hen"/>
+    <property name="obstacle" value="waterPufferFish"/>
    </properties>
   </tile>
   <tile id="8">
@@ -114,6 +114,11 @@
   <tile id="20">
    <properties>
     <property name="obstacle" value="femaleBreakdancer"/>
+   </properties>
+  </tile>
+  <tile id="46">
+   <properties>
+    <property name="obstacle" value="waterAnglerFish"/>
    </properties>
   </tile>
   <tile id="67">
@@ -185,7 +190,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztzkEJADAMBMEoCJVW/2oqooGDMPPex1YBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADADne4AwAAYM5JD/Cl0wMAAAAAAAAAEPAAuk8Avw==
+   eJzt2tEJACAMQ8FOIO7j/ns5hJRQuZvg/QZSBQAAAAAAAAAAAAAAAAAAAAAAAAB9TjoAAAAAAAAAAAAAAIBxfNEBAADgL7Y+AAAA9LK9AQAAAAAAgEl2OoAnKx0AAAAAAAAAAAEXaN4BCw==
   </data>
  </layer>
  <layer name="meta" width="1000" height="14" opacity="0.68">
@@ -194,7 +199,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt0TEKADAIBEHz/09bplYEQ5iBbS3OCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC4TqOpO5IkSZKkP6Nuauft30uSJEmS3om6BAo7By0=
+   eJzt0bEJAAAIwDD9/2lHZ0EQJIFe0AgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaClJkiRJ0nLMXT+TJEmSJP2LuQLyQwc3
   </data>
  </layer>
 </map>
