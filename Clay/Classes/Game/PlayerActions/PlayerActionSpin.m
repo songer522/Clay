@@ -67,7 +67,7 @@
     } else {
         _isActive = true;
 
-        //IPAD FIX: check when on the ground
+        //IPAD FIX: check when on the ground, also double-check the player velocities are accurate (should swim down right pretty quickly)
         if (_player.y <= SPIN_PLAYER_GROUND_Y) {
             [self endAction];
         } else {

@@ -278,6 +278,8 @@
         if (!_inVaccuum) {
             [self startVaccuum];
         }
+    } else if(_inVaccuum) {
+        [self endVaccuum];
     }
     
     if (!_isInvincible) {
