@@ -5,6 +5,94 @@
 	<key>frames</key>
 	<dict>
 		
+		<key>BlowFish_1.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {47, 45}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{47, 45}</string>
+			<key>spriteSourceSize</key>
+			<string>{47, 45}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{69, 0}, {47, 45}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>BlowFish_2.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {47, 45}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{47, 45}</string>
+			<key>spriteSourceSize</key>
+			<string>{47, 45}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{65, 58}, {47, 45}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>LanternFish_1.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {66, 55}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{66, 55}</string>
+			<key>spriteSourceSize</key>
+			<string>{66, 55}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{0, 0}, {66, 55}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>LanternFish_2.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{3, 0}, {62, 55}}</string>
+			<key>spriteOffset</key>
+			<string>{1, -0}</string>
+			<key>spriteSize</key>
+			<string>{62, 55}</string>
+			<key>spriteSourceSize</key>
+			<string>{66, 55}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{0, 58}, {62, 55}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
 		<key>Level10_Bubble_1.png</key>
 		<dict>
 			<key>aliases</key>
@@ -22,7 +110,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{60, 70}, {9, 9}}</string>
+			<string>{{0, 116}, {9, 9}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -44,7 +132,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{60, 49}, {15, 19}}</string>
+			<string>{{90, 106}, {15, 19}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -66,7 +154,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{0, 75}, {21, 33}}</string>
+			<string>{{149, 0}, {21, 33}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -88,7 +176,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{0, 0}, {27, 47}}</string>
+			<string>{{116, 48}, {27, 47}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -110,7 +198,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{30, 49}, {27, 39}}</string>
+			<string>{{119, 0}, {27, 39}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -132,95 +220,29 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{0, 50}, {23, 23}}</string>
+			<string>{{65, 106}, {23, 23}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
-		<key>Level10_Fish1_1.png</key>
+		<key>SeaHorse.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
 			
 			</array>
 			<key>spriteColorRect</key>
-			<string>{{0, 0}, {45, 42}}</string>
+			<string>{{0, 0}, {23, 41}}</string>
 			<key>spriteOffset</key>
 			<string>{0, -0}</string>
 			<key>spriteSize</key>
-			<string>{45, 42}</string>
+			<string>{23, 41}</string>
 			<key>spriteSourceSize</key>
-			<string>{45, 42}</string>
+			<string>{23, 41}</string>
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{140, 0}, {45, 42}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>Level10_Fish1_2.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{0, 0}, {45, 42}}</string>
-			<key>spriteOffset</key>
-			<string>{0, -0}</string>
-			<key>spriteSize</key>
-			<string>{45, 42}</string>
-			<key>spriteSourceSize</key>
-			<string>{45, 42}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{140, 45}, {45, 42}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>Level10_Fish2_1.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{0, 0}, {52, 46}}</string>
-			<key>spriteOffset</key>
-			<string>{0, -0}</string>
-			<key>spriteSize</key>
-			<string>{52, 46}</string>
-			<key>spriteSourceSize</key>
-			<string>{52, 46}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{30, 0}, {52, 46}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>Level10_Fish2_2.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{0, 0}, {52, 46}}</string>
-			<key>spriteOffset</key>
-			<string>{0, -0}</string>
-			<key>spriteSize</key>
-			<string>{52, 46}</string>
-			<key>spriteSourceSize</key>
-			<string>{52, 46}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{85, 0}, {52, 46}}</string>
+			<string>{{146, 40}, {23, 41}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>

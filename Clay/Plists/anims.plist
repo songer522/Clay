@@ -1222,7 +1222,7 @@
 		<key>looping</key>
 		<string>true</string>
 		<key>sequencePrefix</key>
-		<string>Level10_Fish1_</string>
+		<string>BlowFish_</string>
 		<key>spritesheetPlist</key>
 		<string>waterLevel</string>
 	</dict>
@@ -1239,7 +1239,7 @@
 		<key>looping</key>
 		<string>true</string>
 		<key>sequencePrefix</key>
-		<string>Level10_Fish2_</string>
+		<string>LanternFish_</string>
 		<key>spritesheetPlist</key>
 		<string>waterLevel</string>
 	</dict>

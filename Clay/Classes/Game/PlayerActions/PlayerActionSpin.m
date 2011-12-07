@@ -68,7 +68,7 @@
             [self endAction];
         } else {
             [_player setVelocity:30.0f];
-            [_player setVy:50.0f];
+            [_player setVy:80.0f];
         }
     }
     [super update:dt];
