@@ -124,6 +124,8 @@
 -(void)restartLevel
 {
     [[GameSettings shared] setGlobal:@"true" ForKey:@"restarting"];
+    [_level resetTriggers:true];
+    [_level resetObstacles];
     [[ComicManager shared] restartLevel];
 }
 
@@ -270,7 +272,7 @@
             [_player rechargeBattery];
             
             [_level resetObstacles];
-            [_level resetTriggers];
+            [_level resetTriggers:false];
         }        
     }
 }
@@ -286,7 +288,7 @@
                 break;
             case TRIGGER_CHECKPOINT:
                 [_savePoint setSavePoint:trigger.position Level:_level.name];
-                [_level disablePassedTrigger];
+                [_level disablePassedTriggers];
                 [[SoundEngine shared] playSound:@"checkpoint"];
                 [_player rechargeBattery];
                 [_player resetSprint];

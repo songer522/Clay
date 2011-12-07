@@ -15,6 +15,7 @@
 @synthesize type = _type;
 @synthesize triggered = _triggered;
 @synthesize canBeReset = _canBeReset;
+@synthesize disabled = _disabled;
 
 - (id)init
 {
@@ -23,6 +24,7 @@
         // Initialization code here.
         _triggered = false;
         _canBeReset = false;
+        _disabled = false;
         _direction = CGPointMake(1, -1);
     }
     

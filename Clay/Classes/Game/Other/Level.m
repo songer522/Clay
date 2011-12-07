@@ -450,22 +450,25 @@
     [_obstacleManager changeRegionsBasedOnX:(playerPos.x - 256)];
 }
 
--(void)resetTriggers
+-(void)resetTriggers:(bool)isRestartingLevel
 {
     for (Trigger *trigger in _triggers) {
-        if (trigger.canBeReset) {
+        if ((trigger.canBeReset && !trigger.disabled) || isRestartingLevel) {
             trigger.triggered = false;
+            trigger.disabled = false;
         }
     }
 }
--(void)disablePassedTrigger
+
+-(void)disablePassedTriggers
 {
     for (Trigger *trigger in _triggers) {
         if (trigger.triggered) {
-            trigger.canBeReset=false;    }
+            trigger.disabled=true;
+        }
+    }
+}
 
-}
-}
 -(bool)testCollisions:(GameObject*)source
 {
     bool collision = false;
