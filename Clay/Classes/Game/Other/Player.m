@@ -278,8 +278,6 @@
         if (!_inVaccuum) {
             [self startVaccuum];
         }
-    } else if(_inVaccuum) {
-        [self endVaccuum];
     }
     
     if (!_isInvincible) {
@@ -290,7 +288,7 @@
                         [self private_StartPlayerCollision];  
                       
                     }
-                }            
+                }
             }
         } else if (effect == PLAYER_EFFECT_COLLIDE) {
             if (!_isTripping && !_isDead) {

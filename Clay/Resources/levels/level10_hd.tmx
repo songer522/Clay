@@ -126,6 +126,16 @@
     <property name="obstacle" value="waterBubbles"/>
    </properties>
   </tile>
+  <tile id="70">
+   <properties>
+    <property name="object" value="waterBubbles2"/>
+   </properties>
+  </tile>
+  <tile id="71">
+   <properties>
+    <property name="object" value="waterBubbles3"/>
+   </properties>
+  </tile>
   <tile id="73">
    <properties>
     <property name="obstacle" value="waterPufferFish"/>
@@ -164,7 +174,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztx7kNgDAUBUH3XxRHA2Aa4OiEl5D/wBGakTbY1gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgM+U5rSk1Xvvvffee++9Lz5jbWlPPR3ee++99957733xGetMV7rT47333nvvvffeFx8AAADgb16xW7Pb
+   eJzt0r1uwjAUgFHe/6EKLMAEdKGd+FmAJ6Ade4dMlhUp0UVNrHOkK/TJFrGjLBYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQGu2Mbv/PkSizPtskv4ny6b4fYfWvgcAAIB3+4hZxqxi1l2fii7Xa/0V8z1gf1+PeX52t3af2nlOM3l/WmuttdZa62k2ufYxh5hjzGfX96LL9Vo/Yp4D9vf1mOdnd2v3qZ3nPpP3p7XWWmuttZ5mk+scc4m5xty6fhVdrtf6J+Z3wP6+HvP87G7tPrXzvGby/rTWWmuttdbTbAAAAIDW/AHB3L3L
   </data>
  </layer>
  <layer name="pits" width="1000" height="14">
@@ -200,7 +210,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt3MEJgDAQRcFUIJbmSfvvRBQ8CkrirgszBYSf4yNiawAAAAAAAAAAAAAAAAAAAAAAAADwnS17QKA1ewAAAABw0ugAAABUU7Fln3wPUPFeAAAAAAAAANDDWzkAAABZ/v7Pt+h9Gh0AAIDLXSO+accRXbsMOONQrXmr7QUAAOLM2QPoMmUPAAAAAAAAAIAEO1QPBX4=
+   eJzt2kEKgDAMBEBfID5NUPT/PxEEL0LRojSkzNwaetgel3QYAAAAAAAAAAAAAAAAAAAAAAAAAOA/6+28F+Y92qIDAAAAACcdHQAAgGwydtn9+UrKdwEAANCXpXIOAAAA8JVdOQAAAFHe/PGO1Dqfjg4AAMCl1BFruuMfvXaunJdk67zZ8gIAAO1M0QH4ZIwOAAAAAAAAAAABDryxBxw=
   </data>
  </layer>
  <layer name="meta" width="1000" height="14" opacity="0.68">
