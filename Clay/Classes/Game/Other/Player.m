@@ -278,6 +278,8 @@
         if (!_inVaccuum) {
             [self startVaccuum];
         }
+    } else if(_inVaccuum) {
+        [self endVaccuum];
     }
     
     if (!_isInvincible) {
@@ -312,7 +314,10 @@
     _inVaccuum = false;
     self.hasGravity = true;
     [_speed start];
-    [_skin restorePreviousAnimation];
+    if(_thirdAction.inAction) {
+        [_thirdAction setKilledEnemy:TRUE];
+    }
+    //[_skin restorePreviousAnimation];
 }
 
 //right now this is only called by the falling animation, sinc tim actually
