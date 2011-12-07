@@ -80,5 +80,15 @@
 	<string>wind2_medium.wav</string>
 	<key>windLong</key>
 	<string>wind2_long.wav</string>
+	<key>waterAnglerFish</key>
+	<string>waterAnglerFish.mp3</string>
+	<key>waterBubbles</key>
+	<string>waterBubbles.wav</string>
+	<key>waterPufferFish</key>
+	<string>waterPufferFish.wav</string>
+	<key>waterSeaHorse</key>
+	<string>waterSeaHorse.mp3</string>
+	<key>waterSwimAction</key>
+	<string>waterSwimAction.wav</string>
 </dict>
 </plist>

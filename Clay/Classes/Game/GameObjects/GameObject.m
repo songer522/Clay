@@ -388,7 +388,7 @@
                 [self setOriginalAnimation:@"madDogAnim"];
                 [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"madDogAnim"];
             }
-            _vx = -150.0f;    
+            _vx = -150.0f;
         }
     } else if(_currentBehavior == COLLISION_BEHAVIOR_RETRO_ZOMBIE) {
         _vx = 0.0f;
@@ -595,9 +595,11 @@
                 if (_direction == 1) {
                     _direction = -1;
                     _vy = -430.0f;
+                    [[SoundEngine shared] playSound:@"waterSeaHorse"];
                 } else {
                     _direction = 1;
                     _vy = 430.0f;
+                    [[SoundEngine shared] playSound:@"waterSeaHorse"];
                 }
             }
         }

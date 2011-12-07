@@ -33,7 +33,7 @@
         [_parent endTurbo];
         [_parent setPlayerAnimation:PLAYER_ANIM_SPIN];
         [_parent setPlayerAnimation:PLAYER_ANIM_SPIN_UP];
-         
+        [[SoundEngine shared] playSound:@"waterSwimAction"];
         _duration = 10.75f;
     }
 }

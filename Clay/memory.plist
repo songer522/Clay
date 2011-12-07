@@ -128,7 +128,7 @@
 		<key>animations</key>
 		<string>level10,spin</string>
 		<key>sounds</key>
-		<string>none</string>
+		<string>waterAnglerFish,waterBubbles,waterPufferFish,waterSeaHorse,waterSwimAction</string>
 		<key>textures</key>
 		<string>waterLevel,characterSpinning</string>
 	</dict>
