@@ -15,6 +15,12 @@
 #import "LayerManager.h"
 #import "Player.h"
 
+@interface Projectile()
+
+-(id) initWithBehavior:(ProjectileBehavior)behavior;
+
+@end
+
 @implementation Projectile
 
 
@@ -125,7 +131,7 @@
 
 
 //so far used only by boss ship
--(void)pointTowardPlayer
+-(void)pointTowardPlayerMaxAngle:(float)maxAngle
 {
     Player *player = [[LayerManager sharedLayers] getPlayer];
     CGPoint playerPos = [player getPosition];
@@ -135,14 +141,23 @@
     float dy = (playerPos.y + 20.0f) - _y;
     float angle = atan2f(dy, dx);
     
+    if (angle > maxAngle) {
+        angle = maxAngle;
+    }
+
     float angleInDegs = (angle * 180.0f)/3.14159f - 45;
+
+    NSLog(@"Angle: %.2f",angle);
+    
     
     _vx = cosf(angle) * speed;
     _vy = sinf(angle) * speed;
     
-    [_sprite getCCSprite].rotation = angleInDegs;
+
+
     
-    //NSLog(@"bullet angle: %f VX: %f, VY: %f",angle,_vx,_vy);
+    
+    [_sprite getCCSprite].rotation = angleInDegs;
 }
 
 -(void) setAttachedTo:(GameObject*)object

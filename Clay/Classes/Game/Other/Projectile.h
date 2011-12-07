@@ -52,18 +52,22 @@ typedef enum {
 
 @property(nonatomic,assign) CGRect boundingBox;
 
+#pragma mark - inits
 +(id) projectileWithBehavior:(ProjectileBehavior)behavior;
--(id) initWithBehavior:(ProjectileBehavior)behavior;
 
+#pragma mark - accessors
+-(CGPoint) getPosition;
+-(void) setActive:(bool)isActive;
 -(void) setAttachedTo:(GameObject*)object;
 -(void) setPosition:(CGPoint)point;
--(void) setActive:(bool)isActive;
--(void) update:(float)dt;
--(void) disable;
--(void) reset;
--(bool) isActive;
+
+#pragma mark - public methods
 -(bool) checkIfOnScreen:(CGPoint)position;
--(void) pointTowardPlayer;
+-(void) disable;
+-(bool) isActive;
+-(void) pointTowardPlayerMaxAngle:(float)maxAngle;
+-(void) reset;
 -(void) setInitialVelocity;
+-(void) update:(float)dt;
 
 @end
