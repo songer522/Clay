@@ -395,11 +395,12 @@
 
 -(void)startThirdAction
 {
-    if ((!_isJumping && !_isInMidAir) || [_thirdAction canStartInMidAir]){
-        if(!_isTripping && _waitToGetUp <=0.0f) {        
-            [_thirdAction startAction];
-        }
-    }
+    //guards
+    if(_isTripping || _waitToGetUp > 0.0f) return;
+    if((_isJumping || _isInMidAir) && ![_thirdAction canStartInMidAir]) return;
+    if(!_isInMidAir && ![_thirdAction canStartOnGround]) return;
+    
+    [_thirdAction startAction];
 }
 
 -(void)setThirdAction:(NSString*)action

@@ -149,6 +149,11 @@
     return false;
 }
 
+-(bool)canStartOnGround
+{
+    return true;
+}
+
 -(void)dealloc
 {
     _parent = nil;

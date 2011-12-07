@@ -79,6 +79,11 @@
     return true;
 }
 
+-(bool)canStartOnGround
+{
+    return false;
+}
+
 -(void)dealloc
 {
     [super dealloc];
