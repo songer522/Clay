@@ -1865,7 +1865,7 @@
 			<real>0.6</real>
 		</dict>
 		<key>animationName</key>
-		<string>waterBubblesAnim</string>
+		<string>waterBubblesRAnim</string>
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
@@ -1887,6 +1887,76 @@
 		<integer>10</integer>
 		<key>playerEffect</key>
 		<string>vaccuum</string>
+	</dict>
+	<key>waterBubbles2</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<real>0.5</real>
+			<key>y</key>
+			<real>0.6</real>
+		</dict>
+		<key>animationName</key>
+		<string>waterBubblesLAnim</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>230</integer>
+			<key>width</key>
+			<integer>50</integer>
+			<key>x</key>
+			<integer>32</integer>
+			<key>y</key>
+			<integer>43</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>none</string>
+		<key>imageName</key>
+		<string>blank.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>10</integer>
+		<key>playerEffect</key>
+		<string>none</string>
+	</dict>
+	<key>waterBubbles3</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<real>0.5</real>
+			<key>y</key>
+			<real>0.6</real>
+		</dict>
+		<key>animationName</key>
+		<string>waterBubblesRAnim</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>230</integer>
+			<key>width</key>
+			<integer>50</integer>
+			<key>x</key>
+			<integer>32</integer>
+			<key>y</key>
+			<integer>43</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>none</string>
+		<key>imageName</key>
+		<string>blank.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>10</integer>
+		<key>playerEffect</key>
+		<string>none</string>
 	</dict>
 	<key>waterPufferFish</key>
 	<dict>
@@ -1955,6 +2025,41 @@
 		<integer>0</integer>
 		<key>offsety</key>
 		<integer>-4</integer>
+		<key>playerEffect</key>
+		<string>collide</string>
+	</dict>
+	<key>waterSeaHorse</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<real>0.5</real>
+			<key>y</key>
+			<real>0.6</real>
+		</dict>
+		<key>animationName</key>
+		<string>none</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>16</integer>
+			<key>width</key>
+			<integer>10</integer>
+			<key>x</key>
+			<integer>10</integer>
+			<key>y</key>
+			<integer>19</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>seahorse</string>
+		<key>imageName</key>
+		<string>SeaHorse.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>-8</integer>
 		<key>playerEffect</key>
 		<string>collide</string>
 	</dict>

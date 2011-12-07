@@ -1192,7 +1192,7 @@
 		<key>spritesheetPlist</key>
 		<string>rainyLevel</string>
 	</dict>
-	<key>waterBubblesAnim</key>
+	<key>waterBubblesRAnim</key>
 	<dict>
 		<key>animationFrames</key>
 		<string>1,2,3,4,5,6</string>
@@ -1205,7 +1205,24 @@
 		<key>looping</key>
 		<string>true</string>
 		<key>sequencePrefix</key>
-		<string>Level10_Bubble_</string>
+		<string>Level10_Bubble_R_</string>
+		<key>spritesheetPlist</key>
+		<string>waterLevel</string>
+	</dict>
+	<key>waterBubblesLAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3,4,5,6</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level10</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Level10_Bubble_L_</string>
 		<key>spritesheetPlist</key>
 		<string>waterLevel</string>
 	</dict>

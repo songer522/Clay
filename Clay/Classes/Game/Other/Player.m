@@ -287,7 +287,7 @@
                         [self private_StartPlayerCollision];  
                       
                     }
-                }            
+                }
             }
         } else if (effect == PLAYER_EFFECT_COLLIDE) {
             if (!_isTripping && !_isDead) {
