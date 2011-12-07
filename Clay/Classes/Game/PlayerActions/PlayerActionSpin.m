@@ -59,6 +59,7 @@
 -(void)cancelAction
 {
     _parent.hasGravity=true;
+    [_player endVaccuum];
     [_parent setPlayerAnimation:PLAYER_ANIM_RUNNING];
     _duration = 0.0f;
     [super cancelAction];

@@ -362,7 +362,14 @@
         [self getCCSprite].rotation = _angle;
         _vy += 500.0f * dt;
         
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_CHARGE_AT_PLAYER) {
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_SLOW) {
+        _vx = 0.0f;
+        if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+            _vx = -100.0f;
+        }
+    }
+    
+    else if(_currentBehavior == COLLISION_BEHAVIOR_CHARGE_AT_PLAYER) {
         _vx = 0.0f;
         if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
             _vx = -150.0f;
@@ -759,7 +766,7 @@
     } else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_SEAHORSE) {
         _currentBehavior = COLLISION_BEHAVIOR_WATER_SEAHORSE;
         _direction = 1;
-    } else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST) {
+    } else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_SLOW) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;     
     }
     _collided = false;
@@ -794,7 +801,13 @@
         _collideBehavior = COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST;
         _currentBehavior =COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST;
         _beatsPlayerAction = true;
-    } else if([behavior isEqualToString:@"zombie"]) {
+    }
+    else if([behavior isEqualToString:@"chargeAtPlayerSlow"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_SLOW;
+        _currentBehavior =COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_SLOW;
+        _beatsPlayerAction = true;
+    } 
+    else if([behavior isEqualToString:@"zombie"]) {
         _collideBehavior = COLLISION_BEHAVIOR_ZOMBIE_HEADLESS;
         _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_WALK;
         _aggressiveCanHit = true;

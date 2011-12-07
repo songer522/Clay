@@ -9,21 +9,7 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Clay/Classes/Game/PlayerActions/PlayerActionSpin.m"
-         timestampString = "344982168.488121"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "54"
-         endingLineNumber = "54"
-         landmarkName = "-endAction"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Clay/Classes/Game/PlayerActions/PlayerActionSpin.m"
-         timestampString = "344983263.579668"
+         timestampString = "344985704.105049"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "61"

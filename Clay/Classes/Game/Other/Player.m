@@ -278,7 +278,9 @@
         if (!_inVaccuum) {
             [self startVaccuum];
         }
-    }    
+       
+    }
+    
     if (!_isInvincible) {
         if (effect == PLAYER_EFFECT_ACTION_OR_COLLIDE) {
             if (!_isTripping && !_isDead) {
