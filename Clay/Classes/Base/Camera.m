@@ -61,6 +61,8 @@ static Camera *_sharedCamera = nil;
         rect.size.height = 330;
     } else if([levelName isEqualToString:@"level9"]) {
         rect.size.height = 352;
+    } else if([levelName isEqualToString:@"level10"]) {
+        rect.size.height = 352;
     }
     
     _boundary = rect;

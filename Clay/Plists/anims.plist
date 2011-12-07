@@ -1209,6 +1209,40 @@
 		<key>spritesheetPlist</key>
 		<string>waterLevel</string>
 	</dict>
+	<key>waterPufferFishAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level10</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>BlowFish_</string>
+		<key>spritesheetPlist</key>
+		<string>waterLevel</string>
+	</dict>
+	<key>waterAnglerFishAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level10</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>LanternFish_</string>
+		<key>spritesheetPlist</key>
+		<string>waterLevel</string>
+	</dict>
 	<key>wooAnim</key>
 	<dict>
 		<key>animationFrames</key>
