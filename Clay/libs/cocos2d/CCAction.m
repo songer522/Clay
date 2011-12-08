@@ -357,4 +357,74 @@
 
 @end
 
+//XECUDEV: CUSTOM ACTIONS THAT ALLOW FOR CCSpeed combined with CCRepeatForever
+#pragma mark -
+#pragma mark RepeatForeverWithSpeed
+@implementation CCRepeatForeverWithSpeed
+@synthesize speed;
 
++(id) actionWithAction: (CCActionInterval*) action speed:(float)r
+{
+	return [[[self alloc] initWithAction: action speed:r] autorelease];
+}
+
+-(id) initWithAction: (CCActionInterval*) action speed:(float)r
+{
+	if( (self=[super init]) ) {
+		other = [action retain];
+		speed = r;
+	}
+	return self;
+}
+
+-(id) copyWithZone: (NSZone*) zone
+{
+	CCAction *copy = [[[self class] allocWithZone: zone] initWithAction:[[other copy] autorelease] speed:speed];
+    return copy;
+}
+
+-(void) dealloc
+{
+	[other release];
+	[super dealloc];
+}
+
+-(void) startWithTarget:(id)aTarget
+{
+	[super startWithTarget:aTarget];
+	[other startWithTarget:target_];
+}
+
+-(void) changeSpeed:(float)newSpeed
+{
+    speed = newSpeed;
+}
+
+-(void) stop
+{
+	[other stop];
+	[super stop];
+}
+
+-(void) step:(ccTime) dt
+{
+    [other step: dt * speed];
+	if( [other isDone] ) {
+		ccTime diff = dt + other.duration - other.elapsed;
+		[other startWithTarget:target_];
+		
+		// to prevent jerk. issue #390
+		[other step: diff];
+	}
+}
+
+-(BOOL) isDone
+{
+	return NO;
+}
+
+- (CCActionInterval *) reverse
+{
+	return [CCRepeatForeverWithSpeed actionWithAction:[other reverse] speed:speed];
+}
+@end

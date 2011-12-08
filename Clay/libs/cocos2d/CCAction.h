@@ -193,3 +193,21 @@ enum {
 
 @end
 
+
+
+
+//XECUDEV: CUSTOM ACTIONS THAT ALLOW FOR CCSpeed combined with CCRepeatForever
+@interface CCRepeatForeverWithSpeed : CCAction <NSCopying>
+{
+	CCActionInterval *other;
+    float speed;
+}
+@property (nonatomic,readwrite) float speed;
+/** creates the action */
++(id) actionWithAction: (CCActionInterval*) action speed:(float)rate;
+/** initializes the action */
+-(id) initWithAction: (CCActionInterval*) action speed:(float)rate;
+-(void) changeSpeed:(float)newSpeed;
+@end
+
+

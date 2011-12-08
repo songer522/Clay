@@ -15,13 +15,19 @@
 {
     int _frame;
     int _totalFrames;
+    float _totalTime;
     bool _paused;
+    float _speed;
 }
 
 @property(nonatomic,assign) int frame;
 @property(nonatomic,assign) bool paused;
 @property(nonatomic,readonly,assign) int totalFrames;
 
++(id) actionWithAnimation: (CCAnimation*)anim restoreOriginalFrame:(BOOL)b;
+-(id) initWithAnimation: (CCAnimation*)anim restoreOriginalFrame:(BOOL) b;
+
 -(void)update:(ccTime)t;
+-(void)changeSpeed:(float)speed;
 
 @end

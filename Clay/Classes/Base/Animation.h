@@ -13,6 +13,8 @@
 
 @class Sprite;
 @class CCXAnimate;
+@class CCActionInterval;
+@class CCAction;
 
 @interface Animation : NSObject
 {
@@ -32,6 +34,7 @@
     NSString *_sequence;
     NSString *_frameList;
     
+    CCAction *_speedAnimation;
     
     CCXAnimate *_animateAction;             //extension of CCAnimate to allow to
                                             //read the current frame
@@ -68,7 +71,7 @@
 -(void)setStaticFrame:(int)frame Sprite:(Sprite*)sprite;
 -(NSString*)getSequence;
 -(NSString*)getFrameList;
--(void)changeDelayModifier:(float)modifier;
+-(void)changeAnimationSpeed:(float)newSpeed; //0 to 1, 1 is default
 
 //replaces the given sprite with this animation
 
