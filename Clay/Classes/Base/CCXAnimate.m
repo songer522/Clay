@@ -38,17 +38,10 @@
     
     NSArray *frames = [animation_ frames];
     NSUInteger numberOfFrames = [frames count];
- 
-    
-    if (_speed < 1.0f) {
-        _speed = _speed;
-    }
-    
+
     _totalFrames = numberOfFrames;
     
     NSUInteger idx = t * _speed * numberOfFrames;
-    
-    
     
     if (idx >= numberOfFrames) {
         idx = numberOfFrames - 1;

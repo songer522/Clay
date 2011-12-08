@@ -154,6 +154,11 @@
     return true;
 }
 
+-(bool) playerAllowedToJump
+{
+    return false;
+}
+
 -(void)dealloc
 {
     _parent = nil;

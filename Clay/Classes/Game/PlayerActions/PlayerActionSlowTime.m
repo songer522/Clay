@@ -27,7 +27,7 @@
     if (!_inAction && _canTrigger) {
         [super startAction];        
         [self updateSlowdown:0.2f];
-        _duration = 5.75f;
+        _duration = 4.00f;
     }
 }
 
@@ -61,6 +61,11 @@
 
 -(void)updateSlowdown:(float)modifier
 {
+    float animModifier = modifier * 2.0f;
+    if (animModifier > 1.0f) {
+        animModifier = 1.0f;
+    }
+    
     NSMutableArray *mapObjects = [[LevelManager shared] currentLevel].obstacleSprites;
     for (MapObject *mapObject in mapObjects) {
         GameObject *obstacle = mapObject.object;
@@ -69,13 +74,18 @@
         //not working yet
         Animation *anim = [[obstacle getSprite] getAnimation];
         if(anim!=nil) {
-            [anim changeAnimationSpeed:modifier];
+            [anim changeAnimationSpeed:animModifier];
         }
         
     }
 }
 
 -(bool)canStartInMidAir
+{
+    return true;
+}
+
+-(bool) playerAllowedToJump
 {
     return true;
 }

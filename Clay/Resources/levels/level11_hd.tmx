@@ -116,6 +116,11 @@
     <property name="obstacle" value="femaleBreakdancer"/>
    </properties>
   </tile>
+  <tile id="66">
+   <properties>
+    <property name="obstacle" value="rainySquirrel"/>
+   </properties>
+  </tile>
  </tileset>
  <tileset firstgid="93" name="Dark" tilewidth="64" tileheight="64">
   <image source="tileset_level_11-hd.png" width="960" height="896"/>
@@ -171,7 +176,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztzgENAAAIAyATOPunNcbnhARUAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwC2TDsAznQ4AAAAAAAAAQMACudwAHw==
+   eJztzjERADAIBDAU9OoM/25qgM4/kChIFQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADDpdAAAAPi66QAsc9IBAAAAAAAAAAh4BqkAbg==
   </data>
  </layer>
  <layer name="meta" width="1000" height="14" opacity="0.66">
