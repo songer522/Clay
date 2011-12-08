@@ -1983,7 +1983,7 @@
 			<integer>25</integer>
 		</dict>
 		<key>collideBehavior</key>
-		<string>fades</string>
+		<string>pufferfish</string>
 		<key>imageName</key>
 		<string>blank.png</string>
 		<key>offsetx</key>
