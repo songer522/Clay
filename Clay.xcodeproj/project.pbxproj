@@ -2562,6 +2562,10 @@
 				61F063FE1491269900F9473E /* level9.tmx in Resources */,
 				61F06400149127EC00F9473E /* level11.tmx in Resources */,
 				61F06402149130AB00F9473E /* level10.tmx in Resources */,
+				5428AE091491614F00C1A1BE /* darkLevel-hd.plist in Resources */,
+				5428AE0A1491614F00C1A1BE /* darkLevel-hd.png in Resources */,
+				5428AE0B1491614F00C1A1BE /* darkLevel.plist in Resources */,
+				5428AE0C1491614F00C1A1BE /* darkLevel.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
