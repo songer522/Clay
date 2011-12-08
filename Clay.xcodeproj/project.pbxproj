@@ -335,6 +335,8 @@
 		54A2C5A5147C6F8900A0CB18 /* doublejump.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54CB72511460506400311904 /* doublejump.wav */; };
 		54A3D6D2146C37F400BD081D /* shipBullet2_hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A3D6D0146C37F400BD081D /* shipBullet2_hd.png */; };
 		54A3D6D3146C37F400BD081D /* shipBullet2.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A3D6D1146C37F400BD081D /* shipBullet2.png */; };
+		54A4B1CB14916695006CDD44 /* tileset_level_11-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A4B1C914916695006CDD44 /* tileset_level_11-hd.png */; };
+		54A4B1CC14916695006CDD44 /* tileset_level_11.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A4B1CA14916695006CDD44 /* tileset_level_11.png */; };
 		54A5209114902DB600C8BD13 /* waterAnglerFish.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 54A5208C14902DB600C8BD13 /* waterAnglerFish.mp3 */; };
 		54A5209214902DB600C8BD13 /* waterBubbles.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54A5208D14902DB600C8BD13 /* waterBubbles.wav */; };
 		54A5209314902DB600C8BD13 /* waterPufferFish.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54A5208E14902DB600C8BD13 /* waterPufferFish.wav */; };
@@ -981,6 +983,8 @@
 		54A2863A147313A500A2E8A6 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		54A3D6D0146C37F400BD081D /* shipBullet2_hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shipBullet2_hd.png; path = computer/shipBullet2_hd.png; sourceTree = "<group>"; };
 		54A3D6D1146C37F400BD081D /* shipBullet2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shipBullet2.png; path = computer/shipBullet2.png; sourceTree = "<group>"; };
+		54A4B1C914916695006CDD44 /* tileset_level_11-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tileset_level_11-hd.png"; path = "Resources/levels/tileset_level_11-hd.png"; sourceTree = "<group>"; };
+		54A4B1CA14916695006CDD44 /* tileset_level_11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tileset_level_11.png; path = Resources/levels/tileset_level_11.png; sourceTree = "<group>"; };
 		54A5208C14902DB600C8BD13 /* waterAnglerFish.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = waterAnglerFish.mp3; path = Resources/sounds/waterAnglerFish.mp3; sourceTree = "<group>"; };
 		54A5208D14902DB600C8BD13 /* waterBubbles.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = waterBubbles.wav; path = Resources/sounds/waterBubbles.wav; sourceTree = "<group>"; };
 		54A5208E14902DB600C8BD13 /* waterPufferFish.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = waterPufferFish.wav; path = Resources/sounds/waterPufferFish.wav; sourceTree = "<group>"; };
@@ -2211,6 +2215,8 @@
 				54C71D111486E06600A47565 /* tileset_level_9.png */,
 				546E830C148EE9F500154AE7 /* tileset_level_10-hd.png */,
 				546E830D148EE9F500154AE7 /* tileset_level_10.png */,
+				54A4B1C914916695006CDD44 /* tileset_level_11-hd.png */,
+				54A4B1CA14916695006CDD44 /* tileset_level_11.png */,
 			);
 			name = tilesets;
 			sourceTree = "<group>";
@@ -2566,6 +2572,8 @@
 				5428AE0A1491614F00C1A1BE /* darkLevel-hd.png in Resources */,
 				5428AE0B1491614F00C1A1BE /* darkLevel.plist in Resources */,
 				5428AE0C1491614F00C1A1BE /* darkLevel.png in Resources */,
+				54A4B1CB14916695006CDD44 /* tileset_level_11-hd.png in Resources */,
+				54A4B1CC14916695006CDD44 /* tileset_level_11.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
