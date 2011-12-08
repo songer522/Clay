@@ -560,7 +560,40 @@
             _angle = -180;
             //[_sprite getCCSprite].rotation = -30.0f;
         }
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_RAINY_SQUIRREL) {
+    }
+    
+    
+    else if(_currentBehavior == COLLISION_BEHAVIOR_BAT)
+    {
+        _vx = 0.0f;
+        if ([self closeToPlayer:375]) {
+            _angle+=110.0f*dt;
+            if(_angle > -60.0f) {
+                _stopCurve=true;
+                _angle = - 60.0f;
+                
+                _vx = 0;
+                _vy=0;
+            }
+            //[_sprite getCCSprite].rotation = -30.0f + ((_angle + 180.0f) / (2.66667f));
+            if(!_stopCurve)
+            {
+                _vx = _magnitude * cosf((_angle * 3.14159)/180.0f);
+                _vy = -1*_magnitude * sinf((_angle * 3.14159)/180.0f);
+            }
+            
+        } else if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+            _vx = -1 * _magnitude;
+            _angle = -180;
+            //[_sprite getCCSprite].rotation = -30.0f;
+        }
+    }
+    
+    
+    
+    
+    
+    else if(_currentBehavior == COLLISION_BEHAVIOR_RAINY_SQUIRREL) {
         if (_reloading >=0.0f)
         {
             _reloading -= dt;
@@ -762,7 +795,13 @@
         _currentBehavior = COLLISION_BEHAVIOR_PAPERPLANE;
         _magnitude=200;
         _angle=-180;
-    }else if(_currentBehavior == COLLISION_BEHAVIOR_UMBRELLA_FLY_ACROSS) {
+    }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_BAT) {
+        _currentBehavior = COLLISION_BEHAVIOR_BAT;
+        _magnitude=200;
+        _angle=-180;
+    }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_UMBRELLA_FLY_ACROSS) {
         _currentBehavior = COLLISION_BEHAVIOR_UMBRELLA_FLY_ACROSS;
     } else if(_currentBehavior == COLLISION_BEHAVIOR_RAINY_TREE_A) {
         _currentBehavior = COLLISION_BEHAVIOR_RAINY_TREE_A;
@@ -884,7 +923,14 @@
         _currentBehavior = COLLISION_BEHAVIOR_PAPERPLANE;
         _magnitude = 200.0f;
         _angle=180;
-    } else if([behavior isEqualToString:@"fades"]) {
+    } 
+    else if([behavior isEqualToString:@"darkBat"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_BAT;
+        _currentBehavior = COLLISION_BEHAVIOR_BAT;
+        _magnitude = 200.0f;
+        _angle=180;
+    }
+    else if([behavior isEqualToString:@"fades"]) {
         _collideBehavior = COLLISION_BEHAVIOR_FADES;
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;
     } else if([behavior isEqualToString:@"seahorse"]) {
