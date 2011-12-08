@@ -388,7 +388,6 @@
 		54E3D558146C4BA800C28C9F /* tileset_level_7-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54E3D546146C4BA800C28C9F /* tileset_level_7-hd.png */; };
 		54E3D559146C4BA800C28C9F /* tileset_level_7.png in Resources */ = {isa = PBXBuildFile; fileRef = 54E3D547146C4BA800C28C9F /* tileset_level_7.png */; };
 		54EB13AE148C4ABF00D94191 /* level10_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 54EB13AA148C4ABF00D94191 /* level10_hd.tmx */; };
-		54EB13AF148C4ABF00D94191 /* level10.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 54EB13AB148C4ABF00D94191 /* level10.tmx */; };
 		54EB13B0148C4ABF00D94191 /* level11_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 54EB13AC148C4ABF00D94191 /* level11_hd.tmx */; };
 		54EB13B7148C8ADD00D94191 /* waterLevel-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54EB13B3148C8ADD00D94191 /* waterLevel-hd.plist */; };
 		54EB13B8148C8ADD00D94191 /* waterLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54EB13B4148C8ADD00D94191 /* waterLevel-hd.png */; };
@@ -445,6 +444,7 @@
 		61F063FC1491249500F9473E /* level7.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61F063FB1491249500F9473E /* level7.tmx */; };
 		61F063FE1491269900F9473E /* level9.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61F063FD1491269900F9473E /* level9.tmx */; };
 		61F06400149127EC00F9473E /* level11.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61F063FF149127EC00F9473E /* level11.tmx */; };
+		61F06402149130AB00F9473E /* level10.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61F06401149130AB00F9473E /* level10.tmx */; };
 		61F22CCF148D8576008B4A09 /* level4.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61F22CCE148D8576008B4A09 /* level4.tmx */; };
 		E485F746148C69ED00D98C14 /* level9_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = E485F745148C69ED00D98C14 /* level9_hd.tmx */; };
 /* End PBXBuildFile section */
@@ -1039,7 +1039,6 @@
 		54E3D546146C4BA800C28C9F /* tileset_level_7-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tileset_level_7-hd.png"; path = "Resources/levels/tileset_level_7-hd.png"; sourceTree = "<group>"; };
 		54E3D547146C4BA800C28C9F /* tileset_level_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tileset_level_7.png; path = Resources/levels/tileset_level_7.png; sourceTree = "<group>"; };
 		54EB13AA148C4ABF00D94191 /* level10_hd.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level10_hd.tmx; path = Resources/levels/level10_hd.tmx; sourceTree = "<group>"; };
-		54EB13AB148C4ABF00D94191 /* level10.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level10.tmx; path = Resources/levels/level10.tmx; sourceTree = "<group>"; };
 		54EB13AC148C4ABF00D94191 /* level11_hd.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level11_hd.tmx; path = Resources/levels/level11_hd.tmx; sourceTree = "<group>"; };
 		54EB13B3148C8ADD00D94191 /* waterLevel-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "waterLevel-hd.plist"; sourceTree = "<group>"; };
 		54EB13B4148C8ADD00D94191 /* waterLevel-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "waterLevel-hd.png"; sourceTree = "<group>"; };
@@ -1101,6 +1100,7 @@
 		61F063FB1491249500F9473E /* level7.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level7.tmx; path = Resources/levels/level7.tmx; sourceTree = "<group>"; };
 		61F063FD1491269900F9473E /* level9.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level9.tmx; path = Resources/levels/level9.tmx; sourceTree = "<group>"; };
 		61F063FF149127EC00F9473E /* level11.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level11.tmx; path = Resources/levels/level11.tmx; sourceTree = "<group>"; };
+		61F06401149130AB00F9473E /* level10.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level10.tmx; path = Resources/levels/level10.tmx; sourceTree = "<group>"; };
 		61F22CCE148D8576008B4A09 /* level4.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level4.tmx; path = Resources/levels/level4.tmx; sourceTree = "<group>"; };
 		E485F745148C69ED00D98C14 /* level9_hd.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level9_hd.tmx; path = Resources/levels/level9_hd.tmx; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1694,7 +1694,7 @@
 				61F063FB1491249500F9473E /* level7.tmx */,
 				6170B36E148EE9F200B6364C /* level8.tmx */,
 				61F063FD1491269900F9473E /* level9.tmx */,
-				54EB13AB148C4ABF00D94191 /* level10.tmx */,
+				61F06401149130AB00F9473E /* level10.tmx */,
 				61F063FF149127EC00F9473E /* level11.tmx */,
 				54E3D51C146C4B9200C28C9F /* level1_hd.tmx */,
 				54E3D51E146C4B9200C28C9F /* level2_hd.tmx */,
@@ -2514,7 +2514,6 @@
 				61DC6099148966F100F65B78 /* TrackLapse_Icons-hd.png in Resources */,
 				61DC609A148966F100F65B78 /* TrackLapse_Icons.png in Resources */,
 				54EB13AE148C4ABF00D94191 /* level10_hd.tmx in Resources */,
-				54EB13AF148C4ABF00D94191 /* level10.tmx in Resources */,
 				54EB13B0148C4ABF00D94191 /* level11_hd.tmx in Resources */,
 				54EB13B7148C8ADD00D94191 /* waterLevel-hd.plist in Resources */,
 				54EB13B8148C8ADD00D94191 /* waterLevel-hd.png in Resources */,
@@ -2542,6 +2541,7 @@
 				61F063FC1491249500F9473E /* level7.tmx in Resources */,
 				61F063FE1491269900F9473E /* level9.tmx in Resources */,
 				61F06400149127EC00F9473E /* level11.tmx in Resources */,
+				61F06402149130AB00F9473E /* level10.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
