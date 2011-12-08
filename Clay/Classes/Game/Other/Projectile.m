@@ -147,15 +147,8 @@
 
     float angleInDegs = (angle * 180.0f)/3.14159f - 45;
 
-    NSLog(@"Angle: %.2f",angle);
-    
-    
     _vx = cosf(angle) * speed;
     _vy = sinf(angle) * speed;
-    
-
-
-    
     
     [_sprite getCCSprite].rotation = angleInDegs;
 }

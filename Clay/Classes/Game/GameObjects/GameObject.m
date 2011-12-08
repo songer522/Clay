@@ -237,6 +237,10 @@
     } else if(_currentBehavior == COLLISION_BEHAVIOR_RAINY_SQUIRREL) {
         _alpha = 1.2f;
         _fadeout = true;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_PUFFERFISH) {
+        _alpha = 1.2f;
+        _fadeout = true;
+        [[SoundEngine shared] playSound:@"waterPufferFish"];
     }
     
     return _playerEffect;
@@ -366,6 +370,12 @@
         _vx = 0.0f;
         if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
             _vx = -100.0f;
+            
+            //right now this behavior only applies to angler fish... need an exception if changes in the future
+            if (!_madeSound) {
+                [[SoundEngine shared] playSound:@"waterAnglerFish"];
+                _madeSound = true;
+            }
         }
     }
     
@@ -768,6 +778,8 @@
     } else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_SEAHORSE) {
         _currentBehavior = COLLISION_BEHAVIOR_WATER_SEAHORSE;
         _direction = 1;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_PUFFERFISH) {
+        _currentBehavior = COLLISION_BEHAVIOR_WATER_PUFFERFISH;
     } else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_SLOW) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;     
     }
@@ -879,6 +891,9 @@
         _currentBehavior = COLLISION_BEHAVIOR_WATER_SEAHORSE;
         _collideBehavior = COLLISION_BEHAVIOR_WATER_SEAHORSE;
         _direction = 1;
+    } else if([behavior isEqualToString:@"pufferfish"]) {
+        _currentBehavior = COLLISION_BEHAVIOR_WATER_PUFFERFISH;
+        _collideBehavior = COLLISION_BEHAVIOR_WATER_PUFFERFISH;
     }
 
 

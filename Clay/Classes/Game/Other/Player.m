@@ -299,6 +299,8 @@
             [_speed slowDown];
         }
     }
+    
+    _currentPlayerEffect = effect;
 }
 
 -(void)startVaccuum
@@ -516,7 +518,7 @@
     [self updatePitFalling:dt]; //need to call before super so it can kill the x-velocity if falling into the pit
 
     [super update:dt];  
-        [self updateTurbo:dt];
+    [self updateTurbo:dt];
 
     [self updateJump:dt];
     
@@ -529,7 +531,6 @@
     }
     [self updatePlayerPosition:dt Level:level];
   
-
     [_battery update:dt];
     
     if (_isTripping) {
@@ -560,6 +561,8 @@
     }
     
     [_thirdAction update:dt];
+    
+    _currentPlayerEffect = PLAYER_EFFECT_NONE;
 
 }
 
@@ -751,7 +754,6 @@
     if (blink < 0.95f) {
         [_sprite setAlpha:1.0f];
         [[_sprite getCCSprite] setColor:ccc3(255, 255, 255)];
-
     } else {
         [_sprite setAlpha:1.0f];
         [[_sprite getCCSprite] setColor:ccc3(200, 200, 0)];
@@ -775,14 +777,30 @@
 {
     //play the sound effect for walking in sand pit if slowed down (unless it's the wind level) and it's the wind
     //slowing tim down
-    if (_speed.isSlowedDown && !_isTripping && !_isWindy) {
+    if ((_speed.isSlowedDown && !_isTripping && !_isWindy) || _currentPlayerEffect == PLAYER_EFFECT_VACCUUM) {
         _waitToPlaySlowSound -= dt;
         if (_waitToPlaySlowSound<=0.0f) {
-            [[SoundEngine shared] playSound:@"steppedInSand"];
+            if (_currentPlayerEffect == PLAYER_EFFECT_VACCUUM) {
+                [[SoundEngine shared] playSound:@"waterBubbles"];
+            } else {
+                [[SoundEngine shared] playSound:@"steppedInSand"];
+            }
             _waitToPlaySlowSound = 0.4f;
         }
      }
+    
+    //end vaccuum effect if no longer in it
+    if((_currentPlayerEffect == PLAYER_EFFECT_NONE) && _inVaccuum) {
+        [self endVaccuum];
+        if ([_thirdAction inAction]) {
+            [_thirdAction setKilledEnemy:true];
+        }
+        if ([_skin isCurrentAnimationOfType:PLAYER_ANIM_FLOATING] && _isInMidAir) {
+            [_skin setPlayerAnimation:PLAYER_ANIM_FALLING ForSprite:_sprite];
+        }
     }
+    
+}
 
 -(void)updateSkin:(SkinType)skin
 {
