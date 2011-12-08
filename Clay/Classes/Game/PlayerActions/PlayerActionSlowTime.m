@@ -25,11 +25,9 @@
 -(void)startAction
 {
     if (!_inAction && _canTrigger) {
-        [super startAction];
-        
-        _duration = 1.75f;
-        
+        [super startAction];        
         [self updateSlowdown:0.2f];
+        _duration = 5.75f;
     }
 }
 
@@ -41,8 +39,13 @@
 
 -(void)cancelAction
 {
-    [self updateSlowdown:1.0f];
-    [super cancelAction];
+    //NOTE: for now, can't be cancelled
+    //if this gets undone in the future, keep in mind you'll need to write an exception for
+    //slowdowns, because they call 'startcollision' constantly, which calls cancelAction
+    return;
+    
+    //[self updateSlowdown:1.0f];
+    //[super cancelAction];
 }
 
 
@@ -64,11 +67,13 @@
         obstacle.slowTimeModifier = modifier;
         
         //not working yet
-        //[[[obstacle getSprite] getAnimation] changeDelayModifier:modifier];
+        Animation *anim = [[obstacle getSprite] getAnimation];
+        if(anim!=nil) {
+            [anim changeAnimationSpeed:modifier];
+        }
         
     }
 }
-
 
 -(bool)canStartInMidAir
 {
