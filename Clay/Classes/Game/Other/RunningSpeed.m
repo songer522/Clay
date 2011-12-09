@@ -13,6 +13,7 @@
 @implementation RunningSpeed
 
 @synthesize velocity = _velocity;
+@synthesize velocityModifier = _velocityModifier;
 @synthesize inTurbo = _inTurbo;
 @synthesize parent = _player;
 @synthesize isStopped = _isStopped;
@@ -84,6 +85,7 @@
 -(void)reset
 {
     _velocity = 4.0f;
+    _velocityModifier = 1.0f;
     _acceleration = 0.0f;
     _turboLeft = 0.0f;
     _inTurbo = false;
@@ -169,7 +171,8 @@
 
 -(void)update:(float)dt
 {
-    float modifier = 1.0;
+    float modifier;
+    modifier = _velocityModifier;
     if (_isUnderwater && _player.isInMidAir) {
         modifier = 1.5f;
     }

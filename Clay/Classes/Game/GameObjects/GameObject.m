@@ -1042,6 +1042,9 @@
     } else if([behavior isEqualToString:@"pufferfish"]) {
         _currentBehavior = COLLISION_BEHAVIOR_WATER_PUFFERFISH;
         _collideBehavior = COLLISION_BEHAVIOR_WATER_PUFFERFISH;
+    } else if([behavior isEqualToString:@"spikes"]){
+        _currentBehavior = COLLISION_BEHAVIOR_DARK_SPIKES;
+        _collideBehavior = COLLISION_BEHAVIOR_DARK_SPIKES;
     }
 
 
