@@ -561,30 +561,87 @@
             //[_sprite getCCSprite].rotation = -30.0f;
         }
     }
-    
-    
-    else if(_currentBehavior == COLLISION_BEHAVIOR_BAT)
+   /*
+    else if(_currentBehavior == COLLISION_BEHAVIOR_PAPERPLANE)
     {
         _vx = 0.0f;
-        if ([self closeToPlayer:275]) {
-            _angle+=200.0f*dt;
-            if(_angle > -150.0f) {
-                //_stopCurve=true;
-                _angle = - 150.0f;
-                
-                //_vx = 0;
-                //_vy=0;
+        if (_waitToTrigger > 0) {
+            _waitToTrigger-=dt;
+            if(_waitToTrigger <= 0.0f) {
+                _angle+=110.0f*dt;
+                if(_angle > -60.0)
+                {
+                    _stopCurve=true;
+                    _angle = -60.0f;
+                    
+                    _vx =-1 * _magnitude;
+                    _vy=0;
+                }
+                else
+                { if(!_stopCurve)
+                 {
+                     _waitToTrigger=0.01f;
+                 }
+                }
             }
             //[_sprite getCCSprite].rotation = -30.0f + ((_angle + 180.0f) / (2.66667f));
             if(!_stopCurve)
             {
                 _vx = _magnitude * cosf((_angle * 3.14159)/180.0f);
+                _vy = -1*_magnitude * sinf((_angle * 3.14159)/180.0f);
+            }
+            
+        }
+     
+    else if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+            //_vy = 1* _magnitude;
+            _vx =-1 * _magnitude;
+            _angle = -180;
+            if(_waitToTrigger<0)
+            {
+                _waitToTrigger=0.1f;
+            }
+            //[_sprite getCCSprite].rotation = -30.0f;
+        }
+    }
+    */
+    
+    else if(_currentBehavior == COLLISION_BEHAVIOR_BAT)
+    {
+        _vx = 0.0f;
+        if (_waitToTrigger > 0) {
+            _waitToTrigger-=dt;
+            if(_waitToTrigger <= 0.0f) {
+                _angle+=45.0f*dt;
+                if(_angle > -210.0)
+                {
+                _stopCurve=true;
+                _angle = -210.0f;
+                
+                _vx =0;
+                _vy=0;
+                }
+                else
+                {
+                    _waitToTrigger=0.01f;
+                }
+            }
+            //[_sprite getCCSprite].rotation = -30.0f + ((_angle + 180.0f) / (2.66667f));
+            if(!_stopCurve)
+            {
+            [_sprite getCCSprite].rotation =  (_angle + 360.0f);
+                _vx = _magnitude * cosf((_angle * 3.14159)/180.0f);
                 _vy = _magnitude * sinf((_angle * 3.14159)/180.0f);
             }
             
-        } else if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
-            _vx = -1 * _magnitude;
-            _angle = -90;
+        } else if ([self closeToPlayer:280]) {
+            //_vy = 1* _magnitude;
+            _vx =-1 * _magnitude;
+            _angle = -270;
+            if(_waitToTrigger<0)
+            {
+            _waitToTrigger=0.1f;
+            }
             //[_sprite getCCSprite].rotation = -30.0f;
         }
     }
@@ -816,13 +873,11 @@
     } 
     else if(_currentBehavior == COLLISION_BEHAVIOR_PAPERPLANE) {
         _currentBehavior = COLLISION_BEHAVIOR_PAPERPLANE;
-        _magnitude=200;
-        _angle=-180;
+    
     }
     else if(_currentBehavior == COLLISION_BEHAVIOR_BAT) {
         _currentBehavior = COLLISION_BEHAVIOR_BAT;
-        _magnitude=200;
-        _angle=-90;
+
     }
     else if(_currentBehavior == COLLISION_BEHAVIOR_UMBRELLA_FLY_ACROSS) {
         _currentBehavior = COLLISION_BEHAVIOR_UMBRELLA_FLY_ACROSS;
@@ -956,7 +1011,7 @@
         _collideBehavior = COLLISION_BEHAVIOR_BAT;
         _currentBehavior = COLLISION_BEHAVIOR_BAT;
         _magnitude = 200.0f;
-        _angle=-90;
+        _angle=-270;
     }
     else if([behavior isEqualToString:@"fades"]) {
         _collideBehavior = COLLISION_BEHAVIOR_FADES;
