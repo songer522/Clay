@@ -13,6 +13,7 @@
 #import "GameObject.h"
 #import "Sprite.h"
 #import "Animation.h"
+#import "Player.h"
 
 @implementation PlayerActionSlowTime
 
@@ -28,6 +29,7 @@
         [super startAction];        
         [self updateSlowdown:0.2f];
         _duration = 4.00f;
+        [_parent setPlayerAnimation:PLAYER_ANIM_SLOWTIME];
     }
 }
 

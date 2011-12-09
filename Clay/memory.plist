@@ -141,7 +141,7 @@
 		<key>sounds</key>
 		<string>none</string>
 		<key>textures</key>
-		<string>darkLevel,rainyLevel</string>
+		<string>darkLevel,rainyLevel,characterSlowTime</string>
 	</dict>
 	<key>mainMenu</key>
 	<dict>
