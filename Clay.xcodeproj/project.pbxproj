@@ -19,6 +19,7 @@
 		5411C2491458C7BD000C7D91 /* characterAnims-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5411C2451458C7BD000C7D91 /* characterAnims-hd.png */; };
 		5411C24A1458C7BD000C7D91 /* characterAnims.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5411C2461458C7BD000C7D91 /* characterAnims.plist */; };
 		5411C24B1458C7BD000C7D91 /* characterAnims-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5411C2471458C7BD000C7D91 /* characterAnims-hd.plist */; };
+		54125E3E149285D1007679C5 /* Calculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 54125E3D149285D1007679C5 /* Calculator.m */; };
 		54133A0114321CB300E433FC /* Craziness.wav in Resources */ = {isa = PBXBuildFile; fileRef = 541339F914321CB300E433FC /* Craziness.wav */; };
 		54133A0214321CB300E433FC /* Footstep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 541339FA14321CB300E433FC /* Footstep.wav */; };
 		54133A0314321CB300E433FC /* HurdleCollision.wav in Resources */ = {isa = PBXBuildFile; fileRef = 541339FB14321CB300E433FC /* HurdleCollision.wav */; };
@@ -473,6 +474,8 @@
 		5411C2451458C7BD000C7D91 /* characterAnims-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "characterAnims-hd.png"; sourceTree = "<group>"; };
 		5411C2461458C7BD000C7D91 /* characterAnims.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = characterAnims.plist; sourceTree = "<group>"; };
 		5411C2471458C7BD000C7D91 /* characterAnims-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "characterAnims-hd.plist"; sourceTree = "<group>"; };
+		54125E3C149285D0007679C5 /* Calculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Calculator.h; sourceTree = "<group>"; };
+		54125E3D149285D1007679C5 /* Calculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Calculator.m; sourceTree = "<group>"; };
 		541339F914321CB300E433FC /* Craziness.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Craziness.wav; path = Resources/sounds/Craziness.wav; sourceTree = "<group>"; };
 		541339FA14321CB300E433FC /* Footstep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Footstep.wav; path = Resources/sounds/Footstep.wav; sourceTree = "<group>"; };
 		541339FB14321CB300E433FC /* HurdleCollision.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = HurdleCollision.wav; path = Resources/sounds/HurdleCollision.wav; sourceTree = "<group>"; };
@@ -1999,6 +2002,8 @@
 			children = (
 				549E5DB414843CC6006D4CAE /* BestTimes.h */,
 				549E5DB514843CC6006D4CAE /* BestTimes.m */,
+				54125E3C149285D0007679C5 /* Calculator.h */,
+				54125E3D149285D1007679C5 /* Calculator.m */,
 				549ED7C71461D065008BCD98 /* GameController.h */,
 				549ED7C81461D065008BCD98 /* GameController.m */,
 				549ED7C91461D065008BCD98 /* GameObjectController.h */,
@@ -2786,6 +2791,7 @@
 				61DE5C051485869100D325CF /* Tutorial.m in Sources */,
 				54F6E4EE14882A78002D4C65 /* Lightning.m in Sources */,
 				54A1EF6C148D821C00A6ADF7 /* WaterLevelEffects.m in Sources */,
+				54125E3E149285D1007679C5 /* Calculator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
