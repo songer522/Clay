@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="1000" height="14" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="meta" tilewidth="32" tileheight="32">
-  <image source="meta.png" width="128" height="96"/>
+  <image source="meta-hd.png" width="256" height="192"/>
   <tile id="0">
    <properties>
     <property name="collision" value="full"/>
@@ -143,7 +143,7 @@
   </tile>
  </tileset>
  <tileset firstgid="93" name="Water" tilewidth="32" tileheight="32">
-  <image source="tileset_level_10.png" width="512" height="384"/>
+  <image source="tileset_level_10.png" width="1024" height="768"/>
  </tileset>
  <layer name="back-2" width="1000" height="14">
   <properties>

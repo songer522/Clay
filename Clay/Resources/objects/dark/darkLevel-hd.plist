@@ -4,13 +4,10 @@
 <dict>
 	<key>frames</key>
 	<dict>
-		
 		<key>Dark_Bat_1.png</key>
 		<dict>
 			<key>aliases</key>
-			<array>
-			
-			</array>
+			<array/>
 			<key>spriteColorRect</key>
 			<string>{{3, 2}, {71, 131}}</string>
 			<key>spriteOffset</key>
@@ -114,13 +111,10 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		
 		<key>Dark_Gargoyle_1.png</key>
 		<dict>
 			<key>aliases</key>
-			<array>
-			
-			</array>
+			<array/>
 			<key>spriteColorRect</key>
 			<string>{{12, 0}, {145, 158}}</string>
 			<key>spriteOffset</key>
@@ -136,13 +130,10 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		
 		<key>Dark_Spikes_1.png</key>
 		<dict>
 			<key>aliases</key>
-			<array>
-			
-			</array>
+			<array/>
 			<key>spriteColorRect</key>
 			<string>{{0, 0}, {93, 68}}</string>
 			<key>spriteOffset</key>
@@ -158,13 +149,10 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		
 		<key>Dark_Tim_1.png</key>
 		<dict>
 			<key>aliases</key>
-			<array>
-			
-			</array>
+			<array/>
 			<key>spriteColorRect</key>
 			<string>{{37, 14}, {165, 270}}</string>
 			<key>spriteOffset</key>
@@ -400,7 +388,6 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		
 	</dict>
 	<key>metadata</key>
 	<dict>

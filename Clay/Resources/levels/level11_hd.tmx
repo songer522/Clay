@@ -116,9 +116,74 @@
     <property name="obstacle" value="femaleBreakdancer"/>
    </properties>
   </tile>
+  <tile id="31">
+   <properties>
+    <property name="obstacle" value="darkBat"/>
+   </properties>
+  </tile>
+  <tile id="48">
+   <properties>
+    <property name="obstacle" value="darkShadow"/>
+   </properties>
+  </tile>
+  <tile id="49">
+   <properties>
+    <property name="obstacle" value="darkGargoyle"/>
+   </properties>
+  </tile>
+  <tile id="56">
+   <properties>
+    <property name="layerBelow" value="back-1"/>
+    <property name="object" value="rainyTreeA"/>
+   </properties>
+  </tile>
+  <tile id="57">
+   <properties>
+    <property name="layerBelow" value="back-1"/>
+    <property name="object" value="rainyTreeB"/>
+   </properties>
+  </tile>
+  <tile id="58">
+   <properties>
+    <property name="obstacle" value="rainyFrog"/>
+   </properties>
+  </tile>
+  <tile id="59">
+   <properties>
+    <property name="obstacle" value="rainyUmbrellaFlyUp"/>
+   </properties>
+  </tile>
+  <tile id="60">
+   <properties>
+    <property name="obstacle" value="rainyUmbrellaFlyAcross"/>
+   </properties>
+  </tile>
+  <tile id="63">
+   <properties>
+    <property name="duration" value="short"/>
+    <property name="special" value="wind"/>
+   </properties>
+  </tile>
+  <tile id="64">
+   <properties>
+    <property name="duration" value="medium"/>
+    <property name="special" value="wind"/>
+   </properties>
+  </tile>
+  <tile id="65">
+   <properties>
+    <property name="duration" value="long"/>
+    <property name="special" value="wind"/>
+   </properties>
+  </tile>
   <tile id="66">
    <properties>
     <property name="obstacle" value="rainySquirrel"/>
+   </properties>
+  </tile>
+  <tile id="69">
+   <properties>
+    <property name="obstacle" value="rainyPaperPlane"/>
    </properties>
   </tile>
  </tileset>
@@ -176,6 +241,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
+   eJztzkkNACAQA0AUEIRgAfzLwgEJ4dgHM982TVMCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAf9VJ1g9urXReb8+0S10AANhVog/AZ3L0AQAAAAAAAAAIMAAMHwGz
    eJztzjERADAIBDAU9OoM/25qgM4/kChIFQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADDpdAAAAPi66QAsc9IBAAAAAAAAAAh4BqkAbg==
   </data>
  </layer>

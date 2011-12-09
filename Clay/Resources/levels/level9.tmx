@@ -29,7 +29,7 @@
   </tile>
  </tileset>
  <tileset firstgid="13" name="Icons" tilewidth="32" tileheight="32">
-  <image source="TrackLapse_Icons-hd.png" width="320" height="128"/>
+  <image source="TrackLapse_Icons-hd.png" width="640" height="448"/>
   <tile id="0">
    <properties>
     <property name="obstacle" value="hurdle"/>
