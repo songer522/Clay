@@ -9,6 +9,8 @@
 #import "HudButton.h"
 #import "BaseClasses.h"
 #import "GameSettings.h"
+#import "PlayerActionFactory.h"
+
 #define HUD_LAYER_BUTTON_OPACITY 170
 #define HUD_LAYER_BUTTON_Y 29
 #define HUD_LAYER_JUMP_X 32
@@ -104,25 +106,7 @@
 
 -(void)createSpriteFromAction:(NSString*)action
 {
-    NSString *buttonImage;
-    if ([action isEqualToString:@"woo"]) {
-        buttonImage = @"UI_Button_Woo.png";
-    } else if([action isEqualToString:@"kick"]) {
-        buttonImage = @"UI_Button_Kicking.png";
-    } else if([action isEqualToString:@"dodge"]) {
-        buttonImage = @"UI_Button_Dodging.png";
-    } else if([action isEqualToString:@"shoot"]) {
-        buttonImage = @"UI_Button_Shooting.png";
-    } else if([action isEqualToString:@"block"]) {
-        buttonImage = @"UI_Button_Blocking.png";
-    } else if([action isEqualToString:@"blow"]) {
-        buttonImage = @"UI_Button_Blowing.png";
-    } else if([action isEqualToString:@"spin"]) {
-        buttonImage = @"UI_Button_Swimming.png";
-    } else if([action isEqualToString:@"slowtime"]) {
-        buttonImage = @"UI_Button_SlowTime.png";
-    }
-    
+    NSString *buttonImage = [PlayerActionFactory getButtonImageForAction:action];    
     [self createSpriteFromImage:buttonImage];
 }
 

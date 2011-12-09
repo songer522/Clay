@@ -145,7 +145,9 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
 {
     //if looping, then it's a ccrepeatforever. otherwise it isn't and we don't want to call this.
     if (_looping) {
-        [_animateAction changeSpeed:newSpeed];        
+        //[_animateAction changeSpeed:newSpeed];
+        CCRepeatForeverWithSpeed *_speed = (CCRepeatForeverWithSpeed*)_speedAction;
+        [_speed changeSpeed:newSpeed];
     }
 }
 

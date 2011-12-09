@@ -287,14 +287,14 @@
             if (!_isTripping && !_isDead) {
                 if (![_thirdAction isActive]) {
                     if ([_thirdAction shouldTriggerPlayerHurtCollision]) {
-                        [self private_StartPlayerCollision];  
+                        [self startPlayerCollision];  
                       
                     }
                 }
             }
         } else if (effect == PLAYER_EFFECT_COLLIDE) {
             if (!_isTripping && !_isDead) {
-                [self private_StartPlayerCollision];
+                [self startPlayerCollision];
             }
         } else if(effect == PLAYER_EFFECT_SLOWDOWN) {
             [_speed slowDown];
@@ -329,7 +329,7 @@
     _adjustX = xAmount;
 }
 
--(void)private_StartPlayerCollision
+-(void)startPlayerCollision
 {
     if(_speed.inTurbo)
     {
@@ -413,23 +413,7 @@
         _thirdAction = nil;
     }
     
-    if ([action compare:@"woo"] == NSOrderedSame) {
-        _thirdAction = (PlayerAction*)[PlayerActionFactory buildPlayerAction:PLAYER_ACTION_WOO];
-    } else if([action compare:@"kick"] == NSOrderedSame) {
-        _thirdAction = (PlayerAction*)[PlayerActionFactory buildPlayerAction:PLAYER_ACTION_KICK];
-    } else if([action isEqualToString:@"dodge"]) {
-        _thirdAction = (PlayerAction*)[PlayerActionFactory buildPlayerAction:PLAYER_ACTION_DODGE];
-    } else if([action isEqualToString:@"shoot"]) {
-        _thirdAction = (PlayerAction*)[PlayerActionFactory buildPlayerAction:PLAYER_ACTION_SHOOT];
-    } else if([action isEqualToString:@"block"]) {
-        _thirdAction = (PlayerAction*)[PlayerActionFactory buildPlayerAction:PLAYER_ACTION_BLOCK];
-    } else if([action isEqualToString:@"blow"]) {
-        _thirdAction = (PlayerAction*)[PlayerActionFactory buildPlayerAction:PLAYER_ACTION_BLOW];
-    } else if([action isEqualToString:@"spin"]) {
-        _thirdAction = (PlayerAction*)[PlayerActionFactory buildPlayerAction:PLAYER_ACTION_SPIN];
-    } else if([action isEqualToString:@"slowtime"]) {
-        _thirdAction = (PlayerAction*)[PlayerActionFactory buildPlayerAction:PLAYER_ACTION_SLOW_TIME];
-    }
+    _thirdAction = [PlayerActionFactory buildPlayerActionFromName:action];
     
     [_thirdAction setParent:self];
 }

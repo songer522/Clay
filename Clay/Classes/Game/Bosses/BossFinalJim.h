@@ -33,13 +33,6 @@
     float _waitToAttack;
 }
 
--(void)switchToPhase:(BossPhase)phase;
--(void)triggerAttack;
-
--(void)triggerGetCloser;
--(void)triggerFallBack;
-
 -(void)updateTransition:(float)dt;
--(void)endTransition;
 
 @end
