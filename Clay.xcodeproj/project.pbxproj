@@ -364,7 +364,6 @@
 		54C71D121486E06600A47565 /* tileset_level_9.png in Resources */ = {isa = PBXBuildFile; fileRef = 54C71D111486E06600A47565 /* tileset_level_9.png */; };
 		54C71D1E1486EA1800A47565 /* RainyLevelEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C71D1D1486EA1800A47565 /* RainyLevelEffects.m */; };
 		54C71D211486EED300A47565 /* Raindrop.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C71D201486EED200A47565 /* Raindrop.m */; };
-		54CA7A6A1471A5C6002B01AA /* memory.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54CA7A691471A5C6002B01AA /* memory.plist */; };
 		54CA7A701471B8B9002B01AA /* barnLevel-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54CA7A6C1471B8B9002B01AA /* barnLevel-hd.plist */; };
 		54CA7A711471B8B9002B01AA /* barnLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54CA7A6D1471B8B9002B01AA /* barnLevel-hd.png */; };
 		54CA7A721471B8B9002B01AA /* barnLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54CA7A6E1471B8B9002B01AA /* barnLevel.plist */; };
@@ -432,6 +431,7 @@
 		61A667B31487E33800FB0A80 /* townLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 61A667AF1487E33800FB0A80 /* townLevel.png */; };
 		61A9E198147D63C0008D2179 /* dummyLevel_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61A9E194147D63C0008D2179 /* dummyLevel_hd.tmx */; };
 		61A9E199147D63C0008D2179 /* dummyLevel.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61A9E195147D63C0008D2179 /* dummyLevel.tmx */; };
+		61D7BCFF14918C69002790E9 /* memory.plist in Resources */ = {isa = PBXBuildFile; fileRef = 61D7BCFE14918C69002790E9 /* memory.plist */; };
 		61D82FC314880C96000B54F0 /* level1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61D82FC014880C96000B54F0 /* level1.tmx */; };
 		61D82FC414880C96000B54F0 /* level2.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61D82FC114880C96000B54F0 /* level2.tmx */; };
 		61D82FC514880C96000B54F0 /* level3.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61D82FC214880C96000B54F0 /* level3.tmx */; };
@@ -1021,7 +1021,6 @@
 		54C71D1D1486EA1800A47565 /* RainyLevelEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RainyLevelEffects.m; sourceTree = "<group>"; };
 		54C71D1F1486EED200A47565 /* Raindrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Raindrop.h; sourceTree = "<group>"; };
 		54C71D201486EED200A47565 /* Raindrop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Raindrop.m; sourceTree = "<group>"; };
-		54CA7A691471A5C6002B01AA /* memory.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = memory.plist; sourceTree = "<group>"; };
 		54CA7A6C1471B8B9002B01AA /* barnLevel-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "barnLevel-hd.plist"; sourceTree = "<group>"; };
 		54CA7A6D1471B8B9002B01AA /* barnLevel-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "barnLevel-hd.png"; sourceTree = "<group>"; };
 		54CA7A6E1471B8B9002B01AA /* barnLevel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = barnLevel.plist; sourceTree = "<group>"; };
@@ -1095,6 +1094,7 @@
 		61A667AF1487E33800FB0A80 /* townLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = townLevel.png; sourceTree = "<group>"; };
 		61A9E194147D63C0008D2179 /* dummyLevel_hd.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = dummyLevel_hd.tmx; path = Resources/levels/dummyLevel_hd.tmx; sourceTree = "<group>"; };
 		61A9E195147D63C0008D2179 /* dummyLevel.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = dummyLevel.tmx; path = Resources/levels/dummyLevel.tmx; sourceTree = "<group>"; };
+		61D7BCFE14918C69002790E9 /* memory.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = memory.plist; path = Plists/memory.plist; sourceTree = "<group>"; };
 		61D82FC014880C96000B54F0 /* level1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level1.tmx; path = Resources/levels/level1.tmx; sourceTree = "<group>"; };
 		61D82FC114880C96000B54F0 /* level2.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level2.tmx; path = Resources/levels/level2.tmx; sourceTree = "<group>"; };
 		61D82FC214880C96000B54F0 /* level3.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level3.tmx; path = Resources/levels/level3.tmx; sourceTree = "<group>"; };
@@ -1191,11 +1191,11 @@
 		5416A1B414195B5500648B6A /* Plists */ = {
 			isa = PBXGroup;
 			children = (
+				61D7BCFE14918C69002790E9 /* memory.plist */,
 				549ED7551461CD62008BCD98 /* anims.plist */,
 				549ED7561461CD62008BCD98 /* comics.plist */,
 				549ED7571461CD62008BCD98 /* levels.plist */,
 				544DB1FC148416BE006F373E /* medals.plist */,
-				54CA7A691471A5C6002B01AA /* memory.plist */,
 				549ED7581461CD62008BCD98 /* music.plist */,
 				549ED7591461CD62008BCD98 /* objects.plist */,
 				549ED75A1461CD62008BCD98 /* player.plist */,
@@ -2463,7 +2463,6 @@
 				54A1B13F146C9C38005BA189 /* deflected.wav in Resources */,
 				54A1B141146C9D89005BA189 /* chooseSelection.wav in Resources */,
 				54A1B143146CA971005BA189 /* shuffling.wav in Resources */,
-				54CA7A6A1471A5C6002B01AA /* memory.plist in Resources */,
 				54CA7A701471B8B9002B01AA /* barnLevel-hd.plist in Resources */,
 				54CA7A711471B8B9002B01AA /* barnLevel-hd.png in Resources */,
 				54CA7A721471B8B9002B01AA /* barnLevel.plist in Resources */,
@@ -2590,6 +2589,7 @@
 				54A4B1D314918495006CDD44 /* characterSlowTime-hd.png in Resources */,
 				54A4B1D414918495006CDD44 /* characterSlowTime.plist in Resources */,
 				54A4B1D514918495006CDD44 /* characterSlowTime.png in Resources */,
+				61D7BCFF14918C69002790E9 /* memory.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

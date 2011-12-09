@@ -135,13 +135,13 @@
 	<key>level11</key>
 	<dict>
 		<key>removeTextures</key>
-		<string>tileset_level_11, </string>
+		<string>tileset_level_11</string>
 		<key>animations</key>
-		<string>level11,slowtime,level8</string>
+		<string>level11,slowtime,level9</string>
 		<key>sounds</key>
 		<string>none</string>
 		<key>textures</key>
-		<string>darkLevel,,fireLevel</string>
+		<string>darkLevel,rainyLevel,characterSlowTime</string>
 	</dict>
 	<key>mainMenu</key>
 	<dict>

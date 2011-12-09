@@ -566,26 +566,25 @@
     else if(_currentBehavior == COLLISION_BEHAVIOR_BAT)
     {
         _vx = 0.0f;
-        if ([self closeToPlayer:455]) {
-            _angle+=140.0f*dt;
-            if(_angle > -60.0f) {
-                _stopCurve=true;
-                _angle = - 60.0f;
+        if ([self closeToPlayer:275]) {
+            _angle+=200.0f*dt;
+            if(_angle > -150.0f) {
+                //_stopCurve=true;
+                _angle = - 150.0f;
                 
-                _vx = 0;
-                _vy=0;
+                //_vx = 0;
+                //_vy=0;
             }
             //[_sprite getCCSprite].rotation = -30.0f + ((_angle + 180.0f) / (2.66667f));
             if(!_stopCurve)
             {
                 _vx = _magnitude * cosf((_angle * 3.14159)/180.0f);
-                _vx = 1.5*_magnitude * sinf((_angle * 3.14159)/180.0f);
-                _vy = 1.5 * _magnitude;
+                _vy = _magnitude * sinf((_angle * 3.14159)/180.0f);
             }
             
         } else if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
             _vx = -1 * _magnitude;
-            _angle = -180;
+            _angle = -90;
             //[_sprite getCCSprite].rotation = -30.0f;
         }
     }
@@ -823,7 +822,7 @@
     else if(_currentBehavior == COLLISION_BEHAVIOR_BAT) {
         _currentBehavior = COLLISION_BEHAVIOR_BAT;
         _magnitude=200;
-        _angle=-180;
+        _angle=-90;
     }
     else if(_currentBehavior == COLLISION_BEHAVIOR_UMBRELLA_FLY_ACROSS) {
         _currentBehavior = COLLISION_BEHAVIOR_UMBRELLA_FLY_ACROSS;
@@ -957,7 +956,7 @@
         _collideBehavior = COLLISION_BEHAVIOR_BAT;
         _currentBehavior = COLLISION_BEHAVIOR_BAT;
         _magnitude = 200.0f;
-        _angle=180;
+        _angle=-90;
     }
     else if([behavior isEqualToString:@"fades"]) {
         _collideBehavior = COLLISION_BEHAVIOR_FADES;
