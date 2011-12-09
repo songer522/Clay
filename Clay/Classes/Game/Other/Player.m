@@ -324,11 +324,7 @@
     _inVaccuum = false;
     self.hasGravity = true;
     [_speed start];
-    if(_thirdAction.inAction) {
-        [_thirdAction setKilledEnemy:true];
     }
-    //[_skin restorePreviousAnimation];
-}
 
 //right now this is only called by the falling animation, sinc tim actually
 //moves forward in the graphic when he gets back up, so he should be in a different position
