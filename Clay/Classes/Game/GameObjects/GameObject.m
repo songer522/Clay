@@ -556,7 +556,7 @@
                 _vy = -1*_magnitude * sinf((_angle * 3.14159)/180.0f);
             }
             
-        } else if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+        }else if  ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
             _vx = -1 * _magnitude;
             _angle = -180;
             //[_sprite getCCSprite].rotation = -30.0f;
@@ -606,7 +606,7 @@
         }
     }
     */
-    
+    /*
     else if(_currentBehavior == COLLISION_BEHAVIOR_BAT)
     {
         _vx = 0.0f;
@@ -621,6 +621,14 @@
                 
                 _vx =0;
                 _vy=0;
+                    if(![self.originalAnimation isEqualToString:@"batLand"])
+                    {
+                        //[[SoundEngine shared] playSound:@"maddogBark"];
+                        [self setOriginalAnimation:@"batLand"];
+                        [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"batLand"];
+                        //[self setBoundingBox:CGRectMake(-10, 0, 25, 60)];
+                    }
+
                 }
                 else
                 {
@@ -630,7 +638,15 @@
             //[_sprite getCCSprite].rotation = -30.0f + ((_angle + 180.0f) / (2.66667f));
             if(!_stopCurve)
             {
-            [_sprite getCCSprite].rotation =  (_angle + 360.0f);
+            //[_sprite getCCSprite].rotation =  (_angle + 360.0f);
+                if(![self.originalAnimation isEqualToString:@"batFlying"])
+                {
+                    //[[SoundEngine shared] playSound:@"maddogBark"];
+                    [self setOriginalAnimation:@"batFlying"];
+                    [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"batFlying"];
+                    //[self setBoundingBox:CGRectMake(-10, 0, 25, 60)];
+                }
+
                 _vx = _magnitude * cosf((_angle * 3.14159)/180.0f);
                 _vy = _magnitude * sinf((_angle * 3.14159)/180.0f);
             }
@@ -639,17 +655,34 @@
             //_vy = 1* _magnitude;
             _vx =-1 * _magnitude;
             _angle = -270;
+            if(![self.originalAnimation isEqualToString:@"batFalling"])
+            {
+                //[[SoundEngine shared] playSound:@"maddogBark"];
+                [self setOriginalAnimation:@"batFalling"];
+                [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"batFalling"];
+                //[self setBoundingBox:CGRectMake(-10, 0, 25, 60)];
+            }
+
             if(_waitToTrigger<0)
             {
+                
             _waitToTrigger=0.1f;
             }
             //[_sprite getCCSprite].rotation = -30.0f;
         }
     }
+    */
     
-    
-    
-    
+    else if(_currentBehavior == COLLISION_BEHAVIOR_BAT)
+    {
+        if  ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN])
+        {
+            _angle+=200*dt;
+            _magnitude=300;
+            _vx = -0.1*_magnitude;
+        _vy =1*_magnitude * cosf((_angle * 3.14159)/180.0f);
+        }
+    }
     
     else if(_currentBehavior == COLLISION_BEHAVIOR_RAINY_SQUIRREL) {
         if (_reloading >=0.0f)
@@ -920,7 +953,9 @@
     }
     else if(_currentBehavior == COLLISION_BEHAVIOR_BAT) {
         _currentBehavior = COLLISION_BEHAVIOR_BAT;
-
+        _angle=-180;
+       // [self setOriginalAnimation:@"batHanging"];
+        //[[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"batHanging"];
     }
     else if(_currentBehavior == COLLISION_BEHAVIOR_UMBRELLA_FLY_ACROSS) {
         _currentBehavior = COLLISION_BEHAVIOR_UMBRELLA_FLY_ACROSS;
@@ -1064,7 +1099,7 @@
         _collideBehavior = COLLISION_BEHAVIOR_BAT;
         _currentBehavior = COLLISION_BEHAVIOR_BAT;
         _magnitude = 200.0f;
-        _angle=-270;
+        _angle=180;
     }
     else if([behavior isEqualToString:@"fades"]) {
         _collideBehavior = COLLISION_BEHAVIOR_FADES;

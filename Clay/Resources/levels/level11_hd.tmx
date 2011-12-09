@@ -122,6 +122,11 @@
     <property name="obstacle" value="darkBat"/>
    </properties>
   </tile>
+  <tile id="37">
+   <properties>
+    <property name="obstacle" value="darkBatStatic"/>
+   </properties>
+  </tile>
   <tile id="48">
    <properties>
     <property name="obstacle" value="darkGargoyle"/>
@@ -135,6 +140,16 @@
   <tile id="77">
    <properties>
     <property name="obstacle" value="darkSpikes"/>
+   </properties>
+  </tile>
+  <tile id="78">
+   <properties>
+    <property name="obstacle" value="darkBat"/>
+   </properties>
+  </tile>
+  <tile id="79">
+   <properties>
+    <property name="obstacle" value="darkSmallObstacle"/>
    </properties>
   </tile>
  </tileset>
@@ -165,7 +180,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt0jEOwyAMQFFo2gM0yQHa5v53jJcssAGqkPKe5OF7sBhICQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAuDxySkvMM+aV27vc994b3bO/T2uttdZaa1033Mk7/vwas8Xsub3Lfe+90T37+7TWWmuttdZ1w5184s9/Y34xR27vct97b3TP/j6ttdZaa6113QAAAADwTydoL7mP
+   eJzt0jkOwjAQQFGb5QCsNRC4/xWZFDQmlR1ZlvKeNMWfwprCKQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD+7nNI+5hBzzPVd7lvfW7tHv09rrbXWWmv937Alp/jz55hLzDXXd7lvfW/tHv0+ree+Lcx9oPu01lprrXs3bMkj/vwz5hUz5fou963vrd2j36f13O+F+Qx0n9Zaa6117wYAAACAnr5lCrmz
   </data>
  </layer>
  <layer name="ledges" width="1000" height="14">
@@ -174,7 +189,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1ckJBCEQBVAngFkCmCWAWfIPbzwLDU1TYonvQV3LryVaCgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADA2s6nUi61rrVup5w9Z8h4tG9kjl57wtmuLPvss+QbmaNdO8uZtLLm2tLzfxo5swxziMowy90HYL97fb8ftZ61XkFveXTPGTIe7RuZo9eecLYryz77LPlG5mjXznImray5tvT8n0bOLMMcojLMcvcB2O9d3+9PrW+tX9BbHt1zhoxH+0bm6LUnnO3Kss8+S76ROdq1s5xJK2uuLT3/p5EzyzCHqAyz3H0AAAAAAAAAAJjVH/clH3U=
+   eJzt18kNgDAQBEE7AI4AOAIAk394DBHwtARVUv/3t5pSAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAx1BLGdOU5tr7GgAAAPinJZt8TVva7XMAAADo4sgmP1NLl30OwIc1fw4AAAAAAAAAAHhxA2LHAZ0=
   </data>
  </layer>
  <layer name="front-1" width="1000" height="14">
@@ -183,7 +198,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt17kNgFAMREH/nrhyrv47YjsgQeKakV7gzHLmKgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPiWrlX1aUhjmtrdGwEAAMD/zP7xyyy55Zq2tLfz+Yk7AgAAAAAAALzRAd1uBto=
+   eJzt17kNACAQA8GjJ76c/nviukDAjLS5U0cAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAW2qJaFnPRjbL6UUAAADwn+WPAwAAAAAAAHC5DSHzAVg=
   </data>
  </layer>
  <layer name="front-2" width="1000" height="14">
@@ -201,7 +216,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztzgENAAAIAyATOPunNcbnhARUAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwC2TDsAznQ4AAAAAAAAAQMACudwAHw==
+   eJzt0bERgCAMBVAmUGexdxF1/zlsrGyQxJOC9+5o4HIJP6UAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAmNb7ZB3B3tHapy1Y1/r3s/G+9lazJ2ojuWZ38WUO0Z2+lck2Yv65HwAwhqX3ADCYqfcAAAAAAAAAANDBBW1MBVw=
   </data>
  </layer>
  <layer name="meta" width="1000" height="14" opacity="0.66">
@@ -210,7 +225,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1TEOgCAMQFEcvP+VXZxIHCCQtvhe8lesgLE1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAePdb5jUrzDi77so5dr0T9vbPsp99lvki5+ifnWVPelnn+rLz/xR5ZhnOYdUMVe4+AAAAADDukiRJkqSiwUmivydJkiRJmg1O8gDNywdF
+   eJzt0yEOACAQA8FD8P8vY0hQ6F4uM8n6mlYBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAH/sGAAAAAAAA5CxJbfpJ75IkSeoaTJL+k6TXT3qXJElS12CSA2jlBmc=
   </data>
  </layer>
 </map>
