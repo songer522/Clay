@@ -136,17 +136,17 @@ typedef enum {
 
 -(void)dieIfFallenIntoPit;
 
--(void)private_StartPlayerCollision;
+-(void)startPlayerCollision;
 
 -(void)pushAfterAnimation:(float)xAmount;
 
--(void)updatePitFalling:(float)dt;
--(void)updateSlow:(float)dt;
 -(void)updateInvulnerable:(float)dt;
--(void)updateTurbo:(float)dt;
 -(void)updateLedge:(float)dt;
+-(void)updatePitFalling:(float)dt;
 -(void)updatePlayerPosition:(float)dt Level:(Level*)level;
 -(void)updateSkin:(SkinType)skin;
+-(void)updateSlow:(float)dt;
+-(void)updateTurbo:(float)dt;
 
 -(void)startVaccuum;
 -(void)endVaccuum;

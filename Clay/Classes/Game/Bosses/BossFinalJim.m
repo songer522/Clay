@@ -10,6 +10,7 @@
 #import "LevelManager.h"
 #import "Sprite.h"
 #import "Level.h"
+#import "Animation.h"
 #import "AnimationController.h"
 #import "Camera.h"
 #import "Calculator.h"
@@ -17,13 +18,25 @@
 //IPAD FIX: the shadow's feet should be in line with tim's feet in the y position, and the shadow should follow behind tim at three different positions, as well as be completely offscreen, at different points.
 #define SHADOW_YPOS 133.0f
 #define SHADOW_XPOS_OFFSCREEN -50.0f
-#define SHADOW_XPOS_FAR 5.0f
-#define SHADOW_XPOS_MIDDLE 20.0f
-#define SHADOW_XPOS_CLOSE 30.0f
+#define SHADOW_XPOS_FAR 15.0f
+#define SHADOW_XPOS_MIDDLE 45.0f
+#define SHADOW_XPOS_CLOSE 75.0f
 #define SHADOW_TRANSITION_SPEED_SLOW 10.0f
 #define SHADOW_TRANSITION_SPEED_FAST 20.0f
 
 @implementation BossFinalJim
+
+
+-(void)changeAnimationSpeed:(float)modifier
+{
+    [[_sprite getAnimation] changeAnimationSpeed:modifier];
+}
+
+-(void)setSprite:(Sprite *)sprite
+{
+    _sprite = sprite;
+    [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"darkShadowTimAnim"];
+}
 
 -(void)startBoss
 {
@@ -44,11 +57,6 @@
     [[Camera sharedCamera] setCenter:CGPointMake(125.0f,22.0f)];
 }
 
--(void)setSprite:(Sprite *)sprite
-{
-    _sprite = sprite;
-    [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"darkShadowTimAnim"];
-}
 
 -(void)switchToPhase:(BossPhase)phase
 {
@@ -91,16 +99,35 @@
 
 -(void)triggerAttack
 {
-}
-
--(void)triggerGetCloser
-{
     
 }
 
 -(void)triggerFallBack
 {
-    
+    switch (_phase) {
+        case BOSS_PHASE_CHASE_MIDDLE:
+            [self switchToPhase:BOSS_PHASE_CHASE_FAR];
+            break;
+        case BOSS_PHASE_CHASE_CLOSE:
+            [self switchToPhase:BOSS_PHASE_CHASE_MIDDLE];
+            break;
+        default:
+            break;
+    }
+}
+
+-(void)triggerGetCloser
+{
+    switch (_phase) {
+        case BOSS_PHASE_CHASE_FAR:
+            [self switchToPhase:BOSS_PHASE_CHASE_MIDDLE];
+            break;
+        case BOSS_PHASE_CHASE_MIDDLE:
+            [self switchToPhase:BOSS_PHASE_CHASE_CLOSE];
+            break;
+        default:
+            break;
+    }
 }
 
 -(void)update:(float)dt
@@ -134,11 +161,6 @@
     if (_xPos == _targetXPos) {
         _isTransitioning = false;
     }
-}
-
--(void)endTransition
-{
-    
 }
 
 -(void)reset

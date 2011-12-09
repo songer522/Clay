@@ -18,11 +18,11 @@
 
 
 typedef enum {
-    BOSS_PHASE_NOT_TRIGGERED,
-    BOSS_PHASE_CHASE_FAR,
-    BOSS_PHASE_CHASE_MIDDLE,
-    BOSS_PHASE_CHASE_CLOSE,
-    BOSS_PHASE_CHASE_INIT
+    BOSS_PHASE_NOT_TRIGGERED = 0,
+    BOSS_PHASE_CHASE_INIT = 1,
+    BOSS_PHASE_CHASE_FAR = 2,
+    BOSS_PHASE_CHASE_MIDDLE = 3,
+    BOSS_PHASE_CHASE_CLOSE = 4
 } BossPhase;
 
 @class Sprite;
@@ -37,10 +37,13 @@ typedef enum {
 
 +(id)instance;
 
--(void)startBoss;
+-(void)changeAnimationSpeed:(float)modifier;
 -(void)update:(float)dt;
+-(void)reset;
 -(void)setSprite:(Sprite*)sprite;
+-(void)startBoss;
 -(void)switchToPhase:(BossPhase)phase;
 -(void)triggerAttack;
--(void)reset;
+-(void)triggerFallBack;
+-(void)triggerGetCloser;
 @end

@@ -69,6 +69,7 @@
 -(void)setupHud;
 -(HudLayer*)getHud;
 -(void)setBoss:(Boss*)boss;
+-(Boss*)getBoss;
 -(void)unpause;
 
 -(void)startLevel:(NSString*)levelName;

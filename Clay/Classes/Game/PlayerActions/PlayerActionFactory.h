@@ -28,4 +28,8 @@ typedef enum {
 
 +(id<PlayerActionProtocol>)buildPlayerAction:(PlayerActionType)type;
 
++(PlayerAction*)buildPlayerActionFromName:(NSString*)name;
+
++(NSString*)getButtonImageForAction:(NSString*)action;
+
 @end

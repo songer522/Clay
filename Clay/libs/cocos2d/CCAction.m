@@ -408,6 +408,10 @@
 
 -(void) step:(ccTime) dt
 {
+    if (speed < 1.0f) {
+        NSLog(@"CCRepeatForeverWithSpeed - speed: %.2f",speed);
+    }
+    
     [other step: dt * speed];
 	if( [other isDone] ) {
 		ccTime diff = dt + other.duration - other.elapsed;

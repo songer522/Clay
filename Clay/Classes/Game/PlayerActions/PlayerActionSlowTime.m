@@ -15,6 +15,9 @@
 #import "Animation.h"
 #import "Player.h"
 #import "RunningSpeed.h"
+#import "GameLayer.h"
+#import "LayerManager.h"
+#import "BossFinalJim.h"
 
 
 @implementation PlayerActionSlowTime
@@ -23,6 +26,9 @@
 {
     _cooldown = 0.0f;
     _cooldownStart = 0.4f;
+    
+    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+    _boss = [gameLayer getBoss];
 }
 
 -(void)startAction
@@ -38,6 +44,8 @@
         [[_parent getSpeed] startBlow];
         [[_parent getSpeed] stop];
         [[_parent getSpeed] setVelocityModifier:0.8f];
+        
+        [_boss triggerGetCloser];
     }
 }
 
@@ -89,6 +97,8 @@
         }
         
     }
+    
+    [_boss changeAnimationSpeed:animModifier];
 }
 
 -(bool)canStartInMidAir
@@ -97,6 +107,11 @@
 }
 
 -(bool) playerAllowedToJump
+{
+    return true;
+}
+
+-(bool) playerAllowedToSprint
 {
     return true;
 }
