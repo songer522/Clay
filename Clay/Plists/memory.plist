@@ -137,11 +137,11 @@
 		<key>removeTextures</key>
 		<string>tileset_level_11</string>
 		<key>animations</key>
-		<string>level11,slowtime,level8</string>
+		<string>level11,slowtime</string>
 		<key>sounds</key>
 		<string>none</string>
 		<key>textures</key>
-		<string>darkLevel,fireLevel,characterSlowTime</string>
+		<string>darkLevel,characterSlowTime</string>
 	</dict>
 	<key>mainMenu</key>
 	<dict>

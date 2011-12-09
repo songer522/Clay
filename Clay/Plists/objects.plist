@@ -889,7 +889,7 @@
 			<integer>0</integer>
 		</dict>
 		<key>animationName</key>
-		<string>fireDemonAnim</string>
+		<string>gargoyleSit</string>
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>

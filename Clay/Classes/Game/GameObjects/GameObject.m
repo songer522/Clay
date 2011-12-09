@@ -688,20 +688,28 @@
             _hasAppeared=false;
         }
 
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_SEAHORSE) {
-        if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_DARK_SPIKES) {
+        if (_waitToTrigger>0) {
+            _waitToTrigger-=dt;
+            if(_waitToTrigger <= 0)
+            {
             _vy *= 0.955f;
             if (ABS(_vy) <= 0.1f) {
-                if (_direction == 1) {
-                    _direction = -1;
-                    _vy = -430.0f;
-                    [[SoundEngine shared] playSound:@"waterSeaHorse"];
-                } else {
+                if (_direction == -1) {
                     _direction = 1;
                     _vy = 430.0f;
                     [[SoundEngine shared] playSound:@"waterSeaHorse"];
+                } else {
+                    _direction = -1;
+                    _vy = -430.0f;
+                    [[SoundEngine shared] playSound:@"waterSeaHorse"];
                 }
             }
+            }
+        }
+        else if([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN])
+        {
+            _waitToTrigger=1.0f;
         }
     }
     
@@ -711,11 +719,11 @@
             _waitToTrigger -= dt;
             
             if(_waitToTrigger <= 0){
-            if(![self.originalAnimation isEqualToString:@"fireDemonWithArmorWalking"])
+            if(![self.originalAnimation isEqualToString:@"gargoyleStand"])
             {
                 //[[SoundEngine shared] playSound:@"maddogBark"];
-                [self setOriginalAnimation:@"fireDemonWithArmorWalking"];
-                [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"fireDemonWithArmorWalking"];
+                [self setOriginalAnimation:@"gargoyleStand"];
+                [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"gargoyleStand"];
                 [self setBoundingBox:CGRectMake(-10, 0, 25, 60)];
             }
             }
@@ -730,6 +738,22 @@
                 _waitToTrigger=2.0f;
             }
             //[_sprite getCCSprite].rotation = -30.0f;
+        }
+    }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_SEAHORSE) {
+        if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+            _vy *= 0.955f;
+            if (ABS(_vy) <= 0.1f) {
+                if (_direction == 1) {
+                    _direction = -1;
+                    _vy = -430.0f;
+                    [[SoundEngine shared] playSound:@"waterSeaHorse"];
+                } else {
+                    _direction = 1;
+                    _vy = 430.0f;
+                    [[SoundEngine shared] playSound:@"waterSeaHorse"];
+                }
+            }
         }
     }
 
@@ -855,8 +879,8 @@
         
         _currentBehavior = COLLISION_BEHAVIOR_GARGOYLE;
         
-        [self setOriginalAnimation:@"fireDemonAnim"];
-        [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"fireDemonAnim"];
+        [self setOriginalAnimation:@"gargoyleSit"];
+        [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"gargoyleSit"];
         [self setBoundingBox:CGRectMake(-10, 0, 20, 25)];
     }
 
@@ -911,7 +935,11 @@
         _direction = 1;
     } else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_PUFFERFISH) {
         _currentBehavior = COLLISION_BEHAVIOR_WATER_PUFFERFISH;
-    } else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_SLOW) {
+    }else if(_currentBehavior == COLLISION_BEHAVIOR_DARK_SPIKES) {
+        _currentBehavior = COLLISION_BEHAVIOR_DARK_SPIKES;
+        _direction = -1;
+    } 
+    else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_SLOW) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;     
     }
     _collided = false;
@@ -1045,6 +1073,7 @@
     } else if([behavior isEqualToString:@"spikes"]){
         _currentBehavior = COLLISION_BEHAVIOR_DARK_SPIKES;
         _collideBehavior = COLLISION_BEHAVIOR_DARK_SPIKES;
+        _direction=-1;
     }
 
 
