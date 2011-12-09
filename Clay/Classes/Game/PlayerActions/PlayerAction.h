@@ -52,5 +52,6 @@
 -(void) enableAction; //called when action can be called again
 
 -(bool) playerAllowedToJump;
+-(bool) playerAllowedToSprint;
 
 @end

@@ -43,11 +43,6 @@
     
     NSUInteger idx = t * _speed * numberOfFrames;
     
-    /*
-    if (_speed < 1.0f) {
-        NSLog(@"index: %d, speed: %.2f, time: %.3f",idx,_speed,t);        
-    }*/
-    
     if (idx >= numberOfFrames) {
         idx = numberOfFrames - 1;
     }

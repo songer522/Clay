@@ -111,6 +111,11 @@
     return true;
 }
 
+-(bool) playerAllowedToSprint
+{
+    return true;
+}
+
 -(void)dealloc
 {
     [super dealloc];

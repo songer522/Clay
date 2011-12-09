@@ -159,6 +159,11 @@
     return false;
 }
 
+-(bool) playerAllowedToSprint
+{
+    return false;
+}
+
 -(void)dealloc
 {
     _parent = nil;

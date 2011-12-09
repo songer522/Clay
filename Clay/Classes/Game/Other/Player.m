@@ -153,7 +153,7 @@
 {
     //guard
     //if ay is too high, it 
-    if (_isTripping || _isDead || [_thirdAction inAction]) { return; }
+    if (_isTripping || _isDead || ([_thirdAction inAction] && ![_thirdAction playerAllowedToJump])) { return; }
     self.hasGravity = false;
     _firstFrameJumping = true;
     _isHighJump = false;
@@ -215,8 +215,8 @@
 -(void)startTurbo
 {
     //guard
-    if (_isTripping || _isDead || [_thirdAction inAction] || _isInMidAir || _waitToGetUp > 0.f) { return; }
-
+    if (_isTripping || _isDead || _isInMidAir || _waitToGetUp > 0.f) { return; }
+    if ([_thirdAction inAction] && ![_thirdAction playerAllowedToSprint]) { return; }
     
     if (_hitPoints > 1) {
         

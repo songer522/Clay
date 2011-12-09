@@ -18,9 +18,9 @@
 //IPAD FIX: the shadow's feet should be in line with tim's feet in the y position, and the shadow should follow behind tim at three different positions, as well as be completely offscreen, at different points.
 #define SHADOW_YPOS 133.0f
 #define SHADOW_XPOS_OFFSCREEN -50.0f
-#define SHADOW_XPOS_FAR 5.0f
-#define SHADOW_XPOS_MIDDLE 20.0f
-#define SHADOW_XPOS_CLOSE 30.0f
+#define SHADOW_XPOS_FAR 15.0f
+#define SHADOW_XPOS_MIDDLE 45.0f
+#define SHADOW_XPOS_CLOSE 75.0f
 #define SHADOW_TRANSITION_SPEED_SLOW 10.0f
 #define SHADOW_TRANSITION_SPEED_FAST 20.0f
 
