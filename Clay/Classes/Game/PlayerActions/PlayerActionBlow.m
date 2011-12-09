@@ -44,7 +44,7 @@
 
         _duration = 0.78f;
         _startedWindAnimation = false;
-        
+
         [[_parent getSpeed] startBlow];
         [[_parent getSpeed] stop];
     }

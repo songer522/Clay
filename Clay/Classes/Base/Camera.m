@@ -103,6 +103,16 @@ static Camera *_sharedCamera = nil;
     _center = point;
 }
 
+-(void)setDefaultCenter:(CGPoint)point
+{
+    _defaultCenter = point;
+}
+
+-(void)restoreDefaultCenter:(CGPoint)point
+{
+    _center = _defaultCenter;
+}
+
 -(void)moveByX:(float)x Y:(float)y
 {
     _x += x;

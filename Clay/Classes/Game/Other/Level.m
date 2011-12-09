@@ -309,7 +309,6 @@
                     [[object getCCSprite] setScale:_scale];
                     MapObject *mapObject = [MapObject mapObjectWithSprite:object AboveLayer:@"main0"];
                     [_otherMapObjects addObject:mapObject];
-                    
                 } else if([special compare:@"spawnpoint"] == NSOrderedSame) {
                     _spawnPoint = [self getXYPositionForCoordinates:CGPointMake(i, j)];
                 } else if([special compare:@"jimAppearance1"] == NSOrderedSame) {
@@ -320,6 +319,12 @@
                     [jim getCCSprite].scale = 0.75f;
                     MapObject *mapObject = [MapObject mapObjectWithSprite:jim AboveLayer:layerBelow];
                     [_otherMapObjects addObject:mapObject];
+                } else if([special isEqualToString:@"finalBossSpawn"]) {
+                    Trigger *trigger = [[Trigger alloc] init];
+                    trigger.position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
+                    trigger.type = TRIGGER_BOSS_FINALJIM_SPAWN;
+                    trigger.canBeReset = true;
+                    [_triggers addObject:trigger];
                 } else if([special isEqualToString:@"shootTrigger"]) {
                     Trigger *trigger = [[Trigger alloc] init];
                     trigger.position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
@@ -375,6 +380,8 @@
 
                 
                 if ([objectName isEqualToString:@"jimSpaceShip"]) {
+                    [[LevelManager shared] receiveBoss:[object getBoss]];
+                } else if([objectName isEqualToString:@"finalJimBoss"]) {
                     [[LevelManager shared] receiveBoss:[object getBoss]];
                 }
                 

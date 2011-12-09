@@ -61,6 +61,7 @@
         int cameraX = [[cameraTracking objectForKey:@"x"] intValue];
         int cameraY = [[cameraTracking objectForKey:@"y"] intValue];
         [[Camera sharedCamera] setCenter:CGPointMake(cameraX, cameraY)];
+        [[Camera sharedCamera] setDefaultCenter:CGPointMake(cameraX, cameraY)];
         
         GameObjectController *factory = [LevelManager shared].gameObjectFactory;
         [factory initializeGameObject:self Name:@"player" AddToLayer:YES];

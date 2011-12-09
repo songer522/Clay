@@ -16,7 +16,8 @@ typedef enum {
     TRIGGER_BOSS_SHOOT,
     TRIGGER_WIND_SHORT,
     TRIGGER_WIND_MEDIUM,
-    TRIGGER_WIND_LONG
+    TRIGGER_WIND_LONG,
+    TRIGGER_BOSS_FINALJIM_SPAWN
 }TriggerType;
 
 @interface Trigger : NSObject

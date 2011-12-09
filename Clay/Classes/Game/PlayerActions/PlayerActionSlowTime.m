@@ -14,6 +14,8 @@
 #import "Sprite.h"
 #import "Animation.h"
 #import "Player.h"
+#import "RunningSpeed.h"
+
 
 @implementation PlayerActionSlowTime
 
@@ -26,10 +28,16 @@
 -(void)startAction
 {
     if (!_inAction && _canTrigger) {
+        
         [super startAction];        
+        [_parent endTurbo];
+        
         [self updateSlowdown:0.2f];
-        _duration = 4.00f;
+        _duration = 1.00f;
         [_parent setPlayerAnimation:PLAYER_ANIM_SLOWTIME];
+        [[_parent getSpeed] startBlow];
+        [[_parent getSpeed] stop];
+
     }
 }
 

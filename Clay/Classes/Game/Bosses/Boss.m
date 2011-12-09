@@ -44,6 +44,11 @@
     
 }
 
+-(void)switchToPhase:(BossPhase)phase
+{
+    
+}
+
 -(void)triggerAttack
 {
     
