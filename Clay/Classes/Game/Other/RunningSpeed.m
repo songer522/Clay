@@ -39,6 +39,7 @@
         _turboAccelerationMax = 2.0f;
         _turboVelocityMax = 2.0f;
         _turboDuration = 3.0f;
+        _velocityModifier = 1.0f;
         _isStopped = false;
         [self reset];
     }

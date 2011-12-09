@@ -40,6 +40,8 @@
     float _turboDuration;
     float _turboVelocityMax;
     
+    float _velocityModifier;
+    
     bool _isSlowedDown;
     bool _isUnderwater;
     bool _atMax;

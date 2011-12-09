@@ -120,7 +120,7 @@
     } else if([action isEqualToString:@"spin"]) {
         buttonImage = @"UI_Button_Swimming.png";
     } else if([action isEqualToString:@"slowtime"]) {
-        buttonImage = @"UI_Button_Blowing.png";
+        buttonImage = @"UI_Button_SlowTime.png";
     }
     
     [self createSpriteFromImage:buttonImage];
