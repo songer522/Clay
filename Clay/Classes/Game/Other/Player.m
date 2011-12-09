@@ -171,9 +171,11 @@
 
 -(void)startDoubleJump
 {
-    if (_isTripping || _isDead || [_thirdAction inAction] || [_sprite getPosition].y <= 62) { 
-        
+    if (_isTripping || _isDead || [_sprite getPosition].y <= 62) { 
+    
         return; }
+    if([_thirdAction inAction] && ![_thirdAction playerAllowedToJump]) { return; }
+    
     self.hasGravity = true;
     
     _vy = -250.0f;

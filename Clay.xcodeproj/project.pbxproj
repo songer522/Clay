@@ -365,6 +365,7 @@
 		54C71D121486E06600A47565 /* tileset_level_9.png in Resources */ = {isa = PBXBuildFile; fileRef = 54C71D111486E06600A47565 /* tileset_level_9.png */; };
 		54C71D1E1486EA1800A47565 /* RainyLevelEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C71D1D1486EA1800A47565 /* RainyLevelEffects.m */; };
 		54C71D211486EED300A47565 /* Raindrop.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C71D201486EED200A47565 /* Raindrop.m */; };
+		54C944BA1492BD4400CE2AA3 /* darkness_boss.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 54C944B91492BD4400CE2AA3 /* darkness_boss.mp3 */; };
 		54CA7A701471B8B9002B01AA /* barnLevel-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54CA7A6C1471B8B9002B01AA /* barnLevel-hd.plist */; };
 		54CA7A711471B8B9002B01AA /* barnLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54CA7A6D1471B8B9002B01AA /* barnLevel-hd.png */; };
 		54CA7A721471B8B9002B01AA /* barnLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54CA7A6E1471B8B9002B01AA /* barnLevel.plist */; };
@@ -1024,6 +1025,7 @@
 		54C71D1D1486EA1800A47565 /* RainyLevelEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RainyLevelEffects.m; sourceTree = "<group>"; };
 		54C71D1F1486EED200A47565 /* Raindrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Raindrop.h; sourceTree = "<group>"; };
 		54C71D201486EED200A47565 /* Raindrop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Raindrop.m; sourceTree = "<group>"; };
+		54C944B91492BD4400CE2AA3 /* darkness_boss.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = darkness_boss.mp3; path = Resources/music/darkness_boss.mp3; sourceTree = "<group>"; };
 		54CA7A6C1471B8B9002B01AA /* barnLevel-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "barnLevel-hd.plist"; sourceTree = "<group>"; };
 		54CA7A6D1471B8B9002B01AA /* barnLevel-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "barnLevel-hd.png"; sourceTree = "<group>"; };
 		54CA7A6E1471B8B9002B01AA /* barnLevel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = barnLevel.plist; sourceTree = "<group>"; };
@@ -1173,6 +1175,7 @@
 		54133A0D143231AF00E433FC /* music */ = {
 			isa = PBXGroup;
 			children = (
+				54C944B91492BD4400CE2AA3 /* darkness_boss.mp3 */,
 				54C71CFA1486BC2800A47565 /* underwater.mp3 */,
 				54C71CF31486BAC500A47565 /* credits.mp3 */,
 				54C71CF41486BAC500A47565 /* cutscene.mp3 */,
@@ -2595,6 +2598,7 @@
 				54A4B1D414918495006CDD44 /* characterSlowTime.plist in Resources */,
 				54A4B1D514918495006CDD44 /* characterSlowTime.png in Resources */,
 				61D7BCFF14918C69002790E9 /* memory.plist in Resources */,
+				54C944BA1492BD4400CE2AA3 /* darkness_boss.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,6 +14,7 @@
 #import "AnimationController.h"
 #import "Camera.h"
 #import "Calculator.h"
+#import "SoundEngine.h"
 
 //IPAD FIX: the shadow's feet should be in line with tim's feet in the y position, and the shadow should follow behind tim at three different positions, as well as be completely offscreen, at different points.
 #define SHADOW_YPOS 133.0f
@@ -91,6 +92,7 @@
             _targetXPos = SHADOW_XPOS_FAR;
             _isTransitioning = true;
             _isActive = true;
+            [[SoundEngine shared] playMusic:@"darknessBoss"];
             break;
         default:
             break;
