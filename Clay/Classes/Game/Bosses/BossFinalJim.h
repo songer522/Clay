@@ -29,6 +29,8 @@ typedef enum {
 
     bool _firstUpdate;
     
+    float _xPosition;
+    
     FinalBossPhase _phase;
     
     float _waitToAttack;

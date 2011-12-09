@@ -28,19 +28,23 @@
 -(void)setSprite:(Sprite *)sprite
 {
     _sprite = sprite;
+    [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"darkShadowTimAnim"];
 }
 
 -(void)switchToPhase:(FinalBossPhase)phase
 {
     switch (phase) {
         case JIM_PHASE_CHASE_FAR:
-            [[_sprite getCCSprite] setColor:ccc3(255, 255, 255)];
+            //[[_sprite getCCSprite] setColor:ccc3(255, 255, 255)];
+            _xPosition = 20.0f;
             break;
         case JIM_PHASE_CHASE_MIDDLE:
-            [[_sprite getCCSprite] setColor:ccc3(122,122,122)];
+            //[[_sprite getCCSprite] setColor:ccc3(122,122,122)];
+            _xPosition = 35.0f;
             break;
         case JIM_PHASE_CHASE_CLOSE:
-            [[_sprite getCCSprite] setColor:ccc3(0, 0, 0)];
+            //[[_sprite getCCSprite] setColor:ccc3(0, 0, 0)];
+            _xPosition = 50.0f;
             break;
         default:
             break;
