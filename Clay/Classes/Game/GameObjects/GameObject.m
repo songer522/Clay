@@ -566,8 +566,8 @@
     else if(_currentBehavior == COLLISION_BEHAVIOR_BAT)
     {
         _vx = 0.0f;
-        if ([self closeToPlayer:375]) {
-            _angle+=110.0f*dt;
+        if ([self closeToPlayer:455]) {
+            _angle+=140.0f*dt;
             if(_angle > -60.0f) {
                 _stopCurve=true;
                 _angle = - 60.0f;
@@ -579,7 +579,8 @@
             if(!_stopCurve)
             {
                 _vx = _magnitude * cosf((_angle * 3.14159)/180.0f);
-                _vy = -1*_magnitude * sinf((_angle * 3.14159)/180.0f);
+                _vx = 1.5*_magnitude * sinf((_angle * 3.14159)/180.0f);
+                _vy = 1.5 * _magnitude;
             }
             
         } else if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
@@ -645,6 +646,20 @@
                     [[SoundEngine shared] playSound:@"waterSeaHorse"];
                 }
             }
+        }
+    }
+    
+    else if(_currentBehavior == COLLISION_BEHAVIOR_GARGOYLE) {
+        _vx = 0.0f;
+        if ([self closeToPlayer:200.0f]) {
+            if(![self.originalAnimation isEqualToString:@"fireDemonWithArmorWalking"])
+            {
+                //[[SoundEngine shared] playSound:@"maddogBark"];
+                [self setOriginalAnimation:@"fireDemonWithArmorWalking"];
+                [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"fireDemonWithArmorWalking"];
+                [self setBoundingBox:CGRectMake(-10, 0, 25, 60)];
+            }
+            //_vx = -150.0f;
         }
     }
 
@@ -766,6 +781,15 @@
         [self setOriginalAnimation:@"dogAnim"];
         [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"dogAnim"];
     }
+    else if(_currentBehavior ==COLLISION_BEHAVIOR_GARGOYLE) {
+        
+        _currentBehavior = COLLISION_BEHAVIOR_GARGOYLE;
+        
+        [self setOriginalAnimation:@"fireDemonAnim"];
+        [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"fireDemonAnim"];
+        [self setBoundingBox:CGRectMake(-10, 0, 20, 25)];
+    }
+
     else if(_currentBehavior == COLLISION_BEHAVIOR_RETRO_ZOMBIE) {
         _currentBehavior = COLLISION_BEHAVIOR_RETRO_ZOMBIE;
         [self setOriginalAnimation:@"retroZombieStatic"];
@@ -884,7 +908,12 @@
     } else if([behavior isEqualToString:@"madDog"]) {
         _collideBehavior = COLLISION_BEHAVIOR_MAD_DOG;
         _currentBehavior = COLLISION_BEHAVIOR_MAD_DOG;
-    }else if([behavior isEqualToString:@"retroZombie"]) {
+    }
+    else if([behavior isEqualToString:@"gargoyle"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_GARGOYLE;
+        _currentBehavior = COLLISION_BEHAVIOR_GARGOYLE;
+    }
+    else if([behavior isEqualToString:@"retroZombie"]) {
         _collideBehavior = COLLISION_BEHAVIOR_RETRO_ZOMBIE;
         _currentBehavior = COLLISION_BEHAVIOR_RETRO_ZOMBIE;
     } else if([behavior isEqualToString:@"fireDemon"]) {
