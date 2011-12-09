@@ -11,6 +11,7 @@
 #import "Sprite.h"
 #import "Level.h"
 #import "AnimationController.h"
+#import "Camera.h"
 
 @implementation BossFinalJim
 
@@ -23,9 +24,13 @@
     
     _firstUpdate = true;
     _waitToAttack = 5.0f;
+    _transitionAmount = 0.0f;
+    _isTransitioning = false;
     
     [[_sprite getCCSprite] setVisible:NO];
     [self switchToPhase:BOSS_PHASE_NOT_TRIGGERED];
+    
+    [[Camera sharedCamera] setCenter:CGPointMake(125.0f,22.0f)];
 }
 
 -(void)setSprite:(Sprite *)sprite
@@ -36,26 +41,31 @@
 
 -(void)switchToPhase:(BossPhase)phase
 {
+    _phase = phase;
     
     switch (phase) {
         case BOSS_PHASE_CHASE_FAR:
-            _xPosition = 20.0f;
+            _xPosition = 5.0f;
             break;
         case BOSS_PHASE_CHASE_MIDDLE:
-            _xPosition = 35.0f;
+            _xPosition = 20.0f;
             break;
         case BOSS_PHASE_CHASE_CLOSE:
-            _xPosition = 50.0f;
+            _xPosition = 30.0f;
             break;
         case BOSS_PHASE_NOT_TRIGGERED:
             [[_sprite getCCSprite] setVisible:NO];
             _xPosition = -50.0f;
             _isActive = false;
+            break;
         case BOSS_PHASE_CHASE_INIT:
             [[_sprite getCCSprite] setVisible:YES];
-            _xPosition = 50.0f;
+            _xPosition = 20.0f;
+            _transitionAmount = 0.0f;
+            _isTransitioning = true;
             _isActive = true;
-            _phase = BOSS_PHASE_CHASE_MIDDLE;
+            [self switchToPhase:BOSS_PHASE_CHASE_MIDDLE];
+            break;
         default:
             break;
     }
@@ -74,11 +84,22 @@
         [_sprite setScreenPosition:ccp(-50,50)];        
     }
     
-    [_sprite setScreenPosition:CGPointMake(_xPosition, 120.0f)];
+    CGPoint position = CGPointMake(_xPosition, 105.0f);
+    [_sprite setScreenPosition:position];
     
     if (_phase == BOSS_PHASE_CHASE_MIDDLE) {
         //[self triggerAttack];
     }
+    
+}
+
+-(void)updateTransition:(float)dt
+{
+    
+}
+
+-(void)endTransition
+{
     
 }
 

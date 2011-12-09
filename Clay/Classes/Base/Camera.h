@@ -23,6 +23,7 @@
     CGRect _boundary;           //the boundary that the 2D camera window has to be within
 
     CGPoint _center;            //x and y position relative to the screen where the target should be. default is center.
+    CGPoint _defaultCenter;
     
     Sprite *_target;          //what the camera is tracking towards (will be the runner mostly, but every
                                 //once in awhile we might want to highlight something else)
@@ -45,8 +46,12 @@
 
 -(CGPoint)convertToWorldXY:(CGPoint)screenXY;
 -(void)setTarget:(Sprite*)sprite;
--(void)setCenter:(CGPoint)point;
 -(void)setPosition:(CGPoint)point;
+
+-(void)setCenter:(CGPoint)point;
+-(void)setDefaultCenter:(CGPoint)point;
+-(void)restoreDefaultCenter:(CGPoint)point;
+
 -(void)moveTowardsTarget:(float)dt PlayerOnGround:(bool)onGround;
 -(void)snapToTarget;
 -(void)snapToTargetY;

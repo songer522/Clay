@@ -24,6 +24,9 @@
     
     float _xPosition;
     
+    float _transitionAmount;
+    bool _isTransitioning;
+    
     BossPhase _phase;
     
     float _waitToAttack;
@@ -31,5 +34,7 @@
 
 -(void)switchToPhase:(BossPhase)phase;
 -(void)triggerAttack;
+-(void)updateTransition:(float)dt;
+-(void)endTransition;
 
 @end
