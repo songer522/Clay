@@ -51,11 +51,11 @@
     _isTransitioning = false;
     _xPos = 0.0f;
     _targetXPos = 0.0f;
+    _isMovingCamera = false;
     
     [[_sprite getCCSprite] setVisible:NO];
     [self switchToPhase:BOSS_PHASE_NOT_TRIGGERED];
     
-    [[Camera sharedCamera] setCenter:CGPointMake(125.0f,22.0f)];
 }
 
 
@@ -83,7 +83,10 @@
             [[_sprite getCCSprite] setVisible:NO];
             _targetXPos = SHADOW_XPOS_OFFSCREEN;
             _xPos = SHADOW_XPOS_OFFSCREEN;
+            _targetCameraXPos = 75.0f;
+            _cameraXPos = 75.0f;
             _isActive = false;
+            [[Camera sharedCamera] setCenter:CGPointMake(_cameraXPos, 22.0f)];
             break;
         case BOSS_PHASE_CHASE_INIT:
             [[_sprite getCCSprite] setVisible:YES];
@@ -92,7 +95,9 @@
             _targetXPos = SHADOW_XPOS_FAR;
             _isTransitioning = true;
             _isActive = true;
+            _isMovingCamera = true;
             [[SoundEngine shared] playMusic:@"darknessBoss"];
+            _targetCameraXPos = 125.0f;
             break;
         default:
             break;
@@ -145,6 +150,10 @@
         [self updateTransition:dt];
     }
     
+    if (_isMovingCamera) {
+        [self shiftCamera:dt];
+    }
+    
     float screenY = [[Camera sharedCamera] convertToScreenY:SHADOW_YPOS];
     
     CGPoint position = CGPointMake(_xPos, screenY);
@@ -163,6 +172,15 @@
     if (_xPos == _targetXPos) {
         _isTransitioning = false;
     }
+}
+
+-(void)shiftCamera:(float)dt
+{
+    _cameraXPos = [Calculator modifyFloat:_cameraXPos towardsTargetValue:_targetCameraXPos atSpeed:(8.0f * dt)];
+    if (_cameraXPos == _targetCameraXPos) {
+        _isMovingCamera = false;
+    }
+    [[Camera sharedCamera] setCenter:CGPointMake(_cameraXPos, 22.0f)];
 }
 
 -(void)reset
