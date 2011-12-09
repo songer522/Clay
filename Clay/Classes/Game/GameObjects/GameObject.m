@@ -72,6 +72,7 @@
         _rate = 1.0f;
         _offsetY = 0;
         _waitToTrigger = -1.0f;
+        _hasTriggered= false;
         _boss = nil;
         _madeSound = false;
         _boundingBox = CGRectMake(0, 0, 0, 0);
@@ -693,23 +694,27 @@
             _waitToTrigger-=dt;
             if(_waitToTrigger <= 0)
             {
-            _vy *= 0.955f;
-            if (ABS(_vy) <= 0.1f) {
-                if (_direction == -1) {
-                    _direction = 1;
-                    _vy = 430.0f;
-                    [[SoundEngine shared] playSound:@"waterSeaHorse"];
-                } else {
-                    _direction = -1;
-                    _vy = -430.0f;
-                    [[SoundEngine shared] playSound:@"waterSeaHorse"];
-                }
+                _vy=-200;
             }
+            
+            
+        }
+        else if([self closeToPlayer:150] && !_hasTriggered)
+        {
+            if(!_hasTriggered)
+            {
+               // _waitToTrigger=0.6069f;
+            _waitToTrigger=0.15f;
+                _hasTriggered=true;
             }
         }
-        else if([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN])
+        else if(_vy<0)
         {
-            _waitToTrigger=1.0f;
+            _vy+=5;
+            if(_vy >= 0)
+            {
+                _vy=0;
+            }
         }
     }
     
@@ -730,12 +735,12 @@
             //_vx = -150.0f;
         }
         
-        else if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+        else if ([self closeToPlayer:300]) {
            
           
             if(_waitToTrigger<0)
             {
-                _waitToTrigger=2.0f;
+                _waitToTrigger=1.5f;
             }
             //[_sprite getCCSprite].rotation = -30.0f;
         }
@@ -937,7 +942,8 @@
         _currentBehavior = COLLISION_BEHAVIOR_WATER_PUFFERFISH;
     }else if(_currentBehavior == COLLISION_BEHAVIOR_DARK_SPIKES) {
         _currentBehavior = COLLISION_BEHAVIOR_DARK_SPIKES;
-        _direction = -1;
+       
+        _hasTriggered=false;
     } 
     else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_SLOW) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;     
@@ -1073,7 +1079,8 @@
     } else if([behavior isEqualToString:@"spikes"]){
         _currentBehavior = COLLISION_BEHAVIOR_DARK_SPIKES;
         _collideBehavior = COLLISION_BEHAVIOR_DARK_SPIKES;
-        _direction=-1;
+        
+        _hasTriggered=false;
     }
 
 

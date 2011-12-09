@@ -9,11 +9,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Clay/Classes/Game/GameObjects/GameObject.m"
-         timestampString = "345142158.910701"
+         timestampString = "345152501.963653"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "714"
-         endingLineNumber = "714"
+         startingLineNumber = "707"
+         endingLineNumber = "707"
          landmarkName = "-updateCollisionBehavior:"
          landmarkType = "5">
       </FileBreakpoint>
