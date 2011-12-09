@@ -117,14 +117,16 @@
 
     NSArray *layers = [layerList componentsSeparatedByString:@","];
     for (NSString *layerName in layers) {
-        if ([layerName isEqualToString :@"ledges"]) {
+        if([layerName isEqualToString:@"front-1"]) {
+            if([levelName isEqualToString:@"level11"]) {
+                [self addObstaclesToMapWithBehavior:COLLISION_BEHAVIOR_DARK_SPIKES];
+            }
+        } else if ([layerName isEqualToString:@"ledges"]) {
             GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
             //stop existing rainylevel, and start new one if right level
             [gameLayer stopRainyLevel];
             if([levelName isEqualToString:@"level9"]) {
                 [gameLayer initializeRainyLevel];
-            } else if([levelName isEqualToString:@"level11"]) {
-                [self addObstaclesToMapWithBehavior:COLLISION_BEHAVIOR_DARK_SPIKES];
             }
         } else if ([layerName compare:@"actives"] == NSOrderedSame) {
             

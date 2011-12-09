@@ -23,6 +23,7 @@
     bool _firstUpdate;
     
     float _xPosition;
+    float _targetXPos;
     
     float _transitionAmount;
     bool _isTransitioning;
