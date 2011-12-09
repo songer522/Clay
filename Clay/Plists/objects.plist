@@ -959,13 +959,13 @@
 			<integer>0</integer>
 		</dict>
 		<key>animationName</key>
-		<string>none</string>
+		<string>spikeAnim</string>
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>20</integer>
+			<integer>40</integer>
 			<key>width</key>
-			<integer>25</integer>
+			<integer>80</integer>
 			<key>x</key>
 			<integer>-10</integer>
 			<key>y</key>
@@ -974,11 +974,11 @@
 		<key>collideBehavior</key>
 		<string>spikes</string>
 		<key>imageName</key>
-		<string>Dark_Spikes_1.png</string>
+		<string>blank.png</string>
 		<key>offsetx</key>
 		<integer>0</integer>
 		<key>offsety</key>
-		<integer>-120</integer>
+		<integer>-130</integer>
 		<key>playerEffect</key>
 		<string>collide</string>
 	</dict>
