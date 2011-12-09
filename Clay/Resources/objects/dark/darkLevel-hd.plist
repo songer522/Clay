@@ -165,7 +165,8 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		<key>Dark_Gargoyle_1_1.png</key>
+		
+		<key>Dark_Spikes_1.png</key>
 		<dict>
 			<key>aliases</key>
 			<array/>
@@ -184,7 +185,8 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		<key>Dark_Gargoyle_2_1.png</key>
+		
+		<key>Dark_Tim_1.png</key>
 		<dict>
 			<key>aliases</key>
 			<array/>
@@ -203,7 +205,8 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		<key>Dark_Spikes_1.png</key>
+		
+		<key>Level11_Beast_1.png</key>
 		<dict>
 			<key>aliases</key>
 			<array/>
@@ -222,7 +225,8 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		<key>Dark_Tim_1.png</key>
+		
+		<key>Level11_Beast_2.png</key>
 		<dict>
 			<key>aliases</key>
 			<array/>
@@ -351,6 +355,7 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 		<key>ShadowTim_1.png</key>
 		<dict>
 			<key>aliases</key>
