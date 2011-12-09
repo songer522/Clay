@@ -707,7 +707,10 @@
     
     else if(_currentBehavior == COLLISION_BEHAVIOR_GARGOYLE) {
         _vx = 0.0f;
-        if ([self closeToPlayer:200.0f]) {
+        if (_waitToTrigger > 0) {
+            _waitToTrigger -= dt;
+            
+            if(_waitToTrigger <= 0){
             if(![self.originalAnimation isEqualToString:@"fireDemonWithArmorWalking"])
             {
                 //[[SoundEngine shared] playSound:@"maddogBark"];
@@ -715,7 +718,18 @@
                 [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"fireDemonWithArmorWalking"];
                 [self setBoundingBox:CGRectMake(-10, 0, 25, 60)];
             }
+            }
             //_vx = -150.0f;
+        }
+        
+        else if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+           
+          
+            if(_waitToTrigger<0)
+            {
+                _waitToTrigger=2.0f;
+            }
+            //[_sprite getCCSprite].rotation = -30.0f;
         }
     }
 

@@ -117,6 +117,16 @@
     <property name="obstacle" value="femaleBreakdancer"/>
    </properties>
   </tile>
+  <tile id="31">
+   <properties>
+    <property name="obstacle" value="darkBat"/>
+   </properties>
+  </tile>
+  <tile id="48">
+   <properties>
+    <property name="obstacle" value="darkGargoyle"/>
+   </properties>
+  </tile>
   <tile id="66">
    <properties>
     <property name="obstacle" value="rainySquirrel"/>
@@ -177,7 +187,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztzjERACAMBLAq6IGy+neDAlh/IFGQKgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIGWnAwAAAMDTpAMAAMDVSgfgM50OAAAAAAAAAEDAASX1AH8=
+   eJztzjENACAUQ0EUEPCBBfzbwgEsP+nA3dw0rzUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACBlpgMAAADgM6to87ILPgAAgLuRDoDP9HQAAAAAAAAAAAQczpkAxQ==
   </data>
  </layer>
  <layer name="meta" width="1000" height="14" opacity="0.66">
