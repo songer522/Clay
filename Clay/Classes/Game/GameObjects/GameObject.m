@@ -895,6 +895,11 @@
         _boss = [BossFactory buildWithType:BOSS_SPACESHIP];
         [_boss setSprite:_sprite];
         [_boss startBoss];
+    } else if([behavior isEqualToString:@"finalBoss"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_NONE;
+        _boss = [BossFactory buildWithType:BOSS_FINAL_JIM];
+        [_boss setSprite:_sprite];
+        [_boss startBoss];
     } else if([behavior isEqualToString:@"retroStatic"]) {
         _collideBehavior = COLLISION_BEHAVIOR_RETRO_HURDLE;
         _currentBehavior = COLLISION_BEHAVIOR_RETRO_SHOT_FROM_CANNON;

@@ -12,13 +12,6 @@
 @class Sprite;
 @class Level;
 
-typedef enum {
-    JIM_PHASE_NOT_TRIGGERED,
-    JIM_PHASE_CHASE_FAR,
-    JIM_PHASE_CHASE_MIDDLE,
-    JIM_PHASE_CHASE_CLOSE
-} FinalBossPhase;
-
 @interface BossFinalJim : Boss
 {
     Level *_level;
@@ -31,12 +24,12 @@ typedef enum {
     
     float _xPosition;
     
-    FinalBossPhase _phase;
+    BossPhase _phase;
     
     float _waitToAttack;
 }
 
--(void)switchToPhase:(FinalBossPhase)phase;
+-(void)switchToPhase:(BossPhase)phase;
 -(void)triggerAttack;
 
 @end

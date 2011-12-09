@@ -22,7 +22,10 @@
     [[_sprite getCCSprite] setVisible:YES];
     
     _firstUpdate = true;
-    _waitToAttack = 10.0f;
+    _waitToAttack = 5.0f;
+    
+    [[_sprite getCCSprite] setVisible:NO];
+    [self switchToPhase:BOSS_PHASE_NOT_TRIGGERED];
 }
 
 -(void)setSprite:(Sprite *)sprite
@@ -31,21 +34,28 @@
     [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"darkShadowTimAnim"];
 }
 
--(void)switchToPhase:(FinalBossPhase)phase
+-(void)switchToPhase:(BossPhase)phase
 {
+    
     switch (phase) {
-        case JIM_PHASE_CHASE_FAR:
-            //[[_sprite getCCSprite] setColor:ccc3(255, 255, 255)];
+        case BOSS_PHASE_CHASE_FAR:
             _xPosition = 20.0f;
             break;
-        case JIM_PHASE_CHASE_MIDDLE:
-            //[[_sprite getCCSprite] setColor:ccc3(122,122,122)];
+        case BOSS_PHASE_CHASE_MIDDLE:
             _xPosition = 35.0f;
             break;
-        case JIM_PHASE_CHASE_CLOSE:
-            //[[_sprite getCCSprite] setColor:ccc3(0, 0, 0)];
+        case BOSS_PHASE_CHASE_CLOSE:
             _xPosition = 50.0f;
             break;
+        case BOSS_PHASE_NOT_TRIGGERED:
+            [[_sprite getCCSprite] setVisible:NO];
+            _xPosition = -50.0f;
+            _isActive = false;
+        case BOSS_PHASE_CHASE_INIT:
+            [[_sprite getCCSprite] setVisible:YES];
+            _xPosition = 50.0f;
+            _isActive = true;
+            _phase = BOSS_PHASE_CHASE_MIDDLE;
         default:
             break;
     }
@@ -61,24 +71,20 @@
     //so we can put it under the right layers
     if (_firstUpdate) {
         _firstUpdate = false;
-        [_sprite setScreenPosition:ccp(50,50)];        
+        [_sprite setScreenPosition:ccp(-50,50)];        
     }
     
+    [_sprite setScreenPosition:CGPointMake(_xPosition, 120.0f)];
     
-    //CGPoint position = [_sprite getPosition];
-    
-    //[_sprite setScreenPosition:CGPointMake(position.x + _velocity.x, position.y + _velocity.y)];
-    
-    if(_waitToAttack>0.0f) {
-        _waitToAttack -= dt;
-        if (_waitToAttack<=0.0f) {
-            [self switchToPhase:JIM_PHASE_CHASE_MIDDLE];
-        }
+    if (_phase == BOSS_PHASE_CHASE_MIDDLE) {
+        //[self triggerAttack];
     }
+    
 }
 
 -(void)reset
 {
+    
 }
 
 @end
