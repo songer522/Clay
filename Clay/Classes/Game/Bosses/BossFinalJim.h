@@ -25,8 +25,12 @@
     float _xPos;
     float _targetXPos;
     
+    float _cameraXPos;
+    float _targetCameraXPos;
+    
     float _transitionSpeed;
     bool _isTransitioning;
+    bool _isMovingCamera;
     
     BossPhase _phase;
     
@@ -34,5 +38,6 @@
 }
 
 -(void)updateTransition:(float)dt;
+-(void)shiftCamera:(float)dt;
 
 @end

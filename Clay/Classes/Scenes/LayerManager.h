@@ -11,6 +11,7 @@
 
 @class CCScene;
 @class Player;
+@class Boss;
 
 @interface LayerManager : NSObject
 {
@@ -40,7 +41,7 @@
 -(void)popAndPushSceneNamed:(NSString*)pushScene;
 
 -(Player*)getPlayer; //this class is used so often for this just get it directly
-
+-(Boss*)getBoss;
 
 
 @end
