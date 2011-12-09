@@ -48,6 +48,7 @@
 }
 
 @property(nonatomic,assign) float velocity;
+@property(nonatomic,assign) float velocityModifier;
 @property(readonly,nonatomic,assign) bool inTurbo;
 @property(readonly,nonatomic,assign) bool isStopped;
 @property(nonatomic,retain) Player *parent;

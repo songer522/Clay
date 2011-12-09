@@ -123,6 +123,8 @@
             [gameLayer stopRainyLevel];
             if([levelName isEqualToString:@"level9"]) {
                 [gameLayer initializeRainyLevel];
+            } else if([levelName isEqualToString:@"level11"]) {
+                [self addObstaclesToMapWithBehavior:COLLISION_BEHAVIOR_DARK_SPIKES];
             }
         } else if ([layerName compare:@"actives"] == NSOrderedSame) {
             
@@ -173,13 +175,33 @@
     
 }
 
+-(void)addObstaclesToMapWithBehavior:(CollisionBehavior)behavior
+{
+    for (MapObject *mapObject in _obstacleMapObjects) {
+        GameObject *obstacle = mapObject.object;
+        if ([obstacle getCollisionBehavior] == behavior) {
+            //it's possible the obstacle has already been placed. if it has, we need to remove and re-add it.
+            if (mapObject.placed) {
+                [[obstacle getCCSprite] removeFromParentAndCleanup:NO];
+            }
+            [[[LayerManager sharedLayers] currentLayer] addChild:[obstacle getCCSprite]];
+            [[obstacle getCCSprite] setVisible:NO];
+            [_obstacleManager addGameObject:obstacle];
+            mapObject.placed = true;
+        }
+    }    
+}
+
 -(void)addObstaclesToMapAndRegion
 {
     for (MapObject *mapObject in _obstacleMapObjects) {
         GameObject *obstacle = mapObject.object;
-        [[[LayerManager sharedLayers] currentLayer] addChild:[obstacle getCCSprite]];
-        [[obstacle getCCSprite] setVisible:NO];
-        [_obstacleManager addGameObject:obstacle];
+        if (!mapObject.placed) {
+            [[[LayerManager sharedLayers] currentLayer] addChild:[obstacle getCCSprite]];
+            [[obstacle getCCSprite] setVisible:NO];
+            [_obstacleManager addGameObject:obstacle];
+            mapObject.placed = true;            
+        }
     }
 }
 
@@ -408,6 +430,19 @@
         }
     }
 }
+
+-(void)removeAndReplaceObstacleWithBehavior:(CollisionBehavior)behavior
+{
+    for (MapObject *mapObject in _obstacleMapObjects) {
+        GameObject *object = mapObject.object;
+        if([object getCollisionBehavior] == behavior){
+            [[mapObject.object getCCSprite] removeFromParentAndCleanup:NO];
+            [[[LayerManager sharedLayers] currentLayer] addChild:[mapObject.object getCCSprite]];
+        }
+    }
+}
+
+
                 
 -(CGPoint)getXYPositionForCoordinates:(CGPoint)coords
 {

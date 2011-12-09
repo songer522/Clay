@@ -33,17 +33,18 @@
         [_parent endTurbo];
         
         [self updateSlowdown:0.2f];
-        _duration = 1.00f;
+        _duration = 5.00f;
         [_parent setPlayerAnimation:PLAYER_ANIM_SLOWTIME];
         [[_parent getSpeed] startBlow];
         [[_parent getSpeed] stop];
-
+        [[_parent getSpeed] setVelocityModifier:0.8f];
     }
 }
 
 -(void)endAction
 {
     [self updateSlowdown:1.0f];
+    [[_parent getSpeed] setVelocityModifier:1.0f];
     [super endAction];
 }
 
