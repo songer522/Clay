@@ -93,6 +93,16 @@
 {
 }
 
+-(void)triggerGetCloser
+{
+    
+}
+
+-(void)triggerFallBack
+{
+    
+}
+
 -(void)update:(float)dt
 {
     //have to reposition for now because the position gets set like three times in gameobject, but for the time being we need to call it
