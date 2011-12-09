@@ -21,6 +21,7 @@
 #import "Skin.h"
 #import "GameLayer.h"
 #import "HudLayer.h"
+#import "Boss.h"
 
 
 #define PLAYER_SPRITE_FILE @"player_idle_01.png"
@@ -227,6 +228,11 @@
         
         [[SoundEngine shared] playSound:@"turboStart"];
         [_skin setPlayerAnimation:PLAYER_ANIM_SPRINTING ForSprite:_sprite];
+        
+        Boss *boss = [[LayerManager sharedLayers] getBoss];
+        if (boss) {
+            [boss triggerFallBack];
+        }
     }
 
 }

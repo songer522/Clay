@@ -45,7 +45,6 @@
         [[_parent getSpeed] stop];
         [[_parent getSpeed] setVelocityModifier:0.8f];
         
-        [_boss triggerGetCloser];
     }
 }
 
@@ -58,6 +57,11 @@
 
 -(void)cancelAction
 {
+    //this gets called when the player hits something, so we use this to tell the boss to get closer
+    [_boss triggerGetCloser];
+    
+    
+    
     //NOTE: for now, can't be cancelled
     //if this gets undone in the future, keep in mind you'll need to write an exception for
     //slowdowns, because they call 'startcollision' constantly, which calls cancelAction

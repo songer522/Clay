@@ -9,6 +9,7 @@
 #import "cocos2d.h"
 #import "LayerManager.h"
 #import "GameLayer.h"
+#import "Boss.h"
 
 @implementation LayerManager
 
@@ -110,6 +111,12 @@ static LayerManager *_sharedLayers = nil;
 {
     GameLayer *gameLayer = _currentLayer;
     return gameLayer.player;
+}
+
+-(Boss*)getBoss
+{
+    GameLayer *gameLayer = _currentLayer;
+    return [gameLayer getBoss];
 }
 
 -(void)dealloc
