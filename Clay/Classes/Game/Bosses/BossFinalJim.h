@@ -22,10 +22,10 @@
 
     bool _firstUpdate;
     
-    float _xPosition;
+    float _xPos;
     float _targetXPos;
     
-    float _transitionAmount;
+    float _transitionSpeed;
     bool _isTransitioning;
     
     BossPhase _phase;
@@ -35,6 +35,10 @@
 
 -(void)switchToPhase:(BossPhase)phase;
 -(void)triggerAttack;
+
+-(void)triggerGetCloser;
+-(void)triggerFallBack;
+
 -(void)updateTransition:(float)dt;
 -(void)endTransition;
 
