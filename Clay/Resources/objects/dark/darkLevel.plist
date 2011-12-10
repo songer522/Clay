@@ -44,7 +44,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{48, 457}, {34, 24}}</string>
+			<string>{{123, 456}, {34, 24}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -88,7 +88,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{91, 456}, {34, 30}}</string>
+			<string>{{48, 457}, {34, 30}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -220,7 +220,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{279, 135}, {84, 136}}</string>
+			<string>{{187, 199}, {84, 136}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -242,7 +242,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{0, 427}, {45, 60}}</string>
+			<string>{{92, 393}, {45, 60}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -264,7 +264,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{423, 409}, {45, 60}}</string>
+			<string>{{0, 427}, {45, 60}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -286,7 +286,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{92, 393}, {45, 60}}</string>
+			<string>{{423, 409}, {45, 60}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -375,6 +375,28 @@
 			<true/>
 			<key>textureRect</key>
 			<string>{{155, 0}, {127, 132}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>Level11_EggGargoyle.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {29, 38}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{29, 38}</string>
+			<key>spriteSourceSize</key>
+			<string>{29, 38}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{91, 456}, {29, 38}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -484,7 +506,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{187, 199}, {84, 136}}</string>
+			<string>{{279, 135}, {84, 136}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
