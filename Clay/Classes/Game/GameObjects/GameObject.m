@@ -677,6 +677,10 @@
     {
         if  ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN])
         {
+            if (!_madeSound) {
+                _madeSound = true;
+                [[SoundEngine shared] playSound:@"darkBats"];
+            }
             _angle+=200*dt;
             _magnitude=300;
             _vx = -0.1*_magnitude;

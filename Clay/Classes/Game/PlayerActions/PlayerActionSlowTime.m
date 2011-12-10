@@ -45,6 +45,8 @@
         [[_parent getSpeed] stop];
         [[_parent getSpeed] setVelocityModifier:0.8f];
         
+        [[SoundEngine shared] playSound:@"darkSlowTimeAction"];
+        
     }
 }
 

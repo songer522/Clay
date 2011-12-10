@@ -196,7 +196,8 @@
 
 -(void)reset
 {
-    
+    _xPos = SHADOW_XPOS_OFFSCREEN;
+    [self switchToPhase:BOSS_PHASE_CHASE_FAR];
 }
 
 -(void)dealloc

@@ -90,5 +90,15 @@
 	<string>waterSeaHorse.mp3</string>
 	<key>waterSwimAction</key>
 	<string>waterSwimAction.wav</string>
+	<key>darkBats</key>
+	<string>darkBats.wav</string>
+	<key>darkGargoyle</key>
+	<string>darkGargoyle1.wav</string>
+	<key>darkShadowLaugh</key>
+	<string>darkShadowLaugh.mp3</string>
+	<key>darkSpikes</key>
+	<string>darkSpikes.mp3</string>
+	<key>darkSlowTimeAction</key>
+	<string>darkSlowTimeAction.wav</string>
 </dict>
 </plist>

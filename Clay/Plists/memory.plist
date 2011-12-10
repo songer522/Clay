@@ -139,7 +139,7 @@
 		<key>animations</key>
 		<string>level11,slowtime</string>
 		<key>sounds</key>
-		<string>none</string>
+		<string>darkSlowTimeAction,darkBats,darkGargoyle,darkShadowLaugh,darkSpikes</string>
 		<key>textures</key>
 		<string>darkLevel,characterSlowTime</string>
 	</dict>
