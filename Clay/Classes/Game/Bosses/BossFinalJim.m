@@ -60,6 +60,7 @@
     _player = [[LayerManager sharedLayers] getPlayer];
     [[_sprite getCCSprite] setVisible:NO];
     [self switchToPhase:BOSS_PHASE_NOT_TRIGGERED];
+    [[SoundEngine shared] preloadMusicForKey:@"darknessBoss"];
     
 }
 
@@ -101,7 +102,7 @@
             _isTransitioning = true;
             _isActive = true;
             _isMovingCamera = true;
-            //[[SoundEngine shared] playMusic:@"darknessBoss"];
+            [[SoundEngine shared] playMusic:@"darknessBoss"];
             _targetCameraXPos = 125.0f;
             break;
         default:

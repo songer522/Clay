@@ -61,6 +61,17 @@ static SoundEngine *_shared = nil;
     }*/
 }
 
+-(void)preloadMusicForKey:(NSString*)key
+{
+    NSString *filename = [_musicMap objectForKey:key];
+    
+    NSAssert(filename!=nil,@"Sound '%@' could not be found. Is it in the sounds.plist?",key);
+    
+    [_audioEngine preloadBackgroundMusic:filename];
+}
+
+
+
 
 -(void)loadSoundForKey:(NSString*)key
 {
