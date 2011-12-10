@@ -29,7 +29,7 @@
 #import "RunningSpeed.h"
 #import "ChooseLevelScreen.h"
 
-#define DEBUG_DRAW_BOUNDING_BOXES 0
+#define DEBUG_DRAW_BOUNDING_BOXES 1
 
 @interface GameLayer()
 

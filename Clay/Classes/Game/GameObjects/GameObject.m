@@ -727,7 +727,7 @@
             _waitToTrigger-=dt;
             if(_waitToTrigger <= 0)
             {
-                _vy=-200;
+                _vy=-400;
             }
             
             
@@ -743,7 +743,7 @@
         }
         else if(_vy<0)
         {
-            _vy+=5;
+            _vy+=20;
             if(_vy >= 0)
             {
                 _vy=0;
@@ -773,7 +773,7 @@
           
             if(_waitToTrigger<0)
             {
-                _waitToTrigger=0.2f;
+                _waitToTrigger=0.4f;
                 _hasTriggered = true;
             }
             //[_sprite getCCSprite].rotation = -30.0f;
