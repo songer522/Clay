@@ -461,7 +461,6 @@
 		61E72B37148D43350056499B /* rainyLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 61E72B33148D43350056499B /* rainyLevel.plist */; };
 		61E72B38148D43350056499B /* rainyLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 61E72B34148D43350056499B /* rainyLevel.png */; };
 		61E8B44D1492FC9A00B32D61 /* level11_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61E8B44C1492FC9A00B32D61 /* level11_hd.tmx */; };
-		61E8B44F1493113F00B32D61 /* level11.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61E8B44E1493113F00B32D61 /* level11.tmx */; };
 		61F063FC1491249500F9473E /* level7.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61F063FB1491249500F9473E /* level7.tmx */; };
 		61F063FE1491269900F9473E /* level9.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61F063FD1491269900F9473E /* level9.tmx */; };
 		61F06402149130AB00F9473E /* level10.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61F06401149130AB00F9473E /* level10.tmx */; };
@@ -1139,7 +1138,6 @@
 		61E72B33148D43350056499B /* rainyLevel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = rainyLevel.plist; sourceTree = "<group>"; };
 		61E72B34148D43350056499B /* rainyLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rainyLevel.png; sourceTree = "<group>"; };
 		61E8B44C1492FC9A00B32D61 /* level11_hd.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level11_hd.tmx; path = Resources/levels/level11_hd.tmx; sourceTree = "<group>"; };
-		61E8B44E1493113F00B32D61 /* level11.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level11.tmx; path = Resources/levels/level11.tmx; sourceTree = "<group>"; };
 		61F063FB1491249500F9473E /* level7.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level7.tmx; path = Resources/levels/level7.tmx; sourceTree = "<group>"; };
 		61F063FD1491269900F9473E /* level9.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level9.tmx; path = Resources/levels/level9.tmx; sourceTree = "<group>"; };
 		61F06401149130AB00F9473E /* level10.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level10.tmx; path = Resources/levels/level10.tmx; sourceTree = "<group>"; };
@@ -1765,7 +1763,6 @@
 				E485F745148C69ED00D98C14 /* level9_hd.tmx */,
 				61E8B44C1492FC9A00B32D61 /* level11_hd.tmx */,
 				54EB13AA148C4ABF00D94191 /* level10_hd.tmx */,
-				61E8B44E1493113F00B32D61 /* level11.tmx */,
 				613DBFD11490261C0017BE38 /* level10.tmx */,
 			);
 			name = levels;
@@ -2627,7 +2624,11 @@
 				54C944D01492F02B00CE2AA3 /* Part10_AfterLv9.mp4 in Resources */,
 				54C944D11492F02B00CE2AA3 /* Part11_AfterLv10.mp4 in Resources */,
 				61E8B44D1492FC9A00B32D61 /* level11_hd.tmx in Resources */,
-				61E8B44F1493113F00B32D61 /* level11.tmx in Resources */,
+				54C944D91493023B00CE2AA3 /* darkBats.wav in Resources */,
+				54C944DC1493023B00CE2AA3 /* darkShadowLaugh.mp3 in Resources */,
+				54C944E0149302C200CE2AA3 /* darkSlowTimeAction.wav in Resources */,
+				54C944E3149305E300CE2AA3 /* darkGargoyle1.wav in Resources */,
+				54C944E4149305E300CE2AA3 /* darkSpikes.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
