@@ -67,7 +67,7 @@
     //guards
     if (!_isInputEnabled || _handledPauseEvent) { return; }
     
-    if (location.x > 400 && location.y > 270) {
+    if (location.x > 200 && location.x < 280 && location.y > 270) {
         if (type == INPUT_TOUCH_END) {
             [self pauseGame];            
         }

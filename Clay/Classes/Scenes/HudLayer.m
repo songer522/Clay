@@ -51,15 +51,17 @@
         
         _battery = [Battery instance];
         
-        [[LayerManager sharedLayers] forgetWorkingLayer];
+        _pauseButton = [Sprite spriteFromFrameCacheWithName:@"Pause.png"];
+        [_pauseButton getCCSprite].position = ccp(240,284);        
 
         _alpha = 0.0f;
         _currentTransition = HUD_TRANSITION_IDLE;
         _resetButtons = false;
         [self setOpacities:_alpha];
         
+        [[LayerManager sharedLayers] forgetWorkingLayer];
+
         
-                
     }
     
     return self;
@@ -252,12 +254,14 @@
     [_buttonSprint setButtonOpacity:opacity];
     [[_battery getCCSprite] setOpacity:opacity];
     [_trackTimer setOpacity:opacity];
+    [[_pauseButton getCCSprite] setOpacity:opacity];
     
     if (_alpha == 0.0f) {
         [self setVisible:NO];
     } else {
         [self setVisible:YES];
     }
+    
 }
 
 -(void)setHudButtonsAndThirdAction:(NSString*)action
