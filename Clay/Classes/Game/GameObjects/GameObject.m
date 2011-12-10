@@ -733,11 +733,17 @@
             if(_waitToTrigger <= 0)
             {
                 _vy=-800;
+                if (!_madeSound) {
+                    _madeSound = true;
+                    [[SoundEngine shared] playSound:@"darkSpikes"];
+                    _movedBy = 0.0f;
+                    _initialPosition = _y;
+                }
             }
         }
         else if([self closeToPlayer:150] && !_hasTriggered)
         {
-            _waitToTrigger=0.2f;
+            _waitToTrigger=0.3f;
                 _hasTriggered=true;
             
         }
