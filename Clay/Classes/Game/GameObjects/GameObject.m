@@ -757,25 +757,37 @@
             _waitToTrigger -= dt;
             
             if(_waitToTrigger <= 0){
-            if(![self.originalAnimation isEqualToString:@"gargoyleStand"])
+            if(![self.originalAnimation isEqualToString:@"gargoyleOpenWings"])
             {
                 //[[SoundEngine shared] playSound:@"maddogBark"];
-                [self setOriginalAnimation:@"gargoyleStand"];
-                [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"gargoyleStand"];
-                [self setBoundingBox:CGRectMake(-10, 0, 25, 60)];
+                [self setOriginalAnimation:@"gargoyleOpenWings"];
+                [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"gargoyleOpenWings"];
+                
             }
             }
             //_vx = -150.0f;
         }
         
-        else if ([self closeToPlayer:300]) {
+        else if ([self closeToPlayer:300] && !_hasTriggered){
            
           
             if(_waitToTrigger<0)
             {
-                _waitToTrigger=1.5f;
+                _waitToTrigger=0.2f;
+                _hasTriggered = true;
             }
             //[_sprite getCCSprite].rotation = -30.0f;
+        }
+        else if([self.originalAnimation isEqualToString:@"gargoyleOpenWings"] && [[_sprite getAnimation] getCurrentFrameNumber]==6)
+        {
+            if(![self.originalAnimation isEqualToString:@"gargoyleOpened"])
+            {
+                //[[SoundEngine shared] playSound:@"maddogBark"];
+                [self setOriginalAnimation:@"gargoyleOpened"];
+                [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"gargoyleOpened"];
+                [self setBoundingBox:CGRectMake(-45, 0, 25, 60)];
+                //[self setBoundingBox:CGRectMake(-45, 0, 25, 60)];
+            }
         }
     }
     else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_SEAHORSE) {
@@ -919,7 +931,8 @@
         
         [self setOriginalAnimation:@"gargoyleSit"];
         [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"gargoyleSit"];
-        [self setBoundingBox:CGRectMake(-10, 0, 20, 25)];
+        [self setBoundingBox:CGRectMake(-45, 0, 20, 25)];
+        _hasTriggered=false;
     }
 
     else if(_currentBehavior == COLLISION_BEHAVIOR_RETRO_ZOMBIE) {
