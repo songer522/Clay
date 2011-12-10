@@ -99,7 +99,7 @@
 		<key>collideBehavior</key>
 		<string>falls</string>
 		<key>imageName</key>
-		<string>Dark_Bat_4.png</string>
+		<string>darkGargoyleEggAnim</string>
 		<key>offsetx</key>
 		<integer>0</integer>
 		<key>offsety</key>
