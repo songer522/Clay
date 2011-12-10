@@ -149,7 +149,6 @@
 
 -(void)update:(float)dt
 {
-    NSLog(@"PHASE: %d",_phase);
     //have to reposition for now because the position gets set like three times in gameobject, but for the time being we need to call it
     //so we can put it under the right layers
     if (_firstUpdate) {
