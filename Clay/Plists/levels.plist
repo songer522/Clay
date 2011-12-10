@@ -235,7 +235,7 @@
 		<key>nextLevelName</key>
 		<string>endGame</string>
 		<key>layerList</key>
-		<string>back-2,back-1,main0,ledges,actives,front-1,front-2,meta</string>
+		<string>back-2,back-1,main0,pits,ledges,actives,front-1,front-2,meta</string>
 	</dict>
 	<key>startingLevel</key>
 	<string>dummyLevel</string>

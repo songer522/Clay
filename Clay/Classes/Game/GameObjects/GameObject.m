@@ -742,16 +742,15 @@
         }
         else if([self closeToPlayer:150] && !_hasTriggered)
         {
-            if(!_hasTriggered)
-            {
+            
                // _waitToTrigger=0.6069f;
             _waitToTrigger=0.15f;
                 _hasTriggered=true;
-            }
+            
         }
         else if(_vy<0)
         {
-            _vy+=5;
+            _vy+=80;
             if(_vy >= 0)
             {
                 _vy=0;
@@ -761,12 +760,13 @@
     
     else if(_currentBehavior == COLLISION_BEHAVIOR_GARGOYLE) {
         _vx = 0.0f;
-        if (_waitToTrigger > 0) {
+        if (_waitToTrigger >= 0) {
             _waitToTrigger -= dt;
             
             if(_waitToTrigger <= 0){
             if(![self.originalAnimation isEqualToString:@"gargoyleOpenWings"])
             {
+                
                 //[[SoundEngine shared] playSound:@"maddogBark"];
                 [self setOriginalAnimation:@"gargoyleOpenWings"];
                 [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"gargoyleOpenWings"];
@@ -777,13 +777,10 @@
         }
         
         else if ([self closeToPlayer:300] && !_hasTriggered){
-           
-          
-            if(_waitToTrigger<0)
-            {
-                _waitToTrigger=0.2f;
+    
+                _waitToTrigger=0.4f;
                 _hasTriggered = true;
-            }
+            
             //[_sprite getCCSprite].rotation = -30.0f;
         }
         else if([self.originalAnimation isEqualToString:@"gargoyleOpenWings"] && [[_sprite getAnimation] getCurrentFrameNumber]==6)
@@ -941,6 +938,7 @@
         [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"gargoyleSit"];
         [self setBoundingBox:CGRectMake(-45, 0, 20, 25)];
         _hasTriggered=false;
+        [[_sprite getAnimation] changeAnimationSpeed:1];
     }
 
     else if(_currentBehavior == COLLISION_BEHAVIOR_RETRO_ZOMBIE) {
