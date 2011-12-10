@@ -67,6 +67,8 @@ typedef enum {
     bool _aggressiveCanHit;
     bool _beatsPlayerAction;
     bool _hasAppeared;
+    float _movedBy;
+    float _initialPosition;
 
     
     CGRect _range;       //range in which this object can move on screen. absolute positions.
