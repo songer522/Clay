@@ -15,6 +15,7 @@
 #import "Camera.h"
 #import "Calculator.h"
 #import "SoundEngine.h"
+#import "Player.h"
 
 //IPAD FIX: the shadow's feet should be in line with tim's feet in the y position, and the shadow should follow behind tim at three different positions, as well as be completely offscreen, at different points.
 #define SHADOW_YPOS 133.0f
@@ -24,6 +25,7 @@
 #define SHADOW_XPOS_CLOSE 75.0f
 #define SHADOW_TRANSITION_SPEED_SLOW 10.0f
 #define SHADOW_TRANSITION_SPEED_FAST 20.0f
+#define SHADOW_ATTACK_WAIT 2.0f
 
 @implementation BossFinalJim
 
@@ -106,7 +108,6 @@
 
 -(void)triggerAttack
 {
-    
 }
 
 -(void)triggerFallBack
@@ -131,6 +132,7 @@
             break;
         case BOSS_PHASE_CHASE_MIDDLE:
             [self switchToPhase:BOSS_PHASE_CHASE_CLOSE];
+            _waitToAttack = 2.0f;
             break;
         default:
             break;
@@ -160,8 +162,17 @@
     [_sprite setScreenPosition:position];
     
     
-    if (_phase == BOSS_PHASE_CHASE_MIDDLE) {
-        //[self triggerAttack];
+    if (_phase == BOSS_PHASE_CHASE_CLOSE) {
+        //if the player is moving, prepare to attack him. if he's currently fallen or
+        //has recently started the slow time, though, reset the wait instead
+        if ([_player isMoving]) {
+            _waitToAttack -= dt;
+            if (_waitToAttack<=0.0f) {
+                [self triggerAttack];
+            }
+        } else {
+            _waitToAttack = SHADOW_ATTACK_WAIT;
+        }
     }
     
 }
@@ -186,6 +197,13 @@
 -(void)reset
 {
     
+}
+
+-(void)dealloc
+{
+    _level = nil;
+    [_sprite release];
+    [super dealloc];
 }
 
 @end

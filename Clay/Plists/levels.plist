@@ -183,7 +183,7 @@
 		<key>music</key>
 		<string>rainy</string>
 		<key>postLevelComic</key>
-		<string>endGame</string>
+		<string>level9</string>
 		<key>playerOffsetY</key>
 		<integer>-9</integer>
 		<key>fileName</key>

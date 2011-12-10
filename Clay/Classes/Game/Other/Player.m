@@ -501,6 +501,11 @@
     return _thirdAction;
 }
 
+-(bool)isMoving
+{
+    return (!_isTripping && _waitToGetUp <= 0.0f && ![_speed isStopped]);
+}
+
 -(void)update:(float)dt Level:(Level *)level
 {
   
