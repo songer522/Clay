@@ -84,7 +84,7 @@
 			<integer>0</integer>
 		</dict>
 		<key>animationName</key>
-		<string>none</string>
+		<string>darkGargoyleEggAnim</string>
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
@@ -99,7 +99,7 @@
 		<key>collideBehavior</key>
 		<string>falls</string>
 		<key>imageName</key>
-		<string>darkGargoyleEggAnim</string>
+		<string>blank.png</string>
 		<key>offsetx</key>
 		<integer>0</integer>
 		<key>offsety</key>
