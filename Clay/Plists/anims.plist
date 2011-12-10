@@ -466,7 +466,7 @@
 		<key>animationFrames</key>
 		<string>1,2</string>
 		<key>clearPreviousAnims</key>
-		<string>true</string>
+		<string>false</string>
 		<key>delay</key>
 		<string>0.2</string>
 		<key>group</key>
@@ -483,7 +483,7 @@
 		<key>animationFrames</key>
 		<string>1</string>
 		<key>clearPreviousAnims</key>
-		<string>true</string>
+		<string>false</string>
 		<key>delay</key>
 		<string>1.0</string>
 		<key>group</key>
@@ -500,7 +500,7 @@
 		<key>animationFrames</key>
 		<string>2</string>
 		<key>clearPreviousAnims</key>
-		<string>true</string>
+		<string>false</string>
 		<key>delay</key>
 		<string>0.2</string>
 		<key>group</key>
@@ -517,7 +517,7 @@
 		<key>animationFrames</key>
 		<string>1</string>
 		<key>clearPreviousAnims</key>
-		<string>true</string>
+		<string>false</string>
 		<key>delay</key>
 		<string>0.2</string>
 		<key>group</key>
@@ -534,7 +534,7 @@
 		<key>animationFrames</key>
 		<string>3,4</string>
 		<key>clearPreviousAnims</key>
-		<string>true</string>
+		<string>false</string>
 		<key>delay</key>
 		<string>0.2</string>
 		<key>group</key>
@@ -551,7 +551,7 @@
 		<key>animationFrames</key>
 		<string>4</string>
 		<key>clearPreviousAnims</key>
-		<string>true</string>
+		<string>false</string>
 		<key>delay</key>
 		<string>0.2</string>
 		<key>group</key>
@@ -568,7 +568,7 @@
 		<key>animationFrames</key>
 		<string>1</string>
 		<key>clearPreviousAnims</key>
-		<string>true</string>
+		<string>false</string>
 		<key>delay</key>
 		<string>0.2</string>
 		<key>group</key>
@@ -585,7 +585,7 @@
 		<key>animationFrames</key>
 		<string>1,2,1,2,1,2,3,4,5,6,7</string>
 		<key>clearPreviousAnims</key>
-		<string>true</string>
+		<string>false</string>
 		<key>delay</key>
 		<string>0.2</string>
 		<key>group</key>
@@ -602,7 +602,7 @@
 		<key>animationFrames</key>
 		<string>7</string>
 		<key>clearPreviousAnims</key>
-		<string>true</string>
+		<string>false</string>
 		<key>delay</key>
 		<string>0.2</string>
 		<key>group</key>
