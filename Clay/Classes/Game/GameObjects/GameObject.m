@@ -298,13 +298,14 @@
     if (!_isActive && _collideBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER) { 
         
         
-        
         return; }
     
     _prevLocation = CGPointMake(_x, _y);
     
     _x += _vx * dt;
     _y -= _vy * dt;
+    
+    _movedBy -= _vy * dt;
     
     [self setPositionAtX:_x Y:_y];
 
@@ -733,23 +734,19 @@
             {
                 _vy=-800;
             }
-            
-            
         }
         else if([self closeToPlayer:150] && !_hasTriggered)
         {
-            
-               // _waitToTrigger=0.6069f;
-            _waitToTrigger=0.15f;
+            _waitToTrigger=0.2f;
                 _hasTriggered=true;
             
         }
         else if(_vy<0)
         {
-            _vy+=80;
-            if(_vy >= 0)
-            {
-                _vy=0;
+            if (_movedBy > 65.0f) {
+                _movedBy = 65.0f;                
+                _y = _initialPosition + _movedBy;
+                _vy = 0.0f;
             }
         }
     }
@@ -891,6 +888,7 @@
     _waitToTrigger = -1.0f;
     _slowTimeModifier = 1.0f;
     _reloading = 0.0f;
+    _movedBy = 0.0f;
     _stopCurve=false;
     if(self )
     _madeSound = false;

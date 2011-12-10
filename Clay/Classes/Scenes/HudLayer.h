@@ -29,6 +29,7 @@ typedef enum {
     HudButton *_buttonSprint;
     HudButton *_buttonAction;
  
+    Sprite *_pauseButton;
     
     float _buttonScale;
     
