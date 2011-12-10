@@ -34,6 +34,7 @@
     bool _isMovingCamera;
     bool _isKicking;
     bool _isLaughing;
+    bool _wasKnockedDown;
     
     BossPhase _phase;
     

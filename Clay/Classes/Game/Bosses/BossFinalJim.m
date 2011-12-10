@@ -57,6 +57,7 @@
     _isMovingCamera = false;
     _isKicking = false;
     _isLaughing = false;
+    _wasKnockedDown = false;
     _player = [[LayerManager sharedLayers] getPlayer];
     [[_sprite getCCSprite] setVisible:NO];
     [self switchToPhase:BOSS_PHASE_NOT_TRIGGERED];
@@ -206,6 +207,7 @@
             //force the player to be knocked down if they are NOT in turbo (i.e. running away)
             if (![[_player getSpeed] inTurbo]) {
                 [_player startPlayerCollision:YES];
+                _wasKnockedDown = true;
                 [self startLaugh];
             } else {
                 [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"darkShadowTimAnim"];
@@ -236,7 +238,10 @@
         if ([_player isMoving] && !_player.isInMidAir) {
             //end laugh if player starts moving again
             [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"darkShadowTimAnim"];
-            [self switchToPhase:BOSS_PHASE_CHASE_FAR];
+            if (_wasKnockedDown) {
+                [self switchToPhase:BOSS_PHASE_CHASE_FAR];
+                _wasKnockedDown = false;
+            }
             _isLaughing = false;
         }
     } else {
@@ -254,6 +259,7 @@
         [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"darkShadowTimAnim"];
         _isLaughing = false;
         _isKicking = false;
+        _wasKnockedDown = false;
     }
 }
 
