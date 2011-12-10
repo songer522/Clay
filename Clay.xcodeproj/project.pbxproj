@@ -350,6 +350,8 @@
 		54A60BDE1483E55F00EA2F3B /* settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54A60BDD1483E55F00EA2F3B /* settings.plist */; };
 		54A64A32146809D200853CFF /* BossJimShip.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A64A31146809D200853CFF /* BossJimShip.m */; };
 		54A680A614685637006F94A6 /* fallingDeath.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54A680A514685637006F94A6 /* fallingDeath.wav */; };
+		54AA08AA149424E000294FA2 /* level5_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61DC60831489264100F65B78 /* level5_hd.tmx */; };
+		54AA08AB149424E000294FA2 /* level10.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 613DBFD11490261C0017BE38 /* level10.tmx */; };
 		54ABFD7114630876006F0C88 /* menuTextures-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54ABFD6D14630876006F0C88 /* menuTextures-hd.plist */; };
 		54ABFD7214630876006F0C88 /* menuTextures-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54ABFD6E14630876006F0C88 /* menuTextures-hd.png */; };
 		54ABFD7314630876006F0C88 /* menuTextures.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54ABFD6F14630876006F0C88 /* menuTextures.plist */; };
@@ -2369,6 +2371,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54AA08AA149424E000294FA2 /* level5_hd.tmx in Resources */,
+				54AA08AB149424E000294FA2 /* level10.tmx in Resources */,
 				54A2C5A5147C6F8900A0CB18 /* doublejump.wav in Resources */,
 				54484CE7140449B500D0D7D9 /* Default.png in Resources */,
 				54484CE9140449B500D0D7D9 /* fps_images.png in Resources */,
