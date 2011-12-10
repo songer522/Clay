@@ -152,6 +152,11 @@
     <property name="obstacle" value="darkGargoyle"/>
    </properties>
   </tile>
+  <tile id="80">
+   <properties>
+    <property name="obstacle" value="darkSmallObstacle"/>
+   </properties>
+  </tile>
  </tileset>
  <tileset firstgid="103" name="Dark" tilewidth="64" tileheight="64">
   <image source="tileset_level_11-hd.png" width="960" height="1024"/>
@@ -171,7 +176,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt0kENACAQxMA9JaAA/LsDF1zCzKcGmgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAXYxKZqmqqqqqqvYp/Gjd93epqqqqqqr2KQAAAAAAAAAAAAAAAG8cqZH9IQ==
+   eJzt1ssJAjEUhtGkEq1A1z7XPvtvx1tABJlwyQTPgeHbhvDDpBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIA+l1rKtY4+BfSxY1rsIod7BQDI8Yo31ts7i8nZMS12kcO9AgDkeMQb6+mdxeTsmBa7yHGKOz27VwC+2MQ/YltVdUkP8R1XcA7VntqxtmoX7lV1dOEf7WL7+6qqS3qL776Cc6jasdrFHHWvqr8XAAAAAAAAAAAAAACAMT43egVu
   </data>
  </layer>
  <layer name="main0" width="1000" height="14">
@@ -203,7 +208,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1zkOgDAMBMDkY1w91/8/g2sKRBFBIDPSFukse5ukBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/S5ZT6yBAZI1N+eyIAAABoz+w//nlL3HCNbJHdPYuzX0qqpU+1zEFd7vZCf66d9/PU210AAAAAgNYdZXoTzw==
+   eJzt2LsNgDAMBUBnMj4DENh/GVxTIIoIAtxJr0hnOa9yBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHzPUCLGzJSZy9PTAAAAALzPUiJqZs1s7ivN2S8t9dKnXuagL1d7oT/njvu56+1fAAAAAIC/2wF7FRNC
   </data>
  </layer>
  <layer name="front-2" width="1000" height="14">
@@ -221,7 +226,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1FsKwjAQBdCuQF2Ly/Gx/22IoD+hzWOSkkLPAT+MJp3OXLIsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcE7336fXM/js6N7UK7iv9d3fjeul33IewX1/kb72zmJkH6IzrdXb31bXgWdF+7xHTnMieSrNfa3O2rVakbqjeRqd81G5PmrGcrPpyUaktq3Zta5/jbwf1tTmYu978Uj3U8la1tL+5L63/Lf1LEjdZhcAJ3OZXQAAAAAAAAAATPAB1CwUAg==
+   eJzt1FsOwiAQBdCuQF2Ly/Gx/20YE/1pgMJAQ5Oek/ghCp3O3LAsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcE733yfl3bD+DD47unftFdyXe/eclp7U/FbyCO77i/S1dxYj+xCdaa3e/ra6Djwr2uc9cloSydPW3FN11q7VitQdzdPonI/K9VEzVppNTzYiteVm17r+NfJ+SKnNxd734pHupy2prK37U/re8t/Ws2DtNrsAOJnL7AIAAAAAAAAAYIIPeWIUvA==
   </data>
  </layer>
  <layer name="meta" width="1000" height="14" opacity="0.66">
