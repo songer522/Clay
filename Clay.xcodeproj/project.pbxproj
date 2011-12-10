@@ -369,6 +369,11 @@
 		54C944CF1492F02B00CE2AA3 /* Part9_AfterLv8.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 54C944CC1492F02B00CE2AA3 /* Part9_AfterLv8.mp4 */; };
 		54C944D01492F02B00CE2AA3 /* Part10_AfterLv9.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 54C944CD1492F02B00CE2AA3 /* Part10_AfterLv9.mp4 */; };
 		54C944D11492F02B00CE2AA3 /* Part11_AfterLv10.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 54C944CE1492F02B00CE2AA3 /* Part11_AfterLv10.mp4 */; };
+		54C944D91493023B00CE2AA3 /* darkBats.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54C944D31493023B00CE2AA3 /* darkBats.wav */; };
+		54C944DC1493023B00CE2AA3 /* darkShadowLaugh.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 54C944D61493023B00CE2AA3 /* darkShadowLaugh.mp3 */; };
+		54C944E0149302C200CE2AA3 /* darkSlowTimeAction.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54C944DF149302C200CE2AA3 /* darkSlowTimeAction.wav */; };
+		54C944E3149305E300CE2AA3 /* darkGargoyle1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54C944E1149305E300CE2AA3 /* darkGargoyle1.wav */; };
+		54C944E4149305E300CE2AA3 /* darkSpikes.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 54C944E2149305E300CE2AA3 /* darkSpikes.mp3 */; };
 		54CA7A701471B8B9002B01AA /* barnLevel-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54CA7A6C1471B8B9002B01AA /* barnLevel-hd.plist */; };
 		54CA7A711471B8B9002B01AA /* barnLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54CA7A6D1471B8B9002B01AA /* barnLevel-hd.png */; };
 		54CA7A721471B8B9002B01AA /* barnLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54CA7A6E1471B8B9002B01AA /* barnLevel.plist */; };
@@ -1032,6 +1037,11 @@
 		54C944CC1492F02B00CE2AA3 /* Part9_AfterLv8.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = Part9_AfterLv8.mp4; path = Resources/videos/Part9_AfterLv8.mp4; sourceTree = "<group>"; };
 		54C944CD1492F02B00CE2AA3 /* Part10_AfterLv9.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = Part10_AfterLv9.mp4; path = Resources/videos/Part10_AfterLv9.mp4; sourceTree = "<group>"; };
 		54C944CE1492F02B00CE2AA3 /* Part11_AfterLv10.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = Part11_AfterLv10.mp4; path = Resources/videos/Part11_AfterLv10.mp4; sourceTree = "<group>"; };
+		54C944D31493023B00CE2AA3 /* darkBats.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = darkBats.wav; path = Resources/sounds/darkBats.wav; sourceTree = "<group>"; };
+		54C944D61493023B00CE2AA3 /* darkShadowLaugh.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = darkShadowLaugh.mp3; path = Resources/sounds/darkShadowLaugh.mp3; sourceTree = "<group>"; };
+		54C944DF149302C200CE2AA3 /* darkSlowTimeAction.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = darkSlowTimeAction.wav; path = Resources/sounds/darkSlowTimeAction.wav; sourceTree = "<group>"; };
+		54C944E1149305E300CE2AA3 /* darkGargoyle1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = darkGargoyle1.wav; path = Resources/sounds/darkGargoyle1.wav; sourceTree = "<group>"; };
+		54C944E2149305E300CE2AA3 /* darkSpikes.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = darkSpikes.mp3; path = Resources/sounds/darkSpikes.mp3; sourceTree = "<group>"; };
 		54CA7A6C1471B8B9002B01AA /* barnLevel-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "barnLevel-hd.plist"; sourceTree = "<group>"; };
 		54CA7A6D1471B8B9002B01AA /* barnLevel-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "barnLevel-hd.png"; sourceTree = "<group>"; };
 		54CA7A6E1471B8B9002B01AA /* barnLevel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = barnLevel.plist; sourceTree = "<group>"; };
@@ -1660,6 +1670,11 @@
 		545CBC2F142D25AB00795FC9 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				54C944E1149305E300CE2AA3 /* darkGargoyle1.wav */,
+				54C944E2149305E300CE2AA3 /* darkSpikes.mp3 */,
+				54C944DF149302C200CE2AA3 /* darkSlowTimeAction.wav */,
+				54C944D31493023B00CE2AA3 /* darkBats.wav */,
+				54C944D61493023B00CE2AA3 /* darkShadowLaugh.mp3 */,
 				54A5208C14902DB600C8BD13 /* waterAnglerFish.mp3 */,
 				54A5208D14902DB600C8BD13 /* waterBubbles.wav */,
 				54A5208E14902DB600C8BD13 /* waterPufferFish.wav */,
@@ -2613,6 +2628,11 @@
 				54C944CF1492F02B00CE2AA3 /* Part9_AfterLv8.mp4 in Resources */,
 				54C944D01492F02B00CE2AA3 /* Part10_AfterLv9.mp4 in Resources */,
 				54C944D11492F02B00CE2AA3 /* Part11_AfterLv10.mp4 in Resources */,
+				54C944D91493023B00CE2AA3 /* darkBats.wav in Resources */,
+				54C944DC1493023B00CE2AA3 /* darkShadowLaugh.mp3 in Resources */,
+				54C944E0149302C200CE2AA3 /* darkSlowTimeAction.wav in Resources */,
+				54C944E3149305E300CE2AA3 /* darkGargoyle1.wav in Resources */,
+				54C944E4149305E300CE2AA3 /* darkSpikes.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

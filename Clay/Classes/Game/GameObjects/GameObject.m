@@ -677,6 +677,10 @@
     {
         if  ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN])
         {
+            if (!_madeSound) {
+                _madeSound = true;
+                [[SoundEngine shared] playSound:@"darkBats"];
+            }
             _angle+=200*dt;
             _magnitude=300;
             _vx = -0.1*_magnitude;
@@ -728,6 +732,10 @@
             if(_waitToTrigger <= 0)
             {
                 _vy=-200;
+                if (!_madeSound) {
+                    _madeSound = true;
+                    [[SoundEngine shared] playSound:@"darkSpikes"];
+                }
             }
             
             
@@ -762,7 +770,7 @@
                 //[[SoundEngine shared] playSound:@"maddogBark"];
                 [self setOriginalAnimation:@"gargoyleOpenWings"];
                 [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"gargoyleOpenWings"];
-                
+                [[SoundEngine shared] playSound:@"darkGargoyle"];
             }
             }
             //_vx = -150.0f;
