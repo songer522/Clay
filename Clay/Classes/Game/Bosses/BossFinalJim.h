@@ -11,6 +11,7 @@
 
 @class Sprite;
 @class Level;
+@class Player;
 
 @interface BossFinalJim : Boss
 {
@@ -35,6 +36,8 @@
     BossPhase _phase;
     
     float _waitToAttack;
+    
+    Player *_player; //weak reference
 }
 
 -(void)updateTransition:(float)dt;

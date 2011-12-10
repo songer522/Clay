@@ -148,6 +148,8 @@ typedef enum {
 -(void)updateSlow:(float)dt;
 -(void)updateTurbo:(float)dt;
 
+-(bool)isMoving;
+
 -(void)startVaccuum;
 -(void)endVaccuum;
 
