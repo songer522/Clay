@@ -338,6 +338,7 @@
     [_buttonSprint release];
     [_buttonAction release];
    
+    [_pauseButton release];
     [_trackTimer release];
     [_battery release];
     [super dealloc];

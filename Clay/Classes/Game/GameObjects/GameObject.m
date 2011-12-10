@@ -731,7 +731,7 @@
             _waitToTrigger-=dt;
             if(_waitToTrigger <= 0)
             {
-                _vy=-200;
+                _vy=-800;
                 if (!_madeSound) {
                     _madeSound = true;
                     [[SoundEngine shared] playSound:@"darkSpikes"];

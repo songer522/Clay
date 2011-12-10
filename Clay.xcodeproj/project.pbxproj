@@ -2626,6 +2626,8 @@
 				54C944CF1492F02B00CE2AA3 /* Part9_AfterLv8.mp4 in Resources */,
 				54C944D01492F02B00CE2AA3 /* Part10_AfterLv9.mp4 in Resources */,
 				54C944D11492F02B00CE2AA3 /* Part11_AfterLv10.mp4 in Resources */,
+				61E8B44D1492FC9A00B32D61 /* level11_hd.tmx in Resources */,
+				61E8B44F1493113F00B32D61 /* level11.tmx in Resources */,
 				54C944D91493023B00CE2AA3 /* darkBats.wav in Resources */,
 				54C944DC1493023B00CE2AA3 /* darkShadowLaugh.mp3 in Resources */,
 				54C944E0149302C200CE2AA3 /* darkSlowTimeAction.wav in Resources */,
