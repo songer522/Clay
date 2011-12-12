@@ -101,12 +101,12 @@
             case HUD_BUTTON_SPRINT:
                 if(_isSprintEnabled)
                 {
-                if(![_gameLayer.player getIsTurbo]) {
-                    [_gameLayer.player startTurbo];
-                   
-                } else {
-                    [_gameLayer.player endTurbo];
-                }
+                    if(![_gameLayer.player getIsTurbo]) {
+                        [_gameLayer.player startTurbo];
+                       
+                    } else {
+                        [_gameLayer.player endTurbo:true];
+                    }
                 }
                 
                 break;

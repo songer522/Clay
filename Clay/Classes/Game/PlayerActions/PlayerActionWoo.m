@@ -26,7 +26,7 @@
     if (!_inAction && _canTrigger) {
         [super startAction];
         _duration = 0.75f;
-        [_parent endTurbo];
+        [_parent endTurbo:false];
         [_parent setPlayerAnimation:PLAYER_ANIM_WOO];
         [[SoundEngine shared] playSound:@"wooAction"];
     }

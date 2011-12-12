@@ -103,7 +103,7 @@
         [self stop];
     } else {
         if (_inTurbo) {
-            [_player endTurbo];            
+            [_player endTurbo:false];            
         }
         _velocity = -0.5f * _velocity;
         _acceleration = 0.5f;
@@ -115,7 +115,11 @@
 {
     if(_player.isInMidAir) {
         if (_inTurbo) {
-            [_player endTurbo];
+            if (_player.isWindy) {
+                [_player endTurbo:false];
+            } else {
+                [_player endTurbo:true];                
+            }
         }
     }
     
@@ -134,7 +138,7 @@
     _acceleration *= 0.1f;
     _velocity *= 0.1f;
     if (_inTurbo) {
-        [_player endTurbo];
+        [_player endTurbo:true];
     }
 }
 
@@ -173,7 +177,7 @@
 {
     float modifier;
     modifier = _velocityModifier;
-    if (_isUnderwater && _player.isInMidAir) {
+    if (_isUnderwater && _player.isInMidAir && !_player.isNewUnderwaterPhysics) {
         modifier = 1.5f;
     }
     
@@ -202,7 +206,7 @@
 
                 _turboLeft -= dt;
                 if (_turboLeft <= 0.0f) {
-                    [_player endTurbo];
+                    [_player endTurbo:true];
                 }
 
             }

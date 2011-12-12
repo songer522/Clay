@@ -45,7 +45,6 @@
 @synthesize onLedge =_onLedge;
 
 
-
 +(id) instance
 {
     return [[self alloc] init];
@@ -158,7 +157,13 @@
     self.hasGravity = false;
     _firstFrameJumping = true;
     _isHighJump = false;
-    _vy = -115.0f;
+    
+    if (_isNewUnderwaterPhysics) {
+        _vy = -86.25f; //75% original        
+    } else {
+        _vy = -115.0f;
+    }
+    
     _y += 2.0f;
     _isJumping = true;
     [_skin setPlayerAnimation:PLAYER_ANIM_JUMPING ForSprite:_sprite];
@@ -179,7 +184,11 @@
     
     self.hasGravity = true;
     
-    _vy = -250.0f;
+    if (_isNewUnderwaterPhysics) {
+        _vy = -187.5f;
+    } else {
+        _vy = -250.0f;
+    }
     _ay = 0.0f;
     _isJumping = true;
     
@@ -241,9 +250,11 @@
     return _speed.inTurbo;
 }
 
--(void)endTurbo
+-(void)endTurbo:(bool)switchToRunningAnim
 {
-    [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];
+    if (switchToRunningAnim) {
+        [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];        
+    }
     [_speed endTurbo];
     
     if(_isTurbo && _hitPoints>1 )
@@ -361,6 +372,7 @@
         }
     } else {
         [_skin setPlayerAnimation:PLAYER_ANIM_HURTING ForSprite:_sprite];
+        
         _vy = -250.0f;
         _y += 2.0f;
         _waitToGetUp = 0.3f;
@@ -541,9 +553,9 @@
         _waitToGetUp -= dt;
         if (_waitToGetUp <= 0.0f) {
             _isTripping = false;
-            [self endTurbo];
+            [self endTurbo:true];
             [_speed start];
-            [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];
+            //[_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];
         }
     }
 
