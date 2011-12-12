@@ -265,7 +265,7 @@
     _map = [[CCTMXTiledMap tiledMapWithTMXFile:filename] retain];
     
     _meta = [_map layerNamed:@"meta"];
-    _meta.visible = YES;
+    _meta.visible = NO;
         
     _obstacles = [_map layerNamed:obstacleLayer];
     _obstacles.visible = NO;

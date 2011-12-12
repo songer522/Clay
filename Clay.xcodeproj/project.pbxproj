@@ -2383,6 +2383,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54AA08AA149424E000294FA2 /* level5_hd.tmx in Resources */,
+				54AA08AB149424E000294FA2 /* level10.tmx in Resources */,
 				57F0EF51148D5456004C5044 /* chooseLevel-ipad.plist in Resources */,
 				57F0EF52148D5456004C5044 /* chooseLevel-ipad.png in Resources */,
 				57F0EF53148D5456004C5044 /* menuTextures-ipad.plist in Resources */,

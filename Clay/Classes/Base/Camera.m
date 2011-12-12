@@ -12,6 +12,8 @@
 #import "Level.h"
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
+#define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 @implementation Camera
 
 @synthesize trackingTarget = _trackingTarget;
@@ -56,16 +58,11 @@ static Camera *_sharedCamera = nil;
     //restrict the camera in certain levels
     //IPAD FIX: may need a different greater height for ipad, since the ipad has more pixels in the y plane.
     NSString *levelName = level.name;
-    if ([levelName isEqualToString:@"level6"]) {
-        rect.size.height = 352;
-    } else if ([levelName isEqualToString:@"level8"]) {
-        rect.size.height = 330;
-    } else if([levelName isEqualToString:@"level9"]) {
-        rect.size.height = 352;
-    } else if([levelName isEqualToString:@"level10"]) {
-        rect.size.height = 352;
-    }
-    
+   if ([levelName isEqualToString:@"level8"]) {
+        rect.size.height = 360 * MULTIPLIERX;
+   } else {
+        rect.size.height = 402 * MULTIPLIERX;
+    }     
     _boundary = rect;
     
     [self keepWithinBoundaries];

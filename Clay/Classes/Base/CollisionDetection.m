@@ -67,7 +67,7 @@
         if ([tileCollision isEqualToString:@"ledgefull"]) {
             if (IS_IPAD)
             {
-                desiredPosition.y = (_mapHeight - coords.y - 1) * _tileSize + 32.0f;
+                desiredPosition.y = (_mapHeight - coords.y - 1) * _tileSize;
             }
             else if ([GameSettings usingHighResolutionGraphics])
             {
@@ -118,7 +118,7 @@
     y = MAX(0,y);
     y = MIN((_mapHeight - 1),y);
     
-    return ccp(x,y);
+    return ccp(x,y -1);
 }
 
 -(NSString*)getCollisionPropertyForTileCoords:(CGPoint)coords
@@ -138,7 +138,6 @@
     } else {
         returnVal = [NSString stringWithString:@"none"];
     }
-    
     return returnVal;
 }
 -(void) dealloc

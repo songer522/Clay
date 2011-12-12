@@ -59,9 +59,9 @@
         float centerX = winSize.width/2.0f;
         float centerY = winSize.height/2.0f;
         [_pausedText setPosition:ccp(centerX,centerY+30.0f)];
-        [_resumeButton setPosition:ccp(centerX - 115.0f,centerY - 30.0f)];
+        [_resumeButton setPosition:ccp(centerX - 230.0f,centerY - 30.0f)];
         [_restartButton setPosition:ccp(centerX,centerY - 30.0f)];
-        [_menuButton setPosition:ccp(centerX + 115.0f,centerY - 30.0f)];
+        [_menuButton setPosition:ccp(centerX + 230.0f,centerY - 30.0f)];
         
         
         _action = PAUSE_ACTION_NONE;

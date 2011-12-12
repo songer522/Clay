@@ -202,15 +202,7 @@
     //load any medals earned
     [self loadMedals];
     
-    [self loadTutorial];
-
-
-    /*
-    _levelPanelText = [CCLabelBMFont labelWithString:@"LEVEL 1" fntFile:@"GraphicFont.fnt"];
-    [_levelPanelText setScale:0.5f];
-    _levelPanelText.position = ccp(158,34.5f);
-    [[[LayerManager sharedLayers] currentLayer] addChild:_levelPanelText];
-    */
+    //[self loadTutorial];
     
     
     [[LayerManager sharedLayers] forgetWorkingLayer];

@@ -387,7 +387,7 @@
     else if(_currentBehavior == COLLISION_BEHAVIOR_CHARGE_AT_PLAYER) {
         _vx = 0.0f;
         if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
-            _vx = -150.0f * MULTIPLIERX;
+            _vx = -150.0f;
         }
     } else if(_currentBehavior == COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST) {
         _vx = 0.0f;

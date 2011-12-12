@@ -61,9 +61,10 @@
         NSAssert(settings!=nil,@"Error loading player.plist");
         
         NSDictionary *cameraTracking = [settings objectForKey:@"cameraTracking"];
-        int cameraX = [[cameraTracking objectForKey:@"x"] intValue];
-        int cameraY = [[cameraTracking objectForKey:@"y"] intValue] - 5;
-        [[Camera sharedCamera] setCenter:CGPointMake(cameraX * MULTIPLIERX, cameraY * MULTIPLIERY)];
+        int cameraX = [[cameraTracking objectForKey:@"x"] intValue] * MULTIPLIERX;
+        int cameraY = ([[cameraTracking objectForKey:@"y"] intValue] * MULTIPLIERY) - 4;
+        [[Camera sharedCamera] setCenter:CGPointMake(cameraX, cameraY)];
+        [[Camera sharedCamera] setDefaultCenter:CGPointMake(cameraX, cameraY)];
         
         GameObjectController *factory = [LevelManager shared].gameObjectFactory;
         [factory initializeGameObject:self Name:@"player" AddToLayer:YES];

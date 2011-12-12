@@ -333,13 +333,13 @@
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>35</integer>
+			<integer>15</integer>
 			<key>width</key>
 			<integer>30</integer>
 			<key>x</key>
 			<integer>30</integer>
 			<key>y</key>
-			<integer>50</integer>
+			<integer>100</integer>
 		</dict>
 		<key>collideBehavior</key>
 		<string>chargeAtPlayer</string>
@@ -368,13 +368,13 @@
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>35</integer>
+			<integer>15</integer>
 			<key>width</key>
 			<integer>30</integer>
 			<key>x</key>
 			<integer>30</integer>
 			<key>y</key>
-			<integer>50</integer>
+			<integer>100</integer>
 		</dict>
 		<key>collideBehavior</key>
 		<string>chargeAtPlayerFast</string>

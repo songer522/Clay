@@ -29,7 +29,7 @@
 #import "RunningSpeed.h"
 #import "ChooseLevelScreen.h"
 
-#define DEBUG_DRAW_BOUNDING_BOXES 0
+#define DEBUG_DRAW_BOUNDING_BOXES 1
 
 @interface GameLayer()
 
@@ -40,7 +40,12 @@
 -(void)updatePlayerDeath:(float)dt;
 -(void)updateLogic:(ccTime)dt;
 
-#define DEBUG_DRAW_BOUNDING_BOXES 1
+//the following serve as our pause and unpause functions
+//based on code posted at: http://www.cocos2d-iphone.org/forum/topic/1232
+-(void)onEnter;
+-(void)onExit;
+
+@end
 
 // HelloWorldLayer implementation
 @implementation GameLayer
