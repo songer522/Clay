@@ -15,14 +15,21 @@
 @synthesize paused = _paused;
 @synthesize totalFrames = _totalFrames;
 
-- (id)init
+
++(id) actionWithAnimation: (CCAnimation*)anim restoreOriginalFrame:(BOOL)b
 {
-    self = [super init];
-    if (self) {
-        // Initialization code here.
-    }
+	return [[[self alloc] initWithAnimation:anim restoreOriginalFrame:b] autorelease];
+}
+
+-(id) initWithAnimation: (CCAnimation*)anim restoreOriginalFrame:(BOOL) b
+{
+	NSAssert( anim!=nil, @"Animate: argument Animation must be non-nil");
     
-    return self;
+	if( (self=[super initWithAnimation:anim restoreOriginalFrame:b]) ) {
+        _totalTime = 0.0f;
+        _speed = 1.0f;
+	}
+	return self;
 }
 
 -(void)update:(ccTime)t
@@ -31,10 +38,10 @@
     
     NSArray *frames = [animation_ frames];
     NSUInteger numberOfFrames = [frames count];
-    
+
     _totalFrames = numberOfFrames;
     
-    NSUInteger idx = t * numberOfFrames;
+    NSUInteger idx = t * _speed * numberOfFrames;
     
     if (idx >= numberOfFrames) {
         idx = numberOfFrames - 1;
@@ -58,6 +65,11 @@
         [sprite setDisplayFrame:[frames objectAtIndex:frame]];
         _frame = frame;
     }
+}
+
+-(void)changeSpeed:(float)speed
+{
+    _speed = speed;
 }
 
 -(void)dealloc

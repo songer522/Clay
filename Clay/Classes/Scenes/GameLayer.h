@@ -48,20 +48,17 @@
     Boss *_boss;
     
     bool _paused;
-    
+    bool _handledPauseEvent; //set when pause happens so that a second call to pause that same frame doesn't invalidate the first click. for example, when the pause icon is touched when paused, pausing would be called first by the pause layer, then again by the gamelayer.
     double time;
     
 }
 
 @property(nonatomic,retain) Player *player;
 @property(readonly,nonatomic,retain) GameController *gameController;
+@property(nonatomic,assign) bool handledPauseEvent;
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
--(void)setupLayers;
--(void)initForLevel;
--(void)initCamera;
--(void)updateLogic:(ccTime)dt;
 
 -(void)initializeLaserShow;
 -(void)stopLaserShow;
@@ -72,19 +69,17 @@
 -(void)setupHud;
 -(HudLayer*)getHud;
 -(void)setBoss:(Boss*)boss;
+-(Boss*)getBoss;
 -(void)unpause;
--(void)updateTriggers:(float)dt;
-
--(void)updatePlayerDeath:(float)dt;
 
 -(void)startLevel:(NSString*)levelName;
+-(void)initForLevel; //called by comic manager when switching levels
+-(void)restartLevel; //called by pause screen when restarting the level
 -(void)endLevel;
+
+-(void)switchToChooseLevel;
 
 -(NSMutableArray*)getGameObjectsList;
 
-//the following serve as our pause and unpause functions
-//based on code posted at: http://www.cocos2d-iphone.org/forum/topic/1232
--(void)onEnter;
--(void)onExit;
 
 @end

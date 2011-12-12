@@ -46,9 +46,9 @@
 -(void) setFrame:(int)frameNumber
 {
     
-    NSString *number = [NSString stringWithFormat:@"%d",frameNumber];
-    Animation *anim = [Animation animationFromPlist:@"battery" forSequence:@"Battery_" FrameList:number];
-    [sprite setAnimation:anim Delay:100.0f];
+    NSString *frameName = [NSString stringWithFormat:@"Battery_%d.png",frameNumber];
+    [[sprite getCCSprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName]];
+
     _currentFrame = frameNumber;
     if (_currentFrame == 4) {
         _totalTime = 0.0f;

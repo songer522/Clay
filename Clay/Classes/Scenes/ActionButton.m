@@ -15,20 +15,32 @@
 #define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
 #define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 
+@interface ActionButton()
+
+-(id)initWithText:(NSString*)text ButtonImageName:(NSString*)buttonName ButtonPressedImageName:(NSString*)buttonPressedName;
+
+@end
+
+
 @implementation ActionButton
 
 +(id)actionButtonWithText:(NSString*)text
 {
-    return [[self alloc] initWithText:text];
+    return [[self alloc] initWithText:text ButtonImageName:@"CL_Button.png" ButtonPressedImageName:@"CL_ButtonPressed.png"];
 }
 
--(id)initWithText:(NSString*)text
++(id)actionButtonInGameWithText:(NSString*)text
+{
+    return [[self alloc] initWithText:text ButtonImageName:@"Button.png" ButtonPressedImageName:@"ButtonPressed.png"];
+}
+
+-(id)initWithText:(NSString*)text ButtonImageName:(NSString*)buttonName ButtonPressedImageName:(NSString*)buttonPressedName
 {
     if ((self=[super init])) {
         
-        _buttonIdle = [Sprite spriteFromFrameCacheWithName:@"CL_Button.png"];
+        _buttonIdle = [Sprite spriteFromFrameCacheWithName:buttonName];
         [_buttonIdle getCCSprite].anchorPoint = ccp(0.5f,0.5f);
-        _buttonSelected = [Sprite spriteFromFrameCacheWithName:@"CL_ButtonPressed.png"];
+        _buttonSelected = [Sprite spriteFromFrameCacheWithName:buttonPressedName];
         [_buttonSelected getCCSprite].anchorPoint = ccp(0.5f,0.5f);
         
         _textLabel = [CCLabelBMFont labelWithString:text fntFile:@"GraphicFont.fnt"];
@@ -55,6 +67,13 @@
     [_buttonSelected setScreenPosition:position];
     _textLabel.position = ccp(position.x,position.y - 3.0f);
     [self setHitbox:CGRectMake(position.x - 48, position.y - 15, 95 * MULTIPLIERX, 30 * MULTIPLIERY)];
+}
+
+-(void)setAlpha:(float)alpha
+{
+    GLubyte opacity = floor(alpha * 255);
+    [[_buttonIdle getCCSprite] setOpacity:opacity];
+    [_textLabel setOpacity:opacity];
 }
 
 -(bool)checkIfSelected:(CGPoint)touch

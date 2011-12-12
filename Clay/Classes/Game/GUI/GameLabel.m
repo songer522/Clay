@@ -77,6 +77,12 @@
     [_label setString:text];
 }
 
+-(void)setAlpha:(float)alpha
+{
+    GLubyte opacity = floor(alpha * 255);
+    [_label setOpacity:opacity];
+}
+
 -(void)dealloc
 {
     [_label release];

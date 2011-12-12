@@ -4,10 +4,13 @@
 <dict>
 	<key>frames</key>
 	<dict>
+		
 		<key>BlowingWind_1.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{4, 50}, {17, 11}}</string>
 			<key>spriteOffset</key>
@@ -23,10 +26,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 		<key>BlowingWind_2.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{4, 43}, {37, 21}}</string>
 			<key>spriteOffset</key>
@@ -42,10 +48,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 		<key>BlowingWind_3.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{5, 39}, {61, 31}}</string>
 			<key>spriteOffset</key>
@@ -61,10 +70,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 		<key>BlowingWind_4.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{6, 23}, {111, 51}}</string>
 			<key>spriteOffset</key>
@@ -80,10 +92,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 		<key>BlowingWind_5.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{14, 6}, {125, 77}}</string>
 			<key>spriteOffset</key>
@@ -99,10 +114,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 		<key>BlowingWind_6.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{30, 1}, {117, 81}}</string>
 			<key>spriteOffset</key>
@@ -118,10 +136,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 		<key>BlowingWind_7.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{65, 2}, {79, 75}}</string>
 			<key>spriteOffset</key>
@@ -137,10 +158,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 		<key>BlowingWind_8.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{53, 8}, {79, 71}}</string>
 			<key>spriteOffset</key>
@@ -156,10 +180,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 		<key>BlowingWind_9.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{56, 23}, {59, 37}}</string>
 			<key>spriteOffset</key>
@@ -175,10 +202,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 		<key>Character_Blowing_1.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{20, 2}, {72, 140}}</string>
 			<key>spriteOffset</key>
@@ -194,10 +224,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 		<key>Character_Blowing_2.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{6, 14}, {90, 128}}</string>
 			<key>spriteOffset</key>
@@ -213,6 +246,7 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 	</dict>
 	<key>metadata</key>
 	<dict>

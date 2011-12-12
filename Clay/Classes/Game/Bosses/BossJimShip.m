@@ -98,12 +98,19 @@
     CGPoint position = [_sprite getPosition];
     
     [_sprite setScreenPosition:CGPointMake(position.x + _velocity.x, position.y + _velocity.y)];
-           for (Projectile *_bullet in _bullets) {
+    
+    for (Projectile *_bullet in _bullets) {
         if ([_bullet isActive]) {
-            [_bullet pointTowardPlayer];
-            [_bullet update:dt];
-                        Player *_player = [[LayerManager sharedLayers] getPlayer];
             
+            //redirect the bullet towards the player unless the bullet drops below a certain Y point (around the midsection of the player)
+            CGPoint bulletPos = [_bullet getPosition];
+            if (bulletPos.y > 120.0f) {
+                [_bullet pointTowardPlayerMaxAngle:-1.0f];
+            }
+            
+            
+            [_bullet update:dt];
+            Player *_player = [[LayerManager sharedLayers] getPlayer];
             Level *currentLevel = [[LevelManager shared] currentLevel];
           
             

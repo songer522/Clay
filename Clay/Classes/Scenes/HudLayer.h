@@ -29,6 +29,7 @@ typedef enum {
     HudButton *_buttonSprint;
     HudButton *_buttonAction;
  
+    Sprite *_pauseButton;
     
     float _buttonScale;
     
@@ -73,8 +74,7 @@ typedef enum {
 -(Battery*)getBattery;
 -(TrackTimer*)getTrackTimer;
 
--(void)reset;
-
+-(void)reset:(bool)isRestarting;
 
 -(void)setEnabled:(bool)enabled ForButton:(HudButtonType)button;
 

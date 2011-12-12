@@ -75,6 +75,7 @@
         _rate = 1.0f;
         _offsetY = 0;
         _waitToTrigger = -1.0f;
+        _hasTriggered= false;
         _boss = nil;
         _madeSound = false;
         _boundingBox = CGRectMake(0, 0, 0, 0);
@@ -93,6 +94,7 @@
         _beatsPlayerAction = false;
         _persistsBetweenRegions = false;
         _magnitude = 0.0f;
+        _hasAppeared=false;
     }
     
     return self;
@@ -213,6 +215,9 @@
     } else if(_currentBehavior == COLLISION_BEHAVIOR_ROLLING_HAYBALE) {
         _alpha = 1.5f;
         _fadeout = true;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_FADES) {
+        _alpha = 1.5f;
+        _fadeout = true;            
     } else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON) {
         _alpha = 1.0f;
         _vy = -50.0f;
@@ -236,6 +241,10 @@
     } else if(_currentBehavior == COLLISION_BEHAVIOR_RAINY_SQUIRREL) {
         _alpha = 1.2f;
         _fadeout = true;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_PUFFERFISH) {
+        _alpha = 1.2f;
+        _fadeout = true;
+        [[SoundEngine shared] playSound:@"waterPufferFish"];
     }
     
     return _playerEffect;
@@ -292,13 +301,14 @@
     if (!_isActive && _collideBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER) { 
         
         
-        
         return; }
     
     _prevLocation = CGPointMake(_x, _y);
     
     _x += _vx * dt;
     _y -= _vy * dt;
+    
+    _movedBy -= _vy * dt;
     
     [self setPositionAtX:_x Y:_y];
 
@@ -361,7 +371,20 @@
         [self getCCSprite].rotation = _angle;
         _vy += 500.0f * dt;
         
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_CHARGE_AT_PLAYER) {
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_SLOW) {
+        _vx = 0.0f;
+        if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+            _vx = -100.0f;
+            
+            //right now this behavior only applies to angler fish... need an exception if changes in the future
+            if (!_madeSound) {
+                [[SoundEngine shared] playSound:@"waterAnglerFish"];
+                _madeSound = true;
+            }
+        }
+    }
+    
+    else if(_currentBehavior == COLLISION_BEHAVIOR_CHARGE_AT_PLAYER) {
         _vx = 0.0f;
         if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
             _vx = -150.0f * MULTIPLIERX;
@@ -380,7 +403,7 @@
                 [self setOriginalAnimation:@"madDogAnim"];
                 [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"madDogAnim"];
             }
-            _vx = -150.0f;    
+            _vx = -150.0f;
         }
     } else if(_currentBehavior == COLLISION_BEHAVIOR_RETRO_ZOMBIE) {
         _vx = 0.0f;
@@ -521,30 +544,160 @@
     else if(_currentBehavior == COLLISION_BEHAVIOR_PAPERPLANE)
     {
         _vx = 0.0f;
-        if ([self closeToPlayer:275]) {
-            _angle-=180.0f*dt;
-            if(_angle < -360.0f) {
+        if ([self closeToPlayer:375]) {
+            _angle+=110.0f*dt;
+            if(_angle > -60.0f) {
                 _stopCurve=true;
-                _angle = - 360.0f;
+                _angle = - 60.0f;
                 
                _vx = -1 * _magnitude;
+                _vy=0;
             }
             //[_sprite getCCSprite].rotation = -30.0f + ((_angle + 180.0f) / (2.66667f));
             if(!_stopCurve)
             {
                 _vx = _magnitude * cosf((_angle * 3.14159)/180.0f);
-                _vy = _magnitude * sinf((_angle * 3.14159)/180.0f);
+                _vy = -1*_magnitude * sinf((_angle * 3.14159)/180.0f);
             }
             
-        } else if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+        }else if  ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
             _vx = -1 * _magnitude;
             _angle = -180;
             //[_sprite getCCSprite].rotation = -30.0f;
         }
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_RAINY_SQUIRREL) {
-        if (_reloading >=0.0f) {
+    }
+   /*
+    else if(_currentBehavior == COLLISION_BEHAVIOR_PAPERPLANE)
+    {
+        _vx = 0.0f;
+        if (_waitToTrigger > 0) {
+            _waitToTrigger-=dt;
+            if(_waitToTrigger <= 0.0f) {
+                _angle+=110.0f*dt;
+                if(_angle > -60.0)
+                {
+                    _stopCurve=true;
+                    _angle = -60.0f;
+                    
+                    _vx =-1 * _magnitude;
+                    _vy=0;
+                }
+                else
+                { if(!_stopCurve)
+                 {
+                     _waitToTrigger=0.01f;
+                 }
+                }
+            }
+            //[_sprite getCCSprite].rotation = -30.0f + ((_angle + 180.0f) / (2.66667f));
+            if(!_stopCurve)
+            {
+                _vx = _magnitude * cosf((_angle * 3.14159)/180.0f);
+                _vy = -1*_magnitude * sinf((_angle * 3.14159)/180.0f);
+            }
+            
+        }
+     
+    else if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+            //_vy = 1* _magnitude;
+            _vx =-1 * _magnitude;
+            _angle = -180;
+            if(_waitToTrigger<0)
+            {
+                _waitToTrigger=0.1f;
+            }
+            //[_sprite getCCSprite].rotation = -30.0f;
+        }
+    }
+    */
+    /*
+    else if(_currentBehavior == COLLISION_BEHAVIOR_BAT)
+    {
+        _vx = 0.0f;
+        if (_waitToTrigger > 0) {
+            _waitToTrigger-=dt;
+            if(_waitToTrigger <= 0.0f) {
+                _angle+=45.0f*dt;
+                if(_angle > -210.0)
+                {
+                _stopCurve=true;
+                _angle = -210.0f;
+                
+                _vx =0;
+                _vy=0;
+                    if(![self.originalAnimation isEqualToString:@"batLand"])
+                    {
+                        //[[SoundEngine shared] playSound:@"maddogBark"];
+                        [self setOriginalAnimation:@"batLand"];
+                        [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"batLand"];
+                        //[self setBoundingBox:CGRectMake(-10, 0, 25, 60)];
+                    }
+
+                }
+                else
+                {
+                    _waitToTrigger=0.01f;
+                }
+            }
+            //[_sprite getCCSprite].rotation = -30.0f + ((_angle + 180.0f) / (2.66667f));
+            if(!_stopCurve)
+            {
+            //[_sprite getCCSprite].rotation =  (_angle + 360.0f);
+                if(![self.originalAnimation isEqualToString:@"batFlying"])
+                {
+                    //[[SoundEngine shared] playSound:@"maddogBark"];
+                    [self setOriginalAnimation:@"batFlying"];
+                    [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"batFlying"];
+                    //[self setBoundingBox:CGRectMake(-10, 0, 25, 60)];
+                }
+
+                _vx = _magnitude * cosf((_angle * 3.14159)/180.0f);
+                _vy = _magnitude * sinf((_angle * 3.14159)/180.0f);
+            }
+            
+        } else if ([self closeToPlayer:280]) {
+            //_vy = 1* _magnitude;
+            _vx =-1 * _magnitude;
+            _angle = -270;
+            if(![self.originalAnimation isEqualToString:@"batFalling"])
+            {
+                //[[SoundEngine shared] playSound:@"maddogBark"];
+                [self setOriginalAnimation:@"batFalling"];
+                [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"batFalling"];
+                //[self setBoundingBox:CGRectMake(-10, 0, 25, 60)];
+            }
+
+            if(_waitToTrigger<0)
+            {
+                
+            _waitToTrigger=0.1f;
+            }
+            //[_sprite getCCSprite].rotation = -30.0f;
+        }
+    }
+    */
+    
+    else if(_currentBehavior == COLLISION_BEHAVIOR_BAT)
+    {
+        if  ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN])
+        {
+            if (!_madeSound) {
+                _madeSound = true;
+                [[SoundEngine shared] playSound:@"darkBats"];
+            }
+            _angle+=200*dt;
+            _magnitude=300;
+            _vx = -0.1*_magnitude;
+        _vy =1*_magnitude * cosf((_angle * 3.14159)/180.0f);
+        }
+    }
+    
+    else if(_currentBehavior == COLLISION_BEHAVIOR_RAINY_SQUIRREL) {
+        if (_reloading >=0.0f)
+        {
             _reloading -= dt;
-        } else {
+        }
+        else {
             if(_waitToTrigger > 0.0f && !_collided) {
                 _waitToTrigger -= dt;
                 if(_waitToTrigger<= 0.0f){
@@ -561,23 +714,104 @@
             } else {
                 if ([self closeToPlayer:400.0f]) {
                     _waitToTrigger = 0.28f;
+                    _hasAppeared=true;
                 }
                 else if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
                     _vx = 100.0f;
+                    
                 }
                 
             }
         }
+        
+        if(_hasAppeared && [self checkIfOffScreen:[self getPosition]])
+        {
+            [self switchToInactive];
+            _hasAppeared=false;
+        }
 
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_DARK_SPIKES) {
+        if (_waitToTrigger>0) {
+            _waitToTrigger-=dt;
+            if(_waitToTrigger <= 0)
+            {
+                _vy=-800;
+                if (!_madeSound) {
+                    _madeSound = true;
+                    [[SoundEngine shared] playSound:@"darkSpikes"];
+                    _movedBy = 0.0f;
+                    _initialPosition = _y;
+                }
+            }
+        }
+        else if([self closeToPlayer:150] && !_hasTriggered)
+        {
+            _waitToTrigger=0.3f;
+                _hasTriggered=true;
+            
+        }
+        else if(_vy<0)
+        {
+            if (_movedBy > 65.0f) {
+                _movedBy = 65.0f;                
+                _y = _initialPosition + _movedBy;
+                _vy = 0.0f;
+            }
+        }
+    }
+    
+    else if(_currentBehavior == COLLISION_BEHAVIOR_GARGOYLE) {
+        _vx = 0.0f;
+        if (_waitToTrigger >= 0) {
+            _waitToTrigger -= dt;
+            
+            if(_waitToTrigger <= 0){
+            if(![self.originalAnimation isEqualToString:@"gargoyleOpenWings"])
+            {
+                
+                //[[SoundEngine shared] playSound:@"maddogBark"];
+                [self setOriginalAnimation:@"gargoyleOpenWings"];
+                [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"gargoyleOpenWings"];
+               
+            }
+            }
+            //_vx = -150.0f;
+        }
         
-        
-        
-        
-        
-        
-        
-        
-
+        else if ([self closeToPlayer:300] && !_hasTriggered){
+    
+                _waitToTrigger=0.4f;
+                _hasTriggered = true;
+            
+            //[_sprite getCCSprite].rotation = -30.0f;
+        }
+        else if([self.originalAnimation isEqualToString:@"gargoyleOpenWings"] && [[_sprite getAnimation] getCurrentFrameNumber]==6)
+        {
+            if(![self.originalAnimation isEqualToString:@"gargoyleOpened"])
+            {
+                //[[SoundEngine shared] playSound:@"maddogBark"];
+                [self setOriginalAnimation:@"gargoyleOpened"];
+                [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"gargoyleOpened"];
+                [self setBoundingBox:CGRectMake(-45, 0, 25, 60)];
+                //[self setBoundingBox:CGRectMake(-45, 0, 25, 60)];
+            }
+        }
+    }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_SEAHORSE) {
+        if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+            _vy *= 0.955f;
+            if (ABS(_vy) <= 0.1f) {
+                if (_direction == 1) {
+                    _direction = -1;
+                    _vy = -430.0f;
+                    [[SoundEngine shared] playSound:@"waterSeaHorse"];
+                } else {
+                    _direction = 1;
+                    _vy = 430.0f;
+                    [[SoundEngine shared] playSound:@"waterSeaHorse"];
+                }
+            }
+        }
     }
 
 }
@@ -592,6 +826,24 @@
     
     return false;
 }
+
+-(bool) checkIfOffScreen:(CGPoint)position
+{
+    CGPoint screenPosition = [[Camera sharedCamera] convertToScreenXY:position];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        //float minAmount = 
+        
+        if (screenPosition.x < 0 ) {
+            return true;
+        }
+    } else if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        if (screenPosition.x < 0) {
+            return true;
+        }
+    }
+    return false;
+}
+
 
 -(void) updateFlags
 {
@@ -645,6 +897,8 @@
     _waitToTrigger = -1.0f;
     _slowTimeModifier = 1.0f;
     _reloading = 0.0f;
+    _movedBy = 0.0f;
+    _stopCurve=false;
     if(self )
     _madeSound = false;
     [_sprite setAlpha:1.0f];
@@ -679,6 +933,17 @@
         [self setOriginalAnimation:@"dogAnim"];
         [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"dogAnim"];
     }
+    else if(_currentBehavior ==COLLISION_BEHAVIOR_GARGOYLE) {
+        
+        _currentBehavior = COLLISION_BEHAVIOR_GARGOYLE;
+        
+        [self setOriginalAnimation:@"gargoyleSit"];
+        [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"gargoyleSit"];
+        [self setBoundingBox:CGRectMake(-45, 0, 20, 25)];
+        _hasTriggered=false;
+        [[_sprite getAnimation] changeAnimationSpeed:1];
+    }
+
     else if(_currentBehavior == COLLISION_BEHAVIOR_RETRO_ZOMBIE) {
         _currentBehavior = COLLISION_BEHAVIOR_RETRO_ZOMBIE;
         [self setOriginalAnimation:@"retroZombieStatic"];
@@ -706,8 +971,15 @@
     } 
     else if(_currentBehavior == COLLISION_BEHAVIOR_PAPERPLANE) {
         _currentBehavior = COLLISION_BEHAVIOR_PAPERPLANE;
-        _magnitude=200;
-    }else if(_currentBehavior == COLLISION_BEHAVIOR_UMBRELLA_FLY_ACROSS) {
+    
+    }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_BAT) {
+        _currentBehavior = COLLISION_BEHAVIOR_BAT;
+        _angle=-180;
+       // [self setOriginalAnimation:@"batHanging"];
+        //[[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"batHanging"];
+    }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_UMBRELLA_FLY_ACROSS) {
         _currentBehavior = COLLISION_BEHAVIOR_UMBRELLA_FLY_ACROSS;
     } else if(_currentBehavior == COLLISION_BEHAVIOR_RAINY_TREE_A) {
         _currentBehavior = COLLISION_BEHAVIOR_RAINY_TREE_A;
@@ -716,9 +988,23 @@
     } else if(_currentBehavior == COLLISION_BEHAVIOR_RAINY_SQUIRREL) {
         _currentBehavior = COLLISION_BEHAVIOR_RAINY_SQUIRREL;
         _persistsBetweenRegions = true;
-    } else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST) {
+        _hasAppeared=false;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_FADES) {
+        _currentBehavior = COLLISION_BEHAVIOR_STATIC;
+        _collideBehavior = COLLISION_BEHAVIOR_FADES;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_SEAHORSE) {
+        _currentBehavior = COLLISION_BEHAVIOR_WATER_SEAHORSE;
+        _direction = 1;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_PUFFERFISH) {
+        _currentBehavior = COLLISION_BEHAVIOR_WATER_PUFFERFISH;
+    }else if(_currentBehavior == COLLISION_BEHAVIOR_DARK_SPIKES) {
+        _currentBehavior = COLLISION_BEHAVIOR_DARK_SPIKES;
+       
+        _hasTriggered=false;
+    } 
+    else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_SLOW) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;     
-    }   
+    }
     _collided = false;
 }
 
@@ -752,7 +1038,13 @@
         _collideBehavior = COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST;
         _currentBehavior =COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST;
         _beatsPlayerAction = true;
-    } else if([behavior isEqualToString:@"zombie"]) {
+    }
+    else if([behavior isEqualToString:@"chargeAtPlayerSlow"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_SLOW;
+        _currentBehavior =COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_SLOW;
+        _beatsPlayerAction = true;
+    } 
+    else if([behavior isEqualToString:@"zombie"]) {
         _collideBehavior = COLLISION_BEHAVIOR_ZOMBIE_HEADLESS;
         _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_WALK;
         _aggressiveCanHit = true;
@@ -762,6 +1054,11 @@
     } else if([behavior isEqualToString:@"bossShip"]) {
         _collideBehavior = COLLISION_BEHAVIOR_NONE;
         _boss = [BossFactory buildWithType:BOSS_SPACESHIP];
+        [_boss setSprite:_sprite];
+        [_boss startBoss];
+    } else if([behavior isEqualToString:@"finalBoss"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_NONE;
+        _boss = [BossFactory buildWithType:BOSS_FINAL_JIM];
         [_boss setSprite:_sprite];
         [_boss startBoss];
     } else if([behavior isEqualToString:@"retroStatic"]) {
@@ -776,7 +1073,12 @@
     } else if([behavior isEqualToString:@"madDog"]) {
         _collideBehavior = COLLISION_BEHAVIOR_MAD_DOG;
         _currentBehavior = COLLISION_BEHAVIOR_MAD_DOG;
-    }else if([behavior isEqualToString:@"retroZombie"]) {
+    }
+    else if([behavior isEqualToString:@"gargoyle"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_GARGOYLE;
+        _currentBehavior = COLLISION_BEHAVIOR_GARGOYLE;
+    }
+    else if([behavior isEqualToString:@"retroZombie"]) {
         _collideBehavior = COLLISION_BEHAVIOR_RETRO_ZOMBIE;
         _currentBehavior = COLLISION_BEHAVIOR_RETRO_ZOMBIE;
     } else if([behavior isEqualToString:@"fireDemon"]) {
@@ -815,6 +1117,28 @@
         _currentBehavior = COLLISION_BEHAVIOR_PAPERPLANE;
         _magnitude = 200.0f;
         _angle=180;
+    } 
+    else if([behavior isEqualToString:@"darkBat"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_BAT;
+        _currentBehavior = COLLISION_BEHAVIOR_BAT;
+        _magnitude = 200.0f;
+        _angle=180;
+    }
+    else if([behavior isEqualToString:@"fades"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_FADES;
+        _currentBehavior = COLLISION_BEHAVIOR_STATIC;
+    } else if([behavior isEqualToString:@"seahorse"]) {
+        _currentBehavior = COLLISION_BEHAVIOR_WATER_SEAHORSE;
+        _collideBehavior = COLLISION_BEHAVIOR_WATER_SEAHORSE;
+        _direction = 1;
+    } else if([behavior isEqualToString:@"pufferfish"]) {
+        _currentBehavior = COLLISION_BEHAVIOR_WATER_PUFFERFISH;
+        _collideBehavior = COLLISION_BEHAVIOR_WATER_PUFFERFISH;
+    } else if([behavior isEqualToString:@"spikes"]){
+        _currentBehavior = COLLISION_BEHAVIOR_DARK_SPIKES;
+        _collideBehavior = COLLISION_BEHAVIOR_DARK_SPIKES;
+        
+        _hasTriggered=false;
     }
 
 
@@ -837,6 +1161,9 @@
         _playerEffect = PLAYER_EFFECT_SLOWDOWN;
     } else if([effect compare:@"actionOrCollide"] == NSOrderedSame) {
         _playerEffect = PLAYER_EFFECT_ACTION_OR_COLLIDE;
+    } else if([effect isEqualToString:@"vaccuum"]) {
+        //so far just used by water bubbles in underwater level (level 10)
+        _playerEffect = PLAYER_EFFECT_VACCUUM;
     } else {
         _playerEffect = PLAYER_EFFECT_NONE;
     }

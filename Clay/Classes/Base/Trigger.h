@@ -16,21 +16,24 @@ typedef enum {
     TRIGGER_BOSS_SHOOT,
     TRIGGER_WIND_SHORT,
     TRIGGER_WIND_MEDIUM,
-    TRIGGER_WIND_LONG
+    TRIGGER_WIND_LONG,
+    TRIGGER_BOSS_FINALJIM_SPAWN
 }TriggerType;
 
 @interface Trigger : NSObject
 {
-    bool _triggered;
+    bool _triggered; //whether the trigger has been set off yet
+    
     CGPoint _position;
-    CGPoint _direction;
     TriggerType _type;
-    bool _canBeReset;
+    
+    bool _canBeReset; //whether a trigger can normally be reset in the level
+    bool _disabled; //means cannot be reset unless the game is restarted
 }
 
 @property(nonatomic,assign) bool triggered;
 @property(nonatomic,assign) CGPoint position;
-@property(nonatomic,assign) CGPoint direction;
 @property(nonatomic,assign) TriggerType type;
 @property(nonatomic,assign) bool canBeReset;
+@property(nonatomic,assign) bool disabled;
 @end

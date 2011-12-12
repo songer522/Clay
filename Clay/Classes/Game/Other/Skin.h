@@ -21,6 +21,7 @@ typedef enum {
     PLAYER_ANIM_SHOOT,
     PLAYER_ANIM_BLOW,
     PLAYER_ANIM_SPIN,
+    PLAYER_ANIM_SPIN_UP,
     PLAYER_ANIM_SLOWTIME,
     PLAYER_ANIM_FLOATING
 }PlayerAnimation;
@@ -32,6 +33,9 @@ typedef enum {
     NSString *_filename;
     
     PlayerAnimation _currentAnimation;
+    PlayerAnimation _previousAnimation;
+    
+    Sprite *_currentSprite; //weak reference
     
     //animations
     NSString *_running;
@@ -49,6 +53,7 @@ typedef enum {
     NSString *_shootAction;
     NSString *_blowAction;
     NSString *_spinAction;
+    NSString *_spinUp;
     NSString *_slowTimeAction;
 }
 
@@ -60,5 +65,6 @@ typedef enum {
 
 -(void)setPlayerAnimation:(PlayerAnimation)type ForSprite:(Sprite*)sprite;
 
+-(void)restorePreviousAnimation;
 
 @end

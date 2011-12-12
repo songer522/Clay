@@ -28,6 +28,7 @@ typedef enum {
 
 -(void)setPosition:(CGPoint)position;
 -(void)setScale:(float)scale;
+-(void)setAlpha:(float)alpha;
 -(void)setText:(NSString*)text;
 -(void)setHorizontalAlignment:(TextAlignment)alignment;
 -(void)setVerticalAlignment:(TextAlignment)alignment;

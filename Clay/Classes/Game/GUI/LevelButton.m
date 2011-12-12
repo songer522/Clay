@@ -33,7 +33,7 @@
 {
     NSString *frameName;
     bool unlocked = true; //for now, eventually check storage
-    if (unlocked && _buttonId < 9) {
+    if (unlocked && _buttonId <= 11) {
         frameName = [NSString stringWithFormat:@"CL_Level%d.png",_buttonId];
     } else {
         frameName = @"CL_LevelLocked.png";

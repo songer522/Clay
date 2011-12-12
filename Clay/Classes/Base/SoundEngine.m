@@ -29,7 +29,7 @@ static SoundEngine *_shared = nil;
         // Initialization code here.
         
         _audioEngine = [SimpleAudioEngine sharedEngine];
-        //_audioEngine.mute = false;
+        _audioEngine.mute = false;
         
         _soundMap = [[NSDictionary alloc] initWithDictionary:[PListLoader loadPlistWithName:@"sounds"]];
         _musicMap = [[NSDictionary alloc] initWithDictionary:[PListLoader loadPlistWithName:@"music"]];
@@ -61,12 +61,23 @@ static SoundEngine *_shared = nil;
     }*/
 }
 
+-(void)preloadMusicForKey:(NSString*)key
+{
+    NSString *filename = [_musicMap objectForKey:key];
+    
+    NSAssert(filename!=nil,@"Sound '%@' could not be found. Is it in the sounds.plist?",key);
+    
+    [_audioEngine preloadBackgroundMusic:filename];
+}
+
+
+
 
 -(void)loadSoundForKey:(NSString*)key
 {
     NSString *filename = [_soundMap objectForKey:key];
     
-    NSAssert(filename!=nil,@"Sound could not be found. Is it in the sounds.plist?");
+    NSAssert(filename!=nil,@"Sound '%@' could not be found. Is it in the sounds.plist?",key);
     
     [_audioEngine preloadEffect:filename];
 }
@@ -75,7 +86,7 @@ static SoundEngine *_shared = nil;
 {
     NSString *filename = [_soundMap objectForKey:key];
     
-    NSAssert(filename!=nil,@"Sound could not be found. Is it in the sounds.plist?");
+    NSAssert(filename!=nil,@"Sound '%@' could not be found. Is it in the sounds.plist?",key);
     
     [_audioEngine unloadEffect:filename];
 }
@@ -84,7 +95,7 @@ static SoundEngine *_shared = nil;
 {
     NSString *filename = [_soundMap objectForKey:sound];
     
-    NSAssert(filename!=nil,@"Requested sound not in dictionary. Double-check sounds.plist");
+    NSAssert(filename!=nil,@"Requested sound '%@' not in dictionary. Double-check sounds.plist",sound);
     
     [[SimpleAudioEngine sharedEngine] playEffect:filename];
 }
@@ -93,7 +104,8 @@ static SoundEngine *_shared = nil;
 {
     NSString *filename = [_musicMap objectForKey:music];
     
-    NSAssert(filename!=nil,@"Requested music file not in dictionary. Double-check music.plist");
+    NSAssert(filename!=nil,@"Requested music '%@' not in dictionary. Double-check music.plist",music);
+
     [[SimpleAudioEngine sharedEngine] playBackgroundMusic:filename];
 }
 

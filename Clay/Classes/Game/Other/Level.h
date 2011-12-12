@@ -98,14 +98,14 @@
 -(bool)testCollisionsForAggressive:(id<Collidable>)source;
 -(bool)testCollisionWithGameObject:(id<Collidable>)target Source:(id<Collidable>)source;
 
-
+-(void)addObstaclesToMapWithBehavior:(CollisionBehavior)behavior;
 
 -(void)addMapObjectsAboveLayer:(CCTMXLayer*)layer ParallaxRatio:(CGPoint)ratio;
 -(void)addObstaclesToMapAndRegion;
 
--(void)disablePassedTrigger;
+-(void)disablePassedTriggers;
 -(void)resetObstacles;
--(void)resetTriggers;
+-(void)resetTriggers:(bool)isRestartingLevel;
 -(Trigger*)testTriggers:(Player*)player;
 -(void)unloadLevel;
 

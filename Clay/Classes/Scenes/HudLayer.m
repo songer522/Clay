@@ -51,15 +51,17 @@
         
         _battery = [Battery instance];
         
-        [[LayerManager sharedLayers] forgetWorkingLayer];
+        _pauseButton = [Sprite spriteFromFrameCacheWithName:@"Pause.png"];
+        [_pauseButton getCCSprite].position = ccp(240,284);        
 
         _alpha = 0.0f;
         _currentTransition = HUD_TRANSITION_IDLE;
         _resetButtons = false;
         [self setOpacities:_alpha];
         
+        [[LayerManager sharedLayers] forgetWorkingLayer];
+
         
-                
     }
     
     return self;
@@ -252,12 +254,14 @@
     [_buttonSprint setButtonOpacity:opacity];
     [[_battery getCCSprite] setOpacity:opacity];
     [_trackTimer setOpacity:opacity];
+    [[_pauseButton getCCSprite] setOpacity:opacity];
     
     if (_alpha == 0.0f) {
         [self setVisible:NO];
     } else {
         [self setVisible:YES];
     }
+    
 }
 
 -(void)setHudButtonsAndThirdAction:(NSString*)action
@@ -316,11 +320,16 @@
     }
 }
 
--(void)reset
+-(void)reset:(bool)isRestarting
 {
     [self removeFromParentAndCleanup:NO];
-    [[[LayerManager sharedLayers] currentScene] addChild:self];    
-    [[self getTrackTimer] startLevel]; //reset level timer (but NOT total time)
+    [[[LayerManager sharedLayers] currentScene] addChild:self];
+    
+    if (isRestarting) {
+        [[self getTrackTimer] restartLevel];
+    } else {
+        [[self getTrackTimer] startLevel]; //reset level timer (but NOT total time)        
+    }
 }
 
 -(void)dealloc
@@ -329,6 +338,7 @@
     [_buttonSprint release];
     [_buttonAction release];
    
+    [_pauseButton release];
     [_trackTimer release];
     [_battery release];
     [super dealloc];

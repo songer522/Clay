@@ -124,24 +124,24 @@
 	<key>level10</key>
 	<dict>
 		<key>removeTextures</key>
-		<string>tileset_level_9</string>
+		<string>tileset_level_10</string>
 		<key>animations</key>
-		<string>level9,spin</string>
+		<string>level10,spin</string>
 		<key>sounds</key>
-		<string>none</string>
+		<string>waterAnglerFish,waterBubbles,waterPufferFish,waterSeaHorse,waterSwimAction</string>
 		<key>textures</key>
-		<string>rainyLevel</string>
+		<string>waterLevel,characterSpinning</string>
 	</dict>
 	<key>level11</key>
 	<dict>
 		<key>removeTextures</key>
-		<string>tileset_level_9</string>
+		<string>tileset_level_11</string>
 		<key>animations</key>
-		<string>level9,slowtime</string>
+		<string>level11,slowtime</string>
 		<key>sounds</key>
-		<string>none</string>
+		<string>darkSlowTimeAction,darkBats,darkGargoyle,darkShadowLaugh,darkSpikes</string>
 		<key>textures</key>
-		<string>rainyLevel</string>
+		<string>darkLevel,characterSlowTime</string>
 	</dict>
 	<key>mainMenu</key>
 	<dict>

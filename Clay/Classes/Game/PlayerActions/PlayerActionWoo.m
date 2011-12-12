@@ -11,6 +11,7 @@
 #import "AnimationController.h"
 #import "SoundEngine.h"
 
+
 @implementation PlayerActionWoo
 
 -(void)initialize
@@ -34,7 +35,7 @@
 -(void)endAction
 {
     [_parent changeHealth:1];
-    [super endAction];
+       [super endAction];
 }
 
 -(void)cancelAction

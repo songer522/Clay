@@ -35,7 +35,9 @@
     if (self) {
         // Initialization code here.
         _levelTime = 0.0f;
-        _isStopped = false;        
+        _isStopped = false;
+        _totalTime = 0.0f;
+        _totalTimeBeforeLevel = 0.0f;
     }
     
     return self;
@@ -117,6 +119,13 @@
 -(void)startLevel
 {
     _levelTime = 0.0f;
+    _totalTimeBeforeLevel = _totalTime;
+}
+
+-(void)restartLevel
+{
+    _levelTime = 0.0f;
+    _totalTime = _totalTimeBeforeLevel;
 }
 
 -(float)getLevelTime

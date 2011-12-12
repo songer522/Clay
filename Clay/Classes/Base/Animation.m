@@ -45,7 +45,7 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
         _sequence = [[NSString alloc] initWithString:sequence];
         _frameList = [[NSString alloc] initWithString:framelist];
         _currentDelayModifier = 1.0f;
-        
+        _speedAction = nil;
         _spriteSheet = [CCSpriteBatchNode batchNodeWithFile:[name stringByAppendingString:ANIMATION_GRAPHIC_EXTENSION]];
         
         [self createFramesWithSequence:sequence FrameList:(NSString*)framelist];
@@ -102,47 +102,18 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
     
     _animateAction = [CCXAnimate actionWithAnimation:_anim restoreOriginalFrame:NO];
     
-    CCAction *action;
     if (_looping) {
-        action = [CCRepeatForever actionWithAction:_animateAction];
+        _speedAction = [CCRepeatForeverWithSpeed actionWithAction:_animateAction speed:1.0f];
     } else {
-        action = [CCRepeat actionWithAction:_animateAction times:1];
+        _speedAction = [CCRepeat actionWithAction:_animateAction times:1]; //TODO: need to add speed to this too or else might cause changespeed issues
     }
     
     if (_clearPreviousAnimations) {
         [[sprite getCCSprite] stopAllActions];        
     }
     
-    [[sprite getCCSprite] runAction:action];
+    [[sprite getCCSprite] runAction:_speedAction];
 }
-
-/*
--(void)useAnimationToReplaceSprite:(Sprite*)sprite FrameName:(NSString*)frameName
-{
-    if (_anim!=nil) {
-        [_anim release];
-    }
-    
-    CCSprite *sprite_cc = [sprite getCCSprite];
-    
-    _currentSprite = sprite;
-    
-    [sprite_cc setBatchNode:_spriteSheet];
-    [sprite_cc setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName]];
-    _anim = [CCAnimation animationWithFrames:_frames delay:_delay * _currentDelayModifier];
-    
-    _animateAction = [CCXAnimate actionWithAnimation:_anim restoreOriginalFrame:NO];
-
-    
-    CCAction *action;
-    if (_looping) {
-        action = [CCRepeatForever actionWithAction:_animateAction];
-    } else {
-        action = [CCRepeat actionWithAction:_animateAction times:1];
-    }
-    
-    [sprite_cc runAction:action];
-}*/
 
 -(int)getTotalFramesCount
 {
@@ -170,25 +141,14 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
     [[sprite getCCSprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName]];
 }
 
--(void)changeDelayModifier:(float)modifier
+-(void)changeAnimationSpeed:(float)newSpeed
 {
-    [_anim setDelay:(_delay * modifier)];
-    /*
-    _animateAction = [[CCXAnimate actionWithAnimation:_anim restoreOriginalFrame:NO] retain];
-    
-    CCAction *action;
+    //if looping, then it's a ccrepeatforever. otherwise it isn't and we don't want to call this.
     if (_looping) {
-        action = [CCRepeatForever actionWithAction:_animateAction];
-    } else {
-        action = [CCRepeat actionWithAction:_animateAction times:1];
+        //[_animateAction changeSpeed:newSpeed];
+        CCRepeatForeverWithSpeed *_speed = (CCRepeatForeverWithSpeed*)_speedAction;
+        [_speed changeSpeed:newSpeed];
     }
-    
-    if (_clearPreviousAnimations) {
-        [[_currentSprite getCCSprite] stopAllActions];        
-    }
-    
-    [[_currentSprite getCCSprite] runAction:action];
-     */
 }
 
 -(void)setFrame:(int)frame

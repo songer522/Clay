@@ -22,6 +22,7 @@ typedef enum {
     PLAYER_EFFECT_COLLIDE,
     PLAYER_EFFECT_SLOWDOWN,
     PLAYER_EFFECT_ACTION_OR_COLLIDE,
+    PLAYER_EFFECT_VACCUUM,
     PLAYER_EFFECT_NONE
 } PlayerEffect;
 
@@ -40,6 +41,7 @@ typedef enum {
     bool _isInMidAir;
     bool _isFalling;
     bool _isCooldown;
+    bool _hasTriggered;
     float _waitToTrigger;
     float _rate;
     float _x;
@@ -64,6 +66,10 @@ typedef enum {
     bool _rotateLights;
     bool _aggressiveCanHit;
     bool _beatsPlayerAction;
+    bool _hasAppeared;
+    float _movedBy;
+    float _initialPosition;
+
     
     CGRect _range;       //range in which this object can move on screen. absolute positions.
     
@@ -142,6 +148,7 @@ typedef enum {
 -(void) setPlayerEffect:(NSString*)effect;
 -(void) setOriginalAnimation:(NSString*)animation;
 -(void) setRange:(CGRect)rect;
+-(bool) checkIfOffScreen:(CGPoint)position;
 
 #pragma mark - public methods
 -(void) move:(CGPoint)amount;

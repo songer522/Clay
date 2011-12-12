@@ -461,6 +461,159 @@
 		<key>spritesheetPlist</key>
 		<string>fireLevel</string>
 	</dict>
+	<key>gargoyleSit</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2</string>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>delay</key>
+		<string>0.2</string>
+		<key>group</key>
+		<string>level11</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Level11_Beast_</string>
+		<key>spritesheetPlist</key>
+		<string>darkLevel</string>
+	</dict>
+	<key>darkGargoyleEggAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1</string>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>delay</key>
+		<string>1.0</string>
+		<key>group</key>
+		<string>level11</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Level11_EggGargoyle_</string>
+		<key>spritesheetPlist</key>
+		<string>darkLevel</string>
+	</dict>
+	<key>batFalling</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>2</string>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>delay</key>
+		<string>0.2</string>
+		<key>group</key>
+		<string>level11</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Dark_Bat_</string>
+		<key>spritesheetPlist</key>
+		<string>darkLevel</string>
+	</dict>
+	<key>spikeAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1</string>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>delay</key>
+		<string>0.2</string>
+		<key>group</key>
+		<string>level11</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Dark_Spikes_</string>
+		<key>spritesheetPlist</key>
+		<string>darkLevel</string>
+	</dict>
+	<key>batFlying</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>3,4</string>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>delay</key>
+		<string>0.2</string>
+		<key>group</key>
+		<string>level11</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Dark_Bat_</string>
+		<key>spritesheetPlist</key>
+		<string>darkLevel</string>
+	</dict>
+	<key>batLand</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>4</string>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>delay</key>
+		<string>0.2</string>
+		<key>group</key>
+		<string>level11</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Dark_Bat_</string>
+		<key>spritesheetPlist</key>
+		<string>darkLevel</string>
+	</dict>
+	<key>batHanging</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1</string>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>delay</key>
+		<string>0.2</string>
+		<key>group</key>
+		<string>level11</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Dark_Bat_</string>
+		<key>spritesheetPlist</key>
+		<string>darkLevel</string>
+	</dict>
+	<key>gargoyleOpenWings</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,1,2,1,2,3,4,5,6,7</string>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>delay</key>
+		<string>0.2</string>
+		<key>group</key>
+		<string>level11</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Level11_Beast_</string>
+		<key>spritesheetPlist</key>
+		<string>darkLevel</string>
+	</dict>
+	<key>gargoyleOpened</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>7</string>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>delay</key>
+		<string>0.2</string>
+		<key>group</key>
+		<string>level11</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Level11_Beast_</string>
+		<key>spritesheetPlist</key>
+		<string>darkLevel</string>
+	</dict>
 	<key>fireballMovingAnim</key>
 	<dict>
 		<key>animationFrames</key>
@@ -600,7 +753,24 @@
 	<key>spinningAnim</key>
 	<dict>
 		<key>animationFrames</key>
-		<string>1,1,1,1,1,1,1,1</string>
+		<string>2,3,3,2,3,3</string>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>delay</key>
+		<string>0.125</string>
+		<key>group</key>
+		<string>spin</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Character_Spinning_</string>
+		<key>spritesheetPlist</key>
+		<string>characterSpinning</string>
+	</dict>
+	<key>spinUpAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1</string>
 		<key>clearPreviousAnims</key>
 		<string>false</string>
 		<key>delay</key>
@@ -634,19 +804,19 @@
 	<key>slowTimeAnim</key>
 	<dict>
 		<key>animationFrames</key>
-		<string>1,2,3,4,5</string>
+		<string>1,2,3,4,5,6</string>
 		<key>clearPreviousAnims</key>
 		<string>false</string>
 		<key>delay</key>
-		<string>0.065</string>
+		<string>0.1</string>
 		<key>group</key>
 		<string>slowtime</string>
 		<key>looping</key>
 		<string>false</string>
 		<key>sequencePrefix</key>
-		<string>Character_Running_</string>
+		<string>Character_SlowTime_</string>
 		<key>spritesheetPlist</key>
-		<string>characterAnims</string>
+		<string>characterSlowTime</string>
 	</dict>
 	<key>headlessZombieAnim</key>
 	<dict>
@@ -868,6 +1038,57 @@
 		<string>Character_Running_</string>
 		<key>spritesheetPlist</key>
 		<string>characterAnims</string>
+	</dict>
+	<key>darkShadowTimAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3,4,5,6,7,8,9,10</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<real>0.075</real>
+		<key>group</key>
+		<string>level11</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>ShadowTim_</string>
+		<key>spritesheetPlist</key>
+		<string>darkLevel</string>
+	</dict>
+	<key>darkShadowTimKickingAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3,3,3</string>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>delay</key>
+		<real>0.1</real>
+		<key>group</key>
+		<string>level11</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>ShadowTim_Kick_</string>
+		<key>spritesheetPlist</key>
+		<string>darkLevel</string>
+	</dict>
+	<key>darkShadowTimLaughingAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2</string>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>delay</key>
+		<real>0.2</real>
+		<key>group</key>
+		<string>level11</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>ShadowTim_Laugh_</string>
+		<key>spritesheetPlist</key>
+		<string>darkLevel</string>
 	</dict>
 	<key>shootingAnim</key>
 	<dict>
@@ -1175,10 +1396,10 @@
 		<key>spritesheetPlist</key>
 		<string>rainyLevel</string>
 	</dict>
-	<key>waterBubblesAnim</key>
+	<key>waterBubblesRAnim</key>
 	<dict>
 		<key>animationFrames</key>
-		<string>2,3,2,3,2,3,1</string>
+		<string>1,2,3,4,5,6</string>
 		<key>clearPreviousAnims</key>
 		<string>true</string>
 		<key>delay</key>
@@ -1188,7 +1409,58 @@
 		<key>looping</key>
 		<string>true</string>
 		<key>sequencePrefix</key>
-		<string>Level10_Bubbles_</string>
+		<string>Level10_Bubble_R_</string>
+		<key>spritesheetPlist</key>
+		<string>waterLevel</string>
+	</dict>
+	<key>waterBubblesLAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3,4,5,6</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level10</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Level10_Bubble_L_</string>
+		<key>spritesheetPlist</key>
+		<string>waterLevel</string>
+	</dict>
+	<key>waterPufferFishAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level10</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>BlowFish_</string>
+		<key>spritesheetPlist</key>
+		<string>waterLevel</string>
+	</dict>
+	<key>waterAnglerFishAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level10</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>LanternFish_</string>
 		<key>spritesheetPlist</key>
 		<string>waterLevel</string>
 	</dict>

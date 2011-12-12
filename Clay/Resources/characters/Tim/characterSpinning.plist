@@ -22,7 +22,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{0, 0}, {82, 138}}</string>
+			<string>{{84, 0}, {82, 138}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -44,7 +44,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{84, 0}, {82, 138}}</string>
+			<string>{{0, 0}, {82, 138}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -56,9 +56,53 @@
 			
 			</array>
 			<key>spriteColorRect</key>
-			<string>{{8, 59}, {111, 86}}</string>
+			<string>{{13, 20}, {105, 120}}</string>
+			<key>spriteOffset</key>
+			<string>{3, -5}</string>
+			<key>spriteSize</key>
+			<string>{105, 120}</string>
+			<key>spriteSourceSize</key>
+			<string>{125, 150}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{169, 0}, {105, 120}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>Character_Spinning_2.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{7, 59}, {113, 86}}</string>
 			<key>spriteOffset</key>
 			<string>{1, -27}</string>
+			<key>spriteSize</key>
+			<string>{113, 86}</string>
+			<key>spriteSourceSize</key>
+			<string>{125, 150}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{0, 141}, {113, 86}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>Character_Spinning_3.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{9, 59}, {111, 86}}</string>
+			<key>spriteOffset</key>
+			<string>{2, -27}</string>
 			<key>spriteSize</key>
 			<string>{111, 86}</string>
 			<key>spriteSourceSize</key>
@@ -66,7 +110,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{0, 141}, {111, 86}}</string>
+			<string>{{115, 141}, {111, 86}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -79,7 +123,7 @@
 		<key>format</key>
 		<integer>3</integer>
 		<key>size</key>
-		<string>{256, 256}</string>
+		<string>{512, 256}</string>
 		<key>name</key>
 		<string>characterSpinning</string>
 		<key>premultipliedAlpha</key>

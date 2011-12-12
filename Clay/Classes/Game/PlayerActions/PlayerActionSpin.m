@@ -14,6 +14,8 @@
 #import "SoundEngine.h"
 #import "Player.h"
 
+#define SPIN_PLAYER_GROUND_Y 64
+
 @implementation PlayerActionSpin
 
 
@@ -28,21 +30,38 @@
 {
     if (!_inAction && _canTrigger) {
         [super startAction];
+        [_parent endTurbo];
         [_parent setPlayerAnimation:PLAYER_ANIM_SPIN];
-        _duration = 0.75f;
+        [_parent setPlayerAnimation:PLAYER_ANIM_SPIN_UP];
+        [[SoundEngine shared] playSound:@"waterSwimAction"];
+        _duration = 10.75f;
     }
 }
 
 -(void)endAction
 {
-    [_parent setPlayerAnimation:PLAYER_ANIM_RUNNING];
-    [super endAction];
+    if(_player.inVaccuum) {
+        _player.inVaccuum = false;
+    } else {
+        [_parent setPlayerAnimation:PLAYER_ANIM_RUNNING];
+        [_parent setPlayerAnimation:PLAYER_ANIM_SPIN_UP];
+    }
+    /*
+    if(!_player.isTripping)
+    {
+    }*/
+    _duration = 0.0f;
+    _parent.hasGravity=true;
     
+    [super endAction];    
 }
 
 -(void)cancelAction
 {
+    _parent.hasGravity=true;
+    [_player endVaccuum];
     [_parent setPlayerAnimation:PLAYER_ANIM_RUNNING];
+    _duration = 0.0f;
     [super cancelAction];
 }
 
@@ -53,6 +72,14 @@
         _isActive = false;
     } else {
         _isActive = true;
+
+        //IPAD FIX: check when on the ground, also double-check the player velocities are accurate (should swim down right pretty quickly)
+        if (_player.y <= SPIN_PLAYER_GROUND_Y) {
+            [self endAction];
+        } else {
+            [_player setVelocity:30.0f];
+            [_player setVy:80.0f];
+        }
     }
     [super update:dt];
 }
@@ -60,6 +87,11 @@
 -(bool)canStartInMidAir
 {
     return true;
+}
+
+-(bool)canStartOnGround
+{
+    return false;
 }
 
 -(void)dealloc

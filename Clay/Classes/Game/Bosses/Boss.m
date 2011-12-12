@@ -29,7 +29,7 @@
     return self;
 }
 
--(void) startBoss
+-(void)changeAnimationSpeed:(float)modifier
 {
     
 }
@@ -39,7 +39,22 @@
     
 }
 
+-(void)reset
+{
+    //NSLog(@"reset got called");
+}
+
 -(void)setSprite:(Sprite *)sprite
+{
+    
+}
+
+-(void) startBoss
+{
+    
+}
+
+-(void)switchToPhase:(BossPhase)phase
 {
     
 }
@@ -49,9 +64,14 @@
     
 }
 
--(void)reset
+-(void)triggerFallBack
 {
-    NSLog(@"reset got called");
+    
+}
+
+-(void)triggerGetCloser
+{
+    
 }
 
 

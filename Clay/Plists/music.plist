@@ -28,6 +28,8 @@
 	<string>rainy.mp3</string>
 	<key>darkness</key>
 	<string>darkness.mp3</string>
+	<key>darknessBoss</key>
+	<string>darkness_boss.mp3</string>
 	<key>underwater</key>
 	<string>underwater.mp3</string>
 </dict>

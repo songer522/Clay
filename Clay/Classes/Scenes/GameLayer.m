@@ -23,8 +23,22 @@
 #import "TextureManager.h"
 #import "GameDebugLayer.h"
 #import "GameSettings.h"
+#import "GameController.h"
 #import "Appirater.h"
 #import "TrackTimer.h"
+#import "RunningSpeed.h"
+#import "ChooseLevelScreen.h"
+
+#define DEBUG_DRAW_BOUNDING_BOXES 0
+
+@interface GameLayer()
+
+-(void)setupLayers;
+-(void)initCamera;
+
+-(void)updateTriggers:(float)dt;
+-(void)updatePlayerDeath:(float)dt;
+-(void)updateLogic:(ccTime)dt;
 
 #define DEBUG_DRAW_BOUNDING_BOXES 1
 
@@ -33,38 +47,33 @@
 
 @synthesize player = _player;
 @synthesize gameController = _gameController;
+@synthesize handledPauseEvent = _handledPauseEvent;
 
 +(CCScene *) scene
 {
-	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
     [[LayerManager sharedLayers] setCurrentScene:scene];
 	
-	// 'layer' is an autorelease object.
 	GameLayer *layer = [GameLayer node];
 	
+    [scene addChild: layer];
     
-	// add layer as a child to scene
-	[scene addChild: layer];
-	
-	// return the scene
 	return scene;
 }
 
-// on "init" you need to initialize your instance
 -(id) init
 {
-	// always call "super" init
-	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super init])) {
         
         [self setVisible:NO];
-
+        
         [[CCDirector sharedDirector] setProjection:CCDirectorProjection2D];
 
         [[LayerManager sharedLayers] setCurrentLayer:self];
         
         [[TextureManager shared] loadMemoryForKey:@"gameScene"];
+        
+        [[GameSettings shared] setGlobal:@"false" ForKey:@"restarting"];
         
         _gameController = [GameController gameController];
         [_gameController setGameLayer:self];
@@ -107,6 +116,14 @@
 
 }
 
+-(void)restartLevel
+{
+    [[GameSettings shared] setGlobal:@"true" ForKey:@"restarting"];
+    [_level resetTriggers:true];
+    [_level resetObstacles];
+    [[ComicManager shared] restartLevel];
+}
+
 -(void)startLevel:(NSString*)levelName
 {    
     [[LevelManager shared] reset];
@@ -127,6 +144,13 @@
     
     [_player setPositionAtX:_level.spawnPoint.x Y:_level.spawnPoint.y];
     
+    //check to see if underwater physics should be set
+    if ([_level.name isEqualToString:@"level10"]){
+        [[_player getSpeed] setIsUnderwater:true];
+    } else {
+        [[_player getSpeed] setIsUnderwater:false];
+    }
+    
     [_player reset];
     
     [_savePoint setSavePoint:_level.spawnPoint Level:_level.name];
@@ -134,7 +158,14 @@
     [self initCamera];
     
     [[LevelManager shared] initAfterPlayerAndHudInit];
-    [_hud reset];
+
+    bool isRestarting = [[[GameSettings shared] getGlobalForKey:@"restarting"] boolValue];
+    if (isRestarting) {        
+        [_hud reset:true];
+    } else {
+        [_hud reset:false];
+    }
+    
     [[ComicManager shared] resetComicLayer];
     
 #if DEBUG_DRAW_BOUNDING_BOXES
@@ -165,7 +196,6 @@
 
 -(void)update:(ccTime)dt
 {
-    
     double fixedTimeStep = 1.0f/60.0f;
     float timeToRun = dt + time;
     while(timeToRun >= fixedTimeStep) {
@@ -173,8 +203,6 @@
         timeToRun = timeToRun - fixedTimeStep;
     }
     time = timeToRun;
-    
-    //[self updateLogic:dt];
 }
 
 -(void)unpause
@@ -214,6 +242,9 @@
         
     }
     
+    _handledPauseEvent = false;
+    [_gameController update];
+    
     
 #if CC_ENABLE_PROFILERS
     CCProfilingEndTimingBlock(timer);
@@ -236,7 +267,7 @@
             [_player rechargeBattery];
             
             [_level resetObstacles];
-            [_level resetTriggers];
+            [_level resetTriggers:false];
         }        
     }
 }
@@ -252,7 +283,7 @@
                 break;
             case TRIGGER_CHECKPOINT:
                 [_savePoint setSavePoint:trigger.position Level:_level.name];
-                [_level disablePassedTrigger];
+                [_level disablePassedTriggers];
                 [[SoundEngine shared] playSound:@"checkpoint"];
                 [_player rechargeBattery];
                 [_player resetSprint];
@@ -265,6 +296,9 @@
             case TRIGGER_WIND_MEDIUM:
             case TRIGGER_WIND_LONG:
                 [_rainyLevelEffects triggerWind:trigger.type];
+                break;
+            case TRIGGER_BOSS_FINALJIM_SPAWN:
+                [_boss switchToPhase:BOSS_PHASE_CHASE_INIT];
                 break;
             default:
                 break;
@@ -283,10 +317,12 @@
 
 -(void)setBoss:(Boss*)boss
 {
-    
-   
-
     _boss = boss;
+}
+
+-(Boss*)getBoss
+{
+    return _boss;
 }
 
 -(void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -324,16 +360,18 @@
     if (!_gameController.isHandlingPause) {
         [self unscheduleUpdate];
         self.isTouchEnabled = false;
-    } else {
+    } else if(!_paused) {
+        _paused = true;
         [super onExit];
     }
+    _handledPauseEvent = true;
 }
 
 -(void)onEnter
 {
-    //if (!_gameController.isHandlingPause) {
-        [super onEnter];
-    //}
+    _paused = false;
+    [super onEnter];
+    _handledPauseEvent = true;
 }
 
 -(void)initializeLaserShow
@@ -359,6 +397,11 @@
         [_rainyLevelEffects release];
         _rainyLevelEffects = nil;
     }
+}
+
+-(void)switchToChooseLevel
+{
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[ChooseLevelScreen scene]]];
 }
 
 

@@ -117,7 +117,11 @@
 
     NSArray *layers = [layerList componentsSeparatedByString:@","];
     for (NSString *layerName in layers) {
-        if ([layerName isEqualToString :@"ledges"]) {
+        if([layerName isEqualToString:@"front-1"]) {
+            if([levelName isEqualToString:@"level11"]) {
+                [self addObstaclesToMapWithBehavior:COLLISION_BEHAVIOR_DARK_SPIKES];
+            }
+        } else if ([layerName isEqualToString:@"ledges"]) {
             GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
             //stop existing rainylevel, and start new one if right level
             [gameLayer stopRainyLevel];
@@ -173,13 +177,33 @@
     
 }
 
+-(void)addObstaclesToMapWithBehavior:(CollisionBehavior)behavior
+{
+    for (MapObject *mapObject in _obstacleMapObjects) {
+        GameObject *obstacle = mapObject.object;
+        if ([obstacle getCollisionBehavior] == behavior) {
+            //it's possible the obstacle has already been placed. if it has, we need to remove and re-add it.
+            if (mapObject.placed) {
+                [[obstacle getCCSprite] removeFromParentAndCleanup:NO];
+            }
+            [[[LayerManager sharedLayers] currentLayer] addChild:[obstacle getCCSprite]];
+            [[obstacle getCCSprite] setVisible:NO];
+            [_obstacleManager addGameObject:obstacle];
+            mapObject.placed = true;
+        }
+    }    
+}
+
 -(void)addObstaclesToMapAndRegion
 {
     for (MapObject *mapObject in _obstacleMapObjects) {
         GameObject *obstacle = mapObject.object;
-        [[[LayerManager sharedLayers] currentLayer] addChild:[obstacle getCCSprite]];
-        [[obstacle getCCSprite] setVisible:NO];
-        [_obstacleManager addGameObject:obstacle];
+        if (!mapObject.placed) {
+            [[[LayerManager sharedLayers] currentLayer] addChild:[obstacle getCCSprite]];
+            [[obstacle getCCSprite] setVisible:NO];
+            [_obstacleManager addGameObject:obstacle];
+            mapObject.placed = true;            
+        }
     }
 }
 
@@ -314,7 +338,6 @@
                     [[object getCCSprite] setScale:_scale];
                     MapObject *mapObject = [MapObject mapObjectWithSprite:object AboveLayer:@"main0"];
                     [_otherMapObjects addObject:mapObject];
-                    
                 } else if([special compare:@"spawnpoint"] == NSOrderedSame) {
                     _spawnPoint = [self getXYPositionForCoordinates:CGPointMake(i, j)];
                 } else if([special compare:@"jimAppearance1"] == NSOrderedSame) {
@@ -325,6 +348,12 @@
                     [jim getCCSprite].scale = 0.75f;
                     MapObject *mapObject = [MapObject mapObjectWithSprite:jim AboveLayer:layerBelow];
                     [_otherMapObjects addObject:mapObject];
+                } else if([special isEqualToString:@"finalBossSpawn"]) {
+                    Trigger *trigger = [[Trigger alloc] init];
+                    trigger.position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
+                    trigger.type = TRIGGER_BOSS_FINALJIM_SPAWN;
+                    trigger.canBeReset = true;
+                    [_triggers addObject:trigger];
                 } else if([special isEqualToString:@"shootTrigger"]) {
                     Trigger *trigger = [[Trigger alloc] init];
                     trigger.position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
@@ -381,6 +410,8 @@
                 
                 if ([objectName isEqualToString:@"jimSpaceShip"]) {
                     [[LevelManager shared] receiveBoss:[object getBoss]];
+                } else if([objectName isEqualToString:@"finalJimBoss"]) {
+                    [[LevelManager shared] receiveBoss:[object getBoss]];
                 }
                 
                 MapObject *mapObject = [MapObject mapObjectWithSprite:object AboveLayer:layerBelow];
@@ -402,10 +433,23 @@
             
             //add to background regionmanager
             //[_backgroundManager addGameObject:mapObject.object];
-            [[mapObject.object getCCSprite] pauseSchedulerAndActions];
+            //[[mapObject.object getCCSprite] pauseSchedulerAndActions];
         }
     }
 }
+
+-(void)removeAndReplaceObstacleWithBehavior:(CollisionBehavior)behavior
+{
+    for (MapObject *mapObject in _obstacleMapObjects) {
+        GameObject *object = mapObject.object;
+        if([object getCollisionBehavior] == behavior){
+            [[mapObject.object getCCSprite] removeFromParentAndCleanup:NO];
+            [[[LayerManager sharedLayers] currentLayer] addChild:[mapObject.object getCCSprite]];
+        }
+    }
+}
+
+
                 
 -(CGPoint)getXYPositionForCoordinates:(CGPoint)coords
 {
@@ -455,22 +499,25 @@
     [_obstacleManager changeRegionsBasedOnX:(playerPos.x - 256)];
 }
 
--(void)resetTriggers
+-(void)resetTriggers:(bool)isRestartingLevel
 {
     for (Trigger *trigger in _triggers) {
-        if (trigger.canBeReset) {
+        if ((trigger.canBeReset && !trigger.disabled) || isRestartingLevel) {
             trigger.triggered = false;
+            trigger.disabled = false;
         }
     }
 }
--(void)disablePassedTrigger
+
+-(void)disablePassedTriggers
 {
     for (Trigger *trigger in _triggers) {
         if (trigger.triggered) {
-            trigger.canBeReset=false;    }
+            trigger.disabled=true;
+        }
+    }
+}
 
-}
-}
 -(bool)testCollisions:(GameObject*)source
 {
     bool collision = false;
@@ -589,14 +636,11 @@
     
     for (Trigger *trigger in _triggers) {
         if (!trigger.triggered) {
-            if (player.x < trigger.position.x ^ trigger.direction.x == 1) {
-                if(player.y < trigger.position.y ^ trigger.direction.y == 1) {
-                    returnTrigger = trigger;
-                    trigger.triggered = true;                    
-                }
+            if (player.x >= trigger.position.x) {
+                returnTrigger = trigger;
+                trigger.triggered = true;                    
             }            
-        }
-        
+        }        
     }
     
     return returnTrigger;

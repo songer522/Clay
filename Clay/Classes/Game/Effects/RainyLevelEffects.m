@@ -55,9 +55,9 @@
 {
     Player *player = [[LayerManager sharedLayers] getPlayer];
     
-    //IPAD FIX
-    //place underneath tim's feet
+    //IPAD FIX: place underneath tim's feet
     [_rainBehindTim setPosition:CGPointMake(player.x - 40, player.y - 12)];
+    
     if (player.isInMidAir) {
         [[_rainBehindTim getCCSprite] setVisible:NO];
     } else {
@@ -136,6 +136,10 @@
         if (obstacle.CurrentBehavior == COLLISION_BEHAVIOR_UMBRELLA_FLY_ACROSS || obstacle.CurrentBehavior == COLLISION_BEHAVIOR_UMBRELLA_FLY_UP) {
             obstacle.magnitude = 350.0f;
         }
+        if(obstacle.CurrentBehavior == COLLISION_BEHAVIOR_RAINY_SQUIRREL)
+         {
+             obstacle.vx=50; 
+         }
     }
 
 }
@@ -161,6 +165,10 @@
         GameObject *obstacle = mapObject.object; 
         if (obstacle.CurrentBehavior == COLLISION_BEHAVIOR_UMBRELLA_FLY_ACROSS || obstacle.CurrentBehavior == COLLISION_BEHAVIOR_UMBRELLA_FLY_UP) {
             obstacle.magnitude = 200.0f;
+        }
+        if(obstacle.CurrentBehavior == COLLISION_BEHAVIOR_RAINY_SQUIRREL)
+        {
+            obstacle.vx=100; 
         }
     }
 }

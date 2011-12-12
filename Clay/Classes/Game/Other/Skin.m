@@ -36,32 +36,42 @@
     _filename = [[NSString stringWithString:[skin objectForKey:@"filename"]] retain];
     
     _currentAnimation = PLAYER_ANIM_RUNNING;
+    _previousAnimation = PLAYER_ANIM_RUNNING;
     
     NSDictionary *anims = [skin objectForKey:@"animations"];
     
-    _running = [[NSString stringWithString:[anims objectForKey:@"running"]] retain];
-    _jumping = [[NSString stringWithString:[anims objectForKey:@"jumping"]] retain];
-    _falling = [[NSString stringWithString:[anims objectForKey:@"falling"]] retain];
-    _sprinting = [[NSString stringWithString:[anims objectForKey:@"sprinting"]] retain];
-    _tripping = [[NSString stringWithString:[anims objectForKey:@"tripping"]] retain];
-    _hurting = [[NSString stringWithString:[anims objectForKey:@"hurting"]] retain];
-    _wooAction = [[NSString stringWithString:[anims objectForKey:@"wooAction"]] retain];
-    _kickAction = [[NSString stringWithString:[anims objectForKey:@"kickAction"]] retain];
-    _dodgeAction = [[NSString stringWithString:[anims objectForKey:@"dodgeAction"]] retain];
-    _shootAction = [[NSString stringWithString:[anims objectForKey:@"shootAction"]] retain];
-    _blowAction = [[NSString stringWithString:[anims objectForKey:@"blowAction"]] retain];
-    _spinAction = [[NSString stringWithString:[anims objectForKey:@"spinAction"]] retain];
-    _slowTimeAction = [[NSString stringWithString:[anims objectForKey:@"slowTimeAction"]] retain];
-    _floating = [[NSString stringWithString:[anims objectForKey:@"floating"]] retain];
+    @try
+    {
+        _running = [[NSString stringWithString:[anims objectForKey:@"running"]] retain];
+        _jumping = [[NSString stringWithString:[anims objectForKey:@"jumping"]] retain];
+        _falling = [[NSString stringWithString:[anims objectForKey:@"falling"]] retain];
+        _sprinting = [[NSString stringWithString:[anims objectForKey:@"sprinting"]] retain];
+        _tripping = [[NSString stringWithString:[anims objectForKey:@"tripping"]] retain];
+        _hurting = [[NSString stringWithString:[anims objectForKey:@"hurting"]] retain];
+        _wooAction = [[NSString stringWithString:[anims objectForKey:@"wooAction"]] retain];
+        _kickAction = [[NSString stringWithString:[anims objectForKey:@"kickAction"]] retain];
+        _dodgeAction = [[NSString stringWithString:[anims objectForKey:@"dodgeAction"]] retain];
+        _shootAction = [[NSString stringWithString:[anims objectForKey:@"shootAction"]] retain];
+        _blowAction = [[NSString stringWithString:[anims objectForKey:@"blowAction"]] retain];
+        _spinAction = [[NSString stringWithString:[anims objectForKey:@"spinDown"]] retain];
+        _spinUp = [[NSString stringWithString:[anims objectForKey:@"spinUp"]] retain];
+        _slowTimeAction = [[NSString stringWithString:[anims objectForKey:@"slowTimeAction"]] retain];
+        _floating = [[NSString stringWithString:[anims objectForKey:@"floating"]] retain];
+        
+        if (![_filename isEqualToString:@"characterAnims"]) {
+            
+            AnimationController *controller = [AnimationController sharedController];
+            [controller addAnimationForSkinFromFile:_filename UsingBaseAnim:@"runningAnim" ForSequence:_running FrameList:@"1,2,3,4" Delay:0.20f];
+            [controller addAnimationForSkinFromFile:_filename UsingBaseAnim:@"turboAnim" ForSequence:_sprinting FrameList:@"1,2,3,4" Delay:0.12f];
+            [controller addAnimationForSkinFromFile:_filename UsingBaseAnim:@"trippedAnim" ForSequence:_tripping FrameList:@"" Delay:0.0f];
+            [controller addAnimationForSkinFromFile:_filename UsingBaseAnim:@"hurtAnim" ForSequence:_hurting FrameList:@"" Delay:0.0f];
+            [controller addAnimationForSkinFromFile:_filename UsingBaseAnim:@"jumpingAnim" ForSequence:_jumping FrameList:@"" Delay:0.0f];
+            [controller addAnimationForSkinFromFile:_filename UsingBaseAnim:@"fallingAnim" ForSequence:_falling FrameList:@"" Delay:0.0f];
+        }
+    }
     
-    if (![_filename isEqualToString:@"characterAnims"]) {
-        AnimationController *controller = [AnimationController sharedController];
-        [controller addAnimationForSkinFromFile:_filename UsingBaseAnim:@"runningAnim" ForSequence:_running];
-        [controller addAnimationForSkinFromFile:_filename UsingBaseAnim:@"turboAnim" ForSequence:_sprinting];
-        [controller addAnimationForSkinFromFile:_filename UsingBaseAnim:@"trippedAnim" ForSequence:_tripping];
-        [controller addAnimationForSkinFromFile:_filename UsingBaseAnim:@"hurtAnim" ForSequence:_hurting];
-        [controller addAnimationForSkinFromFile:_filename UsingBaseAnim:@"jumpingAnim" ForSequence:_jumping];
-        [controller addAnimationForSkinFromFile:_filename UsingBaseAnim:@"fallingAnim" ForSequence:_falling];
+    @catch (NSException *ex) {
+        NSLog(@"ERROR: Skin.m - Check skins.plist under '%@'. There appears to be some missing values for required values.",name);
     }
 }
 
@@ -69,8 +79,11 @@
 
 -(void)setPlayerAnimation:(PlayerAnimation)type ForSprite:(Sprite*)sprite
 {
-    NSString *animName;
+    //guard
+    //if ([self isCurrentAnimationOfType:type]) { return; }
     
+    NSString *animName;
+    bool switchAnimation= true;
     switch (type) {
         case PLAYER_ANIM_RUNNING:
             animName = _running;
@@ -85,7 +98,15 @@
             animName = _jumping;
             break;
         case PLAYER_ANIM_FALLING:
+            if(_currentAnimation == PLAYER_ANIM_JUMPING)
+            {
             animName = _falling;
+            }
+            else
+            {
+                switchAnimation =false;
+            }
+           
             break;
         case PLAYER_ANIM_WOO:
             animName = _wooAction;
@@ -108,6 +129,9 @@
         case PLAYER_ANIM_SPIN:
             animName = _spinAction;
             break;
+        case PLAYER_ANIM_SPIN_UP:
+            animName = _spinUp;
+            break;
         case PLAYER_ANIM_SLOWTIME:
             animName = _slowTimeAction;
             break;
@@ -117,13 +141,16 @@
         default:
             break;
     }
-    
-    _currentAnimation = type;
-    
-    if(animName !=nil) {
-        [[AnimationController sharedController] replaceSprite:sprite withAnimationNamed:animName];
-    } else {
-        //NSLog(@"ERROR! Player animation not available for skin: %@",_filename);
+    if(switchAnimation){ 
+        _previousAnimation = _currentAnimation;
+        _currentAnimation = type;
+        _currentSprite = sprite;
+        
+        if(animName !=nil) {
+            [[AnimationController sharedController] replaceSprite:sprite withAnimationNamed:animName];
+        } else {
+            //NSLog(@"ERROR! Player animation not available for skin: %@",_filename);
+        }
     }
 }
 
@@ -134,6 +161,11 @@
     } else {
         return false;
     }
+}
+
+-(void)restorePreviousAnimation
+{
+    [self setPlayerAnimation:_previousAnimation ForSprite:_currentSprite];
 }
 
 
@@ -150,6 +182,7 @@
     [_shootAction release];
     [_blowAction release];
     [_spinAction release];
+    [_spinUp release];
     [_slowTimeAction release];
     [super dealloc];
 }

@@ -13,11 +13,15 @@
 @implementation RunningSpeed
 
 @synthesize velocity = _velocity;
+@synthesize velocityModifier = _velocityModifier;
 @synthesize inTurbo = _inTurbo;
 @synthesize parent = _player;
 @synthesize isStopped = _isStopped;
 @synthesize isSlowedDown = _isSlowedDown;
 @synthesize atMax = _atMax;
+@synthesize isUnderwater = _isUnderwater;
+
+#define RUNNING_SPEED_UNDERWATER_MODIFIER 1.5f
 
 +(id)node
 {
@@ -36,6 +40,7 @@
         _turboAccelerationMax = 2.0f;
         _turboVelocityMax = 2.0f;
         _turboDuration = 3.0f;
+        _velocityModifier = 1.0f;
         _isStopped = false;
         [self reset];
     }
@@ -80,6 +85,7 @@
 -(void)reset
 {
     _velocity = 4.0f;
+    _velocityModifier = 1.0f;
     _acceleration = 0.0f;
     _turboLeft = 0.0f;
     _inTurbo = false;
@@ -165,16 +171,22 @@
 
 -(void)update:(float)dt
 {
+    float modifier;
+    modifier = _velocityModifier;
+    if (_isUnderwater && _player.isInMidAir) {
+        modifier = 1.5f;
+    }
+    
     if (!_isStopped) {
         
         _atMax = false;
         
         if (_inTurbo)
         {
-            if (!_player.isInMidAir) {
-                _acceleration += _turboAcceleration * RUNNING_SPEED_MODIFIER_ACCELERATION * dt;
-                if (_acceleration > RUNNING_SPEED_MODIFIER_ACCELERATION_MAX * _turboAccelerationMax) {
-                    _acceleration = RUNNING_SPEED_MODIFIER_ACCELERATION_MAX * _turboAccelerationMax;
+            if (!_player.isInMidAir || _isUnderwater) {
+                _acceleration += _turboAcceleration * RUNNING_SPEED_MODIFIER_ACCELERATION * dt * modifier;
+                if (_acceleration > (RUNNING_SPEED_MODIFIER_ACCELERATION_MAX * _turboAccelerationMax * modifier)) {
+                    _acceleration = RUNNING_SPEED_MODIFIER_ACCELERATION_MAX * _turboAccelerationMax * modifier;
                 }
                 
                 _velocity += _acceleration * dt;
@@ -183,9 +195,9 @@
                     [self applyFriction:2.5f Dt:dt];
                 }
 
-                if (_velocity > RUNNING_SPEED_MODIFIER_VELOCITY_MAX * _turboVelocityMax) {
+                if (_velocity > (RUNNING_SPEED_MODIFIER_VELOCITY_MAX * _turboVelocityMax * modifier)) {
                     _atMax = true;
-                    _velocity = RUNNING_SPEED_MODIFIER_VELOCITY_MAX * _turboVelocityMax;
+                    _velocity = RUNNING_SPEED_MODIFIER_VELOCITY_MAX * _turboVelocityMax * modifier;
                 }
 
                 _turboLeft -= dt;
@@ -197,10 +209,10 @@
         }
         else
         {
-            if (!_player.isInMidAir) {
-                _acceleration += _normalAcceleration * RUNNING_SPEED_MODIFIER_ACCELERATION * dt;
-                if (_acceleration > RUNNING_SPEED_MODIFIER_ACCELERATION_MAX * _normalAccelerationMax) {
-                    _acceleration = RUNNING_SPEED_MODIFIER_ACCELERATION_MAX * _normalAccelerationMax;
+            if (!_player.isInMidAir || _isUnderwater) {
+                _acceleration += _normalAcceleration * RUNNING_SPEED_MODIFIER_ACCELERATION * dt * modifier;
+                if (_acceleration > (RUNNING_SPEED_MODIFIER_ACCELERATION_MAX * _normalAccelerationMax * modifier)) {
+                    _acceleration = RUNNING_SPEED_MODIFIER_ACCELERATION_MAX * _normalAccelerationMax * modifier;
                 }
                 
                 _velocity += _acceleration * dt;
@@ -209,8 +221,8 @@
                     [self applyFriction:5.0f Dt:dt];
                 }
                 
-                if (_velocity > RUNNING_SPEED_MODIFIER_VELOCITY_MAX * _normalVelocityMax) {
-                    _velocity = RUNNING_SPEED_MODIFIER_VELOCITY_MAX * _normalVelocityMax;
+                if (_velocity > (RUNNING_SPEED_MODIFIER_VELOCITY_MAX * _normalVelocityMax * modifier)) {
+                    _velocity = RUNNING_SPEED_MODIFIER_VELOCITY_MAX * _normalVelocityMax * modifier;
                     _atMax = true;
                 }
 

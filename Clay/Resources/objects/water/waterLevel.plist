@@ -5,16 +5,104 @@
 	<key>frames</key>
 	<dict>
 		
-		<key>Level10_Bubble_1.png</key>
+		<key>BlowFish_1.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
 			
 			</array>
 			<key>spriteColorRect</key>
-			<string>{{7, 48}, {9, 9}}</string>
+			<string>{{0, 0}, {47, 45}}</string>
 			<key>spriteOffset</key>
-			<string>{-3, -24}</string>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{47, 45}</string>
+			<key>spriteSourceSize</key>
+			<string>{47, 45}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{99, 0}, {47, 45}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>BlowFish_2.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {47, 45}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{47, 45}</string>
+			<key>spriteSourceSize</key>
+			<string>{47, 45}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{95, 50}, {47, 45}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>LanternFish_1.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {66, 55}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{66, 55}</string>
+			<key>spriteSourceSize</key>
+			<string>{66, 55}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{0, 0}, {66, 55}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>LanternFish_2.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{3, 0}, {62, 55}}</string>
+			<key>spriteOffset</key>
+			<string>{1, -0}</string>
+			<key>spriteSize</key>
+			<string>{62, 55}</string>
+			<key>spriteSourceSize</key>
+			<string>{66, 55}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{0, 58}, {62, 55}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>Level10_Bubble_L_1.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{14, 48}, {9, 9}}</string>
+			<key>spriteOffset</key>
+			<string>{4, -24}</string>
 			<key>spriteSize</key>
 			<string>{9, 9}</string>
 			<key>spriteSourceSize</key>
@@ -22,12 +110,12 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{60, 0}, {9, 9}}</string>
+			<string>{{10, 116}, {9, 9}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
-		<key>Level10_Bubble_2.png</key>
+		<key>Level10_Bubble_L_2.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -44,21 +132,21 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{53, 40}, {15, 19}}</string>
+			<string>{{65, 108}, {15, 19}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
-		<key>Level10_Bubble_3.png</key>
+		<key>Level10_Bubble_L_3.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
 			
 			</array>
 			<key>spriteColorRect</key>
-			<string>{{1, 23}, {21, 33}}</string>
+			<string>{{7, 23}, {21, 33}}</string>
 			<key>spriteOffset</key>
-			<string>{-3, -11}</string>
+			<string>{3, -11}</string>
 			<key>spriteSize</key>
 			<string>{21, 33}</string>
 			<key>spriteSourceSize</key>
@@ -66,12 +154,12 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{30, 40}, {21, 33}}</string>
+			<string>{{170, 92}, {21, 33}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
-		<key>Level10_Bubble_4.png</key>
+		<key>Level10_Bubble_L_4.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -88,12 +176,12 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{0, 0}, {27, 47}}</string>
+			<string>{{69, 0}, {27, 47}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
-		<key>Level10_Bubble_5.png</key>
+		<key>Level10_Bubble_L_5.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -110,12 +198,144 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{30, 0}, {27, 39}}</string>
+			<string>{{172, 40}, {27, 39}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
-		<key>Level10_Bubble_6.png</key>
+		<key>Level10_Bubble_L_6.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{1, 1}, {23, 23}}</string>
+			<key>spriteOffset</key>
+			<string>{-2, 16}</string>
+			<key>spriteSize</key>
+			<string>{23, 23}</string>
+			<key>spriteSourceSize</key>
+			<string>{29, 57}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{122, 98}, {23, 23}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>Level10_Bubble_R_1.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{7, 48}, {9, 9}}</string>
+			<key>spriteOffset</key>
+			<string>{-3, -24}</string>
+			<key>spriteSize</key>
+			<string>{9, 9}</string>
+			<key>spriteSourceSize</key>
+			<string>{29, 57}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{0, 116}, {9, 9}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>Level10_Bubble_R_2.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{7, 37}, {15, 19}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -18}</string>
+			<key>spriteSize</key>
+			<string>{15, 19}</string>
+			<key>spriteSourceSize</key>
+			<string>{29, 57}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{81, 108}, {15, 19}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>Level10_Bubble_R_3.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{1, 23}, {21, 33}}</string>
+			<key>spriteOffset</key>
+			<string>{-3, -11}</string>
+			<key>spriteSize</key>
+			<string>{21, 33}</string>
+			<key>spriteSourceSize</key>
+			<string>{29, 57}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{147, 92}, {21, 33}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>Level10_Bubble_R_4.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{1, 1}, {27, 47}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 4}</string>
+			<key>spriteSize</key>
+			<string>{27, 47}</string>
+			<key>spriteSourceSize</key>
+			<string>{29, 57}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{65, 58}, {27, 47}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>Level10_Bubble_R_5.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{1, 1}, {27, 39}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 8}</string>
+			<key>spriteSize</key>
+			<string>{27, 39}</string>
+			<key>spriteSourceSize</key>
+			<string>{29, 57}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{149, 0}, {27, 39}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>Level10_Bubble_R_6.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -132,7 +352,29 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{0, 50}, {23, 23}}</string>
+			<string>{{97, 98}, {23, 23}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>SeaHorse.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {23, 41}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{23, 41}</string>
+			<key>spriteSourceSize</key>
+			<string>{23, 41}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{146, 48}, {23, 41}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -145,7 +387,7 @@
 		<key>format</key>
 		<integer>3</integer>
 		<key>size</key>
-		<string>{128, 128}</string>
+		<string>{256, 128}</string>
 		<key>name</key>
 		<string>waterLevel</string>
 		<key>premultipliedAlpha</key>

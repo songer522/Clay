@@ -8,9 +8,13 @@
 
 #import "PlayerAction.h"
 
+@class Boss;
+
 @interface PlayerActionSlowTime : PlayerAction
 {
     float _slowdown;
+    
+    Boss *_boss;
 }
 
 -(void)updateSlowdown:(float)modifier;
