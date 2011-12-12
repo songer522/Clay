@@ -38,6 +38,7 @@ typedef enum {
 -(void)playMusic:(NSString*)music;
 -(void)playSound:(NSString*)sound;
 -(void)preloadAudio;
+-(void)preloadMusicForKey:(NSString*)key;
 -(void)loadSoundForKey:(NSString*)key;
 -(void)unloadSoundForKey:(NSString*)key;
 -(void)toggleMute;

@@ -136,7 +136,7 @@ typedef enum {
 
 -(void)dieIfFallenIntoPit;
 
--(void)startPlayerCollision;
+-(void)startPlayerCollision:(bool)shouldForceFalling;
 
 -(void)pushAfterAnimation:(float)xAmount;
 

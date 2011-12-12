@@ -295,14 +295,14 @@
             if (!_isTripping && !_isDead) {
                 if (![_thirdAction isActive]) {
                     if ([_thirdAction shouldTriggerPlayerHurtCollision]) {
-                        [self startPlayerCollision];  
+                        [self startPlayerCollision:false];  
                       
                     }
                 }
             }
         } else if (effect == PLAYER_EFFECT_COLLIDE) {
             if (!_isTripping && !_isDead) {
-                [self startPlayerCollision];
+                [self startPlayerCollision:false];
             }
         } else if(effect == PLAYER_EFFECT_SLOWDOWN) {
             [_speed slowDown];
@@ -324,7 +324,7 @@
     _inVaccuum = false;
     self.hasGravity = true;
     [_speed start];
-    }
+}
 
 //right now this is only called by the falling animation, sinc tim actually
 //moves forward in the graphic when he gets back up, so he should be in a different position
@@ -333,7 +333,7 @@
     _adjustX = xAmount;
 }
 
--(void)startPlayerCollision
+-(void)startPlayerCollision:(bool)shouldForceFalling;
 {
     if(_speed.inTurbo)
     {
@@ -350,9 +350,15 @@
     
     [[SoundEngine shared] playSound:@"timHurt"];
     
-    if (_isJumping && [_speed inTurbo]) {
+    if ((_isJumping && [_speed inTurbo])||shouldForceFalling) {
         [_skin setPlayerAnimation:PLAYER_ANIM_TRIPPING ForSprite:_sprite];
         _isTripping = true;
+        if (shouldForceFalling) { //so far only used when kicked by final jim
+            _vy = -250.0f;
+            _vx = 20.0f;
+            _y += 2.0f;
+            _waitToGetUp = 2.0f;
+        }
     } else {
         [_skin setPlayerAnimation:PLAYER_ANIM_HURTING ForSprite:_sprite];
         _vy = -250.0f;
@@ -361,6 +367,9 @@
     }
     
     if (_thirdAction.inAction) {
+        [_thirdAction cancelAction];
+    } else if([[[LevelManager shared] currentLevel].name isEqualToString:@"level11"]) {
+        //HACK: done just to force cancel action to be called when the player is hit.
         [_thirdAction cancelAction];
     }
 }
@@ -503,7 +512,8 @@
 
 -(bool)isMoving
 {
-    return (!_isTripping && _waitToGetUp <= 0.0f && ![_speed isStopped]);
+    //return (!_isTripping && _waitToGetUp <= 0.0f);
+    return !_isTripping;
 }
 
 -(void)update:(float)dt Level:(Level *)level

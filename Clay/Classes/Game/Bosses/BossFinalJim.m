@@ -16,16 +16,17 @@
 #import "Calculator.h"
 #import "SoundEngine.h"
 #import "Player.h"
+#import "RunningSpeed.h"
 
 //IPAD FIX: the shadow's feet should be in line with tim's feet in the y position, and the shadow should follow behind tim at three different positions, as well as be completely offscreen, at different points.
 #define SHADOW_YPOS 133.0f
 #define SHADOW_XPOS_OFFSCREEN -50.0f
 #define SHADOW_XPOS_FAR 15.0f
 #define SHADOW_XPOS_MIDDLE 45.0f
-#define SHADOW_XPOS_CLOSE 75.0f
+#define SHADOW_XPOS_CLOSE 85.0f
 #define SHADOW_TRANSITION_SPEED_SLOW 10.0f
 #define SHADOW_TRANSITION_SPEED_FAST 20.0f
-#define SHADOW_ATTACK_WAIT 2.0f
+#define SHADOW_ATTACK_WAIT 1.5f
 
 @implementation BossFinalJim
 
@@ -54,9 +55,13 @@
     _xPos = 0.0f;
     _targetXPos = 0.0f;
     _isMovingCamera = false;
-    
+    _isKicking = false;
+    _isLaughing = false;
+    _wasKnockedDown = false;
+    _player = [[LayerManager sharedLayers] getPlayer];
     [[_sprite getCCSprite] setVisible:NO];
     [self switchToPhase:BOSS_PHASE_NOT_TRIGGERED];
+    [[SoundEngine shared] preloadMusicForKey:@"darknessBoss"];
     
 }
 
@@ -64,7 +69,6 @@
 -(void)switchToPhase:(BossPhase)phase
 {
     _phase = phase;
-    
     switch (phase) {
         case BOSS_PHASE_CHASE_FAR:
             _targetXPos = SHADOW_XPOS_FAR;
@@ -95,6 +99,7 @@
             _transitionSpeed = SHADOW_TRANSITION_SPEED_SLOW;
             _phase = BOSS_PHASE_CHASE_FAR;
             _targetXPos = SHADOW_XPOS_FAR;
+            _xPos = SHADOW_XPOS_OFFSCREEN;
             _isTransitioning = true;
             _isActive = true;
             _isMovingCamera = true;
@@ -108,6 +113,9 @@
 
 -(void)triggerAttack
 {
+    [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"darkShadowTimKickingAnim"];
+    _waitToSwitchBack = 0.4f;
+    _isKicking = true;
 }
 
 -(void)triggerFallBack
@@ -132,7 +140,7 @@
             break;
         case BOSS_PHASE_CHASE_MIDDLE:
             [self switchToPhase:BOSS_PHASE_CHASE_CLOSE];
-            _waitToAttack = 2.0f;
+            _waitToAttack = SHADOW_ATTACK_WAIT;
             break;
         default:
             break;
@@ -161,14 +169,17 @@
     CGPoint position = CGPointMake(_xPos, screenY);
     [_sprite setScreenPosition:position];
     
+    [self updateKick:dt];
+    [self updateLaugh:dt];
     
     if (_phase == BOSS_PHASE_CHASE_CLOSE) {
         //if the player is moving, prepare to attack him. if he's currently fallen or
         //has recently started the slow time, though, reset the wait instead
-        if ([_player isMoving]) {
+        if ([_player isMoving] && !_isTransitioning) {
             _waitToAttack -= dt;
             if (_waitToAttack<=0.0f) {
                 [self triggerAttack];
+                _waitToAttack = SHADOW_ATTACK_WAIT;
             }
         } else {
             _waitToAttack = SHADOW_ATTACK_WAIT;
@@ -185,6 +196,32 @@
     }
 }
 
+-(void)updateKick:(float)dt
+{
+    if (_isKicking) {
+        _waitToSwitchBack-=dt;
+        if(_waitToSwitchBack<=0.0f) {
+            _isKicking = false;
+            
+            //force the player to be knocked down if they are NOT in turbo (i.e. running away)
+            if (![[_player getSpeed] inTurbo]) {
+                [_player startPlayerCollision:YES];
+                _wasKnockedDown = true;
+                [self startLaugh];
+            } else {
+                [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"darkShadowTimAnim"];
+            }
+        }
+    }
+}
+
+-(void)startLaugh
+{
+    [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"darkShadowTimLaughingAnim"];
+    [[SoundEngine shared] playSound:@"darkShadowLaugh"];
+    _isLaughing = true;
+}
+
 -(void)shiftCamera:(float)dt
 {
     _cameraXPos = [Calculator modifyFloat:_cameraXPos towardsTargetValue:_targetCameraXPos atSpeed:(8.0f * dt)];
@@ -194,10 +231,35 @@
     [[Camera sharedCamera] setCenter:CGPointMake(_cameraXPos, 22.0f)];
 }
 
+-(void)updateLaugh:(float)dt
+{
+    if (_isLaughing) {
+        if ([_player isMoving] && !_player.isInMidAir) {
+            //end laugh if player starts moving again
+            [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"darkShadowTimAnim"];
+            if (_wasKnockedDown) {
+                [self switchToPhase:BOSS_PHASE_CHASE_FAR];
+                _wasKnockedDown = false;
+            }
+            _isLaughing = false;
+        }
+    } else {
+        if (![_player isMoving]) {
+            [self startLaugh];
+        }
+    }
+}
+
 -(void)reset
 {
     _xPos = SHADOW_XPOS_OFFSCREEN;
     [self switchToPhase:BOSS_PHASE_CHASE_FAR];
+    if(_isKicking||_isLaughing) {
+        [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"darkShadowTimAnim"];
+        _isLaughing = false;
+        _isKicking = false;
+        _wasKnockedDown = false;
+    }
 }
 
 -(void)dealloc

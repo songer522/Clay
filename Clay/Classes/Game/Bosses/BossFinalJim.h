@@ -32,15 +32,22 @@
     float _transitionSpeed;
     bool _isTransitioning;
     bool _isMovingCamera;
+    bool _isKicking;
+    bool _isLaughing;
+    bool _wasKnockedDown;
     
     BossPhase _phase;
     
     float _waitToAttack;
+    float _waitToSwitchBack;
     
     Player *_player; //weak reference
 }
 
 -(void)updateTransition:(float)dt;
 -(void)shiftCamera:(float)dt;
+-(void)updateKick:(float)dt;
+-(void)startLaugh;
+-(void)updateLaugh:(float)dt;
 
 @end
