@@ -9,6 +9,14 @@
 #import "CCLayer.h"
 #import "cocos2d.h"
 
+@class Sprite;
+
 @interface ChooseModeScene : CCLayer
+{
+    Sprite *_background;
+    
+}
+
+-(void)load;
 
 @end

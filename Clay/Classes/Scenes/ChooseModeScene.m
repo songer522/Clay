@@ -7,6 +7,9 @@
 //
 
 #import "ChooseModeScene.h"
+#import "LayerManager.h"
+#import "TextureManager.h"
+#import "Sprite.h"
 
 @implementation ChooseModeScene
 
@@ -22,7 +25,7 @@
 {
     if((self=[super init])) {
         
-        
+        [self load];
         
         
         [self scheduleUpdate];
@@ -30,6 +33,19 @@
     }
     
     return self;
+}
+
+-(void)load
+{
+    [[LayerManager sharedLayers] setWorkingLayer:self];    
+    
+    [[TextureManager shared] loadMemoryForKey:@"chooseMode"];
+    
+    
+    
+    
+
+    [[LayerManager sharedLayers] forgetWorkingLayer];
 }
 
 -(void)update:(ccTime)dt
@@ -46,6 +62,7 @@
 -(void)dealloc
 {
     
+    [[TextureManager shared] unloadMemoryForKey:@"chooseMode"];
 }
 
 @end
