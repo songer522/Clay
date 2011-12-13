@@ -22,6 +22,8 @@
     CGPoint _position;
     CCLabelBMFont *_buttonLabel;
     
+    bool _usingRelativeHitbox;
+    
     GameLabel *_gameLabel;
 }
 
@@ -35,6 +37,7 @@
 #pragma mark - accessors
 -(CCLabelTTF*)getLabel;
 -(GameLabel*)getGameLabel;
+-(void)setPosition:(CGPoint)position;
 -(void)setLabel:(NSString*)text;
 -(void)setHitbox:(CGRect)rect;
 

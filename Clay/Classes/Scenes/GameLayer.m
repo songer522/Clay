@@ -152,8 +152,10 @@
     //check to see if underwater physics should be set
     if ([_level.name isEqualToString:@"level10"]){
         [[_player getSpeed] setIsUnderwater:true];
+        _player.isNewUnderwaterPhysics = true;
     } else {
         [[_player getSpeed] setIsUnderwater:false];
+        _player.isNewUnderwaterPhysics = false;
     }
     
     [_player reset];

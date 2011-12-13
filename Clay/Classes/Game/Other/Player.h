@@ -79,9 +79,7 @@ typedef enum {
     NSMutableArray *projectiles;
     
     Skin *_skin;
-    
-    PlayerAction *_thirdAction; //playeraction
-    
+        
     Sprite *_playerOnledge;
     Sprite *_tempSprite;
 }
@@ -111,7 +109,7 @@ typedef enum {
 -(void)startTurbo;
 -(bool)getIsTurbo;
 
--(void)endTurbo;
+-(void)endTurbo:(bool)switchToRunningAnim;
 
 -(void)endKick;
 -(RunningSpeed*)getSpeed;

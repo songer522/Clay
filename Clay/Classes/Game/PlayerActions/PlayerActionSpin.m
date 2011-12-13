@@ -30,7 +30,7 @@
 {
     if (!_inAction && _canTrigger) {
         [super startAction];
-        [_parent endTurbo];
+        [_parent endTurbo:false];
         [_parent setPlayerAnimation:PLAYER_ANIM_SPIN];
         [_parent setPlayerAnimation:PLAYER_ANIM_SPIN_UP];
         [[SoundEngine shared] playSound:@"waterSwimAction"];
@@ -78,7 +78,10 @@
             [self endAction];
         } else {
             [_player setVelocity:30.0f];
-            [_player setVy:80.0f];
+            if (_player.vy < 0) {
+                [_player setVy:80.0f];
+            }
+            _player.vy += 5.0f * dt;
         }
     }
     [super update:dt];

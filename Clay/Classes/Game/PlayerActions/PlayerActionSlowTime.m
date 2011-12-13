@@ -36,7 +36,7 @@
     if (!_inAction && _canTrigger) {
         
         [super startAction];        
-        [_parent endTurbo];
+        [_parent endTurbo:false];
         
         [self updateSlowdown:0.2f];
         _duration = 5.00f;

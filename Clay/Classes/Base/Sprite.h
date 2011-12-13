@@ -28,12 +28,12 @@
 +(id) spriteWithFile:(NSString *)filename AddToLayer:(bool)shouldAddToLayer;
 +(id) spriteFromFrameCacheWithName:(NSString*)frameName;
 +(id) spriteFromFrameCacheWithName:(NSString*)frameName AddToLayer:(bool)shouldAddToLayer;
-
-
++(id) spriteCenteredWithFrame:(NSString*)frame Position:(CGPoint)position;
++(id) spriteNotCenteredWithFrame:(NSString*)frame Position:(CGPoint)position;
 
 -(id) initWithFile:(NSString *)filename AddToLayer:(bool)shouldAddToLayer;
 -(id) initFromFrameCacheWithName:(NSString*)frameName AddToLayer:(bool)shouldAddToLayer;
-
+-(id) initFromFrameCacheWithName:(NSString *)frameName AddToLayer:(_Bool)shouldAddToLayer Position:(CGPoint)position AnchorPoint:(CGPoint)anchorPoint;
 
 -(void) setCentered;
 -(void) setPositionAtX:(float)x Y:(float)y;

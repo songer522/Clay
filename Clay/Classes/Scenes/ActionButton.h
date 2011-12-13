@@ -20,10 +20,18 @@
 
 +(id)actionButtonWithText:(NSString*)text;
 +(id)actionButtonInGameWithText:(NSString*)text;
++(id)actionButtonCustomGraphicsForIdle:(NSString*)idleName Selected:(NSString*)selectedName;
++(id)actionButtonManualSetup; //use this when you want to set everything yourself
 
 -(void)setPosition:(CGPoint)position;
 -(void)setAlpha:(float)alpha;
+-(void)setSelectedAlpha:(float)alpha;
 
+-(void)setIdleSpriteFrame:(NSString*)name;
+-(void)setSelectedSpriteFrame:(NSString*)name;
+-(void)setInitialText:(NSString*)text;
+-(void)setRelativeHitbox:(CGRect)rect;
+-(void)setHitboxBySize:(CGSize)size;
 -(bool)checkIfSelected:(CGPoint)touch;
 
 -(void)update:(float)dt;

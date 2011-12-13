@@ -101,10 +101,18 @@
 
 -(bool)testCollision:(CGPoint)position
 {
-    float left = _hitbox.origin.x;
-    float right = left + _hitbox.size.width;
-    float bottom = _hitbox.origin.y;
-    float top = bottom + _hitbox.size.height;
+    float left,right,top,bottom;
+    
+    if (_usingRelativeHitbox) {
+        left = _position.x + _hitbox.origin.x;
+        bottom = _position.y + _hitbox.origin.y;
+    } else {
+        left = _hitbox.origin.x;
+        bottom = _hitbox.origin.y;
+    }
+    
+    right = left + _hitbox.size.width;
+    top = bottom + _hitbox.size.height;
     
     if (position.x < right && position.x > left && position.y > bottom && position.y < top) {
         return true;
@@ -112,6 +120,11 @@
         return false;
     }
 
+}
+
+-(void)setPosition:(CGPoint)position
+{
+    _position = position;
 }
 
 -(GameLabel*)getGameLabel

@@ -6,10 +6,14 @@
 //  Copyright (c) 2011 Xecudev, LLC. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
+
 #import "GCHelper.h"
 #import "Database.h"
 #import "cocos2d.h"
 #import "Appirater.h"
+#import "AppDelegate.h"
+
 @implementation GCHelper
 @synthesize leaderboardToReport;
 @synthesize achievementsToReport;
@@ -138,6 +142,26 @@ static GCHelper *sharedHelper = nil;
     }
     [self sendAchievement:achievement];
 }
+
+- (void) showGameCenter
+{
+    GKLeaderboardViewController *leaderboardController = [[[GKLeaderboardViewController alloc] init] autorelease];
+    
+    if (leaderboardController!=NULL) {
+        leaderboardController.timeScope = GKLeaderboardTimeScopeAllTime;
+        leaderboardController.leaderboardDelegate = self;
+        AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+        [delegate.viewController presentModalViewController:leaderboardController animated:YES];
+    }
+}
+
+- (void)leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController
+{
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    [delegate.viewController dismissModalViewControllerAnimated:YES];
+}
+
+
 
 #pragma mark NSCoding
 

@@ -19,6 +19,7 @@
 		5411C2491458C7BD000C7D91 /* characterAnims-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5411C2451458C7BD000C7D91 /* characterAnims-hd.png */; };
 		5411C24A1458C7BD000C7D91 /* characterAnims.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5411C2461458C7BD000C7D91 /* characterAnims.plist */; };
 		5411C24B1458C7BD000C7D91 /* characterAnims-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5411C2471458C7BD000C7D91 /* characterAnims-hd.plist */; };
+		5411FC731496C7BF005FAFDB /* ContinueGameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5411FC721496C7BF005FAFDB /* ContinueGameManager.m */; };
 		54125E3E149285D1007679C5 /* Calculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 54125E3D149285D1007679C5 /* Calculator.m */; };
 		54133A0114321CB300E433FC /* Craziness.wav in Resources */ = {isa = PBXBuildFile; fileRef = 541339F914321CB300E433FC /* Craziness.wav */; };
 		54133A0214321CB300E433FC /* Footstep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 541339FA14321CB300E433FC /* Footstep.wav */; };
@@ -156,7 +157,6 @@
 		54484E2C140449B700D0D7D9 /* ZAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 54484E2B140449B700D0D7D9 /* ZAttributedString.m */; };
 		54484E30140449B700D0D7D9 /* ZFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 54484E2F140449B700D0D7D9 /* ZFont.m */; };
 		54484E35140449B700D0D7D9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 54484E34140449B700D0D7D9 /* main.m */; };
-		544DB1FD148416BE006F373E /* medals.plist in Resources */ = {isa = PBXBuildFile; fileRef = 544DB1FC148416BE006F373E /* medals.plist */; };
 		5450735B147D6C840081D394 /* crow.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 54507357147D6C840081D394 /* crow.mp3 */; };
 		54507360147D6E790081D394 /* blowAction.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5450735F147D6E790081D394 /* blowAction.wav */; };
 		54507362147D71000081D394 /* maddogBark.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54507361147D71000081D394 /* maddogBark.wav */; };
@@ -385,6 +385,12 @@
 		54CA7A7E1471C97C002B01AA /* TextureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CA7A7D1471C97C002B01AA /* TextureManager.m */; };
 		54D8078C1459D11B0090F0DA /* shotgun_reload.caf in Resources */ = {isa = PBXBuildFile; fileRef = 54D8078B1459D11B0090F0DA /* shotgun_reload.caf */; };
 		54E11200144CBE1E00BBF32B /* blank.png in Resources */ = {isa = PBXBuildFile; fileRef = 54E111FF144CBE1E00BBF32B /* blank.png */; };
+		54E1AC041497B5D500DFCA77 /* OptionsScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E1AC031497B5D500DFCA77 /* OptionsScene.m */; };
+		54E1AC071497B7CB00DFCA77 /* ChooseModeScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E1AC061497B7CB00DFCA77 /* ChooseModeScene.m */; };
+		54E1AC0A1497B80A00DFCA77 /* CreditsScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E1AC091497B80A00DFCA77 /* CreditsScene.m */; };
+		54E1AC0D1497B85200DFCA77 /* ExtrasScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E1AC0C1497B85200DFCA77 /* ExtrasScene.m */; };
+		54E1AC121497BC9000DFCA77 /* credits.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54E1AC101497BC9000DFCA77 /* credits.plist */; };
+		54E1AC131497BC9000DFCA77 /* medals.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54E1AC111497BC9000DFCA77 /* medals.plist */; };
 		54E25D7B146B23910016ADEB /* ActionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 54E25D7A146B23910016ADEB /* ActionButton.m */; };
 		54E3D54A146C4BA800C28C9F /* meta-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54E3D538146C4BA800C28C9F /* meta-hd.png */; };
 		54E3D54B146C4BA800C28C9F /* meta.png in Resources */ = {isa = PBXBuildFile; fileRef = 54E3D539146C4BA800C28C9F /* meta.png */; };
@@ -484,6 +490,8 @@
 		5411C2451458C7BD000C7D91 /* characterAnims-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "characterAnims-hd.png"; sourceTree = "<group>"; };
 		5411C2461458C7BD000C7D91 /* characterAnims.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = characterAnims.plist; sourceTree = "<group>"; };
 		5411C2471458C7BD000C7D91 /* characterAnims-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "characterAnims-hd.plist"; sourceTree = "<group>"; };
+		5411FC711496C7BF005FAFDB /* ContinueGameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContinueGameManager.h; sourceTree = "<group>"; };
+		5411FC721496C7BF005FAFDB /* ContinueGameManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContinueGameManager.m; sourceTree = "<group>"; };
 		54125E3C149285D0007679C5 /* Calculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Calculator.h; sourceTree = "<group>"; };
 		54125E3D149285D1007679C5 /* Calculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Calculator.m; sourceTree = "<group>"; };
 		541339F914321CB300E433FC /* Craziness.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Craziness.wav; path = Resources/sounds/Craziness.wav; sourceTree = "<group>"; };
@@ -739,7 +747,6 @@
 		54484E31140449B700D0D7D9 /* LICENSE_FontLabel.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = LICENSE_FontLabel.txt; path = libs/LICENSE_FontLabel.txt; sourceTree = "<group>"; };
 		54484E33140449B700D0D7D9 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		54484E34140449B700D0D7D9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		544DB1FC148416BE006F373E /* medals.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = medals.plist; sourceTree = "<group>"; };
 		54507357147D6C840081D394 /* crow.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = crow.mp3; path = Resources/sounds/crow.mp3; sourceTree = "<group>"; };
 		5450735F147D6E790081D394 /* blowAction.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = blowAction.wav; path = Resources/sounds/blowAction.wav; sourceTree = "<group>"; };
 		54507361147D71000081D394 /* maddogBark.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = maddogBark.wav; path = Resources/sounds/maddogBark.wav; sourceTree = "<group>"; };
@@ -1057,6 +1064,16 @@
 		54CB72521460506400311904 /* supersonic.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = supersonic.wav; path = Resources/sounds/supersonic.wav; sourceTree = "<group>"; };
 		54D8078B1459D11B0090F0DA /* shotgun_reload.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = shotgun_reload.caf; path = Resources/sounds/shotgun_reload.caf; sourceTree = "<group>"; };
 		54E111FF144CBE1E00BBF32B /* blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blank.png; sourceTree = "<group>"; };
+		54E1AC021497B5D500DFCA77 /* OptionsScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionsScene.h; sourceTree = "<group>"; };
+		54E1AC031497B5D500DFCA77 /* OptionsScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionsScene.m; sourceTree = "<group>"; };
+		54E1AC051497B7CB00DFCA77 /* ChooseModeScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseModeScene.h; sourceTree = "<group>"; };
+		54E1AC061497B7CB00DFCA77 /* ChooseModeScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseModeScene.m; sourceTree = "<group>"; };
+		54E1AC081497B80A00DFCA77 /* CreditsScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditsScene.h; sourceTree = "<group>"; };
+		54E1AC091497B80A00DFCA77 /* CreditsScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditsScene.m; sourceTree = "<group>"; };
+		54E1AC0B1497B85200DFCA77 /* ExtrasScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtrasScene.h; sourceTree = "<group>"; };
+		54E1AC0C1497B85200DFCA77 /* ExtrasScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtrasScene.m; sourceTree = "<group>"; };
+		54E1AC101497BC9000DFCA77 /* credits.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = credits.plist; path = Plists/credits.plist; sourceTree = "<group>"; };
+		54E1AC111497BC9000DFCA77 /* medals.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = medals.plist; path = Plists/medals.plist; sourceTree = "<group>"; };
 		54E25D79146B23900016ADEB /* ActionButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActionButton.h; path = ../../Scenes/ActionButton.h; sourceTree = "<group>"; };
 		54E25D7A146B23910016ADEB /* ActionButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActionButton.m; path = ../../Scenes/ActionButton.m; sourceTree = "<group>"; };
 		54E3D538146C4BA800C28C9F /* meta-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "meta-hd.png"; path = "Resources/levels/meta-hd.png"; sourceTree = "<group>"; };
@@ -1214,16 +1231,17 @@
 		5416A1B414195B5500648B6A /* Plists */ = {
 			isa = PBXGroup;
 			children = (
-				61D7BCFE14918C69002790E9 /* memory.plist */,
 				549ED7551461CD62008BCD98 /* anims.plist */,
 				549ED7561461CD62008BCD98 /* comics.plist */,
+				54E1AC101497BC9000DFCA77 /* credits.plist */,
 				549ED7571461CD62008BCD98 /* levels.plist */,
-				544DB1FC148416BE006F373E /* medals.plist */,
+				54E1AC111497BC9000DFCA77 /* medals.plist */,
+				61D7BCFE14918C69002790E9 /* memory.plist */,
 				549ED7581461CD62008BCD98 /* music.plist */,
 				549ED7591461CD62008BCD98 /* objects.plist */,
 				549ED75A1461CD62008BCD98 /* player.plist */,
-				549ED75B1461CD63008BCD98 /* skins.plist */,
 				54A60BDD1483E55F00EA2F3B /* settings.plist */,
+				549ED75B1461CD63008BCD98 /* skins.plist */,
 				549ED75C1461CD63008BCD98 /* sounds.plist */,
 			);
 			name = Plists;
@@ -2029,6 +2047,8 @@
 				549E5DB514843CC6006D4CAE /* BestTimes.m */,
 				54125E3C149285D0007679C5 /* Calculator.h */,
 				54125E3D149285D1007679C5 /* Calculator.m */,
+				5411FC711496C7BF005FAFDB /* ContinueGameManager.h */,
+				5411FC721496C7BF005FAFDB /* ContinueGameManager.m */,
 				549ED7C71461D065008BCD98 /* GameController.h */,
 				549ED7C81461D065008BCD98 /* GameController.m */,
 				549ED7C91461D065008BCD98 /* GameObjectController.h */,
@@ -2089,12 +2109,18 @@
 				549ED7ED1461D065008BCD98 /* AppDelegate.m */,
 				549ED7EE1461D065008BCD98 /* ChooseLevelScreen.h */,
 				549ED7EF1461D065008BCD98 /* ChooseLevelScreen.m */,
+				54E1AC051497B7CB00DFCA77 /* ChooseModeScene.h */,
+				54E1AC061497B7CB00DFCA77 /* ChooseModeScene.m */,
 				549ED7F01461D065008BCD98 /* ComicLayer.h */,
 				549ED7F11461D065008BCD98 /* ComicLayer.m */,
 				549ED7F21461D065008BCD98 /* ComicManager.h */,
 				549ED7F31461D065008BCD98 /* ComicManager.m */,
+				54E1AC081497B80A00DFCA77 /* CreditsScene.h */,
+				54E1AC091497B80A00DFCA77 /* CreditsScene.m */,
 				549ED7F41461D065008BCD98 /* EndGameScene.h */,
 				549ED7F51461D065008BCD98 /* EndGameScene.m */,
+				54E1AC0B1497B85200DFCA77 /* ExtrasScene.h */,
+				54E1AC0C1497B85200DFCA77 /* ExtrasScene.m */,
 				549ED7F61461D065008BCD98 /* GameDebugLayer.h */,
 				549ED7F71461D065008BCD98 /* GameDebugLayer.m */,
 				549ED7F81461D065008BCD98 /* GameLayer.h */,
@@ -2105,6 +2131,8 @@
 				549ED7FD1461D065008BCD98 /* LayerManager.m */,
 				549ED7FE1461D065008BCD98 /* MainMenuScene.h */,
 				549ED7FF1461D065008BCD98 /* MainMenuScene.m */,
+				54E1AC021497B5D500DFCA77 /* OptionsScene.h */,
+				54E1AC031497B5D500DFCA77 /* OptionsScene.m */,
 				549ED8001461D065008BCD98 /* PauseMenuScreen.h */,
 				549ED8011461D065008BCD98 /* PauseMenuScreen.m */,
 				5474D4AC147453A00038B358 /* GameSettings.h */,
@@ -2550,7 +2578,6 @@
 				5450737A147DE8020081D394 /* Part8_AfterLv7.mp4 in Resources */,
 				5450737D147DEE7C0081D394 /* jimShipCharge.wav in Resources */,
 				54A60BDE1483E55F00EA2F3B /* settings.plist in Resources */,
-				544DB1FD148416BE006F373E /* medals.plist in Resources */,
 				61DE5BFD1485526800D325CF /* image1.png in Resources */,
 				61DE5BFE1485526800D325CF /* image2.png in Resources */,
 				61DE5BFF1485526800D325CF /* image3.png in Resources */,
@@ -2830,6 +2857,11 @@
 				54F6E4EE14882A78002D4C65 /* Lightning.m in Sources */,
 				54A1EF6C148D821C00A6ADF7 /* WaterLevelEffects.m in Sources */,
 				54125E3E149285D1007679C5 /* Calculator.m in Sources */,
+				5411FC731496C7BF005FAFDB /* ContinueGameManager.m in Sources */,
+				54E1AC041497B5D500DFCA77 /* OptionsScene.m in Sources */,
+				54E1AC071497B7CB00DFCA77 /* ChooseModeScene.m in Sources */,
+				54E1AC0A1497B80A00DFCA77 /* CreditsScene.m in Sources */,
+				54E1AC0D1497B85200DFCA77 /* ExtrasScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

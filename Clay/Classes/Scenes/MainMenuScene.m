@@ -16,9 +16,13 @@
 #import "ChooseLevelScreen.h"
 #import "TextureManager.h"
 #import "Appirater.h"
+#import "ActionButton.h"
 #import "SoundEngine.h"
 #import "GameSettings.h"
+#import "ContinueGameManager.h"
+#import "GCHelper.h"
 
+#import "CreditsScene.h"
 
 
 @implementation MainMenuScene
@@ -47,69 +51,72 @@
         
         NSAutoreleasePool *myPool = [[NSAutoreleasePool alloc] init];
         
-        //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pause) name:UIWindowDidResignKeyNotification object:nil];
-        [self pause];
+        [self pause]; //paused so that the game center code can run first
+        
         [[GCHelper sharedInstance] authenticateLocalUser];
     
         [[LayerManager sharedLayers] setWorkingLayer:self];
         
+        //load textures, and sounds for main menu
         [[TextureManager shared] loadMemoryForKey:@"mainMenu"];
           
-        
-      
-        
-        _trackBackground = [Sprite spriteFromFrameCacheWithName:@"Menu_Background.png"];
-        [_trackBackground getCCSprite].position = ccp(0,0);
-        [_trackBackground setAlpha:1.0f];
-        
+        //initialize sprites
+        _trackBackground = [Sprite spriteFromFrameCacheWithName:@"Menu_Background.png"];        
         _rain1 = [Sprite spriteFromFrameCacheWithName:@"Menu_Rain_01.png"];
-        [_rain1 getCCSprite].position = ccp(0, 0);
-        [_rain1 setAlpha:0.0f];
-        
         _rain2 = [Sprite spriteFromFrameCacheWithName:@"Menu_Rain_02.png"];
-        [_rain2 getCCSprite].position = ccp(0, 0);
-        [_rain2 setAlpha:0.0f];
+        _logo = [Sprite spriteCenteredWithFrame:@"Menu_Logo.png" Position:ccp(240,258)]; //final y: 262
+        _copyright = [Sprite spriteCenteredWithFrame:@"Menu_Copyright.png" Position:ccp(240,24)]; //final y: 20
         
-        _logo = [Sprite spriteFromFrameCacheWithName:@"Menu_Logo.png"];
-        [_logo setAlpha:0.0f];
-        [_logo getCCSprite].anchorPoint = ccp(0.5f, 0.5f);
-        [_logo getCCSprite].position = ccp(240, 258); //final 240, 262
+        //check whether we can continue the game
+        _isContinueButtonEnabled = [ContinueGameManager isAbleToContinueGame];        
         
-        _playButtonBlue = [Sprite spriteFromFrameCacheWithName:@"Menu_PlayBlue.png"];
-        [_playButtonBlue setAlpha:0.0f];
-        [_playButtonBlue getCCSprite].anchorPoint = ccp(0.5f,0.5f);
-        [_playButtonBlue getCCSprite].position = ccp(240, 142);
+        //play button with position determined on whether we can continue
+        _playButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_PlayBlue.png" Selected:@"Menu_PlayGreen.png"];
         
-        _playButtonOrange = [Sprite spriteFromFrameCacheWithName:@"Menu_PlayOrange.png"];
-        [_playButtonOrange getCCSprite].anchorPoint = ccp(0.5f, 0.5f);
-        [_playButtonOrange getCCSprite].position = ccp(240,142);
-        [[_playButtonOrange getCCSprite] setVisible:NO];
+        if (_isContinueButtonEnabled) {
+            [_playButton setPosition:ccp(240,115)];            
+        } else {
+            [_playButton setPosition:ccp(240,142)];                        
+        }
+        [_playButton setHitboxBySize:CGSizeMake(319, 71)];
         
-        _copyright = [Sprite spriteFromFrameCacheWithName:@"Menu_Copyright.png"];
-        [_copyright setAlpha:0.0f];
-        [_copyright getCCSprite].anchorPoint = ccp(0.5f, 0.5f);
-        [_copyright getCCSprite].position = ccp(240,24); //final 240,20
-        /*
-        _tutorialButton = [ActionButton actionButtonWithText:@"TUTORIAL"];
-        [_tutorialButton setPosition:ccp(50, 18)];
+                
+        //continue button
+        _continueButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_ContinueBlue.png" Selected:@"Menu_ContinueGreen.png"];
+        [_continueButton setPosition:ccp(240,158)];
+        [_continueButton setHitboxBySize:CGSizeMake(319, 71)];
+        [_continueButton setAlpha:0.0f];
         
-        _tutorial=[Tutorial TutorialWithinLayer:self];
-        */
+        
+        //game center button
+        _gameCenterButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_GameCenter.png" Selected:@"Menu_GameCenter.png"];
+        [_gameCenterButton setPosition:ccp(440,24)];
+        [_gameCenterButton setHitboxBySize:CGSizeMake(65, 65)];
+        
+        
+        //options button
+        _optionsButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_OptionsBlue.png" Selected:@"Menu_OptionsGreen.png"];
+        [_optionsButton setPosition:ccp(40,24)];
+        [_optionsButton setHitboxBySize:CGSizeMake(65, 65)];
+
         
         [[LayerManager sharedLayers] forgetWorkingLayer];
         
+        
+        //initial values
         _totalTime = 0.0f;
         _time = 0.0f;
         _transition = MAINMENU_TRANSITION_IN;
-        
-        
         _switchSceneTriggered = false;
-        
         _reinit = false;
+        
+        //make everything except track background transparent
+        [self setAlphaForAll:0.0f includingButtons:YES andButtonSelection:YES];
         
         [self scheduleUpdate];
         self.isTouchEnabled = YES;
         
+        //check to see if the title menu music is loaded. if not, play it.
         NSString *musicStarted = [[GameSettings shared] getGlobalForKey:@"titleMusicStarted"];
         if (![musicStarted isEqualToString:@"YES"]) {
             [[SoundEngine shared] playMusic:@"title"];
@@ -128,53 +135,81 @@
 {
     [[CCDirector sharedDirector] pause];
 }
+
 -(void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
         if (_transition == MAINMENU_TRANSITION_IDLE) 
     {
         bool shouldStart = false;
         NSSet *allTouches = [event allTouches];
-        for(UITouch *touch in allTouches)
-        /*
-        {
-        CGPoint position = [self convertTouchToNodeSpace:touch];
-            if([_tutorialButton checkIfSelected:position]) 
-            {
-              //bring on the tutorial
-                
-                [_tutorial switchToTutorial];
-            
-            [[SoundEngine shared] playSound:@"buttonPressed"]; 
-           
-            }
-            else if(position.x < 300 && position.x > 180 && position.y > 122 && position.y < 162)
-            {
-                 shouldStart = true;
-            }
         
-        if (shouldStart) 
-            {
-            [self switchToTransitionOut];
-            [[SoundEngine shared] playSound:@"menuPlayButton"];
+        for(UITouch *touch in allTouches)
+        {
+            CGPoint position = [self convertTouchToNodeSpace:touch];
             
-           }
-        }
-         */
-    
-            
-            {
+            if ([_playButton testCollision:position]) {
+                _switchToChoice = MENU_SWITCHTO_CHOOSELEVEL;
+                [[GameSettings shared] setGlobal:@"timed" ForKey:@"gameMode"];
+                [[GameSettings shared] setGlobal:@"normal" ForKey:@"gameDifficulty"];
+                shouldStart = true;
+            } else if ([_gameCenterButton testCollision:position]) {
+                _switchToChoice = MENU_SWITCHTO_GAMECENTER;
+                [self switchToChoice];
+            } else if ([_optionsButton testCollision:position]) {
+                _switchToChoice = MENU_SWITCHTO_OPTIONS;
+                shouldStart = true;
+            } else if(_isContinueButtonEnabled && [_continueButton testCollision:position]) {
+                _switchToChoice = MENU_SWITCHTO_CONTINUE;
                 shouldStart = true;
             }
+        }
         
         if (shouldStart) {
             [self switchToTransitionOut];
             [[SoundEngine shared] playSound:@"menuPlayButton"];
-            [[GameSettings shared] setGlobal:@"timed" ForKey:@"gameMode"];
-            [[GameSettings shared] setGlobal:@"normal" ForKey:@"gameDifficulty"];
         }
-    
+    }
+}
 
-   
+-(void)setAlphaForAll:(float)alpha includingButtons:(bool)alphaButtons andButtonSelection:(bool)alphaSelected
+{
+    [_rain1 setAlpha:alpha];
+    [_rain2 setAlpha:alpha];
+    
+    [_logo setAlpha:alpha];
+    
+    if (alphaButtons) {
+        [_playButton setAlpha:alpha];
+        [_optionsButton setAlpha:alpha];
+        [_gameCenterButton setAlpha:alpha];
+        
+        if(_isContinueButtonEnabled) {
+            [_continueButton setAlpha:alpha];
+        }
+    }
+    
+    if(alphaSelected) {
+        [_playButton setSelectedAlpha:alpha];
+        [_gameCenterButton setSelectedAlpha:alpha];
+        [_optionsButton setSelectedAlpha:alpha];
+        
+        if (_isContinueButtonEnabled) {
+            [_continueButton setSelectedAlpha:alpha];            
+        }
+    }
+    
+    [_copyright setAlpha:alpha];
+
+}
+
+-(void)setButtonAlphas:(float)alpha
+{
+    [_playButton setAlpha:alpha];
+    [_optionsButton setAlpha:alpha];
+    [_gameCenterButton setAlpha:alpha];
+    
+    if (_isContinueButtonEnabled) {
+        [_continueButton setAlpha:alpha];
     }
 }
 
@@ -184,20 +219,10 @@
     _totalTime = 0.0f;
     
     _transition = MAINMENU_TRANSITION_IN;
-    [[_playButtonOrange getCCSprite] setVisible:YES];
+    
+    [self setAlphaForAll:0.0f includingButtons:YES andButtonSelection:YES];
     
     [_trackBackground setAlpha:1.0f];
-    
-    [_rain1 setAlpha:0.0f];
-    
-    [_rain2 setAlpha:0.0f];
-    
-    [_logo setAlpha:0.0f];
-
-    [_playButtonBlue setAlpha:0.0f];
-    [_playButtonOrange setAlpha:0.0f];
-    
-    [_copyright setAlpha:0.0f];
 }
 
 
@@ -205,8 +230,6 @@
 {
     _time = 0.0f;
     _transition = MAINMENU_TRANSITION_OUT;
-    [_playButtonOrange setAlpha:0.0f];
-    [[_playButtonOrange getCCSprite] setVisible:YES];
 }
 
 -(void)reinit
@@ -240,27 +263,24 @@
                 _transition = MAINMENU_TRANSITION_IDLE;
             }
             [_logo move:ccp(0, rate)];
-            [_logo setAlpha:_time];
-            [_playButtonBlue setAlpha:_time];
             [_copyright move:ccp(0,-0.5f * rate)];
-            [_copyright setAlpha:_time];
-            [_rain1 setAlpha:_time];
-            [_rain2 setAlpha:_time];
+            
+            [self setAlphaForAll:_time includingButtons:YES andButtonSelection:NO];
+            
             break;
         case MAINMENU_TRANSITION_OUT:
             if (_time >=1.0f) {
                 _time = 1.0f;
             }
-            [_playButtonOrange setAlpha:(MAX(1.0f - 8.0f * _time, 0.0f))];
-            [_logo setAlpha:(1.0f - _time)];
-            [_rain1 setAlpha:(1.0f - _time)];
-            [_rain2 setAlpha:(1.0f - _time)];
-            [_copyright setAlpha:(1.0f - _time)];
-            [_playButtonOrange setAlpha:(MAX(1.0f - 8.0f * _time, 0.0f))];
-            [_playButtonBlue setAlpha:(MIN(1.0f,1.0f - 1.0f * _time))];
+            
+            [self setAlphaForAll:(1.0f - _time) includingButtons:NO andButtonSelection:NO];
+            [self setButtonAlphas:(MIN(1.0f,1.0f - 1.0f * _time))];
+            
+            [_selectedButton setSelectedAlpha:(MAX(1.0f - 8.0f * _time, 0.0f))];
+
             if (!_switchSceneTriggered) {
                 if (_time >=1.0f) {
-                    [self private_switchToChooseLevel];
+                    [self switchToChoice];
                     _switchSceneTriggered = true;
                 }
             }
@@ -271,9 +291,21 @@
 }
 
 
--(void)private_switchToChooseLevel
+-(void)switchToChoice
 {
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ChooseLevelScreen scene]]];
+    switch (_switchToChoice) {
+        case MENU_SWITCHTO_CHOOSELEVEL:            
+            [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ChooseLevelScreen scene]]];
+            break;
+        case MENU_SWITCHTO_GAMECENTER:
+            [[GCHelper sharedInstance] showGameCenter];
+            break;
+        case MENU_SWITCHTO_OPTIONS:
+            [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[CreditsScene node]]];
+        default:
+            break;
+    }
+    
 }
 
 -(void)onExit
@@ -285,15 +317,19 @@
 -(void)dealloc
 {
     //NSLog(@"Dealloc: MainMenuScene");
- 
     
+    //sprites
     [_trackBackground release];
     [_rain1 release];
     [_rain2 release];
     [_logo release];
-    [_playButtonBlue release];
-    [_playButtonOrange release];
     [_copyright release];
+
+    //buttons
+    [_playButton release];
+    [_continueButton release];
+    [_gameCenterButton release];
+    [_optionsButton release];
     
     [[TextureManager shared] unloadMemoryForKey:@"mainMenu"];
 }
