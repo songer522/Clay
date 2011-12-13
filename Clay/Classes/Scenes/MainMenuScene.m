@@ -22,6 +22,8 @@
 #import "ContinueGameManager.h"
 #import "GCHelper.h"
 
+#import "CreditsScene.h"
+
 
 @implementation MainMenuScene
 
@@ -298,6 +300,8 @@
         case MENU_SWITCHTO_GAMECENTER:
             [[GCHelper sharedInstance] showGameCenter];
             break;
+        case MENU_SWITCHTO_OPTIONS:
+            [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[CreditsScene node]]];
         default:
             break;
     }
