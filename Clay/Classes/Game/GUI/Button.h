@@ -22,6 +22,8 @@
     CGPoint _position;
     CCLabelBMFont *_buttonLabel;
     
+    bool _usingRelativeHitbox;
+    
     GameLabel *_gameLabel;
 }
 

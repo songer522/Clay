@@ -39,7 +39,26 @@
 {
     return [[self alloc] initFromFrameCacheWithName:frameName AddToLayer:shouldAddToLayer];
 }
-       
+
++(id) spriteCenteredWithFrame:(NSString*)frame Position:(CGPoint)position
+{
+    return [[self alloc] initFromFrameCacheWithName:frame AddToLayer:YES Position:position AnchorPoint:ccp(0.5f,0.5f)];
+}
+
++(id) spriteNotCenteredWithFrame:(NSString*)frame Position:(CGPoint)position
+{
+    return [[self alloc] initFromFrameCacheWithName:frame AddToLayer:YES Position:position AnchorPoint:ccp(0,0)];
+}
+
+
+-(id) initFromFrameCacheWithName:(NSString *)frameName AddToLayer:(_Bool)shouldAddToLayer Position:(CGPoint)position AnchorPoint:(CGPoint)anchorPoint
+{
+    if((self = [self initFromFrameCacheWithName:frameName AddToLayer:shouldAddToLayer])) {
+        sprite_cc.position = position;
+        sprite_cc.anchorPoint = anchorPoint;
+    }
+    return self;
+}
 
 -(id) initFromFrameCacheWithName:(NSString*)frameName AddToLayer:(bool)shouldAddToLayer
 {

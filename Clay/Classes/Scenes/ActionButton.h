@@ -30,7 +30,8 @@
 -(void)setIdleSpriteFrame:(NSString*)name;
 -(void)setSelectedSpriteFrame:(NSString*)name;
 -(void)setInitialText:(NSString*)text;
-
+-(void)setRelativeHitbox:(CGRect)rect;
+-(void)setHitboxBySize:(CGSize)size;
 -(bool)checkIfSelected:(CGPoint)touch;
 
 -(void)update:(float)dt;

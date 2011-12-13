@@ -48,6 +48,8 @@
         [self setIdleSpriteFrame:buttonName];
         [self setSelectedSpriteFrame:buttonPressedName];
         
+        _usingRelativeHitbox = false; //default
+        
         if (![text isEqualToString:@""]) {
             [self setInitialText:text];            
         }
@@ -92,7 +94,10 @@
     [_buttonIdle setScreenPosition:position];
     [_buttonSelected setScreenPosition:position];
     _textLabel.position = ccp(position.x,position.y - 3.0f);
-    [self setHitbox:CGRectMake(position.x - 48, position.y - 15, 95, 30)];
+    
+    if(!_usingRelativeHitbox) {
+        [self setHitbox:CGRectMake(position.x - 48, position.y - 15, 95, 30)];
+    }
 }
 
 -(void)setAlpha:(float)alpha
@@ -109,6 +114,16 @@
     [_textLabel setOpacity:opacity];    
 }
 
+-(void)setRelativeHitbox:(CGRect)rect
+{
+    _usingRelativeHitbox = true;
+    [self setHitbox:rect];        
+}
+
+-(void)setHitboxBySize:(CGSize)size
+{
+    [self setRelativeHitbox:CGRectMake(-1 * (size.width/2.0f), -1 * (size.height/2.0f), size.width, size.height)];
+}
 
 -(bool)checkIfSelected:(CGPoint)touch
 {

@@ -49,80 +49,72 @@
         
         NSAutoreleasePool *myPool = [[NSAutoreleasePool alloc] init];
         
-        //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pause) name:UIWindowDidResignKeyNotification object:nil];
-        [self pause];
+        [self pause]; //paused so that the game center code can run first
+        
         [[GCHelper sharedInstance] authenticateLocalUser];
     
         [[LayerManager sharedLayers] setWorkingLayer:self];
         
+        //load textures, and sounds for main menu
         [[TextureManager shared] loadMemoryForKey:@"mainMenu"];
           
-        
-      
-        
-        _trackBackground = [Sprite spriteFromFrameCacheWithName:@"Menu_Background.png"];
-        [_trackBackground getCCSprite].position = ccp(0,0);
-        [_trackBackground setAlpha:1.0f];
-        
+        //initialize sprites
+        _trackBackground = [Sprite spriteFromFrameCacheWithName:@"Menu_Background.png"];        
         _rain1 = [Sprite spriteFromFrameCacheWithName:@"Menu_Rain_01.png"];
-        [_rain1 getCCSprite].position = ccp(0, 0);
-        [_rain1 setAlpha:0.0f];
-        
         _rain2 = [Sprite spriteFromFrameCacheWithName:@"Menu_Rain_02.png"];
-        [_rain2 getCCSprite].position = ccp(0, 0);
-        [_rain2 setAlpha:0.0f];
+        _logo = [Sprite spriteCenteredWithFrame:@"Menu_Logo.png" Position:ccp(240,258)]; //final y: 262
+        _copyright = [Sprite spriteCenteredWithFrame:@"Menu_Copyright.png" Position:ccp(240,24)]; //final y: 20
         
-        _logo = [Sprite spriteFromFrameCacheWithName:@"Menu_Logo.png"];
-        [_logo setAlpha:0.0f];
-        [_logo getCCSprite].anchorPoint = ccp(0.5f, 0.5f);
-        [_logo getCCSprite].position = ccp(240, 258); //final 240, 262
+        //check whether we can continue the game
+        _isContinueButtonEnabled = [ContinueGameManager isAbleToContinueGame];        
         
-
-        _isContinueButtonEnabled = [ContinueGameManager isAbleToContinueGame];
-        
+        //play button with position determined on whether we can continue
         _playButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_PlayBlue.png" Selected:@"Menu_PlayGreen.png"];
-        [_playButton setAlpha:0.0f];
         
         if (_isContinueButtonEnabled) {
             [_playButton setPosition:ccp(240,115)];            
         } else {
             [_playButton setPosition:ccp(240,142)];                        
         }
-        _selectedButton = _playButton;
-
+        [_playButton setHitboxBySize:CGSizeMake(319, 71)];
+        
+                
+        //continue button
         _continueButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_ContinueBlue.png" Selected:@"Menu_ContinueGreen.png"];
-        [_continueButton setAlpha:0.0f];
         [_continueButton setPosition:ccp(240,158)];
+        [_continueButton setHitboxBySize:CGSizeMake(319, 71)];
+        [_continueButton setAlpha:0.0f];
         
+        
+        //game center button
         _gameCenterButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_GameCenter.png" Selected:@"Menu_GameCenter.png"];
-        [_gameCenterButton setAlpha:0.0f];
         [_gameCenterButton setPosition:ccp(440,24)];
+        [_gameCenterButton setHitboxBySize:CGSizeMake(65, 65)];
         
+        
+        //options button
         _optionsButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_OptionsBlue.png" Selected:@"Menu_OptionsGreen.png"];
-        [_optionsButton setAlpha:0.0f];
         [_optionsButton setPosition:ccp(40,24)];
-        
-        
+        [_optionsButton setHitboxBySize:CGSizeMake(65, 65)];
 
-        _copyright = [Sprite spriteFromFrameCacheWithName:@"Menu_Copyright.png"];
-        [_copyright setAlpha:0.0f];
-        [_copyright getCCSprite].anchorPoint = ccp(0.5f, 0.5f);
-        [_copyright getCCSprite].position = ccp(240,24); //final 240,20
         
         [[LayerManager sharedLayers] forgetWorkingLayer];
         
+        
+        //initial values
         _totalTime = 0.0f;
         _time = 0.0f;
         _transition = MAINMENU_TRANSITION_IN;
-        
-        
         _switchSceneTriggered = false;
-        
         _reinit = false;
+        
+        //make everything except track background transparent
+        [self setAlphaForAll:0.0f includingButtons:YES andButtonSelection:YES];
         
         [self scheduleUpdate];
         self.isTouchEnabled = YES;
         
+        //check to see if the title menu music is loaded. if not, play it.
         NSString *musicStarted = [[GameSettings shared] getGlobalForKey:@"titleMusicStarted"];
         if (![musicStarted isEqualToString:@"YES"]) {
             [[SoundEngine shared] playMusic:@"title"];
@@ -297,7 +289,6 @@
 -(void)dealloc
 {
     //NSLog(@"Dealloc: MainMenuScene");
- 
     
     [_trackBackground release];
     [_rain1 release];

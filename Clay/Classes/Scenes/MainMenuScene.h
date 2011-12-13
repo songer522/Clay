@@ -10,8 +10,6 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
-//#import "ActionButton.h"
-//#import "Tutorial.h"
 @class Sprite;
 @class ActionButton;
 
@@ -42,10 +40,6 @@ typedef enum {
     Sprite *_copyright;
     
     MainMenuTransition _transition;
-    
-   // ActionButton *_tutorialButton;
-    
-    //Tutorial *_tutorial;
     
     float _totalTime;
     float _time;
