@@ -31,32 +31,61 @@
     return [[self alloc] initWithText:text ButtonImageName:@"Button.png" ButtonPressedImageName:@"ButtonPressed.png"];
 }
 
++(id)actionButtonCustomGraphicsForIdle:(NSString*)idleName Selected:(NSString*)selectedName
+{
+    return [[self alloc] initWithText:@"" ButtonImageName:idleName ButtonPressedImageName:selectedName];
+}
+
++(id)actionButtonManualSetup
+{
+    return [[self alloc] init];
+}
+
 -(id)initWithText:(NSString*)text ButtonImageName:(NSString*)buttonName ButtonPressedImageName:(NSString*)buttonPressedName
 {
     if ((self=[super init])) {
         
-        _buttonIdle = [Sprite spriteFromFrameCacheWithName:buttonName];
-        [_buttonIdle getCCSprite].anchorPoint = ccp(0.5f,0.5f);
-        _buttonSelected = [Sprite spriteFromFrameCacheWithName:buttonPressedName];
-        [_buttonSelected getCCSprite].anchorPoint = ccp(0.5f,0.5f);
+        [self setIdleSpriteFrame:buttonName];
+        [self setSelectedSpriteFrame:buttonPressedName];
         
-        _textLabel = [CCLabelBMFont labelWithString:text fntFile:@"GraphicFont.fnt"];
-        if ([GameSettings usingHighResolutionGraphics]){
-            [_textLabel setScale:0.65f];
-        }
-        else 
-        {[_textLabel setScale:0.325f];
+        if (![text isEqualToString:@""]) {
+            [self setInitialText:text];            
         }
         
-        _textLabel.anchorPoint = ccp(0.5f,0.5f);
-        [[[LayerManager sharedLayers] currentLayer] addChild:_textLabel];
-        
-        _selectedAlpha = 0.0f;
-        
-        [_buttonSelected setAlpha:0.0f];
     }        
     return self;    
 }
+
+-(void)setIdleSpriteFrame:(NSString*)name
+{
+    _buttonIdle = [Sprite spriteFromFrameCacheWithName:name];
+    [_buttonIdle getCCSprite].anchorPoint = ccp(0.5f,0.5f);
+}
+
+-(void)setSelectedSpriteFrame:(NSString*)name
+{
+    _buttonSelected = [Sprite spriteFromFrameCacheWithName:name];
+    [_buttonSelected getCCSprite].anchorPoint = ccp(0.5f,0.5f);    
+    _selectedAlpha = 0.0f;    
+    [_buttonSelected setAlpha:0.0f];
+}
+
+-(void)setInitialText:(NSString*)text
+{
+    _textLabel = [CCLabelBMFont labelWithString:text fntFile:@"GraphicFont.fnt"];
+    
+    if ([GameSettings usingHighResolutionGraphics]){
+        [_textLabel setScale:0.65f];
+    }
+    else
+    {
+        [_textLabel setScale:0.325f];
+    }
+    
+    _textLabel.anchorPoint = ccp(0.5f,0.5f);
+    [[[LayerManager sharedLayers] currentLayer] addChild:_textLabel];    
+}
+
 
 -(void)setPosition:(CGPoint)position
 {
@@ -72,6 +101,14 @@
     [[_buttonIdle getCCSprite] setOpacity:opacity];
     [_textLabel setOpacity:opacity];
 }
+
+-(void)setSelectedAlpha:(float)alpha
+{
+    GLubyte opacity = floor(alpha * 255);
+    [[_buttonSelected getCCSprite] setOpacity:opacity];
+    [_textLabel setOpacity:opacity];    
+}
+
 
 -(bool)checkIfSelected:(CGPoint)touch
 {

@@ -13,6 +13,7 @@
 //#import "ActionButton.h"
 //#import "Tutorial.h"
 @class Sprite;
+@class ActionButton;
 
 typedef enum {
     MAINMENU_TRANSITION_IN,
@@ -29,8 +30,15 @@ typedef enum {
     Sprite *_rain2;
     
     Sprite *_logo;
-    Sprite *_playButtonBlue;
-    Sprite *_playButtonOrange;
+    
+    ActionButton *_playButton;
+    ActionButton *_continueButton;
+    
+    ActionButton *_gameCenterButton;
+    ActionButton *_optionsButton;
+    
+    ActionButton *_selectedButton; //weak reference to which button was selected to perform
+    
     Sprite *_copyright;
     
     MainMenuTransition _transition;
@@ -44,6 +52,7 @@ typedef enum {
     
     bool _reinit;
     bool _switchSceneTriggered;
+    bool _isContinueButtonEnabled;
     
 }
 +(CCScene *) scene;
@@ -55,4 +64,7 @@ typedef enum {
 -(void)switchToTransitionIn;
 -(void)switchToTransitionOut;
 -(void)pause;
+-(void)setAlphaForAll:(float)alpha includingButtons:(bool)alphaButtons andButtonSelection:(bool)alphaSelected;
+-(void)setButtonAlphas:(float)alpha;
+
 @end
