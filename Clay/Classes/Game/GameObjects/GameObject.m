@@ -810,6 +810,25 @@
             }
         }
     }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_COMPUTER_MELISSA) {
+        if ([self closeToPlayer:325.0f]) {
+            _vx = -150.0f;
+            if (!_hasTriggered) {
+                _hasTriggered = true;
+                [self setOriginalAnimation:@"computerMelissaSlowAnim"];
+                [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"computerMelissaFastAnim"];
+            }
+        } else if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+            _vx = -50.0f;
+        }
+    }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_COMPUTER_WORM) {
+        if ([[_sprite getAnimation] getCurrentFrameNumber] == 1) {
+            _vx = -50.0f;
+        } else {
+            _vx = 0.0f;
+        }
+    }
 
 }
 
@@ -998,7 +1017,13 @@
         _currentBehavior = COLLISION_BEHAVIOR_DARK_SPIKES;
        
         _hasTriggered=false;
-    } 
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_COMPUTER_MELISSA) {
+        _currentBehavior = COLLISION_BEHAVIOR_COMPUTER_MELISSA;
+        _hasTriggered = false;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_COMPUTER_WORM) {
+        _currentBehavior = COLLISION_BEHAVIOR_COMPUTER_WORM;
+        _hasTriggered = false;
+    }
     else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_SLOW) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;     
     }
@@ -1135,10 +1160,13 @@
         _collideBehavior = COLLISION_BEHAVIOR_DARK_SPIKES;
         
         _hasTriggered=false;
+    } else if([behavior isEqualToString:@"computerMelissa"]){
+        _currentBehavior = COLLISION_BEHAVIOR_COMPUTER_MELISSA;
+        _collideBehavior = COLLISION_BEHAVIOR_COMPUTER_MELISSA;
+    } else if([behavior isEqualToString:@"computerWorm"]) {
+        _currentBehavior = COLLISION_BEHAVIOR_COMPUTER_WORM;
+        _collideBehavior = COLLISION_BEHAVIOR_COMPUTER_WORM;
     }
-
-
-    
     else {
         _collideBehavior = COLLISION_BEHAVIOR_NONE;
     }
