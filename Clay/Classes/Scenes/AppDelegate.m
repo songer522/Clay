@@ -26,6 +26,7 @@
 @implementation AppDelegate
 
 @synthesize window;
+@synthesize viewController;
 
 - (void) removeStartupFlicker
 {
@@ -184,8 +185,6 @@
 - (void)applicationSignificantTimeChange:(UIApplication *)application {
 	[[CCDirector sharedDirector] setNextDeltaTimeZero:YES];
 }
-
-
 
 
 - (void)dealloc {

@@ -10,9 +10,10 @@
 #import <Foundation/Foundation.h>
 #import <GameKit/GameKit.h>
 
+
 #define gcAchievementChickensKickedIntoCows @"com.xecudev.tracklapse.kicktenchickens"
 
-@interface GCHelper : NSObject <NSCoding> {
+@interface GCHelper : NSObject <NSCoding,GKLeaderboardViewControllerDelegate> {
     BOOL gameCenterAvailable;
     BOOL userAuthenticated;
     NSMutableArray *leaderboardToReport;
@@ -32,5 +33,7 @@
 -(void)reportLeaderboard:(NSString *)identifier score:(int)score;
 
 - (void) showGameCenter;
+
+- (void)leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController;
 
 @end

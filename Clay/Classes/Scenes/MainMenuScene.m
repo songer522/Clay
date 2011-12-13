@@ -152,7 +152,7 @@
                 shouldStart = true;
             } else if ([_gameCenterButton testCollision:position]) {
                 _switchToChoice = MENU_SWITCHTO_GAMECENTER;
-                shouldStart = true;
+                [self switchToChoice];
             } else if ([_optionsButton testCollision:position]) {
                 _switchToChoice = MENU_SWITCHTO_OPTIONS;
                 shouldStart = true;

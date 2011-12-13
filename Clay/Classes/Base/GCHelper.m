@@ -6,10 +6,14 @@
 //  Copyright (c) 2011 Xecudev, LLC. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
+
 #import "GCHelper.h"
 #import "Database.h"
 #import "cocos2d.h"
 #import "Appirater.h"
+#import "AppDelegate.h"
+
 @implementation GCHelper
 @synthesize leaderboardToReport;
 @synthesize achievementsToReport;
@@ -141,15 +145,20 @@ static GCHelper *sharedHelper = nil;
 
 - (void) showGameCenter
 {
-    UIViewController *tempVC = [[UIViewController alloc] init];
     GKLeaderboardViewController *leaderboardController = [[[GKLeaderboardViewController alloc] init] autorelease];
     
     if (leaderboardController!=NULL) {
         leaderboardController.timeScope = GKLeaderboardTimeScopeAllTime;
-        //leaderboardController.delegate = self;
-        [[[CCDirector sharedDirector] openGLView] addSubview:tempVC.view];
-        [tempVC presentModalViewController:leaderboardController animated:YES];
+        leaderboardController.leaderboardDelegate = self;
+        AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+        [delegate.viewController presentModalViewController:leaderboardController animated:YES];
     }
+}
+
+- (void)leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController
+{
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    [delegate.viewController dismissModalViewControllerAnimated:YES];
 }
 
 

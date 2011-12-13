@@ -9,6 +9,7 @@
 
 
 #import <UIKit/UIKit.h>
+#import <GameKit/GameKit.h>
 
 @class RootViewController;
 
@@ -32,5 +33,6 @@
 }
 
 @property (nonatomic, retain) UIWindow *window;
+@property (nonatomic, retain) RootViewController *viewController;
 
 @end
