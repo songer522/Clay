@@ -104,8 +104,8 @@
     float left,right,top,bottom;
     
     if (_usingRelativeHitbox) {
-        left = _position.x - _hitbox.origin.x;
-        bottom = _position.y - _hitbox.origin.y;
+        left = _position.x + _hitbox.origin.x;
+        bottom = _position.y + _hitbox.origin.y;
     } else {
         left = _hitbox.origin.x;
         bottom = _hitbox.origin.y;
@@ -120,6 +120,11 @@
         return false;
     }
 
+}
+
+-(void)setPosition:(CGPoint)position
+{
+    _position = position;
 }
 
 -(GameLabel*)getGameLabel

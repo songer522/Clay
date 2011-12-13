@@ -31,4 +31,6 @@
 -(void)reportAchievement:(NSString *)identifier percentComplete:(double)percentComplete;
 -(void)reportLeaderboard:(NSString *)identifier score:(int)score;
 
+- (void) showGameCenter;
+
 @end

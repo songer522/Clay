@@ -93,6 +93,7 @@
 {
     [_buttonIdle setScreenPosition:position];
     [_buttonSelected setScreenPosition:position];
+    [super setPosition:position];
     _textLabel.position = ccp(position.x,position.y - 3.0f);
     
     if(!_usingRelativeHitbox) {

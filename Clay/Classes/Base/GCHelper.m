@@ -139,6 +139,21 @@ static GCHelper *sharedHelper = nil;
     [self sendAchievement:achievement];
 }
 
+- (void) showGameCenter
+{
+    UIViewController *tempVC = [[UIViewController alloc] init];
+    GKLeaderboardViewController *leaderboardController = [[[GKLeaderboardViewController alloc] init] autorelease];
+    
+    if (leaderboardController!=NULL) {
+        leaderboardController.timeScope = GKLeaderboardTimeScopeAllTime;
+        //leaderboardController.delegate = self;
+        [[[CCDirector sharedDirector] openGLView] addSubview:tempVC.view];
+        [tempVC presentModalViewController:leaderboardController animated:YES];
+    }
+}
+
+
+
 #pragma mark NSCoding
 
 -(void)encodeWithCoder:(NSCoder *)encoder {

@@ -20,7 +20,7 @@
 #import "SoundEngine.h"
 #import "GameSettings.h"
 #import "ContinueGameManager.h"
-
+#import "GCHelper.h"
 
 
 @implementation MainMenuScene
@@ -133,22 +133,38 @@
 {
     [[CCDirector sharedDirector] pause];
 }
+
 -(void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
         if (_transition == MAINMENU_TRANSITION_IDLE) 
     {
         bool shouldStart = false;
         NSSet *allTouches = [event allTouches];
+        
         for(UITouch *touch in allTouches)
         {
-            shouldStart = true;
+            CGPoint position = [self convertTouchToNodeSpace:touch];
+            
+            if ([_playButton testCollision:position]) {
+                _switchToChoice = MENU_SWITCHTO_CHOOSELEVEL;
+                [[GameSettings shared] setGlobal:@"timed" ForKey:@"gameMode"];
+                [[GameSettings shared] setGlobal:@"normal" ForKey:@"gameDifficulty"];
+                shouldStart = true;
+            } else if ([_gameCenterButton testCollision:position]) {
+                _switchToChoice = MENU_SWITCHTO_GAMECENTER;
+                shouldStart = true;
+            } else if ([_optionsButton testCollision:position]) {
+                _switchToChoice = MENU_SWITCHTO_OPTIONS;
+                shouldStart = true;
+            } else if(_isContinueButtonEnabled && [_continueButton testCollision:position]) {
+                _switchToChoice = MENU_SWITCHTO_CONTINUE;
+                shouldStart = true;
+            }
         }
         
         if (shouldStart) {
             [self switchToTransitionOut];
             [[SoundEngine shared] playSound:@"menuPlayButton"];
-            [[GameSettings shared] setGlobal:@"timed" ForKey:@"gameMode"];
-            [[GameSettings shared] setGlobal:@"normal" ForKey:@"gameDifficulty"];
         }
     }
 }
@@ -212,8 +228,6 @@
 {
     _time = 0.0f;
     _transition = MAINMENU_TRANSITION_OUT;
-    
-    //[_selectedButton setAlpha:0.0f];
 }
 
 -(void)reinit
@@ -264,7 +278,7 @@
 
             if (!_switchSceneTriggered) {
                 if (_time >=1.0f) {
-                    [self private_switchToChooseLevel];
+                    [self switchToChoice];
                     _switchSceneTriggered = true;
                 }
             }
@@ -275,9 +289,19 @@
 }
 
 
--(void)private_switchToChooseLevel
+-(void)switchToChoice
 {
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ChooseLevelScreen scene]]];
+    switch (_switchToChoice) {
+        case MENU_SWITCHTO_CHOOSELEVEL:            
+            [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ChooseLevelScreen scene]]];
+            break;
+        case MENU_SWITCHTO_GAMECENTER:
+            [[GCHelper sharedInstance] showGameCenter];
+            break;
+        default:
+            break;
+    }
+    
 }
 
 -(void)onExit
@@ -290,13 +314,18 @@
 {
     //NSLog(@"Dealloc: MainMenuScene");
     
+    //sprites
     [_trackBackground release];
     [_rain1 release];
     [_rain2 release];
     [_logo release];
+    [_copyright release];
+
+    //buttons
     [_playButton release];
     [_continueButton release];
-    [_copyright release];
+    [_gameCenterButton release];
+    [_optionsButton release];
     
     [[TextureManager shared] unloadMemoryForKey:@"mainMenu"];
 }

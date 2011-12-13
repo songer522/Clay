@@ -19,6 +19,13 @@ typedef enum {
     MAINMENU_TRANSITION_IDLE
 } MainMenuTransition;
 
+typedef enum {
+    MENU_SWITCHTO_CHOOSELEVEL,
+    MENU_SWITCHTO_OPTIONS,
+    MENU_SWITCHTO_GAMECENTER,
+    MENU_SWITCHTO_CONTINUE
+}MenuChoiceType;
+
 @class ComicLayer;
 
 @interface MainMenuScene : CCLayer
@@ -41,6 +48,8 @@ typedef enum {
     
     MainMenuTransition _transition;
     
+    MenuChoiceType _switchToChoice;
+    
     float _totalTime;
     float _time;
     
@@ -53,7 +62,8 @@ typedef enum {
 
 
 #pragma mark - private methods
--(void)private_switchToChooseLevel;
+-(void)switchToChoice;
+
 -(void)reinit;
 -(void)switchToTransitionIn;
 -(void)switchToTransitionOut;
