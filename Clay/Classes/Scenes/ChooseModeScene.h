@@ -14,6 +14,18 @@
 @class GameLabel;
 @class ActionButton;
 
+typedef enum {
+    GAMEMODE_STORY_EASY,
+    GAMEMODE_STORY_NORMAL,
+    GAMEMODE_STORY_HARD,
+    GAMEMODE_TIMED_NORMAL,
+    GAMEMODE_TIMED_INSANE,
+    GAMEMODE_EXTRAS_LEVELS,
+    GAMEMODE_EXTRAS_SKINS,
+    GAMEMODE_EXTRAS_WEB,
+    GAMEMODE_NONE
+}GameModeAction;
+
 @interface ChooseModeScene : CCLayer
 {
     Sprite *_background;
@@ -32,6 +44,8 @@
     
     Sprite *_selectCursor;
     
+    GameModeAction _action;
+    
     float _waitToSwitch;
     float _backToMainMenu;
     
@@ -43,6 +57,9 @@
 +(CCScene*)scene;
 
 -(void)load;
+-(void)switchToAction;
 -(void)switchToMainMenu;
+-(void)switchToStartGame;
+-(void)getDesiredAction;
 
 @end

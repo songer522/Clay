@@ -86,6 +86,7 @@
     
     _textLabel.anchorPoint = ccp(0.5f,0.5f);
     [[[LayerManager sharedLayers] currentLayer] addChild:_textLabel];    
+    _hasText = true;
 }
 
 
@@ -151,7 +152,10 @@
 {
     [_buttonIdle release];
     [_buttonSelected release];
-    [_textLabel release];    
+    if(_hasText) {
+        [_textLabel removeFromParentAndCleanup:YES];
+        _textLabel = nil;
+    }
     [super dealloc];
 }
 

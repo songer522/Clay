@@ -48,23 +48,19 @@ typedef enum {
 
 +(id)panelAtPosition:(CGPoint)position;
 
--(void)setHeaderFrame:(NSString*)activeName Inactive:(NSString*)inactiveName;
 
--(void)makeActive;
--(void)transitionToActive;
--(void)transitionToInactive;
 
 -(void)addButtons:(NSArray*)buttonNames;
-
--(void)update:(float)dt;
-
--(void)setParent:(ChooseModeScene*)scene;
-
--(bool)testCollision:(CGPoint)point;
-
--(void)setSelectCursor:(Sprite*)selectCursor;
-
--(void)setSelectedIndex:(int)index;
 -(bool)getSelectedIndex;
+-(void)makeActive;
+-(void)makeCursorActive;
+-(void)setHeaderFrame:(NSString*)activeName Inactive:(NSString*)inactiveName;
+-(void)setParent:(ChooseModeScene*)scene;
+-(void)setSelectCursor:(Sprite*)selectCursor;
+-(void)setSelectedIndex:(int)index;
+-(bool)testCollision:(CGPoint)point;
+-(void)transitionToActive;
+-(void)transitionToInactive;
+-(void)update:(float)dt;
 
 @end

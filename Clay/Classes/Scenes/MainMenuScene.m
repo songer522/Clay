@@ -310,7 +310,7 @@
 {
     switch (_switchToChoice) {
         case MENU_SWITCHTO_CHOOSELEVEL:            
-            [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ChooseLevelScreen scene]]];
+            [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ChooseModeScene scene]]];
             break;
         case MENU_SWITCHTO_LEADERBOARDS:
             [[GCHelper sharedInstance] showLeaderboards];
@@ -319,8 +319,7 @@
             [[GCHelper sharedInstance] showAchievements];
             break;
         case MENU_SWITCHTO_OPTIONS:
-            [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ChooseModeScene scene]]];
-            //[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[CreditsScene node]]];
+            [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[CreditsScene node]]];
             break;
         default:
             break;

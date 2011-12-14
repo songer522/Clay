@@ -16,6 +16,7 @@
     Sprite *_buttonSelected;
     CCLabelBMFont *_textLabel;
     float _selectedAlpha;
+    bool _hasText;
 }
 
 +(id)actionButtonWithText:(NSString*)text;
