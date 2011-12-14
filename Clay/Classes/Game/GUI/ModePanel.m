@@ -11,6 +11,7 @@
 #import "ActionButton.h"
 #import "ChooseModeScene.h"
 
+//IPAD FIX: positions for the header text inside the panel when the panel is active and inactive
 #define PANEL_HEADER_INACTIVE_Y 160.0f
 #define PANEL_HEADER_ACTIVE_Y 232.0f
 #define PANEL_HEIGHT_DIFFERENCE 72.0f
@@ -46,9 +47,12 @@
         _position = position;
         _isActive = false;
         _isSelected = false;
-        _selectedIndex = -1;
+        _selectedIndex = 0;
         _buttons = [[NSMutableArray alloc] initWithCapacity:3];
+        
+        //IPAD FIX: hitbox centered on the button the size of the button graphic
         [self setHitbox:CGRectMake(position.x-71.5f, position.y-114.0f, 143, 228)];
+        
         _wait = 1.0f;
     }
     return self;
@@ -73,6 +77,25 @@
 -(bool)getSelectedIndex
 {
     return _selectedIndex;
+}
+
+-(void)makeActive
+{
+    _phase = MODE_PANEL_ACTIVE;
+    _isActive = true;
+    [self setPanelAlpha:1.0f];
+    [self setHeaderAlpha:1.0f Position:ccp(_position.x,PANEL_HEADER_ACTIVE_Y)];
+    
+    for (ActionButton *button in _buttons) {
+        [button setAlpha:1.0f];
+    }
+}
+
+-(void)makeCursorActive
+{
+    ActionButton *button = [_buttons objectAtIndex:_selectedIndex];
+    [_selectCursor setScreenPosition:[button getPosition]];
+    [_selectCursor setAlpha:1.0f];
 }
 
 -(void)setButtonTransitionAmount:(float)amount
@@ -113,13 +136,6 @@
     }
 }
 
--(void)setHeaderFrame:(NSString*)activeName Inactive:(NSString*)inactiveName
-{
-    _inactiveHeader = [Sprite spriteCenteredWithFrame:inactiveName Position:ccp(_position.x,PANEL_HEADER_INACTIVE_Y)];
-    _activeHeader = [Sprite spriteCenteredWithFrame:activeName Position:ccp(_position.x,PANEL_HEADER_INACTIVE_Y)];
-    [_activeHeader setAlpha:0.0f];
-}
-
 -(void)setHeaderAlpha:(float)alpha Position:(CGPoint)position
 {
     [_activeHeader setAlpha:alpha];
@@ -127,21 +143,16 @@
     [_inactiveHeader getCCSprite].position = position;
 }
 
+-(void)setHeaderFrame:(NSString*)activeName Inactive:(NSString*)inactiveName
+{
+    _inactiveHeader = [Sprite spriteCenteredWithFrame:inactiveName Position:ccp(_position.x,PANEL_HEADER_INACTIVE_Y)];
+    _activeHeader = [Sprite spriteCenteredWithFrame:activeName Position:ccp(_position.x,PANEL_HEADER_INACTIVE_Y)];
+    [_activeHeader setAlpha:0.0f];
+}
+
 -(void)setPanelAlpha:(float)alpha
 {
     [_activePanel setAlpha:alpha];
-}
-
--(void)makeActive
-{
-    _phase = MODE_PANEL_ACTIVE;
-    _isActive = true;
-    [self setPanelAlpha:1.0f];
-    [self setHeaderAlpha:1.0f Position:ccp(_position.x,PANEL_HEADER_ACTIVE_Y)];
-    
-    for (ActionButton *button in _buttons) {
-        [button setAlpha:1.0f];
-    }
 }
 
 -(void)setParent:(ChooseModeScene*)scene
@@ -154,6 +165,14 @@
     _selectCursor = selectCursor;
 }
 
+-(void)setSelectedIndex:(int)index
+{
+    int count = [_buttons count];
+    if (index >= 0 || index < count) {
+        _selectedIndex = index;        
+    }
+}
+
 -(bool)testCollision:(CGPoint)point
 {
     bool didTouch = [super testCollision:point];
@@ -162,9 +181,8 @@
         int i=0;
         for (ActionButton *button in _buttons) {
             if ([button testCollision:point]) {
-                [_selectCursor setScreenPosition:[button getPosition]];
-                [_selectCursor setAlpha:1.0f];
                 _selectedIndex = i;
+                [self makeCursorActive];
             }
             i++;
         }
@@ -221,6 +239,7 @@
                 _phase = MODE_PANEL_ACTIVE;
                 _isActive = true;
                 _parentScene.isTransitioning = false;
+                [self makeCursorActive];
             }
             [self setPanelAlpha:_alpha];
             [self setHeaderAlpha:_alpha Position:ccp(_position.x,PANEL_HEADER_INACTIVE_Y + (_alpha * PANEL_HEIGHT_DIFFERENCE))];

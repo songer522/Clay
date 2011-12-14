@@ -63,25 +63,33 @@
                     _currentPanel = _storyModePanel;
                 }
             } else if ([_timedModePanel testCollision:position]) {
-                [_timedModePanel transitionToActive];
-                [_storyModePanel transitionToInactive];
-                [_extrasPanel transitionToInactive];
-                [_selectCursor setAlpha:0.0f];
+                if (_currentPanel!=_timedModePanel) {
+                    [_timedModePanel transitionToActive];
+                    [_storyModePanel transitionToInactive];
+                    [_extrasPanel transitionToInactive];
+                    [_selectCursor setAlpha:0.0f];
+                    _currentPanel = _timedModePanel;
+                }
             } else if ([_extrasPanel testCollision:position]) {
-                [_extrasPanel transitionToActive];
-                [_timedModePanel transitionToInactive];
-                [_storyModePanel transitionToInactive];
-                [_selectCursor setAlpha:0.0f];
+                if (_currentPanel!=_extrasPanel) {
+                    [_extrasPanel transitionToActive];
+                    [_timedModePanel transitionToInactive];
+                    [_storyModePanel transitionToInactive];
+                    [_selectCursor setAlpha:0.0f];
+                    _currentPanel = _extrasPanel;
+                }
             }
             
             if([_startButton checkIfSelected:position]) {
                 _waitToSwitch = 0.25f;
+                _isTransitioning = true;
                 _backToMainMenu = false;
                 [[SoundEngine shared] playSound:@"buttonPressed"];
             }
             
             if([_backButton checkIfSelected:position]) {
                 _waitToSwitch = 0.25f;
+                _isTransitioning = true;
                 _backToMainMenu = true;
                 [[SoundEngine shared] playSound:@"buttonPressed"];     
             }
@@ -133,6 +141,8 @@
     //setup default selections
     _currentPanel = _storyModePanel;
     [_storyModePanel makeActive];
+    [_storyModePanel setSelectedIndex:1];
+    [_storyModePanel makeCursorActive];
 
     
 
