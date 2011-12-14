@@ -15,6 +15,9 @@
 #import "SoundEngine.h"
 #import "ActionButton.h"
 #import "MainMenuScene.h"
+#import "ChooseLevelScreen.h"
+#import "GameLayer.h"
+#import "GameSettings.h"
 
 @implementation ChooseModeScene
 
@@ -149,7 +152,74 @@
     [[LayerManager sharedLayers] forgetWorkingLayer];
 }
 
+-(void)getDesiredAction
+{
+    int selectedButtonIndex = [_currentPanel getSelectedIndex];
+    if (_currentPanel == _storyModePanel) {
+        if (selectedButtonIndex == 0) {
+            [[GameSettings shared] setGlobal:@"easy" ForKey:@"gameDifficulty"];
+            [[GameSettings shared] setGlobal:@"story" ForKey:@"gameMode"];
+            _action = GAMEMODE_STORY_EASY;
+        } else if(selectedButtonIndex == 1) {
+            [[GameSettings shared] setGlobal:@"normal" ForKey:@"gameDifficulty"];
+            [[GameSettings shared] setGlobal:@"story" ForKey:@"gameMode"];
+            _action = GAMEMODE_STORY_NORMAL;            
+        } else {
+            [[GameSettings shared] setGlobal:@"hard" ForKey:@"gameDifficulty"];
+            [[GameSettings shared] setGlobal:@"story" ForKey:@"gameMode"];
+            _action = GAMEMODE_STORY_HARD;            
+        }
+    } else if(_currentPanel == _timedModePanel) {
+        if (selectedButtonIndex == 0) {
+            [[GameSettings shared] setGlobal:@"normal" ForKey:@"gameDifficulty"];
+            [[GameSettings shared] setGlobal:@"timed" ForKey:@"gameMode"];
+            _action = GAMEMODE_TIMED_NORMAL;
+        } else {
+            [[GameSettings shared] setGlobal:@"hard" ForKey:@"gameDifficulty"];
+            [[GameSettings shared] setGlobal:@"timed" ForKey:@"gameMode"];
+            _action = GAMEMODE_TIMED_INSANE;            
+        }
+    } else {
+        if (selectedButtonIndex == 0) {
+            [[GameSettings shared] setGlobal:@"normal" ForKey:@"gameDifficulty"];
+            [[GameSettings shared] setGlobal:@"extralevels" ForKey:@"gameMode"];
+            _action = GAMEMODE_EXTRAS_LEVELS;            
+        } else if(selectedButtonIndex == 1){
+            _action = GAMEMODE_EXTRAS_SKINS;
+        } else {
+            _action = GAMEMODE_EXTRAS_WEB;
+        }
+    }
+}
+
+-(void)switchToAction
+{
+    switch (_action) {
+        case GAMEMODE_STORY_EASY:
+        case GAMEMODE_STORY_NORMAL:
+        case GAMEMODE_STORY_HARD:
+            [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[GameLayer scene]]];
+            break;
+        case GAMEMODE_TIMED_NORMAL:
+        case GAMEMODE_TIMED_INSANE:
+        case GAMEMODE_EXTRAS_LEVELS:
+            [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ChooseLevelScreen scene]]];
+            break;
+        case GAMEMODE_EXTRAS_SKINS:
+            break;
+        case GAMEMODE_EXTRAS_WEB:
+            break;
+        default:
+            break;
+    }
+}
+
 -(void)switchToMainMenu
+{
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[MainMenuScene scene]]];
+}
+
+-(void)switchToStartGame
 {
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[MainMenuScene scene]]];
 }
@@ -170,7 +240,8 @@
             if (_backToMainMenu) {
                 [self switchToMainMenu];
             }  else {
-                //[self popAndSwitchToLevel:_levelToSwitchTo]; 
+                [self getDesiredAction];
+                [self switchToAction];
             }
         }
     }
@@ -179,21 +250,26 @@
 
 -(void)onExit
 {
-    [self release];
     [self unscheduleUpdate];
     self.isTouchEnabled = false;
+    [self release];
 }
 
 -(void)dealloc
 {
+    /*
     [_background release];
+    [_selectCursor release];
     [_storyModePanel release];
     [_timedModePanel release];
     [_extrasPanel release];
-    [_selectModeText release];
+     */
     [_backButton release];
     [_startButton release];
+    /*
+    [_selectModeText release];
     
+     */
     [[TextureManager shared] unloadMemoryForKey:@"chooseMode"];
 }
 

@@ -26,6 +26,7 @@
 #import "GameLabel.h"
 #import "TrackTimer.h"
 #import "BestTimes.h"
+#import "ChooseModeScene.h"
 
 
 
@@ -269,7 +270,7 @@
 
 -(void)switchToMainMenu
 {
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[MainMenuScene scene]]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ChooseModeScene scene]]];
 }
 
 -(void)switchToTutorial
