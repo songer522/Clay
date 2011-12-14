@@ -143,7 +143,7 @@ static GCHelper *sharedHelper = nil;
     [self sendAchievement:achievement];
 }
 
-- (void) showGameCenter
+- (void) showLeaderboards
 {
     GKLeaderboardViewController *leaderboardController = [[[GKLeaderboardViewController alloc] init] autorelease];
     
@@ -155,12 +155,29 @@ static GCHelper *sharedHelper = nil;
     }
 }
 
+- (void) showAchievements
+{
+    GKAchievementViewController *achievementController = [[[GKAchievementViewController alloc] init] autorelease];
+    
+    if (achievementController!=NULL) {
+        achievementController.achievementDelegate = self;
+        AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+        [delegate.viewController presentModalViewController:achievementController animated:YES];
+    }
+}
+
 - (void)leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController
 {
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     [delegate.viewController dismissModalViewControllerAnimated:YES];
 }
 
+
+-(void)achievementViewControllerDidFinish:(GKAchievementViewController *)viewController
+{
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    [delegate.viewController dismissModalViewControllerAnimated:YES];
+}
 
 
 #pragma mark NSCoding

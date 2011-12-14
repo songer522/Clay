@@ -22,7 +22,8 @@ typedef enum {
 typedef enum {
     MENU_SWITCHTO_CHOOSELEVEL,
     MENU_SWITCHTO_OPTIONS,
-    MENU_SWITCHTO_GAMECENTER,
+    MENU_SWITCHTO_LEADERBOARDS,
+    MENU_SWITCHTO_ACHIEVEMENTS,
     MENU_SWITCHTO_CONTINUE
 }MenuChoiceType;
 
@@ -39,7 +40,8 @@ typedef enum {
     ActionButton *_playButton;
     ActionButton *_continueButton;
     
-    ActionButton *_gameCenterButton;
+    ActionButton *_leaderboardsButton;
+    ActionButton *_achievementsButton;
     ActionButton *_optionsButton;
     
     ActionButton *_selectedButton; //weak reference to which button was selected to perform
