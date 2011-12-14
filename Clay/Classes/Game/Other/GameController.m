@@ -11,7 +11,7 @@
 #import "GameLayer.h"
 #import "PauseMenuScreen.h"
 #import "HudLayer.h"
-
+#import "GameSettings.h"
 
 @implementation GameController
 
@@ -111,7 +111,12 @@
                 
                 break;
             case HUD_BUTTON_ACTION:
-                [_gameLayer.player startThirdAction];
+                //this only gets called on 'INPUT_TOUCH_END' when exception made by hud button collision test, which is currently only used in level 10 to end the swimming action when you let go.
+                if (type == INPUT_TOUCH_END) { 
+                    [_gameLayer.player endThirdAction];                        
+                } else {
+                    [_gameLayer.player startThirdAction];
+                }
             default:
                 break;
         }

@@ -98,7 +98,7 @@
             animName = _jumping;
             break;
         case PLAYER_ANIM_FALLING:
-            if(_currentAnimation == PLAYER_ANIM_JUMPING)
+            if(_currentAnimation == PLAYER_ANIM_JUMPING || _currentAnimation == PLAYER_ANIM_SPIN_UP)
             {
             animName = _falling;
             }
