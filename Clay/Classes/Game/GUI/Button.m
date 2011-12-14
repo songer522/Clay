@@ -122,6 +122,11 @@
 
 }
 
+-(CGPoint)getPosition
+{
+    return _position;
+}
+
 -(void)setPosition:(CGPoint)position
 {
     _position = position;

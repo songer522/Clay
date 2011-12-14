@@ -17,23 +17,46 @@ typedef enum {
 }ModePanelPhase;
 
 @class Sprite;
+@class ChooseModeScene;
 
 @interface ModePanel : Button
 {
     Sprite *_activePanel;
     Sprite *_inactivePanel;
     
+    Sprite *_activeHeader;
+    Sprite *_inactiveHeader;
+    
+    ChooseModeScene *_parentScene;
+    
+    NSMutableArray *_buttons;
+    
     ModePanelPhase _phase;
     
+    float _alpha;
+    float _wait;
+    
     bool _isActive;
+    bool _isSelected;
 }
 
 @property(nonatomic,assign) bool isActive;
 
 
-+(id)instance;
++(id)panelAtPosition:(CGPoint)position;
 
--(void)switchToActive;
--(void)switchToInactive;
+-(void)setHeaderFrame:(NSString*)activeName Inactive:(NSString*)inactiveName;
+
+-(void)makeActive;
+-(void)transitionToActive;
+-(void)transitionToInactive;
+
+-(void)addButtons:(NSArray*)buttonNames;
+
+-(void)update:(float)dt;
+
+-(void)setParent:(ChooseModeScene*)scene;
+
+-(bool)testCollision:(CGPoint)point;
 
 @end

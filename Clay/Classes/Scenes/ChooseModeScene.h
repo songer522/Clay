@@ -10,12 +10,25 @@
 #import "cocos2d.h"
 
 @class Sprite;
+@class ModePanel;
+@class GameLabel;
 
 @interface ChooseModeScene : CCLayer
 {
     Sprite *_background;
     
+    ModePanel *_storyModePanel;
+    ModePanel *_timedModePanel;
+    ModePanel *_extrasPanel;
+    
+    GameLabel *_selectModeText;
+    
+    bool _isTransitioning;
 }
+
+@property(nonatomic,assign) bool isTransitioning;
+
++(CCScene*)scene;
 
 -(void)load;
 

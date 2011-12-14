@@ -21,7 +21,7 @@
 #import "GameSettings.h"
 #import "ContinueGameManager.h"
 #import "GCHelper.h"
-
+#import "ChooseModeScene.h"
 #import "CreditsScene.h"
 
 
@@ -301,7 +301,8 @@
             [[GCHelper sharedInstance] showGameCenter];
             break;
         case MENU_SWITCHTO_OPTIONS:
-            [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[CreditsScene node]]];
+            [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ChooseModeScene scene]]];
+            //[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[CreditsScene node]]];
         default:
             break;
     }
