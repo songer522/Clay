@@ -129,6 +129,7 @@
 -(void)makeActive
 {
     _phase = MODE_PANEL_ACTIVE;
+    _isActive = true;
     [self setPanelAlpha:1.0f];
     [self setHeaderAlpha:1.0f Position:ccp(_position.x,PANEL_HEADER_ACTIVE_Y)];
     
@@ -159,7 +160,9 @@
         
         for (ActionButton *button in _buttons) {
             [button setAlpha:0.0f];
-        }        
+        }
+        
+        _parentScene.isTransitioning = true;
 
     }
 }
@@ -188,19 +191,19 @@
     
     switch (_phase) {
         case MODE_PANEL_SWITCHTO_ACTIVE:
-            _alpha += 2.0f * dt;
+            _alpha += 3.0f * dt;
             if (_alpha>=1.0f) {
                 _alpha = 1.0f;
                 _phase = MODE_PANEL_ACTIVE;
                 _isActive = true;
-                
+                _parentScene.isTransitioning = false;
             }
             [self setPanelAlpha:_alpha];
             [self setHeaderAlpha:_alpha Position:ccp(_position.x,PANEL_HEADER_INACTIVE_Y + (_alpha * PANEL_HEIGHT_DIFFERENCE))];
             [self setButtonTransitionAmount:_alpha];
             break;
         case MODE_PANEL_SWITCHTO_INACTIVE:
-            _alpha -= 2.0f * dt;
+            _alpha -= 3.0f * dt;
             if (_alpha<= 0.0f) {
                 _alpha = 0.0f;
                 _phase = MODE_PANEL_INACTIVE;
@@ -213,6 +216,17 @@
         default:
             break;
     }
+}
+
+-(void) dealloc
+{
+    [_activePanel release];
+    [_inactivePanel release];
+    [_activeHeader release];
+    [_inactiveHeader release];
+    _parentScene = nil;
+    [_buttons removeAllObjects];
+    [super dealloc];
 }
 
 

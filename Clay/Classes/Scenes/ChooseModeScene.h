@@ -12,6 +12,7 @@
 @class Sprite;
 @class ModePanel;
 @class GameLabel;
+@class ActionButton;
 
 @interface ChooseModeScene : CCLayer
 {
@@ -21,7 +22,13 @@
     ModePanel *_timedModePanel;
     ModePanel *_extrasPanel;
     
+    ActionButton *_startButton;
+    ActionButton *_backButton;
+    
     GameLabel *_selectModeText;
+    
+    float _waitToSwitch;
+    float _backToMainMenu;
     
     bool _isTransitioning;
 }
@@ -31,5 +38,6 @@
 +(CCScene*)scene;
 
 -(void)load;
+-(void)switchToMainMenu;
 
 @end

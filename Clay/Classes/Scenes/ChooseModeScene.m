@@ -12,6 +12,9 @@
 #import "Sprite.h"
 #import "GameLabel.h"
 #import "ModePanel.h"
+#import "SoundEngine.h"
+#import "ActionButton.h"
+#import "MainMenuScene.h"
 
 @implementation ChooseModeScene
 
@@ -32,6 +35,8 @@
         [self load];
         
         _isTransitioning = false;
+        _waitToSwitch = 0.0f;
+        _backToMainMenu = false;
         
         [self scheduleUpdate];
         self.isTouchEnabled = YES;
@@ -48,18 +53,33 @@
     for(UITouch *touch in allTouches)
     {
         CGPoint position = [self convertTouchToNodeSpace:touch];
-        if ([_storyModePanel testCollision:position]) {
-            [_storyModePanel transitionToActive];
-            [_timedModePanel transitionToInactive];
-            [_extrasPanel transitionToInactive];
-        } else if ([_timedModePanel testCollision:position]) {
-            [_timedModePanel transitionToActive];
-            [_storyModePanel transitionToInactive];
-            [_extrasPanel transitionToInactive];
-        } else if ([_extrasPanel testCollision:position]) {
-            [_extrasPanel transitionToActive];
-            [_timedModePanel transitionToInactive];
-            [_storyModePanel transitionToInactive];
+        if(!_isTransitioning) {
+            if ([_storyModePanel testCollision:position]) {
+                [_storyModePanel transitionToActive];
+                [_timedModePanel transitionToInactive];
+                [_extrasPanel transitionToInactive];
+            } else if ([_timedModePanel testCollision:position]) {
+                [_timedModePanel transitionToActive];
+                [_storyModePanel transitionToInactive];
+                [_extrasPanel transitionToInactive];
+            } else if ([_extrasPanel testCollision:position]) {
+                [_extrasPanel transitionToActive];
+                [_timedModePanel transitionToInactive];
+                [_storyModePanel transitionToInactive];
+            }
+            
+            if([_startButton checkIfSelected:position]) {
+                _waitToSwitch = 0.25f;
+                _backToMainMenu = false;
+                [[SoundEngine shared] playSound:@"buttonPressed"];
+            }
+            
+            if([_backButton checkIfSelected:position]) {
+                _waitToSwitch = 0.25f;
+                _backToMainMenu = true;
+                [[SoundEngine shared] playSound:@"buttonPressed"];     
+            }
+
         }
     }
 }
@@ -88,27 +108,64 @@
     [_extrasPanel addButtons:[NSArray arrayWithObjects:@"SKINS",@"LEVELS",@"WEB", nil]];
     [_extrasPanel setParent:self];
     
+    _startButton = [ActionButton actionButtonCustomGraphicsForIdle:@"UI_GameType_ButtonS_Blue.png" Selected:@"UI_GameType_ButtonS_Green.png"];
+    [_startButton setInitialText:@"START"];
+    [_startButton setPosition:ccp(430,18)];
+    
+    _backButton = [ActionButton actionButtonCustomGraphicsForIdle:@"UI_GameType_ButtonS_Blue.png" Selected:@"UI_GameType_ButtonS_Green.png"];
+    [_backButton setInitialText:@"BACK"];
+    [_backButton setPosition:ccp(50, 18)];
+    
     _selectModeText = [GameLabel gameLabelWithText:@"SELECT GAME TYPE" Scale:0.65f];
-    [_selectModeText setPosition:ccp(240.0f,290.0f)];
+    [_selectModeText setPosition:ccp(240.0f,293.0f)];
 
     [[LayerManager sharedLayers] forgetWorkingLayer];
 }
+
+-(void)switchToMainMenu
+{
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[MainMenuScene scene]]];
+}
+
 
 -(void)update:(ccTime)dt
 {
     [_storyModePanel update:dt];
     [_timedModePanel update:dt];
     [_extrasPanel update:dt];
+    [_backButton update:dt];
+    [_startButton update:dt];
+    
+    if (_waitToSwitch>0.0f) {
+        _waitToSwitch-=dt;
+        if(_waitToSwitch<=0.0f){
+            _waitToSwitch = 0.0f;
+            if (_backToMainMenu) {
+                [self switchToMainMenu];
+            }  else {
+                //[self popAndSwitchToLevel:_levelToSwitchTo]; 
+            }
+        }
+    }
+
 }
 
 -(void)onExit
 {
+    [self release];
     [self unscheduleUpdate];
     self.isTouchEnabled = false;
 }
 
 -(void)dealloc
 {
+    [_background release];
+    [_storyModePanel release];
+    [_timedModePanel release];
+    [_extrasPanel release];
+    [_selectModeText release];
+    [_backButton release];
+    [_startButton release];
     
     [[TextureManager shared] unloadMemoryForKey:@"chooseMode"];
 }
