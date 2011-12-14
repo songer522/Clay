@@ -21,7 +21,7 @@
 #import "GameSettings.h"
 #import "ContinueGameManager.h"
 #import "GCHelper.h"
-
+#import "ChooseModeScene.h"
 #import "CreditsScene.h"
 
 
@@ -88,15 +88,19 @@
         [_continueButton setAlpha:0.0f];
         
         
-        //game center button
-        _gameCenterButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_GameCenter.png" Selected:@"Menu_GameCenter.png"];
-        [_gameCenterButton setPosition:ccp(440,24)];
-        [_gameCenterButton setHitboxBySize:CGSizeMake(65, 65)];
+        //leaderboards button
+        _leaderboardsButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_LeaderBoardBlue.png" Selected:@"Menu_LeaderBoardGreen.png"];
+        [_leaderboardsButton setPosition:ccp(450,24)];
+        [_leaderboardsButton setHitboxBySize:CGSizeMake(65, 65)];
         
+        //achievements button
+        _achievementsButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_AchievementBlue.png" Selected:@"Menu_AchievementGreen.png"];
+        [_achievementsButton setPosition:ccp(410,24)];
+        [_achievementsButton setHitboxBySize:CGSizeMake(65, 65)];        
         
         //options button
         _optionsButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_OptionsBlue.png" Selected:@"Menu_OptionsGreen.png"];
-        [_optionsButton setPosition:ccp(40,24)];
+        [_optionsButton setPosition:ccp(30,24)];
         [_optionsButton setHitboxBySize:CGSizeMake(65, 65)];
 
         
@@ -151,15 +155,23 @@
                 _switchToChoice = MENU_SWITCHTO_CHOOSELEVEL;
                 [[GameSettings shared] setGlobal:@"timed" ForKey:@"gameMode"];
                 [[GameSettings shared] setGlobal:@"normal" ForKey:@"gameDifficulty"];
+                _selectedButton = _playButton;
                 shouldStart = true;
-            } else if ([_gameCenterButton testCollision:position]) {
-                _switchToChoice = MENU_SWITCHTO_GAMECENTER;
+            } else if ([_leaderboardsButton testCollision:position]) {
+                _switchToChoice = MENU_SWITCHTO_LEADERBOARDS;
+                _selectedButton = _leaderboardsButton;
+                [self switchToChoice];
+            } else if ([_achievementsButton testCollision:position]) {
+                _switchToChoice = MENU_SWITCHTO_ACHIEVEMENTS;
+                _selectedButton = _achievementsButton;
                 [self switchToChoice];
             } else if ([_optionsButton testCollision:position]) {
                 _switchToChoice = MENU_SWITCHTO_OPTIONS;
+                _selectedButton = _optionsButton;
                 shouldStart = true;
             } else if(_isContinueButtonEnabled && [_continueButton testCollision:position]) {
                 _switchToChoice = MENU_SWITCHTO_CONTINUE;
+                _selectedButton = _continueButton;
                 shouldStart = true;
             }
         }
@@ -181,7 +193,8 @@
     if (alphaButtons) {
         [_playButton setAlpha:alpha];
         [_optionsButton setAlpha:alpha];
-        [_gameCenterButton setAlpha:alpha];
+        [_leaderboardsButton setAlpha:alpha];
+        [_achievementsButton setAlpha:alpha];
         
         if(_isContinueButtonEnabled) {
             [_continueButton setAlpha:alpha];
@@ -190,7 +203,8 @@
     
     if(alphaSelected) {
         [_playButton setSelectedAlpha:alpha];
-        [_gameCenterButton setSelectedAlpha:alpha];
+        [_leaderboardsButton setSelectedAlpha:alpha];
+        [_achievementsButton setSelectedAlpha:alpha];
         [_optionsButton setSelectedAlpha:alpha];
         
         if (_isContinueButtonEnabled) {
@@ -206,7 +220,8 @@
 {
     [_playButton setAlpha:alpha];
     [_optionsButton setAlpha:alpha];
-    [_gameCenterButton setAlpha:alpha];
+    [_leaderboardsButton setAlpha:alpha];
+    [_achievementsButton setAlpha:alpha];
     
     if (_isContinueButtonEnabled) {
         [_continueButton setAlpha:alpha];
@@ -297,11 +312,16 @@
         case MENU_SWITCHTO_CHOOSELEVEL:            
             [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ChooseLevelScreen scene]]];
             break;
-        case MENU_SWITCHTO_GAMECENTER:
-            [[GCHelper sharedInstance] showGameCenter];
+        case MENU_SWITCHTO_LEADERBOARDS:
+            [[GCHelper sharedInstance] showLeaderboards];
+            break;
+        case MENU_SWITCHTO_ACHIEVEMENTS:
+            [[GCHelper sharedInstance] showAchievements];
             break;
         case MENU_SWITCHTO_OPTIONS:
-            [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[CreditsScene node]]];
+            [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ChooseModeScene scene]]];
+            //[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[CreditsScene node]]];
+            break;
         default:
             break;
     }
@@ -328,7 +348,8 @@
     //buttons
     [_playButton release];
     [_continueButton release];
-    [_gameCenterButton release];
+    [_achievementsButton release];
+    [_leaderboardsButton release];
     [_optionsButton release];
     
     [[TextureManager shared] unloadMemoryForKey:@"mainMenu"];

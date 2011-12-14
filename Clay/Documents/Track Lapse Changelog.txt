@@ -1,5 +1,34 @@
 Track Lapse Changelog
 
+Newest Build
+=====================
+* Global - Added credits screen
+* Global - Updated main menu screen to allow for multiple buttons and use new graphics.
+* Global - Got loading the game center leaderboards screen working.
+* Global - A bunch of new levels created for different difficulties.
+* Level 7 - Retro obstacles replaced by more unique computer virus obstacles.
+* Level 10 - Changed underwater physics so Tim now glides like expected.
+* Level 11 - Updated bat graphics
+
+Build: 111210.01
+=====================
+* Level 5 & 10 - Fixed crash by adding files missing from project bundle settings.
+
+Build: 111209.02
+=====================
+* Level 11 - Boss now cues new music, gets close when you hit something and gets further away when you sprint, and when close he kicks you and laughs.
+
+Build: 111209.01
+=====================
+* Global - Pause Menu icon added and hitbox changed.
+* Level 9,10,11 - Added text comics before these levels.
+* Level 11 - Slow time action allows for slowing down obstacle animations now as well.
+* Level 11 - Added level with environment, bats, gargoyle, spikes, dragon egg, death pits, and ledges, and sound effects.
+
+Build: 111207.02
+=====================
+* Level 10 - Low res crash fixed.
+
 Build: 111207.01=====================* Global - Pause Menu no longer broken* Global - Pause Menu now has working resume and ‘back to choose level’ buttons, and mostly working ‘redo’ (restart level)* Global - Music updated to normalized masters* Global - Tim should no longer be stuck in the falling animation when he jumps onto or off ledges.
 * Global - If Tim hits an obstacle while doing his action, the action will now be properly cancelled.
 * Global - Tutorial temporarily disabled and hitting back on 'Choose Level' screen goes back to Main Menu screen again.

@@ -29,9 +29,6 @@
     Sprite *_background;    
     Sprite *_selector;
     
-    //CCLabelBMFont *_levelSelectText;
-    //CCLabelBMFont *_bestTimeForLevelText;
-    
     GameLabel *_levelSelectText;
     GameLabel *_bestLevelTimeText;
     

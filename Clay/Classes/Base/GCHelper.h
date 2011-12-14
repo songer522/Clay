@@ -13,7 +13,7 @@
 
 #define gcAchievementChickensKickedIntoCows @"com.xecudev.tracklapse.kicktenchickens"
 
-@interface GCHelper : NSObject <NSCoding,GKLeaderboardViewControllerDelegate> {
+@interface GCHelper : NSObject <NSCoding,GKLeaderboardViewControllerDelegate,GKAchievementViewControllerDelegate> {
     BOOL gameCenterAvailable;
     BOOL userAuthenticated;
     NSMutableArray *leaderboardToReport;
@@ -32,7 +32,8 @@
 -(void)reportAchievement:(NSString *)identifier percentComplete:(double)percentComplete;
 -(void)reportLeaderboard:(NSString *)identifier score:(int)score;
 
-- (void) showGameCenter;
+- (void) showLeaderboards;
+- (void) showAchievements;
 
 - (void)leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController;
 

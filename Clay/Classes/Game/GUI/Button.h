@@ -37,6 +37,7 @@
 #pragma mark - accessors
 -(CCLabelTTF*)getLabel;
 -(GameLabel*)getGameLabel;
+-(CGPoint)getPosition;
 -(void)setPosition:(CGPoint)position;
 -(void)setLabel:(NSString*)text;
 -(void)setHitbox:(CGRect)rect;

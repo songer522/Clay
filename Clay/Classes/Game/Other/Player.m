@@ -432,6 +432,11 @@
     [_thirdAction startAction];
 }
 
+-(void)endThirdAction
+{
+    [_thirdAction endAction];
+}
+
 -(void)setThirdAction:(NSString*)action
 {
     if (_thirdAction != nil) {

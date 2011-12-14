@@ -43,13 +43,13 @@
     if(_player.inVaccuum) {
         _player.inVaccuum = false;
     } else {
-        [_parent setPlayerAnimation:PLAYER_ANIM_RUNNING];
+        if([_parent isInMidAir]) {
+            [_parent setPlayerAnimation:PLAYER_ANIM_FALLING];            
+        } else {
+            [_parent setPlayerAnimation:PLAYER_ANIM_RUNNING];            
+        }
         [_parent setPlayerAnimation:PLAYER_ANIM_SPIN_UP];
     }
-    /*
-    if(!_player.isTripping)
-    {
-    }*/
     _duration = 0.0f;
     _parent.hasGravity=true;
     
@@ -60,8 +60,16 @@
 {
     _parent.hasGravity=true;
     [_player endVaccuum];
-    [_parent setPlayerAnimation:PLAYER_ANIM_RUNNING];
     _duration = 0.0f;
+    
+    if(![_parent isTripping]) {
+        if ([_parent isInMidAir]) {
+            [_parent setPlayerAnimation:PLAYER_ANIM_FALLING];            
+        } else {
+            [_parent setPlayerAnimation:PLAYER_ANIM_RUNNING];            
+        }
+    }
+
     [super cancelAction];
 }
 

@@ -115,6 +115,7 @@ typedef enum {
 -(RunningSpeed*)getSpeed;
 
 -(void)startThirdAction;
+-(void)endThirdAction;
 -(void)startCollision:(PlayerEffect)effect Source:(id<Collidable>)source;
 
 -(void)setPlayerAnimation:(PlayerAnimation)animation;
