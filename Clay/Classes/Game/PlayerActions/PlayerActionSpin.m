@@ -50,10 +50,6 @@
         }
         [_parent setPlayerAnimation:PLAYER_ANIM_SPIN_UP];
     }
-    /*
-    if(!_player.isTripping)
-    {
-    }*/
     _duration = 0.0f;
     _parent.hasGravity=true;
     

@@ -27,9 +27,12 @@ typedef enum {
     Sprite *_activeHeader;
     Sprite *_inactiveHeader;
     
+    Sprite *_selectCursor; //weak reference
+    
     ChooseModeScene *_parentScene;
     
     NSMutableArray *_buttons;
+    int _selectedIndex;
     
     ModePanelPhase _phase;
     
@@ -58,5 +61,10 @@ typedef enum {
 -(void)setParent:(ChooseModeScene*)scene;
 
 -(bool)testCollision:(CGPoint)point;
+
+-(void)setSelectCursor:(Sprite*)selectCursor;
+
+-(void)setSelectedIndex:(int)index;
+-(bool)getSelectedIndex;
 
 @end

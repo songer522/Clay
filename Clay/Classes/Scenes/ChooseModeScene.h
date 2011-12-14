@@ -22,10 +22,15 @@
     ModePanel *_timedModePanel;
     ModePanel *_extrasPanel;
     
+    ModePanel *_currentPanel;
+    
+    
     ActionButton *_startButton;
     ActionButton *_backButton;
     
     GameLabel *_selectModeText;
+    
+    Sprite *_selectCursor;
     
     float _waitToSwitch;
     float _backToMainMenu;

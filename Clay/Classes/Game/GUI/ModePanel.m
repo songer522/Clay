@@ -46,6 +46,7 @@
         _position = position;
         _isActive = false;
         _isSelected = false;
+        _selectedIndex = -1;
         _buttons = [[NSMutableArray alloc] initWithCapacity:3];
         [self setHitbox:CGRectMake(position.x-71.5f, position.y-114.0f, 143, 228)];
         _wait = 1.0f;
@@ -67,6 +68,11 @@
         [_buttons addObject:button];
         i++;
     }
+}
+
+-(bool)getSelectedIndex
+{
+    return _selectedIndex;
 }
 
 -(void)setButtonTransitionAmount:(float)amount
@@ -143,9 +149,27 @@
     _parentScene = scene;
 }
 
+-(void)setSelectCursor:(Sprite *)selectCursor
+{
+    _selectCursor = selectCursor;
+}
+
 -(bool)testCollision:(CGPoint)point
 {
     bool didTouch = [super testCollision:point];
+    
+    if(_isActive) {
+        int i=0;
+        for (ActionButton *button in _buttons) {
+            if ([button testCollision:point]) {
+                [_selectCursor setScreenPosition:[button getPosition]];
+                [_selectCursor setAlpha:1.0f];
+                _selectedIndex = i;
+            }
+            i++;
+        }
+    }
+    
     return didTouch;
 }
 

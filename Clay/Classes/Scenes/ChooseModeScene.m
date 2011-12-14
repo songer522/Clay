@@ -55,17 +55,23 @@
         CGPoint position = [self convertTouchToNodeSpace:touch];
         if(!_isTransitioning) {
             if ([_storyModePanel testCollision:position]) {
-                [_storyModePanel transitionToActive];
-                [_timedModePanel transitionToInactive];
-                [_extrasPanel transitionToInactive];
+                if (_currentPanel!=_storyModePanel) {
+                    [_storyModePanel transitionToActive];
+                    [_timedModePanel transitionToInactive];
+                    [_extrasPanel transitionToInactive];
+                    [_selectCursor setAlpha:0.0f];
+                    _currentPanel = _storyModePanel;
+                }
             } else if ([_timedModePanel testCollision:position]) {
                 [_timedModePanel transitionToActive];
                 [_storyModePanel transitionToInactive];
                 [_extrasPanel transitionToInactive];
+                [_selectCursor setAlpha:0.0f];
             } else if ([_extrasPanel testCollision:position]) {
                 [_extrasPanel transitionToActive];
                 [_timedModePanel transitionToInactive];
                 [_storyModePanel transitionToInactive];
+                [_selectCursor setAlpha:0.0f];
             }
             
             if([_startButton checkIfSelected:position]) {
@@ -96,7 +102,6 @@
     [_storyModePanel setHeaderFrame:@"UI_GameType_StoryModeC.png" Inactive:@"UI_GameType_StoryModeG.png"];
     [_storyModePanel addButtons:[NSArray arrayWithObjects:@"KIDS",@"NORMAL",@"INSANE", nil]];
     [_storyModePanel setParent:self];
-    [_storyModePanel makeActive];
     
     _timedModePanel = [ModePanel panelAtPosition:ccp(240,154)];
     [_timedModePanel setHeaderFrame:@"UI_GameType_TimeModeC.png" Inactive:@"UI_GameType_TimeModeG.png"];
@@ -116,8 +121,20 @@
     [_backButton setInitialText:@"BACK"];
     [_backButton setPosition:ccp(50, 18)];
     
+    _selectCursor = [Sprite spriteCenteredWithFrame:@"UI_GameType_Select.png" Position:ccp(240,160)];
+    [_storyModePanel setSelectCursor:_selectCursor];
+    [_timedModePanel setSelectCursor:_selectCursor];
+    [_extrasPanel setSelectCursor:_selectCursor];
+    [_selectCursor setAlpha:0.0f];
+    
     _selectModeText = [GameLabel gameLabelWithText:@"SELECT GAME TYPE" Scale:0.65f];
-    [_selectModeText setPosition:ccp(240.0f,293.0f)];
+    [_selectModeText setPosition:ccp(240.0f,292.0f)];
+    
+    //setup default selections
+    _currentPanel = _storyModePanel;
+    [_storyModePanel makeActive];
+
+    
 
     [[LayerManager sharedLayers] forgetWorkingLayer];
 }
