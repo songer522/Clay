@@ -104,10 +104,26 @@ static GCHelper *sharedHelper = nil;
                        });
     }];
 }
+-(void)sendScore:(GKScore *)score {
+    [score reportScoreWithCompletionHandler:^(NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^(void)
+                       {
+                           if (error == NULL) {
+                               //NSLog(@"Successfully sent achievement!");
+                               [leaderboardToReport removeObject:score];
+                           } else {
+                               //NSLog(@"Achievement failed to send... will try again later. Reason: %@", error.localizedDescription);
+                           }
+                       });
+    }];
+}
 
 -(void)resendData {
     for (GKAchievement *achievement in achievementsToReport) {
         [self sendAchievement:achievement];
+    }
+    for (GKScore *score in leaderboardToReport) {
+        [self sendScore:score];
     }
 }
 
@@ -128,8 +144,13 @@ static GCHelper *sharedHelper = nil;
      
 }
 
-- (void)reportLeaderboard:(NSString *)identifier score:(int)score {
-    // Used for Leaderboards
+- (void)reportLeaderboard:(NSString *)identifier score:(int)rawScore {
+    GKScore *score=[[[GKScore alloc] initWithCategory:identifier] autorelease];
+    score.value=rawScore;
+    [leaderboardToReport addObject:score];
+    [self save];
+    if(!gameCenterAvailable || !userAuthenticated) return;
+    [self sendScore:score];
 }
 
 - (void)reportAchievement:(NSString *)identifier percentComplete:(double)percentComplete {

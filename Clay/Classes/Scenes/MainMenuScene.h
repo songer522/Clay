@@ -13,6 +13,7 @@
 #import "FBConnect.h"
 #import <Twitter/Twitter.h>
 #import <Accounts/Accounts.h>
+#import <UIKit/UIKit.h>
 @class Sprite;
 @class ActionButton;
 @class FBPrompt;
@@ -63,7 +64,7 @@ typedef enum {
     bool _switchSceneTriggered;
     bool _isContinueButtonEnabled;
     Facebook *facebook;
-    TWTweetComposeViewController *TWcontroller;    
+    //TWTweetComposeViewController *TWcontroller;    
     FBPrompt *_prompt;
 }
 +(CCScene *) scene;

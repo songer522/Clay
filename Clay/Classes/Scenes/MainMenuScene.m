@@ -6,9 +6,6 @@
 //  Copyright 2011 Xecudev, LLC. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import <Twitter/Twitter.h>
-#import <Accounts/Accounts.h>
 #import "MainMenuScene.h"
 #import "AppDelegate.h"
 #import "Sprite.h"
@@ -318,6 +315,29 @@
             break;
     }
 }
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    // Return YES for supported orientations
+	return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown && interfaceOrientation != UIInterfaceOrientationPortrait);
+}
+
+- (void)sendEasyTweet:(NSString*)tweet
+{
+    AppDelegate *appDelegate=[[UIApplication sharedApplication] delegate];
+    // Set up the built-in twitter composition view controller.
+    TWTweetComposeViewController *tweetViewController = [[TWTweetComposeViewController alloc] init];
+    
+    // Set the initial tweet text. See the framework for additional properties that can be set.
+    [tweetViewController setInitialText:tweet];
+    
+    // Present the tweet composition view controller modally.
+    NSString *reqSysVer = @"5.0";
+    NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
+    if ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending)
+    {
+    [appDelegate.viewController presentModalViewController:tweetViewController animated:YES];
+    }
+}
 
 
 -(void)switchToChoice
@@ -331,15 +351,13 @@
             break;
         case MENU_SWITCHTO_LEADERBOARDS:
             //[[GCHelper sharedInstance] showLeaderboards];
-            
-                
-                            prompt = [FBPrompt promptWithAppId:@"264174546971482" andDelegate:self];
+            prompt = [FBPrompt promptWithAppId:@"264174546971482" andDelegate:self];
             [prompt showFacebookDialogWithDescription:@"Hello!" andPicture:@"http://fbrell.com/f8.jpg"];
-          
-            break;
+           break;
         case MENU_SWITCHTO_ACHIEVEMENTS:
-            [[GCHelper sharedInstance] showAchievements];
-                    break;
+            //[[GCHelper sharedInstance] showAchievements];
+            [self sendEasyTweet:@"hello"];
+            break;
         case MENU_SWITCHTO_OPTIONS:
             [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[OptionsScene node]]];
             //[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[CreditsScene node]]];
