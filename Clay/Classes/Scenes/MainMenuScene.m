@@ -27,6 +27,7 @@
 #import "AppDelegate.h"
 #import "FBPrompt.h"
 #import "OptionsScene.h"
+#import "Tutorial.h"
 
 
 
@@ -87,11 +88,10 @@
             [_playButton setPosition:ccp(240,142)];                        
         }
         [_playButton setHitboxBySize:CGSizeMake(319, 71)];
-        
-
-        facebook = [[Facebook alloc] initWithAppId:@"264174546971482" andDelegate:self];
-        //[_prompt initWithAppId:@"264174546971482" andDelegate:self]; 
+        //CCLayer *layer=[[LayerManager sharedLayers] currentLayer];
                 
+        tutorial=[Tutorial TutorialWithinLayer:[[LayerManager sharedLayers] currentLayer]];
+        tutorial.scroller.delegate=self;
         //continue button
         _continueButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_ContinueBlue.png" Selected:@"Menu_ContinueGreen.png"];
         [_continueButton setPosition:ccp(240,158)];
@@ -343,8 +343,8 @@
 -(void)switchToChoice
 {
     FBPrompt *prompt;
-  
-   
+  // Tutorial *demo;
+    //CCLayer *layer=[[LayerManager sharedLayers] currentLayer];
     switch (_switchToChoice) {
         case MENU_SWITCHTO_CHOOSELEVEL:            
             [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ChooseModeScene scene]]];
@@ -356,8 +356,9 @@
            break;
         case MENU_SWITCHTO_ACHIEVEMENTS:
             //[[GCHelper sharedInstance] showAchievements];
-            [self sendEasyTweet:@"hello"];
-            break;
+           // [self sendEasyTweet:@"hello"];
+            [tutorial switchToTutorial]; 
+           break;
         case MENU_SWITCHTO_OPTIONS:
             [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[OptionsScene node]]];
             //[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[CreditsScene node]]];
@@ -380,6 +381,11 @@
     [defaults setObject:[[_prompt getFacebookObject] accessToken] forKey:@"FBAccessTokenKey"];
     [defaults setObject:[[_prompt getFacebookObject] expirationDate] forKey:@"FBExpirationDateKey"];
     [defaults synchronize];
+}
+
+-(void)scrollLayerScrollingStarted:(CCScrollLayer *)sender
+{
+    [CCTouchDispatcher sharedDispatcher].dispatchEvents=NO;
 }
 
 -(void)dealloc

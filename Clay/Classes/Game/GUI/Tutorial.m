@@ -9,6 +9,7 @@
 #import "Tutorial.h"
 
 @implementation Tutorial
+@synthesize scroller;
 
 +(id)TutorialWithinLayer:(CCLayer *)layer
 {
@@ -18,6 +19,8 @@
 
 -(id)initWithinLayer:(CCLayer *)layer
 {
+    if(self =[super init])
+              {
     _inTutorial=false;
     CCLayer *pageOne = [[CCLayer alloc] init];
     CCSprite *image1=[CCSprite spriteWithFile:@"image1.png"];
@@ -36,9 +39,9 @@
     [image3 setPosition:ccp(240,160)];
     [image3 setScale:1];
     [pageThree addChild:image3];
-    //_closeTutorial=[ActionButton buttonWithText:@"Done" AtPoint:ccp(320,70) inLayer:pageThree];
-    
-    
+   button=[ActionButton buttonWithText:@"Done" AtPoint:ccp(320,70) inLayer:pageThree];
+   
+  
     
     
     scroller = [[CCScrollLayer alloc] initWithLayers:[NSMutableArray arrayWithObjects: pageOne,pageTwo,pageThree,nil] widthOffset: 0];
@@ -46,7 +49,7 @@
     [layer addChild:scroller];
     [scroller setVisible:NO];
     scroller.showPagesIndicator=NO;
-
+              }
     return self;
 }
 
@@ -65,6 +68,21 @@
         scroller.showPagesIndicator=NO;
         _inTutorial=false;
     }
+}
+-(void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    
+        
+        NSSet *allTouches = [event allTouches];
+        
+        for(UITouch *touch in allTouches)
+        {
+            CGPoint position = [self convertTouchToNodeSpace:touch];
+            if([button testCollision:position])
+            {
+                [self switchToTutorial];
+            }
+        }             
 }
 
 
