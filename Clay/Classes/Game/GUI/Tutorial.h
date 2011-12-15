@@ -10,7 +10,13 @@
 #import "CCScrollLayer.h"
 #import "ActionButton.h"
 
-@interface Tutorial : CCLayer<CCScrollLayerDelegate>
+typedef enum {
+    SCROLLER_FADE_IN,
+    SCROLLER_FADE_OUT,
+    SCROLLER_IDLE
+}ScrollerPhase;
+
+@interface Tutorial : NSObject
 {
     CCScrollLayer *scroller;
     
@@ -20,7 +26,7 @@
     NSMutableArray *_images;
     
     bool _inTutorial;
-    ActionButton *button;
+    float _alpha;
 }
 
 @property(retain,atomic)CCScrollLayer *scroller;

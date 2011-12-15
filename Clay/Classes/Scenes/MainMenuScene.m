@@ -88,10 +88,8 @@
             [_playButton setPosition:ccp(240,142)];                        
         }
         [_playButton setHitboxBySize:CGSizeMake(319, 71)];
-        //CCLayer *layer=[[LayerManager sharedLayers] currentLayer];
-                
-        tutorial=[Tutorial TutorialWithinLayer:[[LayerManager sharedLayers] currentLayer]];
-        tutorial.scroller.delegate=self;
+       
+        
         //continue button
         _continueButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_ContinueBlue.png" Selected:@"Menu_ContinueGreen.png"];
         [_continueButton setPosition:ccp(240,158)];
@@ -355,9 +353,8 @@
             [prompt showFacebookDialogWithDescription:@"Hello!" andPicture:@"http://fbrell.com/f8.jpg"];
            break;
         case MENU_SWITCHTO_ACHIEVEMENTS:
-            //[[GCHelper sharedInstance] showAchievements];
+            [[GCHelper sharedInstance] showAchievements];
            // [self sendEasyTweet:@"hello"];
-            [tutorial switchToTutorial]; 
            break;
         case MENU_SWITCHTO_OPTIONS:
             [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[OptionsScene node]]];

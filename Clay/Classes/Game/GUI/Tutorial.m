@@ -27,17 +27,13 @@
     _pages = [[NSMutableArray alloc] initWithCapacity:3];
     _images = [[NSMutableArray alloc] initWithCapacity:3];
     
-    CCLayer *pageThree = [[CCLayer alloc] init];
-    CCSprite *image3=[CCSprite spriteWithFile:@"image3.png"];
-    [image3 setPosition:ccp(240,160)];
-    [image3 setScale:1];
-    [pageThree addChild:image3];
-   button=[ActionButton buttonWithText:@"Done" AtPoint:ccp(320,70) inLayer:pageThree];
-   
-  
+    [self addPage:@"image1.png"];
+    [self addPage:@"image2.png"];
+    [self addPage:@"image3.png"];
     
+    scroller = [[CCScrollLayer alloc] initWithLayers:_pages widthOffset: 0];
     
-    scroller = [[CCScrollLayer alloc] initWithLayers:[NSMutableArray arrayWithObjects: pageOne,pageTwo,pageThree,nil] widthOffset: 0];
+   //scroller = [[CCScrollLayer alloc] initWithLayers:[NSMutableArray arrayWithObjects: pageOne,pageTwo,pageThree,nil] widthOffset: 0];
     
     [layer addChild:scroller];
     [scroller setVisible:NO];
@@ -70,7 +66,7 @@
 -(void)switchToTutorial
 {
     if(!_inTutorial){
-        [scroller selectPage:0];
+       
         [scroller setVisible:YES];
         scroller.showPagesIndicator=YES;
         _inTutorial=true;
@@ -85,6 +81,7 @@
         _phase = SCROLLER_FADE_OUT;
         _alpha = 1.0f;
         [self setAlpha:1.0f];
+        
     }
 }
 
@@ -94,6 +91,7 @@
     switch (_phase) {
         case SCROLLER_FADE_IN:
             _alpha += rate;
+             
             if (_alpha >= 1.0f) {
                 _alpha = 1.0f;
                 _phase = SCROLLER_IDLE;
@@ -104,6 +102,7 @@
             _alpha -= rate;
             if (_alpha <= 0.0f) {
                 _alpha = 0.0f;
+                [scroller moveToPage:0];
                 _phase = SCROLLER_IDLE;
                 [scroller setVisible:NO];
             }
@@ -111,21 +110,6 @@
         default:
             break;
     }
-}
--(void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    
-        
-        NSSet *allTouches = [event allTouches];
-        
-        for(UITouch *touch in allTouches)
-        {
-            CGPoint position = [self convertTouchToNodeSpace:touch];
-            if([button testCollision:position])
-            {
-                [self switchToTutorial];
-            }
-        }             
 }
 
 -(void)dealloc

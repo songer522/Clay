@@ -8,13 +8,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "Clay/Classes/Scenes/MainMenuScene.m"
-         timestampString = "345677424.602432"
+         filePath = "Clay/Classes/Scenes/OptionsScene.m"
+         timestampString = "345679147.580838"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "388"
-         endingLineNumber = "388"
-         landmarkName = "-scrollLayerScrollingStarted:"
+         startingLineNumber = "172"
+         endingLineNumber = "172"
+         landmarkName = "-ccTouchesEnded:withEvent:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

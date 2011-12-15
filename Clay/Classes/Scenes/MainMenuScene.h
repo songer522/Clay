@@ -14,7 +14,7 @@
 #import <Twitter/Twitter.h>
 #import <Accounts/Accounts.h>
 #import <UIKit/UIKit.h>
-#import "Tutorial.h"
+
 @class Sprite;
 @class ActionButton;
 @class FBPrompt;
@@ -35,7 +35,7 @@ typedef enum {
 
 @class ComicLayer;
 
-@interface MainMenuScene : CCLayer<FBSessionDelegate,FBDialogDelegate,CCScrollLayerDelegate>
+@interface MainMenuScene : CCLayer<FBSessionDelegate,FBDialogDelegate>
 {
     Sprite *_trackBackground;
     Sprite *_rain1;
@@ -67,7 +67,7 @@ typedef enum {
     Facebook *facebook;
     //TWTweetComposeViewController *TWcontroller;    
     FBPrompt *_prompt;
-    Tutorial *tutorial;
+   
     
 }
 +(CCScene *) scene;
