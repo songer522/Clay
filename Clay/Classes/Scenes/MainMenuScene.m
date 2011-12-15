@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <Twitter/Twitter.h>
+#import <Accounts/Accounts.h>
 #import "MainMenuScene.h"
 #import "AppDelegate.h"
 #import "Sprite.h"
@@ -321,8 +322,8 @@
 -(void)switchToChoice
 {
     FBPrompt *prompt;
-    
-
+  
+   
     switch (_switchToChoice) {
         case MENU_SWITCHTO_CHOOSELEVEL:            
             [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ChooseModeScene scene]]];
@@ -331,45 +332,13 @@
             //[[GCHelper sharedInstance] showLeaderboards];
             
                 
-                    /*
-                     {
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            if ([defaults objectForKey:@"FBAccessTokenKey"] 
-                && [defaults objectForKey:@"FBExpirationDateKey"])
-            {
-                facebook.accessToken = [defaults objectForKey:@"FBAccessTokenKey"];
-                facebook.expirationDate = [defaults objectForKey:@"FBExpirationDateKey"];
-            }*/
-            /*
-
-            if (![facebook isSessionValid]) 
-            {
-                [facebook authorize:nil];
-            }
-            */
-             /*       
-            NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                           @"264174546971482", @"app_id",
-                                           @"http://developers.facebook.com/docs/reference/dialogs/", @"link",
-                                           @"http://fbrell.com/f8.jpg", @"picture",
-                                           @"Facebook Dialogs", @"name",
-                                           @"hahahahahahah", @"caption",
-                                           @"yesyesyesyesyesyes.", @"description",
-                                           @"Facebook Dialogs are so easy!",  @"message",
-                                           nil];
-            
-            [facebook dialog:@"feed" andParams:params andDelegate:self];
-              }
-            */
-            prompt = [FBPrompt promptWithAppId:@"264174546971482" andDelegate:self];
+                            prompt = [FBPrompt promptWithAppId:@"264174546971482" andDelegate:self];
             [prompt showFacebookDialogWithDescription:@"Hello!" andPicture:@"http://fbrell.com/f8.jpg"];
           
-                       break;
+            break;
         case MENU_SWITCHTO_ACHIEVEMENTS:
             [[GCHelper sharedInstance] showAchievements];
-        {
-        }
-            break;
+                    break;
         case MENU_SWITCHTO_OPTIONS:
             [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[CreditsScene node]]];
             break;

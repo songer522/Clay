@@ -10,7 +10,6 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
-//#import "FBPrompt.h"
 #import "FBConnect.h"
 #import <Twitter/Twitter.h>
 #import <Accounts/Accounts.h>
@@ -64,7 +63,7 @@ typedef enum {
     bool _switchSceneTriggered;
     bool _isContinueButtonEnabled;
     Facebook *facebook;
-        
+    TWTweetComposeViewController *TWcontroller;    
     FBPrompt *_prompt;
 }
 +(CCScene *) scene;
