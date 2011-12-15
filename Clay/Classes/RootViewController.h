@@ -9,8 +9,9 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import "FBConnect.h"
 
-@interface RootViewController : UIViewController {
+@interface RootViewController : UIViewController<FBSessionDelegate> {
     AVAudioPlayer *volumeOverridePlayer; //without this the ringer controls appear instead of normal volume control (issue #59)
 }
 

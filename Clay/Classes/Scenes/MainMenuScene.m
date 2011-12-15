@@ -7,6 +7,7 @@
 //
 
 #import "MainMenuScene.h"
+#import "AppDelegate.h"
 #import "Sprite.h"
 #import "LayerManager.h"
 #import "ComicLayer.h"
@@ -25,7 +26,10 @@
 #import "CreditsScene.h"
 
 
+
 @implementation MainMenuScene
+
+@synthesize facebook;
 
 
 +(CCScene *) scene
@@ -80,6 +84,9 @@
         }
         [_playButton setHitboxBySize:CGSizeMake(319, 71)];
         
+
+        facebook = [[Facebook alloc] initWithAppId:@"264174546971482" andDelegate:self];
+        //[_prompt initWithAppId:@"264174546971482" andDelegate:self]; 
                 
         //continue button
         _continueButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_ContinueBlue.png" Selected:@"Menu_ContinueGreen.png"];
@@ -313,10 +320,44 @@
             [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ChooseModeScene scene]]];
             break;
         case MENU_SWITCHTO_LEADERBOARDS:
-            [[GCHelper sharedInstance] showLeaderboards];
-            break;
+            //[[GCHelper sharedInstance] showLeaderboards];
+            
+        
+                {
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            if ([defaults objectForKey:@"FBAccessTokenKey"] 
+                && [defaults objectForKey:@"FBExpirationDateKey"])
+            {
+                facebook.accessToken = [defaults objectForKey:@"FBAccessTokenKey"];
+                facebook.expirationDate = [defaults objectForKey:@"FBExpirationDateKey"];
+            }
+            /*
+
+            if (![facebook isSessionValid]) 
+            {
+                [facebook authorize:nil];
+            }
+            */
+            NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                           @"264174546971482", @"app_id",
+                                           @"http://developers.facebook.com/docs/reference/dialogs/", @"link",
+                                           @"http://fbrell.com/f8.jpg", @"picture",
+                                           @"Facebook Dialogs", @"name",
+                                           @"hahahahahahah", @"caption",
+                                           @"yesyesyesyesyesyes.", @"description",
+                                           @"Facebook Dialogs are so easy!",  @"message",
+                                           nil];
+            
+            [facebook dialog:@"feed" andParams:params andDelegate:self];
+            
+                        
+                   }
+          
+                       break;
         case MENU_SWITCHTO_ACHIEVEMENTS:
             [[GCHelper sharedInstance] showAchievements];
+        {
+        }
             break;
         case MENU_SWITCHTO_OPTIONS:
             [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[CreditsScene node]]];
@@ -331,6 +372,20 @@
 {    
     [self unscheduleUpdate];
     self.isTouchEnabled = false;
+}
+
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [facebook handleOpenURL:url]; 
+}
+
+- (void)fbDidLogin {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:[facebook accessToken] forKey:@"FBAccessTokenKey"];
+    [defaults setObject:[facebook expirationDate] forKey:@"FBExpirationDateKey"];
+    [defaults synchronize];
+    
 }
 
 -(void)dealloc

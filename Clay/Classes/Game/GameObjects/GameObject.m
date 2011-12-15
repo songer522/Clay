@@ -680,8 +680,8 @@
             }
             _angle+=200*dt;
             _magnitude=300;
-            _vx = -0.1*_magnitude;
-        _vy =1*_magnitude * cosf((_angle * 3.14159)/180.0f);
+            _vx = -0.12*_magnitude;
+        _vy =1.1*_magnitude * cosf((_angle * 3.14159)/180.0f);
         }
     }
     
@@ -701,7 +701,7 @@
                     _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_RAINY_SQUIRREL_NUT];
                     [_projectile reset];
                     [_projectile setPosition:CGPointMake(_x - 25.0f, _y + 19)];
-                    [_projectile setBoundingBox:CGRectMake(0, 12, 16, 16)];
+                    [_projectile setBoundingBox:CGRectMake(5, 12, 16, 16)];
                     [_projectile setInitialVelocity];
                 } 
             } else {
