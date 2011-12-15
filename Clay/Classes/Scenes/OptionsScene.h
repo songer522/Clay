@@ -48,6 +48,8 @@
     GameLabel *_optionsHeader;
     
     bool _isTransitioning;
+    bool _backToMainMenu;
+    float _waitToSwitch;
     
     ActionButton *_backButton;
 }
@@ -55,7 +57,12 @@
 -(void)load;
 -(void)setMusicXPosition:(float)xPos;
 -(void)setSfxXPosition:(float)xPos;
+
+-(void)setMusicPositionByVolume:(float)volume;
+-(void)setSfxPositionByVolume:(float)volume;
+
 -(void)sliderReactionAtPosition:(CGPoint)position;
 
+-(void)switchToMainMenuScreen;
 
 @end

@@ -14,6 +14,11 @@
 #import "ClippingNode.h"
 #import "SoundEngine.h"
 #import "GameLabel.h"
+#import "MainMenuScene.h"
+
+//IPAD FIX: width and offset
+#define OPTIONS_SCENE_OFFSET_X 30.0f
+#define OPTIONS_SCENE_WIDTH 420.0f
 
 @implementation OptionsScene
 
@@ -33,6 +38,8 @@
         [self scheduleUpdate];
         self.isTouchEnabled = YES;
         _isTransitioning = false;
+        _backToMainMenu = false;
+        _waitToSwitch = 0.0f;
     }
     
     return self;
@@ -61,19 +68,18 @@
     _musicMask = [[ClippingNode alloc] init];
     [self addChild:_musicMask];
     [_musicMask addChild:[_musicSheetMasked getCCSprite]];
-    [self setMusicXPosition:480.0f];
+    [self setMusicPositionByVolume:[[SoundEngine shared] getMastersMusicVolume]];
     
     _musicSheetTop = [Sprite spriteCenteredWithFrame:@"Options_Stave_TypeA_1.png" Position:ccp(240,230)];
     _sfxPanel = [Sprite spriteCenteredWithFrame:@"Options_Panel_L.png" Position:ccp(240,152)];
     _sfxVolumeHeader = [Sprite spriteCenteredWithFrame:@"Options_Title_2.png" Position:ccp(391,184)];
     _sfxSheetMasked = [Sprite spriteCenteredWithFrame:@"Options_Stave_TypeB_2.png" AddToLayer:NO];
     [_sfxSheetMasked setScreenPosition:ccp(240,150)];
-    [self setSfxXPosition:480.0f];
     
     _sfxMask = [[ClippingNode alloc] init];
     [self addChild:_sfxMask];
     [_sfxMask addChild:[_sfxSheetMasked getCCSprite]];
-    [self setSfxXPosition:480.0f];
+    [self setSfxPositionByVolume:[[SoundEngine shared] getMastersSfxVolume]];
     
     _sfxSheetTop = [Sprite spriteCenteredWithFrame:@"Options_Stave_TypeB_1.png" Position:ccp(240,150)];
     
@@ -100,7 +106,8 @@
     _optionsHeader = [GameLabel gameLabelWithText:@"OPTIONS" Scale:0.65f];
     [_optionsHeader setPosition:ccp(240.0f,291.0f)];
 
-
+    _backButton = [ActionButton actionButtonWithText:@"BACK"];
+    [_backButton setPosition:ccp(50, 18)];
     
     [[LayerManager sharedLayers] forgetWorkingLayer];
 }
@@ -142,29 +149,41 @@
             if ([_howToPlayButton checkIfSelected:position]) {
                 
             }
+            
+            if([_backButton checkIfSelected:position]) {
+                _waitToSwitch = 0.25f;
+                _backToMainMenu = true;
+                [[SoundEngine shared] playSound:@"buttonPressed"];     
+            }
         }
     }
 }
 
 
+-(void)setMusicPositionByVolume:(float)volume
+{
+    float xPos = volume * OPTIONS_SCENE_WIDTH + OPTIONS_SCENE_OFFSET_X;
+    [_musicMask setClippingRegion:CGRectMake(0,0,xPos,768)];
+}
+
+-(void)setSfxPositionByVolume:(float)volume
+{
+    float xPos = volume * OPTIONS_SCENE_WIDTH + OPTIONS_SCENE_OFFSET_X;
+    [_sfxMask setClippingRegion:CGRectMake(0,0,xPos,768)];  
+}
+
+
 -(void)setMusicXPosition:(float)xPos
 {
-    //IPAD FIX: width and offset
-    float offset = 30.0f;
-    float width = 420.0f;
-    float volume = (xPos - offset)/width;
+    float volume = (xPos - OPTIONS_SCENE_OFFSET_X)/OPTIONS_SCENE_WIDTH;
     
     [[SoundEngine shared] setMasterMusicVolume:volume];
     [_musicMask setClippingRegion:CGRectMake(0,0,xPos,768)];
-    
 }
 
 -(void)setSfxXPosition:(float)xPos
 {
-    //IPAD FIX: width and offset
-    float offset = 30.0f;
-    float width = 420.0f;    
-    float volume = (xPos - offset)/width;
+    float volume = (xPos - OPTIONS_SCENE_OFFSET_X)/OPTIONS_SCENE_WIDTH;
     
     [[SoundEngine shared] setMasterSfxVolume:volume];
     [_sfxMask setClippingRegion:CGRectMake(0,0,xPos,768)];
@@ -180,9 +199,24 @@
     }
 }
 
+-(void)switchToMainMenuScreen
+{
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[MainMenuScene scene]]];
+}
 
 -(void)update:(ccTime)dt
 {
+    [_backButton update:dt];
+    
+    if (_waitToSwitch>0.0f) {
+        _waitToSwitch-=dt;
+        if(_waitToSwitch<=0.0f){
+            _waitToSwitch = 0.0f;
+            if (_backToMainMenu) {
+                [self switchToMainMenuScreen];
+            }
+        }
+    }
 }
 
 -(void)onExit
@@ -194,6 +228,7 @@
 
 -(void)dealloc
 {
+    /*
     [_background release];
     [_musicPanel release];
     [_sfxPanel release];
@@ -218,7 +253,7 @@
     
     [_optionsHeader release];
     [_backButton release];
-    
+    */
     [[TextureManager shared] unloadMemoryForKey:@"optionsScreen"];
 }
 
