@@ -12,12 +12,22 @@
 
 @synthesize facebook;
 
--(void)initWithAppId:(NSString *)appId andDelegate:(id<FBSessionDelegate>)delegate
++(id)promptWithAppId:(NSString*)appId andDelegate:(id)delegate
 {
-    facebook = [[Facebook alloc] initWithAppId:appId andDelegate:delegate];
+    return [[self alloc] initWithAppId:appId andDelegate:delegate];
 }
 
--(void)promptUserWith:(NSString *)appId picture:(NSString *)picURL description:(NSString *)description andDelegate:(id<FBDialogDelegate>)delegate
+-(id)initWithAppId:(NSString *)appId andDelegate:(id<FBSessionDelegate>)delegate
+{
+    if((self=[super init])) {
+        facebook = [[Facebook alloc] initWithAppId:appId andDelegate:delegate];
+        _delegate = delegate;
+        _appId = appId;
+    }
+    return self;
+}
+
+-(void)showFacebookDialogWithDescription:(NSString*)description andPicture:(NSString*)picUrl
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if ([defaults objectForKey:@"FBAccessTokenKey"] 
@@ -33,16 +43,16 @@
      }
      */
     NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                   appId, @"app_id",
+                                   _appId, @"app_id",
                                    @"http://developers.facebook.com/docs/reference/dialogs/", @"link",
-                                  picURL, @"picture",
+                                  picUrl, @"picture",
                                    @"Facebook Dialogs", @"name",
                                    @"Reference Documentation", @"caption",
                                    description, @"description",
                                    @"Facebook Dialogs are so easy!",  @"message",
                                    nil];
     
-    [facebook dialog:@"feed" andParams:params andDelegate:delegate];
+    [facebook dialog:@"feed" andParams:params andDelegate:_delegate];
 
 }
 

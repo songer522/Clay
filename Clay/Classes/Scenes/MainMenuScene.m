@@ -6,6 +6,8 @@
 //  Copyright 2011 Xecudev, LLC. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
+
 #import "MainMenuScene.h"
 #import "AppDelegate.h"
 #import "Sprite.h"
@@ -24,6 +26,8 @@
 #import "GCHelper.h"
 #import "ChooseModeScene.h"
 #import "CreditsScene.h"
+#import "AppDelegate.h"
+#import "FBPrompt.h"
 
 
 
@@ -54,6 +58,7 @@
         // Initialization code here.
         
         NSAutoreleasePool *myPool = [[NSAutoreleasePool alloc] init];
+        
         
         [self pause]; //paused so that the game center code can run first
         
@@ -315,6 +320,9 @@
 
 -(void)switchToChoice
 {
+    FBPrompt *prompt;
+    
+
     switch (_switchToChoice) {
         case MENU_SWITCHTO_CHOOSELEVEL:            
             [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ChooseModeScene scene]]];
@@ -322,15 +330,16 @@
         case MENU_SWITCHTO_LEADERBOARDS:
             //[[GCHelper sharedInstance] showLeaderboards];
             
-        
-                {
+                
+                    /*
+                     {
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             if ([defaults objectForKey:@"FBAccessTokenKey"] 
                 && [defaults objectForKey:@"FBExpirationDateKey"])
             {
                 facebook.accessToken = [defaults objectForKey:@"FBAccessTokenKey"];
                 facebook.expirationDate = [defaults objectForKey:@"FBExpirationDateKey"];
-            }
+            }*/
             /*
 
             if (![facebook isSessionValid]) 
@@ -338,6 +347,7 @@
                 [facebook authorize:nil];
             }
             */
+             /*       
             NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                            @"264174546971482", @"app_id",
                                            @"http://developers.facebook.com/docs/reference/dialogs/", @"link",
@@ -349,9 +359,10 @@
                                            nil];
             
             [facebook dialog:@"feed" andParams:params andDelegate:self];
-            
-                        
-                   }
+              }
+            */
+            prompt = [FBPrompt promptWithAppId:@"264174546971482" andDelegate:self];
+            [prompt showFacebookDialogWithDescription:@"Hello!" andPicture:@"http://fbrell.com/f8.jpg"];
           
                        break;
         case MENU_SWITCHTO_ACHIEVEMENTS:

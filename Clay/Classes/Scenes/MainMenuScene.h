@@ -16,7 +16,7 @@
 #import <Accounts/Accounts.h>
 @class Sprite;
 @class ActionButton;
-
+@class FBPrompt;
 
 typedef enum {
     MAINMENU_TRANSITION_IN,
@@ -65,7 +65,7 @@ typedef enum {
     bool _isContinueButtonEnabled;
     Facebook *facebook;
         
-    //FBPrompt *_prompt;
+    FBPrompt *_prompt;
 }
 +(CCScene *) scene;
 @property (nonatomic, retain) Facebook *facebook;

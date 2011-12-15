@@ -12,10 +12,16 @@
 @interface FBPrompt : NSObject<FBSessionDelegate,FBDialogDelegate>
 {
     Facebook *facebook;
+    id _delegate;
+    NSString *_appId;
 }
 @property (nonatomic, retain) Facebook *facebook;
 
++(id)promptWithAppId:(NSString*)appId andDelegate:(id<FBSessionDelegate>)delegate;
 
--(void)initWithAppId:(NSString *)appId andDelegate:(id<FBSessionDelegate>)delegate;
--(void)promptUserWith:(NSString *)appId picture:(NSString *)picURL description:(NSString *)description andDelegate:(id<FBSessionDelegate>)delegate;
+
+-(id)initWithAppId:(NSString *)appId andDelegate:(id<FBSessionDelegate>)delegate;
+
+-(void)showFacebookDialogWithDescription:(NSString*)description andPicture:(NSString*)picUrl;
+
 @end
