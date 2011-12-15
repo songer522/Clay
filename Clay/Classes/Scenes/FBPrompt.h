@@ -24,4 +24,6 @@
 
 -(void)showFacebookDialogWithDescription:(NSString*)description andPicture:(NSString*)picUrl;
 
+-(Facebook*)getFacebookObject;
+
 @end

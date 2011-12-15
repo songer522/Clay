@@ -62,6 +62,11 @@
     return [facebook handleOpenURL:url]; 
 }
 
+-(Facebook*)getFacebookObject
+{
+    return facebook;
+}
+
 
 
 @end
