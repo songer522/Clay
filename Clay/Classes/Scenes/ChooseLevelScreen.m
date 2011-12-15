@@ -206,7 +206,7 @@
     
     //[self loadTutorial];
     
-    _frontPanel = [self createInformationPanelForLevel:1];
+    _frontPanel = [self createInformationPanelForLevel:10];
     
     
     [[LayerManager sharedLayers] forgetWorkingLayer];
