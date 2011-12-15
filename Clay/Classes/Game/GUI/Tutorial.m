@@ -61,9 +61,9 @@
 -(void)switchToTutorial
 {
     if(!_inTutorial){
-        [scroller selectPage:0];
         [scroller setVisible:YES];
         scroller.showPagesIndicator=YES;
+        [scroller selectPage:0];
         _inTutorial=true;
         _alpha = 0.0f;
         _phase = SCROLLER_FADE_IN;
@@ -85,6 +85,8 @@
     switch (_phase) {
         case SCROLLER_FADE_IN:
             _alpha += rate;
+            [scroller selectPage:0];
+            
             if (_alpha >= 1.0f) {
                 _alpha = 1.0f;
                 _phase = SCROLLER_IDLE;

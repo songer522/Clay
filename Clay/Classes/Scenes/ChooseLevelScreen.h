@@ -30,7 +30,8 @@
     NSString *_gameDifficulty; //weak references
     
     
-    Sprite *_background;    
+    Sprite *_background;
+    Sprite *_panelBackground;
     Sprite *_selector;
     
     GameLabel *_levelSelectText;
@@ -40,6 +41,9 @@
     ActionButton *_backButton;
     
     ChooseLevelPanel *_frontPanel;
+    ChooseLevelPanel *_backPanel;
+    bool _panelTransition;
+    float _panelAlpha;
     
     int _selected;
 }
@@ -57,10 +61,11 @@
 -(void)switchToChooseModeScreen;
 
 -(void)transitionOut;
--(void)updateBestTimeTextWithLevel:(int)level;
+-(NSString*)getTimestringForFloat:(float)time;
 
 -(void)unload;
+-(void)switchInfoPanelToLevel:(float)number;
 
-
+-(void)updatePanelTransition:(float)dt;
 
 @end

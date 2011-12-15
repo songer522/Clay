@@ -101,18 +101,20 @@
     for(UITouch *touch in allTouches) {
         CGPoint position = [self convertTouchToNodeSpace:touch];
         for (LevelButton *button in _buttons) {
-            if([button checkIfSelected:position]) {
+            if([button checkIfSelected:position] && !_panelTransition) {
+
                 if (button.buttonId!=_selected) {
                     [[SoundEngine shared] playSound:@"chooseSelection"];
+                    [self switchInfoPanelToLevel:button.buttonId];
                 }
-                _selected = button.buttonId;
                 
+                _selected = button.buttonId;
+
                 if(_levelToSwitchTo) {
                     [_levelToSwitchTo release];
                     _levelToSwitchTo = nil;
                 }
                 _levelToSwitchTo = [[NSString alloc] initWithFormat:@"level%d",_selected];
-                [self updateBestTimeTextWithLevel:_selected];
             }
         }
         
@@ -140,6 +142,10 @@
     _background = [Sprite spriteFromFrameCacheWithName:@"LevelSelector_Background.png"];
     [_background setScreenPosition:ccp(0,0)];
     
+    //_panelBackground = [Sprite spriteCenteredWithFrame:@"LevelSelector_LevelInfo.png"];
+    //[_panelBackground setScreenPosition:ccp(105,155)];
+    
+    
     _selector = [Sprite spriteFromFrameCacheWithName:@"LevelSelector_LevelSelected.png"];
     [_selector setPosition:ccp(0,0)];
     [[_selector getCCSprite] setVisible:NO];
@@ -150,9 +156,6 @@
     _backButton = [ActionButton actionButtonWithText:@"BACK"];
     [_backButton setPosition:ccp(50, 18)];
     
-    //_bestLevelTimeText = [GameLabel gameLabelWithText:@"" Scale:0.6f Position:ccp(240.0f,35.0f)];
-    //[_bestLevelTimeText setCentered];
-    
     
     //load level buttons (init best level time text first because it gets set in here)
     for (int i=0; i<11; i++) {
@@ -162,7 +165,6 @@
         //by default have the first level selected
         if(i==0) {
             [button setSelected];
-            [self updateBestTimeTextWithLevel:(i+1)];
         }
         
         [_buttons addObject:button];
@@ -173,7 +175,7 @@
     //load any medals earned
     [self loadMedals];
     
-    _frontPanel = [self createInformationPanelForLevel:10];
+    _frontPanel = [self createInformationPanelForLevel:1];
     
     
     [[LayerManager sharedLayers] forgetWorkingLayer];
@@ -184,11 +186,15 @@
 
 -(ChooseLevelPanel*)createInformationPanelForLevel:(int)levelNumber
 {
+    NSString *levelName = [NSString stringWithFormat:@"level%d",levelNumber];
+    float bestTime = [[BestTimes shared] getBestTimeForLevelName:levelName forDifficulty:_gameDifficulty];
+    
     ChooseLevelPanel *panel = [ChooseLevelPanel instance];
-    [panel setBestTime:@"00:00:00"];
+    [panel setBestTime:[self getTimestringForFloat:bestTime]];
     [panel setLevelDataByNumber:levelNumber];
     [panel setNextMedal:1 RequiredTime:@"02:30:00"];
-    [panel loadObjectsAfterDataInit];
+    [panel loadObjectsAfterDataInit:self];
+    
     return panel;
 }
 
@@ -248,10 +254,18 @@
 }
 
 
-
 -(void)switchToChooseModeScreen
 {
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ChooseModeScene scene]]];
+}
+
+-(void)switchInfoPanelToLevel:(float)number
+{
+    _panelAlpha = 0.0f;
+    _panelTransition = true;
+    _backPanel = [self createInformationPanelForLevel:number];
+    [_backPanel setAlpha:0.0f];
+    //[_frontPanel reset:self];
 }
 
 -(void)transitionOut
@@ -262,16 +276,28 @@
 {
 }
 
--(void)updateBestTimeTextWithLevel:(int)level
+-(NSString*)getTimestringForFloat:(float)time
 {
-    float bestTime = [[BestTimes shared] getBestTimeForLevelNumber:level];
-    if (bestTime == 0.0f) {
-        //[_bestLevelTimeText setText:[NSString stringWithFormat:@""]];
-    } else {
-        //[_bestLevelTimeText setText:[NSString stringWithFormat:@"BEST TIME: %@",[TrackTimer getTimeStringFromFloat:bestTime]]];
-    }
+    return [TrackTimer getTimeStringFromFloat:time];
 }
 
+-(void)updatePanelTransition:(float)dt
+{
+    _panelAlpha += 3.0f * dt;
+    if (_panelAlpha >= 1.0f) {
+        _panelAlpha = 1.0f;
+        _panelTransition = false;
+        [_backPanel setAlpha:_panelAlpha];
+        [_backPanel setPanelTransitionAmount:_panelAlpha];
+        [_frontPanel setAlpha:0.0f];
+        [_frontPanel release];
+        _frontPanel = _backPanel;        
+    } else {
+        //[_frontPanel setAlpha:(1.0f - _panelAlpha)];
+        [_backPanel setAlpha:_panelAlpha];
+        [_backPanel setPanelTransitionAmount:_panelAlpha];
+    }
+}
 
 -(void)update:(ccTime)dt
 {
@@ -280,6 +306,10 @@
     [_startButton update:dt];
     [_backButton update:dt];
 
+    if (_panelTransition) {
+        [self updatePanelTransition:dt];
+    }
+    
     if (_waitToSwitch>0.0f) {
         _waitToSwitch-=dt;
         if(_waitToSwitch<=0.0f){

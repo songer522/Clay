@@ -10,6 +10,7 @@
 #import "Sprite.h"
 #import "GameLabel.h"
 #import "GameSettings.h"
+#import "LayerManager.h"
 
 #define LEVELPANEL_PANEL_X 105.0f
 
@@ -28,12 +29,16 @@
     return self;
 }
 
--(void)loadObjectsAfterDataInit
+-(void)loadObjectsAfterDataInit:(id)layer;
 {
     NSAssert((_levelPreviewFrameName!=nil&&_bestTimeText!=nil&&_timeForMedalLabelText!=nil),@"ChooseLevelPanel.m - do not call loadObjectsAfterDataInit before calling setLevelData,setNextMedal, and setBestTime");
     
     float medTextScale = 0.53f;
     float smallTextScale = 0.5f;
+    
+    _root = [[CCNode alloc] init];
+    
+    [[LayerManager sharedLayers] setWorkingLayer:_root];
     
     _currentXPos = LEVELPANEL_PANEL_X;
     
@@ -57,7 +62,17 @@
     
     _levelNumber = [GameLabel gameLabelWithText:_levelNameText Scale:smallTextScale];
     
+    [[LayerManager sharedLayers] forgetWorkingLayer];
+        
+    [layer addChild:_root];
+    
     [self setPanelXPosition:LEVELPANEL_PANEL_X];
+}
+
+-(void)reset:(id)layer
+{
+    [_root removeFromParentAndCleanup:NO];
+    [layer addChild:_root];
 }
 
 -(void)setAlpha:(float)alpha
@@ -141,8 +156,14 @@
     [_levelNumber setPosition:ccp(levelNumberX, 37)];
 }
 
+-(void)setPanelTransitionAmount:(float)amount
+{
+    [self setPanelXPosition:(LEVELPANEL_PANEL_X - (1.0f - amount) * 20)];
+}
+
 -(void)dealloc
 {
+    [_root removeFromParentAndCleanup:YES];
     [_background release];
     [_levelTitle release];
     [_levelPreview release];
