@@ -52,10 +52,12 @@
 +(id)layerWithScene:(CCScene*)scene;
 -(id) initWithScene:(CCScene*)scene;
 
+-(ChooseLevelPanel*)createInformationPanelForLevel:(int)levelNumber;
 -(void)load;
 -(void)loadMedals;
 
 -(void)popAndSwitchToLevel:(NSString*)level;
+
 -(void)switchToMainMenu;
 
 -(void)transitionOut;

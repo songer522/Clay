@@ -206,13 +206,23 @@
     
     //[self loadTutorial];
     
+    _frontPanel = [self createInformationPanelForLevel:1];
     
-    _frontPanel = [ChooseLevelPanel instance];
     
     [[LayerManager sharedLayers] forgetWorkingLayer];
     [self scheduleUpdate];
     self.isTouchEnabled = true;    
     
+}
+
+-(ChooseLevelPanel*)createInformationPanelForLevel:(int)levelNumber
+{
+    ChooseLevelPanel *panel = [ChooseLevelPanel instance];
+    [panel setBestTime:@"00:00:00"];
+    [panel setLevelDataByNumber:levelNumber];
+    [panel setNextMedal:1 RequiredTime:@"02:30:00"];
+    [panel loadObjectsAfterDataInit];
+    return panel;
 }
 
 -(void)loadMedals
@@ -269,6 +279,8 @@
     [[GameSettings shared] setGlobal:level ForKey:@"startingLevel"];
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[GameLayer scene]]];
 }
+
+
 
 -(void)switchToMainMenu
 {
