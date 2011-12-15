@@ -112,6 +112,8 @@
     _backButton = [ActionButton actionButtonWithText:@"BACK"];
     [_backButton setPosition:ccp(50, 18)];
     
+    _tutorial = [[Tutorial alloc] initWithinLayer:self];
+    
     [[LayerManager sharedLayers] forgetWorkingLayer];
 }
 
@@ -165,6 +167,10 @@
                 _backToMainMenu = true;
                 [[SoundEngine shared] playSound:@"buttonPressed"];     
             }
+        } else if(_inTutorial) {
+            if (position.y > 260.0f || position.y < 60.0f) {
+                [self switchToTutorial];
+            }
         }
     }
 }
@@ -216,8 +222,8 @@
 
 -(void)switchToTutorial
 {
-    _tutorial = [[Tutorial alloc] initWithinLayer:self];
     [_tutorial switchToTutorial];
+    _inTutorial = !_inTutorial;
 }
 
 -(void)switchToCreditsScreen
@@ -229,6 +235,7 @@
 -(void)update:(ccTime)dt
 {
     [_backButton update:dt];
+    [_tutorial update:dt];
     
     if (_waitToSwitch>0.0f) {
         _waitToSwitch-=dt;
@@ -261,12 +268,13 @@
 
 -(void)dealloc
 {
-    /*
     [_background release];
     [_musicPanel release];
     [_sfxPanel release];
     [_musicSheetTop release];
     [_musicSheetMasked release];
+     
+    
     [_sfxSheetTop release];
     [_sfxSheetMasked release];
     [_musicVolumeHeader release];
@@ -279,14 +287,17 @@
     [_sfxMask release];
     
     [_eraseText release];
+    
     [_dataText release];
     [_howToText release];
     [_playText release];
     [_creditsText release];
     
-    [_optionsHeader release];
+    [_tutorial release];
+    
+     [_optionsHeader release];
     [_backButton release];
-    */
+    
     [[TextureManager shared] unloadMemoryForKey:@"optionsScreen"];
 }
 

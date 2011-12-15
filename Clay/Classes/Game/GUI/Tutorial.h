@@ -9,13 +9,29 @@
 #import <Foundation/Foundation.h>
 #import "CCScrollLayer.h"
 
+typedef enum {
+    SCROLLER_FADE_IN,
+    SCROLLER_FADE_OUT,
+    SCROLLER_IDLE
+}ScrollerPhase;
+
 @interface Tutorial : NSObject
 {
-     CCScrollLayer *scroller;
+    CCScrollLayer *scroller;
+    
+    ScrollerPhase _phase;
+    
+    NSMutableArray *_pages;
+    NSMutableArray *_images;
+    
     bool _inTutorial;
+    float _alpha;
 }
 
 +(id)TutorialWithinLayer:(CCLayer *)layer;
 -(id)initWithinLayer:(CCLayer *)layer;
 -(void)switchToTutorial;
+-(void)setAlpha:(float)alpha;
+-(void)update:(float)dt;
+-(void)addPage:(NSString*)imageFileName;
 @end

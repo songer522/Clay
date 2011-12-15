@@ -133,7 +133,8 @@
 
 -(void)dealloc
 {
-    
+    [_lines removeAllObjects];
+    [super dealloc];
 }
 
 @end

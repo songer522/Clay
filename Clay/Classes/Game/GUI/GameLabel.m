@@ -95,7 +95,7 @@
 
 -(void)dealloc
 {
-    [_label release];
+    [_label removeFromParentAndCleanup:YES];
     [super dealloc];
 }
 

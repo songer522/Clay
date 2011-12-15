@@ -61,7 +61,7 @@
         NSAutoreleasePool *myPool = [[NSAutoreleasePool alloc] init];
         
         
-        [self pause]; //paused so that the game center code can run first
+        //[self pause]; //paused so that the game center code can run first
         
         [[GCHelper sharedInstance] authenticateLocalUser];
     
