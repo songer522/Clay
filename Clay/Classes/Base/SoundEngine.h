@@ -48,6 +48,8 @@ typedef enum {
 -(void)cueFadeIn;
 -(void)cueFadeOut;
 
+-(float)getMastersMusicVolume;
+-(float)getMastersSfxVolume;
 -(void)setMasterMusicVolume:(float)masterVolume;
 -(void)setMasterSfxVolume:(float)masterVolume;
 -(void)update:(float)dt;

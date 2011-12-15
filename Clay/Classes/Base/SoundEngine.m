@@ -132,6 +132,16 @@ static SoundEngine *_shared = nil;
     _soundMode = SOUND_MODE_FADEOUT;
 }
 
+-(float)getMastersMusicVolume
+{
+    return _masterMusicVolume;
+}
+
+-(float)getMastersSfxVolume
+{
+    return _masterSfxVolume;
+}
+
 -(void)setMasterMusicVolume:(float)masterVolume
 {
     masterVolume = MIN(masterVolume, 1.0f);

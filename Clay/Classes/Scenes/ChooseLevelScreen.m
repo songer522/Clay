@@ -67,8 +67,7 @@
         _buttons = [[NSMutableArray alloc] initWithCapacity:7];
         _alpha = 1.0f;
         _selected = 1;
-        _backToMainMenu = false;
-        _backToLevelSelect =false;
+        _backToChooseMode = false;
         _inTutorial=false;
         _waitToSwitch = 0.0f;
         self.isTouchEnabled = YES;
@@ -119,13 +118,13 @@
         
         if([_startButton checkIfSelected:position]) {
             _waitToSwitch = 0.25f;
-            _backToMainMenu = false;
+            _backToChooseMode = false;
             [[SoundEngine shared] playSound:@"buttonPressed"];
         }
         
         if([_backButton checkIfSelected:position]) {
             _waitToSwitch = 0.25f;
-            _backToMainMenu = true;
+            _backToChooseMode = true;
             [[SoundEngine shared] playSound:@"buttonPressed"];     
         }
         
@@ -173,8 +172,6 @@
     
     //load any medals earned
     [self loadMedals];
-    
-    //[self loadTutorial];
     
     _frontPanel = [self createInformationPanelForLevel:10];
     
@@ -252,7 +249,7 @@
 
 
 
--(void)switchToMainMenu
+-(void)switchToChooseModeScreen
 {
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ChooseModeScene scene]]];
 }
@@ -287,10 +284,8 @@
         _waitToSwitch-=dt;
         if(_waitToSwitch<=0.0f){
             _waitToSwitch = 0.0f;
-            if (_backToMainMenu) {
-                [self switchToMainMenu];
-                
-                //[self switchToTutorial];
+            if (_backToChooseMode) {
+                [self switchToChooseModeScreen];
             }  else {
                 [self popAndSwitchToLevel:_levelToSwitchTo]; 
             }

@@ -15,6 +15,8 @@
     NSMutableArray *_lines;
 }
 
++(CCScene*)scene;
+
 -(void)loadCredits;
 
 -(void)addGroup:(NSDictionary*)dict;
@@ -22,5 +24,7 @@
 -(void)addHeader:(NSString*)header;
 -(void)addTitle:(NSString*)title;
 -(void)addCredit:(NSString*)name;
+
+-(void)switchToOptionsScreen;
 
 @end
