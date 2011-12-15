@@ -179,6 +179,10 @@
 		5461BFE71497F85100EF6A42 /* chooseMode.png in Resources */ = {isa = PBXBuildFile; fileRef = 5461BFE31497F85100EF6A42 /* chooseMode.png */; };
 		5461BFEA1497FA7200EF6A42 /* ModePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5461BFE91497FA7200EF6A42 /* ModePanel.m */; };
 		5463945D1499685D0053A1F6 /* ChooseLevelPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5463945C1499685D0053A1F6 /* ChooseLevelPanel.m */; };
+		546394811499AAD90053A1F6 /* optionsScreen-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5463947D1499AAD90053A1F6 /* optionsScreen-hd.plist */; };
+		546394821499AAD90053A1F6 /* optionsScreen-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5463947E1499AAD90053A1F6 /* optionsScreen-hd.png */; };
+		546394831499AAD90053A1F6 /* optionsScreen.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5463947F1499AAD90053A1F6 /* optionsScreen.plist */; };
+		546394841499AAD90053A1F6 /* optionsScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 546394801499AAD90053A1F6 /* optionsScreen.png */; };
 		546E830E148EE9F500154AE7 /* tileset_level_10-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 546E830C148EE9F500154AE7 /* tileset_level_10-hd.png */; };
 		546E830F148EE9F500154AE7 /* tileset_level_10.png in Resources */ = {isa = PBXBuildFile; fileRef = 546E830D148EE9F500154AE7 /* tileset_level_10.png */; };
 		5474D4AE147453A10038B358 /* GameSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 5474D4AD147453A10038B358 /* GameSettings.m */; };
@@ -793,6 +797,10 @@
 		5461BFE91497FA7200EF6A42 /* ModePanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModePanel.m; sourceTree = "<group>"; };
 		5463945B1499685D0053A1F6 /* ChooseLevelPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseLevelPanel.h; sourceTree = "<group>"; };
 		5463945C1499685D0053A1F6 /* ChooseLevelPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseLevelPanel.m; sourceTree = "<group>"; };
+		5463947D1499AAD90053A1F6 /* optionsScreen-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "optionsScreen-hd.plist"; path = "Clay/Resources/menu/optionsScreen-hd.plist"; sourceTree = SOURCE_ROOT; };
+		5463947E1499AAD90053A1F6 /* optionsScreen-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "optionsScreen-hd.png"; path = "Clay/Resources/menu/optionsScreen-hd.png"; sourceTree = SOURCE_ROOT; };
+		5463947F1499AAD90053A1F6 /* optionsScreen.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = optionsScreen.plist; path = Clay/Resources/menu/optionsScreen.plist; sourceTree = SOURCE_ROOT; };
+		546394801499AAD90053A1F6 /* optionsScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = optionsScreen.png; path = Clay/Resources/menu/optionsScreen.png; sourceTree = SOURCE_ROOT; };
 		546E830C148EE9F500154AE7 /* tileset_level_10-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tileset_level_10-hd.png"; path = "Resources/levels/tileset_level_10-hd.png"; sourceTree = "<group>"; };
 		546E830D148EE9F500154AE7 /* tileset_level_10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tileset_level_10.png; path = Resources/levels/tileset_level_10.png; sourceTree = "<group>"; };
 		5474D4AC147453A00038B358 /* GameSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSettings.h; sourceTree = "<group>"; };
@@ -1714,6 +1722,10 @@
 		544D50DA1445E68E00BED4CE /* scenes */ = {
 			isa = PBXGroup;
 			children = (
+				5463947D1499AAD90053A1F6 /* optionsScreen-hd.plist */,
+				5463947E1499AAD90053A1F6 /* optionsScreen-hd.png */,
+				5463947F1499AAD90053A1F6 /* optionsScreen.plist */,
+				546394801499AAD90053A1F6 /* optionsScreen.png */,
 				549D84D51469DE9100A3599F /* chooseLevel-hd.plist */,
 				549D84D61469DE9100A3599F /* chooseLevel-hd.png */,
 				549D84D71469DE9100A3599F /* chooseLevel.plist */,
@@ -2782,6 +2794,10 @@
 				5461BFE61497F85100EF6A42 /* chooseMode.plist in Resources */,
 				5461BFE71497F85100EF6A42 /* chooseMode.png in Resources */,
 				61B10499149957BA003B4A8E /* FBDialog.bundle in Resources */,
+				546394811499AAD90053A1F6 /* optionsScreen-hd.plist in Resources */,
+				546394821499AAD90053A1F6 /* optionsScreen-hd.png in Resources */,
+				546394831499AAD90053A1F6 /* optionsScreen.plist in Resources */,
+				546394841499AAD90053A1F6 /* optionsScreen.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
