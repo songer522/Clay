@@ -45,6 +45,11 @@
     return [[self alloc] initFromFrameCacheWithName:frame AddToLayer:YES Position:ccp(0,0) AnchorPoint:ccp(0.5f,0.5f)];
 }
 
++(id) spriteCenteredWithFrame:(NSString*)frame AddToLayer:(bool)addToLayer
+{
+    return [[self alloc] initFromFrameCacheWithName:frame AddToLayer:addToLayer Position:ccp(0,0) AnchorPoint:ccp(0.5f,0.5f)];
+}
+
 +(id) spriteCenteredWithFrame:(NSString*)frame Position:(CGPoint)position
 {
     return [[self alloc] initFromFrameCacheWithName:frame AddToLayer:YES Position:position AnchorPoint:ccp(0.5f,0.5f)];

@@ -29,6 +29,7 @@
 +(id) spriteFromFrameCacheWithName:(NSString*)frameName;
 +(id) spriteFromFrameCacheWithName:(NSString*)frameName AddToLayer:(bool)shouldAddToLayer;
 +(id) spriteCenteredWithFrame:(NSString*)frame;
++(id) spriteCenteredWithFrame:(NSString*)frame AddToLayer:(bool)addToLayer;
 +(id) spriteCenteredWithFrame:(NSString*)frame Position:(CGPoint)position;
 +(id) spriteNotCenteredWithFrame:(NSString*)frame Position:(CGPoint)position;
 
