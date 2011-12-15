@@ -2986,6 +2986,17 @@
 				54E1AC0D1497B85200DFCA77 /* ExtrasScene.m in Sources */,
 				5461BFEA1497FA7200EF6A42 /* ModePanel.m in Sources */,
 				5463945D1499685D0053A1F6 /* ChooseLevelPanel.m in Sources */,
+				61B10498149957BA003B4A8E /* Facebook.m in Sources */,
+				61B1049A149957BA003B4A8E /* FBDialog.m in Sources */,
+				61B1049B149957BA003B4A8E /* FBLoginDialog.m in Sources */,
+				61B1049C149957BA003B4A8E /* FBRequest.m in Sources */,
+				61B1049D149957BA003B4A8E /* NSObject+SBJSON.m in Sources */,
+				61B1049E149957BA003B4A8E /* NSString+SBJSON.m in Sources */,
+				61B1049F149957BA003B4A8E /* SBJSON.m in Sources */,
+				61B104A0149957BA003B4A8E /* SBJsonBase.m in Sources */,
+				61B104A1149957BA003B4A8E /* SBJsonParser.m in Sources */,
+				61B104A2149957BA003B4A8E /* SBJsonWriter.m in Sources */,
+				61B104AA14997E8C003B4A8E /* FBPrompt.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
