@@ -455,6 +455,9 @@
 		61B104A0149957BA003B4A8E /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 61B10493149957BA003B4A8E /* SBJsonBase.m */; };
 		61B104A1149957BA003B4A8E /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 61B10495149957BA003B4A8E /* SBJsonParser.m */; };
 		61B104A2149957BA003B4A8E /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 61B10497149957BA003B4A8E /* SBJsonWriter.m */; };
+		61B104AA14997E8C003B4A8E /* FBPrompt.m in Sources */ = {isa = PBXBuildFile; fileRef = 61B104A914997E8B003B4A8E /* FBPrompt.m */; };
+		61B104B0149989AF003B4A8E /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54A2863A147313A500A2E8A6 /* Twitter.framework */; };
+		61B104B214998E59003B4A8E /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61B104B114998E59003B4A8E /* Accounts.framework */; };
 		61D1145F1498251700CB373C /* level1_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61D114491498251700CB373C /* level1_hd.tmx */; };
 		61D114601498251700CB373C /* level1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61D1144A1498251700CB373C /* level1.tmx */; };
 		61D114611498251700CB373C /* level2_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61D1144B1498251700CB373C /* level2_hd.tmx */; };
@@ -1171,6 +1174,9 @@
 		61B10495149957BA003B4A8E /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
 		61B10496149957BA003B4A8E /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		61B10497149957BA003B4A8E /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		61B104A814997E8B003B4A8E /* FBPrompt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBPrompt.h; sourceTree = "<group>"; };
+		61B104A914997E8B003B4A8E /* FBPrompt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBPrompt.m; sourceTree = "<group>"; };
+		61B104B114998E59003B4A8E /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		61D114491498251700CB373C /* level1_hd.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level1_hd.tmx; path = Resources/levels/level1_hd.tmx; sourceTree = "<group>"; };
 		61D1144A1498251700CB373C /* level1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level1.tmx; path = Resources/levels/level1.tmx; sourceTree = "<group>"; };
 		61D1144B1498251700CB373C /* level2_hd.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = level2_hd.tmx; path = Resources/levels/level2_hd.tmx; sourceTree = "<group>"; };
@@ -1215,6 +1221,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61B104B214998E59003B4A8E /* Accounts.framework in Frameworks */,
+				61B104B0149989AF003B4A8E /* Twitter.framework in Frameworks */,
 				611293F3147AC93500AC017F /* SystemConfiguration.framework in Frameworks */,
 				611293F1147AC92B00AC017F /* CFNetwork.framework in Frameworks */,
 				54FBA2361430CBBE0010A91A /* MediaPlayer.framework in Frameworks */,
@@ -1323,6 +1331,7 @@
 		54484CC5140449B500D0D7D9 = {
 			isa = PBXGroup;
 			children = (
+				61B104B114998E59003B4A8E /* Accounts.framework */,
 				611293F2147AC93500AC017F /* SystemConfiguration.framework */,
 				611293F0147AC92A00AC017F /* CFNetwork.framework */,
 				54484CE4140449B500D0D7D9 /* Clay */,
@@ -2183,6 +2192,8 @@
 				549ED7FD1461D065008BCD98 /* LayerManager.m */,
 				549ED7FE1461D065008BCD98 /* MainMenuScene.h */,
 				549ED7FF1461D065008BCD98 /* MainMenuScene.m */,
+				61B104A814997E8B003B4A8E /* FBPrompt.h */,
+				61B104A914997E8B003B4A8E /* FBPrompt.m */,
 				54E1AC021497B5D500DFCA77 /* OptionsScene.h */,
 				54E1AC031497B5D500DFCA77 /* OptionsScene.m */,
 				549ED8001461D065008BCD98 /* PauseMenuScreen.h */,
@@ -2979,6 +2990,7 @@
 				61B104A0149957BA003B4A8E /* SBJsonBase.m in Sources */,
 				61B104A1149957BA003B4A8E /* SBJsonParser.m in Sources */,
 				61B104A2149957BA003B4A8E /* SBJsonWriter.m in Sources */,
+				61B104AA14997E8C003B4A8E /* FBPrompt.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

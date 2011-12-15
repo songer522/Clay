@@ -10,8 +10,13 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+//#import "FBPrompt.h"
+#import "FBConnect.h"
+#import <Twitter/Twitter.h>
+#import <Accounts/Accounts.h>
 @class Sprite;
 @class ActionButton;
+
 
 typedef enum {
     MAINMENU_TRANSITION_IN,
@@ -29,7 +34,7 @@ typedef enum {
 
 @class ComicLayer;
 
-@interface MainMenuScene : CCLayer
+@interface MainMenuScene : CCLayer<FBSessionDelegate,FBDialogDelegate>
 {
     Sprite *_trackBackground;
     Sprite *_rain1;
@@ -58,14 +63,15 @@ typedef enum {
     bool _reinit;
     bool _switchSceneTriggered;
     bool _isContinueButtonEnabled;
-    
+    Facebook *facebook;
+        
+    //FBPrompt *_prompt;
 }
 +(CCScene *) scene;
-
-
+@property (nonatomic, retain) Facebook *facebook;
+//@property (nonatomic, retain) FBPrompt *_prompt;
 #pragma mark - private methods
 -(void)switchToChoice;
-
 -(void)reinit;
 -(void)switchToTransitionIn;
 -(void)switchToTransitionOut;
