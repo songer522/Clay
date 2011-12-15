@@ -29,6 +29,7 @@
 #import "CreditsScene.h"
 #import "AppDelegate.h"
 #import "FBPrompt.h"
+#import "OptionsScene.h"
 
 
 
@@ -340,7 +341,8 @@
             [[GCHelper sharedInstance] showAchievements];
                     break;
         case MENU_SWITCHTO_OPTIONS:
-            [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[CreditsScene node]]];
+            [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[OptionsScene node]]];
+            //[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[CreditsScene node]]];
             break;
         default:
             break;
