@@ -58,10 +58,23 @@
     return self;    
 }
 
+-(CCLabelBMFont*)getLabel
+{
+    return _textLabel;
+}
+
+
+
 -(void)setIdleSpriteFrame:(NSString*)name
 {
     _buttonIdle = [Sprite spriteFromFrameCacheWithName:name];
     [_buttonIdle getCCSprite].anchorPoint = ccp(0.5f,0.5f);
+}
+
+
+-(void)setMultilineCentered
+{
+    _textLabel.alignment = UITextAlignmentCenter;
 }
 
 -(void)setSelectedSpriteFrame:(NSString*)name
@@ -74,7 +87,12 @@
 
 -(void)setInitialText:(NSString*)text
 {
-    _textLabel = [CCLabelBMFont labelWithString:text fntFile:@"GraphicFont.fnt"];
+    [self setInitialMultilineText:text Width:1024];
+}
+
+-(void)setInitialMultilineText:(NSString*)text Width:(int)width
+{
+    _textLabel = [CCLabelBMFont labelWithString:text fntFile:@"GraphicFont.fnt" width:width alignment:UITextAlignmentLeft];
     
     if ([GameSettings usingHighResolutionGraphics]){
         [_textLabel setScale:0.65f];

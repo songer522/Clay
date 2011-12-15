@@ -15,18 +15,23 @@
 
 +(id)gameLabelWithText:(NSString*)text Scale:(float)scale
 {
-    return [[self alloc] initWithText:text Scale:scale Position:ccp(0,0)];
+    return [[self alloc] initWithText:text Scale:scale Width:1024 Position:ccp(0,0)];
 }
 
 +(id)gameLabelWithText:(NSString*)text Scale:(float)scale Position:(CGPoint)position
 {
-    return [[self alloc] initWithText:text Scale:scale Position:position];
+    return [[self alloc] initWithText:text Scale:scale Width:1024 Position:position];
 }
 
--(id)initWithText:(NSString*)text Scale:(float)scale Position:(CGPoint)position
++(id)gameLabelMultilineWithText:(NSString*)text Scale:(float)scale Width:(int)width Position:(CGPoint)position
+{
+    return [[self alloc] initWithText:text Scale:scale Width:width Position:position];
+}
+
+-(id)initWithText:(NSString*)text Scale:(float)scale Width:(int)width Position:(CGPoint)position
 {
     if((self=[super init])) {        
-        _label = [CCLabelBMFont labelWithString:text fntFile:@"GraphicFont.fnt"];
+        _label = [CCLabelBMFont labelWithString:text fntFile:@"GraphicFont.fnt" width:width alignment:UITextAlignmentLeft];
         [self setScale:scale];
         [self setPosition:position];
         [[[LayerManager sharedLayers] currentLayer] addChild:_label];
@@ -49,6 +54,11 @@
     {
         [_label setScale:(scale/2.0f)];
     }
+}
+
+-(void)setMultilineCentered
+{
+    _label.alignment = UITextAlignmentCenter;
 }
 
 -(void)setHorizontalAlignment:(TextAlignment)alignment

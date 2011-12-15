@@ -11,6 +11,7 @@
 
 @class ClippingNode;
 @class Sprite;
+@class GameLabel;
 @class ActionButton;
 
 @interface OptionsScene : CCLayer
@@ -35,6 +36,16 @@
     
     ClippingNode *_musicMask;
     ClippingNode *_sfxMask;
+    
+    GameLabel *_eraseText;
+    GameLabel *_dataText;
+    
+    GameLabel *_howToText;
+    GameLabel *_playText;
+    
+    GameLabel *_creditsText;
+    
+    GameLabel *_optionsHeader;
     
     bool _isTransitioning;
     

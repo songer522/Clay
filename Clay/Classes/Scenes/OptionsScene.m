@@ -13,6 +13,7 @@
 #import "TextureManager.h"
 #import "ClippingNode.h"
 #import "SoundEngine.h"
+#import "GameLabel.h"
 
 @implementation OptionsScene
 
@@ -39,6 +40,13 @@
 
 -(void)load
 {
+    float eraseX = 85.0f;
+    float tutorialX = 240.0f;
+    float creditsX = 395.0f;
+    float textScale = 0.68f;
+    float smallPanelY = 76.0f;
+
+    
     [[LayerManager sharedLayers] setWorkingLayer:self];    
     
     [[TextureManager shared] loadMemoryForKey:@"optionsScreen"];
@@ -70,16 +78,28 @@
     _sfxSheetTop = [Sprite spriteCenteredWithFrame:@"Options_Stave_TypeB_1.png" Position:ccp(240,150)];
     
     _howToPlayButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Options_Panel_S.png" Selected:@"Options_Panel_S.png"];
-    [_howToPlayButton setPosition:ccp(240,76)];
+    [_howToPlayButton setPosition:ccp(240,smallPanelY)];
     [_howToPlayButton setHitboxBySize:CGSizeMake(143, 70)];
 
     _eraseDataButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Options_Panel_S.png" Selected:@"Options_Panel_S.png"];
-    [_eraseDataButton setPosition:ccp(85,76)];
+    [_eraseDataButton setPosition:ccp(85,smallPanelY)];
     [_eraseDataButton setHitboxBySize:CGSizeMake(143, 70)];
+    
+    _eraseText = [GameLabel gameLabelWithText:@"ERASE" Scale:textScale Position:ccp(eraseX,83)];
+    _dataText = [GameLabel gameLabelWithText:@"DATA" Scale:textScale Position:ccp(eraseX,65)];
 
+    _howToText = [GameLabel gameLabelWithText:@"HOW TO" Scale:textScale Position:ccp(tutorialX,83)];
+    _playText = [GameLabel gameLabelWithText:@"PLAY" Scale:textScale Position:ccp(tutorialX,65)];
+    
     _creditsButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Options_Panel_S.png" Selected:@"Options_Panel_S.png"];
-    [_creditsButton setPosition:ccp(395,76)];
+    _creditsText = [GameLabel gameLabelWithText:@"CREDITS" Scale:textScale Position:ccp(creditsX,smallPanelY - 2)];
+    [_creditsButton setPosition:ccp(creditsX,smallPanelY)];
     [_creditsButton setHitboxBySize:CGSizeMake(143, 70)];
+    
+    
+    _optionsHeader = [GameLabel gameLabelWithText:@"OPTIONS" Scale:0.65f];
+    [_optionsHeader setPosition:ccp(240.0f,291.0f)];
+
 
     
     [[LayerManager sharedLayers] forgetWorkingLayer];
@@ -186,6 +206,20 @@
     [_eraseDataButton release];
     [_howToPlayButton release];
     [_creditsButton release];
+    
+    [_musicMask release];
+    [_sfxMask release];
+    
+    [_eraseText release];
+    [_dataText release];
+    [_howToText release];
+    [_playText release];
+    [_creditsText release];
+    
+    [_optionsHeader release];
+    [_backButton release];
+    
+    [[TextureManager shared] unloadMemoryForKey:@"optionsScreen"];
 }
 
 @end

@@ -9,6 +9,7 @@
 #import "Button.h"
 
 @class Sprite;
+@class GameLabel;
 
 @interface ActionButton : Button
 {
@@ -31,10 +32,12 @@
 -(void)setIdleSpriteFrame:(NSString*)name;
 -(void)setSelectedSpriteFrame:(NSString*)name;
 -(void)setInitialText:(NSString*)text;
+-(void)setInitialMultilineText:(NSString*)text Width:(int)width;
+-(void)setMultilineCentered;
 -(void)setRelativeHitbox:(CGRect)rect;
 -(void)setHitboxBySize:(CGSize)size;
 -(bool)checkIfSelected:(CGPoint)touch;
-
+-(CCLabelBMFont*)getLabel;
 -(void)update:(float)dt;
 
 

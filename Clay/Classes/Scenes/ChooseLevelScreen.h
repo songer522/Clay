@@ -22,8 +22,7 @@
     NSMutableArray *_buttons;
     float _waitToSwitch;
     float _alpha;
-    bool _backToMainMenu;
-    bool _backToLevelSelect;
+    bool _backToChooseMode;
     bool _inTutorial;
     NSString *_levelToSwitchTo;
     
@@ -55,7 +54,7 @@
 
 -(void)popAndSwitchToLevel:(NSString*)level;
 
--(void)switchToMainMenu;
+-(void)switchToChooseModeScreen;
 
 -(void)transitionOut;
 -(void)updateBestTimeTextWithLevel:(int)level;
