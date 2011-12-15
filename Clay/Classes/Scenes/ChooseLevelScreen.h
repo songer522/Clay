@@ -15,6 +15,7 @@
 @class GameLabel;
 @class Sprite;
 @class ActionButton;
+@class ChooseLevelPanel;
 
 @interface ChooseLevelScreen : CCLayer
 {
@@ -25,6 +26,10 @@
     bool _backToLevelSelect;
     bool _inTutorial;
     NSString *_levelToSwitchTo;
+    
+    NSString *_gameMode; //weak references
+    NSString *_gameDifficulty; //weak references
+    
     
     Sprite *_background;    
     Sprite *_selector;
@@ -37,6 +42,8 @@
     ActionButton *_closeTutorial;
     
     CCScrollLayer *scroller;
+    
+    ChooseLevelPanel *_frontPanel;
     
     int _selected;
 }

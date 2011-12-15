@@ -23,7 +23,7 @@
 
 +(id)actionButtonWithText:(NSString*)text
 {
-    return [[self alloc] initWithText:text ButtonImageName:@"CL_Button.png" ButtonPressedImageName:@"CL_ButtonPressed.png"];
+    return [[self alloc] initWithText:text ButtonImageName:@"UI_GameType_ButtonS_Blue.png" ButtonPressedImageName:@"UI_GameType_ButtonS_Green.png"];
 }
 
 +(id)actionButtonInGameWithText:(NSString*)text

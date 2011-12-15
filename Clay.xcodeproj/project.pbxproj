@@ -178,6 +178,7 @@
 		5461BFE61497F85100EF6A42 /* chooseMode.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5461BFE21497F85100EF6A42 /* chooseMode.plist */; };
 		5461BFE71497F85100EF6A42 /* chooseMode.png in Resources */ = {isa = PBXBuildFile; fileRef = 5461BFE31497F85100EF6A42 /* chooseMode.png */; };
 		5461BFEA1497FA7200EF6A42 /* ModePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5461BFE91497FA7200EF6A42 /* ModePanel.m */; };
+		5463945D1499685D0053A1F6 /* ChooseLevelPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5463945C1499685D0053A1F6 /* ChooseLevelPanel.m */; };
 		546E830E148EE9F500154AE7 /* tileset_level_10-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 546E830C148EE9F500154AE7 /* tileset_level_10-hd.png */; };
 		546E830F148EE9F500154AE7 /* tileset_level_10.png in Resources */ = {isa = PBXBuildFile; fileRef = 546E830D148EE9F500154AE7 /* tileset_level_10.png */; };
 		5474D4AE147453A10038B358 /* GameSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 5474D4AD147453A10038B358 /* GameSettings.m */; };
@@ -776,6 +777,8 @@
 		5461BFE31497F85100EF6A42 /* chooseMode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chooseMode.png; sourceTree = "<group>"; };
 		5461BFE81497FA7200EF6A42 /* ModePanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModePanel.h; sourceTree = "<group>"; };
 		5461BFE91497FA7200EF6A42 /* ModePanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModePanel.m; sourceTree = "<group>"; };
+		5463945B1499685D0053A1F6 /* ChooseLevelPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseLevelPanel.h; sourceTree = "<group>"; };
+		5463945C1499685D0053A1F6 /* ChooseLevelPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseLevelPanel.m; sourceTree = "<group>"; };
 		546E830C148EE9F500154AE7 /* tileset_level_10-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tileset_level_10-hd.png"; path = "Resources/levels/tileset_level_10-hd.png"; sourceTree = "<group>"; };
 		546E830D148EE9F500154AE7 /* tileset_level_10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tileset_level_10.png; path = Resources/levels/tileset_level_10.png; sourceTree = "<group>"; };
 		5474D4AC147453A00038B358 /* GameSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSettings.h; sourceTree = "<group>"; };
@@ -2036,8 +2039,8 @@
 			children = (
 				54E25D79146B23900016ADEB /* ActionButton.h */,
 				54E25D7A146B23910016ADEB /* ActionButton.m */,
-				5461BFE81497FA7200EF6A42 /* ModePanel.h */,
-				5461BFE91497FA7200EF6A42 /* ModePanel.m */,
+				5463945B1499685D0053A1F6 /* ChooseLevelPanel.h */,
+				5463945C1499685D0053A1F6 /* ChooseLevelPanel.m */,
 				549ED7BD1461D065008BCD98 /* Battery.h */,
 				549ED7BE1461D065008BCD98 /* Battery.m */,
 				549ED7BF1461D065008BCD98 /* Button.h */,
@@ -2048,6 +2051,8 @@
 				549ED7C21461D065008BCD98 /* HudButton.m */,
 				549D84DE1469E80000A3599F /* LevelButton.h */,
 				549D84DF1469E80000A3599F /* LevelButton.m */,
+				5461BFE81497FA7200EF6A42 /* ModePanel.h */,
+				5461BFE91497FA7200EF6A42 /* ModePanel.m */,
 				549ED7C31461D065008BCD98 /* TrackTimer.h */,
 				549ED7C41461D065008BCD98 /* TrackTimer.m */,
 				61DE5C031485868F00D325CF /* Tutorial.h */,
@@ -2885,6 +2890,7 @@
 				54E1AC0A1497B80A00DFCA77 /* CreditsScene.m in Sources */,
 				54E1AC0D1497B85200DFCA77 /* ExtrasScene.m in Sources */,
 				5461BFEA1497FA7200EF6A42 /* ModePanel.m in Sources */,
+				5463945D1499685D0053A1F6 /* ChooseLevelPanel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

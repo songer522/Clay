@@ -31,9 +31,9 @@
     NSString *frameName;
     bool unlocked = true; //for now, eventually check storage
     if (unlocked && _buttonId <= 11) {
-        frameName = [NSString stringWithFormat:@"CL_Level%d.png",_buttonId];
+        frameName = [NSString stringWithFormat:@"LevelSelector_Level%d.png",_buttonId];
     } else {
-        frameName = @"CL_LevelLocked.png";
+        frameName = @"LevelSelector_LevelLocked.png";
     }
     
     _buttonGraphic = [Sprite spriteFromFrameCacheWithName:frameName];
@@ -44,7 +44,7 @@
 -(void)setInitialPosition
 {
     //initial position
-    float startX = 119; //was 212 for left panel
+    float startX = 220; //was 212 for left panel
     float startY = 190; //was 181 for left panel and 11 levels, and 186 without
     float row = floorf((_buttonId - 1) / 4);
     
@@ -88,8 +88,8 @@
 -(void)setSelected
 {
     CGPoint position = [_buttonGraphic getCCSprite].position;
-    position.x -= 3.5f;
-    position.y -= 4.0f;
+    //position.x -= 3.5f;
+    //position.y -= 4.0f;
     [_selector setScreenPosition:position];
     [[_selector getCCSprite] setVisible:YES];    
 }
@@ -101,7 +101,7 @@
 
 -(void)setTrophy:(int)trophyId
 {
-    NSString *frameName = [NSString stringWithFormat:@"CL_Trophy_%d.png",trophyId];
+    NSString *frameName = [NSString stringWithFormat:@"LevelSelector_Trophy_%d.png",trophyId];
     _trophy = [Sprite spriteFromFrameCacheWithName:frameName];
     [self setTrophyPosition];
 }

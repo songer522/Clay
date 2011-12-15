@@ -27,6 +27,7 @@
 #import "TrackTimer.h"
 #import "BestTimes.h"
 #import "ChooseModeScene.h"
+#import "ChooseLevelPanel.h"
 
 
 
@@ -71,6 +72,9 @@
         _inTutorial=false;
         _waitToSwitch = 0.0f;
         self.isTouchEnabled = YES;
+        
+        _gameMode = [[GameSettings shared] getGlobalForKey:@"gameMode"];
+        _gameDifficulty = [[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
         
         NSString *musicStarted = [[GameSettings shared] getGlobalForKey:@"titleMusicStarted"];
         if (![musicStarted isEqualToString:@"YES"]) {
@@ -164,10 +168,10 @@
 
     [[TextureManager shared] loadMemoryForKey:@"chooseLevel"];
     
-    _background = [Sprite spriteFromFrameCacheWithName:@"CL_Background.png"];
+    _background = [Sprite spriteFromFrameCacheWithName:@"LevelSelector_Background.png"];
     [_background setScreenPosition:ccp(0,0)];
     
-    _selector = [Sprite spriteFromFrameCacheWithName:@"CL_LevelSelected.png"];
+    _selector = [Sprite spriteFromFrameCacheWithName:@"LevelSelector_LevelSelected.png"];
     [_selector setPosition:ccp(0,0)];
     [[_selector getCCSprite] setVisible:NO];
     
@@ -177,8 +181,8 @@
     _backButton = [ActionButton actionButtonWithText:@"BACK"];
     [_backButton setPosition:ccp(50, 18)];
     
-    _bestLevelTimeText = [GameLabel gameLabelWithText:@"" Scale:0.6f Position:ccp(240.0f,35.0f)];
-    [_bestLevelTimeText setCentered];
+    //_bestLevelTimeText = [GameLabel gameLabelWithText:@"" Scale:0.6f Position:ccp(240.0f,35.0f)];
+    //[_bestLevelTimeText setCentered];
     
     
     //load level buttons (init best level time text first because it gets set in here)
@@ -195,13 +199,15 @@
         [_buttons addObject:button];
     }
     
-    _levelSelectText = [GameLabel gameLabelWithText:@"LEVEL SELECT" Scale:0.75f Position:ccp(365.0f,278.0f)];
+    _levelSelectText = [GameLabel gameLabelWithText:@"LEVEL SELECT" Scale:0.75f Position:ccp(365.0f,280.0f)];
     
     //load any medals earned
     [self loadMedals];
     
     //[self loadTutorial];
     
+    
+    _frontPanel = [ChooseLevelPanel instance];
     
     [[LayerManager sharedLayers] forgetWorkingLayer];
     [self scheduleUpdate];
@@ -212,13 +218,9 @@
 -(void)loadMedals
 {
     
-    
-    NSString *mode = [[GameSettings shared] getGlobalForKey:@"gameMode"];
-    NSString *difficulty = [[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
-    
-    if ([mode isEqualToString:@"timed"]) {
+    if ([_gameMode isEqualToString:@"timed"]) {
         NSDictionary *medalsDict = [PListLoader loadPlistWithName:@"medals"];
-        NSDictionary *modeDict = [medalsDict objectForKey:mode];
+        NSDictionary *modeDict = [medalsDict objectForKey:_gameMode];
         
         for (LevelButton *button in _buttons)
         {
@@ -227,12 +229,12 @@
             //get the level name for the button and get the data for that
             NSString *levelName = [NSString stringWithFormat:@"level%d",i];
 
-            float bestTime = [[BestTimes shared] getBestTimeForLevelName:levelName forDifficulty:difficulty];
+            float bestTime = [[BestTimes shared] getBestTimeForLevelName:levelName forDifficulty:_gameDifficulty];
             
             NSDictionary *levelDict = [modeDict objectForKey:levelName];
             
             //get medal data based on the levels difficulty
-            NSDictionary *medals = [levelDict objectForKey:difficulty];
+            NSDictionary *medals = [levelDict objectForKey:_gameDifficulty];
             
             int bronzeTime = [[medals objectForKey:@"bronze"] intValue];
             int silverTime = [[medals objectForKey:@"silver"] intValue];
@@ -300,9 +302,9 @@
 {
     float bestTime = [[BestTimes shared] getBestTimeForLevelNumber:level];
     if (bestTime == 0.0f) {
-        [_bestLevelTimeText setText:[NSString stringWithFormat:@""]];
+        //[_bestLevelTimeText setText:[NSString stringWithFormat:@""]];
     } else {
-        [_bestLevelTimeText setText:[NSString stringWithFormat:@"BEST TIME: %@",[TrackTimer getTimeStringFromFloat:bestTime]]];
+        //[_bestLevelTimeText setText:[NSString stringWithFormat:@"BEST TIME: %@",[TrackTimer getTimeStringFromFloat:bestTime]]];
     }
 }
 
@@ -345,7 +347,7 @@
     [_background release];
     [_levelToSwitchTo release];
     [_levelSelectText release];
-    [_bestLevelTimeText release];
+    //[_bestLevelTimeText release];
     [_startButton release];
     [_backButton release];
     [_selector release];
