@@ -15,6 +15,8 @@
 #import "SoundEngine.h"
 #import "GameLabel.h"
 #import "MainMenuScene.h"
+#import "Tutorial.h"
+#import "CreditsScene.h"
 
 //IPAD FIX: width and offset
 #define OPTIONS_SCENE_OFFSET_X 30.0f
@@ -39,6 +41,7 @@
         self.isTouchEnabled = YES;
         _isTransitioning = false;
         _backToMainMenu = false;
+        _inTutorial = false;
         _waitToSwitch = 0.0f;
     }
     
@@ -119,7 +122,7 @@
     for(UITouch *touch in allTouches)
     {
         CGPoint position = [self convertTouchToNodeSpace:touch];
-        if(!_isTransitioning) {
+        if(!_isTransitioning && !_inTutorial) {
             [self sliderReactionAtPosition:position];
         }
     }
@@ -132,7 +135,7 @@
     for(UITouch *touch in allTouches)
     {
         CGPoint position = [self convertTouchToNodeSpace:touch];
-        if(!_isTransitioning) {
+        if(!_isTransitioning && !_inTutorial) {
             [self sliderReactionAtPosition:position];
         }
     }
@@ -145,9 +148,16 @@
     for(UITouch *touch in allTouches)
     {
         CGPoint position = [self convertTouchToNodeSpace:touch];
-        if(!_isTransitioning) {
+        if(!_isTransitioning && !_inTutorial) {
             if ([_howToPlayButton checkIfSelected:position]) {
-                
+                _waitToSwitch = 0.25f;
+                _backToMainMenu = false;
+                _switchToType = OPTIONS_SWITCHTO_HOWTOPLAY;
+                [[SoundEngine shared] playSound:@"buttonPressed"];
+            } else if([_creditsButton checkIfSelected:position]) {
+                _waitToSwitch = 0.25f;
+                _backToMainMenu = false;
+                _switchToType = OPTIONS_SWITCHTO_CREDITS;
             }
             
             if([_backButton checkIfSelected:position]) {
@@ -204,6 +214,18 @@
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[MainMenuScene scene]]];
 }
 
+-(void)switchToTutorial
+{
+    _tutorial = [[Tutorial alloc] initWithinLayer:self];
+    [_tutorial switchToTutorial];
+}
+
+-(void)switchToCreditsScreen
+{
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[CreditsScene scene]]];
+}
+
+
 -(void)update:(ccTime)dt
 {
     [_backButton update:dt];
@@ -214,6 +236,17 @@
             _waitToSwitch = 0.0f;
             if (_backToMainMenu) {
                 [self switchToMainMenuScreen];
+            } else {
+                switch (_switchToType) {
+                    case OPTIONS_SWITCHTO_HOWTOPLAY:                        
+                        [self switchToTutorial];
+                        break;
+                    case OPTIONS_SWITCHTO_CREDITS:
+                        [self switchToCreditsScreen];
+                        break;
+                    default:
+                        break;
+                }
             }
         }
     }

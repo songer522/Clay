@@ -10,6 +10,7 @@
 #import "GameLabel.h"
 #import "LayerManager.h"
 #import "PListLoader.h"
+#import "OptionsScene.h"
 
 @implementation CreditsScene
 
@@ -89,6 +90,18 @@
     _currentY -= 20;
 }
 
+-(void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    NSSet *allTouches = [event allTouches];
+    
+    for(UITouch *touch in allTouches)
+    {
+        [self switchToOptionsScreen];
+        break;        
+    }
+}
+
+
 -(void)loadCredits
 {
     NSDictionary *credits = [PListLoader loadPlistWithName:@"credits"];
@@ -101,9 +114,14 @@
     }
 }
 
+-(void)switchToOptionsScreen
+{
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[OptionsScene scene]]];
+}
+
 -(void)update:(ccTime)dt
 {
-    float rate = 22.0f * dt;
+    float rate = 32.0f * dt;
     self.position = ccp(self.position.x, self.position.y + rate);
 }
 

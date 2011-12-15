@@ -9,10 +9,16 @@
 #import "cocos2d.h"
 #import "CCLayer.h"
 
+typedef enum {
+    OPTIONS_SWITCHTO_HOWTOPLAY,
+    OPTIONS_SWITCHTO_CREDITS
+}OptionsSwitchToType;
+
 @class ClippingNode;
 @class Sprite;
 @class GameLabel;
 @class ActionButton;
+@class Tutorial;
 
 @interface OptionsScene : CCLayer
 {
@@ -47,12 +53,19 @@
     
     GameLabel *_optionsHeader;
     
+    Tutorial *_tutorial;
+    
+    OptionsSwitchToType _switchToType;
+    
     bool _isTransitioning;
+    bool _inTutorial;
     bool _backToMainMenu;
     float _waitToSwitch;
     
     ActionButton *_backButton;
 }
+
++(CCScene*)scene;
 
 -(void)load;
 -(void)setMusicXPosition:(float)xPos;
@@ -64,5 +77,7 @@
 -(void)sliderReactionAtPosition:(CGPoint)position;
 
 -(void)switchToMainMenuScreen;
+-(void)switchToTutorial;
+-(void)switchToCreditsScreen;
 
 @end
