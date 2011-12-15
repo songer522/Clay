@@ -183,7 +183,7 @@
 		<key>animations</key>
 		<string>none</string>
 		<key>sounds</key>
-		<string>buttonPressed</string>
+		<string>buttonPressed,turboStart,jumpStart,dead,doubleJump</string>
 		<key>textures</key>
 		<string>optionsScreen</string>
 	</dict>

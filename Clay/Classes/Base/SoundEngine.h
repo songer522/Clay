@@ -27,6 +27,9 @@ typedef enum {
     NSDictionary *_soundMap;
     NSDictionary *_musicMap;
     
+    float _masterMusicVolume;
+    float _masterSfxVolume;
+    
     float _volume;
     SoundMode _soundMode;
     
@@ -44,5 +47,8 @@ typedef enum {
 -(void)toggleMute;
 -(void)cueFadeIn;
 -(void)cueFadeOut;
+
+-(void)setMasterMusicVolume:(float)masterVolume;
+-(void)setMasterSfxVolume:(float)masterVolume;
 -(void)update:(float)dt;
 @end

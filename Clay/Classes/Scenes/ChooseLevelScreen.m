@@ -132,36 +132,6 @@
     }
 }
 
--(void)loadTutorial
-{
-    CCLayer *pageOne = [[CCLayer alloc] init];
-    CCSprite *image1=[CCSprite spriteWithFile:@"image1.png"];
-    [image1 setPosition:ccp(240,160)];
-    [pageOne addChild:image1];
-    
-    CCLayer *pageTwo = [[CCLayer alloc] init];
-    CCSprite *image2=[CCSprite spriteWithFile:@"image2.png"];
-    [image2 setPosition:ccp(240,160)];
-    [pageTwo addChild:image2];
-    
-    CCLayer *pageThree = [[CCLayer alloc] init];
-    CCSprite *image3=[CCSprite spriteWithFile:@"image3.png"];
-    [image3 setPosition:ccp(240,160)];
-    [pageThree addChild:image3];
-    _closeTutorial=[ActionButton buttonWithText:@"Done" AtPoint:ccp(320,70) inLayer:pageThree];
-    
-    
- 
-        
-    scroller = [[CCScrollLayer alloc] initWithLayers:[NSMutableArray arrayWithObjects: pageOne,pageTwo,pageThree,nil] widthOffset: 200];
-    
-    [self addChild:scroller];
-    [scroller setVisible:NO];
-    scroller.showPagesIndicator=NO;
-    
-
-}
-
 -(void)load
 {
     [[LayerManager sharedLayers] setWorkingLayer:self];    
@@ -287,21 +257,6 @@
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ChooseModeScene scene]]];
 }
 
--(void)switchToTutorial
-{
-    if(!_inTutorial){
-    [scroller setVisible:YES];
-    scroller.showPagesIndicator=YES;
-        _inTutorial=true;
-    }
-    else
-    {
-        [scroller setVisible:NO];
-        scroller.showPagesIndicator=NO;
-        _inTutorial=false;
-    }
-}
-
 -(void)transitionOut
 {
 }
@@ -327,7 +282,6 @@
 
     [_startButton update:dt];
     [_backButton update:dt];
-    [_closeTutorial update:dt];
 
     if (_waitToSwitch>0.0f) {
         _waitToSwitch-=dt;
@@ -354,8 +308,6 @@
     
     [_buttons removeAllObjects];
     _buttons = nil;
-    [scroller release];
-    [_closeTutorial release];
     [_background release];
     [_levelToSwitchTo release];
     [_levelSelectText release];

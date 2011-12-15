@@ -39,9 +39,6 @@
     
     ActionButton *_startButton;
     ActionButton *_backButton;
-    ActionButton *_closeTutorial;
-    
-    CCScrollLayer *scroller;
     
     ChooseLevelPanel *_frontPanel;
     
