@@ -154,7 +154,7 @@
 
 -(void)getDesiredAction
 {
-    int selectedButtonIndex = [_currentPanel getSelectedIndex];
+    int selectedButtonIndex = _currentPanel.selectedIndex;
     if (_currentPanel == _storyModePanel) {
         if (selectedButtonIndex == 0) {
             [[GameSettings shared] setGlobal:@"easy" ForKey:@"gameDifficulty"];

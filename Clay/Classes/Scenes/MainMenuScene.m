@@ -166,8 +166,6 @@
             
             if ([_playButton testCollision:position]) {
                 _switchToChoice = MENU_SWITCHTO_CHOOSELEVEL;
-                [[GameSettings shared] setGlobal:@"timed" ForKey:@"gameMode"];
-                [[GameSettings shared] setGlobal:@"normal" ForKey:@"gameDifficulty"];
                 _selectedButton = _playButton;
                 shouldStart = true;
             } else if ([_leaderboardsButton testCollision:position]) {
