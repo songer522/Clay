@@ -78,6 +78,7 @@
 -(void)endLevel;
 
 -(void)switchToChooseLevel;
+-(void)switchToChooseMode;
 
 -(NSMutableArray*)getGameObjectsList;
 

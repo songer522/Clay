@@ -28,6 +28,7 @@
 #import "TrackTimer.h"
 #import "RunningSpeed.h"
 #import "ChooseLevelScreen.h"
+#import "ChooseModeScene.h"
 
 #define DEBUG_DRAW_BOUNDING_BOXES 0
 
@@ -411,6 +412,10 @@
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[ChooseLevelScreen scene]]];
 }
 
+-(void)switchToChooseMode
+{
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[ChooseModeScene scene]]];    
+}
 
 - (void) dealloc
 {

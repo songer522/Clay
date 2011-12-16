@@ -21,6 +21,7 @@
 #import "GameSettings.h"
 #import "TrackTimer.h"
 #import "Appirater.h"
+#import "GameSettings.h"
 
 @implementation ComicManager
 
@@ -179,11 +180,20 @@ static ComicManager *_shared = nil;
 
 -(void)finishedAction
 {
+    GameLayer *gameLayer = (GameLayer*)[[LayerManager sharedLayers] currentLayer];
+    NSString *gameMode = [[GameSettings shared] getGlobalForKey:@"gameMode"];
+    
+
     if (_isActive) {
         switch (_phase) {
             case COMIC_PHASE_BARS_IN:
                // [Appirater appEnteredForeground:YES];
-                [self switchToPhase:COMIC_PHASE_PLAY_VIDEO];
+                
+                if ([gameMode isEqualToString:@"story"]) {
+                    [self switchToPhase:COMIC_PHASE_PLAY_VIDEO];                    
+                } else {
+                    [gameLayer switchToChooseLevel];
+                }
                 break;
             case COMIC_PHASE_STARTING_VIDEO:
                 [self switchToPhase:COMIC_PHASE_PLAY_VIDEO];

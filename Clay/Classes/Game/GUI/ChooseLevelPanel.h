@@ -23,6 +23,8 @@ typedef enum {
 {
     float _currentXPos;
     
+    CCNode *_root;
+    
     Sprite *_background;
     Sprite *_levelTitle;
     Sprite *_levelPreview;
@@ -48,7 +50,11 @@ typedef enum {
 
 +(id)instance;
 
--(void)loadObjectsAfterDataInit;
+-(void)loadObjectsAfterDataInit:(id)layer;
+
+
+-(void)reset:(id)layer;
+
 -(void)setAlpha:(float)alpha;
 
 //sets bestTimeText
@@ -61,5 +67,6 @@ typedef enum {
 -(void)setNextMedal:(int)medalId RequiredTime:(NSString*)time;
 
 -(void)setPanelXPosition:(float)newX;
+-(void)setPanelTransitionAmount:(float)amount;
 
 @end

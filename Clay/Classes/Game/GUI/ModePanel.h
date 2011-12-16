@@ -44,14 +44,13 @@ typedef enum {
 }
 
 @property(nonatomic,assign) bool isActive;
-
+@property(nonatomic,assign) int selectedIndex;
 
 +(id)panelAtPosition:(CGPoint)position;
 
 
 
 -(void)addButtons:(NSArray*)buttonNames;
--(bool)getSelectedIndex;
 -(void)makeActive;
 -(void)makeCursorActive;
 -(void)setHeaderFrame:(NSString*)activeName Inactive:(NSString*)inactiveName;

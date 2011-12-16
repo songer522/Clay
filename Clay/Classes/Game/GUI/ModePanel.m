@@ -31,6 +31,7 @@
 @implementation ModePanel
 
 @synthesize isActive = _isActive;
+@synthesize selectedIndex = _selectedIndex;
 
 +(id)panelAtPosition:(CGPoint)position
 {
@@ -72,11 +73,6 @@
         [_buttons addObject:button];
         i++;
     }
-}
-
--(bool)getSelectedIndex
-{
-    return _selectedIndex;
 }
 
 -(void)makeActive
@@ -168,7 +164,7 @@
 -(void)setSelectedIndex:(int)index
 {
     int count = [_buttons count];
-    if (index >= 0 || index < count) {
+    if (index >= 0 && index < count) {
         _selectedIndex = index;        
     }
 }
@@ -183,6 +179,7 @@
             if ([button testCollision:point]) {
                 _selectedIndex = i;
                 [self makeCursorActive];
+                break;
             }
             i++;
         }

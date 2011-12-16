@@ -63,7 +63,8 @@
         _obstacleManager = [[RegionManager alloc] init];
         //_backgroundManager = [[RegionManager alloc] init];
         
-        [self initTiledMap:filename ObstacleLayer:obstacleLayer];
+        NSString *fullFileName = [NSString stringWithString:[self getFullMapFilename:filename]];
+        [self initTiledMap:fullFileName ObstacleLayer:obstacleLayer];
        
         
         [_obstacleManager prepareArrays:_map.mapSize.width];
@@ -102,6 +103,14 @@
     }
     
     return self;
+}
+
+-(NSString*)getFullMapFilename:(NSString*)basename
+{
+    NSString *mode = [[GameSettings shared] getGlobalForKey:@"gameMode"];
+    NSString *difficulty = [[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
+    
+    return [NSString stringWithFormat:@"%@_%@_%@",mode,difficulty,basename];
 }
 
 -(void)setHudButtonsAndThirdAction:(NSString*)action

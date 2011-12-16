@@ -15,6 +15,7 @@
 #import "ActionButton.h"
 #import "Sprite.h"
 #import "SoundEngine.h"
+#import "GameSettings.h"
 
 @interface PauseMenuScreen()
 
@@ -104,7 +105,8 @@
 -(void) doButtonAction
 {
     GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
-
+    NSString *gameMode = [[GameSettings shared] getGlobalForKey:@"gameMode"];
+    
     switch (_action) {
         case PAUSE_ACTION_RESUME:
             [_gameController pauseGame];
@@ -116,7 +118,12 @@
             break;
         case PAUSE_ACTION_MENU:
             [_gameController pauseGame];
-            [gameLayer switchToChooseLevel];
+            
+            if([gameMode isEqualToString:@"story"]) {
+                [gameLayer switchToChooseMode];
+            } else {
+                [gameLayer switchToChooseLevel];
+            }
             break;            
         default:
             break;

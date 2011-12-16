@@ -69,6 +69,7 @@
        
         [scroller setVisible:YES];
         scroller.showPagesIndicator=YES;
+        [scroller selectPage:0];
         _inTutorial=true;
         _alpha = 0.0f;
         _phase = SCROLLER_FADE_IN;
