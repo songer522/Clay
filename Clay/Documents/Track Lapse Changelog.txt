@@ -2,12 +2,22 @@ Track Lapse Changelog
 
 Newest Build
 =====================
-* Global - Added credits screen
-* Global - Updated main menu screen to allow for multiple buttons and use new graphics.
-* Global - Got loading the game center leaderboards screen working.
-* Global - A bunch of new levels created for different difficulties.
+* Choose Level - Added information panel to the left side of the screen.
+* Choose Level - Added the time needed to get the next level to the information panel.
+? Choose Level - Added basic Facebook support
+? Choose Level - Added basic Twitter support
+* Credits - Added basic credits screen, will add a bit more to it later
+* How to Play - What will be the tutorial once the images are made is accessible in the options menu.
+* Main Menu - Got loading the game center leaderboards screen working.
+* Main Menu - Got loading the game center achievements screen working.
+* Main Menu - Updated main menu screen to allow for multiple buttons and use new graphics.
+* Global - Story mode and time mode are a bit more segregated now. After beating a level in time mode it will go back to choose level screen, where story will continue to the next level. Likewise, selecting 'menu' under the pause screen will take the game back to the choose mode screen in story mode.
+* Global - A bunch of new levels created for different difficulties, and can be played via choose mode
+* Options - Added an options menu with everything working except the 'erase data' button.
+* Select Mode - Added an animated choose mode screen that responds appropriately to story mode and timed mode selections
 * Level 7 - Retro obstacles replaced by more unique computer virus obstacles.
 * Level 10 - Changed underwater physics so Tim now glides like expected.
+* Level 10 - Changed action button behavior so you have to hold the button down to keep Tim swimming.
 * Level 11 - Updated bat graphics
 
 Build: 111210.01

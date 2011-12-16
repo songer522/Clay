@@ -65,7 +65,7 @@
         
         NSString *fullFileName = [NSString stringWithString:[self getFullMapFilename:filename]];
         [self initTiledMap:fullFileName ObstacleLayer:obstacleLayer];
-       
+        //[self initTiledMap:filename ObstacleLayer:obstacleLayer];
         
         [_obstacleManager prepareArrays:_map.mapSize.width];
         //[_backgroundManager prepareArrays:_map.mapSize.width];
