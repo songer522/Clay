@@ -148,6 +148,7 @@ static GCHelper *sharedHelper = nil;
     GKLeaderboardViewController *leaderboardController = [[[GKLeaderboardViewController alloc] init] autorelease];
     
     if (leaderboardController!=NULL) {
+//        leaderboardController.category = 
         leaderboardController.timeScope = GKLeaderboardTimeScopeAllTime;
         leaderboardController.leaderboardDelegate = self;
         AppDelegate *delegate = [UIApplication sharedApplication].delegate;

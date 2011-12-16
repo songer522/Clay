@@ -329,9 +329,9 @@
             [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ChooseModeScene scene]]];
             break;
         case MENU_SWITCHTO_LEADERBOARDS:
-            //[[GCHelper sharedInstance] showLeaderboards];
-            prompt = [FBPrompt promptWithAppId:@"264174546971482" andDelegate:self];
-            [prompt showFacebookDialogWithDescription:@"Hello!" andPicture:@"http://fbrell.com/f8.jpg"];
+            [[GCHelper sharedInstance] showLeaderboards];
+            //prompt = [FBPrompt promptWithAppId:@"264174546971482" andDelegate:self];
+            //[prompt showFacebookDialogWithDescription:@"Hello!" andPicture:@"http://fbrell.com/f8.jpg"];
            break;
         case MENU_SWITCHTO_ACHIEVEMENTS:
             [[GCHelper sharedInstance] showAchievements];

@@ -198,6 +198,8 @@
         case GAMEMODE_STORY_EASY:
         case GAMEMODE_STORY_NORMAL:
         case GAMEMODE_STORY_HARD:
+            [[GameSettings shared] setGlobal:@"NO" ForKey:@"titleMusicStarted"];
+            [[GameSettings shared] setGlobal:@"level1" ForKey:@"startingLevel"];
             [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[GameLayer scene]]];
             break;
         case GAMEMODE_TIMED_NORMAL:
