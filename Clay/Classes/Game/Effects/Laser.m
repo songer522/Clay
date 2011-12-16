@@ -64,7 +64,7 @@
     //IPAD FIX: want to place the laser at a random position in front of the player to the edge of the screen,
     //also make sure they are not going off the top of the screen. *may* require either taller lasers drawn by tian
     //or less extreme of a sprite rotation located at ("[_sprite getCCSprite].rotation = (rand() % 80) - 40;" below).
-    if ([GameSettings usingHighResolutionGraphics]) {
+    if ([[GameSettings shared] usingHighResolutionGraphics]) {
         _position = CGPointMake(playerPosition.x + rand()%600, 200.0f);        
     } else {
         _position = CGPointMake(playerPosition.x + rand()%600, 200.0f);

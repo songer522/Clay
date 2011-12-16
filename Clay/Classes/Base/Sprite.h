@@ -14,6 +14,7 @@
 @interface Sprite : NSObject
 {
     CCSprite *sprite_cc;
+    NSString *_frameName;
     Animation *_animation;
     float _x;
     float _y;
@@ -22,6 +23,7 @@
 
 @property (nonatomic,assign) float x;
 @property (nonatomic,assign) float y;
+@property (nonatomic,readonly) NSString *name;
 
 +(id) instance;
 +(id) spriteWithFile:(NSString *)filename;

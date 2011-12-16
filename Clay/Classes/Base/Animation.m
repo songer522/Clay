@@ -47,6 +47,7 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
         _currentDelayModifier = 1.0f;
         _speedAction = nil;
         _spriteSheet = [CCSpriteBatchNode batchNodeWithFile:[name stringByAppendingString:ANIMATION_GRAPHIC_EXTENSION]];
+        _frameNames = [[NSMutableDictionary alloc] initWithCapacity:12];
         
         [self createFramesWithSequence:sequence FrameList:(NSString*)framelist];
         
@@ -72,6 +73,8 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
         
         NSString *frameName = [sequence stringByAppendingFormat:@"%@%@%@",frameNumber, ANIMATION_HD_SUFFIX,ANIMATION_GRAPHIC_EXTENSION];
         
+        [_frameNames setObject:frameName forKey:[NSString stringWithFormat:@"%f",frameNumber]];
+        
         //we want to know the name of the first frame, so we can switch sprites to it later
         if (isFirstFrame) {
             _firstFrameName = [[NSString alloc] initWithString:frameName];
@@ -89,7 +92,7 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
 
 -(void)useAnimationToReplaceSprite:(Sprite*)sprite FrameNumber:(int)frameNumber
 {
-    NSString *frameName = [_sequence stringByAppendingFormat:@"%d%@%@",frameNumber, ANIMATION_HD_SUFFIX,ANIMATION_GRAPHIC_EXTENSION];
+    NSString *frameName = [_frameNames objectForKey:[NSString stringWithFormat:@"%f",frameNumber]];
     [self useAnimationToReplaceSprite:sprite FrameName:frameName];
 }
 
@@ -136,9 +139,12 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
 
 -(void)setStaticFrame:(int)frameNumber Sprite:(Sprite*)sprite
 {
-    NSString *frameName = [_sequence stringByAppendingFormat:@"%d%@%@",frameNumber, ANIMATION_HD_SUFFIX,ANIMATION_GRAPHIC_EXTENSION];
-    [[sprite getCCSprite] setBatchNode:_spriteSheet];
-    [[sprite getCCSprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName]];
+    @try {
+        [[sprite getCCSprite] setDisplayFrame:[_frames objectAtIndex:(frameNumber - 1)]];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"ERROR: setStaticFrame - (out of range) ... Frame Number: %d, Sprite: %@",frameNumber,sprite.name);
+    }
 }
 
 -(void)changeAnimationSpeed:(float)newSpeed
@@ -171,6 +177,9 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
     [_frames removeAllObjects];
     [_frames release];
 
+    [_frameNames removeAllObjects];
+    [_frames release];
+    
     _spriteSheet = nil;
     
     [_firstFrameName release];

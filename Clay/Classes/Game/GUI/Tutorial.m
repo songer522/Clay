@@ -117,7 +117,9 @@
 {
     [scroller release];
     [_images removeAllObjects];
+    [_images release];
     [_pages removeAllObjects];
+    [_pages release];
     
     [super dealloc];
 }

@@ -166,7 +166,7 @@
 -(void)drawBars:(float)position
 {
     float scale = 1.0f;
-    if ([GameSettings usingHighResolutionGraphics]) {
+    if ([[GameSettings shared] usingHighResolutionGraphics]) {
         scale = 2.0f;        
     }
     [self ccDrawFilledRectFrom:ccp(0,0) To:ccp(960,position * scale)];

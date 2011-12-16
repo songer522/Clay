@@ -46,7 +46,7 @@
 
 -(void)setScale:(float)scale
 {
-    if ([GameSettings usingHighResolutionGraphics])
+    if ([[GameSettings shared] usingHighResolutionGraphics])
     {
         [_label setScale:scale];
     }
@@ -96,6 +96,7 @@
 -(void)dealloc
 {
     [_label removeFromParentAndCleanup:YES];
+    _label = nil;
     [super dealloc];
 }
 

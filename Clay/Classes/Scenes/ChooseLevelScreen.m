@@ -83,6 +83,9 @@
             [[SoundEngine shared] playMusic:@"title"];
             [[GameSettings shared] setGlobal:@"YES" ForKey:@"titleMusicStarted"];
         }
+        
+        NSDictionary *medalsDict = [PListLoader loadPlistWithName:@"medals"];
+        _modeDict = [[NSDictionary alloc] initWithDictionary:[medalsDict objectForKey:_gameMode]];
       
         [self load];
        
@@ -214,52 +217,92 @@
     ChooseLevelPanel *panel = [ChooseLevelPanel instance];
     [panel setBestTime:[self getTimestringForFloat:bestTime]];
     [panel setLevelDataByNumber:levelNumber];
-    [panel setNextMedal:1 RequiredTime:@"02:30:00"];
+    
+    int medal = [self getMedalNumberForLevelNamed:levelName Time:bestTime];
+    float requiredTime = [self getTimeForNextMedalForLevelNamed:levelName BestTime:bestTime];
+    
+    [panel setNextMedal:(medal+1) RequiredTime:[TrackTimer getTimeStringFromFloat:requiredTime]];
     [panel loadObjectsAfterDataInit:self];
     
     return panel;
 }
 
--(void)loadMedals
-{
-    
-    if ([_gameMode isEqualToString:@"timed"]) {
-        NSDictionary *medalsDict = [PListLoader loadPlistWithName:@"medals"];
-        NSDictionary *modeDict = [medalsDict objectForKey:_gameMode];
-        
-        for (LevelButton *button in _buttons)
-        {
-            int i = button.buttonId;
-            
-            //get the level name for the button and get the data for that
-            NSString *levelName = [NSString stringWithFormat:@"level%d",i];
 
-            float bestTime = [[BestTimes shared] getBestTimeForLevelName:levelName forDifficulty:_gameDifficulty];
-            
-            NSDictionary *levelDict = [modeDict objectForKey:levelName];
-            
-            //get medal data based on the levels difficulty
-            NSDictionary *medals = [levelDict objectForKey:_gameDifficulty];
-            
-            int bronzeTime = [[medals objectForKey:@"bronze"] intValue];
-            int silverTime = [[medals objectForKey:@"silver"] intValue];
-            int goldTime = [[medals objectForKey:@"gold"] intValue];
-            
-            
-            //set trophy based on what player's best time is for that level
-            if (bestTime!=0) {
-                if (bestTime<goldTime) {
-                    [button setTrophy:3];
-                } else if(bestTime<silverTime) {
-                    [button setTrophy:2];
-                } else if(bestTime<bronzeTime) {
-                    [button setTrophy:1];
-                }                
-            }
+-(int)getMedalNumberForLevelNamed:(NSString*)levelName Time:(float)time
+{
+    int returnVal = 0;
+    
+    NSDictionary *levelDict = [_modeDict objectForKey:levelName];
+    
+    //get medal data based on the levels difficulty
+    NSDictionary *medals = [levelDict objectForKey:_gameDifficulty];
+    
+    int bronzeTime = [[medals objectForKey:@"bronze"] intValue];
+    int silverTime = [[medals objectForKey:@"silver"] intValue];
+    int goldTime = [[medals objectForKey:@"gold"] intValue];
+    
+    
+    //set trophy based on what player's best time is for that level
+    if (time!=0) {
+        if (time<goldTime) {
+            returnVal = 3;
+        } else if(time<silverTime) {
+            returnVal = 2;
+        } else if(time<bronzeTime) {
+            returnVal = 1;
+        } else {
+            returnVal = 0;
         }
     }
     
+    return returnVal;
 }
+
+-(float)getTimeForNextMedalForLevelNamed:(NSString*)levelName BestTime:(float)time
+{
+    int returnVal = 0;
+    
+    NSDictionary *levelDict = [_modeDict objectForKey:levelName];
+    
+    //get medal data based on the levels difficulty
+    NSDictionary *medals = [levelDict objectForKey:_gameDifficulty];
+    
+    int bronzeTime = [[medals objectForKey:@"bronze"] intValue];
+    int silverTime = [[medals objectForKey:@"silver"] intValue];
+    int goldTime = [[medals objectForKey:@"gold"] intValue];
+    
+    if (time<goldTime) {
+        returnVal = goldTime;
+    } else if(time<silverTime) {
+        returnVal = silverTime;
+    } else if(time<bronzeTime) {
+        returnVal = bronzeTime;
+    } else {
+        returnVal = 0;
+    }
+    
+    return returnVal;
+}
+
+
+-(void)loadMedals
+{
+    for (LevelButton *button in _buttons)
+    {
+        int i = button.buttonId;
+        
+        //get the level name for the button and get the data for that
+        NSString *levelName = [NSString stringWithFormat:@"level%d",i];
+
+        float bestTime = [[BestTimes shared] getBestTimeForLevelName:levelName forDifficulty:_gameDifficulty];
+        
+        int medal = [self getMedalNumberForLevelNamed:levelName Time:bestTime];
+        if (medal>0 && medal<4) {
+            [button setTrophy:medal];
+        }
+    }
+}
+
 
 -(void)onExit
 {
@@ -432,6 +475,7 @@
     [_levelToSwitchTo release];
     [_levelSelectText release];
     //[_bestLevelTimeText release];
+    [_modeDict release];
     [_startButton release];
     [_backButton release];
     [_selector release];

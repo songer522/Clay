@@ -29,6 +29,7 @@ static GameSettings *_shared = nil;
     if ((self=[super init])) {
         _settings = [[NSMutableDictionary alloc] initWithCapacity:30];
         [self loadFromSettingsPlist];
+        _usingHighResolutionGraphics = [self calculateShouldUseHighRes];
     }
     return self;
 }
@@ -53,8 +54,14 @@ static GameSettings *_shared = nil;
     return platform;
 }
 
-+(bool)usingHighResolutionGraphics
+-(bool)usingHighResolutionGraphics
 {
+    return _usingHighResolutionGraphics;
+}
+
+-(bool)calculateShouldUseHighRes
+{
+    //ONLY USE IN INIT: EXPENSIVE CALCULATION THAT SHOULD ONLY BE DONE ONCE, NOT EVERY FRAME. USE 'usingHighResolutionGraphics' INSTEAD.
     return [[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2 && [GameSettings shouldUseRetinaForDevice];
 }
 

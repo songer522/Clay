@@ -109,10 +109,10 @@ static GCHelper *sharedHelper = nil;
         dispatch_async(dispatch_get_main_queue(), ^(void)
                        {
                            if (error == NULL) {
-                               NSLog(@"Successfully sent score!");
+                               //NSLog(@"Successfully sent score!");
                                [leaderboardToReport removeObject:score];
                            } else {
-                               NSLog(@"Score failed to send... will try again later. Reason: %@", error.localizedDescription);
+                               //NSLog(@"Score failed to send... will try again later. Reason: %@", error.localizedDescription);
                            }
                        });
     }];
