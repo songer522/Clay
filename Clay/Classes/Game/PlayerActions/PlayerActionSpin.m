@@ -107,6 +107,7 @@
 
 -(void)dealloc
 {
+    _player = nil;
     [super dealloc];
 }
 

@@ -390,6 +390,7 @@
     [_optionsButton release];
     
     [[TextureManager shared] unloadMemoryForKey:@"mainMenu"];
+    [super dealloc];
 }
 
 @end

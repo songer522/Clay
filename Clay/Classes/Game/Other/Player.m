@@ -440,7 +440,8 @@
 -(void)setThirdAction:(NSString*)action
 {
     if (_thirdAction != nil) {
-        _thirdAction = nil;
+        [_thirdAction release];
+        _thirdAction = nil;        
     }
     
     _thirdAction = [PlayerActionFactory buildPlayerActionFromName:action];

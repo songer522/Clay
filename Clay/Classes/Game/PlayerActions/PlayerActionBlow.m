@@ -133,6 +133,7 @@
 -(void)dealloc
 {
     [_wind release];
+    [_windProjectile release];
     [super dealloc];
 }
 

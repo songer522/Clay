@@ -113,11 +113,11 @@
 -(void)reset
 {
     if (_graphic!=nil) {
-        [[[LayerManager sharedLayers] currentLayer] removeChild:[_graphic getCCSprite] cleanup:NO];
+        [[[LayerManager sharedLayers] currentLayer] removeChild:[_graphic getCCSprite] cleanup:YES];
     }
     
     if (_greenOverlay!=nil) {
-        [[[LayerManager sharedLayers] currentLayer] removeChild:[_greenOverlay getCCSprite] cleanup:NO];
+        [[[LayerManager sharedLayers] currentLayer] removeChild:[_greenOverlay getCCSprite] cleanup:YES];
     }
 }
 

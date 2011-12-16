@@ -125,6 +125,7 @@
 
 -(void)dealloc
 {
+    _boss = nil;
     [super dealloc];
 }
 

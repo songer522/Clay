@@ -37,7 +37,7 @@
     NSString *level = [[GameSettings shared] getGlobalForKey:@"storyModeCurrentLevel"];
 
     
-    NSLog(@"SUBSTRING: %@",[level substringToIndex:5]);
+    //NSLog(@"SUBSTRING: %@",[level substringToIndex:5]);
     
     if ([[level substringToIndex:5] isEqualToString:@"level"] && [[level substringFromIndex:5] intValue] > 0) {
         return [NSString stringWithString:level];        
