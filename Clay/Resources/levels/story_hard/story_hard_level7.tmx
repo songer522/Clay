@@ -127,31 +127,26 @@
     <property name="object" value="jimSpaceShip"/>
    </properties>
   </tile>
-  <tile id="36">
-   <properties>
-    <property name="obstacle" value="retroPig"/>
-   </properties>
-  </tile>
-  <tile id="37">
-   <properties>
-    <property name="obstacle" value="retroCrow"/>
-   </properties>
-  </tile>
-  <tile id="38">
-   <properties>
-    <property name="obstacle" value="retroGarbage"/>
-   </properties>
-  </tile>
-  <tile id="39">
-   <properties>
-    <property name="obstacle" value="retroHurdle"/>
-   </properties>
-  </tile>
-  <tile id="40">
-   <properties>
-    <property name="obstacle" value="retroZombie"/>
-   </properties>
-  </tile>
+     <tile id="36">
+         <properties>
+             <property name="obstacle" value="computerMelissa"/>
+         </properties>
+     </tile>
+     <tile id="37">
+         <properties>
+             <property name="obstacle" value="computerWorm"/>
+         </properties>
+     </tile>
+     <tile id="38">
+         <properties>
+             <property name="obstacle" value="computerTrojan"/>
+         </properties>
+     </tile>
+     <tile id="39">
+         <properties>
+             <property name="obstacle" value="computerIloveyou"/>
+         </properties>
+     </tile>
   <tile id="44">
    <properties>
     <property name="special" value="shootTrigger"/>
