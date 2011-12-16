@@ -109,10 +109,10 @@ static GCHelper *sharedHelper = nil;
         dispatch_async(dispatch_get_main_queue(), ^(void)
                        {
                            if (error == NULL) {
-                               //NSLog(@"Successfully sent achievement!");
+                               NSLog(@"Successfully sent score!");
                                [leaderboardToReport removeObject:score];
                            } else {
-                               //NSLog(@"Achievement failed to send... will try again later. Reason: %@", error.localizedDescription);
+                               NSLog(@"Score failed to send... will try again later. Reason: %@", error.localizedDescription);
                            }
                        });
     }];
@@ -144,7 +144,7 @@ static GCHelper *sharedHelper = nil;
      
 }
 
-- (void)reportLeaderboard:(NSString *)identifier score:(int)rawScore {
+- (void)reportLeaderboard:(NSString *)identifier score:(float)rawScore {
     GKScore *score=[[[GKScore alloc] initWithCategory:identifier] autorelease];
     score.value=rawScore;
     [leaderboardToReport addObject:score];
@@ -166,14 +166,16 @@ static GCHelper *sharedHelper = nil;
 
 - (void) showLeaderboards
 {
-    GKLeaderboardViewController *leaderboardController = [[[GKLeaderboardViewController alloc] init] autorelease];
+    GKLeaderboardViewController *leaderboardController = [[GKLeaderboardViewController alloc] init] ;
     
     if (leaderboardController!=NULL) {
+        //leaderboardController.category= gcLeaderboardInsaneTimedLevel1;
         leaderboardController.timeScope = GKLeaderboardTimeScopeAllTime;
         leaderboardController.leaderboardDelegate = self;
         AppDelegate *delegate = [UIApplication sharedApplication].delegate;
         [delegate.viewController presentModalViewController:leaderboardController animated:YES];
     }
+    
 }
 
 - (void) showAchievements

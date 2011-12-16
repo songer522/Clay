@@ -56,7 +56,7 @@
 -(void)save;
 -(id)initWithLeaderboardToReport:(NSMutableArray *)leaderboardToReport achievementsToReport:(NSMutableArray *)achievementsToReport;
 -(void)reportAchievement:(NSString *)identifier percentComplete:(double)percentComplete;
--(void)reportLeaderboard:(NSString *)identifier score:(int)rawScore;
+-(void)reportLeaderboard:(NSString *)identifier score:(float)rawScore;
 
 - (void) showLeaderboards;
 - (void) showAchievements;

@@ -8,13 +8,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "Clay/Classes/Scenes/OptionsScene.m"
-         timestampString = "345679147.580838"
+         filePath = "Clay/Classes/Game/Other/LevelManager.m"
+         timestampString = "345689746.732273"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "172"
-         endingLineNumber = "172"
-         landmarkName = "-ccTouchesEnded:withEvent:"
+         startingLineNumber = "177"
+         endingLineNumber = "177"
+         landmarkName = "-sendScoreforLevel:Difficulty:Mode:andTime:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

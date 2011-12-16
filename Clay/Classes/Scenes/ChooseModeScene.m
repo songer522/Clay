@@ -264,8 +264,8 @@
     [_timedModePanel release];
     [_extrasPanel release];
      */
-    [_backButton release];
-    [_startButton release];
+    //[_backButton release];
+    //[_startButton release];
     /*
     [_selectModeText release];
     

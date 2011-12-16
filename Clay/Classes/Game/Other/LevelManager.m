@@ -19,6 +19,7 @@
 #import "GameSettings.h"
 #import "Appirater.h"
 #import "BestTimes.h"
+#import "GCHelper.h"
 
 @implementation LevelManager
 
@@ -161,12 +162,30 @@ static LevelManager *_shared = nil;
     
     [[TextureManager shared] unloadMemoryForKey:levelName];
 }
+-(void)sendScoreforLevel:(NSString *)level Difficulty:(NSString *)difficulty Mode:(NSString *)mode andTime:(float)time
+{
+    if([difficulty isEqualToString:@"normal"] && [mode isEqualToString:@"timed"]&& [level isEqualToString:@"level1"])
+    {
+        [[GCHelper sharedInstance] reportLeaderboard:gcLeaderboardNormalTimedLevel1 score:time];
+    }
+    else if([difficulty isEqualToString:@"hard"] && [mode isEqualToString:@"timed"]&& [level isEqualToString:@"level1"])
+    {
+        [[GCHelper sharedInstance] reportLeaderboard:gcLeaderboardInsaneTimedLevel1 score:time];
+    }
+    else if([difficulty isEqualToString:@"hard"] && [mode isEqualToString:@"timed"]&& [level isEqualToString:@"level2"])
+    {
+        [[GCHelper sharedInstance] reportLeaderboard:gcLeaderboardInsaneTimedLevel2 score:time];
+    }
+
+}
 
 -(void)recordLevelTime:(float)time
 {
     NSString *levelName = [NSString stringWithString:_currentLevel.name];
     NSString *difficulty = [[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
+    NSString *mode=[[GameSettings shared] getGlobalForKey:@"gameMode"];
     [[BestTimes shared] reportTime:time forLevel:levelName forDifficulty:difficulty];
+    [self sendScoreforLevel:levelName Difficulty:difficulty Mode:mode andTime:time];
 }
 
 -(NSMutableArray*)getActiveGameObjectList
