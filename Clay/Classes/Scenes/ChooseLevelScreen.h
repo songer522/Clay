@@ -20,6 +20,9 @@
 @interface ChooseLevelScreen : CCLayer
 {
     NSMutableArray *_buttons;
+    
+    NSDictionary *_modeDict;
+    
     float _waitToSwitch;
     float _alpha;
     bool _backToChooseMode;
@@ -53,6 +56,8 @@
 -(id) initWithScene:(CCScene*)scene;
 
 -(ChooseLevelPanel*)createInformationPanelForLevel:(int)levelNumber;
+-(int)getMedalNumberForLevelNamed:(NSString*)levelName Time:(float)time;
+-(float)getTimeForNextMedalForLevelNamed:(NSString*)levelName BestTime:(float)time;
 -(void)load;
 -(void)loadMedals;
 
