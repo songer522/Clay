@@ -33,6 +33,18 @@
         _halfTileSize = _tileSize / 2.0f;
         _mapHeight = _map.mapSize.height;
         _mapWidth = _map.mapSize.width;
+        
+        //do any precalculations for performance
+        if ([[GameSettings shared] usingHighResolutionGraphics])
+        {
+            _preCalculateAccurateCoordsY = (_mapHeight * _halfTileSize) / _halfTileSize;
+            _preCalculateTileSize = _halfTileSize;
+        }
+        else
+        {
+            _preCalculateAccurateCoordsY = (_mapHeight * _tileSize) / _tileSize;
+            _preCalculateTileSize = _tileSize;
+        }
     }
     
     return self;
@@ -64,15 +76,7 @@
         
         //if landed on the ledge, put them on top of that ledge
         if ([tileCollision isEqualToString:@"ledgefull"]) {
-            if ([GameSettings usingHighResolutionGraphics])
-            {
-                desiredPosition.y = (_mapHeight - coords.y - 1) * _halfTileSize  + 32.0f;
-            }
-            else
-            {
-                desiredPosition.y = (_mapHeight - coords.y - 1) * _tileSize + 32.0f;
-            }
-            
+            desiredPosition.y = (_mapHeight - coords.y - 1) * _preCalculateTileSize  + 32.0f;            
             [[object getCollision] setCurrentState:COLLISION_STATE_LEDGE];
         } else {
             //otherwise they're in midair, don't change their position
@@ -89,17 +93,9 @@
 {
     int x;
     int y;
-    
-    if ([GameSettings usingHighResolutionGraphics])
-    {
-        x = position.x / _halfTileSize;
-        y = ((_mapHeight * _halfTileSize) - position.y) / _halfTileSize;
-    }
-    else
-    {
-        x = position.x / _tileSize;
-        y = ((_mapHeight * _tileSize) - position.y) / _tileSize;
-    }
+        
+    x = position.x / _preCalculateTileSize;
+    y = _preCalculateAccurateCoordsY - (position.y / _preCalculateTileSize);
     
     //keep x between 0 and _mapWidth - 1
     x = MAX(0, x);

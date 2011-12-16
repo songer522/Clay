@@ -17,6 +17,8 @@
     float _totalTimeBeforeLevel;
     float _levelTime;
     bool _isStopped;
+    
+    int _currentTimerFrameNumbers[7];
 }
 
 @property(nonatomic,assign) bool isStopped;

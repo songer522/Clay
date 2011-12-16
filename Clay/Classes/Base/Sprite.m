@@ -17,6 +17,7 @@
 
 @synthesize x = _x;
 @synthesize y = _y;
+@synthesize name = _frameName;
 
 - (id)init
 {
@@ -76,6 +77,8 @@
     {
         sprite_cc = [CCSprite spriteWithSpriteFrameName:frameName];
 
+        _frameName = [[NSString stringWithString:frameName] retain];
+        
         [self initializeSpriteOnceLoaded];
         
         if (shouldAddToLayer) {
@@ -264,6 +267,7 @@
 
 -(void)dealloc
 {
+    [_frameName release];
     [_animation release];
     [sprite_cc removeFromParentAndCleanup:YES];
     sprite_cc = nil;

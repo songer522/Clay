@@ -65,7 +65,7 @@ static LevelManager *_shared = nil;
     NSString *fileName = [levelSettings valueForKey:@"fileName"];
     NSString *obstacleLayer = [levelSettings valueForKey:@"obstacleLayer"];
     
-    if ([GameSettings usingHighResolutionGraphics]){
+    if ([[GameSettings shared] usingHighResolutionGraphics]){
         // Use HD level for High Res screens
         NSArray *filenameParts = [fileName componentsSeparatedByString:@"."];
         NSMutableString *filenameMuta = [[NSMutableString alloc] initWithString:[filenameParts objectAtIndex:0]];
