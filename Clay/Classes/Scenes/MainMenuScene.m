@@ -321,7 +321,7 @@
 
 -(void)switchToChoice
 {
-    FBPrompt *prompt;
+    //FBPrompt *prompt;
     
 
     switch (_switchToChoice) {
