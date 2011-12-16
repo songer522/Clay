@@ -18,7 +18,9 @@
     CCLabelBMFont *_textLabel;
     float _selectedAlpha;
     bool _hasText;
+    bool facebookOrTwitter;
 }
+@property (assign)bool facebookOrTwitter;
 
 +(id)actionButtonWithText:(NSString*)text;
 +(id)actionButtonInGameWithText:(NSString*)text;

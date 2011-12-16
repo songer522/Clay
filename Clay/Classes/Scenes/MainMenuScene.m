@@ -25,7 +25,7 @@
 #import "ChooseModeScene.h"
 #import "CreditsScene.h"
 #import "AppDelegate.h"
-#import "FBPrompt.h"
+
 #import "OptionsScene.h"
 #import "Tutorial.h"
 
@@ -339,8 +339,8 @@
 -(void)switchToChoice
 {
     //FBPrompt *prompt;
-  // Tutorial *demo;
-    //CCLayer *layer=[[LayerManager sharedLayers] currentLayer];
+    
+
     switch (_switchToChoice) {
         case MENU_SWITCHTO_CHOOSELEVEL:            
             [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ChooseModeScene scene]]];
@@ -370,18 +370,6 @@
     self.isTouchEnabled = false;
 }
 
-
-- (void)fbDidLogin {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:[[_prompt getFacebookObject] accessToken] forKey:@"FBAccessTokenKey"];
-    [defaults setObject:[[_prompt getFacebookObject] expirationDate] forKey:@"FBExpirationDateKey"];
-    [defaults synchronize];
-}
-
--(void)scrollLayerScrollingStarted:(CCScrollLayer *)sender
-{
-    [CCTouchDispatcher sharedDispatcher].dispatchEvents=NO;
-}
 
 -(void)dealloc
 {

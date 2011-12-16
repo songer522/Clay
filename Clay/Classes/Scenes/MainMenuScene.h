@@ -11,9 +11,7 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "FBConnect.h"
-#import <Twitter/Twitter.h>
-#import <Accounts/Accounts.h>
-#import <UIKit/UIKit.h>
+
 
 @class Sprite;
 @class ActionButton;
@@ -64,9 +62,8 @@ typedef enum {
     bool _reinit;
     bool _switchSceneTriggered;
     bool _isContinueButtonEnabled;
-    Facebook *facebook;
-    //TWTweetComposeViewController *TWcontroller;    
-    FBPrompt *_prompt;
+      
+    
    
     
 }

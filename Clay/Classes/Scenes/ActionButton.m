@@ -20,6 +20,7 @@
 
 
 @implementation ActionButton
+@synthesize facebookOrTwitter;
 
 +(id)actionButtonWithText:(NSString*)text
 {
@@ -49,6 +50,7 @@
         [self setSelectedSpriteFrame:buttonPressedName];
         
         _usingRelativeHitbox = false; //default
+        facebookOrTwitter = false;
         
         if (![text isEqualToString:@""]) {
             [self setInitialText:text];            
@@ -117,6 +119,11 @@
     
     if(!_usingRelativeHitbox) {
         [self setHitbox:CGRectMake(position.x - 48, position.y - 15, 95, 30)];
+    }
+    
+    if(facebookOrTwitter)
+    {
+        [self setHitbox:CGRectMake(position.x - 48, position.y - 15, 30, 30)];
     }
 }
 
