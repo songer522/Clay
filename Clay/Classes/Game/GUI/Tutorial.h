@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "CCScrollLayer.h"
+#import "ActionButton.h"
 
 typedef enum {
     SCROLLER_FADE_IN,
@@ -28,6 +29,7 @@ typedef enum {
     float _alpha;
 }
 
+@property(retain,atomic)CCScrollLayer *scroller;
 +(id)TutorialWithinLayer:(CCLayer *)layer;
 -(id)initWithinLayer:(CCLayer *)layer;
 -(void)switchToTutorial;

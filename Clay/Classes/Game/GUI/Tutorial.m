@@ -9,6 +9,7 @@
 #import "Tutorial.h"
 
 @implementation Tutorial
+@synthesize scroller;
 
 +(id)TutorialWithinLayer:(CCLayer *)layer
 {
@@ -18,6 +19,8 @@
 
 -(id)initWithinLayer:(CCLayer *)layer
 {
+    if(self =[super init])
+              {
     _inTutorial=false;
     _phase = SCROLLER_IDLE;
     
@@ -30,10 +33,12 @@
     
     scroller = [[CCScrollLayer alloc] initWithLayers:_pages widthOffset: 0];
     
+   //scroller = [[CCScrollLayer alloc] initWithLayers:[NSMutableArray arrayWithObjects: pageOne,pageTwo,pageThree,nil] widthOffset: 0];
+    
     [layer addChild:scroller];
     [scroller setVisible:NO];
     scroller.showPagesIndicator=NO;
-
+              }
     return self;
 }
 
@@ -61,6 +66,7 @@
 -(void)switchToTutorial
 {
     if(!_inTutorial){
+       
         [scroller setVisible:YES];
         scroller.showPagesIndicator=YES;
         [scroller selectPage:0];
@@ -76,6 +82,7 @@
         _phase = SCROLLER_FADE_OUT;
         _alpha = 1.0f;
         [self setAlpha:1.0f];
+        
     }
 }
 
@@ -85,8 +92,7 @@
     switch (_phase) {
         case SCROLLER_FADE_IN:
             _alpha += rate;
-            [scroller selectPage:0];
-            
+             
             if (_alpha >= 1.0f) {
                 _alpha = 1.0f;
                 _phase = SCROLLER_IDLE;
@@ -97,6 +103,7 @@
             _alpha -= rate;
             if (_alpha <= 0.0f) {
                 _alpha = 0.0f;
+                [scroller moveToPage:0];
                 _phase = SCROLLER_IDLE;
                 [scroller setVisible:NO];
             }

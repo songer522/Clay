@@ -10,10 +10,9 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
-//#import "FBPrompt.h"
 #import "FBConnect.h"
-#import <Twitter/Twitter.h>
-#import <Accounts/Accounts.h>
+
+
 @class Sprite;
 @class ActionButton;
 @class FBPrompt;
@@ -63,9 +62,10 @@ typedef enum {
     bool _reinit;
     bool _switchSceneTriggered;
     bool _isContinueButtonEnabled;
-    Facebook *facebook;
-        
-    FBPrompt *_prompt;
+      
+    
+   
+    
 }
 +(CCScene *) scene;
 @property (nonatomic, retain) Facebook *facebook;

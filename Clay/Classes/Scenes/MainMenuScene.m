@@ -6,8 +6,6 @@
 //  Copyright 2011 Xecudev, LLC. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 #import "MainMenuScene.h"
 #import "AppDelegate.h"
 #import "Sprite.h"
@@ -27,8 +25,9 @@
 #import "ChooseModeScene.h"
 #import "CreditsScene.h"
 #import "AppDelegate.h"
-#import "FBPrompt.h"
+
 #import "OptionsScene.h"
+#import "Tutorial.h"
 
 
 
@@ -89,11 +88,8 @@
             [_playButton setPosition:ccp(240,142)];                        
         }
         [_playButton setHitboxBySize:CGSizeMake(319, 71)];
+       
         
-
-        facebook = [[Facebook alloc] initWithAppId:@"264174546971482" andDelegate:self];
-        //[_prompt initWithAppId:@"264174546971482" andDelegate:self]; 
-                
         //continue button
         _continueButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_ContinueBlue.png" Selected:@"Menu_ContinueGreen.png"];
         [_continueButton setPosition:ccp(240,158)];
@@ -315,6 +311,29 @@
             break;
     }
 }
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    // Return YES for supported orientations
+	return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown && interfaceOrientation != UIInterfaceOrientationPortrait);
+}
+
+- (void)sendEasyTweet:(NSString*)tweet
+{
+    AppDelegate *appDelegate=[[UIApplication sharedApplication] delegate];
+    // Set up the built-in twitter composition view controller.
+    TWTweetComposeViewController *tweetViewController = [[TWTweetComposeViewController alloc] init];
+    
+    // Set the initial tweet text. See the framework for additional properties that can be set.
+    [tweetViewController setInitialText:tweet];
+    
+    // Present the tweet composition view controller modally.
+    NSString *reqSysVer = @"5.0";
+    NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
+    if ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending)
+    {
+    [appDelegate.viewController presentModalViewController:tweetViewController animated:YES];
+    }
+}
 
 
 -(void)switchToChoice
@@ -333,7 +352,8 @@
            break;
         case MENU_SWITCHTO_ACHIEVEMENTS:
             [[GCHelper sharedInstance] showAchievements];
-            break;
+           // [self sendEasyTweet:@"hello"];
+           break;
         case MENU_SWITCHTO_OPTIONS:
             [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[OptionsScene node]]];
             //[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[CreditsScene node]]];
@@ -350,13 +370,6 @@
     self.isTouchEnabled = false;
 }
 
-
-- (void)fbDidLogin {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:[[_prompt getFacebookObject] accessToken] forKey:@"FBAccessTokenKey"];
-    [defaults setObject:[[_prompt getFacebookObject] expirationDate] forKey:@"FBExpirationDateKey"];
-    [defaults synchronize];
-}
 
 -(void)dealloc
 {

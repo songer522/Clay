@@ -28,7 +28,8 @@
 #import "BestTimes.h"
 #import "ChooseModeScene.h"
 #import "ChooseLevelPanel.h"
-
+#import "FBPrompt.h"
+#import "AppDelegate.h"
 
 
 @implementation ChooseLevelScreen
@@ -69,6 +70,7 @@
         _selected = 1;
         _backToChooseMode = false;
         _inTutorial=false;
+        _openFacebook=false;
         _waitToSwitch = 0.0f;
         self.isTouchEnabled = YES;
         
@@ -133,6 +135,17 @@
             [[SoundEngine shared] playSound:@"buttonPressed"];     
         }
         
+        if([_facebookButton checkIfSelected:position]) {
+            _waitToSwitch = 0.25f;
+            _openFacebook = true;
+            [[SoundEngine shared] playSound:@"buttonPressed"];     
+        }
+        if([_twitterButton checkIfSelected:position]) {
+            _waitToSwitch = 0.25f;
+            _openTwitter= true;
+            [[SoundEngine shared] playSound:@"buttonPressed"];     
+        }
+        
     }
 }
 
@@ -158,6 +171,14 @@
     
     _backButton = [ActionButton actionButtonWithText:@"BACK"];
     [_backButton setPosition:ccp(50, 18)];
+    
+    _facebookButton =[ ActionButton actionButtonManualSetup];
+    _facebookButton.facebookOrTwitter=true;
+    [_facebookButton setPosition:ccp(210, 120)];
+    
+    _twitterButton =[ ActionButton actionButtonManualSetup];
+    _twitterButton.facebookOrTwitter=true;
+    [_twitterButton setPosition:ccp(210, 80)];
     
     
     //load level buttons (init best level time text first because it gets set in here)
@@ -191,7 +212,8 @@
 {
     NSString *levelName = [NSString stringWithFormat:@"level%d",levelNumber];
     float bestTime = [[BestTimes shared] getBestTimeForLevelName:levelName forDifficulty:_gameDifficulty];
-    
+    _levelNumber=levelNumber;
+    _bestTime= [self getTimestringForFloat:bestTime];
     ChooseLevelPanel *panel = [ChooseLevelPanel instance];
     [panel setBestTime:[self getTimestringForFloat:bestTime]];
     [panel setLevelDataByNumber:levelNumber];
@@ -323,7 +345,23 @@
 {
     return [TrackTimer getTimeStringFromFloat:time];
 }
-
+- (void)sendEasyTweet:(NSString*)tweet
+{
+    AppDelegate *appDelegate=[[UIApplication sharedApplication] delegate];
+    // Set up the built-in twitter composition view controller.
+    TWTweetComposeViewController *tweetViewController = [[TWTweetComposeViewController alloc] init];
+    
+    // Set the initial tweet text. See the framework for additional properties that can be set.
+    [tweetViewController setInitialText:tweet];
+    
+    // Present the tweet composition view controller modally.
+    NSString *reqSysVer = @"5.0";
+    NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
+    if ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending)
+    {
+        [appDelegate.viewController presentModalViewController:tweetViewController animated:YES];
+    }
+}
 -(void)updatePanelTransition:(float)dt
 {
     _panelAlpha += 3.0f * dt;
@@ -342,13 +380,60 @@
     }
 }
 
+-(NSString *)covertLevelname:(LevelName)level
+{
+    NSString *levelName;
+    switch (level) {
+        case TRACK_RUN:
+            levelName=[NSString stringWithFormat:@"Track Run"];
+            break;
+        case BARN_RUN:
+            levelName=[NSString stringWithFormat:@"Barn Run"];
+            break;
+        case TOWN_RUN:
+            levelName=[NSString stringWithFormat:@"Town Run"];
+            break;
+        case DISCO_RUN:
+            levelName=[NSString stringWithFormat:@"Disco Run"];
+            break;
+        case CITY_RUN:
+            levelName=[NSString stringWithFormat:@"City Run"];
+            break;
+        case UNDEAD_RUN:
+            levelName=[NSString stringWithFormat:@"Undead Run"];
+            break;
+        case COMPUTER_RUN:
+            levelName=[NSString stringWithFormat:@"Computer Run"];
+            break;
+        case VOLCANO_RUN:
+            levelName=[NSString stringWithFormat:@"Volcano Run"];
+            break;
+        case STORMY_RUN:
+            levelName=[NSString stringWithFormat:@"Stormy Run"];
+            break;
+        case AQUARIUM_RUN:
+            levelName=[NSString stringWithFormat:@"Aquarium Run"];
+            break;
+        case FINAL_RUN:
+            levelName=[NSString stringWithFormat:@"Final Run"];
+            break;
+            
+        default:
+            break;
+    }
+    
+    return levelName;
+}
+
 -(void)update:(ccTime)dt
 {
     [[SoundEngine shared] update:dt];
 
     [_startButton update:dt];
     [_backButton update:dt];
-
+    FBPrompt *prompt;
+   
+    NSString *description=[self covertLevelname:_levelNumber];
     if (_panelTransition) {
         [self updatePanelTransition:dt];
     }
@@ -359,7 +444,17 @@
             _waitToSwitch = 0.0f;
             if (_backToChooseMode) {
                 [self switchToChooseModeScreen];
-            }  else {
+            }else if(_openFacebook)
+            {
+                prompt = [FBPrompt promptWithAppId:@"264174546971482" andDelegate:self];
+                [prompt showFacebookDialogWithDescription:[NSString stringWithFormat:@"Hey, here's my score for Track Lapse %@ : %@, see if you can beat me!!!",description, _bestTime] andPicture:@"http://fbrell.com/f8.jpg"];
+                _openFacebook =false;
+            } else if(_openTwitter)
+            {
+                [self sendEasyTweet:[NSString stringWithFormat:@"Hey, here's my score for Track Lapse %@ : %@, see if you can beat me!!!",description, _bestTime]];
+                _openTwitter =false;
+            }
+            else {
                 [self popAndSwitchToLevel:_levelToSwitchTo]; 
             }
         }
