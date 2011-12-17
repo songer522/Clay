@@ -168,6 +168,46 @@ static LevelManager *_shared = nil;
     {
         [[GCHelper sharedInstance] reportLeaderboard:gcLeaderboardNormalTimedLevel1 score:time];
     }
+    else if([difficulty isEqualToString:@"normal"] && [mode isEqualToString:@"timed"]&& [level isEqualToString:@"level2"])
+    {
+        [[GCHelper sharedInstance] reportLeaderboard:gcLeaderboardNormalTimedLevel2 score:time];
+    }
+    else if([difficulty isEqualToString:@"normal"] && [mode isEqualToString:@"timed"]&& [level isEqualToString:@"level3"])
+    {
+        [[GCHelper sharedInstance] reportLeaderboard:gcLeaderboardNormalTimedLevel3 score:time];
+    }
+    else if([difficulty isEqualToString:@"normal"] && [mode isEqualToString:@"timed"]&& [level isEqualToString:@"level4"])
+    {
+        [[GCHelper sharedInstance] reportLeaderboard:gcLeaderboardNormalTimedLevel4 score:time];
+    }
+    else if([difficulty isEqualToString:@"normal"] && [mode isEqualToString:@"timed"]&& [level isEqualToString:@"level5"])
+    {
+        [[GCHelper sharedInstance] reportLeaderboard:gcLeaderboardNormalTimedLevel5 score:time];
+    }
+    else if([difficulty isEqualToString:@"normal"] && [mode isEqualToString:@"timed"]&& [level isEqualToString:@"level6"])
+    {
+        [[GCHelper sharedInstance] reportLeaderboard:gcLeaderboardNormalTimedLevel6 score:time];
+    }
+    else if([difficulty isEqualToString:@"normal"] && [mode isEqualToString:@"timed"]&& [level isEqualToString:@"level7"])
+    {
+        [[GCHelper sharedInstance] reportLeaderboard:gcLeaderboardNormalTimedLevel7 score:time];
+    }
+    else if([difficulty isEqualToString:@"normal"] && [mode isEqualToString:@"timed"]&& [level isEqualToString:@"level8"])
+    {
+        [[GCHelper sharedInstance] reportLeaderboard:gcLeaderboardNormalTimedLevel8 score:time];
+    }
+    else if([difficulty isEqualToString:@"normal"] && [mode isEqualToString:@"timed"]&& [level isEqualToString:@"level9"])
+    {
+        [[GCHelper sharedInstance] reportLeaderboard:gcLeaderboardNormalTimedLevel9 score:time];
+    }
+    else if([difficulty isEqualToString:@"normal"] && [mode isEqualToString:@"timed"]&& [level isEqualToString:@"level10"])
+    {
+        [[GCHelper sharedInstance] reportLeaderboard:gcLeaderboardNormalTimedLevel10 score:time];
+    }
+    else if([difficulty isEqualToString:@"normal"] && [mode isEqualToString:@"timed"]&& [level isEqualToString:@"level11"])
+    {
+        [[GCHelper sharedInstance] reportLeaderboard:gcLeaderboardNormalTimedLevel11 score:time];
+    }
     else if([difficulty isEqualToString:@"hard"] && [mode isEqualToString:@"timed"]&& [level isEqualToString:@"level1"])
     {
         [[GCHelper sharedInstance] reportLeaderboard:gcLeaderboardInsaneTimedLevel1 score:time];
@@ -176,6 +216,44 @@ static LevelManager *_shared = nil;
     {
         [[GCHelper sharedInstance] reportLeaderboard:gcLeaderboardInsaneTimedLevel2 score:time];
     }
+    else if([difficulty isEqualToString:@"hard"] && [mode isEqualToString:@"timed"]&& [level isEqualToString:@"level3"])
+    {
+        [[GCHelper sharedInstance] reportLeaderboard:gcLeaderboardInsaneTimedLevel3 score:time];
+    }
+    else if([difficulty isEqualToString:@"hard"] && [mode isEqualToString:@"timed"]&& [level isEqualToString:@"level4"])
+    {
+        [[GCHelper sharedInstance] reportLeaderboard:gcLeaderboardInsaneTimedLevel4 score:time];
+    }
+    else if([difficulty isEqualToString:@"hard"] && [mode isEqualToString:@"timed"]&& [level isEqualToString:@"level5"])
+    {
+        [[GCHelper sharedInstance] reportLeaderboard:gcLeaderboardInsaneTimedLevel5 score:time];
+    }
+    else if([difficulty isEqualToString:@"hard"] && [mode isEqualToString:@"timed"]&& [level isEqualToString:@"level6"])
+    {
+        [[GCHelper sharedInstance] reportLeaderboard:gcLeaderboardInsaneTimedLevel6 score:time];
+    }
+    else if([difficulty isEqualToString:@"hard"] && [mode isEqualToString:@"timed"]&& [level isEqualToString:@"level7"])
+    {
+        [[GCHelper sharedInstance] reportLeaderboard:gcLeaderboardInsaneTimedLevel7 score:time];
+    }
+
+    else if([difficulty isEqualToString:@"hard"] && [mode isEqualToString:@"timed"]&& [level isEqualToString:@"level8"])
+    {
+        [[GCHelper sharedInstance] reportLeaderboard:gcLeaderboardInsaneTimedLevel8 score:time];
+    }
+    else if([difficulty isEqualToString:@"hard"] && [mode isEqualToString:@"timed"]&& [level isEqualToString:@"level9"])
+    {
+        [[GCHelper sharedInstance] reportLeaderboard:gcLeaderboardInsaneTimedLevel9 score:time];
+    }
+    else if([difficulty isEqualToString:@"hard"] && [mode isEqualToString:@"timed"]&& [level isEqualToString:@"level10"])
+    {
+        [[GCHelper sharedInstance] reportLeaderboard:gcLeaderboardInsaneTimedLevel10 score:time];
+    }
+    else if([difficulty isEqualToString:@"hard"] && [mode isEqualToString:@"timed"]&& [level isEqualToString:@"level11"])
+    {
+        [[GCHelper sharedInstance] reportLeaderboard:gcLeaderboardInsaneTimedLevel11 score:time];
+    }
+    
 
 }
 
