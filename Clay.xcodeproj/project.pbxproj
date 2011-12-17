@@ -3260,6 +3260,10 @@
 				54ACB424149C37A200B353C6 /* Comic_5.png in Resources */,
 				54ACB425149C37A200B353C6 /* Comic_Button_Skip-hd.png in Resources */,
 				54ACB426149C37A200B353C6 /* Comic_Button_Skip.png in Resources */,
+				61F176A8149C220F00D90100 /* timed_normal_level1_hd.tmx in Resources */,
+				61F176A9149C220F00D90100 /* timed_normal_level2_hd.tmx in Resources */,
+				61F176AC149C2E4600D90100 /* timed_normal_level1.tmx in Resources */,
+				61F176AD149C2E4600D90100 /* timed_normal_level2.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
