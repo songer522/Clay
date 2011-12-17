@@ -16,6 +16,7 @@
 #import "MainMenuScene.h"
 #import "TextureManager.h"
 #import "GameSettings.h"
+#import "GCHelper.h"
 
 @implementation EndGameScene
 
@@ -101,9 +102,25 @@
 -(void)update:(ccTime)dt
 {
     float rate = 2.0f * dt;
+    NSString *difficulty = [[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
+    NSString *mode=[[GameSettings shared] getGlobalForKey:@"gameMode"];
+    float finalTime = [[[GameSettings shared] getGlobalForKey:@"finalTime"] floatValue];
+    
+    if([difficulty isEqualToString:@"easy"] && [mode isEqualToString:@"story"])
+    {
+        [[GCHelper sharedInstance] reportLeaderboard:gcLeaderboardStoryEasy score:100*finalTime];
+    }
+    else if([difficulty isEqualToString:@"normal"] && [mode isEqualToString:@"story"])
+    {
+        [[GCHelper sharedInstance] reportLeaderboard:gcLeaderboardStoryNormal score:100*finalTime];
+    }
+    else if([difficulty isEqualToString:@"hard"] && [mode isEqualToString:@"story"])
+    {
+        [[GCHelper sharedInstance] reportLeaderboard:gcLeaderboardStoryHard score:100*finalTime];
+    }
     
     if (!_initialized) {
-        float finalTime = [[[GameSettings shared] getGlobalForKey:@"finalTime"] floatValue];
+       
         if ([[UserData sharedInstance] bestTime] > finalTime)
         {
             [UserData sharedInstance].bestTime = finalTime;
