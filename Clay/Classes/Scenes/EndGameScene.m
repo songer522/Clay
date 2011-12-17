@@ -108,15 +108,15 @@
     
     if([difficulty isEqualToString:@"easy"] && [mode isEqualToString:@"story"])
     {
-        [[GCHelper sharedInstance] reportLeaderboard:gcLeaderboardStoryEasy score:finalTime];
+        [[GCHelper sharedInstance] reportLeaderboard:gcLeaderboardStoryEasy score:100*finalTime];
     }
     else if([difficulty isEqualToString:@"normal"] && [mode isEqualToString:@"story"])
     {
-        [[GCHelper sharedInstance] reportLeaderboard:gcLeaderboardStoryNormal score:finalTime];
+        [[GCHelper sharedInstance] reportLeaderboard:gcLeaderboardStoryNormal score:100*finalTime];
     }
     else if([difficulty isEqualToString:@"hard"] && [mode isEqualToString:@"story"])
     {
-        [[GCHelper sharedInstance] reportLeaderboard:gcLeaderboardStoryHard score:finalTime];
+        [[GCHelper sharedInstance] reportLeaderboard:gcLeaderboardStoryHard score:100*finalTime];
     }
     
     if (!_initialized) {
