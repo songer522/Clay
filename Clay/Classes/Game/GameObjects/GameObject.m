@@ -93,6 +93,7 @@
         _persistsBetweenRegions = false;
         _magnitude = 0.0f;
         _hasAppeared=false;
+        _isVisible = true;
         _isStutterMode = [[GameSettings shared] isStutterMode];
     }
     
@@ -276,6 +277,13 @@
 
 -(void)update:(float)dt
 {
+    
+    if (!_isStutterMode) {
+        if (!_isVisible) {
+            
+        }
+    }
+    
     //if time is slowed down, modify the dt by the modifier
     //(must be called first because the rest relies on the dt value)
     if (_slowTimeModifier!= 1.0f) {
@@ -313,7 +321,11 @@
     
     [self updateFlags];
     
-    [self updateLights:dt];
+    if (_isStutterMode) {
+        [self updateLights:dt];        
+    } else {
+        //unneeded
+    }
     
     
     

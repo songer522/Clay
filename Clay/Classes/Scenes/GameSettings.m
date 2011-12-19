@@ -11,7 +11,7 @@
 #include <sys/sysctl.h>
 #import "PListLoader.h"
 
-#define SETTING_IS_STUTTER_MODE_DEFAULT 1
+#define SETTING_IS_STUTTER_MODE_DEFAULT 0
 
 @implementation GameSettings
 

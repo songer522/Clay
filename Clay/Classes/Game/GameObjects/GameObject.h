@@ -68,6 +68,7 @@ typedef enum {
     bool _beatsPlayerAction;
     bool _hasAppeared;
     bool _chaseTriggered;
+    bool _isVisible;
     float _movedBy;
     float _initialPosition;
 
