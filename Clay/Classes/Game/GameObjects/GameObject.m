@@ -278,15 +278,17 @@
 -(void)update:(float)dt
 {
     
-    if (!_isStutterMode) {
-        if ([[Camera sharedCamera] isInVisualRange:_x]) {
+    if (!_isStutterMode && !_boss) {
+        if ([[Camera sharedCamera ] isInVisualRange:_x]) {
             if (!_isVisible) {
                 [[_sprite getCCSprite] setVisible:YES];
+                [[_sprite getCCSprite] resumeSchedulerAndActions];
                 _isVisible = true;
             }
         } else {
             if (_isVisible) {
                 [[_sprite getCCSprite] setVisible:NO];
+                [[_sprite getCCSprite] pauseSchedulerAndActions];
                 _isVisible = false;
             }
             return; //don't bother with the rest of the update loop
