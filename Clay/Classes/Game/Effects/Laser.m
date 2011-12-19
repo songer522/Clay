@@ -69,7 +69,7 @@
     {
         _position = CGPointMake(playerPosition.x + rand()%600, 500.0f);  
     }
-    else if ([GameSettings usingHighResolutionGraphics]) {
+    else if ([[GameSettings shared] usingHighResolutionGraphics]) {
         _position = CGPointMake(playerPosition.x + rand()%600, 200.0f);        
     } else {
         _position = CGPointMake(playerPosition.x + rand()%600, 200.0f);

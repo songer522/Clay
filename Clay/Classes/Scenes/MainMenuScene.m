@@ -20,9 +20,17 @@
 #import "ActionButton.h"
 #import "SoundEngine.h"
 #import "GameSettings.h"
+#import "ContinueGameManager.h"
+#import "GCHelper.h"
+#import "ChooseModeScene.h"
+#import "CreditsScene.h"
+#import "AppDelegate.h"
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
 #define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
+
+#import "OptionsScene.h"
+#import "Tutorial.h"
 
 
 
@@ -85,31 +93,32 @@
         [_playButton setHitboxBySize:CGSizeMake(319, 71)];
        
         
+        //continue button
+        _continueButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_ContinueBlue.png" Selected:@"Menu_ContinueGreen.png"];
+        [_continueButton setPosition:ccp(240,158)];
+        [_continueButton setHitboxBySize:CGSizeMake(319, 71)];
+        [_continueButton setAlpha:0.0f];
+        
         _logo = [Sprite spriteFromFrameCacheWithName:@"Menu_Logo.png"];
         [_logo setAlpha:0.0f];
         [_logo getCCSprite].anchorPoint = ccp(0.5f, 0.5f);
         [_logo getCCSprite].position = ccp(240 * MULTIPLIERX, 258 * MULTIPLIERY); //final 240, 262
         
-        _playButtonBlue = [Sprite spriteFromFrameCacheWithName:@"Menu_PlayBlue.png"];
-        [_playButtonBlue setAlpha:0.0f];
-        [_playButtonBlue getCCSprite].anchorPoint = ccp(0.5f,0.5f);
-        [_playButtonBlue getCCSprite].position = ccp(240 * MULTIPLIERX, 142 * MULTIPLIERY);
+        //leaderboards button
+        _leaderboardsButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_LeaderBoardBlue.png" Selected:@"Menu_LeaderBoardGreen.png"];
+        [_leaderboardsButton setPosition:ccp(450,24)];
+        [_leaderboardsButton setHitboxBySize:CGSizeMake(65, 65)];
         
-        _playButtonOrange = [Sprite spriteFromFrameCacheWithName:@"Menu_PlayOrange.png"];
-        [_playButtonOrange getCCSprite].anchorPoint = ccp(0.5f, 0.5f);
-        [_playButtonOrange getCCSprite].position = ccp(240 * MULTIPLIERX,142 * MULTIPLIERY);
-        [[_playButtonOrange getCCSprite] setVisible:NO];
+        //achievements button
+        _achievementsButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_AchievementBlue.png" Selected:@"Menu_AchievementGreen.png"];
+        [_achievementsButton setPosition:ccp(410,24)];
+        [_achievementsButton setHitboxBySize:CGSizeMake(65, 65)];        
         
-        _copyright = [Sprite spriteFromFrameCacheWithName:@"Menu_Copyright.png"];
-        [_copyright setAlpha:0.0f];
-        [_copyright getCCSprite].anchorPoint = ccp(0.5f, 0.5f);
-        [_copyright getCCSprite].position = ccp(240 * MULTIPLIERX,24 * MULTIPLIERY); //final 240,20
-        /*
-         _tutorialButton = [ActionButton actionButtonWithText:@"TUTORIAL"];
-         [_tutorialButton setPosition:ccp(50, 18)];
-         
-        _tutorial=[Tutorial TutorialWithinLayer:self];
-        */
+        //options button
+        _optionsButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_OptionsBlue.png" Selected:@"Menu_OptionsGreen.png"];
+        [_optionsButton setPosition:ccp(30,24)];
+        [_optionsButton setHitboxBySize:CGSizeMake(65, 65)];
+
         
         [[LayerManager sharedLayers] forgetWorkingLayer];
         

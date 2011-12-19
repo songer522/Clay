@@ -119,7 +119,15 @@
     [_buttonSelected setScreenPosition:position];
     [super setPosition:position];
     _textLabel.position = ccp(position.x,position.y - 3.0f);
-    [self setHitbox:CGRectMake(position.x - 48, position.y - 15, 95 * MULTIPLIERX, 30 * MULTIPLIERY)];
+    
+    if(!_usingRelativeHitbox) {
+        [self setHitbox:CGRectMake(position.x - 48, position.y - 15, 95 * MULTIPLIERX, 30 * MULTIPLIERY)];
+    }
+    
+    if(facebookOrTwitter)
+    {
+        [self setHitbox:CGRectMake(position.x - 48, position.y - 15, 30 * MULTIPLIERX, 30 * MULTIPLIERY)];
+    }
 }
 
 -(void)setAlpha:(float)alpha

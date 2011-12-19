@@ -78,7 +78,7 @@
         {
             _divide = 1.0f;
         }
-        else if ([GameSettings usingHighResolutionGraphics])
+        else if ([[GameSettings shared] usingHighResolutionGraphics])
         {
             _divide = 2.0f;
         }
@@ -261,7 +261,7 @@
         position.x = roundf(position.x);
         position.y = roundf(position.y); 
     }
-    else if ([GameSettings usingHighResolutionGraphics]) {
+    else if ([[GameSettings shared] usingHighResolutionGraphics]) {
         position.x = roundf(position.x * 2.0f) / 2.0f;
         position.y = roundf(position.y * 2.0f) / 2.0f;
     } else {

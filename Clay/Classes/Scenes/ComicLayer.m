@@ -211,10 +211,18 @@
 
 -(void)drawBars:(float)position
 {
+    if (_transition == BLACKBOX_IN || _transition == BLACKBOX_OUT) {
+        float scale = 1.0f;
+        if (IS_IPAD)
+        {
+            scale = 1.0f;
+        }
+        else if ([[GameSettings shared] usingHighResolutionGraphics]) {
+            scale = 2.0f;        
+        }
+        [self ccDrawFilledRectFrom:ccp(0,0) To:ccp(960,position * scale)];
+        [self ccDrawFilledRectFrom:ccp(0,640) To:ccp(960,(320.0f - position) * scale)];    
     float scale = 1.0f;
-    if (([GameSettings usingHighResolutionGraphics]) && (!IS_IPAD)) {
-        scale = 2.0f;        
-    }
     [self ccDrawFilledRectFrom:ccp(0 * MULTIPLIERX,0 * MULTIPLIERY) To:ccp(960 * MULTIPLIERX,(position * MULTIPLIERY) * scale)];
     [self ccDrawFilledRectFrom:ccp(0 * MULTIPLIERX,640 * MULTIPLIERY) To:ccp(960 * MULTIPLIERX,((320.0f - position) * MULTIPLIERY) * scale)];    
 }

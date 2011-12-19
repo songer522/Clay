@@ -26,10 +26,13 @@
 #import "GameLabel.h"
 #import "TrackTimer.h"
 #import "BestTimes.h"
+#import "ChooseModeScene.h"
+#import "ChooseLevelPanel.h"
+#import "FBPrompt.h"
+#import "AppDelegate.h"
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
 #define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
-
 
 
 @implementation ChooseLevelScreen
@@ -172,8 +175,13 @@
     _backButton = [ActionButton actionButtonWithText:@"BACK"];
     [_backButton setPosition:ccp(50 * MULTIPLIERX, 18 * MULTIPLIERY)];
     
-    _bestLevelTimeText = [GameLabel gameLabelWithText:@"" Scale:0.6f Position:ccp(512.0f,84.0f)];
-    [_bestLevelTimeText setCentered];
+    _facebookButton =[ ActionButton actionButtonManualSetup];
+    _facebookButton.facebookOrTwitter=true;
+    [_facebookButton setPosition:ccp(210, 120)];
+    
+    _twitterButton =[ ActionButton actionButtonManualSetup];
+    _twitterButton.facebookOrTwitter=true;
+    [_twitterButton setPosition:ccp(210, 80)];
     
     
     //load level buttons (init best level time text first because it gets set in here)

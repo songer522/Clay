@@ -159,17 +159,19 @@
     self.hasGravity = false;
     _firstFrameJumping = true;
     _isHighJump = false;
-    if (IS_IPAD)
+    
+    if (_isNewUnderwaterPhysics) {
+        _vy = -86.25f; //75% original        
+    } else if (IS_IPAD)
     {
         _vy = -225.0f;
-        _y += 2.0f;
     }
     else
     {
         _vy = -115.0f;
-        _y += 2.0f;
-    } 
-    _isJumping = true;
+    }
+    
+    _y += 2.0f;
     [_skin setPlayerAnimation:PLAYER_ANIM_JUMPING ForSprite:_sprite];
     [[self getCollision] processNewCollisionState:COLLISION_STATE_MIDAIR];
     [self setPositionAtX:_x Y:_y];
@@ -188,7 +190,10 @@
     
     self.hasGravity = true;
     
-    if (IS_IPAD)
+    if (_isNewUnderwaterPhysics) {
+        _vy = -187.5f;
+    } 
+    else if (IS_IPAD)
     {
         _vy = -360.0f;
     }
@@ -196,7 +201,6 @@
     {
         _vy = -250.0f;
     }
-    _ay = 0.0f;
     _isJumping = true;
     
     [_skin setPlayerAnimation:PLAYER_ANIM_JUMPING ForSprite:_sprite];

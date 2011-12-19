@@ -333,13 +333,13 @@
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>15</integer>
+			<integer>57</integer>
 			<key>width</key>
 			<integer>42</integer>
 			<key>x</key>
 			<integer>90</integer>
 			<key>y</key>
-			<integer>100</integer>
+			<integer>2</integer>
 		</dict>
 		<key>collideBehavior</key>
 		<string>cowCollapse</string>
@@ -368,13 +368,13 @@
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>15</integer>
+			<integer>55</integer>
 			<key>width</key>
 			<integer>35</integer>
 			<key>x</key>
 			<integer>25</integer>
 			<key>y</key>
-			<integer>100</integer>
+			<integer>40</integer>
 		</dict>
 		<key>collideBehavior</key>
 		<string>flyer</string>
@@ -543,6 +543,8 @@
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
+			<integer>15</integer>
+			<key>width</key>
 			<integer>30</integer>
 			<key>width</key>
 			<integer>35</integer>
@@ -689,7 +691,7 @@
 			<key>x</key>
 			<integer>0</integer>
 			<key>y</key>
-			<integer>90</integer>
+			<integer>0</integer>
 		</dict>
 		<key>collideBehavior</key>
 		<string>static</string>

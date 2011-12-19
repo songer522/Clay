@@ -47,8 +47,8 @@
 -(void)setInitialPosition
 {
     //initial position
-    float startX = 119 * MULTIPLIERX; //was 212 for left panel
-    float startY = 190 * MULTIPLIERY; //was 181 for left panel and 11 levels
+    float startX = 220; //was 212 for left panel
+    float startY = 190; //was 181 for left panel and 11 levels, and 186 without
     float row = floorf((_buttonId - 1) / 4);
     
     //for staggered effect, move that one down one
@@ -91,8 +91,8 @@
 -(void)setSelected
 {
     CGPoint position = [_buttonGraphic getCCSprite].position;
-    position.x -= 3.5f * MULTIPLIERX;
-    position.y -= 4.0f * MULTIPLIERY;
+    //position.x -= 3.5f;
+    //position.y -= 4.0f;
     [_selector setScreenPosition:position];
     [[_selector getCCSprite] setVisible:YES];    
 }
