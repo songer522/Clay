@@ -20,6 +20,8 @@
     NSMutableSet *_combinedRegion;
     NSMutableSet *_persistentObjects;
     
+    NSArray *_activeGameObjectList;
+    
     int _currentIndex;
 }
 

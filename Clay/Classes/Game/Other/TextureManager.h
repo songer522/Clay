@@ -12,10 +12,14 @@
 @interface TextureManager : NSObject
 {
     NSDictionary *_memoryDictionary;
+    NSString *_batchObstacleFilename;
 }
 
 +(TextureManager*)shared;
 
+
+-(void)setBatchObstacleFilename:(NSString*)batchName;
+-(NSString*)getBatchObstacleFilename;
 
 #pragma mark - public methods
 -(void)loadMemoryForKey:(NSString*)key;

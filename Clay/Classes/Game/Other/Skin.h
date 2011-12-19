@@ -23,7 +23,8 @@ typedef enum {
     PLAYER_ANIM_SPIN,
     PLAYER_ANIM_SPIN_UP,
     PLAYER_ANIM_SLOWTIME,
-    PLAYER_ANIM_FLOATING
+    PLAYER_ANIM_FLOATING,
+    PLAYER_ANIM_NONE
 }PlayerAnimation;
 
 @class Sprite;

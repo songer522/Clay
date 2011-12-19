@@ -11,6 +11,7 @@
 #import "PListLoader.h"
 #import "Sprite.h"
 #import "AnimationController.h"
+#import "GameSettings.h"
 
 @implementation Skin
 
@@ -35,8 +36,8 @@
     
     _filename = [[NSString stringWithString:[skin objectForKey:@"filename"]] retain];
     
-    _currentAnimation = PLAYER_ANIM_RUNNING;
-    _previousAnimation = PLAYER_ANIM_RUNNING;
+    _currentAnimation = PLAYER_ANIM_NONE;
+    _previousAnimation = PLAYER_ANIM_NONE;
     
     NSDictionary *anims = [skin objectForKey:@"animations"];
     
@@ -80,7 +81,7 @@
 -(void)setPlayerAnimation:(PlayerAnimation)type ForSprite:(Sprite*)sprite
 {
     //guard
-    //if ([self isCurrentAnimationOfType:type]) { return; }
+    if (![[GameSettings shared] isStutterMode] && [self isCurrentAnimationOfType:type]) { return; }
     
     NSString *animName;
     bool switchAnimation= true;

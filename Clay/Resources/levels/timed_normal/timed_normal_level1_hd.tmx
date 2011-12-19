@@ -104,7 +104,7 @@
  </layer>
  <layer name="front1" width="1050" height="14">
   <properties>
-   <property name="speedx" value="1.15"/>
+   <property name="speedx" value="1.0"/>
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
