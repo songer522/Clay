@@ -19,6 +19,7 @@ typedef enum {
 } RunnerState;
 
 @class RunningSpeed;
+@class PlayerAction;
 
 @interface Runner : GameObject
 {
@@ -27,8 +28,11 @@ typedef enum {
     float _distance;            //how much distance travelled in the race so far. used to determine
                                 //onscreen position relative to the main player
     bool _isRunning;
-    
+    bool _isNewUnderwaterPhysics;
+
     RunningSpeed *_speed;
+    
+    PlayerAction *_thirdAction; //playeraction
     
     float _ay;
     
@@ -43,6 +47,8 @@ typedef enum {
 
 @property(nonatomic,assign) bool isRunning;
 @property(nonatomic,assign) bool isJumping;
+@property(nonatomic,assign) bool isNewUnderwaterPhysics;
+
 
 -(void)changeToRunnerState:(RunnerState)state;
 

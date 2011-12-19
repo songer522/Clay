@@ -30,7 +30,7 @@
 {
     if (!_inAction && _canTrigger) {
         [super startAction];
-        [_parent endTurbo];
+        [_parent endTurbo:false];
         [_parent setPlayerAnimation:PLAYER_ANIM_SPIN];
         [_parent setPlayerAnimation:PLAYER_ANIM_SPIN_UP];
         [[SoundEngine shared] playSound:@"waterSwimAction"];
@@ -43,13 +43,13 @@
     if(_player.inVaccuum) {
         _player.inVaccuum = false;
     } else {
-        [_parent setPlayerAnimation:PLAYER_ANIM_RUNNING];
+        if([_parent isInMidAir]) {
+            [_parent setPlayerAnimation:PLAYER_ANIM_FALLING];            
+        } else {
+            [_parent setPlayerAnimation:PLAYER_ANIM_RUNNING];            
+        }
         [_parent setPlayerAnimation:PLAYER_ANIM_SPIN_UP];
     }
-    /*
-    if(!_player.isTripping)
-    {
-    }*/
     _duration = 0.0f;
     _parent.hasGravity=true;
     
@@ -60,8 +60,16 @@
 {
     _parent.hasGravity=true;
     [_player endVaccuum];
-    [_parent setPlayerAnimation:PLAYER_ANIM_RUNNING];
     _duration = 0.0f;
+    
+    if(![_parent isTripping]) {
+        if ([_parent isInMidAir]) {
+            [_parent setPlayerAnimation:PLAYER_ANIM_FALLING];            
+        } else {
+            [_parent setPlayerAnimation:PLAYER_ANIM_RUNNING];            
+        }
+    }
+
     [super cancelAction];
 }
 
@@ -78,7 +86,10 @@
             [self endAction];
         } else {
             [_player setVelocity:30.0f];
-            [_player setVy:80.0f];
+            if (_player.vy < 0) {
+                [_player setVy:80.0f];
+            }
+            _player.vy += 5.0f * dt;
         }
     }
     [super update:dt];
@@ -96,6 +107,7 @@
 
 -(void)dealloc
 {
+    _player = nil;
     [super dealloc];
 }
 

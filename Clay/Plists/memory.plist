@@ -165,6 +165,28 @@
 		<key>textures</key>
 		<string>chooseLevel</string>
 	</dict>
+	<key>chooseMode</key>
+	<dict>
+		<key>removeTextures</key>
+		<string>none</string>
+		<key>animations</key>
+		<string>none</string>
+		<key>sounds</key>
+		<string>buttonPressed</string>
+		<key>textures</key>
+		<string>chooseMode</string>
+	</dict>
+	<key>optionsScreen</key>
+	<dict>
+		<key>removeTextures</key>
+		<string>none</string>
+		<key>animations</key>
+		<string>none</string>
+		<key>sounds</key>
+		<string>buttonPressed,turboStart,jumpStart,dead,doubleJump</string>
+		<key>textures</key>
+		<string>optionsScreen</string>
+	</dict>
 	<key>endGame</key>
 	<dict>
 		<key>removeTextures</key>

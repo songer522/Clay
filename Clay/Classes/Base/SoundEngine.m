@@ -35,6 +35,8 @@ static SoundEngine *_shared = nil;
         _musicMap = [[NSDictionary alloc] initWithDictionary:[PListLoader loadPlistWithName:@"music"]];
         
         _soundMode = SOUND_MODE_NORMAL;
+        _masterMusicVolume = 1.0f;
+        _masterSfxVolume = 1.0f;
         
         _session = [AVAudioSession sharedInstance];
     }
@@ -130,6 +132,34 @@ static SoundEngine *_shared = nil;
     _soundMode = SOUND_MODE_FADEOUT;
 }
 
+-(float)getMastersMusicVolume
+{
+    return _masterMusicVolume;
+}
+
+-(float)getMastersSfxVolume
+{
+    return _masterSfxVolume;
+}
+
+-(void)setMasterMusicVolume:(float)masterVolume
+{
+    masterVolume = MIN(masterVolume, 1.0f);
+    masterVolume = MAX(masterVolume, 0.0f);
+    
+    _masterMusicVolume = masterVolume;
+    [_audioEngine setBackgroundMusicVolume:masterVolume];        
+}
+
+-(void)setMasterSfxVolume:(float)masterVolume
+{
+    masterVolume = MIN(masterVolume, 1.0f);
+    masterVolume = MAX(masterVolume, 0.0f);
+
+    _masterSfxVolume = masterVolume;
+    [_audioEngine setEffectsVolume:masterVolume];
+}
+
 -(void)update:(float)dt
 {
     float rate = 0.5f * dt;
@@ -141,7 +171,8 @@ static SoundEngine *_shared = nil;
                 _volume = 1.0f;
                 _soundMode = SOUND_MODE_NORMAL;
             }
-            [_audioEngine setBackgroundMusicVolume:_volume];
+            [_audioEngine setBackgroundMusicVolume:_volume * _masterMusicVolume];
+            [_audioEngine setEffectsVolume:_volume * _masterSfxVolume];
             break;
         case SOUND_MODE_FADEOUT:
             _volume -= rate;
@@ -149,7 +180,8 @@ static SoundEngine *_shared = nil;
                 _volume = 0.0f;
                 _soundMode = SOUND_MODE_NORMAL;
             }
-            [_audioEngine setBackgroundMusicVolume:_volume];
+            [_audioEngine setBackgroundMusicVolume:_volume * _masterMusicVolume];
+            [_audioEngine setEffectsVolume:_volume * _masterSfxVolume];
         default:
             break;
     }

@@ -34,6 +34,9 @@
     NSString *_sequence;
     NSString *_frameList;
     
+    NSMutableDictionary *_frameNames;            //the names of the frames, used primarily to make
+                                            //setStaticFrame for TrackTimer more efficient
+    
     CCAction *_speedAnimation;
     
     CCXAnimate *_animateAction;             //extension of CCAnimate to allow to

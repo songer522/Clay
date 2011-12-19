@@ -70,6 +70,7 @@
 -(HudLayer*)getHud;
 -(void)setBoss:(Boss*)boss;
 -(Boss*)getBoss;
+-(void)pause;
 -(void)unpause;
 
 -(void)startLevel:(NSString*)levelName;
@@ -78,6 +79,7 @@
 -(void)endLevel;
 
 -(void)switchToChooseLevel;
+-(void)switchToChooseMode;
 
 -(NSMutableArray*)getGameObjectsList;
 

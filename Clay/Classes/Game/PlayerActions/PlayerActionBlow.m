@@ -39,7 +39,7 @@
     if (!_inAction && _canTrigger) {
         [super startAction];
         
-        [_parent endTurbo];
+        [_parent endTurbo:false];
         [_parent setPlayerAnimation:PLAYER_ANIM_BLOW];
 
         _duration = 0.78f;
@@ -133,6 +133,7 @@
 -(void)dealloc
 {
     [_wind release];
+    [_windProjectile release];
     [super dealloc];
 }
 

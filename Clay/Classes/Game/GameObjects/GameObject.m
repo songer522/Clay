@@ -162,89 +162,85 @@
 
 -(PlayerEffect) startCollision
 {
+    
     if(_playerEffect == PLAYER_EFFECT_COLLIDE) {
         _collided = true;
     }
     
     _currentBehavior = _collideBehavior;
     
-    if (_currentBehavior == COLLISION_BEHAVIOR_FALL_OVER) {
-        _fallVelocity = 425.0f;
-    } else if (_currentBehavior == COLLISION_BEHAVIOR_FLYING_SHURIKEN) {
-        float magnitude = rand() % 500 + 600;
-        _angle = rand() % 70 + 10;
-        _rotationAmount = rand() % 10 * 200;
-        _vx = magnitude * cosf((_angle * 3.14159)/180.0f);
-        _vy = - magnitude * sinf((_angle * 3.14159)/180.0f);
-        [[SoundEngine shared] playSound:@"collision"];
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_HEN_KICKED) {
-        _hasGravity = false;
-        _vy = -150.0f;
-        _vx = rand()%40 + 15;
-        _alpha = 1.5f;
-        _fadeout = true;
-        _collided = true;
-        [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"henKicked"];
-        [[SoundEngine shared] playSound:@"henKicked"];
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_COW_COLLAPSE) {
-        [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"cowDied"];  
-        [[SoundEngine shared] playSound:@"cowDied"];
-        _alpha = 1.5f;
-        _fadeout = true;
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_DANCIN_MAN_COLLAPSE) {
-        [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"dancinManDied"];
-        _alpha = 1.5f;
-        _fadeout = true;
-        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
-        [[gameLayer.player getThirdAction] setKilledEnemy:YES];
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_HEADLESS) {
-        [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"femaleHeadlessZombieAnim"];
-        _alpha = 1.5f;
-        _fadeout = true;
-        _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_ZOMBIE_HEAD];
-        [_projectile reset];
-        [_projectile setPosition:CGPointMake(_x, _y + 41)];
-       // [_projectile setBoundingBox:CGRectMake(15, 33, 30, 30)];
-        [_projectile setBoundingBox:CGRectMake(15, 33, 14, 40)];
-        
-        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
-        [[gameLayer.player getThirdAction] setKilledEnemy:YES];
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_FADE) {
-        _alpha = 1.5f;
-        _fadeout = true;
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_ROLLING_HAYBALE) {
-        _alpha = 1.5f;
-        _fadeout = true;
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_FADES) {
-        _alpha = 1.5f;
-        _fadeout = true;            
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON) {
-        _alpha = 1.0f;
-        _vy = -50.0f;
-        _vx = 50.0f;
-        _rate = 2.0f;
-        _fadeout = true;
-        [[[[LayerManager sharedLayers] getPlayer] getThirdAction] setKilledEnemy:YES];
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_FIREBALL_MOVING || _currentBehavior == COLLISION_BEHAVIOR_FIREBALL_START) {
-        _collided = false;
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_FIREBALL_LANDED) {
-        _alpha = 1.2f;
-        _fadeout = true;
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR || _currentBehavior ==  COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR_WAITTOSHOOT) {
-        _alpha = 1.2f;
-        _fadeout = true;
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_FROG_SQUASH) {
-        [self.sprite setAnimationByName:@"rainyFrogSquashAnim"];
-        [[SoundEngine shared] playSound:@"frogSquish"];
-        _alpha = 1.2f;
-        _fadeout = true;
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_RAINY_SQUIRREL) {
-        _alpha = 1.2f;
-        _fadeout = true;
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_PUFFERFISH) {
-        _alpha = 1.2f;
-        _fadeout = true;
-        [[SoundEngine shared] playSound:@"waterPufferFish"];
+    switch (_currentBehavior) {
+        case COLLISION_BEHAVIOR_FALL_OVER:
+            _fallVelocity = 425.0f;            
+            break;
+        case COLLISION_BEHAVIOR_HEN_KICKED:
+            _hasGravity = false;
+            _vy = -150.0f;
+            _vx = rand()%40 + 15;
+            _alpha = 1.5f;
+            _fadeout = true;
+            _collided = true;
+            [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"henKicked"];
+            [[SoundEngine shared] playSound:@"henKicked"];
+            break;
+        case COLLISION_BEHAVIOR_COW_COLLAPSE:
+            [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"cowDied"];  
+            [[SoundEngine shared] playSound:@"cowDied"];
+            _alpha = 1.5f;
+            _fadeout = true;
+            break;
+        case COLLISION_BEHAVIOR_DANCIN_MAN_COLLAPSE:
+            [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"dancinManDied"];
+            _alpha = 1.5f;
+            _fadeout = true;
+            GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+            [[gameLayer.player getThirdAction] setKilledEnemy:YES];
+            break;
+        case COLLISION_BEHAVIOR_ZOMBIE_HEADLESS:
+            [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"femaleHeadlessZombieAnim"];
+            _alpha = 1.5f;
+            _fadeout = true;
+            _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_ZOMBIE_HEAD];
+            [_projectile reset];
+            [_projectile setPosition:CGPointMake(_x, _y + 41)];
+            [_projectile setBoundingBox:CGRectMake(15, 33, 14, 40)];            
+            [[[[LayerManager sharedLayers] getPlayer] getThirdAction] setKilledEnemy:YES];
+            break;
+        case COLLISION_BEHAVIOR_FIRE_DEMON:
+            _alpha = 1.0f;
+            _vy = -50.0f;
+            _vx = 50.0f;
+            _rate = 2.0f;
+            _fadeout = true;
+            [[[[LayerManager sharedLayers] getPlayer] getThirdAction] setKilledEnemy:YES];
+            break;
+        case COLLISION_BEHAVIOR_FIREBALL_START:
+        case COLLISION_BEHAVIOR_FIREBALL_MOVING:
+            _collided = false;
+            break;
+        case COLLISION_BEHAVIOR_FROG_SQUASH:
+            [self.sprite setAnimationByName:@"rainyFrogSquashAnim"];
+            [[SoundEngine shared] playSound:@"frogSquish"];
+            _alpha = 1.2f;
+            _fadeout = true;
+            break;
+        case COLLISION_BEHAVIOR_WATER_PUFFERFISH:
+            _alpha = 1.2f;
+            _fadeout = true;
+            [[SoundEngine shared] playSound:@"waterPufferFish"];
+            break;
+        case COLLISION_BEHAVIOR_FIREBALL_LANDED:
+        case COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR:
+        case COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR_WAITTOSHOOT:
+        case COLLISION_BEHAVIOR_ZOMBIE_FADE:
+        case COLLISION_BEHAVIOR_ROLLING_HAYBALE:
+        case COLLISION_BEHAVIOR_FADES:
+        case COLLISION_BEHAVIOR_RAINY_SQUIRREL:
+        case COLLISION_BEHAVIOR_COMPUTER_WORM:
+            _alpha = 1.2f;
+            _fadeout = true;
+        default:
+            break;
     }
     
     return _playerEffect;
@@ -687,8 +683,8 @@
             }
             _angle+=200*dt;
             _magnitude=300;
-            _vx = -0.1*_magnitude;
-        _vy =1*_magnitude * cosf((_angle * 3.14159)/180.0f);
+            _vx = -0.12*_magnitude;
+        _vy =1.1*_magnitude * cosf((_angle * 3.14159)/180.0f);
         }
     }
     
@@ -708,7 +704,7 @@
                     _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_RAINY_SQUIRREL_NUT];
                     [_projectile reset];
                     [_projectile setPosition:CGPointMake(_x - 25.0f, _y + 19)];
-                    [_projectile setBoundingBox:CGRectMake(0, 12, 16, 16)];
+                    [_projectile setBoundingBox:CGRectMake(5, 12, 16, 16)];
                     [_projectile setInitialVelocity];
                 } 
             } else {
@@ -811,6 +807,25 @@
                     [[SoundEngine shared] playSound:@"waterSeaHorse"];
                 }
             }
+        }
+    }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_COMPUTER_MELISSA) {
+        if ([self closeToPlayer:210.0f]) {
+            _vx = -175.0f;
+            if (!_hasTriggered) {
+                _hasTriggered = true;
+                [self setOriginalAnimation:@"computerMelissaSlowAnim"];
+                [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"computerMelissaFastAnim"];
+            }
+        } else if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+            _vx = -50.0f;
+        }
+    }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_COMPUTER_WORM) {
+        if ([[_sprite getAnimation] getCurrentFrameNumber] == 1) {
+            _vx = -50.0f;
+        } else {
+            _vx = 0.0f;
         }
     }
 
@@ -1001,7 +1016,13 @@
         _currentBehavior = COLLISION_BEHAVIOR_DARK_SPIKES;
        
         _hasTriggered=false;
-    } 
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_COMPUTER_MELISSA) {
+        _currentBehavior = COLLISION_BEHAVIOR_COMPUTER_MELISSA;
+        _hasTriggered = false;
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_COMPUTER_WORM) {
+        _currentBehavior = COLLISION_BEHAVIOR_COMPUTER_WORM;
+        _hasTriggered = false;
+    }
     else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_SLOW) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;     
     }
@@ -1139,10 +1160,13 @@
         _collideBehavior = COLLISION_BEHAVIOR_DARK_SPIKES;
         
         _hasTriggered=false;
+    } else if([behavior isEqualToString:@"computerMelissa"]){
+        _currentBehavior = COLLISION_BEHAVIOR_COMPUTER_MELISSA;
+        _collideBehavior = COLLISION_BEHAVIOR_COMPUTER_MELISSA;
+    } else if([behavior isEqualToString:@"computerWorm"]) {
+        _currentBehavior = COLLISION_BEHAVIOR_COMPUTER_WORM;
+        _collideBehavior = COLLISION_BEHAVIOR_COMPUTER_WORM;
     }
-
-
-    
     else {
         _collideBehavior = COLLISION_BEHAVIOR_NONE;
     }

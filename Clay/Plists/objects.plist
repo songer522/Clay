@@ -2,6 +2,76 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>VolcanoBBQLarge</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>0</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>none</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>15</integer>
+			<key>width</key>
+			<integer>87</integer>
+			<key>x</key>
+			<integer>-12</integer>
+			<key>y</key>
+			<integer>2</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>static</string>
+		<key>imageName</key>
+		<string>Fire_VolcanoBBQ_Large.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>-45</integer>
+		<key>playerEffect</key>
+		<string>slow</string>
+	</dict>
+	<key>VolcanoBBQSmall</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>0</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>none</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>15</integer>
+			<key>width</key>
+			<integer>87</integer>
+			<key>x</key>
+			<integer>-12</integer>
+			<key>y</key>
+			<integer>2</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>static</string>
+		<key>imageName</key>
+		<string>Fire_VolcanoBBQ_Small.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>-45</integer>
+		<key>playerEffect</key>
+		<string>slow</string>
+	</dict>
 	<key>bighurdle</key>
 	<dict>
 		<key>aggressive</key>
@@ -37,14 +107,14 @@
 		<key>playerEffect</key>
 		<string>collide</string>
 	</dict>
-	<key>smallHurdle</key>
+	<key>checkpoint</key>
 	<dict>
 		<key>aggressive</key>
 		<string>false</string>
 		<key>anchorpoint</key>
 		<dict>
 			<key>x</key>
-			<integer>1</integer>
+			<integer>0</integer>
 			<key>y</key>
 			<integer>0</integer>
 		</dict>
@@ -55,59 +125,94 @@
 			<key>height</key>
 			<integer>15</integer>
 			<key>width</key>
-			<integer>15</integer>
+			<integer>87</integer>
 			<key>x</key>
-			<integer>20</integer>
+			<integer>-12</integer>
 			<key>y</key>
 			<integer>2</integer>
 		</dict>
 		<key>collideBehavior</key>
-		<string>falls</string>
+		<string>none</string>
 		<key>imageName</key>
-		<string>Track_SmallHurdle_1.png</string>
+		<string>Checkpoint_1.png</string>
 		<key>offsetx</key>
-		<integer>0</integer>
+		<integer>-64</integer>
 		<key>offsety</key>
-		<integer>-45</integer>
+		<integer>-20</integer>
 		<key>playerEffect</key>
-		<string>collide</string>
+		<string>slow</string>
 	</dict>
-	<key>darkSmallObstacle</key>
+	<key>checkpoint8bit</key>
 	<dict>
 		<key>aggressive</key>
 		<string>false</string>
 		<key>anchorpoint</key>
 		<dict>
 			<key>x</key>
-			<integer>1</integer>
+			<integer>0</integer>
 			<key>y</key>
 			<integer>0</integer>
 		</dict>
 		<key>animationName</key>
-		<string>darkGargoyleEggAnim</string>
+		<string>none</string>
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
 			<integer>15</integer>
 			<key>width</key>
-			<integer>15</integer>
+			<integer>87</integer>
+			<key>x</key>
+			<integer>-12</integer>
+			<key>y</key>
+			<integer>2</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>none</string>
+		<key>imageName</key>
+		<string>Retro_WaterTable_1.png</string>
+		<key>offsetx</key>
+		<integer>-64</integer>
+		<key>offsety</key>
+		<integer>-20</integer>
+		<key>playerEffect</key>
+		<string>slow</string>
+	</dict>
+	<key>computerIloveyou</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<real>0.5</real>
+			<key>y</key>
+			<real>0.5</real>
+		</dict>
+		<key>animationName</key>
+		<string>computerIloveyouAnim</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>20</integer>
+			<key>width</key>
+			<integer>35</integer>
 			<key>x</key>
 			<integer>25</integer>
 			<key>y</key>
-			<integer>2</integer>
+			<integer>25</integer>
 		</dict>
 		<key>collideBehavior</key>
-		<string>falls</string>
+		<string>fades</string>
 		<key>imageName</key>
 		<string>blank.png</string>
 		<key>offsetx</key>
 		<integer>0</integer>
 		<key>offsety</key>
-		<integer>-35</integer>
+		<integer>-7</integer>
 		<key>playerEffect</key>
 		<string>collide</string>
 	</dict>
-	<key>jimSpaceShip</key>
+	<key>computerMelissa</key>
 	<dict>
 		<key>aggressive</key>
 		<string>false</string>
@@ -119,30 +224,30 @@
 			<real>0.5</real>
 		</dict>
 		<key>animationName</key>
-		<string>jimSpaceshipAnim</string>
+		<string>computerMelissaSlowAnim</string>
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>1</integer>
+			<integer>20</integer>
 			<key>width</key>
-			<integer>1</integer>
+			<integer>35</integer>
 			<key>x</key>
-			<integer>0</integer>
+			<integer>25</integer>
 			<key>y</key>
-			<integer>0</integer>
+			<integer>25</integer>
 		</dict>
 		<key>collideBehavior</key>
-		<string>bossShip</string>
+		<string>computerMelissa</string>
 		<key>imageName</key>
 		<string>blank.png</string>
 		<key>offsetx</key>
 		<integer>0</integer>
 		<key>offsety</key>
-		<integer>0</integer>
+		<integer>7</integer>
 		<key>playerEffect</key>
-		<string>none</string>
+		<string>collide</string>
 	</dict>
-	<key>finalJimBoss</key>
+	<key>computerTrojan</key>
 	<dict>
 		<key>aggressive</key>
 		<string>false</string>
@@ -154,28 +259,63 @@
 			<real>0.5</real>
 		</dict>
 		<key>animationName</key>
-		<string>darkShadowTimAnim</string>
+		<string>computerTrojanAnim</string>
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>1</integer>
+			<integer>20</integer>
 			<key>width</key>
-			<integer>1</integer>
+			<integer>35</integer>
 			<key>x</key>
-			<integer>0</integer>
+			<integer>25</integer>
 			<key>y</key>
-			<integer>0</integer>
+			<integer>25</integer>
 		</dict>
 		<key>collideBehavior</key>
-		<string>finalBoss</string>
+		<string>fades</string>
 		<key>imageName</key>
 		<string>blank.png</string>
 		<key>offsetx</key>
 		<integer>0</integer>
 		<key>offsety</key>
-		<integer>0</integer>
+		<integer>6</integer>
 		<key>playerEffect</key>
-		<string>none</string>
+		<string>collide</string>
+	</dict>
+	<key>computerWorm</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<real>0.5</real>
+			<key>y</key>
+			<real>0.5</real>
+		</dict>
+		<key>animationName</key>
+		<string>computerWormAnim</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>20</integer>
+			<key>width</key>
+			<integer>35</integer>
+			<key>x</key>
+			<integer>25</integer>
+			<key>y</key>
+			<integer>25</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>computerWorm</string>
+		<key>imageName</key>
+		<string>blank.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>-7</integer>
+		<key>playerEffect</key>
+		<string>collide</string>
 	</dict>
 	<key>cow</key>
 	<dict>
@@ -193,13 +333,13 @@
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>57</integer>
+			<integer>15</integer>
 			<key>width</key>
 			<integer>42</integer>
 			<key>x</key>
 			<integer>90</integer>
 			<key>y</key>
-			<integer>2</integer>
+			<integer>100</integer>
 		</dict>
 		<key>collideBehavior</key>
 		<string>cowCollapse</string>
@@ -209,6 +349,41 @@
 		<integer>0</integer>
 		<key>offsety</key>
 		<integer>-45</integer>
+		<key>playerEffect</key>
+		<string>collide</string>
+	</dict>
+	<key>crow</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<real>0.5</real>
+			<key>y</key>
+			<real>0.5</real>
+		</dict>
+		<key>animationName</key>
+		<string>crowAnim</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>15</integer>
+			<key>width</key>
+			<integer>35</integer>
+			<key>x</key>
+			<integer>25</integer>
+			<key>y</key>
+			<integer>100</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>flyer</string>
+		<key>imageName</key>
+		<string>blank.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>135</integer>
 		<key>playerEffect</key>
 		<string>collide</string>
 	</dict>
@@ -247,6 +422,216 @@
 		<key>playerEffect</key>
 		<string>collide</string>
 	</dict>
+	<key>darkBat</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<real>0.5</real>
+			<key>y</key>
+			<real>0.6</real>
+		</dict>
+		<key>animationName</key>
+		<string>batFlying</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>30</integer>
+			<key>width</key>
+			<integer>20</integer>
+			<key>x</key>
+			<integer>10</integer>
+			<key>y</key>
+			<integer>25</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>darkBat</string>
+		<key>imageName</key>
+		<string>blank.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>100</integer>
+		<key>playerEffect</key>
+		<string>collide</string>
+	</dict>
+	<key>darkBatStatic</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<real>0.5</real>
+			<key>y</key>
+			<real>0.6</real>
+		</dict>
+		<key>animationName</key>
+		<string>none</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>30</integer>
+			<key>width</key>
+			<integer>20</integer>
+			<key>x</key>
+			<integer>10</integer>
+			<key>y</key>
+			<integer>25</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>static</string>
+		<key>imageName</key>
+		<string>Dark_Bat_1.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>250</integer>
+		<key>playerEffect</key>
+		<string>collide</string>
+	</dict>
+	<key>darkGargoyle</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>0</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>gargoyleSit</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>20</integer>
+			<key>width</key>
+			<integer>15</integer>
+			<key>x</key>
+			<integer>-45</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>gargoyle</string>
+		<key>imageName</key>
+		<string>blank.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>-50</integer>
+		<key>playerEffect</key>
+		<string>collide</string>
+	</dict>
+	<key>darkShadow</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<real>0.5</real>
+			<key>y</key>
+			<real>0.5</real>
+		</dict>
+		<key>animationName</key>
+		<string>none</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>30</integer>
+			<key>width</key>
+			<integer>35</integer>
+			<key>x</key>
+			<integer>25</integer>
+			<key>y</key>
+			<integer>25</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>chargeAtPlayerFast</string>
+		<key>imageName</key>
+		<string>Dark_Tim_1.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>30</integer>
+		<key>playerEffect</key>
+		<string>collide</string>
+	</dict>
+	<key>darkSmallObstacle</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>1</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>darkGargoyleEggAnim</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>15</integer>
+			<key>width</key>
+			<integer>15</integer>
+			<key>x</key>
+			<integer>25</integer>
+			<key>y</key>
+			<integer>2</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>falls</string>
+		<key>imageName</key>
+		<string>blank.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>-35</integer>
+		<key>playerEffect</key>
+		<string>collide</string>
+	</dict>
+	<key>darkSpikes</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>0</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>spikeAnim</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>40</integer>
+			<key>width</key>
+			<integer>80</integer>
+			<key>x</key>
+			<integer>-10</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>spikes</string>
+		<key>imageName</key>
+		<string>blank.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>-130</integer>
+		<key>playerEffect</key>
+		<string>collide</string>
+	</dict>
 	<key>discoDancers</key>
 	<dict>
 		<key>aggressive</key>
@@ -279,6 +664,41 @@
 		<integer>0</integer>
 		<key>offsety</key>
 		<integer>-18</integer>
+		<key>playerEffect</key>
+		<string>none</string>
+	</dict>
+	<key>dog</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>0</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>dogAnim</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>30</integer>
+			<key>width</key>
+			<integer>25</integer>
+			<key>x</key>
+			<integer>0</integer>
+			<key>y</key>
+			<integer>90</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>static</string>
+		<key>imageName</key>
+		<string>blank.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>-30</integer>
 		<key>playerEffect</key>
 		<string>none</string>
 	</dict>
@@ -317,41 +737,6 @@
 		<key>playerEffect</key>
 		<string>none</string>
 	</dict>
-	<key>femaleBreakdancerRed</key>
-	<dict>
-		<key>aggressive</key>
-		<string>false</string>
-		<key>anchorpoint</key>
-		<dict>
-			<key>x</key>
-			<real>0.5</real>
-			<key>y</key>
-			<real>0.5</real>
-		</dict>
-		<key>animationName</key>
-		<string>femaleBreakdancerRedAnim</string>
-		<key>boundingBox</key>
-		<dict>
-			<key>height</key>
-			<integer>15</integer>
-			<key>width</key>
-			<integer>30</integer>
-			<key>x</key>
-			<integer>30</integer>
-			<key>y</key>
-			<integer>100</integer>
-		</dict>
-		<key>collideBehavior</key>
-		<string>chargeAtPlayer</string>
-		<key>imageName</key>
-		<string>blank.png</string>
-		<key>offsetx</key>
-		<integer>0</integer>
-		<key>offsety</key>
-		<integer>5</integer>
-		<key>playerEffect</key>
-		<string>collide</string>
-	</dict>
 	<key>femaleBreakdancerBlue</key>
 	<dict>
 		<key>aggressive</key>
@@ -368,16 +753,51 @@
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>15</integer>
+			<integer>35</integer>
 			<key>width</key>
 			<integer>30</integer>
 			<key>x</key>
 			<integer>30</integer>
 			<key>y</key>
-			<integer>100</integer>
+			<integer>50</integer>
 		</dict>
 		<key>collideBehavior</key>
 		<string>chargeAtPlayerFast</string>
+		<key>imageName</key>
+		<string>blank.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>5</integer>
+		<key>playerEffect</key>
+		<string>collide</string>
+	</dict>
+	<key>femaleBreakdancerRed</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<real>0.5</real>
+			<key>y</key>
+			<real>0.5</real>
+		</dict>
+		<key>animationName</key>
+		<string>femaleBreakdancerRedAnim</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>35</integer>
+			<key>width</key>
+			<integer>30</integer>
+			<key>x</key>
+			<integer>30</integer>
+			<key>y</key>
+			<integer>50</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>chargeAtPlayer</string>
 		<key>imageName</key>
 		<string>blank.png</string>
 		<key>offsetx</key>
@@ -422,7 +842,7 @@
 		<key>playerEffect</key>
 		<string>collide</string>
 	</dict>
-	<key>retroZombie</key>
+	<key>finalJimBoss</key>
 	<dict>
 		<key>aggressive</key>
 		<string>false</string>
@@ -431,23 +851,163 @@
 			<key>x</key>
 			<real>0.5</real>
 			<key>y</key>
+			<real>0.5</real>
+		</dict>
+		<key>animationName</key>
+		<string>darkShadowTimAnim</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>1</integer>
+			<key>width</key>
+			<integer>1</integer>
+			<key>x</key>
+			<integer>0</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>finalBoss</string>
+		<key>imageName</key>
+		<string>blank.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>0</integer>
+		<key>playerEffect</key>
+		<string>none</string>
+	</dict>
+	<key>fireBabyDemon</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>1</integer>
+			<key>y</key>
 			<integer>0</integer>
 		</dict>
 		<key>animationName</key>
-		<string>retroZombieStatic</string>
+		<string>fireBabyDemonAnim</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>15</integer>
+			<key>width</key>
+			<integer>15</integer>
+			<key>x</key>
+			<integer>35</integer>
+			<key>y</key>
+			<integer>2</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>falls</string>
+		<key>imageName</key>
+		<string>blank.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>-45</integer>
+		<key>playerEffect</key>
+		<string>collide</string>
+	</dict>
+	<key>fireDemon</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>0</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>fireDemonAnim</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>40</integer>
+			<key>width</key>
+			<integer>15</integer>
+			<key>x</key>
+			<integer>-50</integer>
+			<key>y</key>
+			<integer>-10</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>fireDemon</string>
+		<key>imageName</key>
+		<string>blank.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>-40</integer>
+		<key>playerEffect</key>
+		<string>collide</string>
+	</dict>
+	<key>fireDemonWithArmor</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>0</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>fireDemonWithArmorWalking</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>45</integer>
+			<key>width</key>
+			<integer>15</integer>
+			<key>x</key>
+			<integer>-50</integer>
+			<key>y</key>
+			<integer>10</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>fireDemonWithArmor</string>
+		<key>imageName</key>
+		<string>blank.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>-40</integer>
+		<key>playerEffect</key>
+		<string>collide</string>
+	</dict>
+	<key>fireball</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>0</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>fireballMovingAnim</string>
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
 			<integer>30</integer>
 			<key>width</key>
-			<integer>25</integer>
+			<integer>15</integer>
 			<key>x</key>
-			<integer>20</integer>
+			<integer>-50</integer>
 			<key>y</key>
 			<integer>0</integer>
 		</dict>
 		<key>collideBehavior</key>
-		<string>retroZombie</string>
+		<string>fireball</string>
 		<key>imageName</key>
 		<string>blank.png</string>
 		<key>offsetx</key>
@@ -489,41 +1049,6 @@
 		<integer>90</integer>
 		<key>offsety</key>
 		<integer>-47</integer>
-		<key>playerEffect</key>
-		<string>collide</string>
-	</dict>
-	<key>retroGarbage</key>
-	<dict>
-		<key>aggressive</key>
-		<string>false</string>
-		<key>anchorpoint</key>
-		<dict>
-			<key>x</key>
-			<integer>1</integer>
-			<key>y</key>
-			<integer>0</integer>
-		</dict>
-		<key>animationName</key>
-		<string>retroGarbageAnim</string>
-		<key>boundingBox</key>
-		<dict>
-			<key>height</key>
-			<integer>30</integer>
-			<key>width</key>
-			<integer>14</integer>
-			<key>x</key>
-			<integer>35</integer>
-			<key>y</key>
-			<integer>2</integer>
-		</dict>
-		<key>collideBehavior</key>
-		<string>falls</string>
-		<key>imageName</key>
-		<string>blank.png</string>
-		<key>offsetx</key>
-		<integer>0</integer>
-		<key>offsety</key>
-		<integer>-30</integer>
 		<key>playerEffect</key>
 		<string>collide</string>
 	</dict>
@@ -597,6 +1122,41 @@
 		<key>playerEffect</key>
 		<string>collide</string>
 	</dict>
+	<key>haybaleRolling</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<real>0.5</real>
+			<key>y</key>
+			<integer>1</integer>
+		</dict>
+		<key>animationName</key>
+		<string>townRollingHayAnim</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>25</integer>
+			<key>width</key>
+			<integer>14</integer>
+			<key>x</key>
+			<integer>20</integer>
+			<key>y</key>
+			<integer>60</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>rolling</string>
+		<key>imageName</key>
+		<string>blank.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>20</integer>
+		<key>playerEffect</key>
+		<string>collide</string>
+	</dict>
 	<key>haybaleSmall</key>
 	<dict>
 		<key>aggressive</key>
@@ -632,76 +1192,6 @@
 		<key>playerEffect</key>
 		<string>collide</string>
 	</dict>
-	<key>fireBabyDemon</key>
-	<dict>
-		<key>aggressive</key>
-		<string>false</string>
-		<key>anchorpoint</key>
-		<dict>
-			<key>x</key>
-			<integer>1</integer>
-			<key>y</key>
-			<integer>0</integer>
-		</dict>
-		<key>animationName</key>
-		<string>fireBabyDemonAnim</string>
-		<key>boundingBox</key>
-		<dict>
-			<key>height</key>
-			<integer>15</integer>
-			<key>width</key>
-			<integer>15</integer>
-			<key>x</key>
-			<integer>35</integer>
-			<key>y</key>
-			<integer>2</integer>
-		</dict>
-		<key>collideBehavior</key>
-		<string>falls</string>
-		<key>imageName</key>
-		<string>blank.png</string>
-		<key>offsetx</key>
-		<integer>0</integer>
-		<key>offsety</key>
-		<integer>-45</integer>
-		<key>playerEffect</key>
-		<string>collide</string>
-	</dict>
-	<key>haybaleRolling</key>
-	<dict>
-		<key>aggressive</key>
-		<string>false</string>
-		<key>anchorpoint</key>
-		<dict>
-			<key>x</key>
-			<real>0.5</real>
-			<key>y</key>
-			<integer>1</integer>
-		</dict>
-		<key>animationName</key>
-		<string>townRollingHayAnim</string>
-		<key>boundingBox</key>
-		<dict>
-			<key>height</key>
-			<integer>25</integer>
-			<key>width</key>
-			<integer>14</integer>
-			<key>x</key>
-			<integer>20</integer>
-			<key>y</key>
-			<integer>90</integer>
-		</dict>
-		<key>collideBehavior</key>
-		<string>rolling</string>
-		<key>imageName</key>
-		<string>blank.png</string>
-		<key>offsetx</key>
-		<integer>0</integer>
-		<key>offsety</key>
-		<integer>20</integer>
-		<key>playerEffect</key>
-		<string>collide</string>
-	</dict>
 	<key>headlessZombie</key>
 	<dict>
 		<key>aggressive</key>
@@ -734,251 +1224,6 @@
 		<integer>0</integer>
 		<key>offsety</key>
 		<integer>-40</integer>
-		<key>playerEffect</key>
-		<string>collide</string>
-	</dict>
-	<key>fireDemon</key>
-	<dict>
-		<key>aggressive</key>
-		<string>false</string>
-		<key>anchorpoint</key>
-		<dict>
-			<key>x</key>
-			<integer>0</integer>
-			<key>y</key>
-			<integer>0</integer>
-		</dict>
-		<key>animationName</key>
-		<string>fireDemonAnim</string>
-		<key>boundingBox</key>
-		<dict>
-			<key>height</key>
-			<integer>40</integer>
-			<key>width</key>
-			<integer>15</integer>
-			<key>x</key>
-			<integer>-50</integer>
-			<key>y</key>
-			<integer>-10</integer>
-		</dict>
-		<key>collideBehavior</key>
-		<string>fireDemon</string>
-		<key>imageName</key>
-		<string>blank.png</string>
-		<key>offsetx</key>
-		<integer>0</integer>
-		<key>offsety</key>
-		<integer>-40</integer>
-		<key>playerEffect</key>
-		<string>collide</string>
-	</dict>
-	<key>fireball</key>
-	<dict>
-		<key>aggressive</key>
-		<string>false</string>
-		<key>anchorpoint</key>
-		<dict>
-			<key>x</key>
-			<integer>0</integer>
-			<key>y</key>
-			<integer>0</integer>
-		</dict>
-		<key>animationName</key>
-		<string>fireballMovingAnim</string>
-		<key>boundingBox</key>
-		<dict>
-			<key>height</key>
-			<integer>30</integer>
-			<key>width</key>
-			<integer>15</integer>
-			<key>x</key>
-			<integer>-50</integer>
-			<key>y</key>
-			<integer>0</integer>
-		</dict>
-		<key>collideBehavior</key>
-		<string>fireball</string>
-		<key>imageName</key>
-		<string>blank.png</string>
-		<key>offsetx</key>
-		<integer>0</integer>
-		<key>offsety</key>
-		<integer>-40</integer>
-		<key>playerEffect</key>
-		<string>collide</string>
-	</dict>
-	<key>fireDemonWithArmor</key>
-	<dict>
-		<key>aggressive</key>
-		<string>false</string>
-		<key>anchorpoint</key>
-		<dict>
-			<key>x</key>
-			<integer>0</integer>
-			<key>y</key>
-			<integer>0</integer>
-		</dict>
-		<key>animationName</key>
-		<string>fireDemonWithArmorWalking</string>
-		<key>boundingBox</key>
-		<dict>
-			<key>height</key>
-			<integer>45</integer>
-			<key>width</key>
-			<integer>15</integer>
-			<key>x</key>
-			<integer>-50</integer>
-			<key>y</key>
-			<integer>10</integer>
-		</dict>
-		<key>collideBehavior</key>
-		<string>fireDemonWithArmor</string>
-		<key>imageName</key>
-		<string>blank.png</string>
-		<key>offsetx</key>
-		<integer>0</integer>
-		<key>offsety</key>
-		<integer>-40</integer>
-		<key>playerEffect</key>
-		<string>collide</string>
-	</dict>
-	<key>dog</key>
-	<dict>
-		<key>aggressive</key>
-		<string>false</string>
-		<key>anchorpoint</key>
-		<dict>
-			<key>x</key>
-			<integer>0</integer>
-			<key>y</key>
-			<integer>0</integer>
-		</dict>
-		<key>animationName</key>
-		<string>dogAnim</string>
-		<key>boundingBox</key>
-		<dict>
-			<key>height</key>
-			<integer>30</integer>
-			<key>width</key>
-			<integer>25</integer>
-			<key>x</key>
-			<integer>0</integer>
-			<key>y</key>
-			<integer>0</integer>
-		</dict>
-		<key>collideBehavior</key>
-		<string>static</string>
-		<key>imageName</key>
-		<string>blank.png</string>
-		<key>offsetx</key>
-		<integer>0</integer>
-		<key>offsety</key>
-		<integer>-30</integer>
-		<key>playerEffect</key>
-		<string>none</string>
-	</dict>
-	<key>madDog</key>
-	<dict>
-		<key>aggressive</key>
-		<string>false</string>
-		<key>anchorpoint</key>
-		<dict>
-			<key>x</key>
-			<integer>0</integer>
-			<key>y</key>
-			<integer>0</integer>
-		</dict>
-		<key>animationName</key>
-		<string>dogAnim</string>
-		<key>boundingBox</key>
-		<dict>
-			<key>height</key>
-			<integer>20</integer>
-			<key>width</key>
-			<integer>25</integer>
-			<key>x</key>
-			<integer>-10</integer>
-			<key>y</key>
-			<integer>0</integer>
-		</dict>
-		<key>collideBehavior</key>
-		<string>madDog</string>
-		<key>imageName</key>
-		<string>blank.png</string>
-		<key>offsetx</key>
-		<integer>0</integer>
-		<key>offsety</key>
-		<integer>-30</integer>
-		<key>playerEffect</key>
-		<string>collide</string>
-	</dict>
-	<key>darkGargoyle</key>
-	<dict>
-		<key>aggressive</key>
-		<string>false</string>
-		<key>anchorpoint</key>
-		<dict>
-			<key>x</key>
-			<integer>0</integer>
-			<key>y</key>
-			<integer>0</integer>
-		</dict>
-		<key>animationName</key>
-		<string>gargoyleSit</string>
-		<key>boundingBox</key>
-		<dict>
-			<key>height</key>
-			<integer>20</integer>
-			<key>width</key>
-			<integer>15</integer>
-			<key>x</key>
-			<integer>-45</integer>
-			<key>y</key>
-			<integer>0</integer>
-		</dict>
-		<key>collideBehavior</key>
-		<string>gargoyle</string>
-		<key>imageName</key>
-		<string>blank.png</string>
-		<key>offsetx</key>
-		<integer>0</integer>
-		<key>offsety</key>
-		<integer>-50</integer>
-		<key>playerEffect</key>
-		<string>collide</string>
-	</dict>
-	<key>darkSpikes</key>
-	<dict>
-		<key>aggressive</key>
-		<string>false</string>
-		<key>anchorpoint</key>
-		<dict>
-			<key>x</key>
-			<integer>0</integer>
-			<key>y</key>
-			<integer>0</integer>
-		</dict>
-		<key>animationName</key>
-		<string>spikeAnim</string>
-		<key>boundingBox</key>
-		<dict>
-			<key>height</key>
-			<integer>40</integer>
-			<key>width</key>
-			<integer>80</integer>
-			<key>x</key>
-			<integer>-10</integer>
-			<key>y</key>
-			<integer>0</integer>
-		</dict>
-		<key>collideBehavior</key>
-		<string>spikes</string>
-		<key>imageName</key>
-		<string>blank.png</string>
-		<key>offsetx</key>
-		<integer>0</integer>
-		<key>offsety</key>
-		<integer>-130</integer>
 		<key>playerEffect</key>
 		<string>collide</string>
 	</dict>
@@ -1052,41 +1297,6 @@
 		<key>playerEffect</key>
 		<string>collide</string>
 	</dict>
-	<key>retroHurdle</key>
-	<dict>
-		<key>aggressive</key>
-		<string>false</string>
-		<key>anchorpoint</key>
-		<dict>
-			<key>x</key>
-			<integer>1</integer>
-			<key>y</key>
-			<integer>0</integer>
-		</dict>
-		<key>animationName</key>
-		<string>retroHurdleAnim</string>
-		<key>boundingBox</key>
-		<dict>
-			<key>height</key>
-			<integer>30</integer>
-			<key>width</key>
-			<integer>14</integer>
-			<key>x</key>
-			<integer>20</integer>
-			<key>y</key>
-			<integer>2</integer>
-		</dict>
-		<key>collideBehavior</key>
-		<string>falls</string>
-		<key>imageName</key>
-		<string>blank.png</string>
-		<key>offsetx</key>
-		<integer>0</integer>
-		<key>offsety</key>
-		<integer>-35</integer>
-		<key>playerEffect</key>
-		<string>collide</string>
-	</dict>
 	<key>jimBarn</key>
 	<dict>
 		<key>aggressive</key>
@@ -1157,6 +1367,41 @@
 		<key>playerEffect</key>
 		<string>slow</string>
 	</dict>
+	<key>jimSpaceShip</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<real>0.5</real>
+			<key>y</key>
+			<real>0.5</real>
+		</dict>
+		<key>animationName</key>
+		<string>jimSpaceshipAnim</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>1</integer>
+			<key>width</key>
+			<integer>1</integer>
+			<key>x</key>
+			<integer>0</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>bossShip</string>
+		<key>imageName</key>
+		<string>blank.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>0</integer>
+		<key>playerEffect</key>
+		<string>none</string>
+	</dict>
 	<key>leafpile</key>
 	<dict>
 		<key>aggressive</key>
@@ -1226,6 +1471,41 @@
 		<integer>30</integer>
 		<key>playerEffect</key>
 		<string>none</string>
+	</dict>
+	<key>madDog</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>0</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>dogAnim</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>20</integer>
+			<key>width</key>
+			<integer>25</integer>
+			<key>x</key>
+			<integer>-10</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>madDog</string>
+		<key>imageName</key>
+		<string>blank.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>-30</integer>
+		<key>playerEffect</key>
+		<string>collide</string>
 	</dict>
 	<key>maleBkgDancer</key>
 	<dict>
@@ -1332,7 +1612,7 @@
 		<key>playerEffect</key>
 		<string>collide</string>
 	</dict>
-	<key>darkShadow</key>
+	<key>player</key>
 	<dict>
 		<key>aggressive</key>
 		<string>false</string>
@@ -1341,7 +1621,73 @@
 			<key>x</key>
 			<real>0.5</real>
 			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>none</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>100</integer>
+			<key>width</key>
+			<integer>32</integer>
+			<key>x</key>
+			<integer>20</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>imageName</key>
+		<string>blank.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>0</integer>
+	</dict>
+	<key>rainyFrog</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>1</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>rainyFrogIdleAnim</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>30</integer>
+			<key>width</key>
+			<integer>20</integer>
+			<key>x</key>
+			<integer>32</integer>
+			<key>y</key>
+			<integer>13</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>frogSquash</string>
+		<key>imageName</key>
+		<string>blank.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>-41</integer>
+		<key>playerEffect</key>
+		<string>collide</string>
+	</dict>
+	<key>rainyPaperPlane</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
 			<real>0.5</real>
+			<key>y</key>
+			<real>0.6</real>
 		</dict>
 		<key>animationName</key>
 		<string>none</string>
@@ -1350,125 +1696,55 @@
 			<key>height</key>
 			<integer>30</integer>
 			<key>width</key>
-			<integer>35</integer>
-			<key>x</key>
-			<integer>25</integer>
-			<key>y</key>
-			<integer>25</integer>
-		</dict>
-		<key>collideBehavior</key>
-		<string>chargeAtPlayerFast</string>
-		<key>imageName</key>
-		<string>Dark_Tim_1.png</string>
-		<key>offsetx</key>
-		<integer>0</integer>
-		<key>offsety</key>
-		<integer>30</integer>
-		<key>playerEffect</key>
-		<string>collide</string>
-	</dict>
-	<key>retroPig</key>
-	<dict>
-		<key>aggressive</key>
-		<string>false</string>
-		<key>anchorpoint</key>
-		<dict>
-			<key>x</key>
-			<real>0.5</real>
-			<key>y</key>
-			<real>0.5</real>
-		</dict>
-		<key>animationName</key>
-		<string>retroPigAnim</string>
-		<key>boundingBox</key>
-		<dict>
-			<key>height</key>
 			<integer>20</integer>
-			<key>width</key>
-			<integer>35</integer>
 			<key>x</key>
-			<integer>25</integer>
+			<integer>10</integer>
 			<key>y</key>
 			<integer>25</integer>
 		</dict>
 		<key>collideBehavior</key>
-		<string>chargeAtPlayer</string>
+		<string>rainyPaperPlane</string>
 		<key>imageName</key>
-		<string>blank.png</string>
+		<string>Level9_PaperPlane.png</string>
 		<key>offsetx</key>
 		<integer>0</integer>
 		<key>offsety</key>
-		<integer>-3</integer>
+		<integer>150</integer>
 		<key>playerEffect</key>
 		<string>collide</string>
 	</dict>
-	<key>crow</key>
+	<key>rainySquirrel</key>
 	<dict>
 		<key>aggressive</key>
 		<string>false</string>
 		<key>anchorpoint</key>
 		<dict>
 			<key>x</key>
-			<real>0.5</real>
+			<integer>1</integer>
 			<key>y</key>
-			<real>0.5</real>
+			<integer>0</integer>
 		</dict>
 		<key>animationName</key>
-		<string>crowAnim</string>
+		<string>rainySquirrelAnim</string>
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>55</integer>
+			<integer>30</integer>
 			<key>width</key>
-			<integer>35</integer>
+			<integer>20</integer>
 			<key>x</key>
-			<integer>25</integer>
+			<integer>32</integer>
 			<key>y</key>
-			<integer>40</integer>
+			<integer>13</integer>
 		</dict>
 		<key>collideBehavior</key>
-		<string>flyer</string>
+		<string>rainySquirrel</string>
 		<key>imageName</key>
 		<string>blank.png</string>
 		<key>offsetx</key>
 		<integer>0</integer>
 		<key>offsety</key>
-		<integer>135</integer>
-		<key>playerEffect</key>
-		<string>collide</string>
-	</dict>
-	<key>retroCrow</key>
-	<dict>
-		<key>aggressive</key>
-		<string>false</string>
-		<key>anchorpoint</key>
-		<dict>
-			<key>x</key>
-			<real>0.5</real>
-			<key>y</key>
-			<real>0.5</real>
-		</dict>
-		<key>animationName</key>
-		<string>retroCrowAnim</string>
-		<key>boundingBox</key>
-		<dict>
-			<key>height</key>
-			<integer>55</integer>
-			<key>width</key>
-			<integer>35</integer>
-			<key>x</key>
-			<integer>25</integer>
-			<key>y</key>
-			<integer>40</integer>
-		</dict>
-		<key>collideBehavior</key>
-		<string>flyer</string>
-		<key>imageName</key>
-		<string>blank.png</string>
-		<key>offsetx</key>
-		<integer>0</integer>
-		<key>offsety</key>
-		<integer>135</integer>
+		<integer>-35</integer>
 		<key>playerEffect</key>
 		<string>collide</string>
 	</dict>
@@ -1542,7 +1818,77 @@
 		<key>playerEffect</key>
 		<string>none</string>
 	</dict>
-	<key>player</key>
+	<key>rainyUmbrellaFlyAcross</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<real>0.5</real>
+			<key>y</key>
+			<real>0.6</real>
+		</dict>
+		<key>animationName</key>
+		<string>none</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>30</integer>
+			<key>width</key>
+			<integer>20</integer>
+			<key>x</key>
+			<integer>32</integer>
+			<key>y</key>
+			<integer>43</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>umbrellaFlyAcross</string>
+		<key>imageName</key>
+		<string>Level9_Umbrella.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>10</integer>
+		<key>playerEffect</key>
+		<string>collide</string>
+	</dict>
+	<key>rainyUmbrellaFlyUp</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<real>0.5</real>
+			<key>y</key>
+			<real>0.6</real>
+		</dict>
+		<key>animationName</key>
+		<string>none</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>30</integer>
+			<key>width</key>
+			<integer>20</integer>
+			<key>x</key>
+			<integer>32</integer>
+			<key>y</key>
+			<integer>13</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>umbrellaFlyUp</string>
+		<key>imageName</key>
+		<string>Level9_Umbrella.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>20</integer>
+		<key>playerEffect</key>
+		<string>collide</string>
+	</dict>
+	<key>retroZombie</key>
 	<dict>
 		<key>aggressive</key>
 		<string>false</string>
@@ -1554,24 +1900,28 @@
 			<integer>0</integer>
 		</dict>
 		<key>animationName</key>
-		<string>none</string>
+		<string>retroZombieStatic</string>
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>100</integer>
+			<integer>30</integer>
 			<key>width</key>
-			<integer>32</integer>
+			<integer>25</integer>
 			<key>x</key>
 			<integer>20</integer>
 			<key>y</key>
 			<integer>0</integer>
 		</dict>
+		<key>collideBehavior</key>
+		<string>retroZombie</string>
 		<key>imageName</key>
 		<string>blank.png</string>
 		<key>offsetx</key>
 		<integer>0</integer>
 		<key>offsety</key>
-		<integer>0</integer>
+		<integer>-40</integer>
+		<key>playerEffect</key>
+		<string>collide</string>
 	</dict>
 	<key>sandpit</key>
 	<dict>
@@ -1601,76 +1951,6 @@
 		<string>static</string>
 		<key>imageName</key>
 		<string>Track_Sandpit_1.png</string>
-		<key>offsetx</key>
-		<integer>0</integer>
-		<key>offsety</key>
-		<integer>-45</integer>
-		<key>playerEffect</key>
-		<string>slow</string>
-	</dict>
-	<key>VolcanoBBQLarge</key>
-	<dict>
-		<key>aggressive</key>
-		<string>false</string>
-		<key>anchorpoint</key>
-		<dict>
-			<key>x</key>
-			<integer>0</integer>
-			<key>y</key>
-			<integer>0</integer>
-		</dict>
-		<key>animationName</key>
-		<string>none</string>
-		<key>boundingBox</key>
-		<dict>
-			<key>height</key>
-			<integer>15</integer>
-			<key>width</key>
-			<integer>87</integer>
-			<key>x</key>
-			<integer>-12</integer>
-			<key>y</key>
-			<integer>2</integer>
-		</dict>
-		<key>collideBehavior</key>
-		<string>static</string>
-		<key>imageName</key>
-		<string>Fire_VolcanoBBQ_Large.png</string>
-		<key>offsetx</key>
-		<integer>0</integer>
-		<key>offsety</key>
-		<integer>-45</integer>
-		<key>playerEffect</key>
-		<string>slow</string>
-	</dict>
-	<key>VolcanoBBQSmall</key>
-	<dict>
-		<key>aggressive</key>
-		<string>false</string>
-		<key>anchorpoint</key>
-		<dict>
-			<key>x</key>
-			<integer>0</integer>
-			<key>y</key>
-			<integer>0</integer>
-		</dict>
-		<key>animationName</key>
-		<string>none</string>
-		<key>boundingBox</key>
-		<dict>
-			<key>height</key>
-			<integer>15</integer>
-			<key>width</key>
-			<integer>87</integer>
-			<key>x</key>
-			<integer>-12</integer>
-			<key>y</key>
-			<integer>2</integer>
-		</dict>
-		<key>collideBehavior</key>
-		<string>static</string>
-		<key>imageName</key>
-		<string>Fire_VolcanoBBQ_Small.png</string>
 		<key>offsetx</key>
 		<integer>0</integer>
 		<key>offsety</key>
@@ -1713,6 +1993,41 @@
 		<key>playerEffect</key>
 		<string>slow</string>
 	</dict>
+	<key>smallHurdle</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>1</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>none</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>15</integer>
+			<key>width</key>
+			<integer>15</integer>
+			<key>x</key>
+			<integer>20</integer>
+			<key>y</key>
+			<integer>2</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>falls</string>
+		<key>imageName</key>
+		<string>Track_SmallHurdle_1.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>-45</integer>
+		<key>playerEffect</key>
+		<string>collide</string>
+	</dict>
 	<key>spilledDrink</key>
 	<dict>
 		<key>aggressive</key>
@@ -1745,76 +2060,6 @@
 		<integer>-64</integer>
 		<key>offsety</key>
 		<integer>-52</integer>
-		<key>playerEffect</key>
-		<string>slow</string>
-	</dict>
-	<key>checkpoint</key>
-	<dict>
-		<key>aggressive</key>
-		<string>false</string>
-		<key>anchorpoint</key>
-		<dict>
-			<key>x</key>
-			<integer>0</integer>
-			<key>y</key>
-			<integer>0</integer>
-		</dict>
-		<key>animationName</key>
-		<string>none</string>
-		<key>boundingBox</key>
-		<dict>
-			<key>height</key>
-			<integer>15</integer>
-			<key>width</key>
-			<integer>87</integer>
-			<key>x</key>
-			<integer>-12</integer>
-			<key>y</key>
-			<integer>2</integer>
-		</dict>
-		<key>collideBehavior</key>
-		<string>none</string>
-		<key>imageName</key>
-		<string>Checkpoint_1.png</string>
-		<key>offsetx</key>
-		<integer>-64</integer>
-		<key>offsety</key>
-		<integer>-20</integer>
-		<key>playerEffect</key>
-		<string>slow</string>
-	</dict>
-	<key>checkpoint8bit</key>
-	<dict>
-		<key>aggressive</key>
-		<string>false</string>
-		<key>anchorpoint</key>
-		<dict>
-			<key>x</key>
-			<integer>0</integer>
-			<key>y</key>
-			<integer>0</integer>
-		</dict>
-		<key>animationName</key>
-		<string>none</string>
-		<key>boundingBox</key>
-		<dict>
-			<key>height</key>
-			<integer>15</integer>
-			<key>width</key>
-			<integer>87</integer>
-			<key>x</key>
-			<integer>-12</integer>
-			<key>y</key>
-			<integer>2</integer>
-		</dict>
-		<key>collideBehavior</key>
-		<string>none</string>
-		<key>imageName</key>
-		<string>Retro_WaterTable_1.png</string>
-		<key>offsetx</key>
-		<integer>-64</integer>
-		<key>offsety</key>
-		<integer>-20</integer>
 		<key>playerEffect</key>
 		<string>slow</string>
 	</dict>
@@ -1853,77 +2098,7 @@
 		<key>playerEffect</key>
 		<string>collide</string>
 	</dict>
-	<key>rainyFrog</key>
-	<dict>
-		<key>aggressive</key>
-		<string>false</string>
-		<key>anchorpoint</key>
-		<dict>
-			<key>x</key>
-			<integer>1</integer>
-			<key>y</key>
-			<integer>0</integer>
-		</dict>
-		<key>animationName</key>
-		<string>rainyFrogIdleAnim</string>
-		<key>boundingBox</key>
-		<dict>
-			<key>height</key>
-			<integer>30</integer>
-			<key>width</key>
-			<integer>20</integer>
-			<key>x</key>
-			<integer>32</integer>
-			<key>y</key>
-			<integer>13</integer>
-		</dict>
-		<key>collideBehavior</key>
-		<string>frogSquash</string>
-		<key>imageName</key>
-		<string>blank.png</string>
-		<key>offsetx</key>
-		<integer>0</integer>
-		<key>offsety</key>
-		<integer>-41</integer>
-		<key>playerEffect</key>
-		<string>collide</string>
-	</dict>
-	<key>rainySquirrel</key>
-	<dict>
-		<key>aggressive</key>
-		<string>false</string>
-		<key>anchorpoint</key>
-		<dict>
-			<key>x</key>
-			<integer>1</integer>
-			<key>y</key>
-			<integer>0</integer>
-		</dict>
-		<key>animationName</key>
-		<string>rainySquirrelAnim</string>
-		<key>boundingBox</key>
-		<dict>
-			<key>height</key>
-			<integer>30</integer>
-			<key>width</key>
-			<integer>20</integer>
-			<key>x</key>
-			<integer>32</integer>
-			<key>y</key>
-			<integer>13</integer>
-		</dict>
-		<key>collideBehavior</key>
-		<string>rainySquirrel</string>
-		<key>imageName</key>
-		<string>blank.png</string>
-		<key>offsetx</key>
-		<integer>0</integer>
-		<key>offsety</key>
-		<integer>-35</integer>
-		<key>playerEffect</key>
-		<string>collide</string>
-	</dict>
-	<key>rainyUmbrellaFlyUp</key>
+	<key>townCrow</key>
 	<dict>
 		<key>aggressive</key>
 		<string>false</string>
@@ -1932,68 +2107,68 @@
 			<key>x</key>
 			<real>0.5</real>
 			<key>y</key>
-			<real>0.6</real>
+			<real>0.5</real>
 		</dict>
 		<key>animationName</key>
-		<string>none</string>
+		<string>townCrowAnim</string>
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>30</integer>
+			<integer>35</integer>
 			<key>width</key>
-			<integer>20</integer>
+			<integer>45</integer>
 			<key>x</key>
-			<integer>32</integer>
+			<integer>30</integer>
 			<key>y</key>
-			<integer>13</integer>
+			<integer>50</integer>
 		</dict>
 		<key>collideBehavior</key>
-		<string>umbrellaFlyUp</string>
+		<string>chargeAtPlayer</string>
 		<key>imageName</key>
-		<string>Level9_Umbrella.png</string>
+		<string>blank.png</string>
 		<key>offsetx</key>
 		<integer>0</integer>
 		<key>offsety</key>
+		<integer>5</integer>
+		<key>playerEffect</key>
+		<string>collide</string>
+	</dict>
+	<key>tvAnimation</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<real>0.5</real>
+			<key>y</key>
+			<real>0.5</real>
+		</dict>
+		<key>animationName</key>
+		<string>tvAnimationAnim</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>1</integer>
+			<key>width</key>
+			<integer>1</integer>
+			<key>x</key>
+			<integer>0</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>none</string>
+		<key>imageName</key>
+		<string>blank.png</string>
+		<key>offsetx</key>
 		<integer>20</integer>
-		<key>playerEffect</key>
-		<string>collide</string>
-	</dict>
-	<key>rainyPaperPlane</key>
-	<dict>
-		<key>aggressive</key>
-		<string>false</string>
-		<key>anchorpoint</key>
-		<dict>
-			<key>x</key>
-			<real>0.5</real>
-			<key>y</key>
-			<real>0.6</real>
-		</dict>
-		<key>animationName</key>
-		<string>none</string>
-		<key>boundingBox</key>
-		<dict>
-			<key>height</key>
-			<integer>30</integer>
-			<key>width</key>
-			<integer>20</integer>
-			<key>x</key>
-			<integer>10</integer>
-			<key>y</key>
-			<integer>25</integer>
-		</dict>
-		<key>collideBehavior</key>
-		<string>rainyPaperPlane</string>
-		<key>imageName</key>
-		<string>Level9_PaperPlane.png</string>
-		<key>offsetx</key>
-		<integer>0</integer>
 		<key>offsety</key>
-		<integer>150</integer>
+		<integer>-16</integer>
 		<key>playerEffect</key>
-		<string>collide</string>
+		<string>none</string>
 	</dict>
-	<key>darkBat</key>
+	<key>waterAnglerFish</key>
 	<dict>
 		<key>aggressive</key>
 		<string>false</string>
@@ -2005,96 +2180,26 @@
 			<real>0.6</real>
 		</dict>
 		<key>animationName</key>
-		<string>batFlying</string>
+		<string>waterAnglerFishAnim</string>
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>30</integer>
-			<key>width</key>
 			<integer>20</integer>
+			<key>width</key>
+			<integer>34</integer>
 			<key>x</key>
-			<integer>10</integer>
+			<integer>20</integer>
 			<key>y</key>
-			<integer>25</integer>
+			<integer>31</integer>
 		</dict>
 		<key>collideBehavior</key>
-		<string>darkBat</string>
+		<string>chargeAtPlayerSlow</string>
 		<key>imageName</key>
 		<string>blank.png</string>
 		<key>offsetx</key>
 		<integer>0</integer>
 		<key>offsety</key>
-		<integer>100</integer>
-		<key>playerEffect</key>
-		<string>collide</string>
-	</dict>
-	<key>darkBatStatic</key>
-	<dict>
-		<key>aggressive</key>
-		<string>false</string>
-		<key>anchorpoint</key>
-		<dict>
-			<key>x</key>
-			<real>0.5</real>
-			<key>y</key>
-			<real>0.6</real>
-		</dict>
-		<key>animationName</key>
-		<string>none</string>
-		<key>boundingBox</key>
-		<dict>
-			<key>height</key>
-			<integer>30</integer>
-			<key>width</key>
-			<integer>20</integer>
-			<key>x</key>
-			<integer>10</integer>
-			<key>y</key>
-			<integer>25</integer>
-		</dict>
-		<key>collideBehavior</key>
-		<string>static</string>
-		<key>imageName</key>
-		<string>Dark_Bat_1.png</string>
-		<key>offsetx</key>
-		<integer>0</integer>
-		<key>offsety</key>
-		<integer>250</integer>
-		<key>playerEffect</key>
-		<string>collide</string>
-	</dict>
-	<key>rainyUmbrellaFlyAcross</key>
-	<dict>
-		<key>aggressive</key>
-		<string>false</string>
-		<key>anchorpoint</key>
-		<dict>
-			<key>x</key>
-			<real>0.5</real>
-			<key>y</key>
-			<real>0.6</real>
-		</dict>
-		<key>animationName</key>
-		<string>none</string>
-		<key>boundingBox</key>
-		<dict>
-			<key>height</key>
-			<integer>30</integer>
-			<key>width</key>
-			<integer>20</integer>
-			<key>x</key>
-			<integer>32</integer>
-			<key>y</key>
-			<integer>43</integer>
-		</dict>
-		<key>collideBehavior</key>
-		<string>umbrellaFlyAcross</string>
-		<key>imageName</key>
-		<string>Level9_Umbrella.png</string>
-		<key>offsetx</key>
-		<integer>0</integer>
-		<key>offsety</key>
-		<integer>10</integer>
+		<integer>-10</integer>
 		<key>playerEffect</key>
 		<string>collide</string>
 	</dict>
@@ -2238,41 +2343,6 @@
 		<key>playerEffect</key>
 		<string>collide</string>
 	</dict>
-	<key>waterAnglerFish</key>
-	<dict>
-		<key>aggressive</key>
-		<string>false</string>
-		<key>anchorpoint</key>
-		<dict>
-			<key>x</key>
-			<real>0.5</real>
-			<key>y</key>
-			<real>0.6</real>
-		</dict>
-		<key>animationName</key>
-		<string>waterAnglerFishAnim</string>
-		<key>boundingBox</key>
-		<dict>
-			<key>height</key>
-			<integer>20</integer>
-			<key>width</key>
-			<integer>34</integer>
-			<key>x</key>
-			<integer>20</integer>
-			<key>y</key>
-			<integer>31</integer>
-		</dict>
-		<key>collideBehavior</key>
-		<string>chargeAtPlayerSlow</string>
-		<key>imageName</key>
-		<string>blank.png</string>
-		<key>offsetx</key>
-		<integer>0</integer>
-		<key>offsety</key>
-		<integer>-10</integer>
-		<key>playerEffect</key>
-		<string>collide</string>
-	</dict>
 	<key>waterSeaHorse</key>
 	<dict>
 		<key>aggressive</key>
@@ -2307,76 +2377,6 @@
 		<integer>-8</integer>
 		<key>playerEffect</key>
 		<string>collide</string>
-	</dict>
-	<key>townCrow</key>
-	<dict>
-		<key>aggressive</key>
-		<string>false</string>
-		<key>anchorpoint</key>
-		<dict>
-			<key>x</key>
-			<real>0.5</real>
-			<key>y</key>
-			<real>0.5</real>
-		</dict>
-		<key>animationName</key>
-		<string>townCrowAnim</string>
-		<key>boundingBox</key>
-		<dict>
-			<key>height</key>
-			<integer>35</integer>
-			<key>width</key>
-			<integer>45</integer>
-			<key>x</key>
-			<integer>30</integer>
-			<key>y</key>
-			<integer>50</integer>
-		</dict>
-		<key>collideBehavior</key>
-		<string>chargeAtPlayer</string>
-		<key>imageName</key>
-		<string>blank.png</string>
-		<key>offsetx</key>
-		<integer>0</integer>
-		<key>offsety</key>
-		<integer>5</integer>
-		<key>playerEffect</key>
-		<string>collide</string>
-	</dict>
-	<key>tvAnimation</key>
-	<dict>
-		<key>aggressive</key>
-		<string>false</string>
-		<key>anchorpoint</key>
-		<dict>
-			<key>x</key>
-			<real>0.5</real>
-			<key>y</key>
-			<real>0.5</real>
-		</dict>
-		<key>animationName</key>
-		<string>tvAnimationAnim</string>
-		<key>boundingBox</key>
-		<dict>
-			<key>height</key>
-			<integer>1</integer>
-			<key>width</key>
-			<integer>1</integer>
-			<key>x</key>
-			<integer>0</integer>
-			<key>y</key>
-			<integer>0</integer>
-		</dict>
-		<key>collideBehavior</key>
-		<string>none</string>
-		<key>imageName</key>
-		<string>blank.png</string>
-		<key>offsetx</key>
-		<integer>20</integer>
-		<key>offsety</key>
-		<integer>-16</integer>
-		<key>playerEffect</key>
-		<string>none</string>
 	</dict>
 </dict>
 </plist>

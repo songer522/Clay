@@ -48,7 +48,7 @@
     if (!_inAction && _canTrigger) {
         [super startAction];
         _duration = 0.4f;
-        [_parent endTurbo];
+        [_parent endTurbo:false];
         [_parent setPlayerAnimation:PLAYER_ANIM_SHOOT];
         [[SoundEngine shared] playSound:@"shootAction"];
         [self createBullet];

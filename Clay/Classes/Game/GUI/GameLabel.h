@@ -24,7 +24,7 @@ typedef enum {
 
 +(id)gameLabelWithText:(NSString*)text Scale:(float)scale;
 +(id)gameLabelWithText:(NSString*)text Scale:(float)scale Position:(CGPoint)position;
--(id)initWithText:(NSString*)text Scale:(float)scale Position:(CGPoint)position;
+-(id)initWithText:(NSString*)text Scale:(float)scale Width:(int)width Position:(CGPoint)position;
 
 -(void)setPosition:(CGPoint)position;
 -(void)setScale:(float)scale;
@@ -32,6 +32,7 @@ typedef enum {
 -(void)setText:(NSString*)text;
 -(void)setHorizontalAlignment:(TextAlignment)alignment;
 -(void)setVerticalAlignment:(TextAlignment)alignment;
+-(void)setMultilineCentered;
 -(void)setCentered;
 
 @end

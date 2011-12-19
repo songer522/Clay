@@ -47,7 +47,6 @@
 @synthesize onLedge =_onLedge;
 
 
-
 +(id) instance
 {
     return [[self alloc] init];
@@ -258,9 +257,11 @@
     return _speed.inTurbo;
 }
 
--(void)endTurbo
+-(void)endTurbo:(bool)switchToRunningAnim
 {
-    [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];
+    if (switchToRunningAnim) {
+        [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];        
+    }
     [_speed endTurbo];
     
     if(_isTurbo && _hitPoints>1 )
@@ -378,6 +379,7 @@
         }
     } else {
         [_skin setPlayerAnimation:PLAYER_ANIM_HURTING ForSprite:_sprite];
+        
         _vy = -250.0f;
         _y += 2.0f;
         _waitToGetUp = 0.3f;
@@ -437,10 +439,16 @@
     [_thirdAction startAction];
 }
 
+-(void)endThirdAction
+{
+    [_thirdAction endAction];
+}
+
 -(void)setThirdAction:(NSString*)action
 {
     if (_thirdAction != nil) {
-        _thirdAction = nil;
+        [_thirdAction release];
+        _thirdAction = nil;        
     }
     
     _thirdAction = [PlayerActionFactory buildPlayerActionFromName:action];
@@ -558,9 +566,9 @@
         _waitToGetUp -= dt;
         if (_waitToGetUp <= 0.0f) {
             _isTripping = false;
-            [self endTurbo];
+            [self endTurbo:true];
             [_speed start];
-            [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];
+            //[_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];
         }
     }
 

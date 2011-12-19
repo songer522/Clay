@@ -66,8 +66,9 @@
         _obstacleManager = [[RegionManager alloc] init];
         //_backgroundManager = [[RegionManager alloc] init];
         
-        [self initTiledMap:filename ObstacleLayer:obstacleLayer];
-       
+        NSString *fullFileName = [NSString stringWithString:[self getFullMapFilename:filename]];
+        [self initTiledMap:fullFileName ObstacleLayer:obstacleLayer];
+        //[self initTiledMap:filename ObstacleLayer:obstacleLayer];
         
         [_obstacleManager prepareArrays:_map.mapSize.width];
         //[_backgroundManager prepareArrays:_map.mapSize.width];
@@ -104,6 +105,14 @@
     return self;
 }
 
+-(NSString*)getFullMapFilename:(NSString*)basename
+{
+    NSString *mode = [[GameSettings shared] getGlobalForKey:@"gameMode"];
+    NSString *difficulty = [[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
+    
+    return [NSString stringWithFormat:@"%@_%@_%@",mode,difficulty,basename];
+}
+
 -(void)setHudButtonsAndThirdAction:(NSString*)action
 {
     GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
@@ -121,7 +130,14 @@
             if([levelName isEqualToString:@"level11"]) {
                 [self addObstaclesToMapWithBehavior:COLLISION_BEHAVIOR_DARK_SPIKES];
             }
-        } else if ([layerName isEqualToString:@"ledges"]) {
+        }  if([layerName isEqualToString:@"front-1"]) {
+            if([levelName isEqualToString:@"level4"]) {
+                [self addObstaclesToMapWithBehavior:COLLISION_BEHAVIOR_CHARGE_AT_PLAYER];
+                 [self addObstaclesToMapWithBehavior:COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST];
+            }
+        }
+        
+        else if ([layerName isEqualToString:@"ledges"]) {
             GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
             //stop existing rainylevel, and start new one if right level
             [gameLayer stopRainyLevel];
@@ -130,7 +146,7 @@
             }
         } else if ([layerName compare:@"actives"] == NSOrderedSame) {
             
-            [player setLedgeSprite:[[LayerManager sharedLayers] currentLayer]];
+            //[player setLedgeSprite:[[LayerManager sharedLayers] currentLayer]];
             
             [self addObstaclesToMapAndRegion];
             //[_obstacleManager printDescription];

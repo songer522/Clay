@@ -38,6 +38,12 @@
         _isStopped = false;
         _totalTime = 0.0f;
         _totalTimeBeforeLevel = 0.0f;
+        
+        //instantiate frame numbers
+        for(int i=0;i<7;i++)
+        {
+            _currentTimerFrameNumbers[i] = -1;
+        }
     }
     
     return self;
@@ -200,13 +206,17 @@
 
 -(void)setSpriteAtIndex:(int)index withNumber:(int)number
 {
-    Sprite *sprite = [_timerAnimations objectAtIndex:index];
+    if (_currentTimerFrameNumbers[index] == number) { return; }
+
+    _currentTimerFrameNumbers[index] = number;
     
+    Sprite *sprite = [_timerAnimations objectAtIndex:index];
+
     if (number == 0) {
         number = 10;
-    }
+    }        
     
-    [[sprite getAnimation] setStaticFrame:number Sprite:sprite];
+    [[sprite getAnimation] setStaticFrame:number Sprite:sprite];    
 }
 
 -(void)setOpacity:(int)opacity

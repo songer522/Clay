@@ -31,6 +31,7 @@ static GameSettings *_shared = nil;
     if ((self=[super init])) {
         _settings = [[NSMutableDictionary alloc] initWithCapacity:30];
         [self loadFromSettingsPlist];
+        _usingHighResolutionGraphics = [self calculateShouldUseHighRes];
     }
     return self;
 }
@@ -55,7 +56,7 @@ static GameSettings *_shared = nil;
     return platform;
 }
 
-+(bool)usingHighResolutionGraphics
+-(bool)usingHighResolutionGraphics
 {
     if (IS_IPAD)
     {

@@ -54,7 +54,7 @@
     if (!_inAction && _canTrigger) {
         _duration = kPlayerActionKickFullDuration;
         _madeFootProjectile = false;
-        [_parent endTurbo];
+        [_parent endTurbo:false];
         [_kick reset];
         [_parent setPlayerAnimation:PLAYER_ANIM_KICK];
     }

@@ -23,9 +23,12 @@
 #import "SoundEngine.h"
 #import "BestTimes.h"
 
+
 @implementation AppDelegate
 
 @synthesize window;
+@synthesize viewController;
+
 
 - (void) removeStartupFlicker
 {
@@ -105,8 +108,9 @@
 	
 	[director setAnimationInterval:1.0f/60.0f];
 	[director setDisplayFPS:NO];
+   // facebook = [[Facebook alloc] initWithAppId:@"264174546971482" andDelegate:viewController];
     
-	
+    //userPermissions = [[NSMutableDictionary alloc] initWithCapacity:1];
 	
 	// make the OpenGLView a child of the view controller
 	[viewController setView:glView];
@@ -184,8 +188,6 @@
 - (void)applicationSignificantTimeChange:(UIApplication *)application {
 	[[CCDirector sharedDirector] setNextDeltaTimeZero:YES];
 }
-
-
 
 
 - (void)dealloc {

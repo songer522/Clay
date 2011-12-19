@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="1100" height="14" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" name="meta" tilewidth="64" tileheight="64">
+  <image source="meta-hd.png" width="256" height="192"/>
+  <tile id="0">
+   <properties>
+    <property name="collision" value="full"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="collision" value="slantleft"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="collision" value="slantright"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="collision" value="none"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="collision" value="ledgefull"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="13" name="TrackLapse_Icons" tilewidth="64" tileheight="64">
+  <image source="TrackLapse_Icons-hd.png" width="640" height="512"/>
+  <tile id="0">
+   <properties>
+    <property name="obstacle" value="hurdle"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="special" value="spawnpoint"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="special" value="checkpoint"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="special" value="nextlevelNE"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="layerBelow" value="back-1"/>
+    <property name="special" value="jimAppearance1"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="obstacle" value="hen"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="obstacle" value="cow"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="obstacle" value="manure"/>
+   </properties>
+  </tile>
+  <tile id="12">
+   <properties>
+    <property name="layerBelow" value="main0"/>
+    <property name="object" value="discoDancers"/>
+   </properties>
+  </tile>
+  <tile id="13">
+   <properties>
+    <property name="layerBelow" value="front-1"/>
+    <property name="object" value="lighting"/>
+   </properties>
+  </tile>
+  <tile id="14">
+   <properties>
+    <property name="layerBelow" value="back-1"/>
+    <property name="object" value="tvAnimation"/>
+   </properties>
+  </tile>
+  <tile id="15">
+   <properties>
+    <property name="obstacle" value="dancinMan"/>
+   </properties>
+  </tile>
+  <tile id="16">
+   <properties>
+    <property name="obstacle" value="spilledDrink"/>
+   </properties>
+  </tile>
+  <tile id="18">
+   <properties>
+    <property name="layerBelow" value="back-2"/>
+    <property name="object" value="femaleBkgDancer"/>
+   </properties>
+  </tile>
+  <tile id="19">
+   <properties>
+    <property name="layerBelow" value="back-2"/>
+    <property name="object" value="maleBkgDancer"/>
+   </properties>
+  </tile>
+  <tile id="20">
+   <properties>
+    <property name="obstacle" value="femaleBreakdancer"/>
+   </properties>
+  </tile>
+  <tile id="32">
+   <properties>
+    <property name="special" value="spawnPoint"/>
+   </properties>
+  </tile>
+  <tile id="34">
+   <properties>
+    <property name="layerBelow" value="back-2"/>
+    <property name="object" value="jimSpaceShip"/>
+   </properties>
+  </tile>
+     <tile id="36">
+         <properties>
+             <property name="obstacle" value="computerMelissa"/>
+         </properties>
+     </tile>
+     <tile id="37">
+         <properties>
+             <property name="obstacle" value="computerWorm"/>
+         </properties>
+     </tile>
+     <tile id="38">
+         <properties>
+             <property name="obstacle" value="computerTrojan"/>
+         </properties>
+     </tile>
+     <tile id="39">
+         <properties>
+             <property name="obstacle" value="computerIloveyou"/>
+         </properties>
+     </tile>
+  <tile id="44">
+   <properties>
+    <property name="special" value="shootTrigger"/>
+   </properties>
+  </tile>
+  <tile id="47">
+   <properties>
+    <property name="special" value="checkpoint8bit"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="93" name="computer" tilewidth="64" tileheight="64">
+  <image source="tileset_level_7-hd.png" width="1984" height="768"/>
+ </tileset>
+ <layer name="back-4" width="1100" height="14">
+  <data encoding="base64" compression="zlib">
+   eJztwzERgEAQBLB/FTjBCSUuKHGCE5zghJKS/q7bSWayjzH2YgAAAIBEZyMAAABAoqsRAAAAINHdCAAAAJDoaQQAAABI9DYCAAAAJFpmPQAAAECiddYDAAAAJNpmPQAAAECiY9YDAAAAAAAAAAAAAAAAAAAAAAAAAADw+wDhhkx4
+  </data>
+ </layer>
+ <layer name="back-3" width="1100" height="14">
+  <properties>
+   <property name="speedx" value="0.1"/>
+   <property name="speedy" value="1.0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt3MtVQlEQRFFekoCiYQAKhCECGgZ+kOis6Y2ge7D3WmdUEfSk59NstkjL9JAe0yo9pec0t5fsAAAAQJ11bvNN2qaX9Jp2aZ8Ok71qBwAAAOq85TY/pvd0Sud0SR/pc7JX7QAAAECda27zr/SdftJvuqW/dJ/sVTsAAABQp8u/Dvu4AwAAAHW6/OuwjzsAAABQp8u/Dvu4AwAAAHW6/OuwjzsAAABQp8u/Dvu4AwAAAHW6/OuwjzsAAABQp8u/Dvu4AwAAAHW6/OuwjzsAAAAAAAAAAAAAAAA9/QPtZ47/
+  </data>
+ </layer>
+ <layer name="back-2" width="1100" height="14">
+  <properties>
+   <property name="speedx" value="0.3"/>
+   <property name="speedy" value="1.0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztzVOOGAAAANGetLbN1LaZ2jZT2+ZxOr97gCbb5L1kvmfIEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4F8bWsNqeI2okTWqRteYGlvjanxNqIk1qSbXlJpa02p6zaiZNatm15yaW/Nqfi2ohbXI19fX19fX19fX19fX19d3wJfBZXEtqaW1rJbXilpZq2p1ram1ta7W14baWJtqc22prbWttteO2lm7anftqb21r/bXAV9fX19fX19fX19fX19f3wFfBpeDdagO15E6WsfqeJ2ok3WqTteZOlvn6nxdqIt1qS7Xlbpa1+p63aibdatu1526W/d8fX19fX19fX19fX19fX0HfBlc7teDeliP6nE9qaf1rJ7Xi3pZr+p1vam39a7e14f6WJ/qc32pr/WtvteP+lm/6nf98fX19fX19fX19fX19fX1HfAFAAAAAAAAAAAAAAAA+F/9BXUddNg=
+  </data>
+ </layer>
+ <layer name="back-1" width="1100" height="14">
+  <properties>
+   <property name="speedx" value="0.6"/>
+   <property name="speedy" value="1.0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt08dSFEAARVHGjAkUtMwBTAQjWooZMEcM/7/2F0zodTefMNacU31XvXiLrp6YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARtU3u3bt2oUxNm7/165du3bt2rXLuPleP+pn/arftVV//l0OOrWttteO2lm7anftqcnaW/tqfx2ogzVV03WoDtdMzdaROjqwa9euXbt27dq1a9euXbt27Q7vMlqO9SbH60SdrFN1us7U2TpX52uu5utCXaxLdbmu1EIt1lIt19W6VtfrRt2sW7VSt+vOwK5du3bt2rVr165du3bt2rU7vMtoudub3KvVul8P6mE9qsf1pJ7WWq3XRj2r5/WiXtarel1v6m29q/f1oT7WZn2qz/Wlvg7s2rVr165du3bt2rVr165du8O7AAAAAAAAAAAAAAAAAP+rv/3a02E=
+  </data>
+ </layer>
+ <layer name="main0" width="1100" height="14">
+  <properties>
+   <property name="speedx" value="1.0"/>
+   <property name="speedy" value="1.0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztw0ERACAMA7DVKE5wglhkrI/kLjMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADQ40RVVVXdTpcbVVVVdTtdXlRVVdXtAAAAANDsA0fJxNw=
+  </data>
+ </layer>
+ <layer name="front-1" width="1100" height="14">
+  <properties>
+   <property name="speedx" value="1.2"/>
+   <property name="speedy" value="1.0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztxcENABAUBcH3K6USWudCogOHmWSzCQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwq1ZJL3d3d3d3d3d3Px+76e7u7u7u7u7u9wAAAAC8Fu38wq4=
+  </data>
+ </layer>
+ <layer name="objects" width="1100" height="14">
+  <properties>
+   <property name="speedx" value="1.0"/>
+   <property name="speedy" value="1.0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt1kGOwjAMAEBegPjJaqF7QNr/v4sLlVAFxE4dtYIZiQuExHFit4cDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwLX62DgAAAAAAAAAAAAAAAAAAAAAA2L1p5e8V/oLjrkOjqPM7cO5zcNyac9siz5fiOVp5iuZxFr2js6q6yZxF1bn9d/wnu9/e/OylB1TUeHVvjcSUzV9lvh9rLltPkTiisWb3lOkV7/aV3fMsGm9P3S5F7+R0/7RyMyXGRvTU3eO61xfft6ytg6o6iu6/Yr3qtSp7yajnQKtGq9Z9977TehfqfVfa6tnZukfZuEb30eW4Z31idC5Pg+eHT3TcOgAAAAAAAAAAAHblBhyGDn8=
+  </data>
+ </layer>
+ <layer name="meta" width="1100" height="14" opacity="0.66">
+  <properties>
+   <property name="speedx" value="1.0"/>
+   <property name="speedy" value="1.0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt0kENAAAIxDDwb5o3Cg6SNpmDVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPzQkiRJkiTpVOSlH5AkSZIkSTvyBqbbB9c=
+  </data>
+ </layer>
+</map>

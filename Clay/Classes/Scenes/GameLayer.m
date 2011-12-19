@@ -28,6 +28,7 @@
 #import "TrackTimer.h"
 #import "RunningSpeed.h"
 #import "ChooseLevelScreen.h"
+#import "ChooseModeScene.h"
 
 #define DEBUG_DRAW_BOUNDING_BOXES 1
 
@@ -152,8 +153,10 @@
     //check to see if underwater physics should be set
     if ([_level.name isEqualToString:@"level10"]){
         [[_player getSpeed] setIsUnderwater:true];
+        _player.isNewUnderwaterPhysics = true;
     } else {
         [[_player getSpeed] setIsUnderwater:false];
+        _player.isNewUnderwaterPhysics = false;
     }
     
     [_player reset];
@@ -208,6 +211,11 @@
         timeToRun = timeToRun - fixedTimeStep;
     }
     time = timeToRun;
+}
+
+-(void)pause
+{
+    _paused = true;
 }
 
 -(void)unpause
@@ -409,6 +417,10 @@
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[ChooseLevelScreen scene]]];
 }
 
+-(void)switchToChooseMode
+{
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[ChooseModeScene scene]]];    
+}
 
 - (void) dealloc
 {

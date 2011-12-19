@@ -9,6 +9,7 @@
 #import "Tutorial.h"
 
 @implementation Tutorial
+@synthesize scroller;
 
 +(id)TutorialWithinLayer:(CCLayer *)layer
 {
@@ -18,54 +19,109 @@
 
 -(id)initWithinLayer:(CCLayer *)layer
 {
+    if(self =[super init])
+              {
     _inTutorial=false;
-    CCLayer *pageOne = [[CCLayer alloc] init];
-    CCSprite *image1=[CCSprite spriteWithFile:@"image1.png"];
-    [image1 setPosition:ccp(240,160)];
-    [image1 setScale:1];
-    [pageOne addChild:image1];
+    _phase = SCROLLER_IDLE;
     
-    CCLayer *pageTwo = [[CCLayer alloc] init];
-    CCSprite *image2=[CCSprite spriteWithFile:@"image2.png"];
-    [image2 setPosition:ccp(240,160)];
-    [image2 setScale:1];
-    [pageTwo addChild:image2];
+    _pages = [[NSMutableArray alloc] initWithCapacity:3];
+    _images = [[NSMutableArray alloc] initWithCapacity:3];
     
-    CCLayer *pageThree = [[CCLayer alloc] init];
-    CCSprite *image3=[CCSprite spriteWithFile:@"image3.png"];
-    [image3 setPosition:ccp(240,160)];
-    [image3 setScale:1];
-    [pageThree addChild:image3];
-    //_closeTutorial=[ActionButton buttonWithText:@"Done" AtPoint:ccp(320,70) inLayer:pageThree];
+    [self addPage:@"image1.png"];
+    [self addPage:@"image2.png"];
+    [self addPage:@"image3.png"];
     
+    scroller = [[CCScrollLayer alloc] initWithLayers:_pages widthOffset: 0];
     
-    
-    
-    scroller = [[CCScrollLayer alloc] initWithLayers:[NSMutableArray arrayWithObjects: pageOne,pageTwo,pageThree,nil] widthOffset: 0];
+   //scroller = [[CCScrollLayer alloc] initWithLayers:[NSMutableArray arrayWithObjects: pageOne,pageTwo,pageThree,nil] widthOffset: 0];
     
     [layer addChild:scroller];
     [scroller setVisible:NO];
     scroller.showPagesIndicator=NO;
-
+              }
     return self;
 }
 
+-(void)addPage:(NSString*)imageFileName
+{
+    CCLayer *page = [[CCLayer alloc] init];
+    CCSprite *image=[CCSprite spriteWithFile:imageFileName];
+    [image setPosition:ccp(240,160)];
+    [image setScale:1];
+    [page addChild:image];
+    [_images addObject:image];
+    [_pages addObject:page];
+}
+
+-(void)setAlpha:(float)alpha
+{
+    GLubyte opacity = floor(alpha * 255);
+    
+    for(CCSprite *page in _images) {
+        [page setOpacity:opacity];
+    }
+}
 
 
 -(void)switchToTutorial
 {
     if(!_inTutorial){
+       
         [scroller setVisible:YES];
         scroller.showPagesIndicator=YES;
+        [scroller selectPage:0];
         _inTutorial=true;
+        _alpha = 0.0f;
+        _phase = SCROLLER_FADE_IN;
+        [self setAlpha:0.0f];
     }
     else
     {
-        [scroller setVisible:NO];
         scroller.showPagesIndicator=NO;
         _inTutorial=false;
+        _phase = SCROLLER_FADE_OUT;
+        _alpha = 1.0f;
+        [self setAlpha:1.0f];
+        
     }
 }
 
+-(void)update:(float)dt
+{
+    float rate = 3.0f * dt;
+    switch (_phase) {
+        case SCROLLER_FADE_IN:
+            _alpha += rate;
+             
+            if (_alpha >= 1.0f) {
+                _alpha = 1.0f;
+                _phase = SCROLLER_IDLE;
+            }
+            [self setAlpha:_alpha];
+            break;
+        case SCROLLER_FADE_OUT:
+            _alpha -= rate;
+            if (_alpha <= 0.0f) {
+                _alpha = 0.0f;
+                [scroller moveToPage:0];
+                _phase = SCROLLER_IDLE;
+                [scroller setVisible:NO];
+            }
+            [self setAlpha:_alpha];
+        default:
+            break;
+    }
+}
+
+-(void)dealloc
+{
+    [scroller release];
+    [_images removeAllObjects];
+    [_images release];
+    [_pages removeAllObjects];
+    [_pages release];
+    
+    [super dealloc];
+}
 
 @end

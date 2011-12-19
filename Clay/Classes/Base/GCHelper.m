@@ -6,10 +6,14 @@
 //  Copyright (c) 2011 Xecudev, LLC. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
+
 #import "GCHelper.h"
 #import "Database.h"
 #import "cocos2d.h"
 #import "Appirater.h"
+#import "AppDelegate.h"
+
 @implementation GCHelper
 @synthesize leaderboardToReport;
 @synthesize achievementsToReport;
@@ -100,10 +104,26 @@ static GCHelper *sharedHelper = nil;
                        });
     }];
 }
+-(void)sendScore:(GKScore *)score {
+    [score reportScoreWithCompletionHandler:^(NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^(void)
+                       {
+                           if (error == NULL) {
+                               //NSLog(@"Successfully sent score!");
+                               [leaderboardToReport removeObject:score];
+                           } else {
+                               //NSLog(@"Score failed to send... will try again later. Reason: %@", error.localizedDescription);
+                           }
+                       });
+    }];
+}
 
 -(void)resendData {
     for (GKAchievement *achievement in achievementsToReport) {
         [self sendAchievement:achievement];
+    }
+    for (GKScore *score in leaderboardToReport) {
+        [self sendScore:score];
     }
 }
 
@@ -124,8 +144,13 @@ static GCHelper *sharedHelper = nil;
      
 }
 
-- (void)reportLeaderboard:(NSString *)identifier score:(int)score {
-    // Used for Leaderboards
+- (void)reportLeaderboard:(NSString *)identifier score:(float)rawScore {
+    GKScore *score=[[[GKScore alloc] initWithCategory:identifier] autorelease];
+    score.value=rawScore;
+    [leaderboardToReport addObject:score];
+    [self save];
+    if(!gameCenterAvailable || !userAuthenticated) return;
+    [self sendScore:score];
 }
 
 - (void)reportAchievement:(NSString *)identifier percentComplete:(double)percentComplete {
@@ -138,6 +163,45 @@ static GCHelper *sharedHelper = nil;
     }
     [self sendAchievement:achievement];
 }
+
+- (void) showLeaderboards
+{
+    GKLeaderboardViewController *leaderboardController = [[GKLeaderboardViewController alloc] init] ;
+    
+    if (leaderboardController!=NULL) {
+        //leaderboardController.category= gcLeaderboardInsaneTimedLevel1;
+        leaderboardController.timeScope = GKLeaderboardTimeScopeAllTime;
+        leaderboardController.leaderboardDelegate = self;
+        AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+        [delegate.viewController presentModalViewController:leaderboardController animated:YES];
+    }
+    
+}
+
+- (void) showAchievements
+{
+    GKAchievementViewController *achievementController = [[[GKAchievementViewController alloc] init] autorelease];
+    
+    if (achievementController!=NULL) {
+        achievementController.achievementDelegate = self;
+        AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+        [delegate.viewController presentModalViewController:achievementController animated:YES];
+    }
+}
+
+- (void)leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController
+{
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    [delegate.viewController dismissModalViewControllerAnimated:YES];
+}
+
+
+-(void)achievementViewControllerDidFinish:(GKAchievementViewController *)viewController
+{
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    [delegate.viewController dismissModalViewControllerAnimated:YES];
+}
+
 
 #pragma mark NSCoding
 

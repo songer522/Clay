@@ -14,6 +14,7 @@
 @interface Sprite : NSObject
 {
     CCSprite *sprite_cc;
+    NSString *_frameName;
     Animation *_animation;
     float _x;
     float _y;
@@ -22,18 +23,21 @@
 
 @property (nonatomic,assign) float x;
 @property (nonatomic,assign) float y;
+@property (nonatomic,readonly) NSString *name;
 
 +(id) instance;
 +(id) spriteWithFile:(NSString *)filename;
 +(id) spriteWithFile:(NSString *)filename AddToLayer:(bool)shouldAddToLayer;
 +(id) spriteFromFrameCacheWithName:(NSString*)frameName;
 +(id) spriteFromFrameCacheWithName:(NSString*)frameName AddToLayer:(bool)shouldAddToLayer;
-
-
++(id) spriteCenteredWithFrame:(NSString*)frame;
++(id) spriteCenteredWithFrame:(NSString*)frame AddToLayer:(bool)addToLayer;
++(id) spriteCenteredWithFrame:(NSString*)frame Position:(CGPoint)position;
++(id) spriteNotCenteredWithFrame:(NSString*)frame Position:(CGPoint)position;
 
 -(id) initWithFile:(NSString *)filename AddToLayer:(bool)shouldAddToLayer;
 -(id) initFromFrameCacheWithName:(NSString*)frameName AddToLayer:(bool)shouldAddToLayer;
-
+-(id) initFromFrameCacheWithName:(NSString *)frameName AddToLayer:(_Bool)shouldAddToLayer Position:(CGPoint)position AnchorPoint:(CGPoint)anchorPoint;
 
 -(void) setCentered;
 -(void) setPositionAtX:(float)x Y:(float)y;

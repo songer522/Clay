@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="1000" height="14" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" name="meta" tilewidth="64" tileheight="64">
+  <image source="meta-hd.png" width="256" height="192"/>
+  <tile id="0">
+   <properties>
+    <property name="collision" value="full"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="collision" value="slantleft"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="collision" value="slantright"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="collision" value="none"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="collision" value="ledgefull"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="13" name="Icons" tilewidth="64" tileheight="64">
+  <image source="TrackLapse_Icons-hd.png" width="640" height="576"/>
+  <tile id="0">
+   <properties>
+    <property name="obstacle" value="hurdle"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="special" value="spawnpoint"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="special" value="checkpoint"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="special" value="nextlevelNE"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="layerBelow" value="back-1"/>
+    <property name="special" value="jimAppearance1"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="obstacle" value="hen"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="obstacle" value="cow"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="obstacle" value="manure"/>
+   </properties>
+  </tile>
+  <tile id="12">
+   <properties>
+    <property name="layerBelow" value="main0"/>
+    <property name="object" value="discoDancers"/>
+   </properties>
+  </tile>
+  <tile id="13">
+   <properties>
+    <property name="layerBelow" value="front-1"/>
+    <property name="object" value="lighting"/>
+   </properties>
+  </tile>
+  <tile id="14">
+   <properties>
+    <property name="layerBelow" value="back-1"/>
+    <property name="object" value="tvAnimation"/>
+   </properties>
+  </tile>
+  <tile id="15">
+   <properties>
+    <property name="obstacle" value="dancinMan"/>
+   </properties>
+  </tile>
+  <tile id="16">
+   <properties>
+    <property name="obstacle" value="spilledDrink"/>
+   </properties>
+  </tile>
+  <tile id="18">
+   <properties>
+    <property name="layerBelow" value="back-2"/>
+    <property name="object" value="femaleBkgDancer"/>
+   </properties>
+  </tile>
+  <tile id="19">
+   <properties>
+    <property name="layerBelow" value="back-2"/>
+    <property name="object" value="maleBkgDancer"/>
+   </properties>
+  </tile>
+  <tile id="20">
+   <properties>
+    <property name="obstacle" value="femaleBreakdancer"/>
+   </properties>
+  </tile>
+  <tile id="56">
+   <properties>
+    <property name="layerBelow" value="back-1"/>
+    <property name="object" value="rainyTreeA"/>
+   </properties>
+  </tile>
+  <tile id="57">
+   <properties>
+    <property name="layerBelow" value="back-1"/>
+    <property name="object" value="rainyTreeB"/>
+   </properties>
+  </tile>
+  <tile id="58">
+   <properties>
+    <property name="obstacle" value="rainyFrog"/>
+   </properties>
+  </tile>
+  <tile id="59">
+   <properties>
+    <property name="obstacle" value="rainyUmbrellaFlyUp"/>
+   </properties>
+  </tile>
+  <tile id="60">
+   <properties>
+    <property name="obstacle" value="rainyUmbrellaFlyAcross"/>
+   </properties>
+  </tile>
+  <tile id="61">
+   <properties>
+    <property name="obstacle" value="rainyPaperPlane"/>
+   </properties>
+  </tile>
+  <tile id="63">
+   <properties>
+    <property name="duration" value="short"/>
+    <property name="special" value="wind"/>
+   </properties>
+  </tile>
+  <tile id="64">
+   <properties>
+    <property name="duration" value="medium"/>
+    <property name="special" value="wind"/>
+   </properties>
+  </tile>
+  <tile id="65">
+   <properties>
+    <property name="duration" value="long"/>
+    <property name="special" value="wind"/>
+   </properties>
+  </tile>
+  <tile id="66">
+   <properties>
+    <property name="obstacle" value="rainySquirrel"/>
+   </properties>
+  </tile>
+  <tile id="69">
+   <properties>
+    <property name="obstacle" value="rainyPaperPlane"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="103" name="Level9_TiledSheet-hd" tilewidth="64" tileheight="64">
+  <image source="tileset_level_9-hd.png" width="1024" height="1024"/>
+ </tileset>
+ <layer name="back-1" width="1000" height="14">
+  <properties>
+   <property name="speedx" value="0.1"/>
+   <property name="speedy" value="1.0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt1ucT0AMcx/FfkjOLxFlJRofMxNmrcvaMs8rubDI6IiXjlJl1Rva4QkL424rE+4/4PdDd63Pf98PX8+/WYRi21V/1d22vf2pH/VvDhK52qYm1a02q3Wory7LsTmLNzMzMzP7v272/dY/as/aqvWufmlxTat/ar6bW/jWtDqgDJ7Asy7Isy7Isy7IsO5Y9qA6uQ+rQOqym1+E1o46omXVkHVVH1zE1i2VZlmVZlmVZlmXZ0eyxdVwdX7PrhDqxTqqT65Q6tebUaTW3Tq8zWJZlWZZlWZZlWZYdzZ5ZZ9XZdU6dW+fV+XVBXVgX1cU1r+bXgrqEZVmWZVmWZVmWZdnR7KV1WV1eV9SVdVVdXdfUtXVdXV831MK6sW5iWZZlWZZlWZZlWXY0e3PdUrfWbXV7LarFdUfdWXfV3XVP3Vv31RKWZVmWZVmWZVmWZUez9w/D8EA9WA/Vw/VIPVqP1eO1tJ6oJ+uperqWDSzLsizLsizLsizLjmWfqWdreT1Xz9eKeqFW1qp6sVbXS/VyvVKvsizLsizLsizLsiw7mn2t1tTaer3eqDfrrXq73ql19W69V+/XB/Uhy7Isy7Isy7Isy7Kj2Y/q4/qkPq319Vl9Xl/Ul/VVfV3f1Lf1XX3PsizLsizLsizLsuxodkNtrB/qx/qpNtXPtbl+qV/rt9pSv9cf9SfLsizLsizLsizLsqNZMzMzMzMzMzMzMzMzMzMzG4b/AM6ZsK4=
+  </data>
+ </layer>
+ <layer name="main0" width="1000" height="14">
+  <properties>
+   <property name="speedx" value="1.0"/>
+   <property name="speedy" value="1.0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztxkENgDAUBcH6V1SqgKIAqobXAxo+h5lkk20NAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD49HSk4b333nvvvffe+5LfzjTT5b333nvvvffe+5Lf7vSk5b333nvvvffe+5IHAAAA/uEFa7MxpQ==
+  </data>
+ </layer>
+ <layer name="ledges" width="1000" height="14">
+  <properties>
+   <property name="speedx" value="1.0"/>
+   <property name="speedy" value="1.0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt0scNAyEURVH335RTAU4FOBXg1IC/9wMSwqNBwznSW7EBcRcLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgP9aTn0ByPj1uYqtY5vYtvCc+aptQzsMyXWhqbb4j7Se3w4AjGcX28cOsWPsVHjOfNW2oR2G5LrQVFv8R1rPbwcAxnOOXWLX2C12Lzxnvmrb0A5Dcl1oqi3+I63ntwMA43nEnrFX7B37FJ4zX7VtaIchuS401Rb/kdbz2wEAAAAAAAAAgOl8AY9wuzw=
+  </data>
+ </layer>
+ <layer name="front-1" width="1000" height="14">
+  <properties>
+   <property name="speedx" value="1.05"/>
+   <property name="speedy" value="1.0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztxzENADAMBLHwp5Q22PpbIWSxpRuuCgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC+TifdNN5777333nvvvV95AAAAYN8DLGzgcw==
+  </data>
+ </layer>
+ <layer name="objects" width="1000" height="14">
+  <properties>
+   <property name="speedx" value="1.0"/>
+   <property name="speedy" value="1.0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt1ElOAzEQAMC8APgUIYdBkeb/j0EcRrKM98wWUnUB9zheum1fLgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwNo+j17Ays60n+s/nfOIfe2tdI5eYf/0OdO78wzCO5TKnTu2Xw7i/Nfa/M1J7jzHNbwWvoWx2l8AXtt9hzm+G/vdBn8XmoP/vwr94m+lvrGpo29srndpUlt/bj+5nKb6PxKLa7mlUj3WyHdqL1vcm3AfpXpOle+pdi5HPXVaY4xfqZrs8Q61WvYz8v4sWs7dSE1H85Sr3fvgeD3z5OYO4/EZqp2pUn7PdJYWve/Q6PsZzpN6T6aonerbEl+scff3HLu2n/h7nLdHY7k11GJzpl9P+xbFenJxz8RLsZY5WnysMAbAVt6OXgAAAAAAAAAAHOAHbTMiOw==
+  </data>
+ </layer>
+ <layer name="meta" width="1000" height="14" opacity="0.67">
+  <properties>
+   <property name="speedx" value="1.0"/>
+   <property name="speedy" value="1.0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt0jEOABEURdGvsP8ti05hpqAg/jnJrTTEiwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACCbOrRyzrt2t2E7zPztwqbu4j++ZX47AAAAAJBTkSRJkiRJR4sL7iBJkiRJUva6Bv+uCHQ=
+  </data>
+ </layer>
+</map>

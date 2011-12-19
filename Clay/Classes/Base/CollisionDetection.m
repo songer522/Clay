@@ -34,6 +34,18 @@
         _halfTileSize = _tileSize / 2.0f;
         _mapHeight = _map.mapSize.height;
         _mapWidth = _map.mapSize.width;
+        
+        //do any precalculations for performance
+        if ([[GameSettings shared] usingHighResolutionGraphics])
+        {
+            _preCalculateAccurateCoordsY = (_mapHeight * _halfTileSize) / _halfTileSize;
+            _preCalculateTileSize = _halfTileSize;
+        }
+        else
+        {
+            _preCalculateAccurateCoordsY = (_mapHeight * _tileSize) / _tileSize;
+            _preCalculateTileSize = _tileSize;
+        }
     }
     
     return self;

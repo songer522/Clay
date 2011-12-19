@@ -34,9 +34,9 @@
     NSString *frameName;
     bool unlocked = true; //for now, eventually check storage
     if (unlocked && _buttonId <= 11) {
-        frameName = [NSString stringWithFormat:@"CL_Level%d.png",_buttonId];
+        frameName = [NSString stringWithFormat:@"LevelSelector_Level%d.png",_buttonId];
     } else {
-        frameName = @"CL_LevelLocked.png";
+        frameName = @"LevelSelector_LevelLocked.png";
     }
     
     _buttonGraphic = [Sprite spriteFromFrameCacheWithName:frameName];
@@ -104,7 +104,7 @@
 
 -(void)setTrophy:(int)trophyId
 {
-    NSString *frameName = [NSString stringWithFormat:@"CL_Trophy_%d.png",trophyId];
+    NSString *frameName = [NSString stringWithFormat:@"LevelSelector_Trophy_%d.png",trophyId];
     _trophy = [Sprite spriteFromFrameCacheWithName:frameName];
     [self setTrophyPosition];
 }

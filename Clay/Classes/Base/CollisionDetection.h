@@ -24,6 +24,9 @@
     int _halfTileSize;
     int _mapHeight; //height of the map
     int _mapWidth; //width of the map
+    
+    float _preCalculateAccurateCoordsY;
+    float _preCalculateTileSize;
 }
 
 +(id) collisionHandlerWithMetaLayer:(CCTMXLayer*)collisionLayer Map:(CCTMXTiledMap*)map;

@@ -1,0 +1,65 @@
+//
+//  ChooseModeScene.h
+//  Clay
+//
+//  Created by Brian Cable on 12/13/11.
+//  Copyright (c) 2011 Xecudev, LLC. All rights reserved.
+//
+
+#import "CCLayer.h"
+#import "cocos2d.h"
+
+@class Sprite;
+@class ModePanel;
+@class GameLabel;
+@class ActionButton;
+
+typedef enum {
+    GAMEMODE_STORY_EASY,
+    GAMEMODE_STORY_NORMAL,
+    GAMEMODE_STORY_HARD,
+    GAMEMODE_TIMED_NORMAL,
+    GAMEMODE_TIMED_INSANE,
+    GAMEMODE_EXTRAS_LEVELS,
+    GAMEMODE_EXTRAS_SKINS,
+    GAMEMODE_EXTRAS_WEB,
+    GAMEMODE_NONE
+}GameModeAction;
+
+@interface ChooseModeScene : CCLayer
+{
+    Sprite *_background;
+    
+    ModePanel *_storyModePanel;
+    ModePanel *_timedModePanel;
+    ModePanel *_extrasPanel;
+    
+    ModePanel *_currentPanel;
+    
+    
+    ActionButton *_startButton;
+    ActionButton *_backButton;
+    
+    GameLabel *_selectModeText;
+    
+    Sprite *_selectCursor;
+    
+    GameModeAction _action;
+    
+    float _waitToSwitch;
+    float _backToMainMenu;
+    
+    bool _isTransitioning;
+}
+
+@property(nonatomic,assign) bool isTransitioning;
+
++(CCScene*)scene;
+
+-(void)load;
+-(void)switchToAction;
+-(void)switchToMainMenu;
+-(void)switchToStartGame;
+-(void)getDesiredAction;
+
+@end

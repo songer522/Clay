@@ -9,6 +9,7 @@
 #import "Runner.h"
 #import "RunningSpeed.h"
 #import "GameObject.h"
+#import "PlayerAction.h"
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
@@ -21,6 +22,7 @@
 @synthesize state = _state;
 @synthesize isRunning = _isRunning;
 @synthesize isJumping = _isJumping;
+@synthesize isNewUnderwaterPhysics = _isNewUnderwaterPhysics;
 
 +(id) runnerWithSprite:(Sprite*)sprite
 {
@@ -61,13 +63,22 @@
 -(void)update:(float)dt
 {
     float rate = 30.0f * dt;
-    //NSLog(@"DT: %f",dt);
     
     [_speed update:dt];
     
     if (self.hasGravity) {
-        _ay += 200.0f * dt;        
+        if (_isNewUnderwaterPhysics) {
+            _ay += 20.0f * dt;            
+        } else {
+            _ay += 200.0f * dt;
+        }
     }
+    
+    //underwater terminal velocity (except when swimming)
+    if (_isNewUnderwaterPhysics && (!_thirdAction.inAction) && _vy > 50.0f) {
+        _vy = 50.0f;
+    }
+    
     
     self.vx = RUNNER_VELOCITY_RATE * _speed.velocity * 45.0f * dt;    
     self.vy += _ay * rate;

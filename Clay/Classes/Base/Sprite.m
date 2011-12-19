@@ -17,6 +17,7 @@
 
 @synthesize x = _x;
 @synthesize y = _y;
+@synthesize name = _frameName;
 
 - (id)init
 {
@@ -39,7 +40,36 @@
 {
     return [[self alloc] initFromFrameCacheWithName:frameName AddToLayer:shouldAddToLayer];
 }
-       
+
++(id) spriteCenteredWithFrame:(NSString*)frame
+{
+    return [[self alloc] initFromFrameCacheWithName:frame AddToLayer:YES Position:ccp(0,0) AnchorPoint:ccp(0.5f,0.5f)];
+}
+
++(id) spriteCenteredWithFrame:(NSString*)frame AddToLayer:(bool)addToLayer
+{
+    return [[self alloc] initFromFrameCacheWithName:frame AddToLayer:addToLayer Position:ccp(0,0) AnchorPoint:ccp(0.5f,0.5f)];
+}
+
++(id) spriteCenteredWithFrame:(NSString*)frame Position:(CGPoint)position
+{
+    return [[self alloc] initFromFrameCacheWithName:frame AddToLayer:YES Position:position AnchorPoint:ccp(0.5f,0.5f)];
+}
+
++(id) spriteNotCenteredWithFrame:(NSString*)frame Position:(CGPoint)position
+{
+    return [[self alloc] initFromFrameCacheWithName:frame AddToLayer:YES Position:position AnchorPoint:ccp(0,0)];
+}
+
+
+-(id) initFromFrameCacheWithName:(NSString *)frameName AddToLayer:(_Bool)shouldAddToLayer Position:(CGPoint)position AnchorPoint:(CGPoint)anchorPoint
+{
+    if((self = [self initFromFrameCacheWithName:frameName AddToLayer:shouldAddToLayer])) {
+        sprite_cc.position = position;
+        sprite_cc.anchorPoint = anchorPoint;
+    }
+    return self;
+}
 
 -(id) initFromFrameCacheWithName:(NSString*)frameName AddToLayer:(bool)shouldAddToLayer
 {
@@ -47,6 +77,8 @@
     {
         sprite_cc = [CCSprite spriteWithSpriteFrameName:frameName];
 
+        _frameName = [[NSString stringWithString:frameName] retain];
+        
         [self initializeSpriteOnceLoaded];
         
         if (shouldAddToLayer) {
@@ -235,6 +267,7 @@
 
 -(void)dealloc
 {
+    [_frameName release];
     [_animation release];
     [sprite_cc removeFromParentAndCleanup:YES];
     sprite_cc = nil;

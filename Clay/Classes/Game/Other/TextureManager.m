@@ -82,6 +82,8 @@ static TextureManager *_shared = nil;
             [[SoundEngine shared] loadSoundForKey:sound];            
         }
     }
+    
+    [[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
 }
 
 
@@ -142,6 +144,7 @@ static TextureManager *_shared = nil;
             [[SoundEngine shared] unloadSoundForKey:sound];                        
         }
     }
+    
 }
 
 

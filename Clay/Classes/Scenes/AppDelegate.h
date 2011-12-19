@@ -9,6 +9,9 @@
 
 
 #import <UIKit/UIKit.h>
+#import <GameKit/GameKit.h>
+#import "FBConnect.h"
+
 
 @class RootViewController;
 
@@ -29,8 +32,13 @@
     CCScene             *_endGameScene;
     CCScene             *_mainMenuScene;
     CCScene             *_chooseLevelScene;
+    //Facebook *facebook;
+    //NSMutableDictionary *userPermissions;
 }
 
 @property (nonatomic, retain) UIWindow *window;
+@property (nonatomic, retain) RootViewController *viewController;
+//@property (nonatomic, retain) Facebook *facebook;
+//@property (nonatomic, retain) NSMutableDictionary *userPermissions;
 
 @end
