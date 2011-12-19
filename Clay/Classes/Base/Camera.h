@@ -30,8 +30,6 @@
     
     bool _trackingTarget;
     
-    CGPoint _onscreenRange;
-    
     //precalcs for minor optimizations
     float _precalculateBoundaryYplusBoundaryHeight;
     float _precalculateBoundaryY;
@@ -39,11 +37,13 @@
     float _precalculateBottomBound;
     float _precalculateTopBound;
     
+    float _leftOnscreen;
+    float _rightOnscreen;
+    
     bool _isStutterMode;
 }
 
 @property (nonatomic,assign) bool trackingTarget;
-@property (nonatomic,readonly) CGPoint onscreenRange;
 
 
 +(Camera*)sharedCamera;
@@ -53,7 +53,6 @@
 -(void)setBoundaries:(CGRect)rect Level:(Level*)level;
 
 -(void)updateOnScreenRange;
--(CGPoint)getOnScreenRange;
 
 -(CGPoint)convertToScreenXY:(CGPoint)worldXY;
 -(float)convertToScreenX:(float)worldX;
@@ -75,5 +74,6 @@
 -(void)keepWithinBoundaries_old;
 -(void)keepWithinBoundaries;
 
+-(bool)isInVisualRange:(float)xPosition;
 
 @end

@@ -279,8 +279,17 @@
 {
     
     if (!_isStutterMode) {
-        if (!_isVisible) {
-            
+        if ([[Camera sharedCamera] isInVisualRange:_x]) {
+            if (!_isVisible) {
+                [[_sprite getCCSprite] setVisible:YES];
+                _isVisible = true;
+            }
+        } else {
+            if (_isVisible) {
+                [[_sprite getCCSprite] setVisible:NO];
+                _isVisible = false;
+            }
+            return; //don't bother with the rest of the update loop
         }
     }
     

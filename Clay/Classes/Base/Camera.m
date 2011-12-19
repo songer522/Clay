@@ -15,7 +15,6 @@
 @implementation Camera
 
 @synthesize trackingTarget = _trackingTarget;
-@synthesize onscreenRange = _onscreenRange;
 
 #define CAMERA_MOVE_TO_TARGET_SPEED 6.0f
 #define CAMERA_OFFSCREEN_PADDING_LEFT 300.0f
@@ -80,6 +79,7 @@ static Camera *_sharedCamera = nil;
     _precalculateBoundaryYplusBoundaryHeight = _boundary.origin.y + _boundary.size.height;
     
     [self keepWithinBoundaries];
+    [self updateOnScreenRange];
 }
 
 -(void)keepWithinBoundaries
@@ -214,6 +214,8 @@ static Camera *_sharedCamera = nil;
     if (dy!=0) {
         [self keepWithinBoundaries];
     }
+    
+    [self updateOnScreenRange];
 }
 
 -(void)snapToTarget
@@ -237,9 +239,17 @@ static Camera *_sharedCamera = nil;
 -(void)updateOnScreenRange
 {
     float currentX = _x - _center.x;
-    float left = currentX - CAMERA_OFFSCREEN_PADDING_LEFT;
-    float right = currentX + CAMERA_OFFSCREEN_PADDING_RIGHT;
-    _onscreenRange = CGPointMake(left, right);
+    _leftOnscreen = currentX - CAMERA_OFFSCREEN_PADDING_LEFT;
+    _rightOnscreen = currentX + CAMERA_OFFSCREEN_PADDING_RIGHT;
+}
+
+-(bool)isInVisualRange:(float)xPosition
+{
+    if(xPosition > _leftOnscreen && xPosition < _rightOnscreen) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 -(void)setPosition:(CGPoint)point
