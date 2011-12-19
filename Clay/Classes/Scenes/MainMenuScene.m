@@ -76,8 +76,8 @@
         _trackBackground = [Sprite spriteFromFrameCacheWithName:@"Menu_Background.png"];        
         _rain1 = [Sprite spriteFromFrameCacheWithName:@"Menu_Rain_01.png"];
         _rain2 = [Sprite spriteFromFrameCacheWithName:@"Menu_Rain_02.png"];
-        _logo = [Sprite spriteCenteredWithFrame:@"Menu_Logo.png" Position:ccp(240,258)]; //final y: 262
-        _copyright = [Sprite spriteCenteredWithFrame:@"Menu_Copyright.png" Position:ccp(240,24)]; //final y: 20
+        //_logo = [Sprite spriteCenteredWithFrame:@"Menu_Logo.png" Position:ccp(240 * MULTIPLIERX,258 * MULTIPLIERY)]; //final y: 262
+        _copyright = [Sprite spriteCenteredWithFrame:@"Menu_Copyright.png" Position:ccp(240 * MULTIPLIERX,24 * MULTIPLIERY)]; //final y: 20
         
         //check whether we can continue the game
         _isContinueButtonEnabled = [ContinueGameManager isAbleToContinueGame];        
@@ -86,17 +86,17 @@
         _playButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_PlayBlue.png" Selected:@"Menu_PlayGreen.png"];
         
         if (_isContinueButtonEnabled) {
-            [_playButton setPosition:ccp(240,115)];            
+            [_playButton setPosition:ccp(240 * MULTIPLIERX,115 * MULTIPLIERY)];            
         } else {
-            [_playButton setPosition:ccp(240,142)];                        
+            [_playButton setPosition:ccp(240 * MULTIPLIERX,142 * MULTIPLIERY)];                        
         }
-        [_playButton setHitboxBySize:CGSizeMake(319, 71)];
+        [_playButton setHitboxBySize:CGSizeMake(319 * MULTIPLIERX, 71 * MULTIPLIERY)];
        
         
         //continue button
         _continueButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_ContinueBlue.png" Selected:@"Menu_ContinueGreen.png"];
-        [_continueButton setPosition:ccp(240,158)];
-        [_continueButton setHitboxBySize:CGSizeMake(319, 71)];
+        [_continueButton setPosition:ccp(240 * MULTIPLIERX,158 * MULTIPLIERY)];
+        [_continueButton setHitboxBySize:CGSizeMake(319 * MULTIPLIERX, 71 * MULTIPLIERY)];
         [_continueButton setAlpha:0.0f];
         
         _logo = [Sprite spriteFromFrameCacheWithName:@"Menu_Logo.png"];
@@ -106,18 +106,18 @@
         
         //leaderboards button
         _leaderboardsButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_LeaderBoardBlue.png" Selected:@"Menu_LeaderBoardGreen.png"];
-        [_leaderboardsButton setPosition:ccp(450,24)];
-        [_leaderboardsButton setHitboxBySize:CGSizeMake(65, 65)];
+        [_leaderboardsButton setPosition:ccp(450 * MULTIPLIERX,24 * MULTIPLIERY)];
+        [_leaderboardsButton setHitboxBySize:CGSizeMake(65 * MULTIPLIERX, 65 * MULTIPLIERY)];
         
         //achievements button
         _achievementsButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_AchievementBlue.png" Selected:@"Menu_AchievementGreen.png"];
-        [_achievementsButton setPosition:ccp(410,24)];
-        [_achievementsButton setHitboxBySize:CGSizeMake(65, 65)];        
+        [_achievementsButton setPosition:ccp(410 * MULTIPLIERX,24 * MULTIPLIERY)];
+        [_achievementsButton setHitboxBySize:CGSizeMake(65 * MULTIPLIERX, 65 * MULTIPLIERY)];        
         
         //options button
         _optionsButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_OptionsBlue.png" Selected:@"Menu_OptionsGreen.png"];
-        [_optionsButton setPosition:ccp(30,24)];
-        [_optionsButton setHitboxBySize:CGSizeMake(65, 65)];
+        [_optionsButton setPosition:ccp(30 * MULTIPLIERX,24 * MULTIPLIERY)];
+        [_optionsButton setHitboxBySize:CGSizeMake(65 * MULTIPLIERX, 65 * MULTIPLIERY)];
 
         
         [[LayerManager sharedLayers] forgetWorkingLayer];

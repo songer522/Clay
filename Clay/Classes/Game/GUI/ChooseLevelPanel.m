@@ -12,7 +12,10 @@
 #import "GameSettings.h"
 #import "LayerManager.h"
 
-#define LEVELPANEL_PANEL_X 105.0f
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
+#define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
+#define LEVELPANEL_PANEL_X 210.0f
 
 @implementation ChooseLevelPanel
 
@@ -140,25 +143,25 @@
 {
     //IPAD FIX: refer to reference for proper positions, this is the level information panel in the choose level screen
     _currentXPos = newX;
-    float iconX = newX + 70.0f;
-    float textX = newX - 89.0f;
-    float levelNumberX = newX + 56.0f;
+    float iconX = newX + 70.0f * MULTIPLIERX;
+    float textX = newX - 78.0f * MULTIPLIERX;
+    float levelNumberX = newX + 53.0f * MULTIPLIERX;
     
-    [_background setScreenPosition:ccp(newX,155)];
-    [_levelPreview setScreenPosition:ccp(newX,219)];
-    [_levelTitle setScreenPosition:ccp(newX,160)];
-    [_facebookIcon setScreenPosition:ccp(iconX,121)];
-    [_twitterIcon setScreenPosition:ccp(iconX,79)];
-    [_bestTimeLabel setPosition:ccp(textX,128)];
-    [_bestTimeValue setPosition:ccp(textX,113)];
-    [_timeForMedalLabel setPosition:ccp(textX,85)];
-    [_timeForMedalValue setPosition:ccp(textX,70)];
-    [_levelNumber setPosition:ccp(levelNumberX, 37)];
+    [_background setScreenPosition:ccp(newX,165 * MULTIPLIERY)];
+    [_levelPreview setScreenPosition:ccp(newX,219 * MULTIPLIERY)];
+    [_levelTitle setScreenPosition:ccp(newX,170 * MULTIPLIERY)];
+    [_facebookIcon setScreenPosition:ccp(iconX,131 * MULTIPLIERY)];
+    [_twitterIcon setScreenPosition:ccp(iconX,89 * MULTIPLIERY)];
+    [_bestTimeLabel setPosition:ccp(textX,138 * MULTIPLIERY)];
+    [_bestTimeValue setPosition:ccp(textX,123 * MULTIPLIERY)];
+    [_timeForMedalLabel setPosition:ccp(textX,95 * MULTIPLIERY)];
+    [_timeForMedalValue setPosition:ccp(textX,80 * MULTIPLIERY)];
+    [_levelNumber setPosition:ccp(levelNumberX, 67 * MULTIPLIERY)];
 }
 
 -(void)setPanelTransitionAmount:(float)amount
 {
-    [self setPanelXPosition:(LEVELPANEL_PANEL_X - (1.0f - amount) * 20)];
+    [self setPanelXPosition:((LEVELPANEL_PANEL_X - (1.0f - amount) * 20))];
 }
 
 -(void)dealloc

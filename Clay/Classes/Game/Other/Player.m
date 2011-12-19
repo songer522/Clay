@@ -150,7 +150,6 @@
     }
 }
 
-
 -(void)startJump:(RunnerJump)type
 {
     //guard
@@ -160,47 +159,60 @@
     _firstFrameJumping = true;
     _isHighJump = false;
     
-    if (_isNewUnderwaterPhysics) {
-        _vy = -86.25f; //75% original        
-    } else if (IS_IPAD)
+    if (IS_IPAD)
     {
-        _vy = -225.0f;
+        
+        if (_isNewUnderwaterPhysics) {
+            _vy = -86.25f; //75% original        
+        } else {
+            _vy = -230.0f;
+        }
     }
     else
     {
-        _vy = -115.0f;
+        if (_isNewUnderwaterPhysics) {
+            _vy = -86.25f; //75% original        
+        } else {
+            _vy = -115.0f;
+        }
     }
     
     _y += 2.0f;
+    _isJumping = true;
     [_skin setPlayerAnimation:PLAYER_ANIM_JUMPING ForSprite:_sprite];
     [[self getCollision] processNewCollisionState:COLLISION_STATE_MIDAIR];
     [self setPositionAtX:_x Y:_y];
     [[SoundEngine shared] playSound:@"jumpStart"];
     _waitToEndJump =0.2f;
-   
+    
     [_speed startJump];
-   }
+}
 
 -(void)startDoubleJump
 {
     if (_isTripping || _isDead || [_sprite getPosition].y <= 62) { 
-    
+        
         return; }
     if([_thirdAction inAction] && ![_thirdAction playerAllowedToJump]) { return; }
     
     self.hasGravity = true;
-    
-    if (_isNewUnderwaterPhysics) {
-        _vy = -187.5f;
-    } 
-    else if (IS_IPAD)
-    {
-        _vy = -360.0f;
+    if (IS_IPAD)
+    {   
+        if (_isNewUnderwaterPhysics) {
+            _vy = -187.5f;
+        } else {
+            _vy = -365.0;
+        }
     }
     else
     {
-        _vy = -250.0f;
+        if (_isNewUnderwaterPhysics) {
+            _vy = -187.5f;
+        } else {
+            _vy = -250.0;
+        }
     }
+    _ay = 0.0f;
     _isJumping = true;
     
     [_skin setPlayerAnimation:PLAYER_ANIM_JUMPING ForSprite:_sprite];
@@ -213,7 +225,7 @@
     GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
     
     [[gameLayer getHud] setEnabled:false ForButton:HUD_BUTTON_JUMP];
-
+    
 }
 
 -(void)boostJump:(RunnerJump)type
@@ -229,7 +241,7 @@
 {
     
     if (!_isTripping && _isInMidAir ) {
-     [_skin setPlayerAnimation:PLAYER_ANIM_FALLING ForSprite:_sprite];
+        [_skin setPlayerAnimation:PLAYER_ANIM_FALLING ForSprite:_sprite];
     }
     self.hasGravity = true;
 }

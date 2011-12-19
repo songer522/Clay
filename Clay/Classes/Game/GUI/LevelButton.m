@@ -47,8 +47,8 @@
 -(void)setInitialPosition
 {
     //initial position
-    float startX = 220; //was 212 for left panel
-    float startY = 190; //was 181 for left panel and 11 levels, and 186 without
+    float startX = 220 * MULTIPLIERX; //was 212 for left panel
+    float startY = 190 * MULTIPLIERY; //was 181 for left panel and 11 levels, and 186 without
     float row = floorf((_buttonId - 1) / 4);
     
     //for staggered effect, move that one down one
@@ -113,7 +113,7 @@
 {
     if (_trophy!=nil) {
         CGPoint position = [_buttonGraphic getPosition];
-        [_trophy setScreenPosition:ccp(position.x + 34.0f,position.y - 2.0f)];            
+        [_trophy setScreenPosition:ccp(position.x + 34.0f * MULTIPLIERX,position.y - 2.0f * MULTIPLIERY)];            
     }
 }
 

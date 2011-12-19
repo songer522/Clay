@@ -562,10 +562,14 @@
 		54F7F57F143CD0FD004EC10B /* 7 Segment.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 54F7F57E143CD0FD004EC10B /* 7 Segment.ttf */; };
 		54FBA2361430CBBE0010A91A /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54FBA2351430CBBE0010A91A /* MediaPlayer.framework */; };
 		57A03E9D1452173A00F2017F /* Menu_Ending_BestTime.png in Resources */ = {isa = PBXBuildFile; fileRef = 57A03E9C1452173A00F2017F /* Menu_Ending_BestTime.png */; };
-		57F0EF51148D5456004C5044 /* chooseLevel-ipad.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57A0A017147AC9ED00B461EB /* chooseLevel-ipad.plist */; };
-		57F0EF52148D5456004C5044 /* chooseLevel-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 57A0A018147AC9EE00B461EB /* chooseLevel-ipad.png */; };
-		57F0EF53148D5456004C5044 /* menuTextures-ipad.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57A0A013147AC81D00B461EB /* menuTextures-ipad.plist */; };
-		57F0EF54148D5456004C5044 /* menuTextures-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 57A0A014147AC81E00B461EB /* menuTextures-ipad.png */; };
+		57E26CBA149F9F280033B6A8 /* optionsScreen-ipad.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57E26CB4149F9F280033B6A8 /* optionsScreen-ipad.plist */; };
+		57E26CBB149F9F280033B6A8 /* optionsScreen-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 57E26CB5149F9F280033B6A8 /* optionsScreen-ipad.png */; };
+		57E26CBC149F9F280033B6A8 /* chooseMode-ipad.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57E26CB6149F9F280033B6A8 /* chooseMode-ipad.plist */; };
+		57E26CBD149F9F280033B6A8 /* chooseMode-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 57E26CB7149F9F280033B6A8 /* chooseMode-ipad.png */; };
+		57E26CBE149F9F280033B6A8 /* chooseLevel-ipad.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57E26CB8149F9F280033B6A8 /* chooseLevel-ipad.plist */; };
+		57E26CBF149F9F280033B6A8 /* chooseLevel-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 57E26CB9149F9F280033B6A8 /* chooseLevel-ipad.png */; };
+		57E26CC3149FA0980033B6A8 /* menuTextures-ipad.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57E26CC1149FA0980033B6A8 /* menuTextures-ipad.plist */; };
+		57E26CC4149FA0980033B6A8 /* menuTextures-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 57E26CC2149FA0980033B6A8 /* menuTextures-ipad.png */; };
 		5F8A449814687FF200CE1FC2 /* bullet-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8A449514687FF200CE1FC2 /* bullet-hd.png */; };
 		5F8A449A14687FF200CE1FC2 /* zombieHead-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8A449714687FF200CE1FC2 /* zombieHead-hd.png */; };
 		611293DF147AC42200AC017F /* Appirater.m in Sources */ = {isa = PBXBuildFile; fileRef = 611293DE147AC42200AC017F /* Appirater.m */; };
@@ -1380,10 +1384,14 @@
 		54F7F57E143CD0FD004EC10B /* 7 Segment.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "7 Segment.ttf"; path = "Resources/fonts/7 Segment.ttf"; sourceTree = "<group>"; };
 		54FBA2351430CBBE0010A91A /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		57A03E9C1452173A00F2017F /* Menu_Ending_BestTime.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Menu_Ending_BestTime.png; sourceTree = "<group>"; };
-		57A0A013147AC81D00B461EB /* menuTextures-ipad.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "menuTextures-ipad.plist"; sourceTree = "<group>"; };
-		57A0A014147AC81E00B461EB /* menuTextures-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuTextures-ipad.png"; sourceTree = "<group>"; };
-		57A0A017147AC9ED00B461EB /* chooseLevel-ipad.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "chooseLevel-ipad.plist"; sourceTree = "<group>"; };
-		57A0A018147AC9EE00B461EB /* chooseLevel-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chooseLevel-ipad.png"; sourceTree = "<group>"; };
+		57E26CB4149F9F280033B6A8 /* optionsScreen-ipad.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "optionsScreen-ipad.plist"; sourceTree = "<group>"; };
+		57E26CB5149F9F280033B6A8 /* optionsScreen-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "optionsScreen-ipad.png"; sourceTree = "<group>"; };
+		57E26CB6149F9F280033B6A8 /* chooseMode-ipad.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "chooseMode-ipad.plist"; sourceTree = "<group>"; };
+		57E26CB7149F9F280033B6A8 /* chooseMode-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chooseMode-ipad.png"; sourceTree = "<group>"; };
+		57E26CB8149F9F280033B6A8 /* chooseLevel-ipad.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "chooseLevel-ipad.plist"; sourceTree = "<group>"; };
+		57E26CB9149F9F280033B6A8 /* chooseLevel-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chooseLevel-ipad.png"; sourceTree = "<group>"; };
+		57E26CC1149FA0980033B6A8 /* menuTextures-ipad.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "menuTextures-ipad.plist"; sourceTree = "<group>"; };
+		57E26CC2149FA0980033B6A8 /* menuTextures-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuTextures-ipad.png"; sourceTree = "<group>"; };
 		5F8A449514687FF200CE1FC2 /* bullet-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bullet-hd.png"; sourceTree = "<group>"; };
 		5F8A449714687FF200CE1FC2 /* zombieHead-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zombieHead-hd.png"; sourceTree = "<group>"; };
 		611293DD147AC42200AC017F /* Appirater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Appirater.h; sourceTree = "<group>"; };
@@ -1552,30 +1560,6 @@
 				54484CF7140449B500D0D7D9 /* iTunesArtwork */,
 			);
 			name = "app artwork";
-			sourceTree = "<group>";
-		};
-		5441BED1143F8B75003224FF /* menu */ = {
-			isa = PBXGroup;
-			children = (
-				548A72C71474720200D7F4B1 /* endGameTextures-hd.plist */,
-				548A72C81474720200D7F4B1 /* endGameTextures-hd.png */,
-				548A72C91474720200D7F4B1 /* endGameTextures.plist */,
-				548A72CA1474720200D7F4B1 /* endGameTextures.png */,
-				57A0A017147AC9ED00B461EB /* chooseLevel-ipad.plist */,
-				57A0A018147AC9EE00B461EB /* chooseLevel-ipad.png */,
-				549D84D51469DE9100A3599F /* chooseLevel-hd.plist */,
-				549D84D61469DE9100A3599F /* chooseLevel-hd.png */,
-				549D84D71469DE9100A3599F /* chooseLevel.plist */,
-				549D84D81469DE9100A3599F /* chooseLevel.png */,
-				57A0A013147AC81D00B461EB /* menuTextures-ipad.plist */,
-				57A0A014147AC81E00B461EB /* menuTextures-ipad.png */,
-				54ABFD6D14630876006F0C88 /* menuTextures-hd.plist */,
-				54ABFD6E14630876006F0C88 /* menuTextures-hd.png */,
-				54ABFD6F14630876006F0C88 /* menuTextures.plist */,
-				54ABFD7014630876006F0C88 /* menuTextures.png */,
-			);
-			name = menu;
-			path = ../menu;
 			sourceTree = "<group>";
 		};
 		54484CC5140449B500D0D7D9 = {
@@ -1961,6 +1945,14 @@
 		544D50DA1445E68E00BED4CE /* scenes */ = {
 			isa = PBXGroup;
 			children = (
+				57E26CC1149FA0980033B6A8 /* menuTextures-ipad.plist */,
+				57E26CC2149FA0980033B6A8 /* menuTextures-ipad.png */,
+				57E26CB4149F9F280033B6A8 /* optionsScreen-ipad.plist */,
+				57E26CB5149F9F280033B6A8 /* optionsScreen-ipad.png */,
+				57E26CB6149F9F280033B6A8 /* chooseMode-ipad.plist */,
+				57E26CB7149F9F280033B6A8 /* chooseMode-ipad.png */,
+				57E26CB8149F9F280033B6A8 /* chooseLevel-ipad.plist */,
+				57E26CB9149F9F280033B6A8 /* chooseLevel-ipad.png */,
 				5463947D1499AAD90053A1F6 /* optionsScreen-hd.plist */,
 				5463947E1499AAD90053A1F6 /* optionsScreen-hd.png */,
 				5463947F1499AAD90053A1F6 /* optionsScreen.plist */,
@@ -2922,12 +2914,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				54AA08AA149424E000294FA2 /* level5_hd.tmx in Resources */,
-				54AA08AB149424E000294FA2 /* level10.tmx in Resources */,
-				57F0EF51148D5456004C5044 /* chooseLevel-ipad.plist in Resources */,
-				57F0EF52148D5456004C5044 /* chooseLevel-ipad.png in Resources */,
-				57F0EF53148D5456004C5044 /* menuTextures-ipad.plist in Resources */,
-				57F0EF54148D5456004C5044 /* menuTextures-ipad.png in Resources */,
 				54A2C5A5147C6F8900A0CB18 /* doublejump.wav in Resources */,
 				54484CE7140449B500D0D7D9 /* Default.png in Resources */,
 				54484CE9140449B500D0D7D9 /* fps_images.png in Resources */,
@@ -3302,6 +3288,14 @@
 				54ACB424149C37A200B353C6 /* Comic_5.png in Resources */,
 				54ACB425149C37A200B353C6 /* Comic_Button_Skip-hd.png in Resources */,
 				54ACB426149C37A200B353C6 /* Comic_Button_Skip.png in Resources */,
+				57E26CBA149F9F280033B6A8 /* optionsScreen-ipad.plist in Resources */,
+				57E26CBB149F9F280033B6A8 /* optionsScreen-ipad.png in Resources */,
+				57E26CBC149F9F280033B6A8 /* chooseMode-ipad.plist in Resources */,
+				57E26CBD149F9F280033B6A8 /* chooseMode-ipad.png in Resources */,
+				57E26CBE149F9F280033B6A8 /* chooseLevel-ipad.plist in Resources */,
+				57E26CBF149F9F280033B6A8 /* chooseLevel-ipad.png in Resources */,
+				57E26CC3149FA0980033B6A8 /* menuTextures-ipad.plist in Resources */,
+				57E26CC4149FA0980033B6A8 /* menuTextures-ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

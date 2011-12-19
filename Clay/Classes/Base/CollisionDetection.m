@@ -36,7 +36,12 @@
         _mapWidth = _map.mapSize.width;
         
         //do any precalculations for performance
-        if ([[GameSettings shared] usingHighResolutionGraphics])
+        if (IS_IPAD)
+        {
+            _preCalculateAccurateCoordsY = (_mapHeight * _tileSize) / _tileSize;
+            _preCalculateTileSize = _tileSize;
+        }
+        else if ([[GameSettings shared] usingHighResolutionGraphics])
         {
             _preCalculateAccurateCoordsY = (_mapHeight * _halfTileSize) / _halfTileSize;
             _preCalculateTileSize = _halfTileSize;

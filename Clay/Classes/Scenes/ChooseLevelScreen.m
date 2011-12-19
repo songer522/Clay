@@ -177,11 +177,11 @@
     
     _facebookButton =[ ActionButton actionButtonManualSetup];
     _facebookButton.facebookOrTwitter=true;
-    [_facebookButton setPosition:ccp(210, 120)];
+    [_facebookButton setPosition:ccp(210 * MULTIPLIERX, 120 * MULTIPLIERY)];
     
     _twitterButton =[ ActionButton actionButtonManualSetup];
     _twitterButton.facebookOrTwitter=true;
-    [_twitterButton setPosition:ccp(210, 80)];
+    [_twitterButton setPosition:ccp(210 * MULTIPLIERX, 80 * MULTIPLIERY)];
     
     
     //load level buttons (init best level time text first because it gets set in here)

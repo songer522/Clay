@@ -44,7 +44,7 @@ static TextureManager *_shared = nil;
     {
         appendhd = @"-ipad";
     }
-    else if([GameSettings usingHighResolutionGraphics])
+    else if([[GameSettings shared] usingHighResolutionGraphics])
     {
         	appendhd = @"-hd";
     }
@@ -97,7 +97,7 @@ static TextureManager *_shared = nil;
     {
         appendhd = @"-ipad";
     }
-    else if([GameSettings usingHighResolutionGraphics])
+    else if([[GameSettings shared] usingHighResolutionGraphics])
     {
         appendhd = @"-hd";
     }

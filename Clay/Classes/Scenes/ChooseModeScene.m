@@ -18,6 +18,9 @@
 #import "ChooseLevelScreen.h"
 #import "GameLayer.h"
 #import "GameSettings.h"
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
+#define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 
 @implementation ChooseModeScene
 
@@ -109,37 +112,37 @@
     
     _background = [Sprite spriteFromFrameCacheWithName:@"UI_GameType_Background.png"];
     
-    _storyModePanel = [ModePanel panelAtPosition:ccp(80,154)];
+    _storyModePanel = [ModePanel panelAtPosition:ccp(80 * MULTIPLIERX ,154 * MULTIPLIERY)];
     [_storyModePanel setHeaderFrame:@"UI_GameType_StoryModeC.png" Inactive:@"UI_GameType_StoryModeG.png"];
     [_storyModePanel addButtons:[NSArray arrayWithObjects:@"KIDS",@"NORMAL",@"INSANE", nil]];
     [_storyModePanel setParent:self];
     
-    _timedModePanel = [ModePanel panelAtPosition:ccp(240,154)];
+    _timedModePanel = [ModePanel panelAtPosition:ccp(240 * MULTIPLIERX,154 * MULTIPLIERY)];
     [_timedModePanel setHeaderFrame:@"UI_GameType_TimeModeC.png" Inactive:@"UI_GameType_TimeModeG.png"];
     [_timedModePanel addButtons:[NSArray arrayWithObjects:@"NORMAL",@"INSANE", nil]];
     [_timedModePanel setParent:self];
     
-    _extrasPanel = [ModePanel panelAtPosition:ccp(400,154)];
+    _extrasPanel = [ModePanel panelAtPosition:ccp(400 * MULTIPLIERX,154 * MULTIPLIERY)];
     [_extrasPanel setHeaderFrame:@"UI_GameType_ExtrasC.png" Inactive:@"UI_GameType_ExtrasG.png"];
     [_extrasPanel addButtons:[NSArray arrayWithObjects:@"SKINS",@"LEVELS",@"WEB", nil]];
     [_extrasPanel setParent:self];
     
     _startButton = [ActionButton actionButtonCustomGraphicsForIdle:@"UI_GameType_ButtonS_Blue.png" Selected:@"UI_GameType_ButtonS_Green.png"];
     [_startButton setInitialText:@"START"];
-    [_startButton setPosition:ccp(430,18)];
+    [_startButton setPosition:ccp(430 * MULTIPLIERX,18 * MULTIPLIERY)];
     
     _backButton = [ActionButton actionButtonCustomGraphicsForIdle:@"UI_GameType_ButtonS_Blue.png" Selected:@"UI_GameType_ButtonS_Green.png"];
     [_backButton setInitialText:@"BACK"];
-    [_backButton setPosition:ccp(50, 18)];
+    [_backButton setPosition:ccp(50 * MULTIPLIERX, 18 * MULTIPLIERY)];
     
-    _selectCursor = [Sprite spriteCenteredWithFrame:@"UI_GameType_Select.png" Position:ccp(240,160)];
+    _selectCursor = [Sprite spriteCenteredWithFrame:@"UI_GameType_Select.png" Position:ccp(240 * MULTIPLIERX,160 * MULTIPLIERY)];
     [_storyModePanel setSelectCursor:_selectCursor];
     [_timedModePanel setSelectCursor:_selectCursor];
     [_extrasPanel setSelectCursor:_selectCursor];
     [_selectCursor setAlpha:0.0f];
     
     _selectModeText = [GameLabel gameLabelWithText:@"SELECT GAME TYPE" Scale:0.65f];
-    [_selectModeText setPosition:ccp(240.0f,292.0f)];
+    [_selectModeText setPosition:ccp(240.0f * MULTIPLIERX,292.0f * MULTIPLIERY)];
     
     //setup default selections
     _currentPanel = _storyModePanel;
