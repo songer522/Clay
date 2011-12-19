@@ -137,8 +137,6 @@ static LevelManager *_shared = nil;
     
     [[GameSettings shared] setGlobal:levelName ForKey:@"levelName"];
     
-    [[SoundEngine shared] playMusic:_currentLevel.musicName];
-    
     [[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
 
 }

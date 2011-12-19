@@ -54,6 +54,7 @@
 @synthesize player = _player;
 @synthesize gameController = _gameController;
 @synthesize handledPauseEvent = _handledPauseEvent;
+@synthesize inComic = _inComic;
 
 +(CCScene *) scene
 {
@@ -94,6 +95,7 @@
         [self schedule: @selector(update:)];
         
         _paused = true;
+        _inComic = false;
         
         self.isTouchEnabled = YES;
         
@@ -233,7 +235,7 @@
     [[ComicManager shared] update:dt];
     [[SoundEngine shared] update:dt];
 
-    if (!_paused) {
+    if (!_paused && !_inComic) {
         
         [_level update:dt Velocity:_player.vx];
         
@@ -264,6 +266,7 @@
 #endif
 
 }
+
 
 -(void)updatePlayerDeath:(float)dt
 {
