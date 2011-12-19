@@ -19,6 +19,7 @@
 #import "PlayerAction.h"
 #import "Projectile.h"
 #import "BossFactory.h"
+#import "GameSettings.h"
 
 #define GAME_OBJECT_DISTANCE_ONSCREEN 550.0f
 
@@ -92,6 +93,7 @@
         _persistsBetweenRegions = false;
         _magnitude = 0.0f;
         _hasAppeared=false;
+        _isStutterMode = [[GameSettings shared] isStutterMode];
     }
     
     return self;
@@ -690,7 +692,7 @@
     [self chaseAtDistance:distance DefaultSpeed:defaultSpeed ChaseSpeed:chaseSpeed ChaseSound:sound ChaseAnimation:@"" DefaultAnimation:@""];
 }
 
--(void) chaseAtDistance:(float)distance DefaultSpeed:(float)defaultSpeed ChaseSpeed:(float)chaseSpeed SoundToTriggerAtDistance:(NSString*)sound AnimationToTriggerOnChase:(NSString*)chaseAnim DefaultAnimation:(NSString*)defaultAnim
+-(void) chaseAtDistance:(float)distance DefaultSpeed:(float)defaultSpeed ChaseSpeed:(float)chaseSpeed ChaseSound:(NSString*)sound ChaseAnimation:(NSString*)chaseAnim DefaultAnimation:(NSString*)defaultAnim
 {
     if (!_chaseTriggered) {
         [self chaseAtDistance:distance DefaultSpeed:defaultSpeed ChaseSpeed:chaseSpeed];

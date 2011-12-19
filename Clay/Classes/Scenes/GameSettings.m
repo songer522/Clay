@@ -11,6 +11,8 @@
 #include <sys/sysctl.h>
 #import "PListLoader.h"
 
+#define SETTING_IS_STUTTER_MODE_DEFAULT 1
+
 @implementation GameSettings
 
 
@@ -30,6 +32,7 @@ static GameSettings *_shared = nil;
         _settings = [[NSMutableDictionary alloc] initWithCapacity:30];
         [self loadFromSettingsPlist];
         _usingHighResolutionGraphics = [self calculateShouldUseHighRes];
+        [self setGlobal:[NSString stringWithFormat:@"%d",SETTING_IS_STUTTER_MODE_DEFAULT] ForKey:@"isStutterMode"];
     }
     return self;
 }
@@ -57,6 +60,11 @@ static GameSettings *_shared = nil;
 -(bool)usingHighResolutionGraphics
 {
     return _usingHighResolutionGraphics;
+}
+
+-(bool)isStutterMode
+{
+    return _isStutterMode;
 }
 
 -(bool)calculateShouldUseHighRes

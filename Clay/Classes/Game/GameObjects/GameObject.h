@@ -97,6 +97,8 @@ typedef enum {
     CollisionBehavior _currentBehavior;
     CollisionBehavior _collideBehavior;
     
+    bool _isStutterMode;
+    
     PlayerEffect _playerEffect;
 }
 
