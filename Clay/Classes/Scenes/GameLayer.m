@@ -213,6 +213,11 @@
     time = timeToRun;
 }
 
+-(void)pause
+{
+    _paused = true;
+}
+
 -(void)unpause
 {
     _paused = false;

@@ -5,7 +5,7 @@
 	<key>level1</key>
 	<dict>
 		<key>preComic</key>
-		<string>intro</string>
+		<string>level0</string>
 		<key>thirdAction</key>
 		<string>woo</string>
 		<key>music</key>
@@ -47,7 +47,7 @@
 	<key>level3</key>
 	<dict>
 		<key>preComic</key>
-		<string>level3</string>
+		<string>level2</string>
 		<key>thirdAction</key>
 		<string>woo</string>
 		<key>music</key>

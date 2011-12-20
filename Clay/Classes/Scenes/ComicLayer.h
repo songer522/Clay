@@ -21,7 +21,11 @@ typedef enum {
     BLACKBOX_IN = 1,
     BLACKBOX_OUT = -1,
     BLACKBOX_WAIT = 2,
-    BLACKBOX_IDLE = 0
+    BLACKBOX_IDLE = 0,
+    BLACKBOX_LOAD_COMIC = 3,
+    BLACKBOX_PLAY_COMIC_FADE_IN = 4,
+    BLACKBOX_PLAY_COMIC_WAIT = 5,
+    BLACKBOX_PLAY_COMIC_FADE_OUT = 6
 }BlackBoxTransition;
 
 @interface ComicLayer : CCLayer
@@ -32,6 +36,10 @@ typedef enum {
     bool _atTarget;
     int _phase;
     float _rate;
+    
+    float _comicAlpha;
+    
+    CCSprite *_comicPanel;
     
     ComicManager *_comicManager; //weak reference
     
@@ -55,6 +63,8 @@ typedef enum {
 -(void)update:(ccTime)dt;
 -(void)waitToPlayVideo:(float)time;
 
+
+-(void)cueComic:(NSString*)comicName;
 -(void)resetLayer;
 
 @end

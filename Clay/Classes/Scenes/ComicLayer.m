@@ -80,6 +80,33 @@
                 _transition = BLACKBOX_IDLE;
                 [_comicManager finishedAction];
             }
+            break;
+        case BLACKBOX_PLAY_COMIC_FADE_IN:
+            _comicAlpha += 2.0f * dt;
+            if (_comicAlpha >= 1.0f) {
+                _comicAlpha = 1.0f;
+                _timeToWait = 5.0f;
+                _transition = BLACKBOX_PLAY_COMIC_WAIT;
+            }
+            [_comicPanel setOpacity:floor(255 * _comicAlpha)];
+            break;
+        case BLACKBOX_PLAY_COMIC_WAIT:
+            _timeToWait-=dt;
+            if (_timeToWait<=0.0f) {
+                _transition = BLACKBOX_PLAY_COMIC_FADE_OUT;
+                _comicAlpha = 1.0f;
+            }
+            break;
+        case BLACKBOX_PLAY_COMIC_FADE_OUT:
+            _comicAlpha -= 2.0f * dt;
+            if (_comicAlpha <= 0.0f) {
+                _comicAlpha = 0.0f;
+                [_comicPanel removeFromParentAndCleanup:YES];
+                _comicPanel = nil;
+                [_comicManager finishedAction];
+            }
+            [_comicPanel setOpacity:floor(255 * _comicAlpha)];
+            break;
         default:
             break;
     }
@@ -158,6 +185,22 @@
 }
 
 
+-(void)cueComic:(NSString*)comicName
+{
+    int comicNumber = [[comicName substringFromIndex:5] intValue];
+    if (comicNumber <= 5) {        
+        NSString *_imageName = [NSString stringWithFormat:@"Comic_%d.png",comicNumber];
+        _comicPanel = [CCSprite spriteWithFile:_imageName];
+        _comicPanel.anchorPoint = ccp(0,0);
+        [_comicPanel setOpacity:0];
+        [self addChild:_comicPanel];
+        _transition = BLACKBOX_PLAY_COMIC_FADE_IN;
+        _comicAlpha = 0.0f;
+    } else {
+        [_comicManager finishedAction];
+    }
+}
+
 -(void)draw
 {
     [self drawBars:_position];
@@ -165,12 +208,14 @@
 
 -(void)drawBars:(float)position
 {
-    float scale = 1.0f;
-    if ([[GameSettings shared] usingHighResolutionGraphics]) {
-        scale = 2.0f;        
+    if (_transition == BLACKBOX_IN || _transition == BLACKBOX_OUT) {
+        float scale = 1.0f;
+        if ([[GameSettings shared] usingHighResolutionGraphics]) {
+            scale = 2.0f;        
+        }
+        [self ccDrawFilledRectFrom:ccp(0,0) To:ccp(960,position * scale)];
+        [self ccDrawFilledRectFrom:ccp(0,640) To:ccp(960,(320.0f - position) * scale)];    
     }
-    [self ccDrawFilledRectFrom:ccp(0,0) To:ccp(960,position * scale)];
-    [self ccDrawFilledRectFrom:ccp(0,640) To:ccp(960,(320.0f - position) * scale)];    
 }
 
 

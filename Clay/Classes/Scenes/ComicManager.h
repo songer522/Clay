@@ -33,6 +33,8 @@ typedef enum {
     NSDictionary *_videoList;
     ComicLayer *_comicLayer;
     
+    NSString *_comicName;
+    
     ComicPhase _phase;
     
     bool _showEndGame;

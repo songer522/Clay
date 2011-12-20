@@ -263,12 +263,12 @@
 {
     [self unscheduleUpdate];
     self.isTouchEnabled = false;
-    [self release];
+    //[self release];
 }
 
 -(void)dealloc
 {
-    [_background release];
+    //[_background release];
     [_musicPanel release];
     [_sfxPanel release];
     [_musicSheetTop release];

@@ -81,7 +81,8 @@ static ComicManager *_shared = nil;
         id result = [_videoList objectForKey:comic];
         
         NSAssert([result isKindOfClass:[NSString class]],@"Result is not a string or is null. Verify what you're asking for is in the plist.");
-
+        
+        _comicName = [[NSString stringWithString:comic] retain];
         
         _videoFileName = result;
         
@@ -128,13 +129,16 @@ static ComicManager *_shared = nil;
             case COMIC_PHASE_STARTING_VIDEO:
                 //basically we need to wait for the scene transition before calling playvideo
                 [_comicLayer waitToPlayVideo:1.0f];
+                gameLayer.gameController.isInputEnabled = false;
+                [gameLayer pause];
                 break;
             case COMIC_PHASE_PLAY_VIDEO:
                 if (_showEndGame) {
                     [self endTheGame];
                 } else {
-                    [_videoPlayer playMovie:_videoFileName];
-                    [[CCDirector sharedDirector] stopAnimation];
+                    [_comicLayer cueComic:_comicName];
+                    //[_videoPlayer playMovie:_videoFileName];
+                    //[[CCDirector sharedDirector] stopAnimation];
                 }
                 
                 //set to false if transitioning levels
@@ -154,7 +158,7 @@ static ComicManager *_shared = nil;
                 
                 bool isRestarting = [[[GameSettings shared] getGlobalForKey:@"restarting"] boolValue];
                 if (!isRestarting) {
-                    [[CCDirector sharedDirector] startAnimation];                    
+                    //[[CCDirector sharedDirector] startAnimation];                    
                 }
 
                 //set to false after checked when init the level
