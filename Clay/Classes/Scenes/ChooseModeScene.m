@@ -252,27 +252,24 @@
 
 -(void)onExit
 {
+    //[self release];
     [self unscheduleUpdate];
     self.isTouchEnabled = false;
-    [self release];
 }
 
 -(void)dealloc
 {
-    /*
     [_background release];
     [_selectCursor release];
     [_storyModePanel release];
     [_timedModePanel release];
     [_extrasPanel release];
-     */
-    //[_backButton release];
-    //[_startButton release];
-    /*
-    [_selectModeText release];
+    [_backButton release];
+    [_startButton release];
     
-     */
+    [_selectModeText release];
     [[TextureManager shared] unloadMemoryForKey:@"chooseMode"];
+    [super dealloc];
 }
 
 @end

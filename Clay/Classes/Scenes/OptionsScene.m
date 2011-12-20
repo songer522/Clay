@@ -268,7 +268,7 @@
 
 -(void)dealloc
 {
-    //[_background release];
+    [_background release];
     [_musicPanel release];
     [_sfxPanel release];
     [_musicSheetTop release];
@@ -299,6 +299,7 @@
     [_backButton release];
     
     [[TextureManager shared] unloadMemoryForKey:@"optionsScreen"];
+    [super dealloc];
 }
 
 @end
