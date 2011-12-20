@@ -1467,9 +1467,9 @@
 	<key>clappingAnim</key>
 	<dict>
 		<key>animationFrames</key>
-		<string>1</string>
+		<string>1,2</string>
 		<key>clearPreviousAnims</key>
-		<string>false</string>
+		<string>true</string>
 		<key>delay</key>
 		<real>0.075</real>
 		<key>group</key>

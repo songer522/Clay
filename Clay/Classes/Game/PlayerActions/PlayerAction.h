@@ -47,10 +47,13 @@
     bool _canTrigger;
 }
 
+
+
 -(void) initialize; //individual actions can setup specific vars here
 
 -(void) enableAction; //called when action can be called again
-
+-(void) disableAction;
+-(void) canTrigger:(bool)canTrigger;
 -(bool) playerAllowedToJump;
 -(bool) playerAllowedToSprint;
 

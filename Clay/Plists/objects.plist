@@ -727,7 +727,7 @@
 			<integer>0</integer>
 		</dict>
 		<key>collideBehavior</key>
-		<string>static</string>
+		<string>clapping</string>
 		<key>imageName</key>
 		<string>blank.png</string>
 		<key>offsetx</key>
