@@ -3247,6 +3247,23 @@
 				610BD53C14A01A3A00993FFF /* characterWoo-hd.png in Resources */,
 				610BD53D14A01A3A00993FFF /* characterWoo.plist in Resources */,
 				610BD53E14A01A3A00993FFF /* characterWoo.png in Resources */,
+				54ACB3FA149C128300B353C6 /* image1.png in Resources */,
+				54ACB3FB149C128300B353C6 /* image2.png in Resources */,
+				54ACB3FC149C128300B353C6 /* image3.png in Resources */,
+				54ACB40A149C275000B353C6 /* Comic_1.png in Resources */,
+				54ACB40E149C2C6700B353C6 /* Comic_0.png in Resources */,
+				54ACB41B149C37A200B353C6 /* Comic_0-hd.png in Resources */,
+				54ACB41C149C37A200B353C6 /* Comic_1-hd.png in Resources */,
+				54ACB41D149C37A200B353C6 /* Comic_2-hd.png in Resources */,
+				54ACB41E149C37A200B353C6 /* Comic_2.png in Resources */,
+				54ACB41F149C37A200B353C6 /* Comic_3-hd.png in Resources */,
+				54ACB420149C37A200B353C6 /* Comic_3.png in Resources */,
+				54ACB421149C37A200B353C6 /* Comic_4-hd.png in Resources */,
+				54ACB422149C37A200B353C6 /* Comic_4.png in Resources */,
+				54ACB423149C37A200B353C6 /* Comic_5-hd.png in Resources */,
+				54ACB424149C37A200B353C6 /* Comic_5.png in Resources */,
+				54ACB425149C37A200B353C6 /* Comic_Button_Skip-hd.png in Resources */,
+				54ACB426149C37A200B353C6 /* Comic_Button_Skip.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
