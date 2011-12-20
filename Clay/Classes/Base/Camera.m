@@ -195,7 +195,7 @@ static Camera *_sharedCamera = nil;
         
         float magnitude = distance * CAMERA_MOVE_TO_TARGET_SPEED * dt;
         
-        if (distance > 2.0f) {
+        if (distance > 0.1f) {
             if (_trackingTarget) {
                 _x += (magnitude * (dx/distance));
             }

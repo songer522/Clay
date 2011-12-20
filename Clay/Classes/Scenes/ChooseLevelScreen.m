@@ -72,6 +72,7 @@
         _inTutorial=false;
         _openFacebook=false;
         _waitToSwitch = 0.0f;
+        _hasSwitched = false;
         self.isTouchEnabled = YES;
         
         _gameMode = [[GameSettings shared] getGlobalForKey:@"gameMode"];
@@ -372,7 +373,8 @@
         [_backPanel setPanelTransitionAmount:_panelAlpha];
         [_frontPanel setAlpha:0.0f];
         [_frontPanel release];
-        _frontPanel = _backPanel;        
+        _frontPanel = _backPanel;
+        _backPanel = nil;
     } else {
         //[_frontPanel setAlpha:(1.0f - _panelAlpha)];
         [_backPanel setAlpha:_panelAlpha];
@@ -427,6 +429,12 @@
 
 -(void)update:(ccTime)dt
 {
+    if (![[GameSettings shared] isStutterMode]) {
+        if (_hasSwitched) {
+            return;
+        }
+    }
+    
     [[SoundEngine shared] update:dt];
 
     [_startButton update:dt];
@@ -444,6 +452,7 @@
             _waitToSwitch = 0.0f;
             if (_backToChooseMode) {
                 [self switchToChooseModeScreen];
+                _hasSwitched = true;
             }else if(_openFacebook)
             {
                 prompt = [FBPrompt promptWithAppId:@"264174546971482" andDelegate:self];
@@ -456,31 +465,43 @@
             }
             else {
                 [self popAndSwitchToLevel:_levelToSwitchTo]; 
+                _hasSwitched = true;
             }
         }
-    }
-    
-    for (LevelButton *button in _buttons) {
-        
     }
 }
 
 -(void)dealloc
 {
-    //NSLog(@"Dealloc: ChooseLevelScreen");
-    
+    CCLOG(@"Dealloc: ChooseLevelScreen");
+        
     [_buttons removeAllObjects];
     _buttons = nil;
-    [_background release];
-    [_levelToSwitchTo release];
-    [_levelSelectText release];
-    //[_bestLevelTimeText release];
     [_modeDict release];
-    [_startButton release];
-    [_backButton release];
+    [_levelToSwitchTo release];
+    _gameMode = nil;
+    _gameDifficulty = nil;
+    [_bestTime release];
+    [_background release];
+    [_panelBackground release];
     [_selector release];
     
+    [_levelSelectText release];
+    [_bestLevelTimeText release];
+    
+    [_startButton release];
+    [_backButton release];
+    [_facebookButton release];
+    [_twitterButton release];
+    
+    [_frontPanel release];
+    if(_backPanel != nil) { //may or may not have been released during the transition
+        [_backPanel release];
+    }
+    
     [[TextureManager shared] unloadMemoryForKey:@"chooseLevel"];
+    
+    [super dealloc];
 }
 
 @end

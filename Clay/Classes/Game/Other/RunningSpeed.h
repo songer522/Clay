@@ -27,6 +27,8 @@
     bool _inTurbo;
     
     float _velocity;
+    float _reportedVelocity; //to keep the player moving either 1 pixel or 0 pixels (when moving that slow), to keep things smooth on screen
+    
     float _acceleration;
     float _turboLeft;
     
@@ -48,6 +50,7 @@
 }
 
 @property(nonatomic,assign) float velocity;
+@property(nonatomic,readonly) float reportedVelocity;
 @property(nonatomic,assign) float velocityModifier;
 @property(readonly,nonatomic,assign) bool inTurbo;
 @property(readonly,nonatomic,assign) bool isStopped;

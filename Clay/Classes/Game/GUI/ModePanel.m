@@ -264,6 +264,7 @@
     [_inactivePanel release];
     [_activeHeader release];
     [_inactiveHeader release];
+    _selectCursor = nil;
     _parentScene = nil;
     [_buttons removeAllObjects];
     [super dealloc];

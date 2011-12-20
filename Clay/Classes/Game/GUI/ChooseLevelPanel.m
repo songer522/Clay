@@ -163,17 +163,30 @@
 
 -(void)dealloc
 {
-    [_root removeFromParentAndCleanup:YES];
     [_background release];
     [_levelTitle release];
     [_levelPreview release];
     [_facebookIcon release];
     [_twitterIcon release];
-    [_bestTimeValue release];
     [_bestTimeLabel release];
-    [_timeForMedalValue release];
+    [_bestTimeValue release];
     [_timeForMedalLabel release];
+    [_timeForMedalValue release];
     [_levelNumber release];
+    
+    //maybe not needed
+    /*
+    [_levelNameText release];
+    [_timeForMedalLabelText release];
+    [_timeForMedalValueText release];
+    [_bestTimeText release];
+    [_levelPreviewFrameName release];
+    [_levelTitleFrameName release];
+     */
+
+    [_root removeFromParentAndCleanup:NO];
+    [_root release];
+    
     [super dealloc];
 }
 

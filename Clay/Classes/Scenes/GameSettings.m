@@ -32,7 +32,7 @@ static GameSettings *_shared = nil;
         _settings = [[NSMutableDictionary alloc] initWithCapacity:30];
         [self loadFromSettingsPlist];
         _usingHighResolutionGraphics = [self calculateShouldUseHighRes];
-        [self setGlobal:[NSString stringWithFormat:@"%d",SETTING_IS_STUTTER_MODE_DEFAULT] ForKey:@"isStutterMode"];
+        [self setStutterMode:SETTING_IS_STUTTER_MODE_DEFAULT];
     }
     return self;
 }
@@ -60,6 +60,12 @@ static GameSettings *_shared = nil;
 -(bool)usingHighResolutionGraphics
 {
     return _usingHighResolutionGraphics;
+}
+
+-(void)setStutterMode:(int)shouldStutter
+{
+    [self setGlobal:[NSString stringWithFormat:@"%d",shouldStutter] ForKey:@"isStutterMode"];
+    _isStutterMode = shouldStutter;
 }
 
 -(bool)isStutterMode
