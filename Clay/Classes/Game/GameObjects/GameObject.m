@@ -19,6 +19,7 @@
 #import "PlayerAction.h"
 #import "Projectile.h"
 #import "BossFactory.h"
+#import "GameSettings.h"
 
 #define GAME_OBJECT_DISTANCE_ONSCREEN 550.0f
 
@@ -92,6 +93,8 @@
         _persistsBetweenRegions = false;
         _magnitude = 0.0f;
         _hasAppeared=false;
+        _isVisible = true;
+        _isStutterMode = [[GameSettings shared] isStutterMode];
     }
     
     return self;
@@ -274,6 +277,24 @@
 
 -(void)update:(float)dt
 {
+    
+    if (!_isStutterMode && !_boss) {
+        if ([[Camera sharedCamera ] isInVisualRange:_x]) {
+            if (!_isVisible) {
+                [[_sprite getCCSprite] setVisible:YES];
+                [[_sprite getCCSprite] resumeSchedulerAndActions];
+                _isVisible = true;
+            }
+        } else {
+            if (_isVisible) {
+                [[_sprite getCCSprite] setVisible:NO];
+                [[_sprite getCCSprite] pauseSchedulerAndActions];
+                _isVisible = false;
+            }
+            return; //don't bother with the rest of the update loop
+        }
+    }
+    
     //if time is slowed down, modify the dt by the modifier
     //(must be called first because the rest relies on the dt value)
     if (_slowTimeModifier!= 1.0f) {
@@ -311,7 +332,11 @@
     
     [self updateFlags];
     
-    [self updateLights:dt];
+    if (_isStutterMode) {
+        [self updateLights:dt];        
+    } else {
+        //unneeded
+    }
     
     
     
@@ -337,496 +362,379 @@
 
 -(void)updateCollisionBehavior:(float)dt
 {
-    if (_currentBehavior == COLLISION_BEHAVIOR_FALL_OVER) {
-        _angle += (_fallVelocity + 100.0f) * dt;
-        if (_angle >= 90) {
-            _angle = 90;
-            _fallVelocity = -0.8f * _fallVelocity;
-            _currentBehavior = COLLISION_BEHAVIOR_STATIC;
-        } else if(_angle <= 0) {
-            _angle = 0;
-            _fallVelocity = -0.8f * _fallVelocity;
-        }
-        
-        [self getCCSprite].rotation = _angle;
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_FLYING_SHURIKEN) {
-        _angle += _rotationAmount * dt;
-        [self getCCSprite].rotation = _angle;
-        CGPoint position = [[Camera sharedCamera] convertToScreenXY:[self getPosition]];
-        
-        //hide the object if it's y or x position is high enough,
-        //but give the object enough of a chance to clear the iphone screen
-        if (position.y > 800.0f || position.x > 1200.0f) {
-            [self switchToInactive];            
-        }
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_HEN_KICKED) {
-        _angle += _rotationAmount * dt;
-        [self getCCSprite].rotation = _angle;
-        _vy += 500.0f * dt;
-        
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_SLOW) {
-        _vx = 0.0f;
-        if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
-            _vx = -100.0f;
+    switch (_currentBehavior) {
             
-            //right now this behavior only applies to angler fish... need an exception if changes in the future
-            if (!_madeSound) {
-                [[SoundEngine shared] playSound:@"waterAnglerFish"];
-                _madeSound = true;
-            }
-        }
-    }
-    
-    else if(_currentBehavior == COLLISION_BEHAVIOR_CHARGE_AT_PLAYER) {
-        _vx = 0.0f;
-        if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
-            _vx = -150.0f;
-        }
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST) {
-        _vx = 0.0f;
-        if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
-            _vx = -200.0f;
-        }
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_MAD_DOG) {
-        _vx = 0.0f;
-        if ([self closeToPlayer:200.0f]) {
-            if(![self.originalAnimation isEqualToString:@"madDogAnim"])
-            {
-                [[SoundEngine shared] playSound:@"maddogBark"];
-                [self setOriginalAnimation:@"madDogAnim"];
-                [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"madDogAnim"];
-            }
-            _vx = -150.0f;
-        }
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_RETRO_ZOMBIE) {
-        _vx = 0.0f;
-        if ([self closeToPlayer:100.0f]) {
-            if(![self.originalAnimation isEqualToString:@"retroZombieAnim"])
-            { 
-                [self setOriginalAnimation:@"retroZombieAnim"];
-                [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"retroZombieAnim"];
-            }
-        }
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_WALK) {
-        _vx = 0.0f;
-        if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
-            if (!_madeSound) {
-                _madeSound = true;
-                [[SoundEngine shared] playSound:@"zombieMoan"];
-            }
-            _vx = -40.0f;
-        }
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_WALK_FAST) {
-        _vx = 0.0f;
-        if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
-            _vx = -60.0f;
-        }
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_RETRO_SHOT_FROM_CANNON) {
-        _vy += 500.0f * dt;
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_FLYER) {
-        _vx = 0.0f;
-        if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
-            if (!_madeSound) {
-                _madeSound = true;
-                [[SoundEngine shared] playSound:@"crowAppears"];
-            }
-            _vx = -250.0f;
-        }
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_ROLLING_HAYBALE) {
-        /*
-        int frame = [[_sprite getAnimation] getCurrentFrameNumber];
-        
-        if (frame == 1) {
-            _direction = -1;
-        } else if(frame == 6) {
-            _direction = 1;
-        }
-        _vx = _direction * 100.0f;        
-    } */
-        
-            _vx = 0.0f;
-            if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
-                _vx = -150.0f;
-            }
-    }
-         else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON) {
-        _vx = 0.0f;
-        _angle += _rotationAmount * dt;
-        [self getCCSprite].rotation = _angle;
-        if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
-            _vx = -25.0f;
-        }
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR) {
-        _vx = 0.0f;
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_FIREBALL_START) {
-        if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
-            Player *player = [[LayerManager sharedLayers] getPlayer];
-            CGPoint position = [player getPosition];
-            [self setPositionAtX:(position.x - 100.0f) Y:350.0f];
-            [self setPlayerEffect:@"none"];
-            _currentBehavior = COLLISION_BEHAVIOR_FIREBALL_MOVING;
-            _isInvincible = true;
-            
-        }
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_FIREBALL_MOVING) {
-        _vx += 160.0f;
-        _vy += 100.0f;
-        if (_y <= 75.0f) {
-            _vx = 0.0f;
-            _vy = 0.0f;
-            _x = _prevLocation.x;
-            _y = 90.0f;
-            _isInvincible = false;
-            [self setPositionAtX:_x Y:_y];
-            [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"fireballLandingAnim"];
-            _currentBehavior = COLLISION_BEHAVIOR_FIREBALL_LANDED;
-            _collideBehavior = COLLISION_BEHAVIOR_FIREBALL_LANDED;
-            [self setPlayerEffect:@"collide"];
-            [[SoundEngine shared] playSound:@"fireballLand"];
-        }
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR_WAITTOSHOOT) {
-        if (_reloading >=0.0f) {
-            _reloading -= dt;
-        } else {
-            if(_waitToTrigger > 0.0f) {
-                _waitToTrigger -= dt;
-                if(_waitToTrigger<= 0.0f){
-                    _reloading = 1.4f;
-                    if(_projectile!=nil) {
-                        [_projectile release];
-                    }
-                    _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_FIRE_DEMON_BULLET];
-                    [_projectile reset];
-                    [_projectile setPosition:CGPointMake(_x + 53, _y - 20 )];
-                    [_projectile setBoundingBox:CGRectMake(-7, 12, 16, 16)];
-                } 
-            } else {
-                if ([self closeToPlayer:300.0f]) {
-                    [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"fireDemonWithArmorShooting"];
-                    _waitToTrigger = 0.28f;
-                }
-                else if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
-                    _vx = -0.0f;
-                }
-                
-            }
-        }
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_UMBRELLA_FLY_UP) {
-        _vx = 0.0f;
-        if ([self closeToPlayer:275]) {
-            _angle+=200.0f*dt;
-            if(_angle>-120.0f) {
-                _angle = -120.0f;
-            }
-            [_sprite getCCSprite].rotation = -30.0f + ((_angle + 180.0f) / (2.66667f));
-            _vx = _magnitude * cosf((_angle * 3.14159)/180.0f);
-            _vy = _magnitude * sinf((_angle * 3.14159)/180.0f);
+        ///////////////////////////
+        //MULTIPLE OBSTACLES
+        ///////////////////////////
+        case COLLISION_BEHAVIOR_FALL_OVER:
+            _angle += (_fallVelocity + 100.0f) * dt;
+            if (_angle >= 90) {
+                _angle = 90;
+                _fallVelocity = -0.8f * _fallVelocity;
+                _currentBehavior = COLLISION_BEHAVIOR_STATIC;
+            } else if(_angle <= 0) {
+                _angle = 0;
+                _fallVelocity = -0.8f * _fallVelocity;
+            }            
+            [self getCCSprite].rotation = _angle;
+            break;
+        case COLLISION_BEHAVIOR_CHARGE_AT_PLAYER:
+            [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-150.0f];
+            break;
+        case COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST:
+            [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-200.0f];
+            break;
 
-        } else if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
-            _vx = -1 * _magnitude;
-            _angle = -180.0f;
-            [_sprite getCCSprite].rotation = -30.0f;
-        }        
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_UMBRELLA_FLY_ACROSS) {
-        if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
-            _vx = -1 * _magnitude;
-            _angle = -180.0f;
-            [_sprite getCCSprite].rotation = -30.0f;
-        }
-    }
-    else if(_currentBehavior == COLLISION_BEHAVIOR_PAPERPLANE)
-    {
-        _vx = 0.0f;
-        if ([self closeToPlayer:375]) {
-            _angle+=110.0f*dt;
-            if(_angle > -60.0f) {
-                _stopCurve=true;
-                _angle = - 60.0f;
-                
-               _vx = -1 * _magnitude;
-                _vy=0;
-            }
-            //[_sprite getCCSprite].rotation = -30.0f + ((_angle + 180.0f) / (2.66667f));
-            if(!_stopCurve)
-            {
-                _vx = _magnitude * cosf((_angle * 3.14159)/180.0f);
-                _vy = -1*_magnitude * sinf((_angle * 3.14159)/180.0f);
-            }
             
-        }else if  ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
-            _vx = -1 * _magnitude;
-            _angle = -180;
-            //[_sprite getCCSprite].rotation = -30.0f;
-        }
-    }
-   /*
-    else if(_currentBehavior == COLLISION_BEHAVIOR_PAPERPLANE)
-    {
-        _vx = 0.0f;
-        if (_waitToTrigger > 0) {
-            _waitToTrigger-=dt;
-            if(_waitToTrigger <= 0.0f) {
-                _angle+=110.0f*dt;
-                if(_angle > -60.0)
-                {
-                    _stopCurve=true;
-                    _angle = -60.0f;
+        ///////////////////////////
+        //LEVEL 2 - BARN RUN
+        ///////////////////////////
+        case COLLISION_BEHAVIOR_HEN_KICKED:
+            _angle += _rotationAmount * dt;
+            [self getCCSprite].rotation = _angle;
+            _vy += 500.0f * dt;
+            break;
+            
+        
+        ///////////////////////////
+        //LEVEL 3 - TOWN RUN
+        ///////////////////////////
+        case COLLISION_BEHAVIOR_ROLLING_HAYBALE:
+            [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-150.0f];
+            break;
+        case COLLISION_BEHAVIOR_FLYER:
+            [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-250.0f ChaseSound:@"crowAppears"];
+            break;
+        
+            
+        ///////////////////////////
+        //LEVEL 5 - CITY RUN
+        ///////////////////////////
+        case COLLISION_BEHAVIOR_MAD_DOG:
+            [self chaseAtDistance:200.0f DefaultSpeed:0.0f ChaseSpeed:-150.0f ChaseSound:@"maddogBark" ChaseAnimation:@"madDogAnim" DefaultAnimation:@"dogAnim"];
+            break;
+        
+
+        ///////////////////////////
+        //LEVEL 6 - UNDEAD RUN
+        ///////////////////////////
+        case COLLISION_BEHAVIOR_ZOMBIE_WALK:
+            [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-40.0f ChaseSound:@"zombieMoan"];
+            break;
+        case COLLISION_BEHAVIOR_ZOMBIE_WALK_FAST:
+            [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-60.0f];
+            break;            
+
                     
-                    _vx =-1 * _magnitude;
-                    _vy=0;
-                }
-                else
-                { if(!_stopCurve)
-                 {
-                     _waitToTrigger=0.01f;
-                 }
-                }
+        ///////////////////////////
+        //LEVEL 7 - COMPUTER RUN
+        ///////////////////////////
+        case COLLISION_BEHAVIOR_COMPUTER_MELISSA:
+            [self chaseAtDistance:210.0f DefaultSpeed:-50.0f ChaseSpeed:-175.0f ChaseSound:@"" ChaseAnimation:@"computerMelissaFastAnim" DefaultAnimation:@"computerMelissaSlowAnim"];
+            break;
+        case COLLISION_BEHAVIOR_COMPUTER_WORM:
+            if ([[_sprite getAnimation] getCurrentFrameNumber] == 1) {
+                _vx = -50.0f;
+            } else {
+                _vx = 0.0f;
             }
-            //[_sprite getCCSprite].rotation = -30.0f + ((_angle + 180.0f) / (2.66667f));
-            if(!_stopCurve)
-            {
-                _vx = _magnitude * cosf((_angle * 3.14159)/180.0f);
-                _vy = -1*_magnitude * sinf((_angle * 3.14159)/180.0f);
-            }
+            break;   
             
-        }
-     
-    else if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
-            //_vy = 1* _magnitude;
-            _vx =-1 * _magnitude;
-            _angle = -180;
-            if(_waitToTrigger<0)
-            {
-                _waitToTrigger=0.1f;
-            }
-            //[_sprite getCCSprite].rotation = -30.0f;
-        }
-    }
-    */
-    /*
-    else if(_currentBehavior == COLLISION_BEHAVIOR_BAT)
-    {
-        _vx = 0.0f;
-        if (_waitToTrigger > 0) {
-            _waitToTrigger-=dt;
-            if(_waitToTrigger <= 0.0f) {
-                _angle+=45.0f*dt;
-                if(_angle > -210.0)
-                {
-                _stopCurve=true;
-                _angle = -210.0f;
-                
-                _vx =0;
-                _vy=0;
-                    if(![self.originalAnimation isEqualToString:@"batLand"])
-                    {
-                        //[[SoundEngine shared] playSound:@"maddogBark"];
-                        [self setOriginalAnimation:@"batLand"];
-                        [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"batLand"];
-                        //[self setBoundingBox:CGRectMake(-10, 0, 25, 60)];
+            
+        ///////////////////////////
+        //LEVEL 8 - VOLCANO RUN
+        ///////////////////////////
+        case COLLISION_BEHAVIOR_FIRE_DEMON:
+            [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-25.0f];
+            _angle += _rotationAmount * dt;
+            [self getCCSprite].rotation = _angle;
+            break;
+        case COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR:
+            _vx = 0.0f;
+            break;
+        case COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR_WAITTOSHOOT:
+            if (_reloading >=0.0f) {
+                _reloading -= dt;
+            } else {
+                if(_waitToTrigger > 0.0f) {
+                    _waitToTrigger -= dt;
+                    if(_waitToTrigger<= 0.0f){
+                        _reloading = 1.4f;
+                        if(_projectile!=nil) {
+                            [_projectile release];
+                        }
+                        _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_FIRE_DEMON_BULLET];
+                        [_projectile reset];
+                        [_projectile setPosition:CGPointMake(_x + 53, _y - 20 )];
+                        [_projectile setBoundingBox:CGRectMake(-7, 12, 16, 16)];
+                    } 
+                } else {
+                    if ([self closeToPlayer:300.0f]) {
+                        [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"fireDemonWithArmorShooting"];
+                        _waitToTrigger = 0.28f;
                     }
-
-                }
-                else
-                {
-                    _waitToTrigger=0.01f;
+                    else if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+                        _vx = -0.0f;
+                    }
+                    
                 }
             }
-            //[_sprite getCCSprite].rotation = -30.0f + ((_angle + 180.0f) / (2.66667f));
-            if(!_stopCurve)
-            {
-            //[_sprite getCCSprite].rotation =  (_angle + 360.0f);
-                if(![self.originalAnimation isEqualToString:@"batFlying"])
-                {
-                    //[[SoundEngine shared] playSound:@"maddogBark"];
-                    [self setOriginalAnimation:@"batFlying"];
-                    [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"batFlying"];
-                    //[self setBoundingBox:CGRectMake(-10, 0, 25, 60)];
+            break;
+        case COLLISION_BEHAVIOR_FIREBALL_START:
+            if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+                Player *player = [[LayerManager sharedLayers] getPlayer];
+                CGPoint position = [player getPosition];
+                [self setPositionAtX:(position.x - 100.0f) Y:350.0f];
+                [self setPlayerEffect:@"none"];
+                _currentBehavior = COLLISION_BEHAVIOR_FIREBALL_MOVING;
+                _isInvincible = true;
+                
+            }
+            break;
+        case COLLISION_BEHAVIOR_FIREBALL_MOVING:
+            _vx += 160.0f;
+            _vy += 100.0f;
+            if (_y <= 75.0f) {
+                _vx = 0.0f;
+                _vy = 0.0f;
+                _x = _prevLocation.x;
+                _y = 90.0f;
+                _isInvincible = false;
+                [self setPositionAtX:_x Y:_y];
+                [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"fireballLandingAnim"];
+                _currentBehavior = COLLISION_BEHAVIOR_FIREBALL_LANDED;
+                _collideBehavior = COLLISION_BEHAVIOR_FIREBALL_LANDED;
+                [self setPlayerEffect:@"collide"];
+                [[SoundEngine shared] playSound:@"fireballLand"];
+            }
+            break;
+            
+            
+        ///////////////////////////
+        //LEVEL 9 - STORMY RUN
+        ///////////////////////////
+        case COLLISION_BEHAVIOR_UMBRELLA_FLY_UP:
+            _vx = 0.0f;
+            if ([self closeToPlayer:275]) {
+                _angle+=200.0f*dt;
+                if(_angle>-120.0f) {
+                    _angle = -120.0f;
                 }
-
+                [_sprite getCCSprite].rotation = -30.0f + ((_angle + 180.0f) / (2.66667f));
                 _vx = _magnitude * cosf((_angle * 3.14159)/180.0f);
                 _vy = _magnitude * sinf((_angle * 3.14159)/180.0f);
-            }
-            
-        } else if ([self closeToPlayer:280]) {
-            //_vy = 1* _magnitude;
-            _vx =-1 * _magnitude;
-            _angle = -270;
-            if(![self.originalAnimation isEqualToString:@"batFalling"])
-            {
-                //[[SoundEngine shared] playSound:@"maddogBark"];
-                [self setOriginalAnimation:@"batFalling"];
-                [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"batFalling"];
-                //[self setBoundingBox:CGRectMake(-10, 0, 25, 60)];
-            }
-
-            if(_waitToTrigger<0)
-            {
                 
-            _waitToTrigger=0.1f;
-            }
-            //[_sprite getCCSprite].rotation = -30.0f;
-        }
-    }
-    */
-    
-    else if(_currentBehavior == COLLISION_BEHAVIOR_BAT)
-    {
-        if  ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN])
-        {
-            if (!_madeSound) {
-                _madeSound = true;
-                [[SoundEngine shared] playSound:@"darkBats"];
-            }
-            _angle+=200*dt;
-            _magnitude=300;
-            _vx = -0.12*_magnitude;
-        _vy =1.1*_magnitude * cosf((_angle * 3.14159)/180.0f);
-        }
-    }
-    
-    else if(_currentBehavior == COLLISION_BEHAVIOR_RAINY_SQUIRREL) {
-        if (_reloading >=0.0f)
-        {
-            _reloading -= dt;
-        }
-        else {
-            if(_waitToTrigger > 0.0f && !_collided) {
-                _waitToTrigger -= dt;
-                if(_waitToTrigger<= 0.0f){
-                    _reloading = 4.0f;
-                    if(_projectile!=nil) {
-                        [_projectile release];
-                    }
-                    _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_RAINY_SQUIRREL_NUT];
-                    [_projectile reset];
-                    [_projectile setPosition:CGPointMake(_x - 25.0f, _y + 19)];
-                    [_projectile setBoundingBox:CGRectMake(5, 12, 16, 16)];
-                    [_projectile setInitialVelocity];
-                } 
-            } else {
-                if ([self closeToPlayer:400.0f]) {
-                    _waitToTrigger = 0.28f;
-                    _hasAppeared=true;
+            } else if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+                _vx = -1 * _magnitude;
+                _angle = -180.0f;
+                [_sprite getCCSprite].rotation = -30.0f;
+            }        
+            break;
+        case COLLISION_BEHAVIOR_PAPERPLANE:
+            _vx = 0.0f;
+            if ([self closeToPlayer:375]) {
+                _angle+=110.0f*dt;
+                if(_angle > -60.0f) {
+                    _stopCurve=true;
+                    _angle = - 60.0f;
+                    
+                    _vx = -1 * _magnitude;
+                    _vy=0;
                 }
-                else if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
-                    _vx = 100.0f;
+                if(!_stopCurve)
+                {
+                    _vx = _magnitude * cosf((_angle * 3.14159)/180.0f);
+                    _vy = -1*_magnitude * sinf((_angle * 3.14159)/180.0f);
+                }
+                
+            }else if  ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+                _vx = -1 * _magnitude;
+                _angle = -180;
+            }            
+            break;
+            
+        case COLLISION_BEHAVIOR_RAINY_SQUIRREL:
+            if (_reloading >=0.0f)
+            {
+                _reloading -= dt;
+            }
+            else {
+                if(_waitToTrigger > 0.0f && !_collided) {
+                    _waitToTrigger -= dt;
+                    if(_waitToTrigger<= 0.0f){
+                        _reloading = 4.0f;
+                        if(_projectile!=nil) {
+                            [_projectile release];
+                        }
+                        _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_RAINY_SQUIRREL_NUT];
+                        [_projectile reset];
+                        [_projectile setPosition:CGPointMake(_x - 25.0f, _y + 19)];
+                        [_projectile setBoundingBox:CGRectMake(5, 12, 16, 16)];
+                        [_projectile setInitialVelocity];
+                    } 
+                } else {
+                    if ([self closeToPlayer:400.0f]) {
+                        _waitToTrigger = 0.28f;
+                        _hasAppeared=true;
+                    }
+                    else if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+                        _vx = 100.0f;
+                        
+                    }
                     
                 }
-                
             }
-        }
-        
-        if(_hasAppeared && [self checkIfOffScreen:[self getPosition]])
-        {
-            [self switchToInactive];
-            _hasAppeared=false;
-        }
-
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_DARK_SPIKES) {
-        if (_waitToTrigger>0) {
-            _waitToTrigger-=dt;
-            if(_waitToTrigger <= 0)
+            if(_hasAppeared && [self checkIfOffScreen:[self getPosition]])
             {
-                _vy=-800;
+                [self switchToInactive];
+                _hasAppeared=false;
+            }
+            break;
+   
+            
+        ///////////////////////////
+        //LEVEL 10 - AQUARIUM RUN
+        ///////////////////////////
+        case COLLISION_BEHAVIOR_WATER_SEAHORSE:
+            if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+                _vy *= 0.955f;
+                if (ABS(_vy) <= 0.1f) {
+                    if (_direction == 1) {
+                        _direction = -1;
+                        _vy = -430.0f;
+                        [[SoundEngine shared] playSound:@"waterSeaHorse"];
+                    } else {
+                        _direction = 1;
+                        _vy = 430.0f;
+                        [[SoundEngine shared] playSound:@"waterSeaHorse"];
+                    }
+                }
+            }
+            break;
+        case COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_SLOW:
+            [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-100.0f ChaseSound:@"waterAnglerFish"];
+            break;
+            
+        
+        ////////////////////////
+        //LEVEL 11 - FINAL RUN
+        ////////////////////////
+        case COLLISION_BEHAVIOR_BAT:
+            if  ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN])
+            {
                 if (!_madeSound) {
                     _madeSound = true;
-                    [[SoundEngine shared] playSound:@"darkSpikes"];
-                    _movedBy = 0.0f;
-                    _initialPosition = _y;
+                    [[SoundEngine shared] playSound:@"darkBats"];
+                }
+                _angle+=200*dt;
+                _magnitude=300;
+                _vx = -0.12*_magnitude;
+                _vy =1.1*_magnitude * cosf((_angle * 3.14159)/180.0f);
+            }
+            break;
+        case COLLISION_BEHAVIOR_DARK_SPIKES:
+            if (_waitToTrigger>0) {
+                _waitToTrigger-=dt;
+                if(_waitToTrigger <= 0)
+                {
+                    _vy=-800;
+                    if (!_madeSound) {
+                        _madeSound = true;
+                        [[SoundEngine shared] playSound:@"darkSpikes"];
+                        _movedBy = 0.0f;
+                        _initialPosition = _y;
+                    }
                 }
             }
-        }
-        else if([self closeToPlayer:150] && !_hasTriggered)
-        {
-            _waitToTrigger=0.3f;
-                _hasTriggered=true;
-            
-        }
-        else if(_vy<0)
-        {
-            if (_movedBy > 65.0f) {
-                _movedBy = 65.0f;                
-                _y = _initialPosition + _movedBy;
-                _vy = 0.0f;
-            }
-        }
-    }
-    
-    else if(_currentBehavior == COLLISION_BEHAVIOR_GARGOYLE) {
-        _vx = 0.0f;
-        if (_waitToTrigger >= 0) {
-            _waitToTrigger -= dt;
-            
-            if(_waitToTrigger <= 0){
-            if(![self.originalAnimation isEqualToString:@"gargoyleOpenWings"])
+            else if([self closeToPlayer:150] && !_hasTriggered)
             {
+                _waitToTrigger=0.3f;
+                _hasTriggered=true;
                 
-                //[[SoundEngine shared] playSound:@"maddogBark"];
-                [self setOriginalAnimation:@"gargoyleOpenWings"];
-                [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"gargoyleOpenWings"];
-               
             }
+            else if(_vy<0)
+            {
+                if (_movedBy > 65.0f) {
+                    _movedBy = 65.0f;                
+                    _y = _initialPosition + _movedBy;
+                    _vy = 0.0f;
+                }
             }
-            //_vx = -150.0f;
-        }
-        
-        else if ([self closeToPlayer:300] && !_hasTriggered){
-    
+            break;
+        case COLLISION_BEHAVIOR_GARGOYLE:
+            _vx = 0.0f;
+            if (_waitToTrigger >= 0) {
+                _waitToTrigger -= dt;
+                
+                if(_waitToTrigger <= 0){
+                    if(![self.originalAnimation isEqualToString:@"gargoyleOpenWings"])
+                    {
+                        [self setOriginalAnimation:@"gargoyleOpenWings"];
+                        [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"gargoyleOpenWings"];
+                    }
+                }
+            }
+            
+            else if ([self closeToPlayer:300] && !_hasTriggered){
+                
                 _waitToTrigger=0.4f;
                 _hasTriggered = true;
-            
-            //[_sprite getCCSprite].rotation = -30.0f;
-        }
-        else if([self.originalAnimation isEqualToString:@"gargoyleOpenWings"] && [[_sprite getAnimation] getCurrentFrameNumber]==6)
-        {
-            if(![self.originalAnimation isEqualToString:@"gargoyleOpened"])
-            {
-                //[[SoundEngine shared] playSound:@"maddogBark"];
-                [self setOriginalAnimation:@"gargoyleOpened"];
-                [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"gargoyleOpened"];
-                [self setBoundingBox:CGRectMake(-45, 0, 25, 60)];
-                //[self setBoundingBox:CGRectMake(-45, 0, 25, 60)];
             }
-        }
-    }
-    else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_SEAHORSE) {
-        if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
-            _vy *= 0.955f;
-            if (ABS(_vy) <= 0.1f) {
-                if (_direction == 1) {
-                    _direction = -1;
-                    _vy = -430.0f;
-                    [[SoundEngine shared] playSound:@"waterSeaHorse"];
-                } else {
-                    _direction = 1;
-                    _vy = 430.0f;
-                    [[SoundEngine shared] playSound:@"waterSeaHorse"];
+            else if([self.originalAnimation isEqualToString:@"gargoyleOpenWings"] && [[_sprite getAnimation] getCurrentFrameNumber]==6)
+            {
+                if(![self.originalAnimation isEqualToString:@"gargoyleOpened"])
+                {
+                    [self setOriginalAnimation:@"gargoyleOpened"];
+                    [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"gargoyleOpened"];
+                    [self setBoundingBox:CGRectMake(-45, 0, 25, 60)];
                 }
             }
-        }
+            break;
+            
+        default:
+            break;
     }
-    else if(_currentBehavior == COLLISION_BEHAVIOR_COMPUTER_MELISSA) {
-        if ([self closeToPlayer:210.0f]) {
-            _vx = -175.0f;
-            if (!_hasTriggered) {
-                _hasTriggered = true;
-                [self setOriginalAnimation:@"computerMelissaSlowAnim"];
-                [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"computerMelissaFastAnim"];
-            }
-        } else if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
-            _vx = -50.0f;
-        }
-    }
-    else if(_currentBehavior == COLLISION_BEHAVIOR_COMPUTER_WORM) {
-        if ([[_sprite getAnimation] getCurrentFrameNumber] == 1) {
-            _vx = -50.0f;
-        } else {
-            _vx = 0.0f;
-        }
-    }
-
 }
+
+-(void) chaseAtDistance:(float)distance DefaultSpeed:(float)defaultSpeed ChaseSpeed:(float)chaseSpeed
+{
+    if(_chaseTriggered) {
+        _vx = chaseSpeed;        
+    } else {
+        _vx = defaultSpeed;
+        if ([self closeToPlayer:distance]) {
+            _vx = chaseSpeed;
+            _chaseTriggered = true;
+        }
+    }
+}
+
+-(void) chaseAtDistance:(float)distance DefaultSpeed:(float)defaultSpeed ChaseSpeed:(float)chaseSpeed ChaseSound:(NSString*)sound
+{
+    [self chaseAtDistance:distance DefaultSpeed:defaultSpeed ChaseSpeed:chaseSpeed ChaseSound:sound ChaseAnimation:@"" DefaultAnimation:@""];
+}
+
+-(void) chaseAtDistance:(float)distance DefaultSpeed:(float)defaultSpeed ChaseSpeed:(float)chaseSpeed ChaseSound:(NSString*)sound ChaseAnimation:(NSString*)chaseAnim DefaultAnimation:(NSString*)defaultAnim
+{
+    if (!_chaseTriggered) {
+        [self chaseAtDistance:distance DefaultSpeed:defaultSpeed ChaseSpeed:chaseSpeed];
+        if (_chaseTriggered) {
+            if (![sound isEqualToString:@""]) {
+                [[SoundEngine shared] playSound:sound];
+            }
+            
+            if (![chaseAnim isEqualToString:@""]) {
+                [self setOriginalAnimation:defaultAnim];
+                [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:chaseAnim];
+            }
+        }
+    } else {
+        [self chaseAtDistance:distance DefaultSpeed:defaultSpeed ChaseSpeed:chaseSpeed];
+    }
+}
+
+
 
 -(bool) closeToPlayer:(float)closerThan
 {

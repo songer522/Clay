@@ -12,6 +12,7 @@
 #import "PauseMenuScreen.h"
 #import "HudLayer.h"
 #import "GameSettings.h"
+#import "ComicManager.h"
 
 @implementation GameController
 
@@ -31,6 +32,7 @@
         _isInputEnabled = true;
         _isSprintEnabled = true;
         _isHandlingPause = false;
+        _hasSkippedComic = false;
     }
     
     return self;
@@ -65,6 +67,14 @@
 -(void)reactToTouchAt:(CGPoint)location InputType:(InputType)type
 {
     //guards
+    
+    if (_gameLayer.inComic) {
+        [[ComicManager shared] skipComic];
+        _hasSkippedComic = true;
+    } else {
+        _hasSkippedComic = false;
+    }
+    
     if (!_isInputEnabled || _handledPauseEvent) { return; }
     
     if (location.x > 200 && location.x < 280 && location.y > 270) {

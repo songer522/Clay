@@ -140,7 +140,7 @@
 		<key>offsety</key>
 		<integer>-20</integer>
 		<key>playerEffect</key>
-		<string>slow</string>
+		<string>bkg</string>
 	</dict>
 	<key>checkpoint8bit</key>
 	<dict>
@@ -175,7 +175,7 @@
 		<key>offsety</key>
 		<integer>-20</integer>
 		<key>playerEffect</key>
-		<string>slow</string>
+		<string>bkg</string>
 	</dict>
 	<key>computerIloveyou</key>
 	<dict>
@@ -770,7 +770,7 @@
 		<key>offsety</key>
 		<integer>-5</integer>
 		<key>playerEffect</key>
-		<string>none</string>
+		<string>bkg</string>
 	</dict>
 	<key>femaleBreakdancerBlue</key>
 	<dict>
@@ -1365,7 +1365,7 @@
 		<key>offsety</key>
 		<integer>-55</integer>
 		<key>playerEffect</key>
-		<string>slow</string>
+		<string>bkg</string>
 	</dict>
 	<key>jimCornfields</key>
 	<dict>
@@ -1400,7 +1400,7 @@
 		<key>offsety</key>
 		<integer>-55</integer>
 		<key>playerEffect</key>
-		<string>slow</string>
+		<string>bkg</string>
 	</dict>
 	<key>jimSpaceShip</key>
 	<dict>
@@ -1505,7 +1505,7 @@
 		<key>offsety</key>
 		<integer>30</integer>
 		<key>playerEffect</key>
-		<string>none</string>
+		<string>bkg</string>
 	</dict>
 	<key>madDog</key>
 	<dict>
@@ -1575,7 +1575,7 @@
 		<key>offsety</key>
 		<integer>-5</integer>
 		<key>playerEffect</key>
-		<string>none</string>
+		<string>bkg</string>
 	</dict>
 	<key>manure</key>
 	<dict>
@@ -1816,7 +1816,7 @@
 		<key>offsety</key>
 		<integer>30</integer>
 		<key>playerEffect</key>
-		<string>none</string>
+		<string>bkg</string>
 	</dict>
 	<key>rainyTreeB</key>
 	<dict>
@@ -1851,7 +1851,7 @@
 		<key>offsety</key>
 		<integer>30</integer>
 		<key>playerEffect</key>
-		<string>none</string>
+		<string>bkg</string>
 	</dict>
 	<key>rainyUmbrellaFlyAcross</key>
 	<dict>
@@ -2201,7 +2201,7 @@
 		<key>offsety</key>
 		<integer>-16</integer>
 		<key>playerEffect</key>
-		<string>none</string>
+		<string>bkg</string>
 	</dict>
 	<key>waterAnglerFish</key>
 	<dict>

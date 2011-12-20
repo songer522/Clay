@@ -38,6 +38,7 @@ typedef enum {
     bool _handledPauseEvent;
     bool _isInputEnabled;
     bool _isSprintEnabled;
+    bool _hasSkippedComic;
     
 }
 

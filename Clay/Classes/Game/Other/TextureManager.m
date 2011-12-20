@@ -66,6 +66,11 @@ static TextureManager *_shared = nil;
         }
     }
     
+    NSString *batchObstacles = [dict objectForKey:@"batchObstacles"];
+    if([batchObstacles isEqualToString:@"none"]) {
+        [self setBatchObstacleFilename:batchObstacles];
+    }
+    
     [[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
 }
 
@@ -117,6 +122,16 @@ static TextureManager *_shared = nil;
 }
 
 
+-(NSString*)getBatchObstacleFilename
+{
+    return _batchObstacleFilename;
+}
+
+-(void)setBatchObstacleFilename:(NSString*)batchName
+{
+    _batchObstacleFilename = [[NSString stringWithFormat:@"%@.png",batchName] retain];
+    
+}
 
 
 
@@ -140,6 +155,10 @@ static TextureManager *_shared = nil;
     [[CCTextureCache sharedTextureCache] removeTextureForKey:texturename];    
 }
 
-
+-(void)dealloc
+{
+    [_memoryDictionary release];
+    [_batchObstacleFilename release];
+}
 
 @end

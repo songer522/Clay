@@ -63,7 +63,7 @@ typedef enum {
 -(void)update:(ccTime)dt;
 -(void)waitToPlayVideo:(float)time;
 
-
+-(void)skipComic;
 -(void)cueComic:(NSString*)comicName;
 -(void)resetLayer;
 

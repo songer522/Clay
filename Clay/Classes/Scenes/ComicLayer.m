@@ -11,6 +11,7 @@
 #import "LayerManager.h"
 #import "Appirater.h"
 #import "GameSettings.h"
+#import "SoundEngine.h"
 
 @implementation ComicLayer
 
@@ -95,6 +96,7 @@
             if (_timeToWait<=0.0f) {
                 _transition = BLACKBOX_PLAY_COMIC_FADE_OUT;
                 _comicAlpha = 1.0f;
+                [[SoundEngine shared] cueFadeOut];
             }
             break;
         case BLACKBOX_PLAY_COMIC_FADE_OUT:
@@ -188,7 +190,7 @@
 -(void)cueComic:(NSString*)comicName
 {
     int comicNumber = [[comicName substringFromIndex:5] intValue];
-    if (comicNumber <= 5) {        
+    if (comicNumber <= 11) {        
         NSString *_imageName = [NSString stringWithFormat:@"Comic_%d.png",comicNumber];
         _comicPanel = [CCSprite spriteWithFile:_imageName];
         _comicPanel.anchorPoint = ccp(0,0);
@@ -196,9 +198,15 @@
         [self addChild:_comicPanel];
         _transition = BLACKBOX_PLAY_COMIC_FADE_IN;
         _comicAlpha = 0.0f;
+        [[SoundEngine shared] playMusic:@"cutscene"];
     } else {
         [_comicManager finishedAction];
     }
+}
+
+-(void)skipComic
+{
+    _phase = BLACKBOX_PLAY_COMIC_FADE_OUT;
 }
 
 -(void)draw

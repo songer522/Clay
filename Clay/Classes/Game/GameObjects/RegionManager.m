@@ -10,6 +10,7 @@
 #import "RegionManager.h"
 #import "MapObject.h"
 #import "GameObject.h"
+#import "GameSettings.h"
 
 #define REGION_MANAGER_TILES_PER_REGION 23 //should allow for ipad as well, plus some bleeding
 
@@ -93,6 +94,12 @@
     for (GameObject *object in _persistentObjects) {
         [_combinedRegion addObject:object];
     }
+    
+    if (_activeGameObjectList!=nil) {
+        [_activeGameObjectList release];
+        _activeGameObjectList = nil;
+    }
+    _activeGameObjectList = [[_combinedRegion allObjects] retain];
 }
 
 -(int)getRegionIndex:(float)xPosition
@@ -102,7 +109,11 @@
 
 -(NSArray*)getActiveGameObjectList
 {
-    return [_combinedRegion allObjects];
+    if ([[GameSettings shared] isStutterMode]) {
+        return [_combinedRegion allObjects];        
+    } else {
+        return _activeGameObjectList;
+    }
 }
 
 -(void)resetPersistentObjects

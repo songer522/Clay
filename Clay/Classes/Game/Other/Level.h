@@ -44,6 +44,7 @@
     NSMutableArray *_otherMapObjects;
     //RegionManager *_backgroundManager;
     
+    CCSpriteBatchNode *_obstacleSpriteBatch;
     
     //any triggers in the level
     NSMutableArray *_triggers;

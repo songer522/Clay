@@ -67,6 +67,8 @@ typedef enum {
     bool _aggressiveCanHit;
     bool _beatsPlayerAction;
     bool _hasAppeared;
+    bool _chaseTriggered;
+    bool _isVisible;
     float _movedBy;
     float _initialPosition;
 
@@ -95,6 +97,8 @@ typedef enum {
     
     CollisionBehavior _currentBehavior;
     CollisionBehavior _collideBehavior;
+    
+    bool _isStutterMode;
     
     PlayerEffect _playerEffect;
 }
@@ -164,5 +168,10 @@ typedef enum {
 -(void) updateFadeOut:(float)dt;
 -(void) updateFlags;
 -(void) updateLights:(float)dt;
+
+#pragma mark - obstacle behaviors
+-(void) chaseAtDistance:(float)distance DefaultSpeed:(float)defaultSpeed ChaseSpeed:(float)chaseSpeed;
+-(void) chaseAtDistance:(float)distance DefaultSpeed:(float)defaultSpeed ChaseSpeed:(float)chaseSpeed ChaseSound:(NSString*)sound;
+-(void) chaseAtDistance:(float)distance DefaultSpeed:(float)defaultSpeed ChaseSpeed:(float)chaseSpeed ChaseSound:(NSString*)sound ChaseAnimation:(NSString*)chaseAnim DefaultAnimation:(NSString*)defaultAnim;
 
 @end

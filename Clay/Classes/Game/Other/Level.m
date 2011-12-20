@@ -26,6 +26,7 @@
 #import "Projectile.h"
 #import "HudLayer.h"
 #import "GameSettings.h"
+#import "TextureManager.h"
 #import "RegionManager.h"
 
 @implementation Level
@@ -59,6 +60,7 @@
         _otherMapObjects = [[NSMutableArray alloc] initWithCapacity:100];
         _mapLayers = [[NSMutableDictionary alloc] initWithCapacity:7];
         _parallaxLayers = [[NSMutableArray alloc] initWithCapacity:7];
+        //_obstacleSpriteBatch = [CCSpriteBatchNode batchNodeWithTexture:
         
         _obstacleManager = [[RegionManager alloc] init];
         //_backgroundManager = [[RegionManager alloc] init];
@@ -212,15 +214,25 @@
 
 -(void)addObstaclesToMapAndRegion
 {
+
+    //_obstacleSpriteBatch = [[CCSpriteBatchNode batchNodeWithFile:[[TextureManager shared] getBatchObstacleFilename]] retain];
+    
+    //[[[LayerManager sharedLayers] currentLayer] addChild:_obstacleSpriteBatch];
+    
+    //[[LayerManager sharedLayers] setWorkingLayer:_obstacleSpriteBatch];
+    
     for (MapObject *mapObject in _obstacleMapObjects) {
         GameObject *obstacle = mapObject.object;
         if (!mapObject.placed) {
             [[[LayerManager sharedLayers] currentLayer] addChild:[obstacle getCCSprite]];
             [[obstacle getCCSprite] setVisible:NO];
+            //[[obstacle getCCSprite] setBatchNode:_obstacleSpriteBatch];
             [_obstacleManager addGameObject:obstacle];
             mapObject.placed = true;            
         }
     }
+    
+    //[[LayerManager sharedLayers] forgetWorkingLayer];
 }
 
 -(CGRect)getLevelBoundaries

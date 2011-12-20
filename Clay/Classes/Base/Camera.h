@@ -29,6 +29,18 @@
                                 //once in awhile we might want to highlight something else)
     
     bool _trackingTarget;
+    
+    //precalcs for minor optimizations
+    float _precalculateBoundaryYplusBoundaryHeight;
+    float _precalculateBoundaryY;
+    float _precalculateWinsizeHeight;
+    float _precalculateBottomBound;
+    float _precalculateTopBound;
+    
+    float _leftOnscreen;
+    float _rightOnscreen;
+    
+    bool _isStutterMode;
 }
 
 @property (nonatomic,assign) bool trackingTarget;
@@ -39,6 +51,8 @@
 #pragma mark - public methods
 -(void)moveByX:(float)x Y:(float)y;
 -(void)setBoundaries:(CGRect)rect Level:(Level*)level;
+
+-(void)updateOnScreenRange;
 
 -(CGPoint)convertToScreenXY:(CGPoint)worldXY;
 -(float)convertToScreenX:(float)worldX;
@@ -57,7 +71,9 @@
 -(void)snapToTargetY;
 
 #pragma mark - private methods
+-(void)keepWithinBoundaries_old;
 -(void)keepWithinBoundaries;
 
+-(bool)isInVisualRange:(float)xPosition;
 
 @end

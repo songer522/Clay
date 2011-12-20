@@ -99,7 +99,9 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
 
 -(void)useAnimationToReplaceSprite:(Sprite*)sprite FrameName:(NSString*)frameName
 {
-    [[sprite getCCSprite] setBatchNode:_spriteSheet];
+    if (![[sprite getCCSprite] batchNode]) {
+        [[sprite getCCSprite] setBatchNode:_spriteSheet];
+    }
     [[sprite getCCSprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName]];
     _anim = [CCAnimation animationWithFrames:_frames delay:_delay]; //memory leak from previous?
     

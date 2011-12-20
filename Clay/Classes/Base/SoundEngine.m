@@ -104,6 +104,8 @@ static SoundEngine *_shared = nil;
 
 -(void) playMusic:(NSString*)music
 {
+    _volume = 1.0f;
+    
     NSString *filename = [_musicMap objectForKey:music];
     
     NSAssert(filename!=nil,@"Requested music '%@' not in dictionary. Double-check music.plist",music);

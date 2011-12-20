@@ -24,6 +24,8 @@
 	</dict>
 	<key>level1</key>
 	<dict>
+		<key>batchObstacles</key>
+		<string>trackLevel</string>
 		<key>removeTextures</key>
 		<string>tileset_level_1</string>
 		<key>animations</key>
@@ -37,6 +39,8 @@
 	<dict>
 		<key>removeTextures</key>
 		<string>tileset_level2</string>
+		<key>batchObstacles</key>
+		<string>barnLevel</string>
 		<key>animations</key>
 		<string>level2,kick</string>
 		<key>sounds</key>
@@ -48,6 +52,8 @@
 	<dict>
 		<key>removeTextures</key>
 		<string>tileset_level_3</string>
+		<key>batchObstacles</key>
+		<string>townLevel</string>
 		<key>animations</key>
 		<string>level3,woo</string>
 		<key>sounds</key>
@@ -59,6 +65,8 @@
 	<dict>
 		<key>removeTextures</key>
 		<string>tileset_level_4</string>
+		<key>batchObstacles</key>
+		<string>discoLevel</string>
 		<key>animations</key>
 		<string>level4,dodge</string>
 		<key>sounds</key>
@@ -70,6 +78,8 @@
 	<dict>
 		<key>removeTextures</key>
 		<string>tileset_level_5</string>
+		<key>batchObstacles</key>
+		<string>cityLevel</string>
 		<key>animations</key>
 		<string>level5,woo</string>
 		<key>sounds</key>
@@ -81,6 +91,8 @@
 	<dict>
 		<key>removeTextures</key>
 		<string>tileset_level_6</string>
+		<key>batchObstacles</key>
+		<string>zombieLevel</string>
 		<key>animations</key>
 		<string>level6,shoot</string>
 		<key>sounds</key>
@@ -92,6 +104,8 @@
 	<dict>
 		<key>removeTextures</key>
 		<string>tileset_level_7</string>
+		<key>batchObstacles</key>
+		<string>computerLevel</string>
 		<key>animations</key>
 		<string>player8,level7</string>
 		<key>sounds</key>
@@ -103,6 +117,8 @@
 	<dict>
 		<key>removeTextures</key>
 		<string>tileset_level_8</string>
+		<key>batchObstacles</key>
+		<string>fireLevel</string>
 		<key>animations</key>
 		<string>level8,blow</string>
 		<key>sounds</key>
@@ -114,6 +130,8 @@
 	<dict>
 		<key>removeTextures</key>
 		<string>tileset_level_9</string>
+		<key>batchObstacles</key>
+		<string>rainyLevel</string>
 		<key>animations</key>
 		<string>level9,woo</string>
 		<key>sounds</key>
@@ -125,6 +143,8 @@
 	<dict>
 		<key>removeTextures</key>
 		<string>tileset_level_10</string>
+		<key>batchObstacles</key>
+		<string>waterLevel</string>
 		<key>animations</key>
 		<string>level10,spin</string>
 		<key>sounds</key>
@@ -136,6 +156,8 @@
 	<dict>
 		<key>removeTextures</key>
 		<string>tileset_level_11</string>
+		<key>batchObstacles</key>
+		<string>darkLevel</string>
 		<key>animations</key>
 		<string>level11,slowtime</string>
 		<key>sounds</key>
@@ -146,6 +168,8 @@
 	<key>mainMenu</key>
 	<dict>
 		<key>removeTextures</key>
+		<string>none</string>
+		<key>batchObstacles</key>
 		<string>none</string>
 		<key>animations</key>
 		<string>none</string>
@@ -158,6 +182,8 @@
 	<dict>
 		<key>removeTextures</key>
 		<string>none</string>
+		<key>batchObstacles</key>
+		<string>none</string>
 		<key>animations</key>
 		<string>none</string>
 		<key>sounds</key>
@@ -168,6 +194,8 @@
 	<key>chooseMode</key>
 	<dict>
 		<key>removeTextures</key>
+		<string>none</string>
+		<key>batchObstacles</key>
 		<string>none</string>
 		<key>animations</key>
 		<string>none</string>
@@ -180,6 +208,8 @@
 	<dict>
 		<key>removeTextures</key>
 		<string>none</string>
+		<key>batchObstacles</key>
+		<string>none</string>
 		<key>animations</key>
 		<string>none</string>
 		<key>sounds</key>
@@ -190,6 +220,8 @@
 	<key>endGame</key>
 	<dict>
 		<key>removeTextures</key>
+		<string>none</string>
+		<key>batchObstacles</key>
 		<string>none</string>
 		<key>animations</key>
 		<string>none</string>

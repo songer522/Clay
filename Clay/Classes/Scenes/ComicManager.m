@@ -22,6 +22,8 @@
 #import "TrackTimer.h"
 #import "Appirater.h"
 #import "GameSettings.h"
+#import "LevelManager.h"
+#import "GameSettings.h"
 
 @implementation ComicManager
 
@@ -108,7 +110,13 @@ static ComicManager *_shared = nil;
 
 -(void)update:(ccTime)dt
 {
-    [_comicLayer update:dt];
+    if (![[GameSettings shared] isStutterMode]) {
+        if (_isActive) {
+            [_comicLayer update:dt];        
+        }
+    } else {
+        [_comicLayer update:dt];        
+    }
 }
 
 -(void)switchToPhase:(ComicPhase)phase
@@ -130,7 +138,7 @@ static ComicManager *_shared = nil;
                 //basically we need to wait for the scene transition before calling playvideo
                 [_comicLayer waitToPlayVideo:1.0f];
                 gameLayer.gameController.isInputEnabled = false;
-                [gameLayer pause];
+                gameLayer.inComic = true;
                 break;
             case COMIC_PHASE_PLAY_VIDEO:
                 if (_showEndGame) {
@@ -152,9 +160,13 @@ static ComicManager *_shared = nil;
                 }
                 [Camera sharedCamera].trackingTarget = false;
                 [[Camera sharedCamera] snapToTarget];
+                [[SoundEngine shared] playMusic:[[LevelManager shared] currentLevel].musicName];
                 [[SoundEngine shared] cueFadeIn];
                 [gameLayer unpause];
                 [gameLayer initForLevel];
+                gameLayer.inComic = false;
+                
+                
                 
                 bool isRestarting = [[[GameSettings shared] getGlobalForKey:@"restarting"] boolValue];
                 if (!isRestarting) {
@@ -180,6 +192,11 @@ static ComicManager *_shared = nil;
                 break;
         }
     }
+}
+
+-(void)skipComic
+{
+    [_comicLayer skipComic];
 }
 
 -(void)finishedAction

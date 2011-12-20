@@ -10,12 +10,15 @@
 #import "Sprite.h"
 #import "LevelManager.h"
 #import "Level.h"
+#import "GameSettings.h"
 
 @implementation Camera
 
 @synthesize trackingTarget = _trackingTarget;
 
 #define CAMERA_MOVE_TO_TARGET_SPEED 6.0f
+#define CAMERA_OFFSCREEN_PADDING_LEFT 300.0f
+#define CAMERA_OFFSCREEN_PADDING_RIGHT 780.0f //include the size of the screen (in points?)
 
 static Camera *_sharedCamera = nil;
 
@@ -38,6 +41,9 @@ static Camera *_sharedCamera = nil;
         _y = 0;
         _center = CGPointMake(size.width / 2.0f, size.height / 2.0f);
         _target = nil;
+        
+        _isStutterMode = [[GameSettings shared] isStutterMode];
+        
     }
     
     return self;
@@ -64,13 +70,37 @@ static Camera *_sharedCamera = nil;
     } else if([levelName isEqualToString:@"level10"]) {
         rect.size.height = 352;
     }
-    
+
     _boundary = rect;
     
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    _precalculateWinsizeHeight = winSize.height;
+    _precalculateBoundaryY = _boundary.origin.y;
+    _precalculateBoundaryYplusBoundaryHeight = _boundary.origin.y + _boundary.size.height;
+    
     [self keepWithinBoundaries];
+    [self updateOnScreenRange];
 }
 
 -(void)keepWithinBoundaries
+{
+    if ([[GameSettings shared] isStutterMode]) {
+        [self keepWithinBoundaries_old];
+        return;
+    }
+    
+    float bottom = _y - _center.y;
+    float top = bottom + _precalculateWinsizeHeight; 
+    
+    if(top > (_precalculateBoundaryYplusBoundaryHeight)) {
+        _y = _precalculateBoundaryYplusBoundaryHeight - _precalculateWinsizeHeight + _center.y;
+    } else if (bottom < _precalculateBoundaryY) {
+        _y = _precalculateBoundaryY + _center.y;
+    }
+}
+
+
+-(void)keepWithinBoundaries_old
 {
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     
@@ -101,6 +131,7 @@ static Camera *_sharedCamera = nil;
 -(void)setCenter:(CGPoint)point
 {
     _center = point;
+    
 }
 
 -(void)setDefaultCenter:(CGPoint)point
@@ -144,6 +175,8 @@ static Camera *_sharedCamera = nil;
 
 -(void)moveTowardsTarget:(float)dt PlayerOnGround:(bool)onGround
 {
+    float dx,dy;
+    
     if (_target != nil) {
         
         float rate;
@@ -154,8 +187,9 @@ static Camera *_sharedCamera = nil;
         }
         
         CGPoint position = [_target getPosition];
-        float dx = (position.x - _x);
-        float dy = (position.y - _y);
+        dx = (position.x - _x);
+        dy = (position.y - _y);
+        
         
         float distance = sqrtf(dx*dx + dy*dy);
         
@@ -165,7 +199,9 @@ static Camera *_sharedCamera = nil;
             if (_trackingTarget) {
                 _x += (magnitude * (dx/distance));
             }
-            _y += rate * (magnitude * (dy/distance));
+            if (dy!=0) {
+                _y += rate * (magnitude * (dy/distance));                
+            }
             
         } else {
             if (_trackingTarget) {
@@ -175,7 +211,11 @@ static Camera *_sharedCamera = nil;
             
         }
     }
-    [self keepWithinBoundaries];
+    if (dy!=0) {
+        [self keepWithinBoundaries];
+    }
+    
+    [self updateOnScreenRange];
 }
 
 -(void)snapToTarget
@@ -193,6 +233,22 @@ static Camera *_sharedCamera = nil;
     if (_target!=nil) {
         _y = _target.y;
         [self keepWithinBoundaries];
+    }
+}
+
+-(void)updateOnScreenRange
+{
+    float currentX = _x - _center.x;
+    _leftOnscreen = currentX - CAMERA_OFFSCREEN_PADDING_LEFT;
+    _rightOnscreen = currentX + CAMERA_OFFSCREEN_PADDING_RIGHT;
+}
+
+-(bool)isInVisualRange:(float)xPosition
+{
+    if(xPosition > _leftOnscreen && xPosition < _rightOnscreen) {
+        return true;
+    } else {
+        return false;
     }
 }
 
