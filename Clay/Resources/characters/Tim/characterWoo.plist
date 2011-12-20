@@ -22,7 +22,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{73, 277}, {72, 136}}</string>
+			<string>{{78, 278}, {72, 136}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -44,7 +44,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{227, 275}, {72, 136}}</string>
+			<string>{{152, 278}, {72, 136}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -66,7 +66,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{0, 140}, {72, 136}}</string>
+			<string>{{154, 138}, {72, 136}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -88,7 +88,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{158, 0}, {72, 136}}</string>
+			<string>{{227, 138}, {72, 136}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -110,7 +110,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{73, 0}, {82, 136}}</string>
+			<string>{{149, 0}, {82, 136}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -132,7 +132,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{227, 138}, {76, 136}}</string>
+			<string>{{0, 264}, {76, 136}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -154,7 +154,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{232, 0}, {72, 136}}</string>
+			<string>{{233, 0}, {72, 136}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -176,7 +176,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{0, 0}, {72, 138}}</string>
+			<string>{{80, 138}, {72, 138}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -198,7 +198,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{73, 138}, {72, 136}}</string>
+			<string>{{227, 276}, {72, 136}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -220,7 +220,29 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{147, 138}, {78, 136}}</string>
+			<string>{{0, 126}, {78, 136}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>Whoo_Character_TypeC_1.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{5, 2}, {146, 123}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{146, 123}</string>
+			<key>spriteSourceSize</key>
+			<string>{156, 127}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{0, 0}, {146, 123}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -229,7 +251,7 @@
 	<key>metadata</key>
 	<dict>
 		<key>version</key>
-		<string>1.5 GM</string>
+		<string>1.5.1</string>
 		<key>format</key>
 		<integer>3</integer>
 		<key>size</key>

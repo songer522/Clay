@@ -1464,5 +1464,22 @@
 		<key>spritesheetPlist</key>
 		<string>characterAnims</string>
 	</dict>
+	<key>clappingAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1</string>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>delay</key>
+		<real>0.075</real>
+		<key>group</key>
+		<string>woo</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Whoo_Character_TypeC_</string>
+		<key>spritesheetPlist</key>
+		<string>characterAnims</string>
+	</dict>
 </dict>
 </plist>

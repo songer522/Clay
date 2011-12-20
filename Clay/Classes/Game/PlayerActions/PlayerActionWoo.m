@@ -17,7 +17,8 @@
 -(void)initialize
 {
     _cooldown = 0.0f;
-    _canTrigger = true;
+    //_canTrigger = true;
+    _canTrigger = false;
     _cooldownStart = 3.0f;
 }
 
