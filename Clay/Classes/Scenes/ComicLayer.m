@@ -190,7 +190,7 @@
 -(void)cueComic:(NSString*)comicName
 {
     int comicNumber = [[comicName substringFromIndex:5] intValue];
-    if (comicNumber <= 5) {        
+    if (comicNumber <= 11) {        
         NSString *_imageName = [NSString stringWithFormat:@"Comic_%d.png",comicNumber];
         _comicPanel = [CCSprite spriteWithFile:_imageName];
         _comicPanel.anchorPoint = ccp(0,0);

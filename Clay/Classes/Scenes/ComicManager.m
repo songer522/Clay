@@ -23,6 +23,7 @@
 #import "Appirater.h"
 #import "GameSettings.h"
 #import "LevelManager.h"
+#import "GameSettings.h"
 
 @implementation ComicManager
 
@@ -109,7 +110,13 @@ static ComicManager *_shared = nil;
 
 -(void)update:(ccTime)dt
 {
-    [_comicLayer update:dt];
+    if (![[GameSettings shared] isStutterMode]) {
+        if (_isActive) {
+            [_comicLayer update:dt];        
+        }
+    } else {
+        [_comicLayer update:dt];        
+    }
 }
 
 -(void)switchToPhase:(ComicPhase)phase
