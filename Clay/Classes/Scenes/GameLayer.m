@@ -108,13 +108,14 @@
         
         [self startLevel:startingLevel];
         
+        /*
         _testAnim = [Sprite spriteCenteredWithFrame:@"Character_Woo_1.png" Position:ccp(300,160)];
         [[AnimationController sharedController] loadSequencesForGroup:@"woo"];
         AnimationSequence *sequence = [[AnimationController sharedController] getSequenceWithName:@"wooAnim"];
         [[_testAnim getAnimator] addAnimation:sequence forKey:@"wooAnim"];
         [[_testAnim getAnimator] setSprite:_testAnim];
         [[_testAnim getAnimator] setCurrentAnimation:@"wooAnim"];
-        
+        */
 
     }
 	return self;
@@ -259,7 +260,7 @@
         
         [_hud update:dt];
         
-        [_testAnim updateAnimator:0.5f * dt];
+        //[_testAnim updateAnimator:0.5f * dt];
         
         if (_laserShow!=nil) {
             [_laserShow update:dt];
