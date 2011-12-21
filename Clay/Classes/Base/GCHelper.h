@@ -12,6 +12,7 @@
 
 
 #define gcAchievementChickensKickedIntoCows @"com.xecudev.tracklapse.kicktenchickens"
+#define gcAchievementTimesDied @"com.xecudev.tracklapse.achievement.timesdied"
 #define gcLeaderboardNormalTimedLevel1 @"com.xecudev.tracklapse.leaderboard.normaltimed.level1"
 #define gcLeaderboardNormalTimedLevel2 @"com.xecudev.tracklapse.leaderboard.normaltimed.level2"
 #define gcLeaderboardNormalTimedLevel3 @"com.xecudev.tracklapse.leaderboard.normaltimed.level3"

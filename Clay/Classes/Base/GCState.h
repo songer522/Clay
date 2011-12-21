@@ -11,11 +11,13 @@
 
 @interface GCState : NSObject <NSCoding> {
     int chickensKickedIntoCows;
+    int timesDied;
 }
 
 + (GCState *) sharedInstance;
 - (void)save;
 
 @property (assign) int chickensKickedIntoCows;
+@property (assign) int timesDied;
 
 @end

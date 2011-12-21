@@ -19,9 +19,9 @@
 -(void)initialize
 {
     _cooldown = 0.0f;
-    //_canTrigger = true;
-    _canTrigger = false;
-    _cooldownStart = 3.0f;
+    _canTrigger = true;
+    _cooldownStart = 6.0f;
+    _isCheering = false;
 }
 
 -(void)startAction
@@ -37,54 +37,25 @@
 
 -(void)endAction
 {
+    if(_isCheering)
+    {
+        [_parent changeHealth:2];
+        _isCheering = false;
+    }
     [_parent changeHealth:1];
-    
        [super endAction];
-  
-    [self disableAction];
 }
 
 -(void)cancelAction
 {
     [_parent setPlayerAnimation:PLAYER_ANIM_RUNNING];
-     
     [super cancelAction];
-    [self disableAction];
 }
 
 
 -(void)update:(float)dt
 {
-    if (_inAction) {
-        _duration -= dt;
-        
-        if (_duration <= 0.0f) {
-            [self endAction];
-        }
-        
-        //[[[[[LayerManager sharedLayers] currentLayer] getHud] getActionButton] updateOverlayImageByPercentage:0.0f]; 
-    }
-    
-    if (_cooldown>0.0f) {            
-        _cooldown -= dt;
-        if (_cooldown<=0.0f && !_canTrigger) {
-            //[self enableAction];
-            _cooldown = 0.0f;
-        }
-        
-        //float percent = (_cooldownStart - _cooldown)/_cooldownStart;
-        //[[[[[LayerManager sharedLayers] currentLayer] getHud] getActionButton] updateOverlayImageByPercentage:percent];
-    }
-    
-    if (!_canTrigger)
-    {
-        [self disableAction];
-    }
-    else
-    {
-        [self enableAction];
-    }
-    
+    [super update:dt];
 }
 
 -(void)dealloc

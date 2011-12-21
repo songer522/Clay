@@ -11,6 +11,7 @@
 
 @implementation GCState
 @synthesize chickensKickedIntoCows;
+@synthesize timesDied;
 
 static GCState *sharedInstance = nil;
 
@@ -44,11 +45,14 @@ static GCState *sharedInstance = nil;
 
 -(void)encodeWithCoder:(NSCoder *)encoder {
     [encoder encodeInt:chickensKickedIntoCows forKey:@"ChickensKickedIntoCows"];
+    [encoder encodeInt:timesDied forKey:@"timesDied"];
+
 }
 
 -(id)initWithCoder:(NSCoder *)decoder {
     if ((self = [super  init])) {
         chickensKickedIntoCows = [decoder decodeIntForKey:@"ChickensKickedIntoCows"];
+        timesDied = [decoder decodeIntForKey:@"timesDied"];
     }
     return self;
 }

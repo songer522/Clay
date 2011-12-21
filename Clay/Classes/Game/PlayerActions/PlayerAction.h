@@ -45,6 +45,7 @@
     float _cooldown;
     float _cooldownStart; //used to determine percentage the cooldown is complete
     bool _canTrigger;
+    bool _isCheering;
 }
 
 
@@ -53,7 +54,7 @@
 
 -(void) enableAction; //called when action can be called again
 -(void) disableAction;
--(void) canTrigger:(bool)canTrigger;
+-(void)isCheering:(bool)cheering;
 -(bool) playerAllowedToJump;
 -(bool) playerAllowedToSprint;
 

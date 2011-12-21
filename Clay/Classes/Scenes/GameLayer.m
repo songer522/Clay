@@ -30,6 +30,8 @@
 #import "ChooseLevelScreen.h"
 #import "ChooseModeScene.h"
 #import "Animator.h"
+#import "GCState.h"
+#import "GCHelper.h"
 
 #define DEBUG_DRAW_BOUNDING_BOXES 0
 @interface GameLayer()
@@ -285,6 +287,7 @@
     if (![[ComicManager shared] isActive]) {
         if(_player.isDead) {
             [_player reset];
+            [self recordTimesdied];
             
             if(_boss){
                 [_boss reset];
@@ -435,6 +438,18 @@
 -(void)switchToChooseMode
 {
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[ChooseModeScene scene]]];    
+}
+
+-(void)recordTimesdied
+{
+    int maxTimesToDie = 5;
+    if([GCState sharedInstance].timesDied < maxTimesToDie)
+    {
+        [GCState sharedInstance].timesDied++;
+        [[GCState sharedInstance] save];
+        double pctComplete = ((double)[GCState sharedInstance].timesDied / (int)maxTimesToDie) * 100.0;
+        [[GCHelper sharedInstance] reportAchievement:gcAchievementTimesDied percentComplete:pctComplete];
+    }
 }
 
 - (void) dealloc

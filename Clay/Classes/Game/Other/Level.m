@@ -134,8 +134,8 @@
             }
         }  if([layerName isEqualToString:@"front-1"]) {
             if([levelName isEqualToString:@"level4"]) {
-                [self addObstaclesToMapWithBehavior:COLLISION_BEHAVIOR_CHARGE_AT_PLAYER];
-                 [self addObstaclesToMapWithBehavior:COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST];
+                [self addObstaclesToMapWithBehavior:COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_BD];
+                 [self addObstaclesToMapWithBehavior:COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST_BD];
             }
         }
         
