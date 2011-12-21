@@ -162,6 +162,7 @@ typedef enum {
 -(void) update:(float)dt;
 -(bool) closeToPlayer:(float)closerThan;
 
+
 #pragma mark - private methods
 -(void) switchToInactive;
 -(void) updateCollisionBehavior:(float)dt;

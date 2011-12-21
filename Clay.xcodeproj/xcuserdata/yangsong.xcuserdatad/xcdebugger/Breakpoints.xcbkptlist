@@ -8,27 +8,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "Clay/Classes/Scenes/ChooseLevelScreen.m"
-         timestampString = "345698199.79678"
+         filePath = "Clay/Classes/Game/GameObjects/GameObject.m"
+         timestampString = "346044507.764499"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "212"
-         endingLineNumber = "212"
-         landmarkName = "-createInformationPanelForLevel:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Clay/Classes/Scenes/ChooseLevelScreen.m"
-         timestampString = "345698442.501961"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "343"
-         endingLineNumber = "343"
-         landmarkName = "-covertLevelname:"
+         startingLineNumber = "402"
+         endingLineNumber = "402"
+         landmarkName = "-updateCollisionBehavior:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

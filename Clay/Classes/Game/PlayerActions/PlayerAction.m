@@ -14,6 +14,7 @@
 
 @implementation PlayerAction
 
+
 +(id)instance
 {
     return [[self alloc] init];
@@ -76,6 +77,8 @@
         float percent = (_cooldownStart - _cooldown)/_cooldownStart;
         [[[[[LayerManager sharedLayers] currentLayer] getHud] getActionButton] updateOverlayImageByPercentage:percent];
     }
+    
+ 
 }
 
 -(void) enableAction
@@ -84,6 +87,13 @@
     GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
     [[gameLayer getHud] setEnabled:true ForButton:HUD_BUTTON_ACTION];
      
+}
+-(void) disableAction
+{
+    _canTrigger = false;
+    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+    [[gameLayer getHud] setEnabled:false ForButton:HUD_BUTTON_ACTION];
+
 }
 
 -(bool)inAction
@@ -137,6 +147,11 @@
 -(bool)shouldTriggerPlayerHurtCollision
 {
     return true;
+}
+
+-(void) canTrigger:(bool)canTrigger
+{
+    _canTrigger=canTrigger;
 }
 
 -(bool)canAggressiveHit

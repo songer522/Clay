@@ -341,7 +341,12 @@
     
     
 }
-
+-(void) playerCanTrigger:(bool) canTrigger 
+{
+    Player *player =  [[LayerManager sharedLayers] getPlayer];
+    PlayerAction *action=  (PlayerAction *)[player getThirdAction];
+    [action canTrigger:canTrigger];
+} 
 -(void)updateFadeOut:(float)dt
 {
     if (_fadeout) {
@@ -385,7 +390,20 @@
         case COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST:
             [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-200.0f];
             break;
-
+        case COLLISION_BEHAVIOR_CLAPPING_CROWD:
+            if ([self closeToPlayer:400] )
+                 {
+                     if(!_hasTriggered)
+                     {
+                     [self playerCanTrigger:true];
+                         _hasTriggered=true;
+                     }
+                 }
+            if([self checkIfOffScreen:[self getPosition]] )
+            {
+                [self playerCanTrigger:false];
+            }
+            break;
             
         ///////////////////////////
         //LEVEL 2 - BARN RUN
@@ -747,17 +765,19 @@
     return false;
 }
 
+               
+                 
 -(bool) checkIfOffScreen:(CGPoint)position
 {
     CGPoint screenPosition = [[Camera sharedCamera] convertToScreenXY:position];
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         //float minAmount = 
         
-        if (screenPosition.x < 0 ) {
+        if (screenPosition.x + 100 < 0 ) {
             return true;
         }
     } else if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-        if (screenPosition.x < 0) {
+        if (screenPosition.x + 100 < 0) {
             return true;
         }
     }
@@ -928,6 +948,11 @@
         _currentBehavior = COLLISION_BEHAVIOR_COMPUTER_WORM;
         _hasTriggered = false;
     }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_CLAPPING_CROWD) {
+        _currentBehavior = COLLISION_BEHAVIOR_CLAPPING_CROWD;
+        [self playerCanTrigger:false];
+        _hasTriggered=false;
+    }
     else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_SLOW) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;     
     }
@@ -995,7 +1020,11 @@
     } else if([behavior isEqualToString:@"rolling"]) {
         _collideBehavior = COLLISION_BEHAVIOR_ROLLING_HAYBALE;
         _currentBehavior = COLLISION_BEHAVIOR_ROLLING_HAYBALE;
-    } else if([behavior isEqualToString:@"madDog"]) {
+    }else if([behavior isEqualToString:@"clapping"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_CLAPPING_CROWD;
+        _currentBehavior = COLLISION_BEHAVIOR_CLAPPING_CROWD;
+    } 
+    else if([behavior isEqualToString:@"madDog"]) {
         _collideBehavior = COLLISION_BEHAVIOR_MAD_DOG;
         _currentBehavior = COLLISION_BEHAVIOR_MAD_DOG;
     }
