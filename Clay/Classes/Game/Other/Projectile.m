@@ -71,6 +71,7 @@
                 [[_sprite getCCSprite] setScale:0.8];
                 _hasGravity = true;
                 _isAggressive = false;
+                
                 _offscreenPadding = 42;
                 _offsetGroundDetectionY = 10.0f;
                 break;

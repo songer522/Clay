@@ -608,6 +608,10 @@
 		61E72B36148D43350056499B /* rainyLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 61E72B32148D43350056499B /* rainyLevel-hd.png */; };
 		61E72B37148D43350056499B /* rainyLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 61E72B33148D43350056499B /* rainyLevel.plist */; };
 		61E72B38148D43350056499B /* rainyLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 61E72B34148D43350056499B /* rainyLevel.png */; };
+		61F477B614A24CC40068E8D2 /* timed_normal_level1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61F176AA149C2E4600D90100 /* timed_normal_level1.tmx */; };
+		61F477B714A24CC40068E8D2 /* timed_normal_level2.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61F176AB149C2E4600D90100 /* timed_normal_level2.tmx */; };
+		61F477B814A24CC40068E8D2 /* timed_normal_level2_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61F176A7149C220F00D90100 /* timed_normal_level2_hd.tmx */; };
+		61F477B914A24CC40068E8D2 /* supersonic.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54CB72521460506400311904 /* supersonic.wav */; };
 		61F7F28B149A5945006B02BC /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F7F28A149A5945006B02BC /* Twitter.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		61F7F28D149A5950006B02BC /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F7F28C149A5950006B02BC /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
@@ -2923,6 +2927,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61F477B614A24CC40068E8D2 /* timed_normal_level1.tmx in Resources */,
+				61F477B714A24CC40068E8D2 /* timed_normal_level2.tmx in Resources */,
+				61F477B814A24CC40068E8D2 /* timed_normal_level2_hd.tmx in Resources */,
+				61DE5CDF147DA21400E8A892 /* fireballLand.wav in Resources */,
+				61F477B914A24CC40068E8D2 /* supersonic.wav in Resources */,
 				54A2C5A5147C6F8900A0CB18 /* doublejump.wav in Resources */,
 				54484CE7140449B500D0D7D9 /* Default.png in Resources */,
 				54484CE9140449B500D0D7D9 /* fps_images.png in Resources */,
@@ -3094,7 +3103,6 @@
 				54507362147D71000081D394 /* maddogBark.wav in Resources */,
 				54507365147D733F0081D394 /* town.mp3 in Resources */,
 				54507366147D733F0081D394 /* track.mp3 in Resources */,
-				61DE5CDF147DA21400E8A892 /* fireballLand.wav in Resources */,
 				5450737A147DE8020081D394 /* Part8_AfterLv7.mp4 in Resources */,
 				5450737D147DEE7C0081D394 /* jimShipCharge.wav in Resources */,
 				54A60BDE1483E55F00EA2F3B /* settings.plist in Resources */,

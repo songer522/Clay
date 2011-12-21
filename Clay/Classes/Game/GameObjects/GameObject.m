@@ -203,7 +203,7 @@
             _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_ZOMBIE_HEAD];
             [_projectile reset];
             [_projectile setPosition:CGPointMake(_x, _y + 41)];
-            [_projectile setBoundingBox:CGRectMake(15, 33, 14, 40)];            
+            [_projectile setBoundingBox:CGRectMake(15, 33, 14, 35)];
             [[[[LayerManager sharedLayers] getPlayer] getThirdAction] setKilledEnemy:YES];
             break;
         case COLLISION_BEHAVIOR_FIRE_DEMON:
