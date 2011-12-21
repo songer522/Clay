@@ -57,6 +57,7 @@ typedef enum {
     Tutorial *_tutorial;
     
     bool _windowOpen;
+    bool _eraseWindowFirstOpen;
     GameWindow *_eraseWindowFirst;
     GameWindow *_eraseWindowSecond;
     

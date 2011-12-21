@@ -14,6 +14,7 @@
 
 @implementation GameWindow
 
+@synthesize delegate = _delegate;
 
 +(id) gameWindowWithHeader:(NSString*)header Message:(NSString*)message Choices:(WindowChoiceType)choices Layer:(CCLayer*)layer;
 {
@@ -92,13 +93,34 @@
     }
 }
 
--(void)checkCollisionAtPoint:(CGPoint)point
+-(WindowSelectionType)checkCollisionAtPoint:(CGPoint)point
 {
+    WindowSelectionType returnVal = WIN_SELECT_NONE;
+    
     if ([_choice1 checkIfSelected:point]) {
-        
+        if (_choiceType == WINDOW_CHOICE_YESNO) {
+            returnVal = WIN_SELECT_NO;
+        } else {
+            returnVal = WIN_SELECT_OK;
+        }
     } else if([_choice2 checkIfSelected:point]) {
-        
+        if (_choiceType == WINDOW_CHOICE_YESNO) {
+            returnVal = WIN_SELECT_YES;
+        }
     }
+    
+    return returnVal;
+}
+
+-(void)dealloc
+{
+    [_background release];
+    [_header release];
+    [_message removeAllObjects];
+    [_message release];
+    [_choice1 release];
+    [_choice2 release];
+    _delegate = nil;
 }
 
 

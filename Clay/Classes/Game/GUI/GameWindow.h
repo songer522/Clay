@@ -21,7 +21,8 @@ typedef enum {
 typedef enum {
     WIN_SELECT_YES,
     WIN_SELECT_NO,
-    WIN_SELECT_OK
+    WIN_SELECT_OK,
+    WIN_SELECT_NONE
 }WindowSelectionType;
 
 @protocol GameWindowDelegate <NSObject>
@@ -48,7 +49,10 @@ typedef enum {
     
     WindowChoiceType _choiceType;
     
+    id _delegate;
 }
+
+@property(nonatomic,retain) id delegate;
 
 +(id) gameWindowWithHeader:(NSString*)header Message:(NSString*)message Choices:(WindowChoiceType)choices Layer:(CCLayer*)layer;
 
@@ -58,6 +62,6 @@ typedef enum {
 #pragma mark - private methods
 -(void)setupChoiceButtons; //called by init to setup the "YES/NO" buttons
 -(void)setupMessage:(NSString*)message;
--(void)checkCollisionAtPoint:(CGPoint)point;
+-(WindowSelectionType)checkCollisionAtPoint:(CGPoint)point;
 
 @end

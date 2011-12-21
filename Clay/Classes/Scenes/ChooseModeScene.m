@@ -111,7 +111,7 @@
     
     _storyModePanel = [ModePanel panelAtPosition:ccp(80,154)];
     [_storyModePanel setHeaderFrame:@"UI_GameType_StoryModeC.png" Inactive:@"UI_GameType_StoryModeG.png"];
-    [_storyModePanel addButtons:[NSArray arrayWithObjects:@"KIDS",@"NORMAL",@"INSANE", nil]];
+    [_storyModePanel addButtons:[NSArray arrayWithObjects:@"EASY",@"NORMAL",@"HARD", nil]];
     [_storyModePanel setParent:self];
     
     _timedModePanel = [ModePanel panelAtPosition:ccp(240,154)];
