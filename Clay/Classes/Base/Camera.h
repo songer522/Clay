@@ -28,6 +28,7 @@
     Sprite *_target;          //what the camera is tracking towards (will be the runner mostly, but every
                                 //once in awhile we might want to highlight something else)
     
+    bool _shouldMoveY;
     bool _trackingTarget;
     
     //precalcs for minor optimizations

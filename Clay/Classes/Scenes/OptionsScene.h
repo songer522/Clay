@@ -16,6 +16,7 @@ typedef enum {
 
 @class ClippingNode;
 @class Sprite;
+@class GameWindow;
 @class GameLabel;
 @class ActionButton;
 @class Tutorial;
@@ -54,6 +55,10 @@ typedef enum {
     GameLabel *_optionsHeader;
     
     Tutorial *_tutorial;
+    
+    bool _windowOpen;
+    GameWindow *_eraseWindowFirst;
+    GameWindow *_eraseWindowSecond;
     
     OptionsSwitchToType _switchToType;
     

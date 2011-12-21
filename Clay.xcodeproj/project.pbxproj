@@ -42,6 +42,11 @@
 		5416FA531472C27900DDC8ED /* zombieLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 5416FA4F1472C27900DDC8ED /* zombieLevel.png */; };
 		54179E27142BBFA400D3A79E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 54179E26142BBFA400D3A79E /* Default@2x.png */; };
 		54179E2D142BC92400D3A79E /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54179E2C142BC92300D3A79E /* GameKit.framework */; };
+		5418B32814A24C4D00FB00EC /* timed_normal_level1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61F176AA149C2E4600D90100 /* timed_normal_level1.tmx */; };
+		5418B32914A24C4D00FB00EC /* timed_normal_level2.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61F176AB149C2E4600D90100 /* timed_normal_level2.tmx */; };
+		5418B32A14A24C4D00FB00EC /* timed_normal_level2_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61F176A7149C220F00D90100 /* timed_normal_level2_hd.tmx */; };
+		5418B32D14A2511300FB00EC /* selectOptionsMenu.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5418B32C14A2511300FB00EC /* selectOptionsMenu.wav */; };
+		5418B33014A251E700FB00EC /* GameWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 5418B32F14A251E700FB00EC /* GameWindow.m */; };
 		54229083147AB30D0096C809 /* RegionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 54229082147AB30D0096C809 /* RegionManager.m */; };
 		5424F85A1450D86D00802354 /* disco.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5424F8591450D86D00802354 /* disco.mp3 */; };
 		5424F85E1450D89700802354 /* barn.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5424F85C1450D89700802354 /* barn.mp3 */; };
@@ -663,6 +668,9 @@
 		5416FA4F1472C27900DDC8ED /* zombieLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zombieLevel.png; sourceTree = "<group>"; };
 		54179E26142BBFA400D3A79E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Resources/Default@2x.png"; sourceTree = "<group>"; };
 		54179E2C142BC92300D3A79E /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		5418B32C14A2511300FB00EC /* selectOptionsMenu.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = selectOptionsMenu.wav; path = Resources/sounds/selectOptionsMenu.wav; sourceTree = "<group>"; };
+		5418B32E14A251E700FB00EC /* GameWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; path = GameWindow.h; sourceTree = "<group>"; };
+		5418B32F14A251E700FB00EC /* GameWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameWindow.m; sourceTree = "<group>"; };
 		54229081147AB30D0096C809 /* RegionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegionManager.h; sourceTree = "<group>"; };
 		54229082147AB30D0096C809 /* RegionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegionManager.m; sourceTree = "<group>"; };
 		5424F8591450D86D00802354 /* disco.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = disco.mp3; path = Resources/music/disco.mp3; sourceTree = "<group>"; };
@@ -2008,6 +2016,7 @@
 		545CBC2F142D25AB00795FC9 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				5418B32C14A2511300FB00EC /* selectOptionsMenu.wav */,
 				54C944E1149305E300CE2AA3 /* darkGargoyle1.wav */,
 				54C944E2149305E300CE2AA3 /* darkSpikes.mp3 */,
 				54C944DF149302C200CE2AA3 /* darkSlowTimeAction.wav */,
@@ -2513,6 +2522,8 @@
 				549ED7C41461D065008BCD98 /* TrackTimer.m */,
 				61DE5C031485868F00D325CF /* Tutorial.h */,
 				61DE5C041485869000D325CF /* Tutorial.m */,
+				5418B32E14A251E700FB00EC /* GameWindow.h */,
+				5418B32F14A251E700FB00EC /* GameWindow.m */,
 			);
 			path = GUI;
 			sourceTree = "<group>";
@@ -2598,10 +2609,14 @@
 				549ED7F51461D065008BCD98 /* EndGameScene.m */,
 				54E1AC0B1497B85200DFCA77 /* ExtrasScene.h */,
 				54E1AC0C1497B85200DFCA77 /* ExtrasScene.m */,
+				61B104A814997E8B003B4A8E /* FBPrompt.h */,
+				61B104A914997E8B003B4A8E /* FBPrompt.m */,
 				549ED7F61461D065008BCD98 /* GameDebugLayer.h */,
 				549ED7F71461D065008BCD98 /* GameDebugLayer.m */,
 				549ED7F81461D065008BCD98 /* GameLayer.h */,
 				549ED7F91461D065008BCD98 /* GameLayer.m */,
+				5474D4AC147453A00038B358 /* GameSettings.h */,
+				5474D4AD147453A10038B358 /* GameSettings.m */,
 				54A20B7C14A17C8D004BCBC8 /* HowToPlayScreen.h */,
 				54A20B7D14A17C8D004BCBC8 /* HowToPlayScreen.m */,
 				549ED7FA1461D065008BCD98 /* HudLayer.h */,
@@ -2610,14 +2625,10 @@
 				549ED7FD1461D065008BCD98 /* LayerManager.m */,
 				549ED7FE1461D065008BCD98 /* MainMenuScene.h */,
 				549ED7FF1461D065008BCD98 /* MainMenuScene.m */,
-				61B104A814997E8B003B4A8E /* FBPrompt.h */,
-				61B104A914997E8B003B4A8E /* FBPrompt.m */,
 				54E1AC021497B5D500DFCA77 /* OptionsScene.h */,
 				54E1AC031497B5D500DFCA77 /* OptionsScene.m */,
 				549ED8001461D065008BCD98 /* PauseMenuScreen.h */,
 				549ED8011461D065008BCD98 /* PauseMenuScreen.m */,
-				5474D4AC147453A00038B358 /* GameSettings.h */,
-				5474D4AD147453A10038B358 /* GameSettings.m */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -2965,6 +2976,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5418B32814A24C4D00FB00EC /* timed_normal_level1.tmx in Resources */,
+				5418B32914A24C4D00FB00EC /* timed_normal_level2.tmx in Resources */,
+				5418B32A14A24C4D00FB00EC /* timed_normal_level2_hd.tmx in Resources */,
 				54A2C5A5147C6F8900A0CB18 /* doublejump.wav in Resources */,
 				54484CE7140449B500D0D7D9 /* Default.png in Resources */,
 				54484CE9140449B500D0D7D9 /* fps_images.png in Resources */,
@@ -3357,6 +3371,7 @@
 				6102504F14A02FBA005FD377 /* characterWoo.plist in Resources */,
 				6102505014A02FBA005FD377 /* characterWoo.png in Resources */,
 				61DB46DE14A0F03B0060CC45 /* timed_normal_level1_hd.tmx in Resources */,
+				5418B32D14A2511300FB00EC /* selectOptionsMenu.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3576,6 +3591,7 @@
 				54A24A8E14A1470A00BF1BC6 /* Animator.m in Sources */,
 				54A24A9214A1481A00BF1BC6 /* AnimationSequence.m in Sources */,
 				54A20B7E14A17C8D004BCBC8 /* HowToPlayScreen.m in Sources */,
+				5418B33014A251E700FB00EC /* GameWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

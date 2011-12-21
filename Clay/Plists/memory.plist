@@ -174,7 +174,7 @@
 		<key>animations</key>
 		<string>none</string>
 		<key>sounds</key>
-		<string>menuPlayButton</string>
+		<string>menuPlayButton,selectOptionsMenu</string>
 		<key>textures</key>
 		<string>menuTextures</string>
 	</dict>

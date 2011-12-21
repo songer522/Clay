@@ -18,6 +18,7 @@
 #import "Tutorial.h"
 #import "CreditsScene.h"
 #import "HowToPlayScreen.h"
+#import "GameWindow.h"
 
 //IPAD FIX: width and offset
 #define OPTIONS_SCENE_OFFSET_X 30.0f
@@ -44,6 +45,7 @@
         _backToMainMenu = false;
         _inTutorial = false;
         _waitToSwitch = 0.0f;
+        _windowOpen = false;
     }
     
     return self;
@@ -161,6 +163,9 @@
                 _waitToSwitch = 0.25f;
                 _backToMainMenu = false;
                 _switchToType = OPTIONS_SWITCHTO_CREDITS;
+            } else if([_eraseDataButton checkIfSelected:position]) {
+                _windowOpen = true;
+                _eraseWindowFirst = [GameWindow gameWindowWithHeader:@"ERASE DATA" Message:@"THIS WILL DELETE ALL OF YOUR|DATA. ARE YOU SURE YOU WANT|TO DO THIS?" Choices:WINDOW_CHOICE_YESNO Layer:self];
             }
             
             if([_backButton checkIfSelected:position]) {

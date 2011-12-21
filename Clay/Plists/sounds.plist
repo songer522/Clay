@@ -100,5 +100,7 @@
 	<string>darkSpikes.mp3</string>
 	<key>darkSlowTimeAction</key>
 	<string>darkSlowTimeAction.wav</string>
+	<key>selectOptionsMenu</key>
+	<string>selectOptionsMenu.wav</string>
 </dict>
 </plist>
