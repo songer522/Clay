@@ -60,7 +60,10 @@ static Camera *_sharedCamera = nil;
 
     //restrict the camera in certain levels
     //IPAD FIX: may need a different greater height for ipad, since the ipad has more pixels in the y plane.
-    NSString *levelName = level.name;
+    //NSString *levelName = level.name;
+    rect.size.height = 330;
+    
+    /*
     if ([levelName isEqualToString:@"level6"]) {
         rect.size.height = 352;
     } else if ([levelName isEqualToString:@"level8"]) {
@@ -69,7 +72,7 @@ static Camera *_sharedCamera = nil;
         rect.size.height = 352;
     } else if([levelName isEqualToString:@"level10"]) {
         rect.size.height = 352;
-    }
+    }*/
 
     _boundary = rect;
     
@@ -195,7 +198,7 @@ static Camera *_sharedCamera = nil;
         
         float magnitude = distance * CAMERA_MOVE_TO_TARGET_SPEED * dt;
         
-        if (distance > 2.0f) {
+        if (distance > 0.1f) {
             if (_trackingTarget) {
                 _x += (magnitude * (dx/distance));
             }

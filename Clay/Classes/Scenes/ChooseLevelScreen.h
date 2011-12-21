@@ -70,7 +70,9 @@ typedef enum {
     
     ChooseLevelPanel *_frontPanel;
     ChooseLevelPanel *_backPanel;
+    
     bool _panelTransition;
+    bool _hasSwitched;
     float _panelAlpha;
     
     int _selected;

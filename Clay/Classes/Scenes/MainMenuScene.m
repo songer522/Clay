@@ -373,7 +373,7 @@
 
 -(void)dealloc
 {
-    //NSLog(@"Dealloc: MainMenuScene");
+    CCLOG(@"Dealloc: MainMenuScene");
     
     //sprites
     [_trackBackground release];

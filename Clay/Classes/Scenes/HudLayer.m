@@ -48,13 +48,15 @@
         [[LayerManager sharedLayers] setWorkingLayer:self];
         
         _trackTimer = [TrackTimer instance];
-        [_trackTimer setupAnimationsAtX:10.0f Y:288.5f];
+        //[_trackTimer setupAnimationsAtX:10.0f Y:288.5f];
+        [_trackTimer setupAnimationsAtX:40.0f Y:287.0f];
         
         _battery = [Battery instance];
         
         _pauseButton = [Sprite spriteFromFrameCacheWithName:@"Pause.png"];
-        [_pauseButton getCCSprite].position = ccp(240,284);        
-
+        //[_pauseButton getCCSprite].position = ccp(240,286);  
+        [_pauseButton getCCSprite].position = ccp(9,287);  
+        
         _alpha = 0.0f;
         _currentTransition = HUD_TRANSITION_IDLE;
         _resetButtons = false;
@@ -255,7 +257,7 @@
     [_buttonSprint setButtonOpacity:opacity];
     [[_battery getCCSprite] setOpacity:opacity];
     [_trackTimer setOpacity:opacity];
-    [[_pauseButton getCCSprite] setOpacity:opacity];
+    [[_pauseButton getCCSprite] setOpacity:floor(0.5f * opacity)];
     
     if (_alpha == 0.0f) {
         [self setVisible:NO];

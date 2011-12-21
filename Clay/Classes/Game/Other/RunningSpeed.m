@@ -13,6 +13,7 @@
 @implementation RunningSpeed
 
 @synthesize velocity = _velocity;
+@synthesize reportedVelocity = _reportedVelocity;
 @synthesize velocityModifier = _velocityModifier;
 @synthesize inTurbo = _inTurbo;
 @synthesize parent = _player;
@@ -236,6 +237,11 @@
 
     } else {
         [self applyFriction:5.0f Dt:dt];
+    }
+    
+    _reportedVelocity = _velocity;
+    if (_reportedVelocity < 1.0f) {
+        _reportedVelocity = roundf(_reportedVelocity);
     }
     
     [_player updateSlow:dt];

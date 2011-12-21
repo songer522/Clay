@@ -8,6 +8,8 @@
 
 #import "AnimationController.h"
 #import "Animation.h"
+#import "Animator.h"
+#import "AnimationSequence.h"
 #import "Sprite.h"
 
 @implementation AnimationController
@@ -28,6 +30,7 @@ static AnimationController *_sharedController = nil;
     if (self) {
         // Initialization code here.
         animations = [[[NSMutableDictionary alloc] initWithCapacity:20] retain];
+        sequences = [[[NSMutableDictionary alloc] initWithCapacity:20] retain];
         
     }
     
@@ -77,6 +80,37 @@ static AnimationController *_sharedController = nil;
             }
         }
     }
+}
+
+-(void)loadSequencesForGroup:(NSString*)group
+{
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"anims" ofType:@"plist"];
+    
+    //read plist
+    NSDictionary *plistDictionary = [NSDictionary dictionaryWithContentsOfFile:path];
+    
+    NSAssert(plistDictionary!=nil,@"Error reading plist.");
+    
+    NSEnumerator *enumerator = [plistDictionary keyEnumerator];
+    id animationName;
+    while ((animationName = [enumerator nextObject])) {
+        NSDictionary *animationSettings = [plistDictionary objectForKey:animationName];
+        if (animationSettings == nil) {
+            CCLOG(@"Could not locate AnimationWithName:%@", animationName);
+        } else {
+            NSString *groupName = [animationSettings objectForKey:@"group"];
+            if ([groupName isEqualToString:group]) {
+                
+                AnimationSequence *sequence = [AnimationSequence sequenceWithSettings:animationSettings Name:animationName];
+                [sequences setObject:sequence forKey:animationName];
+            }
+        }
+    }
+}
+
+-(AnimationSequence*)getSequenceWithName:(NSString *)name
+{
+    return [sequences objectForKey:name];
 }
 
 -(void)unloadAnimationsForGroup:(NSString*)group
@@ -260,6 +294,8 @@ static AnimationController *_sharedController = nil;
 {
     [animations removeAllObjects];
     [animations release];
+    [sequences removeAllObjects];
+    [sequences release];
     [super dealloc];
 }
 

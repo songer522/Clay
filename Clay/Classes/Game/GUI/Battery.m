@@ -32,7 +32,7 @@
         sprite = [Sprite spriteWithFile:@"blank.png"];
         [self setFrame:1];
         
-        [sprite setScreenPosition:ccp(412,285)];
+        [sprite setScreenPosition:ccp(410,285)];
         
         _wasLowBattery = false;
     }

@@ -217,6 +217,19 @@
 		<key>textures</key>
 		<string>optionsScreen</string>
 	</dict>
+	<key>howtoplayScreen</key>
+	<dict>
+		<key>removeTextures</key>
+		<string>none</string>
+		<key>batchObstacles</key>
+		<string>none</string>
+		<key>animations</key>
+		<string>none</string>
+		<key>sounds</key>
+		<string>buttonPressed</string>
+		<key>textures</key>
+		<string>howtoplayScreen</string>
+	</dict>
 	<key>endGame</key>
 	<dict>
 		<key>removeTextures</key>

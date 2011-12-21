@@ -275,7 +275,7 @@
         position.x = roundf(position.x);
         position.y = roundf(position.y);        
     }
-    
+
     for (CCParallaxNode *node in _parallaxLayers) {
         [node setPosition:position];
     }

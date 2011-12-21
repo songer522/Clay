@@ -17,6 +17,7 @@
 #import "MainMenuScene.h"
 #import "Tutorial.h"
 #import "CreditsScene.h"
+#import "HowToPlayScreen.h"
 
 //IPAD FIX: width and offset
 #define OPTIONS_SCENE_OFFSET_X 30.0f
@@ -112,7 +113,7 @@
     _backButton = [ActionButton actionButtonWithText:@"BACK"];
     [_backButton setPosition:ccp(50, 18)];
     
-    _tutorial = [[Tutorial alloc] initWithinLayer:self];
+    //_tutorial = [[Tutorial alloc] initWithinLayer:self];
     
     [[LayerManager sharedLayers] forgetWorkingLayer];
 }
@@ -167,9 +168,9 @@
                 _backToMainMenu = true;
                 [[SoundEngine shared] playSound:@"buttonPressed"];     
             }
-        } else if(_inTutorial && _tutorial.scroller.currentScreen==2) {
-            if (position.y < 60.0f && position.x > 420.0f) {
-                [self switchToTutorial];
+        } else if(_inTutorial && _tutorial.scroller.currentScreen==3) {
+            if (position.y < 60.0f && position.x < 120.0f) {
+                //[self switchToTutorial];
             }
         }
     }
@@ -222,8 +223,9 @@
 
 -(void)switchToTutorial
 {
-    [_tutorial switchToTutorial];
-    _inTutorial = !_inTutorial;
+    //[_tutorial switchToTutorial];
+    //_inTutorial = !_inTutorial;
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[HowToPlayScreen scene]]];
 }
 
 -(void)switchToCreditsScreen
@@ -235,7 +237,7 @@
 -(void)update:(ccTime)dt
 {
     [_backButton update:dt];
-    [_tutorial update:dt];
+    //[_tutorial update:dt];
     
     if (_waitToSwitch>0.0f) {
         _waitToSwitch-=dt;
@@ -268,7 +270,7 @@
 
 -(void)dealloc
 {
-    //[_background release];
+    [_background release];
     [_musicPanel release];
     [_sfxPanel release];
     [_musicSheetTop release];
@@ -293,12 +295,13 @@
     [_playText release];
     [_creditsText release];
     
-    [_tutorial release];
+    //[_tutorial release];
     
      [_optionsHeader release];
     [_backButton release];
     
     [[TextureManager shared] unloadMemoryForKey:@"optionsScreen"];
+    [super dealloc];
 }
 
 @end

@@ -10,12 +10,14 @@
 #import "cocos2d.h"
 
 @class Animation;
+@class Animator;
 
 @interface Sprite : NSObject
 {
     CCSprite *sprite_cc;
     NSString *_frameName;
     Animation *_animation;
+    Animator *_animator;
     float _x;
     float _y;
     float _alpha;
@@ -67,5 +69,8 @@
 -(void)setAnimation:(Animation*)animation Delay:(float)delay;
 -(void)setAnimation:(Animation*)animation Delay:(float)delay StartingFrameNumber:(int)frameNumber;
 -(void)setAnimationByName:(NSString*)animName;
+
+-(Animator*)getAnimator;
+-(void)updateAnimator:(float)dt;
 
 @end
