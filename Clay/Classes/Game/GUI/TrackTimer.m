@@ -177,7 +177,7 @@
     int minutes = ((int)floorf(time)) / 60;
     int milliseconds = floor((time - (int)time) * 100);
     
-    NSMutableString *timeString = [[NSMutableString alloc] init];
+    NSMutableString *timeString = [[NSMutableString alloc] initWithCapacity:10];
     
     //minutes
     if (minutes < 10) {

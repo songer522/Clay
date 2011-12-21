@@ -15,10 +15,13 @@
 
 @class Sprite;
 @class Animation;
+@class AnimationSequence;
 
 @interface AnimationController : NSObject
 {
     NSMutableDictionary *animations;
+    
+    NSMutableDictionary *sequences;
     
 }
 
@@ -37,5 +40,8 @@
 
 -(void)replaceSprite:(Sprite*)sprite withAnimationNamed:(NSString*)name;
 -(void)replaceSprite:(Sprite*)sprite withAnimationNamed:(NSString*)name FrameNumber:(int)frameNumber;
+
+-(void)loadSequencesForGroup:(NSString*)group;
+-(AnimationSequence*)getSequenceWithName:(NSString*)name;
 
 @end

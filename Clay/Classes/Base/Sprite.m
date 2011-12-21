@@ -12,6 +12,7 @@
 #import "AnimationController.h"
 #import "Camera.h"
 #import "LayerManager.h"
+#import "Animator.h"
 
 @implementation Sprite
 
@@ -25,7 +26,7 @@
     if ((self=[super init])) {
         sprite_cc = nil;
         _animation = nil;
-        
+        _animator = [Animator instance];
     }    
     return self;
 }
@@ -249,6 +250,16 @@
     return _animation;
 }
 
+-(Animator*)getAnimator
+{
+    return _animator;
+}
+
+-(void)updateAnimator:(float)dt
+{
+    [_animator update:dt];
+}
+
 -(bool)reachedMinAfterModifyAlpha:(float)amount
 {
     bool returnVal = false;
@@ -267,6 +278,7 @@
 
 -(void)dealloc
 {
+    [_animator release];
     [_frameName release];
     [_animation release];
     [sprite_cc removeFromParentAndCleanup:YES];

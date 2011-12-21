@@ -613,6 +613,7 @@ static CCScheduler *sharedScheduler;
 				}
 				
 				elt->currentTimer = nil;
+                
 			}			
 		}
 		
@@ -623,8 +624,9 @@ static CCScheduler *sharedScheduler;
 		// only delete currentTarget if no actions were scheduled during the cycle (issue #481)
 		if( currentTargetSalvaged && currentTarget->timers->num == 0 )
 			[self removeHashElement:currentTarget];		
+        
 	}
-	
+    
     // delete all updates that are morked for deletion
     // updates with priority < 0
 	DL_FOREACH_SAFE( updatesNeg, entry, tmp ) {

@@ -297,7 +297,7 @@ static CCActionManager *sharedManager_ = nil;
 
 -(void) update: (ccTime) dt
 {
-	for(tHashElement *elt = targets; elt != NULL; ) {	
+    for(tHashElement *elt = targets; elt != NULL; ) {	
 
 		currentTarget = elt;
 		currentTargetSalvaged = NO;
@@ -337,9 +337,10 @@ static CCActionManager *sharedManager_ = nil;
 		// only delete currentTarget if no actions were scheduled during the cycle (issue #481)
 		if( currentTargetSalvaged && currentTarget->actions->num == 0 )
 			[self deleteHashElement:currentTarget];
-	}
-	
-	// issue #635
+        
+    }
+    
+    // issue #635
 	currentTarget = nil;
 }
 @end

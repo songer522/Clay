@@ -112,7 +112,7 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
     } else {
         _speedAction = [CCRepeat actionWithAction:_animateAction times:1]; //TODO: need to add speed to this too or else might cause changespeed issues
     }
-    
+        
     if (_clearPreviousAnimations) {
         [[sprite getCCSprite] stopAllActions];        
     }

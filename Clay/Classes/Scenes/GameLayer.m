@@ -29,6 +29,7 @@
 #import "RunningSpeed.h"
 #import "ChooseLevelScreen.h"
 #import "ChooseModeScene.h"
+#import "Animator.h"
 
 #define DEBUG_DRAW_BOUNDING_BOXES 0
 
@@ -169,6 +170,12 @@
     
     [[LevelManager shared] initAfterPlayerAndHudInit];
 
+    _testAnim = [Sprite spriteCenteredWithFrame:@"Character_Woo_1.png" Position:ccp(300,160)];
+    [[AnimationController sharedController] loadSequencesForGroup:@"player"];
+    AnimationSequence *sequence = [[AnimationController sharedController] getSequenceWithName:@"wooAnim"];
+    [[_testAnim getAnimator] addAnimation:sequence forKey:@"wooAnim"];
+    [[_testAnim getAnimator] setCurrentAnimation:@"wooAnim"];
+    
     bool isRestarting = [[[GameSettings shared] getGlobalForKey:@"restarting"] boolValue];
     if (isRestarting) {        
         [_hud reset:true];
@@ -248,6 +255,8 @@
         [self updatePlayerDeath:dt];
         
         [_hud update:dt];
+        
+        [_testAnim updateAnimator:0.5f * dt];
         
         if (_laserShow!=nil) {
             [_laserShow update:dt];

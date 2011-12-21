@@ -475,8 +475,9 @@
 {
     CCLOG(@"Dealloc: ChooseLevelScreen");
         
-    [_buttons removeAllObjects];
-    _buttons = nil;
+    //[_buttons removeAllObjects];
+    //[_buttons release];
+    //_buttons = nil;
     [_modeDict release];
     [_levelToSwitchTo release];
     _gameMode = nil;
