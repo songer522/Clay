@@ -32,7 +32,7 @@
     [self addPage:@"HTP_Page_3.png"];
     [self addPage:@"HTP_Page_4.png"];
 
-    scroller = [[CCScrollLayer alloc] initWithLayers:_pages widthOffset: 130.0f];
+    scroller = [[CCScrollLayer alloc] initWithLayers:_pages widthOffset: 120.0f];
     scroller.minimumTouchLengthToChangePage = 30.0f;
     
    //scroller = [[CCScrollLayer alloc] initWithLayers:[NSMutableArray arrayWithObjects: pageOne,pageTwo,pageThree,nil] widthOffset: 0];
@@ -47,8 +47,9 @@
 -(void)addPage:(NSString*)imageFileName
 {
     CCLayer *page = [[CCLayer alloc] init];
-    CCSprite *image=[CCSprite spriteWithFile:imageFileName];
-    [image setPosition:ccp(240,160)];
+    //CCSprite *image=[CCSprite spriteWithFile:imageFileName];
+    CCSprite *image = [CCSprite spriteWithSpriteFrameName:imageFileName];
+    [image setPosition:ccp(240,152)];
     [image setScale:1];
     [page addChild:image];
     [_images addObject:image];
@@ -70,7 +71,8 @@
     if(!_inTutorial){
        
         [scroller setVisible:YES];
-        scroller.showPagesIndicator=YES;
+//        scroller.showPagesIndicator=YES;
+        scroller.showPagesIndicator=NO;
         [scroller selectPage:0];
         _inTutorial=true;
         _alpha = 0.0f;

@@ -459,6 +459,10 @@
 		54A20B7A14A17875004BCBC8 /* HTP_Page_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A20B7614A17875004BCBC8 /* HTP_Page_3.png */; };
 		54A20B7B14A17875004BCBC8 /* HTP_Page_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A20B7714A17875004BCBC8 /* HTP_Page_4.png */; };
 		54A20B7E14A17C8D004BCBC8 /* HowToPlayScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A20B7D14A17C8D004BCBC8 /* HowToPlayScreen.m */; };
+		54A20B8314A1857C004BCBC8 /* howtoplayScreen-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54A20B7F14A1857C004BCBC8 /* howtoplayScreen-hd.plist */; };
+		54A20B8414A1857C004BCBC8 /* howtoplayScreen-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A20B8014A1857C004BCBC8 /* howtoplayScreen-hd.png */; };
+		54A20B8514A1857C004BCBC8 /* howtoplayScreen.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54A20B8114A1857C004BCBC8 /* howtoplayScreen.plist */; };
+		54A20B8614A1857C004BCBC8 /* howtoplayScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A20B8214A1857C004BCBC8 /* howtoplayScreen.png */; };
 		54A24A8E14A1470A00BF1BC6 /* Animator.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A24A8D14A1470A00BF1BC6 /* Animator.m */; };
 		54A24A9214A1481A00BF1BC6 /* AnimationSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A24A9114A1481900BF1BC6 /* AnimationSequence.m */; };
 		54A2C5A5147C6F8900A0CB18 /* doublejump.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54CB72511460506400311904 /* doublejump.wav */; };
@@ -1281,6 +1285,10 @@
 		54A20B7714A17875004BCBC8 /* HTP_Page_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HTP_Page_4.png; sourceTree = "<group>"; };
 		54A20B7C14A17C8D004BCBC8 /* HowToPlayScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HowToPlayScreen.h; sourceTree = "<group>"; };
 		54A20B7D14A17C8D004BCBC8 /* HowToPlayScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HowToPlayScreen.m; sourceTree = "<group>"; };
+		54A20B7F14A1857C004BCBC8 /* howtoplayScreen-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "howtoplayScreen-hd.plist"; path = "Clay/Resources/menu/howtoplayScreen-hd.plist"; sourceTree = SOURCE_ROOT; };
+		54A20B8014A1857C004BCBC8 /* howtoplayScreen-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "howtoplayScreen-hd.png"; path = "Clay/Resources/menu/howtoplayScreen-hd.png"; sourceTree = SOURCE_ROOT; };
+		54A20B8114A1857C004BCBC8 /* howtoplayScreen.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = howtoplayScreen.plist; path = Clay/Resources/menu/howtoplayScreen.plist; sourceTree = SOURCE_ROOT; };
+		54A20B8214A1857C004BCBC8 /* howtoplayScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = howtoplayScreen.png; path = Clay/Resources/menu/howtoplayScreen.png; sourceTree = SOURCE_ROOT; };
 		54A24A8C14A1470900BF1BC6 /* Animator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Animator.h; sourceTree = "<group>"; };
 		54A24A8D14A1470A00BF1BC6 /* Animator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Animator.m; sourceTree = "<group>"; };
 		54A24A9014A1481900BF1BC6 /* AnimationSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationSequence.h; sourceTree = "<group>"; };
@@ -1972,6 +1980,10 @@
 		544D50DA1445E68E00BED4CE /* scenes */ = {
 			isa = PBXGroup;
 			children = (
+				54A20B7F14A1857C004BCBC8 /* howtoplayScreen-hd.plist */,
+				54A20B8014A1857C004BCBC8 /* howtoplayScreen-hd.png */,
+				54A20B8114A1857C004BCBC8 /* howtoplayScreen.plist */,
+				54A20B8214A1857C004BCBC8 /* howtoplayScreen.png */,
 				5463947D1499AAD90053A1F6 /* optionsScreen-hd.plist */,
 				5463947E1499AAD90053A1F6 /* optionsScreen-hd.png */,
 				5463947F1499AAD90053A1F6 /* optionsScreen.plist */,
@@ -3347,6 +3359,10 @@
 				54A20B7914A17875004BCBC8 /* HTP_Page_2.png in Resources */,
 				54A20B7A14A17875004BCBC8 /* HTP_Page_3.png in Resources */,
 				54A20B7B14A17875004BCBC8 /* HTP_Page_4.png in Resources */,
+				54A20B8314A1857C004BCBC8 /* howtoplayScreen-hd.plist in Resources */,
+				54A20B8414A1857C004BCBC8 /* howtoplayScreen-hd.png in Resources */,
+				54A20B8514A1857C004BCBC8 /* howtoplayScreen.plist in Resources */,
+				54A20B8614A1857C004BCBC8 /* howtoplayScreen.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
