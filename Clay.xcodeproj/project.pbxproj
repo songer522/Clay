@@ -3352,6 +3352,11 @@
 				54A20B8414A1857C004BCBC8 /* howtoplayScreen-hd.png in Resources */,
 				54A20B8514A1857C004BCBC8 /* howtoplayScreen.plist in Resources */,
 				54A20B8614A1857C004BCBC8 /* howtoplayScreen.png in Resources */,
+				6102504D14A02FBA005FD377 /* characterWoo-hd.plist in Resources */,
+				6102504E14A02FBA005FD377 /* characterWoo-hd.png in Resources */,
+				6102504F14A02FBA005FD377 /* characterWoo.plist in Resources */,
+				6102505014A02FBA005FD377 /* characterWoo.png in Resources */,
+				61DB46DE14A0F03B0060CC45 /* timed_normal_level1_hd.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
