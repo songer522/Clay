@@ -167,8 +167,8 @@
                 _backToMainMenu = true;
                 [[SoundEngine shared] playSound:@"buttonPressed"];     
             }
-        } else if(_inTutorial && _tutorial.scroller.currentScreen==2) {
-            if (position.y < 60.0f && position.x > 420.0f) {
+        } else if(_inTutorial && _tutorial.scroller.currentScreen==3) {
+            if (position.y < 60.0f && position.x < 120.0f) {
                 [self switchToTutorial];
             }
         }

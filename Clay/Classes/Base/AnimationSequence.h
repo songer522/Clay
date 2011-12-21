@@ -16,7 +16,7 @@
     Animator *_parent;
     
     bool _looping;
-    bool _delay;
+    float _delay;
     bool _isActive;
     
     float _timer;
@@ -39,11 +39,12 @@
 }
 
 @property(nonatomic,assign)bool looping;
-@property(nonatomic,assign)bool delay;
+@property(nonatomic,assign)float delay;
 @property(nonatomic,retain)NSString *name;
 @property(nonatomic,assign)bool clearPreviousAnims;
 @property(nonatomic,readonly) int currentFrame;
 @property(nonatomic,readonly) int totalFrames;
+@property(nonatomic,assign) bool isActive;
 +(id)sequenceWithSettings:(NSDictionary*)settings Name:(NSString*)animName;
 -(id)initWithSettings:(NSDictionary*)settings Name:(NSString*)name;
 -(void)restart;

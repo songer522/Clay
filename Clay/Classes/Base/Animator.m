@@ -39,9 +39,9 @@
         
         if (_anim.clearPreviousAnims) {
             [_animationQueue removeAllObjects];
-        } else {
-            [_animationQueue addObject:_anim];
         }
+        
+        [_animationQueue addObject:_anim];
         
         _currentAnimation = _anim;
     } else {
@@ -51,6 +51,7 @@
 
 -(void)setSprite:(Sprite*)sprite
 {
+    _sprite = sprite;
     for (AnimationSequence *sequence in _animations) {
         [sequence setSprite:_sprite];
     }

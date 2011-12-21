@@ -24,13 +24,16 @@
 @synthesize totalFrames = _totalFrames;
 @synthesize clearPreviousAnims = _clearPreviousAnims;
 @synthesize name = _name;
+@synthesize isActive = _isActive;
 @synthesize currentFrame = _currentFrame;
 
 -(void)restart
 {
     _timer = 0;
     _isActive = true;
-
+    _currentFrame = 0;
+    CCSpriteFrame *frame = (CCSpriteFrame*)[_animationFrames objectAtIndex:0];
+    [[_sprite getCCSprite] setDisplayFrame:frame];
 }
 
 -(void)resetToFrame:(int)frame
@@ -57,9 +60,9 @@
         _frameList = [settings objectForKey:@"animationFrames"];
         
         _clearPreviousAnims = [[settings objectForKey:@"clearPreviousAnims"] boolValue];
-        
+        _currentFrame = -1;
         _name = name;
-        _isActive = false;
+        _isActive = true;
         
         [self createFramesWithSequence:_sequencePrefix FrameList:_frameList];
     }
@@ -70,6 +73,8 @@
 {
     
     NSArray *animationFrameNumbers = [framelist componentsSeparatedByString:@","];
+    
+    _totalFrames = [animationFrameNumbers count];
     
     for (NSString *frameNumber in animationFrameNumbers) {
         
@@ -91,25 +96,27 @@
 
 -(void)update:(float)dt
 {
+    _looping = true;
+    
     if (!_isActive) { return; }
 
     _timer += dt;
     
-    int frame = floor(_timer * _delay);
-    frame = frame % _totalFrames;
+    int frameNumber = floor(_timer/_delay);
+    frameNumber = frameNumber % _totalFrames;
     
-    if (frame != _currentFrame) {
-        if (frame < _currentFrame) {
+    if (frameNumber != _currentFrame) {
+        if (frameNumber < _currentFrame) {
             [self endOfAnimation];
         }
         
-        CCSpriteFrame *frame = (CCSpriteFrame*)[_animationFrames objectAtIndex:(uint)frame];
+        CCSpriteFrame *frame = (CCSpriteFrame*)[_animationFrames objectAtIndex:frameNumber];
         if(frame) {
             [[_sprite getCCSprite] setDisplayFrame:frame];
         }
     }
     
-    _currentFrame = frame;
+    _currentFrame = frameNumber;
 }
 
 -(void)endOfAnimation

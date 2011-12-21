@@ -27,11 +27,13 @@
     _pages = [[NSMutableArray alloc] initWithCapacity:3];
     _images = [[NSMutableArray alloc] initWithCapacity:3];
     
-    [self addPage:@"image1.png"];
-    [self addPage:@"image2.png"];
-    [self addPage:@"image3.png"];
-    
-    scroller = [[CCScrollLayer alloc] initWithLayers:_pages widthOffset: 0];
+    [self addPage:@"HTP_Page_1.png"];
+    [self addPage:@"HTP_Page_2.png"];
+    [self addPage:@"HTP_Page_3.png"];
+    [self addPage:@"HTP_Page_4.png"];
+
+    scroller = [[CCScrollLayer alloc] initWithLayers:_pages widthOffset: 130.0f];
+    scroller.minimumTouchLengthToChangePage = 30.0f;
     
    //scroller = [[CCScrollLayer alloc] initWithLayers:[NSMutableArray arrayWithObjects: pageOne,pageTwo,pageThree,nil] widthOffset: 0];
     
