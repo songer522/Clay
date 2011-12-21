@@ -12,6 +12,7 @@
 #import "HudLayer.h"
 #import "GameLayer.h"
 #import "GameSettings.h"
+#import "HealthIcon.h"
 
 #define N(x) [NSNumber numberWithFloat: x]
 

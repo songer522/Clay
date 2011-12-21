@@ -188,6 +188,7 @@
 		546394821499AAD90053A1F6 /* optionsScreen-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5463947E1499AAD90053A1F6 /* optionsScreen-hd.png */; };
 		546394831499AAD90053A1F6 /* optionsScreen.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5463947F1499AAD90053A1F6 /* optionsScreen.plist */; };
 		546394841499AAD90053A1F6 /* optionsScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 546394801499AAD90053A1F6 /* optionsScreen.png */; };
+		546C2A7214A292AE0008DC5A /* HealthIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = 546C2A7114A292AE0008DC5A /* HealthIcon.m */; };
 		546E830E148EE9F500154AE7 /* tileset_level_10-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 546E830C148EE9F500154AE7 /* tileset_level_10-hd.png */; };
 		546E830F148EE9F500154AE7 /* tileset_level_10.png in Resources */ = {isa = PBXBuildFile; fileRef = 546E830D148EE9F500154AE7 /* tileset_level_10.png */; };
 		5474D4AE147453A10038B358 /* GameSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 5474D4AD147453A10038B358 /* GameSettings.m */; };
@@ -669,7 +670,7 @@
 		54179E26142BBFA400D3A79E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Resources/Default@2x.png"; sourceTree = "<group>"; };
 		54179E2C142BC92300D3A79E /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		5418B32C14A2511300FB00EC /* selectOptionsMenu.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = selectOptionsMenu.wav; path = Resources/sounds/selectOptionsMenu.wav; sourceTree = "<group>"; };
-		5418B32E14A251E700FB00EC /* GameWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; path = GameWindow.h; sourceTree = "<group>"; };
+		5418B32E14A251E700FB00EC /* GameWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameWindow.h; sourceTree = "<group>"; };
 		5418B32F14A251E700FB00EC /* GameWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameWindow.m; sourceTree = "<group>"; };
 		54229081147AB30D0096C809 /* RegionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegionManager.h; sourceTree = "<group>"; };
 		54229082147AB30D0096C809 /* RegionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegionManager.m; sourceTree = "<group>"; };
@@ -933,6 +934,8 @@
 		5463947E1499AAD90053A1F6 /* optionsScreen-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "optionsScreen-hd.png"; path = "Clay/Resources/menu/optionsScreen-hd.png"; sourceTree = SOURCE_ROOT; };
 		5463947F1499AAD90053A1F6 /* optionsScreen.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = optionsScreen.plist; path = Clay/Resources/menu/optionsScreen.plist; sourceTree = SOURCE_ROOT; };
 		546394801499AAD90053A1F6 /* optionsScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = optionsScreen.png; path = Clay/Resources/menu/optionsScreen.png; sourceTree = SOURCE_ROOT; };
+		546C2A7014A292AE0008DC5A /* HealthIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthIcon.h; sourceTree = "<group>"; };
+		546C2A7114A292AE0008DC5A /* HealthIcon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HealthIcon.m; sourceTree = "<group>"; };
 		546E830C148EE9F500154AE7 /* tileset_level_10-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tileset_level_10-hd.png"; path = "Resources/levels/tileset_level_10-hd.png"; sourceTree = "<group>"; };
 		546E830D148EE9F500154AE7 /* tileset_level_10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tileset_level_10.png; path = Resources/levels/tileset_level_10.png; sourceTree = "<group>"; };
 		5474D4AC147453A00038B358 /* GameSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSettings.h; sourceTree = "<group>"; };
@@ -2512,6 +2515,8 @@
 				549ED7C01461D065008BCD98 /* Button.m */,
 				540E8063148547790079BFDA /* GameLabel.h */,
 				540E8064148547790079BFDA /* GameLabel.m */,
+				546C2A7014A292AE0008DC5A /* HealthIcon.h */,
+				546C2A7114A292AE0008DC5A /* HealthIcon.m */,
 				549ED7C11461D065008BCD98 /* HudButton.h */,
 				549ED7C21461D065008BCD98 /* HudButton.m */,
 				549D84DE1469E80000A3599F /* LevelButton.h */,
@@ -3592,6 +3597,7 @@
 				54A24A9214A1481A00BF1BC6 /* AnimationSequence.m in Sources */,
 				54A20B7E14A17C8D004BCBC8 /* HowToPlayScreen.m in Sources */,
 				5418B33014A251E700FB00EC /* GameWindow.m in Sources */,
+				546C2A7214A292AE0008DC5A /* HealthIcon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -24,6 +24,9 @@
     float _waitToIncrease;
     bool _isRecharging;
     bool _wasLowBattery;
+    
+    NSMutableArray *_healthIcons;
+    
     Player *_player;  //weak
 }
 
