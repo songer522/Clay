@@ -1103,11 +1103,11 @@
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>30</integer>
+			<integer>25</integer>
 			<key>width</key>
 			<integer>14</integer>
 			<key>x</key>
-			<integer>50</integer>
+			<integer>45</integer>
 			<key>y</key>
 			<integer>2</integer>
 		</dict>
@@ -1116,9 +1116,9 @@
 		<key>imageName</key>
 		<string>Zombies_Garbage.png</string>
 		<key>offsetx</key>
-		<integer>90</integer>
+		<integer>0</integer>
 		<key>offsety</key>
-		<integer>-44</integer>
+		<integer>-45</integer>
 		<key>playerEffect</key>
 		<string>collide</string>
 	</dict>

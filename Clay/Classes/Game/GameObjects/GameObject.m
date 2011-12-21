@@ -391,7 +391,7 @@
             [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-200.0f];
             break;
         case COLLISION_BEHAVIOR_CLAPPING_CROWD:
-            if ([self closeToPlayer:450] )
+            if ([self closeToPlayer:400] )
                  {
                      if(!_hasTriggered)
                      {
@@ -773,11 +773,11 @@
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         //float minAmount = 
         
-        if (screenPosition.x < 0 ) {
+        if (screenPosition.x + 100 < 0 ) {
             return true;
         }
     } else if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-        if (screenPosition.x < 0) {
+        if (screenPosition.x + 100 < 0) {
             return true;
         }
     }
