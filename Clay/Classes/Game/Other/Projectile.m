@@ -69,6 +69,7 @@
                 _sprite = [Sprite spriteFromFrameCacheWithName:@"F_Zombie_Head.png"];
                 [_sprite getCCSprite].anchorPoint = ccp(0.5f, 0.5f);
                 [[_sprite getCCSprite] setScale:0.8];
+                //_offsetGroundDetectionY = 30.0f;
                 _hasGravity = true;
                 _isAggressive = false;
                 
