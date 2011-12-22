@@ -166,7 +166,7 @@
     if(_playerEffect == PLAYER_EFFECT_COLLIDE) {
         _collided = true;
     }
-    
+    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
     _currentBehavior = _collideBehavior;
     
     switch (_currentBehavior) {
@@ -193,8 +193,23 @@
             [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"dancinManDied"];
             _alpha = 1.5f;
             _fadeout = true;
-            GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+            
             [[gameLayer.player getThirdAction] setKilledEnemy:YES];
+            break;
+            
+        case COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_BD:
+          
+        
+            [[gameLayer.player getThirdAction] setKilledEnemy:YES];
+
+            
+            break;
+        case COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST_BD:
+            
+            
+            [[gameLayer.player getThirdAction] setKilledEnemy:YES];
+            
+            
             break;
         case COLLISION_BEHAVIOR_ZOMBIE_HEADLESS:
             [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"femaleHeadlessZombieAnim"];
@@ -203,7 +218,7 @@
             _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_ZOMBIE_HEAD];
             [_projectile reset];
             [_projectile setPosition:CGPointMake(_x, _y + 41)];
-            [_projectile setBoundingBox:CGRectMake(15, 33, 14, 40)];            
+            [_projectile setBoundingBox:CGRectMake(15, 33, 14, 20)];
             [[[[LayerManager sharedLayers] getPlayer] getThirdAction] setKilledEnemy:YES];
             break;
         case COLLISION_BEHAVIOR_FIRE_DEMON:
@@ -341,11 +356,11 @@
     
     
 }
--(void) playerCanTrigger:(bool) canTrigger 
+-(void) playerHasCheering:(bool) cheering 
 {
     Player *player =  [[LayerManager sharedLayers] getPlayer];
     PlayerAction *action=  (PlayerAction *)[player getThirdAction];
-    [action canTrigger:canTrigger];
+    [action isCheering:cheering];
 } 
 -(void)updateFadeOut:(float)dt
 {
@@ -387,7 +402,13 @@
         case COLLISION_BEHAVIOR_CHARGE_AT_PLAYER:
             [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-150.0f];
             break;
+        case COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_BD:
+            [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-150.0f];
+            break;
         case COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST:
+            [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-200.0f];
+            break;
+        case COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST_BD:
             [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-200.0f];
             break;
         case COLLISION_BEHAVIOR_CLAPPING_CROWD:
@@ -395,13 +416,13 @@
                  {
                      if(!_hasTriggered)
                      {
-                     [self playerCanTrigger:true];
-                         _hasTriggered=true;
+                     [self playerHasCheering:true];
+                         
                      }
                  }
             if([self checkIfOffScreen:[self getPosition]] )
             {
-                [self playerCanTrigger:false];
+                [self playerHasCheering:false];
             }
             break;
             
@@ -863,6 +884,14 @@
         _isAggressive = false;
     }
     
+    if(_currentBehavior == COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_BD)
+    {
+        _currentBehavior = COLLISION_BEHAVIOR_CHARGE_AT_PLAYER;
+    }
+    if(_currentBehavior == COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST_BD)
+    {
+        _currentBehavior = COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST;
+    }
     
     if (_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_HEADLESS ||  _currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_WALK) {
         _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_WALK;
@@ -950,7 +979,7 @@
     }
     else if(_currentBehavior == COLLISION_BEHAVIOR_CLAPPING_CROWD) {
         _currentBehavior = COLLISION_BEHAVIOR_CLAPPING_CROWD;
-        [self playerCanTrigger:false];
+        [self playerHasCheering:false];
         _hasTriggered=false;
     }
     else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_SLOW) {
@@ -984,8 +1013,19 @@
         _collideBehavior = COLLISION_BEHAVIOR_CHARGE_AT_PLAYER;
         _currentBehavior = COLLISION_BEHAVIOR_CHARGE_AT_PLAYER;
         _beatsPlayerAction = true;
-    } else if([behavior isEqualToString:@"chargeAtPlayerFast"]) {
+    }
+    else if([behavior isEqualToString:@"BDchargeAtPlayer"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_BD;
+        _currentBehavior = COLLISION_BEHAVIOR_CHARGE_AT_PLAYER;
+        _beatsPlayerAction = true;
+    }
+    else if([behavior isEqualToString:@"chargeAtPlayerFast"]) {
         _collideBehavior = COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST;
+        _currentBehavior =COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST;
+        _beatsPlayerAction = true;
+    }
+    else if([behavior isEqualToString:@"BDchargeAtPlayerFast"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST_BD;
         _currentBehavior =COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST;
         _beatsPlayerAction = true;
     }

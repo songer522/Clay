@@ -92,6 +92,8 @@ static GCHelper *sharedHelper = nil;
 }
 
 -(void)sendAchievement:(GKAchievement *)achievement {
+    achievement.percentComplete = 100.0;   //Indicates the achievement is done
+    achievement.showsCompletionBanner = YES;    //Indicate that a banner should be shown
     [achievement reportAchievementWithCompletionHandler:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^(void)
                        {

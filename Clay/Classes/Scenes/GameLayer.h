@@ -87,5 +87,6 @@
 
 -(NSMutableArray*)getGameObjectsList;
 
+-(void)recordTimesdied;
 
 @end

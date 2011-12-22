@@ -29,6 +29,7 @@
         _cooldown = 0.0f;
         _cooldownStart = 0.1f;
         _canTrigger = true;
+        _isCheering = false;
         [self initialize];
     }
     
@@ -149,9 +150,9 @@
     return true;
 }
 
--(void) canTrigger:(bool)canTrigger
+-(void)isCheering:(bool)cheering
 {
-    _canTrigger=canTrigger;
+    _isCheering=cheering;
 }
 
 -(bool)canAggressiveHit

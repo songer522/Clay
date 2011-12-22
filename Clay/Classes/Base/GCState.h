@@ -11,11 +11,21 @@
 
 @interface GCState : NSObject <NSCoding> {
     int chickensKickedIntoCows;
+    int timesDied;
+    bool completeStoryEasy;
+    bool completeStoryNormal;
+    bool completeStoryHard;
+    bool completeStoryAll;
 }
 
 + (GCState *) sharedInstance;
 - (void)save;
 
 @property (assign) int chickensKickedIntoCows;
+@property (assign) int timesDied;
+@property (assign) bool completeStoryEasy;
+@property (assign) bool completeStoryNormal;
+@property (assign) bool completeStoryHard;
+@property (assign) bool completeStoryAll;
 
 @end

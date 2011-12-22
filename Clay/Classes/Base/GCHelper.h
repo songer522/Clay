@@ -12,6 +12,11 @@
 
 
 #define gcAchievementChickensKickedIntoCows @"com.xecudev.tracklapse.kicktenchickens"
+#define gcAchievementTimesDied @"com.xecudev.tracklapse.achievement.timesdied"
+#define gcAchievementBeatStoryEasy @"com.xecudev.tracklapse.achievement.story.beateasy"
+#define gcAchievementBeatStoryNormal @"com.xecudev.tracklapse.achievement.story.beatnormal"
+#define gcAchievementBeatStoryHard @"com.xecudev.tracklapse.achievement.story.beathard"
+#define gcAchievementBeatStoryAll @"com.xecudev.tracklapse.achievement.story.beatall"
 #define gcLeaderboardNormalTimedLevel1 @"com.xecudev.tracklapse.leaderboard.normaltimed.level1"
 #define gcLeaderboardNormalTimedLevel2 @"com.xecudev.tracklapse.leaderboard.normaltimed.level2"
 #define gcLeaderboardNormalTimedLevel3 @"com.xecudev.tracklapse.leaderboard.normaltimed.level3"
