@@ -13,6 +13,7 @@
 #import "SoundEngine.h"
 #import "GameLayer.h"
 #import "HudLayer.h"
+#import "RunningSpeed.h"
 
 @implementation PlayerActionWoo
 
@@ -32,6 +33,11 @@
         [_parent endTurbo:false];
         [_parent setPlayerAnimation:PLAYER_ANIM_WOO];
         [[SoundEngine shared] playSound:@"wooAction"];
+        if(!_isCheering)
+        {
+        [[_parent getSpeed] setVelocityModifier:0.8f];
+        }
+        
     }
 }
 
@@ -43,6 +49,7 @@
         _isCheering = false;
     }
     [_parent changeHealth:1];
+    [[_parent getSpeed] setVelocityModifier:1.0f];
        [super endAction];
 }
 

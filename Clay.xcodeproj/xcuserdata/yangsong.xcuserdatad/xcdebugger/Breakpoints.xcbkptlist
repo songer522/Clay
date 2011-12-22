@@ -8,27 +8,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "Clay/Classes/Game/GameObjects/GameObject.m"
-         timestampString = "346193493.876662"
+         filePath = "Clay/Classes/Game/Other/Level.m"
+         timestampString = "346221079.591821"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "423"
-         endingLineNumber = "423"
-         landmarkName = "-updateCollisionBehavior:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Clay/Classes/Scenes/GameLayer.m"
-         timestampString = "346198340.375917"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "451"
-         endingLineNumber = "451"
-         landmarkName = "-recordTimesdied"
+         startingLineNumber = "569"
+         endingLineNumber = "569"
+         landmarkName = "-testCollisions:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

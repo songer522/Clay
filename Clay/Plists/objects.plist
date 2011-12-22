@@ -97,7 +97,7 @@
 			<integer>2</integer>
 		</dict>
 		<key>collideBehavior</key>
-		<string>falls</string>
+		<string>hurdles</string>
 		<key>imageName</key>
 		<string>Track_BigHurdle_1.png</string>
 		<key>offsetx</key>
@@ -1322,7 +1322,7 @@
 			<integer>2</integer>
 		</dict>
 		<key>collideBehavior</key>
-		<string>falls</string>
+		<string>hurdles</string>
 		<key>imageName</key>
 		<string>Track_MediumHurdle_1.png</string>
 		<key>offsetx</key>
@@ -2053,7 +2053,7 @@
 			<integer>2</integer>
 		</dict>
 		<key>collideBehavior</key>
-		<string>falls</string>
+		<string>hurdles</string>
 		<key>imageName</key>
 		<string>Track_SmallHurdle_1.png</string>
 		<key>offsetx</key>
