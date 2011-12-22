@@ -29,7 +29,7 @@
 	<key>menuPlayButton</key>
 	<string>Craziness.wav</string>
 	<key>timCollision</key>
-	<string>tim_hit_something.caf</string>
+	<string>timFell.wav</string>
 	<key>timHurt</key>
 	<string>hurt.caf</string>
 	<key>steppedInSand</key>
@@ -100,5 +100,9 @@
 	<string>darkSpikes.mp3</string>
 	<key>darkSlowTimeAction</key>
 	<string>darkSlowTimeAction.wav</string>
+	<key>selectOptionsMenu</key>
+	<string>selectOptionsMenu.wav</string>
+	<key>healthGained</key>
+	<string>healthGained.wav</string>
 </dict>
 </plist>

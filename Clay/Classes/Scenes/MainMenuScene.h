@@ -36,8 +36,8 @@ typedef enum {
 @interface MainMenuScene : CCLayer<FBSessionDelegate,FBDialogDelegate>
 {
     Sprite *_trackBackground;
-    Sprite *_rain1;
-    Sprite *_rain2;
+    //Sprite *_rain1;
+    //Sprite *_rain2;
     
     Sprite *_logo;
     

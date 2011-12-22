@@ -18,6 +18,7 @@
 #import "Tutorial.h"
 #import "CreditsScene.h"
 #import "HowToPlayScreen.h"
+#import "GameWindow.h"
 
 //IPAD FIX: width and offset
 #define OPTIONS_SCENE_OFFSET_X 30.0f
@@ -44,6 +45,7 @@
         _backToMainMenu = false;
         _inTutorial = false;
         _waitToSwitch = 0.0f;
+        _windowOpen = false;
     }
     
     return self;
@@ -151,27 +153,54 @@
     for(UITouch *touch in allTouches)
     {
         CGPoint position = [self convertTouchToNodeSpace:touch];
-        if(!_isTransitioning && !_inTutorial) {
-            if ([_howToPlayButton checkIfSelected:position]) {
-                _waitToSwitch = 0.25f;
-                _backToMainMenu = false;
-                _switchToType = OPTIONS_SWITCHTO_HOWTOPLAY;
-                [[SoundEngine shared] playSound:@"buttonPressed"];
-            } else if([_creditsButton checkIfSelected:position]) {
-                _waitToSwitch = 0.25f;
-                _backToMainMenu = false;
-                _switchToType = OPTIONS_SWITCHTO_CREDITS;
+        
+        if(_windowOpen) {
+            
+            if (_eraseWindowFirstOpen) {
+                WindowSelectionType type = [_eraseWindowFirst checkCollisionAtPoint:position];
+                if (type == WIN_SELECT_YES) {
+                    _windowOpen = false;
+                    [_eraseWindowFirst release];
+                    _eraseWindowFirst = nil;
+                    _eraseWindowFirstOpen = false;
+                } else if(type == WIN_SELECT_NO) {
+                    _windowOpen = false;
+                    [_eraseWindowFirst release];
+                    _eraseWindowFirst = nil;
+                    _eraseWindowFirstOpen = false;
+                }
             }
             
-            if([_backButton checkIfSelected:position]) {
-                _waitToSwitch = 0.25f;
-                _backToMainMenu = true;
-                [[SoundEngine shared] playSound:@"buttonPressed"];     
+        } else {
+        
+        
+            if(!_isTransitioning && !_inTutorial) {
+                if ([_howToPlayButton checkIfSelected:position]) {
+                    _waitToSwitch = 0.25f;
+                    _backToMainMenu = false;
+                    _switchToType = OPTIONS_SWITCHTO_HOWTOPLAY;
+                    [[SoundEngine shared] playSound:@"buttonPressed"];
+                } else if([_creditsButton checkIfSelected:position]) {
+                    _waitToSwitch = 0.25f;
+                    _backToMainMenu = false;
+                    _switchToType = OPTIONS_SWITCHTO_CREDITS;
+                } else if([_eraseDataButton checkIfSelected:position]) {
+                    _windowOpen = true;
+                    _eraseWindowFirst = [GameWindow gameWindowWithHeader:@"ERASE DATA" Message:@"THIS WILL DELETE ALL OF YOUR|DATA. ARE YOU SURE YOU WANT|TO DO THIS?" Choices:WINDOW_CHOICE_YESNO Layer:self];
+                    _eraseWindowFirstOpen = true;
+                }
+                
+                if([_backButton checkIfSelected:position]) {
+                    _waitToSwitch = 0.25f;
+                    _backToMainMenu = true;
+                    [[SoundEngine shared] playSound:@"buttonPressed"];     
+                }
+            } else if(_inTutorial && _tutorial.scroller.currentScreen==3) {
+                if (position.y < 60.0f && position.x < 120.0f) {
+                    //[self switchToTutorial];
+                }
             }
-        } else if(_inTutorial && _tutorial.scroller.currentScreen==3) {
-            if (position.y < 60.0f && position.x < 120.0f) {
-                //[self switchToTutorial];
-            }
+            
         }
     }
 }

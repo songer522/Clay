@@ -71,8 +71,8 @@
           
         //initialize sprites
         _trackBackground = [Sprite spriteFromFrameCacheWithName:@"Menu_Background.png"];        
-        _rain1 = [Sprite spriteFromFrameCacheWithName:@"Menu_Rain_01.png"];
-        _rain2 = [Sprite spriteFromFrameCacheWithName:@"Menu_Rain_02.png"];
+        //_rain1 = [Sprite spriteFromFrameCacheWithName:@"Menu_Rain_01.png"];
+        //_rain2 = [Sprite spriteFromFrameCacheWithName:@"Menu_Rain_02.png"];
         _logo = [Sprite spriteCenteredWithFrame:@"Menu_Logo.png" Position:ccp(240,258)]; //final y: 262
         _copyright = [Sprite spriteCenteredWithFrame:@"Menu_Copyright.png" Position:ccp(240,24)]; //final y: 20
         
@@ -162,6 +162,7 @@
             
             if ([_playButton testCollision:position]) {
                 _switchToChoice = MENU_SWITCHTO_CHOOSELEVEL;
+                [[SoundEngine shared] playSound:@"menuPlayButton"];
                 _selectedButton = _playButton;
                 shouldStart = true;
             } else if ([_leaderboardsButton testCollision:position]) {
@@ -174,6 +175,7 @@
                 [self switchToChoice];
             } else if ([_optionsButton testCollision:position]) {
                 _switchToChoice = MENU_SWITCHTO_OPTIONS;
+                [[SoundEngine shared] playSound:@"selectOptionsMenu"];
                 _selectedButton = _optionsButton;
                 shouldStart = true;
             } else if(_isContinueButtonEnabled && [_continueButton testCollision:position]) {
@@ -185,15 +187,14 @@
         
         if (shouldStart) {
             [self switchToTransitionOut];
-            [[SoundEngine shared] playSound:@"menuPlayButton"];
         }
     }
 }
 
 -(void)setAlphaForAll:(float)alpha includingButtons:(bool)alphaButtons andButtonSelection:(bool)alphaSelected
 {
-    [_rain1 setAlpha:alpha];
-    [_rain2 setAlpha:alpha];
+    //[_rain1 setAlpha:alpha];
+    //[_rain2 setAlpha:alpha];
     
     [_logo setAlpha:alpha];
     
@@ -269,6 +270,7 @@
     _time += dt;
     
     //oscillate between two image files
+    /*
     float rainFrame = sinf(2.0f * _totalTime);
     if (rainFrame > 0.0f) {
         [[_rain1 getCCSprite] setVisible:YES];
@@ -276,7 +278,7 @@
     } else {
         [[_rain1 getCCSprite] setVisible:NO];
         [[_rain2 getCCSprite] setVisible:YES];
-    }
+    }*/
     
     switch (_transition) {
         case MAINMENU_TRANSITION_IN:
@@ -377,8 +379,8 @@
     
     //sprites
     [_trackBackground release];
-    [_rain1 release];
-    [_rain2 release];
+    //[_rain1 release];
+    //[_rain2 release];
     [_logo release];
     [_copyright release];
 

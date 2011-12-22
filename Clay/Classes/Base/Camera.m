@@ -60,19 +60,13 @@ static Camera *_sharedCamera = nil;
 
     //restrict the camera in certain levels
     //IPAD FIX: may need a different greater height for ipad, since the ipad has more pixels in the y plane.
-    //NSString *levelName = level.name;
-    rect.size.height = 330;
+    NSString *levelName = level.name;
     
-    /*
-    if ([levelName isEqualToString:@"level6"]) {
-        rect.size.height = 352;
-    } else if ([levelName isEqualToString:@"level8"]) {
+    if ([levelName isEqualToString:@"level8"]) {
         rect.size.height = 330;
-    } else if([levelName isEqualToString:@"level9"]) {
-        rect.size.height = 352;
-    } else if([levelName isEqualToString:@"level10"]) {
-        rect.size.height = 352;
-    }*/
+    } else {
+        rect.size.height = 320;
+    }
 
     _boundary = rect;
     

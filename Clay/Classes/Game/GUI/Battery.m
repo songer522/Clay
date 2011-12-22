@@ -12,12 +12,19 @@
 #import "HudLayer.h"
 #import "GameLayer.h"
 #import "GameSettings.h"
+#import "HealthIcon.h"
 
 #define N(x) [NSNumber numberWithFloat: x]
+
+//IPAD FIX: these numbers got moved and the battery was shifted a few pixels to the left
+#define BATTERY_X 410.0f
+#define BATTERY_Y 285.0f
 
 @implementation Battery
 
 @synthesize parent = _player;
+@synthesize x = _x;
+@synthesize y = _y;
 
 +(id)instance
 {
@@ -30,9 +37,23 @@
     if (self) {
         // Initialization code here.
         sprite = [Sprite spriteWithFile:@"blank.png"];
+        
+        _healthIcons = [[NSMutableArray alloc] initWithCapacity:6];
+        
+        //set up health icons
+        for (int i=0; i<6; i++) {
+            HealthIcon *icon = [HealthIcon instance];
+            [icon setHealthAnimTypeById:i];
+            [icon setBattery:self];
+            [_healthIcons addObject:icon];
+        }
+        
         [self setFrame:1];
         
-        [sprite setScreenPosition:ccp(410,285)];
+        _x = BATTERY_X;
+        _y = BATTERY_Y;
+        
+        [sprite setScreenPosition:ccp(BATTERY_X,BATTERY_Y)];
         
         _wasLowBattery = false;
     }
@@ -40,12 +61,44 @@
     return self;
 }
 
+-(void) changeValueBy:(int)amount
+{
+    //range for current frame is 1 - 5 (1 being full, 5 being killed), so positive amount = smaller frame
+    int final = _currentFrame - amount;
+    if (final < 1) {
+        final = 1; //full
+    } else if(final > 5) {
+        final = 5; //empty
+    }
+    
+    int diff = _currentFrame - final;
+    
+    if (diff > 0) {
+        for (int i=0; i<(3 + diff); i++) {
+            HealthIcon *icon = [_healthIcons objectAtIndex:i];
+            [icon startHealthAnimWithSprite:HEALTHICON_POSITIVE];
+        }
+    } else if(diff < 0) {
+        for (int i=0; i<(3 - diff); i++) {
+            HealthIcon *icon = [_healthIcons objectAtIndex:i];
+            [icon startHealthAnimWithSprite:HEALTHICON_NEGATIVE];
+        }        
+    }
+}
+
+
+-(void) adjustFrame:(int)amount
+{
+    [self setFrame:(_currentFrame - amount)];
+}
+
+
 -(void) setFrame:(int)frameNumber
 {
     
     NSString *frameName = [NSString stringWithFormat:@"Battery_%d.png",frameNumber];
     [[sprite getCCSprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName]];
-
+    
     _currentFrame = frameNumber;
     if (_currentFrame == 4) {
         _totalTime = 0.0f;
@@ -74,7 +127,7 @@
     
     _wait = 3.0f;
     _alpha = 1.0f;
-     
+    
 }
 
 -(void)update:(float)dt
@@ -96,6 +149,10 @@
             [self normalBattery:dt];
         }
     }
+    
+    for (HealthIcon *icon in _healthIcons) {
+        [icon update:dt];
+    }
 }
 
 -(void)lowBatteryWarning:(float)dt
@@ -106,7 +163,7 @@
         [[sprite getCCSprite] setVisible:NO];
     } else {
         [[sprite getCCSprite] setVisible:YES];
-    }    
+    }
 }
 
 -(void)normalBattery:(float)dt
@@ -121,9 +178,16 @@
     [[sprite getCCSprite] setOpacity:(255 * _alpha)];
 }
 
+-(void)setPlayer:(Player*)player
+{
+    _player = player;
+    for (HealthIcon *icon in _healthIcons) {
+        [icon setPlayer:player];
+    }
+}
+
 -(void)startRecharge
 {
-
     if(_player.isDead) {
         [self setFrame:5];
     }
@@ -131,8 +195,7 @@
     _alpha = 1.0f;
     [[sprite getCCSprite] setVisible:YES];
     [[sprite getCCSprite] setOpacity:255];
-    _wait = 0.6f;        
-
+    _wait = 0.6f;
 }
 
 -(void)recharging:(float)dt

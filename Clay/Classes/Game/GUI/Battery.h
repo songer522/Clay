@@ -18,19 +18,30 @@
 {
     Sprite *sprite;
     int _currentFrame;
+    float _x;
+    float _y;
     float _totalTime;
     float _wait;
     float _alpha;
     float _waitToIncrease;
     bool _isRecharging;
     bool _wasLowBattery;
+    
+    NSMutableArray *_healthIcons;
+    
     Player *_player;  //weak
 }
 
 @property(nonatomic,retain) Player *parent;
+@property(nonatomic,readonly) float x;
+@property(nonatomic,readonly) float y;
+
 
 +(id)instance;
 
+
+-(void) changeValueBy:(int)amount;
+-(void) adjustFrame:(int)amount;
 -(void) setFrame:(int)frameNumber;
 -(void)update:(float)dt;
 
@@ -39,6 +50,8 @@
 -(void)normalBattery:(float)dt;
 
 -(void)startRecharge;
+
+-(void)setPlayer:(Player*)player;
 
 -(CCSprite*)getCCSprite;
 -(void)reset;
