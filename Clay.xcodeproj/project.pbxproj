@@ -991,7 +991,7 @@
 		54784511149ACF0200591D15 /* story_hard_level5_hd.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = story_hard_level5_hd.tmx; sourceTree = "<group>"; };
 		54784512149ACF0200591D15 /* story_hard_level6.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = story_hard_level6.tmx; sourceTree = "<group>"; };
 		54784513149ACF0200591D15 /* story_hard_level6_hd.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = story_hard_level6_hd.tmx; sourceTree = "<group>"; };
-		54784514149ACF0200591D15 /* story_hard_level7.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = story_hard_level7.tmx; path = ../story_hard/story_hard_level7.tmx; sourceTree = "<group>"; };
+		54784514149ACF0200591D15 /* story_hard_level7.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = story_hard_level7.tmx; sourceTree = "<group>"; };
 		54784515149ACF0200591D15 /* story_hard_level7_hd.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = story_hard_level7_hd.tmx; sourceTree = "<group>"; };
 		54784516149ACF0200591D15 /* story_hard_level8.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = story_hard_level8.tmx; sourceTree = "<group>"; };
 		54784517149ACF0200591D15 /* story_hard_level8_hd.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = story_hard_level8_hd.tmx; sourceTree = "<group>"; };
@@ -2093,7 +2093,6 @@
 			children = (
 				61F477C414A2EFE80068E8D2 /* story_easy_level1.tmx */,
 				547844F4149ACF0200591D15 /* story_easy_level2_hd.tmx */,
-				54784514149ACF0200591D15 /* story_hard_level7.tmx */,
 				547844EE149ACF0200591D15 /* story_easy_level10.tmx */,
 				547844EF149ACF0200591D15 /* story_easy_level10_hd.tmx */,
 				547844F0149ACF0200591D15 /* story_easy_level11.tmx */,
@@ -2139,6 +2138,7 @@
 				54784512149ACF0200591D15 /* story_hard_level6.tmx */,
 				54784513149ACF0200591D15 /* story_hard_level6_hd.tmx */,
 				54784515149ACF0200591D15 /* story_hard_level7_hd.tmx */,
+				54784514149ACF0200591D15 /* story_hard_level7.tmx */,
 				54784516149ACF0200591D15 /* story_hard_level8.tmx */,
 				54784517149ACF0200591D15 /* story_hard_level8_hd.tmx */,
 				54784518149ACF0200591D15 /* story_hard_level9.tmx */,
@@ -3334,6 +3334,7 @@
 				5418B32D14A2511300FB00EC /* selectOptionsMenu.wav in Resources */,
 				546C2A7F14A2CFF30008DC5A /* healthGained.wav in Resources */,
 				546C2A8014A2CFF30008DC5A /* timFell.wav in Resources */,
+				61F477C514A2EFE90068E8D2 /* story_easy_level1.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
