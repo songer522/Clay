@@ -45,22 +45,10 @@
 -(void)startBoss
 {
     _level = [[LevelManager shared] currentLevel];
-    
-    [_sprite setAlpha:1.0f];
-    [[_sprite getCCSprite] setVisible:YES];
-    
     _firstUpdate = true;
-    _waitToAttack = 5.0f;
-    _isTransitioning = false;
-    _xPos = 0.0f;
-    _targetXPos = 0.0f;
-    _isMovingCamera = false;
-    _isKicking = false;
-    _isLaughing = false;
-    _wasKnockedDown = false;
+    [_sprite setAlpha:1.0f];
     _player = [[LayerManager sharedLayers] getPlayer];
-    [[_sprite getCCSprite] setVisible:NO];
-    [self switchToPhase:BOSS_PHASE_NOT_TRIGGERED];
+    [self restartLevel];
     [[SoundEngine shared] preloadMusicForKey:@"darknessBoss"];
     
 }
@@ -253,14 +241,40 @@
 
 -(void)reset
 {
-    _xPos = SHADOW_XPOS_OFFSCREEN;
-    [self switchToPhase:BOSS_PHASE_CHASE_FAR];
-    if(_isKicking||_isLaughing) {
-        [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"darkShadowTimAnim"];
-        _isLaughing = false;
-        _isKicking = false;
-        _wasKnockedDown = false;
+    if (_phase == BOSS_PHASE_NOT_TRIGGERED) {
+        //if hasn't been triggered, do nothing
+    } else {
+        _xPos = SHADOW_XPOS_OFFSCREEN;
+        [self switchToPhase:BOSS_PHASE_CHASE_FAR];
+        if(_isKicking||_isLaughing) {
+            [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"darkShadowTimAnim"];
+            _isLaughing = false;
+            _isKicking = false;
+            _wasKnockedDown = false;
+        }
     }
+}
+
+-(void)restartLevel
+{
+    //only want to do this when restarting level and if the boss has been triggered already, not starting level
+    if (!_firstUpdate && _phase != BOSS_PHASE_NOT_TRIGGERED) {
+        [[SoundEngine shared] playMusic:@"darkness"];        
+    }
+    
+    _waitToAttack = 5.0f;
+    _isTransitioning = false;
+    _xPos = 0.0f;
+    _targetXPos = 0.0f;
+    _isMovingCamera = false;
+    _isKicking = false;
+    _isLaughing = false;
+    _wasKnockedDown = false;
+    [[_sprite getCCSprite] setVisible:NO];
+    [self switchToPhase:BOSS_PHASE_NOT_TRIGGERED];
+    [_sprite setScreenPosition:ccp(-50,50)];
+    
+
 }
 
 -(void)dealloc

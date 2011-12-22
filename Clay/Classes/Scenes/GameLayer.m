@@ -141,6 +141,7 @@
     [[GameSettings shared] setGlobal:@"true" ForKey:@"restarting"];
     [_level resetTriggers:true];
     [_level resetObstacles];
+    [_boss restartLevel];
     [[ComicManager shared] restartLevel];
 }
 
