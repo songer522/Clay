@@ -145,7 +145,7 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
         [[sprite getCCSprite] setDisplayFrame:[_frames objectAtIndex:(frameNumber - 1)]];
     }
     @catch (NSException *exception) {
-        NSLog(@"ERROR: setStaticFrame - (out of range) ... Frame Number: %d, Sprite: %@",frameNumber,sprite.name);
+        //NSLog(@"ERROR: setStaticFrame - (out of range) ... Frame Number: %d, Sprite: %@",frameNumber,sprite.name);
     }
 }
 
