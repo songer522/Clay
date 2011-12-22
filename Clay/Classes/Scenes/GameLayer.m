@@ -351,7 +351,8 @@
     
     [[ComicManager shared] startComic:_level.postLevelComicName];
     [ComicManager shared].loadNextLevel = true;
-    
+    [self saveAndReportToGameCenter];
+    [self checkHasBeenHit];
 }
 
 -(void)setBoss:(Boss*)boss
