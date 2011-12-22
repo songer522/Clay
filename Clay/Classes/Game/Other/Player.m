@@ -228,10 +228,11 @@
         [[SoundEngine shared] playSound:@"turboStart"];
         [_skin setPlayerAnimation:PLAYER_ANIM_SPRINTING ForSprite:_sprite];
         
+        /*
         Boss *boss = [[LayerManager sharedLayers] getBoss];
         if (boss) {
             [boss triggerFallBack];
-        }
+        }*/
     }
 
 }
