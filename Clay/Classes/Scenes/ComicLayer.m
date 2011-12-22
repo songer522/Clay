@@ -105,9 +105,12 @@
                 _comicAlpha = 0.0f;
                 [_comicPanel removeFromParentAndCleanup:YES];
                 _comicPanel = nil;
+                [_skipButton removeFromParentAndCleanup:YES];
+                _skipButton = nil;
                 [_comicManager finishedAction];
             }
             [_comicPanel setOpacity:floor(255 * _comicAlpha)];
+            [_skipButton setOpacity:floor(255 * _comicAlpha)];
             break;
         default:
             break;
@@ -198,6 +201,12 @@
         _comicPanel.anchorPoint = ccp(0,0);
         [_comicPanel setOpacity:0];
         [self addChild:_comicPanel];
+
+        _skipButton = [CCSprite spriteWithFile:@"Comic_Button_Skip.png"];
+        _skipButton.position = ccp(460,20);
+        _skipButton.anchorPoint = ccp(0.5f,0.5f);
+        [self addChild:_skipButton];
+        
         _transition = BLACKBOX_PLAY_COMIC_FADE_IN;
         _timeToWait = durations[comicNumber];
         _comicAlpha = 0.0f;
@@ -207,9 +216,15 @@
     }
 }
 
--(void)skipComic
+-(bool)skipComic
 {
-    _phase = BLACKBOX_PLAY_COMIC_FADE_OUT;
+    bool couldSkip = false;
+    
+    if (_transition == BLACKBOX_PLAY_COMIC_WAIT) {
+        _transition = BLACKBOX_PLAY_COMIC_FADE_OUT;
+        couldSkip = true;
+    }
+    return couldSkip;
 }
 
 -(void)draw

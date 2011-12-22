@@ -67,10 +67,12 @@
 -(void)reactToTouchAt:(CGPoint)location InputType:(InputType)type
 {
     //guards
-    
     if (_gameLayer.inComic) {
-        [[ComicManager shared] skipComic];
-        _hasSkippedComic = true;
+        if (location.x > 440 && location.x < 480 && location.y < 40) {
+            if ([[ComicManager shared] skipComic]) {
+                _hasSkippedComic = true;            
+            }            
+        }
     } else {
         _hasSkippedComic = false;
     }

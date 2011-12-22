@@ -194,9 +194,9 @@ static ComicManager *_shared = nil;
     }
 }
 
--(void)skipComic
+-(bool)skipComic
 {
-    [_comicLayer skipComic];
+    return [_comicLayer skipComic];
 }
 
 -(void)finishedAction
