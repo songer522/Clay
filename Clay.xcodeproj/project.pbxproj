@@ -42,9 +42,6 @@
 		5416FA531472C27900DDC8ED /* zombieLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 5416FA4F1472C27900DDC8ED /* zombieLevel.png */; };
 		54179E27142BBFA400D3A79E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 54179E26142BBFA400D3A79E /* Default@2x.png */; };
 		54179E2D142BC92400D3A79E /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54179E2C142BC92300D3A79E /* GameKit.framework */; };
-		5418B32814A24C4D00FB00EC /* timed_normal_level1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61F176AA149C2E4600D90100 /* timed_normal_level1.tmx */; };
-		5418B32914A24C4D00FB00EC /* timed_normal_level2.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61F176AB149C2E4600D90100 /* timed_normal_level2.tmx */; };
-		5418B32A14A24C4D00FB00EC /* timed_normal_level2_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61F176A7149C220F00D90100 /* timed_normal_level2_hd.tmx */; };
 		5418B32D14A2511300FB00EC /* selectOptionsMenu.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5418B32C14A2511300FB00EC /* selectOptionsMenu.wav */; };
 		5418B33014A251E700FB00EC /* GameWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 5418B32F14A251E700FB00EC /* GameWindow.m */; };
 		54229083147AB30D0096C809 /* RegionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 54229082147AB30D0096C809 /* RegionManager.m */; };
@@ -2985,9 +2982,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5418B32814A24C4D00FB00EC /* timed_normal_level1.tmx in Resources */,
-				5418B32914A24C4D00FB00EC /* timed_normal_level2.tmx in Resources */,
-				5418B32A14A24C4D00FB00EC /* timed_normal_level2_hd.tmx in Resources */,
+				61F477B614A24CC40068E8D2 /* timed_normal_level1.tmx in Resources */,
+				61F477B714A24CC40068E8D2 /* timed_normal_level2.tmx in Resources */,
+				61F477B814A24CC40068E8D2 /* timed_normal_level2_hd.tmx in Resources */,
+				61DE5CDF147DA21400E8A892 /* fireballLand.wav in Resources */,
+				61F477B914A24CC40068E8D2 /* supersonic.wav in Resources */,
 				54A2C5A5147C6F8900A0CB18 /* doublejump.wav in Resources */,
 				54484CE7140449B500D0D7D9 /* Default.png in Resources */,
 				54484CE9140449B500D0D7D9 /* fps_images.png in Resources */,
