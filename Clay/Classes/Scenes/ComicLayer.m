@@ -234,7 +234,7 @@
 
 -(void)drawBars:(float)position
 {
-    if (_transition == BLACKBOX_IN || _transition == BLACKBOX_OUT) {
+    if (_transition == BLACKBOX_IN || _transition == BLACKBOX_OUT || _transition == BLACKBOX_IDLE) {
         float scale = 1.0f;
         if ([[GameSettings shared] usingHighResolutionGraphics]) {
             scale = 2.0f;        
