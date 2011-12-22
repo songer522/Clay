@@ -4,7 +4,7 @@
   <image source="tileset_level_1.png" width="448" height="704"/>
  </tileset>
  <tileset firstgid="78" name="Icons" tilewidth="32" tileheight="32">
-  <image source="TrackLapse_Icons-hd.png" width="640" height="512"/>
+  <image source="TrackLapse_Icons-hd.png" width="640" height="576"/>
   <tile id="0">
    <properties>
     <property name="obstacle" value="hurdle"/>
@@ -60,8 +60,13 @@
     <property name="obstacle" value="smallHurdle"/>
    </properties>
   </tile>
+  <tile id="81">
+   <properties>
+    <property name="obstacle" value="clappingCrowd"/>
+   </properties>
+  </tile>
  </tileset>
- <tileset firstgid="158" name="Meta" tilewidth="32" tileheight="32">
+ <tileset firstgid="168" name="Meta" tilewidth="32" tileheight="32">
   <image source="meta-hd.png" width="256" height="192"/>
   <tile id="0">
    <properties>
@@ -171,7 +176,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-     eJzt1UsOgyAQAFBP2E/au/Q4vWrjwo1RGHCwafreTsUBhgGmCQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+BWXA/++0kYxJl50bu/keGfFWTwa29+S+2+RvcaL7Jyulcbd+21LtBZb++jNT2ttRT2T4rTmN6tOevOy1X/0XcnIPZ21VplG7/e1nj0erc3SXGoxjn6f1Wo5eiaddUYuRtTliH20N7+9dS+tx1as6LuSnntnUaufzDs/Giu73Sxy5rTmcV3DteeWsZTajrqH7o3tgXGu3x4AAAAAAAAAAPD3Pl7sGf8=
+   eJzt1UsOgyAQAFBP2E/au/Q4vWrjwo1RGHCwafreTsUBhgGmCQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+BWXA/++0kYxJl50bu/keGfFWTwa29+S+2+RvcaL7Jyulcbd+21LtBZb++jNT2ttRT2T4rTmN6tOevOy1X/0XcnIPZ21VplG7/e1nj0erc3SXGoxjn6f1Wo5eiaddUYuRtTliH20N7+9dS+tx1as6LuSnntnUaufzDs/Giu73Sxy5rTmcV3DteeWsZTajrqH7o3tgXGu3x4AAAAAAAAAAPD3Pl7sGf8=
   </data>
  </layer>
  <layer name="meta" width="1050" height="14" opacity="0.85">
@@ -180,7 +185,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt10EKgCAURVH3v4jAnTYXLQ3Mr5wDlxqab1RKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADA7vLqAxRy8VwlN94jy2nPc9fUzr7z95yqtYmtvnu6O/e6ztvd2ya+no3s+I/ee7bHHCP3aoOYRnc5dcdo3zX7P/aSJEmSJEmSJEmSJEkK1g3g2SFf
+   eJzt10EKgCAURVH3v5LATTYXLQ3Mr5wDlxqab1RKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADA7vLqAxRy8VwlN94jy2nPc9fUzr7z95yqtYmtvnu6O/e6ztvd2ya+no3s+I/ee7bHHCP3aoOYRnc5dcdo3zX7P/aSJEmSJEmSJEmSJEkK1g2f4nR1
   </data>
  </layer>
 </map>

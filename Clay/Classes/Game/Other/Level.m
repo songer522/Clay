@@ -565,7 +565,7 @@
                             if ([GCState sharedInstance].hurdlesJumpedOver < maxHurdles) {
                                 [GCState sharedInstance].hurdlesJumpedOver++;
                                 obstacle.hasAppeared=true;
-                                NSLog(@"hurdles jumped over:%d" ,[GCState sharedInstance].hurdlesJumpedOver);
+                                //NSLog(@"hurdles jumped over:%d" ,[GCState sharedInstance].hurdlesJumpedOver);
                                 [[GCState sharedInstance] save];
                                 
                                 double pctComplete = ((double) [GCState sharedInstance].hurdlesJumpedOver / (int)maxHurdles) * 100.0;
@@ -608,7 +608,7 @@
             if (collision) {
                 if ([source getCollisionBehavior] == COLLISION_BEHAVIOR_HEN_KICKED) {
                     //NSLog(@"Counting Chicken Kicked Into Cow");
-                    int maxKicksIntoCow = 10;
+                    int maxKicksIntoCow = 100;
                     
                     if ([GCState sharedInstance].chickensKickedIntoCows < maxKicksIntoCow) {
                         [GCState sharedInstance].chickensKickedIntoCows++;
