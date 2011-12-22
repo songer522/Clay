@@ -35,6 +35,7 @@
         _targetPosition = 0.0f;
         _rate = 1.0f;
         _atTarget = false;
+        
     }
     
     return self;
@@ -86,7 +87,6 @@
             _comicAlpha += 2.0f * dt;
             if (_comicAlpha >= 1.0f) {
                 _comicAlpha = 1.0f;
-                _timeToWait = 5.0f;
                 _transition = BLACKBOX_PLAY_COMIC_WAIT;
             }
             [_comicPanel setOpacity:floor(255 * _comicAlpha)];
@@ -189,6 +189,8 @@
 
 -(void)cueComic:(NSString*)comicName
 {
+    int durations[] = {5,10,6,7,14,7,9,10,6,8,8,6};
+    
     int comicNumber = [[comicName substringFromIndex:5] intValue];
     if (comicNumber <= 11) {        
         NSString *_imageName = [NSString stringWithFormat:@"Comic_%d.png",comicNumber];
@@ -197,6 +199,7 @@
         [_comicPanel setOpacity:0];
         [self addChild:_comicPanel];
         _transition = BLACKBOX_PLAY_COMIC_FADE_IN;
+        _timeToWait = durations[comicNumber];
         _comicAlpha = 0.0f;
         [[SoundEngine shared] playMusic:@"cutscene"];
     } else {

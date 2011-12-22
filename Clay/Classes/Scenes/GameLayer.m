@@ -32,6 +32,7 @@
 #import "Animator.h"
 #import "GCState.h"
 #import "GCHelper.h"
+#import "CreditsScene.h"
 
 #define DEBUG_DRAW_BOUNDING_BOXES 0
 @interface GameLayer()
@@ -439,6 +440,11 @@
 -(void)switchToChooseMode
 {
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[ChooseModeScene scene]]];    
+}
+
+-(void)switchToCreditsScreen
+{
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[CreditsScene scene]]];
 }
 
 -(void)recordTimesdied

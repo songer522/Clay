@@ -43,6 +43,7 @@ typedef enum {
     float _alpha;
     bool _animating;
     bool _adjustedBattery;
+    int _moveDirection;
     
     Battery *_battery;
 }

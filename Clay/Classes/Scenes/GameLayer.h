@@ -84,6 +84,7 @@
 
 -(void)switchToChooseLevel;
 -(void)switchToChooseMode;
+-(void)switchToCreditsScreen;
 
 -(NSMutableArray*)getGameObjectsList;
 
