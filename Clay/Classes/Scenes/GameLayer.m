@@ -58,6 +58,7 @@
 @synthesize gameController = _gameController;
 @synthesize handledPauseEvent = _handledPauseEvent;
 @synthesize inComic = _inComic;
+@synthesize hasBeatenLevel = _hasBeatenLevel;
 
 +(CCScene *) scene
 {
@@ -175,7 +176,7 @@
         _player.isNewUnderwaterPhysics = false;
     }
     
-    _beatenLevel = false;
+    _hasBeatenLevel = false;
     
     [_player reset];
     
@@ -343,7 +344,7 @@
                      
 -(void)endLevel
 {
-    _beatenLevel = true;
+    _hasBeatenLevel = true;
 
     float finalLevelTime = [[_hud getTrackTimer] getLevelTime];
     [[LevelManager shared] recordLevelTime:finalLevelTime];

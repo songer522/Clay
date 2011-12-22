@@ -31,6 +31,7 @@ typedef enum {
 @class Battery;
 @class Skin;
 @class PlayerAction;
+@class GameLayer;
 @protocol PlayerActionProtocol;
 
 
@@ -61,6 +62,7 @@ typedef enum {
     bool _hadCollisionThisUpdate;
     
     PlayerEffect _currentPlayerEffect;
+    GameLayer *_gameLayer;
     
     float _timeLeftBeforeVulnerable;    //set to a time whenever tim gets back up, to allow proper time for him to get back up to speed before he has to jump on things
     
