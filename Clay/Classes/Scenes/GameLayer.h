@@ -88,5 +88,7 @@
 -(NSMutableArray*)getGameObjectsList;
 
 -(void)recordTimesdied;
+-(void)saveAndReportToGameCenter;
+-(void)checkHasBeenHit;
 
 @end

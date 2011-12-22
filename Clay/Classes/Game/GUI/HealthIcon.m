@@ -49,6 +49,7 @@
             break;
         case  HEALTHICON_NEGATIVE:
             [[_sprite getCCSprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Health_Sign_N.png"]];
+            break;
         default:
             CCLOG(@"HealthIcon.m - ERROR! Invalid health icon selected.");
             break;

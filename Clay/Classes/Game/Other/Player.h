@@ -59,6 +59,7 @@ typedef enum {
     bool _hasDoubleJumped;
     bool _soundFalling;
     bool _hadCollisionThisUpdate;
+    bool _gotHit;
     
     PlayerEffect _currentPlayerEffect;
     
@@ -92,6 +93,7 @@ typedef enum {
 @property(nonatomic,assign) bool inVaccuum;
 @property(nonatomic,assign) bool hadCollisionThisUpdate;
 @property(nonatomic,assign) bool onLedge;
+@property(nonatomic,assign) bool gotHit;
 
 
 @property(nonatomic,retain) Battery *battery;

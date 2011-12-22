@@ -43,6 +43,7 @@
 @synthesize hadCollisionThisUpdate = _hadCollisionThisUpdate;
 @synthesize inVaccuum = _inVaccuum;
 @synthesize onLedge =_onLedge;
+@synthesize gotHit=_gotHit;
 
 
 +(id) instance
@@ -78,6 +79,7 @@
         _timeLeftBeforeVulnerable = 2.0f;
         _isInvincible = false;
         _inVaccuum = false;
+        _gotHit=false;
         
         _thirdAction = nil;
         
@@ -296,7 +298,11 @@
             if (!_isTripping && !_isDead) {
                 if (![_thirdAction isActive]) {
                     if ([_thirdAction shouldTriggerPlayerHurtCollision]) {
-                        [self startPlayerCollision:false];  
+                        [self startPlayerCollision:false];
+                        if(!_gotHit)
+                        {
+                            _gotHit=true;
+                        }
                       
                     }
                 }
@@ -304,6 +310,11 @@
         } else if (effect == PLAYER_EFFECT_COLLIDE) {
             if (!_isTripping && !_isDead) {
                 [self startPlayerCollision:false];
+                if(!_gotHit)
+                {
+                    _gotHit=true;
+                }
+                
             }
         } else if(effect == PLAYER_EFFECT_SLOWDOWN) {
             [_speed slowDown];
