@@ -39,6 +39,9 @@
 
 +(id)instance;
 
+
+-(void) changeValueBy:(int)amount;
+-(void) adjustFrame:(int)amount;
 -(void) setFrame:(int)frameNumber;
 -(void)update:(float)dt;
 

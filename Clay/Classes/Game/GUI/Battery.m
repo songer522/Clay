@@ -61,23 +61,43 @@
     return self;
 }
 
+-(void) changeValueBy:(int)amount
+{
+    //range for current frame is 1 - 5 (1 being full, 5 being killed), so positive amount = smaller frame
+    int final = _currentFrame - amount;
+    if (final < 1) {
+        final = 1; //full
+    } else if(final > 5) {
+        final = 5; //empty
+    }
+    
+    int diff = _currentFrame - final;
+    
+    if (diff > 0) {
+        for (int i=0; i<(3 + diff); i++) {
+            HealthIcon *icon = [_healthIcons objectAtIndex:i];
+            [icon startHealthAnimWithSprite:HEALTHICON_POSITIVE];
+        }
+    } else if(diff < 0) {
+        for (int i=0; i<(3 - diff); i++) {
+            HealthIcon *icon = [_healthIcons objectAtIndex:i];
+            [icon startHealthAnimWithSprite:HEALTHICON_NEGATIVE];
+        }        
+    }
+}
+
+
+-(void) adjustFrame:(int)amount
+{
+    [self setFrame:(_currentFrame - amount)];
+}
+
+
 -(void) setFrame:(int)frameNumber
 {
     
     NSString *frameName = [NSString stringWithFormat:@"Battery_%d.png",frameNumber];
     [[sprite getCCSprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName]];
-
-    if (_currentFrame < frameNumber) {
-        for (int i=0; i<6; i++) {
-            HealthIcon *icon = [_healthIcons objectAtIndex:i];
-            [icon startHealthAnimWithSprite:HEALTHICON_POSITIVE];
-        }
-    } else if(_currentFrame > frameNumber) {
-        for (int i=0; i<6; i++) {
-            HealthIcon *icon = [_healthIcons objectAtIndex:i];
-            [icon startHealthAnimWithSprite:HEALTHICON_NEGATIVE];
-        }        
-    }
     
     _currentFrame = frameNumber;
     if (_currentFrame == 4) {
@@ -168,7 +188,6 @@
 
 -(void)startRecharge
 {
-
     if(_player.isDead) {
         [self setFrame:5];
     }
@@ -176,8 +195,7 @@
     _alpha = 1.0f;
     [[sprite getCCSprite] setVisible:YES];
     [[sprite getCCSprite] setOpacity:255];
-    _wait = 0.6f;        
-
+    _wait = 0.6f;
 }
 
 -(void)recharging:(float)dt

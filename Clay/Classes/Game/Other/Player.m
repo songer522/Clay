@@ -116,29 +116,15 @@
 
 -(void)changeHealth:(int)amount
 {
-    
-    if (amount > 0 && _hitPoints<4) {
-        _hitPoints+=amount; //POSSIBLE BUG: why is this +=1 instead of +=amount like the negative?
-        if(_hitPoints > 4)
-        {
-            _hitPoints = 4;
-        }
-        [_battery setFrame:(5-_hitPoints)];
-    } else if(amount < 0 && _hitPoints >= 0) {
-        _hitPoints+=amount;
-        [_battery setFrame:(5-_hitPoints)];
-    }
-     
-    /*
-    if(_hitPoints < 4 || _hitPoints >=0 )
-    {
-        _hitPoints+=amount;
-        [_battery setFrame:(5-_hitPoints)];
-    }
-    */
-    if (_hitPoints <=0) {
+    _hitPoints += amount;
+    if (_hitPoints<=0) {
         _isDead = true;
         [[SoundEngine shared] playSound:@"dead"];
+    } else {
+        if(_hitPoints>4) {
+            _hitPoints = 4;
+        }
+        [_battery changeValueBy:amount];
     }
 }
 

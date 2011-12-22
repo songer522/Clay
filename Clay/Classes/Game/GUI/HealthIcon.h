@@ -36,11 +36,13 @@ typedef enum {
     
     int iconId;
     
+    HealthIconType _iconType;
     HealthAnimType _animType;
     float _waitToStart;
     float _duration;
     float _alpha;
     bool _animating;
+    bool _adjustedBattery;
     
     Battery *_battery;
 }
@@ -53,7 +55,7 @@ typedef enum {
 
 -(void)startHealthAnimWithSprite:(HealthIconType)healthType;
 
-
+-(void)adjustBattery;
 
 -(void)update:(float)dt;
 

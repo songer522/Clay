@@ -10,6 +10,7 @@
 #import "Sprite.h"
 #import "Player.h"
 #import "Battery.h"
+#import "SoundEngine.h"
 
 @implementation HealthIcon
 
@@ -38,6 +39,8 @@
     _animating = true;
     _duration = 1.0f;
     _alpha = 0.0f;
+    _iconType = healthType;
+    _adjustedBattery = false;
     [_sprite setAlpha:0.0f];
     
     switch (healthType) {
@@ -45,7 +48,7 @@
             [[_sprite getCCSprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Health_Sign_P.png"]];
             break;
         case  HEALTHICON_NEGATIVE:
-            [[_sprite getCCSprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Health_Sign_P.png"]];
+            [[_sprite getCCSprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Health_Sign_N.png"]];
         default:
             CCLOG(@"HealthIcon.m - ERROR! Invalid health icon selected.");
             break;
@@ -154,18 +157,27 @@
             break;
         case HEALTHANIM_INTO_BATTERY_1:
             if (_duration<=0.75f) {
-                _position.x += batteryRate;                
+                if (!_adjustedBattery) {
+                    [self adjustBattery];
+                }
+                _position.x += batteryRate;             
             }
             [_sprite setScreenPosition:CGPointMake(_battery.x + _position.x, _battery.y + _position.y)];
             break;
         case HEALTHANIM_INTO_BATTERY_2:
             if (_duration<=0.75f) {
+                if (!_adjustedBattery) {
+                    [self adjustBattery];
+                }
                 _position.x += 3.0f * rate;
             }
             [_sprite setScreenPosition:CGPointMake(_battery.x + _position.x, _battery.y + _position.y)];
             break;
         case HEALTHANIM_INTO_BATTERY_3:
             if (_duration<=0.75f) {
+                if (!_adjustedBattery) {
+                    [self adjustBattery];
+                }
                 _position.x += 3.0f * rate;
             }
             [_sprite setScreenPosition:CGPointMake(_battery.x + _position.x, _battery.y + _position.y)];
@@ -178,10 +190,24 @@
     
 }
 
+
+-(void)adjustBattery
+{
+    _adjustedBattery = true;
+    if (_iconType == HEALTHICON_POSITIVE) {
+        [[SoundEngine shared] playSound:@"healthGained"];
+        [_battery adjustFrame:1];
+    } else {
+        [_battery adjustFrame:-1];
+    }
+}
+
+
 -(void)setBattery:(Battery*)battery
 {
     _battery = battery;
 }
+
 
 -(void)setPlayer:(Player*)player
 {
