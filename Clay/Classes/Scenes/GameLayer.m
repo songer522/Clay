@@ -443,7 +443,7 @@
 -(void)recordTimesdied
 {
     int maxTimesToDie = 20;
-    NSLog(@"times died is :%d",[GCState sharedInstance].timesDied);
+    //NSLog(@"times died is :%d",[GCState sharedInstance].timesDied);
     if([GCState sharedInstance].timesDied < maxTimesToDie)
     {
         [GCState sharedInstance].timesDied++;
