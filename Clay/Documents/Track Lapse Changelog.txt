@@ -1,8 +1,11 @@
 Track Lapse Changelog
 
+Build 111222.01
+==================
+
 
 Build 111221.01
-=================
+==================
 
 * Choose Mode - story modes renamed to 'easy', 'normal', hard'
 * Global - Woo action now re-enabled for entire level, but you will get 2 health back if you woo in front of the crowd. Also the cool down time has been extended and Tim slowed down to discourage spamming the action.
