@@ -11,7 +11,7 @@
 
 @implementation GCState
 @synthesize chickensKickedIntoCows;
-@synthesize timesDied;
+@synthesize timesDied,hurdlesJumpedOver;
 @synthesize completeStoryAll,completeStoryEasy,completeStoryHard,completeStoryNormal;
 
 static GCState *sharedInstance = nil;
@@ -47,6 +47,8 @@ static GCState *sharedInstance = nil;
 -(void)encodeWithCoder:(NSCoder *)encoder {
     [encoder encodeInt:chickensKickedIntoCows forKey:@"ChickensKickedIntoCows"];
     [encoder encodeInt:timesDied forKey:@"timesDied"];
+    [encoder encodeInt:hurdlesJumpedOver forKey:@"hurdlesJumpedOver"];
+
     [encoder encodeBool:completeStoryEasy forKey:@"completeStoryEasy"];
     [encoder encodeBool:completeStoryNormal forKey:@"completeStoryNormal"];
     [encoder encodeBool:completeStoryHard forKey:@"completeStoryHard"];
@@ -59,6 +61,7 @@ static GCState *sharedInstance = nil;
     if ((self = [super  init])) {
         chickensKickedIntoCows = [decoder decodeIntForKey:@"ChickensKickedIntoCows"];
         timesDied = [decoder decodeIntForKey:@"timesDied"];
+        hurdlesJumpedOver = [decoder decodeIntForKey:@"hurdlesJumpedOver"];
         completeStoryEasy = [ decoder decodeBoolForKey:@"completeStoryEasy"];
         completeStoryNormal = [ decoder decodeBoolForKey:@"completeStoryNormal"];
         completeStoryHard = [ decoder decodeBoolForKey:@"completeStoryHard"];

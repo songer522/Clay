@@ -46,6 +46,9 @@
 @synthesize magnitude = _magnitude;
 @synthesize persistsBetweenRegions = _persistsBetweenRegions;
 @synthesize slowTimeModifier = _slowTimeModifier;
+@synthesize isHurdle = _isHurdle;
+@synthesize hasAppeared = _hasAppeared;
+
 
 + (id) objectWithSprite:(Sprite*)sprite
 {
@@ -94,6 +97,7 @@
         _magnitude = 0.0f;
         _hasAppeared=false;
         _isVisible = true;
+        _isHurdle = false;
         _isStutterMode = [[GameSettings shared] isStutterMode];
     }
     
@@ -860,6 +864,7 @@
     _reloading = 0.0f;
     _movedBy = 0.0f;
     _stopCurve=false;
+    _hasAppeared=false;
     if(self )
     _madeSound = false;
     [_sprite setAlpha:1.0f];
@@ -995,11 +1000,16 @@
 
 -(void) setCollideBehavior:(NSString*)behavior
 {
+    
     if([behavior compare:@"static"] == NSOrderedSame) {
         _collideBehavior = COLLISION_BEHAVIOR_STATIC;
     } else if([behavior compare:@"falls"] == NSOrderedSame){
         _collideBehavior = COLLISION_BEHAVIOR_FALL_OVER;
-    } else if([behavior compare:@"kicked"] == NSOrderedSame) {
+    }else if([behavior compare:@"hurdles"] == NSOrderedSame){
+        _collideBehavior = COLLISION_BEHAVIOR_FALL_OVER;
+        _isHurdle = true;
+    } 
+    else if([behavior compare:@"kicked"] == NSOrderedSame) {
         _collideBehavior = COLLISION_BEHAVIOR_HEN_KICKED;
     } else if([behavior compare:@"anim"] == NSOrderedSame) {
         _collideBehavior = COLLISION_BEHAVIOR_PLAY_ANIMATION;

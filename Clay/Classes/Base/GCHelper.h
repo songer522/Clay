@@ -17,6 +17,7 @@
 #define gcAchievementBeatStoryNormal @"com.xecudev.tracklapse.achievement.story.beatnormal"
 #define gcAchievementBeatStoryHard @"com.xecudev.tracklapse.achievement.story.beathard"
 #define gcAchievementBeatStoryAll @"com.xecudev.tracklapse.achievement.story.beatall"
+#define gcAchievementJumpOver400hurdles @"com.xecudev.tracklapse.achievement.jumpover400hurdles"
 #define gcLeaderboardNormalTimedLevel1 @"com.xecudev.tracklapse.leaderboard.normaltimed.level1"
 #define gcLeaderboardNormalTimedLevel2 @"com.xecudev.tracklapse.leaderboard.normaltimed.level2"
 #define gcLeaderboardNormalTimedLevel3 @"com.xecudev.tracklapse.leaderboard.normaltimed.level3"

@@ -12,6 +12,7 @@
 @interface GCState : NSObject <NSCoding> {
     int chickensKickedIntoCows;
     int timesDied;
+    int hurdlesJumpedOver;
     bool completeStoryEasy;
     bool completeStoryNormal;
     bool completeStoryHard;
@@ -23,6 +24,7 @@
 
 @property (assign) int chickensKickedIntoCows;
 @property (assign) int timesDied;
+@property (assign) int hurdlesJumpedOver;
 @property (assign) bool completeStoryEasy;
 @property (assign) bool completeStoryNormal;
 @property (assign) bool completeStoryHard;

@@ -556,6 +556,24 @@
                 if (collision) {
                     [gameLayer.player startCollision:[obstacle startCollision] Source:obstacle];
                 }
+                else if(!obstacle.collided && [obstacle checkIfOffScreen:[obstacle getPosition]])
+                    {
+                        if(obstacle.isHurdle && !obstacle.hasAppeared)
+                        {
+                            int maxHurdles = 400;
+                            
+                            if ([GCState sharedInstance].hurdlesJumpedOver < maxHurdles) {
+                                [GCState sharedInstance].hurdlesJumpedOver++;
+                                obstacle.hasAppeared=true;
+                                NSLog(@"hurdles jumped over:%d" ,[GCState sharedInstance].hurdlesJumpedOver);
+                                [[GCState sharedInstance] save];
+                                
+                                double pctComplete = ((double) [GCState sharedInstance].hurdlesJumpedOver / (int)maxHurdles) * 100.0;
+                                [[GCHelper sharedInstance] reportAchievement:gcAchievementJumpOver400hurdles percentComplete:pctComplete];
+                            }
+                          
+                        }
+                    }
             }
 
             if(dist < 900) {
