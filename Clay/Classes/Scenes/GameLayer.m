@@ -175,6 +175,8 @@
         _player.isNewUnderwaterPhysics = false;
     }
     
+    _beatenLevel = false;
+    
     [_player reset];
     
     [_savePoint setSavePoint:_level.spawnPoint Level:_level.name];
@@ -341,11 +343,14 @@
                      
 -(void)endLevel
 {
+    _beatenLevel = true;
+
     float finalLevelTime = [[_hud getTrackTimer] getLevelTime];
     [[LevelManager shared] recordLevelTime:finalLevelTime];
 
     [[ComicManager shared] startComic:_level.postLevelComicName];
     [ComicManager shared].loadNextLevel = true;
+    
 }
 
 -(void)setBoss:(Boss*)boss
