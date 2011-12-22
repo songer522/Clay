@@ -16,9 +16,15 @@
 
 #define N(x) [NSNumber numberWithFloat: x]
 
+//IPAD FIX: these numbers got moved and the battery was shifted a few pixels to the left
+#define BATTERY_X 410.0f
+#define BATTERY_Y 285.0f
+
 @implementation Battery
 
 @synthesize parent = _player;
+@synthesize x = _x;
+@synthesize y = _y;
 
 +(id)instance
 {
@@ -31,9 +37,23 @@
     if (self) {
         // Initialization code here.
         sprite = [Sprite spriteWithFile:@"blank.png"];
+        
+        _healthIcons = [[NSMutableArray alloc] initWithCapacity:6];
+        
+        //set up health icons
+        for (int i=0; i<6; i++) {
+            HealthIcon *icon = [HealthIcon instance];
+            [icon setHealthAnimTypeById:i];
+            [icon setBattery:self];
+            [_healthIcons addObject:icon];
+        }
+        
         [self setFrame:1];
         
-        [sprite setScreenPosition:ccp(410,285)];
+        _x = BATTERY_X;
+        _y = BATTERY_Y;
+        
+        [sprite setScreenPosition:ccp(BATTERY_X,BATTERY_Y)];
         
         _wasLowBattery = false;
     }
@@ -47,6 +67,18 @@
     NSString *frameName = [NSString stringWithFormat:@"Battery_%d.png",frameNumber];
     [[sprite getCCSprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName]];
 
+    if (_currentFrame < frameNumber) {
+        for (int i=0; i<6; i++) {
+            HealthIcon *icon = [_healthIcons objectAtIndex:i];
+            [icon startHealthAnimWithSprite:HEALTHICON_POSITIVE];
+        }
+    } else if(_currentFrame > frameNumber) {
+        for (int i=0; i<6; i++) {
+            HealthIcon *icon = [_healthIcons objectAtIndex:i];
+            [icon startHealthAnimWithSprite:HEALTHICON_NEGATIVE];
+        }        
+    }
+    
     _currentFrame = frameNumber;
     if (_currentFrame == 4) {
         _totalTime = 0.0f;
@@ -75,7 +107,7 @@
     
     _wait = 3.0f;
     _alpha = 1.0f;
-     
+    
 }
 
 -(void)update:(float)dt
@@ -97,6 +129,10 @@
             [self normalBattery:dt];
         }
     }
+    
+    for (HealthIcon *icon in _healthIcons) {
+        [icon update:dt];
+    }
 }
 
 -(void)lowBatteryWarning:(float)dt
@@ -107,7 +143,7 @@
         [[sprite getCCSprite] setVisible:NO];
     } else {
         [[sprite getCCSprite] setVisible:YES];
-    }    
+    }
 }
 
 -(void)normalBattery:(float)dt
@@ -120,6 +156,14 @@
         }
     }
     [[sprite getCCSprite] setOpacity:(255 * _alpha)];
+}
+
+-(void)setPlayer:(Player*)player
+{
+    _player = player;
+    for (HealthIcon *icon in _healthIcons) {
+        [icon setPlayer:player];
+    }
 }
 
 -(void)startRecharge

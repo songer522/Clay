@@ -18,6 +18,8 @@
 {
     Sprite *sprite;
     int _currentFrame;
+    float _x;
+    float _y;
     float _totalTime;
     float _wait;
     float _alpha;
@@ -31,6 +33,9 @@
 }
 
 @property(nonatomic,retain) Player *parent;
+@property(nonatomic,readonly) float x;
+@property(nonatomic,readonly) float y;
+
 
 +(id)instance;
 
@@ -42,6 +47,8 @@
 -(void)normalBattery:(float)dt;
 
 -(void)startRecharge;
+
+-(void)setPlayer:(Player*)player;
 
 -(CCSprite*)getCCSprite;
 -(void)reset;

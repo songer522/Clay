@@ -198,7 +198,7 @@
 -(void)setupHud
 {
     _player.battery = [_hud getBattery];
-    [_hud getBattery].parent = _player;
+    [[_hud getBattery] setPlayer:_player];
     
     //pass on the hud to the gamecontroller
     [_gameController setHud:_hud];

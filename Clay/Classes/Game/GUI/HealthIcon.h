@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@class Sprite;
 
 typedef enum {
     HEALTHICON_POSITIVE,
@@ -16,14 +15,17 @@ typedef enum {
 } HealthIconType;
 
 typedef enum {
-    HEALTHANIM_PLAYER_LOW_RIGHT,
-    HEALTHANIM_PLAYER_MID_LEFT,
-    HEALTHANIM_PLAYER_UP_RIGHT,
-    HEALTHANIM_INTO_BATTERY,
-    HEALTHANIM_IDLE
+    HEALTHANIM_PLAYER_LOW_RIGHT = 0,
+    HEALTHANIM_PLAYER_MID_LEFT = 1,
+    HEALTHANIM_PLAYER_UP_RIGHT = 2,
+    HEALTHANIM_INTO_BATTERY_1 = 3,
+    HEALTHANIM_INTO_BATTERY_2 = 4,
+    HEALTHANIM_INTO_BATTERY_3 = 5
 } HealthAnimType;
 
+@class Sprite;
 @class Player;
+@class Battery;
 
 @interface HealthIcon : NSObject
 {
@@ -32,17 +34,26 @@ typedef enum {
     CGPoint _position;
     float _angle;
     
+    int iconId;
+    
     HealthAnimType _animType;
     float _waitToStart;
     float _duration;
     float _alpha;
     bool _animating;
+    
+    Battery *_battery;
 }
 
-+(id)healthIconWithPlayer:(Player*)player;
--(id)initWithPlayer:(Player*)player;
++(id)instance;
 
--(void)startHealthAnimWithSprite:(HealthIconType)healthType AnimType:(HealthAnimType)healthAnimType;
+-(void)setPlayer:(Player*)player;
+-(void)setBattery:(Battery*)battery;
+-(void)setHealthAnimTypeById:(int)number;
+
+-(void)startHealthAnimWithSprite:(HealthIconType)healthType;
+
+
 
 -(void)update:(float)dt;
 
