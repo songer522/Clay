@@ -2,6 +2,20 @@ Track Lapse Changelog
 
 Build 111222.01
 ==================
+Global - Fixed the title music not cueing up again when resetting to main menu from story mode, which caused a couple other sound issues
+Global - Added ability to skip comics
+Global - Comics now are up for as long as it should take to read each one (plus a bit extra)
+Global - Ending a level and switching levels should no longer show the previous level briefly before going to the next menu or level
+Global - Health icons now animate downward when getting hurt, and the whole animation has been sped up
+Global - Achievements only report when they're 100% done instead of whenever an action is taken
+Level 3 - New achievement implemented for if you beat the level without hitting anything.
+Level 4 - Cooldown time reduced for action
+Level 4 - Duration of action increased
+Level 6 - Cooldown time reduced for action
+Level 7 - Shield cool down time halved.
+Level 7 - Removed manboobs from Tim's graphic
+Level 11 - You now have to use the action to get the boss to fall back, instead of sprinting away
+Level 11 - Boss no longer attacks you while invisible after you respawn and before he's supposed to be onscreen
 
 
 Build 111221.01
