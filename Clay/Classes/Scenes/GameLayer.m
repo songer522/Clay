@@ -348,7 +348,7 @@
 
     float finalLevelTime = [[_hud getTrackTimer] getLevelTime];
     [[LevelManager shared] recordLevelTime:finalLevelTime];
-
+    
     [[ComicManager shared] startComic:_level.postLevelComicName];
     [ComicManager shared].loadNextLevel = true;
     
@@ -403,7 +403,9 @@
         _paused = true;
         [super onExit];
     }
+    
     _handledPauseEvent = true;
+    [self saveAndReportToGameCenter];
 }
 
 -(void)onEnter
@@ -456,13 +458,49 @@
 -(void)recordTimesdied
 {
     int maxTimesToDie = 200;
-    //NSLog(@"times died is :%d",[GCState sharedInstance].timesDied);
+    NSLog(@"times died is :%d",[GCState sharedInstance].timesDied);
     if([GCState sharedInstance].timesDied < maxTimesToDie)
     {
         [GCState sharedInstance].timesDied++;
-        [[GCState sharedInstance] save];
+        
         double pctComplete = ((double)[GCState sharedInstance].timesDied / (int)maxTimesToDie) * 100.0;
+        if(pctComplete == 100.0)
+        {
+        [[GCState sharedInstance] save];
         [[GCHelper sharedInstance] reportAchievement:gcAchievementTimesDied percentComplete:pctComplete];
+        }
+    }
+}
+-(void)saveAndReportToGameCenter
+{
+    int maxTimesToDie = 200;
+    int maxHurdles = 400;
+    double pctComplete = ((double)[GCState sharedInstance].timesDied / (int)maxTimesToDie) * 100.0;
+    NSLog(@"diedTimes:%d",[GCState sharedInstance].timesDied );
+    NSLog(@"complete percent %f",pctComplete);
+
+    if(pctComplete < 100.0)
+    {
+    [[GCState sharedInstance] save];
+    [[GCHelper sharedInstance] reportAchievement:gcAchievementTimesDied percentComplete:pctComplete];
+    }
+    NSLog(@"hurdles:%d",[GCState sharedInstance].hurdlesJumpedOver );
+    double pctComplete2 = ((double) [GCState sharedInstance].hurdlesJumpedOver / (int)maxHurdles) * 100.0;
+    NSLog(@"complete percent %f",pctComplete2);
+    if(pctComplete2 < 100.0)
+    {
+    [[GCState sharedInstance] save];
+    [[GCHelper sharedInstance] reportAchievement:gcAchievementJumpOver400hurdles percentComplete:pctComplete2];
+     }
+    
+}
+-(void)checkHasBeenHit
+{
+    if(!_player.gotHit && ![GCState sharedInstance].flawlessRun &&[_level.name isEqualToString:@"level3"])
+    {
+        [GCState sharedInstance].flawlessRun = true;
+        [[GCState sharedInstance] save];
+        [[GCHelper sharedInstance] reportAchievement:gcAchievementFlawlessRun percentComplete:100.0];
     }
 }
 

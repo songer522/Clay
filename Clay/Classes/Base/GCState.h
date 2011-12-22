@@ -13,6 +13,7 @@
     int chickensKickedIntoCows;
     int timesDied;
     int hurdlesJumpedOver;
+    bool flawlessRun;
     bool completeStoryEasy;
     bool completeStoryNormal;
     bool completeStoryHard;
@@ -29,5 +30,7 @@
 @property (assign) bool completeStoryNormal;
 @property (assign) bool completeStoryHard;
 @property (assign) bool completeStoryAll;
+@property (assign) bool flawlessRun;
+
 
 @end

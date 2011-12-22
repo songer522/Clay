@@ -566,10 +566,14 @@
                                 [GCState sharedInstance].hurdlesJumpedOver++;
                                 obstacle.hasAppeared=true;
                                 //NSLog(@"hurdles jumped over:%d" ,[GCState sharedInstance].hurdlesJumpedOver);
-                                [[GCState sharedInstance] save];
                                 
+                            
                                 double pctComplete = ((double) [GCState sharedInstance].hurdlesJumpedOver / (int)maxHurdles) * 100.0;
+                                if(pctComplete == 100.0)
+                                {
+                                [[GCState sharedInstance] save];
                                 [[GCHelper sharedInstance] reportAchievement:gcAchievementJumpOver400hurdles percentComplete:pctComplete];
+                                }
                             }
                           
                         }

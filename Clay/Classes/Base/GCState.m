@@ -12,7 +12,7 @@
 @implementation GCState
 @synthesize chickensKickedIntoCows;
 @synthesize timesDied,hurdlesJumpedOver;
-@synthesize completeStoryAll,completeStoryEasy,completeStoryHard,completeStoryNormal;
+@synthesize completeStoryAll,completeStoryEasy,completeStoryHard,completeStoryNormal,flawlessRun;
 
 static GCState *sharedInstance = nil;
 
@@ -53,6 +53,8 @@ static GCState *sharedInstance = nil;
     [encoder encodeBool:completeStoryNormal forKey:@"completeStoryNormal"];
     [encoder encodeBool:completeStoryHard forKey:@"completeStoryHard"];
     [encoder encodeBool:completeStoryAll forKey:@"completeStoryAll"];
+    [encoder encodeBool:flawlessRun forKey:@"flawlessRun"];
+    
     
 
 }
@@ -66,6 +68,7 @@ static GCState *sharedInstance = nil;
         completeStoryNormal = [ decoder decodeBoolForKey:@"completeStoryNormal"];
         completeStoryHard = [ decoder decodeBoolForKey:@"completeStoryHard"];
         completeStoryAll = [ decoder decodeBoolForKey:@"completeStoryAll"];
+        flawlessRun =[ decoder decodeBoolForKey:@"flawlessRun"];
     }
     return self;
 }
