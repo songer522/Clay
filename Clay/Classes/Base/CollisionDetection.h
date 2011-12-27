@@ -25,16 +25,26 @@
     int _mapHeight; //height of the map
     int _mapWidth; //width of the map
     
+    int _hasDeathpitAtColumn[1300]; //assumes max width of 1300 columns; current max is 1100
+    int _ledgeHeightAtColumn[1300];
+    
     float _preCalculateAccurateCoordsY;
     float _preCalculateTileSize;
+    float _preCalculateAccurateCoordsTileSize;
 }
 
 +(id) collisionHandlerWithMetaLayer:(CCTMXLayer*)collisionLayer Map:(CCTMXTiledMap*)map;
 - (id)initWithCollisionLayer:(CCTMXLayer*)collisionLayer Map:(CCTMXTiledMap*)map;
 
+-(CGPoint)checkCollisionForObject_old:(GameObject*)object; //entry point for the class, what gets called every update to check the player's collision with the level
+
 -(CGPoint)checkCollisionForObject:(GameObject*)object; //entry point for the class, what gets called every update to check the player's collision with the level
+
 
 -(CGPoint)accurateCoords:(CGPoint)position; //determine which coordinate needs to be checked, bounded by the edges of the map
 -(NSString*)getCollisionPropertyForTileCoords:(CGPoint)coords; //get the value stored under the "collision" tile property on the Tiled map at these coordinates. default to 'none', but can also return 'ground' or 'ledge'.
+
+-(void)precalculateDeathpits;
+-(void)precalculateLedges;
 
 @end

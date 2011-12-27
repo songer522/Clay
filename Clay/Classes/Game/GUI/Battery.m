@@ -39,6 +39,13 @@
         sprite = [Sprite spriteWithFile:@"blank.png"];
         
         _healthIcons = [[NSMutableArray alloc] initWithCapacity:6];
+        _batterySpriteFrames = [[NSMutableArray alloc] initWithCapacity:7];
+        
+        for (int i=0; i<6;i++) {
+            //starts at 0 just so we can directly access the object quickly
+            NSString *frameName = [NSString stringWithFormat:@"Battery_%d.png",i];
+            [_batterySpriteFrames addObject:frameName];
+        }
         
         //set up health icons
         for (int i=0; i<6; i++) {
@@ -95,9 +102,7 @@
 
 -(void) setFrame:(int)frameNumber
 {
-    
-    NSString *frameName = [NSString stringWithFormat:@"Battery_%d.png",frameNumber];
-    [[sprite getCCSprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName]];
+    [[sprite getCCSprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[_batterySpriteFrames objectAtIndex:frameNumber]]];
     
     _currentFrame = frameNumber;
     if (_currentFrame == 4) {
@@ -232,6 +237,10 @@
 
 -(void)dealloc
 {
+    [_healthIcons removeAllObjects];
+    [_healthIcons release];
+    [_batterySpriteFrames removeAllObjects];
+    [_batterySpriteFrames release];
     [sprite release];
     _player = nil;
     [super dealloc];
