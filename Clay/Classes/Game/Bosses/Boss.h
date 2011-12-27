@@ -40,6 +40,7 @@ typedef enum {
 -(void)changeAnimationSpeed:(float)modifier;
 -(void)update:(float)dt;
 -(void)reset;
+-(void)restartLevel;
 -(void)setSprite:(Sprite*)sprite;
 -(void)startBoss;
 -(void)switchToPhase:(BossPhase)phase;

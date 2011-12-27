@@ -43,12 +43,17 @@
     _adjustedBattery = false;
     [_sprite setAlpha:0.0f];
     
+    float offsetY = 0;
+    
     switch (healthType) {
         case HEALTHICON_POSITIVE:
             [[_sprite getCCSprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Health_Sign_P.png"]];
+            _moveDirection = 1;
             break;
         case  HEALTHICON_NEGATIVE:
             [[_sprite getCCSprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Health_Sign_N.png"]];
+            offsetY = 10.0f;
+            _moveDirection = -1;
             break;
         default:
             CCLOG(@"HealthIcon.m - ERROR! Invalid health icon selected.");
@@ -58,18 +63,26 @@
     switch (_animType) {
         case HEALTHANIM_PLAYER_LOW_RIGHT:
             _position.x += 19.0f;
-            _position.y += 12.0f;
-            _waitToStart = 0.05f;
+            _position.y += 12.0f + offsetY;
+            if (healthType == HEALTHICON_POSITIVE) {
+                _waitToStart = 0.05f;                
+            } else {
+                _waitToStart = 0.35f;                
+            }
             break;
         case HEALTHANIM_PLAYER_MID_LEFT:
             _position.x -= 12.0f;
-            _position.y += 45.0f;
+            _position.y += 45.0f + offsetY;
             _waitToStart = 0.15f;
             break;
         case HEALTHANIM_PLAYER_UP_RIGHT:
             _position.x += 25.0f;
-            _position.y += 77.0f;
-            _waitToStart = 0.35f;
+            _position.y += 77.0f + offsetY;
+            if (healthType == HEALTHICON_POSITIVE) {
+                _waitToStart = 0.35f;                
+            } else {
+                _waitToStart = 0.05f;                
+            }
             break;
         case HEALTHANIM_INTO_BATTERY_1:
             _position.x = -10.0f;
@@ -79,12 +92,12 @@
         case HEALTHANIM_INTO_BATTERY_2:
             _position.x = -10.0f;
             _position.y = 13.0f;
-            _waitToStart = 0.5f;
+            _waitToStart = 0.4f;
             break;
         case HEALTHANIM_INTO_BATTERY_3:
             _position.x = -10.0f;
             _position.y = 13.0f;
-            _waitToStart = 0.95f;            
+            _waitToStart = 0.75f;            
             break;
         default:
             break;
@@ -113,7 +126,7 @@
     
     bool _moveIcon = false;
     
-    _duration -= 1.75f * dt;
+    _duration -= 2.25f * dt;
     if (_duration <= 0.25f) {
         _alpha = _duration * 4.0f;
         if (_duration <= 0.0f) {
@@ -134,25 +147,25 @@
     switch (_animType) {
         case HEALTHANIM_PLAYER_LOW_RIGHT:
             if (_moveIcon) {
-                _angle += angleRate;
-                _position.y += rate;
-                _position.x += 0.5f * rate;
+                _angle += _moveDirection * angleRate;
+                _position.y += _moveDirection * rate;
+                _position.x += _moveDirection * 0.5f * rate;
             }
             [_sprite setPosition:CGPointMake(_player.x + _position.x, _player.y + _position.y)];
             break;
         case HEALTHANIM_PLAYER_MID_LEFT:
             if (_moveIcon) {
-                _angle -= angleRate;
-                _position.y += rate;                
-                _position.x -= 0.5f * rate;
+                _angle -= _moveDirection * angleRate;
+                _position.y += _moveDirection * rate;                
+                _position.x -= _moveDirection * 0.5f * rate;
             }
             [_sprite setPosition:CGPointMake(_player.x + _position.x, _player.y + _position.y)];
             break;
         case HEALTHANIM_PLAYER_UP_RIGHT:
             if (_moveIcon) {
-                _angle += angleRate;
-                _position.y += rate;                
-                _position.x += 0.5f * rate;
+                _angle += _moveDirection * angleRate;
+                _position.y += _moveDirection * rate;    
+                _position.x += _moveDirection * 0.5f * rate;
             }
             [_sprite setPosition:CGPointMake(_player.x + _position.x, _player.y + _position.y)];
             break;

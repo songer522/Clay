@@ -103,6 +103,8 @@
         _playerOnledge=[Sprite spriteWithFile:@"blank.png"]; 
        
         _tempSprite=_sprite;
+        
+        _gameLayer = [[LayerManager sharedLayers] currentLayer];
          //[[_tempSprite getCCSprite] setAnchorPoint:ccp(0,0)];
         //[_tempSprite getCCSprite].position=[_sprite getCCSprite].position;
         //[_tempSprite getCCSprite].anchorPoint=[_sprite getCCSprite].anchorPoint;
@@ -121,6 +123,7 @@
     _hitPoints += amount;
     if (_hitPoints<=0) {
         _isDead = true;
+        [_battery setFrame:5];
         [[SoundEngine shared] playSound:@"dead"];
     } else {
         if(_hitPoints>4) {
@@ -132,7 +135,7 @@
 
 -(void)dieIfFallenIntoPit
 {
-    if (!_soundFalling && _y < 10) {
+    if (!_soundFalling && _y < 10 && !_gameLayer.hasBeatenLevel) {
         [[SoundEngine shared] playSound:@"fallingDeath"];
         _soundFalling = true;
     } else if(_y < -160) {
@@ -230,10 +233,11 @@
         [[SoundEngine shared] playSound:@"turboStart"];
         [_skin setPlayerAnimation:PLAYER_ANIM_SPRINTING ForSprite:_sprite];
         
+        /*
         Boss *boss = [[LayerManager sharedLayers] getBoss];
         if (boss) {
             [boss triggerFallBack];
-        }
+        }*/
     }
 
 }

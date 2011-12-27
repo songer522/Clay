@@ -44,6 +44,11 @@
     //NSLog(@"reset got called");
 }
 
+-(void)restartLevel
+{
+    
+}
+
 -(void)setSprite:(Sprite *)sprite
 {
     

@@ -32,6 +32,7 @@
 #import "Animator.h"
 #import "GCState.h"
 #import "GCHelper.h"
+#import "CreditsScene.h"
 
 #define DEBUG_DRAW_BOUNDING_BOXES 0
 @interface GameLayer()
@@ -57,6 +58,7 @@
 @synthesize gameController = _gameController;
 @synthesize handledPauseEvent = _handledPauseEvent;
 @synthesize inComic = _inComic;
+@synthesize hasBeatenLevel = _hasBeatenLevel;
 
 +(CCScene *) scene
 {
@@ -141,6 +143,7 @@
     [[GameSettings shared] setGlobal:@"true" ForKey:@"restarting"];
     [_level resetTriggers:true];
     [_level resetObstacles];
+    [_boss restartLevel];
     [[ComicManager shared] restartLevel];
 }
 
@@ -172,6 +175,8 @@
         [[_player getSpeed] setIsUnderwater:false];
         _player.isNewUnderwaterPhysics = false;
     }
+    
+    _hasBeatenLevel = false;
     
     [_player reset];
     
@@ -339,6 +344,8 @@
                      
 -(void)endLevel
 {
+    _hasBeatenLevel = true;
+
     float finalLevelTime = [[_hud getTrackTimer] getLevelTime];
     [[LevelManager shared] recordLevelTime:finalLevelTime];
     
@@ -444,10 +451,15 @@
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[ChooseModeScene scene]]];    
 }
 
+-(void)switchToCreditsScreen
+{
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[CreditsScene scene]]];
+}
+
 -(void)recordTimesdied
 {
     int maxTimesToDie = 200;
-    NSLog(@"times died is :%d",[GCState sharedInstance].timesDied);
+    //NSLog(@"times died is :%d",[GCState sharedInstance].timesDied);
     if([GCState sharedInstance].timesDied < maxTimesToDie)
     {
         [GCState sharedInstance].timesDied++;
@@ -465,17 +477,17 @@
     int maxTimesToDie = 200;
     int maxHurdles = 400;
     double pctComplete = ((double)[GCState sharedInstance].timesDied / (int)maxTimesToDie) * 100.0;
-    NSLog(@"diedTimes:%d",[GCState sharedInstance].timesDied );
-    NSLog(@"complete percent %f",pctComplete);
+    //NSLog(@"diedTimes:%d",[GCState sharedInstance].timesDied );
+    //NSLog(@"complete percent %f",pctComplete);
 
     if(pctComplete < 100.0)
     {
     [[GCState sharedInstance] save];
     [[GCHelper sharedInstance] reportAchievement:gcAchievementTimesDied percentComplete:pctComplete];
     }
-    NSLog(@"hurdles:%d",[GCState sharedInstance].hurdlesJumpedOver );
+    //NSLog(@"hurdles:%d",[GCState sharedInstance].hurdlesJumpedOver );
     double pctComplete2 = ((double) [GCState sharedInstance].hurdlesJumpedOver / (int)maxHurdles) * 100.0;
-    NSLog(@"complete percent %f",pctComplete2);
+    //NSLog(@"complete percent %f",pctComplete2);
     if(pctComplete2 < 100.0)
     {
     [[GCState sharedInstance] save];

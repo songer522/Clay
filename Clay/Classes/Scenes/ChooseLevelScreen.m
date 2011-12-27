@@ -331,7 +331,6 @@
     _panelTransition = true;
     _backPanel = [self createInformationPanelForLevel:number];
     [_backPanel setAlpha:0.0f];
-    //[_frontPanel reset:self];
 }
 
 -(void)transitionOut

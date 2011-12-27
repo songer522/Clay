@@ -60,7 +60,7 @@ typedef enum {
 -(void)finishedAction;
 -(void)resetComicLayer;
 -(void)restartLevel;
--(void)skipComic;
+-(bool)skipComic;
 -(void)endTheGame;
 
 @end

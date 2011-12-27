@@ -14,8 +14,8 @@
 #import "SoundEngine.h"
 
 #define kPlayerActionDodgeMoveX 20.0f
-#define kPlayerActionDodgeFullDuration 1.0f;
-#define kPlayerActionDodgeActiveWhileDurationLessThan 0.9f
+#define kPlayerActionDodgeFullDuration 1.2f;
+#define kPlayerActionDodgeActiveWhileDurationLessThan 1.1f
 
 @implementation PlayerActionDodge
 
@@ -24,7 +24,7 @@
     if (!_inAction && _canTrigger) {
         _duration = kPlayerActionDodgeFullDuration;
         _cooldown = 0.0f;
-        _cooldownStart = 0.7f;
+        _cooldownStart = 0.35f;
         _parent.isInvincible = true;
         _preActionPlayerPosition = [_parent getPosition];
         [_parent endTurbo:false];

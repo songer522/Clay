@@ -35,6 +35,7 @@
         _targetPosition = 0.0f;
         _rate = 1.0f;
         _atTarget = false;
+        
     }
     
     return self;
@@ -86,7 +87,6 @@
             _comicAlpha += 2.0f * dt;
             if (_comicAlpha >= 1.0f) {
                 _comicAlpha = 1.0f;
-                _timeToWait = 5.0f;
                 _transition = BLACKBOX_PLAY_COMIC_WAIT;
             }
             [_comicPanel setOpacity:floor(255 * _comicAlpha)];
@@ -105,9 +105,12 @@
                 _comicAlpha = 0.0f;
                 [_comicPanel removeFromParentAndCleanup:YES];
                 _comicPanel = nil;
+                [_skipButton removeFromParentAndCleanup:YES];
+                _skipButton = nil;
                 [_comicManager finishedAction];
             }
             [_comicPanel setOpacity:floor(255 * _comicAlpha)];
+            [_skipButton setOpacity:floor(255 * _comicAlpha)];
             break;
         default:
             break;
@@ -189,6 +192,8 @@
 
 -(void)cueComic:(NSString*)comicName
 {
+    int durations[] = {5,10,6,7,14,7,9,10,6,8,8,6};
+    
     int comicNumber = [[comicName substringFromIndex:5] intValue];
     if (comicNumber <= 11) {        
         NSString *_imageName = [NSString stringWithFormat:@"Comic_%d.png",comicNumber];
@@ -196,7 +201,14 @@
         _comicPanel.anchorPoint = ccp(0,0);
         [_comicPanel setOpacity:0];
         [self addChild:_comicPanel];
+
+        _skipButton = [CCSprite spriteWithFile:@"Comic_Button_Skip.png"];
+        _skipButton.position = ccp(460,20);
+        _skipButton.anchorPoint = ccp(0.5f,0.5f);
+        [self addChild:_skipButton];
+        
         _transition = BLACKBOX_PLAY_COMIC_FADE_IN;
+        _timeToWait = durations[comicNumber];
         _comicAlpha = 0.0f;
         [[SoundEngine shared] playMusic:@"cutscene"];
     } else {
@@ -204,9 +216,15 @@
     }
 }
 
--(void)skipComic
+-(bool)skipComic
 {
-    _phase = BLACKBOX_PLAY_COMIC_FADE_OUT;
+    bool couldSkip = false;
+    
+    if (_transition == BLACKBOX_PLAY_COMIC_WAIT) {
+        _transition = BLACKBOX_PLAY_COMIC_FADE_OUT;
+        couldSkip = true;
+    }
+    return couldSkip;
 }
 
 -(void)draw
@@ -216,7 +234,7 @@
 
 -(void)drawBars:(float)position
 {
-    if (_transition == BLACKBOX_IN || _transition == BLACKBOX_OUT) {
+    if (_transition == BLACKBOX_IN || _transition == BLACKBOX_OUT || _transition == BLACKBOX_IDLE) {
         float scale = 1.0f;
         if ([[GameSettings shared] usingHighResolutionGraphics]) {
             scale = 2.0f;        

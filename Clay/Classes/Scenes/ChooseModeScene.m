@@ -43,6 +43,13 @@
         
         [self scheduleUpdate];
         self.isTouchEnabled = YES;
+        
+        NSString *musicStarted = [[GameSettings shared] getGlobalForKey:@"titleMusicStarted"];
+        if (![musicStarted isEqualToString:@"YES"]) {
+            [[SoundEngine shared] cueFadeIn];
+            [[SoundEngine shared] playMusic:@"title"];
+            [[GameSettings shared] setGlobal:@"YES" ForKey:@"titleMusicStarted"];
+        }
     }
     
     return self;

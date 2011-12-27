@@ -49,6 +49,7 @@
     
     Sprite *_testAnim;
     
+    bool _hasBeatenLevel; //to keep player from doing weird things between the flag and transitioning to the next level
     bool _paused;
     bool _inComic;
     bool _handledPauseEvent; //set when pause happens so that a second call to pause that same frame doesn't invalidate the first click. for example, when the pause icon is touched when paused, pausing would be called first by the pause layer, then again by the gamelayer.
@@ -60,6 +61,7 @@
 @property(readonly,nonatomic,retain) GameController *gameController;
 @property(nonatomic,assign) bool handledPauseEvent;
 @property(nonatomic,assign) bool inComic;
+@property(nonatomic,assign) bool hasBeatenLevel;
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
@@ -84,6 +86,7 @@
 
 -(void)switchToChooseLevel;
 -(void)switchToChooseMode;
+-(void)switchToCreditsScreen;
 
 -(NSMutableArray*)getGameObjectsList;
 

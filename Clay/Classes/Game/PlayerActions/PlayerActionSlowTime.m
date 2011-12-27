@@ -47,6 +47,8 @@
         
         [[SoundEngine shared] playSound:@"darkSlowTimeAction"];
         
+        [_boss triggerFallBack];
+        
     }
 }
 

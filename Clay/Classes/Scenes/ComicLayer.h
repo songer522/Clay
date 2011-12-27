@@ -40,6 +40,7 @@ typedef enum {
     float _comicAlpha;
     
     CCSprite *_comicPanel;
+    CCSprite *_skipButton;
     
     ComicManager *_comicManager; //weak reference
     
@@ -47,7 +48,6 @@ typedef enum {
 }
 
 @property (nonatomic,retain) ComicManager *comicManager;
-
 
 +(id)instance;
 
@@ -63,7 +63,7 @@ typedef enum {
 -(void)update:(ccTime)dt;
 -(void)waitToPlayVideo:(float)time;
 
--(void)skipComic;
+-(bool)skipComic;
 -(void)cueComic:(NSString*)comicName;
 -(void)resetLayer;
 
