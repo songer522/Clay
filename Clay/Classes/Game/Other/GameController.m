@@ -27,7 +27,6 @@
     self = [super init];
     if (self) {
         // Initialization code here.
-        [self changeGameState:GAMESTATE_INITIALIZE];
         _isPaused = false;
         _isInputEnabled = true;
         _isSprintEnabled = true;
@@ -41,27 +40,6 @@
 +(id)gameController
 {
     return [[self alloc] init];
-}
-
--(void) initialize
-{
-    
-}
-
--(void) changeGameState:(GameState)gameState
-{
-    switch (gameState) {
-        case GAMESTATE_INITIALIZE:
-            [self initialize];
-            break;            
-        default:
-            break;
-    }
-    
-    //hold off actually switching until later in case
-    //some logic above needs to know the previous state
-    _currentGameState = gameState;
-
 }
 
 -(void)reactToTouchAt:(CGPoint)location InputType:(InputType)type
