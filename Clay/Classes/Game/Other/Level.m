@@ -548,6 +548,13 @@
     bool collision = false;
 
     //prepare source bounding box, so we don't have to build it for every object
+    NSMutableArray *obstacles = [_obstacleManager getActiveGameObjectList];
+    
+    //guard
+    if ([obstacles count] <= 0) {
+        return false;
+    }
+
     CGPoint sourcePosition = [source getCCSprite].position;
     CGRect sourceBoundingBox = [source getBoundingBox];
     sourceBoundingBox.origin.x = sourcePosition.x - sourceBoundingBox.origin.x;
@@ -555,10 +562,9 @@
     sourceBoundingBox.origin.y = sourcePosition.y - sourceBoundingBox.origin.y;
     sourceBoundingBox.size.height = sourceBoundingBox.origin.y + sourceBoundingBox.size.height;    
     
-    NSMutableArray *obstacles = [_obstacleManager getActiveGameObjectList];
     for (GameObject *obstacle in obstacles) {
         if(!obstacle.collided && !obstacle.isInvincible) {
-            int dist = sourcePosition.x - [obstacle getPosition].x;
+            int dist = [source getPosition].x - [obstacle getPosition].x;
             if (abs(dist) < 250) { //don't do the full collision detection if they're not even close to each other.
                 collision = [self testCollisionWithGameObject:obstacle BoundingBox:sourceBoundingBox];
                 if (collision) {
