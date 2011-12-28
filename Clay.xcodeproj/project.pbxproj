@@ -619,6 +619,7 @@
 		61F477B714A24CC40068E8D2 /* timed_normal_level2.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61F176AB149C2E4600D90100 /* timed_normal_level2.tmx */; };
 		61F477B814A24CC40068E8D2 /* timed_normal_level2_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61F176A7149C220F00D90100 /* timed_normal_level2_hd.tmx */; };
 		61F477C514A2EFE90068E8D2 /* story_easy_level1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61F477C414A2EFE80068E8D2 /* story_easy_level1.tmx */; };
+		61F477B914A24CC40068E8D2 /* supersonic.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54CB72521460506400311904 /* supersonic.wav */; };
 		61F7F28B149A5945006B02BC /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F7F28A149A5945006B02BC /* Twitter.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		61F7F28D149A5950006B02BC /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F7F28C149A5950006B02BC /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
@@ -3324,6 +3325,21 @@
 				544B041D14AAB3F50029FAD2 /* wind2_long.caf in Resources */,
 				544B041E14AAB3F50029FAD2 /* wind2_medium.caf in Resources */,
 				544B041F14AAB3F50029FAD2 /* wind2_short.caf in Resources */,
+				5418B32D14A2511300FB00EC /* selectOptionsMenu.wav in Resources */,
+				546C2A7F14A2CFF30008DC5A /* healthGained.wav in Resources */,
+				546C2A8014A2CFF30008DC5A /* timFell.wav in Resources */,
+				61DE0EB514AA852700801244 /* tileset_level_1-hd.png in Resources */,
+				61DE0EB614AA852700801244 /* tileset_level_1.png in Resources */,
+				61DE0EBA14AA8A8C00801244 /* story_easy_level1_hd.tmx in Resources */,
+				61DE0EC014AAAB0000801244 /* story_normal_level1_hd.tmx in Resources */,
+				6179872A14AAB8700012655D /* story_hard_level1_hd.tmx in Resources */,
+				6179872C14AABB300012655D /* timed_normal_level1_hd.tmx in Resources */,
+				6179872E14AABD540012655D /* story_normal_level1.tmx in Resources */,
+				6179873214AABF820012655D /* story_easy_level1.tmx in Resources */,
+				6179873414AABF8E0012655D /* story_hard_level1.tmx in Resources */,
+				6179873614AABFEA0012655D /* timed_normal_level1.tmx in Resources */,
+				6179873814AAC44D0012655D /* timed_hard_level1_hd.tmx in Resources */,
+				6179873A14AACE150012655D /* timed_hard_level1.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

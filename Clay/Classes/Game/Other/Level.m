@@ -548,6 +548,7 @@
     bool collision = false;
 
     //prepare source bounding box, so we don't have to build it for every object
+    NSString *mode = [[GameSettings shared] getGlobalForKey:@"gameMode"];
     NSMutableArray *obstacles = [_obstacleManager getActiveGameObjectList];
     
     //guard
@@ -626,6 +627,8 @@
     sourceBoundingBox.size.width = sourceBoundingBox.origin.x + sourceBoundingBox.size.width;
     sourceBoundingBox.origin.y = position.y - sourceBoundingBox.origin.y;
     sourceBoundingBox.size.height = sourceBoundingBox.origin.y + sourceBoundingBox.size.height;  
+    
+    NSString *mode = [[GameSettings shared] getGlobalForKey:@"gameMode"];
     
     NSMutableArray *obstacles = [_obstacleManager getActiveGameObjectList];
     for (GameObject *obstacle in obstacles) {
