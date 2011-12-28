@@ -497,7 +497,8 @@
 }
 -(void)checkHasBeenHit
 {
-    if(!_player.gotHit && ![GCState sharedInstance].flawlessRun &&[_level.name isEqualToString:@"level3"])
+     NSString *mode = [[GameSettings shared] getGlobalForKey:@"gameMode"];
+    if(!_player.gotHit && ![GCState sharedInstance].flawlessRun &&[_level.name isEqualToString:@"level3"] && [mode isEqualToString:@"timed"])
     {
         [GCState sharedInstance].flawlessRun = true;
         [[GCState sharedInstance] save];

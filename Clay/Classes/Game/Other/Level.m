@@ -572,7 +572,7 @@
                 }
                 else if(!obstacle.collided && dist > 200) //if tim has passed the obstacle and it hasn't been hit yet
                     {
-                        if(obstacle.isHurdle && !obstacle.hasAppeared)
+                        if(obstacle.isHurdle && !obstacle.hasAppeared && [mode isEqualToString:@"timed"])
                         {
                             int maxHurdles = 400;
                             
@@ -632,7 +632,7 @@
         if(![obstacle hasBeenHit] && [obstacle canAggressiveHit]) {
             collision = [self testCollisionWithGameObject:obstacle BoundingBox:sourceBoundingBox];
             if (collision) {
-                if ([source getCollisionBehavior] == COLLISION_BEHAVIOR_HEN_KICKED) {
+                if ([source getCollisionBehavior] == COLLISION_BEHAVIOR_HEN_KICKED && [mode isEqualToString:@"timed"]) {
                     //NSLog(@"Counting Chicken Kicked Into Cow");
                     int maxKicksIntoCow = 100;
                     
