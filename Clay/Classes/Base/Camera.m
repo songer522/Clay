@@ -15,6 +15,7 @@
 @implementation Camera
 
 @synthesize trackingTarget = _trackingTarget;
+@synthesize isPlayerResetting = _isPlayerResetting;
 
 #define CAMERA_MOVE_TO_TARGET_SPEED 6.0f
 #define CAMERA_OFFSCREEN_PADDING_LEFT 300.0f
@@ -43,6 +44,7 @@ static Camera *_sharedCamera = nil;
         _target = nil;
         
         _isStutterMode = [[GameSettings shared] isStutterMode];
+        _isPlayerResetting = true;
         
     }
     
@@ -173,6 +175,8 @@ static Camera *_sharedCamera = nil;
 -(void)moveTowardsTarget:(float)dt PlayerOnGround:(bool)onGround
 {
     float dx,dy;
+    float magnitude;
+    //float oldx = _x, oldy = _y;
     
     if (_target != nil) {
         
@@ -190,7 +194,7 @@ static Camera *_sharedCamera = nil;
         
         float distance = sqrtf(dx*dx + dy*dy);
         
-        float magnitude = distance * CAMERA_MOVE_TO_TARGET_SPEED * dt;
+        magnitude = distance * CAMERA_MOVE_TO_TARGET_SPEED * dt;
         
         if (distance > 0.1f) {
             if (_trackingTarget) {
@@ -205,7 +209,7 @@ static Camera *_sharedCamera = nil;
                 _x = position.x;
             }
             _y = position.y;
-            
+            _isPlayerResetting = false;
         }
     }
     if (dy!=0) {
@@ -213,6 +217,9 @@ static Camera *_sharedCamera = nil;
     }
     
     [self updateOnScreenRange];
+    
+    //NSLog(@"OX: %.2f, OY: %.2f, | NX: %.2f, NY: %.2f",oldx,oldy,_x,_ y]'''
+    NSLog(@"DX: %.2f, DY: %.2f MAG: %.2f",dx,dy,magnitude);
 }
 
 -(void)snapToTarget

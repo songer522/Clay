@@ -1,5 +1,22 @@
 Track Lapse Changelog
 
+Build 111228.01
+==================
+
+
+Global - Updated game icon.
+Global - Music files have all been updated so that they are 96kbps Mono files, saving space and maybe slight performance.
+Level 5 - 
+
+Optimization - When battery image is changed, it no longer creates strings as needed, but accesses a list of names prepared on load.
+Optimization - Deathpits and ledges are now calculated for the entire level on load and stored in a very fast list, reducing the time spent checking the properties in the meta layer each update.
+Optimization - Sound effects were all converted to a format that is supposed to give better performance.
+Optimization - References that are accessed every update have been made local, so they don't have to be looked up every frame.
+Optimization - The bounding box for the player and aggressive objects are prepared before doing collision detection with objects instead of recreating it for every collision check.
+
+
+
+
 Build 111222.01
 ==================
 Global - Fixed the title music not cueing up again when resetting to main menu from story mode, which caused a couple other sound issues
