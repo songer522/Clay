@@ -545,7 +545,7 @@
 {
     bool collision = false;
     GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
-    
+    NSString *mode = [[GameSettings shared] getGlobalForKey:@"gameMode"];
     NSMutableArray *obstacles = [_obstacleManager getActiveGameObjectList];
     for (GameObject *obstacle in obstacles) {
         if(!obstacle.collided && !obstacle.isInvincible) {
@@ -558,7 +558,7 @@
                 }
                 else if(!obstacle.collided && [obstacle checkIfOffScreen:[obstacle getPosition]])
                     {
-                        if(obstacle.isHurdle && !obstacle.hasAppeared)
+                        if(obstacle.isHurdle && !obstacle.hasAppeared && [mode isEqualToString:@"timed"])
                         {
                             int maxHurdles = 400;
                             
@@ -604,13 +604,12 @@
 -(bool)testCollisionsForAggressive:(id<Collidable>)source
 {
     bool collision = false;
-    
-    NSMutableArray *obstacles = [_obstacleManager getActiveGameObjectList];
+     NSString *mode = [[GameSettings shared] getGlobalForKey:@"gameMode"];    NSMutableArray *obstacles = [_obstacleManager getActiveGameObjectList];
     for (GameObject *obstacle in obstacles) {
         if(![obstacle hasBeenHit] && [obstacle canAggressiveHit]) {
             collision = [self testCollisionWithGameObject:obstacle Source:source];
             if (collision) {
-                if ([source getCollisionBehavior] == COLLISION_BEHAVIOR_HEN_KICKED) {
+                if ([source getCollisionBehavior] == COLLISION_BEHAVIOR_HEN_KICKED && [mode isEqualToString:@"timed"]) {
                     //NSLog(@"Counting Chicken Kicked Into Cow");
                     int maxKicksIntoCow = 100;
                     
