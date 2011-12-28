@@ -3,70 +3,70 @@
  <tileset firstgid="1" name="Track" tilewidth="64" tileheight="64">
   <image source="tileset_level_1-hd.png" width="1024" height="768"/>
  </tileset>
-    <tileset firstgid="193" name="TrackLapse_Icons" tilewidth="64" tileheight="64">
-        <image source="TrackLapse_Icons.png" width="640" height="576"/>
-        <tile id="0">
-            <properties>
-                <property name="obstacle" value="hurdle"/>
-            </properties>
-        </tile>
-        <tile id="1">
-            <properties>
-                <property name="special" value="spawnpoint"/>
-            </properties>
-        </tile>
-        <tile id="2">
-            <properties>
-                <property name="special" value="checkpoint"/>
-            </properties>
-        </tile>
-        <tile id="3">
-            <properties>
-                <property name="special" value="nextlevelNE"/>
-            </properties>
-        </tile>
-        <tile id="4">
-            <properties>
-                <property name="special" value="jimAppearance"/>
-            </properties>
-        </tile>
-        <tile id="5">
-            <properties>
-                <property name="obstacle" value="bighurdle"/>
-            </properties>
-        </tile>
-        <tile id="6">
-            <properties>
-                <property name="obstacle" value="sandpit"/>
-            </properties>
-        </tile>
-        <tile id="7">
-            <properties>
-                <property name="obstacle" value="hen"/>
-            </properties>
-        </tile>
-        <tile id="8">
-            <properties>
-                <property name="obstacle" value="cow"/>
-            </properties>
-        </tile>
-        <tile id="9">
-            <properties>
-                <property name="obstacle" value="manure"/>
-            </properties>
-        </tile>
-        <tile id="41">
-            <properties>
-                <property name="obstacle" value="smallHurdle"/>
-            </properties>
-        </tile>
-        <tile id="81">
-            <properties>
-                <property name="obstacle" value="clappingCrowd"/>
-            </properties>
-        </tile>
-    </tileset>
-  <tileset firstgid="283" name="meta" tilewidth="64" tileheight="64">
+ <tileset firstgid="193" name="TrackLapse_Icons" tilewidth="64" tileheight="64">
+  <image source="TrackLapse_Icons.png" width="640" height="576"/>
+  <tile id="0">
+   <properties>
+    <property name="obstacle" value="hurdle"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="special" value="spawnpoint"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="special" value="checkpoint"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="special" value="nextlevelNE"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="special" value="jimAppearance"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="obstacle" value="bighurdle"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="obstacle" value="sandpit"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="obstacle" value="hen"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="obstacle" value="cow"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="obstacle" value="manure"/>
+   </properties>
+  </tile>
+  <tile id="41">
+   <properties>
+    <property name="obstacle" value="smallHurdle"/>
+   </properties>
+  </tile>
+  <tile id="81">
+   <properties>
+    <property name="obstacle" value="clappingCrowd"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="283" name="meta" tilewidth="64" tileheight="64">
   <image source="meta.png" width="256" height="192"/>
   <tile id="0">
    <properties>
@@ -127,7 +127,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1csNwyAMANB2he6/TD9qd+kUVQ65RAkYatJKee+WxDLEGDidAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAI3j/eb5rMO5yzs23V57ZszH+njx+i+w1nmXXdKk0795va6K92DpGb31aeyvqlZSntb5ZfdJbl7Xxo+9KRu7prLXKNHq/L/Xs8Whvlv6lluPb75NaL0fPpL3OyNmIvhyxj7b+b2vdS+uxliv6rqTn3pnV+ifzzo/myo6bRM6c1joue7j23DKXUuyoe+jRGA+Mc/v1BAAAAAAAAACAw/sAb1ox6Q==
+   eJzt1ssNgzAMAFC6Qvdfph+1u3SKqgcuCEriOA1S37tiHMt2BNMEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACMdj6NOfd10HyXg+TIzDN7VMbfks+vkb0fs+yeLkXrrn2vJD5yt6P9qd2tUs+kPLX9zdqTaF9Kz6+ts+edzprVmug8Mua4tzutz5ci9/bXNbbc95KzSudWUkePvexxj7L6khWzpuV/cW9Wmd/80lzZcR8jeru14zW1fIuNPttyD7wD9HEdXQAAAAAAAAAA8PfeGeoroA==
   </data>
  </layer>
  <layer name="meta" width="1050" height="14" opacity="0.68">
