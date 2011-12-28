@@ -227,7 +227,7 @@
     if (_isTripping || _isDead || _isInMidAir || _waitToGetUp > 0.f) { return; }
     if ([_thirdAction inAction] && ![_thirdAction playerAllowedToSprint]) { return; }
     
-    if (_hitPoints > 1) {
+    if (_hitPoints > 0) {
         
         [_speed startTurbo];
         _isTurbo=true;
@@ -235,11 +235,6 @@
         [[SoundEngine shared] playSound:@"turboStart"];
         [_skin setPlayerAnimation:PLAYER_ANIM_SPRINTING ForSprite:_sprite];
         
-        /*
-        Boss *boss = [[LayerManager sharedLayers] getBoss];
-        if (boss) {
-            [boss triggerFallBack];
-        }*/
     }
 
 }

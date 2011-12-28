@@ -104,5 +104,7 @@
 	<string>selectOptionsMenu.caf</string>
 	<key>healthGained</key>
 	<string>healthGained.caf</string>
+	<key>endLevel</key>
+	<string>victory.mp3</string>
 </dict>
 </plist>

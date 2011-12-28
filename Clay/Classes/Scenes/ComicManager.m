@@ -211,7 +211,7 @@ static ComicManager *_shared = nil;
                // [Appirater appEnteredForeground:YES];
                 
                 if ([gameMode isEqualToString:@"story"]) {
-                    [self switchToPhase:COMIC_PHASE_PLAY_VIDEO];                    
+                    [self switchToPhase:COMIC_PHASE_STARTING_VIDEO];                    
                 } else {
                     [gameLayer switchToChooseLevel];
                 }

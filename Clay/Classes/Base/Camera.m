@@ -219,7 +219,7 @@ static Camera *_sharedCamera = nil;
     [self updateOnScreenRange];
     
     //NSLog(@"OX: %.2f, OY: %.2f, | NX: %.2f, NY: %.2f",oldx,oldy,_x,_ y]'''
-    NSLog(@"DX: %.2f, DY: %.2f MAG: %.2f",dx,dy,magnitude);
+    //NSLog(@"DX: %.2f, DY: %.2f MAG: %.2f",dx,dy,magnitude);
 }
 
 -(void)snapToTarget

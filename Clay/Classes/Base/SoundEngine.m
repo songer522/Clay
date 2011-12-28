@@ -174,7 +174,7 @@ static SoundEngine *_shared = nil;
                 _soundMode = SOUND_MODE_NORMAL;
             }
             [_audioEngine setBackgroundMusicVolume:_volume * _masterMusicVolume];
-            [_audioEngine setEffectsVolume:_volume * _masterSfxVolume];
+            [_audioEngine setEffectsVolume:_masterSfxVolume];
             break;
         case SOUND_MODE_FADEOUT:
             _volume -= rate;
@@ -183,7 +183,7 @@ static SoundEngine *_shared = nil;
                 _soundMode = SOUND_MODE_NORMAL;
             }
             [_audioEngine setBackgroundMusicVolume:_volume * _masterMusicVolume];
-            [_audioEngine setEffectsVolume:_volume * _masterSfxVolume];
+            [_audioEngine setEffectsVolume:_masterSfxVolume];
         default:
             break;
     }
