@@ -83,6 +83,16 @@
     _x += _vx * dt;    
     _y -= _vy * dt;
 
+    
+    if (_isNewUnderwaterPhysics) {
+        if (_y > 220.0f) {
+            _y = 220.0f;
+            if (_ay < 0) {
+                _ay = 0.0f;
+            }
+        }
+    }
+    
     [self updateFlags]; //need to know if the player is falling
 
 }

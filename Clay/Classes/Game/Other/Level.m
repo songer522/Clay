@@ -776,6 +776,7 @@
         //background objects not moving in parallax.
         //[object setPosition:CGPointMake(_x, _y)];
     }
+    
 }
 
 -(void)dealloc
