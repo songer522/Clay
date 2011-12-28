@@ -18,6 +18,8 @@
 @class Trigger;
 @class RegionManager;
 @class GameObjectController;
+@class GameLayer;
+@class Player;
 
 @interface Level : NSObject
 {
@@ -64,6 +66,12 @@
 
     GameObjectController *_gameObjects; //reference to the factory for building gameobjects
     
+    
+    //weak references
+    GameLayer *_gameLayer;
+    Player *_player;
+    
+    
     float _x;
     float _y;
     float _scale;
@@ -98,6 +106,7 @@
 
 -(bool)testCollisionsForAggressive:(id<Collidable>)source;
 -(bool)testCollisionWithGameObject:(id<Collidable>)target Source:(id<Collidable>)source;
+-(bool)testCollisionWithGameObject:(id<Collidable>)target BoundingBox:(CGRect)boundingBox;
 
 -(void)addObstaclesToMapWithBehavior:(CollisionBehavior)behavior;
 

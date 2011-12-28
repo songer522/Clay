@@ -54,6 +54,9 @@
     if (self) {
         // Initialization code here.
         
+        _gameLayer = [[LayerManager sharedLayers] currentLayer];
+        _player = player;
+
         _gameObjects = gameObjects;
         
         _obstacleMapObjects = [[NSMutableArray alloc] initWithCapacity:100];
@@ -101,6 +104,7 @@
         [_obstacles releaseMap];
         
         _collisionHandler = [CollisionDetection collisionHandlerWithMetaLayer:_meta Map:_map];
+        
 
     }
     
@@ -117,9 +121,8 @@
 
 -(void)setHudButtonsAndThirdAction:(NSString*)action
 {
-    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
-    [gameLayer.player setThirdAction:action];
-    [[gameLayer getHud] setHudButtonsAndThirdAction:action];
+    [_player setThirdAction:action];
+    [[_gameLayer getHud] setHudButtonsAndThirdAction:action];
 }
 
 -(void)loadLayers:(NSString*)layerList Player:(Player*)player Name:(NSString*)levelName
@@ -140,11 +143,10 @@
         }
         
         else if ([layerName isEqualToString:@"ledges"]) {
-            GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
             //stop existing rainylevel, and start new one if right level
-            [gameLayer stopRainyLevel];
+            [_gameLayer stopRainyLevel];
             if([levelName isEqualToString:@"level9"]) {
-                [gameLayer initializeRainyLevel];
+                [_gameLayer initializeRainyLevel];
             }
         } else if ([layerName compare:@"actives"] == NSOrderedSame) {
             
@@ -517,7 +519,7 @@
         [object reset];
     }*/
     
-    CGPoint playerPos = [[[LayerManager sharedLayers] getPlayer] getPosition];
+    CGPoint playerPos = [_player getPosition];
     [_obstacleManager resetCurrentRegion];
     [_obstacleManager changeRegionsBasedOnX:(playerPos.x - 256)];
 }
@@ -544,19 +546,25 @@
 -(bool)testCollisions:(GameObject*)source
 {
     bool collision = false;
-    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+
+    //prepare source bounding box, so we don't have to build it for every object
+    CGPoint sourcePosition = [source getCCSprite].position;
+    CGRect sourceBoundingBox = [source getBoundingBox];
+    sourceBoundingBox.origin.x = sourcePosition.x - sourceBoundingBox.origin.x;
+    sourceBoundingBox.size.width = sourceBoundingBox.origin.x + sourceBoundingBox.size.width;
+    sourceBoundingBox.origin.y = sourcePosition.y - sourceBoundingBox.origin.y;
+    sourceBoundingBox.size.height = sourceBoundingBox.origin.y + sourceBoundingBox.size.height;    
     
     NSMutableArray *obstacles = [_obstacleManager getActiveGameObjectList];
     for (GameObject *obstacle in obstacles) {
         if(!obstacle.collided && !obstacle.isInvincible) {
-            
-            int dist = abs([source getPosition].x - [obstacle getPosition].x);
-            if (dist < 250) { //don't do the full collision detection if they're not even close to each other.
-                collision = [self testCollisionWithGameObject:obstacle Source:source];
+            int dist = sourcePosition.x - [obstacle getPosition].x;
+            if (abs(dist) < 250) { //don't do the full collision detection if they're not even close to each other.
+                collision = [self testCollisionWithGameObject:obstacle BoundingBox:sourceBoundingBox];
                 if (collision) {
-                    [gameLayer.player startCollision:[obstacle startCollision] Source:obstacle];
+                    [_player startCollision:[obstacle startCollision] Source:obstacle];
                 }
-                else if(!obstacle.collided && [obstacle checkIfOffScreen:[obstacle getPosition]])
+                else if(!obstacle.collided && dist > 200) //if tim has passed the obstacle and it hasn't been hit yet
                     {
                         if(obstacle.isHurdle && !obstacle.hasAppeared)
                         {
@@ -580,7 +588,7 @@
                     }
             }
 
-            if(dist < 900) {
+            if(abs(dist) < 900) {
                 
                 //if aggressive, test the object against the non-aggressive objects (example of aggressive: chickens in barn level)
                 if (!collision && obstacle.isAggressive) {
@@ -593,7 +601,7 @@
         Projectile *projectile = [obstacle getProjectile];
         if (projectile!=nil && [projectile getActive]) {
             if([self testCollisionWithGameObject:projectile Source:source]) {
-                [gameLayer.player startCollision:PLAYER_EFFECT_COLLIDE Source:projectile];
+                [_player startCollision:PLAYER_EFFECT_COLLIDE Source:projectile];
                 [projectile startCollision];
             }                    
         }
@@ -605,10 +613,18 @@
 {
     bool collision = false;
     
+    //prepare source bounding box, so we don't have to build it for every object
+    CGPoint position = [source getCCSprite].position;
+    CGRect sourceBoundingBox = [source getBoundingBox];
+    sourceBoundingBox.origin.x = position.x - sourceBoundingBox.origin.x;
+    sourceBoundingBox.size.width = sourceBoundingBox.origin.x + sourceBoundingBox.size.width;
+    sourceBoundingBox.origin.y = position.y - sourceBoundingBox.origin.y;
+    sourceBoundingBox.size.height = sourceBoundingBox.origin.y + sourceBoundingBox.size.height;  
+    
     NSMutableArray *obstacles = [_obstacleManager getActiveGameObjectList];
     for (GameObject *obstacle in obstacles) {
         if(![obstacle hasBeenHit] && [obstacle canAggressiveHit]) {
-            collision = [self testCollisionWithGameObject:obstacle Source:source];
+            collision = [self testCollisionWithGameObject:obstacle BoundingBox:sourceBoundingBox];
             if (collision) {
                 if ([source getCollisionBehavior] == COLLISION_BEHAVIOR_HEN_KICKED) {
                     //NSLog(@"Counting Chicken Kicked Into Cow");
@@ -638,39 +654,59 @@
     return collision;
 }
 
--(bool)testCollisionWithGameObject:(id<Collidable>)target Source:(id<Collidable>)source
+-(bool)testCollisionWithGameObject:(id<Collidable>)target BoundingBox:(CGRect)source
 {
-    bool collision = true;
-    
-    float scale = 1;
-    
-    //both of these are wrong in the same way, so they seem right, but they wouldn't match with the world
-    
     CGPoint position = [target getCCSprite].position;
     CGRect boundingBox = [target getBoundingBox];
-    float targetLeft = position.x - (boundingBox.origin.x * scale);
-    float targetRight = targetLeft + (boundingBox.size.width * scale);
-    float targetBottom = position.y - (boundingBox.origin.y * scale);
-    float targetTop = targetBottom + (boundingBox.size.height * scale);
+    float targetLeft = position.x - (boundingBox.origin.x);
+    float targetRight = targetLeft + (boundingBox.size.width);
+    float targetBottom = position.y - (boundingBox.origin.y);
+    float targetTop = targetBottom + (boundingBox.size.height);
+    
+    float sourceLeft = source.origin.x;
+    float sourceRight = source.size.width;
+    float sourceBottom = source.origin.y;
+    float sourceTop = source.size.height;    
+    
+    //assume that a collision happened unless the sides of the
+    //target object indicate there can't possibly be
+    //an intersection. by checking all four sides this gives
+    //full detection, and is more efficient than other methods
+    if (sourceBottom > targetTop) { return false; }
+    if (sourceTop < targetBottom) { return false; }
+    if (sourceRight < targetLeft) { return false; }
+    if (sourceLeft > targetRight) { return false; }
+    
+    return true;
+}
+
+-(bool)testCollisionWithGameObject:(id<Collidable>)target Source:(id<Collidable>)source
+{
+    CGPoint position = [target getCCSprite].position;
+    CGRect boundingBox = [target getBoundingBox];
+    float targetLeft = position.x - (boundingBox.origin.x);
+    float targetRight = targetLeft + (boundingBox.size.width);
+    float targetBottom = position.y - (boundingBox.origin.y);
+    float targetTop = targetBottom + (boundingBox.size.height);
     
     position = [source getCCSprite].position;
     boundingBox = [source getBoundingBox];
-    float sourceLeft = position.x - (boundingBox.origin.x * scale);
-    float sourceRight = sourceLeft + (boundingBox.size.width * scale);
-    float sourceBottom = position.y - (boundingBox.origin.y * scale);
-    float sourceTop = sourceBottom + (boundingBox.size.height * scale);
+    float sourceLeft = position.x - (boundingBox.origin.x);
+    float sourceRight = sourceLeft + (boundingBox.size.width);
+    float sourceBottom = position.y - (boundingBox.origin.y);
+    float sourceTop = sourceBottom + (boundingBox.size.height);
     
     
     //assume that a collision happened unless the sides of the
     //target object indicate there can't possibly be
     //an intersection. by checking all four sides this gives
     //full detection, and is more efficient than other methods
-    if (sourceBottom > targetTop) { collision = false; }
-    if (sourceTop < targetBottom) { collision = false; }
-    if (sourceRight < targetLeft) { collision = false; }
-    if (sourceLeft > targetRight) { collision = false; }
+    if (sourceBottom > targetTop) { return false; }
+    if (sourceTop < targetBottom) { return false; }
+    if (sourceRight < targetLeft) { return false; }
+    if (sourceLeft > targetRight) { return false; }
     
-    return collision;
+    return true;
 }
 
 
