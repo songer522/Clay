@@ -99,6 +99,8 @@
         _isVisible = true;
         _isHurdle = false;
         _isStutterMode = [[GameSettings shared] isStutterMode];
+        
+        
     }
     
     return self;
@@ -865,11 +867,12 @@
     _movedBy = 0.0f;
     _stopCurve=false;
     _hasAppeared=false;
+    _chaseTriggered = false;
     if(self )
     _madeSound = false;
     [_sprite setAlpha:1.0f];
      
-    if ([_originalAnimation compare:@"none"] != NSOrderedSame) {
+    if (![_originalAnimation isEqualToString:@"none"]) {
         [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:_originalAnimation];        
     }
     
@@ -904,8 +907,10 @@
     
     else if(_currentBehavior == COLLISION_BEHAVIOR_MAD_DOG) {
         _currentBehavior = COLLISION_BEHAVIOR_MAD_DOG;
+        /*
         [self setOriginalAnimation:@"dogAnim"];
         [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"dogAnim"];
+         */
     }
     else if(_currentBehavior ==COLLISION_BEHAVIOR_GARGOYLE) {
         
@@ -916,12 +921,6 @@
         [self setBoundingBox:CGRectMake(-45, 0, 20, 25)];
         _hasTriggered=false;
         [[_sprite getAnimation] changeAnimationSpeed:1];
-    }
-
-    else if(_currentBehavior == COLLISION_BEHAVIOR_RETRO_ZOMBIE) {
-        _currentBehavior = COLLISION_BEHAVIOR_RETRO_ZOMBIE;
-        [self setOriginalAnimation:@"retroZombieStatic"];
-        [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"retroZombieStatic"];
     }
     else if(_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_WALK_FAST || _currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_FADE) {
         _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_WALK_FAST;
