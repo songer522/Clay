@@ -250,7 +250,7 @@
     }
     [_speed endTurbo];
     
-    if(_isTurbo && _hitPoints>1 )
+    if(_isTurbo && _hitPoints>0 )
     {
         GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
         gameLayer.gameController.isSprintEnabled=false;

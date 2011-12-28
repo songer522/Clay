@@ -38,7 +38,7 @@
         // Initialization code here.
         sprite = [Sprite spriteWithFile:@"blank.png"];
         
-        _healthIcons = [[NSMutableArray alloc] initWithCapacity:6];
+        _healthIcons = [[NSMutableArray alloc] initWithCapacity:7];
         _batterySpriteFrames = [[NSMutableArray alloc] initWithCapacity:7];
         
         for (int i=0; i<6;i++) {
@@ -48,7 +48,7 @@
         }
         
         //set up health icons
-        for (int i=0; i<6; i++) {
+        for (int i=0; i<7; i++) {
             HealthIcon *icon = [HealthIcon instance];
             [icon setHealthAnimTypeById:i];
             [icon setBattery:self];
@@ -81,12 +81,14 @@
     int diff = _currentFrame - final;
     
     if (diff > 0) {
-        for (int i=0; i<(3 + diff); i++) {
+        int start = MAX((3 - diff),0);
+        for (int i=start; i<(3 + diff); i++) {
             HealthIcon *icon = [_healthIcons objectAtIndex:i];
             [icon startHealthAnimWithSprite:HEALTHICON_POSITIVE];
         }
     } else if(diff < 0) {
-        for (int i=0; i<(3 - diff); i++) {
+        int lessThan = MAX((3 - diff),0);
+        for (int i=3; i<lessThan; i++) { //don't start from 0 because we don't want it to appear on Tim anymore for negative
             HealthIcon *icon = [_healthIcons objectAtIndex:i];
             [icon startHealthAnimWithSprite:HEALTHICON_NEGATIVE];
         }        
@@ -105,10 +107,9 @@
     [[sprite getCCSprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[_batterySpriteFrames objectAtIndex:frameNumber]]];
     
     _currentFrame = frameNumber;
-    if (_currentFrame == 4) {
+    if (_currentFrame == 4 && !_isRecharging) {
         _totalTime = 0.0f;
         [[sprite getCCSprite] setOpacity:255];
-        _waitToIncrease = 11.0f;
         [[SoundEngine shared] playSound:@"lowBattery"];
         
         //disable sprint button in the hud
@@ -131,7 +132,6 @@
         }
         
         [[sprite getCCSprite] setVisible:YES];
-        _waitToIncrease = 5.0f;
     }
     
     _wait = 3.0f;
@@ -144,14 +144,6 @@
     if (_isRecharging) {
         [self recharging:dt];
     } else {
-        if(![_player getIsTurbo]) {
-            _waitToIncrease -= dt;
-        }
-        if (_waitToIncrease <=0.0f) {
-            //automatic recharging is currently disabled
-            //[_player changeHealth:1];
-        }
-        
         if (_currentFrame == 4) {
             [self lowBatteryWarning:dt];
         } else {
@@ -200,7 +192,8 @@
     if(_player.isDead) {
         [self setFrame:5];
     }
-    _isRecharging = true;
+    [self changeValueBy:4];
+    //_isRecharging = true;
     _alpha = 1.0f;
     [[sprite getCCSprite] setVisible:YES];
     [[sprite getCCSprite] setOpacity:255];
@@ -233,6 +226,7 @@
 -(void)reset
 {
     [self setFrame:1];
+    [self startRecharge];
     _isRecharging = false;
     _wasLowBattery = false;
     [[sprite getCCSprite] setOpacity:255];

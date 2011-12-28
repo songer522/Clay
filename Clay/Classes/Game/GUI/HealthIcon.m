@@ -99,6 +99,11 @@
             _position.y = 13.0f;
             _waitToStart = 0.75f;            
             break;
+        case HEALTHANIM_INTO_BATTERY_4:
+            _position.x = -10.0f;
+            _position.y = 13.0f;
+            _waitToStart = 1.10f;            
+            break;
         default:
             break;
     }
@@ -170,29 +175,14 @@
             [_sprite setPosition:CGPointMake(_player.x + _position.x, _player.y + _position.y)];
             break;
         case HEALTHANIM_INTO_BATTERY_1:
+        case HEALTHANIM_INTO_BATTERY_2:
+        case HEALTHANIM_INTO_BATTERY_3:
+        case HEALTHANIM_INTO_BATTERY_4:
             if (_duration<=0.75f) {
                 if (!_adjustedBattery) {
                     [self adjustBattery];
                 }
                 _position.x += batteryRate;             
-            }
-            [_sprite setScreenPosition:CGPointMake(_battery.x + _position.x, _battery.y + _position.y)];
-            break;
-        case HEALTHANIM_INTO_BATTERY_2:
-            if (_duration<=0.75f) {
-                if (!_adjustedBattery) {
-                    [self adjustBattery];
-                }
-                _position.x += 3.0f * rate;
-            }
-            [_sprite setScreenPosition:CGPointMake(_battery.x + _position.x, _battery.y + _position.y)];
-            break;
-        case HEALTHANIM_INTO_BATTERY_3:
-            if (_duration<=0.75f) {
-                if (!_adjustedBattery) {
-                    [self adjustBattery];
-                }
-                _position.x += 3.0f * rate;
             }
             [_sprite setScreenPosition:CGPointMake(_battery.x + _position.x, _battery.y + _position.y)];
             break;
