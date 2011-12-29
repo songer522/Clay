@@ -269,7 +269,7 @@
 			<false/>
 		</dict>
 		
-		<key>Env_Town_Hay.png</key>
+		<key>Env_Town_Haybale_1.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -291,7 +291,7 @@
 			<false/>
 		</dict>
 		
-		<key>Env_Town_Leaf.png</key>
+		<key>Env_Town_Leaf_1.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -313,7 +313,7 @@
 			<false/>
 		</dict>
 		
-		<key>Env_Town_SmallHay.png</key>
+		<key>Env_Town_SmallHaybale_1.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
