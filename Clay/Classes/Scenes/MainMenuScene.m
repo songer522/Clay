@@ -175,7 +175,7 @@
                 [self switchToChoice];
             } else if ([_optionsButton testCollision:position]) {
                 _switchToChoice = MENU_SWITCHTO_OPTIONS;
-                [[SoundEngine shared] playSound:@"selectOptionsMenu"];
+                [[SoundEngine shared] playSound:@"confirm"];
                 _selectedButton = _optionsButton;
                 shouldStart = true;
             } else if(_isContinueButtonEnabled && [_continueButton testCollision:position]) {

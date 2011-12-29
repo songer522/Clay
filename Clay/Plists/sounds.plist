@@ -108,5 +108,9 @@
 	<string>victory.mp3</string>
 	<key>pigEnters</key>
 	<string>pigSqueal.mp3</string>
+	<key>confirm</key>
+	<string>confirm.wav</string>
+	<key>cancel</key>
+	<string>cancel.wav</string>
 </dict>
 </plist>
