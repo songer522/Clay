@@ -65,6 +65,16 @@
                 <property name="obstacle" value="clappingCrowd"/>
             </properties>
         </tile>
+        <tile id="82">
+            <properties>
+                <property name="obstacle" value="clappingCrowd2"/>
+            </properties>
+        </tile>
+        <tile id="83">
+            <properties>
+                <property name="obstacle" value="clappingCrowd3"/>
+            </properties>
+        </tile>
     </tileset>
   <tileset firstgid="283" name="meta" tilewidth="32" tileheight="32">
   <image source="meta.png" width="256" height="192"/>
@@ -127,7 +137,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-    eJzt1ssNgzAMAFC6Qvdfph+1u3SKqgcuCEriOA1S37tiHMt2BNMEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACMdj6NOfd10HyXg+TIzDN7VMbfks+vkb0fs+yeLkXrrn2vJD5yt6P9qd2tUs+kPLX9zdqTaF9Kz6+ts+edzprVmug8Mua4tzutz5ci9/bXNbbc95KzSudWUkePvexxj7L6khWzpuV/cW9Wmd/80lzZcR8jeru14zW1fIuNPttyD7wD9HEdXQAAAAAAAAAA8PfeGeoroA==
+    eJzt1ksOgkAMAFC8gnr/u/iJ3sVTGBezISAzpSMkvreldJq2ExgGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABga8fDNue+dprvspMcmXmKR2P8Lfn8Ftn7UWT3dCxad+t7NfGnwN2O9qd1t2o9k/K09jdrT6J9qT2/tc6edzprVlOi88iY49LurH0+dg7c21/XuOa+15xVO7eaOnrsZY97lNWXrJgpa/4Xl2aV+c2vzZUd9xHtbeR7XczteEst32Kjz+bcA+8AfVy3LgAAAAAAAAAA+HtvvnorpA==
   </data>
  </layer>
  <layer name="meta" width="1050" height="14" opacity="0.68">
