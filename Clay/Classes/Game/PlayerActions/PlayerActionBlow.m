@@ -19,7 +19,7 @@
 -(void)initialize
 {
     _cooldown = 0.0f;
-    _cooldownStart = 0.6f;
+    _cooldownStart = 0.3f;
     _wind = [Sprite spriteWithFile:@"blank.png"];
     _windProjectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_PLAYER_BLOWING];
     
@@ -108,7 +108,7 @@
             [_windProjectile setPosition:CGPointMake(position.x + 15, position.y + 30)];
         }
         
-        if (_duration <= 0.27f) {
+        if (_duration <= 0.37f) { //was 0.27f
             [self testBlowCollisions];
         }
     }

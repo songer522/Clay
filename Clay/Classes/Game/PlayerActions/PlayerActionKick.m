@@ -132,12 +132,12 @@
 {
     NSMutableArray *obstacles = [[[LevelManager shared] currentLevel] getActiveGameObjectList];
     for (GameObject *object in obstacles) {
-        if([object getCollisionBehavior] == COLLISION_BEHAVIOR_HEN_KICKED)
+        if([object getCurrentCollisionBehavior] == COLLISION_BEHAVIOR_HEN_STATIC)
         {
            if([[[LevelManager shared] currentLevel] testCollisionWithGameObject:object Source:_kick])
            {
-               [object startCollision];
                [object special_kickHen];
+               [self setKilledEnemy:YES];
            }
         }
     }

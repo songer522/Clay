@@ -168,6 +168,7 @@
 
 -(PlayerEffect) startCollision
 {
+    if (_currentBehavior == COLLISION_BEHAVIOR_HEN_KICKED) { return PLAYER_EFFECT_NONE; }
     
     if(_playerEffect == PLAYER_EFFECT_COLLIDE) {
         _collided = true;
@@ -179,7 +180,7 @@
         case COLLISION_BEHAVIOR_FALL_OVER:
             _fallVelocity = 425.0f;            
             break;
-        case COLLISION_BEHAVIOR_HEN_KICKED:
+        case COLLISION_BEHAVIOR_HEN_DEAD:
             _hasGravity = false;
             _vy = -150.0f;
             _vx = rand()%40 + 15;
@@ -187,6 +188,7 @@
             _fadeout = true;
             _collided = true;
             [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"henKicked"];
+            [self setOriginalAnimation:@"henIdle"];
             [[SoundEngine shared] playSound:@"henKicked"];
             break;
         case COLLISION_BEHAVIOR_COW_COLLAPSE:
@@ -270,8 +272,6 @@
 //called by player once it decides that the hen is actually kicked.
 -(void)special_kickHen
 {
-    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
-    [[gameLayer.player getThirdAction] setKilledEnemy:true];
     _fadeout = false;
     _alpha = 1.0f;
     _hasGravity = true;
@@ -282,7 +282,10 @@
     _rotationAmount = 75;
     _vx = magnitude * cosf((_angle * 3.14159)/180.0f);
     _vy = magnitude * sinf((_angle * 3.14159)/180.0f);
-    
+    _currentBehavior = COLLISION_BEHAVIOR_HEN_KICKED;
+    [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"henKicked"];
+    [[SoundEngine shared] playSound:@"henKicked"];
+    [self setOriginalAnimation:@"henIdle"];
 }
 
 
@@ -436,6 +439,7 @@
         //LEVEL 2 - BARN RUN
         ///////////////////////////
         case COLLISION_BEHAVIOR_HEN_KICKED:
+        case COLLISION_BEHAVIOR_HEN_DEAD:
             _angle += _rotationAmount * dt;
             [self getCCSprite].rotation = _angle;
             _vy += 500.0f * dt;
@@ -887,11 +891,6 @@
     [self getCCSprite].visible = true;
     [self getCCSprite].rotation = _angle;
 
-    //reset aggressive
-    if (_currentBehavior == COLLISION_BEHAVIOR_HEN_KICKED) {
-        _isAggressive = false;
-    }
-    
     if(_currentBehavior == COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_BD)
     {
         _currentBehavior = COLLISION_BEHAVIOR_CHARGE_AT_PLAYER;
@@ -901,18 +900,18 @@
         _currentBehavior = COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST;
     }
     
-    if (_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_HEADLESS ||  _currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_WALK) {
+    if (_currentBehavior == COLLISION_BEHAVIOR_HEN_KICKED || _currentBehavior == COLLISION_BEHAVIOR_HEN_STATIC || _currentBehavior == COLLISION_BEHAVIOR_HEN_DEAD) {
+        _isAggressive = false;
+        _currentBehavior = COLLISION_BEHAVIOR_HEN_STATIC;
+    } else if (_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_HEADLESS ||  _currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_WALK) {
         _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_WALK;
-    }
-    
-    else if(_currentBehavior == COLLISION_BEHAVIOR_MAD_DOG) {
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_MAD_DOG) {
         _currentBehavior = COLLISION_BEHAVIOR_MAD_DOG;
         /*
         [self setOriginalAnimation:@"dogAnim"];
         [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"dogAnim"];
          */
-    }
-    else if(_currentBehavior ==COLLISION_BEHAVIOR_GARGOYLE) {
+    } else if(_currentBehavior ==COLLISION_BEHAVIOR_GARGOYLE) {
         
         _currentBehavior = COLLISION_BEHAVIOR_GARGOYLE;
         
@@ -1009,7 +1008,8 @@
         _isHurdle = true;
     } 
     else if([behavior compare:@"kicked"] == NSOrderedSame) {
-        _collideBehavior = COLLISION_BEHAVIOR_HEN_KICKED;
+        _currentBehavior = COLLISION_BEHAVIOR_HEN_STATIC;
+        _collideBehavior = COLLISION_BEHAVIOR_HEN_DEAD;
     } else if([behavior compare:@"anim"] == NSOrderedSame) {
         _collideBehavior = COLLISION_BEHAVIOR_PLAY_ANIMATION;
     } else if([behavior compare:@"cowCollapse"] == NSOrderedSame) {
@@ -1220,6 +1220,11 @@
 -(bool)canAggressiveHit
 {
     return _aggressiveCanHit;
+}
+
+-(CollisionBehavior)getCurrentCollisionBehavior
+{
+    return _currentBehavior;
 }
 
 -(CollisionBehavior)getCollisionBehavior
