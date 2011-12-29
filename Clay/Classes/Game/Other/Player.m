@@ -227,7 +227,7 @@
     if (_isTripping || _isDead || _isInMidAir || _waitToGetUp > 0.f) { return; }
     if ([_thirdAction inAction] && ![_thirdAction playerAllowedToSprint]) { return; }
     
-    if (_hitPoints > 0) {
+    if (_hitPoints > 1) {
         
         [_speed startTurbo];
         _isTurbo=true;
@@ -250,7 +250,7 @@
     }
     [_speed endTurbo];
     
-    if(_isTurbo && _hitPoints>0 )
+    if(_isTurbo && _hitPoints>1 )
     {
         GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
         gameLayer.gameController.isSprintEnabled=false;
