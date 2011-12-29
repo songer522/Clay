@@ -19,6 +19,7 @@
     float _selectedAlpha;
     bool _hasText;
     bool facebookOrTwitter;
+    bool _isEnabled;
 }
 @property (assign)bool facebookOrTwitter;
 
@@ -34,6 +35,7 @@
 -(void)setIdleSpriteFrame:(NSString*)name;
 -(void)setSelectedSpriteFrame:(NSString*)name;
 -(void)setInitialText:(NSString*)text;
+-(void)setEnabled:(bool)isEnabled;
 -(void)setInitialMultilineText:(NSString*)text Width:(int)width;
 -(void)setMultilineCentered;
 -(void)setRelativeHitbox:(CGRect)rect;

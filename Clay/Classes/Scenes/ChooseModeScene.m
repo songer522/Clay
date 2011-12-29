@@ -18,6 +18,7 @@
 #import "ChooseLevelScreen.h"
 #import "GameLayer.h"
 #import "GameSettings.h"
+#import "HowToPlayScreen.h"
 
 @implementation ChooseModeScene
 
@@ -161,11 +162,13 @@
 
 -(void)getDesiredAction
 {
+    _playTutorial = false;
     int selectedButtonIndex = _currentPanel.selectedIndex;
     if (_currentPanel == _storyModePanel) {
         if (selectedButtonIndex == 0) {
             [[GameSettings shared] setGlobal:@"easy" ForKey:@"gameDifficulty"];
             [[GameSettings shared] setGlobal:@"story" ForKey:@"gameMode"];
+            _playTutorial = true;
             _action = GAMEMODE_STORY_EASY;
         } else if(selectedButtonIndex == 1) {
             [[GameSettings shared] setGlobal:@"normal" ForKey:@"gameDifficulty"];
@@ -209,7 +212,7 @@
         case GAMEMODE_STORY_HARD:
             [[GameSettings shared] setGlobal:@"NO" ForKey:@"titleMusicStarted"];
             [[GameSettings shared] setGlobal:@"level1" ForKey:@"startingLevel"];
-            [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[GameLayer scene]]];
+            [self switchToStartGame];
             break;
         case GAMEMODE_TIMED_NORMAL:
         case GAMEMODE_TIMED_INSANE:
@@ -235,7 +238,12 @@
 
 -(void)switchToStartGame
 {
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[MainMenuScene scene]]];
+    if(_playTutorial) {
+        [[GameSettings shared] setGlobal:@"choosemode" ForKey:@"preTutorialScreen"];
+        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[HowToPlayScreen scene]]];
+    } else {
+        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[GameLayer scene]]];
+    }
 }
 
 

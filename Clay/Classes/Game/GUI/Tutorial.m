@@ -19,28 +19,26 @@
 
 -(id)initWithinLayer:(CCLayer *)layer
 {
-    if(self =[super init])
-              {
-    _inTutorial=false;
-    _phase = SCROLLER_IDLE;
-    
-    _pages = [[NSMutableArray alloc] initWithCapacity:3];
-    _images = [[NSMutableArray alloc] initWithCapacity:3];
-    
-    [self addPage:@"HTP_Page_1.png"];
-    [self addPage:@"HTP_Page_2.png"];
-    [self addPage:@"HTP_Page_3.png"];
-    [self addPage:@"HTP_Page_4.png"];
+    if((self =[super init])) {
+        _inTutorial=false;
+        _phase = SCROLLER_IDLE;
+        
+        _pages = [[NSMutableArray alloc] initWithCapacity:3];
+        _images = [[NSMutableArray alloc] initWithCapacity:3];
+        
+        [self addPage:@"HTP_Page_1.png"];
+        [self addPage:@"HTP_Page_2.png"];
+        [self addPage:@"HTP_Page_3.png"];
+        [self addPage:@"HTP_Page_4.png"];
 
-    scroller = [[CCScrollLayer alloc] initWithLayers:_pages widthOffset: 120.0f];
-    scroller.minimumTouchLengthToChangePage = 30.0f;
+        scroller = [[CCScrollLayer alloc] initWithLayers:_pages widthOffset: 120.0f];
+        scroller.minimumTouchLengthToChangePage = 30.0f;
+        
+        [layer addChild:scroller];
+        [scroller setVisible:NO];
+        scroller.showPagesIndicator=NO;
+    }
     
-   //scroller = [[CCScrollLayer alloc] initWithLayers:[NSMutableArray arrayWithObjects: pageOne,pageTwo,pageThree,nil] widthOffset: 0];
-    
-    [layer addChild:scroller];
-    [scroller setVisible:NO];
-    scroller.showPagesIndicator=NO;
-              }
     return self;
 }
 

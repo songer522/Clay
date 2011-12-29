@@ -51,6 +51,7 @@
         
         _usingRelativeHitbox = false; //default
         facebookOrTwitter = false;
+        _isEnabled = true;
         
         if (![text isEqualToString:@""]) {
             [self setInitialText:text];            
@@ -129,9 +130,11 @@
 
 -(void)setAlpha:(float)alpha
 {
-    GLubyte opacity = floor(alpha * 255);
-    [[_buttonIdle getCCSprite] setOpacity:opacity];
-    [_textLabel setOpacity:opacity];
+    if(_isEnabled) {
+        GLubyte opacity = floor(alpha * 255);
+        [[_buttonIdle getCCSprite] setOpacity:opacity];
+        [_textLabel setOpacity:opacity];        
+    }
 }
 
 -(void)setSelectedAlpha:(float)alpha
@@ -154,7 +157,7 @@
 
 -(bool)checkIfSelected:(CGPoint)touch
 {
-    if ([self testCollision:touch]) {
+    if (_isEnabled && [self testCollision:touch]) {
         [_buttonSelected setAlpha:1.0f];
         _selectedAlpha = 1.0f;
         return true;
@@ -164,13 +167,30 @@
 
 -(void)update:(float)dt
 {
-    if (_selectedAlpha > 0.0f) {
-        _selectedAlpha -= 10.0f * dt;
-        if(_selectedAlpha <= 0.0f) {
-            _selectedAlpha = 0.0f;
+    if (_isEnabled) {        
+        if (_selectedAlpha > 0.0f) {
+            _selectedAlpha -= 10.0f * dt;
+            if(_selectedAlpha <= 0.0f) {
+                _selectedAlpha = 0.0f;
+            }
+            [_buttonSelected setAlpha:_selectedAlpha];
         }
-        [_buttonSelected setAlpha:_selectedAlpha];
     }
+}
+
+-(void)setEnabled:(bool)isEnabled
+{
+    [[_buttonIdle getCCSprite] setVisible:isEnabled];
+    [[_buttonSelected getCCSprite] setVisible:isEnabled];
+    [_textLabel setVisible:isEnabled];
+
+    if(isEnabled) {
+        [self setAlpha:1.0f];
+    } else {
+        [self setAlpha:0.0f];
+    }
+    
+    _isEnabled = isEnabled;
 }
 
 -(void)dealloc

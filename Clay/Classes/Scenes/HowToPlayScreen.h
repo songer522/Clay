@@ -21,7 +21,10 @@
     GameLabel *_header;
     
     ActionButton *_backButton;
+    ActionButton *_startButton;
     
+    bool _switchToGame;
+    bool _hasSwitched;
     float _waitToSwitch;
     
 }
@@ -31,5 +34,6 @@
 -(id) initWithScene:(CCScene*)scene;
 
 -(void)switchToOptionsScreen;
+-(void)switchToGameScreen;
 
 @end
