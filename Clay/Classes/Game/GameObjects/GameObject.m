@@ -444,6 +444,10 @@
             [self getCCSprite].rotation = _angle;
             _vy += 500.0f * dt;
             break;
+        case COLLISION_BEHAVIOR_PIG:
+            [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-100.0f ChaseSound:@"pigEnters"];
+            break;
+
             
         
         ///////////////////////////
@@ -945,6 +949,9 @@
         _currentBehavior = COLLISION_BEHAVIOR_PAPERPLANE;
     
     }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_PIG) {
+        _currentBehavior = COLLISION_BEHAVIOR_PIG;
+    }
     else if(_currentBehavior == COLLISION_BEHAVIOR_BAT) {
         _currentBehavior = COLLISION_BEHAVIOR_BAT;
         _angle=-180;
@@ -1148,6 +1155,9 @@
     } else if([behavior isEqualToString:@"computerWorm"]) {
         _currentBehavior = COLLISION_BEHAVIOR_COMPUTER_WORM;
         _collideBehavior = COLLISION_BEHAVIOR_COMPUTER_WORM;
+    } else if([behavior isEqualToString:@"pigCharge"]) {
+        _currentBehavior = COLLISION_BEHAVIOR_PIG;
+        _collideBehavior = COLLISION_BEHAVIOR_PIG;
     }
     else {
         _collideBehavior = COLLISION_BEHAVIOR_NONE;

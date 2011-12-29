@@ -44,7 +44,7 @@
 		<key>animations</key>
 		<string>level2,kick</string>
 		<key>sounds</key>
-		<string>henKicked,cowDied,pigAppears</string>
+		<string>henKicked,cowDied,pigEnters</string>
 		<key>textures</key>
 		<string>barnLevel,characterKicking</string>
 	</dict>

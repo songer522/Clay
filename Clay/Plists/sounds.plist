@@ -106,5 +106,7 @@
 	<string>healthGained.caf</string>
 	<key>endLevel</key>
 	<string>victory.mp3</string>
+	<key>pigEnters</key>
+	<string>pigSqueal.mp3</string>
 </dict>
 </plist>
