@@ -64,8 +64,7 @@
         if (_duration <= 0.0f) {
             [self endAction];
         }
-        
-        [_actionButton updateOverlayImageByPercentage:0.0f]; 
+        [[_hud getActionButton] updateOverlayImageByPercentage:0.0f];
     }
     
     if (_cooldown>0.0f) {            
@@ -76,7 +75,7 @@
         }
         
         float percent = (_cooldownStart - _cooldown)/_cooldownStart;
-        [_actionButton updateOverlayImageByPercentage:percent];
+        [[_hud getActionButton] updateOverlayImageByPercentage:percent];
     }
     
  

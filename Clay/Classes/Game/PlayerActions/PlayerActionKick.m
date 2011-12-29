@@ -40,6 +40,7 @@
     _cooldownStart = 0.6f;
     _cooldown = 0.0f;
     _canTrigger = true;
+    _level = [[LevelManager shared] currentLevel];
 }
 
 -(void)startAction

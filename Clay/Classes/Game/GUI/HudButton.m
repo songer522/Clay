@@ -47,6 +47,14 @@
         [self prepareButtonWithType:type Action:action];
      
         _initialized = true;
+        
+        
+        _overlayFrameNames = [[NSMutableArray alloc] initWithCapacity:8];
+        for (int i=0; i<8; i++) {
+            NSString *frameName = [[NSString stringWithFormat:@"UI_Button_GreenLight_%d.png",i] retain];
+            [_overlayFrameNames addObject:frameName];
+        }
+        
         _currentOverlayFrame = 7;
     }
    return self;
@@ -175,9 +183,7 @@
         [[_greenOverlay getCCSprite] setVisible:NO];
         _overlayVisible = false;
     } else if (_currentOverlayFrame != frameNumber) {
-            
-        NSString *frameName = [NSString stringWithFormat:@"UI_Button_GreenLight_%d.png",frameNumber];
-        [_greenOverlay setImageByName:frameName];
+        [_greenOverlay setImageByName:[_overlayFrameNames objectAtIndex:frameNumber]];
         
         //set visible if not already
         if (!_overlayVisible) {
@@ -193,6 +199,8 @@
 {
     [_graphic release];
     [_greenOverlay release];
+    [_overlayFrameNames removeAllObjects];
+    [_overlayFrameNames release];
     [super dealloc];
 }
 
