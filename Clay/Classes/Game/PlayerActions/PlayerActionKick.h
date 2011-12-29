@@ -11,12 +11,15 @@
 #import "PlayerAction.h"
 
 @class Projectile;
+@class Level;
 
 @interface PlayerActionKick : PlayerAction
 {
     Projectile *_kick;
     bool _madeFootProjectile;
     
+    //weak references
+    Level *_level;
 }
 
 -(void)testKickCollisions;

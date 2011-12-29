@@ -201,6 +201,8 @@
 
 -(void)switchToAction
 {
+    NSURL *url;
+    
     switch (_action) {
         case GAMEMODE_STORY_EASY:
         case GAMEMODE_STORY_NORMAL:
@@ -217,6 +219,9 @@
         case GAMEMODE_EXTRAS_SKINS:
             break;
         case GAMEMODE_EXTRAS_WEB:
+            url = [NSURL URLWithString:@"http://www.tracklapse.com"];
+            [[UIApplication sharedApplication] openURL:url];
+            _isTransitioning = false;
             break;
         default:
             break;

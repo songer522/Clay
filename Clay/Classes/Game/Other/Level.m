@@ -217,24 +217,31 @@
 -(void)addObstaclesToMapAndRegion
 {
 
-    //_obstacleSpriteBatch = [[CCSpriteBatchNode batchNodeWithFile:[[TextureManager shared] getBatchObstacleFilename]] retain];
+    _obstacleSpriteBatch = [[CCSpriteBatchNode batchNodeWithFile:[[TextureManager shared] getBatchObstacleFilename]] retain];
     
-    //[[[LayerManager sharedLayers] currentLayer] addChild:_obstacleSpriteBatch];
+    [[[LayerManager sharedLayers] currentLayer] addChild:_obstacleSpriteBatch];
     
-    //[[LayerManager sharedLayers] setWorkingLayer:_obstacleSpriteBatch];
+    [[LayerManager sharedLayers] setWorkingLayer:_obstacleSpriteBatch];
     
     for (MapObject *mapObject in _obstacleMapObjects) {
         GameObject *obstacle = mapObject.object;
         if (!mapObject.placed) {
-            [[[LayerManager sharedLayers] currentLayer] addChild:[obstacle getCCSprite]];
+            
+            @try {
+                [[[LayerManager sharedLayers] currentLayer] addChild:[obstacle getCCSprite]];
+                [[obstacle getCCSprite] setBatchNode:_obstacleSpriteBatch];
+            }
+            @catch (NSException *exception) {
+                [_gameLayer addChild:[obstacle getCCSprite]];
+            }
+            
             [[obstacle getCCSprite] setVisible:NO];
-            //[[obstacle getCCSprite] setBatchNode:_obstacleSpriteBatch];
             [_obstacleManager addGameObject:obstacle];
             mapObject.placed = true;            
         }
     }
     
-    //[[LayerManager sharedLayers] forgetWorkingLayer];
+    [[LayerManager sharedLayers] forgetWorkingLayer];
 }
 
 -(CGRect)getLevelBoundaries
@@ -599,7 +606,7 @@
                 
                 //if aggressive, test the object against the non-aggressive objects (example of aggressive: chickens in barn level)
                 if (!collision && obstacle.isAggressive) {
-                    [self testCollisionsForAggressive:obstacle];
+                    [self testCollisionsForAggressive:obstacle Obstacles:obstacles];
                 }
             }
         }    
@@ -616,7 +623,7 @@
     return collision;
 }
 
--(bool)testCollisionsForAggressive:(id<Collidable>)source
+-(bool)testCollisionsForAggressive:(id<Collidable>)source Obstacles:(NSMutableArray*)obstacles;
 {
     bool collision = false;
     
@@ -628,13 +635,12 @@
     sourceBoundingBox.origin.y = position.y - sourceBoundingBox.origin.y;
     sourceBoundingBox.size.height = sourceBoundingBox.origin.y + sourceBoundingBox.size.height;  
     
-    NSString *mode = [[GameSettings shared] getGlobalForKey:@"gameMode"];
-    
-    NSMutableArray *obstacles = [_obstacleManager getActiveGameObjectList];
     for (GameObject *obstacle in obstacles) {
         if(![obstacle hasBeenHit] && [obstacle canAggressiveHit]) {
             collision = [self testCollisionWithGameObject:obstacle BoundingBox:sourceBoundingBox];
             if (collision) {
+                NSString *mode = [[GameSettings shared] getGlobalForKey:@"gameMode"];
+
                 if ([source getCollisionBehavior] == COLLISION_BEHAVIOR_HEN_KICKED && [mode isEqualToString:@"timed"]) {
                     //NSLog(@"Counting Chicken Kicked Into Cow");
                     int maxKicksIntoCow = 100;

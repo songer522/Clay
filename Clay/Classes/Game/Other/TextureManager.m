@@ -67,7 +67,7 @@ static TextureManager *_shared = nil;
     }
     
     NSString *batchObstacles = [dict objectForKey:@"batchObstacles"];
-    if([batchObstacles isEqualToString:@"none"]) {
+    if(batchObstacles && ![batchObstacles isEqualToString:@"none"]) {
         [self setBatchObstacleFilename:batchObstacles];
     }
     
@@ -129,8 +129,8 @@ static TextureManager *_shared = nil;
 
 -(void)setBatchObstacleFilename:(NSString*)batchName
 {
-    _batchObstacleFilename = [[NSString stringWithFormat:@"%@.png",batchName] retain];
-    
+    NSString *name = [[NSString stringWithFormat:@"%@.png",batchName] retain];
+    _batchObstacleFilename = name;
 }
 
 

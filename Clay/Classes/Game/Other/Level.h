@@ -104,7 +104,7 @@
 -(bool)testCollisions:(GameObject*)source;
 
 
--(bool)testCollisionsForAggressive:(id<Collidable>)source;
+-(bool)testCollisionsForAggressive:(id<Collidable>)source Obstacles:(NSMutableArray*)obstacles;
 -(bool)testCollisionWithGameObject:(id<Collidable>)target Source:(id<Collidable>)source;
 -(bool)testCollisionWithGameObject:(id<Collidable>)target BoundingBox:(CGRect)boundingBox;
 
