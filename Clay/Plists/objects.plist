@@ -1707,7 +1707,7 @@
 			<integer>25</integer>
 		</dict>
 		<key>collideBehavior</key>
-		<string>chargeAtPlayer</string>
+		<string>chargeAtPlayerSlow</string>
 		<key>imageName</key>
 		<string>blank.png</string>
 		<key>offsetx</key>

@@ -488,7 +488,7 @@
     //NSLog(@"diedTimes:%d",[GCState sharedInstance].timesDied );
     //NSLog(@"complete percent %f",pctComplete);
 
-    if(pctComplete < 100.0)
+    if(pctComplete < 100.0 )
     {
     [[GCState sharedInstance] save];
     [[GCHelper sharedInstance] reportAchievement:gcAchievementTimesDied percentComplete:pctComplete];
@@ -496,7 +496,7 @@
     //NSLog(@"hurdles:%d",[GCState sharedInstance].hurdlesJumpedOver );
     double pctComplete2 = ((double) [GCState sharedInstance].hurdlesJumpedOver / (int)maxHurdles) * 100.0;
     //NSLog(@"complete percent %f",pctComplete2);
-    if(pctComplete2 < 100.0)
+    if(pctComplete2 < 100.0 && [_level.name isEqualToString:@"level1"])
     {
     [[GCState sharedInstance] save];
     [[GCHelper sharedInstance] reportAchievement:gcAchievementJumpOver400hurdles percentComplete:pctComplete2];
