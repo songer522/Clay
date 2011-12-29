@@ -3,7 +3,10 @@ Track Lapse Changelog
 Build 111228.03
 ==================
 
-Level 2 - Updated levels
+Global - Sprint changed back to way it was originally.
+Level 2 - New versions of the level for each mode.
+Level 2 - Pigs now squeal before appearing onscreen.
+
 
 Build 111228.02
 ==================
