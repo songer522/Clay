@@ -1,5 +1,25 @@
 Track Lapse Changelog
 
+Build 111228.03
+==================
+
+Level 2 - Updated levels
+
+Build 111228.02
+==================
+
+Choose Mode - Graphics updated so the other menus don't seem like they're disabled
+Comics - Fixed cutscene sound not playing properly
+Comics - Fixed the previous level showing up before switching levels
+Global - Victory music plays when ending the level now
+Global - Player can sprint even with 1 health, (only this build for now)
+Global - Negative health icons no longer show on the player
+Global - Positive health icons now show up even after the player dies or when passing a checkpoint
+Main Menu - Graphics updated for larger buttons
+Level 2 - Chicken no longer makes noise more than once when kicked
+Level 8 - Cooldown time halved for blow action
+
+
 Build 111228.01
 ==================
 
