@@ -4,124 +4,13 @@
 <dict>
 	<key>frames</key>
 	<dict>
+		
 		<key>Env_Town_CHay_1.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
-			<key>spriteColorRect</key>
-			<string>{{5, 1}, {125, 133}}</string>
-			<key>spriteOffset</key>
-			<string>{0, -0}</string>
-			<key>spriteSize</key>
-			<string>{125, 133}</string>
-			<key>spriteSourceSize</key>
-			<string>{135, 135}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{538, 276}, {125, 133}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		<key>Env_Town_CHay_10.png</key>
-		<dict>
-			<key>aliases</key>
-			<array/>
-			<key>spriteColorRect</key>
-			<string>{{5, 1}, {125, 133}}</string>
-			<key>spriteOffset</key>
-			<string>{0, -0}</string>
-			<key>spriteSize</key>
-			<string>{125, 133}</string>
-			<key>spriteSourceSize</key>
-			<string>{135, 135}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{371, 0}, {125, 133}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		<key>Env_Town_CHay_11.png</key>
-		<dict>
-			<key>aliases</key>
-			<array/>
-			<key>spriteColorRect</key>
-			<string>{{5, 1}, {125, 133}}</string>
-			<key>spriteOffset</key>
-			<string>{0, -0}</string>
-			<key>spriteSize</key>
-			<string>{125, 133}</string>
-			<key>spriteSourceSize</key>
-			<string>{135, 135}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{631, 0}, {125, 133}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		<key>Env_Town_CHay_12.png</key>
-		<dict>
-			<key>aliases</key>
-			<array/>
-			<key>spriteColorRect</key>
-			<string>{{5, 1}, {125, 133}}</string>
-			<key>spriteOffset</key>
-			<string>{0, -0}</string>
-			<key>spriteSize</key>
-			<string>{125, 133}</string>
-			<key>spriteSourceSize</key>
-			<string>{135, 135}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{408, 352}, {125, 133}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		<key>Env_Town_CHay_2.png</key>
-		<dict>
-			<key>aliases</key>
-			<array/>
-			<key>spriteColorRect</key>
-			<string>{{5, 1}, {125, 133}}</string>
-			<key>spriteOffset</key>
-			<string>{0, -0}</string>
-			<key>spriteSize</key>
-			<string>{125, 133}</string>
-			<key>spriteSourceSize</key>
-			<string>{135, 135}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{241, 0}, {125, 133}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		<key>Env_Town_CHay_3.png</key>
-		<dict>
-			<key>aliases</key>
-			<array/>
-			<key>spriteColorRect</key>
-			<string>{{5, 1}, {125, 133}}</string>
-			<key>spriteOffset</key>
-			<string>{0, -0}</string>
-			<key>spriteSize</key>
-			<string>{125, 133}</string>
-			<key>spriteSourceSize</key>
-			<string>{135, 135}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{130, 275}, {125, 133}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		<key>Env_Town_CHay_4.png</key>
-		<dict>
-			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{5, 1}, {125, 133}}</string>
 			<key>spriteOffset</key>
@@ -137,10 +26,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		<key>Env_Town_CHay_5.png</key>
+		
+		<key>Env_Town_CHay_10.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{5, 1}, {125, 133}}</string>
 			<key>spriteOffset</key>
@@ -152,14 +44,17 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{501, 0}, {125, 133}}</string>
+			<string>{{260, 275}, {125, 133}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		<key>Env_Town_CHay_6.png</key>
+		
+		<key>Env_Town_CHay_11.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{5, 1}, {125, 133}}</string>
 			<key>spriteOffset</key>
@@ -171,14 +66,17 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{520, 138}, {125, 133}}</string>
+			<string>{{241, 0}, {125, 133}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		<key>Env_Town_CHay_7.png</key>
+		
+		<key>Env_Town_CHay_12.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{5, 1}, {125, 133}}</string>
 			<key>spriteOffset</key>
@@ -190,33 +88,17 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{260, 259}, {125, 133}}</string>
+			<string>{{371, 0}, {125, 133}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		<key>Env_Town_CHay_8.png</key>
+		
+		<key>Env_Town_CHay_2.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
-			<key>spriteColorRect</key>
-			<string>{{5, 1}, {125, 133}}</string>
-			<key>spriteOffset</key>
-			<string>{0, -0}</string>
-			<key>spriteSize</key>
-			<string>{125, 133}</string>
-			<key>spriteSourceSize</key>
-			<string>{135, 135}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{0, 275}, {125, 133}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		<key>Env_Town_CHay_9.png</key>
-		<dict>
-			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{5, 1}, {125, 133}}</string>
 			<key>spriteOffset</key>
@@ -232,29 +114,189 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		<key>Env_Town_Haybale_1.png</key>
+		
+		<key>Env_Town_CHay_3.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
-			<string>{{0, 0}, {109, 116}}</string>
+			<string>{{5, 1}, {125, 133}}</string>
 			<key>spriteOffset</key>
 			<string>{0, -0}</string>
 			<key>spriteSize</key>
-			<string>{109, 116}</string>
+			<string>{125, 133}</string>
 			<key>spriteSourceSize</key>
-			<string>{109, 116}</string>
+			<string>{135, 135}</string>
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{229, 138}, {109, 116}}</string>
+			<string>{{408, 352}, {125, 133}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
+		<key>Env_Town_CHay_4.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{5, 1}, {125, 133}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{125, 133}</string>
+			<key>spriteSourceSize</key>
+			<string>{135, 135}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{520, 138}, {125, 133}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>Env_Town_CHay_5.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{5, 1}, {125, 133}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{125, 133}</string>
+			<key>spriteSourceSize</key>
+			<string>{135, 135}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{501, 0}, {125, 133}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>Env_Town_CHay_6.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{5, 1}, {125, 133}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{125, 133}</string>
+			<key>spriteSourceSize</key>
+			<string>{135, 135}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{0, 275}, {125, 133}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>Env_Town_CHay_7.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{5, 1}, {125, 133}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{125, 133}</string>
+			<key>spriteSourceSize</key>
+			<string>{135, 135}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{538, 276}, {125, 133}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>Env_Town_CHay_8.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{5, 1}, {125, 133}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{125, 133}</string>
+			<key>spriteSourceSize</key>
+			<string>{135, 135}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{130, 275}, {125, 133}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>Env_Town_CHay_9.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{5, 1}, {125, 133}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{125, 133}</string>
+			<key>spriteSourceSize</key>
+			<string>{135, 135}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{631, 0}, {125, 133}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>Env_Town_Haybale_1.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {76, 132}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{76, 132}</string>
+			<key>spriteSourceSize</key>
+			<string>{76, 132}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{229, 138}, {76, 132}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
 		<key>Env_Town_Leaf_1.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{2, 0}, {224, 80}}</string>
 			<key>spriteOffset</key>
@@ -270,10 +312,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 		<key>Env_Town_SmallHaybale_1.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{0, 0}, {70, 82}}</string>
 			<key>spriteOffset</key>
@@ -289,10 +334,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 		<key>Town_Bird_1.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{2, 3}, {131, 71}}</string>
 			<key>spriteOffset</key>
@@ -304,14 +352,61 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
+			<string>{{310, 138}, {131, 71}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>Town_Bird_2.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{2, 2}, {131, 71}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{131, 71}</string>
+			<key>spriteSourceSize</key>
+			<string>{135, 75}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{272, 413}, {131, 71}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>Town_Bird_3.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{2, 1}, {131, 71}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 1}</string>
+			<key>spriteSize</key>
+			<string>{131, 71}</string>
+			<key>spriteSourceSize</key>
+			<string>{135, 75}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
 			<string>{{136, 413}, {131, 71}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		<key>Town_Bird_2.png</key>
+		
+		<key>Town_Bird_4.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{2, 2}, {131, 71}}</string>
 			<key>spriteOffset</key>
@@ -327,48 +422,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		<key>Town_Bird_3.png</key>
-		<dict>
-			<key>aliases</key>
-			<array/>
-			<key>spriteColorRect</key>
-			<string>{{2, 1}, {131, 71}}</string>
-			<key>spriteOffset</key>
-			<string>{0, 1}</string>
-			<key>spriteSize</key>
-			<string>{131, 71}</string>
-			<key>spriteSourceSize</key>
-			<string>{135, 75}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{272, 397}, {131, 71}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		<key>Town_Bird_4.png</key>
-		<dict>
-			<key>aliases</key>
-			<array/>
-			<key>spriteColorRect</key>
-			<string>{{2, 2}, {131, 71}}</string>
-			<key>spriteOffset</key>
-			<string>{0, -0}</string>
-			<key>spriteSize</key>
-			<string>{131, 71}</string>
-			<key>spriteSourceSize</key>
-			<string>{135, 75}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{343, 138}, {131, 71}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
+		
 		<key>Town_Jim_1.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{22, 0}, {106, 185}}</string>
 			<key>spriteOffset</key>
@@ -384,11 +444,12 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 	</dict>
 	<key>metadata</key>
 	<dict>
 		<key>version</key>
-		<string>1.5.1</string>
+		<string>1.5 GM</string>
 		<key>format</key>
 		<integer>3</integer>
 		<key>size</key>

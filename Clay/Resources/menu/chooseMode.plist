@@ -88,7 +88,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{91, 385}, {94, 28}}</string>
+			<string>{{107, 416}, {94, 28}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -110,7 +110,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{107, 416}, {94, 28}}</string>
+			<string>{{91, 385}, {94, 28}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -132,7 +132,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{188, 385}, {105, 23}}</string>
+			<string>{{193, 323}, {105, 23}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -154,7 +154,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{193, 323}, {105, 23}}</string>
+			<string>{{188, 385}, {105, 23}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>

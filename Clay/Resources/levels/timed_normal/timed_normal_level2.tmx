@@ -93,7 +93,7 @@
  </tileset>
  <layer name="back-1" width="1050" height="14">
   <properties>
-   <property name="speedx" value="1.0"/>
+   <property name="speedx" value="0.8"/>
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
@@ -111,7 +111,7 @@
  </layer>
  <layer name="front-1" width="1050" height="14">
   <properties>
-   <property name="speedx" value="1.0"/>
+   <property name="speedx" value="1.1"/>
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">

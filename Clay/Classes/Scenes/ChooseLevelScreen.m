@@ -195,7 +195,7 @@
         [_buttons addObject:button];
     }
     
-    _levelSelectText = [GameLabel gameLabelWithText:@"LEVEL SELECT" Scale:0.75f Position:ccp(365.0f,280.0f)];
+    _levelSelectText = [GameLabel gameLabelWithText:@"LEVEL SELECT" Scale:0.75f Position:ccp(365.0f,282.0f)];
     
     //load any medals earned
     [self loadMedals];

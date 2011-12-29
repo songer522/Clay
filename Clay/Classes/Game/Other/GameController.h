@@ -16,20 +16,9 @@
 @class PauseMenuScreen;
 @class HudLayer;
 
-typedef enum {
-    GAMESTATE_INITIALIZE,
-    GAMESTATE_PRE_RACE,
-    GAMESTATE_RACING,
-    GAMESTATE_PRE_DAYDREAM,
-    GAMESTATE_IN_DAYDREAM,
-    GAMESTATE_POST_DAYDREAM,
-    GAMESTATE_POST_RACE
-} GameState;
-
 @interface GameController : NSObject
 {
-    GameState _currentGameState;
-    GameLayer *_gameLayer;
+    GameLayer *_gameLayer; //weak reference
     HudLayer *_hud; //weak reference
     PauseMenuScreen *_pauseMenu;
     
@@ -50,7 +39,6 @@ typedef enum {
 
 +(id)gameController;
 
--(void)changeGameState:(GameState)gameState;
 -(void)reactToTouchAt:(CGPoint)location InputType:(InputType)type;
 -(void)setGameLayer:(GameLayer*)layer;
 -(void)setHud:(HudLayer*)hud;

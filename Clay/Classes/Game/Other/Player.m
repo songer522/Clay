@@ -190,8 +190,10 @@
     [_skin setPlayerAnimation:PLAYER_ANIM_JUMPING ForSprite:_sprite];
     [[SoundEngine shared] playSound:@"doubleJump"];
     
-    _hasDoubleJumped = true;
-    _isHighJump = true;
+    if (!_isNewUnderwaterPhysics) {
+        _hasDoubleJumped = true;        
+        _isHighJump = true;
+    }
     
     [_speed startJump];
     GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
@@ -233,11 +235,6 @@
         [[SoundEngine shared] playSound:@"turboStart"];
         [_skin setPlayerAnimation:PLAYER_ANIM_SPRINTING ForSprite:_sprite];
         
-        /*
-        Boss *boss = [[LayerManager sharedLayers] getBoss];
-        if (boss) {
-            [boss triggerFallBack];
-        }*/
     }
 
 }
@@ -549,7 +546,7 @@
 
     [self updateJump:dt];
     
-    [self updateInvulnerable:dt];
+    //[self updateInvulnerable:dt];
 
     if (_adjustX != 0.0f) {
         self.x += _adjustX;
@@ -570,7 +567,7 @@
         }
     }
 
-    [self updateLedge:dt];
+    //[self updateLedge:dt];
     
     if(_speed.isStopped && !_isTripping) {
         _waitToGetUp -= dt;
@@ -590,6 +587,7 @@
     [_thirdAction update:dt];
     
     _currentPlayerEffect = PLAYER_EFFECT_NONE;
+
 
 }
 

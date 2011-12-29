@@ -250,8 +250,14 @@
 #endif  
 
     [[ComicManager shared] update:dt];
+    
+    if (_inComic) {
+        _inComic = _inComic;
+    }
     [[SoundEngine shared] update:dt];
 
+    
+    
     if (!_paused && !_inComic) {
         
         [_level update:dt Velocity:_player.vx];
@@ -345,6 +351,8 @@
 -(void)endLevel
 {
     _hasBeatenLevel = true;
+    
+    [[SoundEngine shared] playSound:@"endLevel"];
 
     float finalLevelTime = [[_hud getTrackTimer] getLevelTime];
     [[LevelManager shared] recordLevelTime:finalLevelTime];

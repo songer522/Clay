@@ -210,6 +210,7 @@
         _transition = BLACKBOX_PLAY_COMIC_FADE_IN;
         _timeToWait = durations[comicNumber];
         _comicAlpha = 0.0f;
+        [[SoundEngine shared] cueFadeIn];
         [[SoundEngine shared] playMusic:@"cutscene"];
     } else {
         [_comicManager finishedAction];
@@ -234,14 +235,14 @@
 
 -(void)drawBars:(float)position
 {
-    if (_transition == BLACKBOX_IN || _transition == BLACKBOX_OUT || _transition == BLACKBOX_IDLE) {
+    //if (_transition == BLACKBOX_IN || _transition == BLACKBOX_OUT || _transition == BLACKBOX_IDLE || _transition == BLACKBOX_PLAY_COMIC_FADE_IN) {
         float scale = 1.0f;
         if ([[GameSettings shared] usingHighResolutionGraphics]) {
             scale = 2.0f;        
         }
         [self ccDrawFilledRectFrom:ccp(0,0) To:ccp(960,position * scale)];
         [self ccDrawFilledRectFrom:ccp(0,640) To:ccp(960,(320.0f - position) * scale)];    
-    }
+    //}
 }
 
 

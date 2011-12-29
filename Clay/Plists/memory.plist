@@ -7,7 +7,7 @@
 		<key>animations</key>
 		<string>hud</string>
 		<key>sounds</key>
-		<string>jumpLand,turboStart,dead,collision,jumpStart,pause,lowBattery,batteryFullCharge,timCollision,timHurt,steppedInSand,doubleJump,checkpoint</string>
+		<string>jumpLand,turboStart,dead,collision,jumpStart,pause,lowBattery,batteryFullCharge,timCollision,timHurt,steppedInSand,doubleJump,checkpoint,endLevel</string>
 		<key>textures</key>
 		<string>hudGraphics2</string>
 	</dict>
@@ -44,7 +44,7 @@
 		<key>animations</key>
 		<string>level2,kick</string>
 		<key>sounds</key>
-		<string>henKicked,cowDied,pigAppears</string>
+		<string>henKicked,cowDied,pigEnters</string>
 		<key>textures</key>
 		<string>barnLevel,characterKicking</string>
 	</dict>

@@ -42,9 +42,12 @@
     float _rightOnscreen;
     
     bool _isStutterMode;
+    
+    bool _isPlayerResetting;
 }
 
 @property (nonatomic,assign) bool trackingTarget;
+@property (nonatomic,assign) bool isPlayerResetting;
 
 
 +(Camera*)sharedCamera;

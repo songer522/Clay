@@ -29,6 +29,8 @@
     
     NSMutableArray *_healthIcons;
     
+    NSMutableArray *_batterySpriteFrames;
+    
     Player *_player;  //weak
 }
 

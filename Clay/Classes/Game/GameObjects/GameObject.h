@@ -141,6 +141,7 @@ typedef enum {
 -(bool)canAggressiveHit;
 
 -(Collision*) getCollision;
+-(CollisionBehavior)getCurrentCollisionBehavior;
 -(CGPoint) getPosition;
 -(CGPoint) getPreviousPosition;
 -(CCSprite*) getCCSprite;

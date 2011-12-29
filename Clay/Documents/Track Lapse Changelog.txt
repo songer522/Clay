@@ -1,5 +1,41 @@
 Track Lapse Changelog
 
+Build 111228.03
+==================
+
+Level 2 - Updated levels
+
+Build 111228.02
+==================
+
+Choose Mode - Graphics updated so the other menus don't seem like they're disabled
+Comics - Fixed cutscene sound not playing properly
+Comics - Fixed the previous level showing up before switching levels
+Global - Victory music plays when ending the level now
+Global - Player can sprint even with 1 health, (only this build for now)
+Global - Negative health icons no longer show on the player
+Global - Positive health icons now show up even after the player dies or when passing a checkpoint
+Main Menu - Graphics updated for larger buttons
+Level 2 - Chicken no longer makes noise more than once when kicked
+Level 8 - Cooldown time halved for blow action
+
+
+Build 111228.01
+==================
+
+Global - Updated game icon.
+Global - Music files have all been updated so that they are 96kbps Mono files, saving space and maybe slight performance.
+Level 1 - Some extra background and foreground layers removed to flatten the level
+Level 1 - New versions of the level for each mode.
+Level 5 - Mad dogs now reset properly on player death again.
+Level 10 - You can now jump as much as you want, and Tim can now no longer go above the top of the screen.
+Optimization - When battery image is changed, it no longer creates strings as needed, but accesses a list of names prepared on load.
+Optimization - Deathpits and ledges are now calculated for the entire level on load and stored in a very fast list, reducing the time spent checking the properties in the meta layer each update.
+Optimization - Sound effects were all converted to a format that is supposed to give better performance.
+Optimization - References that are accessed every update have been made local, so they don't have to be looked up every frame.
+Optimization - The bounding box for the player and aggressive objects are prepared before doing collision detection with objects instead of recreating it for every collision check.
+
+
 Build 111222.01
 ==================
 Global - Fixed the title music not cueing up again when resetting to main menu from story mode, which caused a couple other sound issues
@@ -32,6 +68,7 @@ Build 111221.01
 * Level 4 - Shuffling past breakdancers now gives you health
 * Level 6 - Lowered y position of zombie garbage bag
 
+
 Build: 111215.01
 =====================
 * Choose Level - Added information panel to the left side of the screen.
@@ -53,13 +90,16 @@ Build: 111215.01
 * Level 10 - Changed action button behavior so you have to hold the button down to keep Tim swimming.
 * Level 11 - Updated bat graphics
 
+
 Build: 111210.01
 =====================
 * Level 5 & 10 - Fixed crash by adding files missing from project bundle settings.
 
+
 Build: 111209.02
 =====================
 * Level 11 - Boss now cues new music, gets close when you hit something and gets further away when you sprint, and when close he kicks you and laughs.
+
 
 Build: 111209.01
 =====================
@@ -68,9 +108,11 @@ Build: 111209.01
 * Level 11 - Slow time action allows for slowing down obstacle animations now as well.
 * Level 11 - Added level with environment, bats, gargoyle, spikes, dragon egg, death pits, and ledges, and sound effects.
 
+
 Build: 111207.02
 =====================
 * Level 10 - Low res crash fixed.
+
 
 Build: 111207.01=====================* Global - Pause Menu no longer broken* Global - Pause Menu now has working resume and ‘back to choose level’ buttons, and mostly working ‘redo’ (restart level)* Global - Music updated to normalized masters* Global - Tim should no longer be stuck in the falling animation when he jumps onto or off ledges.
 * Global - If Tim hits an obstacle while doing his action, the action will now be properly cancelled.
