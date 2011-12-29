@@ -193,12 +193,13 @@
         }
     }
     
+    /*
     NSMutableString *deathpits = [NSMutableString stringWithString:@"Deathpits: "];
     for(int i=0;i<1300;i++) {
         [deathpits appendFormat:@"%d,",_hasDeathpitAtColumn[i]];
     }
     NSLog(@"%@",deathpits);
-
+    */
 }
 
 -(void)precalculateLedges
@@ -232,11 +233,13 @@
         }
     }
     
+    /*
     NSMutableString *ledges = [NSMutableString stringWithString:@"Ledges: "];
     for(int i=0;i<1300;i++) {
         [ledges appendFormat:@"%d,",_ledgeHeightAtColumn[i]];
     }
     NSLog(@"%@",ledges);
+    */
 }
 
 

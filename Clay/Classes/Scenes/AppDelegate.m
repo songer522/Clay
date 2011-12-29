@@ -107,7 +107,7 @@
 #endif
 	
 	[director setAnimationInterval:1.0f/60.0f];
-	[director setDisplayFPS:YES];
+	[director setDisplayFPS:NO];
    // facebook = [[Facebook alloc] initWithAppId:@"264174546971482" andDelegate:viewController];
     
     //userPermissions = [[NSMutableDictionary alloc] initWithCapacity:1];

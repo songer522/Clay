@@ -104,7 +104,7 @@
         
         //achievements button
         _achievementsButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_AchievementBlue.png" Selected:@"Menu_AchievementGreen.png"];
-        [_achievementsButton setPosition:ccp(410,24)];
+        [_achievementsButton setPosition:ccp(405,24)];
         [_achievementsButton setHitboxBySize:CGSizeMake(65, 65)];        
         
         //options button
