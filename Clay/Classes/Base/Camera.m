@@ -10,6 +10,7 @@
 #import "Sprite.h"
 #import "LevelManager.h"
 #import "Level.h"
+#import "Player.h"
 #import "GameSettings.h"
 
 @implementation Camera
@@ -40,6 +41,7 @@ static Camera *_sharedCamera = nil;
         CGSize size = [[CCDirector sharedDirector] winSize];
         _x = 0;
         _y = 0;
+        _vx = 0;
         _center = CGPointMake(size.width / 2.0f, size.height / 2.0f);
         _target = nil;
         
@@ -77,6 +79,9 @@ static Camera *_sharedCamera = nil;
     _precalculateBoundaryY = _boundary.origin.y;
     _precalculateBoundaryYplusBoundaryHeight = _boundary.origin.y + _boundary.size.height;
     
+    
+    _player = [[LayerManager sharedLayers] getPlayer];
+    
     [self keepWithinBoundaries];
     [self updateOnScreenRange];
 }
@@ -106,7 +111,7 @@ static Camera *_sharedCamera = nil;
     float left = _x - _center.x;
     float right = left + winSize.width;
     float bottom = _y - _center.y;
-    float top = bottom + winSize.height; 
+    float top = bottom + winSize.height;
     
     if(left < _boundary.origin.x) {
         _x = _boundary.origin.x + _center.x;
@@ -172,8 +177,45 @@ static Camera *_sharedCamera = nil;
     return (worldY - _y + _center.y);    
 }
 
+
+-(void)moveTowardsTargetNew:(float)dt
+{
+    //CGPoint position = [_target getPosition];
+    //float dx = (position.x - _x);
+    
+    //float speed = [_player getVelocityX];
+    
+    if(_trackingTarget) {
+        //_x = _target.
+    }
+    
+    /*
+    float distance = sqrtf(dx*dx);
+    if (distance > 0.1f) {
+        if (_trackingTarget) {
+            
+            if (dx > 0) {
+                _vx += 6.0f * dt;
+                _vx = MIN(40.0f, _vx);
+            } else {
+                _vx -= 6.0f * dt;
+                _vx = MAX(-40.0f, _vx);                
+            }
+            _x += _vx;         
+        }
+    } else {
+        if (_trackingTarget) {
+            _vx = 0.0f;
+            _x = position.x;            
+        }
+    }*/
+}
+
 -(void)moveTowardsTarget:(float)dt PlayerOnGround:(bool)onGround
 {
+    //[self moveTowardsTargetNew:dt];
+    //return;
+    
     float dx,dy;
     float magnitude;
     //float oldx = _x, oldy = _y;
@@ -218,7 +260,7 @@ static Camera *_sharedCamera = nil;
     
     [self updateOnScreenRange];
     
-    //NSLog(@"OX: %.2f, OY: %.2f, | NX: %.2f, NY: %.2f",oldx,oldy,_x,_ y]'''
+    //NSLog(@"OX: %.2f, OY: %.2f, | NX: %.2f, NY: %.2f",oldx,oldy,_x,_y);
     //NSLog(@"DX: %.2f, DY: %.2f MAG: %.2f",dx,dy,magnitude);
 }
 

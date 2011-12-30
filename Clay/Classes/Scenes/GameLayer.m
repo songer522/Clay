@@ -34,7 +34,7 @@
 #import "GCHelper.h"
 #import "CreditsScene.h"
 
-#define DEBUG_DRAW_BOUNDING_BOXES 0
+#define DEBUG_DRAW_BOUNDING_BOXES 1
 @interface GameLayer()
 
 -(void)setupLayers;
