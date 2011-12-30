@@ -3,34 +3,34 @@
 <plist version="1.0">
 <dict>
 	<key>track</key>
-	<string>track.mp3</string>
+	<string>track.m4a</string>
 	<key>barn</key>
-	<string>barn.mp3</string>
+	<string>barn.m4a</string>
 	<key>cornfields</key>
-	<string>town.mp3</string>
+	<string>town.m4a</string>
 	<key>disco</key>
-	<string>disco.mp3</string>
+	<string>disco.m4a</string>
 	<key>computer</key>
-	<string>computer.mp3</string>
+	<string>computer.m4a</string>
 	<key>city</key>
-	<string>city.mp3</string>
+	<string>city.m4a</string>
 	<key>zombies</key>
-	<string>zombies.mp3</string>
+	<string>zombies.m4a</string>
 	<key>fire</key>
-	<string>fire.mp3</string>
+	<string>fire.m4a</string>
 	<key>title</key>
-	<string>title.mp3</string>
+	<string>title.m4a</string>
 	<key>credits</key>
-	<string>credits.mp3</string>
+	<string>credits.m4a</string>
 	<key>cutscene</key>
-	<string>cutscene.mp3</string>
+	<string>cutscene.m4a</string>
 	<key>rainy</key>
-	<string>rainy.mp3</string>
+	<string>rainy.m4a</string>
 	<key>darkness</key>
-	<string>darkness.mp3</string>
+	<string>darkness.m4a</string>
 	<key>darknessBoss</key>
-	<string>darkness_boss.mp3</string>
+	<string>darkness_boss.m4a</string>
 	<key>underwater</key>
-	<string>underwater.mp3</string>
+	<string>underwater.m4a</string>
 </dict>
 </plist>

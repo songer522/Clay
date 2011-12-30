@@ -4,8 +4,10 @@
 <dict>
 	<key>app</key>
 	<dict>
+		<key>showFps</key>
+		<string>YES</string>
 		<key>versionNumber</key>
-		<string>111228.03</string>
+		<string>111224.02</string>
 	</dict>
 </dict>
 </plist>
