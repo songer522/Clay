@@ -203,7 +203,7 @@
 -(void)shuffledOver
 {
     int maxShuffle = 200;
-  
+    
     if ([GCState sharedInstance].peopleShuffled < maxShuffle) {
         [GCState sharedInstance].peopleShuffled++;
         

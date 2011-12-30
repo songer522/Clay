@@ -84,7 +84,7 @@
 		<key>nextLevelName</key>
 		<string>level5</string>
 		<key>layerList</key>
-		<string>back-3,back-2,back-1,main0,ledges,actives,front-1,front-2,meta</string>
+		<string>back-1,main0,ledges,actives,front-1,meta</string>
 	</dict>
 	<key>level5</key>
 	<dict>

@@ -810,7 +810,7 @@
         }
         
     }
-    else if(obstacle.CollidableBehavior == COLLISION_BEHAVIOR_FROG_SQUASH)
+    else if([obstacle getCollisionBehavior] == COLLISION_BEHAVIOR_FROG_SQUASH)
     {
         int maxFrogs = 50;
         
@@ -848,7 +848,7 @@
         }
     }
     
-    else if(obstacle.CollidableBehavior==COLLISION_BEHAVIOR_COW_COLLAPSE)
+    else if([obstacle getCollisionBehavior]==COLLISION_BEHAVIOR_COW_COLLAPSE)
     {
         
         if ([GCState sharedInstance].cowsHit < maxHit) {
@@ -863,7 +863,7 @@
         }
 
     }
-    else if(obstacle.CollidableBehavior==COLLISION_BEHAVIOR_FLYER_DEAD)
+    else if([obstacle getCollisionBehavior]==COLLISION_BEHAVIOR_FLYER_DEAD)
     {
         if ([GCState sharedInstance].birdsHit < maxHit) {
             [GCState sharedInstance].birdsHit++;
@@ -893,8 +893,9 @@
         
     }
      */
-    else if(obstacle.CollidableBehavior == COLLISION_BEHAVIOR_MAD_DOG)
+    else if([obstacle getCollisionBehavior] == COLLISION_BEHAVIOR_MAD_DOG)
     {
+        NSLog(@"%d",[GCState sharedInstance].dogsHit);
         if ([GCState sharedInstance].dogsHit < maxHit) {
             [GCState sharedInstance].dogsHit++;
             
@@ -923,7 +924,7 @@
         
     }
      */
-    else if(obstacle.CollidableBehavior == COLLISION_BEHAVIOR_WATER_ANGLERFISH || obstacle.CollidableBehavior == COLLISION_BEHAVIOR_WATER_PUFFERFISH || obstacle.CollidableBehavior == COLLISION_BEHAVIOR_WATER_SEAHORSE)
+    else if([obstacle getCollisionBehavior] == COLLISION_BEHAVIOR_WATER_ANGLERFISH || [obstacle getCollisionBehavior] == COLLISION_BEHAVIOR_WATER_PUFFERFISH || [obstacle getCollisionBehavior] == COLLISION_BEHAVIOR_WATER_SEAHORSE)
     {
         if ([GCState sharedInstance].fishHit < maxHit) {
             [GCState sharedInstance].fishHit++;
@@ -932,13 +933,13 @@
             if(pctComplete10 == 100.0)
             {
                 //[[GCState sharedInstance] save];
-                [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10dogs percentComplete:pctComplete10];
+                [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10fish percentComplete:pctComplete10];
             }
         }
         
     }
     
-    else if(obstacle.CollidableBehavior == COLLISION_BEHAVIOR_BAT)
+    else if([obstacle getCollisionBehavior] == COLLISION_BEHAVIOR_BAT)
     {
         if ([GCState sharedInstance].batHit < maxHit) {
             [GCState sharedInstance].batHit++;

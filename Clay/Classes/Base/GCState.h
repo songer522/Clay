@@ -65,7 +65,10 @@
 @property (assign) int fishHit;
 @property (assign) int batHit;
 
-
+@property (assign) int enimiesCleared;
+@property (assign) int timesWhooed;
+@property (assign) int timesFellIntoDeathPit;
+@property (assign) int timesFellDown;
 
 
 

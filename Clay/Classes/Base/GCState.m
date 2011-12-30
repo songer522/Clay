@@ -14,6 +14,7 @@
 @synthesize hurdlesJumpedOver,peopleShuffled,dogsJumpedOver,zombiesShot,attacksBlocked,demonsFreezed,frogsJumpedOver;
 @synthesize timesDied,hurdlesHit,cowsHit,dancersHit,birdsHit,dogsHit,zombiesHit,viruesHit,fireDemonHit,frogsHit,fishHit,batHit;
 @synthesize completeStoryAll,completeStoryEasy,completeStoryHard,completeStoryNormal,flawlessRun;
+@synthesize enimiesCleared,timesWhooed,timesFellDown,timesFellIntoDeathPit;
 
 static GCState *sharedInstance = nil;
 
