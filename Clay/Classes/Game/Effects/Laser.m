@@ -12,6 +12,7 @@
 #import "GameLayer.h"
 #import "Player.h"
 #import "GameSettings.h"
+#import "GameLayer.h"
 
 @implementation Laser
 
@@ -26,9 +27,17 @@
     if (self) {
         // Initialization code here.
         
-        NSString *filename = [NSString stringWithFormat:@"Disco_Laser_%d.png",num];
-        _sprite = [Sprite spriteFromFrameCacheWithName:filename];
+        _laserFrameNames = [[NSMutableArray alloc] initWithCapacity:4];
+        for (int i=1; i<5; i++) {
+            NSString *frameName = [NSString stringWithFormat:@"Disco_Laser_%d.png",i];            
+            [_laserFrameNames addObject:frameName];
+        }
+        
+        _sprite = [Sprite spriteFromFrameCacheWithName:[_laserFrameNames objectAtIndex:(rand()%4)]];
         _alpha = 0.0f;
+        
+        _gameLayer = [[LayerManager sharedLayers] currentLayer];
+
         [[_sprite getCCSprite] setAnchorPoint:ccp(0.5f,0.5f)];
         [self reset];
     }
@@ -57,9 +66,11 @@
 -(void)reset
 {
     _alpha = 1.0f;
-    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
     
-    CGPoint playerPosition = [gameLayer.player getPosition];    
+    CGPoint playerPosition = [_gameLayer.player getPosition];    
+    
+    int newFrame = rand() % 4;
+    [[_sprite getCCSprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[_laserFrameNames objectAtIndex:newFrame]]];
     
     //IPAD FIX: want to place the laser at a random position in front of the player to the edge of the screen,
     //also make sure they are not going off the top of the screen. *may* require either taller lasers drawn by tian
@@ -68,9 +79,7 @@
         _position = CGPointMake(playerPosition.x + rand()%600, 200.0f);        
     } else {
         _position = CGPointMake(playerPosition.x + rand()%600, 200.0f);
-    }
-
-    
+    }    
     
     [_sprite setPosition:_position];
     [_sprite getCCSprite].rotation = (rand() % 80) - 40;
@@ -78,7 +87,7 @@
     [[_sprite getCCSprite] setVisible:YES];    
     
     _rate = rand() % 4 + 1;
-    _cooldown = ((rand() % 300) + 200) / 100.0f;
+    _cooldown = ((rand() % 600) + 300) / 100.0f;
     _cooldown = 0.0f;
     _isActive = true;
 }
@@ -86,6 +95,8 @@
 -(void)dealloc
 {
     [_sprite release];
+    [_laserFrameNames removeAllObjects];
+    [_laserFrameNames release];
     [super dealloc];
 }
 

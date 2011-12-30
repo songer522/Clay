@@ -13,6 +13,7 @@
 #import <Foundation/Foundation.h>
 
 @class Sprite;
+@class GameLayer;
 
 @interface Laser : NSObject
 {
@@ -25,6 +26,10 @@
     bool _isActive;
     
     CGPoint _position;
+    NSMutableArray *_laserFrameNames;
+    
+    //weak references
+    GameLayer *_gameLayer;
 }
 
 

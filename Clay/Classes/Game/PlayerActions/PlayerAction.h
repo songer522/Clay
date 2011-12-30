@@ -30,6 +30,7 @@
 -(bool)canAggressiveHit;
 -(bool)canStartInMidAir;
 -(bool)canStartOnGround;
+-(void)setIsNear:(bool)isNear;
 
 
 @end
@@ -49,6 +50,7 @@
     float _cooldownStart; //used to determine percentage the cooldown is complete
     bool _canTrigger;
     bool _isCheering;
+    bool _isNear; //is a certain enemy close to the player
     
     //weak references
     HudButton *_actionButton;
@@ -62,6 +64,7 @@
 -(void) enableAction; //called when action can be called again
 -(void) disableAction;
 -(void)isCheering:(bool)cheering;
+-(void)setIsNear:(bool)isNear;
 -(bool) playerAllowedToJump;
 -(bool) playerAllowedToSprint;
 

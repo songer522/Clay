@@ -22,12 +22,17 @@
 -(void)startAction
 {
     if (!_inAction && _canTrigger) {
-        _duration = kPlayerActionDodgeFullDuration;
         _cooldown = 0.0f;
         _cooldownStart = 0.35f;
         _parent.isInvincible = true;
         _preActionPlayerPosition = [_parent getPosition];
         [_parent endTurbo:false];
+        _isDancingWithGirl = false;
+        if (!_isDancingWithGirl) {
+            _duration = kPlayerActionDodgeFullDuration;            
+        } else {
+            _duration = 3.0f * kPlayerActionDodgeFullDuration;
+        }
         [[SoundEngine shared] playSound:@"shuffling"];
         [_parent setPlayerAnimation:PLAYER_ANIM_DODGE];
     }
@@ -55,15 +60,19 @@
             frame = [anim getCurrentFrameNumber];
         }
         
-        if (frame == 1 || frame == 3) {
-            [_parent getSpeed].velocity = 13.0f;
+        if (_isDancingWithGirl) {
+            [_parent getSpeed].velocity = 0.0f;
         } else {
-            [_parent getSpeed].velocity = 7.0f;
-        }
-        if (_duration < kPlayerActionDodgeActiveWhileDurationLessThan) {
-            _isActive = true;
-        } else {
-            _isActive = false;
+            if (frame == 1 || frame == 3) {
+                [_parent getSpeed].velocity = 13.0f;
+            } else {
+                [_parent getSpeed].velocity = 7.0f;
+            }
+            if (_duration < kPlayerActionDodgeActiveWhileDurationLessThan) {
+                _isActive = true;
+            } else {
+                _isActive = false;
+            }            
         }
     }
     [super update:dt];    
@@ -93,6 +102,12 @@
     } else {
         return true;
     }
+}
+
+-(void)setIsNear:(bool)isNear
+{
+    _isDancingWithGirl = isNear;
+    _isNear = isNear;
 }
 
 -(void)dealloc

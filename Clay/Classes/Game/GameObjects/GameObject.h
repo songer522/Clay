@@ -23,6 +23,7 @@ typedef enum {
     PLAYER_EFFECT_SLOWDOWN,
     PLAYER_EFFECT_ACTION_OR_COLLIDE,
     PLAYER_EFFECT_VACCUUM,
+    PLAYER_EFFECT_DANCE,
     PLAYER_EFFECT_NONE
 } PlayerEffect;
 
@@ -113,7 +114,7 @@ typedef enum {
 @property(nonatomic,assign) CGRect boundingBox;
 @property(nonatomic,assign) CollisionBehavior CurrentBehavior;
 @property(nonatomic, retain)NSString *originalAnimation;
-@property(readonly,nonatomic,assign) bool collided;
+@property(nonatomic,assign) bool collided;
 @property(nonatomic,assign) bool hasGravity;
 @property(nonatomic,assign) bool isAggressive;
 @property(nonatomic,assign) bool isInMidAir;
@@ -181,6 +182,7 @@ typedef enum {
 -(void) chaseAtDistance:(float)distance DefaultSpeed:(float)defaultSpeed ChaseSpeed:(float)chaseSpeed ChaseSound:(NSString*)sound ChaseAnimation:(NSString*)chaseAnim DefaultAnimation:(NSString*)defaultAnim;
 
 
+-(void) moveToStartingPosition;
 
 
 @end

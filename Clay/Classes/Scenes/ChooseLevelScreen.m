@@ -173,13 +173,15 @@
     _backButton = [ActionButton actionButtonWithText:@"BACK"];
     [_backButton setPosition:ccp(50, 18)];
     
-    _facebookButton =[ ActionButton actionButtonManualSetup];
+    _facebookButton =[ActionButton actionButtonManualSetup];
     _facebookButton.facebookOrTwitter=true;
     [_facebookButton setPosition:ccp(210, 120)];
+    [_facebookButton setEnabled:true];
     
     _twitterButton =[ ActionButton actionButtonManualSetup];
     _twitterButton.facebookOrTwitter=true;
     [_twitterButton setPosition:ccp(210, 80)];
+    [_twitterButton setEnabled:true];
     
     
     //load level buttons (init best level time text first because it gets set in here)

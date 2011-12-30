@@ -106,6 +106,12 @@
     return _isActive;
 }
 
+-(void)setIsNear:(bool)isNear
+{
+    _isNear = isNear;
+}
+
+
 -(void)cancelAction
 {
     _inAction = false;

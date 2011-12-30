@@ -33,8 +33,9 @@
 #import "GCState.h"
 #import "GCHelper.h"
 #import "CreditsScene.h"
+#import "Camera.h"
 
-#define DEBUG_DRAW_BOUNDING_BOXES 0
+#define DEBUG_DRAW_BOUNDING_BOXES 1
 @interface GameLayer()
 
 -(void)setupLayers;
@@ -141,6 +142,7 @@
 -(void)restartLevel
 {
     [[GameSettings shared] setGlobal:@"true" ForKey:@"restarting"];
+    [[Camera sharedCamera] reset];
     [_level resetTriggers:true];
     [_level resetObstacles];
     [_boss restartLevel];
@@ -155,6 +157,8 @@
     [self initForLevel];
     Level *levelObj = [[LevelManager shared] currentLevel];
     [[ComicManager shared] startComic:levelObj.preComicName StartPhase:COMIC_PHASE_STARTING_VIDEO];
+    
+    [[GameSettings shared] setGlobal:[NSString stringWithString:levelName] ForKey:@"continueLevelName"];
 }
 
 -(void)initForLevel

@@ -106,8 +106,15 @@
 	[director setDeviceOrientation:kCCDeviceOrientationLandscapeLeft];
 #endif
 	
+    
 	[director setAnimationInterval:1.0f/60.0f];
-	[director setDisplayFPS:YES];
+
+    NSString *showFps = [[GameSettings shared] getGlobalForKey:@"showFps"];
+    if ([showFps isEqualToString:@"YES"]) {
+        [director setDisplayFPS:YES];        
+    } else {
+        [director setDisplayFPS:NO];
+    }
    // facebook = [[Facebook alloc] initWithAppId:@"264174546971482" andDelegate:viewController];
     
     //userPermissions = [[NSMutableDictionary alloc] initWithCapacity:1];

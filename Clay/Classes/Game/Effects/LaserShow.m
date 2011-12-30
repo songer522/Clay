@@ -25,7 +25,7 @@
         
         _lasers = [[NSMutableArray alloc] initWithCapacity:4];
         
-        for (int i=1; i<5; i++) {
+        for (int i=0; i<3; i++) {
             Laser *laser = [Laser laserWithId:i];
             [_lasers addObject:laser];
         }

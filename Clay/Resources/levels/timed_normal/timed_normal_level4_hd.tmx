@@ -121,6 +121,11 @@
     <property name="obstacle" value="femaleBreakdancerBlue"/>
    </properties>
   </tile>
+  <tile id="22">
+   <properties>
+    <property name="obstacle" value="discoTrixter"/>
+   </properties>
+  </tile>
  </tileset>
  <tileset firstgid="103" name="Level4_TiledSheet-hd" tilewidth="64" tileheight="64">
   <image source="tileset_level_4-hd.png" width="1024" height="640"/>

@@ -28,17 +28,22 @@ static SoundEngine *_shared = nil;
     if (self) {
         // Initialization code here.
         
-        _audioEngine = [SimpleAudioEngine sharedEngine];
-        _audioEngine.mute = false;
-        
-        _soundMap = [[NSDictionary alloc] initWithDictionary:[PListLoader loadPlistWithName:@"sounds"]];
-        _musicMap = [[NSDictionary alloc] initWithDictionary:[PListLoader loadPlistWithName:@"music"]];
+        _enabled = true;
         
         _soundMode = SOUND_MODE_NORMAL;
         _masterMusicVolume = 1.0f;
         _masterSfxVolume = 1.0f;
         
-        _session = [AVAudioSession sharedInstance];
+        if (_enabled) {
+            _audioEngine = [SimpleAudioEngine sharedEngine];
+            _audioEngine.mute = false;
+            
+            _soundMap = [[NSDictionary alloc] initWithDictionary:[PListLoader loadPlistWithName:@"sounds"]];
+            _musicMap = [[NSDictionary alloc] initWithDictionary:[PListLoader loadPlistWithName:@"music"]];
+            
+            _session = [AVAudioSession sharedInstance];            
+        }
+        
     }
     
     return self;
@@ -52,19 +57,13 @@ static SoundEngine *_shared = nil;
         NSString *filename = [_soundMap objectForKey:key];
         [_audioEngine preloadEffect:filename];
     }
-    
-    
-    /*
-    enumerator = [_musicMap keyEnumerator];
-    
-    while ((key = [enumerator nextObject])) {
-        NSString *filename = [_musicMap objectForKey:key];
-        [_audioEngine preloadBackgroundMusic:filename];
-    }*/
 }
 
 -(void)preloadMusicForKey:(NSString*)key
 {
+    if (_enabled) {
+        
+    }
     NSString *filename = [_musicMap objectForKey:key];
     
     NSAssert(filename!=nil,@"Sound '%@' could not be found. Is it in the sounds.plist?",key);
@@ -77,48 +76,58 @@ static SoundEngine *_shared = nil;
 
 -(void)loadSoundForKey:(NSString*)key
 {
-    NSString *filename = [_soundMap objectForKey:key];
-    
-    NSAssert(filename!=nil,@"Sound '%@' could not be found. Is it in the sounds.plist?",key);
-    
-    [_audioEngine preloadEffect:filename];
+    if (_enabled) {
+        NSString *filename = [_soundMap objectForKey:key];
+        
+        NSAssert(filename!=nil,@"Sound '%@' could not be found. Is it in the sounds.plist?",key);
+        
+        [_audioEngine preloadEffect:filename];
+    }
 }
 
 -(void)unloadSoundForKey:(NSString*)key
 {
-    NSString *filename = [_soundMap objectForKey:key];
-    
-    NSAssert(filename!=nil,@"Sound '%@' could not be found. Is it in the sounds.plist?",key);
-    
-    [_audioEngine unloadEffect:filename];
+    if (_enabled) {
+        NSString *filename = [_soundMap objectForKey:key];
+        
+        NSAssert(filename!=nil,@"Sound '%@' could not be found. Is it in the sounds.plist?",key);
+        
+        [_audioEngine unloadEffect:filename];
+    }
 }
 
 -(void) playSound:(NSString*)sound
 {
-    NSString *filename = [_soundMap objectForKey:sound];
-    
-    NSAssert(filename!=nil,@"Requested sound '%@' not in dictionary. Double-check sounds.plist",sound);
-    
-    [[SimpleAudioEngine sharedEngine] playEffect:filename];
+    if (_enabled) {
+        NSString *filename = [_soundMap objectForKey:sound];
+        
+        NSAssert(filename!=nil,@"Requested sound '%@' not in dictionary. Double-check sounds.plist",sound);
+        
+        [[SimpleAudioEngine sharedEngine] playEffect:filename];
+    }
 }
 
 -(void) playMusic:(NSString*)music
 {
-    _volume = 1.0f;
-    
-    NSString *filename = [_musicMap objectForKey:music];
-    
-    NSAssert(filename!=nil,@"Requested music '%@' not in dictionary. Double-check music.plist",music);
+    if (_enabled) {
+        _volume = 1.0f;
+        
+        NSString *filename = [_musicMap objectForKey:music];
+        
+        NSAssert(filename!=nil,@"Requested music '%@' not in dictionary. Double-check music.plist",music);
 
-    [[SimpleAudioEngine sharedEngine] playBackgroundMusic:filename];
+        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:filename];
+    }
 }
 
 -(void)toggleMute
 {
-    if (_audioEngine.mute) {
-        _audioEngine.mute = false;
-    } else {
-        _audioEngine.mute = true;
+    if (_enabled) {
+        if (_audioEngine.mute) {
+            _audioEngine.mute = false;
+        } else {
+            _audioEngine.mute = true;
+        }
     }
 }
 
@@ -146,55 +155,64 @@ static SoundEngine *_shared = nil;
 
 -(void)setMasterMusicVolume:(float)masterVolume
 {
-    masterVolume = MIN(masterVolume, 1.0f);
-    masterVolume = MAX(masterVolume, 0.0f);
-    
-    _masterMusicVolume = masterVolume;
-    [_audioEngine setBackgroundMusicVolume:masterVolume];        
+    if(_enabled) {
+        masterVolume = MIN(masterVolume, 1.0f);
+        masterVolume = MAX(masterVolume, 0.0f);
+        
+        _masterMusicVolume = masterVolume;
+        [_audioEngine setBackgroundMusicVolume:masterVolume];        
+    }
 }
 
 -(void)setMasterSfxVolume:(float)masterVolume
 {
-    masterVolume = MIN(masterVolume, 1.0f);
-    masterVolume = MAX(masterVolume, 0.0f);
+    if (_enabled) {
+        masterVolume = MIN(masterVolume, 1.0f);
+        masterVolume = MAX(masterVolume, 0.0f);
 
-    _masterSfxVolume = masterVolume;
-    [_audioEngine setEffectsVolume:masterVolume];
+        _masterSfxVolume = masterVolume;
+        [_audioEngine setEffectsVolume:masterVolume];
+    }
 }
 
 -(void)update:(float)dt
 {
-    float rate = 0.5f * dt;
-    
-    switch (_soundMode) {
-        case SOUND_MODE_FADEIN:
-            _volume += rate;
-            if(_volume >= 1.0f) {
-                _volume = 1.0f;
-                _soundMode = SOUND_MODE_NORMAL;
-            }
-            [_audioEngine setBackgroundMusicVolume:_volume * _masterMusicVolume];
-            [_audioEngine setEffectsVolume:_masterSfxVolume];
-            break;
-        case SOUND_MODE_FADEOUT:
-            _volume -= rate;
-            if(_volume <= 0.0f) {
-                _volume = 0.0f;
-                _soundMode = SOUND_MODE_NORMAL;
-            }
-            [_audioEngine setBackgroundMusicVolume:_volume * _masterMusicVolume];
-            [_audioEngine setEffectsVolume:_masterSfxVolume];
-        default:
-            break;
+    if (_enabled) {
+
+        float rate = 0.5f * dt;
+        
+        switch (_soundMode) {
+            case SOUND_MODE_FADEIN:
+                _volume += rate;
+                if(_volume >= 1.0f) {
+                    _volume = 1.0f;
+                    _soundMode = SOUND_MODE_NORMAL;
+                }
+                [_audioEngine setBackgroundMusicVolume:_volume * _masterMusicVolume];
+                [_audioEngine setEffectsVolume:_masterSfxVolume];
+                break;
+            case SOUND_MODE_FADEOUT:
+                _volume -= rate;
+                if(_volume <= 0.0f) {
+                    _volume = 0.0f;
+                    _soundMode = SOUND_MODE_NORMAL;
+                }
+                [_audioEngine setBackgroundMusicVolume:_volume * _masterMusicVolume];
+                [_audioEngine setEffectsVolume:_masterSfxVolume];
+            default:
+                break;
+        }
     }
 }
 
 -(void)dealloc
 {
-    [_audioEngine release];
-    [_soundMap release];
-    [_session release];
-    [_musicMap release];
+    if (_enabled) {
+        [_audioEngine release];
+        [_soundMap release];
+        [_session release];
+        [_musicMap release];        
+    }
     [super dealloc];
 }
 

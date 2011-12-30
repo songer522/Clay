@@ -30,6 +30,7 @@ static GCHelper *sharedHelper = nil;
                 [[self alloc] initWithLeaderboardToReport:[NSMutableArray array] achievementsToReport:[NSMutableArray array]];
             }
         }
+        NSLog(@"shared GCHelper");
         return sharedHelper;
     }
     return nil;
@@ -47,10 +48,12 @@ static GCHelper *sharedHelper = nil;
 }
 
 -(void)save {
+    NSLog(@"gc - save");
     saveData(self, @"GameCenterData");
 }
 
 -(BOOL)isGameCenterAvailable {
+    NSLog(@"gc - isgamecenteravailable");
     // check for GKLocalPlayer API
     Class gcClass = (NSClassFromString(@"GKLocalPlayer"));
     
@@ -63,6 +66,7 @@ static GCHelper *sharedHelper = nil;
 }
 
 - (id)initWithLeaderboardToReport:(NSMutableArray *)theLeaderboardToReport achievementsToReport:(NSMutableArray *)theAchievementsToReport {
+    NSLog(@"gc - initwithleaderboardtoreport");
     if ((self = [super init])) {
         self.leaderboardToReport = theLeaderboardToReport;
         self.achievementsToReport = theAchievementsToReport;
@@ -78,6 +82,7 @@ static GCHelper *sharedHelper = nil;
 #pragma  mark Internal Functions
 
 - (void)authenticationChanged {
+    NSLog(@"gc - authenticationchanged");
     dispatch_async(dispatch_get_main_queue(), ^(void)
                    {
                        if ([GKLocalPlayer localPlayer].isAuthenticated && !userAuthenticated) {
@@ -93,6 +98,7 @@ static GCHelper *sharedHelper = nil;
 }
 
 -(void)sendAchievement:(GKAchievement *)achievement {
+    NSLog(@"gc - sendachievement");
    // achievement.percentComplete = 100.0;   //Indicates the achievement is done
     achievement.showsCompletionBanner = YES;    //Indicate that a banner should be shown
     [achievement reportAchievementWithCompletionHandler:^(NSError *error) {
@@ -108,6 +114,7 @@ static GCHelper *sharedHelper = nil;
     }];
 }
 -(void)sendScore:(GKScore *)score {
+    NSLog(@"gc - sendscore");
     [score reportScoreWithCompletionHandler:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^(void)
                        {
@@ -122,6 +129,7 @@ static GCHelper *sharedHelper = nil;
 }
 
 -(void)resendData {
+    NSLog(@"gc - resenddata");
     for (GKAchievement *achievement in achievementsToReport) {
         [self sendAchievement:achievement];
     }
@@ -133,6 +141,7 @@ static GCHelper *sharedHelper = nil;
 #pragma mark User functions
 
 - (void)authenticateLocalUser {
+    NSLog(@"gc - authenticatelocaluser");
     if (!gameCenterAvailable) return;
     
     //NSLog(@"Authenticating local user...");
@@ -148,6 +157,7 @@ static GCHelper *sharedHelper = nil;
 }
 
 - (void)reportLeaderboard:(NSString *)identifier score:(float)rawScore {
+    NSLog(@"gc - reportleaderboard");
     GKScore *score=[[[GKScore alloc] initWithCategory:identifier] autorelease];
     score.value=rawScore;
     [leaderboardToReport addObject:score];
@@ -157,6 +167,7 @@ static GCHelper *sharedHelper = nil;
 }
 
 - (void)reportAchievement:(NSString *)identifier percentComplete:(double)percentComplete {
+    NSLog(@"gc - reportachievement");
     GKAchievement* achievement = [[[GKAchievement alloc] initWithIdentifier:identifier] autorelease];
     achievement.percentComplete = percentComplete;
     [achievementsToReport addObject:achievement];
@@ -169,6 +180,7 @@ static GCHelper *sharedHelper = nil;
 
 - (void) showLeaderboards
 {
+    NSLog(@"gc - showleaderboards");
     GKLeaderboardViewController *leaderboardController = [[GKLeaderboardViewController alloc] init] ;
     
     if (leaderboardController!=NULL) {
@@ -209,11 +221,13 @@ static GCHelper *sharedHelper = nil;
 #pragma mark NSCoding
 
 -(void)encodeWithCoder:(NSCoder *)encoder {
+    NSLog(@"gc - encodewithcoder");
     [encoder encodeObject:leaderboardToReport forKey:@"LeaderboardToReport"];
     [encoder encodeObject:achievementsToReport forKey:@"AchievementsToReport"];
 }
 
 -(id)initWithCoder:(NSCoder *)decoder {
+    NSLog(@"gc - initwithcoder");
     NSMutableArray * theLeaderboardToReport = [decoder decodeObjectForKey:@"LeaderboardToReport"];
     NSMutableArray * theAchievementsToReport = [decoder decodeObjectForKey:@"AchievementsToReport"];
     return [self initWithLeaderboardToReport:theLeaderboardToReport achievementsToReport:theAchievementsToReport];

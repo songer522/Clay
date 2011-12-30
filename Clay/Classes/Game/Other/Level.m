@@ -28,6 +28,7 @@
 #import "GameSettings.h"
 #import "TextureManager.h"
 #import "RegionManager.h"
+#import "PlayerAction.h"
 
 @implementation Level
 
@@ -105,6 +106,13 @@
         
         _collisionHandler = [CollisionDetection collisionHandlerWithMetaLayer:_meta Map:_map];
         
+        
+        NSString *mode = [[GameSettings shared] getGlobalForKey:@"gameMode"];
+        if([mode isEqualToString:@"timed"]) {
+            _isTimedMode = true;
+        } else {
+            _isTimedMode = false;
+        }
 
     }
     
@@ -424,7 +432,7 @@
             
             NSString *objectName = [self getPropertyForTileCoords:coords forKey:@"object"];
             
-            if (objectName) {
+            if (objectName && ![objectName isEqualToString:@"tvAnimation"]) {
                 
                 
                 GameObject *object = [_gameObjects loadGameObjectWithName:objectName AddToLayer:NO];
@@ -555,7 +563,6 @@
     bool collision = false;
 
     //prepare source bounding box, so we don't have to build it for every object
-    NSString *mode = [[GameSettings shared] getGlobalForKey:@"gameMode"];
     NSMutableArray *obstacles = [_obstacleManager getActiveGameObjectList];
     
     //guard
@@ -573,7 +580,8 @@
     for (GameObject *obstacle in obstacles) {
         if(!obstacle.collided && !obstacle.isInvincible) {
             int dist = [source getPosition].x - [obstacle getPosition].x;
-            if (abs(dist) < 250) { //don't do the full collision detection if they're not even close to each other.
+            if (abs(dist) < 250) //don't do the full collision detection if they're not even close to each other.
+            { 
                 collision = [self testCollisionWithGameObject:obstacle BoundingBox:sourceBoundingBox];
                 if (collision) {
                     [_player startCollision:[obstacle startCollision] Source:obstacle];
@@ -581,12 +589,28 @@
                     
                 }
                 else if(!obstacle.collided && dist > 200) //if tim has passed the obstacle and it hasn't been hit yet
+                {
+
+                    if(_isTimedMode && !obstacle.hasAppeared){
+                        [self obstacleJumpedOver:obstacle];
+                    }
+                }
+                else if([obstacle getCollisionBehavior] == COLLISION_BEHAVIOR_DISCO_TRIXTER_DANCING && !obstacle.collided)
+                {
+                    if(dist > -20)
                     {
-                        if([mode isEqualToString:@"timed"] && !obstacle.hasAppeared){
-                            [self obstacleJumpedOver:obstacle];
-                        }
-                 }
+                        [[AnimationController sharedController] replaceSprite:[obstacle getSprite] withAnimationNamed:@"discoTrixterPassedAnim"];
+                        [obstacle setOriginalAnimation:@"discoTrixterAnim"];
+                        obstacle.collided = true;
+                        [[_player getThirdAction] setIsNear:false];
+                        
+                    } else if (dist > -100) {
+                        [[_player getThirdAction] setIsNear:true];
+                    }
+                    
+                }
             }
+                
 
             if(abs(dist) < 900) {
                 
@@ -609,7 +633,7 @@
     return collision;
 }
 
--(bool)testCollisionsForAggressive:(id<Collidable>)source Obstacles:(NSMutableArray*)obstacles;
+-(bool)testCollisionsForAggressive:(id<Collidable>)source Obstacles:(NSMutableArray*)obstacles
 {
     bool collision = false;
     

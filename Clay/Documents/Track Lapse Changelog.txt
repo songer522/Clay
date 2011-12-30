@@ -1,5 +1,22 @@
 Track Lapse Changelog
 
+Build 111229.01
+==================
+
+Choose Mode - Have how to play screen displaying automatically when easy mode selected, and will let you press start to start the game.
+Choose Mode - You can now select 'Web' under the Extras menu to go to Tracklapse.com
+Global - Implemented 15 new achievements
+Global - Updated music to 128kbps stereo AAC format
+Global - Updated hud buttons so instead of green dots it has green bars
+Main Menu - Replaced sound for options menu
+Level 3 - New versions of all modes of level 3
+Level 3 - Reduced the number of layers in the map
+Level 4 - Reduced number of lasers and increased cool down time for them
+Level 4 - Added dancer that will stop Tim in place if he does the action near her
+Optimization - implemented sprite batch for obstacles which is supposed to reduce the amount of draw function calls, thus speeding up the graphic drawing process
+Optimization - rewrote some of the kick action so it would be more efficient
+Optimization - rewrote some of the global player action code so it would be more efficient
+
 Build 111228.03
 ==================
 

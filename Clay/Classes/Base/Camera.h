@@ -13,10 +13,12 @@
 
 @class Level;
 @class Sprite;
+@class Player;
 
 @interface Camera : NSObject
 {
     float _x;                   //x position of the camera
+    float _vx;
     float _y;                   //y position of the camera
     float _scale;               //scale for calculating positions of things
         
@@ -30,6 +32,8 @@
     
     bool _shouldMoveY;
     bool _trackingTarget;
+    
+    Player *_player;
     
     //precalcs for minor optimizations
     float _precalculateBoundaryYplusBoundaryHeight;
@@ -73,6 +77,8 @@
 -(void)moveTowardsTarget:(float)dt PlayerOnGround:(bool)onGround;
 -(void)snapToTarget;
 -(void)snapToTargetY;
+
+-(void)reset;
 
 #pragma mark - private methods
 -(void)keepWithinBoundaries_old;

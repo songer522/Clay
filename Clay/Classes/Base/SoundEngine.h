@@ -34,6 +34,8 @@ typedef enum {
     SoundMode _soundMode;
     
     AVAudioSession *_session;
+    
+    bool _enabled;
 }
 +(SoundEngine*)shared;
 

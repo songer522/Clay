@@ -12,7 +12,7 @@
 #import "GameObject.h"
 #import "GameSettings.h"
 
-#define REGION_MANAGER_TILES_PER_REGION 23 //should allow for ipad as well, plus some bleeding
+#define REGION_MANAGER_TILES_PER_REGION 25 //should allow for ipad as well, plus some bleeding
 
 @implementation RegionManager
 
@@ -48,6 +48,20 @@
 -(void)resetCurrentRegion
 {
     _currentIndex = -1;
+    
+    if (_leftRegion !=nil) {
+        for (GameObject *object in _leftRegion) {
+            [object moveToStartingPosition];
+        }        
+    }
+
+    if (_rightRegion !=nil) {
+        for (GameObject *object in _leftRegion) {
+            [[object getCCSprite] setVisible:NO];
+            [object moveToStartingPosition];
+        }        
+    }
+
     [self resetPersistentObjects];
     //note, allows for and requires 'changeregionsbasedonx' to be called afterwards to get the right region again
     
@@ -62,10 +76,17 @@
     if (newIndex < 0) newIndex = 0; //force it to always be at least the minimum.
     
     if (newIndex == _currentIndex || newIndex<0) { return; }
+
+    if (_leftRegion !=nil) {
+        for (GameObject *object in _leftRegion) {
+            [[object getCCSprite] setVisible:NO];
+        }        
+    }
     
     if (_combinedRegion!=nil) {
         [_combinedRegion release];
     }
+    
 
     _currentIndex = newIndex;
     

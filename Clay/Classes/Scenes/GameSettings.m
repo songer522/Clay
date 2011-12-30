@@ -105,7 +105,9 @@ static GameSettings *_shared = nil;
     NSDictionary *settings = [PListLoader loadPlistWithName:@"settings"];
     NSDictionary *appSettings = [settings objectForKey:@"app"];
     NSString *versionNumber = [appSettings objectForKey:@"versionNumber"];
+    NSString *showFps = [appSettings objectForKey:@"showFps"];
     [self setGlobal:versionNumber ForKey:@"versionNumber"];
+    [self setGlobal:showFps ForKey:@"showFps"];
 }
 
 -(void)dealloc
