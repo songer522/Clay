@@ -113,7 +113,7 @@
         if(![GCState sharedInstance].completeStoryEasy)
         {
             [GCState sharedInstance].completeStoryEasy = true;
-            [[GCState sharedInstance] save];
+            //[[GCState sharedInstance] save];
             [[GCHelper sharedInstance] reportAchievement:gcAchievementBeatStoryEasy percentComplete:100.0];
         }
     }
@@ -123,7 +123,7 @@
         if(![GCState sharedInstance].completeStoryNormal)
         {
             [GCState sharedInstance].completeStoryNormal = true;
-            [[GCState sharedInstance] save];
+            //[[GCState sharedInstance] save];
             [[GCHelper sharedInstance] reportAchievement:gcAchievementBeatStoryNormal percentComplete:100.0];
         }
     }
@@ -133,14 +133,14 @@
         if(![GCState sharedInstance].completeStoryHard)
         {
             [GCState sharedInstance].completeStoryHard = true;
-            [[GCState sharedInstance] save];
+            //[[GCState sharedInstance] save];
             [[GCHelper sharedInstance] reportAchievement:gcAchievementBeatStoryHard percentComplete:100.0];
         }
     }
     if(![GCState sharedInstance].completeStoryAll && [GCState sharedInstance].completeStoryEasy && [GCState sharedInstance].completeStoryNormal && [GCState sharedInstance].completeStoryHard)
     {
         [GCState sharedInstance].completeStoryAll = true;
-        [[GCState sharedInstance] save];
+        //[[GCState sharedInstance] save];
         [[GCHelper sharedInstance] reportAchievement:gcAchievementBeatStoryAll percentComplete:100.0];
     }
 

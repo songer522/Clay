@@ -210,7 +210,7 @@
         double pctComplete = ((double) [GCState sharedInstance].peopleShuffled / (int)maxShuffle) * 100.0;
         if(pctComplete == 100.0)
         {
-            [[GCState sharedInstance] save];
+            //[[GCState sharedInstance] save];
             [[GCHelper sharedInstance] reportAchievement:gcAchievementShuffled200people percentComplete:pctComplete];
         }
     }
@@ -227,7 +227,7 @@
         double pctComplete2 = ((double) [GCState sharedInstance].zombiesShot / (int)maxZombie) * 100.0;
         if(pctComplete2 == 100.0)
         {
-            [[GCState sharedInstance] save];
+            //[[GCState sharedInstance] save];
             [[GCHelper sharedInstance] reportAchievement:gcAchievementShoot300zombies percentComplete:pctComplete2];
         }
     }
@@ -245,7 +245,7 @@
         double pctComplete4 = ((double) [GCState sharedInstance].attacksBlocked / (int)maxBlock) * 100.0;
         if(pctComplete4 == 100.0)
         {
-            [[GCState sharedInstance] save];
+           // [[GCState sharedInstance] save];
             [[GCHelper sharedInstance] reportAchievement:gcAchievementBlock75attack percentComplete:pctComplete4];
         }
     }

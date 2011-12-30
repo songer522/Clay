@@ -293,7 +293,7 @@
             double pctComplete = ((double) [GCState sharedInstance].dancersHit / (int)maxHit) * 100.0;
             if(pctComplete == 100.0)
             {
-                [[GCState sharedInstance] save];
+               // [[GCState sharedInstance] save];
                 [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10dancers percentComplete:pctComplete];
             }
         }
@@ -307,7 +307,7 @@
             double pctComplete9 = ((double) [GCState sharedInstance].zombiesHit / (int)maxHit) * 100.0;
             if(pctComplete9 == 100.0)
             {
-                [[GCState sharedInstance] save];
+               // [[GCState sharedInstance] save];
                 [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10zombies percentComplete:pctComplete9];
             }
         }

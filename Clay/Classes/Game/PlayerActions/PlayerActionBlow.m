@@ -79,7 +79,7 @@
         double pctComplete3 = ((double) [GCState sharedInstance].demonsFreezed / (int)maxFireDemon) * 100.0;
         if(pctComplete3 == 100.0)
         {
-            [[GCState sharedInstance] save];
+            //[[GCState sharedInstance] save];
             [[GCHelper sharedInstance] reportAchievement:gcAchievementFreeze200demon percentComplete:pctComplete3];
         }
     }
