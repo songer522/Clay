@@ -298,6 +298,13 @@ static Camera *_sharedCamera = nil;
     }
 }
 
+-(void)reset
+{
+    _x = 0;
+    _y = 0;
+    [self keepWithinBoundaries];
+}
+
 -(void)setPosition:(CGPoint)point
 {
     _x = point.x;

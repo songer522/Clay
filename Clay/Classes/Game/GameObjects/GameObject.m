@@ -167,6 +167,13 @@
 -(void) setStartingPosition:(CGPoint)position
 {
     _startingPosition = CGPointMake(position.x, position.y);
+    @try {
+        if (_projectile !=nil) {
+            [_projectile reset];
+        }
+    }
+    @catch (NSException *exception) {
+    }
 }
 
 -(PlayerEffect) startCollision
@@ -297,6 +304,10 @@
 -(void)setActive:(bool)active
 {
     _isActive = active;
+}
+
+-(void) singleUpdate {
+    [self update:(1.0f/60.0f)];
 }
 
 -(void)update:(float)dt
@@ -1172,6 +1183,11 @@
         _collideBehavior = COLLISION_BEHAVIOR_NONE;
     }
     
+}
+
+-(void) moveToStartingPosition
+{
+    [self setPosition:_startingPosition];
 }
 
 -(void)setRange:(CGRect)range

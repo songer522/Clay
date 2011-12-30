@@ -78,6 +78,8 @@
 -(void)snapToTarget;
 -(void)snapToTargetY;
 
+-(void)reset;
+
 #pragma mark - private methods
 -(void)keepWithinBoundaries_old;
 -(void)keepWithinBoundaries;
