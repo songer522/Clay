@@ -201,23 +201,17 @@
             [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"dancinManDied"];
             _alpha = 1.5f;
             _fadeout = true;
-            
             [[gameLayer.player getThirdAction] setKilledEnemy:YES];
             break;
-            
+        case COLLISION_BEHAVIOR_DISCO_TRIXTER_WAITING:
+        case COLLISION_BEHAVIOR_DISCO_TRIXTER_DANCING:
+            _collided = false;
+            break;
         case COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_BD:
-          
-        
             [[gameLayer.player getThirdAction] setKilledEnemy:YES];
-
-            
             break;
         case COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST_BD:
-            
-            
             [[gameLayer.player getThirdAction] setKilledEnemy:YES];
-            
-            
             break;
         case COLLISION_BEHAVIOR_ZOMBIE_HEADLESS:
             [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"femaleHeadlessZombieAnim"];
@@ -301,7 +295,6 @@
 
 -(void)update:(float)dt
 {
-    
     if (!_isStutterMode && !_boss) {
         if ([[Camera sharedCamera ] isInVisualRange:_x]) {
             if (!_isVisible) {
@@ -336,10 +329,7 @@
     }
     
     //guard
-    if (!_isActive && _collideBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER) { 
-        
-        
-        return; }
+    if (!_isActive && _collideBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER) { return; }
     
     _prevLocation = CGPointMake(_x, _y);
     
@@ -422,13 +412,13 @@
             break;
         case COLLISION_BEHAVIOR_CLAPPING_CROWD:
             if ([self closeToPlayer:400] )
-                 {
-                     if(!_hasTriggered)
-                     {
-                     [self playerHasCheering:true];
-                         
-                     }
-                 }
+            {
+             if(!_hasTriggered)
+             {
+             [self playerHasCheering:true];
+                 
+             }
+            }
             if([self checkIfOffScreen:[self getPosition]] )
             {
                 [self playerHasCheering:false];
@@ -460,6 +450,11 @@
             [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-250.0f ChaseSound:@"crowAppears"];
             break;
         
+        ///////////////////////////
+        //LEVEL 4 - DISCO RUN
+        ///////////////////////////
+        
+            
             
         ///////////////////////////
         //LEVEL 5 - CITY RUN
@@ -992,6 +987,10 @@
         [self playerHasCheering:false];
         _hasTriggered=false;
     }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_DISCO_TRIXTER_DANCING || _currentBehavior == COLLISION_BEHAVIOR_DISCO_TRIXTER_WAITING) {
+        _currentBehavior = COLLISION_BEHAVIOR_DISCO_TRIXTER_WAITING;
+        _hasTriggered = false;
+    }
     else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_SLOW) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;     
     }
@@ -1159,9 +1158,14 @@
         _currentBehavior = COLLISION_BEHAVIOR_PIG;
         _collideBehavior = COLLISION_BEHAVIOR_PIG;
     }
+    else if([behavior isEqualToString:@"trixter"]) {
+        _currentBehavior = COLLISION_BEHAVIOR_DISCO_TRIXTER_WAITING;
+        _collideBehavior = COLLISION_BEHAVIOR_DISCO_TRIXTER_DANCING;
+    }
     else {
         _collideBehavior = COLLISION_BEHAVIOR_NONE;
     }
+    
 }
 
 -(void)setRange:(CGRect)range
@@ -1180,6 +1184,8 @@
     } else if([effect isEqualToString:@"vaccuum"]) {
         //so far just used by water bubbles in underwater level (level 10)
         _playerEffect = PLAYER_EFFECT_VACCUUM;
+    } else if([effect isEqualToString:@"dance"]) {
+        _playerEffect = PLAYER_EFFECT_DANCE;
     } else {
         _playerEffect = PLAYER_EFFECT_NONE;
     }

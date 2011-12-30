@@ -13,6 +13,7 @@
 @interface PlayerActionDodge : PlayerAction
 {
     CGPoint _preActionPlayerPosition;
+    bool _isDancingWithGirl;
 }
 
 @end

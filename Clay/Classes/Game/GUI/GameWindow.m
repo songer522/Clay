@@ -67,12 +67,14 @@
     }
     
     _choice1 = [ActionButton actionButtonManualSetup];
+    [_choice1 setEnabled:true];
     if (choice1Text) {
         [_choice1 setInitialText:choice1Text];
         [_choice1 setPosition:choice1Pos];
     }
     
     _choice2 = [ActionButton actionButtonManualSetup];
+    [_choice2 setEnabled:true];
     if (choice2Text) {
         [_choice2 setInitialText:choice2Text];
         [_choice2 setPosition:choice2Pos];

@@ -155,6 +155,8 @@
     [self initForLevel];
     Level *levelObj = [[LevelManager shared] currentLevel];
     [[ComicManager shared] startComic:levelObj.preComicName StartPhase:COMIC_PHASE_STARTING_VIDEO];
+    
+    [[GameSettings shared] setGlobal:[NSString stringWithString:levelName] ForKey:@"continueLevelName"];
 }
 
 -(void)initForLevel

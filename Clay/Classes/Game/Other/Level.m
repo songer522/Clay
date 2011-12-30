@@ -424,7 +424,7 @@
             
             NSString *objectName = [self getPropertyForTileCoords:coords forKey:@"object"];
             
-            if (objectName) {
+            if (objectName && ![objectName isEqualToString:@"tvAnimation"]) {
                 
                 
                 GameObject *object = [_gameObjects loadGameObjectWithName:objectName AddToLayer:NO];
@@ -573,34 +573,49 @@
     for (GameObject *obstacle in obstacles) {
         if(!obstacle.collided && !obstacle.isInvincible) {
             int dist = [source getPosition].x - [obstacle getPosition].x;
-            if (abs(dist) < 250) { //don't do the full collision detection if they're not even close to each other.
+            if (abs(dist) < 250) //don't do the full collision detection if they're not even close to each other.
+            { 
                 collision = [self testCollisionWithGameObject:obstacle BoundingBox:sourceBoundingBox];
                 if (collision) {
                     [_player startCollision:[obstacle startCollision] Source:obstacle];
                 }
                 else if(!obstacle.collided && dist > 200) //if tim has passed the obstacle and it hasn't been hit yet
+                {
+                    if(obstacle.isHurdle && !obstacle.hasAppeared && [mode isEqualToString:@"timed"])
                     {
-                        if(obstacle.isHurdle && !obstacle.hasAppeared && [mode isEqualToString:@"timed"])
-                        {
-                            int maxHurdles = 400;
+                        int maxHurdles = 400;
+                        
+                        if ([GCState sharedInstance].hurdlesJumpedOver < maxHurdles) {
+                            [GCState sharedInstance].hurdlesJumpedOver++;
+                            obstacle.hasAppeared=true;
+                            //NSLog(@"hurdles jumped over:%d" ,[GCState sharedInstance].hurdlesJumpedOver);
                             
-                            if ([GCState sharedInstance].hurdlesJumpedOver < maxHurdles) {
-                                [GCState sharedInstance].hurdlesJumpedOver++;
-                                obstacle.hasAppeared=true;
-                                //NSLog(@"hurdles jumped over:%d" ,[GCState sharedInstance].hurdlesJumpedOver);
-                                
-                            
-                                double pctComplete = ((double) [GCState sharedInstance].hurdlesJumpedOver / (int)maxHurdles) * 100.0;
-                                if(pctComplete == 100.0)
-                                {
-                                [[GCState sharedInstance] save];
-                                [[GCHelper sharedInstance] reportAchievement:gcAchievementJumpOver400hurdles percentComplete:pctComplete];
-                                }
+                        
+                            double pctComplete = ((double) [GCState sharedInstance].hurdlesJumpedOver / (int)maxHurdles) * 100.0;
+                            if(pctComplete == 100.0)
+                            {
+                            [[GCState sharedInstance] save];
+                            [[GCHelper sharedInstance] reportAchievement:gcAchievementJumpOver400hurdles percentComplete:pctComplete];
                             }
-                          
                         }
                     }
+                }
+                else if([obstacle getCollisionBehavior] == COLLISION_BEHAVIOR_DISCO_TRIXTER_DANCING && !obstacle.collided)
+                {
+                    if(dist > 0)
+                    {
+                        [[AnimationController sharedController] replaceSprite:[obstacle getSprite] withAnimationNamed:@"discoTrixterPassedAnim"];
+                        [obstacle setOriginalAnimation:@"discoTrixterAnim"];
+                        obstacle.collided = true;
+                        [[_player getThirdAction] setIsNear:false];
+                        
+                    } else if (dist > -100) {
+                        [[_player getThirdAction] setIsNear:true];
+                    }
+                    
+                }
             }
+                
 
             if(abs(dist) < 900) {
                 
@@ -623,7 +638,7 @@
     return collision;
 }
 
--(bool)testCollisionsForAggressive:(id<Collidable>)source Obstacles:(NSMutableArray*)obstacles;
+-(bool)testCollisionsForAggressive:(id<Collidable>)source Obstacles:(NSMutableArray*)obstacles
 {
     bool collision = false;
     
