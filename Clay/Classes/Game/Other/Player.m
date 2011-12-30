@@ -22,6 +22,8 @@
 #import "GameLayer.h"
 #import "HudLayer.h"
 #import "Boss.h"
+#import "GCState.h"
+#import "GCHelper.h"
 
 
 #define PLAYER_SPRITE_FILE @"player_idle_01.png"
@@ -277,6 +279,44 @@
     return ([_thirdAction shouldTriggerPlayerHurtCollision]); //CHANGED: used to be '&& _onLedge' to enable collisions on ledge again
 }
 
+-(void)obstacleGotHitBy:(GameObject *)obstacle
+{
+    if(![obstacle respondsToSelector:@selector(CollidableBehavior)]){return;}
+    int maxHit = 10;
+    
+    
+    if(obstacle.CollidableBehavior == COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_BD || obstacle.CollidableBehavior == COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST_BD || obstacle.CollidableBehavior == COLLISION_BEHAVIOR_DANCIN_MAN_COLLAPSE)
+    {
+        if ([GCState sharedInstance].dancersHit < maxHit) {
+            [GCState sharedInstance].dancersHit++;
+            
+            double pctComplete = ((double) [GCState sharedInstance].dancersHit / (int)maxHit) * 100.0;
+            if(pctComplete == 100.0)
+            {
+                [[GCState sharedInstance] save];
+                [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10dancers percentComplete:pctComplete];
+            }
+        }
+        
+    }
+    else if(obstacle.CollidableBehavior == COLLISION_BEHAVIOR_ZOMBIE_HEADLESS || obstacle.CollidableBehavior == COLLISION_BEHAVIOR_ZOMBIE_FADE)
+    {
+        if ([GCState sharedInstance].zombiesHit < maxHit) {
+            [GCState sharedInstance].zombiesHit++;
+            
+            double pctComplete9 = ((double) [GCState sharedInstance].zombiesHit / (int)maxHit) * 100.0;
+            if(pctComplete9 == 100.0)
+            {
+                [[GCState sharedInstance] save];
+                [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10zombies percentComplete:pctComplete9];
+            }
+        }
+        
+    }
+
+}
+
+
 -(void)startCollision:(PlayerEffect)effect Source:(id<Collidable>)source
 {
     //update vaccuum effect
@@ -300,6 +340,10 @@
                 if (![_thirdAction isActive]) {
                     if ([_thirdAction shouldTriggerPlayerHurtCollision]) {
                         [self startPlayerCollision:false];
+                        if([source isKindOfClass:[GameObject class]])
+                        {
+                        [self obstacleGotHitBy:source];
+                        }
                         if(!_gotHit)
                         {
                             _gotHit=true;
@@ -311,6 +355,7 @@
         } else if (effect == PLAYER_EFFECT_COLLIDE) {
             if (!_isTripping && !_isDead) {
                 [self startPlayerCollision:false];
+                [self obstacleGotHitBy:source];
                 if(!_gotHit)
                 {
                     _gotHit=true;

@@ -29,6 +29,7 @@
 -(bool)canStartInMidAir;
 -(bool)canStartOnGround;
 
+
 @end
 
 
@@ -57,5 +58,13 @@
 -(void)isCheering:(bool)cheering;
 -(bool) playerAllowedToJump;
 -(bool) playerAllowedToSprint;
+
+#pragma mark - achievements 
+
+-(void)shuffledOver;
+-(void)shotZombie;
+
+-(void)blockshot;
+
 
 @end

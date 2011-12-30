@@ -14,6 +14,8 @@
 #import "LevelManager.h"
 #import "RunningSpeed.h"
 #import "AnimationController.h"
+#import "GCState.h"
+#import "GCHelper.h"
 
 @implementation PlayerActionBlow
 -(void)initialize
@@ -67,6 +69,25 @@
     [super cancelAction];
 }
 
+-(void)freezeFireDemon:(GameObject *)obstacle
+{
+    int maxFireDemon = 200;
+     NSLog(@"%d",[GCState sharedInstance].demonsFreezed);
+    if ([GCState sharedInstance].demonsFreezed < maxFireDemon) {
+        [GCState sharedInstance].demonsFreezed++;
+        obstacle.hasAppeared=true;
+        double pctComplete3 = ((double) [GCState sharedInstance].demonsFreezed / (int)maxFireDemon) * 100.0;
+        if(pctComplete3 == 100.0)
+        {
+            [[GCState sharedInstance] save];
+            [[GCHelper sharedInstance] reportAchievement:gcAchievementFreeze200demon percentComplete:pctComplete3];
+        }
+    }
+    
+}
+
+
+
 -(void)testBlowCollisions
 {
     NSMutableArray *obstacles = [[[LevelManager shared] currentLevel] getActiveGameObjectList];
@@ -76,6 +97,8 @@
             if([[[LevelManager shared] currentLevel] testCollisionWithGameObject:object Source:_windProjectile])
             {
                 [object startCollision];
+                if(!object.hasAppeared)
+                    [self freezeFireDemon:object];
             }
         }
     }

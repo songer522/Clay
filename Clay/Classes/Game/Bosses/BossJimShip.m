@@ -122,7 +122,6 @@
                  
                 } else {
                     [[_player getThirdAction] setKilledEnemy:YES];
-                    [_player blockshot];
                     [[SoundEngine shared] playSound:@"deflected"];
                 }
                 [_bullet disable];

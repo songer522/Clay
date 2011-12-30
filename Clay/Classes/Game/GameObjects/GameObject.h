@@ -181,11 +181,7 @@ typedef enum {
 -(void) chaseAtDistance:(float)distance DefaultSpeed:(float)defaultSpeed ChaseSpeed:(float)chaseSpeed ChaseSound:(NSString*)sound;
 -(void) chaseAtDistance:(float)distance DefaultSpeed:(float)defaultSpeed ChaseSpeed:(float)chaseSpeed ChaseSound:(NSString*)sound ChaseAnimation:(NSString*)chaseAnim DefaultAnimation:(NSString*)defaultAnim;
 
-#pragma mark - achievements 
 
--(void)shuffledOver;
--(void)shotZombie;
--(void)freezeFireDemon;
--(void)blockshot;
+
 
 @end
