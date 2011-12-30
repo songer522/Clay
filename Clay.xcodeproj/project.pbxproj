@@ -3355,6 +3355,8 @@
 				61E8DE3014ACDFDA00F2C23F /* story_hard_level3.tmx in Resources */,
 				61E8DE3214ACDFE800F2C23F /* timed_normal_level3.tmx in Resources */,
 				61E8DE3414ACDFF200F2C23F /* timed_hard_level3.tmx in Resources */,
+				54F435CD14ACE17C009F7929 /* cancel.wav in Resources */,
+				54F435CE14ACE17C009F7929 /* confirm.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
