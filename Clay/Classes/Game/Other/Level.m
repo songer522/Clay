@@ -584,23 +584,8 @@
                 }
                 else if(!obstacle.collided && dist > 200) //if tim has passed the obstacle and it hasn't been hit yet
                 {
-                    if(obstacle.isHurdle && !obstacle.hasAppeared && [mode isEqualToString:@"timed"])
-                    {
-                        int maxHurdles = 400;
-                        
-                        if ([GCState sharedInstance].hurdlesJumpedOver < maxHurdles) {
-                            [GCState sharedInstance].hurdlesJumpedOver++;
-                            obstacle.hasAppeared=true;
-                            //NSLog(@"hurdles jumped over:%d" ,[GCState sharedInstance].hurdlesJumpedOver);
-                            
-                        
-                            double pctComplete = ((double) [GCState sharedInstance].hurdlesJumpedOver / (int)maxHurdles) * 100.0;
-                            if(pctComplete == 100.0)
-                            {
-                            [[GCState sharedInstance] save];
-                            [[GCHelper sharedInstance] reportAchievement:gcAchievementJumpOver400hurdles percentComplete:pctComplete];
-                            }
-                        }
+                    if([mode isEqualToString:@"timed"] && !obstacle.hasAppeared){
+                        [self obstacleJumpedOver:obstacle];
                     }
                 }
                 else if([obstacle getCollisionBehavior] == COLLISION_BEHAVIOR_DISCO_TRIXTER_DANCING && !obstacle.collided)
