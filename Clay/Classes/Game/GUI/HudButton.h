@@ -29,6 +29,8 @@ typedef enum {
     
     float _scale;
     bool _initialized;
+    
+    NSMutableArray *_overlayFrameNames;
 }
 
 +(id)buttonWithType:(HudButtonType)type Action:(NSString*)action;

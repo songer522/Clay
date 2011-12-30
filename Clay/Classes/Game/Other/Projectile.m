@@ -286,7 +286,9 @@
           //??? the above line shouldn't be commented out. the projectile still goes through the update cycle even when it's offscreen with this
         } else {
             if (_isAggressive) {
-                bool collision = [[[LevelManager shared] currentLevel] testCollisionsForAggressive:self];
+                Level *level = [[LevelManager shared] currentLevel];
+                NSMutableArray *obstacles = [level getActiveGameObjectList];
+                bool collision = [level testCollisionsForAggressive:self Obstacles:obstacles];
                 if (collision) {
                     [self disable];            
                 }                

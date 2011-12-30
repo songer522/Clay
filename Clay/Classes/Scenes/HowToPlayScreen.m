@@ -11,8 +11,10 @@
 #import "LayerManager.h"
 #import "Tutorial.h"
 #import "GameLabel.h"
+#import "GameSettings.h"
 #import "TextureManager.h"
 #import "OptionsScene.h"
+#import "GameLayer.h"
 #import "SoundEngine.h"
 
 @implementation HowToPlayScreen
@@ -48,7 +50,7 @@
         
         _tutorial = [[Tutorial alloc] initWithinLayer:self];
         [_tutorial switchToTutorial];
-            
+        
         _backButton = [ActionButton actionButtonCustomGraphicsForIdle:@"UI_GameType_ButtonS_Blue.png" Selected:@"UI_GameType_ButtonS_Green.png"];
         [_backButton setInitialText:@"BACK"];
         [_backButton setPosition:ccp(50, 18)];
@@ -56,10 +58,28 @@
         _header = [GameLabel gameLabelWithText:@"HOW TO PLAY" Scale:0.65f];
         [_header setPosition:ccp(375.0f,284.0f)];
         
+        
+        
+        _startButton = [ActionButton actionButtonCustomGraphicsForIdle:@"UI_GameType_ButtonS_Blue.png" Selected:@"UI_GameType_ButtonS_Green.png"];
+        [_startButton setInitialText:@"START"];
+        [_startButton setPosition:ccp(430,18)];
+        
+        NSString *preTutorial = [[GameSettings shared] getGlobalForKey:@"preTutorialScreen"];
+        if ([preTutorial isEqualToString:@"options"]) {
+            [_startButton setEnabled:false];
+            _switchToGame = false;
+        } else {
+            [_backButton setEnabled:false];
+            _switchToGame = true;
+        }
+        
         [[LayerManager sharedLayers] forgetWorkingLayer];
         
         [self scheduleUpdate];
         self.isTouchEnabled = YES;
+
+        
+        _hasSwitched = false;
         
         _waitToSwitch = 0.0f;
     }
@@ -74,6 +94,10 @@
         if([_backButton checkIfSelected:position]) {
             _waitToSwitch = 0.25f;
             [[SoundEngine shared] playSound:@"buttonPressed"];     
+        } else if([_startButton checkIfSelected:position]) {
+            _waitToSwitch = 0.25f;
+            [[SoundEngine shared] playSound:@"buttonPressed"];    
+            _switchToGame = true;
         }
     }
 }
@@ -81,16 +105,28 @@
 -(void)update:(ccTime)dt
 {
     [_backButton update:dt];
+    [_startButton update:dt];
     
     [_tutorial update:dt];
     
-    if (_waitToSwitch>0.0f) {
+    if (!_hasSwitched && _waitToSwitch>0.0f) {
         _waitToSwitch-=dt;
         if(_waitToSwitch<=0.0f){
             _waitToSwitch = 0.0f;
-            [self switchToOptionsScreen];
+            if (_switchToGame) {
+                [self switchToGameScreen];
+                _hasSwitched = true;
+            } else {
+                [self switchToOptionsScreen];
+                _hasSwitched = true;
+            }
         }
     }
+}
+
+-(void)switchToGameScreen
+{
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[GameLayer scene]]];
 }
 
 -(void)switchToOptionsScreen

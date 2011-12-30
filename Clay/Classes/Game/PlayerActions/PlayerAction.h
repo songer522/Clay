@@ -10,6 +10,8 @@
 #import <Foundation/Foundation.h>
 
 @class Player;
+@class HudButton;
+@class HudLayer;
 
 @protocol PlayerActionProtocol
 
@@ -47,6 +49,10 @@
     float _cooldownStart; //used to determine percentage the cooldown is complete
     bool _canTrigger;
     bool _isCheering;
+    
+    //weak references
+    HudButton *_actionButton;
+    HudLayer *_hud;
 }
 
 

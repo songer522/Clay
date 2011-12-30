@@ -34,6 +34,8 @@
         _cooldownStart = 0.1f;
         _canTrigger = true;
         _isCheering = false;
+        _hud = [[[LayerManager sharedLayers] currentLayer] getHud];
+        _actionButton = [[[[LayerManager sharedLayers] currentLayer] getHud] getActionButton];
         [self initialize];
     }
     
@@ -53,9 +55,7 @@
         _isActive = false;
         _canTrigger = false;
         _hasKilledEnemy = false;
-        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
-         
-        [[gameLayer getHud] setEnabled:false ForButton:HUD_BUTTON_ACTION];
+        [_hud setEnabled:false ForButton:HUD_BUTTON_ACTION];
               
     }
 }
@@ -68,8 +68,7 @@
         if (_duration <= 0.0f) {
             [self endAction];
         }
-        
-        [[[[[LayerManager sharedLayers] currentLayer] getHud] getActionButton] updateOverlayImageByPercentage:0.0f]; 
+        [[_hud getActionButton] updateOverlayImageByPercentage:0.0f];
     }
     
     if (_cooldown>0.0f) {            
@@ -80,7 +79,7 @@
         }
         
         float percent = (_cooldownStart - _cooldown)/_cooldownStart;
-        [[[[[LayerManager sharedLayers] currentLayer] getHud] getActionButton] updateOverlayImageByPercentage:percent];
+        [[_hud getActionButton] updateOverlayImageByPercentage:percent];
     }
     
  
@@ -89,16 +88,12 @@
 -(void) enableAction
 {
     _canTrigger = true;
-    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
-    [[gameLayer getHud] setEnabled:true ForButton:HUD_BUTTON_ACTION];
-     
+    [_hud setEnabled:true ForButton:HUD_BUTTON_ACTION];
 }
 -(void) disableAction
 {
     _canTrigger = false;
-    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
-    [[gameLayer getHud] setEnabled:false ForButton:HUD_BUTTON_ACTION];
-
+    [_hud setEnabled:true ForButton:HUD_BUTTON_ACTION];
 }
 
 -(bool)inAction

@@ -50,6 +50,7 @@ typedef enum {
     float _backToMainMenu;
     
     bool _isTransitioning;
+    bool _playTutorial;
 }
 
 @property(nonatomic,assign) bool isTransitioning;

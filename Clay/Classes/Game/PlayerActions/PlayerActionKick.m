@@ -40,6 +40,7 @@
     _cooldownStart = 0.6f;
     _cooldown = 0.0f;
     _canTrigger = true;
+    _level = [[LevelManager shared] currentLevel];
 }
 
 -(void)startAction
@@ -63,9 +64,9 @@
             
             [self updateBoundingBox];
             
-            CGPoint position = [[[LayerManager sharedLayers] getPlayer] getPosition];
+            CGPoint position = [_parent getPosition];
             
-            if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
+            if ([[GameSettings shared] usingHighResolutionGraphics])
             {
                 position.x += 10.0f;
                 position.y -= 5.0f;
@@ -117,7 +118,7 @@
             break;
     }
     
-    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
+    if ([[GameSettings shared] usingHighResolutionGraphics])
     {
         [_kick setBoundingBox:CGRectMake(startX, 0, projWidth, 35)];
     }
@@ -134,7 +135,7 @@
     for (GameObject *object in obstacles) {
         if([object getCurrentCollisionBehavior] == COLLISION_BEHAVIOR_HEN_STATIC)
         {
-           if([[[LevelManager shared] currentLevel] testCollisionWithGameObject:object Source:_kick])
+           if([_level testCollisionWithGameObject:object Source:_kick])
            {
                [object special_kickHen];
                [self setKilledEnemy:YES];

@@ -174,7 +174,7 @@
 		<key>animations</key>
 		<string>none</string>
 		<key>sounds</key>
-		<string>menuPlayButton,selectOptionsMenu</string>
+		<string>menuPlayButton,confirm</string>
 		<key>textures</key>
 		<string>menuTextures</string>
 	</dict>
@@ -213,7 +213,7 @@
 		<key>animations</key>
 		<string>none</string>
 		<key>sounds</key>
-		<string>buttonPressed,turboStart,jumpStart,dead,doubleJump</string>
+		<string>buttonPressed,turboStart,jumpStart,dead,doubleJump,cancel</string>
 		<key>textures</key>
 		<string>optionsScreen</string>
 	</dict>

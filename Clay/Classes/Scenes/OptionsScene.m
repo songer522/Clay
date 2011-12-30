@@ -19,6 +19,7 @@
 #import "CreditsScene.h"
 #import "HowToPlayScreen.h"
 #import "GameWindow.h"
+#import "GameSettings.h"
 
 //IPAD FIX: width and offset
 #define OPTIONS_SCENE_OFFSET_X 30.0f
@@ -252,8 +253,7 @@
 
 -(void)switchToTutorial
 {
-    //[_tutorial switchToTutorial];
-    //_inTutorial = !_inTutorial;
+    [[GameSettings shared] setGlobal:@"options" ForKey:@"preTutorialScreen"];
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[HowToPlayScreen scene]]];
 }
 

@@ -12,11 +12,11 @@
 #import "PlayerActionFactory.h"
 
 #define HUD_LAYER_BUTTON_OPACITY 170
-#define HUD_LAYER_BUTTON_Y 29
-#define HUD_LAYER_JUMP_X 32
-#define HUD_LAYER_ACTION_X 390
-#define HUD_LAYER_SPRINT_X 450
-#define HUD_LAYER_BUTTON_SIZE 55
+#define HUD_LAYER_BUTTON_Y 32
+#define HUD_LAYER_JUMP_X 34
+#define HUD_LAYER_ACTION_X 384
+#define HUD_LAYER_SPRINT_X 448
+#define HUD_LAYER_BUTTON_SIZE 62
 
 #define BUTTON_OPACITY 255
 #define BUTTON_SCALE 0.85f
@@ -47,6 +47,14 @@
         [self prepareButtonWithType:type Action:action];
      
         _initialized = true;
+        
+        
+        _overlayFrameNames = [[NSMutableArray alloc] initWithCapacity:8];
+        for (int i=0; i<8; i++) {
+            NSString *frameName = [[NSString stringWithFormat:@"UI_Button_GreenLight_%d.png",i] retain];
+            [_overlayFrameNames addObject:frameName];
+        }
+        
         _currentOverlayFrame = 7;
     }
    return self;
@@ -175,9 +183,7 @@
         [[_greenOverlay getCCSprite] setVisible:NO];
         _overlayVisible = false;
     } else if (_currentOverlayFrame != frameNumber) {
-            
-        NSString *frameName = [NSString stringWithFormat:@"UI_Button_GreenLight_%d.png",frameNumber];
-        [_greenOverlay setImageByName:frameName];
+        [_greenOverlay setImageByName:[_overlayFrameNames objectAtIndex:frameNumber]];
         
         //set visible if not already
         if (!_overlayVisible) {
@@ -193,6 +199,8 @@
 {
     [_graphic release];
     [_greenOverlay release];
+    [_overlayFrameNames removeAllObjects];
+    [_overlayFrameNames release];
     [super dealloc];
 }
 
