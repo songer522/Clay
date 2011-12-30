@@ -32,6 +32,7 @@
 -(bool)canStartOnGround;
 -(void)setIsNear:(bool)isNear;
 
+
 @end
 
 
@@ -66,5 +67,13 @@
 -(void)setIsNear:(bool)isNear;
 -(bool) playerAllowedToJump;
 -(bool) playerAllowedToSprint;
+
+#pragma mark - achievements 
+
+-(void)shuffledOver;
+-(void)shotZombie;
+
+-(void)blockshot;
+
 
 @end

@@ -20,6 +20,8 @@
 #import "Projectile.h"
 #import "BossFactory.h"
 #import "GameSettings.h"
+#import "GCHelper.h"
+#import "GCState.h"
 
 #define GAME_OBJECT_DISTANCE_ONSCREEN 550.0f
 
@@ -37,6 +39,7 @@
 @synthesize hasGravity = _hasGravity;
 @synthesize isAggressive = _isAggressive;
 @synthesize CurrentBehavior = _currentBehavior;
+@synthesize CollidableBehavior = _collideBehavior;
 @synthesize isInMidAir = _isInMidAir;
 @synthesize isFalling = _isFalling;
 @synthesize isInvincible = _isInvincible;
@@ -202,6 +205,7 @@
             _alpha = 1.5f;
             _fadeout = true;
             [[gameLayer.player getThirdAction] setKilledEnemy:YES];
+           // [self shuffledOver];
             break;
         case COLLISION_BEHAVIOR_DISCO_TRIXTER_WAITING:
         case COLLISION_BEHAVIOR_DISCO_TRIXTER_DANCING:
@@ -222,6 +226,7 @@
             [_projectile setPosition:CGPointMake(_x, _y + 41)];
             [_projectile setBoundingBox:CGRectMake(15, 33, 14, 35)];
             [[[[LayerManager sharedLayers] getPlayer] getThirdAction] setKilledEnemy:YES];
+            //[self shotZombie];
             break;
         case COLLISION_BEHAVIOR_FIRE_DEMON:
             _alpha = 1.0f;
@@ -230,6 +235,7 @@
             _rate = 2.0f;
             _fadeout = true;
             [[[[LayerManager sharedLayers] getPlayer] getThirdAction] setKilledEnemy:YES];
+            //[self freezeFireDemon];
             break;
         case COLLISION_BEHAVIOR_FIREBALL_START:
         case COLLISION_BEHAVIOR_FIREBALL_MOVING:
@@ -1252,6 +1258,8 @@
 {
     return _sprite;
 }
+
+
 
 -(void)dealloc
 {

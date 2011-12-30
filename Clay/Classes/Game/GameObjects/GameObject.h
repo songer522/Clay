@@ -113,6 +113,7 @@ typedef enum {
 @property(nonatomic,assign) float vy;
 @property(nonatomic,assign) CGRect boundingBox;
 @property(nonatomic,assign) CollisionBehavior CurrentBehavior;
+@property(nonatomic) CollisionBehavior CollidableBehavior;
 @property(nonatomic, retain)NSString *originalAnimation;
 @property(nonatomic,assign) bool collided;
 @property(nonatomic,assign) bool hasGravity;
@@ -180,5 +181,8 @@ typedef enum {
 -(void) chaseAtDistance:(float)distance DefaultSpeed:(float)defaultSpeed ChaseSpeed:(float)chaseSpeed;
 -(void) chaseAtDistance:(float)distance DefaultSpeed:(float)defaultSpeed ChaseSpeed:(float)chaseSpeed ChaseSound:(NSString*)sound;
 -(void) chaseAtDistance:(float)distance DefaultSpeed:(float)defaultSpeed ChaseSpeed:(float)chaseSpeed ChaseSound:(NSString*)sound ChaseAnimation:(NSString*)chaseAnim DefaultAnimation:(NSString*)defaultAnim;
+
+
+
 
 @end

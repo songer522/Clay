@@ -11,6 +11,10 @@
 #import "LayerManager.h"
 #import "GameLayer.h"
 #import "HudLayer.h"
+#import "GCState.h"
+#import "GCHelper.h"
+#import "LevelManager.h"
+#import "Level.h"
 
 @implementation PlayerAction
 
@@ -115,6 +119,26 @@
     _cooldown = _cooldownStart;
 }
 
+-(void)reportAchievementData
+{
+    Level *level = [[LevelManager shared] currentLevel];
+    if([level.name isEqualToString:@"level4"])
+    {
+        [self shuffledOver];
+    }
+    
+    else if ([level.name isEqualToString:@"level6"])
+    {
+        [self shotZombie];
+    }
+  
+    else if ([level.name isEqualToString:@"level7"])
+    {
+        [self blockshot];
+    }
+    
+}
+
 
 -(void)endAction
 {
@@ -123,6 +147,7 @@
     _cooldown = _cooldownStart;
     if (_hasKilledEnemy) {
         [_parent changeHealth:1];
+        [self reportAchievementData];
     }
 }
 
@@ -180,6 +205,59 @@
 {
     return false;
 }
+
+-(void)shuffledOver
+{
+    int maxShuffle = 200;
+  
+    if ([GCState sharedInstance].peopleShuffled < maxShuffle) {
+        [GCState sharedInstance].peopleShuffled++;
+        
+        double pctComplete = ((double) [GCState sharedInstance].peopleShuffled / (int)maxShuffle) * 100.0;
+        if(pctComplete == 100.0)
+        {
+            [[GCState sharedInstance] save];
+            [[GCHelper sharedInstance] reportAchievement:gcAchievementShuffled200people percentComplete:pctComplete];
+        }
+    }
+    
+}
+
+-(void)shotZombie
+{
+    int maxZombie = 300;
+     
+    if ([GCState sharedInstance].zombiesShot < maxZombie) {
+        [GCState sharedInstance].zombiesShot++;
+        
+        double pctComplete2 = ((double) [GCState sharedInstance].zombiesShot / (int)maxZombie) * 100.0;
+        if(pctComplete2 == 100.0)
+        {
+            [[GCState sharedInstance] save];
+            [[GCHelper sharedInstance] reportAchievement:gcAchievementShoot300zombies percentComplete:pctComplete2];
+        }
+    }
+    
+}
+
+
+-(void)blockshot
+{
+    int maxBlock = 75;
+    
+    if ([GCState sharedInstance].attacksBlocked < maxBlock) {
+        [GCState sharedInstance].attacksBlocked++;
+        
+        double pctComplete4 = ((double) [GCState sharedInstance].attacksBlocked / (int)maxBlock) * 100.0;
+        if(pctComplete4 == 100.0)
+        {
+            [[GCState sharedInstance] save];
+            [[GCHelper sharedInstance] reportAchievement:gcAchievementBlock75attack percentComplete:pctComplete4];
+        }
+    }
+    
+}
+
 
 -(void)dealloc
 {
