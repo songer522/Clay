@@ -28,6 +28,7 @@
 #import "GameSettings.h"
 #import "TextureManager.h"
 #import "RegionManager.h"
+#import "PlayerAction.h"
 
 @implementation Level
 
@@ -602,7 +603,7 @@
                 }
                 else if([obstacle getCollisionBehavior] == COLLISION_BEHAVIOR_DISCO_TRIXTER_DANCING && !obstacle.collided)
                 {
-                    if(dist > 0)
+                    if(dist > -20)
                     {
                         [[AnimationController sharedController] replaceSprite:[obstacle getSprite] withAnimationNamed:@"discoTrixterPassedAnim"];
                         [obstacle setOriginalAnimation:@"discoTrixterAnim"];
