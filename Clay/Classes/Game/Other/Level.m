@@ -655,7 +655,7 @@
                         double pctComplete = ((double) [GCState sharedInstance].chickensKickedIntoCows / (int)maxKicksIntoCow) * 100.0;
                         if(pctComplete == 100.0)
                         {
-                        [[GCState sharedInstance] save];
+                        //[[GCState sharedInstance] save];
                         [[GCHelper sharedInstance] reportAchievement:gcAchievementChickensKickedIntoCows percentComplete:pctComplete];
                         }
                         //NSLog(@"Pct Complete - Chickens Kicked Into Cows: %f", pctComplete);
@@ -805,7 +805,7 @@
             double pctComplete = ((double) [GCState sharedInstance].hurdlesJumpedOver / (int)maxHurdles) * 100.0;
             if(pctComplete == 100.0)
             {
-                [[GCState sharedInstance] save];
+                //[[GCState sharedInstance] save];
                 [[GCHelper sharedInstance] reportAchievement:gcAchievementJumpOver400hurdles percentComplete:pctComplete];
             }
         }
@@ -821,7 +821,7 @@
             double pctComplete2 = ((double) [GCState sharedInstance].dogsJumpedOver / (int)maxDogs) * 100.0;
             if(pctComplete2 == 100.0)
             {
-                [[GCState sharedInstance] save];
+               // [[GCState sharedInstance] save];
                 [[GCHelper sharedInstance] reportAchievement:gcAchievementJumpOver100dogs percentComplete:pctComplete2];
             }
         }
@@ -838,7 +838,7 @@
             double pctComplete3 = ((double) [GCState sharedInstance].frogsJumpedOver / (int)maxFrogs) * 100.0;
             if(pctComplete3 == 100.0)
             {
-                [[GCState sharedInstance] save];
+                //[[GCState sharedInstance] save];
                 [[GCHelper sharedInstance] reportAchievement:gcAchievementJumpOver50frogs percentComplete:pctComplete3];
             }
         }
@@ -859,7 +859,7 @@
             double pctComplete4 = ((double) [GCState sharedInstance].hurdlesHit / (int)maxHit) * 100.0;
             if(pctComplete4 == 100.0)
             {
-                [[GCState sharedInstance] save];
+               // [[GCState sharedInstance] save];
                 [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10hurdles percentComplete:pctComplete4];
             }
         }
@@ -874,7 +874,7 @@
             double pctComplete5 = ((double) [GCState sharedInstance].cowsHit / (int)maxHit) * 100.0;
             if(pctComplete5 == 100.0)
             {
-                [[GCState sharedInstance] save];
+               // [[GCState sharedInstance] save];
                 [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10cows percentComplete:pctComplete5];
             }
         }
@@ -888,7 +888,7 @@
             double pctComplete6 = ((double) [GCState sharedInstance].birdsHit / (int)maxHit) * 100.0;
             if(pctComplete6 == 100.0)
             {
-                [[GCState sharedInstance] save];
+               // [[GCState sharedInstance] save];
                 [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10birds percentComplete:pctComplete6];
             }
         }
@@ -918,7 +918,7 @@
             double pctComplete8 = ((double) [GCState sharedInstance].dogsHit / (int)maxHit) * 100.0;
             if(pctComplete8 == 100.0)
             {
-                [[GCState sharedInstance] save];
+               // [[GCState sharedInstance] save];
                 [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10dogs percentComplete:pctComplete8];
             }
         }
@@ -948,7 +948,7 @@
             double pctComplete10 = ((double) [GCState sharedInstance].fishHit / (int)maxHit) * 100.0;
             if(pctComplete10 == 100.0)
             {
-                [[GCState sharedInstance] save];
+                //[[GCState sharedInstance] save];
                 [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10dogs percentComplete:pctComplete10];
             }
         }
@@ -963,7 +963,7 @@
             double pctComplete11 = ((double) [GCState sharedInstance].batHit / (int)maxHit) * 100.0;
             if(pctComplete11 == 100.0)
             {
-                [[GCState sharedInstance] save];
+               // [[GCState sharedInstance] save];
                 [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10bats percentComplete:pctComplete11];
             }
         }
