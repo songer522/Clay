@@ -106,6 +106,13 @@
         
         _collisionHandler = [CollisionDetection collisionHandlerWithMetaLayer:_meta Map:_map];
         
+        
+        NSString *mode = [[GameSettings shared] getGlobalForKey:@"gameMode"];
+        if([mode isEqualToString:@"timed"]) {
+            _isTimedMode = true;
+        } else {
+            _isTimedMode = false;
+        }
 
     }
     
@@ -556,7 +563,6 @@
     bool collision = false;
 
     //prepare source bounding box, so we don't have to build it for every object
-    NSString *mode = [[GameSettings shared] getGlobalForKey:@"gameMode"];
     NSMutableArray *obstacles = [_obstacleManager getActiveGameObjectList];
     
     //guard
@@ -584,7 +590,8 @@
                 }
                 else if(!obstacle.collided && dist > 200) //if tim has passed the obstacle and it hasn't been hit yet
                 {
-                    if([mode isEqualToString:@"timed"] && !obstacle.hasAppeared){
+
+                    if(_isTimedMode && !obstacle.hasAppeared){
                         [self obstacleJumpedOver:obstacle];
                     }
                 }

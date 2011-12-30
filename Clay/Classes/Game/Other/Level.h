@@ -47,6 +47,8 @@
     //RegionManager *_backgroundManager;
     
     CCSpriteBatchNode *_obstacleSpriteBatch;
+    bool _isTimedMode;
+    
     
     //any triggers in the level
     NSMutableArray *_triggers;
