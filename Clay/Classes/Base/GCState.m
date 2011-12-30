@@ -11,7 +11,8 @@
 
 @implementation GCState
 @synthesize chickensKickedIntoCows;
-@synthesize timesDied,hurdlesJumpedOver;
+@synthesize hurdlesJumpedOver,peopleShuffled,dogsJumpedOver,zombiesShot,attacksBlocked,demonsFreezed,frogsJumpedOver;
+@synthesize timesDied,hurdlesHit,cowsHit,dancersHit,birdsHit,dogsHit,zombiesHit,viruesHit,fireDemonHit,frogsHit,fishHit,batHit;
 @synthesize completeStoryAll,completeStoryEasy,completeStoryHard,completeStoryNormal,flawlessRun;
 
 static GCState *sharedInstance = nil;
@@ -48,7 +49,29 @@ static GCState *sharedInstance = nil;
     [encoder encodeInt:chickensKickedIntoCows forKey:@"ChickensKickedIntoCows"];
     [encoder encodeInt:timesDied forKey:@"timesDied"];
     [encoder encodeInt:hurdlesJumpedOver forKey:@"hurdlesJumpedOver"];
-
+    [encoder encodeInt:peopleShuffled forKey:@"peopleShuffled"];
+    [encoder encodeInt:dogsJumpedOver forKey:@"dogsJumpedOver"];
+    [encoder encodeInt:zombiesShot forKey:@"zombiesShot"];
+    [encoder encodeInt:attacksBlocked forKey:@"attacksBlocked"];
+    [encoder encodeInt:demonsFreezed forKey:@"demonsFreezed"];
+    [encoder encodeInt:frogsJumpedOver forKey:@"frogsJumpedOver"];
+    
+    
+    [encoder encodeInt:hurdlesHit forKey:@"hurdlesHit"];
+    [encoder encodeInt:cowsHit forKey:@"cowsHit"];
+    [encoder encodeInt:dancersHit forKey:@"dancersHit"];
+    [encoder encodeInt:birdsHit forKey:@"birdsHit"];
+    [encoder encodeInt:dogsHit forKey:@"dogsHit"];
+    [encoder encodeInt:zombiesHit forKey:@"zombiesHit"];
+    [encoder encodeInt:viruesHit forKey:@"viruesHit"];
+    [encoder encodeInt:fireDemonHit forKey:@"fireDemonHit"];
+    [encoder encodeInt:frogsHit forKey:@"frogsHit"];
+    [encoder encodeInt:fishHit forKey:@"fishHit"];
+    [encoder encodeInt:batHit forKey:@"batHit"];
+   
+     
+     
+     
     [encoder encodeBool:completeStoryEasy forKey:@"completeStoryEasy"];
     [encoder encodeBool:completeStoryNormal forKey:@"completeStoryNormal"];
     [encoder encodeBool:completeStoryHard forKey:@"completeStoryHard"];
@@ -64,6 +87,29 @@ static GCState *sharedInstance = nil;
         chickensKickedIntoCows = [decoder decodeIntForKey:@"ChickensKickedIntoCows"];
         timesDied = [decoder decodeIntForKey:@"timesDied"];
         hurdlesJumpedOver = [decoder decodeIntForKey:@"hurdlesJumpedOver"];
+        peopleShuffled = [decoder decodeIntForKey:@"hurdlesJumpedOver"];
+        dogsJumpedOver = [decoder decodeIntForKey:@"dogsJumpedOver"];
+        zombiesShot = [decoder decodeIntForKey:@"zombiesShot"];
+        attacksBlocked = [decoder decodeIntForKey:@"attacksBlocked"];
+        demonsFreezed = [decoder decodeIntForKey:@"demonsFreezed"];
+        frogsJumpedOver = [decoder decodeIntForKey:@"frogsJumpedOver"];
+        
+        
+        hurdlesHit = [decoder decodeIntForKey:@"hurdlesHit"];
+        cowsHit = [decoder decodeIntForKey:@"cowsHit"];
+        dancersHit = [decoder decodeIntForKey:@"dancersHit"];
+        birdsHit = [decoder decodeIntForKey:@"birdsHit"];
+        dogsHit = [decoder decodeIntForKey:@"hurdlesJumpedOver"];
+        zombiesHit = [decoder decodeIntForKey:@"zombiesHit"];
+        viruesHit = [decoder decodeIntForKey:@"viruesHit"];
+        fireDemonHit = [decoder decodeIntForKey:@"fireDemonHit"];
+        frogsHit = [decoder decodeIntForKey:@"frogsHit"];
+        fishHit = [decoder decodeIntForKey:@"fishHit"];
+        batHit = [decoder decodeIntForKey:@"batHit"];
+                
+        
+        
+        
         completeStoryEasy = [ decoder decodeBoolForKey:@"completeStoryEasy"];
         completeStoryNormal = [ decoder decodeBoolForKey:@"completeStoryNormal"];
         completeStoryHard = [ decoder decodeBoolForKey:@"completeStoryHard"];

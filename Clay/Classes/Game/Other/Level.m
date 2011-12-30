@@ -570,29 +570,15 @@
                 collision = [self testCollisionWithGameObject:obstacle BoundingBox:sourceBoundingBox];
                 if (collision) {
                     [_player startCollision:[obstacle startCollision] Source:obstacle];
+                    [self obstacleGotHitBy:obstacle];
+                    
                 }
                 else if(!obstacle.collided && dist > 200) //if tim has passed the obstacle and it hasn't been hit yet
                     {
-                        if(obstacle.isHurdle && !obstacle.hasAppeared && [mode isEqualToString:@"timed"])
-                        {
-                            int maxHurdles = 400;
-                            
-                            if ([GCState sharedInstance].hurdlesJumpedOver < maxHurdles) {
-                                [GCState sharedInstance].hurdlesJumpedOver++;
-                                obstacle.hasAppeared=true;
-                                //NSLog(@"hurdles jumped over:%d" ,[GCState sharedInstance].hurdlesJumpedOver);
-                                
-                            
-                                double pctComplete = ((double) [GCState sharedInstance].hurdlesJumpedOver / (int)maxHurdles) * 100.0;
-                                if(pctComplete == 100.0)
-                                {
-                                [[GCState sharedInstance] save];
-                                [[GCHelper sharedInstance] reportAchievement:gcAchievementJumpOver400hurdles percentComplete:pctComplete];
-                                }
-                            }
-                          
+                        if([mode isEqualToString:@"timed"] && !obstacle.hasAppeared){
+                            [self obstacleJumpedOver:obstacle];
                         }
-                    }
+                 }
             }
 
             if(abs(dist) < 900) {
@@ -641,19 +627,17 @@
                     
                     if ([GCState sharedInstance].chickensKickedIntoCows < maxKicksIntoCow) {
                         [GCState sharedInstance].chickensKickedIntoCows++;
-                        [[GCState sharedInstance] save];
+                        
                         
                         double pctComplete = ((double) [GCState sharedInstance].chickensKickedIntoCows / (int)maxKicksIntoCow) * 100.0;
+                        if(pctComplete == 100.0)
+                        {
+                        [[GCState sharedInstance] save];
                         [[GCHelper sharedInstance] reportAchievement:gcAchievementChickensKickedIntoCows percentComplete:pctComplete];
-                        
+                        }
                         //NSLog(@"Pct Complete - Chickens Kicked Into Cows: %f", pctComplete);
                     }
                     
-                    if ([GCState sharedInstance].chickensKickedIntoCows >= maxKicksIntoCow) {
-                        //ADD CODE TO DISPLAY ACHIEVEMENT
-                        //NSLog(@"DISPLAY Chicken Kick Achievement");
-                    }
-                
                 }
                 [obstacle startCollision];
                 break;
@@ -781,6 +765,192 @@
     }
     
 }
+
+-(void)obstacleJumpedOver:(GameObject *)obstacle
+{
+    
+    if(obstacle.isHurdle)
+    {
+        int maxHurdles = 400;
+        
+        if ([GCState sharedInstance].hurdlesJumpedOver < maxHurdles) {
+            [GCState sharedInstance].hurdlesJumpedOver++;
+            obstacle.hasAppeared=true;
+            //NSLog(@"hurdles jumped over:%d" ,[GCState sharedInstance].hurdlesJumpedOver);
+            
+            
+            double pctComplete = ((double) [GCState sharedInstance].hurdlesJumpedOver / (int)maxHurdles) * 100.0;
+            if(pctComplete == 100.0)
+            {
+                [[GCState sharedInstance] save];
+                [[GCHelper sharedInstance] reportAchievement:gcAchievementJumpOver400hurdles percentComplete:pctComplete];
+            }
+        }
+    }
+    else if(obstacle.CurrentBehavior == COLLISION_BEHAVIOR_MAD_DOG)
+    {
+        int maxDogs = 100;
+        
+        if ([GCState sharedInstance].dogsJumpedOver < maxDogs) {
+            [GCState sharedInstance].dogsJumpedOver++;
+            obstacle.hasAppeared = true;
+            
+            double pctComplete2 = ((double) [GCState sharedInstance].dogsJumpedOver / (int)maxDogs) * 100.0;
+            if(pctComplete2 == 100.0)
+            {
+                [[GCState sharedInstance] save];
+                [[GCHelper sharedInstance] reportAchievement:gcAchievementJumpOver100dogs percentComplete:pctComplete2];
+            }
+        }
+        
+    }
+    else if(obstacle.CollidableBehavior == COLLISION_BEHAVIOR_FROG_SQUASH)
+    {
+        int maxFrogs = 50;
+        
+        if ([GCState sharedInstance].frogsJumpedOver < maxFrogs) {
+            [GCState sharedInstance].frogsJumpedOver++;
+            obstacle.hasAppeared = true;
+            
+            double pctComplete3 = ((double) [GCState sharedInstance].frogsJumpedOver / (int)maxFrogs) * 100.0;
+            if(pctComplete3 == 100.0)
+            {
+                [[GCState sharedInstance] save];
+                [[GCHelper sharedInstance] reportAchievement:gcAchievementJumpOver50frogs percentComplete:pctComplete3];
+            }
+        }
+    }
+    
+}
+
+-(void)obstacleGotHitBy:(GameObject *)obstacle
+{
+    int maxHit = 10;
+    if(obstacle.isHurdle)
+    {
+       // NSLog(@"%d",[GCState sharedInstance].hurdlesHit );
+        
+        if ([GCState sharedInstance].hurdlesHit < maxHit) {
+            [GCState sharedInstance].hurdlesHit++;
+            
+            double pctComplete4 = ((double) [GCState sharedInstance].hurdlesHit / (int)maxHit) * 100.0;
+            if(pctComplete4 == 100.0)
+            {
+                [[GCState sharedInstance] save];
+                [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10hurdles percentComplete:pctComplete4];
+            }
+        }
+    }
+    
+    else if(obstacle.CollidableBehavior==COLLISION_BEHAVIOR_COW_COLLAPSE)
+    {
+        
+        if ([GCState sharedInstance].cowsHit < maxHit) {
+            [GCState sharedInstance].cowsHit++;
+            
+            double pctComplete5 = ((double) [GCState sharedInstance].cowsHit / (int)maxHit) * 100.0;
+            if(pctComplete5 == 100.0)
+            {
+                [[GCState sharedInstance] save];
+                [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10cows percentComplete:pctComplete5];
+            }
+        }
+
+    }
+    else if(obstacle.CollidableBehavior==COLLISION_BEHAVIOR_FLYER_DEAD)
+    {
+        if ([GCState sharedInstance].birdsHit < maxHit) {
+            [GCState sharedInstance].birdsHit++;
+            
+            double pctComplete6 = ((double) [GCState sharedInstance].birdsHit / (int)maxHit) * 100.0;
+            if(pctComplete6 == 100.0)
+            {
+                [[GCState sharedInstance] save];
+                [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10birds percentComplete:pctComplete6];
+            }
+        }
+        
+    }
+    /*
+    else if(obstacle.CollidableBehavior == COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_BD || obstacle.CollidableBehavior == COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST_BD || obstacle.CollidableBehavior == COLLISION_BEHAVIOR_DANCIN_MAN_COLLAPSE)
+    {
+        if ([GCState sharedInstance].dancersHit < maxHit) {
+            [GCState sharedInstance].dancersHit++;
+            
+            double pctComplete7 = ((double) [GCState sharedInstance].dancersHit / (int)maxHit) * 100.0;
+            if(pctComplete7 == 100.0)
+            {
+                [[GCState sharedInstance] save];
+                [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10dancers percentComplete:pctComplete7];
+            }
+        }
+        
+    }
+     */
+    else if(obstacle.CollidableBehavior == COLLISION_BEHAVIOR_MAD_DOG)
+    {
+        if ([GCState sharedInstance].dogsHit < maxHit) {
+            [GCState sharedInstance].dogsHit++;
+            
+            double pctComplete8 = ((double) [GCState sharedInstance].dogsHit / (int)maxHit) * 100.0;
+            if(pctComplete8 == 100.0)
+            {
+                [[GCState sharedInstance] save];
+                [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10dogs percentComplete:pctComplete8];
+            }
+        }
+        
+    }
+    /*
+    else if(obstacle.CollidableBehavior == COLLISION_BEHAVIOR_ZOMBIE_HEADLESS || obstacle.CollidableBehavior == COLLISION_BEHAVIOR_ZOMBIE_FADE)
+    {
+        if ([GCState sharedInstance].zombiesHit < maxHit) {
+            [GCState sharedInstance].zombiesHit++;
+            
+            double pctComplete9 = ((double) [GCState sharedInstance].zombiesHit / (int)maxHit) * 100.0;
+            if(pctComplete9 == 100.0)
+            {
+                [[GCState sharedInstance] save];
+                [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10zombies percentComplete:pctComplete9];
+            }
+        }
+        
+    }
+     */
+    else if(obstacle.CollidableBehavior == COLLISION_BEHAVIOR_WATER_ANGLERFISH || obstacle.CollidableBehavior == COLLISION_BEHAVIOR_WATER_PUFFERFISH || obstacle.CollidableBehavior == COLLISION_BEHAVIOR_WATER_SEAHORSE)
+    {
+        if ([GCState sharedInstance].fishHit < maxHit) {
+            [GCState sharedInstance].fishHit++;
+            
+            double pctComplete10 = ((double) [GCState sharedInstance].fishHit / (int)maxHit) * 100.0;
+            if(pctComplete10 == 100.0)
+            {
+                [[GCState sharedInstance] save];
+                [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10dogs percentComplete:pctComplete10];
+            }
+        }
+        
+    }
+    
+    else if(obstacle.CollidableBehavior == COLLISION_BEHAVIOR_BAT)
+    {
+        if ([GCState sharedInstance].batHit < maxHit) {
+            [GCState sharedInstance].batHit++;
+            
+            double pctComplete11 = ((double) [GCState sharedInstance].batHit / (int)maxHit) * 100.0;
+            if(pctComplete11 == 100.0)
+            {
+                [[GCState sharedInstance] save];
+                [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10bats percentComplete:pctComplete11];
+            }
+        }
+        
+    }
+
+
+
+}
+
 
 -(void)dealloc
 {

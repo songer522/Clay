@@ -20,6 +20,8 @@
 #import "Projectile.h"
 #import "BossFactory.h"
 #import "GameSettings.h"
+#import "GCHelper.h"
+#import "GCState.h"
 
 #define GAME_OBJECT_DISTANCE_ONSCREEN 550.0f
 
@@ -37,6 +39,7 @@
 @synthesize hasGravity = _hasGravity;
 @synthesize isAggressive = _isAggressive;
 @synthesize CurrentBehavior = _currentBehavior;
+@synthesize CollidableBehavior = _collideBehavior;
 @synthesize isInMidAir = _isInMidAir;
 @synthesize isFalling = _isFalling;
 @synthesize isInvincible = _isInvincible;
@@ -203,20 +206,21 @@
             _fadeout = true;
             
             [[gameLayer.player getThirdAction] setKilledEnemy:YES];
+            [self shuffledOver];
             break;
             
         case COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_BD:
           
         
             [[gameLayer.player getThirdAction] setKilledEnemy:YES];
-
+                [self shuffledOver];
             
             break;
         case COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST_BD:
             
             
             [[gameLayer.player getThirdAction] setKilledEnemy:YES];
-            
+            [self shuffledOver];
             
             break;
         case COLLISION_BEHAVIOR_ZOMBIE_HEADLESS:
@@ -228,6 +232,7 @@
             [_projectile setPosition:CGPointMake(_x, _y + 41)];
             [_projectile setBoundingBox:CGRectMake(15, 33, 14, 35)];
             [[[[LayerManager sharedLayers] getPlayer] getThirdAction] setKilledEnemy:YES];
+            [self shotZombie];
             break;
         case COLLISION_BEHAVIOR_FIRE_DEMON:
             _alpha = 1.0f;
@@ -236,6 +241,7 @@
             _rate = 2.0f;
             _fadeout = true;
             [[[[LayerManager sharedLayers] getPlayer] getThirdAction] setKilledEnemy:YES];
+            [self freezeFireDemon];
             break;
         case COLLISION_BEHAVIOR_FIREBALL_START:
         case COLLISION_BEHAVIOR_FIREBALL_MOVING:
@@ -1246,6 +1252,75 @@
 {
     return _sprite;
 }
+
+-(void)shuffledOver
+{
+    int maxShuffle = 200;
+    
+    if ([GCState sharedInstance].peopleShuffled < maxShuffle) {
+        [GCState sharedInstance].peopleShuffled++;
+        
+        double pctComplete = ((double) [GCState sharedInstance].peopleShuffled / (int)maxShuffle) * 100.0;
+        if(pctComplete == 100.0)
+        {
+            [[GCState sharedInstance] save];
+            [[GCHelper sharedInstance] reportAchievement:gcAchievementShuffled200people percentComplete:pctComplete];
+        }
+    }
+
+}
+
+-(void)shotZombie
+{
+    int maxZombie = 300;
+    
+    if ([GCState sharedInstance].zombiesShot < maxZombie) {
+        [GCState sharedInstance].zombiesShot++;
+        
+        double pctComplete2 = ((double) [GCState sharedInstance].zombiesShot / (int)maxZombie) * 100.0;
+        if(pctComplete2 == 100.0)
+        {
+            [[GCState sharedInstance] save];
+            [[GCHelper sharedInstance] reportAchievement:gcAchievementShoot300zombies percentComplete:pctComplete2];
+        }
+    }
+
+}
+
+-(void)freezeFireDemon
+{
+    int maxFireDemon = 200;
+    
+    if ([GCState sharedInstance].demonsFreezed < maxFireDemon) {
+        [GCState sharedInstance].demonsFreezed++;
+        
+        double pctComplete3 = ((double) [GCState sharedInstance].demonsFreezed / (int)maxFireDemon) * 100.0;
+        if(pctComplete3 == 100.0)
+        {
+            [[GCState sharedInstance] save];
+            [[GCHelper sharedInstance] reportAchievement:gcAchievementFreeze200demon percentComplete:pctComplete3];
+        }
+    }
+    
+}
+
+-(void)blockshot
+{
+    int maxBlock = 75;
+    
+    if ([GCState sharedInstance].attacksBlocked < maxBlock) {
+        [GCState sharedInstance].attacksBlocked++;
+        
+        double pctComplete4 = ((double) [GCState sharedInstance].attacksBlocked / (int)maxBlock) * 100.0;
+        if(pctComplete4 == 100.0)
+        {
+            [[GCState sharedInstance] save];
+            [[GCHelper sharedInstance] reportAchievement:gcAchievementBlock75attack percentComplete:pctComplete4];
+        }
+    }
+    
+}
+
 
 -(void)dealloc
 {

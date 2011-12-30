@@ -20,6 +20,7 @@
 #import "Player.h"
 #import "PlayerAction.h"
 
+
 @implementation BossJimShip
 
 
@@ -121,6 +122,7 @@
                  
                 } else {
                     [[_player getThirdAction] setKilledEnemy:YES];
+                    [_player blockshot];
                     [[SoundEngine shared] playSound:@"deflected"];
                 }
                 [_bullet disable];

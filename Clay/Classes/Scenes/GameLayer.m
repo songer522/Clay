@@ -484,6 +484,13 @@
 {
     int maxTimesToDie = 200;
     int maxHurdles = 400;
+    int maxChickenIntoCows = 100;
+    int maxShuffled = 200;
+    int maxFrogs = 50;
+    int maxDemon =200;
+    int maxZombies = 300;
+    int maxBlocks = 75;
+    int maxGetHit =10;
     double pctComplete = ((double)[GCState sharedInstance].timesDied / (int)maxTimesToDie) * 100.0;
     //NSLog(@"diedTimes:%d",[GCState sharedInstance].timesDied );
     //NSLog(@"complete percent %f",pctComplete);
@@ -495,12 +502,136 @@
     }
     //NSLog(@"hurdles:%d",[GCState sharedInstance].hurdlesJumpedOver );
     double pctComplete2 = ((double) [GCState sharedInstance].hurdlesJumpedOver / (int)maxHurdles) * 100.0;
-    //NSLog(@"complete percent %f",pctComplete2);
+  
     if(pctComplete2 < 100.0 && [_level.name isEqualToString:@"level1"])
     {
     [[GCState sharedInstance] save];
     [[GCHelper sharedInstance] reportAchievement:gcAchievementJumpOver400hurdles percentComplete:pctComplete2];
      }
+    double pctComplete3 = ((double) [GCState sharedInstance].chickensKickedIntoCows / (int)maxChickenIntoCows) * 100.0;
+   
+    if(pctComplete3 < 100.0 && [_level.name isEqualToString:@"level2"])
+    {
+        [[GCState sharedInstance] save];
+        [[GCHelper sharedInstance] reportAchievement:gcAchievementChickensKickedIntoCows percentComplete:pctComplete3];
+    }
+    double pctComplete4 = ((double) [GCState sharedInstance].peopleShuffled / (int)maxShuffled) * 100.0;
+  
+    if(pctComplete4 < 100.0 && [_level.name isEqualToString:@"level4"])
+    {
+        [[GCState sharedInstance] save];
+        [[GCHelper sharedInstance] reportAchievement:gcAchievementShuffled200people percentComplete:pctComplete4];
+    }
+    double pctComplete5 = ((double) [GCState sharedInstance].frogsJumpedOver / (int)maxFrogs) * 100.0;
+    
+    if(pctComplete5 < 100.0 && [_level.name isEqualToString:@"level9"])
+    {
+        [[GCState sharedInstance] save];
+        [[GCHelper sharedInstance] reportAchievement:gcAchievementJumpOver50frogs percentComplete:pctComplete5];
+    }
+    double pctComplete6 = ((double) [GCState sharedInstance].demonsFreezed / (int)maxDemon) * 100.0;
+    
+    if(pctComplete6 < 100.0 && [_level.name isEqualToString:@"level8"])
+    {
+        [[GCState sharedInstance] save];
+        [[GCHelper sharedInstance] reportAchievement:gcAchievementFreeze200demon percentComplete:pctComplete6];
+    }
+    double pctComplete7 = ((double) [GCState sharedInstance].zombiesShot / (int)maxZombies) * 100.0;
+    
+    if(pctComplete7 < 100.0 && [_level.name isEqualToString:@"level6"])
+    {
+        [[GCState sharedInstance] save];
+        [[GCHelper sharedInstance] reportAchievement:gcAchievementShoot300zombies percentComplete:pctComplete7];
+    }
+    double pctComplete8 = ((double) [GCState sharedInstance].attacksBlocked / (int)maxBlocks) * 100.0;
+    
+    if(pctComplete8 < 100.0 && [_level.name isEqualToString:@"level7"])
+    {
+        [[GCState sharedInstance] save];
+        [[GCHelper sharedInstance] reportAchievement:gcAchievementBlock75attack percentComplete:pctComplete8];
+    }
+    double pctComplete9 = ((double) [GCState sharedInstance].hurdlesHit / (int)maxGetHit) * 100.0;
+    
+    if(pctComplete9 < 100.0 && [_level.name isEqualToString:@"level1"])
+    {
+        [[GCState sharedInstance] save];
+        [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10hurdles percentComplete:pctComplete9];
+    }
+    double pctComplete10 = ((double) [GCState sharedInstance].cowsHit / (int)maxGetHit) * 100.0;
+    
+    if(pctComplete10 < 100.0 && [_level.name isEqualToString:@"level2"])
+    {
+        [[GCState sharedInstance] save];
+        [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10hurdles percentComplete:pctComplete10];
+    }
+    double pctComplete11 = ((double) [GCState sharedInstance].birdsHit / (int)maxGetHit) * 100.0;
+    
+    if(pctComplete11 < 100.0 && [_level.name isEqualToString:@"level3"])
+    {
+        [[GCState sharedInstance] save];
+        [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10birds percentComplete:pctComplete11];
+    }
+    double pctComplete12 = ((double) [GCState sharedInstance].dancersHit / (int)maxGetHit) * 100.0;
+    
+    if(pctComplete12 < 100.0 && [_level.name isEqualToString:@"level4"])
+    {
+        [[GCState sharedInstance] save];
+        [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10dancers percentComplete:pctComplete12];
+    }
+    double pctComplete13 = ((double) [GCState sharedInstance].dogsHit / (int)maxGetHit) * 100.0;
+    
+    if(pctComplete13 < 100.0 && [_level.name isEqualToString:@"level5"])
+    {
+        [[GCState sharedInstance] save];
+        [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10dogs percentComplete:pctComplete13];
+    }
+    double pctComplete14 = ((double) [GCState sharedInstance].zombiesHit / (int)maxGetHit) * 100.0;
+    
+    if(pctComplete14 < 100.0 && [_level.name isEqualToString:@"level6"])
+    {
+        [[GCState sharedInstance] save];
+        [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10zombies percentComplete:pctComplete14];
+    }
+    double pctComplete15 = ((double) [GCState sharedInstance].viruesHit / (int)maxGetHit) * 100.0;
+    
+    if(pctComplete15 < 100.0 && [_level.name isEqualToString:@"level7"])
+    {
+        [[GCState sharedInstance] save];
+        [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10virues percentComplete:pctComplete15];
+    }
+    double pctComplete16 = ((double) [GCState sharedInstance].fireDemonHit / (int)maxGetHit) * 100.0;
+    
+    if(pctComplete16 < 100.0 && [_level.name isEqualToString:@"level8"])
+    {
+        [[GCState sharedInstance] save];
+        [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10firedemon percentComplete:pctComplete16];
+    }
+    double pctComplete17 = ((double) [GCState sharedInstance].frogsHit / (int)maxGetHit) * 100.0;
+    
+    if(pctComplete17 < 100.0 && [_level.name isEqualToString:@"level9"])
+    {
+        [[GCState sharedInstance] save];
+        [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10frogs percentComplete:pctComplete17];
+    }
+    double pctComplete18 = ((double) [GCState sharedInstance].fishHit / (int)maxGetHit) * 100.0;
+    
+    if(pctComplete18 < 100.0 && [_level.name isEqualToString:@"level10"])
+    {
+        [[GCState sharedInstance] save];
+        [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10fish percentComplete:pctComplete18];
+    }
+    double pctComplete19 = ((double) [GCState sharedInstance].batHit / (int)maxGetHit) * 100.0;
+    
+    if(pctComplete19 < 100.0 && [_level.name isEqualToString:@"level11"])
+    {
+        [[GCState sharedInstance] save];
+        [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10bats percentComplete:pctComplete19];
+    }
+    
+
+
+
+    
     
 }
 -(void)checkHasBeenHit

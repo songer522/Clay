@@ -8,13 +8,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "Clay/Classes/Scenes/GameLayer.m"
-         timestampString = "346285736.629701"
+         filePath = "Clay/Classes/Game/Other/Level.m"
+         timestampString = "346906595.568262"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "488"
-         endingLineNumber = "488"
-         landmarkName = "-saveAndReportToGameCenter"
+         startingLineNumber = "795"
+         endingLineNumber = "795"
+         landmarkName = "-obstacleJumpedOver:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

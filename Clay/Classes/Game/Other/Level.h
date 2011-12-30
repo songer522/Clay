@@ -124,6 +124,8 @@
 -(GameObject*)addObstacleNamed:(NSString*)name;
 
 -(NSString*)getFullMapFilename:(NSString*)basename;
+-(void)obstacleJumpedOver:(GameObject *)obstacle;
+-(void)obstacleGotHitBy:(GameObject *)obstacle;
 
 #pragma mark - private methods
 -(void)initTiledMap:(NSString*)filename ObstacleLayer:(NSString*)obstacleLayer;
