@@ -329,7 +329,6 @@
 		5491677A14643E3900DFA191 /* computerLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5491677614643E3900DFA191 /* computerLevel-hd.png */; };
 		5491677B14643E3900DFA191 /* computerLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5491677714643E3900DFA191 /* computerLevel.plist */; };
 		5491677C14643E3900DFA191 /* computerLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 5491677814643E3900DFA191 /* computerLevel.png */; };
-		549606C314AC05F200351A9C /* pigSqueal.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 549606C214AC05F200351A9C /* pigSqueal.mp3 */; };
 		549D84D91469DE9100A3599F /* chooseLevel-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 549D84D51469DE9100A3599F /* chooseLevel-hd.plist */; };
 		549D84DA1469DE9100A3599F /* chooseLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 549D84D61469DE9100A3599F /* chooseLevel-hd.png */; };
 		549D84DB1469DE9100A3599F /* chooseLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 549D84D71469DE9100A3599F /* chooseLevel.plist */; };
@@ -443,6 +442,26 @@
 		54A24A9214A1481A00BF1BC6 /* AnimationSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A24A9114A1481900BF1BC6 /* AnimationSequence.m */; };
 		54A3D6D2146C37F400BD081D /* shipBullet2_hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A3D6D0146C37F400BD081D /* shipBullet2_hd.png */; };
 		54A3D6D3146C37F400BD081D /* shipBullet2.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A3D6D1146C37F400BD081D /* shipBullet2.png */; };
+		54A40B3314AE8A6B00012D0D /* cancel.caf in Resources */ = {isa = PBXBuildFile; fileRef = 54A40B2F14AE8A6B00012D0D /* cancel.caf */; };
+		54A40B3414AE8A6B00012D0D /* confirm.caf in Resources */ = {isa = PBXBuildFile; fileRef = 54A40B3014AE8A6B00012D0D /* confirm.caf */; };
+		54A40B3514AE8A6B00012D0D /* pigSqueal.caf in Resources */ = {isa = PBXBuildFile; fileRef = 54A40B3114AE8A6B00012D0D /* pigSqueal.caf */; };
+		54A40B3614AE8A6B00012D0D /* victory.caf in Resources */ = {isa = PBXBuildFile; fileRef = 54A40B3214AE8A6B00012D0D /* victory.caf */; };
+		54A40B4714AE8A7900012D0D /* barn.aifc in Resources */ = {isa = PBXBuildFile; fileRef = 54A40B3714AE8A7900012D0D /* barn.aifc */; };
+		54A40B4814AE8A7900012D0D /* city.aifc in Resources */ = {isa = PBXBuildFile; fileRef = 54A40B3814AE8A7900012D0D /* city.aifc */; };
+		54A40B4914AE8A7900012D0D /* computer.aifc in Resources */ = {isa = PBXBuildFile; fileRef = 54A40B3914AE8A7900012D0D /* computer.aifc */; };
+		54A40B4A14AE8A7900012D0D /* credits.aifc in Resources */ = {isa = PBXBuildFile; fileRef = 54A40B3A14AE8A7900012D0D /* credits.aifc */; };
+		54A40B4B14AE8A7900012D0D /* cutscene.aifc in Resources */ = {isa = PBXBuildFile; fileRef = 54A40B3B14AE8A7900012D0D /* cutscene.aifc */; };
+		54A40B4C14AE8A7900012D0D /* darkness_boss.aifc in Resources */ = {isa = PBXBuildFile; fileRef = 54A40B3C14AE8A7900012D0D /* darkness_boss.aifc */; };
+		54A40B4D14AE8A7900012D0D /* darkness.aifc in Resources */ = {isa = PBXBuildFile; fileRef = 54A40B3D14AE8A7900012D0D /* darkness.aifc */; };
+		54A40B4E14AE8A7900012D0D /* disco.aifc in Resources */ = {isa = PBXBuildFile; fileRef = 54A40B3E14AE8A7900012D0D /* disco.aifc */; };
+		54A40B4F14AE8A7900012D0D /* fire.aifc in Resources */ = {isa = PBXBuildFile; fileRef = 54A40B3F14AE8A7900012D0D /* fire.aifc */; };
+		54A40B5014AE8A7900012D0D /* rainy.aifc in Resources */ = {isa = PBXBuildFile; fileRef = 54A40B4014AE8A7900012D0D /* rainy.aifc */; };
+		54A40B5114AE8A7900012D0D /* title.aifc in Resources */ = {isa = PBXBuildFile; fileRef = 54A40B4114AE8A7900012D0D /* title.aifc */; };
+		54A40B5214AE8A7900012D0D /* town.aifc in Resources */ = {isa = PBXBuildFile; fileRef = 54A40B4214AE8A7900012D0D /* town.aifc */; };
+		54A40B5314AE8A7900012D0D /* track.aifc in Resources */ = {isa = PBXBuildFile; fileRef = 54A40B4314AE8A7900012D0D /* track.aifc */; };
+		54A40B5414AE8A7900012D0D /* underwater.aifc in Resources */ = {isa = PBXBuildFile; fileRef = 54A40B4414AE8A7900012D0D /* underwater.aifc */; };
+		54A40B5514AE8A7900012D0D /* victory.aifc in Resources */ = {isa = PBXBuildFile; fileRef = 54A40B4514AE8A7900012D0D /* victory.aifc */; };
+		54A40B5614AE8A7900012D0D /* zombies.aifc in Resources */ = {isa = PBXBuildFile; fileRef = 54A40B4614AE8A7900012D0D /* zombies.aifc */; };
 		54A4B1CB14916695006CDD44 /* tileset_level_11-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A4B1C914916695006CDD44 /* tileset_level_11-hd.png */; };
 		54A4B1CC14916695006CDD44 /* tileset_level_11.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A4B1CA14916695006CDD44 /* tileset_level_11.png */; };
 		54A4B1D214918495006CDD44 /* characterSlowTime-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54A4B1CE14918495006CDD44 /* characterSlowTime-hd.plist */; };
@@ -524,24 +543,6 @@
 		54EB13C0148C8B0600D94191 /* characterSpinning-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54EB13BC148C8B0600D94191 /* characterSpinning-hd.png */; };
 		54EB13C1148C8B0600D94191 /* characterSpinning.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54EB13BD148C8B0600D94191 /* characterSpinning.plist */; };
 		54EB13C2148C8B0600D94191 /* characterSpinning.png in Resources */ = {isa = PBXBuildFile; fileRef = 54EB13BE148C8B0600D94191 /* characterSpinning.png */; };
-		54F435CD14ACE17C009F7929 /* cancel.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54F435CB14ACE17C009F7929 /* cancel.wav */; };
-		54F435CE14ACE17C009F7929 /* confirm.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54F435CC14ACE17C009F7929 /* confirm.wav */; };
-		54F435E014AD6C4B009F7929 /* barn.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 54F435D014AD6C4B009F7929 /* barn.m4a */; };
-		54F435E114AD6C4B009F7929 /* city.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 54F435D114AD6C4B009F7929 /* city.m4a */; };
-		54F435E214AD6C4B009F7929 /* computer.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 54F435D214AD6C4B009F7929 /* computer.m4a */; };
-		54F435E314AD6C4B009F7929 /* credits.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 54F435D314AD6C4B009F7929 /* credits.m4a */; };
-		54F435E414AD6C4B009F7929 /* cutscene.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 54F435D414AD6C4B009F7929 /* cutscene.m4a */; };
-		54F435E514AD6C4B009F7929 /* darkness_boss.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 54F435D514AD6C4B009F7929 /* darkness_boss.m4a */; };
-		54F435E614AD6C4B009F7929 /* darkness.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 54F435D614AD6C4B009F7929 /* darkness.m4a */; };
-		54F435E714AD6C4B009F7929 /* disco.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 54F435D714AD6C4B009F7929 /* disco.m4a */; };
-		54F435E814AD6C4B009F7929 /* fire.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 54F435D814AD6C4B009F7929 /* fire.m4a */; };
-		54F435E914AD6C4B009F7929 /* rainy.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 54F435D914AD6C4B009F7929 /* rainy.m4a */; };
-		54F435EA14AD6C4B009F7929 /* title.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 54F435DA14AD6C4B009F7929 /* title.m4a */; };
-		54F435EB14AD6C4B009F7929 /* town.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 54F435DB14AD6C4B009F7929 /* town.m4a */; };
-		54F435EC14AD6C4B009F7929 /* track.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 54F435DC14AD6C4B009F7929 /* track.m4a */; };
-		54F435ED14AD6C4B009F7929 /* underwater.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 54F435DD14AD6C4B009F7929 /* underwater.m4a */; };
-		54F435EE14AD6C4B009F7929 /* victory.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 54F435DE14AD6C4B009F7929 /* victory.m4a */; };
-		54F435EF14AD6C4B009F7929 /* zombies.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 54F435DF14AD6C4B009F7929 /* zombies.m4a */; };
 		54F6E4EE14882A78002D4C65 /* Lightning.m in Sources */ = {isa = PBXBuildFile; fileRef = 54F6E4ED14882A78002D4C65 /* Lightning.m */; };
 		54F7F57F143CD0FD004EC10B /* 7 Segment.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 54F7F57E143CD0FD004EC10B /* 7 Segment.ttf */; };
 		54FBA2361430CBBE0010A91A /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54FBA2351430CBBE0010A91A /* MediaPlayer.framework */; };
@@ -1082,7 +1083,6 @@
 		5491677614643E3900DFA191 /* computerLevel-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "computerLevel-hd.png"; sourceTree = "<group>"; };
 		5491677714643E3900DFA191 /* computerLevel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = computerLevel.plist; sourceTree = "<group>"; };
 		5491677814643E3900DFA191 /* computerLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = computerLevel.png; sourceTree = "<group>"; };
-		549606C214AC05F200351A9C /* pigSqueal.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = pigSqueal.mp3; path = Resources/sounds/pigSqueal.mp3; sourceTree = "<group>"; };
 		549D84D51469DE9100A3599F /* chooseLevel-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "chooseLevel-hd.plist"; path = "../menu/chooseLevel-hd.plist"; sourceTree = "<group>"; };
 		549D84D61469DE9100A3599F /* chooseLevel-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "chooseLevel-hd.png"; path = "../menu/chooseLevel-hd.png"; sourceTree = "<group>"; };
 		549D84D71469DE9100A3599F /* chooseLevel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = chooseLevel.plist; path = ../menu/chooseLevel.plist; sourceTree = "<group>"; };
@@ -1275,6 +1275,26 @@
 		54A24A9114A1481900BF1BC6 /* AnimationSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationSequence.m; sourceTree = "<group>"; };
 		54A3D6D0146C37F400BD081D /* shipBullet2_hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shipBullet2_hd.png; path = computer/shipBullet2_hd.png; sourceTree = "<group>"; };
 		54A3D6D1146C37F400BD081D /* shipBullet2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shipBullet2.png; path = computer/shipBullet2.png; sourceTree = "<group>"; };
+		54A40B2F14AE8A6B00012D0D /* cancel.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = cancel.caf; path = Resources/sounds/cancel.caf; sourceTree = "<group>"; };
+		54A40B3014AE8A6B00012D0D /* confirm.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = confirm.caf; path = Resources/sounds/confirm.caf; sourceTree = "<group>"; };
+		54A40B3114AE8A6B00012D0D /* pigSqueal.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = pigSqueal.caf; path = Resources/sounds/pigSqueal.caf; sourceTree = "<group>"; };
+		54A40B3214AE8A6B00012D0D /* victory.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = victory.caf; path = Resources/sounds/victory.caf; sourceTree = "<group>"; };
+		54A40B3714AE8A7900012D0D /* barn.aifc */ = {isa = PBXFileReference; lastKnownFileType = file; name = barn.aifc; path = Resources/music/barn.aifc; sourceTree = "<group>"; };
+		54A40B3814AE8A7900012D0D /* city.aifc */ = {isa = PBXFileReference; lastKnownFileType = file; name = city.aifc; path = Resources/music/city.aifc; sourceTree = "<group>"; };
+		54A40B3914AE8A7900012D0D /* computer.aifc */ = {isa = PBXFileReference; lastKnownFileType = file; name = computer.aifc; path = Resources/music/computer.aifc; sourceTree = "<group>"; };
+		54A40B3A14AE8A7900012D0D /* credits.aifc */ = {isa = PBXFileReference; lastKnownFileType = file; name = credits.aifc; path = Resources/music/credits.aifc; sourceTree = "<group>"; };
+		54A40B3B14AE8A7900012D0D /* cutscene.aifc */ = {isa = PBXFileReference; lastKnownFileType = file; name = cutscene.aifc; path = Resources/music/cutscene.aifc; sourceTree = "<group>"; };
+		54A40B3C14AE8A7900012D0D /* darkness_boss.aifc */ = {isa = PBXFileReference; lastKnownFileType = file; name = darkness_boss.aifc; path = Resources/music/darkness_boss.aifc; sourceTree = "<group>"; };
+		54A40B3D14AE8A7900012D0D /* darkness.aifc */ = {isa = PBXFileReference; lastKnownFileType = file; name = darkness.aifc; path = Resources/music/darkness.aifc; sourceTree = "<group>"; };
+		54A40B3E14AE8A7900012D0D /* disco.aifc */ = {isa = PBXFileReference; lastKnownFileType = file; name = disco.aifc; path = Resources/music/disco.aifc; sourceTree = "<group>"; };
+		54A40B3F14AE8A7900012D0D /* fire.aifc */ = {isa = PBXFileReference; lastKnownFileType = file; name = fire.aifc; path = Resources/music/fire.aifc; sourceTree = "<group>"; };
+		54A40B4014AE8A7900012D0D /* rainy.aifc */ = {isa = PBXFileReference; lastKnownFileType = file; name = rainy.aifc; path = Resources/music/rainy.aifc; sourceTree = "<group>"; };
+		54A40B4114AE8A7900012D0D /* title.aifc */ = {isa = PBXFileReference; lastKnownFileType = file; name = title.aifc; path = Resources/music/title.aifc; sourceTree = "<group>"; };
+		54A40B4214AE8A7900012D0D /* town.aifc */ = {isa = PBXFileReference; lastKnownFileType = file; name = town.aifc; path = Resources/music/town.aifc; sourceTree = "<group>"; };
+		54A40B4314AE8A7900012D0D /* track.aifc */ = {isa = PBXFileReference; lastKnownFileType = file; name = track.aifc; path = Resources/music/track.aifc; sourceTree = "<group>"; };
+		54A40B4414AE8A7900012D0D /* underwater.aifc */ = {isa = PBXFileReference; lastKnownFileType = file; name = underwater.aifc; path = Resources/music/underwater.aifc; sourceTree = "<group>"; };
+		54A40B4514AE8A7900012D0D /* victory.aifc */ = {isa = PBXFileReference; lastKnownFileType = file; name = victory.aifc; path = Resources/music/victory.aifc; sourceTree = "<group>"; };
+		54A40B4614AE8A7900012D0D /* zombies.aifc */ = {isa = PBXFileReference; lastKnownFileType = file; name = zombies.aifc; path = Resources/music/zombies.aifc; sourceTree = "<group>"; };
 		54A4B1C914916695006CDD44 /* tileset_level_11-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tileset_level_11-hd.png"; path = "Resources/levels/tileset_level_11-hd.png"; sourceTree = "<group>"; };
 		54A4B1CA14916695006CDD44 /* tileset_level_11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tileset_level_11.png; path = Resources/levels/tileset_level_11.png; sourceTree = "<group>"; };
 		54A4B1CE14918495006CDD44 /* characterSlowTime-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "characterSlowTime-hd.plist"; sourceTree = "<group>"; };
@@ -1367,24 +1387,6 @@
 		54EB13BC148C8B0600D94191 /* characterSpinning-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "characterSpinning-hd.png"; sourceTree = "<group>"; };
 		54EB13BD148C8B0600D94191 /* characterSpinning.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = characterSpinning.plist; sourceTree = "<group>"; };
 		54EB13BE148C8B0600D94191 /* characterSpinning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = characterSpinning.png; sourceTree = "<group>"; };
-		54F435CB14ACE17C009F7929 /* cancel.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = cancel.wav; path = Resources/sounds/cancel.wav; sourceTree = "<group>"; };
-		54F435CC14ACE17C009F7929 /* confirm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = confirm.wav; path = Resources/sounds/confirm.wav; sourceTree = "<group>"; };
-		54F435D014AD6C4B009F7929 /* barn.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = barn.m4a; path = Resources/music/barn.m4a; sourceTree = "<group>"; };
-		54F435D114AD6C4B009F7929 /* city.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = city.m4a; path = Resources/music/city.m4a; sourceTree = "<group>"; };
-		54F435D214AD6C4B009F7929 /* computer.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = computer.m4a; path = Resources/music/computer.m4a; sourceTree = "<group>"; };
-		54F435D314AD6C4B009F7929 /* credits.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = credits.m4a; path = Resources/music/credits.m4a; sourceTree = "<group>"; };
-		54F435D414AD6C4B009F7929 /* cutscene.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = cutscene.m4a; path = Resources/music/cutscene.m4a; sourceTree = "<group>"; };
-		54F435D514AD6C4B009F7929 /* darkness_boss.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = darkness_boss.m4a; path = Resources/music/darkness_boss.m4a; sourceTree = "<group>"; };
-		54F435D614AD6C4B009F7929 /* darkness.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = darkness.m4a; path = Resources/music/darkness.m4a; sourceTree = "<group>"; };
-		54F435D714AD6C4B009F7929 /* disco.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = disco.m4a; path = Resources/music/disco.m4a; sourceTree = "<group>"; };
-		54F435D814AD6C4B009F7929 /* fire.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = fire.m4a; path = Resources/music/fire.m4a; sourceTree = "<group>"; };
-		54F435D914AD6C4B009F7929 /* rainy.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = rainy.m4a; path = Resources/music/rainy.m4a; sourceTree = "<group>"; };
-		54F435DA14AD6C4B009F7929 /* title.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = title.m4a; path = Resources/music/title.m4a; sourceTree = "<group>"; };
-		54F435DB14AD6C4B009F7929 /* town.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = town.m4a; path = Resources/music/town.m4a; sourceTree = "<group>"; };
-		54F435DC14AD6C4B009F7929 /* track.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = track.m4a; path = Resources/music/track.m4a; sourceTree = "<group>"; };
-		54F435DD14AD6C4B009F7929 /* underwater.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = underwater.m4a; path = Resources/music/underwater.m4a; sourceTree = "<group>"; };
-		54F435DE14AD6C4B009F7929 /* victory.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = victory.m4a; path = Resources/music/victory.m4a; sourceTree = "<group>"; };
-		54F435DF14AD6C4B009F7929 /* zombies.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = zombies.m4a; path = Resources/music/zombies.m4a; sourceTree = "<group>"; };
 		54F6E4EC14882A77002D4C65 /* Lightning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lightning.h; sourceTree = "<group>"; };
 		54F6E4ED14882A78002D4C65 /* Lightning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lightning.m; sourceTree = "<group>"; };
 		54F7F57E143CD0FD004EC10B /* 7 Segment.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "7 Segment.ttf"; path = "Resources/fonts/7 Segment.ttf"; sourceTree = "<group>"; };
@@ -1534,22 +1536,22 @@
 		54133A0D143231AF00E433FC /* music */ = {
 			isa = PBXGroup;
 			children = (
-				54F435D014AD6C4B009F7929 /* barn.m4a */,
-				54F435D114AD6C4B009F7929 /* city.m4a */,
-				54F435D214AD6C4B009F7929 /* computer.m4a */,
-				54F435D314AD6C4B009F7929 /* credits.m4a */,
-				54F435D414AD6C4B009F7929 /* cutscene.m4a */,
-				54F435D514AD6C4B009F7929 /* darkness_boss.m4a */,
-				54F435D614AD6C4B009F7929 /* darkness.m4a */,
-				54F435D714AD6C4B009F7929 /* disco.m4a */,
-				54F435D814AD6C4B009F7929 /* fire.m4a */,
-				54F435D914AD6C4B009F7929 /* rainy.m4a */,
-				54F435DA14AD6C4B009F7929 /* title.m4a */,
-				54F435DB14AD6C4B009F7929 /* town.m4a */,
-				54F435DC14AD6C4B009F7929 /* track.m4a */,
-				54F435DD14AD6C4B009F7929 /* underwater.m4a */,
-				54F435DE14AD6C4B009F7929 /* victory.m4a */,
-				54F435DF14AD6C4B009F7929 /* zombies.m4a */,
+				54A40B3714AE8A7900012D0D /* barn.aifc */,
+				54A40B3814AE8A7900012D0D /* city.aifc */,
+				54A40B3914AE8A7900012D0D /* computer.aifc */,
+				54A40B3A14AE8A7900012D0D /* credits.aifc */,
+				54A40B3B14AE8A7900012D0D /* cutscene.aifc */,
+				54A40B3C14AE8A7900012D0D /* darkness_boss.aifc */,
+				54A40B3D14AE8A7900012D0D /* darkness.aifc */,
+				54A40B3E14AE8A7900012D0D /* disco.aifc */,
+				54A40B3F14AE8A7900012D0D /* fire.aifc */,
+				54A40B4014AE8A7900012D0D /* rainy.aifc */,
+				54A40B4114AE8A7900012D0D /* title.aifc */,
+				54A40B4214AE8A7900012D0D /* town.aifc */,
+				54A40B4314AE8A7900012D0D /* track.aifc */,
+				54A40B4414AE8A7900012D0D /* underwater.aifc */,
+				54A40B4514AE8A7900012D0D /* victory.aifc */,
+				54A40B4614AE8A7900012D0D /* zombies.aifc */,
 			);
 			name = music;
 			sourceTree = "<group>";
@@ -2013,9 +2015,10 @@
 		545CBC2F142D25AB00795FC9 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
-				54F435CB14ACE17C009F7929 /* cancel.wav */,
-				54F435CC14ACE17C009F7929 /* confirm.wav */,
-				549606C214AC05F200351A9C /* pigSqueal.mp3 */,
+				54A40B2F14AE8A6B00012D0D /* cancel.caf */,
+				54A40B3014AE8A6B00012D0D /* confirm.caf */,
+				54A40B3114AE8A6B00012D0D /* pigSqueal.caf */,
+				54A40B3214AE8A6B00012D0D /* victory.caf */,
 				544B03C414AAB3F50029FAD2 /* BatteryFullCharge.caf */,
 				544B03C514AAB3F50029FAD2 /* blowAction.caf */,
 				544B03C614AAB3F50029FAD2 /* checkpoint.caf */,
@@ -3326,7 +3329,6 @@
 				61F53A2F14ABBD680003ABAC /* story_normal_level1.tmx in Resources */,
 				61F53A3114ABBE890003ABAC /* story_hard_level1.tmx in Resources */,
 				61F53A3314ABBFE80003ABAC /* timed_normal_level1.tmx in Resources */,
-				549606C314AC05F200351A9C /* pigSqueal.mp3 in Resources */,
 				6119ABB614ACD9B800A7B136 /* tileset_level_3-hd.png in Resources */,
 				6119ABB714ACD9B800A7B136 /* tileset_level_3.png in Resources */,
 				6119ABB914ACD9E800A7B136 /* story_easy_level3_hd.tmx in Resources */,
@@ -3339,24 +3341,26 @@
 				61E8DE3014ACDFDA00F2C23F /* story_hard_level3.tmx in Resources */,
 				61E8DE3214ACDFE800F2C23F /* timed_normal_level3.tmx in Resources */,
 				61E8DE3414ACDFF200F2C23F /* timed_hard_level3.tmx in Resources */,
-				54F435CD14ACE17C009F7929 /* cancel.wav in Resources */,
-				54F435CE14ACE17C009F7929 /* confirm.wav in Resources */,
-				54F435E014AD6C4B009F7929 /* barn.m4a in Resources */,
-				54F435E114AD6C4B009F7929 /* city.m4a in Resources */,
-				54F435E214AD6C4B009F7929 /* computer.m4a in Resources */,
-				54F435E314AD6C4B009F7929 /* credits.m4a in Resources */,
-				54F435E414AD6C4B009F7929 /* cutscene.m4a in Resources */,
-				54F435E514AD6C4B009F7929 /* darkness_boss.m4a in Resources */,
-				54F435E614AD6C4B009F7929 /* darkness.m4a in Resources */,
-				54F435E714AD6C4B009F7929 /* disco.m4a in Resources */,
-				54F435E814AD6C4B009F7929 /* fire.m4a in Resources */,
-				54F435E914AD6C4B009F7929 /* rainy.m4a in Resources */,
-				54F435EA14AD6C4B009F7929 /* title.m4a in Resources */,
-				54F435EB14AD6C4B009F7929 /* town.m4a in Resources */,
-				54F435EC14AD6C4B009F7929 /* track.m4a in Resources */,
-				54F435ED14AD6C4B009F7929 /* underwater.m4a in Resources */,
-				54F435EE14AD6C4B009F7929 /* victory.m4a in Resources */,
-				54F435EF14AD6C4B009F7929 /* zombies.m4a in Resources */,
+				54A40B3314AE8A6B00012D0D /* cancel.caf in Resources */,
+				54A40B3414AE8A6B00012D0D /* confirm.caf in Resources */,
+				54A40B3514AE8A6B00012D0D /* pigSqueal.caf in Resources */,
+				54A40B3614AE8A6B00012D0D /* victory.caf in Resources */,
+				54A40B4714AE8A7900012D0D /* barn.aifc in Resources */,
+				54A40B4814AE8A7900012D0D /* city.aifc in Resources */,
+				54A40B4914AE8A7900012D0D /* computer.aifc in Resources */,
+				54A40B4A14AE8A7900012D0D /* credits.aifc in Resources */,
+				54A40B4B14AE8A7900012D0D /* cutscene.aifc in Resources */,
+				54A40B4C14AE8A7900012D0D /* darkness_boss.aifc in Resources */,
+				54A40B4D14AE8A7900012D0D /* darkness.aifc in Resources */,
+				54A40B4E14AE8A7900012D0D /* disco.aifc in Resources */,
+				54A40B4F14AE8A7900012D0D /* fire.aifc in Resources */,
+				54A40B5014AE8A7900012D0D /* rainy.aifc in Resources */,
+				54A40B5114AE8A7900012D0D /* title.aifc in Resources */,
+				54A40B5214AE8A7900012D0D /* town.aifc in Resources */,
+				54A40B5314AE8A7900012D0D /* track.aifc in Resources */,
+				54A40B5414AE8A7900012D0D /* underwater.aifc in Resources */,
+				54A40B5514AE8A7900012D0D /* victory.aifc in Resources */,
+				54A40B5614AE8A7900012D0D /* zombies.aifc in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
