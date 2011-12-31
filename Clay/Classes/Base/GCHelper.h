@@ -36,6 +36,26 @@
 #define gcAchievementGetHitby10frogs  @"com.xecudev.tracklapse.achievement.gethitbyfrogs"
 #define gcAchievementGetHitby10fish  @"com.xecudev.tracklapse.achievement.gethitbyfish"
 #define gcAchievementGetHitby10bats  @"com.xecudev.tracklapse.achievement.gethitbybats"
+#define gcAchievementGetHit500times  @"com.xecudev.tracklapse.achievement.timesgothit"
+
+#define gcAchievementClear500enimies @"com.xecudev.tracklapse.achievement.clear500enimies"
+#define gcAchievementClear1000enimies @"com.xecudev.tracklapse.achievement.clear1000enimies"
+#define gcAchievementClear2500enimies @"com.xecudev.tracklapse.achievement.clear2500enimies"
+
+#define gcAchievementBeatEachLevel10times  @"com.xecudev.tracklapse.achievement.beateachlevel10times"
+#define gcAchievementWhoo100times  @"com.xecudev.tracklapse.achievement.timeswhooed"
+#define gcAchievementFallIntoDeathPit10times @"com.xecudev.tracklapse.achievement.timesfellintodeathpit"
+#define gcAchievementFalldown50times @"com.xecudev.tracklapse.achievement.timesfelldown"
+
+#define gcAchievementFacebookUs      @"com.xecudev.tracklapse.achievement.facebook"
+#define gcAchievementTwitterUs       @"com.xecudev.tracklapse.achievement.twitter"
+#define gcAchievementAllGoldInNM     @"com.xecudev.tracklapse.achievement.normaltimedallgold"
+#define gcAchievementAllGoldInIM     @"com.xecudev.tracklapse.achievement.insantimedallgold"
+#define gcAchievementAllStoryAndAllGold @"com.xecudev.tracklapse.achievement.allstoryandallgold"
+#define gcAchievementWatchCredits    @"com.xecudev.tracklapse.achievement.watchcredits"
+#define gcAchievementRateTheGame     @"com.xecudev.tracklapse.achievement.ratethegame"
+
+
 #define gcLeaderboardNormalTimedLevel1 @"com.xecudev.tracklapse.leaderboard.normaltimed.level1"
 #define gcLeaderboardNormalTimedLevel2 @"com.xecudev.tracklapse.leaderboard.normaltimed.level2"
 #define gcLeaderboardNormalTimedLevel3 @"com.xecudev.tracklapse.leaderboard.normaltimed.level3"

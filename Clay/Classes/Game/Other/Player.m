@@ -281,11 +281,11 @@
 
 -(void)obstacleGotHitBy:(GameObject *)obstacle
 {
-    if(![obstacle respondsToSelector:@selector(CollidableBehavior)]){return;}
+    if(![obstacle respondsToSelector:@selector(getCollisionBehavior)]){return;}
     int maxHit = 10;
     
     
-    if(obstacle.CollidableBehavior == COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_BD || obstacle.CollidableBehavior == COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST_BD || obstacle.CollidableBehavior == COLLISION_BEHAVIOR_DANCIN_MAN_COLLAPSE)
+    if([obstacle getCollisionBehavior] == COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_BD || [obstacle getCollisionBehavior] == COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST_BD || [obstacle getCollisionBehavior] == COLLISION_BEHAVIOR_DANCIN_MAN_COLLAPSE)
     {
         if ([GCState sharedInstance].dancersHit < maxHit) {
             [GCState sharedInstance].dancersHit++;
@@ -299,7 +299,7 @@
         }
         
     }
-    else if(obstacle.CollidableBehavior == COLLISION_BEHAVIOR_ZOMBIE_HEADLESS || obstacle.CollidableBehavior == COLLISION_BEHAVIOR_ZOMBIE_FADE)
+    else if([obstacle getCollisionBehavior] == COLLISION_BEHAVIOR_ZOMBIE_HEADLESS || [obstacle getCollisionBehavior] == COLLISION_BEHAVIOR_ZOMBIE_FADE)
     {
         if ([GCState sharedInstance].zombiesHit < maxHit) {
             [GCState sharedInstance].zombiesHit++;

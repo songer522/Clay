@@ -39,7 +39,6 @@
 @synthesize hasGravity = _hasGravity;
 @synthesize isAggressive = _isAggressive;
 @synthesize CurrentBehavior = _currentBehavior;
-@synthesize CollidableBehavior = _collideBehavior;
 @synthesize isInMidAir = _isInMidAir;
 @synthesize isFalling = _isFalling;
 @synthesize isInvincible = _isInvincible;
