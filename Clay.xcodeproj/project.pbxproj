@@ -589,7 +589,7 @@
 		61C8DD3514AE724000DF31AE /* timed_hard_level4.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61C8DD3314AE724000DF31AE /* timed_hard_level4.tmx */; };
 		61C8DD3814AE724F00DF31AE /* timed_normal_level4_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61C8DD3614AE724F00DF31AE /* timed_normal_level4_hd.tmx */; };
 		61C8DD3914AE724F00DF31AE /* timed_normal_level4.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61C8DD3714AE724F00DF31AE /* timed_normal_level4.tmx */; };
-		61C8DD3B14AE733C00DF31AE /* TrackLapse_Icons.png in Resources */ = {isa = PBXBuildFile; fileRef = 61C8DD3A14AE733C00DF31AE /* TrackLapse_Icons.png */; };
+		61C8DD4614AE7F1100DF31AE /* TrackLapse_Icons.png in Resources */ = {isa = PBXBuildFile; fileRef = 61C8DD4514AE7F1100DF31AE /* TrackLapse_Icons.png */; };
 		61D7BCFF14918C69002790E9 /* memory.plist in Resources */ = {isa = PBXBuildFile; fileRef = 61D7BCFE14918C69002790E9 /* memory.plist */; };
 		61DC6099148966F100F65B78 /* TrackLapse_Icons-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 61DC6097148966F100F65B78 /* TrackLapse_Icons-hd.png */; };
 		61DE0EB514AA852700801244 /* tileset_level_1-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 61DE0EB314AA852600801244 /* tileset_level_1-hd.png */; };
@@ -1448,7 +1448,7 @@
 		61C8DD3314AE724000DF31AE /* timed_hard_level4.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = timed_hard_level4.tmx; sourceTree = "<group>"; };
 		61C8DD3614AE724F00DF31AE /* timed_normal_level4_hd.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = timed_normal_level4_hd.tmx; sourceTree = "<group>"; };
 		61C8DD3714AE724F00DF31AE /* timed_normal_level4.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = timed_normal_level4.tmx; sourceTree = "<group>"; };
-		61C8DD3A14AE733C00DF31AE /* TrackLapse_Icons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TrackLapse_Icons.png; path = Resources/levels/TrackLapse_Icons.png; sourceTree = "<group>"; };
+		61C8DD4514AE7F1100DF31AE /* TrackLapse_Icons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TrackLapse_Icons.png; path = Resources/levels/TrackLapse_Icons.png; sourceTree = "<group>"; };
 		61D7BCFE14918C69002790E9 /* memory.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = memory.plist; path = Plists/memory.plist; sourceTree = "<group>"; };
 		61DC6097148966F100F65B78 /* TrackLapse_Icons-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "TrackLapse_Icons-hd.png"; path = "Resources/levels/TrackLapse_Icons-hd.png"; sourceTree = "<group>"; };
 		61DE0EB314AA852600801244 /* tileset_level_1-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tileset_level_1-hd.png"; path = "Resources/levels/tileset_level_1-hd.png"; sourceTree = "<group>"; };
@@ -2802,7 +2802,7 @@
 		54E3D55C146C4BAE00C28C9F /* tilesets */ = {
 			isa = PBXGroup;
 			children = (
-				61C8DD3A14AE733C00DF31AE /* TrackLapse_Icons.png */,
+				61C8DD4514AE7F1100DF31AE /* TrackLapse_Icons.png */,
 				61C8DD2214AE720400DF31AE /* tileset_level_4-hd.png */,
 				61C8DD2314AE720400DF31AE /* tileset_level_4.png */,
 				6119ABB414ACD9B800A7B136 /* tileset_level_3-hd.png */,
@@ -3340,7 +3340,23 @@
 				61C8DD3514AE724000DF31AE /* timed_hard_level4.tmx in Resources */,
 				61C8DD3814AE724F00DF31AE /* timed_normal_level4_hd.tmx in Resources */,
 				61C8DD3914AE724F00DF31AE /* timed_normal_level4.tmx in Resources */,
-				61C8DD3B14AE733C00DF31AE /* TrackLapse_Icons.png in Resources */,
+				54F435E014AD6C4B009F7929 /* barn.m4a in Resources */,
+				54F435E114AD6C4B009F7929 /* city.m4a in Resources */,
+				54F435E214AD6C4B009F7929 /* computer.m4a in Resources */,
+				54F435E314AD6C4B009F7929 /* credits.m4a in Resources */,
+				54F435E414AD6C4B009F7929 /* cutscene.m4a in Resources */,
+				54F435E514AD6C4B009F7929 /* darkness_boss.m4a in Resources */,
+				54F435E614AD6C4B009F7929 /* darkness.m4a in Resources */,
+				54F435E714AD6C4B009F7929 /* disco.m4a in Resources */,
+				54F435E814AD6C4B009F7929 /* fire.m4a in Resources */,
+				54F435E914AD6C4B009F7929 /* rainy.m4a in Resources */,
+				54F435EA14AD6C4B009F7929 /* title.m4a in Resources */,
+				54F435EB14AD6C4B009F7929 /* town.m4a in Resources */,
+				54F435EC14AD6C4B009F7929 /* track.m4a in Resources */,
+				54F435ED14AD6C4B009F7929 /* underwater.m4a in Resources */,
+				54F435EE14AD6C4B009F7929 /* victory.m4a in Resources */,
+				54F435EF14AD6C4B009F7929 /* zombies.m4a in Resources */,
+				61C8DD4614AE7F1100DF31AE /* TrackLapse_Icons.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

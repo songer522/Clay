@@ -85,8 +85,7 @@
         </tile>
         <tile id="14">
             <properties>
-                <property name="layerBelow" value="back-1"/>
-                <property name="object" value="tvAnimation"/>
+                <property name="obstacle" value="discoHandbag"/>
             </properties>
         </tile>
         <tile id="15">
@@ -119,6 +118,11 @@
         <tile id="21">
             <properties>
                 <property name="obstacle" value="femaleBreakdancerBlue"/>
+            </properties>
+        </tile>
+        <tile id="22">
+            <properties>
+                <property name="obstacle" value="discoTrixter"/>
             </properties>
         </tile>
     </tileset>
@@ -163,7 +167,7 @@
     </layer>
     <layer name="objects" width="1050" height="14">
         <data encoding="base64" compression="zlib">
-            eJzt1lFuwjAMAFBOsO13Emhh9z/kVIlKUVRokziQifd+UsB17TRpOZ0AAAAAAAAAAAAAAAAAAAAAAAAAAJjBz8Z3KSBfT46Ryn7TJLmiRdc2+31dRa/n/Nyt3DNIxefeOme+16kYI3MuZrzHEXu5PGfGPhcpO+6pMSrPM6TbGFFnKj7P1Puo9+WaZ6ZeF3k9KSBfnmO2XnMpO45e07P2nW5jVH3R+aJE/zdY88zW5yJlxzPWBwAAAAAAAAAAAAAAADzPtzhx4sSJEydOnDhx4sSJGxIHAAAAAPwfl1cXsOHcef41pIpjjszfo5je+a/ptXde9/TOxSO/lfEta+DIOSPWVsucRO3bczGWPoOukztae02PtWv70Xrqmdu9+aytZUtNfS297PVQm7N3z1yKcWRMr8hnbO26KG3Vcu38fU9rzSOeM61a13d+3r3j0r29VrNnot5bo95/y5pomZuo6y9ansuXjuvtXfe683seUzNH+f6L/D824p2d+7qNvc884JiPVxcAAAAAAAAAALy9P/KpGTI=
+            eJzt1lFugzAMAFBOsO13Wqul2/3vOCEVKYooTYhh0fbeD7Q1jgNO6DQBAAAAAAAAAAAAAAAAAAAAAAAAADCCz5XvUkC+nhxHKuebBskVLbq20Z/rIrqf82vXco8gFZ976xz5WafiGJlzNuIzjljL5TUjznOWsvOeGqPynCHdjxF1puLzSHM/6n255BlprrO8nhSQL88x2lxzKTuP7ulR553ux6j6ovNFif5vsOQZbZ6zlJ2PWB8AAAAAAAAAAAAAAABwnndx4sSJEydOnDhx4sSJE3dIHAAAAADwN9x+adxL5/Vn1n1tjP8IHr9lrr339ZmaubXerzVfFTF7eqDmmiN6a09PfAeNfSmOpdegcXLRa2C2t7fXeqmnvj111PTzXnvm8qwnWtdw75qJWJctNfTUG7nH9vbFWi23it+39paj3q1H7DN7ta6Z5Z7k6+LReenRWovu1zNjSnMfR+35NeNv9W/L+rxWjrfl2fPd2muXmJ5717svRu6rNdb2vLfgMYBpevntAgAAAAAAAACAf+8HlQ4YTg==
         </data>
     </layer>
     <layer name="meta" width="1050" height="14" opacity="0.62">

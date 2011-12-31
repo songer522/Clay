@@ -85,8 +85,7 @@
   </tile>
   <tile id="14">
    <properties>
-    <property name="layerBelow" value="back-1"/>
-    <property name="object" value="tvAnimation"/>
+    <property name="obstacle" value="discoHandbag"/>
    </properties>
   </tile>
   <tile id="15">
@@ -168,7 +167,7 @@
  </layer>
  <layer name="objects" width="1050" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt1lFuwjAMAFBOsO13Emhh9z/kVIlKUVRokziQifd+UsB17TRpOZ0AAAAAAAAAAAAAAAAAAAAAAAAAAJjBz8Z3KSBfT46Ryn7TJLmiRdc2+31dRa/n/Nyt3DNIxefeOme+16kYI3MuZrzHEXu5PGfGPhcpO+6pMSrPM6TbGFFnKj7P1Puo9+WaZ6ZeF3k9KSBfnmO2XnMpO45e07P2nW5jVH3R+aJE/zdY88zW5yJlxzPWBwAAAAAAAAAAAAAAADzPtzhx4sSJEydOnDhx4sSJGxIHAAAAAPwfl1cXsOHcef41pIpjjszfo5je+a/ptXde9/TOxSO/lfEta+DIOSPWVsucRO3bczGWPoOukztae02PtWv70Xrqmdu9+aytZUtNfS297PVQm7N3z1yKcWRMr8hnbO26KG3Vcu38fU9rzSOeM61a13d+3r3j0r29VrNnot5bo95/y5pomZuo6y9ansuXjuvtXfe683seUzNH+f6L/D824p2d+7qNvc884JiPVxcAAAAAAAAAALy9P/KpGTI=
+   eJzt1lFqwzAMANCdYNvvoGXu7n/IEWjAmLSJI7kz7L0fp62sSI6T9O0NAAAAAAAAAAAAAAAAAAAAAAAAAIAZfG98VxLyRXKM1PZbJsmVLbu22a/rKns/13O3cs+gNJ+jdc58rUszZuZczHiNM+7lds6MfS5KdRypMSvPK5T7mFFnaT7P1Puo9+WaZ6ZeF3U9JSFfnWO2XmulOs7e07P2Xe5jVn3Z+bJk/zdY88zW56JUxzPWBwAAAAAAAAAAAAAAALzOlzhx4sSJEydOnDhx4sSJGxIHAAAAABBxCc6/pVRxzDUYc2T+Mz29Rtd1T3QtnvnpjD+zB47MGbG3zqxJdN+sLs3Y+kg6T+1o7T099u7tZ/spsrZ769lby5ae+s70stdDb87oPXNtxpExUZnP2N590dqq5Rb8fc/Zmkc8Z846u7/reY+OW4/utZ57Juu9Ner9t+yJM2uTdf7FmefyNXC+vfPedn6vY3rWqL7/Mv+PjXhn1z7vY/SZBxzz/tcFAAAAAAAAAAD/3i9tEhkV
   </data>
  </layer>
  <layer name="meta" width="1050" height="14" opacity="0.62">

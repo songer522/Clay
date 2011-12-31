@@ -711,7 +711,7 @@
 			<key>x</key>
 			<integer>1</integer>
 			<key>y</key>
-			<integer>0</integer>
+			<real>0.1</real>
 		</dict>
 		<key>animationName</key>
 		<string>none</string>
@@ -924,11 +924,11 @@
 			<real>0.5</real>
 		</dict>
 		<key>animationName</key>
-		<string>femaleBreakdancerRedAnim</string>
+		<string>femaleBreakdancerBlueAnim</string>
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>35</integer>
+			<integer>30</integer>
 			<key>width</key>
 			<integer>30</integer>
 			<key>x</key>
@@ -963,7 +963,7 @@
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>35</integer>
+			<integer>30</integer>
 			<key>width</key>
 			<integer>30</integer>
 			<key>x</key>

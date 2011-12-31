@@ -85,8 +85,7 @@
         </tile>
         <tile id="14">
             <properties>
-                <property name="layerBelow" value="back-1"/>
-                <property name="object" value="tvAnimation"/>
+                <property name="obstacle" value="discoHandbag"/>
             </properties>
         </tile>
         <tile id="15">
@@ -119,6 +118,11 @@
         <tile id="21">
             <properties>
                 <property name="obstacle" value="femaleBreakdancerBlue"/>
+            </properties>
+        </tile>
+        <tile id="22">
+            <properties>
+                <property name="obstacle" value="discoTrixter"/>
             </properties>
         </tile>
     </tileset>
@@ -163,7 +167,7 @@
     </layer>
     <layer name="objects" width="1050" height="14">
         <data encoding="base64" compression="zlib">
-            eJzt1lFuwjAMAFBOsO13Emhh9z/kVIlKUVRokziQifd+UsB17TRpOZ0AAAAAAAAAAAAAAAAAAAAAAAAAAJjBz8Z3KSBfT46Ryn7TJLmiRdc2+31dRa/n/Nyt3DNIxefeOme+16kYI3MuZrzHEXu5PGfGPhcpO+6pMSrPM6TbGFFnKj7P1Puo9+WaZ6ZeF3k9KSBfnmO2XnMpO45e07P2nW5jVH3R+aJE/zdY88zW5yJlxzPWBwAAAAAAAAAAAAAAADzPtzhx4sSJEydOnDhx4sSJGxIHAAAAAPwfl1cXsOHcef41pIpjjszfo5je+a/ptXde9/TOxSO/lfEta+DIOSPWVsucRO3bczGWPoOukztae02PtWv70Xrqmdu9+aytZUtNfS297PVQm7N3z1yKcWRMr8hnbO26KG3Vcu38fU9rzSOeM61a13d+3r3j0r29VrNnot5bo95/y5pomZuo6y9ansuXjuvtXfe683seUzNH+f6L/D824p2d+7qNvc884JiPVxcAAAAAAAAAALy9P/KpGTI=
+            eJzt1ktOwzAQAFBOAGwRrTD0/ndEkRrJstzYcaatBe9tksbjyfiTJi8vAAAAAAAAAAAAAAAAAAAAAAAAAADM4KtyLQXkO5LjnsrxpklyRYuubfZ1XUXv57xvLfcMUvH7aJ0zr3UqjpE5FzOuccSzXPaZcZyLlJ0fqTEqzyOk6zGizlT8nmns93pfrnlmGusirycF5MtzzDbWXMrOo/f0rONO12NUfdH5okR/G6x5ZhvnImXnM9YHAAAAAAAAAAAAAAAAPM6HOHHixIkTJ06cOHHixIm7SxwAAAAA8Dd8P7Bf3uc0eN/VT6P9Urk2es/zzvjPwfvcsmeub40xv16bm54ci56x7Z2vmtb6Lm7Ny72vj7g1b1vzeWm09zoVxxF752Kk7tY9Ruuv7aUj8zpSR89+rnkb7NfS2hN7n+Gjz0pv/9Y8brXnbUfqjXieVqP7YlWrpfaeLdu33gFH1/LccV4amdNWnVvte5//NVfk2Gr1Petaae++XOKjvnt66tvav3v20rnzflta67tVzxoz8n3Q68h/Zk97RNx7Z1+g3+uzCwAAAAAAAAAA/r1fEj8bow==
         </data>
     </layer>
     <layer name="meta" width="1050" height="14" opacity="0.62">

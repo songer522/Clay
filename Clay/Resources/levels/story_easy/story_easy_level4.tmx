@@ -85,8 +85,7 @@
         </tile>
         <tile id="14">
             <properties>
-                <property name="layerBelow" value="back-1"/>
-                <property name="object" value="tvAnimation"/>
+                <property name="obstacle" value="discoHandbag"/>
             </properties>
         </tile>
         <tile id="15">
@@ -119,6 +118,11 @@
         <tile id="21">
             <properties>
                 <property name="obstacle" value="femaleBreakdancerBlue"/>
+            </properties>
+        </tile>
+        <tile id="22">
+            <properties>
+                <property name="obstacle" value="discoTrixter"/>
             </properties>
         </tile>
     </tileset>
@@ -163,7 +167,7 @@
     </layer>
     <layer name="objects" width="1050" height="14">
         <data encoding="base64" compression="zlib">
-            eJzt1lFuwjAMAFBOsO13Emhh9z/kVIlKUVRokziQifd+UsB17TRpOZ0AAAAAAAAAAAAAAAAAAAAAAAAAAJjBz8Z3KSBfT46Ryn7TJLmiRdc2+31dRa/n/Nyt3DNIxefeOme+16kYI3MuZrzHEXu5PGfGPhcpO+6pMSrPM6TbGFFnKj7P1Puo9+WaZ6ZeF3k9KSBfnmO2XnMpO45e07P2nW5jVH3R+aJE/zdY88zW5yJlxzPWBwAAAAAAAAAAAAAAADzPtzhx4sSJEydOnDhx4sSJGxIHAAAAAPwfl1cXsOHcef41pIpjjszfo5je+a/ptXde9/TOxSO/lfEta+DIOSPWVsucRO3bczGWPoOukztae02PtWv70Xrqmdu9+aytZUtNfS297PVQm7N3z1yKcWRMr8hnbO26KG3Vcu38fU9rzSOeM61a13d+3r3j0r29VrNnot5bo95/y5pomZuo6y9ansuXjuvtXfe683seUzNH+f6L/D824p2d+7qNvc884JiPVxcAAAAAAAAAALy9P/KpGTI=
+            eJzt1lFugzAMANCeYNvvtFXLtvvfcUIqUoRoB4lDrfa9H6Ayjk0S6OkEAAAAAAAAAAAAAAAAAAAAAAAAAEAGXyu/lYB8PTlGWvZbkuSKFl1b9nmdRa/n+t613BmUxXVvnZnnuiyOkTknGec4Yi8v78nY56RU5z01RuU5QrkcI+osi+tMvY/6Xs55MvU6qespAfnqHNl6rZXqPHpNZ+27XI5R9UXnixL932DOk63PSanOM9YHAAAAAAAAAAAAAAAAHOddnDhx4sSJEydOnDhx4sQNiQMAAAAAHsP3ncb97Lz/yLrPO+M/gsff02vvc/3Plt72Pq9Wo9bAiLwta+I3uIZra+M1eJxJ9B6YtK7ttfnsqW/kHmtZexl66d0zEXvuqG9C5Pz31rxWy5act94to57jiPdMq9Y90/Jtu7Ze9jznqDkZuUei3vm963fP/jxvHK/HrXrmsXueXYZ37x4/K7+9HVwDPIOXexcAAAAAAAAAADy9P1a9FaI=
         </data>
     </layer>
     <layer name="meta" width="1050" height="14" opacity="0.62">
