@@ -138,6 +138,40 @@
 		<key>spritesheetPlist</key>
 		<string>cityLevel</string>
 	</dict>
+	<key>cityPigeonAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level5</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Level5_Pigeon_</string>
+		<key>spritesheetPlist</key>
+		<string>cityLevel</string>
+	</dict>
+	<key>cityCuteDogAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.075</string>
+		<key>group</key>
+		<string>level5</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Cute_Puppy_</string>
+		<key>spritesheetPlist</key>
+		<string>cityLevel</string>
+	</dict>
 	<key>computerIloveyouAnim</key>
 	<dict>
 		<key>animationFrames</key>
