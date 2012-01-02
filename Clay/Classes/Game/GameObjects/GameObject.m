@@ -50,6 +50,7 @@
 @synthesize slowTimeModifier = _slowTimeModifier;
 @synthesize isHurdle = _isHurdle;
 @synthesize hasAppeared = _hasAppeared;
+@synthesize useDefaultBatchNode = _useDefaultBatchNode;
 
 
 + (id) objectWithSprite:(Sprite*)sprite
@@ -84,6 +85,7 @@
         _boundingBox = CGRectMake(0, 0, 0, 0);
         _collisionState = [[Collision collisionNode] retain];
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;
+        _useDefaultBatchNode = true;
         _isAggressive = false;
         _isFalling = false;
         _isInMidAir = false;
@@ -101,7 +103,6 @@
         _isVisible = true;
         _isHurdle = false;
         _isStutterMode = [[GameSettings shared] isStutterMode];
-        
         
     }
     
@@ -222,6 +223,14 @@
             break;
         case COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST_BD:
             [[gameLayer.player getThirdAction] setKilledEnemy:YES];
+            break;
+        case COLLISION_BEHAVIOR_CITY_PIGEON:
+            _hasGravity = true;
+            _vy = -25.0f;
+            _vx = rand()%40 + 15;
+            _alpha = 1.2f;
+            _fadeout = true;
+            _collided = true;
             break;
         case COLLISION_BEHAVIOR_ZOMBIE_HEADLESS:
             [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"femaleHeadlessZombieAnim"];
@@ -440,6 +449,10 @@
                 [self playerHasCheering:false];
             }
             break;
+        case COLLISION_BEHAVIOR_BACKGROUND_MOVE_LEFT_TO_RIGHT:
+            [self moveAcrossBackgroundLRwithSpeed:355.0f];
+            break;
+            
             
         ///////////////////////////
         //LEVEL 2 - BARN RUN
@@ -798,7 +811,20 @@
     }
 }
 
-
+-(void) moveAcrossBackgroundLRwithSpeed:(float)speed
+{
+    if (!_hasAppeared) {
+        _vx = 0.0f;
+        if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+            _hasAppeared = true;
+            [self getCCSprite].visible = true;
+            CGPoint position = [[Camera sharedCamera] convertToWorldXY:ccp(0,0)];
+            [self setPositionAtX:(position.x - 100) Y:_y];
+        }
+    } else {
+        _vx = speed;
+    }
+}
 
 -(bool) closeToPlayer:(float)closerThan
 {
@@ -891,6 +917,10 @@
     _madeSound = false;
     [_sprite setAlpha:1.0f];
      
+    if ([[_sprite getAnimation].name isEqualToString:@"cityBikeAnim"]) {
+        _x = _x;
+    }
+    
     if (![_originalAnimation isEqualToString:@"none"]) {
         [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:_originalAnimation];        
     }
@@ -909,13 +939,10 @@
     if(_currentBehavior == COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_BD)
     {
         _currentBehavior = COLLISION_BEHAVIOR_CHARGE_AT_PLAYER;
-    }
-    if(_currentBehavior == COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST_BD)
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST_BD)
     {
         _currentBehavior = COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST;
-    }
-    
-    if (_currentBehavior == COLLISION_BEHAVIOR_HEN_KICKED || _currentBehavior == COLLISION_BEHAVIOR_HEN_STATIC || _currentBehavior == COLLISION_BEHAVIOR_HEN_DEAD) {
+    } else if (_currentBehavior == COLLISION_BEHAVIOR_HEN_KICKED || _currentBehavior == COLLISION_BEHAVIOR_HEN_STATIC || _currentBehavior == COLLISION_BEHAVIOR_HEN_DEAD) {
         _isAggressive = false;
         _currentBehavior = COLLISION_BEHAVIOR_HEN_STATIC;
     } else if (_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_HEADLESS ||  _currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_WALK) {
@@ -1006,6 +1033,12 @@
     else if(_currentBehavior == COLLISION_BEHAVIOR_DISCO_TRIXTER_DANCING || _currentBehavior == COLLISION_BEHAVIOR_DISCO_TRIXTER_WAITING) {
         _currentBehavior = COLLISION_BEHAVIOR_DISCO_TRIXTER_WAITING;
         _hasTriggered = false;
+    }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_BACKGROUND_MOVE_LEFT_TO_RIGHT) {
+        _currentBehavior = COLLISION_BEHAVIOR_BACKGROUND_MOVE_LEFT_TO_RIGHT;
+        _hasAppeared = false;
+        [self getCCSprite].visible = false;
+
     }
     else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_SLOW) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;     
@@ -1177,6 +1210,16 @@
     else if([behavior isEqualToString:@"trixter"]) {
         _currentBehavior = COLLISION_BEHAVIOR_DISCO_TRIXTER_WAITING;
         _collideBehavior = COLLISION_BEHAVIOR_DISCO_TRIXTER_DANCING;
+    }
+    else if([behavior isEqualToString:@"moveLTR"]) {
+        //move across screen from left to right, so far just the bike in level 5 (and maybe jim's bike in level 6)
+        _currentBehavior = COLLISION_BEHAVIOR_BACKGROUND_MOVE_LEFT_TO_RIGHT;
+        _collideBehavior = COLLISION_BEHAVIOR_BACKGROUND_MOVE_LEFT_TO_RIGHT;
+        //_persistsBetweenRegions = true;
+    }
+    else if([behavior isEqualToString:@"jumpfade"]) {
+        _currentBehavior = COLLISION_BEHAVIOR_STATIC;
+        _collideBehavior = COLLISION_BEHAVIOR_CITY_PIGEON;
     }
     else {
         _collideBehavior = COLLISION_BEHAVIOR_NONE;
