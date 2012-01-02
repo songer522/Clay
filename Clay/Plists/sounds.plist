@@ -105,12 +105,12 @@
 	<key>healthGained</key>
 	<string>healthGained.caf</string>
 	<key>endLevel</key>
-	<string>victory.mp3</string>
+	<string>victory.caf</string>
 	<key>pigEnters</key>
-	<string>pigSqueal.mp3</string>
+	<string>pigSqueal.caf</string>
 	<key>confirm</key>
-	<string>confirm.wav</string>
+	<string>confirm.caf</string>
 	<key>cancel</key>
-	<string>cancel.wav</string>
+	<string>cancel.caf</string>
 </dict>
 </plist>

@@ -3,34 +3,34 @@
 <plist version="1.0">
 <dict>
 	<key>track</key>
-	<string>track.m4a</string>
+	<string>track.aifc</string>
 	<key>barn</key>
-	<string>barn.m4a</string>
+	<string>barn.aifc</string>
 	<key>cornfields</key>
-	<string>town.m4a</string>
+	<string>town.aifc</string>
 	<key>disco</key>
-	<string>disco.m4a</string>
+	<string>disco.aifc</string>
 	<key>computer</key>
-	<string>computer.m4a</string>
+	<string>computer.aifc</string>
 	<key>city</key>
-	<string>city.m4a</string>
+	<string>city.aifc</string>
 	<key>zombies</key>
-	<string>zombies.m4a</string>
+	<string>zombies.aifc</string>
 	<key>fire</key>
-	<string>fire.m4a</string>
+	<string>fire.aifc</string>
 	<key>title</key>
-	<string>title.m4a</string>
+	<string>title.aifc</string>
 	<key>credits</key>
-	<string>credits.m4a</string>
+	<string>credits.aifc</string>
 	<key>cutscene</key>
-	<string>cutscene.m4a</string>
+	<string>cutscene.aifc</string>
 	<key>rainy</key>
-	<string>rainy.m4a</string>
+	<string>rainy.aifc</string>
 	<key>darkness</key>
-	<string>darkness.m4a</string>
+	<string>darkness.aifc</string>
 	<key>darknessBoss</key>
-	<string>darkness_boss.m4a</string>
+	<string>darkness_boss.aifc</string>
 	<key>underwater</key>
-	<string>underwater.m4a</string>
+	<string>underwater.aifc</string>
 </dict>
 </plist>

@@ -72,7 +72,7 @@
     }
     
     @catch (NSException *ex) {
-        NSLog(@"ERROR: Skin.m - Check skins.plist under '%@'. There appears to be some missing values for required values.",name);
+        //NSLog(@"ERROR: Skin.m - Check skins.plist under '%@'. There appears to be some missing values for required values.",name);
     }
 }
 

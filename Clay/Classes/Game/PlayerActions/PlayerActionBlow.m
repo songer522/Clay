@@ -72,7 +72,7 @@
 -(void)freezeFireDemon:(GameObject *)obstacle
 {
     int maxFireDemon = 200;
-     NSLog(@"%d",[GCState sharedInstance].demonsFreezed);
+     //NSLog(@"%d",[GCState sharedInstance].demonsFreezed);
     if ([GCState sharedInstance].demonsFreezed < maxFireDemon) {
         [GCState sharedInstance].demonsFreezed++;
         obstacle.hasAppeared=true;
