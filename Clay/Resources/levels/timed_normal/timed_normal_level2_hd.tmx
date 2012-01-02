@@ -123,10 +123,10 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1dEOgiAUAFC/oHooP6L+//+aD22Mca0UFOuczYlMLnhBGAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKB314PUT25BeQ895udeqNsyT6X+a9el8ly0XB/mO+5zUhpnOpajtNvCo9P4rcc1yeelVe7PFWKk+Yj+wyXfUzNWi3gtpLl8t69/otW5UjpTXtca45fvO29iY1CuZe6/j3KwZI3k+20ee+1zZOkc5/fe+spdVrSFX3LaewAAAAAAAAAAwN97AmGpC3o=
+   eJzt1csRwiAUAMBUoB40RWj//Tm5MQwQSSA/dy8Qhu8jwDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABH9zxJ+eSVye/hiPF5J8q2jFNq/NZloTgWPf+PK+73vaJuacxJap7hXM7Sbgufg/bfe16TeF/2vsdLwnjkzuGS9bTsq0d/PYSxnLvXf9HrXcm9KXFae3eOlfWv+N60MmbyrZTOfSkGcVozTqrvtd85S/e4dn1bjxV7rGgLV3LbewIAAAAAAAAAwN/7AtpDC4k=
   </data>
  </layer>
- <layer name="meta" width="1050" height="14" opacity="0.1">
+ <layer name="meta" width="1050" height="14" opacity="0.23">
   <properties>
    <property name="speedx" value="1.0"/>
    <property name="speedy" value="1.0"/>
