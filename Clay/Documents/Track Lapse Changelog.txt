@@ -1,5 +1,23 @@
 Track Lapse Changelog
 
+Build 111230.02
+==================
+
+* No sound enabled version for further testing.
+
+Build 111230.01
+==================
+
+* Request - Please verify if builds are still showing incorrect and glitchy graphics for the Cheering crowds (where you use the woo action). It could not be reproduced on the development computers/devices
+* Global - music and sounds re-encoded again to follow the recommendations for best practices as per http://www.sparrow-framework.org/2010/06/sound-on-ios-best-practices/
+* Global - Redo option in the pause menu should be working now (please test).
+* Global - The objects that were sticking around on the screen after they should be gone (random crows, break dancers, hurdles) should no longer be appearing.
+* Global - Hud graphics updated again to reflect changes made yesterday that somehow got reverted
+* Level 4 - new small obstacle "handbag"
+* Level 4 - layers have been flattened
+* Level 4 - new versions of the story modes
+* Level 4 - lengthened the time you're stuck in front 
+
 Build 111229.01
 ==================
 

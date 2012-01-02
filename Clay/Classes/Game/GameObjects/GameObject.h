@@ -17,6 +17,7 @@
 @class Collision;
 @class Projectile;
 @class Boss;
+@class Player;
 
 typedef enum {
     PLAYER_EFFECT_COLLIDE,
@@ -72,7 +73,7 @@ typedef enum {
     bool _isVisible;
     float _movedBy;
     float _initialPosition;
-
+    bool _useDefaultBatchNode;
     
     CGRect _range;       //range in which this object can move on screen. absolute positions.
     
@@ -104,6 +105,9 @@ typedef enum {
     bool _isStutterMode;
     
     PlayerEffect _playerEffect;
+    
+    //weak references
+    Player *_player;
 }
 
 @property(nonatomic,retain) Sprite *sprite;
@@ -127,6 +131,7 @@ typedef enum {
 @property(nonatomic,assign) float magnitude;
 @property(nonatomic,assign) bool persistsBetweenRegions;
 @property(nonatomic,assign) float slowTimeModifier;
+@property(nonatomic,assign) bool useDefaultBatchNode;
 
 
 #pragma mark - initialization
@@ -180,7 +185,7 @@ typedef enum {
 -(void) chaseAtDistance:(float)distance DefaultSpeed:(float)defaultSpeed ChaseSpeed:(float)chaseSpeed;
 -(void) chaseAtDistance:(float)distance DefaultSpeed:(float)defaultSpeed ChaseSpeed:(float)chaseSpeed ChaseSound:(NSString*)sound;
 -(void) chaseAtDistance:(float)distance DefaultSpeed:(float)defaultSpeed ChaseSpeed:(float)chaseSpeed ChaseSound:(NSString*)sound ChaseAnimation:(NSString*)chaseAnim DefaultAnimation:(NSString*)defaultAnim;
-
+-(void) moveAcrossBackgroundLRwithSpeed:(float)speed;
 
 -(void) moveToStartingPosition;
 

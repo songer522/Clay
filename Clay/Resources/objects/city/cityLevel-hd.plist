@@ -66,7 +66,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{423, 328}, {86, 72}}</string>
+			<string>{{423, 314}, {86, 72}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -88,7 +88,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{166, 231}, {86, 78}}</string>
+			<string>{{324, 391}, {86, 78}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -132,7 +132,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{324, 231}, {104, 92}}</string>
+			<string>{{166, 231}, {104, 92}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -176,7 +176,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{324, 328}, {94, 72}}</string>
+			<string>{{324, 314}, {94, 72}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -198,7 +198,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{182, 401}, {92, 72}}</string>
+			<string>{{415, 391}, {92, 72}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -242,7 +242,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{0, 0}, {160, 226}}</string>
+			<string>{{330, 0}, {160, 226}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -264,7 +264,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{330, 0}, {160, 226}}</string>
+			<string>{{0, 0}, {160, 226}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -291,6 +291,28 @@
 			<false/>
 		</dict>
 		
+		<key>Level5_Pigeon.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {107, 78}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{107, 78}</string>
+			<key>spriteSourceSize</key>
+			<string>{107, 78}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{324, 231}, {107, 78}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
 	</dict>
 	<key>metadata</key>
 	<dict>
@@ -307,13 +329,13 @@
 		<key>target</key>
 		<dict>
 			<key>name</key>
-			<string>s-hd</string>
+			<string>-hd</string>
 			<key>textureFileName</key>
-			<string>s-hd</string>
+			<string>-hd</string>
 			<key>textureFileExtension</key>
 			<string>.png</string>
 			<key>coordinatesFileName</key>
-			<string>s-hd</string>
+			<string>-hd</string>
 			<key>coordinatesFileExtension</key>
 			<string>.plist</string>
 			<key>premultipliedAlpha</key>

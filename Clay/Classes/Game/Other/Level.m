@@ -236,11 +236,16 @@
         if (!mapObject.placed) {
             
             @try {
-                [[[LayerManager sharedLayers] currentLayer] addChild:[obstacle getCCSprite]];
-                [[obstacle getCCSprite] setBatchNode:_obstacleSpriteBatch];
+                if (obstacle.useDefaultBatchNode) {
+                    [[[LayerManager sharedLayers] currentLayer] addChild:[obstacle getCCSprite]];
+                    [[obstacle getCCSprite] setBatchNode:_obstacleSpriteBatch];                    
+                } else {
+                    //do nothing regarding the batchnode; it will create its own if one is not already assigned, when the animation is initialized
+                    [_gameLayer addChild:[obstacle getCCSprite]];
+                }
             }
             @catch (NSException *exception) {
-                [_gameLayer addChild:[obstacle getCCSprite]];
+                CCLOG(@"could not add obstacle: %@",[obstacle getSprite].name);
             }
             
             [[obstacle getCCSprite] setVisible:NO];
@@ -529,14 +534,13 @@
         
     }
     
-    /*
     for (MapObject *object in _otherMapObjects) {
         [object reset];
-    }*/
+    }
     
     CGPoint playerPos = [_player getPosition];
     [_obstacleManager resetCurrentRegion];
-    [_obstacleManager changeRegionsBasedOnX:(playerPos.x - 256)];
+    [_obstacleManager changeRegionsBasedOnX:(playerPos.x - 384)];
 }
 
 -(void)resetTriggers:(bool)isRestartingLevel
@@ -919,7 +923,7 @@
      */
     else if([obstacle getCollisionBehavior] == COLLISION_BEHAVIOR_MAD_DOG)
     {
-        NSLog(@"%d",[GCState sharedInstance].dogsHit);
+        //NSLog(@"%d",[GCState sharedInstance].dogsHit);
         if ([GCState sharedInstance].dogsHit < maxHit) {
             [GCState sharedInstance].dogsHit++;
             

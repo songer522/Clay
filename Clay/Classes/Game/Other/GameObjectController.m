@@ -69,6 +69,11 @@
     bool aggressive = [[gameobjectSettings objectForKey:@"aggressive"] boolValue];
     gameObject.isAggressive = aggressive;
     
+    NSString *batchNode = [gameobjectSettings objectForKey:@"useDefaultBatchNode"];
+    if(batchNode && [batchNode isEqualToString:@"false"]) {
+        gameObject.useDefaultBatchNode = false;
+    }
+    
     NSString *collideBehavior = [gameobjectSettings objectForKey:@"collideBehavior"];
     [gameObject setCollideBehavior:collideBehavior];
     
