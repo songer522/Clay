@@ -90,7 +90,7 @@
         [_speed start];
         [self changeToRunnerState:RUNNER_STATE_RUNNING];
         
-        _hitPoints = 4;
+        _hitPoints = 5;
         
         _isHighJump = false;
         
@@ -128,8 +128,8 @@
         [_battery setFrame:5];
         [[SoundEngine shared] playSound:@"dead"];
     } else {
-        if(_hitPoints>4) {
-            _hitPoints = 4;
+        if(_hitPoints>5) {
+            _hitPoints = 5;
         }
         [_battery changeValueBy:amount];
     }
@@ -441,7 +441,7 @@
 
 -(void)reset
 {
-    _hitPoints = 4;
+    _hitPoints = 5;
     [_battery reset];
     [_speed reset];
     [_speed start];
@@ -531,7 +531,7 @@
 -(void)rechargeBattery
 {
     [_battery startRecharge];
-    _hitPoints = 4;
+    _hitPoints = 5;
 }
 
 -(void)resetSprint

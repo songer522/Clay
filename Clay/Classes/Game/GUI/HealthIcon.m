@@ -104,6 +104,11 @@
             _position.y = 13.0f;
             _waitToStart = 1.10f;            
             break;
+        case HEALTHANIM_INTO_BATTERY_5:
+            _position.x = -10.0f;
+            _position.y = 13.0f;
+            _waitToStart = 1.45f;            
+            break;
         default:
             break;
     }
@@ -178,6 +183,7 @@
         case HEALTHANIM_INTO_BATTERY_2:
         case HEALTHANIM_INTO_BATTERY_3:
         case HEALTHANIM_INTO_BATTERY_4:
+        case HEALTHANIM_INTO_BATTERY_5:
             if (_duration<=0.75f) {
                 if (!_adjustedBattery) {
                     [self adjustBattery];

@@ -38,7 +38,7 @@
         // Initialization code here.
         sprite = [Sprite spriteWithFile:@"blank.png"];
         
-        _healthIcons = [[NSMutableArray alloc] initWithCapacity:7];
+        _healthIcons = [[NSMutableArray alloc] initWithCapacity:8];
         _batterySpriteFrames = [[NSMutableArray alloc] initWithCapacity:7];
         
         for (int i=0; i<6;i++) {
@@ -48,7 +48,7 @@
         }
         
         //set up health icons
-        for (int i=0; i<7; i++) {
+        for (int i=0; i<8; i++) {
             HealthIcon *icon = [HealthIcon instance];
             [icon setHealthAnimTypeById:i];
             [icon setBattery:self];
@@ -74,8 +74,8 @@
     int final = _currentFrame - amount;
     if (final < 1) {
         final = 1; //full
-    } else if(final > 5) {
-        final = 5; //empty
+    } else if(final > 6) {
+        final = 6; //empty
     }
     
     int diff = _currentFrame - final;
@@ -140,7 +140,7 @@
     if (_isRecharging) {
         [self recharging:dt];
     } else {
-        if (_currentFrame == 4) {
+        if (_currentFrame == 5) {
             [self lowBatteryWarning:dt];
         } else {
             [self normalBattery:dt];
