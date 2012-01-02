@@ -28,7 +28,7 @@ static SoundEngine *_shared = nil;
     if (self) {
         // Initialization code here.
         
-        _enabled = false;
+        _enabled = true;
         
         _soundMode = SOUND_MODE_NORMAL;
         _masterMusicVolume = 1.0f;
@@ -63,12 +63,12 @@ static SoundEngine *_shared = nil;
 {
     if (_enabled) {
         
+        NSString *filename = [_musicMap objectForKey:key];
+        
+        NSAssert(filename!=nil,@"Sound '%@' could not be found. Is it in the music.plist?",key);
+        
+        [_audioEngine preloadBackgroundMusic:filename];
     }
-    NSString *filename = [_musicMap objectForKey:key];
-    
-    NSAssert(filename!=nil,@"Sound '%@' could not be found. Is it in the sounds.plist?",key);
-    
-    [_audioEngine preloadBackgroundMusic:filename];
 }
 
 

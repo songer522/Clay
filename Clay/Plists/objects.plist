@@ -259,7 +259,7 @@
 			<integer>0</integer>
 		</dict>
 		<key>animationName</key>
-		<string>none</string>
+		<string>cityPigeonAnim</string>
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
@@ -274,7 +274,7 @@
 		<key>collideBehavior</key>
 		<string>jumpfade</string>
 		<key>imageName</key>
-		<string>Level5_Pigeon.png</string>
+		<string>blank.png</string>
 		<key>offsetx</key>
 		<integer>0</integer>
 		<key>offsety</key>
@@ -854,7 +854,7 @@
 			<integer>0</integer>
 		</dict>
 		<key>animationName</key>
-		<string>dogAnim</string>
+		<string>cityCuteDogAnim</string>
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
