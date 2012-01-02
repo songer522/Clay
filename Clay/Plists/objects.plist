@@ -696,7 +696,7 @@
 		<key>imageName</key>
 		<string>blank.png</string>
 		<key>offsetx</key>
-		<integer>0</integer>
+		<integer>-20</integer>
 		<key>offsety</key>
 		<integer>34</integer>
 		<key>playerEffect</key>
@@ -724,7 +724,7 @@
 			<key>x</key>
 			<integer>20</integer>
 			<key>y</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<key>collideBehavior</key>
 		<string>falls</string>
