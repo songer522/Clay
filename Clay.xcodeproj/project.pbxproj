@@ -549,6 +549,10 @@
 		6168E56A14B36A35007A4744 /* timed_normal_level5_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61F6F6CF14B29568003A5C68 /* timed_normal_level5_hd.tmx */; };
 		6168E56B14B36A35007A4744 /* tileset_level_5-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 61F6F6C514B268A0003A5C68 /* tileset_level_5-hd.png */; };
 		6168E56C14B36A35007A4744 /* tileset_level_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 61F6F6C614B268A0003A5C68 /* tileset_level_5.png */; };
+		61782B4314B3936100C615E7 /* cityLevel-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 61F6F6D114B29795003A5C68 /* cityLevel-hd.plist */; };
+		61782B4414B3936100C615E7 /* cityLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 61F6F6D214B29795003A5C68 /* cityLevel-hd.png */; };
+		61782B4514B3936100C615E7 /* cityLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 61F6F6D314B29795003A5C68 /* cityLevel.plist */; };
+		61782B4614B3936100C615E7 /* cityLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 61F6F6D414B29795003A5C68 /* cityLevel.png */; };
 		6179872A14AAB8700012655D /* story_hard_level1_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 6179872914AAB8700012655D /* story_hard_level1_hd.tmx */; };
 		6179872C14AABB300012655D /* timed_normal_level1_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 6179872B14AABB300012655D /* timed_normal_level1_hd.tmx */; };
 		6179873214AABF820012655D /* story_easy_level1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 6179873114AABF820012655D /* story_easy_level1.tmx */; };
@@ -2956,6 +2960,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61782B4314B3936100C615E7 /* cityLevel-hd.plist in Resources */,
+				61782B4414B3936100C615E7 /* cityLevel-hd.png in Resources */,
+				61782B4514B3936100C615E7 /* cityLevel.plist in Resources */,
+				61782B4614B3936100C615E7 /* cityLevel.png in Resources */,
 				6168E56714B36A35007A4744 /* story_easy_level5_hd.tmx in Resources */,
 				6168E56814B36A35007A4744 /* story_normal_level5_hd.tmx in Resources */,
 				6168E56914B36A35007A4744 /* story_hard_level5_hd.tmx in Resources */,
