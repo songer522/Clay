@@ -167,6 +167,7 @@
 
 -(void) applicationDidEnterBackground:(UIApplication*)application {
     [[BestTimes shared] saveData];
+    [[GameSettings shared] saveToDisk];
 	[[CCDirector sharedDirector] stopAnimation];
 }
 

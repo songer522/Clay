@@ -32,8 +32,5 @@
 -(void)setStutterMode:(int)shouldStutter;
 -(bool)isStutterMode;
 -(void)loadFromSettingsPlist;
-
--(void)load;
--(void)save;
-
+-(void)saveToDisk;
 @end
