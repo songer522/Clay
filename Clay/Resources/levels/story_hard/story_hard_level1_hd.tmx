@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="1050" height="14" tilewidth="64" tileheight="64">
+<map version="1.0" orientation="orthogonal" width="950" height="14" tilewidth="64" tileheight="64">
  <tileset firstgid="1" name="Track" tilewidth="64" tileheight="64">
   <image source="tileset_level_1-hd.png" width="1024" height="768"/>
  </tileset>
@@ -104,49 +104,49 @@
    </properties>
   </tile>
  </tileset>
- <layer name="back-1" width="1050" height="14">
+ <layer name="back-1" width="950" height="14">
   <properties>
    <property name="speedx" value="0.05"/>
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt2MWuFGEUhdH7Cri7u7sFd3cP7hDcIbhDcJdHZQ96cNOpQXWKSoCslXyD+nP2C1RbGwAAAAAAAADA36VDQR1Tp9Q5dUldU7fUPfVIPVOv1Dv1SX1Tv9S/4rbqvq4tAAAAUM6AggamQWlwGpKGpmFpeBqRRqZRaXQak8amcWl8xW3VfV1bAAAAoJwJBU1Mk9LkNCVNTdPS9DQjzUyz0uzGW/v3VrZz0tw0r/FedV/XFgAAAChnfkEL0sK0KC1OS9LStCwtTyvSyrSq8db+vZXt6rQmrU3r/sC+ri0AAABQzvqCNqSNaVPanLakrWlb2p52pJ1pV9qd9qS9Ld42f9d9X2ULAAAAlLOvoP3pQDqYDqXD6Ug6mo6l4+lEOplOpdPpTIu3zd9131fZAgAAAOWcLehcOp8upIvpUrqcrqSr6Vq6nm6km+lWut3ibfN33fdVtgAAAEA5dwq6m+6l++lBepgepcfpSXqanqXn6UV6mV61eNv8Xfd9lS0AAABQzuum3qS3jd6l9+lD+pg+pc/pS/qavqXv6Uf6mX6127e6BQAAAP59/jMAAAAAAAAAAAAAAAD/q99KBuGP
+   eJzt18Wu1mAYhVFuAXd3d7fg7u7BHYI7BHcI7nKp7MEZnPzppJSGDtZKnkG/vPsC2qEDAAAAAAAAAP9Dx4I6pc6pS+qauqXuqUfqmXql3qlP6pv6pf5pQMVt1X1dWwAAAJprYEGD0uA0JA1Nw9LwNCKNTKPS6DQmjU3j0vg0oeK26r6uLQAAAM01saBJaXKakqamaWl6mpFmpllpdprT9tb+vcx2bpqX5re9V93XtQUAAKC5FhS0MC1Ki9OStDQtS8vTirQyrUqr297av5fZrklr07q0/h/s69oCAADQXBsK2pg2pc1pS9qatqXtaUfamXal3WlP2pv2lbxt/a77vsoWAACA5tpf0IF0MB1Kh9ORdDQdS8fTiXQynUqn05l0tuRt63fd91W2AAAANNe5gs6nC+liupQupyvparqWrqcb6Wa6lW6nOyVvW7/rvq+yBQAAoLnuFnQv3U8P0sP0KD1OT9LT9Cw9Ty/Sy/QqvS552/pd932VLQAAAM31pqW36V1b79OH9DF9Sp/Tl/Q1fUvf04/0M/1Kv9vty24BAADgb/ivBQAAAAAAAAAAAADK+gMaG+GP
   </data>
  </layer>
- <layer name="main0" width="1050" height="14">
+ <layer name="main0" width="950" height="14">
   <properties>
    <property name="speedx" value="1.0"/>
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztxssJgDAURcH034XffUy0Pm8PT3AzAwdOawAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/Ja1p895777333nvvvS9+T1ca3nvvvffee++998Xf05FO77333nvvvffe++LPdKfHe++999577733vvgAAAAAX3kBFVX+Qw==
+   eJztxscJwEAAxMDrvwvHv2N93jK8MAMCjQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPAvU5rT4r333nvvvffeF/6RznR577333nvvvfeFv6Yt7d5777333nvvfeHf6Umv995777333ntf+AAAANDsAyJz8jg=
   </data>
  </layer>
- <layer name="front-1" width="1050" height="14">
+ <layer name="front-1" width="950" height="14">
   <properties>
    <property name="speedx" value="1.05"/>
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztyUENwCAUBcHv3wgFA7RVx7NAAreZZE9bBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANzS0pN6GmmmN33p933f933f933f933f3/gAAAAApyy8EdP6
+   eJztyUkNACAABDH8G+EwwKGOlQFJm8xrSgEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+FtNLfU00kwr7XR83/d93/d93/d9//EPAAAAP7vFso8I
   </data>
  </layer>
- <layer name="front3" width="1050" height="14">
+ <layer name="front3" width="950" height="14">
   <properties>
    <property name="speedx" value="1.0"/>
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1k0OgjAQBlC8iHr/u6BG7+LauHAhAdoppU30vR1DaeFj+BkGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgVzw71bcaO9VT7sHxx0PhQpnW8m+9LyWa3Zy1+9Z6X0RObrlr1chxKnpfI+Ojc6dyqJnT3Fy1ay08guOvu5zFt3Fom0fJc1yjl6b9Hd3euv7SnLm1mub6cOv76rTzN/RtKZel/oj0Q6RW+3/lo6R/Ps7B/Ldc/559XPqdn/Z0ajs1b69ajlvhccB+Lr1PAAAAAAAAAAD4Wy8X+kkW
+   eJzt1k0OgjAQBlC8iHr/u6BG7+LauGAhAdoppUTy3o6htPAx/HQdAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPyv9071tfqd6inP4PjzqXChTEv5t96XEs1uytJ9a70vIie33LVq5DgWva+R8dG5UznUzGlqrtq1Fl7B8fdNzuJX37XNo+Q5rtFL4/6Obq9df27O3FpNU3249n112fgb+jWXy1x/RPohUqv9vzIo6Z/BNZj/muvfso9Lv/Pjnk5tp+bdq5bjUXgcx3Lb+wQAAAAAAAAADu4DnYBJFg==
   </data>
  </layer>
- <layer name="meta" width="1050" height="14" opacity="0.68">
+ <layer name="meta" width="950" height="14" opacity="0.68">
   <properties>
    <property name="speedx" value="1.0"/>
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztwzEJAAAMA7D6d1VnVTHYkUASAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4EpVVVVVVVVVVZ8dpD8vjw==
+   eJztwwEJAAAMA6D1b7Vmi3EOCiYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAL9VVVVVVVVV1ZMDYpmYuA==
   </data>
  </layer>
 </map>

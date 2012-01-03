@@ -1,139 +1,138 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="1050" height="14" tilewidth="32" tileheight="32">
- <tileset firstgid="1" name="meta" tilewidth="32" tileheight="32">
-  <image source="meta.png" width="256" height="192"/>
-  <tile id="0">
-   <properties>
-    <property name="collision" value="full"/>
-   </properties>
-  </tile>
-  <tile id="1">
-   <properties>
-    <property name="collision" value="slantleft"/>
-   </properties>
-  </tile>
-  <tile id="2">
-   <properties>
-    <property name="collision" value="slantright"/>
-   </properties>
-  </tile>
-  <tile id="3">
-   <properties>
-    <property name="collision" value="none"/>
-   </properties>
-  </tile>
-  <tile id="4">
-   <properties>
-    <property name="collision" value="ledgefull"/>
-   </properties>
-  </tile>
- </tileset>
- <tileset firstgid="13" name="TrackLapse_Icons" tilewidth="32" tileheight="32">
-  <image source="TrackLapse_Icons.png" width="640" height="576"/>
-     <tile id="0">
-         <properties>
-             <property name="obstacle" value="hurdle"/>
-         </properties>
-     </tile>
-     <tile id="1">
-         <properties>
-             <property name="special" value="spawnpoint"/>
-         </properties>
-     </tile>
-     <tile id="2">
-         <properties>
-             <property name="special" value="checkpoint"/>
-         </properties>
-     </tile>
-     <tile id="3">
-         <properties>
-             <property name="special" value="nextlevelNE"/>
-         </properties>
-     </tile>
-     <tile id="4">
-         <properties>
-             <property name="layerBelow" value="back-1"/>
-             <property name="object" value="jimBarn"/>
-         </properties>
-     </tile>
-     <tile id="7">
-         <properties>
-             <property name="obstacle" value="hen"/>
-         </properties>
-     </tile>
-     <tile id="8">
-         <properties>
-             <property name="obstacle" value="cow"/>
-         </properties>
-     </tile>
-     <tile id="9">
-         <properties>
-             <property name="obstacle" value="manure"/>
-         </properties>
-     </tile>
-     <tile id="29">
-         <properties>
-             <property name="obstacle" value="stoneChicken"/>
-         </properties>
-     </tile>
-     <tile id="30">
-         <properties>
-             <property name="obstacle" value="pig"/>
-         </properties>
-     </tile>
-     <tile id="47">
-         <properties>
-             <property name="special" value="checkpoint8bit"/>
-         </properties>
-     </tile>
-
- </tileset>
- <tileset firstgid="103" name="Level2_TiledSheet-hd" tilewidth="32" tileheight="32">
-  <image source="tileset_level_2.png" width="1024" height="896"/>
- </tileset>
- <layer name="back-1" width="1050" height="14">
-  <properties>
-   <property name="speedx" value="0.8"/>
-   <property name="speedy" value="1.0"/>
-  </properties>
-  <data encoding="base64" compression="zlib">
-   eJztyslWjgEAgOH/bn9zdpVEO2OxIzLsGow7ZMjOGHYS4lJ6vxvwrZ3zvOe8u2c6mUyO9NE+1sf7RJ/sUz3Tp3vKcRzHcRzHcRzHcRz3Dzc023M932d6oc/2Yp/r873EcRzHcRzHcRzHcRw34oYu9MW+1Jf7Sl/t5V7pa32d4ziO4ziO4ziO4zhuxA3d6Ju92rf6dq/1nb7b9/o+x3Ecx3Ecx3Ecx3HciBta743e7K1+0A/7UT/uJ/2U4ziO4ziO4ziO4zhuxA096+f9orf7Zb/q1/2md/otx3Ecx3Ecx3Ecx3HciBt61+/7Q3/sT/25d/tLf+1vHMdxHMdxHMdxHMdxI27oe+/1j97vn/2rf/dB/+m/HMdxHMdxHMdxHMdxI06SJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEn/X4c77PDF
-  </data>
- </layer>
- <layer name="main0" width="1050" height="14">
-  <properties>
-   <property name="speedx" value="1.0"/>
-   <property name="speedy" value="1.0"/>
-  </properties>
-  <data encoding="base64" compression="zlib">
-   eJztzLWSVFEYRtGBBNcE1wRngATXN0NzNEdzYCBHczTHXRNcdr8DEb1W9VenblX/e2QEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA/9n+dqAdbIfa4XZER0dHR0dHR0dHR0dHR0dHJy/ay/aqvW5v2tv2rr1vH9rH9ql9bkfbsXa8nWgn2ykdHR0dHR0dHR0dHR0dHZ2h7wx8aV/bt/a9/Wg/26/2u/0Z/Glcvza+ne7zTDvbzrXz7YKOjo6Ojo6Ojo6Ojo6Ojs7QdwYmdDOxTWqT25Q2tU1r09uMNrPNarPbxW4utcttrF1pV3V0dHR0dHR0dHR0dHR0dIa+MzCnd26b1+a3BW1hW9QWtyVtaVvWlrdr3VxvN9rNdqvd1tHR0dHR0dHR0dHR0dHRGfrOwIrelW1VW93WtLVtXVvfRtuGtrFtane6udvutfvtQXuoo6Ojo6Ojo6Ojo6Ojo6Mz9J2Bzb1b2ta2rW1vO9rOtqvtbnva3ravPermcXvSnrZn7bmOjo6Ojo6Ojo6Ojo6Ojs7QdwAAAAD+pb+UBdTL
-  </data>
- </layer>
- <layer name="front-1" width="1050" height="14">
-  <properties>
-   <property name="speedx" value="1.1"/>
-   <property name="speedy" value="1.0"/>
-  </properties>
-  <data encoding="base64" compression="zlib">
-   eJztx7ENACAMBLGsDGF/8TMg0tnSFVcFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATFlpp07He++999577733/vEBAAAAfrr2vNU9
-  </data>
- </layer>
- <layer name="front3" width="1050" height="14">
-  <properties>
-   <property name="speedx" value="1.0"/>
-   <property name="speedy" value="1.0"/>
-  </properties>
-  <data encoding="base64" compression="zlib">
-eJzt1lluwjAQAFBOUPWjcAh6//tVSCBZI0+8xGlE+95PsOMtY0/C5QIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJzpu6PN15vUP1yf13sor9CKVbx/r7Y6rz67tydGPeenNf/qulI8K0eej5HzGuta5dHxX1bvdynb+2xPauss1/Iu/fbozZeedqPvo5GxazGIOROvt0qf3rraPC+zsZ/Jsetz/uwZozKWWR7OPM/KsVaOF9uPlreUsRzplznqu5J9U1pnpaWVF611nF3/cOT3puWW/M7sec9s5f1WDEbPSOs/5VH5OLvHMznwm3NFnzv6wl/ycfYCAAAAAAAAAIB/7wdA9A/k
-  </data>
- </layer>
- <layer name="meta" width="1050" height="14">
-  <properties>
-   <property name="speedx" value="1.0"/>
-   <property name="speedy" value="1.0"/>
-  </properties>
-  <data encoding="base64" compression="zlib">
-   eJzt0IEJAAAIw7D5/9NeIQNJoA80AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK6MJEmSJEmq90X7oyRJkiRJ+mMBNswH0Q==
-  </data>
- </layer>
+<map version="1.0" orientation="orthogonal" width="950" height="14" tilewidth="32" tileheight="32">
+    <tileset firstgid="1" name="meta" tilewidth="32" tileheight="32">
+        <image source="meta.png" width="256" height="192"/>
+        <tile id="0">
+            <properties>
+                <property name="collision" value="full"/>
+            </properties>
+        </tile>
+        <tile id="1">
+            <properties>
+                <property name="collision" value="slantleft"/>
+            </properties>
+        </tile>
+        <tile id="2">
+            <properties>
+                <property name="collision" value="slantright"/>
+            </properties>
+        </tile>
+        <tile id="3">
+            <properties>
+                <property name="collision" value="none"/>
+            </properties>
+        </tile>
+        <tile id="4">
+            <properties>
+                <property name="collision" value="ledgefull"/>
+            </properties>
+        </tile>
+    </tileset>
+    <tileset firstgid="13" name="TrackLapse_Icons" tilewidth="32" tileheight="32">
+        <image source="TrackLapse_Icons.png" width="640" height="576"/>
+        <tile id="0">
+            <properties>
+                <property name="obstacle" value="hurdle"/>
+            </properties>
+        </tile>
+        <tile id="1">
+            <properties>
+                <property name="special" value="spawnpoint"/>
+            </properties>
+        </tile>
+        <tile id="2">
+            <properties>
+                <property name="special" value="checkpoint"/>
+            </properties>
+        </tile>
+        <tile id="3">
+            <properties>
+                <property name="special" value="nextlevelNE"/>
+            </properties>
+        </tile>
+        <tile id="4">
+            <properties>
+                <property name="layerBelow" value="back-1"/>
+                <property name="object" value="jimBarn"/>
+            </properties>
+        </tile>
+        <tile id="7">
+            <properties>
+                <property name="obstacle" value="hen"/>
+            </properties>
+        </tile>
+        <tile id="8">
+            <properties>
+                <property name="obstacle" value="cow"/>
+            </properties>
+        </tile>
+        <tile id="9">
+            <properties>
+                <property name="obstacle" value="manure"/>
+            </properties>
+        </tile>
+        <tile id="29">
+            <properties>
+                <property name="obstacle" value="stoneChicken"/>
+            </properties>
+        </tile>
+        <tile id="30">
+            <properties>
+                <property name="obstacle" value="pig"/>
+            </properties>
+        </tile>
+        <tile id="47">
+            <properties>
+                <property name="special" value="checkpoint8bit"/>
+            </properties>
+        </tile>
+    </tileset>
+    <tileset firstgid="103" name="Level2_TiledSheet-hd" tilewidth="32" tileheight="32">
+        <image source="tileset_level_2.png" width="1024" height="896"/>
+    </tileset>
+    <layer name="back-1" width="950" height="14">
+        <properties>
+            <property name="speedx" value="0.8"/>
+            <property name="speedy" value="1.0"/>
+        </properties>
+        <data encoding="base64" compression="zlib">
+            eJztyslWzwEAQOH/24aEXSGyI1N2KEO7Bio7paKdIclOg/Ao7mP8zun7zrm7OzYajS7UxbpU43W5JupKXa1rNebz+Xw+n8/n853zDximyZqq63WjbtZ03arbNVN3fD6fz+fz+Xw+HzBQd+tezdb9elAP61E9rrl64vP5fD6fz+fz+YCBelrP6nnN10K9qJf1ql7Xos/n8/l8Pp/P5wMGaqmWa6VW6029rbVar4165/P5fD6fz+fz+YCBel+btVUfart2arc+1qfa8/l8Pp/P5/P5fMBAfa4v9bW+1X59r4P6UYf10+fz+Xw+n8/n8wED9auO6rhO6rR+11n9qb/1z+fz+Xw+n8/n8wEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA59R/TKJaUw==
+        </data>
+    </layer>
+    <layer name="main0" width="950" height="14">
+        <properties>
+            <property name="speedx" value="1.0"/>
+            <property name="speedy" value="1.0"/>
+        </properties>
+        <data encoding="base64" compression="zlib">
+            eJztzKUSlmEYBuEfCq4F14JrwfXM0I52tKMd7WjHXQsuexYfzFw7787cb3h2NAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPi32Jf780AezEN5WEdHR0dHR0dHR0dHR0dnoM6LfJmv8nW+ybf5Lt/nh/yYn/JzHsmjeSyP54k8qaOjo6Ojo6Ojo6Ojo6MzUOdLfs1v+T1/5M/8lb/zT47G9HJsnup7Os/k2TyX53V0dHR0dHR0dHR0dHR0BuqMa4/PCTkxJ+XknJJTc1pOzxk5My90czEv5eW8kld1dHR0dHR0dHR0dHR0dAbqzGrPzjk5N+fl/FyQC3NRLs4luTSvdXM9b+TNvJW3dXR0dHR0dHR0dHR0dHQG6ixrL88VuTJX5epck2tzXa7PDbkx73RzN+/l/XyQD3V0dHR0dHR0dHR0dHR0Bupsam/OLbk1t+X23JE7c1fuzj25Nx918zif5NN8ls91dHR0dHR0dHR0dHR0dAbqAAAAAADwP/MXjT2a2g==
+        </data>
+    </layer>
+    <layer name="front-1" width="950" height="14">
+        <properties>
+            <property name="speedx" value="1.1"/>
+            <property name="speedy" value="1.0"/>
+        </properties>
+        <data encoding="base64" compression="zlib">
+            eJztx8EJADAMA7Gs3Kb7U69hkOAeNwMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA0O2kmzY977333nvvvfe+7AEAAKDZB9NeqPU=
+        </data>
+    </layer>
+    <layer name="front3" width="950" height="14">
+        <properties>
+            <property name="speedx" value="1.0"/>
+            <property name="speedy" value="1.0"/>
+        </properties>
+        <data encoding="base64" compression="zlib">
+            eJzt1luKwjAUAFBXMMzH6CJ0//uTgkIISW9etcic81OT5tWb3NbLBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+69HQ5u9L6jfX1/WelVeIYpXfvxdbnVdfuzcTo5bzE82/ui6Vn5Ujz0fPec3ronLv+G+r9ztV2/vanpTWma7lW/rNaM2Xlna976OesUsxyHMmv94KfVrrSvO8jcZ+JMeur/lrz5hLY1nLw5HnWTnWyvHy9r3lPWkse/rVHPVdqX1TorMSifIiWsfZ9ZsjvzeRW+V3zcx7Zi/v92LQe0ai/5RH5ePoHo/kwCfnyv1O9GXOz9kLAAAAAAAAAPgnnsR/D+Q=
+        </data>
+    </layer>
+    <layer name="meta" width="950" height="14" opacity="0.21">
+        <properties>
+            <property name="speedx" value="1.0"/>
+            <property name="speedy" value="1.0"/>
+        </properties>
+        <data encoding="base64" compression="zlib">
+            eJztwwEJAAAMA6Ctf+nFOAcFEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA36qqqqqqqqrqyQEQSQdt
+        </data>
+    </layer>
 </map>
