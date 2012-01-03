@@ -42,6 +42,7 @@
         </tile>
         <tile id="2">
             <properties>
+                <property name="layerBelow" value="ledges"/>
                 <property name="special" value="checkpoint"/>
             </properties>
         </tile>

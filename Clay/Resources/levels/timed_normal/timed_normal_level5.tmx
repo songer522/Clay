@@ -42,6 +42,7 @@
         </tile>
         <tile id="2">
             <properties>
+                <property name="layerBelow" value="ledges"/>
                 <property name="special" value="checkpoint"/>
             </properties>
         </tile>
@@ -213,7 +214,7 @@
             <property name="speedy" value="1.0"/>
         </properties>
         <data encoding="base64" compression="zlib">
-            eJzt1kGuwiAQAFBPoF5CD6F30aj3v8NP48aYAgOF1uS/t2qhrcMAg7sdAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwNtz6wAA6EpdB7ag9gA9XRv7ejs3vHMp9EfifwxujyrFOjrOUeNKea3QVvKZ89z6i67NW0MMk1Tso9snp0zfSIeF76f2S3Q8PXL4vTdK95PaOteyrlutWe9zWuIozdv3WVGb11/JzZzcORiNu/TcPfid3jW8pj6NPvNaalYk/6VnesxvTmovpPIQnZPomqn57V/6XzP3jWhb6RxYc/znxHWtJfmYc1wQC9vabx0AAAAAAAAAwD/xB/rXHaM=
+            eJzt1tENwiAQAFAnUJfQIXQXjbr/DqZ/xhQ4KLQmvvfVQluPAw53OwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIB5z60DAGARdRzYgtoD9HRt7Ovt3PDOpdAfif8xuD2qFOvoOEeNK+W1QlvJZ85z6y+6Nm8NMUxSsY9un5wyfSMdFr6f2i/R8fTI4ffeKN1Pautcy7putWa9z2mJozRv32dFbV5/JTdzcudgNO7Sc/fgd3rX8Jr6NPrMa6lZkfyXnukxvzmpvZDKQ3ROomum5rd/6X/N3DeibaVzYM3xnxPXtZbkY85xQSxsa791AAAAAAAAAAB/4g30tx2j
         </data>
     </layer>
     <layer name="meta" width="950" height="14" opacity="0.4">
