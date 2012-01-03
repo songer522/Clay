@@ -1515,6 +1515,74 @@
 		<key>spritesheetPlist</key>
 		<string>waterLevel</string>
 	</dict>
+	<key>zombieBikeAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level6</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Level6_Bike_0</string>
+		<key>spritesheetPlist</key>
+		<string>zombieLevel</string>
+	</dict>
+	<key>zombieBrainBouncyAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level6</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Level6_Brain_</string>
+		<key>spritesheetPlist</key>
+		<string>zombieLevel</string>
+	</dict>
+	<key>zombieBrainSquishAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>2,3,3,3,3,3,3,3,3</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level6</string>
+		<key>looping</key>
+		<string>false</string>
+		<key>sequencePrefix</key>
+		<string>Level6_Brain_</string>
+		<key>spritesheetPlist</key>
+		<string>zombieLevel</string>
+	</dict>
+	<key>zombiePigeonAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level6</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Level6_Pigeon_Z_</string>
+		<key>spritesheetPlist</key>
+		<string>zombieLevel</string>
+	</dict>
 	<key>wooAnim</key>
 	<dict>
 		<key>animationFrames</key>

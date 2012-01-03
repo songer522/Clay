@@ -10,6 +10,7 @@
 #include <sys/types.h>
 #include <sys/sysctl.h>
 #import "PListLoader.h"
+#import "Database.h"
 
 #define SETTING_IS_STUTTER_MODE_DEFAULT 0
 
@@ -30,9 +31,14 @@ static GameSettings *_shared = nil;
 {
     if ((self=[super init])) {
         _settings = [[NSMutableDictionary alloc] initWithCapacity:30];
+        _savedSettings = [[NSMutableDictionary alloc] initWithCapacity:30];
         [self loadFromSettingsPlist];
         _usingHighResolutionGraphics = [self calculateShouldUseHighRes];
         [self setStutterMode:SETTING_IS_STUTTER_MODE_DEFAULT];
+        
+        NSDictionary *gameSettings = loadData(@"gameSettings");
+        
+
     }
     return self;
 }
@@ -44,7 +50,13 @@ static GameSettings *_shared = nil;
 
 -(NSString*)getGlobalForKey:(NSString*)key
 {
-    return [_settings valueForKey:key];
+    NSString *returnVal = [_settings valueForKey:key];
+    
+    if (returnVal) {
+        return returnVal;        
+    }
+    
+    return @"";
 }
 
 + (NSString *) platform{
@@ -108,6 +120,17 @@ static GameSettings *_shared = nil;
     NSString *showFps = [appSettings objectForKey:@"showFps"];
     [self setGlobal:versionNumber ForKey:@"versionNumber"];
     [self setGlobal:showFps ForKey:@"showFps"];
+}
+
+-(void)setSerializedGlobal:(NSString*)setting ForKey:(NSString*)key
+{
+    [_savedSettings setValue:[NSString stringWithString:setting] forKey:key];
+    [_settings setValue:[NSString stringWithString:setting] forKey:key];
+}
+
+-(void)saveToDisk
+{
+    
 }
 
 -(void)dealloc

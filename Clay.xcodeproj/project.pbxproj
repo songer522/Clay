@@ -19,6 +19,16 @@
 		5411C2491458C7BD000C7D91 /* characterAnims-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5411C2451458C7BD000C7D91 /* characterAnims-hd.png */; };
 		5411C24A1458C7BD000C7D91 /* characterAnims.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5411C2461458C7BD000C7D91 /* characterAnims.plist */; };
 		5411C24B1458C7BD000C7D91 /* characterAnims-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5411C2471458C7BD000C7D91 /* characterAnims-hd.plist */; };
+		5411DEC214B369EF00046594 /* story_easy_level5_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61F6F6CB14B28643003A5C68 /* story_easy_level5_hd.tmx */; };
+		5411DEC314B369EF00046594 /* story_normal_level5_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61F6F6C914B26941003A5C68 /* story_normal_level5_hd.tmx */; };
+		5411DEC414B369EF00046594 /* story_hard_level5_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61F6F6CD14B28C01003A5C68 /* story_hard_level5_hd.tmx */; };
+		5411DEC514B369EF00046594 /* timed_normal_level5_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61F6F6CF14B29568003A5C68 /* timed_normal_level5_hd.tmx */; };
+		5411DEC614B369EF00046594 /* tileset_level_5-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 61F6F6C514B268A0003A5C68 /* tileset_level_5-hd.png */; };
+		5411DEC714B369EF00046594 /* tileset_level_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 61F6F6C614B268A0003A5C68 /* tileset_level_5.png */; };
+		5411DEC914B393C200046594 /* cityLevel-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 61F6F6D114B29795003A5C68 /* cityLevel-hd.plist */; };
+		5411DECA14B393C200046594 /* cityLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 61F6F6D214B29795003A5C68 /* cityLevel-hd.png */; };
+		5411DECB14B393C200046594 /* cityLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 61F6F6D314B29795003A5C68 /* cityLevel.plist */; };
+		5411DECC14B393C200046594 /* cityLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 61F6F6D414B29795003A5C68 /* cityLevel.png */; };
 		5411FC731496C7BF005FAFDB /* ContinueGameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5411FC721496C7BF005FAFDB /* ContinueGameManager.m */; };
 		54125E3E149285D1007679C5 /* Calculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 54125E3D149285D1007679C5 /* Calculator.m */; };
 		54142C7D14468F7300A74447 /* hen_squawk.caf in Resources */ = {isa = PBXBuildFile; fileRef = 54142C7B14468F7300A74447 /* hen_squawk.caf */; };
@@ -3597,7 +3607,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos5.0;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -3615,7 +3625,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos5.0;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -3675,7 +3685,7 @@
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos5.0;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = "Ad-Hoc";

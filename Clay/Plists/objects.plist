@@ -212,6 +212,41 @@
 		<key>playerEffect</key>
 		<string>bkg</string>
 	</dict>
+	<key>zombieBike</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>0</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>zombieBikeAnim</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>1</integer>
+			<key>width</key>
+			<integer>1</integer>
+			<key>x</key>
+			<integer>0</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>moveLTR</string>
+		<key>imageName</key>
+		<string>blank.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>-33</integer>
+		<key>playerEffect</key>
+		<string>bkg</string>
+	</dict>
 	<key>cityCone</key>
 	<dict>
 		<key>aggressive</key>
@@ -260,6 +295,41 @@
 		</dict>
 		<key>animationName</key>
 		<string>cityPigeonAnim</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>15</integer>
+			<key>width</key>
+			<integer>12</integer>
+			<key>x</key>
+			<integer>35</integer>
+			<key>y</key>
+			<integer>2</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>jumpfade</string>
+		<key>imageName</key>
+		<string>blank.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>-35</integer>
+		<key>playerEffect</key>
+		<string>collide</string>
+	</dict>
+	<key>zombiePigeon</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>1</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>zombiePigeonAnim</string>
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
@@ -1365,7 +1435,7 @@
 		<key>collideBehavior</key>
 		<string>falls</string>
 		<key>imageName</key>
-		<string>Zombies_Garbage.png</string>
+		<string>Level6_GarbageBag.png</string>
 		<key>offsetx</key>
 		<integer>0</integer>
 		<key>offsety</key>
@@ -1475,41 +1545,6 @@
 		<integer>0</integer>
 		<key>offsety</key>
 		<integer>-45</integer>
-		<key>playerEffect</key>
-		<string>collide</string>
-	</dict>
-	<key>headlessZombie</key>
-	<dict>
-		<key>aggressive</key>
-		<string>false</string>
-		<key>anchorpoint</key>
-		<dict>
-			<key>x</key>
-			<integer>0</integer>
-			<key>y</key>
-			<integer>0</integer>
-		</dict>
-		<key>animationName</key>
-		<string>headlessZombieAnim</string>
-		<key>boundingBox</key>
-		<dict>
-			<key>height</key>
-			<integer>45</integer>
-			<key>width</key>
-			<integer>15</integer>
-			<key>x</key>
-			<integer>-50</integer>
-			<key>y</key>
-			<integer>0</integer>
-		</dict>
-		<key>collideBehavior</key>
-		<string>headless</string>
-		<key>imageName</key>
-		<string>blank.png</string>
-		<key>offsetx</key>
-		<integer>0</integer>
-		<key>offsety</key>
-		<integer>-40</integer>
 		<key>playerEffect</key>
 		<string>collide</string>
 	</dict>
@@ -2272,6 +2307,41 @@
 		<string>static</string>
 		<key>imageName</key>
 		<string>City_Water_1.png</string>
+		<key>offsetx</key>
+		<integer>-60</integer>
+		<key>offsety</key>
+		<integer>-63</integer>
+		<key>playerEffect</key>
+		<string>slow</string>
+	</dict>
+	<key>zombieWater</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>0</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>none</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>15</integer>
+			<key>width</key>
+			<integer>87</integer>
+			<key>x</key>
+			<integer>-25</integer>
+			<key>y</key>
+			<integer>-22</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>static</string>
+		<key>imageName</key>
+		<string>Level6_Water.png</string>
 		<key>offsetx</key>
 		<integer>-60</integer>
 		<key>offsety</key>

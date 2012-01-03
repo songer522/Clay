@@ -51,6 +51,8 @@
             [[SoundEngine shared] playMusic:@"title"];
             [[GameSettings shared] setGlobal:@"YES" ForKey:@"titleMusicStarted"];
         }
+        
+        
     }
     
     return self;
@@ -168,15 +170,18 @@
         if (selectedButtonIndex == 0) {
             [[GameSettings shared] setGlobal:@"easy" ForKey:@"gameDifficulty"];
             [[GameSettings shared] setGlobal:@"story" ForKey:@"gameMode"];
+            [[GameSettings shared] setGlobal:@"easy" ForKey:@"storyModeDifficulty"];
             _playTutorial = true;
             _action = GAMEMODE_STORY_EASY;
         } else if(selectedButtonIndex == 1) {
             [[GameSettings shared] setGlobal:@"normal" ForKey:@"gameDifficulty"];
             [[GameSettings shared] setGlobal:@"story" ForKey:@"gameMode"];
+            [[GameSettings shared] setGlobal:@"normal" ForKey:@"storyModeDifficulty"];
             _action = GAMEMODE_STORY_NORMAL;            
         } else {
             [[GameSettings shared] setGlobal:@"hard" ForKey:@"gameDifficulty"];
             [[GameSettings shared] setGlobal:@"story" ForKey:@"gameMode"];
+            [[GameSettings shared] setGlobal:@"hard" ForKey:@"storyModeDifficulty"];
             _action = GAMEMODE_STORY_HARD;            
         }
     } else if(_currentPanel == _timedModePanel) {

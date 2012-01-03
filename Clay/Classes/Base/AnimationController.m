@@ -70,13 +70,21 @@ static AnimationController *_sharedController = nil;
                 BOOL looping = [[animationSettings objectForKey:@"looping"] boolValue];
                 BOOL clearPreviousAnimations = [[animationSettings objectForKey:@"clearPreviousAnims"] boolValue];
                 
-                Animation *anim = [[Animation animationFromPlist:spritesheetPlist forSequence:sequencePrefix FrameList:animationFrames] retain];
-                anim.looping = looping;
-                anim.delay = animationDelay;
-                anim.clearPreviousAnimations = clearPreviousAnimations;
-                anim.name = animationName;
+                Animation *anim;
                 
-                [animations setValue:anim forKey:animationName];
+                @try {
+                    anim = [[Animation animationFromPlist:spritesheetPlist forSequence:sequencePrefix FrameList:animationFrames] retain];
+                    anim.looping = looping;
+                    anim.delay = animationDelay;
+                    anim.clearPreviousAnimations = clearPreviousAnimations;
+                    anim.name = animationName;
+                    
+                    [animations setValue:anim forKey:animationName];
+                    
+                }
+                @catch (NSException *exception) {
+                    CCLOG(@"ERROR! AnimationController.m - unable to load animation with name: %@",animationName);
+                }
             }
         }
     }
