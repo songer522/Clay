@@ -80,17 +80,29 @@
     
     int diff = _currentFrame - final;
     
+    
     if (diff > 0) {
         int start = MAX((3 - diff),0);
         for (int i=start; i<(3 + diff); i++) {
-            HealthIcon *icon = [_healthIcons objectAtIndex:i];
-            [icon startHealthAnimWithSprite:HEALTHICON_POSITIVE];
+            @try {
+                HealthIcon *icon = [_healthIcons objectAtIndex:i];
+                [icon startHealthAnimWithSprite:HEALTHICON_POSITIVE];                
+            }
+            @catch (NSException *exception) {
+                CCLOG(@"ERROR! Battery.m - Health Icon index: #%d",i);
+            }
+
         }
     } else if(diff < 0) {
         int lessThan = MAX((3 - diff),0);
         for (int i=3; i<lessThan; i++) { //don't start from 0 because we don't want it to appear on Tim anymore for negative
-            HealthIcon *icon = [_healthIcons objectAtIndex:i];
-            [icon startHealthAnimWithSprite:HEALTHICON_NEGATIVE];
+            @try {
+                HealthIcon *icon = [_healthIcons objectAtIndex:i];
+                [icon startHealthAnimWithSprite:HEALTHICON_NEGATIVE];
+            }
+            @catch (NSException *exception) {
+                CCLOG(@"ERROR! Battery.m - Health Icon index: #%d",i);
+            }
         }        
     }
 }
@@ -104,10 +116,15 @@
 
 -(void) setFrame:(int)frameNumber
 {
-    [[sprite getCCSprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[_batterySpriteFrames objectAtIndex:frameNumber]]];
+    @try {
+        [[sprite getCCSprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[_batterySpriteFrames objectAtIndex:frameNumber]]];
+    }
+    @catch (NSException *exception) {
+        CCLOG(@"ERROR! Battery.m - Battery Frame index: #%d",frameNumber);
+    }
     
     _currentFrame = frameNumber;
-    if (_currentFrame == 4 && !_isRecharging) {
+    if (_currentFrame == 5 && !_isRecharging) {
         _totalTime = 0.0f;
         [[sprite getCCSprite] setOpacity:255];
         [[SoundEngine shared] playSound:@"lowBattery"];

@@ -247,7 +247,9 @@
 
 -(void)endTurbo:(bool)switchToRunningAnim
 {
-    if (switchToRunningAnim) {
+    if (_isTripping || _waitToGetUp > 0.0f) { return; }
+    
+    if (switchToRunningAnim && !_isInMidAir) {
         [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];        
     }
     [_speed endTurbo];

@@ -230,7 +230,7 @@
     double fixedTimeStep = 1.0f/60.0f;
     float timeToRun = dt + time;
     while(timeToRun >= fixedTimeStep) {
-        [self updateLogic:fixedTimeStep];
+        [self updateLogic:fixedTimeStep];            
         timeToRun = timeToRun - fixedTimeStep;
     }
     time = timeToRun;
