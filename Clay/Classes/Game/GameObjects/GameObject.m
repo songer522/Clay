@@ -49,6 +49,7 @@
 @synthesize persistsBetweenRegions = _persistsBetweenRegions;
 @synthesize slowTimeModifier = _slowTimeModifier;
 @synthesize isHurdle = _isHurdle;
+
 @synthesize hasAppeared = _hasAppeared;
 @synthesize useDefaultBatchNode = _useDefaultBatchNode;
 
@@ -102,6 +103,7 @@
         _hasAppeared=false;
         _isVisible = true;
         _isHurdle = false;
+      
         _isStutterMode = [[GameSettings shared] isStutterMode];
         
     }
@@ -188,6 +190,9 @@
     
     switch (_currentBehavior) {
         case COLLISION_BEHAVIOR_FALL_OVER:
+            _fallVelocity = 425.0f;            
+            break;
+        case COLLISION_BEHAVIOR_DISCO_HANDBAG:
             _fallVelocity = 425.0f;            
             break;
         case COLLISION_BEHAVIOR_HEN_DEAD:
@@ -412,6 +417,18 @@
         //MULTIPLE OBSTACLES
         ///////////////////////////
         case COLLISION_BEHAVIOR_FALL_OVER:
+            _angle += (_fallVelocity + 100.0f) * dt;
+            if (_angle >= 90) {
+                _angle = 90;
+                _fallVelocity = -0.8f * _fallVelocity;
+                _currentBehavior = COLLISION_BEHAVIOR_STATIC;
+            } else if(_angle <= 0) {
+                _angle = 0;
+                _fallVelocity = -0.8f * _fallVelocity;
+            }            
+            [self getCCSprite].rotation = _angle;
+            break;
+        case COLLISION_BEHAVIOR_DISCO_HANDBAG:
             _angle += (_fallVelocity + 100.0f) * dt;
             if (_angle >= 90) {
                 _angle = 90;
@@ -913,6 +930,8 @@
     _stopCurve=false;
     _hasAppeared=false;
     _chaseTriggered = false;
+    _isHurdle = false;
+   
     if(self )
     _madeSound = false;
     [_sprite setAlpha:1.0f];
@@ -1061,11 +1080,13 @@
     }else if([behavior compare:@"hurdles"] == NSOrderedSame){
         _collideBehavior = COLLISION_BEHAVIOR_FALL_OVER;
         _isHurdle = true;
-    } 
-    else if([behavior compare:@"kicked"] == NSOrderedSame) {
+    }else if([behavior compare:@"kicked"] == NSOrderedSame) {
         _currentBehavior = COLLISION_BEHAVIOR_HEN_STATIC;
         _collideBehavior = COLLISION_BEHAVIOR_HEN_DEAD;
-    } else if([behavior compare:@"anim"] == NSOrderedSame) {
+    }else if([behavior compare:@"handBag"] == NSOrderedSame){
+        _collideBehavior = COLLISION_BEHAVIOR_DISCO_HANDBAG;
+    }
+    else if([behavior compare:@"anim"] == NSOrderedSame) {
         _collideBehavior = COLLISION_BEHAVIOR_PLAY_ANIMATION;
     } else if([behavior compare:@"cowCollapse"] == NSOrderedSame) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;
