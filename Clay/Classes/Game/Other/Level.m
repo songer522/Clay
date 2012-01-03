@@ -348,6 +348,10 @@
             NSString *special = [self getPropertyForTileCoords:coords forKey:@"special"];
             NSString *layerBelow = [self getPropertyForTileCoords:coords forKey:@"layerBelow"];
             
+            if (!layerBelow) {
+                layerBelow = @"main0";
+            }
+            
             if (special) {
                 if ([special compare:@"nextlevelNE"] == NSOrderedSame) {
                     Trigger *trigger = [[Trigger alloc] init];
@@ -366,7 +370,7 @@
                     [object setPositionAtX:position.x Y:position.y];
                     [object setStartingPosition:position];
                     [[object getCCSprite] setScale:_scale];
-                    MapObject *mapObject = [MapObject mapObjectWithSprite:object AboveLayer:@"main0"];
+                    MapObject *mapObject = [MapObject mapObjectWithSprite:object AboveLayer:layerBelow];
                     [_otherMapObjects addObject:mapObject];
                     
                 }else if([special isEqualToString:@"checkpoint8bit"]) { //checkpoint trigger

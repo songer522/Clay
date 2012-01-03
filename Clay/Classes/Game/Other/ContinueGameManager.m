@@ -8,6 +8,7 @@
 
 #import "ContinueGameManager.h"
 #import "GameSettings.h"
+#import "Database.h"
 
 @implementation ContinueGameManager
 
@@ -46,6 +47,7 @@
     return @"";
     
 }
+
 
 
 @end

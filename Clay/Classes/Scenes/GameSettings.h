@@ -11,6 +11,7 @@
 @interface GameSettings : NSObject
 {
     NSMutableDictionary *_settings;
+    NSMutableDictionary *_savedSettings;
     bool _usingHighResolutionGraphics;
     bool _isStutterMode;
 }
@@ -20,6 +21,7 @@
 
 
 -(void)setGlobal:(NSString*)setting ForKey:(NSString*)key;
+-(void)setSerializedGlobal:(NSString*)setting ForKey:(NSString*)key; //these values get saved in between app sessions
 -(NSString*)getGlobalForKey:(NSString*)key;
 
 +(bool)shouldUseRetinaForDevice; //tell whether we want to use low-res for this device
@@ -30,5 +32,8 @@
 -(void)setStutterMode:(int)shouldStutter;
 -(bool)isStutterMode;
 -(void)loadFromSettingsPlist;
+
+-(void)load;
+-(void)save;
 
 @end

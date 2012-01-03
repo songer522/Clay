@@ -25,10 +25,9 @@
 #import "ChooseModeScene.h"
 #import "CreditsScene.h"
 #import "AppDelegate.h"
-
 #import "OptionsScene.h"
 #import "Tutorial.h"
-
+#import "GameLayer.h"
 
 
 @implementation MainMenuScene
@@ -71,8 +70,6 @@
           
         //initialize sprites
         _trackBackground = [Sprite spriteFromFrameCacheWithName:@"Menu_Background.png"];        
-        //_rain1 = [Sprite spriteFromFrameCacheWithName:@"Menu_Rain_01.png"];
-        //_rain2 = [Sprite spriteFromFrameCacheWithName:@"Menu_Rain_02.png"];
         _logo = [Sprite spriteCenteredWithFrame:@"Menu_Logo.png" Position:ccp(240,258)]; //final y: 262
         _copyright = [Sprite spriteCenteredWithFrame:@"Menu_Copyright.png" Position:ccp(240,24)]; //final y: 20
         
@@ -94,7 +91,9 @@
         _continueButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_ContinueBlue.png" Selected:@"Menu_ContinueGreen.png"];
         [_continueButton setPosition:ccp(240,158)];
         [_continueButton setHitboxBySize:CGSizeMake(319, 71)];
-        [_continueButton setAlpha:0.0f];
+        if (!_isContinueButtonEnabled) {
+            [_continueButton setAlpha:0.0f];            
+        }
         
         
         //leaderboards button
@@ -193,9 +192,6 @@
 
 -(void)setAlphaForAll:(float)alpha includingButtons:(bool)alphaButtons andButtonSelection:(bool)alphaSelected
 {
-    //[_rain1 setAlpha:alpha];
-    //[_rain2 setAlpha:alpha];
-    
     [_logo setAlpha:alpha];
     
     if (alphaButtons) {
@@ -269,17 +265,6 @@
     _totalTime += rate;
     _time += dt;
     
-    //oscillate between two image files
-    /*
-    float rainFrame = sinf(2.0f * _totalTime);
-    if (rainFrame > 0.0f) {
-        [[_rain1 getCCSprite] setVisible:YES];
-        [[_rain2 getCCSprite] setVisible:NO];
-    } else {
-        [[_rain1 getCCSprite] setVisible:NO];
-        [[_rain2 getCCSprite] setVisible:YES];
-    }*/
-    
     switch (_transition) {
         case MAINMENU_TRANSITION_IN:
             if (_time>=1.0f) {
@@ -340,25 +325,21 @@
 
 -(void)switchToChoice
 {
-    //FBPrompt *prompt;
-    
-
     switch (_switchToChoice) {
+        case MENU_SWITCHTO_CONTINUE:
+            [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[GameLayer scene]]];
+            break;
         case MENU_SWITCHTO_CHOOSELEVEL:            
             [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ChooseModeScene scene]]];
             break;
         case MENU_SWITCHTO_LEADERBOARDS:
             [[GCHelper sharedInstance] showLeaderboards];
-            //prompt = [FBPrompt promptWithAppId:@"264174546971482" andDelegate:self];
-            //[prompt showFacebookDialogWithDescription:@"Hello!" andPicture:@"http://fbrell.com/f8.jpg"];
            break;
         case MENU_SWITCHTO_ACHIEVEMENTS:
             [[GCHelper sharedInstance] showAchievements];
-           // [self sendEasyTweet:@"hello"];
            break;
         case MENU_SWITCHTO_OPTIONS:
             [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[OptionsScene node]]];
-            //[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[CreditsScene node]]];
             break;
         default:
             break;
@@ -379,8 +360,6 @@
     
     //sprites
     [_trackBackground release];
-    //[_rain1 release];
-    //[_rain2 release];
     [_logo release];
     [_copyright release];
 
