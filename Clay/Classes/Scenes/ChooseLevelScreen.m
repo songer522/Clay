@@ -474,6 +474,7 @@
 
 -(void)dealloc
 {
+    CCLOG(@"=============CHOOSE LEVEL SCREEN============");
     CCLOG(@"Dealloc: ChooseLevelScreen");
         
     //[_buttons removeAllObjects];

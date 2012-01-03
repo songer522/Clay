@@ -847,26 +847,34 @@
 {
     //play the sound effect for walking in sand pit if slowed down (unless it's the wind level) and it's the wind
     //slowing tim down
-    if ((_speed.isSlowedDown && !_isTripping && !_isWindy) || _currentPlayerEffect == PLAYER_EFFECT_VACCUUM) {
-        _waitToPlaySlowSound -= dt;
-        if (_waitToPlaySlowSound<=0.0f) {
-            if (_currentPlayerEffect == PLAYER_EFFECT_VACCUUM) {
-                [[SoundEngine shared] playSound:@"waterBubbles"];
-            } else {
+    if (_speed.isSlowedDown) {
+        if (!_isTripping && !_isWindy) {
+            _waitToPlaySlowSound -= dt;
+            if (_waitToPlaySlowSound<=0.0f)
+            {
                 [[SoundEngine shared] playSound:@"steppedInSand"];
+                _waitToPlaySlowSound = 0.4f;
             }
-            _waitToPlaySlowSound = 0.4f;
         }
      }
     
     //end vaccuum effect if no longer in it
-    if((_currentPlayerEffect == PLAYER_EFFECT_NONE) && _inVaccuum) {
-        [self endVaccuum];
-        if ([_thirdAction inAction]) {
-            [_thirdAction setKilledEnemy:true];
-        }
-        if ([_skin isCurrentAnimationOfType:PLAYER_ANIM_FLOATING] && _isInMidAir) {
-            [_skin setPlayerAnimation:PLAYER_ANIM_FALLING ForSprite:_sprite];
+    if(_inVaccuum) {
+        if(_currentPlayerEffect == PLAYER_EFFECT_VACCUUM) {
+            _waitToPlaySlowSound -= dt;
+            if (_waitToPlaySlowSound<=0.0f) {
+                [[SoundEngine shared] playSound:@"waterBubbles"];
+                _waitToPlaySlowSound = 0.4f;
+            }
+            
+        } else if (_currentPlayerEffect == PLAYER_EFFECT_NONE) {
+            [self endVaccuum];
+            if ([_thirdAction inAction]) {
+                [_thirdAction setKilledEnemy:true];
+            }
+            if ([_skin isCurrentAnimationOfType:PLAYER_ANIM_FLOATING] && _isInMidAir) {
+                [_skin setPlayerAnimation:PLAYER_ANIM_FALLING ForSprite:_sprite];
+            }
         }
     }
     

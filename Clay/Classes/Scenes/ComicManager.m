@@ -110,11 +110,7 @@ static ComicManager *_shared = nil;
 
 -(void)update:(ccTime)dt
 {
-    if (![[GameSettings shared] isStutterMode]) {
-        if (_isActive) {
-            [_comicLayer update:dt];        
-        }
-    } else {
+    if (_isActive) {
         [_comicLayer update:dt];        
     }
 }
@@ -127,6 +123,7 @@ static ComicManager *_shared = nil;
     if (_isActive) {
         switch (phase) {
             case COMIC_PHASE_BARS_IN:
+                [_comicLayer setVisible:YES];
                 [_comicLayer startTransition:BLACKBOX_IN];
                 [[SoundEngine shared] cueFadeOut];
                 gameLayer.gameController.isInputEnabled = false;
@@ -187,6 +184,7 @@ static ComicManager *_shared = nil;
                 _phase = COMIC_PHASE_PLAY_LEVEL;
                 _isActive = false;
                 _loadNextLevel = false;
+                [_comicLayer setVisible:NO];
                 break;
             default:
                 break;
