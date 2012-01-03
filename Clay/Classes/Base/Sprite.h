@@ -11,6 +11,7 @@
 
 @class Animation;
 @class Animator;
+@class Camera;
 
 @interface Sprite : NSObject
 {
@@ -21,6 +22,9 @@
     float _x;
     float _y;
     float _alpha;
+    
+    //weak reference
+    Camera *_camera;
 }
 
 @property (nonatomic,assign) float x;

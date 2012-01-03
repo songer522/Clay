@@ -90,7 +90,7 @@
         [_speed start];
         [self changeToRunnerState:RUNNER_STATE_RUNNING];
         
-        _hitPoints = 4;
+        _hitPoints = 5;
         
         _isHighJump = false;
         
@@ -128,8 +128,8 @@
         [_battery setFrame:5];
         [[SoundEngine shared] playSound:@"dead"];
     } else {
-        if(_hitPoints>4) {
-            _hitPoints = 4;
+        if(_hitPoints>5) {
+            _hitPoints = 5;
         }
         [_battery changeValueBy:amount];
     }
@@ -247,7 +247,9 @@
 
 -(void)endTurbo:(bool)switchToRunningAnim
 {
-    if (switchToRunningAnim) {
+    if (_isTripping || _waitToGetUp > 0.0f) { return; }
+    
+    if (switchToRunningAnim && !_isInMidAir) {
         [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];        
     }
     [_speed endTurbo];
@@ -441,7 +443,7 @@
 
 -(void)reset
 {
-    _hitPoints = 4;
+    _hitPoints = 5;
     [_battery reset];
     [_speed reset];
     [_speed start];
@@ -531,7 +533,7 @@
 -(void)rechargeBattery
 {
     [_battery startRecharge];
-    _hitPoints = 4;
+    _hitPoints = 5;
 }
 
 -(void)resetSprint
@@ -847,26 +849,34 @@
 {
     //play the sound effect for walking in sand pit if slowed down (unless it's the wind level) and it's the wind
     //slowing tim down
-    if ((_speed.isSlowedDown && !_isTripping && !_isWindy) || _currentPlayerEffect == PLAYER_EFFECT_VACCUUM) {
-        _waitToPlaySlowSound -= dt;
-        if (_waitToPlaySlowSound<=0.0f) {
-            if (_currentPlayerEffect == PLAYER_EFFECT_VACCUUM) {
-                [[SoundEngine shared] playSound:@"waterBubbles"];
-            } else {
+    if (_speed.isSlowedDown) {
+        if (!_isTripping && !_isWindy) {
+            _waitToPlaySlowSound -= dt;
+            if (_waitToPlaySlowSound<=0.0f)
+            {
                 [[SoundEngine shared] playSound:@"steppedInSand"];
+                _waitToPlaySlowSound = 0.4f;
             }
-            _waitToPlaySlowSound = 0.4f;
         }
      }
     
     //end vaccuum effect if no longer in it
-    if((_currentPlayerEffect == PLAYER_EFFECT_NONE) && _inVaccuum) {
-        [self endVaccuum];
-        if ([_thirdAction inAction]) {
-            [_thirdAction setKilledEnemy:true];
-        }
-        if ([_skin isCurrentAnimationOfType:PLAYER_ANIM_FLOATING] && _isInMidAir) {
-            [_skin setPlayerAnimation:PLAYER_ANIM_FALLING ForSprite:_sprite];
+    if(_inVaccuum) {
+        if(_currentPlayerEffect == PLAYER_EFFECT_VACCUUM) {
+            _waitToPlaySlowSound -= dt;
+            if (_waitToPlaySlowSound<=0.0f) {
+                [[SoundEngine shared] playSound:@"waterBubbles"];
+                _waitToPlaySlowSound = 0.4f;
+            }
+            
+        } else if (_currentPlayerEffect == PLAYER_EFFECT_NONE) {
+            [self endVaccuum];
+            if ([_thirdAction inAction]) {
+                [_thirdAction setKilledEnemy:true];
+            }
+            if ([_skin isCurrentAnimationOfType:PLAYER_ANIM_FLOATING] && _isInMidAir) {
+                [_skin setPlayerAnimation:PLAYER_ANIM_FALLING ForSprite:_sprite];
+            }
         }
     }
     

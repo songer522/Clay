@@ -27,6 +27,7 @@
         sprite_cc = nil;
         _animation = nil;
         _animator = [Animator instance];
+        _camera = [Camera sharedCamera];
     }    
     return self;
 }
@@ -149,8 +150,10 @@
 {
     _x = x;
     _y = y;
-    CGPoint position = [[Camera sharedCamera] convertToScreenXY:CGPointMake((int)x, (int)y)];
-    sprite_cc.position = ccp(position.x,position.y);
+    CGPoint position = [_camera convertToScreenXY:CGPointMake(round(x), round(y))];
+    //CGPoint position = [[Camera sharedCamera] convertToScreenXY:CGPointMake((int)x, (int)y)];
+    //sprite_cc.position = ccp(position.x,position.y);
+    sprite_cc.position = position;
 }
 
 -(void)replaceSpriteWithFile:(NSString*)filename

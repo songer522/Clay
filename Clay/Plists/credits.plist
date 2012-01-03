@@ -5,17 +5,29 @@
 	<key>group</key>
 	<dict>
 		<key>count</key>
-		<string>4</string>
+		<string>10</string>
 		<key>name</key>
 		<string>Xecudev, LLC.</string>
 		<key>1</key>
 		<string>Executive Producer:Jeff Koehler</string>
 		<key>2</key>
-		<string>Programming:Brian Cable,Yang Song,Dustin Werner</string>
+		<string>Lead Programmer:Brian Cable</string>
 		<key>3</key>
-		<string>Art:Tianyu Wang</string>
+		<string>Programmer/Level Design:Yang Song</string>
 		<key>4</key>
+		<string>Programmer:Dustin Werner</string>
+		<key>5</key>
+		<string>Game Artist:Tianyu Wang</string>
+		<key>6</key>
+		<string>Music:Sam Stuckey</string>
+		<key>7</key>
+		<string>Writer:Dan Stuckey</string>
+		<key>8</key>
 		<string>Recruiter:Nina Koehler</string>
+		<key>9</key>
+		<string>Special Thanks:Kevin Skerrett</string>
+		<key>10</key>
+		<string>Beta Testers:Austin Clark,Brett Clark,Mike Lewinski,Michelle Lewinski</string>
 	</dict>
 </dict>
 </plist>

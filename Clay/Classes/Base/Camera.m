@@ -259,7 +259,11 @@ static Camera *_sharedCamera = nil;
     }
     
     [self updateOnScreenRange];
-    
+    /*
+    float newdx = oldx - _x;
+    if(newdx < -1.0f && newdx != -2.80f && newdx > -4.0f) {
+        NSLog(@"NewDx: %.2f",newdx);
+    }*/
     //NSLog(@"OX: %.2f, OY: %.2f, | NX: %.2f, NY: %.2f",oldx,oldy,_x,_y);
     //NSLog(@"DX: %.2f, DY: %.2f MAG: %.2f",dx,dy,magnitude);
 }
