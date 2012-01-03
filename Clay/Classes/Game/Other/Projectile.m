@@ -66,15 +66,15 @@
                 _offscreenPadding = 20;
                 break;
             case PROJECTILE_BEHAVIOR_ZOMBIE_HEAD:
-                _sprite = [Sprite spriteFromFrameCacheWithName:@"F_Zombie_Head.png"];
+                //_sprite = [Sprite spriteFromFrameCacheWithName:@"F_Zombie_Head.png"];
+                _sprite = [Sprite spriteFromFrameCacheWithName:@"Level6_Brain_1.png"];
                 [_sprite getCCSprite].anchorPoint = ccp(0.5f, 0.5f);
                 [[_sprite getCCSprite] setScale:0.8];
-                //_offsetGroundDetectionY = 30.0f;
                 _hasGravity = true;
                 _isAggressive = false;
                 
                 _offscreenPadding = 42;
-                _offsetGroundDetectionY = 10.0f;
+                _offsetGroundDetectionY = -10.0f;
                 break;
             case PROJECTILE_BEHAVIOR_BOSS_SHIP_BULLET:
                 _sprite = [Sprite spriteFromFrameCacheWithName:@"Level7_JimSpaceCraft_Bullet.png"];
@@ -199,6 +199,9 @@
     _fadeOut = true;
     [_sprite setAlpha:1.0f];
     _isActive = false;
+    if (_behavior == PROJECTILE_BEHAVIOR_ZOMBIE_HEAD) {
+        [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"zombieBrainSquishAnim"];
+    }
 }
 
 -(bool)getAggressive
@@ -248,7 +251,9 @@
         if ([_sprite reachedMinAfterModifyAlpha:-2.0f * dt]) {
             [[_sprite getCCSprite] setVisible:NO];
         } else {
-            [_sprite move:CGPointMake(100.0f *dt, 200.0f*dt)];                
+            if (_behavior!=PROJECTILE_BEHAVIOR_ZOMBIE_HEAD) {
+                [_sprite move:CGPointMake(100.0f *dt, 200.0f*dt)];                
+            }
         }
     }
     
@@ -267,8 +272,28 @@
             y = 85.0f + _offsetGroundDetectionY;
             _vy = 0.0f;
             _angularVelocity *= 0.92f;
-            _vx *= 0.92f;      
+            _vx *= 0.92f;
+            
+            if (_behavior == PROJECTILE_BEHAVIOR_ZOMBIE_HEAD) {
+                _angle = 0.0f;
+                _angularVelocity = 0.0f;
+                [_sprite getCCSprite].rotation = _angle;
+            }
         }
+
+        
+        //want the brain to roll to stop right side up
+        /*if (_behavior == PROJECTILE_BEHAVIOR_ZOMBIE_HEAD) {
+            if(_angularVelocity<=4.0f && _angle!=0.0f) {
+                int testAngle = (int)_angle;
+                if (((testAngle % 360) + 4) < 8) {
+                    _angle = 0.0f;
+                    _angularVelocity = 0.0f;
+                } else {
+                    _angularVelocity = 1.0f;
+                }
+            }
+        }*/
         
         CGPoint newPosition = CGPointMake(x, y);
         [self setPosition:newPosition];

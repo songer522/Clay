@@ -25,6 +25,10 @@
 		5411DEC514B369EF00046594 /* timed_normal_level5_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61F6F6CF14B29568003A5C68 /* timed_normal_level5_hd.tmx */; };
 		5411DEC614B369EF00046594 /* tileset_level_5-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 61F6F6C514B268A0003A5C68 /* tileset_level_5-hd.png */; };
 		5411DEC714B369EF00046594 /* tileset_level_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 61F6F6C614B268A0003A5C68 /* tileset_level_5.png */; };
+		5411DEC914B393C200046594 /* cityLevel-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 61F6F6D114B29795003A5C68 /* cityLevel-hd.plist */; };
+		5411DECA14B393C200046594 /* cityLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 61F6F6D214B29795003A5C68 /* cityLevel-hd.png */; };
+		5411DECB14B393C200046594 /* cityLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 61F6F6D314B29795003A5C68 /* cityLevel.plist */; };
+		5411DECC14B393C200046594 /* cityLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 61F6F6D414B29795003A5C68 /* cityLevel.png */; };
 		5411FC731496C7BF005FAFDB /* ContinueGameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5411FC721496C7BF005FAFDB /* ContinueGameManager.m */; };
 		54125E3E149285D1007679C5 /* Calculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 54125E3D149285D1007679C5 /* Calculator.m */; };
 		54142C7D14468F7300A74447 /* hen_squawk.caf in Resources */ = {isa = PBXBuildFile; fileRef = 54142C7B14468F7300A74447 /* hen_squawk.caf */; };
@@ -604,10 +608,6 @@
 		61E8DE3014ACDFDA00F2C23F /* story_hard_level3.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61E8DE2F14ACDFDA00F2C23F /* story_hard_level3.tmx */; };
 		61E8DE3214ACDFE800F2C23F /* timed_normal_level3.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61E8DE3114ACDFE800F2C23F /* timed_normal_level3.tmx */; };
 		61E8DE3414ACDFF200F2C23F /* timed_hard_level3.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61E8DE3314ACDFF200F2C23F /* timed_hard_level3.tmx */; };
-		61F477B714A24CC40068E8D2 /* (null) in Resources */ = {isa = PBXBuildFile; };
-		61F477B814A24CC40068E8D2 /* (null) in Resources */ = {isa = PBXBuildFile; };
-		61F477B914A24CC40068E8D2 /* (null) in Resources */ = {isa = PBXBuildFile; };
-		61F477C514A2EFE90068E8D2 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		61F53A1714AB8C2A0003ABAC /* story_easy_level2_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61F53A1614AB8C2A0003ABAC /* story_easy_level2_hd.tmx */; };
 		61F53A1914AB8C6B0003ABAC /* story_hard_level2_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61F53A1814AB8C6B0003ABAC /* story_hard_level2_hd.tmx */; };
 		61F53A1B14AB8C9A0003ABAC /* story_normal_level2_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61F53A1A14AB8C9A0003ABAC /* story_normal_level2_hd.tmx */; };
@@ -2960,15 +2960,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5411DEC914B393C200046594 /* cityLevel-hd.plist in Resources */,
+				5411DECA14B393C200046594 /* cityLevel-hd.png in Resources */,
+				5411DECB14B393C200046594 /* cityLevel.plist in Resources */,
+				5411DECC14B393C200046594 /* cityLevel.png in Resources */,
 				5411DEC214B369EF00046594 /* story_easy_level5_hd.tmx in Resources */,
 				5411DEC314B369EF00046594 /* story_normal_level5_hd.tmx in Resources */,
 				5411DEC414B369EF00046594 /* story_hard_level5_hd.tmx in Resources */,
 				5411DEC514B369EF00046594 /* timed_normal_level5_hd.tmx in Resources */,
 				5411DEC614B369EF00046594 /* tileset_level_5-hd.png in Resources */,
 				5411DEC714B369EF00046594 /* tileset_level_5.png in Resources */,
-				61F477B714A24CC40068E8D2 /* (null) in Resources */,
-				61F477B814A24CC40068E8D2 /* (null) in Resources */,
-				61F477B914A24CC40068E8D2 /* (null) in Resources */,
 				54484CE7140449B500D0D7D9 /* Default.png in Resources */,
 				54484CE9140449B500D0D7D9 /* fps_images.png in Resources */,
 				54484CF8140449B500D0D7D9 /* iTunesArtwork in Resources */,
@@ -3237,7 +3238,6 @@
 				6102504E14A02FBA005FD377 /* characterWoo-hd.png in Resources */,
 				6102504F14A02FBA005FD377 /* characterWoo.plist in Resources */,
 				6102505014A02FBA005FD377 /* characterWoo.png in Resources */,
-				61F477C514A2EFE90068E8D2 /* (null) in Resources */,
 				544B03F214AAB3F50029FAD2 /* BatteryFullCharge.caf in Resources */,
 				544B03F314AAB3F50029FAD2 /* blowAction.caf in Resources */,
 				544B03F414AAB3F50029FAD2 /* checkpoint.caf in Resources */,
@@ -3597,7 +3597,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos5.0;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -3615,7 +3615,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos5.0;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -3675,7 +3675,7 @@
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos5.0;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = "Ad-Hoc";

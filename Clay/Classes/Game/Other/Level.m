@@ -422,18 +422,26 @@
                     [_triggers addObject:trigger];
                 }
             }
-            
+
             NSString *obstacle = [self getPropertyForTileCoords:coords forKey:@"obstacle"];
-            if (obstacle) {
-                GameObject *object = [_gameObjects loadGameObjectWithName:obstacle AddToLayer:NO];
-                CGPoint position = [self getXYPositionForCoordinates:coords];
-                [object setPositionAtX:position.x Y:position.y];
-                [object setStartingPosition:position];
-                [[object getCCSprite] setScale:_scale];                
-                
-                MapObject *mapObject = [MapObject mapObjectWithSprite:object AboveLayer:@"main0"];
-                [_obstacleMapObjects addObject:mapObject];
+            
+            @try {
+                if (obstacle) {
+                    GameObject *object = [_gameObjects loadGameObjectWithName:obstacle AddToLayer:NO];
+                    CGPoint position = [self getXYPositionForCoordinates:coords];
+                    [object setPositionAtX:position.x Y:position.y];
+                    [object setStartingPosition:position];
+                    [[object getCCSprite] setScale:_scale];                
+                    
+                    MapObject *mapObject = [MapObject mapObjectWithSprite:object AboveLayer:@"main0"];
+                    [_obstacleMapObjects addObject:mapObject];
+                }
+
             }
+            @catch (NSException *exception) {
+                CCLOG(@"ERROR! Level.m - error loading obstacle named '%@' from objects.plist",obstacle);
+            }
+            
             
             NSString *objectName = [self getPropertyForTileCoords:coords forKey:@"object"];
             
