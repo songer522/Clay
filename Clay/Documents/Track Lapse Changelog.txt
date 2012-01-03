@@ -1,5 +1,28 @@
 Track Lapse Changelog
 
+Build 120102.01
+==================
+
+Bugfix - Crashing when pressing the pause menu and after playing a level has been fixed (the iOS 5 notification banner was being called even on iOS 4 devices)
+Choose Level - Updated preview icons for levels 1-3
+Credits - Updated credits text to match what's in github
+Global - Hitting sprint when tripping or while sprinting in midair will no longer switch to the running animation
+Global - rounded sprite positions which seems to make their movement when Tim moves slowly more smooth
+Global - wooers should be fixed and showing again, hopefully (hard to test since always worked here)
+Global - 5 hit point battery implemented, although there's a couple minor bugs with its display
+Main Menu - updated background graphic
+Level 4 - new timed insane level
+Level 4 - got phantom breakdancer to stop appearing. may have fixed the phantom crow in level 3 also
+Level 5 - new obstacle pigeon
+Level 5 - new obstacle traffic cone
+Level 5 - new background object biker
+Level 5 - new versions of all modes except timed insane
+Level 5 - new version of garbage bag
+Level 5 - static dog now has a bow in its tail
+Level 5 - layers merged
+Optimization - made comic layer invisible when not active, should save on draw calls
+Optimization - added a few weak references to reduce pointer lookups
+
 Build 111230.02
 ==================
 
