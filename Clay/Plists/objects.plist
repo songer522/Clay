@@ -1319,7 +1319,7 @@
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>40</integer>
+			<integer>45</integer>
 			<key>width</key>
 			<integer>14</integer>
 			<key>x</key>
@@ -1334,7 +1334,7 @@
 		<key>offsetx</key>
 		<integer>90</integer>
 		<key>offsety</key>
-		<integer>-35</integer>
+		<integer>-45</integer>
 		<key>playerEffect</key>
 		<string>collide</string>
 	</dict>
