@@ -243,6 +243,17 @@
             [[[[LayerManager sharedLayers] getPlayer] getThirdAction] setKilledEnemy:YES];
             //[self shotZombie];
             break;
+        case COLLISION_BEHAVIOR_MALEZOMBIE_FADE:
+            [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"zombieMaleHeadlessAnim"];
+            _alpha = 1.5f;
+            _fadeout = true;
+            _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_ZOMBIE_HEART];
+            [_projectile reset];
+            [_projectile setPosition:CGPointMake(_x, _y + 11)];
+            [_projectile setBoundingBox:CGRectMake(15, 33, 14, 35)];
+            [[[[LayerManager sharedLayers] getPlayer] getThirdAction] setKilledEnemy:YES];
+            //[self shotZombie];
+            break;
         case COLLISION_BEHAVIOR_FIRE_DEMON:
             _alpha = 1.0f;
             _vy = -50.0f;
@@ -498,6 +509,12 @@
         ///////////////////////////
         case COLLISION_BEHAVIOR_ZOMBIE_WALK:
             [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-40.0f ChaseSound:@"zombieMoan"];
+            break;
+        case COLLISION_BEHAVIOR_MALEZOMBIE_WALK:
+            [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-40.0f ChaseSound:@"zombieMoan"];
+            break;
+        case COLLISION_BEHAVIOR_MALEZOMBIE_FADE:
+            [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-60.0f];
             break;
         case COLLISION_BEHAVIOR_ZOMBIE_WALK_FAST:
             [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-60.0f];
@@ -965,6 +982,9 @@
     }
     else if(_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_WALK_FAST || _currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_FADE) {
         _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_WALK_FAST;
+    }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_MALEZOMBIE_WALK || _currentBehavior == COLLISION_BEHAVIOR_MALEZOMBIE_FADE) {
+        _currentBehavior = COLLISION_BEHAVIOR_MALEZOMBIE_WALK;
     } else if(_currentBehavior == COLLISION_BEHAVIOR_FLYER_DEAD || _currentBehavior == COLLISION_BEHAVIOR_FLYER) {
         _currentBehavior = COLLISION_BEHAVIOR_FLYER;
     } else if(_currentBehavior == COLLISION_BEHAVIOR_ROLLING_HAYBALE) {
@@ -1220,6 +1240,11 @@
     else if([behavior isEqualToString:@"jumpfade"]) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;
         _collideBehavior = COLLISION_BEHAVIOR_CITY_PIGEON;
+    }
+    else if([behavior isEqualToString:@"zombieMale"]) {
+        _currentBehavior = COLLISION_BEHAVIOR_MALEZOMBIE_WALK;
+        _collideBehavior = COLLISION_BEHAVIOR_MALEZOMBIE_FADE;
+        _aggressiveCanHit = true;
     }
     else {
         _collideBehavior = COLLISION_BEHAVIOR_NONE;

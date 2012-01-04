@@ -595,7 +595,24 @@
 		<key>sequencePrefix</key>
 		<string>FWH_Zombie_Walking_</string>
 		<key>spritesheetPlist</key>
-		<string>female_zombie</string>
+		<string>zombieLevel</string>
+	</dict>
+	<key>zombieMaleHeadlessAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3,4,5,6</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.15</string>
+		<key>group</key>
+		<string>level6</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>MWH_Zombie_Walking_</string>
+		<key>spritesheetPlist</key>
+		<string>zombieLevel</string>
 	</dict>
 	<key>femaleZombieAnim</key>
 	<dict>
@@ -612,7 +629,24 @@
 		<key>sequencePrefix</key>
 		<string>F_Zombie_Walking_</string>
 		<key>spritesheetPlist</key>
-		<string>female_zombie</string>
+		<string>zombieLevel</string>
+	</dict>
+	<key>zombieMaleAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3,4,5,6</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.15</string>
+		<key>group</key>
+		<string>level6</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>M_Zombie_Walking_</string>
+		<key>spritesheetPlist</key>
+		<string>zombieLevel</string>
 	</dict>
 	<key>fireBabyDemonAnim</key>
 	<dict>
@@ -1563,6 +1597,23 @@
 		<string>false</string>
 		<key>sequencePrefix</key>
 		<string>Level6_Brain_</string>
+		<key>spritesheetPlist</key>
+		<string>zombieLevel</string>
+	</dict>
+	<key>zombieHeartSquishAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>2,3,3,3,3,3,3,3,3</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level6</string>
+		<key>looping</key>
+		<string>false</string>
+		<key>sequencePrefix</key>
+		<string>Level6_Heart_</string>
 		<key>spritesheetPlist</key>
 		<string>zombieLevel</string>
 	</dict>
