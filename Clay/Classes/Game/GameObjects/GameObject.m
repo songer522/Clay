@@ -283,6 +283,10 @@
             _fadeout = true;
             [[SoundEngine shared] playSound:@"waterPufferFish"];
             break;
+        case COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENING:
+            [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"zombieMysteryBoxOpeningAnim"];
+            [self setOriginalAnimation:@"zombieMysteryBoxUpAnim"];
+            break;
         case COLLISION_BEHAVIOR_FIREBALL_LANDED:
         case COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR:
         case COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR_WAITTOSHOOT:
@@ -535,8 +539,15 @@
             break;
         case COLLISION_BEHAVIOR_ZOMBIE_WALK_FAST:
             [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-60.0f];
-            break;            
-
+            break;
+        case COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENING:
+            if([[_sprite getAnimation] getCurrentFrameNumber]==8)
+            {
+                _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENED;
+                [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"zombieMysteryBoxOpened"];
+                [self setBoundingBox:CGRectMake(-45, 0, 25, 60)];
+            }
+            break;
                     
         ///////////////////////////
         //LEVEL 7 - COMPUTER RUN
@@ -1079,6 +1090,9 @@
         [self getCCSprite].visible = false;
 
     }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_UP || _currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENING || _currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENED) {
+        _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_UP;
+    }
     else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_SLOW) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;     
     }
@@ -1265,6 +1279,11 @@
     else if([behavior isEqualToString:@"zombieMale"]) {
         _currentBehavior = COLLISION_BEHAVIOR_MALEZOMBIE_WALK;
         _collideBehavior = COLLISION_BEHAVIOR_MALEZOMBIE_FADE;
+        _aggressiveCanHit = true;
+    }
+    else if([behavior isEqualToString:@"zombieMysteryBox"]) {
+        _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_UP;
+        _collideBehavior = COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENING;
         _aggressiveCanHit = true;
     }
     else {

@@ -4,7 +4,7 @@
   <image source="tileset_level_6-hd.png" width="1280" height="832"/>
  </tileset>
  <tileset firstgid="261" name="Icons" tilewidth="64" tileheight="64">
-  <image source="TrackLapse_Icons-hd.png" width="640" height="576"/>
+  <image source="TrackLapse_Icons-hd.png" width="640" height="640"/>
   <tile id="0">
    <properties>
     <property name="obstacle" value="hurdle"/>
@@ -111,14 +111,24 @@
     <property name="obstacle" value="zombiePigeon"/>
    </properties>
   </tile>
+  <tile id="88">
+   <properties>
+    <property name="obstacle" value="zombieMysteryBox"/>
+   </properties>
+  </tile>
   <tile id="89">
    <properties>
     <property name="layerBelow" value="main0"/>
     <property name="object" value="zombieBike"/>
    </properties>
   </tile>
+  <tile id="90">
+   <properties>
+    <property name="obstacle" value="zombieMale"/>
+   </properties>
+  </tile>
  </tileset>
- <tileset firstgid="351" name="Meta" tilewidth="64" tileheight="64">
+ <tileset firstgid="361" name="Meta" tilewidth="64" tileheight="64">
   <image source="meta-hd.png" width="256" height="192"/>
   <tile id="0">
    <properties>
@@ -220,7 +230,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt10EKwjAQAMB6UR8h6MPE/z9Deijk0Oo22YSiMxAKbdLdJptCpgkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoM3rlNMHAACAXM/AWSzS5zHwTHevjBXN8bbSr7xXG7/Gt1jL8545rc1HhpHzGJWVU+uc9dhPNTn1Wvvy3VvXTy5J/6SMeT5iHe/Rmv+e8bX1FB3Xs15L8zcv7Qj5ZInsq38zYg3nGFutRVmnrfv8qjbgkM72JgAAAAAAAPysN7pxBtw=
+   eJzt10sOgjAQAFDYqIcw0YP5uf8tDAuSxhSZUopE30sISRnaYZgu2nUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHUe/bczAAAAIOcWOK/dJ2LS8Wfw3JeLe58/F3NOxi59fnzONRibm3Nq/dbm1hqft8yppMYltqxj1Fo51dYs2qslluTU6t+nc0/dPzkGYiI1XKPOe+zjErX5l7y/tJ+i77Xs19TwzeO1h3zWEtlX/2aLfzisMXXVSPu0dp+f9Abs0sHeBAAAAAAAgJ/1AlrPCHM=
   </data>
  </layer>
  <layer name="meta" width="900" height="14" opacity="0.53">
@@ -229,7 +239,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1cENgCAMQFGZ1IP77+AEgiKNBd9L/qkejCm4bQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAjHaU+GAWf9jbJ+f06TO1Of3crTF69zZils2IPbOrAAAAAOvZiyRnQit1565vPeN/Me77Z32Pt/OM1fY2YqZ5Aq59fT6lDDkTWqk7d33rGf+Lcd8/63u8nWestrcRM80TcO0EzPz99A==
+   eJzt1TEOgCAMQFE5roP3Xz2BoEhjwfeSP9XBmILbBgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAaEeJD2bxh719ck6fPlOb08/dGqN3byNm2YzYM7sKAAAAsJ69SHImtFJ37vrWM/4X475/1vd4O89YbW8jZpon4NrX51PKkDOhlbpz17ee8b8Y9/2zvsfbecZqexsx0zwB107RVTMF
   </data>
  </layer>
 </map>
