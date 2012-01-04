@@ -178,7 +178,12 @@
     }
 }
 
--(PlayerEffect) startCollision
+-(void)startCollision
+{
+    NSLog(@"GameObject.m - startCollision -> shouldn't get here");
+}
+
+-(PlayerEffect) startCollision:(bool)isProjectile
 {
     if (_currentBehavior == COLLISION_BEHAVIOR_HEN_KICKED) { return PLAYER_EFFECT_NONE; }
     
@@ -284,9 +289,18 @@
             [[SoundEngine shared] playSound:@"waterPufferFish"];
             break;
         case COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENING:
-            [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"zombieMysteryBoxOpeningAnim"];
-            [self setOriginalAnimation:@"zombieMysteryBoxUpAnim"];
+            [self setOriginalAnimation:@"zombieMysteryBoxUpAnim"];                                
+            if (isProjectile) {
+                [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"zombieMysteryBoxOpeningAnim"];
+                _collideBehavior = COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENED;
+                _collided = false;
+            } else {
+                [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"zombieMysteryBoxFallsAnim"];
+                _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_FALLS;
+                _collideBehavior = COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENED;
+            }
             break;
+        case COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENED:
         case COLLISION_BEHAVIOR_FIREBALL_LANDED:
         case COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR:
         case COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR_WAITTOSHOOT:
@@ -426,6 +440,8 @@
 
 -(void)updateCollisionBehavior:(float)dt
 {
+    int frame;
+    
     switch (_currentBehavior) {
             
         ///////////////////////////
@@ -541,11 +557,25 @@
             [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-60.0f];
             break;
         case COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENING:
-            if([[_sprite getAnimation] getCurrentFrameNumber]==8)
+            frame = [[_sprite getAnimation] getCurrentFrameNumber];
+            if (frame<8) {
+                int heightOffset = MAX(0,frame - 4) * 13.0f;
+                [self setBoundingBox:CGRectMake(50,2,25,30 + heightOffset)];
+            } else if(frame == 8)
             {
                 _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENED;
-                [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"zombieMysteryBoxOpened"];
-                [self setBoundingBox:CGRectMake(-45, 0, 25, 60)];
+                [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"zombieMysteryBoxOpenedAnim"];
+                [self setBoundingBox:CGRectMake(50, 2, 25, 90)];
+            }
+            break;
+        case COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_FALLS:
+            frame = [[_sprite getAnimation] getCurrentFrameNumber];
+            if(frame == 4)
+            {
+                _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENED;
+                [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"zombieMysteryBoxFallenAnim"];
+                _alpha = 1.2f;
+                _fadeout = true;
             }
             break;
                     
@@ -1090,8 +1120,10 @@
         [self getCCSprite].visible = false;
 
     }
-    else if(_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_UP || _currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENING || _currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENED) {
+    else if(_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_UP || _currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENING || _currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENED || _currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_FALLS) {
         _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_UP;
+        _collideBehavior = COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENING;
+        [self setBoundingBox:CGRectMake(70, 2, 25, 14)];
     }
     else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_SLOW) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;     

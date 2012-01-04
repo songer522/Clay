@@ -171,7 +171,8 @@ typedef enum {
 #pragma mark - public methods
 -(void) move:(CGPoint)amount;
 -(void) reset;
--(PlayerEffect) startCollision;
+//-(PlayerEffect) startCollision;
+-(PlayerEffect) startCollision:(bool)isProjectile;
 -(void) special_kickHen;
 -(void) update:(float)dt;
 -(bool) closeToPlayer:(float)closerThan;
