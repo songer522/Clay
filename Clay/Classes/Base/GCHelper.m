@@ -88,7 +88,7 @@ static GCHelper *sharedHelper = nil;
                        if ([GKLocalPlayer localPlayer].isAuthenticated && !userAuthenticated) {
                            //NSLog(@"Authentication changed: player authenticated.");
                            userAuthenticated = TRUE;
-                           [self resendData];
+                          // [self resendData];
                        } else if (![GKLocalPlayer localPlayer].isAuthenticated && userAuthenticated) {
                            //NSLog(@"Authentication changed: player not authenticated.");
                            userAuthenticated = FALSE;
