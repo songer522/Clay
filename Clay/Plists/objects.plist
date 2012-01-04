@@ -902,7 +902,7 @@
 			<integer>2</integer>
 		</dict>
 		<key>collideBehavior</key>
-		<string>falls</string>
+		<string>handBag</string>
 		<key>imageName</key>
 		<string>Disco_HandBag_1.png</string>
 		<key>offsetx</key>

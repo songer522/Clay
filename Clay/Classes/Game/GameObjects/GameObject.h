@@ -96,6 +96,8 @@ typedef enum {
     
     bool _isHurdle;
     
+   
+    
     Collision *_collisionState;     //used to keep track of whether the object is in midair or on
                                     //the ground.
     
@@ -125,6 +127,7 @@ typedef enum {
 @property(nonatomic,assign) bool isFalling;
 @property(nonatomic,assign) bool isInvincible;
 @property(nonatomic,assign) bool isHurdle;
+
 @property(nonatomic,assign) bool rotateLights;
 @property(nonatomic,assign) bool beatsPlayerAction;
 @property(nonatomic,assign) bool hasAppeared;

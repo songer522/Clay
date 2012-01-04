@@ -8,27 +8,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "Clay/Classes/Game/PlayerActions/PlayerAction.m"
-         timestampString = "346915175.480266"
+         filePath = "Clay/Classes/Game/Other/Player.m"
+         timestampString = "347323096.705923"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "121"
-         endingLineNumber = "121"
-         landmarkName = "-reportAchievementData"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Clay/Classes/Game/Other/Level.m"
-         timestampString = "346957985.293255"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "900"
-         endingLineNumber = "900"
-         landmarkName = "-obstacleGotHitBy:"
+         startingLineNumber = "377"
+         endingLineNumber = "377"
+         landmarkName = "-startCollision:Source:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

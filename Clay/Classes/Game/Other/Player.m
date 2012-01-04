@@ -369,6 +369,16 @@
         }
     }
     
+    else if(_isInvincible)
+    {
+        if( [source getCollisionBehavior] == COLLISION_BEHAVIOR_DISCO_HANDBAG)
+        {
+            if (!_isTripping && !_isDead) {
+                [self startPlayerCollision:false];}
+        }
+            
+    }
+    
     _currentPlayerEffect = effect;
 }
 
