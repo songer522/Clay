@@ -44,6 +44,7 @@ typedef enum {
     bool _isFalling;
     bool _isCooldown;
     bool _hasTriggered;
+    bool _collideWithPlayer;
     float _waitToTrigger;
     float _rate;
     float _x;
@@ -127,6 +128,7 @@ typedef enum {
 @property(nonatomic,assign) bool isFalling;
 @property(nonatomic,assign) bool isInvincible;
 @property(nonatomic,assign) bool isHurdle;
+@property(nonatomic,assign) bool collideWithPlayer;
 
 @property(nonatomic,assign) bool rotateLights;
 @property(nonatomic,assign) bool beatsPlayerAction;
