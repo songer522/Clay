@@ -9,12 +9,7 @@
 #import "Boss.h"
 
 typedef enum {
-    BOSS_CHICKEN,
-    BOSS_DISCO,
     BOSS_SPACESHIP,
-    BOSS_DEVIL_JIM,
-    BOSS_ZOMBIES,
-    BOSS_WHALE,
     BOSS_FINAL_JIM
 }BossType;
 
