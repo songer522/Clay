@@ -141,16 +141,28 @@ static LevelManager *_shared = nil;
 
 }
 
+
 -(void)loadNextLevel
-{    
+{   
+    NSString *mode = [[GameSettings shared] getGlobalForKey:@"gameMode"];
+    
+    if ([mode isEqualToString:@"story"]) {
+        [[GameSettings shared] setSerializedGlobal:_currentLevel.nextLevelName ForKey:@"storyModeCurrentLevel"];
+    }
+    
+    //might as well save while we're at it.
+    [[GameSettings shared] saveToDisk];
+    
     [self loadLevelNamed:_currentLevel.nextLevelName];
 }
+
 
 -(void)receiveBoss:(Boss*)boss
 {
     GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
     [gameLayer setBoss:boss];
 }
+
 
 -(void)dumpMemoryForLevel:(Level*)level
 {
@@ -160,6 +172,8 @@ static LevelManager *_shared = nil;
     
     [[TextureManager shared] unloadMemoryForKey:levelName];
 }
+
+
 -(void)sendScoreforLevel:(NSString *)level Difficulty:(NSString *)difficulty Mode:(NSString *)mode andTime:(float)time
 {
     if([difficulty isEqualToString:@"normal"] && [mode isEqualToString:@"timed"]&& [level isEqualToString:@"level1"])

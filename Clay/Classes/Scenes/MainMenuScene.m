@@ -325,8 +325,15 @@
 
 -(void)switchToChoice
 {
+    NSString *startingLevel = [[GameSettings shared] getGlobalForKey:@"storyModeCurrentLevel"];
+    NSString *startingDifficulty = [[GameSettings shared] getGlobalForKey:@"storyModeDifficulty"];
+    
     switch (_switchToChoice) {
         case MENU_SWITCHTO_CONTINUE:
+            [[GameSettings shared] setGlobal:@"NO" ForKey:@"titleMusicStarted"];
+            [[GameSettings shared] setGlobal:startingLevel ForKey:@"startingLevel"];
+            [[GameSettings shared] setGlobal:startingDifficulty ForKey:@"gameDifficulty"];
+            [[GameSettings shared] setGlobal:@"story" ForKey:@"gameMode"];
             [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[GameLayer scene]]];
             break;
         case MENU_SWITCHTO_CHOOSELEVEL:            

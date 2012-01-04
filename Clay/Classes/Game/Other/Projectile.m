@@ -69,13 +69,19 @@
                 //_sprite = [Sprite spriteFromFrameCacheWithName:@"F_Zombie_Head.png"];
                 _sprite = [Sprite spriteFromFrameCacheWithName:@"Level6_Brain_1.png"];
                 [_sprite getCCSprite].anchorPoint = ccp(0.5f, 0.5f);
-                [[_sprite getCCSprite] setScale:0.8];
                 _hasGravity = true;
-                _isAggressive = false;
-                
+                _isAggressive = false;                
                 _offscreenPadding = 42;
                 _offsetGroundDetectionY = -10.0f;
                 break;
+            case PROJECTILE_BEHAVIOR_ZOMBIE_HEART:
+                _sprite = [Sprite spriteFromFrameCacheWithName:@"Level6_Heart_1.png"];
+                [_sprite getCCSprite].anchorPoint = ccp(0.5f, 0.5f);
+                _hasGravity = true;
+                _isAggressive = false;
+                _offscreenPadding = 42;
+                _offsetGroundDetectionY = -10.0f;
+                break;                
             case PROJECTILE_BEHAVIOR_BOSS_SHIP_BULLET:
                 _sprite = [Sprite spriteFromFrameCacheWithName:@"Level7_JimSpaceCraft_Bullet.png"];
                 [_sprite getCCSprite].anchorPoint = ccp(0,0);
@@ -120,6 +126,10 @@
             break;
         case PROJECTILE_BEHAVIOR_FIRE_DEMON_BULLET:
             _vx = -250.0f;
+            break;
+        case PROJECTILE_BEHAVIOR_ZOMBIE_HEART:
+            _vy = 10.0f;
+            _vx = 75 + rand()%25;
             break;
         case PROJECTILE_BEHAVIOR_RAINY_SQUIRREL_NUT:
             _angularVelocity = -1 * (rand()%10 + 10);
@@ -201,6 +211,8 @@
     _isActive = false;
     if (_behavior == PROJECTILE_BEHAVIOR_ZOMBIE_HEAD) {
         [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"zombieBrainSquishAnim"];
+    } else if(_behavior == PROJECTILE_BEHAVIOR_ZOMBIE_HEART) {
+        [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"zombieHeartSquishAnim"];
     }
 }
 
@@ -251,7 +263,7 @@
         if ([_sprite reachedMinAfterModifyAlpha:-2.0f * dt]) {
             [[_sprite getCCSprite] setVisible:NO];
         } else {
-            if (_behavior!=PROJECTILE_BEHAVIOR_ZOMBIE_HEAD) {
+            if (_behavior!=PROJECTILE_BEHAVIOR_ZOMBIE_HEAD && _behavior!=PROJECTILE_BEHAVIOR_ZOMBIE_HEART) {
                 [_sprite move:CGPointMake(100.0f *dt, 200.0f*dt)];                
             }
         }

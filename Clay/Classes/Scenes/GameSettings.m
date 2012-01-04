@@ -30,15 +30,13 @@ static GameSettings *_shared = nil;
 -(id)init
 {
     if ((self=[super init])) {
-        _settings = [[NSMutableDictionary alloc] initWithCapacity:30];
-        _savedSettings = [[NSMutableDictionary alloc] initWithCapacity:30];
+        NSDictionary *gameSettings = loadData(@"savedSettings");
+        _savedSettings = [[NSMutableDictionary alloc] initWithDictionary:gameSettings];
+        _settings = [[NSMutableDictionary alloc] initWithDictionary:gameSettings];
         [self loadFromSettingsPlist];
         _usingHighResolutionGraphics = [self calculateShouldUseHighRes];
         [self setStutterMode:SETTING_IS_STUTTER_MODE_DEFAULT];
         
-        NSDictionary *gameSettings = loadData(@"gameSettings");
-        
-
     }
     return self;
 }
@@ -130,7 +128,7 @@ static GameSettings *_shared = nil;
 
 -(void)saveToDisk
 {
-    
+    saveData(_savedSettings, @"savedSettings");
 }
 
 -(void)dealloc

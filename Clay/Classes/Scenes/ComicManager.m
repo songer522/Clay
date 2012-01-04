@@ -163,8 +163,6 @@ static ComicManager *_shared = nil;
                 [gameLayer initForLevel];
                 gameLayer.inComic = false;
                 
-                
-                
                 bool isRestarting = [[[GameSettings shared] getGlobalForKey:@"restarting"] boolValue];
                 if (!isRestarting) {
                     //[[CCDirector sharedDirector] startAnimation];                    
