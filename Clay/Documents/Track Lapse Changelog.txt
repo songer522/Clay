@@ -1,5 +1,30 @@
 Track Lapse Changelog
 
+Build 120103.03
+==================
+
+* Global - 6 new achievements added
+* Main Menu - Continue now shows up and saves the progress of your story mode game
+* Level 4 - handbag obstacle now hurts you even when you're shuffling
+* Level 5 - new timed insane mode level
+* Level 5 - the biker overlapping the checkpoints has been fixed
+* Level 6 - zombie biker added
+* Level 6 - female zombies no longer lose their heads, but instead a brain falls out.
+* Level 6 - male zombies added, and when they are shot or hit their heart flies out.
+* Level 6 - zombie pigeons added
+* Level 6 - level graphics have been redone to remove a lot of the blood from the look of the level
+* Level 6 - layers merged
+
+Build 120103.02
+==================
+
+* Level 5 - crashed issues from yesterday's build fixed
+
+Build 120103.01
+==================
+
+* Attempted fix of level 5 crash issues, turned out not to work
+
 Build 120102.01
 ==================
 
