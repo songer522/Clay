@@ -60,6 +60,15 @@
     [[SoundEngine shared] playSound:@"jimShipCharge"];
 }
 
+-(void)triggerAttack2 //giant cannon
+{
+    [[_megaCannonAnim getCCSprite] setVisible:YES];
+    [[AnimationController sharedController] replaceSprite:_megaCannonAnim withAnimationNamed:@"computerMegaCannonAnim"];
+    _waitToShoot = 0.55;
+    [[SoundEngine shared] playSound:@""];
+    
+}
+
 -(void)shootBullet
 {
     [[SoundEngine shared] playSound:@"jimShipShoot"];
@@ -72,6 +81,18 @@
     CGPoint shipWorldPos = [[Camera sharedCamera] convertToWorldXY:[_sprite getScreenPosition]];    
     [bullet setPosition:CGPointMake(shipWorldPos.x - 120,shipWorldPos.y + 20.0f)];
     [bullet reset];
+}
+
+-(void)shootMegaCannon
+{
+    [[SoundEngine shared] playSound:@"jimShipShoot"];
+
+    [[_megaCannonAnim getCCSprite] setVisible:NO];
+    
+    CGPoint shipWorldPos = [[Camera sharedCamera] convertToWorldXY:[_sprite getScreenPosition]];    
+    [_megaCannonBullet setPosition:CGPointMake(shipWorldPos.x - 120,shipWorldPos.y + 20.0f)];
+    [_megaCannonBullet reset];
+    
 }
 
 -(void)update:(float)dt
@@ -100,6 +121,12 @@
     
     [_sprite setScreenPosition:CGPointMake(position.x + _velocity.x, position.y + _velocity.y)];
     
+    [self updateBullets:dt];
+    
+    }
+
+-(void)updateBullets:(float)dt
+{
     for (Projectile *_bullet in _bullets) {
         if ([_bullet isActive]) {
             
@@ -113,13 +140,13 @@
             [_bullet update:dt];
             Player *_player = [[LayerManager sharedLayers] getPlayer];
             Level *currentLevel = [[LevelManager shared] currentLevel];
-          
+            
             
             bool collision = [currentLevel testCollisionWithGameObject:_bullet Source:_player];
             if (collision) {
                 if(![[_player getThirdAction] isActive]) {
                     [_player startCollision:PLAYER_EFFECT_COLLIDE Source:_bullet];
-                 
+                    
                 } else {
                     [[_player getThirdAction] setKilledEnemy:YES];
                     [[SoundEngine shared] playSound:@"deflected"];
@@ -127,9 +154,9 @@
                 [_bullet disable];
             }
             
-          
+            
         }
-                       
+        
     }
 }
 
@@ -143,6 +170,39 @@
         if (_waitToShoot<=0.0f) {
             [self shootBullet];
         }
+    }
+}
+
+-(void)updateMegaCannon:(float)dt
+{
+    CGPoint shipPos = [_sprite getScreenPosition];
+    [_megaCannonAnim setScreenPosition:ccp(shipPos.x + 50,shipPos.y + 12.0f)];
+    
+    if (_waitToShoot > 0.0f) {
+        _waitToShoot -= dt;
+        if (_waitToShoot <= 0.0f) {
+            [self shootMegaCannon];
+        }
+    }
+}
+
+-(void)switchToPhase:(BossPhase)phase
+{
+    switch (phase) {
+        case BOSS_PHASE_NOT_TRIGGERED:
+            _x = 1500;
+            _y = 160;
+            break;
+        case BOSS_PHASE_ENTERING:
+            _target = ccp(300,160);
+            break;
+        case BOSS_PHASE_EXITING:
+            _target = ccp(1500,160);
+            break;
+        case BOSS_PHASE_ATTACKING:
+            break;
+        default:
+            break;
     }
 }
 

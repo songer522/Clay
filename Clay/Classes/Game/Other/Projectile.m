@@ -65,6 +65,12 @@
                 [[_sprite getCCSprite] setVisible:NO];
                 _offscreenPadding = 20;
                 break;
+            case PROJECTILE_BEHAVIOR_BOSS_SHIP_MEGACANNON:
+                _sprite = [Sprite spriteFromFrameCacheWithName:@"Level7_JimSpaceCraft_Atkv2_7.png"];
+                [[_sprite getCCSprite] setVisible:NO];
+                [_sprite getCCSprite].anchorPoint = ccp(0.5f,0.5f);
+                _offscreenPadding = 20;
+                break;
             case PROJECTILE_BEHAVIOR_ZOMBIE_HEAD:
                 //_sprite = [Sprite spriteFromFrameCacheWithName:@"F_Zombie_Head.png"];
                 _sprite = [Sprite spriteFromFrameCacheWithName:@"Level6_Brain_1.png"];
@@ -118,6 +124,9 @@
     switch (_behavior) {
         case PROJECTILE_BEHAVIOR_BULLET:
             _vx = 800.0f;
+            break;
+        case PROJECTILE_BEHAVIOR_BOSS_SHIP_MEGACANNON:
+            _vx = 400.0f;
             break;
         case PROJECTILE_BEHAVIOR_ZOMBIE_HEAD:
             _vx = 250 + rand()%100;
@@ -293,20 +302,6 @@
             }
         }
 
-        
-        //want the brain to roll to stop right side up
-        /*if (_behavior == PROJECTILE_BEHAVIOR_ZOMBIE_HEAD) {
-            if(_angularVelocity<=4.0f && _angle!=0.0f) {
-                int testAngle = (int)_angle;
-                if (((testAngle % 360) + 4) < 8) {
-                    _angle = 0.0f;
-                    _angularVelocity = 0.0f;
-                } else {
-                    _angularVelocity = 1.0f;
-                }
-            }
-        }*/
-        
         CGPoint newPosition = CGPointMake(x, y);
         [self setPosition:newPosition];
         

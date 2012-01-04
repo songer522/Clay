@@ -424,6 +424,18 @@
                     
                     trigger.canBeReset = true;
                     [_triggers addObject:trigger];
+                } else if([special isEqualToString:@"bossShipEnters"]) {
+                    Trigger *trigger = [[Trigger alloc] init];
+                    trigger.position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
+                    trigger.type = TRIGGER_SHIP_ENTER;
+                    trigger.canBeReset = false;
+                    [_triggers addObject:trigger];
+                } else if([special isEqualToString:@"bossShipExits"]) {
+                    Trigger *trigger = [[Trigger alloc] init];
+                    trigger.position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
+                    trigger.type = TRIGGER_SHIP_EXIT;
+                    trigger.canBeReset = false;
+                    [_triggers addObject:trigger];
                 }
             }
 

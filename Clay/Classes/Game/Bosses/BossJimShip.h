@@ -11,14 +11,7 @@
 
 @class Sprite;
 @class Level;
-
-typedef enum {
-    RETRO_HURDLE = 0,
-    RETRO_PIG = 1,
-    RETRO_BIRD = 2,
-    RETRO_GARBAGE = 3,
-    RETRO_ZOMBIE = 4
-}RetroObstacleType;
+@class Projectile;
 
 @interface BossJimShip : Boss
 {
@@ -26,11 +19,21 @@ typedef enum {
     
     Sprite *_sprite;
     Sprite *_cannonAnim;
+    Sprite *_megaCannonAnim;
     CGPoint _velocity;
     CGRect _targetOnScreen;
     
     NSMutableArray *_bullets;
+    Projectile *_megaCannonBullet;
+
+    float _x;
+    float _y;
     
+    BossPhase _phase;
+    
+    CGPoint _target;
+    
+
     int xthrust;
     int ythrust;
     
@@ -45,5 +48,9 @@ typedef enum {
 
 -(void)updateVelocity:(float)dt;
 -(void)updateCannon:(float)dt;
+-(void)updateMegaCannon:(float)dt;
+-(void)updateBullets:(float)dt;
 -(void)shootBullet;
+-(void)shootMegaCannon;
+-(void)switchToPhase:(BossPhase)phase;
 @end
