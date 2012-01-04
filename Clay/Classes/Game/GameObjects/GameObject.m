@@ -321,6 +321,13 @@
             }
             break;
         case COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENED:
+            if (!isProjectile) {
+                _alpha = 1.2f;
+                _fadeout = true;
+            } else {
+                _collided = false;
+            }
+            break;
         case COLLISION_BEHAVIOR_FIREBALL_LANDED:
         case COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR:
         case COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR_WAITTOSHOOT:
@@ -580,12 +587,12 @@
             frame = [[_sprite getAnimation] getCurrentFrameNumber];
             if (frame<8) {
                 int heightOffset = MAX(0,frame - 4) * 13.0f;
-                [self setBoundingBox:CGRectMake(50,2,25,30 + heightOffset)];
+                [self setBoundingBox:CGRectMake(40,2,25,30 + heightOffset)];
             } else if(frame == 8)
             {
                 _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENED;
                 [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"zombieMysteryBoxOpenedAnim"];
-                [self setBoundingBox:CGRectMake(50, 2, 25, 90)];
+                [self setBoundingBox:CGRectMake(40, 2, 25, 90)];
             }
             break;
         case COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_FALLS:
@@ -1144,7 +1151,7 @@
     else if(_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_UP || _currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENING || _currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENED || _currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_FALLS) {
         _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_UP;
         _collideBehavior = COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENING;
-        [self setBoundingBox:CGRectMake(70, 2, 25, 14)];
+        [self setBoundingBox:CGRectMake(70, 2, 14, 25)];
     }
     else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_SLOW) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;     
