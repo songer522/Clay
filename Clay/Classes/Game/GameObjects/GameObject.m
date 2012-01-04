@@ -49,7 +49,7 @@
 @synthesize persistsBetweenRegions = _persistsBetweenRegions;
 @synthesize slowTimeModifier = _slowTimeModifier;
 @synthesize isHurdle = _isHurdle;
-
+@synthesize collideWithPlayer =_collideWithPlayer;
 @synthesize hasAppeared = _hasAppeared;
 @synthesize useDefaultBatchNode = _useDefaultBatchNode;
 
@@ -76,6 +76,7 @@
         _angle = 0;
         _alpha = 1.0f;
         _fadeout = false;
+        _collideWithPlayer=false;
         _offsetX = 0;
         _rate = 1.0f;
         _offsetY = 0;
@@ -243,6 +244,9 @@
             _collided = true;
             break;
         case COLLISION_BEHAVIOR_ZOMBIE_HEADLESS:
+            
+            if(!_collideWithPlayer)
+            {
             [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"femaleHeadlessZombieAnim"];
             _alpha = 1.5f;
             _fadeout = true;
@@ -251,9 +255,19 @@
             [_projectile setPosition:CGPointMake(_x, _y + 41)];
             [_projectile setBoundingBox:CGRectMake(15, 33, 14, 35)];
             [[[[LayerManager sharedLayers] getPlayer] getThirdAction] setKilledEnemy:YES];
+            }
+            else
+            {
+                _alpha = 1.5f;
+                _fadeout = true;
+                _collideWithPlayer=false;
+            }
             //[self shotZombie];
             break;
         case COLLISION_BEHAVIOR_MALEZOMBIE_FADE:
+            
+            if(!_collideWithPlayer)
+            {
             [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"zombieMaleHeadlessAnim"];
             _alpha = 1.5f;
             _fadeout = true;
@@ -262,6 +276,14 @@
             [_projectile setPosition:CGPointMake(_x, _y + 11)];
             [_projectile setBoundingBox:CGRectMake(15, 33, 14, 35)];
             [[[[LayerManager sharedLayers] getPlayer] getThirdAction] setKilledEnemy:YES];
+            }
+            
+            else 
+            {
+                _alpha = 1.5f;
+                _fadeout = true;
+                _collideWithPlayer = false;
+            }
             //[self shotZombie];
             break;
         case COLLISION_BEHAVIOR_FIRE_DEMON:
@@ -975,6 +997,7 @@
         [_boss reset];
         return;
     }
+    _collideWithPlayer=false;
     _isActive = true;
     _angle = 0.0f;
     _vx = 0;

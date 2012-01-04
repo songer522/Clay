@@ -151,6 +151,7 @@ typedef enum {
 -(void)updateSlow:(float)dt;
 -(void)updateTurbo:(float)dt;
 
+-(bool)isShooting;
 -(bool)isMoving;
 
 -(void)startVaccuum;

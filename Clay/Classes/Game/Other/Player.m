@@ -609,6 +609,13 @@
     return _thirdAction;
 }
 
+
+-(bool)isShooting
+{
+    return  [_skin isCurrentAnimationOfType:PLAYER_ANIM_SHOOT];
+}
+
+
 -(bool)isMoving
 {
     //return (!_isTripping && _waitToGetUp <= 0.0f);
