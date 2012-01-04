@@ -600,12 +600,7 @@
             { 
                 collision = [self testCollisionWithGameObject:obstacle BoundingBox:sourceBoundingBox];
                 if (collision) {
-                    if([obstacle getCollisionBehavior] == COLLISION_BEHAVIOR_MALEZOMBIE_FADE || [obstacle getCollisionBehavior] == COLLISION_BEHAVIOR_ZOMBIE_HEADLESS)
-                    {
-                        obstacle.collideWithPlayer=true;
-                    }
-
-                    [_player startCollision:[obstacle startCollision] Source:obstacle];
+                    [_player startCollision:[obstacle startCollision:false] Source:obstacle];
                     [self obstacleGotHitBy:obstacle];
                     
                 }
@@ -690,7 +685,7 @@
                     }
                     
                 }
-                [obstacle startCollision];
+                [obstacle startCollision:true];
                 break;
             }
         }        

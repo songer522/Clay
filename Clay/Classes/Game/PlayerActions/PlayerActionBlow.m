@@ -96,7 +96,7 @@
         {
             if([[[LevelManager shared] currentLevel] testCollisionWithGameObject:object Source:_windProjectile])
             {
-                [object startCollision];
+                [object startCollision:false];
                 if(!object.hasAppeared)
                     [self freezeFireDemon:object];
             }

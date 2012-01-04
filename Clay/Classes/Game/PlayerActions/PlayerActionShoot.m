@@ -16,7 +16,7 @@
 #define PLAYER_ACTION_SHOOT_MAX_BULLETS 3
 
 #define PLAYER_ACTION_SHOOT_OFFSET_BULLET_X 0
-#define PLAYER_ACTION_SHOOT_OFFSET_BULLET_Y 45
+#define PLAYER_ACTION_SHOOT_OFFSET_BULLET_Y 42
 #define PLAYER_ACTION_SHOOT_OFFSET_BULLET_X_LOWRES 0
 #define PLAYER_ACTION_SHOOT_OFFSET_BULLET_Y_LOWRES 77
 
@@ -33,9 +33,9 @@
     Projectile *b1 = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_BULLET];
     Projectile *b2 = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_BULLET];
     Projectile *b3 = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_BULLET];
-    [b1 setBoundingBox:CGRectMake(50, 0, 50, 20)];
-    [b2 setBoundingBox:CGRectMake(50, 0, 50, 20)];
-    [b3 setBoundingBox:CGRectMake(50, 0, 50, 20)];
+    [b1 setBoundingBox:CGRectMake(50, 200, 50, 420)];
+    [b2 setBoundingBox:CGRectMake(50, 200, 50, 420)];
+    [b3 setBoundingBox:CGRectMake(50, 200, 50, 420)];
     
     _bullets = [[NSArray alloc] initWithObjects:b1,b2,b3,nil];
     _currentBulletIndex = 0;

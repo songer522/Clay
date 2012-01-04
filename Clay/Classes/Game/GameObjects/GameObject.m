@@ -179,7 +179,12 @@
     }
 }
 
--(PlayerEffect) startCollision
+-(void)startCollision
+{
+    NSLog(@"GameObject.m - startCollision -> shouldn't get here");
+}
+
+-(PlayerEffect) startCollision:(bool)isProjectile
 {
     if (_currentBehavior == COLLISION_BEHAVIOR_HEN_KICKED) { return PLAYER_EFFECT_NONE; }
     
@@ -240,44 +245,42 @@
             break;
         case COLLISION_BEHAVIOR_ZOMBIE_HEADLESS:
             
-            if(!_collideWithPlayer)
+            if(isProjectile)
             {
-            [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"femaleHeadlessZombieAnim"];
-            _alpha = 1.5f;
-            _fadeout = true;
-            _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_ZOMBIE_HEAD];
-            [_projectile reset];
-            [_projectile setPosition:CGPointMake(_x, _y + 41)];
-            [_projectile setBoundingBox:CGRectMake(15, 33, 14, 35)];
-            [[[[LayerManager sharedLayers] getPlayer] getThirdAction] setKilledEnemy:YES];
+                [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"femaleHeadlessZombieAnim"];
+                _alpha = 1.5f;
+                _fadeout = true;
+                _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_ZOMBIE_HEAD];
+                [_projectile reset];
+                [_projectile setPosition:CGPointMake(_x, _y + 41)];
+                [_projectile setBoundingBox:CGRectMake(15, 33, 14, 35)];
+                [[[[LayerManager sharedLayers] getPlayer] getThirdAction] setKilledEnemy:YES];
             }
             else
             {
                 _alpha = 1.5f;
                 _fadeout = true;
-                _collideWithPlayer=false;
             }
             //[self shotZombie];
             break;
         case COLLISION_BEHAVIOR_MALEZOMBIE_FADE:
             
-            if(!_collideWithPlayer)
+            if(isProjectile)
             {
-            [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"zombieMaleHeadlessAnim"];
-            _alpha = 1.5f;
-            _fadeout = true;
-            _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_ZOMBIE_HEART];
-            [_projectile reset];
-            [_projectile setPosition:CGPointMake(_x, _y + 11)];
-            [_projectile setBoundingBox:CGRectMake(15, 33, 14, 35)];
-            [[[[LayerManager sharedLayers] getPlayer] getThirdAction] setKilledEnemy:YES];
+                [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"zombieMaleHeadlessAnim"];
+                _alpha = 1.5f;
+                _fadeout = true;
+                _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_ZOMBIE_HEART];
+                [_projectile reset];
+                [_projectile setPosition:CGPointMake(_x, _y + 11)];
+                [_projectile setBoundingBox:CGRectMake(15, 33, 14, 35)];
+                [[[[LayerManager sharedLayers] getPlayer] getThirdAction] setKilledEnemy:YES];
             }
             
             else 
             {
                 _alpha = 1.5f;
                 _fadeout = true;
-                _collideWithPlayer = false;
             }
             //[self shotZombie];
             break;
@@ -305,6 +308,19 @@
             _fadeout = true;
             [[SoundEngine shared] playSound:@"waterPufferFish"];
             break;
+        case COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENING:
+            [self setOriginalAnimation:@"zombieMysteryBoxUpAnim"];                                
+            if (isProjectile) {
+                [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"zombieMysteryBoxOpeningAnim"];
+                _collideBehavior = COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENED;
+                _collided = false;
+            } else {
+                [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"zombieMysteryBoxFallsAnim"];
+                _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_FALLS;
+                _collideBehavior = COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENED;
+            }
+            break;
+        case COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENED:
         case COLLISION_BEHAVIOR_FIREBALL_LANDED:
         case COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR:
         case COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR_WAITTOSHOOT:
@@ -444,6 +460,8 @@
 
 -(void)updateCollisionBehavior:(float)dt
 {
+    int frame;
+    
     switch (_currentBehavior) {
             
         ///////////////////////////
@@ -557,8 +575,29 @@
             break;
         case COLLISION_BEHAVIOR_ZOMBIE_WALK_FAST:
             [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-60.0f];
-            break;            
-
+            break;
+        case COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENING:
+            frame = [[_sprite getAnimation] getCurrentFrameNumber];
+            if (frame<8) {
+                int heightOffset = MAX(0,frame - 4) * 13.0f;
+                [self setBoundingBox:CGRectMake(50,2,25,30 + heightOffset)];
+            } else if(frame == 8)
+            {
+                _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENED;
+                [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"zombieMysteryBoxOpenedAnim"];
+                [self setBoundingBox:CGRectMake(50, 2, 25, 90)];
+            }
+            break;
+        case COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_FALLS:
+            frame = [[_sprite getAnimation] getCurrentFrameNumber];
+            if(frame == 4)
+            {
+                _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENED;
+                [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"zombieMysteryBoxFallenAnim"];
+                _alpha = 1.2f;
+                _fadeout = true;
+            }
+            break;
                     
         ///////////////////////////
         //LEVEL 7 - COMPUTER RUN
@@ -1102,6 +1141,11 @@
         [self getCCSprite].visible = false;
 
     }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_UP || _currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENING || _currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENED || _currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_FALLS) {
+        _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_UP;
+        _collideBehavior = COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENING;
+        [self setBoundingBox:CGRectMake(70, 2, 25, 14)];
+    }
     else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_SLOW) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;     
     }
@@ -1288,6 +1332,11 @@
     else if([behavior isEqualToString:@"zombieMale"]) {
         _currentBehavior = COLLISION_BEHAVIOR_MALEZOMBIE_WALK;
         _collideBehavior = COLLISION_BEHAVIOR_MALEZOMBIE_FADE;
+        _aggressiveCanHit = true;
+    }
+    else if([behavior isEqualToString:@"zombieMysteryBox"]) {
+        _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_UP;
+        _collideBehavior = COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENING;
         _aggressiveCanHit = true;
     }
     else {
