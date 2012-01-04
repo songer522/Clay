@@ -69,6 +69,7 @@
         GameObjectController *factory = [LevelManager shared].gameObjectFactory;
         [factory initializeGameObject:self Name:@"player" AddToLayer:YES];
         
+        _isFallingintoDeathPit=false;
         _isJumping = false;
         _isDead = false;
         _isInMidAir = false;
@@ -403,6 +404,23 @@
     _adjustX = xAmount;
 }
 
+-(void)countTripping
+{
+   int maxTripping=50;
+    if ([GCState sharedInstance].timesFellDown < maxTripping) {
+        [GCState sharedInstance].timesFellDown++;
+        
+        double pctComplete = ((double) [GCState sharedInstance].timesFellDown / (int)maxTripping) * 100.0;
+        if(pctComplete == 100.0)
+        {
+            //[[GCState sharedInstance] save];
+            [[GCHelper sharedInstance] reportAchievement:gcAchievementFalldown50times percentComplete:pctComplete];
+        }
+    }
+
+}
+
+
 -(void)startPlayerCollision:(bool)shouldForceFalling;
 {
     if(_speed.inTurbo)
@@ -423,6 +441,9 @@
     if ((_isJumping && [_speed inTurbo])||shouldForceFalling) {
         [_skin setPlayerAnimation:PLAYER_ANIM_TRIPPING ForSprite:_sprite];
         _isTripping = true;
+       
+        [self countTripping];
+       
         if (shouldForceFalling) { //so far only used when kicked by final jim
             _vy = -250.0f;
             _vx = 20.0f;
@@ -463,7 +484,8 @@
     GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
     [[gameLayer getHud] setEnabled:true ForButton:HUD_BUTTON_JUMP];
     
-    [[[[gameLayer getHud] getSprintButton] getCCSpriteForOverlay] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"UI_Button_GreenLight_7.png"]];  
+    [[[[gameLayer getHud] getSprintButton] getCCSpriteForOverlay] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"UI_Button_GreenLight_7.png"]]; 
+    _isFallingintoDeathPit=false;
     _isJumping = false;
     _isTripping = false;
     _isInMidAir = false;
@@ -730,6 +752,22 @@
    */  
      
 }
+-(void)countDeathPitFell
+{
+    int maxFall =10;
+    if ([GCState sharedInstance].timesFellIntoDeathPit < maxFall) {
+        [GCState sharedInstance].timesFellIntoDeathPit++;
+        
+        double pctComplete = ((double) [GCState sharedInstance].timesFellIntoDeathPit / (int)maxFall) * 100.0;
+        if(pctComplete == 100.0)
+        {
+            [[GCState sharedInstance] save];
+            [[GCHelper sharedInstance] reportAchievement:gcAchievementFallIntoDeathPit10times percentComplete:pctComplete];
+        }
+    }
+
+}
+
 
 -(void)updatePitFalling:(float)dt
 {
@@ -738,6 +776,13 @@
     if (state == COLLISION_STATE_DEATHPIT) {
         _vx = 0.0f; //if in the death pit he shouldn't move forward
         [_speed stop];
+        if(!_isFallingintoDeathPit)
+        {
+             [self countDeathPitFell];
+            _isFallingintoDeathPit = true;
+        }
+
+       
         [self dieIfFallenIntoPit]; //is it safe to put this under updateJump method?
     }
 }

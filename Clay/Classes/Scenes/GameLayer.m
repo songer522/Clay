@@ -495,6 +495,9 @@
     int maxZombies = 300;
     int maxBlocks = 75;
     int maxGetHit =10;
+    int maxDeathPitFalling = 10;
+    int maxTripping = 50;
+    int maxWhooed = 100;
     double pctComplete = ((double)[GCState sharedInstance].timesDied / (int)maxTimesToDie) * 100.0;
     //NSLog(@"diedTimes:%d",[GCState sharedInstance].timesDied );
     //NSLog(@"complete percent %f",pctComplete);
@@ -632,6 +635,29 @@
         [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10bats percentComplete:pctComplete19];
     }
     
+    double pctComplete20 = ((double) [GCState sharedInstance].timesFellIntoDeathPit / (int)maxDeathPitFalling) * 100.0;
+    
+    if(pctComplete20 < 100.0)
+    {
+        //[[GCState sharedInstance] save];
+        [[GCHelper sharedInstance] reportAchievement:gcAchievementFallIntoDeathPit10times percentComplete:pctComplete20];
+    }
+    double pctComplete21 = ((double) [GCState sharedInstance].timesFellDown / (int)maxTripping) * 100.0;
+    
+    if(pctComplete21 < 100.0)
+    {
+        //[[GCState sharedInstance] save];
+        [[GCHelper sharedInstance] reportAchievement:gcAchievementFalldown50times percentComplete:pctComplete21];
+    }
+    double pctComplete22 = ((double) [GCState sharedInstance].timesFellDown / (int)maxWhooed) * 100.0;
+    
+   // if(pctComplete22 < 100.0 && ([_level.name isEqualToString:@"level1"] || [_level.name isEqualToString:@"level3"]||[_level.name isEqualToString:@"level5"]||[_level.name isEqualToString:@"level9"]))
+    if (pctComplete22 < 100.0)
+    {
+        //[[GCState sharedInstance] save];
+        [[GCHelper sharedInstance] reportAchievement:gcAchievementFalldown50times percentComplete:pctComplete22];
+    }
+
 
 
 

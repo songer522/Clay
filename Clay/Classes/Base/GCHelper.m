@@ -88,7 +88,7 @@ static GCHelper *sharedHelper = nil;
                        if ([GKLocalPlayer localPlayer].isAuthenticated && !userAuthenticated) {
                            //NSLog(@"Authentication changed: player authenticated.");
                            userAuthenticated = TRUE;
-                           //[self resendData];
+                           [self resendData];
                        } else if (![GKLocalPlayer localPlayer].isAuthenticated && userAuthenticated) {
                            //NSLog(@"Authentication changed: player not authenticated.");
                            userAuthenticated = FALSE;
@@ -172,6 +172,7 @@ static GCHelper *sharedHelper = nil;
     //NSLog(@"gc - reportachievement");
     GKAchievement* achievement = [[[GKAchievement alloc] initWithIdentifier:identifier] autorelease];
     achievement.percentComplete = percentComplete;
+
     [achievementsToReport addObject:achievement];
     [self save];
     if (!gameCenterAvailable || !userAuthenticated) {

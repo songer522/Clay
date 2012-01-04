@@ -879,11 +879,11 @@
         if ([GCState sharedInstance].hurdlesHit < maxHit) {
             [GCState sharedInstance].hurdlesHit++;
             
-            double pctComplete4 = ((double) [GCState sharedInstance].hurdlesHit / (int)maxHit) * 100.0;
-            if(pctComplete4 == 100.0)
+            double pctComplete = ((double) [GCState sharedInstance].hurdlesHit / (int)maxHit) * 100.0;
+            if(pctComplete == 100.0)
             {
-               // [[GCState sharedInstance] save];
-                [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10hurdles percentComplete:pctComplete4];
+               //[[GCState sharedInstance] save];
+                [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10hurdles percentComplete:pctComplete];
             }
         }
     }
@@ -894,11 +894,11 @@
         if ([GCState sharedInstance].cowsHit < maxHit) {
             [GCState sharedInstance].cowsHit++;
             
-            double pctComplete5 = ((double) [GCState sharedInstance].cowsHit / (int)maxHit) * 100.0;
-            if(pctComplete5 == 100.0)
+            double pctComplete = ((double) [GCState sharedInstance].cowsHit / (int)maxHit) * 100.0;
+            if(pctComplete == 100.0)
             {
-               // [[GCState sharedInstance] save];
-                [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10cows percentComplete:pctComplete5];
+              //[[GCState sharedInstance] save];
+                [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10cows percentComplete:pctComplete];
             }
         }
 
@@ -908,11 +908,11 @@
         if ([GCState sharedInstance].birdsHit < maxHit) {
             [GCState sharedInstance].birdsHit++;
             
-            double pctComplete6 = ((double) [GCState sharedInstance].birdsHit / (int)maxHit) * 100.0;
-            if(pctComplete6 == 100.0)
+            double pctComplete = ((double) [GCState sharedInstance].birdsHit / (int)maxHit) * 100.0;
+            if(pctComplete == 100.0)
             {
                // [[GCState sharedInstance] save];
-                [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10birds percentComplete:pctComplete6];
+                [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10birds percentComplete:pctComplete];
             }
         }
         
@@ -939,11 +939,11 @@
         if ([GCState sharedInstance].dogsHit < maxHit) {
             [GCState sharedInstance].dogsHit++;
             
-            double pctComplete8 = ((double) [GCState sharedInstance].dogsHit / (int)maxHit) * 100.0;
-            if(pctComplete8 == 100.0)
+            double pctComplete = ((double) [GCState sharedInstance].dogsHit / (int)maxHit) * 100.0;
+            if(pctComplete == 100.0)
             {
-               // [[GCState sharedInstance] save];
-                [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10dogs percentComplete:pctComplete8];
+                //[[GCState sharedInstance] save];
+                [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10dogs percentComplete:pctComplete];
             }
         }
         
@@ -964,16 +964,59 @@
         
     }
      */
+    else if([_name isEqualToString:@"level7"])
+    {
+        if ([GCState sharedInstance].viruesHit < maxHit) {
+            [GCState sharedInstance].viruesHit++;
+            
+            double pctComplete = ((double) [GCState sharedInstance].viruesHit / (int)maxHit) * 100.0;
+            if(pctComplete == 100.0)
+            {
+               // [[GCState sharedInstance] save];
+                [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10virues percentComplete:pctComplete];
+            }
+        }
+        
+    }
+    else if([obstacle getCollisionBehavior] == COLLISION_BEHAVIOR_FIRE_DEMON)
+    {
+        if ([GCState sharedInstance].fireDemonHit < maxHit) {
+            [GCState sharedInstance].fireDemonHit++;
+            
+            double pctComplete = ((double) [GCState sharedInstance].fireDemonHit / (int)maxHit) * 100.0;
+            if(pctComplete == 100.0)
+            {
+                //[[GCState sharedInstance] save];
+                [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10firedemon percentComplete:pctComplete];
+            }
+        }
+        
+    }
+
+    else if([obstacle getCollisionBehavior] == COLLISION_BEHAVIOR_FROG_SQUASH)
+    {
+        if ([GCState sharedInstance].frogsHit < maxHit) {
+            [GCState sharedInstance].frogsHit++;
+            
+            double pctComplete = ((double) [GCState sharedInstance].frogsHit / (int)maxHit) * 100.0;
+            if(pctComplete == 100.0)
+            {
+                //[[GCState sharedInstance] save];
+                [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10frogs percentComplete:pctComplete];
+            }
+        }
+        
+    }
     else if([obstacle getCollisionBehavior] == COLLISION_BEHAVIOR_WATER_ANGLERFISH || [obstacle getCollisionBehavior] == COLLISION_BEHAVIOR_WATER_PUFFERFISH || [obstacle getCollisionBehavior] == COLLISION_BEHAVIOR_WATER_SEAHORSE)
     {
         if ([GCState sharedInstance].fishHit < maxHit) {
             [GCState sharedInstance].fishHit++;
             
-            double pctComplete10 = ((double) [GCState sharedInstance].fishHit / (int)maxHit) * 100.0;
-            if(pctComplete10 == 100.0)
+            double pctComplete = ((double) [GCState sharedInstance].fishHit / (int)maxHit) * 100.0;
+            if(pctComplete == 100.0)
             {
                 //[[GCState sharedInstance] save];
-                [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10fish percentComplete:pctComplete10];
+                [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10fish percentComplete:pctComplete];
             }
         }
         
@@ -984,11 +1027,11 @@
         if ([GCState sharedInstance].batHit < maxHit) {
             [GCState sharedInstance].batHit++;
             
-            double pctComplete11 = ((double) [GCState sharedInstance].batHit / (int)maxHit) * 100.0;
-            if(pctComplete11 == 100.0)
+            double pctComplete = ((double) [GCState sharedInstance].batHit / (int)maxHit) * 100.0;
+            if(pctComplete == 100.0)
             {
-               // [[GCState sharedInstance] save];
-                [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10bats percentComplete:pctComplete11];
+               //[[GCState sharedInstance] save];
+                [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10bats percentComplete:pctComplete];
             }
         }
         
