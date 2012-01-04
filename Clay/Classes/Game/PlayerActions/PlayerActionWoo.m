@@ -14,6 +14,9 @@
 #import "GameLayer.h"
 #import "HudLayer.h"
 #import "RunningSpeed.h"
+#import "GCState.h"
+#import "GCHelper.h"
+
 
 @implementation PlayerActionWoo
 
@@ -41,6 +44,23 @@
     }
 }
 
+-(void)countWhoo
+{
+    int maxWhoo =10;
+    if ([GCState sharedInstance].timesWhooed < maxWhoo) {
+        [GCState sharedInstance].timesWhooed++;
+        
+        double pctComplete = ((double) [GCState sharedInstance].timesWhooed / (int)maxWhoo) * 100.0;
+        if(pctComplete == 100.0)
+        {
+            //[[GCState sharedInstance] save];
+            [[GCHelper sharedInstance] reportAchievement:gcAchievementWhoo100times percentComplete:pctComplete];
+        }
+    }
+
+}
+
+
 -(void)endAction
 {
     if(_isCheering)
@@ -50,6 +70,7 @@
     }
     [_parent changeHealth:1];
     [[_parent getSpeed] setVelocityModifier:1.0f];
+    [self countWhoo];
        [super endAction];
 }
 

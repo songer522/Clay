@@ -69,6 +69,12 @@ static GCState *sharedInstance = nil;
     [encoder encodeInt:frogsHit forKey:@"frogsHit"];
     [encoder encodeInt:fishHit forKey:@"fishHit"];
     [encoder encodeInt:batHit forKey:@"batHit"];
+    
+    
+    [encoder encodeInt:enimiesCleared forKey:@"enimiesCleared"];
+    [encoder encodeInt:timesWhooed forKey:@"timesWhooed"];
+    [encoder encodeInt:timesFellIntoDeathPit forKey:@"timesFellIntoDeathPit"];
+    [encoder encodeInt:timesFellDown forKey:@"timesFellDown"];
    
      
      
@@ -100,7 +106,7 @@ static GCState *sharedInstance = nil;
         cowsHit = [decoder decodeIntForKey:@"cowsHit"];
         dancersHit = [decoder decodeIntForKey:@"dancersHit"];
         birdsHit = [decoder decodeIntForKey:@"birdsHit"];
-        dogsHit = [decoder decodeIntForKey:@"hurdlesJumpedOver"];
+        dogsHit = [decoder decodeIntForKey:@"dogsHit"];
         zombiesHit = [decoder decodeIntForKey:@"zombiesHit"];
         viruesHit = [decoder decodeIntForKey:@"viruesHit"];
         fireDemonHit = [decoder decodeIntForKey:@"fireDemonHit"];
@@ -108,7 +114,10 @@ static GCState *sharedInstance = nil;
         fishHit = [decoder decodeIntForKey:@"fishHit"];
         batHit = [decoder decodeIntForKey:@"batHit"];
                 
-        
+        enimiesCleared = [decoder decodeIntForKey:@"enimiesCleared"];
+        timesWhooed = [decoder decodeIntForKey:@"timesWhooed"];
+        timesFellIntoDeathPit = [decoder decodeIntForKey:@"timesFellIntoDeathPit"];
+        timesFellDown = [decoder decodeIntForKey:@"timesFellDown"];
         
         
         completeStoryEasy = [ decoder decodeBoolForKey:@"completeStoryEasy"];

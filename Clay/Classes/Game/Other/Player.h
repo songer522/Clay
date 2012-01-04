@@ -40,7 +40,7 @@ typedef enum {
     float _totalTime; //used for equation-based movement
     
     
-   
+    bool _isFallingintoDeathPit;
     bool _isJumping;
     bool _isTripping;
     bool _firstFrameJumping;
