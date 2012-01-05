@@ -12,12 +12,12 @@
 
 @implementation ComboAttack
 
-+(id)comboAttackWithId:(int)comboId
++(id)comboAttackWithId:(int)comboId Ship:(Sprite*)ship
 {
-    return [[self alloc] initWithId:comboId];
+    return [[self alloc] initWithId:comboId Ship:ship];
 }
 
--(id)initWithId:(int)comboId
+-(id)initWithId:(int)comboId Ship:(Sprite*)ship
 {
     if ((self=[super init])) {
         _sprite = [Sprite spriteWithFile:@"blank.png"];
@@ -25,33 +25,31 @@
         
         [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"computerComboAttackAnim"];
         
+        _bossShip = ship;
         _comboId = comboId;
         
         switch (comboId) {
             case 0:
-                _initialPosition = ccp(0,-20);
-                _attackPosition = ccp(400,250);
-                _endAttackPosition = ccp(-50,-100);
-                _waitToAttack = 0.25f;
+                _initialPosition = ccp(18,-70);
+                _attackPosition = ccp(420,35);
+                _endAttackPosition = ccp(-200,35);
                 break;
             case 1:
-                _initialPosition = ccp(-8,-30);
-                _attackPosition = ccp(420,120);
-                _endAttackPosition = ccp(-200,120);
-                _waitToAttack = 1.5f;
+                _initialPosition = ccp(-18,-70);
+                _attackPosition = ccp(420,65);
+                _endAttackPosition = ccp(-200,65);
                 break;
             case 2:
-                _initialPosition = ccp(8,-30);
-                _attackPosition = ccp(420,80);
-                _endAttackPosition = ccp(-200,80);
-                _waitToAttack = 2.75f;
+                _initialPosition = ccp(0,-45);
+                _attackPosition = ccp(380,220);
+                _endAttackPosition = ccp(-150,0);
                 break;
             default:
                 break;
         }
         
         _isActive = false;
-        
+        [self switchToPhase:COMBO_IDLE];
     }
     return self;    
 }
@@ -70,10 +68,14 @@
 {
     _phase = phase;
     
+    CGPoint shipPos = [_bossShip getScreenPosition];
+    
     switch (_phase) {
         case COMBO_FIRST_APPEAR:
             _alpha = 0.0f;
-            [_sprite setScreenPosition:_initialPosition];
+            _position.x = shipPos.x + _initialPosition.x;
+            _position.y = shipPos.y + _initialPosition.y;
+            [_sprite setScreenPosition:_position];
             [[_sprite getCCSprite] setVisible:YES];
             [_sprite setAlpha:_alpha];
             break;
@@ -81,7 +83,7 @@
             _target = _attackPosition;
             break;
         case COMBO_WAIT_TO_ATTACK:
-            _waitToAttack = _comboId * 1.25f + 0.25f;
+            _waitToAttack = _comboId * 1.1f + 0.25f;
             break;
         case COMBO_ATTACK:
             _target = _endAttackPosition;
@@ -118,7 +120,7 @@
 {
     switch (_phase) {
         case COMBO_FIRST_APPEAR:
-            _alpha += 5.0f * dt;
+            _alpha += 1.5f * dt;
             if (_alpha >= 1.0f) {
                 _alpha = 1.0f;
                 [self finishedPhase];
@@ -147,17 +149,18 @@
 -(bool)moveWithEasing:(float)dt
 {
     bool _atTarget = false;
+ 
+    float dx = (_target.x - _position.x);
+    float dy = (_target.y - _position.y);
+    float distance = sqrtf(dx*dx + dy*dy);
+
+    float magnitude = distance * 2.0f * dt;
     
-    float damping = 0.1f;
-    float px = _position.x;
-    float py = _position.y;
-    float tx = _target.x;
-    float ty = _target.y;
-    
-    _position.x = tx + (tx - px) * (float)pow(damping, dt);
-    _position.y = ty + (ty - py) * (float)pow(damping, dt);    
-    
-    if (_position.x == tx && _position.y == ty) {
+    if (distance > 0.1f) {
+        _position.x += (magnitude * (dx/distance));
+        _position.y += (magnitude * (dy/distance));
+    } else {
+        _position = _target;
         _atTarget = true;
     }
     

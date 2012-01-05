@@ -45,6 +45,7 @@
     _firstUpdate = true;
     
     _isActive = false;
+    _hadReset = false;
 
     _replaceProjectileId = 0;
     [self switchToPhase:BOSS_PHASE_NOT_TRIGGERED];
@@ -80,9 +81,9 @@
 -(void)triggerAttack3 //combo attack
 {
     if (_isActive) {
-        [[_comboAttackWarningAnim getCCSprite] setVisible:YES];
-        [[AnimationController sharedController] replaceSprite:_comboAttackWarningAnim withAnimationNamed:@"computerComboAttackWarningAnim"];
-        _waitToShoot = 0.9f;
+        for (ComboAttack *attack in _comboAttacks) {
+            [attack startAttack];
+        }
         //[[SoundEngine shared] playSound:@""];
     }
 }
@@ -124,15 +125,15 @@
     [_megaCannonBullet reset];
 }
 
--(void)initializeComboAttack
-{
-    
-    
-}
-
 -(void)update:(float)dt
 {
     _frame = [[_sprite getAnimation] getCurrentFrameNumber];
+    
+    if (_hadReset) {
+        [[_sprite getCCSprite] setVisible:YES];
+        _hadReset = false;
+    }
+
     
     //have to reposition for now because the position gets set like three times in gameobject, but for the time being we need to call it
     //so we can put it under the right layers
@@ -145,7 +146,8 @@
         _comboAttackAnim = [Sprite spriteWithFile:@"blank.png"];
         
         for (int i=0; i<3; i++) {
-            
+            ComboAttack *combo = [ComboAttack comboAttackWithId:i Ship:_sprite];
+            [_comboAttacks addObject:combo];
         }
 
         for (int i=0; i<3; i++) {
@@ -164,6 +166,10 @@
         [self updateCannon:dt];
         [self updateMegaCannon:dt];
         [self updateMegaBullet:dt];
+        
+        for (ComboAttack *attack in _comboAttacks) {
+            [attack update:(float)dt];
+        }
         
         CGPoint position = [_sprite getPosition];        
         [_sprite setScreenPosition:CGPointMake(position.x + _velocity.x, position.y + _velocity.y)];
@@ -315,6 +321,7 @@
         _waitToMegaCannon = -1.0f;
         [_megaCannonBullet disable];
         [[_sprite getCCSprite] setVisible:YES]; //probably set not visible during gameobject reset
+        _hadReset = true;
     }
 }
 

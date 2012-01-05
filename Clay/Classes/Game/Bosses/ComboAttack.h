@@ -41,11 +41,12 @@ typedef enum {
     bool _isActive;
 }
 
-+(id)comboAttackWithId:(int)comboId;
--(id)initWithId:(int)comboId;
++(id)comboAttackWithId:(int)comboId Ship:(Sprite*)ship;
+-(id)initWithId:(int)comboId Ship:(Sprite*)ship;
 -(void)startAttack;
 -(void)finishedPhase;
 -(void)switchToPhase:(ComboPhase)phase;
 -(bool)moveWithEasing:(float)dt;
+-(void)update:(float)dt;
 
 @end

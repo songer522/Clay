@@ -50,6 +50,8 @@
     float _waitToShoot;
     float _waitToMegaCannon;
     
+    bool _hadReset; //need this because jim's ship gets set invisible on reset and setting it in reset function doesn't work
+    
     int _replaceProjectileId;
 }
 
@@ -62,6 +64,5 @@
 -(void)shootComboAttack;
 -(void)switchToPhase:(BossPhase)phase;
 -(void)finishedPhase;
--(void)initializeComboAttack;
 -(bool)testCollisionsWithSource:(Projectile*)source;
 @end
