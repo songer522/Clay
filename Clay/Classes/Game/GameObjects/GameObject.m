@@ -253,7 +253,7 @@
                 _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_ZOMBIE_HEAD];
                 [_projectile reset];
                 [_projectile setPosition:CGPointMake(_x, _y + 41)];
-                [_projectile setBoundingBox:CGRectMake(15, 33, 14, 35)];
+                [_projectile setBoundingBox:CGRectMake(15, 33, 14, 25)];
                 [[[[LayerManager sharedLayers] getPlayer] getThirdAction] setKilledEnemy:YES];
             }
             else
@@ -273,7 +273,7 @@
                 _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_ZOMBIE_HEART];
                 [_projectile reset];
                 [_projectile setPosition:CGPointMake(_x, _y + 11)];
-                [_projectile setBoundingBox:CGRectMake(15, 33, 14, 35)];
+                [_projectile setBoundingBox:CGRectMake(15, 33, 14, 25)];
                 [[[[LayerManager sharedLayers] getPlayer] getThirdAction] setKilledEnemy:YES];
             }
             
@@ -1144,7 +1144,7 @@
     else if(_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_UP || _currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENING || _currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENED || _currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_FALLS) {
         _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_UP;
         _collideBehavior = COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENING;
-        [self setBoundingBox:CGRectMake(70, 2, 25, 14)];
+        [self setBoundingBox:CGRectMake(70, 2, 14, 25)];
     }
     else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_SLOW) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;     

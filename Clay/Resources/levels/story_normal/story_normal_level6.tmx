@@ -142,6 +142,11 @@
                 <property name="obstacle" value="zombiePigeon"/>
             </properties>
         </tile>
+        <tile id="88">
+            <properties>
+                <property name="obstacle" value="zombieMysteryBox"/>
+            </properties>
+        </tile>
         <tile id="89">
             <properties>
                 <property name="layerBelow" value="main0"/>
