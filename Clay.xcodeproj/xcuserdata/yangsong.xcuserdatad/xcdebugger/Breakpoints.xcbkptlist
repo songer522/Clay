@@ -8,13 +8,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "Clay/Classes/Game/Other/Level.m"
-         timestampString = "347391317.962568"
+         filePath = "Clay/Classes/Game/Other/Player.m"
+         timestampString = "347434160.566149"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "605"
-         endingLineNumber = "605"
-         landmarkName = "-testCollisions:"
+         startingLineNumber = "777"
+         endingLineNumber = "777"
+         landmarkName = "-updatePitFalling:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
