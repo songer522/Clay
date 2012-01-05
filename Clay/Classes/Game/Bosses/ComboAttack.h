@@ -46,7 +46,6 @@ typedef enum {
 -(void)startAttack;
 -(void)finishedPhase;
 -(void)switchToPhase:(ComboPhase)phase;
--(bool)moveWithEasing:(float)dt;
+-(bool)moveWithEasing:(float)dt Magnitude:(float)magnitude;
 -(void)update:(float)dt;
-
 @end

@@ -87,6 +87,7 @@ typedef enum {
 -(void)startCollision;
 -(bool)getActive;
 -(void)reset;
+-(void)disable;
 -(bool)getAggressive;
 -(bool)hasBeenHit;
 -(CollisionBehavior)getCollisionBehavior;
