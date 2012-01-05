@@ -174,6 +174,24 @@
     [_sprite getCCSprite].rotation = angleInDegs;
 }
 
+-(void) pointTowardPlayerCannon
+{
+    Player *player = [[LayerManager sharedLayers] getPlayer];
+    CGPoint playerPos = [player getPosition];
+    
+    float speed = 450.0f;
+    float dx = (playerPos.x + 10.0f) - _x;
+    float dy = (playerPos.y + 20.0f) - _y;
+    float angle = atan2f(dy, dx);
+    
+    float angleInDegs = (angle * 180.0f)/3.14159f - 45;
+    
+    _vx = cosf(angle) * speed;
+    _vy = sinf(angle) * speed;
+    
+    [_sprite getCCSprite].rotation = angleInDegs;
+}
+
 -(void) setAttachedTo:(GameObject*)object
 {
     _attachedTo = object;

@@ -48,11 +48,14 @@ typedef enum {
     int xthrust;
     int ythrust;
     
+    int _frame;
+    
     bool _firstUpdate;
     
     CGPoint _thrust; //which directions the "thrusters" are going, -1,0,1 in X, or 1,0 in y
     
     float _waitToShoot;
+    float _waitToMegaCannon;
     
     int _replaceProjectileId;
 }
@@ -61,9 +64,10 @@ typedef enum {
 -(void)updateCannon:(float)dt;
 -(void)updateMegaCannon:(float)dt;
 -(void)updateBullets:(float)dt;
--(void)shootBullet;
+-(void)updateMegaBullet:(float)dt;
 -(void)shootMegaCannon;
 -(void)shootComboAttack;
 -(void)switchToPhase:(BossPhase)phase;
 -(void)finishedPhase;
+-(bool)testCollisionsWithSource:(Projectile*)source;
 @end

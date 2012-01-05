@@ -338,6 +338,14 @@
                 [_boss triggerAttack];
                 trigger.triggered=true;
                 break;
+            case TRIGGER_SHIP_SHOOT_MEGACANNON:
+                [_boss triggerAttack2];
+                trigger.triggered=true;
+                break;
+            case TRIGGER_SHIP_SHOOT_COMBO:
+                [_boss triggerAttack3];
+                trigger.triggered=true;
+                break;
             case TRIGGER_WIND_SHORT:
             case TRIGGER_WIND_MEDIUM:
             case TRIGGER_WIND_LONG:

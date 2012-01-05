@@ -49,6 +49,8 @@ typedef enum {
 -(void)startBoss;
 -(void)switchToPhase:(BossPhase)phase;
 -(void)triggerAttack;
+-(void)triggerAttack2;
+-(void)triggerAttack3;
 -(void)triggerFallBack;
 -(void)triggerGetCloser;
 @end

@@ -412,13 +412,13 @@
                 } else if([special isEqualToString:@"shootMegaCannon"]) {
                     Trigger *trigger = [[Trigger alloc] init];
                     trigger.position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
-                    trigger.type = TRIGGER_BOSS_SHOOT;
+                    trigger.type = TRIGGER_SHIP_SHOOT_MEGACANNON;
                     trigger.canBeReset = true;
                     [_triggers addObject:trigger];                    
                 } else if([special isEqualToString:@"shootCombo"]) {
                     Trigger *trigger = [[Trigger alloc] init];
                     trigger.position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
-                    trigger.type = TRIGGER_BOSS_SHOOT;
+                    trigger.type = TRIGGER_SHIP_SHOOT_COMBO;
                     trigger.canBeReset = true;
                     [_triggers addObject:trigger];
                 } else if([special isEqualToString:@"bossShipExits"]) {

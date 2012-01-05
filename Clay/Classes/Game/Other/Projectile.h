@@ -68,6 +68,7 @@ typedef enum {
 -(void) disable;
 -(bool) isActive;
 -(void) pointTowardPlayerMaxAngle:(float)maxAngle;
+-(void) pointTowardPlayerCannon;
 -(void) reset;
 -(void) setInitialVelocity;
 -(void) update:(float)dt;
