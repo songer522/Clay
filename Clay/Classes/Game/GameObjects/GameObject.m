@@ -1442,6 +1442,11 @@
     return _sprite;
 }
 
+-(void)disable
+{
+    _isActive = false;
+}
+
 
 
 -(void)dealloc

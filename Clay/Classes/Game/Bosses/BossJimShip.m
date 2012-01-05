@@ -167,9 +167,6 @@
         [self updateMegaCannon:dt];
         [self updateMegaBullet:dt];
         
-        for (ComboAttack *attack in _comboAttacks) {
-            [attack update:(float)dt];
-        }
         
         CGPoint position = [_sprite getPosition];        
         [_sprite setScreenPosition:CGPointMake(position.x + _velocity.x, position.y + _velocity.y)];
@@ -203,9 +200,16 @@
             [self testCollisionsWithSource:_bullet];
         }
     }
+    
+    for (ComboAttack *attack in _comboAttacks) {
+        if ([attack getActive]) {
+            [attack update:(float)dt];
+            [self testCollisionsWithSource:attack];
+        }
+    }
 }
 
--(bool)testCollisionsWithSource:(Projectile*)source
+-(bool)testCollisionsWithSource:(id<Collidable>)source
 {
     Player *_player = [[LayerManager sharedLayers] getPlayer];
     Level *currentLevel = [[LevelManager shared] currentLevel];

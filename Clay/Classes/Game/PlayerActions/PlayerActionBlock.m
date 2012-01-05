@@ -18,7 +18,7 @@
 -(void)initialize
 {
     _cooldown = 0.0f;
-    _cooldownStart = 0.2f;
+    _cooldownStart = 0.1f;
     _shield = [Sprite spriteWithFile:@"blank.png"];
 }
 
@@ -33,7 +33,7 @@
         CGPoint position = [_parent getPosition];
         [_shield setPosition:CGPointMake(position.x + 2, position.y + 15)];
         
-        _duration = 0.75f;
+        _duration = 0.5f;
         [[SoundEngine shared] playSound:@"shield"];
     }
 }

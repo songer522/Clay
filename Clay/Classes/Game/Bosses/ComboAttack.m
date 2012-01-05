@@ -50,6 +50,7 @@
         
         _isActive = false;
         [self switchToPhase:COMBO_IDLE];
+        [self setBoundingBox:CGRectMake(12,12,24,24)];
     }
     return self;    
 }
@@ -78,17 +79,22 @@
             [_sprite setScreenPosition:_position];
             [[_sprite getCCSprite] setVisible:YES];
             [_sprite setAlpha:_alpha];
+            _isActive = true;
             break;
         case COMBO_MOVETO_ATTACK:
             _target = _attackPosition;
             break;
         case COMBO_WAIT_TO_ATTACK:
             _waitToAttack = _comboId * 1.1f + 0.25f;
+            if (_comboId == 2) {
+                _waitToAttack += 0.25f;
+            }
             break;
         case COMBO_ATTACK:
             _target = _endAttackPosition;
             break;
         case COMBO_IDLE:
+            _isActive = false;
             [[_sprite getCCSprite] setVisible:NO];
             break;
         default:
@@ -128,8 +134,12 @@
             [_sprite setAlpha:_alpha];
             break;
         case COMBO_MOVETO_ATTACK:
+            if([self moveWithEasing:dt Magnitude:3.0f]) {
+                [self finishedPhase];
+            }
+            break;
         case COMBO_ATTACK:
-            if([self moveWithEasing:dt]) {
+            if([self moveWithEasing:dt Magnitude:1.1f]) {
                 [self finishedPhase];
             }
             break;
@@ -146,7 +156,7 @@
 
 // damping is in the range 0..1, with a typical value of 0.1 (which means 90% correction in one second)
 // Source: http://forums.create.msdn.com/forums/p/15365/80653.aspx#80653
--(bool)moveWithEasing:(float)dt
+-(bool)moveWithEasing:(float)dt Magnitude:(float)magnitude
 {
     bool _atTarget = false;
  
@@ -154,11 +164,11 @@
     float dy = (_target.y - _position.y);
     float distance = sqrtf(dx*dx + dy*dy);
 
-    float magnitude = distance * 2.0f * dt;
+    float finalMagnitude = distance * magnitude * dt;
     
     if (distance > 0.1f) {
-        _position.x += (magnitude * (dx/distance));
-        _position.y += (magnitude * (dy/distance));
+        _position.x += (finalMagnitude * (dx/distance));
+        _position.y += (finalMagnitude * (dy/distance));
     } else {
         _position = _target;
         _atTarget = true;
@@ -193,6 +203,13 @@
 -(void)reset
 {
     _isActive = false;
+    [[_sprite getCCSprite] setVisible:NO];
+}
+
+-(void)disable
+{
+    _isActive = false;
+    [[_sprite getCCSprite] setVisible:NO];
 }
 
 -(bool)getAggressive

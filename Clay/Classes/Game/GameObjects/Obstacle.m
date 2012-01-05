@@ -46,6 +46,12 @@
     [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:_idleAnimName];
 }
 
+-(void)disable
+{
+    _isActive = false;
+    _hasBeenHit = false;
+}
+
 -(void) startCollision
 {
     //for now, do nothing in base class

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Boss.h"
+#import "Collidable.h"
 
 @class Sprite;
 @class Level;
@@ -64,5 +65,6 @@
 -(void)shootComboAttack;
 -(void)switchToPhase:(BossPhase)phase;
 -(void)finishedPhase;
--(bool)testCollisionsWithSource:(Projectile*)source;
+//-(bool)testCollisionsWithSource:(Projectile*)source;
+-(bool)testCollisionsWithSource:(id<Collidable>)source;
 @end
