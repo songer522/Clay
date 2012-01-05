@@ -13,6 +13,12 @@
 @class Level;
 @class Projectile;
 
+typedef enum {
+    COMBO_ATTACK_PHASE_1,
+    COMBO_ATTACK_PHASE_2,
+    COMBO_ATTACK_PHASE_3
+}ComboAttackPhase;
+
 @interface BossJimShip : Boss
 {
     Level *_level;
@@ -20,12 +26,17 @@
     Sprite *_sprite;
     Sprite *_cannonAnim;
     Sprite *_megaCannonAnim;
+    Sprite *_comboAttackAnim;
+    Sprite *_comboAttackWarningAnim;
+    
     CGPoint _velocity;
     CGRect _targetOnScreen;
     
     NSMutableArray *_bullets;
     Projectile *_megaCannonBullet;
 
+    ComboAttackPhase _comboPhase;
+    
     float _x;
     float _y;
     
@@ -52,5 +63,7 @@
 -(void)updateBullets:(float)dt;
 -(void)shootBullet;
 -(void)shootMegaCannon;
+-(void)shootComboAttack;
 -(void)switchToPhase:(BossPhase)phase;
+-(void)finishedPhase;
 @end

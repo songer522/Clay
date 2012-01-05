@@ -409,6 +409,24 @@
                     trigger.type = TRIGGER_BOSS_SHOOT;
                     trigger.canBeReset = true;
                     [_triggers addObject:trigger];
+                } else if([special isEqualToString:@"shootMegaCannon"]) {
+                    Trigger *trigger = [[Trigger alloc] init];
+                    trigger.position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
+                    trigger.type = TRIGGER_BOSS_SHOOT;
+                    trigger.canBeReset = true;
+                    [_triggers addObject:trigger];                    
+                } else if([special isEqualToString:@"shootCombo"]) {
+                    Trigger *trigger = [[Trigger alloc] init];
+                    trigger.position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
+                    trigger.type = TRIGGER_BOSS_SHOOT;
+                    trigger.canBeReset = true;
+                    [_triggers addObject:trigger];
+                } else if([special isEqualToString:@"bossShipExits"]) {
+                    Trigger *trigger = [[Trigger alloc] init];
+                    trigger.position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
+                    trigger.type = TRIGGER_SHIP_EXIT;
+                    trigger.canBeReset = false;
+                    [_triggers addObject:trigger];
                 } else if([special isEqualToString:@"wind"]) {
                     Trigger *trigger = [[Trigger alloc] init];
                     trigger.position = [self getXYPositionForCoordinates:CGPointMake(i,j)];
@@ -423,18 +441,6 @@
                     }
                     
                     trigger.canBeReset = true;
-                    [_triggers addObject:trigger];
-                } else if([special isEqualToString:@"bossShipEnters"]) {
-                    Trigger *trigger = [[Trigger alloc] init];
-                    trigger.position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
-                    trigger.type = TRIGGER_SHIP_ENTER;
-                    trigger.canBeReset = false;
-                    [_triggers addObject:trigger];
-                } else if([special isEqualToString:@"bossShipExits"]) {
-                    Trigger *trigger = [[Trigger alloc] init];
-                    trigger.position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
-                    trigger.type = TRIGGER_SHIP_EXIT;
-                    trigger.canBeReset = false;
                     [_triggers addObject:trigger];
                 }
             }
@@ -479,6 +485,12 @@
                 
                 if ([objectName isEqualToString:@"jimSpaceShip"]) {
                     [[LevelManager shared] receiveBoss:[object getBoss]];
+                    Trigger *trigger = [[Trigger alloc] init];
+                    trigger.position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
+                    trigger.type = TRIGGER_SHIP_ENTER;
+                    trigger.canBeReset = false;
+                    [_triggers addObject:trigger];
+
                 } else if([objectName isEqualToString:@"finalJimBoss"]) {
                     [[LevelManager shared] receiveBoss:[object getBoss]];
                 }

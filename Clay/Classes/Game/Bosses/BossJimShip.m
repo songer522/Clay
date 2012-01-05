@@ -42,7 +42,7 @@
     _firstUpdate = true;
 
     _replaceProjectileId = 0;
-    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reset) name:@"player died" object:nil];
+    [self switchToPhase:BOSS_PHASE_NOT_TRIGGERED];
 }
 
 -(void)setSprite:(Sprite *)sprite
@@ -64,9 +64,16 @@
 {
     [[_megaCannonAnim getCCSprite] setVisible:YES];
     [[AnimationController sharedController] replaceSprite:_megaCannonAnim withAnimationNamed:@"computerMegaCannonAnim"];
-    _waitToShoot = 0.55;
-    [[SoundEngine shared] playSound:@""];
-    
+    _waitToShoot = 0.9f;
+    //[[SoundEngine shared] playSound:@""];
+}
+
+-(void)triggerAttack3 //combo attack
+{
+    [[_comboAttackWarningAnim getCCSprite] setVisible:YES];
+    [[AnimationController sharedController] replaceSprite:_comboAttackWarningAnim withAnimationNamed:@"computerComboAttackWarningAnim"];
+    _waitToShoot = 0.9f;
+    //[[SoundEngine shared] playSound:@""];
 }
 
 -(void)shootBullet
@@ -95,35 +102,59 @@
     
 }
 
+-(void)shootComboAttack
+{
+    [[SoundEngine shared] playSound:@"jimShipShoot"];
+    
+    [[_megaCannonAnim getCCSprite] setVisible:NO];
+    
+    CGPoint shipWorldPos = [[Camera sharedCamera] convertToWorldXY:[_sprite getScreenPosition]];    
+    [_megaCannonBullet setPosition:CGPointMake(shipWorldPos.x - 120,shipWorldPos.y + 20.0f)];
+    [_megaCannonBullet reset];
+}
+
 -(void)update:(float)dt
 {
     //have to reposition for now because the position gets set like three times in gameobject, but for the time being we need to call it
     //so we can put it under the right layers
     if (_firstUpdate) {
         _firstUpdate = false;
-        _velocity = CGPointMake(-5.0f, 0.0f);
-        [_sprite setScreenPosition:ccp(300,230)];
+        _velocity = CGPointMake(0.0f, 0.0f);
         _cannonAnim = [Sprite spriteWithFile:@"blank.png"];
-        //[[_cannonAnim getCCSprite] setVisible:NO];
+        _megaCannonAnim = [Sprite spriteWithFile:@"blank.png"];
+        _comboAttackAnim = [Sprite spriteWithFile:@"blank.png"];
 
         for (int i=0; i<3; i++) {
             Projectile *_bullet = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_BOSS_SHIP_BULLET];
             [_bullet setActive:NO];
             [_bullets addObject:_bullet];
         }
+        
+        _megaCannonBullet = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_BOSS_SHIP_MEGACANNON];
+        [_megaCannonBullet setActive:NO];
+        
     }
     
-    [self updateVelocity:dt];
-    [self updateCannon:dt];
-
-    
-    CGPoint position = [_sprite getPosition];
-    
-    [_sprite setScreenPosition:CGPointMake(position.x + _velocity.x, position.y + _velocity.y)];
-    
-    [self updateBullets:dt];
-    
+    if (_phase == BOSS_PHASE_ATTACKING) {
+        [self updateVelocity:dt];
+        [self updateCannon:dt];
+        
+        CGPoint position = [_sprite getPosition];        
+        [_sprite setScreenPosition:CGPointMake(position.x + _velocity.x, position.y + _velocity.y)];
+        [self updateBullets:dt];
+        
+    } else if(_phase != BOSS_PHASE_IDLE && _phase != BOSS_PHASE_NOT_TRIGGERED) {
+        if (abs(_target.x - _x)<3.0f) {
+            _x = _target.x;
+            [self finishedPhase];
+        } else if(_x > _target.x) {
+            _x -= 15.0f * dt;
+        } else {
+            _x += 15.0f * dt;
+        }
+        
     }
+}
 
 -(void)updateBullets:(float)dt
 {
@@ -188,10 +219,13 @@
 
 -(void)switchToPhase:(BossPhase)phase
 {
+    _phase = phase;
+    
     switch (phase) {
         case BOSS_PHASE_NOT_TRIGGERED:
             _x = 1500;
             _y = 160;
+            _target = ccp(1500,160);
             break;
         case BOSS_PHASE_ENTERING:
             _target = ccp(300,160);
@@ -200,6 +234,20 @@
             _target = ccp(1500,160);
             break;
         case BOSS_PHASE_ATTACKING:
+            break;
+        default:
+            break;
+    }
+}
+
+-(void)finishedPhase
+{
+    switch (_phase) {
+        case BOSS_PHASE_ENTERING:
+            [self switchToPhase:BOSS_PHASE_ATTACKING];
+            break;
+        case BOSS_PHASE_EXITING:
+            [self switchToPhase:BOSS_PHASE_IDLE];
             break;
         default:
             break;

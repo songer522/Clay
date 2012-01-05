@@ -25,7 +25,8 @@ typedef enum {
     BOSS_PHASE_CHASE_CLOSE = 4,
     BOSS_PHASE_ENTERING = 5,
     BOSS_PHASE_EXITING = 6,
-    BOSS_PHASE_ATTACKING = 7
+    BOSS_PHASE_ATTACKING = 7,
+    BOSS_PHASE_IDLE = 8
 } BossPhase;
 
 @class Sprite;
