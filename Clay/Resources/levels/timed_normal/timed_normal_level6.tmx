@@ -142,6 +142,11 @@
                 <property name="obstacle" value="zombiePigeon"/>
             </properties>
         </tile>
+        <tile id="88">
+            <properties>
+                <property name="obstacle" value="zombieMysteryBox"/>
+            </properties>
+        </tile>
         <tile id="89">
             <properties>
                 <property name="layerBelow" value="main0"/>
@@ -208,7 +213,7 @@
             <property name="speedy" value="1.0"/>
         </properties>
         <data encoding="base64" compression="zlib">
-            eJzt1dEJwyAQAFAnaDtEoIu1zf4btB8NhKCoSYwJvAd+KMflUC+GAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwv0/vAgA68O+Dc9KbAHHDb4z/MczmZ/JuEFsSl4upqSu3p6lcsfXlWk0dKTVnPjTK29N07+c9MM3XGmcjJnVur8brS8/CuDXm+7nc25x7g3pKvlvSc6m1K9pyx1P5anOW3okj5fp3svf+tdair67uiDOMvS1b35gQztc3e3n0LgBO5Na7AAAAAAAAAKCZLzCeFUo=
+            eJzt1UEKgzAQBVBP0PYQhV6stve/QfdiyCQak9D3wM0wyNdhkmUBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADjfp3cAgA6cfTAmuwmw75l4RrI26I305XpKcn0r37VX39ZKcqTk8l3R21NqDyK7UPqNuXm9G9e3XsG+Gkf+671BnsisIjuXqs3o7PO+5g4Z8d6Jmi13i72a3RUzPHIW/qNH7wAwkFvvAAAAAAAAAEAzP+zeD3k=
         </data>
     </layer>
     <layer name="meta" width="900" height="14" opacity="0.4">

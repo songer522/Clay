@@ -141,8 +141,9 @@
     if (!_soundFalling && _y < 10 && !_gameLayer.hasBeatenLevel) {
         [[SoundEngine shared] playSound:@"fallingDeath"];
         _soundFalling = true;
+        _isDead = true;
     } else if(_y < -160) {
-        _isDead = true;        
+        //_isDead = true;        
     }
 }
 
@@ -774,8 +775,9 @@
     CollisionState state = [[self getCollision] currentState];
 
     if (state == COLLISION_STATE_DEATHPIT) {
+        
         _vx = 0.0f; //if in the death pit he shouldn't move forward
-        [_speed stop];
+       // [_speed stop];
         if(!_isFallingintoDeathPit)
         {
              [self countDeathPitFell];

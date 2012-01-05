@@ -9,11 +9,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Clay/Classes/Game/Other/Player.m"
-         timestampString = "347434160.566149"
+         timestampString = "347479637.136936"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "777"
-         endingLineNumber = "777"
+         startingLineNumber = "778"
+         endingLineNumber = "778"
          landmarkName = "-updatePitFalling:"
          landmarkType = "5">
       </FileBreakpoint>
