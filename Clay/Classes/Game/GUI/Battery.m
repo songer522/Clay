@@ -79,8 +79,7 @@
     }
     
     int diff = _currentFrame - final;
-    
-    
+
     if (diff > 0) {
         int start = MAX((3 - diff),0);
         for (int i=start; i<(3 + diff); i++) {
