@@ -7,15 +7,45 @@
 //
 
 #import "cocos2d.h"
+#import "Collidable.h"
 
 @class Sprite;
 
-@interface ComboAttack : NSObject
+typedef enum {
+    COMBO_IDLE,
+    COMBO_FIRST_APPEAR,
+    COMBO_MOVETO_ATTACK,
+    COMBO_WAIT_TO_ATTACK,
+    COMBO_ATTACK
+}ComboPhase;
+
+@interface ComboAttack : NSObject<Collidable>
 {
+    Sprite *_bossShip; //weak reference
+    
     Sprite *_sprite;
+    
+    CGPoint _initialPosition;
+    CGPoint _attackPosition;
+    CGPoint _endAttackPosition;
+    CGPoint _position;
+    CGPoint _target;
+    
+    ComboPhase _phase;
+    
+    CGRect _boundingBox;
+    
+    float _waitToAttack;
+    float _alpha;
+    int _comboId;
+    bool _isActive;
 }
 
 +(id)comboAttackWithId:(int)comboId;
 -(id)initWithId:(int)comboId;
+-(void)startAttack;
+-(void)finishedPhase;
+-(void)switchToPhase:(ComboPhase)phase;
+-(bool)moveWithEasing:(float)dt;
 
 @end

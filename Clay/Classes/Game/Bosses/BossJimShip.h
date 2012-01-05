@@ -13,14 +13,6 @@
 @class Level;
 @class Projectile;
 
-typedef enum {
-    COMBO_ATTACK_PHASE_1,
-    COMBO_ATTACK_PHASE_2,
-    COMBO_ATTACK_PHASE_3,
-    COMBO_ATTACK_REPOSITION,
-    COMBO_ATTACK_IDLE
-}ComboAttackPhase;
-
 @interface BossJimShip : Boss
 {
     Level *_level;
@@ -36,8 +28,7 @@ typedef enum {
     
     NSMutableArray *_bullets;
     Projectile *_megaCannonBullet;
-
-    ComboAttackPhase _comboPhase;
+    NSMutableArray *_comboAttacks;
     
     float _x;
     float _y;

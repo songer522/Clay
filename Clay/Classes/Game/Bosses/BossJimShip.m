@@ -19,6 +19,7 @@
 #import "Projectile.h"
 #import "Player.h"
 #import "PlayerAction.h"
+#import "ComboAttack.h"
 
 
 @implementation BossJimShip
@@ -35,6 +36,7 @@
     [[_sprite getCCSprite] setVisible:YES];
     
     _bullets = [[NSMutableArray alloc] initWithCapacity:3];
+    _comboAttacks = [[NSMutableArray alloc] initWithCapacity:3];
     
     _waitToShoot = -1.0f;
     xthrust = -1;
@@ -43,7 +45,6 @@
     _firstUpdate = true;
     
     _isActive = false;
-    _comboPhase = COMBO_ATTACK_IDLE;
 
     _replaceProjectileId = 0;
     [self switchToPhase:BOSS_PHASE_NOT_TRIGGERED];
@@ -142,6 +143,10 @@
         _cannonAnim = [Sprite spriteWithFile:@"blank.png"];
         _megaCannonAnim = [Sprite spriteWithFile:@"blank.png"];
         _comboAttackAnim = [Sprite spriteWithFile:@"blank.png"];
+        
+        for (int i=0; i<3; i++) {
+            
+        }
 
         for (int i=0; i<3; i++) {
             Projectile *_bullet = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_BOSS_SHIP_BULLET];
@@ -365,6 +370,8 @@
     [_megaCannonAnim release];
     [_comboAttackAnim release];
     [_comboAttackWarningAnim release];
+    [_comboAttacks removeAllObjects];
+    [_comboAttacks release];
     [_bullets removeAllObjects];
     [_bullets release];
     [_megaCannonBullet release];
