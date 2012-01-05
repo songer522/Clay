@@ -354,6 +354,9 @@
             case TRIGGER_SHIP_ENTER:
                 [_boss switchToPhase:BOSS_PHASE_ENTERING];
                 break;
+            case TRIGGER_SHIP_EXIT:
+                [_boss switchToPhase:BOSS_PHASE_EXITING];
+                break;
             case TRIGGER_BOSS_FINALJIM_SPAWN:
                 [_boss switchToPhase:BOSS_PHASE_CHASE_INIT];
                 break;

@@ -16,7 +16,9 @@
 typedef enum {
     COMBO_ATTACK_PHASE_1,
     COMBO_ATTACK_PHASE_2,
-    COMBO_ATTACK_PHASE_3
+    COMBO_ATTACK_PHASE_3,
+    COMBO_ATTACK_REPOSITION,
+    COMBO_ATTACK_IDLE
 }ComboAttackPhase;
 
 @interface BossJimShip : Boss
@@ -69,5 +71,6 @@ typedef enum {
 -(void)shootComboAttack;
 -(void)switchToPhase:(BossPhase)phase;
 -(void)finishedPhase;
+-(void)initializeComboAttack;
 -(bool)testCollisionsWithSource:(Projectile*)source;
 @end

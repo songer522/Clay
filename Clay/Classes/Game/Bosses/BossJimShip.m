@@ -41,6 +41,9 @@
     ythrust = 0;
     _waitToMegaCannon = -1.0f;
     _firstUpdate = true;
+    
+    _isActive = false;
+    _comboPhase = COMBO_ATTACK_IDLE;
 
     _replaceProjectileId = 0;
     [self switchToPhase:BOSS_PHASE_NOT_TRIGGERED];
@@ -55,26 +58,32 @@
 
 -(void)triggerAttack
 {
-    [[_cannonAnim getCCSprite] setVisible:YES];
-    [[AnimationController sharedController] replaceSprite:_cannonAnim withAnimationNamed:@"jimSpaceshipWarningAnim"];
-    _waitToShoot = 0.55f;
-    [[SoundEngine shared] playSound:@"jimShipCharge"];
+    if (_isActive) {
+        [[_cannonAnim getCCSprite] setVisible:YES];
+        [[AnimationController sharedController] replaceSprite:_cannonAnim withAnimationNamed:@"jimSpaceshipWarningAnim"];
+        _waitToShoot = 0.55f;
+        [[SoundEngine shared] playSound:@"jimShipCharge"];        
+    }
 }
 
 -(void)triggerAttack2 //giant cannon
 {
-    [[_megaCannonAnim getCCSprite] setVisible:YES];
-    [[AnimationController sharedController] replaceSprite:_megaCannonAnim withAnimationNamed:@"computerMegaCannonAnim"];
-    _waitToMegaCannon = 1.1f;
-    //[[SoundEngine shared] playSound:@""];
+    if (_isActive) {
+        [[_megaCannonAnim getCCSprite] setVisible:YES];
+        [[AnimationController sharedController] replaceSprite:_megaCannonAnim withAnimationNamed:@"computerMegaCannonAnim"];
+        _waitToMegaCannon = 1.1f;
+        //[[SoundEngine shared] playSound:@""];
+    }
 }
 
 -(void)triggerAttack3 //combo attack
 {
-    [[_comboAttackWarningAnim getCCSprite] setVisible:YES];
-    [[AnimationController sharedController] replaceSprite:_comboAttackWarningAnim withAnimationNamed:@"computerComboAttackWarningAnim"];
-    _waitToShoot = 0.9f;
-    //[[SoundEngine shared] playSound:@""];
+    if (_isActive) {
+        [[_comboAttackWarningAnim getCCSprite] setVisible:YES];
+        [[AnimationController sharedController] replaceSprite:_comboAttackWarningAnim withAnimationNamed:@"computerComboAttackWarningAnim"];
+        _waitToShoot = 0.9f;
+        //[[SoundEngine shared] playSound:@""];
+    }
 }
 
 -(void)shootBullet
@@ -114,6 +123,12 @@
     [_megaCannonBullet reset];
 }
 
+-(void)initializeComboAttack
+{
+    
+    
+}
+
 -(void)update:(float)dt
 {
     _frame = [[_sprite getAnimation] getCurrentFrameNumber];
@@ -143,6 +158,7 @@
         [self updateVelocity:dt];
         [self updateCannon:dt];
         [self updateMegaCannon:dt];
+        [self updateMegaBullet:dt];
         
         CGPoint position = [_sprite getPosition];        
         [_sprite setScreenPosition:CGPointMake(position.x + _velocity.x, position.y + _velocity.y)];
@@ -172,12 +188,9 @@
                 [_bullet pointTowardPlayerMaxAngle:-1.0f];
             }
             
-            
             [_bullet update:dt];
             [self testCollisionsWithSource:_bullet];
-            
         }
-        
     }
 }
 
@@ -251,14 +264,21 @@
             _x = 1500;
             _y = 230;
             _target = ccp(1500,230);
+            [_sprite getCCSprite].position = ccp(1500,230);
+            [[_sprite getCCSprite] setVisible:NO];
+            _isActive = false;
             break;
         case BOSS_PHASE_ENTERING:
+            [[_sprite getCCSprite] setVisible:YES];
             _target = ccp(380,230);
+            _isActive = false;
             break;
         case BOSS_PHASE_EXITING:
             _target = ccp(1500,230);
+            _isActive = false;
             break;
         case BOSS_PHASE_ATTACKING:
+            _isActive = true;
             break;
         default:
             break;
@@ -281,9 +301,21 @@
 
 -(void)reset
 {
-    _waitToShoot = -1.0f;
-    for (Projectile *_bullet in _bullets)
-    {[_bullet disable];}
+    if (_phase == BOSS_PHASE_NOT_TRIGGERED) {
+    //if hasn't been triggered, do nothing
+    } else {
+        _waitToShoot = -1.0f;
+        for (Projectile *_bullet in _bullets)
+        {[_bullet disable];}
+        _waitToMegaCannon = -1.0f;
+        [_megaCannonBullet disable];
+        [[_sprite getCCSprite] setVisible:YES]; //probably set not visible during gameobject reset
+    }
+}
+
+-(void)restartLevel
+{
+    [self switchToPhase:BOSS_PHASE_NOT_TRIGGERED];    
 }
 
 -(void)updateVelocity:(float)dt
@@ -324,6 +356,21 @@
         _velocity.y = max;
     }
     
+}
+
+-(void)dealloc
+{
+    [_sprite release];
+    [_cannonAnim release];
+    [_megaCannonAnim release];
+    [_comboAttackAnim release];
+    [_comboAttackWarningAnim release];
+    [_bullets removeAllObjects];
+    [_bullets release];
+    [_megaCannonBullet release];
+    
+    _level = nil;
+    [super dealloc];
 }
 
 
