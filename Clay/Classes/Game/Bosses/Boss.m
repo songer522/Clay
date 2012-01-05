@@ -69,6 +69,16 @@
     
 }
 
+-(void)triggerAttack2
+{
+    
+}
+
+-(void)triggerAttack3
+{
+    
+}
+
 -(void)triggerFallBack
 {
     

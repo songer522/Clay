@@ -364,13 +364,8 @@
 		549ED8191461D065008BCD98 /* CCVideoPlayerImpliOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 549ED7971461D065008BCD98 /* CCVideoPlayerImpliOS.m */; };
 		549ED81A1461D065008BCD98 /* videoOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 549ED7991461D065008BCD98 /* videoOverlayView.m */; };
 		549ED81B1461D065008BCD98 /* Boss.m in Sources */ = {isa = PBXBuildFile; fileRef = 549ED79D1461D065008BCD98 /* Boss.m */; };
-		549ED81C1461D065008BCD98 /* BossChicken.m in Sources */ = {isa = PBXBuildFile; fileRef = 549ED79F1461D065008BCD98 /* BossChicken.m */; };
-		549ED81D1461D065008BCD98 /* BossDevilJim.m in Sources */ = {isa = PBXBuildFile; fileRef = 549ED7A11461D065008BCD98 /* BossDevilJim.m */; };
-		549ED81E1461D065008BCD98 /* BossDisco.m in Sources */ = {isa = PBXBuildFile; fileRef = 549ED7A31461D065008BCD98 /* BossDisco.m */; };
 		549ED81F1461D065008BCD98 /* BossFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 549ED7A51461D065008BCD98 /* BossFactory.m */; };
 		549ED8201461D065008BCD98 /* BossFinalJim.m in Sources */ = {isa = PBXBuildFile; fileRef = 549ED7A71461D065008BCD98 /* BossFinalJim.m */; };
-		549ED8211461D065008BCD98 /* BossWhale.m in Sources */ = {isa = PBXBuildFile; fileRef = 549ED7A91461D065008BCD98 /* BossWhale.m */; };
-		549ED8221461D065008BCD98 /* BossZombies.m in Sources */ = {isa = PBXBuildFile; fileRef = 549ED7AB1461D065008BCD98 /* BossZombies.m */; };
 		549ED8231461D065008BCD98 /* Laser.m in Sources */ = {isa = PBXBuildFile; fileRef = 549ED7AE1461D065008BCD98 /* Laser.m */; };
 		549ED8241461D065008BCD98 /* LaserShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 549ED7B01461D065008BCD98 /* LaserShow.m */; };
 		549ED8251461D065008BCD98 /* GameObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 549ED7B31461D065008BCD98 /* GameObject.m */; };
@@ -461,6 +456,7 @@
 		54A4B1D514918495006CDD44 /* characterSlowTime.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A4B1D114918495006CDD44 /* characterSlowTime.png */; };
 		54A60BDE1483E55F00EA2F3B /* settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54A60BDD1483E55F00EA2F3B /* settings.plist */; };
 		54A64A32146809D200853CFF /* BossJimShip.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A64A31146809D200853CFF /* BossJimShip.m */; };
+		54A6F28114B54BF60004BA13 /* ComboAttack.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A6F28014B54BF60004BA13 /* ComboAttack.m */; };
 		54ABFD7114630876006F0C88 /* menuTextures-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54ABFD6D14630876006F0C88 /* menuTextures-hd.plist */; };
 		54ABFD7214630876006F0C88 /* menuTextures-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54ABFD6E14630876006F0C88 /* menuTextures-hd.png */; };
 		54ABFD7314630876006F0C88 /* menuTextures.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54ABFD6F14630876006F0C88 /* menuTextures.plist */; };
@@ -1133,20 +1129,10 @@
 		549ED7991461D065008BCD98 /* videoOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = videoOverlayView.m; sourceTree = "<group>"; };
 		549ED79C1461D065008BCD98 /* Boss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Boss.h; sourceTree = "<group>"; };
 		549ED79D1461D065008BCD98 /* Boss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Boss.m; sourceTree = "<group>"; };
-		549ED79E1461D065008BCD98 /* BossChicken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BossChicken.h; sourceTree = "<group>"; };
-		549ED79F1461D065008BCD98 /* BossChicken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BossChicken.m; sourceTree = "<group>"; };
-		549ED7A01461D065008BCD98 /* BossDevilJim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BossDevilJim.h; sourceTree = "<group>"; };
-		549ED7A11461D065008BCD98 /* BossDevilJim.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BossDevilJim.m; sourceTree = "<group>"; };
-		549ED7A21461D065008BCD98 /* BossDisco.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BossDisco.h; sourceTree = "<group>"; };
-		549ED7A31461D065008BCD98 /* BossDisco.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BossDisco.m; sourceTree = "<group>"; };
 		549ED7A41461D065008BCD98 /* BossFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BossFactory.h; sourceTree = "<group>"; };
 		549ED7A51461D065008BCD98 /* BossFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BossFactory.m; sourceTree = "<group>"; };
 		549ED7A61461D065008BCD98 /* BossFinalJim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BossFinalJim.h; sourceTree = "<group>"; };
 		549ED7A71461D065008BCD98 /* BossFinalJim.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BossFinalJim.m; sourceTree = "<group>"; };
-		549ED7A81461D065008BCD98 /* BossWhale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BossWhale.h; sourceTree = "<group>"; };
-		549ED7A91461D065008BCD98 /* BossWhale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BossWhale.m; sourceTree = "<group>"; };
-		549ED7AA1461D065008BCD98 /* BossZombies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BossZombies.h; sourceTree = "<group>"; };
-		549ED7AB1461D065008BCD98 /* BossZombies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BossZombies.m; sourceTree = "<group>"; };
 		549ED7AD1461D065008BCD98 /* Laser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Laser.h; sourceTree = "<group>"; };
 		549ED7AE1461D065008BCD98 /* Laser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Laser.m; sourceTree = "<group>"; };
 		549ED7AF1461D065008BCD98 /* LaserShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaserShow.h; sourceTree = "<group>"; };
@@ -1282,6 +1268,8 @@
 		54A60BDD1483E55F00EA2F3B /* settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = settings.plist; path = Plists/settings.plist; sourceTree = "<group>"; };
 		54A64A30146809D200853CFF /* BossJimShip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BossJimShip.h; sourceTree = "<group>"; };
 		54A64A31146809D200853CFF /* BossJimShip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BossJimShip.m; sourceTree = "<group>"; };
+		54A6F27F14B54BF60004BA13 /* ComboAttack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComboAttack.h; sourceTree = "<group>"; };
+		54A6F28014B54BF60004BA13 /* ComboAttack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComboAttack.m; sourceTree = "<group>"; };
 		54ABFD6D14630876006F0C88 /* menuTextures-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "menuTextures-hd.plist"; path = "../menu/menuTextures-hd.plist"; sourceTree = "<group>"; };
 		54ABFD6E14630876006F0C88 /* menuTextures-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menuTextures-hd.png"; path = "../menu/menuTextures-hd.png"; sourceTree = "<group>"; };
 		54ABFD6F14630876006F0C88 /* menuTextures.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = menuTextures.plist; path = ../menu/menuTextures.plist; sourceTree = "<group>"; };
@@ -2440,22 +2428,14 @@
 			children = (
 				549ED79C1461D065008BCD98 /* Boss.h */,
 				549ED79D1461D065008BCD98 /* Boss.m */,
-				549ED79E1461D065008BCD98 /* BossChicken.h */,
-				549ED79F1461D065008BCD98 /* BossChicken.m */,
-				549ED7A01461D065008BCD98 /* BossDevilJim.h */,
-				549ED7A11461D065008BCD98 /* BossDevilJim.m */,
-				549ED7A21461D065008BCD98 /* BossDisco.h */,
-				549ED7A31461D065008BCD98 /* BossDisco.m */,
 				549ED7A41461D065008BCD98 /* BossFactory.h */,
 				549ED7A51461D065008BCD98 /* BossFactory.m */,
 				549ED7A61461D065008BCD98 /* BossFinalJim.h */,
 				549ED7A71461D065008BCD98 /* BossFinalJim.m */,
-				549ED7A81461D065008BCD98 /* BossWhale.h */,
-				549ED7A91461D065008BCD98 /* BossWhale.m */,
-				549ED7AA1461D065008BCD98 /* BossZombies.h */,
-				549ED7AB1461D065008BCD98 /* BossZombies.m */,
 				54A64A30146809D200853CFF /* BossJimShip.h */,
 				54A64A31146809D200853CFF /* BossJimShip.m */,
+				54A6F27F14B54BF60004BA13 /* ComboAttack.h */,
+				54A6F28014B54BF60004BA13 /* ComboAttack.m */,
 			);
 			path = Bosses;
 			sourceTree = "<group>";
@@ -3484,13 +3464,8 @@
 				549ED8191461D065008BCD98 /* CCVideoPlayerImpliOS.m in Sources */,
 				549ED81A1461D065008BCD98 /* videoOverlayView.m in Sources */,
 				549ED81B1461D065008BCD98 /* Boss.m in Sources */,
-				549ED81C1461D065008BCD98 /* BossChicken.m in Sources */,
-				549ED81D1461D065008BCD98 /* BossDevilJim.m in Sources */,
-				549ED81E1461D065008BCD98 /* BossDisco.m in Sources */,
 				549ED81F1461D065008BCD98 /* BossFactory.m in Sources */,
 				549ED8201461D065008BCD98 /* BossFinalJim.m in Sources */,
-				549ED8211461D065008BCD98 /* BossWhale.m in Sources */,
-				549ED8221461D065008BCD98 /* BossZombies.m in Sources */,
 				549ED8231461D065008BCD98 /* Laser.m in Sources */,
 				549ED8241461D065008BCD98 /* LaserShow.m in Sources */,
 				549ED8251461D065008BCD98 /* GameObject.m in Sources */,
@@ -3574,6 +3549,7 @@
 				54A20B7E14A17C8D004BCBC8 /* HowToPlayScreen.m in Sources */,
 				5418B33014A251E700FB00EC /* GameWindow.m in Sources */,
 				546C2A7214A292AE0008DC5A /* HealthIcon.m in Sources */,
+				54A6F28114B54BF60004BA13 /* ComboAttack.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

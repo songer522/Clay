@@ -20,6 +20,7 @@ typedef enum {
     PROJECTILE_BEHAVIOR_ZOMBIE_HEART,
     PROJECTILE_BEHAVIOR_PLAYER_KICK,
     PROJECTILE_BEHAVIOR_BOSS_SHIP_BULLET,
+    PROJECTILE_BEHAVIOR_BOSS_SHIP_MEGACANNON,
     PROJECTILE_BEHAVIOR_PLAYER_BLOWING,
     PROJECTILE_BEHAVIOR_FIRE_DEMON_BULLET,
     PROJECTILE_BEHAVIOR_RAINY_SQUIRREL_NUT
@@ -67,6 +68,7 @@ typedef enum {
 -(void) disable;
 -(bool) isActive;
 -(void) pointTowardPlayerMaxAngle:(float)maxAngle;
+-(void) pointTowardPlayerCannon;
 -(void) reset;
 -(void) setInitialVelocity;
 -(void) update:(float)dt;

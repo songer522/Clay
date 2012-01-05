@@ -17,7 +17,7 @@
 #define N(x) [NSNumber numberWithFloat: x]
 
 //IPAD FIX: these numbers got moved and the battery was shifted a few pixels to the left
-#define BATTERY_X 410.0f
+#define BATTERY_X 402.0f //was 410.0f
 #define BATTERY_Y 285.0f
 
 @implementation Battery
@@ -79,8 +79,7 @@
     }
     
     int diff = _currentFrame - final;
-    
-    
+
     if (diff > 0) {
         int start = MAX((3 - diff),0);
         for (int i=start; i<(3 + diff); i++) {
@@ -171,7 +170,7 @@
 
 -(void)lowBatteryWarning:(float)dt
 {
-    _totalTime += 6.0f * dt;
+    _totalTime += 14.0f * dt;
     float test = sinf(_totalTime);
     if (test < 0.3f) {
         [[sprite getCCSprite] setVisible:NO];
@@ -189,7 +188,7 @@
             _alpha = 0.3f;
         }
     }
-    [[sprite getCCSprite] setOpacity:(255 * _alpha)];
+    //[[sprite getCCSprite] setOpacity:(255 * _alpha)];
 }
 
 -(void)setPlayer:(Player*)player

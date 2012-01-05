@@ -11,14 +11,7 @@
 
 @class Sprite;
 @class Level;
-
-typedef enum {
-    RETRO_HURDLE = 0,
-    RETRO_PIG = 1,
-    RETRO_BIRD = 2,
-    RETRO_GARBAGE = 3,
-    RETRO_ZOMBIE = 4
-}RetroObstacleType;
+@class Projectile;
 
 @interface BossJimShip : Boss
 {
@@ -26,24 +19,50 @@ typedef enum {
     
     Sprite *_sprite;
     Sprite *_cannonAnim;
+    Sprite *_megaCannonAnim;
+    Sprite *_comboAttackAnim;
+    Sprite *_comboAttackWarningAnim;
+    
     CGPoint _velocity;
     CGRect _targetOnScreen;
     
     NSMutableArray *_bullets;
+    Projectile *_megaCannonBullet;
+    NSMutableArray *_comboAttacks;
     
+    float _x;
+    float _y;
+    
+    BossPhase _phase;
+    
+    CGPoint _target;
+    
+
     int xthrust;
     int ythrust;
+    
+    int _frame;
     
     bool _firstUpdate;
     
     CGPoint _thrust; //which directions the "thrusters" are going, -1,0,1 in X, or 1,0 in y
     
     float _waitToShoot;
+    float _waitToMegaCannon;
+    
+    bool _hadReset; //need this because jim's ship gets set invisible on reset and setting it in reset function doesn't work
     
     int _replaceProjectileId;
 }
 
 -(void)updateVelocity:(float)dt;
 -(void)updateCannon:(float)dt;
--(void)shootBullet;
+-(void)updateMegaCannon:(float)dt;
+-(void)updateBullets:(float)dt;
+-(void)updateMegaBullet:(float)dt;
+-(void)shootMegaCannon;
+-(void)shootComboAttack;
+-(void)switchToPhase:(BossPhase)phase;
+-(void)finishedPhase;
+-(bool)testCollisionsWithSource:(Projectile*)source;
 @end

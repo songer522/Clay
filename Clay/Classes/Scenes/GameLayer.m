@@ -338,10 +338,24 @@
                 [_boss triggerAttack];
                 trigger.triggered=true;
                 break;
+            case TRIGGER_SHIP_SHOOT_MEGACANNON:
+                [_boss triggerAttack2];
+                trigger.triggered=true;
+                break;
+            case TRIGGER_SHIP_SHOOT_COMBO:
+                [_boss triggerAttack3];
+                trigger.triggered=true;
+                break;
             case TRIGGER_WIND_SHORT:
             case TRIGGER_WIND_MEDIUM:
             case TRIGGER_WIND_LONG:
                 [_rainyLevelEffects triggerWind:trigger.type];
+                break;
+            case TRIGGER_SHIP_ENTER:
+                [_boss switchToPhase:BOSS_PHASE_ENTERING];
+                break;
+            case TRIGGER_SHIP_EXIT:
+                [_boss switchToPhase:BOSS_PHASE_EXITING];
                 break;
             case TRIGGER_BOSS_FINALJIM_SPAWN:
                 [_boss switchToPhase:BOSS_PHASE_CHASE_INIT];

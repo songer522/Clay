@@ -257,6 +257,57 @@
 		<key>spritesheetPlist</key>
 		<string>computerLevel</string>
 	</dict>
+	<key>computerMegaCannonAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3,4,5,6,6,7,6,6,7,7,7,7</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level7</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Level7_JimSpaceCraft_Atkv2_</string>
+		<key>spritesheetPlist</key>
+		<string>computerLevel</string>
+	</dict>
+	<key>computerComboAttackAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level7</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Level7_3ComboAtk_</string>
+		<key>spritesheetPlist</key>
+		<string>computerLevel</string>
+	</dict>
+	<key>computerComboAttackWarningAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>3,4,3,4,3,4,4,4,4,4</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.15</string>
+		<key>group</key>
+		<string>level7</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Level7_3ComboAtk_</string>
+		<key>spritesheetPlist</key>
+		<string>computerLevel</string>
+	</dict>
 	<key>cowDied</key>
 	<dict>
 		<key>animationFrames</key>

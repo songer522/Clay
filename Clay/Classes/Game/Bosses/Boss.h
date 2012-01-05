@@ -22,7 +22,11 @@ typedef enum {
     BOSS_PHASE_CHASE_INIT = 1,
     BOSS_PHASE_CHASE_FAR = 2,
     BOSS_PHASE_CHASE_MIDDLE = 3,
-    BOSS_PHASE_CHASE_CLOSE = 4
+    BOSS_PHASE_CHASE_CLOSE = 4,
+    BOSS_PHASE_ENTERING = 5,
+    BOSS_PHASE_EXITING = 6,
+    BOSS_PHASE_ATTACKING = 7,
+    BOSS_PHASE_IDLE = 8
 } BossPhase;
 
 @class Sprite;
@@ -45,6 +49,8 @@ typedef enum {
 -(void)startBoss;
 -(void)switchToPhase:(BossPhase)phase;
 -(void)triggerAttack;
+-(void)triggerAttack2;
+-(void)triggerAttack3;
 -(void)triggerFallBack;
 -(void)triggerGetCloser;
 @end
