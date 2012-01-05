@@ -5,12 +5,14 @@ Build 120104.01
 
 * Global - battery has been replaced with a 5-segment battery. it no longer fades out, and if the battery is green you can safely sprint. when battery is low, it now blinks faster
 * Level 2 - foreground extended to end of level
-* Level 6 - new levels for all modes
+* Level 6 - new level designs for all modes
 * Level 6 - new obstacle: mystery box. if you shoot it, it falls over and becomes impossible to jump over. if you bump into it, it falls over harmlessly. before shooting can be jumped over with a medium jump.
+* Level 6 - male and female zombies no longer lose body parts if you physically bump into them without shooting them
+* Level 6 - bounding boxes tweaked.
 * Level 7 - boss now can arrive and leave
 * Level 7 - new 2nd cannon attack for boss
 * Level 7 - new combo 3rd attack (no collision detection yet, visual only)
-
+* Level 7 - timed normal mode level is not a final level, but demonstrates the new features of the boss
 
 
 Build 120103.03
