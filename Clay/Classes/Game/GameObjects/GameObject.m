@@ -253,7 +253,7 @@
                 _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_ZOMBIE_HEAD];
                 [_projectile reset];
                 [_projectile setPosition:CGPointMake(_x, _y + 41)];
-                [_projectile setBoundingBox:CGRectMake(15, 33, 14, 35)];
+                [_projectile setBoundingBox:CGRectMake(15, 33, 14, 25)];
                 [[[[LayerManager sharedLayers] getPlayer] getThirdAction] setKilledEnemy:YES];
             }
             else
@@ -273,7 +273,7 @@
                 _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_ZOMBIE_HEART];
                 [_projectile reset];
                 [_projectile setPosition:CGPointMake(_x, _y + 11)];
-                [_projectile setBoundingBox:CGRectMake(15, 33, 14, 35)];
+                [_projectile setBoundingBox:CGRectMake(15, 33, 14, 25)];
                 [[[[LayerManager sharedLayers] getPlayer] getThirdAction] setKilledEnemy:YES];
             }
             
