@@ -28,6 +28,7 @@
 @synthesize hurtsPlayer = _hurtsPlayer;
 
 
+
 +(id) projectileWithBehavior:(ProjectileBehavior)behavior
 {
     return [[self alloc] initWithBehavior:behavior];

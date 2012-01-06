@@ -217,6 +217,10 @@
     bool collision = [currentLevel testCollisionWithGameObject:source Source:_player];
     if (collision) {
         if(![[_player getThirdAction] isActive]) {
+           if([source isMemberOfClass:[_megaCannonBullet class]])
+           {
+               _player.isDoubleDemage=true;
+           }
             [_player startCollision:PLAYER_EFFECT_COLLIDE Source:source];
             
         } else {

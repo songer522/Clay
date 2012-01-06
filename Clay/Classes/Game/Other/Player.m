@@ -46,6 +46,7 @@
 @synthesize inVaccuum = _inVaccuum;
 @synthesize onLedge =_onLedge;
 @synthesize gotHit=_gotHit;
+@synthesize isDoubleDemage =_isDoubleDemage;
 
 
 +(id) instance
@@ -69,6 +70,7 @@
         GameObjectController *factory = [LevelManager shared].gameObjectFactory;
         [factory initializeGameObject:self Name:@"player" AddToLayer:YES];
         
+        _isDoubleDemage=false;
         _isFallingintoDeathPit=false;
         _isJumping = false;
         _isDead = false;
@@ -141,8 +143,9 @@
     if (!_soundFalling && _y < 10 && !_gameLayer.hasBeatenLevel) {
         [[SoundEngine shared] playSound:@"fallingDeath"];
         _soundFalling = true;
+        _isDead = true;
     } else if(_y < -160) {
-        _isDead = true;        
+        //_isDead = true;        
     }
 }
 
@@ -423,9 +426,10 @@
 
 -(void)startPlayerCollision:(bool)shouldForceFalling;
 {
-    if(_speed.inTurbo)
+    if(_speed.inTurbo || _isDoubleDemage)
     {
         [self changeHealth:-2];
+        _isDoubleDemage = false;
     }
     else
     {
@@ -485,6 +489,7 @@
     [[gameLayer getHud] setEnabled:true ForButton:HUD_BUTTON_JUMP];
     
     [[[[gameLayer getHud] getSprintButton] getCCSpriteForOverlay] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"UI_Button_GreenLight_7.png"]]; 
+    _isDoubleDemage=false;
     _isFallingintoDeathPit=false;
     _isJumping = false;
     _isTripping = false;
@@ -774,8 +779,9 @@
     CollisionState state = [[self getCollision] currentState];
 
     if (state == COLLISION_STATE_DEATHPIT) {
+        
         _vx = 0.0f; //if in the death pit he shouldn't move forward
-        [_speed stop];
+       // [_speed stop];
         if(!_isFallingintoDeathPit)
         {
              [self countDeathPitFell];
