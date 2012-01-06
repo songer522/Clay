@@ -41,7 +41,7 @@
                 break;
             case 2:
                 _initialPosition = ccp(0,-45);
-                _attackPosition = ccp(420,220);
+                _attackPosition = ccp(380,220);
                 _endAttackPosition = ccp(-150,-50);
                 break;
             default:
