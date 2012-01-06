@@ -504,6 +504,7 @@
     int maxHurdles = 400;
     int maxChickenIntoCows = 100;
     int maxShuffled = 200;
+    int maxDogs=100;
     int maxFrogs = 50;
     int maxDemon =200;
     int maxZombies = 300;
@@ -671,6 +672,15 @@
         //[[GCState sharedInstance] save];
         [[GCHelper sharedInstance] reportAchievement:gcAchievementFalldown50times percentComplete:pctComplete22];
     }
+    double pctComplete23 = ((double) [GCState sharedInstance].dogsJumpedOver / (int)maxDogs) * 100.0;
+    
+    // if(pctComplete22 < 100.0 && ([_level.name isEqualToString:@"level1"] || [_level.name isEqualToString:@"level3"]||[_level.name isEqualToString:@"level5"]||[_level.name isEqualToString:@"level9"]))
+    if (pctComplete23 < 100.0)
+    {
+        //[[GCState sharedInstance] save];
+        [[GCHelper sharedInstance] reportAchievement:gcAchievementJumpOver100dogs percentComplete:pctComplete23];
+    }
+
 
 
 
