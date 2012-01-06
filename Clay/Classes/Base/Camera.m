@@ -17,6 +17,7 @@
 
 @synthesize trackingTarget = _trackingTarget;
 @synthesize isPlayerResetting = _isPlayerResetting;
+@synthesize isShiftForwardForKickAction = _isShiftForwardForKickAction;
 
 #define CAMERA_MOVE_TO_TARGET_SPEED 6.0f
 #define CAMERA_OFFSCREEN_PADDING_LEFT 300.0f
@@ -255,6 +256,12 @@ static Camera *_sharedCamera = nil;
             _y = position.y;
             _isPlayerResetting = false;
         }
+        
+        if (_isShiftForwardForKickAction) {
+            //fixed time step of 1/60.0s, duration is 0.4seconds, therefore 24 steps. needs to move forward 20.0f, so 0.83333f per step.
+            _totalStepsForKickShiftForward++;
+            _x += 0.83333333f;
+        }
     }
     if (dy!=0) {
         [self keepWithinBoundaries];
@@ -308,6 +315,7 @@ static Camera *_sharedCamera = nil;
 {
     _x = 0;
     _y = 0;
+    _isShiftForwardForKickAction = false;
     [self keepWithinBoundaries];
 }
 
@@ -315,6 +323,12 @@ static Camera *_sharedCamera = nil;
 {
     _x = point.x;
     _y = point.y;
+}
+
+-(void)startShiftForwardForKick
+{
+    _totalStepsForKickShiftForward = 0;
+    _isShiftForwardForKickAction = true;
 }
 
 -(void)dealloc

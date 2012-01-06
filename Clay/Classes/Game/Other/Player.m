@@ -442,7 +442,7 @@
     
     [[SoundEngine shared] playSound:@"timHurt"];
     
-    if ((_isJumping && [_speed inTurbo])||shouldForceFalling) {
+    if (((_isJumping && [_speed inTurbo])||shouldForceFalling)&&!_isNewUnderwaterPhysics) {
         [_skin setPlayerAnimation:PLAYER_ANIM_TRIPPING ForSprite:_sprite];
         _isTripping = true;
        
@@ -457,8 +457,12 @@
     } else {
         [_skin setPlayerAnimation:PLAYER_ANIM_HURTING ForSprite:_sprite];
         
-        _vy = -250.0f;
-        _y += 2.0f;
+        if (_isNewUnderwaterPhysics) {
+            _vy = 25.0f;
+        } else {
+            _vy = -250.0f;
+            _y += 2.0f;
+        }
         _waitToGetUp = 0.3f;
     }
     
@@ -657,6 +661,9 @@
         _waitToGetUp -= dt;
         if (_waitToGetUp <= 0.0f) {
             [_speed start];
+            if (_isNewUnderwaterPhysics) {
+                
+            }
         }
     }
     if(_hitPoints<=1)
@@ -671,7 +678,7 @@
     [_thirdAction update:dt];
     
     _currentPlayerEffect = PLAYER_EFFECT_NONE;
-
+    
 
 }
 
