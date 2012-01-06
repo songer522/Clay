@@ -5,7 +5,7 @@
 	<key>app</key>
 	<dict>
 		<key>showFps</key>
-		<string>NO</string>
+		<string>YES</string>
 		<key>versionNumber</key>
 		<string>120104.02</string>
 	</dict>

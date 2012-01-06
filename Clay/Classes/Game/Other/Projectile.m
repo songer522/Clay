@@ -378,6 +378,11 @@
 -(bool) checkIfOnScreen:(CGPoint)position
 {
     CGPoint screenPosition = [[Camera sharedCamera] convertToScreenXY:position];
+    if (screenPosition.x > 0 && screenPosition.x < 480 && screenPosition.y > 0 && screenPosition.y < 320) {
+        return true;
+    }
+    //NOTE: USER_INTERFACE_IDIOM is SLOOOOOOOOOOOW
+    /*
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         //float minAmount = 
         
@@ -388,7 +393,7 @@
         if (screenPosition.x > 0 && screenPosition.x < 480 && screenPosition.y > 0 && screenPosition.y < 320) {
             return true;
         }
-    }
+    }*/
     return false;
 }
 

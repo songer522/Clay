@@ -241,7 +241,7 @@
             
         }
         
-        NSLog(@"Velocity: %f",_velocity);
+        //NSLog(@"Velocity: %f",_velocity);
 
     } else {
         [self applyFriction:5.0f Dt:dt];
