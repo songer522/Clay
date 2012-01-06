@@ -64,10 +64,10 @@
             AnimationController *controller = [AnimationController sharedController];
             [controller addAnimationForSkinFromFile:_filename UsingBaseAnim:@"runningAnim" ForSequence:_running FrameList:@"1,2,3,4" Delay:0.20f];
             [controller addAnimationForSkinFromFile:_filename UsingBaseAnim:@"turboAnim" ForSequence:_sprinting FrameList:@"1,2,3,4" Delay:0.12f];
-            [controller addAnimationForSkinFromFile:_filename UsingBaseAnim:@"trippedAnim" ForSequence:_tripping FrameList:@"" Delay:0.0f];
+            [controller addAnimationForSkinFromFile:_filename UsingBaseAnim:@"trippedAnim" ForSequence:_tripping FrameList:@"1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,3" Delay:0.0f];
             [controller addAnimationForSkinFromFile:_filename UsingBaseAnim:@"hurtAnim" ForSequence:_hurting FrameList:@"" Delay:0.0f];
             [controller addAnimationForSkinFromFile:_filename UsingBaseAnim:@"jumpingAnim" ForSequence:_jumping FrameList:@"" Delay:0.0f];
-            [controller addAnimationForSkinFromFile:_filename UsingBaseAnim:@"fallingAnim" ForSequence:_falling FrameList:@"" Delay:0.0f];
+            [controller addAnimationForSkinFromFile:_filename UsingBaseAnim:@"fallingAnim" ForSequence:_falling FrameList:@"1,1" Delay:0.0f];
         }
     }
     
