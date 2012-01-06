@@ -864,7 +864,7 @@
             }
         }
     }
-    else if(obstacle.CurrentBehavior == COLLISION_BEHAVIOR_MAD_DOG)
+    else if([obstacle getCollisionBehavior] == COLLISION_BEHAVIOR_MAD_DOG)
     {
         int maxDogs = 100;
         
