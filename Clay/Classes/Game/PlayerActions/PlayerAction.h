@@ -67,6 +67,7 @@
 -(void)setIsNear:(bool)isNear;
 -(bool) playerAllowedToJump;
 -(bool) playerAllowedToSprint;
+-(bool) shouldActionStopPlayer;
 
 #pragma mark - achievements 
 

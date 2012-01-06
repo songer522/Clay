@@ -869,6 +869,40 @@
 		<key>spritesheetPlist</key>
 		<string>fireLevel</string>
 	</dict>
+	<key>fireFoxAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,1,2</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.2</string>
+		<key>group</key>
+		<string>level8</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Level8_Fox_</string>
+		<key>spritesheetPlist</key>
+		<string>fireLevel</string>
+	</dict>
+	<key>fireFoxFireAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3,4</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level8</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Level8_FoxFire_</string>
+		<key>spritesheetPlist</key>
+		<string>fireLevel</string>
+	</dict>
 	<key>fireballLandingAnim</key>
 	<dict>
 		<key>animationFrames</key>

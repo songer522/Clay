@@ -284,6 +284,20 @@
             }
             //[self shotZombie];
             break;
+        case COLLISION_BEHAVIOR_FIREFOX_FADES:
+            if (isProjectile)
+            {
+                [self setBoundingBox:CGRectMake(37, 2, 14, 15)];
+                _collided = false;                
+                [_projectile startCollision];
+                [[[[LayerManager sharedLayers] getPlayer] getThirdAction] setKilledEnemy:YES];
+            }
+            else {
+                _alpha = 1.5f;
+                _fadeout = true;
+                [_projectile startCollision];
+            }
+            break;
         case COLLISION_BEHAVIOR_FIRE_DEMON:
             _alpha = 1.0f;
             _vy = -50.0f;
@@ -385,12 +399,18 @@
         if ([[Camera sharedCamera ] isInVisualRange:_x]) {
             if (!_isVisible) {
                 [[_sprite getCCSprite] setVisible:YES];
+                if(_projectile!=nil){
+                    [[_projectile getCCSprite] setVisible:YES];
+                }
                 [[_sprite getCCSprite] resumeSchedulerAndActions];
                 _isVisible = true;
             }
         } else {
             if (_isVisible) {
                 [[_sprite getCCSprite] setVisible:NO];
+                if(_projectile!=nil){
+                    [[_projectile getCCSprite] setVisible:NO];
+                }
                 [[_sprite getCCSprite] pauseSchedulerAndActions];
                 _isVisible = false;
             }
@@ -624,6 +644,9 @@
         ///////////////////////////
         //LEVEL 8 - VOLCANO RUN
         ///////////////////////////
+            
+        case COLLISION_BEHAVIOR_FIREFOX_PREATTACK:
+            break;
         case COLLISION_BEHAVIOR_FIRE_DEMON:
             [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-25.0f];
             _angle += _rotationAmount * dt;
@@ -1022,10 +1045,6 @@
     _madeSound = false;
     [_sprite setAlpha:1.0f];
      
-    if ([[_sprite getAnimation].name isEqualToString:@"cityBikeAnim"]) {
-        _x = _x;
-    }
-    
     if (![_originalAnimation isEqualToString:@"none"]) {
         [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:_originalAnimation];        
     }
@@ -1033,8 +1052,12 @@
     
     //for now just kill the projectile. we apparently can't add it on initialization of the object.
     if (_projectile !=nil) {
-        [_projectile release];
-        _projectile = nil;
+        if (_projectilePersists) {
+            [_projectile reset];
+        } else {
+            [_projectile release];
+            _projectile = nil;
+        }
     }
     
     [self setPosition:_startingPosition];
@@ -1152,6 +1175,11 @@
         _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_UP;
         _collideBehavior = COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENING;
         [self setBoundingBox:CGRectMake(70, 2, 14, 25)];
+    }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_FIREFOX_FADES || _currentBehavior == COLLISION_BEHAVIOR_FIREFOX_PREATTACK || _currentBehavior == COLLISION_BEHAVIOR_FIREFOX_POSTATTACK) {
+        _currentBehavior = COLLISION_BEHAVIOR_FIREFOX_PREATTACK;
+        [self setBoundingBox:CGRectMake(37, 2, 14, 45)];
+        [_projectile setPosition:ccp(-31.0f,-13.0f)];
     }
     else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_SLOW) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;     
@@ -1345,6 +1373,17 @@
         _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_UP;
         _collideBehavior = COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENING;
         _aggressiveCanHit = true;
+    }
+    else if([behavior isEqualToString:@"firefox"]) {
+        _currentBehavior = COLLISION_BEHAVIOR_FIREFOX_PREATTACK;
+        _collideBehavior = COLLISION_BEHAVIOR_FIREFOX_FADES;
+        _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_FIRE_FOXFIRE];
+        [_projectile reset];
+        [_projectile setAttachedTo:self];
+        [_projectile setPosition:ccp(-31.0f,-13.0f)];
+        [_projectile setBoundingBox:CGRectMake(15,15,30,30)];
+        [_projectile setInitialVelocity];
+        _projectilePersists = true;
     }
     else {
         _collideBehavior = COLLISION_BEHAVIOR_NONE;

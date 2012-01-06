@@ -96,7 +96,7 @@ typedef enum {
     bool _persistsBetweenRegions;
     
     bool _isHurdle;
-    
+    bool _projectilePersists;
    
     
     Collision *_collisionState;     //used to keep track of whether the object is in midair or on
