@@ -25,6 +25,7 @@
 
 
 @synthesize boundingBox = _boundingBox;
+@synthesize hurtsPlayer = _hurtsPlayer;
 
 
 
@@ -50,6 +51,8 @@
         _angularVelocity = 0.0f;
         _offsetGroundDetectionY = 0.0f;
         _isAggressive = true;
+        _attachedTo = nil;
+        _hurtsPlayer = true;
         
         switch (_behavior) {
             case PROJECTILE_BEHAVIOR_PLAYER_KICK:
@@ -109,6 +112,16 @@
                 _offscreenPadding = 20.0f;
                 _offsetGroundDetectionY = -13.0f;
                 _isAggressive = false;
+                break;
+            case PROJECTILE_BEHAVIOR_FIRE_FOXFIRE:
+                _sprite = [Sprite spriteWithFile:@"blank.png" AddToLayer:NO];
+                [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"fireFoxFireAnim"];
+                [_sprite getCCSprite].anchorPoint = ccp(0.5f,0.5f);
+                [[_sprite getCCSprite] setVisible:YES];
+                _offscreenPadding = 20.0f;
+                _hurtsPlayer = false;
+                _isAggressive = false;
+                break;
             default:
                 break;                
                 
@@ -222,6 +235,14 @@
 {
     _x = point.x;
     _y = point.y;
+    
+    //if projectile is attached to something, then its position is relative to what it's attached to
+    //the fox's fire, for example.
+    if (_attachedTo!=nil) {
+        point.x = _attachedTo.x + point.x;
+        point.y = _attachedTo.y + point.y;
+    }
+    
     if (_sprite!=nil) {
         [[_sprite getCCSprite] setPosition:[[Camera sharedCamera] convertToScreenXY:point]];
     }
@@ -285,13 +306,17 @@
     return false;
 }
 
+
+
 -(void) update:(float)dt
 {
     if (_fadeOut) {
         if ([_sprite reachedMinAfterModifyAlpha:-2.0f * dt]) {
             [[_sprite getCCSprite] setVisible:NO];
         } else {
-            if (_behavior!=PROJECTILE_BEHAVIOR_ZOMBIE_HEAD && _behavior!=PROJECTILE_BEHAVIOR_ZOMBIE_HEART) {
+            if(_behavior == PROJECTILE_BEHAVIOR_FIRE_FOXFIRE) {
+                [_sprite move:CGPointMake(50.0f * dt, 0.0f * dt)];
+            } else if (_behavior!=PROJECTILE_BEHAVIOR_ZOMBIE_HEAD && _behavior!=PROJECTILE_BEHAVIOR_ZOMBIE_HEART) {
                 [_sprite move:CGPointMake(100.0f *dt, 200.0f*dt)];                
             }
         }
@@ -353,6 +378,11 @@
 -(bool) checkIfOnScreen:(CGPoint)position
 {
     CGPoint screenPosition = [[Camera sharedCamera] convertToScreenXY:position];
+    if (screenPosition.x > 0 && screenPosition.x < 480 && screenPosition.y > 0 && screenPosition.y < 320) {
+        return true;
+    }
+    //NOTE: USER_INTERFACE_IDIOM is SLOOOOOOOOOOOW
+    /*
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         //float minAmount = 
         
@@ -363,7 +393,7 @@
         if (screenPosition.x > 0 && screenPosition.x < 480 && screenPosition.y > 0 && screenPosition.y < 320) {
             return true;
         }
-    }
+    }*/
     return false;
 }
 

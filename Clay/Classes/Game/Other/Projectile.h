@@ -23,6 +23,7 @@ typedef enum {
     PROJECTILE_BEHAVIOR_BOSS_SHIP_MEGACANNON,
     PROJECTILE_BEHAVIOR_PLAYER_BLOWING,
     PROJECTILE_BEHAVIOR_FIRE_DEMON_BULLET,
+    PROJECTILE_BEHAVIOR_FIRE_FOXFIRE,
     PROJECTILE_BEHAVIOR_RAINY_SQUIRREL_NUT
 }ProjectileBehavior;
 
@@ -50,9 +51,11 @@ typedef enum {
     bool _isActive;
     bool _isAggressive;
     bool _fadeOut;
+    bool _hurtsPlayer;
 }
 
 @property(nonatomic,assign) CGRect boundingBox;
+@property(nonatomic,readonly) bool hurtsPlayer;
 
 #pragma mark - inits
 +(id) projectileWithBehavior:(ProjectileBehavior)behavior;

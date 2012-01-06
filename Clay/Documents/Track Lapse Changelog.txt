@@ -1,5 +1,22 @@
 Track Lapse Changelog
 
+Build 120105.01
+==================
+
+* Global - bug with death pits should be fixed now. tim used to be able to fall but still appear on the ground if he landed near the edge of a death pit, now it should always kill him
+* Level 7 - combo attack has collision detection, and the attacks are slowed down a bit
+* Level 7 - shield animation a lot faster, with zero cooldown. should allow for player to hit the shield just before getting hit each time
+* Level 7 - new level designs for all modes
+* Level 7 - warning animation for first attack repositioned and follows the gun better
+* Level 7 - layers merged, now getting mostly 60 fps when before we barely got 50 fps
+* Level 7 - cannon attack now does double damage to distinguish it from the gun
+* Level 8 - fire demon babies replaced with hedgehogs
+* Level 8 - firefox obstacle added. these are double jumps unless you blow the fire out, and then they become medium jumps. blowing the fire out also gives you health
+* Level 8 - blow action tweaked to be larger hitbox, and now tim comes to a stop for the entire blow animation (instead of starting to move with his feet planted), although right after he gets out of the action he starts moving at half his normal maximum speed and acceleration, so the effect of slowing down to a stop is minimized.
+* Level 8 - all obstacle graphics have been recolored darker, and the fire demon with armor no longer has armor on his head
+* Optimization - discovered that the projectiles were using a slow apple function to detect whether the device was an iPad or iPhone for each projectile each time they were updated. the functions weren't needed anymore so they've been removed. affects all levels with projectiles, including the kick in level 2. may not be enough to be noticeable, though.
+
+
 Build 120104.01
 ==================
 

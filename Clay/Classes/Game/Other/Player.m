@@ -653,7 +653,7 @@
 
     //[self updateLedge:dt];
     
-    if(_speed.isStopped && !_isTripping) {
+    if(_speed.isStopped && !_isTripping && (![_thirdAction inAction]||![_thirdAction shouldActionStopPlayer])) {
         _waitToGetUp -= dt;
         if (_waitToGetUp <= 0.0f) {
             [_speed start];

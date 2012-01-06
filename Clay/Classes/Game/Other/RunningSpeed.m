@@ -143,6 +143,12 @@
     }
 }
 
+-(void)endBlow
+{
+    _velocity = RUNNING_SPEED_MODIFIER_VELOCITY_MAX * 0.5f * _normalVelocityMax;
+    _acceleration = RUNNING_SPEED_MODIFIER_ACCELERATION_MAX * 0.5f * _normalAccelerationMax;
+}
+
 -(void)endTurbo
 {
     _inTurbo = false;
@@ -234,6 +240,8 @@
             }
             
         }
+        
+        //NSLog(@"Velocity: %f",_velocity);
 
     } else {
         [self applyFriction:5.0f Dt:dt];

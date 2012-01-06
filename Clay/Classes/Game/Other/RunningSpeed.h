@@ -78,6 +78,7 @@
 -(void)endTurbo;
 -(void)startKick;
 -(void)startBlow;
+-(void)endBlow;
 -(void)applyFriction:(float)friction Dt:(float)dt;
 -(void)landFromHighJump;
 -(void)update:(float)dt;

@@ -47,6 +47,11 @@
     
 }
 
+-(bool) shouldActionStopPlayer
+{
+    return false;
+}
+
 
 -(void)startAction
 {

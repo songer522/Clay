@@ -238,7 +238,13 @@
             @try {
                 if (obstacle.useDefaultBatchNode) {
                     [[[LayerManager sharedLayers] currentLayer] addChild:[obstacle getCCSprite]];
-                    [[obstacle getCCSprite] setBatchNode:_obstacleSpriteBatch];                    
+                    [[obstacle getCCSprite] setBatchNode:_obstacleSpriteBatch];
+                    
+                    
+                    Projectile *proj = [obstacle getProjectile];
+                    if (proj!=nil) {
+                        [[[LayerManager sharedLayers] currentLayer] addChild:[proj getCCSprite]];
+                    }
                 } else {
                     //do nothing regarding the batchnode; it will create its own if one is not already assigned, when the animation is initialized
                     [_gameLayer addChild:[obstacle getCCSprite]];
@@ -510,6 +516,7 @@
         if (!mapObject.placed && [mapObject.layerAbove isEqualToString:layer.layerName]) {
             mapObject.parallaxRatio = ratio;
             [[[LayerManager sharedLayers] currentLayer] addChild:[mapObject.object getCCSprite]];
+            
             mapObject.placed = true;
             
             //add to background regionmanager
@@ -663,7 +670,7 @@
         
         //test the gameobject's active projectile, if any (example: zombie heads)
         Projectile *projectile = [obstacle getProjectile];
-        if (projectile!=nil && [projectile getActive]) {
+        if (projectile!=nil && [projectile getActive] && projectile.hurtsPlayer) {
             if([self testCollisionWithGameObject:projectile Source:source]) {
                 [_player startCollision:PLAYER_EFFECT_COLLIDE Source:projectile];
                 [projectile startCollision];

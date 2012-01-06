@@ -154,8 +154,6 @@
     }
 }
 
-// damping is in the range 0..1, with a typical value of 0.1 (which means 90% correction in one second)
-// Source: http://forums.create.msdn.com/forums/p/15365/80653.aspx#80653
 -(bool)moveWithEasing:(float)dt Magnitude:(float)magnitude
 {
     bool _atTarget = false;

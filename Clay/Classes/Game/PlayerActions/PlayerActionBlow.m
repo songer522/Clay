@@ -27,11 +27,11 @@
     
     if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
     {
-        [_windProjectile setBoundingBox:CGRectMake(0, 0, 110, 110)];
+        [_windProjectile setBoundingBox:CGRectMake(0, 30, 140, 140)];
     }
     else
     {
-        [_windProjectile setBoundingBox:CGRectMake(0, 35, 110, 110)];
+        [_windProjectile setBoundingBox:CGRectMake(0, 75, 140, 140)];
     }
     [super initialize];    
 }
@@ -57,6 +57,7 @@
     [[_wind getCCSprite] setVisible:NO];
     [[_parent getSpeed] start];
     [_windProjectile disable];
+    [[_parent getSpeed] endBlow];
     [super endAction];
 }
 
@@ -64,6 +65,7 @@
 {
     //[_parent setPlayerAnimation:PLAYER_ANIM_RUNNING];
     [[_parent getSpeed] start];
+    [[_parent getSpeed] endBlow];
     [[_wind getCCSprite] setVisible:NO];
     [_windProjectile disable];    
     [super cancelAction];
@@ -96,9 +98,14 @@
         {
             if([[[LevelManager shared] currentLevel] testCollisionWithGameObject:object Source:_windProjectile])
             {
-                [object startCollision:false];
+                [object startCollision:true];
                 if(!object.hasAppeared)
                     [self freezeFireDemon:object];
+            }
+        } else if([object getCurrentCollisionBehavior] == COLLISION_BEHAVIOR_FIREFOX_PREATTACK) {
+            if([[[LevelManager shared] currentLevel] testCollisionWithGameObject:object Source:_windProjectile])
+            {
+                [object startCollision:true];
             }
         }
     }
@@ -145,6 +152,12 @@
 {
     NSMutableArray *array = [[NSMutableArray alloc] initWithObjects:_windProjectile, nil];
     return array;
+}
+
+
+-(bool) shouldActionStopPlayer
+{
+    return true;
 }
 
 

@@ -246,7 +246,11 @@
 -(void)updateCannon:(float)dt
 {
     CGPoint shipPos = [_sprite getScreenPosition];
-    [_cannonAnim setScreenPosition:CGPointMake(shipPos.x - 120, shipPos.y + 12.0f)];        
+    if(_frame == 1) {
+        [_cannonAnim setScreenPosition:CGPointMake(shipPos.x - 136, shipPos.y + 16.0f)];
+    } else {
+        [_cannonAnim setScreenPosition:CGPointMake(shipPos.x - 136, shipPos.y + 10.0f)];
+    }
     
     if (_waitToShoot > 0.0f) {
         _waitToShoot -= dt;
