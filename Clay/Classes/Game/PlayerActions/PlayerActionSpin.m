@@ -30,7 +30,7 @@
 {
     if (!_inAction && _canTrigger) {
         [super startAction];
-        [_parent endTurbo:false];
+        //[_parent endTurbo:false];
         [_parent setPlayerAnimation:PLAYER_ANIM_SPIN];
         //[_parent setPlayerAnimation:PLAYER_ANIM_SPIN_UP];
         [[SoundEngine shared] playSound:@"waterSwimAction"];
@@ -40,15 +40,10 @@
 
 -(void)endAction
 {
-    if(_player.inVaccuum) {
-        _player.inVaccuum = false;
+    if([_parent isInMidAir]) {
+        [_parent setPlayerAnimation:PLAYER_ANIM_FALLING];            
     } else {
-        if([_parent isInMidAir]) {
-            [_parent setPlayerAnimation:PLAYER_ANIM_FALLING];            
-        } else {
-            [_parent setPlayerAnimation:PLAYER_ANIM_RUNNING];            
-        }
-        //[_parent setPlayerAnimation:PLAYER_ANIM_SPIN_UP];
+        [_parent setPlayerAnimation:PLAYER_ANIM_RUNNING];            
     }
     _duration = 0.0f;
     _parent.hasGravity=true;
@@ -59,7 +54,7 @@
 -(void)cancelAction
 {
     _parent.hasGravity=true;
-    [_player endVaccuum];
+    //[_player endVaccuum];
     _duration = 0.0f;
     
     if(![_parent isTripping]) {
@@ -85,11 +80,11 @@
         if (_player.y <= SPIN_PLAYER_GROUND_Y) {
             [self endAction];
         } else {
-            [_player setVelocity:30.0f];
+            //[_player setVelocity:30.0f];
             if (_player.vy < 0) {
-                [_player setVy:80.0f];
+                [_player setVy:100.0f];
             }
-            _player.vy += 5.0f * dt;
+            _player.vy += 10.0f * dt;
         }
     }
     [super update:dt];
