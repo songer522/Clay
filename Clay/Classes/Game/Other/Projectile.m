@@ -27,6 +27,7 @@
 @synthesize boundingBox = _boundingBox;
 
 
+
 +(id) projectileWithBehavior:(ProjectileBehavior)behavior
 {
     return [[self alloc] initWithBehavior:behavior];

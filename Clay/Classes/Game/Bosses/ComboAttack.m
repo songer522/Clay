@@ -85,7 +85,7 @@
             _target = _attackPosition;
             break;
         case COMBO_WAIT_TO_ATTACK:
-            _waitToAttack = _comboId * 1.1f + 0.25f;
+            _waitToAttack = _comboId * 0.95f + 0.25f;
             if (_comboId == 2) {
                 _waitToAttack += 0.25f;
             }
@@ -134,12 +134,12 @@
             [_sprite setAlpha:_alpha];
             break;
         case COMBO_MOVETO_ATTACK:
-            if([self moveWithEasing:dt Magnitude:3.0f]) {
+            if([self moveWithEasing:dt Magnitude:15.0f]) {
                 [self finishedPhase];
             }
             break;
         case COMBO_ATTACK:
-            if([self moveWithEasing:dt Magnitude:1.1f]) {
+            if([self moveWithEasing:dt Magnitude:1.4f]) {
                 [self finishedPhase];
             }
             break;
