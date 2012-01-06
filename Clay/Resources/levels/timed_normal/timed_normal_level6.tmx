@@ -177,7 +177,7 @@
             <property name="speedy" value="1.0"/>
         </properties>
         <data encoding="base64" compression="zlib">
-            eJztzllTjnEch/H7PipSnCGRM4R4A8kbsLyVZM2SLVLIkjVL1oiQZF/Lmj1LWSMJWc/sy3X4zHgOe2Zqnuua+Rz85/7NPd8gMDMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzOz7loOJiEXkzEFUzEN0zEDeZiJWZiNOcjHXHzFN3xHNQ6jBkdQi6M4huM4gZM4hdM4g7M4h/P4gZ/45S53uctd7nKXu9zlLne5y13uivmueZiPBViIAizCYhRiCYpQjKVYhuUowQokhEGQiB64wLsO9biIS7iMK7iKa2jAddzATdzCbdxBT/6RhF6hu9zlLne5y13ucpe73OUud7kr1rtWYhVWoxRrsBbrsB4bsBFl2ITN2IKtKEdf/t8P/XGXdyPu4T4e4CGa0IxHeIwneIpneI4WvEAq/xiAtNBd7nKXu9zlLne5y13ucpe73BXrXduwHTuwE7uwGxXYg72oxD7sRxUO4CAOYQj/H4pheMm7Fa/Qhtdoxxu8xTt04D0+4CM+4TO+IIN/DMeI0F3ucpe73OUud7nLXe5yl7vcFetdv/EHfxGE/79HIhOjMDrKd++9995777333nvvvffee++7530yUtAbfaK8szAG2Rjrvfdxdh/57gp7vPfee++999577733vjPvB2IQ0jE4ynscxmMCJnrvfZzdR767wh7vvffee++99957773vzHszMzMzMzOLz/4BzrPpUQ==
+            eJzt1VlTjnEch/H7PrLHGRI5Q9Y3kLwB8VaSfSlZkkJF2bJkzU6yZMkuZN93kYgQZ0SW67AZz+nT1NzXNfM5+M/zm3u+Z08QmJmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZlZVy0DU5CJqZiG6ZiBmZiF2ZiDuZiHLGRjPr7jB1pRicOowhEcxTEcRzVO4CRO4TRqcAZncQ4/8Qtt7nKXu9zlLne5y13ucpe73OWuuO/KwQIsxCIsRi6WIA9LkY8CLMNyrEAhitAtDILu6IHzvC/gIi7hMmpxBVdxDXW4jhu4iVu4jTvoyTd6oXfoLne5y13ucpe73OUud7nLXe6K965irMQqlKAUq7EGa7EO61GGDdiITdiMcvTn+wMwEHd538N9PMBDPMJjPMFTPMNzvMBLvEI9XiORbwxCUugud7nLXe5yl7vc5S53uctd7or3ri3Yim3Yjh3YiQrswm7swV7sw34cwEEcwjC+Pxwj8IZ3A96iEe/wHk34gI9oxid8xhe04Cu+IYVvjMSo0F3ucpe73OUud7nLXe5yl7vcFe9dv/EHfxGE/79HYwzGYlyM37333nvvvffee++99957773vmvd9kIC+6BfjnYrxSMME772P2H37d2fY47333nvvvfdRuPf/13vvO+5+MIYgGUNjvCciHZMw2XvvI3bf/t0Z9njvvffee+99FO79//Xe+467NzMzMzMzs2j2Dzie6DE=
         </data>
     </layer>
     <layer name="ledges" width="900" height="14">
