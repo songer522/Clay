@@ -32,7 +32,7 @@
         [super startAction];
         [_parent endTurbo:false];
         [_parent setPlayerAnimation:PLAYER_ANIM_SPIN];
-        [_parent setPlayerAnimation:PLAYER_ANIM_SPIN_UP];
+        //[_parent setPlayerAnimation:PLAYER_ANIM_SPIN_UP];
         [[SoundEngine shared] playSound:@"waterSwimAction"];
         _duration = 10.75f;
     }
@@ -48,7 +48,7 @@
         } else {
             [_parent setPlayerAnimation:PLAYER_ANIM_RUNNING];            
         }
-        [_parent setPlayerAnimation:PLAYER_ANIM_SPIN_UP];
+        //[_parent setPlayerAnimation:PLAYER_ANIM_SPIN_UP];
     }
     _duration = 0.0f;
     _parent.hasGravity=true;
