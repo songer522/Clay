@@ -55,7 +55,7 @@
         _shootAction = [[NSString stringWithString:[anims objectForKey:@"shootAction"]] retain];
         _blowAction = [[NSString stringWithString:[anims objectForKey:@"blowAction"]] retain];
         _spinAction = [[NSString stringWithString:[anims objectForKey:@"spinDown"]] retain];
-        _spinUp = [[NSString stringWithString:[anims objectForKey:@"spinUp"]] retain];
+        //_spinUp = [[NSString stringWithString:[anims objectForKey:@"spinUp"]] retain];
         _slowTimeAction = [[NSString stringWithString:[anims objectForKey:@"slowTimeAction"]] retain];
         _floating = [[NSString stringWithString:[anims objectForKey:@"floating"]] retain];
         
