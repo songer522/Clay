@@ -1705,7 +1705,7 @@
 	<key>waterPufferFishAnim1</key>
 	<dict>
 		<key>animationFrames</key>
-		<string>1,2</string>
+		<string>1,2,1,2,1,2,1,2</string>
 		<key>clearPreviousAnims</key>
 		<string>true</string>
 		<key>delay</key>
@@ -1722,7 +1722,7 @@
 	<key>waterPufferFishAnim2</key>
 	<dict>
 		<key>animationFrames</key>
-		<string>3</string>
+		<string>3,3,3,3,3,3,3</string>
 		<key>clearPreviousAnims</key>
 		<string>true</string>
 		<key>delay</key>
@@ -1739,7 +1739,7 @@
 	<key>waterPufferFishAnim3</key>
 	<dict>
 		<key>animationFrames</key>
-		<string>4,5</string>
+		<string>4,5,4,5,4,5,4,5,4,5,4,5,4,5</string>
 		<key>clearPreviousAnims</key>
 		<string>true</string>
 		<key>delay</key>
