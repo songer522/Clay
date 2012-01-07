@@ -803,6 +803,53 @@
         ///////////////////////////
         //LEVEL 10 - AQUARIUM RUN
         ///////////////////////////
+        case COLLISION_BEHAVIOR_WATER_PUFFERFISH:
+            
+            if([self closeToPlayer:550] && ![self closeToPlayer:300])
+            {
+                if (_isActive)
+                {
+                int frame = [[_sprite getAnimation] getCurrentFrameNumber];
+                if (frame == 0) {
+                    _direction = -1;
+                } else if(frame == 1) {
+                    _direction = 1;
+                }
+                _vy = _direction * 30.0f; 
+                }
+               
+            } 
+            
+            
+            if([self closeToPlayer:300] && ! [self closeToPlayer:150])
+            {
+                if  (![[_sprite.getAnimation name] isEqualToString:@"waterPufferFishAnim2"])
+                {
+                    [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"waterPufferFishAnim2"];
+                }
+                _vy = 0;
+            }
+            
+            if([self closeToPlayer:150])
+            {
+              if  (![[[_sprite getAnimation] name] isEqualToString:@"waterPufferFishAnim3"])
+              {
+                 [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"waterPufferFishAnim3"];
+              }
+                if(_isActive)
+                {
+                int frame = [[_sprite getAnimation] getCurrentFrameNumber];
+                if (frame == 0) {
+                    _direction = -1;
+                } else if(frame == 1) {
+                    _direction = 1;
+                }
+                _vy = _direction * 30.0f; 
+                }
+            }
+            
+            break;
+            
         case COLLISION_BEHAVIOR_WATER_SEAHORSE:
             if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
                 _vy *= 0.955f;
@@ -1181,6 +1228,8 @@
         _direction = 1;
     } else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_PUFFERFISH) {
         _currentBehavior = COLLISION_BEHAVIOR_WATER_PUFFERFISH;
+         [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"waterPufferFishAnim1"];
+        _vy=0;
     }else if(_currentBehavior == COLLISION_BEHAVIOR_DARK_SPIKES) {
         _currentBehavior = COLLISION_BEHAVIOR_DARK_SPIKES;
        
