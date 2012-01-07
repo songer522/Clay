@@ -107,6 +107,9 @@
       
         _isStutterMode = [[GameSettings shared] isStutterMode];
         
+        _player = [[LayerManager sharedLayers] getPlayer];
+        
+        
     }
     
     return self;
@@ -489,6 +492,7 @@
 -(void)updateCollisionBehavior:(float)dt
 {
     int frame;
+    CGPoint playerPos;
     
     switch (_currentBehavior) {
             
@@ -821,7 +825,21 @@
         case COLLISION_BEHAVIOR_WATER_TRONIKA_CHASE:
             [self chaseAtDistance:180.0f DefaultSpeed:-60.0f ChaseSpeed:-200.0f ChaseSound:@"" ChaseAnimation:@"waterTronikaAttackAnim" DefaultAnimation:@"waterTronikaCalmAnim"];
             break;
-
+        case COLLISION_BEHAVIOR_WATER_SQUID_ATTACKS:
+            playerPos = [_player getPosition];
+            _angle = [self getAngleBetweenPoint1:CGPointMake(_x, _y) Point2:playerPos];
+            [_sprite getCCSprite].rotation = -(_angle - 85.0f);
+            if (!_hasTriggered) {
+                
+                if ([self closeToPlayer:300]) {
+                    [_projectile setPosition:CGPointMake(_x, _y)];
+                    [_projectile reset];
+                    [_projectile shootWithSpeed:350.0f atAngle:_angle];
+                    [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"waterSquidShootAnim"];
+                    _hasTriggered = true;
+                }
+            }
+            break;
             
         
         ////////////////////////
@@ -967,7 +985,20 @@
     return false;
 }
 
-               
+-(float) getAngleBetweenPoint1:(CGPoint)point1 Point2:(CGPoint)point2
+{
+    float dx, dy, angle;
+    
+    dx = point1.x - point2.x;
+    dy = point1.y - point2.y;
+    angle = atan2f( dy, dx );
+    angle = CC_RADIANS_TO_DEGREES(angle);
+    if ( angle < 0 ) {
+        angle = (360.0f + angle);
+    }
+    return angle;
+}
+
                  
 -(bool) checkIfOffScreen:(CGPoint)position
 {
@@ -1399,6 +1430,10 @@
     else if([behavior isEqualToString:@"turret"]) {
         _currentBehavior = COLLISION_BEHAVIOR_WATER_SQUID_ATTACKS;
         _collideBehavior = COLLISION_BEHAVIOR_FADES;
+        _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_WATER_SQUID_INK];
+        [_projectile reset];
+        [_projectile setBoundingBox:CGRectMake(10,10,20,20)];
+        _projectilePersists = true;
     }
     else if([behavior isEqualToString:@"tronika"]) {
         _currentBehavior = COLLISION_BEHAVIOR_WATER_TRONIKA_CHASE;

@@ -1722,7 +1722,7 @@
 	<key>waterTronikaCalmAnim</key>
 	<dict>
 		<key>animationFrames</key>
-		<string>1,1</string>
+		<string>1,2</string>
 		<key>clearPreviousAnims</key>
 		<string>true</string>
 		<key>delay</key>
@@ -1732,14 +1732,14 @@
 		<key>looping</key>
 		<string>true</string>
 		<key>sequencePrefix</key>
-		<string>Level10_Tronika_</string>
+		<string>Tronika_</string>
 		<key>spritesheetPlist</key>
 		<string>waterLevel</string>
 	</dict>
 	<key>waterTronikaAttackAnim</key>
 	<dict>
 		<key>animationFrames</key>
-		<string>2,2</string>
+		<string>1,2</string>
 		<key>clearPreviousAnims</key>
 		<string>true</string>
 		<key>delay</key>
@@ -1749,31 +1749,65 @@
 		<key>looping</key>
 		<string>true</string>
 		<key>sequencePrefix</key>
-		<string>Level10_Tronika_</string>
+		<string>Tronika_</string>
 		<key>spritesheetPlist</key>
 		<string>waterLevel</string>
 	</dict>
 	<key>waterSquidAnim</key>
 	<dict>
 		<key>animationFrames</key>
-		<string>1,1</string>
+		<string>1,2</string>
 		<key>clearPreviousAnims</key>
 		<string>true</string>
 		<key>delay</key>
-		<string>0.1</string>
+		<string>0.25</string>
 		<key>group</key>
 		<string>level10</string>
 		<key>looping</key>
 		<string>true</string>
 		<key>sequencePrefix</key>
-		<string>Level10_Squid_</string>
+		<string>Squid_Body_</string>
 		<key>spritesheetPlist</key>
 		<string>waterLevel</string>
 	</dict>
-	<key>waterSquidInkAnim</key>
+	<key>waterSquidAttackAnim</key>
 	<dict>
 		<key>animationFrames</key>
-		<string>1,1</string>
+		<string>3,4</string>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>delay</key>
+		<string>0.17</string>
+		<key>group</key>
+		<string>level10</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Squid_Body_</string>
+		<key>spritesheetPlist</key>
+		<string>waterLevel</string>
+	</dict>
+	<key>waterSquidInkShootAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2</string>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level10</string>
+		<key>looping</key>
+		<string>false</string>
+		<key>sequencePrefix</key>
+		<string>Squid_Ink_</string>
+		<key>spritesheetPlist</key>
+		<string>waterLevel</string>
+	</dict>
+	<key>waterSquidInkMovingAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>3,4</string>
 		<key>clearPreviousAnims</key>
 		<string>true</string>
 		<key>delay</key>
@@ -1783,7 +1817,24 @@
 		<key>looping</key>
 		<string>true</string>
 		<key>sequencePrefix</key>
-		<string>Level10_Squid_Ink_</string>
+		<string>Squid_Ink_</string>
+		<key>spritesheetPlist</key>
+		<string>waterLevel</string>
+	</dict>
+	<key>waterSquidInkLandAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>5,6,6,6,6,6,6,6,6,6</string>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level10</string>
+		<key>looping</key>
+		<string>false</string>
+		<key>sequencePrefix</key>
+		<string>Squid_Ink_</string>
 		<key>spritesheetPlist</key>
 		<string>waterLevel</string>
 	</dict>

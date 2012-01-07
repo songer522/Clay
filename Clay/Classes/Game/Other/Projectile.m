@@ -26,6 +26,7 @@
 
 @synthesize boundingBox = _boundingBox;
 @synthesize hurtsPlayer = _hurtsPlayer;
+@synthesize isBehindObstacle = _isBehindObstacle;
 
 
 
@@ -123,11 +124,12 @@
                 _isAggressive = false;
                 break;
             case PROJECTILE_BEHAVIOR_WATER_SQUID_INK:
-                _sprite = [Sprite spriteFromFrameCacheWithName:@"blank.png"];
-                [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"waterSquidInkAnim"];
+                _sprite = [Sprite spriteWithFile:@"blank.png" AddToLayer:NO];
+                [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"waterSquidInkMovingAnim"];
                 [_sprite getCCSprite].anchorPoint = ccp(0.5f,0.5f);
                 [[_sprite getCCSprite] setVisible:NO];
                 _offscreenPadding = 20.0f;
+                _isBehindObstacle = true;
                 _isAggressive = false;
                 break;
             default:
@@ -142,10 +144,7 @@
 }
 
 -(void) setInitialVelocity
-{
-    float angle;
-    Player *player;
-    
+{    
     switch (_behavior) {
         case PROJECTILE_BEHAVIOR_BULLET:
             _vx = 800.0f;
@@ -170,15 +169,43 @@
             _vy = 75.0f;
             _vx = -1.0f * (50.0f + rand()%100);
         case PROJECTILE_BEHAVIOR_WATER_SQUID_INK:
-            player = [[LayerManager sharedLayers] getPlayer];
-            angle = [self getAngleBetweenSource:CGPointMake(_x, _y) andTarget:[player getPosition]];
-            _vx = cosf(angle) * 350.0f;
-            _vy = sinf(angle) * 350.0f;
+            //call shootWithSpeed instead
             break;
         default:
             break;                
     }        
 }
+
+//so far, used only by squid ink
+-(void) shootWithSpeed:(float)speed atAngle:(float)angle
+{
+    float squidInkAngleOffset = -85.0f;
+    
+    [_sprite getCCSprite].rotation = -(angle + squidInkAngleOffset);
+    
+    angle = CC_DEGREES_TO_RADIANS(-(angle + squidInkAngleOffset));
+    
+    _vx = cosf(angle) * speed;
+    _vy = sinf(angle) * speed;
+}
+                                               
+                                               
+-(float) getAngleBetweenPoint1:(CGPoint)point1 Point2:(CGPoint)point2 InDegrees:(bool)convertToDegrees
+{
+    float dx, dy, angle;
+    
+    dx = point1.x - point2.x;
+    dy = point1.y - point2.y;
+    angle = atan2f( dy, dx );
+    if (convertToDegrees) {
+        angle = CC_RADIANS_TO_DEGREES(angle);
+        if ( angle < 0 ) {
+            angle = (360.0f + angle);
+        }
+    }
+    return angle;
+}
+
 
 -(float)getAngleBetweenSource:(CGPoint)source andTarget:(CGPoint)target
 {
