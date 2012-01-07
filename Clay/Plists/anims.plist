@@ -1781,7 +1781,7 @@
 		<key>group</key>
 		<string>level10</string>
 		<key>looping</key>
-		<string>true</string>
+		<string>false</string>
 		<key>sequencePrefix</key>
 		<string>Squid_Body_</string>
 		<key>spritesheetPlist</key>

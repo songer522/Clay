@@ -834,8 +834,8 @@
                 if ([self closeToPlayer:300]) {
                     [_projectile setPosition:CGPointMake(_x, _y)];
                     [_projectile reset];
-                    [_projectile shootWithSpeed:350.0f atAngle:_angle];
-                    [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"waterSquidShootAnim"];
+                    [_projectile shootWithSpeed:350.0f atAngle:(-(_angle - 95.0f))];
+                    [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"waterSquidAttackAnim"];
                     _hasTriggered = true;
                 }
             }
@@ -1217,6 +1217,8 @@
     }
     else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_SQUID_ATTACKS || _currentBehavior == COLLISION_BEHAVIOR_WATER_SQUID_FADES) {
         _currentBehavior = COLLISION_BEHAVIOR_WATER_SQUID_ATTACKS;
+        _hasTriggered = false;
+        [[_projectile getCCSprite] setVisible:NO];
     }
     else if(_currentBehavior == COLLISION_BEHAVIOR_FIREFOX_FADES || _currentBehavior == COLLISION_BEHAVIOR_FIREFOX_PREATTACK || _currentBehavior == COLLISION_BEHAVIOR_FIREFOX_POSTATTACK) {
         _currentBehavior = COLLISION_BEHAVIOR_FIREFOX_PREATTACK;
@@ -1429,7 +1431,7 @@
     }
     else if([behavior isEqualToString:@"turret"]) {
         _currentBehavior = COLLISION_BEHAVIOR_WATER_SQUID_ATTACKS;
-        _collideBehavior = COLLISION_BEHAVIOR_FADES;
+        _collideBehavior = COLLISION_BEHAVIOR_WATER_SQUID_FADES;
         _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_WATER_SQUID_INK];
         [_projectile reset];
         [_projectile setBoundingBox:CGRectMake(10,10,20,20)];

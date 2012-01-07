@@ -179,11 +179,15 @@
 //so far, used only by squid ink
 -(void) shootWithSpeed:(float)speed atAngle:(float)angle
 {
-    float squidInkAngleOffset = -85.0f;
+    float squidInkAngleOffset = 190.0f;
     
-    [_sprite getCCSprite].rotation = -(angle + squidInkAngleOffset);
+    [[_sprite getCCSprite] setVisible:YES];
+    [_sprite getCCSprite].rotation = angle;
     
-    angle = CC_DEGREES_TO_RADIANS(-(angle + squidInkAngleOffset));
+    angle = angle + squidInkAngleOffset;
+    //NSLog(@"Angle: %f",angle);
+    
+    angle = CC_DEGREES_TO_RADIANS(angle);
     
     _vx = cosf(angle) * speed;
     _vy = sinf(angle) * speed;

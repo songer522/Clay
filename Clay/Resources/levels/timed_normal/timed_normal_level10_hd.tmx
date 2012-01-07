@@ -141,6 +141,16 @@
     <property name="obstacle" value="waterAnglerFish"/>
    </properties>
   </tile>
+  <tile id="75">
+   <properties>
+    <property name="obstacle" value="waterTronika"/>
+   </properties>
+  </tile>
+  <tile id="79">
+   <properties>
+    <property name="obstacle" value="waterSquid"/>
+   </properties>
+  </tile>
  </tileset>
  <tileset firstgid="113" name="Water" tilewidth="64" tileheight="64">
   <image source="tileset_level_10-hd.png" width="1024" height="768"/>
@@ -205,7 +215,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt2lEKwjAMAFBPoB5Nf9z9byKCguBEu65pt7wHol9dk6VdJj0cAAAAAAAAAAAAAAAAAADg0633BAAA4Kllbzo1HBtoJ9s7a7Z4gbHpn3jxfIKcIta+Zw1sS7aeIFu8wHiy90rZ45/j2UQvaq8/9wAAAMahP8/L/1WwX9Y3AAAAAAAAAMCYfp3riDr34ewgQN6zdlnjLjG9fbJYGmumHDGvtgZa9KW/5nRZMNa3b9Ylrzx4X7X3AP3scQ9eEtOoeSiZ16gxRCiNfWmuMuf44dRw7NLcXgt/r3HdqDqLtpV5runfmGtyU1qjNXUcrTQvtXtHq3Wasfb/lTE3UTGfg65DLPd12469JwAAAAAAAAAAHdwBAb8ZXQ==
+   eJzt2ktuwjAQAFBO0HK0dlNYcP9zVEhdIAFK/Bs7nfckREDI8UwmsY18OgEAAAAAAAAAAAAAQC63Hcd7Prd8V9s2AABE+pndAQAA+DNybnoZ2DYwTrY1a7Z4ATgG4xPkFHHvW6vDsWSbE2SLF+jPHvE25orPjE3Movbmcw0AAGAd5ud5+b8K/i/3NwAAAAAAAADAmrb2dUTt+7B3EFjBdfDvec0ew22Xh1cWtbFmyhGvtdbAiHnpVp++Ktp6905f8sqd9apnD0BPNePKqmNRSb9WjSFCaey1ucqc47vPgW2X5va78LjHeaPqLNpR+tnT3phbclNaoy11HK00L63PjlH3acba3ytjbqJiPgedh1iu67F9zO4AAAAAAAAAAEzwC73uHQI=
   </data>
  </layer>
  <layer name="meta" width="1000" height="14" opacity="0.68">
