@@ -320,7 +320,7 @@
             _alpha = 1.2f;
             _fadeout = true;
             break;
-        case COLLISION_BEHAVIOR_WATER_PUFFERFISH:
+        case COLLISION_BEHAVIOR_WATER_PUFFERFISH_FADES:
             _alpha = 1.2f;
             _fadeout = true;
             [[SoundEngine shared] playSound:@"waterPufferFish"];
@@ -1238,7 +1238,7 @@
     } else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_SEAHORSE) {
         _currentBehavior = COLLISION_BEHAVIOR_WATER_SEAHORSE;
         _direction = 1;
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_PUFFERFISH) {
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_PUFFERFISH || _currentBehavior == COLLISION_BEHAVIOR_WATER_PUFFERFISH_FADES) {
         _currentBehavior = COLLISION_BEHAVIOR_WATER_PUFFERFISH;
          [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"waterPufferFishAnim1"];
         _vy=0;
@@ -1441,7 +1441,7 @@
         _direction = 1;
     } else if([behavior isEqualToString:@"pufferfish"]) {
         _currentBehavior = COLLISION_BEHAVIOR_WATER_PUFFERFISH;
-        _collideBehavior = COLLISION_BEHAVIOR_WATER_PUFFERFISH;
+        _collideBehavior = COLLISION_BEHAVIOR_WATER_PUFFERFISH_FADES;
     } else if([behavior isEqualToString:@"spikes"]){
         _currentBehavior = COLLISION_BEHAVIOR_DARK_SPIKES;
         _collideBehavior = COLLISION_BEHAVIOR_DARK_SPIKES;

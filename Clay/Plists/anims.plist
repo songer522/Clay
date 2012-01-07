@@ -1730,7 +1730,7 @@
 		<key>group</key>
 		<string>level10</string>
 		<key>looping</key>
-		<string>false</string>
+		<string>true</string>
 		<key>sequencePrefix</key>
 		<string>BlowFish_</string>
 		<key>spritesheetPlist</key>
