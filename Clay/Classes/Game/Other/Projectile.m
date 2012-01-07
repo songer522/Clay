@@ -179,18 +179,20 @@
 //so far, used only by squid ink
 -(void) shootWithSpeed:(float)speed atAngle:(float)angle
 {
-    float squidInkAngleOffset = 190.0f;
+    float squidInkAngleOffset = 40.0f;
     
     [[_sprite getCCSprite] setVisible:YES];
-    [_sprite getCCSprite].rotation = angle;
+    [_sprite getCCSprite].rotation =-(_angle - squidInkAngleOffset);
     
-    angle = angle + squidInkAngleOffset;
+    //angle = angle + squidInkAngleOffset;
     //NSLog(@"Angle: %f",angle);
     
     angle = CC_DEGREES_TO_RADIANS(angle);
     
     _vx = cosf(angle) * speed;
     _vy = sinf(angle) * speed;
+    
+    [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"waterSquidInkShootAnim"];
 }
                                                
                                                
@@ -317,6 +319,8 @@
         [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"zombieBrainSquishAnim"];
     } else if(_behavior == PROJECTILE_BEHAVIOR_ZOMBIE_HEART) {
         [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"zombieHeartSquishAnim"];
+    } else if(_behavior == PROJECTILE_BEHAVIOR_WATER_SQUID_INK) {
+        [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"waterSquidInkLandAnim"];
     }
 }
 
@@ -336,6 +340,10 @@
     _isActive = true;
     _fadeOut = false;
     [_sprite setAlpha:1.0f];
+    if(_behavior == PROJECTILE_BEHAVIOR_WATER_SQUID_INK) { //should be safe for other behaviors, but no time to check so being safe
+        _vx = 0;
+        _vy = 0;
+    }
 }
 
 -(CollisionBehavior)getCollisionBehavior
@@ -371,7 +379,7 @@
         } else {
             if(_behavior == PROJECTILE_BEHAVIOR_FIRE_FOXFIRE) {
                 [_sprite move:CGPointMake(50.0f * dt, 0.0f * dt)];
-            } else if (_behavior!=PROJECTILE_BEHAVIOR_ZOMBIE_HEAD && _behavior!=PROJECTILE_BEHAVIOR_ZOMBIE_HEART) {
+            } else if (_behavior!=PROJECTILE_BEHAVIOR_ZOMBIE_HEAD && _behavior!=PROJECTILE_BEHAVIOR_ZOMBIE_HEART && _behavior!=PROJECTILE_BEHAVIOR_WATER_SQUID_INK) {
                 [_sprite move:CGPointMake(100.0f *dt, 200.0f*dt)];                
             }
         }

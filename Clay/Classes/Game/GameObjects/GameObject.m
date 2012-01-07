@@ -834,13 +834,25 @@
                 if ([self closeToPlayer:300]) {
                     [_projectile setPosition:CGPointMake(_x, _y)];
                     [_projectile reset];
-                    [_projectile shootWithSpeed:350.0f atAngle:(-(_angle - 95.0f))];
+                    [_projectile setPosition:CGPointMake(_x - 12.0f, _y - 28.0f)];
+                    [_projectile shootWithSpeed:160.0f atAngle:(_angle - 190.0f)];
                     [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"waterSquidAttackAnim"];
                     _hasTriggered = true;
+                    _currentBehavior = COLLISION_BEHAVIOR_WATER_SQUID_RETREATS;
+                    _waitToTrigger = 0.2f;
                 }
             }
             break;
-            
+        case COLLISION_BEHAVIOR_WATER_SQUID_RETREATS:
+            if (_waitToTrigger>0.0f) {
+                _waitToTrigger-=dt;
+                if (_waitToTrigger<=0.0f) {
+                    float radAngle = CC_DEGREES_TO_RADIANS((_angle - 85.0f));
+                    _vx = cosf(radAngle) * 200.0f;
+                    _vy = sinf(radAngle) * 200.0f;
+                }
+            }
+            break;
         
         ////////////////////////
         //LEVEL 11 - FINAL RUN
@@ -1215,10 +1227,12 @@
     else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_TRONIKA_CHASE) {
         _currentBehavior = COLLISION_BEHAVIOR_WATER_TRONIKA_CHASE;
     }
-    else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_SQUID_ATTACKS || _currentBehavior == COLLISION_BEHAVIOR_WATER_SQUID_FADES) {
+    else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_SQUID_ATTACKS || _currentBehavior == COLLISION_BEHAVIOR_WATER_SQUID_FADES || _currentBehavior == COLLISION_BEHAVIOR_WATER_SQUID_RETREATS ) {
         _currentBehavior = COLLISION_BEHAVIOR_WATER_SQUID_ATTACKS;
         _hasTriggered = false;
+        [_projectile reset];
         [[_projectile getCCSprite] setVisible:NO];
+        [_projectile setPosition:ccp(-500,-500)];
     }
     else if(_currentBehavior == COLLISION_BEHAVIOR_FIREFOX_FADES || _currentBehavior == COLLISION_BEHAVIOR_FIREFOX_PREATTACK || _currentBehavior == COLLISION_BEHAVIOR_FIREFOX_POSTATTACK) {
         _currentBehavior = COLLISION_BEHAVIOR_FIREFOX_PREATTACK;
