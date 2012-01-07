@@ -51,6 +51,7 @@
         [_parent endTurbo:false];
         [_kick reset];
         [_parent setPlayerAnimation:PLAYER_ANIM_KICK];
+        [[Camera sharedCamera] startShiftForwardForKick];
     }
     [super startAction];
 }
@@ -149,6 +150,7 @@
     [_parent setPlayerAnimation:PLAYER_ANIM_RUNNING];
     [_kick disable];
     [super cancelAction];
+    [Camera sharedCamera].isShiftForwardForKickAction = false;
 }
 
 -(void)endAction
@@ -156,6 +158,7 @@
     [_parent pushAfterAnimation:kPlayerActionKickMoveX];
     [_kick disable];
     [super endAction];
+    [Camera sharedCamera].isShiftForwardForKickAction = false;
 }
 
 -(NSMutableArray*)getProjectiles

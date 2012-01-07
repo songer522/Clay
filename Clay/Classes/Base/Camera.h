@@ -48,10 +48,13 @@
     bool _isStutterMode;
     
     bool _isPlayerResetting;
+    bool _isShiftForwardForKickAction;
+    int _totalStepsForKickShiftForward;
 }
 
 @property (nonatomic,assign) bool trackingTarget;
 @property (nonatomic,assign) bool isPlayerResetting;
+@property (nonatomic,assign) bool isShiftForwardForKickAction;
 
 
 +(Camera*)sharedCamera;
@@ -77,6 +80,7 @@
 -(void)moveTowardsTarget:(float)dt PlayerOnGround:(bool)onGround;
 -(void)snapToTarget;
 -(void)snapToTargetY;
+-(void)startShiftForwardForKick;
 
 -(void)reset;
 

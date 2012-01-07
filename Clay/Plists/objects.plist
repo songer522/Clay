@@ -2697,7 +2697,7 @@
 		<key>offsety</key>
 		<integer>10</integer>
 		<key>playerEffect</key>
-		<string>vaccuum</string>
+		<string>none</string>
 	</dict>
 	<key>waterBubbles2</key>
 	<dict>

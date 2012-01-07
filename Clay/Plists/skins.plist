@@ -8,8 +8,6 @@
 		<string>eightBitTim</string>
 		<key>animations</key>
 		<dict>
-			<key>spinUp</key>
-			<string>spinUpAnim</string>
 			<key>floating</key>
 			<string>floatingAnim</string>
 			<key>slowTimeAction</key>
@@ -27,7 +25,7 @@
 			<key>wooAction</key>
 			<string>wooAnim</string>
 			<key>falling</key>
-			<string>Retro_Falling_</string>
+			<string>Retro_Jumping_</string>
 			<key>jumping</key>
 			<string>Retro_Jumping_</string>
 			<key>sprinting</key>
@@ -46,8 +44,6 @@
 		<string>characterAnims</string>
 		<key>animations</key>
 		<dict>
-			<key>spinUp</key>
-			<string>spinUpAnim</string>
 			<key>slowTimeAction</key>
 			<string>slowTimeAnim</string>
 			<key>floating</key>
