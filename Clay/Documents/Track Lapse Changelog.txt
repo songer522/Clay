@@ -1,5 +1,30 @@
 Track Lapse Changelog
 
+Build 120106.02
+==================
+
+* Global - got health gained sound when battery increases working
+* Global - 'my best friend' achievement fixed
+* Level 2 - Fixed the jerky movement of the camera after the kick action enough that it shouldn't be noticeable anymore
+* Level 7 - Removed some frames from the jumping and tripping animations, updated the jump graphic
+* Level 8 - merged layers
+* Level 8 - new versions of all modes for the levels
+* Level 10 - removed vaccuum bubbles
+* Level 10 - swapped the swim down animation with floating animation for now
+* Level 10 - stopped tim from going into a trip when speeding and jumping
+* Level 10 - changed how pufferfish work
+* Level 10 - added tronika obstacle
+* Level 10 - added squid obstacle
+* Level 10 - tweaked how swimming down works
+* Level 10 - added demo level (both low and high-res) to demonstrate the new obstacles
+
+Build 120106.01
+==================
+
+* Choose Mode - story mode starts from level 1 again
+* Level 7 - fixed low-res level
+
+
 Build 120105.01
 ==================
 
