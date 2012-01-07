@@ -122,6 +122,14 @@
                 _hurtsPlayer = false;
                 _isAggressive = false;
                 break;
+            case PROJECTILE_BEHAVIOR_WATER_SQUID_INK:
+                _sprite = [Sprite spriteFromFrameCacheWithName:@"blank.png"];
+                [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"waterSquidInkAnim"];
+                [_sprite getCCSprite].anchorPoint = ccp(0.5f,0.5f);
+                [[_sprite getCCSprite] setVisible:NO];
+                _offscreenPadding = 20.0f;
+                _isAggressive = false;
+                break;
             default:
                 break;                
                 
@@ -135,6 +143,9 @@
 
 -(void) setInitialVelocity
 {
+    float angle;
+    Player *player;
+    
     switch (_behavior) {
         case PROJECTILE_BEHAVIOR_BULLET:
             _vx = 800.0f;
@@ -158,10 +169,23 @@
             _angularVelocity = -1 * (rand()%10 + 10);
             _vy = 75.0f;
             _vx = -1.0f * (50.0f + rand()%100);
+        case PROJECTILE_BEHAVIOR_WATER_SQUID_INK:
+            player = [[LayerManager sharedLayers] getPlayer];
+            angle = [self getAngleBetweenSource:CGPointMake(_x, _y) andTarget:[player getPosition]];
+            _vx = cosf(angle) * 350.0f;
+            _vy = sinf(angle) * 350.0f;
             break;
         default:
             break;                
     }        
+}
+
+-(float)getAngleBetweenSource:(CGPoint)source andTarget:(CGPoint)target
+{
+    float dx = target.x - source.x;
+    float dy = target.y - source.y;
+    float angle = atan2f(dy,dx);
+    return angle;
 }
 
 

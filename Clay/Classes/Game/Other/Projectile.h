@@ -15,7 +15,6 @@
 
 typedef enum {
     PROJECTILE_BEHAVIOR_BULLET,
-    PROJECTILE_BEHAVIOR_DISCO_BALL,
     PROJECTILE_BEHAVIOR_ZOMBIE_HEAD,
     PROJECTILE_BEHAVIOR_ZOMBIE_HEART,
     PROJECTILE_BEHAVIOR_PLAYER_KICK,
@@ -24,7 +23,8 @@ typedef enum {
     PROJECTILE_BEHAVIOR_PLAYER_BLOWING,
     PROJECTILE_BEHAVIOR_FIRE_DEMON_BULLET,
     PROJECTILE_BEHAVIOR_FIRE_FOXFIRE,
-    PROJECTILE_BEHAVIOR_RAINY_SQUIRREL_NUT
+    PROJECTILE_BEHAVIOR_RAINY_SQUIRREL_NUT,
+    PROJECTILE_BEHAVIOR_WATER_SQUID_INK
 }ProjectileBehavior;
 
 @class Sprite;
@@ -75,5 +75,5 @@ typedef enum {
 -(void) reset;
 -(void) setInitialVelocity;
 -(void) update:(float)dt;
-
+-(float)getAngleBetweenSource:(CGPoint)source andTarget:(CGPoint)target;
 @end

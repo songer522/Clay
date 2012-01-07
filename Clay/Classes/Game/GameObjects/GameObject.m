@@ -342,6 +342,7 @@
                 _collided = false;
             }
             break;
+        case COLLISION_BEHAVIOR_WATER_SQUID_FADES:
         case COLLISION_BEHAVIOR_FIREBALL_LANDED:
         case COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR:
         case COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR_WAITTOSHOOT:
@@ -817,6 +818,10 @@
         case COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_SLOW:
             [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-100.0f ChaseSound:@"waterAnglerFish"];
             break;
+        case COLLISION_BEHAVIOR_WATER_TRONIKA_CHASE:
+            [self chaseAtDistance:180.0f DefaultSpeed:-60.0f ChaseSpeed:-200.0f ChaseSound:@"" ChaseAnimation:@"waterTronikaAttackAnim" DefaultAnimation:@"waterTronikaCalmAnim"];
+            break;
+
             
         
         ////////////////////////
@@ -1176,6 +1181,12 @@
         _collideBehavior = COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENING;
         [self setBoundingBox:CGRectMake(70, 2, 14, 25)];
     }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_TRONIKA_CHASE) {
+        _currentBehavior = COLLISION_BEHAVIOR_WATER_TRONIKA_CHASE;
+    }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_SQUID_ATTACKS || _currentBehavior == COLLISION_BEHAVIOR_WATER_SQUID_FADES) {
+        _currentBehavior = COLLISION_BEHAVIOR_WATER_SQUID_ATTACKS;
+    }
     else if(_currentBehavior == COLLISION_BEHAVIOR_FIREFOX_FADES || _currentBehavior == COLLISION_BEHAVIOR_FIREFOX_PREATTACK || _currentBehavior == COLLISION_BEHAVIOR_FIREFOX_POSTATTACK) {
         _currentBehavior = COLLISION_BEHAVIOR_FIREFOX_PREATTACK;
         [self setBoundingBox:CGRectMake(37, 2, 14, 45)];
@@ -1384,6 +1395,14 @@
         [_projectile setBoundingBox:CGRectMake(15,15,30,30)];
         [_projectile setInitialVelocity];
         _projectilePersists = true;
+    }
+    else if([behavior isEqualToString:@"turret"]) {
+        _currentBehavior = COLLISION_BEHAVIOR_WATER_SQUID_ATTACKS;
+        _collideBehavior = COLLISION_BEHAVIOR_FADES;
+    }
+    else if([behavior isEqualToString:@"tronika"]) {
+        _currentBehavior = COLLISION_BEHAVIOR_WATER_TRONIKA_CHASE;
+        _collideBehavior = COLLISION_BEHAVIOR_WATER_TRONIKA_CHASE;
     }
     else {
         _collideBehavior = COLLISION_BEHAVIOR_NONE;
