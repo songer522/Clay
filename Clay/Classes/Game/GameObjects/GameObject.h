@@ -62,6 +62,8 @@ typedef enum {
     float _reloading;
     float _magnitude;
     float _slowTimeModifier;
+    float _dx;
+    float _dy;
     bool _stopCurve;
     bool _madeSound;
     bool _isInvincible;
@@ -178,6 +180,7 @@ typedef enum {
 -(void) special_kickHen;
 -(void) update:(float)dt;
 -(bool) closeToPlayer:(float)closerThan;
+-(float) getAngleBetweenPoint1:(CGPoint)point1 Point2:(CGPoint)point2;
 
 
 #pragma mark - private methods

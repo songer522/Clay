@@ -15,7 +15,6 @@
 
 typedef enum {
     PROJECTILE_BEHAVIOR_BULLET,
-    PROJECTILE_BEHAVIOR_DISCO_BALL,
     PROJECTILE_BEHAVIOR_ZOMBIE_HEAD,
     PROJECTILE_BEHAVIOR_ZOMBIE_HEART,
     PROJECTILE_BEHAVIOR_PLAYER_KICK,
@@ -24,7 +23,8 @@ typedef enum {
     PROJECTILE_BEHAVIOR_PLAYER_BLOWING,
     PROJECTILE_BEHAVIOR_FIRE_DEMON_BULLET,
     PROJECTILE_BEHAVIOR_FIRE_FOXFIRE,
-    PROJECTILE_BEHAVIOR_RAINY_SQUIRREL_NUT
+    PROJECTILE_BEHAVIOR_RAINY_SQUIRREL_NUT,
+    PROJECTILE_BEHAVIOR_WATER_SQUID_INK
 }ProjectileBehavior;
 
 @class Sprite;
@@ -51,11 +51,13 @@ typedef enum {
     bool _isActive;
     bool _isAggressive;
     bool _fadeOut;
+    bool _isBehindObstacle;
     bool _hurtsPlayer;
 }
 
 @property(nonatomic,assign) CGRect boundingBox;
 @property(nonatomic,readonly) bool hurtsPlayer;
+@property(nonatomic,readonly) bool isBehindObstacle;
 
 #pragma mark - inits
 +(id) projectileWithBehavior:(ProjectileBehavior)behavior;
@@ -75,5 +77,6 @@ typedef enum {
 -(void) reset;
 -(void) setInitialVelocity;
 -(void) update:(float)dt;
-
+-(void) shootWithSpeed:(float)speed atAngle:(float)angle;
+-(float) getAngleBetweenPoint1:(CGPoint)point1 Point2:(CGPoint)point2 InDegrees:(bool)convertToDegrees;
 @end

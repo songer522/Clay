@@ -107,6 +107,9 @@
       
         _isStutterMode = [[GameSettings shared] isStutterMode];
         
+        _player = [[LayerManager sharedLayers] getPlayer];
+        
+        
     }
     
     return self;
@@ -342,6 +345,7 @@
                 _collided = false;
             }
             break;
+        case COLLISION_BEHAVIOR_WATER_SQUID_FADES:
         case COLLISION_BEHAVIOR_FIREBALL_LANDED:
         case COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR:
         case COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR_WAITTOSHOOT:
@@ -488,6 +492,7 @@
 -(void)updateCollisionBehavior:(float)dt
 {
     int frame;
+    CGPoint playerPos;
     
     switch (_currentBehavior) {
             
@@ -817,6 +822,24 @@
         case COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_SLOW:
             [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-100.0f ChaseSound:@"waterAnglerFish"];
             break;
+        case COLLISION_BEHAVIOR_WATER_TRONIKA_CHASE:
+            [self chaseAtDistance:180.0f DefaultSpeed:-60.0f ChaseSpeed:-200.0f ChaseSound:@"" ChaseAnimation:@"waterTronikaAttackAnim" DefaultAnimation:@"waterTronikaCalmAnim"];
+            break;
+        case COLLISION_BEHAVIOR_WATER_SQUID_ATTACKS:
+            playerPos = [_player getPosition];
+            _angle = [self getAngleBetweenPoint1:CGPointMake(_x, _y) Point2:playerPos];
+            [_sprite getCCSprite].rotation = -(_angle - 85.0f);
+            if (!_hasTriggered) {
+                
+                if ([self closeToPlayer:300]) {
+                    [_projectile setPosition:CGPointMake(_x, _y)];
+                    [_projectile reset];
+                    [_projectile shootWithSpeed:350.0f atAngle:_angle];
+                    [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"waterSquidShootAnim"];
+                    _hasTriggered = true;
+                }
+            }
+            break;
             
         
         ////////////////////////
@@ -962,7 +985,20 @@
     return false;
 }
 
-               
+-(float) getAngleBetweenPoint1:(CGPoint)point1 Point2:(CGPoint)point2
+{
+    float dx, dy, angle;
+    
+    dx = point1.x - point2.x;
+    dy = point1.y - point2.y;
+    angle = atan2f( dy, dx );
+    angle = CC_RADIANS_TO_DEGREES(angle);
+    if ( angle < 0 ) {
+        angle = (360.0f + angle);
+    }
+    return angle;
+}
+
                  
 -(bool) checkIfOffScreen:(CGPoint)position
 {
@@ -1176,6 +1212,12 @@
         _collideBehavior = COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENING;
         [self setBoundingBox:CGRectMake(70, 2, 14, 25)];
     }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_TRONIKA_CHASE) {
+        _currentBehavior = COLLISION_BEHAVIOR_WATER_TRONIKA_CHASE;
+    }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_SQUID_ATTACKS || _currentBehavior == COLLISION_BEHAVIOR_WATER_SQUID_FADES) {
+        _currentBehavior = COLLISION_BEHAVIOR_WATER_SQUID_ATTACKS;
+    }
     else if(_currentBehavior == COLLISION_BEHAVIOR_FIREFOX_FADES || _currentBehavior == COLLISION_BEHAVIOR_FIREFOX_PREATTACK || _currentBehavior == COLLISION_BEHAVIOR_FIREFOX_POSTATTACK) {
         _currentBehavior = COLLISION_BEHAVIOR_FIREFOX_PREATTACK;
         [self setBoundingBox:CGRectMake(37, 2, 14, 45)];
@@ -1384,6 +1426,18 @@
         [_projectile setBoundingBox:CGRectMake(15,15,30,30)];
         [_projectile setInitialVelocity];
         _projectilePersists = true;
+    }
+    else if([behavior isEqualToString:@"turret"]) {
+        _currentBehavior = COLLISION_BEHAVIOR_WATER_SQUID_ATTACKS;
+        _collideBehavior = COLLISION_BEHAVIOR_FADES;
+        _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_WATER_SQUID_INK];
+        [_projectile reset];
+        [_projectile setBoundingBox:CGRectMake(10,10,20,20)];
+        _projectilePersists = true;
+    }
+    else if([behavior isEqualToString:@"tronika"]) {
+        _currentBehavior = COLLISION_BEHAVIOR_WATER_TRONIKA_CHASE;
+        _collideBehavior = COLLISION_BEHAVIOR_WATER_TRONIKA_CHASE;
     }
     else {
         _collideBehavior = COLLISION_BEHAVIOR_NONE;

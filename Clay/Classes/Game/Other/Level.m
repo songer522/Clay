@@ -237,14 +237,19 @@
             
             @try {
                 if (obstacle.useDefaultBatchNode) {
+                    Projectile *proj = [obstacle getProjectile];
+                    
+                    if (proj!=nil && proj.isBehindObstacle) {
+                        [[[LayerManager sharedLayers] currentLayer] addChild:[proj getCCSprite]];
+                    }
+                    
                     [[[LayerManager sharedLayers] currentLayer] addChild:[obstacle getCCSprite]];
                     [[obstacle getCCSprite] setBatchNode:_obstacleSpriteBatch];
                     
-                    
-                    Projectile *proj = [obstacle getProjectile];
-                    if (proj!=nil) {
+                    if (proj!=nil && !proj.isBehindObstacle) {
                         [[[LayerManager sharedLayers] currentLayer] addChild:[proj getCCSprite]];
                     }
+                    
                 } else {
                     //do nothing regarding the batchnode; it will create its own if one is not already assigned, when the animation is initialized
                     [_gameLayer addChild:[obstacle getCCSprite]];
