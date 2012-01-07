@@ -216,7 +216,7 @@
         case GAMEMODE_STORY_NORMAL:
         case GAMEMODE_STORY_HARD:
             [[GameSettings shared] setGlobal:@"NO" ForKey:@"titleMusicStarted"];
-            [[GameSettings shared] setGlobal:@"level8" ForKey:@"startingLevel"];
+            [[GameSettings shared] setGlobal:@"level1" ForKey:@"startingLevel"];
             [[GameSettings shared] setSerializedGlobal:@"level1" ForKey:@"storyModeCurrentLevel"];
             [self switchToStartGame];
             break;
