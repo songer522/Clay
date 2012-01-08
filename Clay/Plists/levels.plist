@@ -214,7 +214,7 @@
 		<key>nextLevelName</key>
 		<string>level11</string>
 		<key>layerList</key>
-		<string>back-2,back-1,main0,pits,ledges,actives,front-1,meta</string>
+		<string>back-1,main0,pits,actives,front-1,meta</string>
 	</dict>
 	<key>level11</key>
 	<dict>
