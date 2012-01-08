@@ -829,21 +829,24 @@
     [_obstacleManager changeRegionsBasedOnX:(playerPos.x - 384)];
     //[_backgroundManager changeRegionsBasedOnX:(playerPos.x - 128)];
     
+    /*
     NSMutableArray *obstacles = [_obstacleManager getActiveGameObjectList];
     for (GameObject *obstacle in obstacles) {
         [obstacle update:dt];
-    }
+    }*/
     
     //NSMutableArray *objects = [_backgroundManager getActiveGameObjectList];
     //for (GameObject *object in objects) {
     //    [object update:dt];
     //}
+
+    for (MapObject *object in _obstacleMapObjects) {
+        [object.object update:dt];
+    }
+
     
     for (MapObject *object in _otherMapObjects) {
         [object.object update:dt];
-        //TODO: should be calling setposition. this is resulting in 
-        //background objects not moving in parallax.
-        //[object setPosition:CGPointMake(_x, _y)];
     }
     
 }

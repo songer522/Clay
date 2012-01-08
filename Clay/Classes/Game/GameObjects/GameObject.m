@@ -345,6 +345,27 @@
                 _collided = false;
             }
             break;
+        case COLLISION_BEHAVIOR_WATER_HEALTH_BUBBLE_1:
+            if([[_player getThirdAction] inAction]) {
+                [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"waterHealth1BreakAnim"];
+                _alpha = 2.0f;
+                [[_player getThirdAction] setKilledEnemy:true];
+
+            } else {
+                _alpha = 1.2f;
+            }
+            _fadeout = true;
+            break;
+        case COLLISION_BEHAVIOR_WATER_HEALTH_BUBBLE_2:
+            if([[_player getThirdAction] inAction]) {
+                [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"waterHealth2BreakAnim"];
+                _alpha = 2.0f;
+                [[_player getThirdAction] setKilledSuperEnemy:true];
+            } else {
+                _alpha = 1.2f;
+            }
+            _fadeout = true;
+            break;
         case COLLISION_BEHAVIOR_WATER_SQUID_FADES:
         case COLLISION_BEHAVIOR_FIREBALL_LANDED:
         case COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR:
@@ -404,6 +425,7 @@
             if (!_isVisible) {
                 [[_sprite getCCSprite] setVisible:YES];
                 if(_projectile!=nil){
+                    [self setPositionAtX:_x Y:_y];
                     [[_projectile getCCSprite] setVisible:YES];
                 }
                 [[_sprite getCCSprite] resumeSchedulerAndActions];
@@ -900,6 +922,13 @@
                 }
             }
             break;
+        case COLLISION_BEHAVIOR_WATER_HEALTH_BUBBLE_1:
+        case COLLISION_BEHAVIOR_WATER_HEALTH_BUBBLE_2:
+            if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+                _vy = -10.0f;                
+            }
+            break;
+            
         
         ////////////////////////
         //LEVEL 11 - FINAL RUN
@@ -1296,6 +1325,12 @@
         [self setBoundingBox:CGRectMake(37, 2, 14, 45)];
         [_projectile setPosition:ccp(-31.0f,-13.0f)];
     }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_HEALTH_BUBBLE_1) {
+        _currentBehavior = COLLISION_BEHAVIOR_WATER_HEALTH_BUBBLE_1;
+    }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_HEALTH_BUBBLE_2) {
+        _currentBehavior = COLLISION_BEHAVIOR_WATER_HEALTH_BUBBLE_2;
+    }
     else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_SLOW) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;     
     }
@@ -1511,6 +1546,14 @@
     else if([behavior isEqualToString:@"tronika"]) {
         _currentBehavior = COLLISION_BEHAVIOR_WATER_TRONIKA_CHASE;
         _collideBehavior = COLLISION_BEHAVIOR_WATER_TRONIKA_CHASE;
+    }
+    else if([behavior isEqualToString:@"waterHealth1"]) {
+        _currentBehavior = COLLISION_BEHAVIOR_WATER_HEALTH_BUBBLE_1;
+        _collideBehavior = COLLISION_BEHAVIOR_WATER_HEALTH_BUBBLE_1;
+    }
+    else if([behavior isEqualToString:@"waterHealth2"]) {
+        _currentBehavior = COLLISION_BEHAVIOR_WATER_HEALTH_BUBBLE_2;
+        _collideBehavior = COLLISION_BEHAVIOR_WATER_HEALTH_BUBBLE_2;
     }
     else {
         _collideBehavior = COLLISION_BEHAVIOR_NONE;

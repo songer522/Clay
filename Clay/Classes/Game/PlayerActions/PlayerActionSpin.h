@@ -13,7 +13,9 @@
 
 @interface PlayerActionSpin : PlayerAction
 {
+    Sprite *_sprite;
     Player *_player; //weak reference
+    float _alpha;
 }
 
 @end

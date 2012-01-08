@@ -1872,6 +1872,74 @@
 		<key>spritesheetPlist</key>
 		<string>waterLevel</string>
 	</dict>
+	<key>waterHealth1IdleAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,1</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level10</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>HealthBubble_Single_</string>
+		<key>spritesheetPlist</key>
+		<string>waterLevel</string>
+	</dict>
+	<key>waterHealth1BreakAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>2,2,3,3,3,3,3,3,3</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level10</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>HealthBubble_Single_</string>
+		<key>spritesheetPlist</key>
+		<string>waterLevel</string>
+	</dict>
+	<key>waterHealth2IdleAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,1</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level10</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>HealthBubble_Double_</string>
+		<key>spritesheetPlist</key>
+		<string>waterLevel</string>
+	</dict>
+	<key>waterHealth2BreakAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>2,2,3,3,3,3,3,3,3</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level10</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>HealthBubble_Double_</string>
+		<key>spritesheetPlist</key>
+		<string>waterLevel</string>
+	</dict>
 	<key>zombieBikeAnim</key>
 	<dict>
 		<key>animationFrames</key>
