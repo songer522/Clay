@@ -121,6 +121,11 @@
     <property name="obstacle" value="waterAnglerFish"/>
    </properties>
   </tile>
+  <tile id="66">
+   <properties>
+    <property name="obstacle" value="waterHealthBubble2"/>
+   </properties>
+  </tile>
   <tile id="67">
    <properties>
     <property name="obstacle" value="waterSquid"/>

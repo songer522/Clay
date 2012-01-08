@@ -25,6 +25,7 @@
 -(bool)shouldTriggerPlayerHurtCollision;
 -(void)setParent:(Player*)player;
 -(void)setKilledEnemy:(bool)killedEnemy;
+-(void)setKilledSuperEnemy:(bool)killedSuperEnemy;
 -(Player*)getParent;
 -(NSMutableArray*)getProjectiles;
 -(bool)canAggressiveHit;
@@ -45,6 +46,7 @@
     //it can trigger will be triggered during this time (a kick will actually kick,
     //a "woo" will scare the background, etc.
     bool _hasKilledEnemy;
+    bool _hasKilledSuperEnemy;
     float _duration;
     float _cooldown;
     float _cooldownStart; //used to determine percentage the cooldown is complete

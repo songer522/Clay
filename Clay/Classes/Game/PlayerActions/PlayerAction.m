@@ -60,6 +60,7 @@
         _isActive = false;
         _canTrigger = false;
         _hasKilledEnemy = false;
+        _hasKilledSuperEnemy = false;
         [_hud setEnabled:false ForButton:HUD_BUTTON_ACTION];
               
     }
@@ -153,6 +154,9 @@
     if (_hasKilledEnemy) {
         [_parent changeHealth:1];
         [self reportAchievementData];
+    } else if (_hasKilledSuperEnemy) {
+        //so far only used by double health bubbles in level 10
+        [_parent changeHealth:2];
     }
 }
 
@@ -174,6 +178,11 @@
 -(void)setKilledEnemy:(bool)killedEnemy
 {
     _hasKilledEnemy = killedEnemy;
+}
+
+-(void)setKilledSuperEnemy:(bool)killedSuperEnemy
+{
+    _hasKilledSuperEnemy = killedSuperEnemy;
 }
 
 -(bool)shouldTriggerPlayerHurtCollision
