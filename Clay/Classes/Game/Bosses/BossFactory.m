@@ -9,6 +9,7 @@
 #import "BossFactory.h"
 
 #import "BossFinalJim.h"
+#import "BossFinal.h"
 #import "BossJimShip.h"
 
 @implementation BossFactory
@@ -21,6 +22,9 @@
             break;
         case BOSS_FINAL_JIM:
             return [BossFinalJim instance];
+            break;
+        case BOSS_FINAL_BOSS:
+            return [BossFinal instance];
             break;
         default:
             //NSLog(@"BossFactory:build - Error! Not yet implemented.");
