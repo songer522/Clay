@@ -171,6 +171,7 @@ typedef enum {
 -(void) setOriginalAnimation:(NSString*)animation;
 -(void) setRange:(CGRect)rect;
 -(bool) checkIfOffScreen:(CGPoint)position;
+-(bool) checkIfOffScreenForWhooers:(CGPoint)position;
 
 #pragma mark - public methods
 -(void) move:(CGPoint)amount;

@@ -2120,9 +2120,9 @@
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>25</integer>
+			<integer>20</integer>
 			<key>width</key>
-			<integer>15</integer>
+			<integer>12</integer>
 			<key>x</key>
 			<integer>38</integer>
 			<key>y</key>
@@ -2155,9 +2155,9 @@
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>30</integer>
-			<key>width</key>
 			<integer>20</integer>
+			<key>width</key>
+			<integer>15</integer>
 			<key>x</key>
 			<integer>10</integer>
 			<key>y</key>
@@ -2447,6 +2447,41 @@
 		<string>static</string>
 		<key>imageName</key>
 		<string>City_Water_1.png</string>
+		<key>offsetx</key>
+		<integer>-60</integer>
+		<key>offsety</key>
+		<integer>-63</integer>
+		<key>playerEffect</key>
+		<string>slow</string>
+	</dict>
+	<key>rainyWater</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>0</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>none</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>15</integer>
+			<key>width</key>
+			<integer>87</integer>
+			<key>x</key>
+			<integer>-25</integer>
+			<key>y</key>
+			<integer>-22</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>static</string>
+		<key>imageName</key>
+		<string>Level9_Water_1.png</string>
 		<key>offsetx</key>
 		<integer>-60</integer>
 		<key>offsety</key>

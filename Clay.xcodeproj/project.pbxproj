@@ -621,6 +621,10 @@
 		61F53A3314ABBFE80003ABAC /* timed_normal_level1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61F53A3214ABBFE80003ABAC /* timed_normal_level1.tmx */; };
 		61F7F28B149A5945006B02BC /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F7F28A149A5945006B02BC /* Twitter.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		61F7F28D149A5950006B02BC /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F7F28C149A5950006B02BC /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		E4D2261114B97D860003BA65 /* rainyLevel-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4D2260D14B97D860003BA65 /* rainyLevel-hd.plist */; };
+		E4D2261214B97D860003BA65 /* rainyLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D2260E14B97D860003BA65 /* rainyLevel-hd.png */; };
+		E4D2261314B97D860003BA65 /* rainyLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4D2260F14B97D860003BA65 /* rainyLevel.plist */; };
+		E4D2261414B97D860003BA65 /* rainyLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D2261014B97D860003BA65 /* rainyLevel.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1471,6 +1475,10 @@
 		61F6F6D414B29795003A5C68 /* cityLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cityLevel.png; sourceTree = "<group>"; };
 		61F7F28A149A5945006B02BC /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		61F7F28C149A5950006B02BC /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		E4D2260D14B97D860003BA65 /* rainyLevel-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "rainyLevel-hd.plist"; sourceTree = "<group>"; };
+		E4D2260E14B97D860003BA65 /* rainyLevel-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rainyLevel-hd.png"; sourceTree = "<group>"; };
+		E4D2260F14B97D860003BA65 /* rainyLevel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = rainyLevel.plist; sourceTree = "<group>"; };
+		E4D2261014B97D860003BA65 /* rainyLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rainyLevel.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2770,10 +2778,10 @@
 		54C71D131486E64C00A47565 /* rainy */ = {
 			isa = PBXGroup;
 			children = (
-				61E72B31148D43350056499B /* rainyLevel-hd.plist */,
-				61E72B32148D43350056499B /* rainyLevel-hd.png */,
-				61E72B33148D43350056499B /* rainyLevel.plist */,
-				61E72B34148D43350056499B /* rainyLevel.png */,
+				E4D2260D14B97D860003BA65 /* rainyLevel-hd.plist */,
+				E4D2260E14B97D860003BA65 /* rainyLevel-hd.png */,
+				E4D2260F14B97D860003BA65 /* rainyLevel.plist */,
+				E4D2261014B97D860003BA65 /* rainyLevel.png */,
 			);
 			path = rainy;
 			sourceTree = "<group>";
@@ -3076,10 +3084,6 @@
 				54EB13C0148C8B0600D94191 /* characterSpinning-hd.png in Resources */,
 				54EB13C1148C8B0600D94191 /* characterSpinning.plist in Resources */,
 				54EB13C2148C8B0600D94191 /* characterSpinning.png in Resources */,
-				61E72B35148D43350056499B /* rainyLevel-hd.plist in Resources */,
-				61E72B36148D43350056499B /* rainyLevel-hd.png in Resources */,
-				61E72B37148D43350056499B /* rainyLevel.plist in Resources */,
-				61E72B38148D43350056499B /* rainyLevel.png in Resources */,
 				546E830E148EE9F500154AE7 /* tileset_level_10-hd.png in Resources */,
 				546E830F148EE9F500154AE7 /* tileset_level_10.png in Resources */,
 				5428AE091491614F00C1A1BE /* darkLevel-hd.plist in Resources */,
@@ -3331,6 +3335,10 @@
 				61782B5614B3E49C00C615E7 /* tileset_level_6.png in Resources */,
 				6101893914B64239001B785C /* tileset_level_7-hd.png in Resources */,
 				6101893A14B64239001B785C /* tileset_level_7.png in Resources */,
+				E4D2261114B97D860003BA65 /* rainyLevel-hd.plist in Resources */,
+				E4D2261214B97D860003BA65 /* rainyLevel-hd.png in Resources */,
+				E4D2261314B97D860003BA65 /* rainyLevel.plist in Resources */,
+				E4D2261414B97D860003BA65 /* rainyLevel.png in Resources */,
 				61E1584D14B7A32C00413584 /* tileset_level_8-hd.png in Resources */,
 				61E1584E14B7A32C00413584 /* tileset_level_8.png in Resources */,
 			);
@@ -3560,6 +3568,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -3572,6 +3581,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3582,7 +3592,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = NDEBUG;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
@@ -3590,6 +3601,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3640,8 +3652,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = NDEBUG;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
