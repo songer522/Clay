@@ -425,6 +425,7 @@
             if (!_isVisible) {
                 [[_sprite getCCSprite] setVisible:YES];
                 if(_projectile!=nil){
+                    [self setPositionAtX:_x Y:_y];
                     [[_projectile getCCSprite] setVisible:YES];
                 }
                 [[_sprite getCCSprite] resumeSchedulerAndActions];
