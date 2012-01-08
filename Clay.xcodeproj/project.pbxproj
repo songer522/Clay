@@ -320,6 +320,7 @@
 		548D2D171461DF04005E1AC0 /* eightBitTim.plist in Resources */ = {isa = PBXBuildFile; fileRef = 548D2D131461DF04005E1AC0 /* eightBitTim.plist */; };
 		548D2D181461DF04005E1AC0 /* eightBitTim.png in Resources */ = {isa = PBXBuildFile; fileRef = 548D2D141461DF04005E1AC0 /* eightBitTim.png */; };
 		548D2D1D1461E871005E1AC0 /* Skin.m in Sources */ = {isa = PBXBuildFile; fileRef = 548D2D1C1461E871005E1AC0 /* Skin.m */; };
+		548D7A8214B9537200BE26FB /* spinning.wav in Resources */ = {isa = PBXBuildFile; fileRef = 548D7A8114B9537200BE26FB /* spinning.wav */; };
 		5491677914643E3900DFA191 /* computerLevel-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5491677514643E3900DFA191 /* computerLevel-hd.plist */; };
 		5491677A14643E3900DFA191 /* computerLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5491677614643E3900DFA191 /* computerLevel-hd.png */; };
 		5491677B14643E3900DFA191 /* computerLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5491677714643E3900DFA191 /* computerLevel.plist */; };
@@ -1057,6 +1058,7 @@
 		548D2D141461DF04005E1AC0 /* eightBitTim.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eightBitTim.png; sourceTree = "<group>"; };
 		548D2D1B1461E871005E1AC0 /* Skin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Skin.h; sourceTree = "<group>"; };
 		548D2D1C1461E871005E1AC0 /* Skin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Skin.m; sourceTree = "<group>"; };
+		548D7A8114B9537200BE26FB /* spinning.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = spinning.wav; path = Resources/sounds/spinning.wav; sourceTree = "<group>"; };
 		5491677514643E3900DFA191 /* computerLevel-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "computerLevel-hd.plist"; sourceTree = "<group>"; };
 		5491677614643E3900DFA191 /* computerLevel-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "computerLevel-hd.png"; sourceTree = "<group>"; };
 		5491677714643E3900DFA191 /* computerLevel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = computerLevel.plist; sourceTree = "<group>"; };
@@ -1999,6 +2001,7 @@
 		545CBC2F142D25AB00795FC9 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				548D7A8114B9537200BE26FB /* spinning.wav */,
 				54A40B2F14AE8A6B00012D0D /* cancel.caf */,
 				54A40B3014AE8A6B00012D0D /* confirm.caf */,
 				54A40B3114AE8A6B00012D0D /* pigSqueal.caf */,
@@ -3333,6 +3336,7 @@
 				6101893A14B64239001B785C /* tileset_level_7.png in Resources */,
 				61E1584D14B7A32C00413584 /* tileset_level_8-hd.png in Resources */,
 				61E1584E14B7A32C00413584 /* tileset_level_8.png in Resources */,
+				548D7A8214B9537200BE26FB /* spinning.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
