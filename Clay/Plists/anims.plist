@@ -1702,14 +1702,48 @@
 		<key>spritesheetPlist</key>
 		<string>waterLevel</string>
 	</dict>
-	<key>waterPufferFishAnim</key>
+	<key>waterPufferFishAnim1</key>
 	<dict>
 		<key>animationFrames</key>
-		<string>1,2</string>
+		<string>1,2,1,2,1,2,1,2</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>1</string>
+		<key>group</key>
+		<string>level10</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>BlowFish_</string>
+		<key>spritesheetPlist</key>
+		<string>waterLevel</string>
+	</dict>
+	<key>waterPufferFishAnim2</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>3,3,3,3,3,3,3</string>
 		<key>clearPreviousAnims</key>
 		<string>true</string>
 		<key>delay</key>
 		<string>0.1</string>
+		<key>group</key>
+		<string>level10</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>BlowFish_</string>
+		<key>spritesheetPlist</key>
+		<string>waterLevel</string>
+	</dict>
+	<key>waterPufferFishAnim3</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>4,5,4,5,4,5,4,5,4,5,4,5,4,5</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>1</string>
 		<key>group</key>
 		<string>level10</string>
 		<key>looping</key>
@@ -1781,7 +1815,7 @@
 		<key>group</key>
 		<string>level10</string>
 		<key>looping</key>
-		<string>true</string>
+		<string>false</string>
 		<key>sequencePrefix</key>
 		<string>Squid_Body_</string>
 		<key>spritesheetPlist</key>

@@ -122,12 +122,26 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
 
 -(int)getTotalFramesCount
 {
-    return _animateAction.totalFrames;
+    int totalFrames = -1;
+    @try {
+        totalFrames = _animateAction.totalFrames;
+    }
+    @catch (NSException *exception) {
+        CCLOG(@"ERROR! Animation.m -> getTotalFramesCount -> message sent to deallocated instance of _animateAction");
+    }
+    return totalFrames;
 }
 
 -(int)getCurrentFrameNumber
 {
-    return _animateAction.frame;
+    int frame = -1;
+    @try {
+        frame = _animateAction.frame;
+    }
+    @catch (NSException *exception) {
+        CCLOG(@"ERROR! Animation.m -> getCurrentFrameNumber -> message sent to deallocated instance of _animateAction");
+    }
+    return frame;
 }
 
 -(void)togglePauseAnimation

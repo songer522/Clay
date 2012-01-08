@@ -2886,7 +2886,7 @@
 			<real>0.6</real>
 		</dict>
 		<key>animationName</key>
-		<string>waterPufferFishAnim</string>
+		<string>waterPufferFishAnim1</string>
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>

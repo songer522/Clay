@@ -320,7 +320,7 @@
             _alpha = 1.2f;
             _fadeout = true;
             break;
-        case COLLISION_BEHAVIOR_WATER_PUFFERFISH:
+        case COLLISION_BEHAVIOR_WATER_PUFFERFISH_FADES:
             _alpha = 1.2f;
             _fadeout = true;
             [[SoundEngine shared] playSound:@"waterPufferFish"];
@@ -803,6 +803,53 @@
         ///////////////////////////
         //LEVEL 10 - AQUARIUM RUN
         ///////////////////////////
+        case COLLISION_BEHAVIOR_WATER_PUFFERFISH:
+            
+            if([self closeToPlayer:550] && ![self closeToPlayer:300])
+            {
+                if (_isActive)
+                {
+                int frame = [[_sprite getAnimation] getCurrentFrameNumber];
+                if (frame == 0) {
+                    _direction = -1;
+                } else if(frame == 1) {
+                    _direction = 1;
+                }
+                _vy = _direction * 30.0f; 
+                }
+               
+            } 
+            
+            
+            if([self closeToPlayer:300] && ! [self closeToPlayer:150])
+            {
+                if  (![[_sprite.getAnimation name] isEqualToString:@"waterPufferFishAnim2"])
+                {
+                    [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"waterPufferFishAnim2"];
+                }
+                _vy = 0;
+            }
+            
+            if([self closeToPlayer:150])
+            {
+              if  (![[[_sprite getAnimation] name] isEqualToString:@"waterPufferFishAnim3"])
+              {
+                 [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"waterPufferFishAnim3"];
+              }
+                if(_isActive)
+                {
+                int frame = [[_sprite getAnimation] getCurrentFrameNumber];
+                if (frame == 0) {
+                    _direction = -1;
+                } else if(frame == 1) {
+                    _direction = 1;
+                }
+                _vy = _direction * 30.0f; 
+                }
+            }
+            
+            break;
+            
         case COLLISION_BEHAVIOR_WATER_SEAHORSE:
             if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
                 _vy *= 0.955f;
@@ -834,13 +881,25 @@
                 if ([self closeToPlayer:300]) {
                     [_projectile setPosition:CGPointMake(_x, _y)];
                     [_projectile reset];
-                    [_projectile shootWithSpeed:350.0f atAngle:_angle];
-                    [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"waterSquidShootAnim"];
+                    [_projectile setPosition:CGPointMake(_x - 12.0f, _y - 28.0f)];
+                    [_projectile shootWithSpeed:160.0f atAngle:(_angle - 190.0f)];
+                    [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"waterSquidAttackAnim"];
                     _hasTriggered = true;
+                    _currentBehavior = COLLISION_BEHAVIOR_WATER_SQUID_RETREATS;
+                    _waitToTrigger = 0.2f;
                 }
             }
             break;
-            
+        case COLLISION_BEHAVIOR_WATER_SQUID_RETREATS:
+            if (_waitToTrigger>0.0f) {
+                _waitToTrigger-=dt;
+                if (_waitToTrigger<=0.0f) {
+                    float radAngle = CC_DEGREES_TO_RADIANS((_angle - 85.0f));
+                    _vx = cosf(radAngle) * 200.0f;
+                    _vy = sinf(radAngle) * 200.0f;
+                }
+            }
+            break;
         
         ////////////////////////
         //LEVEL 11 - FINAL RUN
@@ -1187,8 +1246,10 @@
     } else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_SEAHORSE) {
         _currentBehavior = COLLISION_BEHAVIOR_WATER_SEAHORSE;
         _direction = 1;
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_PUFFERFISH) {
+    } else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_PUFFERFISH || _currentBehavior == COLLISION_BEHAVIOR_WATER_PUFFERFISH_FADES) {
         _currentBehavior = COLLISION_BEHAVIOR_WATER_PUFFERFISH;
+         [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"waterPufferFishAnim1"];
+        _vy=0;
     }else if(_currentBehavior == COLLISION_BEHAVIOR_DARK_SPIKES) {
         _currentBehavior = COLLISION_BEHAVIOR_DARK_SPIKES;
        
@@ -1223,8 +1284,12 @@
     else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_TRONIKA_CHASE) {
         _currentBehavior = COLLISION_BEHAVIOR_WATER_TRONIKA_CHASE;
     }
-    else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_SQUID_ATTACKS || _currentBehavior == COLLISION_BEHAVIOR_WATER_SQUID_FADES) {
+    else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_SQUID_ATTACKS || _currentBehavior == COLLISION_BEHAVIOR_WATER_SQUID_FADES || _currentBehavior == COLLISION_BEHAVIOR_WATER_SQUID_RETREATS ) {
         _currentBehavior = COLLISION_BEHAVIOR_WATER_SQUID_ATTACKS;
+        _hasTriggered = false;
+        [_projectile reset];
+        [[_projectile getCCSprite] setVisible:NO];
+        [_projectile setPosition:ccp(-500,-500)];
     }
     else if(_currentBehavior == COLLISION_BEHAVIOR_FIREFOX_FADES || _currentBehavior == COLLISION_BEHAVIOR_FIREFOX_PREATTACK || _currentBehavior == COLLISION_BEHAVIOR_FIREFOX_POSTATTACK) {
         _currentBehavior = COLLISION_BEHAVIOR_FIREFOX_PREATTACK;
@@ -1384,7 +1449,7 @@
         _direction = 1;
     } else if([behavior isEqualToString:@"pufferfish"]) {
         _currentBehavior = COLLISION_BEHAVIOR_WATER_PUFFERFISH;
-        _collideBehavior = COLLISION_BEHAVIOR_WATER_PUFFERFISH;
+        _collideBehavior = COLLISION_BEHAVIOR_WATER_PUFFERFISH_FADES;
     } else if([behavior isEqualToString:@"spikes"]){
         _currentBehavior = COLLISION_BEHAVIOR_DARK_SPIKES;
         _collideBehavior = COLLISION_BEHAVIOR_DARK_SPIKES;
@@ -1437,7 +1502,7 @@
     }
     else if([behavior isEqualToString:@"turret"]) {
         _currentBehavior = COLLISION_BEHAVIOR_WATER_SQUID_ATTACKS;
-        _collideBehavior = COLLISION_BEHAVIOR_FADES;
+        _collideBehavior = COLLISION_BEHAVIOR_WATER_SQUID_FADES;
         _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_WATER_SQUID_INK];
         [_projectile reset];
         [_projectile setBoundingBox:CGRectMake(10,10,20,20)];

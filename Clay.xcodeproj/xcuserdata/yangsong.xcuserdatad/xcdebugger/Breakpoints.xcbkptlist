@@ -8,27 +8,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "Clay/Classes/Game/Other/Player.m"
-         timestampString = "347496457.14885"
+         filePath = "Clay/Classes/Game/GameObjects/GameObject.m"
+         timestampString = "347604326.115354"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "782"
-         endingLineNumber = "782"
-         landmarkName = "-updatePitFalling:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Clay/Classes/Game/Other/Level.m"
-         timestampString = "347563975.177258"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "872"
-         endingLineNumber = "872"
-         landmarkName = "-obstacleJumpedOver:"
+         startingLineNumber = "821"
+         endingLineNumber = "821"
+         landmarkName = "-updateCollisionBehavior:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
