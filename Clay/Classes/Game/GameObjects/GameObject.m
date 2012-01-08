@@ -544,7 +544,7 @@
                  
              }
             }
-            if([self checkIfOffScreen:[self getPosition]] )
+            if([self checkIfOffScreenForWhooers:[self getPosition]] )
             {
                 [self playerHasCheering:false];
             }
@@ -723,7 +723,7 @@
         ///////////////////////////
         case COLLISION_BEHAVIOR_UMBRELLA_FLY_UP:
             _vx = 0.0f;
-            if ([self closeToPlayer:275]) {
+            if ([self closeToPlayer:315]) {
                 _angle+=200.0f*dt;
                 if(_angle>-120.0f) {
                     _angle = -120.0f;
@@ -740,7 +740,7 @@
             break;
         case COLLISION_BEHAVIOR_PAPERPLANE:
             _vx = 0.0f;
-            if ([self closeToPlayer:375]) {
+            if ([self closeToPlayer:480]) {
                 _angle+=110.0f*dt;
                 if(_angle > -60.0f) {
                     _stopCurve=true;
@@ -1000,19 +1000,27 @@
 }
 
                  
--(bool) checkIfOffScreen:(CGPoint)position
+-(bool) checkIfOffScreenForWhooers:(CGPoint)position
 {
     CGPoint screenPosition = [[Camera sharedCamera] convertToScreenXY:position];
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        //float minAmount = 
+ 
+        
         
         if (screenPosition.x + 100 < 0 ) {
             return true;
         }
-    } else if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-        if (screenPosition.x + 100 < 0) {
+    
+    return false;
+}
+
+-(bool) checkIfOffScreen:(CGPoint)position
+{
+    CGPoint screenPosition = [[Camera sharedCamera] convertToScreenXY:position];
+  
+
+        if (screenPosition.x < 0) {
             return true;
-        }
+        
     }
     return false;
 }
