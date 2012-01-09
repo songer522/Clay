@@ -89,5 +89,10 @@
     
 }
 
+-(void)triggerAction:(FinalBossPhase)phase
+{
+    
+}
+
 
 @end

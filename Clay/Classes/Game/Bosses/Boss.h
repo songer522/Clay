@@ -16,6 +16,14 @@
 
 @end
 
+typedef enum {
+    FINAL_BOSS_ATTACK_1,
+    FINAL_BOSS_ATTACK_2,
+    FINAL_BOSS_ATTACK_3,
+    FINAL_BOSS_IDLE,
+    FINAL_BOSS_ENTER,
+    FINAL_BOSS_DIE
+}FinalBossPhase;
 
 typedef enum {
     BOSS_PHASE_NOT_TRIGGERED = 0,
@@ -53,4 +61,5 @@ typedef enum {
 -(void)triggerAttack3;
 -(void)triggerFallBack;
 -(void)triggerGetCloser;
+-(void)triggerAction:(FinalBossPhase)phase;
 @end
