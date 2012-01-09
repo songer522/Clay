@@ -58,8 +58,8 @@
 
 
 #pragma mark - initializers
-+(id)animationFromPlist:(NSString*)name forSequence:(NSString*)sequence FrameList:(NSString*)framelist Delay:(float)delay;
--(id)initWithPlist:(NSString*)name forSequence:(NSString*)sequence FrameList:(NSString*)framelist Delay:(float)delay;
++(id)animationFromPlist:(NSString*)name forSequence:(NSString*)sequence FrameList:(NSString*)framelist;
+-(id)initWithPlist:(NSString*)name forSequence:(NSString*)sequence FrameList:(NSString*)framelist;
 //constructors
 
 #pragma mark - public methods

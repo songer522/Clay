@@ -73,9 +73,9 @@ static AnimationController *_sharedController = nil;
                 Animation *anim;
                 
                 @try {
-                    anim = [[Animation animationFromPlist:spritesheetPlist forSequence:sequencePrefix FrameList:animationFrames Delay:animationDelay] retain];
+                    anim = [[Animation animationFromPlist:spritesheetPlist forSequence:sequencePrefix FrameList:animationFrames] retain];
                     anim.looping = looping;
-                    //anim.delay = animationDelay;
+                    anim.delay = animationDelay;
                     anim.clearPreviousAnimations = clearPreviousAnimations;
                     anim.name = animationName;
                     
@@ -158,7 +158,7 @@ static AnimationController *_sharedController = nil;
         frameList = [baseAnim getFrameList];
     }
     
-    Animation *newAnim = [Animation animationFromPlist:filename forSequence:sequenceName FrameList:frameList Delay:delay];
+    Animation *newAnim = [Animation animationFromPlist:filename forSequence:sequenceName FrameList:frameList];
     newAnim.looping = baseAnim.looping;
     
     //use base animation's delay if one isn't provided

@@ -27,12 +27,12 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
 @synthesize clearPreviousAnimations = _clearPreviousAnimations;
 @synthesize name = _name;
 
-+(id)animationFromPlist:(NSString*)name forSequence:(NSString*)sequence FrameList:(NSString*)framelist Delay:(float)delay
++(id)animationFromPlist:(NSString*)name forSequence:(NSString*)sequence FrameList:(NSString*)framelist
 {
-    return [[self alloc] initWithPlist:name forSequence:sequence FrameList:(NSString*)framelist Delay:delay];
+    return [[self alloc] initWithPlist:name forSequence:sequence FrameList:(NSString*)framelist];
 }
 
--(id)initWithPlist:(NSString*)name forSequence:(NSString*)sequence FrameList:(NSString*)framelist Delay:(float)delay
+-(id)initWithPlist:(NSString*)name forSequence:(NSString*)sequence FrameList:(NSString*)framelist
 {
     self = [super init];
     if (self) {
@@ -50,11 +50,9 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
         _frameNames = [[NSMutableDictionary alloc] initWithCapacity:12];
         
         [self createFramesWithSequence:sequence FrameList:(NSString*)framelist];
-                
-        [[[LayerManager sharedLayers] currentLayer] addChild:_spriteSheet];
         
-        //_anim = [[CCAnimation animationWithFrames:_frames delay:_delay] retain];
-        _anim = nil;
+        
+        [[[LayerManager sharedLayers] currentLayer] addChild:_spriteSheet];
 
     }
     
@@ -203,8 +201,6 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
     
     [_firstFrameName release];
     [_sequence release];
-    
-    [_anim release];
     
     _animateAction = nil;
     
