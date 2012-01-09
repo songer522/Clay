@@ -71,12 +71,7 @@
     <property name="obstacle" value="manure"/>
    </properties>
   </tile>
-  <tile id="12">
-   <properties>
-    <property name="layerBelow" value="main0"/>
-    <property name="object" value="discoDancers"/>
-   </properties>
-  </tile>
+
   <tile id="13">
    <properties>
     <property name="layerBelow" value="front-1"/>
@@ -98,18 +93,7 @@
     <property name="obstacle" value="spilledDrink"/>
    </properties>
   </tile>
-  <tile id="18">
-   <properties>
-    <property name="layerBelow" value="back-1"/>
-    <property name="object" value="femaleBkgDancer"/>
-   </properties>
-  </tile>
-  <tile id="19">
-   <properties>
-    <property name="layerBelow" value="back-1"/>
-    <property name="object" value="maleBkgDancer"/>
-   </properties>
-  </tile>
+  
   <tile id="20">
    <properties>
     <property name="obstacle" value="femaleBreakdancerRed"/>
