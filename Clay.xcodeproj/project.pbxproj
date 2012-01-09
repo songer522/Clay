@@ -3333,6 +3333,10 @@
 				61B86BA214BA12990002138E /* tileset_level_10.png in Resources */,
 				548D7A8214B9537200BE26FB /* spinning.wav in Resources */,
 				541970DC14BA82AC00C81028 /* tileset_level-10-hd.png in Resources */,
+				61CC567E14BA9885002E0DD9 /* fireLevel-hd.plist in Resources */,
+				61CC567F14BA9885002E0DD9 /* fireLevel-hd.png in Resources */,
+				61CC568014BA9885002E0DD9 /* fireLevel.plist in Resources */,
+				61CC568114BA9885002E0DD9 /* fireLevel.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
