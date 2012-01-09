@@ -3336,6 +3336,7 @@
 				61E1584E14B7A32C00413584 /* tileset_level_8.png in Resources */,
 				61B86BA114BA12990002138E /* tileset_level_10-hd.png in Resources */,
 				61B86BA214BA12990002138E /* tileset_level_10.png in Resources */,
+				548D7A8214B9537200BE26FB /* spinning.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

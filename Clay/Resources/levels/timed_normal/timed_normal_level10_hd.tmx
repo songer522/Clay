@@ -136,6 +136,16 @@
     <property name="obstacle" value="waterSeaHorse"/>
    </properties>
   </tile>
+  <tile id="70">
+   <properties>
+    <property name="obstacle" value="waterHealthBubble1"/>
+   </properties>
+  </tile>
+  <tile id="71">
+   <properties>
+    <property name="obstacle" value="waterHealthBubble2"/>
+   </properties>
+  </tile>
   <tile id="72">
    <properties>
     <property name="obstacle" value="waterTronika"/>
@@ -184,8 +194,12 @@
   </data>
  </layer>
  <layer name="pits" width="1000" height="14">
+  <properties>
+   <property name="speedx" value="1.0"/>
+   <property name="speedy" value="1.0"/>
+  </properties>
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T+1rCKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4A9rAAAE=
+   eJzt10EKwjAQBdC6rbZ6/6NWbf2StQhFUkbeg092YZiQMBkGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgM+W5J48kmey7li390anzoUXVKnXlWqlcWaNPkB/y9EFAMCfGDODnpNLMiXzjvWa3MyyX1XqdaVaaZxZow/Q3+i+AADAz/mXAkfx/gD09QJFeV9+
   </data>
  </layer>
  <layer name="front-1" width="1000" height="14">
@@ -203,7 +217,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt2jEOgCAQBEBe4NtslP//xMrmGqMCJ3GmoSAhe6G8LQUAAAAAAAAAAAAAAAAAAAAAAAAA5rVmB7ihZda94VuzmOmvAQAAAAAAAAAAAID+/tirPm3ZAQAAAAAAAABoqmYHCDL20jWcX9W7r3A1/9v7SAcBAAAAAAAAeGrJDgAAAAAAAAAAAx0SiwUK
+   eJzt2ktSg0AQANCcQD2aKaO5/03cW5KEOPaP9zawoppmpplmOJ0AAAAAAAAAAAAAAAAAAAAAAHJcN44wQfXx/JkdwIHJPcAs6nqs9+wAGMm4mu+6cU6srHdml2fedU3xM78d8t011wDE0B/8bsL7c8I9EOMrO4BFqtSzyLm31f/vPf8v2c/kSHVwxTzumq8VYzl7rN6TOY8BIkxZj0IH1g8clXV0jq59Jvt03D8HgEgf2QHAYJfsAAAOTh0GALqzp0FFW3usVfZej9oH+M7by6Pz5bzzCEAdz6zlK/yvXiGGie79v9ax97v1z2vH+5ni/IfzqqLqUpWeFipZUc+rri3M+efIGwCQbeU3h9eF1wIeN62viKglE7+3ThsHWarm8S07AOCml+wAAAAAAAAAACDQN/5lHHI=
   </data>
  </layer>
  <layer name="meta" width="1000" height="14" opacity="0.5">
@@ -212,7 +226,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztw0ENAAAMA6Gbf9N71gQkFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADMqaqqqqqqqqo9A5UH0Q==
+   eJzt0csJACAMRMHYf9MeLcCFGJmBd8+nCgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACOpSdL6N5hSglmlZ+5gyRJkv4soXuHKSWYVX7mDpIkSbdtM2oHJw==
   </data>
  </layer>
 </map>
