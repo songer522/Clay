@@ -454,6 +454,42 @@
                     
                     trigger.canBeReset = true;
                     [_triggers addObject:trigger];
+                } else if([special isEqualToString:@"finalBossEnter"]) {
+                    Trigger *trigger = [[Trigger alloc] init];
+                    trigger.position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
+                    trigger.type = TRIGGER_FINAL_BOSS_ENTER;
+                    trigger.canBeReset = false;
+                    [_triggers addObject:trigger];
+                } else if([special isEqualToString:@"finalBossExits"]) {
+                    Trigger *trigger = [[Trigger alloc] init];
+                    trigger.position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
+                    trigger.type = TRIGGER_FINAL_BOSS_EXITS;
+                    trigger.canBeReset = true;
+                    [_triggers addObject:trigger];
+                } else if([special isEqualToString:@"finalBossDies"]) {
+                    Trigger *trigger = [[Trigger alloc] init];
+                    trigger.position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
+                    trigger.type = TRIGGER_FINAL_BOSS_DIE;
+                    trigger.canBeReset = false;
+                    [_triggers addObject:trigger];                    
+                } else if([special isEqualToString:@"finalBossAttack1"]) {
+                    Trigger *trigger = [[Trigger alloc] init];
+                    trigger.position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
+                    trigger.type = TRIGGER_FINAL_BOSS_ATTACK1;
+                    trigger.canBeReset = true;
+                    [_triggers addObject:trigger];
+                } else if([special isEqualToString:@"finalBossAttack2"]) {
+                    Trigger *trigger = [[Trigger alloc] init];
+                    trigger.position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
+                    trigger.type = TRIGGER_FINAL_BOSS_ATTACK2;
+                    trigger.canBeReset = true;
+                    [_triggers addObject:trigger];
+                } else if([special isEqualToString:@"finalBossAttack3"]) {
+                    Trigger *trigger = [[Trigger alloc] init];
+                    trigger.position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
+                    trigger.type = TRIGGER_FINAL_BOSS_ATTACK3;
+                    trigger.canBeReset = true;
+                    [_triggers addObject:trigger];                    
                 }
             }
 

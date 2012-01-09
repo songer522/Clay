@@ -17,11 +17,10 @@
 -(void)startBoss
 {
     _player = [[LayerManager sharedLayers] getPlayer];
-    _jim = [Sprite spriteWithFile:@"blank.png" AddToLayer:NO];
-    _mineCart = [Sprite spriteWithFile:@"blank.png" AddToLayer:NO];
-    [_mineCart getCCSprite].anchorPoint = ccp(0.5f,0.5f);
+    _train = [Sprite spriteCenteredWithFrame:@"Level11_Jim_Test.png" AddToLayer:NO];
     _firstUpdate = true;
     _gameLayer = [[LayerManager sharedLayers] currentLayer];
+    _speedModifier = 1.0f;
 }
 
 
@@ -39,10 +38,9 @@
         case FINAL_BOSS_ATTACK_3:
             break;
         case FINAL_BOSS_ENTER:
-            _mineCartPosition = ccp(_player.x + 600,100);
-            _jimPosition = _mineCartPosition;
-            [_mineCart setPosition:_mineCartPosition];
-            [[AnimationController sharedController] replaceSprite:_jim withAnimationNamed:@"darkShadowTimLaughingAnim"];
+            _trainPosition = ccp(_player.x + 600,100);
+            [_train getCCSprite].visible = YES;
+            _speed = 20.0f;
             break;
         case FINAL_BOSS_DIE:
             break;
@@ -72,31 +70,25 @@
 
 -(void)firstUpdate
 {
-    [_gameLayer addChild:[_jim getCCSprite]];
-    [_gameLayer addChild:[_mineCart getCCSprite]];
+    [_gameLayer addChild:[_train getCCSprite]];
     _firstUpdate = false;
 }
 
 -(void)updateBossEntrance:(float)dt
 {
-    float speed = 20.0f * dt;
-    _mineCartPosition.x -= speed;
-    _jimPosition.x = _mineCartPosition.x;
-    _jimPosition.y = _mineCartPosition.y + 20.0f;
-    [_mineCart setPosition:_mineCartPosition];
-    [_jim setPosition:_jimPosition];
+    _trainPosition.x += _speed;
+    [_train setPosition:_trainPosition];
 }
 
 -(void)setVisible:(_Bool)isVisible
 {
-    [[_jim getCCSprite] setVisible:isVisible];
-    [[_mineCart getCCSprite] setVisible:isVisible];
+    [[_train getCCSprite] setVisible:isVisible];
 }
 
 -(void)changeAnimationSpeed:(float)modifier
 {
-    [[_jim getAnimation] changeAnimationSpeed:modifier];
-    [[_mineCart getAnimation] changeAnimationSpeed:modifier];
+    [[_train getAnimation] changeAnimationSpeed:modifier];
+    _speedModifier = modifier;
 }
 
 @end

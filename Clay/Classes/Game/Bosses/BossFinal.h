@@ -16,10 +16,8 @@
 
 @interface BossFinal : Boss
 {
-    Sprite *_jim;
-    Sprite *_mineCart;
-    CGPoint _jimPosition;
-    CGPoint _mineCartPosition;
+    Sprite *_train;
+    CGPoint _trainPosition;
     
     FinalBossPhase _phase;
     
@@ -29,6 +27,9 @@
     GameLayer *_gameLayer;
     
     bool _firstUpdate;
+    
+    float _speed;
+    float _speedModifier;
 }
 
 -(void)triggerAction:(FinalBossPhase)phase;
