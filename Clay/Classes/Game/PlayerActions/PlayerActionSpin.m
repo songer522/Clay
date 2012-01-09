@@ -36,8 +36,10 @@
         //[_parent endTurbo:false];
         //[_parent setPlayerAnimation:PLAYER_ANIM_SPIN];
         //[_parent setPlayerAnimation:PLAYER_ANIM_SPIN_UP];
+        
         [[SoundEngine shared] playSound:@"waterSwimAction"];
         [[_sprite getCCSprite] setVisible:YES];
+        [_parent setPlayerAnimation:PLAYER_ANIM_FALLING];
         [_sprite setAlpha:0.0f];
         _duration = 10.75f;
     }

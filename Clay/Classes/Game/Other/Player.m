@@ -459,10 +459,12 @@
         
         if (_isNewUnderwaterPhysics) {
             _vy = 25.0f;
+    
         } else {
             _vy = -250.0f;
             _y += 2.0f;
         }
+       
         _waitToGetUp = 0.3f;
     }
     
@@ -515,9 +517,17 @@
 -(void)startThirdAction
 {
     //guards
-    if(_isTripping || _waitToGetUp > 0.0f) return;
+  
+    
     if((_isJumping || _isInMidAir) && ![_thirdAction canStartInMidAir]) return;
+  
     if(!_isInMidAir && ![_thirdAction canStartOnGround]) return;
+    if(_isNewUnderwaterPhysics)
+    {
+        [_thirdAction startAction];
+        return;
+    }
+    if(_isTripping || _waitToGetUp > 0.0f) return;
     
     [_thirdAction startAction];
 }
