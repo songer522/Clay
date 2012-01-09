@@ -72,7 +72,7 @@ static GCHelper *sharedHelper = nil;
     //NSLog(@"gc - initwithleaderboardtoreport");
     if ((self = [super init])) {
         
-        _enabled = false;
+        _enabled = true;
         
         self.leaderboardToReport = theLeaderboardToReport;
         self.achievementsToReport = theAchievementsToReport;
@@ -244,13 +244,13 @@ static GCHelper *sharedHelper = nil;
 #pragma mark NSCoding
 
 -(void)encodeWithCoder:(NSCoder *)encoder {
-    NSLog(@"gc - encodewithcoder");
+    //NSLog(@"gc - encodewithcoder");
     [encoder encodeObject:leaderboardToReport forKey:@"LeaderboardToReport"];
     [encoder encodeObject:achievementsToReport forKey:@"AchievementsToReport"];
 }
 
 -(id)initWithCoder:(NSCoder *)decoder {
-    NSLog(@"gc - initwithcoder");
+    //NSLog(@"gc - initwithcoder");
     NSMutableArray * theLeaderboardToReport = [decoder decodeObjectForKey:@"LeaderboardToReport"];
     NSMutableArray * theAchievementsToReport = [decoder decodeObjectForKey:@"AchievementsToReport"];
     return [self initWithLeaderboardToReport:theLeaderboardToReport achievementsToReport:theAchievementsToReport];

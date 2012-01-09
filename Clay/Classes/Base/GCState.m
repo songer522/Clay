@@ -95,7 +95,7 @@ static GCState *sharedInstance = nil;
 
 -(id)initWithCoder:(NSCoder *)decoder {
     if ((self = [super  init])) {
-        _enabled = false;
+        _enabled = true;
         
         if (_enabled) {
             chickensKickedIntoCows = [decoder decodeIntForKey:@"ChickensKickedIntoCows"];
