@@ -13,6 +13,7 @@
 #import "Battery.h"
 #import "HudButton.h"
 #import "GameSettings.h"
+#import "LevelManager.h"
 
 #define HUD_LAYER_BUTTON_OPACITY 170 //tian's suggestion: 204
 
@@ -88,7 +89,7 @@
     
     //test action button
     if ([_buttonAction testCollision:point]) {
-        if (type == INPUT_TOUCH_PRESSED||(type == INPUT_TOUCH_END && [[[GameSettings shared] getGlobalForKey:@"levelName"] isEqualToString:@"level10"])) {
+        if (type == INPUT_TOUCH_PRESSED||(type == INPUT_TOUCH_END && [[[LevelManager shared] currentLevel] isLevelNumber:10])) {
             
               if([_buttonAction getCCSpriteForOverlay].visible)
               { [_buttonAction setOpacityAndScale];}

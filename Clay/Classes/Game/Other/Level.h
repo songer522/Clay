@@ -69,6 +69,8 @@ typedef enum {
     
     
     
+    
+    
     //any triggers in the level
     NSMutableArray *_triggers;
     
@@ -92,6 +94,7 @@ typedef enum {
     GameLayer *_gameLayer;
     Player *_player;
     
+    LevelNumberType _levelNumber;
     
     float _x;
     float _y;
@@ -139,6 +142,8 @@ typedef enum {
 -(void)resetTriggers:(bool)isRestartingLevel;
 -(Trigger*)testTriggers:(Player*)player;
 -(void)unloadLevel;
+
+-(bool)isLevelNumber:(int)number;
 
 -(void)setHudButtonsAndThirdAction:(NSString*)action;
 

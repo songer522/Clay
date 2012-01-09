@@ -106,6 +106,7 @@
         
         _collisionHandler = [CollisionDetection collisionHandlerWithMetaLayer:_meta Map:_map];
         
+        _levelNumber = [[levelName substringFromIndex:5] intValue];
         
         NSString *mode = [[GameSettings shared] getGlobalForKey:@"gameMode"];
         if([mode isEqualToString:@"timed"]) {
@@ -1003,7 +1004,7 @@
         
     }
      */
-    else if([_name isEqualToString:@"level7"])
+    else if(_levelNumber == 7)
     {
         if ([GCState sharedInstance].viruesHit < maxHit) {
             [GCState sharedInstance].viruesHit++;
@@ -1078,6 +1079,11 @@
 
 
 
+}
+
+-(bool)isLevelNumber:(int)number
+{
+    return (number == _levelNumber);
 }
 
 

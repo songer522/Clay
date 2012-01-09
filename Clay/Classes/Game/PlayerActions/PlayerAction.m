@@ -128,21 +128,14 @@
 -(void)reportAchievementData
 {
     Level *level = [[LevelManager shared] currentLevel];
-    if([level.name isEqualToString:@"level4"])
-    {
-        [self shuffledOver];
-    }
     
-    else if ([level.name isEqualToString:@"level6"])
-    {
+    if ([level isLevelNumber:4]) {
+        [self shuffledOver];
+    } else if([level isLevelNumber:6]) {
         [self shotZombie];
-    }
-  
-    else if ([level.name isEqualToString:@"level7"])
-    {
+    } else if([level isLevelNumber:7]) {
         [self blockshot];
     }
-    
 }
 
 
