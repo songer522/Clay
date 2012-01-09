@@ -829,6 +829,7 @@
             
             if([self closeToPlayer:550] && ![self closeToPlayer:300])
             {
+                /*
                 if (_isActive)
                 {
                 int frame = [[_sprite getAnimation] getCurrentFrameNumber];
@@ -839,6 +840,15 @@
                 }
                 _vy = _direction * 30.0f; 
                 }
+                 */
+                if(_waitToTrigger<=0)
+                {
+                    _waitToTrigger=0.5;
+                    _direction  =-1 * _direction;
+                }
+                _waitToTrigger -=dt;
+                
+                _vy = _direction * 30.0f;
                
             } 
             
@@ -858,6 +868,7 @@
               {
                  [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"waterPufferFishAnim3"];
               }
+                /*
                 if(_isActive)
                 {
                 int frame = [[_sprite getAnimation] getCurrentFrameNumber];
@@ -868,6 +879,16 @@
                 }
                 _vy = _direction * 30.0f; 
                 }
+                 */
+                if(_waitToTrigger<=0)
+                {
+                    _waitToTrigger=0.5;
+                    _direction  =-1 * _direction;
+                }
+                _waitToTrigger -=dt;
+                
+                _vy = _direction * 30.0f;
+                
             }
             
             break;
@@ -1530,7 +1551,7 @@
         _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_FIRE_FOXFIRE];
         [_projectile reset];
         [_projectile setAttachedTo:self];
-        [_projectile setPosition:ccp(-31.0f,-13.0f)];
+        [_projectile setPosition:ccp(-31.0f,-3.0f)];
         [_projectile setBoundingBox:CGRectMake(15,15,30,30)];
         [_projectile setInitialVelocity];
         _projectilePersists = true;
