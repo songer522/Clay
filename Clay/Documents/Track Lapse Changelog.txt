@@ -1,5 +1,29 @@
 Track Lapse Changelog
 
+Build 120108.01
+==================
+
+* Choose Level - fixed memory leak
+* Global - Tim no longer snaps to ledges unless he's falling over them.
+* Global - The hiccup just before the level ends has been fixed by shifting when the achievement information is sent to game center until after the black bars close down
+* Level 4 - all background dancers removed to get 60 fps
+* Level 8 - fixed bug where Tim couldn't reliably do the blow action while on the ledge
+* Level 8 - size of fireball shrunk to 85% of its original size
+* Level 8 - fire animation around firefox risen to make it more obvious that the player should double jump
+* Level 9 - new level designs for all modes
+* Level 9 - fixed the squirrel going invisible, and should have also fixed any remaining objects popping in while doing so. NOTE: the fix is not efficient, and this code should be rewritten at some point.
+* Level 9 - water puddles added to the end of the level to tie in with the end level comic
+* Level 10 - added health bubbles that can be attacked by the diving action for health
+* Level 10 - replaced diving sound
+* Level 10 - diving action now shows the anchor
+* Level 10 - new level designs for all modes
+* Level 10 - tileset graphic updated to remove a thin white line in the background
+* Level 10 - pufferfish don't start moving until they're onscreen now, so their vertical position is more predictable by the player
+* Optimization - looping animations did not need a stricter and more time consuming test that cocos2d uses to determine when to switch frames. we just keep track of the number and check against that, which is much faster
+* Optimization - switched some tests for the level name each update to check against the level number instead, which is faster
+
+
+
 Build 120106.02
 ==================
 
