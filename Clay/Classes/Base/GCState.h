@@ -39,6 +39,8 @@
     bool completeStoryNormal;
     bool completeStoryHard;
     bool completeStoryAll;
+    
+    bool _enabled;
 }
 
 + (GCState *) sharedInstance;

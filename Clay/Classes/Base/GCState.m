@@ -43,10 +43,14 @@ static GCState *sharedInstance = nil;
 }
 
 -(void)save {
+    if(!_enabled) { return; }
+    
     saveData(self, @"GCState");
 }
 
 -(void)encodeWithCoder:(NSCoder *)encoder {
+    if(!_enabled) { return; }
+    
     [encoder encodeInt:chickensKickedIntoCows forKey:@"ChickensKickedIntoCows"];
     [encoder encodeInt:timesDied forKey:@"timesDied"];
     [encoder encodeInt:hurdlesJumpedOver forKey:@"hurdlesJumpedOver"];
@@ -91,40 +95,44 @@ static GCState *sharedInstance = nil;
 
 -(id)initWithCoder:(NSCoder *)decoder {
     if ((self = [super  init])) {
-        chickensKickedIntoCows = [decoder decodeIntForKey:@"ChickensKickedIntoCows"];
-        timesDied = [decoder decodeIntForKey:@"timesDied"];
-        hurdlesJumpedOver = [decoder decodeIntForKey:@"hurdlesJumpedOver"];
-        peopleShuffled = [decoder decodeIntForKey:@"peopleShuffled"];
-        dogsJumpedOver = [decoder decodeIntForKey:@"dogsJumpedOver"];
-        zombiesShot = [decoder decodeIntForKey:@"zombiesShot"];
-        attacksBlocked = [decoder decodeIntForKey:@"attacksBlocked"];
-        demonsFreezed = [decoder decodeIntForKey:@"demonsFreezed"];
-        frogsJumpedOver = [decoder decodeIntForKey:@"frogsJumpedOver"];
+        _enabled = false;
         
-        
-        hurdlesHit = [decoder decodeIntForKey:@"hurdlesHit"];
-        cowsHit = [decoder decodeIntForKey:@"cowsHit"];
-        dancersHit = [decoder decodeIntForKey:@"dancersHit"];
-        birdsHit = [decoder decodeIntForKey:@"birdsHit"];
-        dogsHit = [decoder decodeIntForKey:@"dogsHit"];
-        zombiesHit = [decoder decodeIntForKey:@"zombiesHit"];
-        viruesHit = [decoder decodeIntForKey:@"viruesHit"];
-        fireDemonHit = [decoder decodeIntForKey:@"fireDemonHit"];
-        frogsHit = [decoder decodeIntForKey:@"frogsHit"];
-        fishHit = [decoder decodeIntForKey:@"fishHit"];
-        batHit = [decoder decodeIntForKey:@"batHit"];
-                
-        enimiesCleared = [decoder decodeIntForKey:@"enimiesCleared"];
-        timesWhooed = [decoder decodeIntForKey:@"timesWhooed"];
-        timesFellIntoDeathPit = [decoder decodeIntForKey:@"timesFellIntoDeathPit"];
-        timesFellDown = [decoder decodeIntForKey:@"timesFellDown"];
-        
-        
-        completeStoryEasy = [ decoder decodeBoolForKey:@"completeStoryEasy"];
-        completeStoryNormal = [ decoder decodeBoolForKey:@"completeStoryNormal"];
-        completeStoryHard = [ decoder decodeBoolForKey:@"completeStoryHard"];
-        completeStoryAll = [ decoder decodeBoolForKey:@"completeStoryAll"];
-        flawlessRun =[ decoder decodeBoolForKey:@"flawlessRun"];
+        if (_enabled) {
+            chickensKickedIntoCows = [decoder decodeIntForKey:@"ChickensKickedIntoCows"];
+            timesDied = [decoder decodeIntForKey:@"timesDied"];
+            hurdlesJumpedOver = [decoder decodeIntForKey:@"hurdlesJumpedOver"];
+            peopleShuffled = [decoder decodeIntForKey:@"peopleShuffled"];
+            dogsJumpedOver = [decoder decodeIntForKey:@"dogsJumpedOver"];
+            zombiesShot = [decoder decodeIntForKey:@"zombiesShot"];
+            attacksBlocked = [decoder decodeIntForKey:@"attacksBlocked"];
+            demonsFreezed = [decoder decodeIntForKey:@"demonsFreezed"];
+            frogsJumpedOver = [decoder decodeIntForKey:@"frogsJumpedOver"];
+            
+            
+            hurdlesHit = [decoder decodeIntForKey:@"hurdlesHit"];
+            cowsHit = [decoder decodeIntForKey:@"cowsHit"];
+            dancersHit = [decoder decodeIntForKey:@"dancersHit"];
+            birdsHit = [decoder decodeIntForKey:@"birdsHit"];
+            dogsHit = [decoder decodeIntForKey:@"dogsHit"];
+            zombiesHit = [decoder decodeIntForKey:@"zombiesHit"];
+            viruesHit = [decoder decodeIntForKey:@"viruesHit"];
+            fireDemonHit = [decoder decodeIntForKey:@"fireDemonHit"];
+            frogsHit = [decoder decodeIntForKey:@"frogsHit"];
+            fishHit = [decoder decodeIntForKey:@"fishHit"];
+            batHit = [decoder decodeIntForKey:@"batHit"];
+            
+            enimiesCleared = [decoder decodeIntForKey:@"enimiesCleared"];
+            timesWhooed = [decoder decodeIntForKey:@"timesWhooed"];
+            timesFellIntoDeathPit = [decoder decodeIntForKey:@"timesFellIntoDeathPit"];
+            timesFellDown = [decoder decodeIntForKey:@"timesFellDown"];
+            
+            
+            completeStoryEasy = [ decoder decodeBoolForKey:@"completeStoryEasy"];
+            completeStoryNormal = [ decoder decodeBoolForKey:@"completeStoryNormal"];
+            completeStoryHard = [ decoder decodeBoolForKey:@"completeStoryHard"];
+            completeStoryAll = [ decoder decodeBoolForKey:@"completeStoryAll"];
+            flawlessRun =[ decoder decodeBoolForKey:@"flawlessRun"];            
+        }
     }
     return self;
 }

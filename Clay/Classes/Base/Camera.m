@@ -225,12 +225,15 @@ static Camera *_sharedCamera = nil;
     
     if (_target != nil) {
         
+        /*
         float rate;
         if (onGround) {
             rate = 1.0f;
         } else {
             rate = 0.1f;
-        }
+        }*/
+        
+        
         
         CGPoint position = [_target getPosition];
         dx = (position.x - _x);
@@ -246,7 +249,7 @@ static Camera *_sharedCamera = nil;
                 _x += (magnitude * (dx/distance));
             }
             if (dy!=0) {
-                _y += rate * (magnitude * (dy/distance));                
+                _y += (magnitude * (dy/distance));                
             }
             
         } else {
