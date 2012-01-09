@@ -137,9 +137,15 @@
     <property name="obstacle" value="rainySquirrel"/>
    </properties>
   </tile>
+  <tile id="75">
+   <properties>
+    <property name="special" value="finalBossEnters"/>
+   </properties>
+  </tile>
   <tile id="76">
    <properties>
-    <property name="obstacle" value="finalBossEnters"/>
+    <property name="object" value="finalJimBoss"/>
+    <property name="special" value="finalBossEnters"/>
    </properties>
   </tile>
   <tile id="77">
@@ -235,7 +241,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1EsOwiAQANCeQOtVPI7a+1/DjQtDTD8MnxLfS5qUEigMw0wTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/Kf754l6Zv47d2wpJfZeyyM4PieuPc+itWh8j7p9vV+Dcy2N+3LVyKdf69z7ba+R70GpvD5rjq2dTSQ3auR/6rXSF60JozhTfdqSUwfS+1e6XVoa16PtLa32M1eadyRiAG1dei8AAAAAAAAAADp4Aw5kEDY=
+   eJzt1MsNwjAMANBOAJ2FbYCy/xpcOEWoLXG+4j2phzRK6ziOlwUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIBR3HsHAAAAAAAAAAAAAAAAAAAA8Gdunyfqmfnv3LWllNh7LY/g+py89jyL1qL5jbgG178az+WqUU/f4jz77qyZ70Gpuh61xvbOJlIbNeo/te3MRXvCLEbqT0dy+kB6/0qPS0vz+uv4SKv9rJW+OxM5gLYuvQMAAAAAAAAAgA7e4NYQfg==
   </data>
  </layer>
  <layer name="meta" width="1000" height="14" opacity="0.66">

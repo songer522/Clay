@@ -1245,7 +1245,7 @@
 			<real>0.5</real>
 		</dict>
 		<key>animationName</key>
-		<string>darkShadowTimAnim</string>
+		<string>none</string>
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>

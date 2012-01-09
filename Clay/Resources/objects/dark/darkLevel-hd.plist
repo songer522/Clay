@@ -22,7 +22,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{0, 419}, {57, 91}}</string>
+			<string>{{530, 902}, {57, 91}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -44,7 +44,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{63, 419}, {93, 81}}</string>
+			<string>{{130, 412}, {93, 81}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -66,29 +66,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{162, 419}, {105, 75}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>Dark_Cart_1.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{41, 35}, {178, 122}}</string>
-			<key>spriteOffset</key>
-			<string>{2, -0}</string>
-			<key>spriteSize</key>
-			<string>{178, 122}</string>
-			<key>spriteSourceSize</key>
-			<string>{256, 192}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{1034, 170}, {178, 122}}</string>
+			<string>{{229, 412}, {105, 75}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -110,29 +88,403 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{1034, 0}, {222, 164}}</string>
+			<string>{{0, 848}, {222, 164}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
-		<key>Level11_Jim_Test.png</key>
+		<key>FinalBoss_1_Main.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
 			
 			</array>
 			<key>spriteColorRect</key>
-			<string>{{0, 2}, {1028, 413}}</string>
+			<string>{{0, 1}, {1071, 406}}</string>
 			<key>spriteOffset</key>
-			<string>{0, -1}</string>
+			<string>{0, 33}</string>
 			<key>spriteSize</key>
-			<string>{1028, 413}</string>
+			<string>{1071, 406}</string>
 			<key>spriteSourceSize</key>
-			<string>{1028, 415}</string>
+			<string>{1071, 474}</string>
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{0, 0}, {1028, 413}}</string>
+			<string>{{0, 0}, {1071, 406}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>FinalBoss_2_Wheel1.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 245}, {917, 162}}</string>
+			<key>spriteOffset</key>
+			<string>{-77, -89}</string>
+			<key>spriteSize</key>
+			<string>{917, 162}</string>
+			<key>spriteSourceSize</key>
+			<string>{1071, 474}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{1077, 168}, {917, 162}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>FinalBoss_2_Wheel2.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 245}, {917, 162}}</string>
+			<key>spriteOffset</key>
+			<string>{-77, -89}</string>
+			<key>spriteSize</key>
+			<string>{917, 162}</string>
+			<key>spriteSourceSize</key>
+			<string>{1071, 474}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{1077, 0}, {917, 162}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>FinalBoss_2_Wheel3.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 245}, {917, 162}}</string>
+			<key>spriteOffset</key>
+			<string>{-77, -89}</string>
+			<key>spriteSize</key>
+			<string>{917, 162}</string>
+			<key>spriteSourceSize</key>
+			<string>{1071, 474}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{1077, 336}, {917, 162}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>FinalBoss_3_Jim1.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{358, 137}, {205, 236}}</string>
+			<key>spriteOffset</key>
+			<string>{-75, -18}</string>
+			<key>spriteSize</key>
+			<string>{205, 236}</string>
+			<key>spriteSourceSize</key>
+			<string>{1071, 474}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{886, 504}, {205, 236}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>FinalBoss_3_Jim2.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{358, 137}, {205, 236}}</string>
+			<key>spriteOffset</key>
+			<string>{-75, -18}</string>
+			<key>spriteSize</key>
+			<string>{205, 236}</string>
+			<key>spriteSourceSize</key>
+			<string>{1071, 474}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{675, 682}, {205, 236}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>FinalBoss_3_Jim3.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{358, 137}, {205, 236}}</string>
+			<key>spriteOffset</key>
+			<string>{-75, -18}</string>
+			<key>spriteSize</key>
+			<string>{205, 236}</string>
+			<key>spriteSourceSize</key>
+			<string>{1071, 474}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{886, 746}, {205, 236}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>FinalBoss_3_Jim4.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{358, 137}, {205, 236}}</string>
+			<key>spriteOffset</key>
+			<string>{-75, -18}</string>
+			<key>spriteSize</key>
+			<string>{205, 236}</string>
+			<key>spriteSourceSize</key>
+			<string>{1071, 474}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{1097, 504}, {205, 236}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>FinalBoss_3_Jim5.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{358, 137}, {205, 236}}</string>
+			<key>spriteOffset</key>
+			<string>{-75, -18}</string>
+			<key>spriteSize</key>
+			<string>{205, 236}</string>
+			<key>spriteSourceSize</key>
+			<string>{1071, 474}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{1097, 746}, {205, 236}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>FinalBoss_4_Jim1.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{358, 137}, {205, 264}}</string>
+			<key>spriteOffset</key>
+			<string>{-75, -32}</string>
+			<key>spriteSize</key>
+			<string>{205, 264}</string>
+			<key>spriteSourceSize</key>
+			<string>{1071, 474}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{675, 412}, {205, 264}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>FinalBoss_4_Jim2.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{358, 137}, {205, 288}}</string>
+			<key>spriteOffset</key>
+			<string>{-75, -44}</string>
+			<key>spriteSize</key>
+			<string>{205, 288}</string>
+			<key>spriteSourceSize</key>
+			<string>{1071, 474}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{464, 504}, {205, 288}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>FinalBoss_4_Jim3.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{358, 137}, {205, 318}}</string>
+			<key>spriteOffset</key>
+			<string>{-75, -59}</string>
+			<key>spriteSize</key>
+			<string>{205, 318}</string>
+			<key>spriteSourceSize</key>
+			<string>{1071, 474}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{253, 504}, {205, 318}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>FinalBoss_4_Jim4.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{358, 136}, {247, 338}}</string>
+			<key>spriteOffset</key>
+			<string>{-54, -68}</string>
+			<key>spriteSize</key>
+			<string>{247, 338}</string>
+			<key>spriteSourceSize</key>
+			<string>{1071, 474}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{0, 504}, {247, 338}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>FinalBoss_5_Jim1.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{46, 30}, {59, 84}}</string>
+			<key>spriteOffset</key>
+			<string>{-4, -2}</string>
+			<key>spriteSize</key>
+			<string>{59, 84}</string>
+			<key>spriteSourceSize</key>
+			<string>{159, 140}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{65, 412}, {59, 84}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>FinalBoss_5_Jim2.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{46, 30}, {59, 84}}</string>
+			<key>spriteOffset</key>
+			<string>{-4, -2}</string>
+			<key>spriteSize</key>
+			<string>{59, 84}</string>
+			<key>spriteSourceSize</key>
+			<string>{159, 140}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{0, 412}, {59, 84}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>FinalBoss_5_Jim3.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{27, 27}, {109, 98}}</string>
+			<key>spriteOffset</key>
+			<string>{2, -6}</string>
+			<key>spriteSize</key>
+			<string>{109, 98}</string>
+			<key>spriteSourceSize</key>
+			<string>{159, 140}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{530, 798}, {109, 98}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>FinalBoss_5_Jim4.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{16, 15}, {131, 114}}</string>
+			<key>spriteOffset</key>
+			<string>{2, -2}</string>
+			<key>spriteSize</key>
+			<string>{131, 114}</string>
+			<key>spriteSourceSize</key>
+			<string>{159, 140}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{393, 828}, {131, 114}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>FinalBoss_5_Jim5.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {159, 140}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{159, 140}</string>
+			<key>spriteSourceSize</key>
+			<string>{159, 140}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{228, 848}, {159, 140}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -145,7 +497,7 @@
 		<key>format</key>
 		<integer>3</integer>
 		<key>size</key>
-		<string>{2048, 512}</string>
+		<string>{2048, 1024}</string>
 		<key>name</key>
 		<string>darkLevel</string>
 		<key>premultipliedAlpha</key>

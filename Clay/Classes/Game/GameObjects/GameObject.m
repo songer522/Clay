@@ -1426,7 +1426,7 @@
         [_boss startBoss];
     } else if([behavior isEqualToString:@"finalBoss"]) {
         _collideBehavior = COLLISION_BEHAVIOR_NONE;
-        _boss = [BossFactory buildWithType:BOSS_FINAL_JIM];
+        _boss = [BossFactory buildWithType:BOSS_FINAL_BOSS];
         [_boss setSprite:_sprite];
         [_boss startBoss];
     } else if([behavior isEqualToString:@"retroStatic"]) {

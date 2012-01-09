@@ -17,12 +17,15 @@
 -(void)startBoss
 {
     _player = [[LayerManager sharedLayers] getPlayer];
-    _train = [Sprite spriteCenteredWithFrame:@"Level11_Jim_Test.png" AddToLayer:NO];
     _firstUpdate = true;
     _gameLayer = [[LayerManager sharedLayers] currentLayer];
     _speedModifier = 1.0f;
 }
 
+-(void)setSprite:(Sprite *)sprite
+{
+    _train = sprite;
+}
 
 -(void)triggerAction:(FinalBossPhase)phase
 {
@@ -38,7 +41,7 @@
         case FINAL_BOSS_ATTACK_3:
             break;
         case FINAL_BOSS_ENTER:
-            _trainPosition = ccp(_player.x + 600,100);
+            _trainPosition = ccp(_player.x + 0,100);
             [_train getCCSprite].visible = YES;
             _speed = 20.0f;
             break;
@@ -70,7 +73,7 @@
 
 -(void)firstUpdate
 {
-    [_gameLayer addChild:[_train getCCSprite]];
+    //[_gameLayer addChild:[_train getCCSprite]];
     _firstUpdate = false;
 }
 
