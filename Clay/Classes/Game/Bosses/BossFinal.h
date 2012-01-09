@@ -17,6 +17,10 @@
 @interface BossFinal : Boss
 {
     Sprite *_train;
+    Sprite *_trainWheels;
+    Sprite *_trainJim;
+    
+    
     CGPoint _trainPosition;
     
     FinalBossPhase _phase;
@@ -26,7 +30,7 @@
     Player *_player;
     GameLayer *_gameLayer;
     
-    bool _firstUpdate;
+    bool _resetSpriteVisibility;
     
     float _speed;
     float _speedModifier;
@@ -34,6 +38,9 @@
 
 -(void)triggerAction:(FinalBossPhase)phase;
 -(void)setVisible:(bool)isVisible;
--(void)firstUpdate;
+-(void)setAlpha:(float)alpha;
+-(void)resetSpriteVisibility;
 -(void)updateBossEntrance:(float)dt;
+-(void)updatePosition:(CGPoint)position;
+-(void)addSpritesToLayer:(id)layer SpriteBatch:(CCSpriteBatchNode*)spriteBatch;
 @end

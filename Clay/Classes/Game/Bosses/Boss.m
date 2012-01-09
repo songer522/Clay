@@ -94,5 +94,10 @@
     
 }
 
+-(void)addSpritesToLayer:(id)layer SpriteBatch:(CCSpriteBatchNode*)spriteBatch
+{
+    
+}
+
 
 @end

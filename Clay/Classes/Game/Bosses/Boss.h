@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "cocos2d.h"
 
 
 @protocol BossProtocol <NSObject>
@@ -62,4 +62,5 @@ typedef enum {
 -(void)triggerFallBack;
 -(void)triggerGetCloser;
 -(void)triggerAction:(FinalBossPhase)phase;
+-(void)addSpritesToLayer:(id)layer SpriteBatch:(CCSpriteBatchNode*)spriteBatch;
 @end

@@ -1260,7 +1260,7 @@
 		<key>collideBehavior</key>
 		<string>finalBoss</string>
 		<key>imageName</key>
-		<string>blank.png</string>
+		<string>FinalBoss_1_Main.png</string>
 		<key>offsetx</key>
 		<integer>0</integer>
 		<key>offsety</key>

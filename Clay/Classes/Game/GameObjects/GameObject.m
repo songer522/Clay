@@ -1175,7 +1175,7 @@
 -(void) reset
 {
     if (_boss!=nil) { 
-        [_boss reset];
+        //[_boss reset];
         return;
     }
     _collideWithPlayer=false;
@@ -1352,6 +1352,10 @@
     else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_HEALTH_BUBBLE_2) {
         _currentBehavior = COLLISION_BEHAVIOR_WATER_HEALTH_BUBBLE_2;
     }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_FINAL_BOSS) {
+        _currentBehavior = COLLISION_BEHAVIOR_FINAL_BOSS;
+        _collideBehavior = COLLISION_BEHAVIOR_FINAL_BOSS;
+    }
     else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_SLOW) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;     
     }
@@ -1425,10 +1429,11 @@
         [_boss setSprite:_sprite];
         [_boss startBoss];
     } else if([behavior isEqualToString:@"finalBoss"]) {
-        _collideBehavior = COLLISION_BEHAVIOR_NONE;
         _boss = [BossFactory buildWithType:BOSS_FINAL_BOSS];
         [_boss setSprite:_sprite];
         [_boss startBoss];
+        _currentBehavior = COLLISION_BEHAVIOR_FINAL_BOSS;
+        _collideBehavior = COLLISION_BEHAVIOR_FINAL_BOSS;
     } else if([behavior isEqualToString:@"retroStatic"]) {
         _collideBehavior = COLLISION_BEHAVIOR_RETRO_HURDLE;
         _currentBehavior = COLLISION_BEHAVIOR_RETRO_SHOT_FROM_CANNON;

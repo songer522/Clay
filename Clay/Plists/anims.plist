@@ -417,13 +417,30 @@
 		<key>clearPreviousAnims</key>
 		<string>true</string>
 		<key>delay</key>
-		<string>0.1</string>
+		<string>0.05</string>
 		<key>group</key>
 		<string>level11</string>
 		<key>looping</key>
 		<string>true</string>
 		<key>sequencePrefix</key>
 		<string>FinalBoss_2_Wheel</string>
+		<key>spritesheetPlist</key>
+		<string>darkLevel</string>
+	</dict>
+	<key>darkBossJimIdle1</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level11</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>FinalBoss_3_Jim</string>
 		<key>spritesheetPlist</key>
 		<string>darkLevel</string>
 	</dict>

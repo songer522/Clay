@@ -17,9 +17,15 @@
 -(void)startBoss
 {
     _player = [[LayerManager sharedLayers] getPlayer];
-    _firstUpdate = true;
+    _resetSpriteVisibility = FALSE;
     _gameLayer = [[LayerManager sharedLayers] currentLayer];
+    
+    _trainWheels = [Sprite spriteWithFile:@"blank.png" AddToLayer:NO];
+    _trainJim = [Sprite spriteWithFile:@"blank.png" AddToLayer:NO];
+    
     _speedModifier = 1.0f;
+    
+    [self setVisible:NO];
 }
 
 -(void)setSprite:(Sprite *)sprite
@@ -28,9 +34,7 @@
 }
 
 -(void)triggerAction:(FinalBossPhase)phase
-{
-    [self setVisible:YES];
-    
+{    
     _phase = phase;
     
     switch (phase) {
@@ -41,8 +45,9 @@
         case FINAL_BOSS_ATTACK_3:
             break;
         case FINAL_BOSS_ENTER:
-            _trainPosition = ccp(_player.x + 0,100);
-            [_train getCCSprite].visible = YES;
+            _trainPosition = CGPointMake(_player.x + 900,165); //230,135
+            [self updatePosition:_trainPosition];
+            [self setVisible:YES];
             _speed = 20.0f;
             break;
         case FINAL_BOSS_DIE:
@@ -57,8 +62,8 @@
 
 -(void)update:(float)dt
 {
-    if (_firstUpdate) {
-        [self firstUpdate];
+    if (_resetSpriteVisibility) {
+        [self resetSpriteVisibility];
     }
     
     switch (_phase) {
@@ -71,27 +76,61 @@
     }
 }
 
--(void)firstUpdate
+-(void)resetSpriteVisibility
 {
-    //[_gameLayer addChild:[_train getCCSprite]];
-    _firstUpdate = false;
+    [self setAlpha:1.0f];
+    [self setVisible:YES];
+    _resetSpriteVisibility = false;
 }
 
 -(void)updateBossEntrance:(float)dt
 {
-    _trainPosition.x += _speed;
-    [_train setPosition:_trainPosition];
+    [self updatePosition:_trainPosition];
 }
 
 -(void)setVisible:(_Bool)isVisible
 {
     [[_train getCCSprite] setVisible:isVisible];
+    [[_trainWheels getCCSprite] setVisible:isVisible];
+    [[_trainJim getCCSprite] setVisible:isVisible];
+}
+
+-(void)setAlpha:(float)alpha
+{
+    [_train setAlpha:1.0f];
+    [_trainWheels setAlpha:1.0f];
+    [_trainJim setAlpha:1.0f];
 }
 
 -(void)changeAnimationSpeed:(float)modifier
 {
     [[_train getAnimation] changeAnimationSpeed:modifier];
     _speedModifier = modifier;
+}
+
+-(void)addSpritesToLayer:(id)layer SpriteBatch:(CCSpriteBatchNode*)spriteBatch
+{
+    [layer addChild:[_trainWheels getCCSprite]];
+    [[AnimationController sharedController] replaceSprite:_trainWheels withAnimationNamed:@"darkBossWheelAnim"];
+    [layer addChild:[_trainJim getCCSprite]];
+    [[AnimationController sharedController] replaceSprite:_trainJim withAnimationNamed:@"darkBossJimIdle1"];
+    
+    //[[_trainWheels getCCSprite] useBatchNode:spriteBatch];
+
+}
+
+-(void)updatePosition:(CGPoint)position
+{
+    [_train setPosition:position];
+    [_trainWheels setPosition:CGPointMake(position.x - 268.0f,position.y - 118.0f)];
+    [_trainJim setPosition:CGPointMake(position.x - 268.0f,position.y - 118.0f)];
+    
+}
+
+-(void) reset
+{
+    [self triggerAction:FINAL_BOSS_IDLE];
+    _resetSpriteVisibility = true;
 }
 
 @end

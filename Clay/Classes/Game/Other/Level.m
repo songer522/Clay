@@ -29,6 +29,7 @@
 #import "TextureManager.h"
 #import "RegionManager.h"
 #import "PlayerAction.h"
+#import "Boss.h"
 
 @implementation Level
 
@@ -558,6 +559,11 @@
         if (!mapObject.placed && [mapObject.layerAbove isEqualToString:layer.layerName]) {
             mapObject.parallaxRatio = ratio;
             [[[LayerManager sharedLayers] currentLayer] addChild:[mapObject.object getCCSprite]];
+            
+            //add the rest of the train parts here
+            if ([mapObject.object getCurrentCollisionBehavior] == COLLISION_BEHAVIOR_FINAL_BOSS) {
+                [[mapObject.object getBoss] addSpritesToLayer:[[LayerManager sharedLayers] currentLayer] SpriteBatch:_obstacleSpriteBatch];
+            }
             
             mapObject.placed = true;
             
