@@ -48,11 +48,14 @@ static GCHelper *sharedHelper = nil;
 }
 
 -(void)save {
+    if(!_enabled) { return; }
     //NSLog(@"gc - save");
     saveData(self, @"GameCenterData");
 }
 
 -(BOOL)isGameCenterAvailable {
+    if(!_enabled) { return false; }
+    
     //NSLog(@"gc - isgamecenteravailable");
     // check for GKLocalPlayer API
     Class gcClass = (NSClassFromString(@"GKLocalPlayer"));
@@ -68,6 +71,9 @@ static GCHelper *sharedHelper = nil;
 - (id)initWithLeaderboardToReport:(NSMutableArray *)theLeaderboardToReport achievementsToReport:(NSMutableArray *)theAchievementsToReport {
     //NSLog(@"gc - initwithleaderboardtoreport");
     if ((self = [super init])) {
+        
+        _enabled = true;
+        
         self.leaderboardToReport = theLeaderboardToReport;
         self.achievementsToReport = theAchievementsToReport;
         gameCenterAvailable = [self isGameCenterAvailable];
@@ -82,6 +88,8 @@ static GCHelper *sharedHelper = nil;
 #pragma  mark Internal Functions
 
 - (void)authenticationChanged {
+    if(!_enabled) { return; }
+    
     //NSLog(@"gc - authenticationchanged");
     dispatch_async(dispatch_get_main_queue(), ^(void)
                    {
@@ -98,6 +106,8 @@ static GCHelper *sharedHelper = nil;
 }
 
 -(void)sendAchievement:(GKAchievement *)achievement {
+    if(!_enabled) { return; }
+    
     //NSLog(@"gc - sendachievement");
    // achievement.percentComplete = 100.0;   //Indicates the achievement is done
     
@@ -116,6 +126,8 @@ static GCHelper *sharedHelper = nil;
     }];
 }
 -(void)sendScore:(GKScore *)score {
+    if(!_enabled) { return; }
+    
     //NSLog(@"gc - sendscore");
     [score reportScoreWithCompletionHandler:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^(void)
@@ -131,6 +143,8 @@ static GCHelper *sharedHelper = nil;
 }
 
 -(void)resendData {
+    if(!_enabled) { return; }
+    
     //NSLog(@"gc - resenddata");
     for (GKAchievement *achievement in achievementsToReport) {
         [self sendAchievement:achievement];
@@ -143,6 +157,8 @@ static GCHelper *sharedHelper = nil;
 #pragma mark User functions
 
 - (void)authenticateLocalUser {
+    if(!_enabled) { return; }
+    
     //NSLog(@"gc - authenticatelocaluser");
     if (!gameCenterAvailable) return;
     
@@ -159,6 +175,8 @@ static GCHelper *sharedHelper = nil;
 }
 
 - (void)reportLeaderboard:(NSString *)identifier score:(float)rawScore {
+    if(!_enabled) { return; }
+    
     //NSLog(@"gc - reportleaderboard");
     GKScore *score=[[[GKScore alloc] initWithCategory:identifier] autorelease];
     score.value=rawScore;
@@ -169,6 +187,8 @@ static GCHelper *sharedHelper = nil;
 }
 
 - (void)reportAchievement:(NSString *)identifier percentComplete:(double)percentComplete {
+    if(!_enabled) { return; }
+    
     //NSLog(@"gc - reportachievement");
     GKAchievement* achievement = [[[GKAchievement alloc] initWithIdentifier:identifier] autorelease];
     achievement.percentComplete = percentComplete;

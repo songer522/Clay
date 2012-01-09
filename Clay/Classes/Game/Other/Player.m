@@ -470,7 +470,7 @@
     
     if (_thirdAction.inAction) {
         [_thirdAction cancelAction];
-    } else if([[[LevelManager shared] currentLevel].name isEqualToString:@"level11"]) {
+    } else if([[[LevelManager shared] currentLevel] isLevelNumber:11]) {
         //HACK: done just to force cancel action to be called when the player is hit.
         [_thirdAction cancelAction];
     }

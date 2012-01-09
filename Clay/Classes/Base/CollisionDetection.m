@@ -116,7 +116,7 @@
         
         
         //if landed on the ledge, put them on top of that ledge
-        if (object.vy > 0.0f && _ledgeHeightAtColumn[(int)coords.x] == coords.y) {
+        if (object.vy >= 0.0f && _ledgeHeightAtColumn[(int)coords.x] == coords.y) {
             desiredPosition.y = (_mapHeight - coords.y - 1) * _preCalculateTileSize  + 32.0f;            
             [[object getCollision] setCurrentState:COLLISION_STATE_LEDGE];            
         } else {

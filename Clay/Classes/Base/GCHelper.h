@@ -88,6 +88,7 @@
     BOOL userAuthenticated;
     NSMutableArray *leaderboardToReport;
     NSMutableArray *achievementsToReport;
+    bool _enabled;
 }
 @property (retain) NSMutableArray *leaderboardToReport;
 @property (retain) NSMutableArray *achievementsToReport;

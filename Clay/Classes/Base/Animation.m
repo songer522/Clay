@@ -109,6 +109,7 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
     
     if (_looping) {
         _speedAction = [CCRepeatForeverWithSpeed actionWithAction:_animateAction speed:1.0f];
+        _animateAction.looping = true;
     } else {
         _speedAction = [CCRepeat actionWithAction:_animateAction times:1]; //TODO: need to add speed to this too or else might cause changespeed issues
     }
