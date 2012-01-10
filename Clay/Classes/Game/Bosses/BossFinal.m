@@ -65,7 +65,8 @@
         case FINAL_BOSS_ATTACK_2:
             if (!_inAttack) {
                 [[AnimationController sharedController] replaceSprite:_trainJim withAnimationNamed:@"darkBossJimBombAttack1"];
-                _waitToSwitch = 1.6f;                
+                _waitToSwitch = 1.6f; 
+                _hasThrownBomb = false;
             }
             break;
         case FINAL_BOSS_ATTACK_3:
