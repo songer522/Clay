@@ -72,6 +72,15 @@
                 _hasThrownBomb = false;
             }
             break;
+        case FINAL_BOSS_ATTACK_2B:
+            if (_bomb!=nil) {
+                [_bomb release];
+            }
+            [[AnimationController sharedController] replaceSprite:_trainJim withAnimationNamed:@"darkBossJimBombAttack1Release"];
+            _bomb = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_DARK_BOMB];
+            [_bomb throwBombFromPosition:CGPointMake(_trainPosition.x - 62.0f, _trainPosition.y + 50.0f)];
+            _waitToSwitch = 0.4f;
+            break;
         case FINAL_BOSS_ATTACK_3:
             break;
         case FINAL_BOSS_ENTER:
@@ -86,7 +95,11 @@
             break;
         case FINAL_BOSS_IDLE:
             _trainPhase = TRAIN_PHASE_ACCELERATE;
-            _speed = 100.0f;
+            
+            //in case it's moving too slow when finished, speed it back up again
+            if (_speed < 100.0f) {
+                _speed = 100.0f;                
+            }
             _inAttack = false;
             break;
         default:
@@ -104,12 +117,12 @@
             [self triggerAction:FINAL_BOSS_ATTACK_1C];
             break;
         case FINAL_BOSS_ATTACK_1C:
+        case FINAL_BOSS_ATTACK_2B:
             [[AnimationController sharedController] replaceSprite:_trainJim withAnimationNamed:@"darkBossJimIdle1"];
             [self triggerAction:FINAL_BOSS_IDLE];
             break;
         case FINAL_BOSS_ATTACK_2:
-            [[AnimationController sharedController] replaceSprite:_trainJim withAnimationNamed:@"darkBossJimIdle1"];
-            [self triggerAction:FINAL_BOSS_IDLE];
+            [self triggerAction:FINAL_BOSS_ATTACK_2B];
             break;
         default:
             break;
@@ -138,19 +151,8 @@
         case FINAL_BOSS_ATTACK_1:
         case FINAL_BOSS_ATTACK_1B:
         case FINAL_BOSS_ATTACK_1C:
-            if ([self checkWait:dt]) {
-                [self finishedPhase];
-            }
         case FINAL_BOSS_ATTACK_2:
-            if (!_hasThrownBomb && [[_trainJim getAnimation] getCurrentFrameNumber] == 5) {
-                if (_bomb!=nil) {
-                    [_bomb release];
-                }
-                _bomb = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_DARK_BOMB];
-                [_bomb throwBombFromPosition:CGPointMake(_trainPosition.x - 62.0f, _trainPosition.y + 50.0f)];
-                _hasThrownBomb = true;
-            }
-            
+        case FINAL_BOSS_ATTACK_2B:
             if ([self checkWait:dt]) {
                 [self finishedPhase];
             }
