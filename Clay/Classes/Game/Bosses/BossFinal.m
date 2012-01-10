@@ -29,6 +29,8 @@
     _speedModifier = 1.0f;
     _hasThrownBomb = false;
     
+    _door = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_DARK_TRAIN_DOOR];
+    
     _bomb = nil;
     
     [self setVisible:NO];
@@ -56,6 +58,7 @@
             break;
         case FINAL_BOSS_ATTACK_1B:
             [[AnimationController sharedController] replaceSprite:_trainJim withAnimationNamed:@"darkBossJimDoorAttack2"];
+            
             _waitToSwitch = 4.0f;
             break;
         case FINAL_BOSS_ATTACK_1C:

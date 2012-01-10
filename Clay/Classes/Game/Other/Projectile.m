@@ -142,6 +142,9 @@
                 _offsetGroundDetectionY = -10.0f;
                 _isAggressive = false;
                 break;
+            case PROJECTILE_BEHAVIOR_DARK_TRAIN_DOOR:
+                _sprite = [Sprite spriteWithFile:@"blank.png"];
+                break;
             default:
                 break;                
                 

@@ -27,6 +27,7 @@ typedef enum {
     Sprite *_trainJim;
     
     Projectile *_bomb;
+    Projectile *_door;
     
     
     CGPoint _trainPosition;
