@@ -99,7 +99,7 @@
     CGPoint testPosition = CGPointMake(desiredPosition.x - 4.0f, desiredPosition.y); //the bottom middle point of the character is at object.x - 4, object.y
     
     //if on the ground, test if a deathpit or not.
-    if (testPosition.y < (COLLISION_PLAYER_GROUND_Y_POSITION)) {
+    if (testPosition.y < COLLISION_PLAYER_GROUND_Y_POSITION) {
         testPosition.y -= 4.0f; //bump the position a bit lower just to make sure we're grabbing the tile below and not the tile above
         CGPoint coords = [self accurateCoords:testPosition];
         

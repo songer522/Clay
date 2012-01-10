@@ -190,7 +190,7 @@
             <property name="speedy" value="1.0"/>
         </properties>
         <data encoding="base64" compression="zlib">
-            eJzt0kkKg0AURVFN9r+3tAtItwDTzPPGNdGAhSk8B/7gi1yLwq4DAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANZgr6+vr6+vr6+vr6+vr6+vP8khc8ycMueRve+nv7/Juxf92frl89bO33rf/ev7f9yPvr6+vr6+vn7t/jVzy9wzj5F998P723xr0J+tXz5v7fyt992/vv/H/ejr6+vr6+vr1+4/M6/MO/Ox/+1ePl/6PGvb3b/d/+N+7Ha73W6322vvAAAAwPK+47IoIw==
+            eJzt0EkKwlAQRdFE97832wXYLSA2c2ucSb4QiI+cAzWoINdPdR0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAsAZ7fX19fX19fX19fX19fX39JoeaY82p5jyx93377zf124v+bP3x97T3p/fT75/+/vS++7uPvr6+vr6+vn5L/1pzq7nXPCb23Q+/39Z/Dfqz9cff096f3k+/f/r70/vu7z76+vr6+vr6+i39Z82r5l3zsf/tPv6+9HvWtqffP/396bv7u4/dbrfb7XZ7yw4AAAAs7wu0XykL
         </data>
     </layer>
     <layer name="pits" width="1000" height="14">
@@ -217,7 +217,7 @@
             <property name="speedy" value="1.0"/>
         </properties>
         <data encoding="base64" compression="zlib">
-            eJzt3FFSwyAQANCeQD2aHY3e/yZ+6IxOxyk0AZYl7/0k6Ue6BLJAQnu5AAAAAAAAAAAAAAAAAAAAwBo+JzhHixhgNVt0AACDbYVtK0fHHfJzHGNGgLz+6z9rP+vldeB3kZexH7Vqckq2vKP9M9KR+d4qbfW2HDOWK8O8PEOMe2TrQwD4VdM3Ref50rhjlnFJZBzRdZTFR3QAixk5tt0a7ffiHsxlln7jqD3l0Fa/rTo3B/qZYQ263AVAySpzHcgiw/vzmfUY38743BDg7N6iAwCo4NkrUPIeHQAAwA/zl/2ujfbpQ9s+B+/m2qu9ptcHtzxO+wZ6mWENe8vzzKK07mv2vH6WtVCrlSeT23u+dJxBq3c92fPHPRnrdQaZrtvo9jnq/9v/Gl0fme/5SD3r6ax1kikXAUBLM/SBz9EBAGncm6+skEsicvJZ54Ct9f6tN+O8RAfAqTxFBwAAAAAAAAAAA30BNJUlUg==
+            eJzt3FFSwyAQANCeQD2aHY3e/yZ+6IydjiM0AZYl7/0k6Ue6BLJAQnu5AAAAAAAAAAAAAAAAAAAAwBo+JzhHixhgNVt0AACDbYVtK0fHHfJzHGNGgLz+6j9rP+vldeB3kZexH7Vqckq2vKP9M9KR+d4qbfW+HDOWK8O8PEOMe2TrQwD4VdM3Ref50rhjlnFJZBzRdZTFR3QAixk5tt0a7ffiHsxlln7jqD3l0Fa/rTo3B/qZYQ263AVAySpzHcgiw/vzmfUY38743BDg7N6iAwCo4NkrUPIeHQAAwA/zl/2ujfbpQ9s+B+/m2qu9ptcHtzxO+wZ6mWENe8vzzKK07mv2vH6WtVCrlSeT+3u+dJxBq3c92fPHfzLW6wwyXbfR7XPU/7ffGl0fme/5SD3r6ax1kikXAUBLM/SBz9EBAGnUzley5pWInHzWOWBrvX/rzTgv0QFwKk/RAQAAAAAAAADAQF8z4SVS
         </data>
     </layer>
     <layer name="meta" width="1000" height="14" opacity="0.5">
