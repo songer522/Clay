@@ -3,7 +3,21 @@ Track Lapse Changelog
 Build 120108.02
 ==================
 
-
+* Global - death pits in all levels (except the demo level 11) are now at least 3 tiles long
+* Global - Achievements won't pop up if you've already earned it
+* Global - going to the pause menu no longer saves everything to disk and updates the data on game center
+* Global - notification windows are working in landscape now
+* Level 10 - the disappearing Tronikas *might* be fixed (haven't tested, but changed the 
+* Level 10 - removed some of the coral that showed up in death pits where they shouldn't
+* Level 10 - when Tim gets hurt, it will stop him from sprinting
+* Level 10 - Jump button will always be green after a jump
+* Level 10 - Death pits will not suck Tim in until he is half way in the death pit
+* Level 10 - When Tim gets hurt, it will show the hurt animation for a half second to show the player that they cannot use the action at that time
+* Level 11 - old boss stripped out of the level, along with the hanging bats, mine cart ledges, gargoyles, and gargoyle eggs
+* Level 11 - new tileset graphic to make the colors more intense
+* Level 11 - new final boss, jim in a train. catches up to Tim once triggered, and tries to keep up with Tim at all times. probably needs to be more aggressive than current settings
+* Level 11 - added jim door attack, but no collision detection currently
+* Level 11 - started bomb attack, he'll show the bomb and throw it, but no collision detection and there's still issues with how it looks
 
 Build 120108.01
 ==================
