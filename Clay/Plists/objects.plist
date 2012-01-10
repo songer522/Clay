@@ -1245,7 +1245,7 @@
 			<real>0.5</real>
 		</dict>
 		<key>animationName</key>
-		<string>darkShadowTimAnim</string>
+		<string>none</string>
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
@@ -1260,7 +1260,7 @@
 		<key>collideBehavior</key>
 		<string>finalBoss</string>
 		<key>imageName</key>
-		<string>blank.png</string>
+		<string>FinalBoss_1_Main.png</string>
 		<key>offsetx</key>
 		<integer>0</integer>
 		<key>offsety</key>

@@ -24,7 +24,8 @@ typedef enum {
     PROJECTILE_BEHAVIOR_FIRE_DEMON_BULLET,
     PROJECTILE_BEHAVIOR_FIRE_FOXFIRE,
     PROJECTILE_BEHAVIOR_RAINY_SQUIRREL_NUT,
-    PROJECTILE_BEHAVIOR_WATER_SQUID_INK
+    PROJECTILE_BEHAVIOR_WATER_SQUID_INK,
+    PROJECTILE_BEHAVIOR_DARK_BOMB
 }ProjectileBehavior;
 
 @class Sprite;
@@ -76,6 +77,7 @@ typedef enum {
 -(void) pointTowardPlayerCannon;
 -(void) reset;
 -(void) setInitialVelocity;
+-(void) throwBombFromPosition:(CGPoint)position;
 -(void) update:(float)dt;
 -(void) shootWithSpeed:(float)speed atAngle:(float)angle;
 -(float) getAngleBetweenPoint1:(CGPoint)point1 Point2:(CGPoint)point2 InDegrees:(bool)convertToDegrees;

@@ -10,7 +10,8 @@
 
 typedef enum {
     BOSS_SPACESHIP,
-    BOSS_FINAL_JIM
+    BOSS_FINAL_JIM,
+    BOSS_FINAL_BOSS
 }BossType;
 
 @interface BossFactory : Boss

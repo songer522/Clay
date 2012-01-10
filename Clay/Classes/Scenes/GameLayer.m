@@ -360,6 +360,21 @@
             case TRIGGER_BOSS_FINALJIM_SPAWN:
                 [_boss switchToPhase:BOSS_PHASE_CHASE_INIT];
                 break;
+            case TRIGGER_FINAL_BOSS_ENTER:
+                [_boss triggerAction:FINAL_BOSS_ENTER];
+                break;
+            case TRIGGER_FINAL_BOSS_DIE:
+                [_boss triggerAction:FINAL_BOSS_DIE];
+                break;
+            case TRIGGER_FINAL_BOSS_ATTACK1:
+                [_boss triggerAction:FINAL_BOSS_ATTACK_1];
+                break;
+            case TRIGGER_FINAL_BOSS_ATTACK2:
+                [_boss triggerAction:FINAL_BOSS_ATTACK_2];
+                break;
+            case TRIGGER_FINAL_BOSS_ATTACK3:
+                [_boss triggerAction:FINAL_BOSS_ATTACK_3];
+                break;
             default:
                 break;
         }

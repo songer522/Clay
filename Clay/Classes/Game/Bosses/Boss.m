@@ -89,5 +89,15 @@
     
 }
 
+-(void)triggerAction:(FinalBossPhase)phase
+{
+    
+}
+
+-(void)addSpritesToLayer:(id)layer SpriteBatch:(CCSpriteBatchNode*)spriteBatch
+{
+    
+}
+
 
 @end

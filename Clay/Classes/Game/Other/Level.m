@@ -29,6 +29,7 @@
 #import "TextureManager.h"
 #import "RegionManager.h"
 #import "PlayerAction.h"
+#import "Boss.h"
 
 @implementation Level
 
@@ -454,6 +455,42 @@
                     
                     trigger.canBeReset = true;
                     [_triggers addObject:trigger];
+                } else if([special isEqualToString:@"finalBossEnters"]) {
+                    Trigger *trigger = [[Trigger alloc] init];
+                    trigger.position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
+                    trigger.type = TRIGGER_FINAL_BOSS_ENTER;
+                    trigger.canBeReset = false;
+                    [_triggers addObject:trigger];
+                } else if([special isEqualToString:@"finalBossExits"]) {
+                    Trigger *trigger = [[Trigger alloc] init];
+                    trigger.position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
+                    trigger.type = TRIGGER_FINAL_BOSS_EXITS;
+                    trigger.canBeReset = true;
+                    [_triggers addObject:trigger];
+                } else if([special isEqualToString:@"finalBossDies"]) {
+                    Trigger *trigger = [[Trigger alloc] init];
+                    trigger.position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
+                    trigger.type = TRIGGER_FINAL_BOSS_DIE;
+                    trigger.canBeReset = false;
+                    [_triggers addObject:trigger];                    
+                } else if([special isEqualToString:@"finalBossAttack1"]) {
+                    Trigger *trigger = [[Trigger alloc] init];
+                    trigger.position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
+                    trigger.type = TRIGGER_FINAL_BOSS_ATTACK1;
+                    trigger.canBeReset = true;
+                    [_triggers addObject:trigger];
+                } else if([special isEqualToString:@"finalBossAttack2"]) {
+                    Trigger *trigger = [[Trigger alloc] init];
+                    trigger.position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
+                    trigger.type = TRIGGER_FINAL_BOSS_ATTACK2;
+                    trigger.canBeReset = true;
+                    [_triggers addObject:trigger];
+                } else if([special isEqualToString:@"finalBossAttack3"]) {
+                    Trigger *trigger = [[Trigger alloc] init];
+                    trigger.position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
+                    trigger.type = TRIGGER_FINAL_BOSS_ATTACK3;
+                    trigger.canBeReset = true;
+                    [_triggers addObject:trigger];                    
                 }
             }
 
@@ -522,6 +559,11 @@
         if (!mapObject.placed && [mapObject.layerAbove isEqualToString:layer.layerName]) {
             mapObject.parallaxRatio = ratio;
             [[[LayerManager sharedLayers] currentLayer] addChild:[mapObject.object getCCSprite]];
+            
+            //add the rest of the train parts here
+            if ([mapObject.object getCurrentCollisionBehavior] == COLLISION_BEHAVIOR_FINAL_BOSS) {
+                [[mapObject.object getBoss] addSpritesToLayer:[[LayerManager sharedLayers] currentLayer] SpriteBatch:_obstacleSpriteBatch];
+            }
             
             mapObject.placed = true;
             

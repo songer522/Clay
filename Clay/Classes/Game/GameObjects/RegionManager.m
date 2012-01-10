@@ -57,7 +57,7 @@
 
     if (_rightRegion !=nil) {
         for (GameObject *object in _leftRegion) {
-            [[object getCCSprite] setVisible:NO];
+            //[[object getCCSprite] setVisible:NO];
             [object moveToStartingPosition];
         }        
     }
