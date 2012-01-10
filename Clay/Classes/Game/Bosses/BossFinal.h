@@ -43,4 +43,5 @@
 -(void)updateBossEntrance:(float)dt;
 -(void)updatePosition:(CGPoint)position;
 -(void)addSpritesToLayer:(id)layer SpriteBatch:(CCSpriteBatchNode*)spriteBatch;
+-(void)moveForward:(float)dt;
 @end

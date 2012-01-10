@@ -12,6 +12,8 @@
 #import "LayerManager.h"
 #import "GameLayer.h"
 
+#define BOSS_FINAL_MAX_TRAIN_X 230.0f
+
 @implementation BossFinal
 
 -(void)startBoss
@@ -33,6 +35,11 @@
     _train = sprite;
 }
 
+-(void) triggerAttack
+{
+    
+}
+
 -(void)triggerAction:(FinalBossPhase)phase
 {    
     _phase = phase;
@@ -45,10 +52,10 @@
         case FINAL_BOSS_ATTACK_3:
             break;
         case FINAL_BOSS_ENTER:
-            _trainPosition = CGPointMake(_player.x + 900,165); //230,135
+            _trainPosition = CGPointMake(_player.x - 900,165); //230,135
             [self updatePosition:_trainPosition];
             [self setVisible:YES];
-            _speed = 20.0f;
+            _speed = 100.0f;
             break;
         case FINAL_BOSS_DIE:
             break;
@@ -76,6 +83,24 @@
     }
 }
 
+-(void)moveForward:(float)dt
+{
+    //_speed = 290.0f * _speedModifier;
+    _trainPosition.x += _speed * dt;
+    [_train setPosition:_trainPosition];
+    
+    CGPoint position = [_train getCCSprite].position;
+    float dx = position.x - BOSS_FINAL_MAX_TRAIN_X;
+    if (dx > 0) {
+        _trainPosition.x -= dx;
+        _speed -= 20.0f * dt;
+    } else {
+        _speed += 20.0f * dt;
+    }
+    [self updatePosition:_trainPosition];
+    
+}
+
 -(void)resetSpriteVisibility
 {
     [self setAlpha:1.0f];
@@ -85,7 +110,7 @@
 
 -(void)updateBossEntrance:(float)dt
 {
-    [self updatePosition:_trainPosition];
+    [self moveForward:dt];
 }
 
 -(void)setVisible:(_Bool)isVisible
@@ -104,8 +129,13 @@
 
 -(void)changeAnimationSpeed:(float)modifier
 {
-    [[_train getAnimation] changeAnimationSpeed:modifier];
-    _speedModifier = modifier;
+    //[[_train getAnimation] changeAnimationSpeed:modifier];
+    if (modifier < 1.0f) {
+        _speedModifier = 0.5f * modifier;        
+    } else {
+        _speedModifier = 1.0f;
+    }
+    [[_trainWheels getAnimation] changeAnimationSpeed:modifier];
 }
 
 -(void)addSpritesToLayer:(id)layer SpriteBatch:(CCSpriteBatchNode*)spriteBatch
@@ -129,7 +159,7 @@
 
 -(void) reset
 {
-    [self triggerAction:FINAL_BOSS_IDLE];
+    //[self triggerAction:FINAL_BOSS_IDLE];
     _resetSpriteVisibility = true;
 }
 
