@@ -8,27 +8,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "Clay/Classes/Game/Other/Level.m"
-         timestampString = "347857340.471934"
+         filePath = "Clay/Classes/Game/Other/Player.m"
+         timestampString = "347914266.22037"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "898"
-         endingLineNumber = "898"
-         landmarkName = "-obstacleJumpedOver:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Clay/Classes/Game/Other/Level.m"
-         timestampString = "347857346.7137"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "902"
-         endingLineNumber = "902"
-         landmarkName = "-obstacleJumpedOver:"
+         startingLineNumber = "210"
+         endingLineNumber = "210"
+         landmarkName = "-startDoubleJump"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
