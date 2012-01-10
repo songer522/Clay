@@ -39,7 +39,7 @@
 
 +(id)gameController;
 
--(void)reactToTouchAt:(CGPoint)location InputType:(InputType)type;
+-(void)reactToTouchAt:(CGPoint)location InputType:(InputType)type TouchCount:(int)touchCount;
 -(void)setGameLayer:(GameLayer*)layer;
 -(void)setHud:(HudLayer*)hud;
 -(void)pauseGame;

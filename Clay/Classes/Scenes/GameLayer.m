@@ -412,6 +412,7 @@
     for(UITouch *touch in allTouches) {
         InputEvent *event = [InputEvent inputEventWithType:INPUT_EVENT_TYPE_TOUCHES_BEGAN];
         [event setReceiver:_gameController];
+        [event setTotalTouches:[allTouches count]];
         [event setTouchLocation:[self convertTouchToNodeSpace:touch]];
         [_inputController interpretAndReactToInputEvent:event];
     }
@@ -423,10 +424,10 @@
     for(UITouch *touch in allTouches) {
         InputEvent *event = [InputEvent inputEventWithType:INPUT_EVENT_TYPE_TOUCHES_ENDED];
         [event setReceiver:_gameController];
+        [event setTotalTouches:[allTouches count]];
         [event setTouchLocation:[self convertTouchToNodeSpace:touch]];
         [_inputController interpretAndReactToInputEvent:event];
     }
-    
 }
 
 
