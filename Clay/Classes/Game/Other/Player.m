@@ -187,9 +187,13 @@
 
 -(void)startDoubleJump
 {
-    if (_isTripping || _isDead || [_sprite getPosition].y <= 22) { 
+    if ((_isTripping || _isDead || [_sprite getPosition].y <= 62) && !_isNewUnderwaterPhysics) { 
     
         return; }
+    if ((_isTripping || _isDead || [_sprite getPosition].y <= 22) && _isNewUnderwaterPhysics) { 
+        
+        return; }
+    
     if([_thirdAction inAction] && ![_thirdAction playerAllowedToJump]) { return; }
     
     self.hasGravity = true;
@@ -344,6 +348,7 @@
 -(void)startCollision:(PlayerEffect)effect Source:(id<Collidable>)source
 {
     //update vaccuum effect
+    /*
     if(effect == PLAYER_EFFECT_VACCUUM) {
         //don't want this set if in spin action
         if(!_thirdAction.inAction) {
@@ -357,6 +362,7 @@
         }
        
     }
+     */
     
     if (!_isInvincible) {
         if (effect == PLAYER_EFFECT_ACTION_OR_COLLIDE) {
@@ -474,9 +480,10 @@
         }
     } else {
         [_skin setPlayerAnimation:PLAYER_ANIM_HURTING ForSprite:_sprite];
-        [_speed stop];
+       
         if (_isNewUnderwaterPhysics) {
             _vy = 25.0f;
+             [_speed stop];
     
         } else {
             _vy = -250.0f;

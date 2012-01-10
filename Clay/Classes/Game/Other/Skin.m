@@ -99,7 +99,7 @@
             animName = _jumping;
             break;
         case PLAYER_ANIM_FALLING:
-            if(_currentAnimation == PLAYER_ANIM_JUMPING || _currentAnimation == PLAYER_ANIM_HURTING)
+            if(_currentAnimation == PLAYER_ANIM_JUMPING || _currentAnimation == PLAYER_ANIM_HURTING )
             {
             animName = _falling;
             }
