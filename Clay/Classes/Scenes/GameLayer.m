@@ -393,7 +393,7 @@
     [[ComicManager shared] startComic:_level.postLevelComicName];
     [ComicManager shared].loadNextLevel = true;
     //[self saveAndReportToGameCenter];
-    //[self checkHasBeenHit];
+    [self checkHasBeenHit];
 }
 
 -(void)setBoss:(Boss*)boss
@@ -447,7 +447,7 @@
     }
     
     _handledPauseEvent = true;
-    [self saveAndReportToGameCenter];
+    //[self saveAndReportToGameCenter];
 }
 
 -(void)onEnter

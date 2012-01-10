@@ -190,7 +190,7 @@
             <property name="speedy" value="1.0"/>
         </properties>
         <data encoding="base64" compression="zlib">
-            eJztzbsNg0AURFE+/feGMRQA2AVgcO7pYJeIwOdILxhpdbdpAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIB/8NDX19fX19fX19fX19fX168y5p65KTcXdtvWv+/ydtHX19fX19fX19fX19fX16/qr7kt98q9C3u48L7PX7u+vr6+vr6+vr6+vr6+vn5V/5M7cmfua9u2bdu2bdu2bdv2LRsAAAC43w+mHCSD
+            eJzt0EkKwlAQRdFE97832wXYLSA2c2ucSb4QiI+cAzWoINdPdR0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAsAZ7fX19fX19fX19fX19fX39JoeaY82p5jyx93377zf124v+bP3x97T3p/fT75/+/vS++7uPvr6+vr6+vn5L/1pzq7nXPCb23Q+/39Z/Dfqz9cff096f3k+/f/r70/vu7z76+vr6+vr6+i39Z82r5l3zsf/tPv6+9HvWtqffP/396bv7u4/dbrfb7XZ7yw4AAAAs7wu0XykL
         </data>
     </layer>
     <layer name="pits" width="1000" height="14">

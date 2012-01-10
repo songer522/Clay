@@ -8,13 +8,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "Clay/Classes/Game/Other/Player.m"
-         timestampString = "347848375.828199"
+         filePath = "Clay/Classes/Game/Other/Level.m"
+         timestampString = "347857340.471934"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "163"
-         endingLineNumber = "163"
-         landmarkName = "-startJump:"
+         startingLineNumber = "898"
+         endingLineNumber = "898"
+         landmarkName = "-obstacleJumpedOver:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -22,13 +22,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "Clay/Classes/Game/Other/GameController.m"
-         timestampString = "347845403.879676"
+         filePath = "Clay/Classes/Game/Other/Level.m"
+         timestampString = "347857346.7137"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "79"
-         endingLineNumber = "79"
-         landmarkName = "-reactToTouchAt:InputType:"
+         startingLineNumber = "902"
+         endingLineNumber = "902"
+         landmarkName = "-obstacleJumpedOver:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
