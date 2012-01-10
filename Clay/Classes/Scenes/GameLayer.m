@@ -309,8 +309,10 @@
             }
             
             [_savePoint restoreSavePoint:_player];
-            _player.isDead = false;
-            [_player rechargeBattery];
+            
+            //already called in reset
+            //[_player rechargeBattery];
+            //_player.isDead = false; //needs to be after recharge battery, because it checks this
             
             [_level resetObstacles];
             [_level resetTriggers:false];
