@@ -52,6 +52,9 @@ typedef enum {
     float _yPosition;
     float _waitToGetUp;
     float _waitToTurbo;
+   
+    
+    
     bool _onLedge;
     
     bool _isHighJump;
@@ -98,6 +101,7 @@ typedef enum {
 @property(nonatomic,assign) bool hadCollisionThisUpdate;
 @property(nonatomic,assign) bool onLedge;
 @property(nonatomic,assign) bool gotHit;
+@property(nonatomic,assign)Skin *skin;
 
 
 @property(nonatomic,retain) Battery *battery;

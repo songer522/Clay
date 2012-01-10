@@ -82,6 +82,10 @@ static GCHelper *sharedHelper = nil;
             [nc addObserver:self selector:@selector(authenticationChanged) name:GKPlayerAuthenticationDidChangeNotificationName object:nil];
         }
     }
+    
+    
+    
+    
     return self;
 }
 
@@ -112,7 +116,10 @@ static GCHelper *sharedHelper = nil;
    // achievement.percentComplete = 100.0;   //Indicates the achievement is done
     
     if([achievement respondsToSelector:@selector(showsCompletionBanner)])
-    {achievement.showsCompletionBanner = YES; }   //Indicate that a banner should be shown
+    {achievement.showsCompletionBanner = YES; 
+    }   //Indicate that a banner should be shown
+   
+    if(!achievement.completed){
     [achievement reportAchievementWithCompletionHandler:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^(void)
                        {
@@ -124,6 +131,7 @@ static GCHelper *sharedHelper = nil;
                            }
                        });
     }];
+    }
 }
 -(void)sendScore:(GKScore *)score {
     if(!_enabled) { return; }
@@ -204,11 +212,13 @@ static GCHelper *sharedHelper = nil;
 - (void) showLeaderboards
 {
     //NSLog(@"gc - showleaderboards");
+    
     GKLeaderboardViewController *leaderboardController = [[GKLeaderboardViewController alloc] init] ;
     
     if (leaderboardController!=NULL) {
         //leaderboardController.category= gcLeaderboardInsaneTimedLevel1;
         leaderboardController.timeScope = GKLeaderboardTimeScopeAllTime;
+        //leaderboardController.view.
         leaderboardController.leaderboardDelegate = self;
         AppDelegate *delegate = [UIApplication sharedApplication].delegate;
         [delegate.viewController presentModalViewController:leaderboardController animated:YES];

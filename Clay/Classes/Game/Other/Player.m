@@ -47,6 +47,7 @@
 @synthesize onLedge =_onLedge;
 @synthesize gotHit=_gotHit;
 @synthesize isDoubleDemage =_isDoubleDemage;
+@synthesize skin = _skin;
 
 
 +(id) instance
@@ -70,6 +71,7 @@
         GameObjectController *factory = [LevelManager shared].gameObjectFactory;
         [factory initializeGameObject:self Name:@"player" AddToLayer:YES];
         
+       
         _isDoubleDemage=false;
         _isFallingintoDeathPit=false;
         _isJumping = false;
@@ -99,6 +101,7 @@
         
         _isWindy = false;
         _waitToPlaySlowSound = 0.0f;
+      
         _soundFalling = false;
         _adjustX = 0.0f;
         
@@ -140,12 +143,18 @@
 
 -(void)dieIfFallenIntoPit
 {
-    if (!_soundFalling && _y < 10 && !_gameLayer.hasBeatenLevel) {
+    if (!_soundFalling && _y < 10 && !_gameLayer.hasBeatenLevel&& ![[[LevelManager shared] currentLevel] isLevelNumber:10]) {
         [[SoundEngine shared] playSound:@"fallingDeath"];
         _soundFalling = true;
+      
         _isDead = true;
-    } else if(_y < -160) {
-        //_isDead = true;        
+        
+    } else if(!_soundFalling && _y < -70  && [[[LevelManager shared] currentLevel] isLevelNumber:10]) {
+       
+        [[SoundEngine shared] playSound:@"fallingDeath"];
+        _soundFalling = true;
+       
+        _isDead = true;        
     }
 }
 
@@ -178,7 +187,7 @@
 
 -(void)startDoubleJump
 {
-    if (_isTripping || _isDead || [_sprite getPosition].y <= 62) { 
+    if (_isTripping || _isDead || [_sprite getPosition].y <= 22) { 
     
         return; }
     if([_thirdAction inAction] && ![_thirdAction playerAllowedToJump]) { return; }
@@ -204,8 +213,10 @@
     [_speed startJump];
     GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
     
+    if(![[[LevelManager shared] currentLevel] isLevelNumber:10])
+    {
     [[gameLayer getHud] setEnabled:false ForButton:HUD_BUTTON_JUMP];
-
+    }
 }
 
 -(void)boostJump:(RunnerJump)type
@@ -223,23 +234,30 @@
     if (!_isTripping && _isInMidAir ) {
      [_skin setPlayerAnimation:PLAYER_ANIM_FALLING ForSprite:_sprite];
     }
+   
     self.hasGravity = true;
+    
 }
 
 
 -(void)startTurbo
 {
     //guard
-    if (_isTripping || _isDead || _isInMidAir || _waitToGetUp > 0.f) { return; }
+    
+
+    
+    if ((_isTripping || _isDead || _isInMidAir || _waitToGetUp > 0.f) && !_isNewUnderwaterPhysics) { return; }
     if ([_thirdAction inAction] && ![_thirdAction playerAllowedToSprint]) { return; }
     
     if (_hitPoints > 1) {
-        
+        if(!_isInMidAir)
+        {
         [_speed startTurbo];
         _isTurbo=true;
         
         [[SoundEngine shared] playSound:@"turboStart"];
         [_skin setPlayerAnimation:PLAYER_ANIM_SPRINTING ForSprite:_sprite];
+        }
         
     }
 
@@ -251,7 +269,7 @@
 
 -(void)endTurbo:(bool)switchToRunningAnim
 {
-    if (_isTripping || _waitToGetUp > 0.0f) { return; }
+    if ((_isTripping || _waitToGetUp > 0.0f) && !_isNewUnderwaterPhysics) { return; }
     
     if (switchToRunningAnim && !_isInMidAir) {
         [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];        
@@ -456,7 +474,7 @@
         }
     } else {
         [_skin setPlayerAnimation:PLAYER_ANIM_HURTING ForSprite:_sprite];
-        
+        [_speed stop];
         if (_isNewUnderwaterPhysics) {
             _vy = 25.0f;
     
@@ -496,6 +514,7 @@
     
     [[[[gameLayer getHud] getSprintButton] getCCSpriteForOverlay] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"UI_Button_GreenLight_7.png"]]; 
     _isDoubleDemage=false;
+  
     _isFallingintoDeathPit=false;
     _isJumping = false;
     _isTripping = false;
@@ -517,17 +536,13 @@
 -(void)startThirdAction
 {
     //guards
-  
+    if((_isTripping || _waitToGetUp > 0.0f) && !_isNewUnderwaterPhysics) return;
     
     if((_isJumping || _isInMidAir) && ![_thirdAction canStartInMidAir]) return;
   
     if(!_isInMidAir && ![_thirdAction canStartOnGround]) return;
-    if(_isNewUnderwaterPhysics)
-    {
-        [_thirdAction startAction];
-        return;
-    }
-    if(_isTripping || _waitToGetUp > 0.0f) return;
+   
+   
     
     [_thirdAction startAction];
 }
@@ -672,7 +687,16 @@
         if (_waitToGetUp <= 0.0f) {
             [_speed start];
             if (_isNewUnderwaterPhysics) {
+                if(_isInMidAir)
+                {
+                [_skin setPlayerAnimation:PLAYER_ANIM_FALLING ForSprite:_sprite];   
+                }
                 
+                else
+                {
+                    [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite]; 
+                }
+                [self endTurbo:false];
             }
         }
     }
@@ -796,9 +820,8 @@
     CollisionState state = [[self getCollision] currentState];
 
     if (state == COLLISION_STATE_DEATHPIT) {
-        
-        _vx = 0.0f; //if in the death pit he shouldn't move forward
-       // [_speed stop];
+               _vx = 0.0f; //if in the death pit he shouldn't move forward
+         [_speed stop];
         if(!_isFallingintoDeathPit)
         {
              [self countDeathPitFell];
@@ -807,6 +830,7 @@
 
        
         [self dieIfFallenIntoPit]; //is it safe to put this under updateJump method?
+        
     }
 }
 

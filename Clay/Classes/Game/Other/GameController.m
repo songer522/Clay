@@ -70,9 +70,8 @@
         //this is causing issues with endJump being called when it shouldn't, like when
         //the spin action is called
         if (type == INPUT_TOUCH_END && result == HUD_BUTTON_JUMP) {
-         
-                [_gameLayer.player endJump];
-            return;
+         [_gameLayer.player endJump];
+             return;
         }
         
         switch (result) {
