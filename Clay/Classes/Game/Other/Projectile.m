@@ -191,9 +191,14 @@
 
 -(void) throwBombFromPosition:(CGPoint)position
 {
-    [self setPosition:position];
-    _vy = 100.0f;
-    _vx = 50.0f;
+    [_sprite setPosition:position];
+    [[_sprite getCCSprite] setVisible:YES];
+    _vy = 30.0f;
+    _vx = 200.0f;
+    _x = position.x;
+    _y = position.y;
+    _angularVelocity = 8;
+    _isActive = true;
 }
 
 //so far, used only by squid ink
@@ -341,6 +346,8 @@
         [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"zombieHeartSquishAnim"];
     } else if(_behavior == PROJECTILE_BEHAVIOR_WATER_SQUID_INK) {
         [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"waterSquidInkLandAnim"];
+    } else if(_behavior == PROJECTILE_BEHAVIOR_DARK_BOMB) {
+        [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"darkBossJimBombAttack3"];
     }
 }
 
@@ -399,7 +406,7 @@
         } else {
             if(_behavior == PROJECTILE_BEHAVIOR_FIRE_FOXFIRE) {
                 [_sprite move:CGPointMake(50.0f * dt, 0.0f * dt)];
-            } else if (_behavior!=PROJECTILE_BEHAVIOR_ZOMBIE_HEAD && _behavior!=PROJECTILE_BEHAVIOR_ZOMBIE_HEART && _behavior!=PROJECTILE_BEHAVIOR_WATER_SQUID_INK) {
+            } else if (_behavior!=PROJECTILE_BEHAVIOR_ZOMBIE_HEAD && _behavior!=PROJECTILE_BEHAVIOR_ZOMBIE_HEART && _behavior!=PROJECTILE_BEHAVIOR_WATER_SQUID_INK && _behavior != PROJECTILE_BEHAVIOR_DARK_BOMB) {
                 [_sprite move:CGPointMake(100.0f *dt, 200.0f*dt)];                
             }
         }
@@ -417,16 +424,23 @@
         float y = _y + _vy * dt;
         
         if (_hasGravity && y <= (85.0f + _offsetGroundDetectionY)) {
-            y = 85.0f + _offsetGroundDetectionY;
-            _vy = 0.0f;
-            _angularVelocity *= 0.92f;
-            _vx *= 0.92f;
-            
-            if (_behavior == PROJECTILE_BEHAVIOR_ZOMBIE_HEAD) {
+            if (_behavior == PROJECTILE_BEHAVIOR_DARK_BOMB) {
+                [self startCollision];
+                _isActive = false;
+            } else if (_behavior == PROJECTILE_BEHAVIOR_ZOMBIE_HEAD) {
+                y = 85.0f + _offsetGroundDetectionY;
+                _vy = 0.0f;
                 _angle = 0.0f;
+                _vx *= 0.92f;
                 _angularVelocity = 0.0f;
                 [_sprite getCCSprite].rotation = _angle;
+            } else {
+                y = 85.0f + _offsetGroundDetectionY;
+                _vy = 0.0f;
+                _angularVelocity *= 0.92f;
+                _vx *= 0.92f;
             }
+
         }
 
         CGPoint newPosition = CGPointMake(x, y);

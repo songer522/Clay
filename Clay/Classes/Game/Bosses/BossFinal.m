@@ -65,7 +65,7 @@
         case FINAL_BOSS_ATTACK_2:
             if (!_inAttack) {
                 [[AnimationController sharedController] replaceSprite:_trainJim withAnimationNamed:@"darkBossJimBombAttack1"];
-                _waitToSwitch = 0.6f;                
+                _waitToSwitch = 1.6f;                
             }
             break;
         case FINAL_BOSS_ATTACK_3:
@@ -143,7 +143,7 @@
                     [_bomb release];
                 }
                 _bomb = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_DARK_BOMB];
-                [_bomb throwBombFromPosition:_trainPosition];
+                [_bomb throwBombFromPosition:CGPointMake(_trainPosition.x - 62.0f, _trainPosition.y + 50.0f)];
                 _hasThrownBomb = true;
             }
             
@@ -158,6 +158,8 @@
         default:
             break;
     }
+    
+    [_bomb update:dt];
     
     [self moveForward:dt];
 }
@@ -230,9 +232,6 @@
     [[AnimationController sharedController] replaceSprite:_trainWheels withAnimationNamed:@"darkBossWheelAnim"];
     [layer addChild:[_trainJim getCCSprite]];
     [[AnimationController sharedController] replaceSprite:_trainJim withAnimationNamed:@"darkBossJimIdle1"];
-    
-    //[[_trainWheels getCCSprite] useBatchNode:spriteBatch];
-
 }
 
 -(void)updatePosition:(CGPoint)position
