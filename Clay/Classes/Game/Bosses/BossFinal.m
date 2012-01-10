@@ -35,10 +35,6 @@
     _train = sprite;
 }
 
--(void) triggerAttack
-{
-    
-}
 
 -(void)triggerAction:(FinalBossPhase)phase
 {    
@@ -46,6 +42,20 @@
     
     switch (phase) {
         case FINAL_BOSS_ATTACK_1:
+            if (!_inAttack) {
+                [[AnimationController sharedController] replaceSprite:_trainJim withAnimationNamed:@"darkBossJimDoorAttack1"];
+                _trainPhase = TRAIN_PHASE_BRAKE;
+                _inAttack = true;
+                _waitToSwitch = 0.4f;
+            }
+            break;
+        case FINAL_BOSS_ATTACK_1B:
+            [[AnimationController sharedController] replaceSprite:_trainJim withAnimationNamed:@"darkBossJimDoorAttack2"];
+            _waitToSwitch = 4.0f;
+            break;
+        case FINAL_BOSS_ATTACK_1C:
+            [[AnimationController sharedController] replaceSprite:_trainJim withAnimationNamed:@"darkBossJimDoorAttack3"];
+            _waitToSwitch = 0.4f;
             break;
         case FINAL_BOSS_ATTACK_2:
             break;
@@ -55,16 +65,51 @@
             _trainPosition = CGPointMake(_player.x - 900,165); //230,135
             [self updatePosition:_trainPosition];
             [self setVisible:YES];
+            _trainPhase = TRAIN_PHASE_ACCELERATE;
             _speed = 100.0f;
+            _inAttack = false;
             break;
         case FINAL_BOSS_DIE:
             break;
         case FINAL_BOSS_IDLE:
-            [self setVisible:NO];
+            _trainPhase = TRAIN_PHASE_ACCELERATE;
+            _speed = 100.0f;
+            _inAttack = false;
             break;
         default:
             break;
     }
+}
+
+-(void)finishedPhase
+{
+    switch (_phase) {
+        case FINAL_BOSS_ATTACK_1:
+            [self triggerAction:FINAL_BOSS_ATTACK_1B];
+            break;
+        case FINAL_BOSS_ATTACK_1B:
+            [self triggerAction:FINAL_BOSS_ATTACK_1C];
+            break;
+        case FINAL_BOSS_ATTACK_1C:
+            [[AnimationController sharedController] replaceSprite:_trainJim withAnimationNamed:@"darkBossJimIdle1"];
+            [self triggerAction:FINAL_BOSS_IDLE];
+            break;
+            break;
+        default:
+            break;
+    }
+}
+
+-(bool)checkWait:(float)dt
+{
+    bool returnVal = false;
+    if (_waitToSwitch>0) {
+        _waitToSwitch-=dt;
+        if (_waitToSwitch<=0.0f) {
+            returnVal = true;
+        }
+    }
+    return returnVal;
 }
 
 -(void)update:(float)dt
@@ -74,6 +119,12 @@
     }
     
     switch (_phase) {
+        case FINAL_BOSS_ATTACK_1:
+        case FINAL_BOSS_ATTACK_1B:
+        case FINAL_BOSS_ATTACK_1C:
+            if ([self checkWait:dt]) {
+                [self finishedPhase];
+            }
         case FINAL_BOSS_ENTER:
             [self updateBossEntrance:dt];
             break;
@@ -81,21 +132,27 @@
         default:
             break;
     }
+    
+    [self moveForward:dt];
 }
 
 -(void)moveForward:(float)dt
 {
-    //_speed = 290.0f * _speedModifier;
-    _trainPosition.x += _speed * dt;
+    if(_trainPhase == TRAIN_PHASE_BRAKE) {
+        _speed -= 80.0f * dt;
+        _speed = MAX(0.0f, _speed);
+    }
+    
+    _trainPosition.x += _speed * dt;        
     [_train setPosition:_trainPosition];
     
     CGPoint position = [_train getCCSprite].position;
     float dx = position.x - BOSS_FINAL_MAX_TRAIN_X;
     if (dx > 0) {
         _trainPosition.x -= dx;
-        _speed -= 20.0f * dt;
+        _speed -= 40.0f * dt;
     } else {
-        _speed += 20.0f * dt;
+        _speed += 40.0f * dt;
     }
     [self updatePosition:_trainPosition];
     
@@ -110,7 +167,6 @@
 
 -(void)updateBossEntrance:(float)dt
 {
-    [self moveForward:dt];
 }
 
 -(void)setVisible:(_Bool)isVisible

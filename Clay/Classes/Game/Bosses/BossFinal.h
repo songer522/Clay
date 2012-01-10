@@ -14,6 +14,11 @@
 @class Player;
 @class GameLayer;
 
+typedef enum {
+    TRAIN_PHASE_ACCELERATE,
+    TRAIN_PHASE_BRAKE
+} TrainPhase;
+
 @interface BossFinal : Boss
 {
     Sprite *_train;
@@ -25,15 +30,18 @@
     
     FinalBossPhase _phase;
     
+    TrainPhase _trainPhase;
     
     //weak reference
     Player *_player;
     GameLayer *_gameLayer;
     
     bool _resetSpriteVisibility;
+    bool _inAttack;
     
     float _speed;
     float _speedModifier;
+    float _waitToSwitch;
 }
 
 -(void)triggerAction:(FinalBossPhase)phase;
@@ -44,4 +52,6 @@
 -(void)updatePosition:(CGPoint)position;
 -(void)addSpritesToLayer:(id)layer SpriteBatch:(CCSpriteBatchNode*)spriteBatch;
 -(void)moveForward:(float)dt;
+-(void)finishedPhase;
+-(bool)checkWait:(float)dt;
 @end

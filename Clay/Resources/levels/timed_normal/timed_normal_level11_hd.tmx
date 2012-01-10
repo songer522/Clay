@@ -139,7 +139,7 @@
   </tile>
   <tile id="75">
    <properties>
-    <property name="special" value="finalBossEnters"/>
+    <property name="special" value="finalBossAttack1"/>
    </properties>
   </tile>
   <tile id="76">
@@ -241,7 +241,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1MsNwjAMANBOAJ2FbYCy/xpcOEWoLXG+4j2phzRK6ziOlwUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOA/3HsHAAAAAAAAAAAAAAAAAAAAwHBunyfqmfnv3LWllNh7LY/g+py89jyL1qL5jbgG178az+WqUU/f4jz77qyZ70Gpuh61xvbOJlIbNeo/te3MRXvCLEbqT0dy+kB6/0qPS0vz+uv4SKv9rJW+OxM5gLYuvQMAAAAAAAAAgA7eGekQfg==
+   eJzt1MsNwjAMANBOAMzCNFBg/zW4cIpQW+J8xXtSD2mU1nEcLwsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMB/uPcOoKNb7wAGMmsuZo0bAAAAAAAAAAAAAAAAAABGd/08UY/Mf+euLaXE3mtZg+tz8trzLFqL5jfiHFz/ajyXq0Y9fYvz6LujZr4Hpep61BrbOptIbdSo/9RzYy7aE2YxUn/ak9MH0vtXelxamtdfx3ta7edS6bszkQNo69Q7AAAAAAAAAADo4A2M+xGG
   </data>
  </layer>
  <layer name="meta" width="1000" height="14" opacity="0.66">
