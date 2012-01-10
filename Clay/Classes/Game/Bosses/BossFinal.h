@@ -13,6 +13,7 @@
 @class Sprite;
 @class Player;
 @class GameLayer;
+@class Projectile;
 
 typedef enum {
     TRAIN_PHASE_ACCELERATE,
@@ -24,6 +25,8 @@ typedef enum {
     Sprite *_train;
     Sprite *_trainWheels;
     Sprite *_trainJim;
+    
+    Projectile *_bomb;
     
     
     CGPoint _trainPosition;
@@ -38,6 +41,7 @@ typedef enum {
     
     bool _resetSpriteVisibility;
     bool _inAttack;
+    bool _hasThrownBomb;
     
     float _speed;
     float _speedModifier;

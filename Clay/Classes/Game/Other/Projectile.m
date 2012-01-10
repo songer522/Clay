@@ -132,6 +132,16 @@
                 _isBehindObstacle = true;
                 _isAggressive = false;
                 break;
+            case PROJECTILE_BEHAVIOR_DARK_BOMB:
+                _sprite = [Sprite spriteWithFile:@"blank.png"];
+                [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"darkBossJimBombAttack2"];
+                [_sprite getCCSprite].anchorPoint = ccp(0.5f,0.5f);
+                [[_sprite getCCSprite] setVisible:NO];
+                _offscreenPadding = 100.0f;
+                _hasGravity = true;
+                _offsetGroundDetectionY = -10.0f;
+                _isAggressive = false;
+                break;
             default:
                 break;                
                 
@@ -171,9 +181,19 @@
         case PROJECTILE_BEHAVIOR_WATER_SQUID_INK:
             //call shootWithSpeed instead
             break;
+        case PROJECTILE_BEHAVIOR_DARK_BOMB:
+            //call throwBomb instead
+            break;
         default:
             break;                
     }        
+}
+
+-(void) throwBombFromPosition:(CGPoint)position
+{
+    [self setPosition:position];
+    _vy = 100.0f;
+    _vx = 50.0f;
 }
 
 //so far, used only by squid ink

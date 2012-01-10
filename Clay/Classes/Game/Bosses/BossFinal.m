@@ -11,6 +11,7 @@
 #import "Player.h"
 #import "LayerManager.h"
 #import "GameLayer.h"
+#import "Projectile.h"
 
 #define BOSS_FINAL_MAX_TRAIN_X 230.0f
 
@@ -26,6 +27,9 @@
     _trainJim = [Sprite spriteWithFile:@"blank.png" AddToLayer:NO];
     
     _speedModifier = 1.0f;
+    _hasThrownBomb = false;
+    
+    _bomb = nil;
     
     [self setVisible:NO];
 }
@@ -47,6 +51,7 @@
                 _trainPhase = TRAIN_PHASE_BRAKE;
                 _inAttack = true;
                 _waitToSwitch = 0.4f;
+                _speed = 120.0f;
             }
             break;
         case FINAL_BOSS_ATTACK_1B:
@@ -58,6 +63,10 @@
             _waitToSwitch = 0.4f;
             break;
         case FINAL_BOSS_ATTACK_2:
+            if (!_inAttack) {
+                [[AnimationController sharedController] replaceSprite:_trainJim withAnimationNamed:@"darkBossJimBombAttack1"];
+                _waitToSwitch = 0.6f;                
+            }
             break;
         case FINAL_BOSS_ATTACK_3:
             break;
@@ -94,6 +103,9 @@
             [[AnimationController sharedController] replaceSprite:_trainJim withAnimationNamed:@"darkBossJimIdle1"];
             [self triggerAction:FINAL_BOSS_IDLE];
             break;
+        case FINAL_BOSS_ATTACK_2:
+            [[AnimationController sharedController] replaceSprite:_trainJim withAnimationNamed:@"darkBossJimIdle1"];
+            [self triggerAction:FINAL_BOSS_IDLE];
             break;
         default:
             break;
@@ -125,6 +137,20 @@
             if ([self checkWait:dt]) {
                 [self finishedPhase];
             }
+        case FINAL_BOSS_ATTACK_2:
+            if (!_hasThrownBomb && [[_trainJim getAnimation] getCurrentFrameNumber] == 5) {
+                if (_bomb!=nil) {
+                    [_bomb release];
+                }
+                _bomb = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_DARK_BOMB];
+                [_bomb throwBombFromPosition:_trainPosition];
+                _hasThrownBomb = true;
+            }
+            
+            if ([self checkWait:dt]) {
+                [self finishedPhase];
+            }
+            break;
         case FINAL_BOSS_ENTER:
             [self updateBossEntrance:dt];
             break;
@@ -139,11 +165,11 @@
 -(void)moveForward:(float)dt
 {
     if(_trainPhase == TRAIN_PHASE_BRAKE) {
-        _speed -= 80.0f * dt;
+        _speed -= 90.0f * dt;
         _speed = MAX(0.0f, _speed);
     }
     
-    _trainPosition.x += _speed * dt;        
+    _trainPosition.x += _speed * _speedModifier * dt;        
     [_train setPosition:_trainPosition];
     
     CGPoint position = [_train getCCSprite].position;
@@ -153,6 +179,10 @@
         _speed -= 40.0f * dt;
     } else {
         _speed += 40.0f * dt;
+        /*
+        if(_speed > 350.0f) {
+            _speed = 350.0f;
+        }*/
     }
     [self updatePosition:_trainPosition];
     
@@ -215,7 +245,8 @@
 
 -(void) reset
 {
-    //[self triggerAction:FINAL_BOSS_IDLE];
+    [self triggerAction:FINAL_BOSS_ENTER];
+    [[AnimationController sharedController] replaceSprite:_trainJim withAnimationNamed:@"darkBossJimIdle1"];
     _resetSpriteVisibility = true;
 }
 

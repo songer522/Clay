@@ -137,6 +137,16 @@
     <property name="obstacle" value="rainySquirrel"/>
    </properties>
   </tile>
+  <tile id="73">
+   <properties>
+    <property name="special" value="finalBossAttack2"/>
+   </properties>
+  </tile>
+  <tile id="74">
+   <properties>
+    <property name="special" value="finalBossAttack2"/>
+   </properties>
+  </tile>
   <tile id="75">
    <properties>
     <property name="special" value="finalBossAttack1"/>
@@ -168,6 +178,16 @@
     <property name="" value=""/>
    </properties>
   </tile>
+  <tile id="91">
+   <properties>
+    <property name="special" value="finalBossAttack2"/>
+   </properties>
+  </tile>
+  <tile id="94">
+   <properties>
+    <property name="special" value="finalBossAttack1"/>
+   </properties>
+  </tile>
  </tileset>
  <tileset firstgid="113" name="Dark" tilewidth="64" tileheight="64">
   <image source="tileset_level_11-hd.png" width="960" height="1024"/>
@@ -187,7 +207,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1ksKwjAUhtFkOboCHfscq7X730nvAiKUlksbPAfKNw3hh6YUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAdR61lGfd+hSwjh3TYhc53CsAQI5vvLFG7yw6Z8e02EUO9woAkOMTb6zBO4vO2TEtdpHjFnd6d68A/HCIf8SxquqSXuK77uAcqnasdtFH3avq/MI/OsX2z1VVl/QV33sH51C1Y7WLPupeVecXAAAAAAAAAAAAAACAbUzneEWm
+   eJzt2ksKwkAQRdHu5egKdKxRx373v5PUAhoJCU1Seg7InYbwwBqkFAAAAAAAAAAAAAAAAAAAAACWuNZSbnXtp4Bl7JgWuwAAIJN33K4f9yvJ2TEtdgEAQCZD3K4X9yvJ2TEtdtGH7xIAAPp4xo31cmeRnB3TYhd9+C4BAKAP9yu/wI5psYs+fJcAwDe7+I/YV1Wd01P8zht4DlU7VrvIUe9VdXrhHx1i+8eqqnN6j99jA8+hasdqFznqvapOLwAAAAAAAAAAAAAAAOsYAbBGSU4=
   </data>
  </layer>
  <layer name="main0" width="1000" height="14">
@@ -241,7 +261,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1MsNwjAMANBOAMzCNFBg/zW4cIpQW+J8xXtSD2mU1nEcLwsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMB/uPcOoKNb7wAGMmsuZo0bAAAAAAAAAAAAAAAAAABGd/08UY/Mf+euLaXE3mtZg+tz8trzLFqL5jfiHFz/ajyXq0Y9fYvz6LujZr4Hpep61BrbOptIbdSo/9RzYy7aE2YxUn/ak9MH0vtXelxamtdfx3ta7edS6bszkQNo69Q7AAAAAAAAAADo4A2M+xGG
+   eJzt1EESwiAMAMC+QPs8tfbu/1/gveO0lRQidvcGTJgQAsMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwDvfsBBK9shOooPRMvdbilp0AAAAAAAAAAAAAAAAAAACwakqK/WePYHxJXc90F9H6RlyD8XPjtVI1+ulTnnvn9ur5HWT2dQs9381zZS36J/Til/6nLSW9tnx/R4+Ptqzrt+Mtrc4zVtq3J2oAbV2yEwAAAAAAAACABG+xeg5e
   </data>
  </layer>
  <layer name="meta" width="1000" height="14" opacity="0.66">

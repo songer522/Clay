@@ -444,6 +444,57 @@
 		<key>spritesheetPlist</key>
 		<string>darkLevel</string>
 	</dict>
+	<key>darkBossJimBombAttack1</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>3,3,3,3,5,5,1,1,1,1</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level11</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>FinalBoss_3_Jim</string>
+		<key>spritesheetPlist</key>
+		<string>darkLevel</string>
+	</dict>
+	<key>darkBossJimBombAttack2</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level11</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>FinalBoss_5_Jim</string>
+		<key>spritesheetPlist</key>
+		<string>darkLevel</string>
+	</dict>
+	<key>darkBossJimBombAttack3</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>3,4,5,5,5,5,5,5</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level11</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>FinalBoss_5_Jim</string>
+		<key>spritesheetPlist</key>
+		<string>darkLevel</string>
+	</dict>
 	<key>darkBossJimDoorAttack1</key>
 	<dict>
 		<key>animationFrames</key>
