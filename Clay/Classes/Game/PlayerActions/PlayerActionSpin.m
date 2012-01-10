@@ -31,6 +31,7 @@
 
 -(void)startAction
 {
+    if([_parent.skin isCurrentAnimationOfType:PLAYER_ANIM_HURTING]){return;}
     if (!_inAction && _canTrigger) {
         [super startAction];
         //[_parent endTurbo:false];
@@ -39,7 +40,6 @@
         
         [[SoundEngine shared] playSound:@"waterSwimAction"];
         [[_sprite getCCSprite] setVisible:YES];
-        [_parent setPlayerAnimation:PLAYER_ANIM_FALLING];
         [_sprite setAlpha:0.0f];
         _duration = 10.75f;
     }

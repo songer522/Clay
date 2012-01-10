@@ -8,13 +8,27 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "Clay/Classes/Game/PlayerActions/PlayerActionSpin.m"
-         timestampString = "347755824.411939"
+         filePath = "Clay/Classes/Game/Other/Player.m"
+         timestampString = "347848375.828199"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "43"
-         endingLineNumber = "43"
-         landmarkName = "-startAction"
+         startingLineNumber = "163"
+         endingLineNumber = "163"
+         landmarkName = "-startJump:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Clay/Classes/Game/Other/GameController.m"
+         timestampString = "347845403.879676"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "79"
+         endingLineNumber = "79"
+         landmarkName = "-reactToTouchAt:InputType:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

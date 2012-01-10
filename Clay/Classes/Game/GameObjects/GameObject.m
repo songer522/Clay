@@ -1551,7 +1551,7 @@
         _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_FIRE_FOXFIRE];
         [_projectile reset];
         [_projectile setAttachedTo:self];
-        [_projectile setPosition:ccp(-31.0f,-3.0f)];
+        [_projectile setPosition:ccp(-31.0f,0.0f)];
         [_projectile setBoundingBox:CGRectMake(15,15,30,30)];
         [_projectile setInitialVelocity];
         _projectilePersists = true;
