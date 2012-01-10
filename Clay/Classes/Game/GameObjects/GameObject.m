@@ -420,7 +420,7 @@
 
 -(void)update:(float)dt
 {
-    if (!_isStutterMode && !_boss) {
+    if (!_boss) {
         if ([[Camera sharedCamera ] isInVisualRange:_x]) {
             if (!_isVisible) {
                 [[_sprite getCCSprite] setVisible:YES];
