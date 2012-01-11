@@ -62,12 +62,13 @@
             break;
         case FINAL_BOSS_ATTACK_1B:
             [[AnimationController sharedController] replaceSprite:_trainJim withAnimationNamed:@"darkBossJimDoorAttack2"];
-            _waitToSwitch = 4.0f;
+            _waitToSwitch = 1.7f;
             _phase = phase;
             break;
         case FINAL_BOSS_ATTACK_1C:
             [[AnimationController sharedController] replaceSprite:_trainJim withAnimationNamed:@"darkBossJimDoorAttack3"];
             _waitToSwitch = 0.4f;
+            _trainPhase = TRAIN_PHASE_ACCELERATE;
             _phase = phase;
             break;
             
@@ -141,7 +142,7 @@
             [self updatePosition:_trainPosition];
             [self setVisible:YES];
             _trainPhase = TRAIN_PHASE_ACCELERATE;
-            _speed = 100.0f;
+            _speed = 200.0f;
             _inAttack = false;
             _phase = phase;
             break;
@@ -151,8 +152,8 @@
             _trainPhase = TRAIN_PHASE_ACCELERATE;
             
             //in case it's moving too slow when finished, speed it back up again
-            if (_speed < 100.0f) {
-                _speed = 100.0f;                
+            if (_speed < 250.0f) {
+                _speed = 250.0f;                
             }
             _inAttack = false;
             _phase = phase;
