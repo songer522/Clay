@@ -377,6 +377,9 @@
             case TRIGGER_FINAL_BOSS_ATTACK3:
                 [_boss triggerAction:FINAL_BOSS_ATTACK_3];
                 break;
+            case TRIGGER_FINAL_BOSS_ATTACK4:
+                [_boss triggerAction:FINAL_BOSS_ATTACK_4];
+                break;
             default:
                 break;
         }

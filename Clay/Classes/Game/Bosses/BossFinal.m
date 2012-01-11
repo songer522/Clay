@@ -111,7 +111,7 @@
         //fake grapes bomb attack
         case FINAL_BOSS_ATTACK_4:
             if (!_inAttack) {
-                [[AnimationController sharedController] replaceSprite:_trainJim withAnimationNamed:@"darkBossJimBombAttack1"];
+                [[AnimationController sharedController] replaceSprite:_trainJim withAnimationNamed:@"darkBossJimGrapeAttack1Show"];
                 _waitToSwitch = 1.6f; 
                 _hasThrownBomb = false;
                 _phase = phase;
@@ -119,7 +119,7 @@
             break;
         case FINAL_BOSS_ATTACK_4B:
             [[AnimationController sharedController] replaceSprite:_trainJim withAnimationNamed:@"darkBossJimGrapeAttack3Bomb"];
-            _waitToSwitch = 0.5f;
+            _waitToSwitch = 0.4f;
             _phase = phase;            
             break;
         case FINAL_BOSS_ATTACK_4C:
