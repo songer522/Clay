@@ -2721,7 +2721,7 @@
 			<key>x</key>
 			<integer>20</integer>
 			<key>y</key>
-			<integer>31</integer>
+			<integer>20</integer>
 		</dict>
 		<key>collideBehavior</key>
 		<string>tronika</string>
