@@ -64,7 +64,6 @@
         [[GCHelper sharedInstance] authenticateLocalUser];
     
         [[LayerManager sharedLayers] setWorkingLayer:self];
-
         
         //load textures, and sounds for main menu
         [[TextureManager shared] loadMemoryForKey:@"mainMenu"];
