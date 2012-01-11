@@ -8,13 +8,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "Clay/Classes/Game/GameObjects/GameObject.m"
-         timestampString = "347938629.389514"
+         filePath = "Clay/Classes/Base/GCHelper.m"
+         timestampString = "348005289.240012"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "437"
-         endingLineNumber = "437"
-         landmarkName = "-update:"
+         startingLineNumber = "207"
+         endingLineNumber = "207"
+         landmarkName = "-authenticateLocalUser"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

@@ -89,9 +89,11 @@
     NSMutableArray *leaderboardToReport;
     NSMutableArray *achievementsToReport;
     bool _enabled;
+    NSMutableDictionary *achievementDictionary;
 }
 @property (retain) NSMutableArray *leaderboardToReport;
 @property (retain) NSMutableArray *achievementsToReport;
+@property (nonatomic, retain) NSMutableDictionary *achievementDictionary;
 
 + (GCHelper *) sharedInstance;
 - (void)authenticationChanged;

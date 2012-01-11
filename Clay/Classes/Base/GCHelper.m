@@ -13,10 +13,12 @@
 #import "cocos2d.h"
 #import "Appirater.h"
 #import "AppDelegate.h"
+#import "GCState.h"
 
 @implementation GCHelper
 @synthesize leaderboardToReport;
 @synthesize achievementsToReport;
+@synthesize achievementDictionary;
 
 #pragma mark Loading/Saving
 
@@ -73,9 +75,9 @@ static GCHelper *sharedHelper = nil;
     if ((self = [super init])) {
         
         _enabled = true;
-        
         self.leaderboardToReport = theLeaderboardToReport;
         self.achievementsToReport = theAchievementsToReport;
+        achievementDictionary=[[NSMutableDictionary alloc] init];
         gameCenterAvailable = [self isGameCenterAvailable];
         if (gameCenterAvailable) {
             NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
@@ -100,7 +102,7 @@ static GCHelper *sharedHelper = nil;
                        if ([GKLocalPlayer localPlayer].isAuthenticated && !userAuthenticated) {
                            //NSLog(@"Authentication changed: player authenticated.");
                            userAuthenticated = TRUE;
-                          // [self resendData];
+                           [self resendData];
                        } else if (![GKLocalPlayer localPlayer].isAuthenticated && userAuthenticated) {
                            //NSLog(@"Authentication changed: player not authenticated.");
                            userAuthenticated = FALSE;
@@ -115,11 +117,10 @@ static GCHelper *sharedHelper = nil;
     //NSLog(@"gc - sendachievement");
    // achievement.percentComplete = 100.0;   //Indicates the achievement is done
     
-    if([achievement respondsToSelector:@selector(showsCompletionBanner)])
-    {achievement.showsCompletionBanner = YES; 
-    }   //Indicate that a banner should be shown
    
-    if(!achievement.completed){
+   
+    //if(achievement.completed == false){
+        
     [achievement reportAchievementWithCompletionHandler:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^(void)
                        {
@@ -131,7 +132,7 @@ static GCHelper *sharedHelper = nil;
                            }
                        });
     }];
-    }
+    //}
 }
 -(void)sendScore:(GKScore *)score {
     if(!_enabled) { return; }
@@ -162,6 +163,35 @@ static GCHelper *sharedHelper = nil;
     }
 }
 
+-(void)loadAchievements
+{
+    [GKAchievement loadAchievementsWithCompletionHandler:^(NSArray *achievements, NSError *error) {
+        if(error == nil)
+        {
+            for(GKAchievement *object in achievements)
+            {
+                [achievementDictionary setObject:object forKey:object.identifier];
+            }
+        }
+     
+        
+    }];
+    
+
+}
+
+
+-(GKAchievement*)getAchievementByID:(NSString *)identifier
+{
+    GKAchievement *achievement = [achievementDictionary objectForKey:identifier];
+    if (achievement == nil)
+    {
+        achievement = [[[GKAchievement alloc] initWithIdentifier:identifier] autorelease];
+        [achievementDictionary setObject:achievement forKey:achievement.identifier];
+    }
+    return [[achievement retain] autorelease];
+}
+
 #pragma mark User functions
 
 - (void)authenticateLocalUser {
@@ -174,6 +204,7 @@ static GCHelper *sharedHelper = nil;
     if ([GKLocalPlayer localPlayer].authenticated == NO) {
         [[GKLocalPlayer localPlayer] authenticateWithCompletionHandler:^(NSError* error)
          {
+             [self loadAchievements];
              [[CCDirector sharedDirector] resume];
          }];
     } else {
@@ -195,18 +226,39 @@ static GCHelper *sharedHelper = nil;
 }
 
 - (void)reportAchievement:(NSString *)identifier percentComplete:(double)percentComplete {
-    if(!_enabled) { return; }
+    if(!_enabled ) { return; }
     
     //NSLog(@"gc - reportachievement");
-    GKAchievement* achievement = [[[GKAchievement alloc] initWithIdentifier:identifier] autorelease];
-    achievement.percentComplete = percentComplete;
 
-    [achievementsToReport addObject:achievement];
+    GKAchievement* achievement = [self getAchievementByID:identifier];
+    if(achievement !=nil && achievement.percentComplete < percentComplete)
+    {
+        if(!achievement.isCompleted)
+        {
+            if([achievement respondsToSelector:@selector(showsCompletionBanner)])
+            {
+                achievement.showsCompletionBanner = YES; 
+            }   //Indicate that a banner should be shown
+            achievement.percentComplete = percentComplete;
+            [achievementsToReport addObject:achievement];
+            if (!gameCenterAvailable || !userAuthenticated) {
+                return;
+            }
+            [self sendAchievement:achievement];
+
+        }
+    }
+    /*
+    achievement.percentComplete = percentComplete;
+   
+    
+   [achievementsToReport addObject:achievement];
     [self save];
     if (!gameCenterAvailable || !userAuthenticated) {
         return;
     }
     [self sendAchievement:achievement];
+     */
 }
 
 - (void) showLeaderboards

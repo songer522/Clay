@@ -41,6 +41,7 @@
     bool completeStoryAll;
     
     bool _enabled;
+
 }
 
 + (GCState *) sharedInstance;
@@ -80,6 +81,7 @@
 @property (assign) bool completeStoryHard;
 @property (assign) bool completeStoryAll;
 @property (assign) bool flawlessRun;
+
 
 
 @end

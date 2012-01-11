@@ -90,6 +90,7 @@ static GCState *sharedInstance = nil;
     [encoder encodeBool:flawlessRun forKey:@"flawlessRun"];
     
     
+    
 
 }
 
@@ -131,7 +132,8 @@ static GCState *sharedInstance = nil;
             completeStoryNormal = [ decoder decodeBoolForKey:@"completeStoryNormal"];
             completeStoryHard = [ decoder decodeBoolForKey:@"completeStoryHard"];
             completeStoryAll = [ decoder decodeBoolForKey:@"completeStoryAll"];
-            flawlessRun =[ decoder decodeBoolForKey:@"flawlessRun"];            
+            flawlessRun =[ decoder decodeBoolForKey:@"flawlessRun"];      
+            
         }
     }
     return self;
