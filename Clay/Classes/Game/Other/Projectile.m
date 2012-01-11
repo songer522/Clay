@@ -142,6 +142,9 @@
                 _offsetGroundDetectionY = -10.0f;
                 _isAggressive = false;
                 break;
+            case PROJECTILE_BEHAVIOR_DARK_TRAIN_DOOR:
+                _sprite = [Sprite spriteWithFile:@"blank.png"];
+                break;
             default:
                 break;                
                 
@@ -193,8 +196,8 @@
 {
     [_sprite setPosition:position];
     [[_sprite getCCSprite] setVisible:YES];
-    _vy = 30.0f;
-    _vx = 200.0f;
+    _vy = 200.0f;        //was 30.0f;
+    _vx = 130.0f;
     _x = position.x;
     _y = position.y;
     _angularVelocity = 8;

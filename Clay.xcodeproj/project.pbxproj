@@ -423,6 +423,10 @@
 		54A20B8614A1857C004BCBC8 /* howtoplayScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A20B8214A1857C004BCBC8 /* howtoplayScreen.png */; };
 		54A24A8E14A1470A00BF1BC6 /* Animator.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A24A8D14A1470A00BF1BC6 /* Animator.m */; };
 		54A24A9214A1481A00BF1BC6 /* AnimationSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A24A9114A1481900BF1BC6 /* AnimationSequence.m */; };
+		54A2D8DB14BD0BB500828CB9 /* darkLevel2-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54A2D8D714BD0BB500828CB9 /* darkLevel2-hd.plist */; };
+		54A2D8DC14BD0BB500828CB9 /* darkLevel2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A2D8D814BD0BB500828CB9 /* darkLevel2-hd.png */; };
+		54A2D8DD14BD0BB500828CB9 /* darkLevel2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54A2D8D914BD0BB500828CB9 /* darkLevel2.plist */; };
+		54A2D8DE14BD0BB500828CB9 /* darkLevel2.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A2D8DA14BD0BB500828CB9 /* darkLevel2.png */; };
 		54A3D6D2146C37F400BD081D /* shipBullet2_hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A3D6D0146C37F400BD081D /* shipBullet2_hd.png */; };
 		54A3D6D3146C37F400BD081D /* shipBullet2.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A3D6D1146C37F400BD081D /* shipBullet2.png */; };
 		54A40B3314AE8A6B00012D0D /* cancel.caf in Resources */ = {isa = PBXBuildFile; fileRef = 54A40B2F14AE8A6B00012D0D /* cancel.caf */; };
@@ -1237,6 +1241,10 @@
 		54A24A8D14A1470A00BF1BC6 /* Animator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Animator.m; sourceTree = "<group>"; };
 		54A24A9014A1481900BF1BC6 /* AnimationSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationSequence.h; sourceTree = "<group>"; };
 		54A24A9114A1481900BF1BC6 /* AnimationSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationSequence.m; sourceTree = "<group>"; };
+		54A2D8D714BD0BB500828CB9 /* darkLevel2-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "darkLevel2-hd.plist"; sourceTree = "<group>"; };
+		54A2D8D814BD0BB500828CB9 /* darkLevel2-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "darkLevel2-hd.png"; sourceTree = "<group>"; };
+		54A2D8D914BD0BB500828CB9 /* darkLevel2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = darkLevel2.plist; sourceTree = "<group>"; };
+		54A2D8DA14BD0BB500828CB9 /* darkLevel2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = darkLevel2.png; sourceTree = "<group>"; };
 		54A3D6D0146C37F400BD081D /* shipBullet2_hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shipBullet2_hd.png; path = computer/shipBullet2_hd.png; sourceTree = "<group>"; };
 		54A3D6D1146C37F400BD081D /* shipBullet2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shipBullet2.png; path = computer/shipBullet2.png; sourceTree = "<group>"; };
 		54A40B2F14AE8A6B00012D0D /* cancel.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = cancel.caf; path = Resources/sounds/cancel.caf; sourceTree = "<group>"; };
@@ -1567,6 +1575,10 @@
 		5428AE041491614F00C1A1BE /* dark */ = {
 			isa = PBXGroup;
 			children = (
+				54A2D8D714BD0BB500828CB9 /* darkLevel2-hd.plist */,
+				54A2D8D814BD0BB500828CB9 /* darkLevel2-hd.png */,
+				54A2D8D914BD0BB500828CB9 /* darkLevel2.plist */,
+				54A2D8DA14BD0BB500828CB9 /* darkLevel2.png */,
 				5428AE051491614F00C1A1BE /* darkLevel-hd.plist */,
 				5428AE061491614F00C1A1BE /* darkLevel-hd.png */,
 				5428AE071491614F00C1A1BE /* darkLevel.plist */,
@@ -3342,6 +3354,10 @@
 				61CC568014BA9885002E0DD9 /* fireLevel.plist in Resources */,
 				61CC568114BA9885002E0DD9 /* fireLevel.png in Resources */,
 				541970E714BAB38B00C81028 /* tileset_level_10-hd.png in Resources */,
+				54A2D8DB14BD0BB500828CB9 /* darkLevel2-hd.plist in Resources */,
+				54A2D8DC14BD0BB500828CB9 /* darkLevel2-hd.png in Resources */,
+				54A2D8DD14BD0BB500828CB9 /* darkLevel2.plist in Resources */,
+				54A2D8DE14BD0BB500828CB9 /* darkLevel2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

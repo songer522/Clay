@@ -491,7 +491,13 @@
                     trigger.type = TRIGGER_FINAL_BOSS_ATTACK3;
                     trigger.canBeReset = true;
                     [_triggers addObject:trigger];                    
-                }
+                } else if([special isEqualToString:@"finalBossAttack4"]) {
+                    Trigger *trigger = [[Trigger alloc] init];
+                    trigger.position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
+                    trigger.type = TRIGGER_FINAL_BOSS_ATTACK4;
+                    trigger.canBeReset = true;
+                    [_triggers addObject:trigger];                    
+                }    
             }
 
             NSString *obstacle = [self getPropertyForTileCoords:coords forKey:@"obstacle"];

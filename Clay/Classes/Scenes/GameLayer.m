@@ -309,8 +309,10 @@
             }
             
             [_savePoint restoreSavePoint:_player];
-            _player.isDead = false;
-            [_player rechargeBattery];
+            
+            //already called in reset
+            //[_player rechargeBattery];
+            //_player.isDead = false; //needs to be after recharge battery, because it checks this
             
             [_level resetObstacles];
             [_level resetTriggers:false];
@@ -375,6 +377,9 @@
             case TRIGGER_FINAL_BOSS_ATTACK3:
                 [_boss triggerAction:FINAL_BOSS_ATTACK_3];
                 break;
+            case TRIGGER_FINAL_BOSS_ATTACK4:
+                [_boss triggerAction:FINAL_BOSS_ATTACK_4];
+                break;
             default:
                 break;
         }
@@ -412,6 +417,7 @@
     for(UITouch *touch in allTouches) {
         InputEvent *event = [InputEvent inputEventWithType:INPUT_EVENT_TYPE_TOUCHES_BEGAN];
         [event setReceiver:_gameController];
+        [event setTotalTouches:[allTouches count]];
         [event setTouchLocation:[self convertTouchToNodeSpace:touch]];
         [_inputController interpretAndReactToInputEvent:event];
     }
@@ -423,10 +429,10 @@
     for(UITouch *touch in allTouches) {
         InputEvent *event = [InputEvent inputEventWithType:INPUT_EVENT_TYPE_TOUCHES_ENDED];
         [event setReceiver:_gameController];
+        [event setTotalTouches:[allTouches count]];
         [event setTouchLocation:[self convertTouchToNodeSpace:touch]];
         [_inputController interpretAndReactToInputEvent:event];
     }
-    
 }
 
 

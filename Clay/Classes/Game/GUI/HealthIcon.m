@@ -34,6 +34,11 @@
 
 -(void)startHealthAnimWithSprite:(HealthIconType)healthType
 {
+    
+    if(_willAdjustBattery && !_adjustedBattery) {
+        [self finishEarly];
+    }
+    
     _position = ccp(0,0);
     _angle = 0.0f;
     _animating = true;
@@ -42,6 +47,7 @@
     _iconType = healthType;
     _adjustedBattery = false;
     [_sprite setAlpha:0.0f];
+    _willAdjustBattery = false;
     
     float offsetY = 0;
     
@@ -88,29 +94,43 @@
             _position.x = -10.0f;
             _position.y = 13.0f;
             _waitToStart = 0.05f;
+            _willAdjustBattery = true;
             break;
         case HEALTHANIM_INTO_BATTERY_2:
             _position.x = -10.0f;
             _position.y = 13.0f;
             _waitToStart = 0.4f;
+            _willAdjustBattery = true;
             break;
         case HEALTHANIM_INTO_BATTERY_3:
             _position.x = -10.0f;
             _position.y = 13.0f;
             _waitToStart = 0.75f;            
+            _willAdjustBattery = true;
             break;
         case HEALTHANIM_INTO_BATTERY_4:
             _position.x = -10.0f;
             _position.y = 13.0f;
             _waitToStart = 1.10f;            
+            _willAdjustBattery = true;
             break;
         case HEALTHANIM_INTO_BATTERY_5:
             _position.x = -10.0f;
             _position.y = 13.0f;
             _waitToStart = 1.45f;            
+            _willAdjustBattery = true;
             break;
         default:
             break;
+    }
+}
+
+-(void) finishEarly
+{
+    if (_iconType == HEALTHICON_POSITIVE) {
+        [_battery adjustFrame:1];
+    } else {
+        [_battery adjustFrame:-1];
     }
 }
 
@@ -203,13 +223,13 @@
 
 -(void)adjustBattery
 {
-    _adjustedBattery = true;
     if (_iconType == HEALTHICON_POSITIVE) {
         [[SoundEngine shared] playSound:@"healthGained"];
         [_battery adjustFrame:1];
     } else {
         [_battery adjustFrame:-1];
     }
+    _adjustedBattery = true;
 }
 
 
@@ -222,6 +242,16 @@
 -(void)setPlayer:(Player*)player
 {
     _player = player;
+}
+
+
+//called when recharging, which automatically starts from empty, so we don't have to worry about
+//if the battery has been adjusted.
+-(void)reset
+{
+    _animating = false;
+    _willAdjustBattery = false;
+    _adjustedBattery = true;
 }
 
 

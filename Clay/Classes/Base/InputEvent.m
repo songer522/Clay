@@ -14,6 +14,7 @@
 @synthesize timeOfEvent = _timeOfEvent;
 @synthesize receiver = _receiver;
 @synthesize type = _eventType;
+@synthesize totalTouches = _totalTouches;
 
 - (id)init
 {

@@ -41,7 +41,7 @@
         _healthIcons = [[NSMutableArray alloc] initWithCapacity:8];
         _batterySpriteFrames = [[NSMutableArray alloc] initWithCapacity:7];
         
-        for (int i=0; i<6;i++) {
+        for (int i=0; i<7;i++) {
             //starts at 0 just so we can directly access the object quickly
             NSString *frameName = [NSString stringWithFormat:@"Battery_%d.png",i];
             [_batterySpriteFrames addObject:frameName];
@@ -98,12 +98,15 @@
             @try {
                 HealthIcon *icon = [_healthIcons objectAtIndex:i];
                 [icon startHealthAnimWithSprite:HEALTHICON_NEGATIVE];
+                _isRecharging = false;
             }
             @catch (NSException *exception) {
                 CCLOG(@"ERROR! Battery.m - Health Icon index: #%d",i);
             }
-        }        
+        }
     }
+    [[sprite getCCSprite] setVisible:YES];
+
 }
 
 
@@ -115,6 +118,11 @@
 
 -(void) setFrame:(int)frameNumber
 {
+    //guard
+    if (frameNumber < 1 || frameNumber > 6) {
+        return;
+    }
+    
     @try {
         [[sprite getCCSprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[_batterySpriteFrames objectAtIndex:frameNumber]]];
     }
@@ -122,17 +130,21 @@
         CCLOG(@"ERROR! Battery.m - Battery Frame index: #%d",frameNumber);
     }
     
+    
     _currentFrame = frameNumber;
-    if (_currentFrame == 5 && !_isRecharging) {
-        _totalTime = 0.0f;
-        [[sprite getCCSprite] setOpacity:255];
-        [[SoundEngine shared] playSound:@"lowBattery"];
-        
-        //disable sprint button in the hud
-        _wasLowBattery = true;
-        GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
-        
-        [[gameLayer getHud] setEnabled:false ForButton:HUD_BUTTON_SPRINT];
+    if (_currentFrame == 5) {
+        if (!_isRecharging) {
+            _totalTime = 0.0f;
+            [[sprite getCCSprite] setOpacity:255];
+            [[SoundEngine shared] playSound:@"lowBattery"];
+            //disable sprint button in the hud
+            _wasLowBattery = true;
+            GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];            
+            [[gameLayer getHud] setEnabled:false ForButton:HUD_BUTTON_SPRINT];
+        } else {
+            [[sprite getCCSprite] setVisible:YES];            
+            [[sprite getCCSprite] setOpacity:255];
+        }
     } else {
         
         //re-enable sprint button in the hud
@@ -181,14 +193,6 @@
 
 -(void)normalBattery:(float)dt
 {
-    _wait -= dt;
-    if (_wait <= 0.0f) {
-        _alpha -= 1.0f * dt;
-        if (_alpha <= 0.3f) {
-            _alpha = 0.3f;
-        }
-    }
-    //[[sprite getCCSprite] setOpacity:(255 * _alpha)];
 }
 
 -(void)setPlayer:(Player*)player
@@ -202,27 +206,24 @@
 -(void)startRecharge
 {
     if(_player.isDead) {
-        [self setFrame:5];
+        [self setFrame:6];
+        [self resetHealthIcons];
+        [self changeValueBy:5];
+    } else {
+        [self changeValueBy:5];
     }
-    [self changeValueBy:4];
-    //_isRecharging = true;
+    _isRecharging = true;
     _alpha = 1.0f;
     [[sprite getCCSprite] setVisible:YES];
     [[sprite getCCSprite] setOpacity:255];
     _wait = 0.6f;
+    _wasLowBattery = true;
 }
 
 -(void)recharging:(float)dt
-{
-    if (_currentFrame > 1) {
-        _wait -= dt;
-        if (_wait <= 0.0f) {
-            [self setFrame:_currentFrame - 1];
-            _wait = 0.15f;
-        }
-    } else {
+{    
+    if (_currentFrame<=1) {
         _isRecharging = false;
-        _wait = 3.0f;
         _alpha = 1.0f;
     }
 }
@@ -237,12 +238,18 @@
 
 -(void)reset
 {
-    [self setFrame:1];
+    //[self setFrame:1];
     [self startRecharge];
-    _isRecharging = false;
     _wasLowBattery = false;
     [[sprite getCCSprite] setOpacity:255];
     [[sprite getCCSprite] setVisible:YES];
+}
+
+-(void)resetHealthIcons
+{
+    for (HealthIcon *icon in _healthIcons) {
+        [icon reset];
+    }
 }
 
 -(void)dealloc

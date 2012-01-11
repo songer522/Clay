@@ -42,7 +42,7 @@
     return [[self alloc] init];
 }
 
--(void)reactToTouchAt:(CGPoint)location InputType:(InputType)type
+-(void)reactToTouchAt:(CGPoint)location InputType:(InputType)type TouchCount:(int)touchCount
 {
     //guards
     if (_gameLayer.inComic) {
@@ -58,7 +58,7 @@
     if (!_isInputEnabled || _handledPauseEvent) { return; }
     
     //if (location.x > 200 && location.x < 280 && location.y > 270) { //top center
-    if (location.x > 0 && location.x < 100 && location.y > 260) { //top center
+    if (touchCount == 1 && location.x > 0 && location.x < 100 && location.y > 260) { //top center
         if (type == INPUT_TOUCH_END) {
             [self pauseGame];            
         }

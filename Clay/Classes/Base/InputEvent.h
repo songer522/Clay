@@ -21,12 +21,14 @@ typedef enum {
     CGPoint _touchLocation;
     float _timeOfEvent;
     id _receiver;
+    int _totalTouches;
 }
 
 @property(nonatomic,assign) InputEventType type;
 @property(nonatomic,assign) CGPoint touchLocation;
 @property(nonatomic,assign) float timeOfEvent;
 @property(nonatomic,retain) id receiver;
+@property(nonatomic,assign) int totalTouches;
 
 +(id) inputEventWithType:(InputEventType)type;
 

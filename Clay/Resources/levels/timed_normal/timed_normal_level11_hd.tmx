@@ -183,6 +183,16 @@
     <property name="special" value="finalBossAttack2"/>
    </properties>
   </tile>
+  <tile id="92">
+   <properties>
+    <property name="special" value="finalBossAttack3"/>
+   </properties>
+  </tile>
+  <tile id="93">
+   <properties>
+    <property name="special" value="finalBossAttack4"/>
+   </properties>
+  </tile>
   <tile id="94">
    <properties>
     <property name="special" value="finalBossAttack1"/>
@@ -261,7 +271,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1DsOwyAUBECfIPH18nEfKffvo7QuUpjg5TPTIYRYHg+WBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYA63dICgVzpABa2eqdVce+90AAAAAAAAAAAAAAAAAAAAGMwjtHZk98L1R+o6012U1rfENbj3mXrtp15zfyX7+gw9383zx9wsf8JWYa6WI722f3//HvdmtPO0bE0HgMlc0gEAAAAAAAAAIOAD8bkKYg==
+   eJzt18sNgCAQBUAqUNvzd1f7L8AOPGhgQWZuhJD3lgMJKQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANTtLJBxFMgAAAC+maMLVOaS1URuqXmi7q0l/v4AAAAAAAAAAAAAAAAAAAD1GKMLAMVtD3u9vAl7hr1c1hdnlszr1vxtnppN0QWgM0N0AQAAAAAAAAAIcANaXQjp
   </data>
  </layer>
  <layer name="meta" width="1000" height="14" opacity="0.66">
