@@ -131,7 +131,7 @@ typedef enum {
 @property(nonatomic,assign) bool isInvincible;
 @property(nonatomic,assign) bool isHurdle;
 @property(nonatomic,assign) bool collideWithPlayer;
-
+@property(nonatomic,assign) bool isVisible;
 @property(nonatomic,assign) bool rotateLights;
 @property(nonatomic,assign) bool beatsPlayerAction;
 @property(nonatomic,assign) bool hasAppeared;

@@ -52,6 +52,7 @@
 @synthesize collideWithPlayer =_collideWithPlayer;
 @synthesize hasAppeared = _hasAppeared;
 @synthesize useDefaultBatchNode = _useDefaultBatchNode;
+@synthesize isVisible = _isVisible;
 
 
 + (id) objectWithSprite:(Sprite*)sprite
@@ -1179,6 +1180,7 @@
         return;
     }
     _collideWithPlayer=false;
+    //_isVisible=true;
     _isActive = true;
     _angle = 0.0f;
     _vx = 0;
@@ -1360,6 +1362,7 @@
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;     
     }
     _collided = false;
+    
 }
 
 -(Collision*) getCollision

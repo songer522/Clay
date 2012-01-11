@@ -82,8 +82,8 @@
             /*
             if(!object.persistsBetweenRegions) {
                 [[object getCCSprite] setVisible:NO];
-            }*/
-        }        
+            }
+                */     }        
     }
     
     if (_combinedRegion!=nil) {
