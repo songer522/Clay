@@ -10,6 +10,7 @@
 #import "Sprite.h"
 #import "Player.h"
 #import "LayerManager.h"
+#import "LevelManager.h"
 #import "GameLayer.h"
 #import "Projectile.h"
 
@@ -30,6 +31,7 @@
     _hasThrownBomb = false;
     
     _door = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_DARK_TRAIN_DOOR];
+    [_door setBoundingBox:CGRectMake(20, 12, 14, 25)];
     
     _bomb = nil;
     
@@ -60,7 +62,6 @@
             break;
         case FINAL_BOSS_ATTACK_1B:
             [[AnimationController sharedController] replaceSprite:_trainJim withAnimationNamed:@"darkBossJimDoorAttack2"];
-            
             _waitToSwitch = 4.0f;
             _phase = phase;
             break;
@@ -317,6 +318,18 @@
     [_trainWheels setPosition:CGPointMake(position.x - 268.0f,position.y - 118.0f)];
     [_trainJim setPosition:CGPointMake(position.x - 268.0f,position.y - 118.0f)];
     
+}
+
+
+-(void)testCollisions:(Projectile*)projectile
+{
+    Level *level = [[LevelManager shared] currentLevel];
+    if (projectile!=nil && [projectile getActive]) {
+        if([level testCollisionWithGameObject:_player Source:projectile]) {
+            [_player startCollision:PLAYER_EFFECT_COLLIDE Source:projectile];
+            [projectile startCollision];
+        }                    
+    }
 }
 
 -(void) reset

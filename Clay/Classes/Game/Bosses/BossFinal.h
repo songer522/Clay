@@ -12,6 +12,7 @@
 
 @class Sprite;
 @class Player;
+@class Level;
 @class GameLayer;
 @class Projectile;
 
@@ -59,4 +60,5 @@ typedef enum {
 -(void)moveForward:(float)dt;
 -(void)finishedPhase;
 -(bool)checkWait:(float)dt;
+-(void)testCollisions:(Projectile*)projectile;
 @end
