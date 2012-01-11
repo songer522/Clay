@@ -119,7 +119,6 @@
 -(void) setFrame:(int)frameNumber
 {
     //guard
-    NSLog(@"frame: %d",frameNumber);
     if (frameNumber < 1 || frameNumber > 6) {
         return;
     }

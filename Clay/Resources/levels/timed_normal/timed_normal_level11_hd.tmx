@@ -183,6 +183,11 @@
     <property name="special" value="finalBossAttack2"/>
    </properties>
   </tile>
+  <tile id="92">
+   <properties>
+    <property name="special" value="finalBossAttack3"/>
+   </properties>
+  </tile>
   <tile id="94">
    <properties>
     <property name="special" value="finalBossAttack1"/>
@@ -261,7 +266,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt180NgCAMBlAnUNfz7+7+E7iBJsZSkPduhNB+vZB0GAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADizAwAAAI+W7ACVidhjSu1GJfpE9vii9tsamb1b1+vcAAAAAAAAAAAAAAAAAAAANZqyAwDF7Td3vfwJR8BdlO3FmzX43Jq/zVOzOTsAdGbMDgAAAAAAAAAACS4eJQlE
+   eJzt17sNgDAMBcBMAKzHr4f9F2ADClDsEO66yIqenSKSSwEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGjbGZBxBGQAAADvzNkNNCZiV+o9KyI3ap6sd/sSuz8AAAAAAAAAAAAAAAAAAEA7xuwGgHDbTe0vf8JeoVbL+uDOUvn8Nb3N07IpuwH4mSG7AQAAAAAAAABIcAHXRAjj
   </data>
  </layer>
  <layer name="meta" width="1000" height="14" opacity="0.66">
