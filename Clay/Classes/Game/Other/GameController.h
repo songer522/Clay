@@ -14,6 +14,7 @@
 @class GameLayer;
 
 @class PauseMenuScreen;
+@class EndLevelLayer;
 @class HudLayer;
 
 @interface GameController : NSObject
@@ -21,8 +22,10 @@
     GameLayer *_gameLayer; //weak reference
     HudLayer *_hud; //weak reference
     PauseMenuScreen *_pauseMenu;
+    EndLevelLayer *_endLevelLayer;
     
     bool _isPaused;
+    bool _isEndLevel;
     bool _isHandlingPause; //game layer checks this to know whether the scene is either being killed or game controller wants to pause
     bool _handledPauseEvent;
     bool _isInputEnabled;
@@ -43,6 +46,7 @@
 -(void)setGameLayer:(GameLayer*)layer;
 -(void)setHud:(HudLayer*)hud;
 -(void)pauseGame;
+-(void)endLevel;
 -(void)enableSprint:(bool)Enable;
 -(void)update;
 

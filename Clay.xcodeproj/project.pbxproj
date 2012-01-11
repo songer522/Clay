@@ -46,6 +46,11 @@
 		5428AE0A1491614F00C1A1BE /* darkLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5428AE061491614F00C1A1BE /* darkLevel-hd.png */; };
 		5428AE0B1491614F00C1A1BE /* darkLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5428AE071491614F00C1A1BE /* darkLevel.plist */; };
 		5428AE0C1491614F00C1A1BE /* darkLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 5428AE081491614F00C1A1BE /* darkLevel.png */; };
+		544360C414BE08E4007AFB0B /* EndLevelLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 544360C314BE08E4007AFB0B /* EndLevelLayer.m */; };
+		544360CA14BE0AEC007AFB0B /* endLevelLayer-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 544360C614BE0AEC007AFB0B /* endLevelLayer-hd.plist */; };
+		544360CB14BE0AEC007AFB0B /* endLevelLayer-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 544360C714BE0AEC007AFB0B /* endLevelLayer-hd.png */; };
+		544360CC14BE0AEC007AFB0B /* endLevelLayer.plist in Resources */ = {isa = PBXBuildFile; fileRef = 544360C814BE0AEC007AFB0B /* endLevelLayer.plist */; };
+		544360CD14BE0AEC007AFB0B /* endLevelLayer.png in Resources */ = {isa = PBXBuildFile; fileRef = 544360C914BE0AEC007AFB0B /* endLevelLayer.png */; };
 		54484CD5140449B500D0D7D9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54484CD4140449B500D0D7D9 /* QuartzCore.framework */; };
 		54484CD7140449B500D0D7D9 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54484CD6140449B500D0D7D9 /* OpenGLES.framework */; };
 		54484CD9140449B500D0D7D9 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54484CD8140449B500D0D7D9 /* OpenAL.framework */; };
@@ -665,6 +670,12 @@
 		5428AE061491614F00C1A1BE /* darkLevel-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "darkLevel-hd.png"; sourceTree = "<group>"; };
 		5428AE071491614F00C1A1BE /* darkLevel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = darkLevel.plist; sourceTree = "<group>"; };
 		5428AE081491614F00C1A1BE /* darkLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = darkLevel.png; sourceTree = "<group>"; };
+		544360C214BE08E4007AFB0B /* EndLevelLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndLevelLayer.h; sourceTree = "<group>"; };
+		544360C314BE08E4007AFB0B /* EndLevelLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndLevelLayer.m; sourceTree = "<group>"; };
+		544360C614BE0AEC007AFB0B /* endLevelLayer-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "endLevelLayer-hd.plist"; path = "Clay/Resources/menu/endLevelLayer-hd.plist"; sourceTree = SOURCE_ROOT; };
+		544360C714BE0AEC007AFB0B /* endLevelLayer-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "endLevelLayer-hd.png"; path = "Clay/Resources/menu/endLevelLayer-hd.png"; sourceTree = SOURCE_ROOT; };
+		544360C814BE0AEC007AFB0B /* endLevelLayer.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = endLevelLayer.plist; path = Clay/Resources/menu/endLevelLayer.plist; sourceTree = SOURCE_ROOT; };
+		544360C914BE0AEC007AFB0B /* endLevelLayer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = endLevelLayer.png; path = Clay/Resources/menu/endLevelLayer.png; sourceTree = SOURCE_ROOT; };
 		54484CD0140449B500D0D7D9 /* Clay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54484CD4140449B500D0D7D9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		54484CD6140449B500D0D7D9 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -1985,6 +1996,10 @@
 		544D50DA1445E68E00BED4CE /* scenes */ = {
 			isa = PBXGroup;
 			children = (
+				544360C614BE0AEC007AFB0B /* endLevelLayer-hd.plist */,
+				544360C714BE0AEC007AFB0B /* endLevelLayer-hd.png */,
+				544360C814BE0AEC007AFB0B /* endLevelLayer.plist */,
+				544360C914BE0AEC007AFB0B /* endLevelLayer.png */,
 				54A20B7F14A1857C004BCBC8 /* howtoplayScreen-hd.plist */,
 				54A20B8014A1857C004BCBC8 /* howtoplayScreen-hd.png */,
 				54A20B8114A1857C004BCBC8 /* howtoplayScreen.plist */,
@@ -2631,6 +2646,8 @@
 				54E1AC031497B5D500DFCA77 /* OptionsScene.m */,
 				549ED8001461D065008BCD98 /* PauseMenuScreen.h */,
 				549ED8011461D065008BCD98 /* PauseMenuScreen.m */,
+				544360C214BE08E4007AFB0B /* EndLevelLayer.h */,
+				544360C314BE08E4007AFB0B /* EndLevelLayer.m */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -3358,6 +3375,10 @@
 				54A2D8DC14BD0BB500828CB9 /* darkLevel2-hd.png in Resources */,
 				54A2D8DD14BD0BB500828CB9 /* darkLevel2.plist in Resources */,
 				54A2D8DE14BD0BB500828CB9 /* darkLevel2.png in Resources */,
+				544360CA14BE0AEC007AFB0B /* endLevelLayer-hd.plist in Resources */,
+				544360CB14BE0AEC007AFB0B /* endLevelLayer-hd.png in Resources */,
+				544360CC14BE0AEC007AFB0B /* endLevelLayer.plist in Resources */,
+				544360CD14BE0AEC007AFB0B /* endLevelLayer.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3576,6 +3597,7 @@
 				546C2A7214A292AE0008DC5A /* HealthIcon.m in Sources */,
 				54A6F28114B54BF60004BA13 /* ComboAttack.m in Sources */,
 				548D7A8614B97D3D00BE26FB /* BossFinal.m in Sources */,
+				544360C414BE08E4007AFB0B /* EndLevelLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

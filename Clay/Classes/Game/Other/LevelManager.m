@@ -271,13 +271,14 @@ static LevelManager *_shared = nil;
 
 -(void)recordLevelTime:(float)time
 {
-    NSString *levelName = [NSString stringWithString:_currentLevel.name];
-    NSString *difficulty = [[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
+    //NSString *levelName = [NSString stringWithString:_currentLevel.name];
+    //NSString *difficulty = [[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
     NSString *mode=[[GameSettings shared] getGlobalForKey:@"gameMode"];
     
     if ([mode isEqualToString:@"timed"]) {
-        [[BestTimes shared] reportTime:time forLevel:levelName forDifficulty:difficulty];
-        [self sendScoreforLevel:levelName Difficulty:difficulty Mode:mode andTime:time];        
+        //SWITCH BACK: uncomment
+        //[[BestTimes shared] reportTime:time forLevel:levelName forDifficulty:difficulty];
+        //[self sendScoreforLevel:levelName Difficulty:difficulty Mode:mode andTime:time];        
     }
 }
 

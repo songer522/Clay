@@ -94,6 +94,11 @@
     
 }
 
+-(NSArray*)getProjectilesForDebugDraw
+{
+    
+}
+
 -(void)addSpritesToLayer:(id)layer SpriteBatch:(CCSpriteBatchNode*)spriteBatch
 {
     
