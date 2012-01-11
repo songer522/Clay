@@ -8,13 +8,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "Clay/Classes/Game/Other/Player.m"
-         timestampString = "347914266.22037"
+         filePath = "Clay/Classes/Game/GameObjects/GameObject.m"
+         timestampString = "347938629.389514"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "210"
-         endingLineNumber = "210"
-         landmarkName = "-startDoubleJump"
+         startingLineNumber = "437"
+         endingLineNumber = "437"
+         landmarkName = "-update:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

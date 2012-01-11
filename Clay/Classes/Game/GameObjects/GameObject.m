@@ -52,6 +52,7 @@
 @synthesize collideWithPlayer =_collideWithPlayer;
 @synthesize hasAppeared = _hasAppeared;
 @synthesize useDefaultBatchNode = _useDefaultBatchNode;
+@synthesize isVisible = _isVisible;
 
 
 + (id) objectWithSprite:(Sprite*)sprite
@@ -420,7 +421,7 @@
 
 -(void)update:(float)dt
 {
-    if (!_isStutterMode && !_boss) {
+    if (!_boss) {
         if ([[Camera sharedCamera ] isInVisualRange:_x]) {
             if (!_isVisible) {
                 [[_sprite getCCSprite] setVisible:YES];
@@ -1179,6 +1180,7 @@
         return;
     }
     _collideWithPlayer=false;
+    //_isVisible=true;
     _isActive = true;
     _angle = 0.0f;
     _vx = 0;
@@ -1360,6 +1362,7 @@
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;     
     }
     _collided = false;
+    
 }
 
 -(Collision*) getCollision

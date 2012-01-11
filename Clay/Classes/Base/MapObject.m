@@ -48,6 +48,8 @@
 {
     [_object reset];
     [[_object getCCSprite] setVisible:NO];
+    _object.isVisible = false;
+    
 }
 
 -(void)setPosition:(CGPoint)pos
