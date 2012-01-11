@@ -49,6 +49,11 @@
     [[AnimationController sharedController] replaceSprite:_trainJim withAnimationNamed:@"darkBossJimIdle1"];
 }
 
+-(NSMutableArray*)getProjectilesForDebugDraw
+{
+    NSMutableArray *array = [[NSMutableArray alloc] initWithObjects:_door, nil];
+    return array;
+}
 
 -(void)changeAnimationSpeed:(float)modifier
 {
@@ -335,8 +340,6 @@
     
     [_door setPosition:CGPointMake(_trainPosition.x, _trainPosition.y - 50.0f)];
     
-    [[_gameLayer getDebugLayer] drawBoxForCollidable:_door];
-    
     [self moveForward:dt];
 }
 
@@ -344,6 +347,8 @@
 -(void)updateBossEntrance:(float)dt
 {
 }
+
+
 
 
 

@@ -163,7 +163,7 @@
 		<key>sounds</key>
 		<string>darkSlowTimeAction,darkBats,darkGargoyle,darkShadowLaugh,darkSpikes</string>
 		<key>textures</key>
-		<string>darkLevel,darkLevel2,characterSlowTime</string>
+		<string>darkLevel,darkLevel2</string>
 	</dict>
 	<key>mainMenu</key>
 	<dict>

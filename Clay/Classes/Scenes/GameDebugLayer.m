@@ -76,12 +76,13 @@
     
     Boss *boss = [gameLayer getBoss];
     if (boss!=nil) {
-        NSArray *collidables = [boss getProjectilesForDebugDraw];
+        NSMutableArray *collidables = [boss getProjectilesForDebugDraw];
         for (id collidable in collidables) {
             if (collidable!= nil && [collidable getActive]) {
                 [self drawBoxForCollidable:collidable];                
             }
         }
+        [collidables release];
     }
 }
 

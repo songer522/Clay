@@ -9,10 +9,14 @@
 #import "PlayerAction.h"
 
 @class Boss;
+@class Sprite;
 
 @interface PlayerActionSlowTime : PlayerAction
 {
     float _slowdown;
+    Sprite *_sprite;
+
+    float _waitToHideSprite;
     
     Boss *_boss;
 }
