@@ -633,14 +633,14 @@
             break;
         case COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENING:
             frame = [[_sprite getAnimation] getCurrentFrameNumber];
-            if (frame<8) {
-                int heightOffset = MAX(0,frame - 4) * 13.0f;
+            if (frame<7) {
+                int heightOffset = MAX(0,frame - 4) * 5.0f;
                 [self setBoundingBox:CGRectMake(40,2,25,30 + heightOffset)];
-            } else if(frame == 8)
+            } else if(frame == 7)
             {
                 _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENED;
                 [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"zombieMysteryBoxOpenedAnim"];
-                [self setBoundingBox:CGRectMake(40, 2, 25, 90)];
+                [self setBoundingBox:CGRectMake(40, 2, 25, 45)];
             }
             break;
         case COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_FALLS:
