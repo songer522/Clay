@@ -1,6 +1,19 @@
 Track Lapse Changelog
 
-Build 120108.02
+Build 120110.01
+==================
+
+* Global - fixed bug where hitting the jump and sprint buttons at the exact same time would give an incorrect location 
+* Global - battery fixed to show the correct graphics and refresh properly
+* Global - fixed a bug where Tim was allowed to double jump when he was just above ground, stopping him in a sprint
+* Global - default leader board category when first opening is now for best times today instead of best time of all time
+* Level 10 - bomb attack updated to look more realistic
+* Level 10 - added grape eating "attack"
+* Level 10 - added grapes switching to a bomb attack (no collision)
+* Level 10 - fixed the train slowing down after 
+
+
+Build 120109.01
 ==================
 
 * Global - death pits in all levels (except the demo level 11) are now at least 3 tiles long
