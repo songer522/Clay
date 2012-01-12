@@ -170,7 +170,7 @@
   </tile>
   <tile id="79">
    <properties>
-    <property name="" value=""/>
+    <property name="special" value="finalBossExits"/>
    </properties>
   </tile>
   <tile id="80">
@@ -235,7 +235,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1isOgDAURcGyQCh4KOx/FTxJwic1UMFMct0TiBPSlAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgrO9SGmI5NsamrvUX0VpNE2930+uQC8fu8k1/NTdPt/6FAAC0MscbdImV2BrbvEl/r6YJ3dDCsbty01/NzdOtpgEAAAAA+NoOw+AZmg==
+   eJzt1jsOglAUBNDHJvwkflaEaK/o/lfhdGIi5DVIwTnJFCRTvGJCbikAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwNw2TSnbZJfsm8/3ITkmp+TcLP1KAAD41uZGvSRdck1ubtbVq9nE3Ltp7ZAfhrvrRvZX05nq+hcCALCUe27QR9Inz+TlJl29mk3YDUsY7q4f2V9NZ6pr0wAAAAAA/NsbHiUapQ==
   </data>
  </layer>
  <layer name="ledges" width="1000" height="14">
@@ -271,7 +271,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1MsNAjEQRMGNAEgPiQD45H9HHJA47BU/bKoSmPbI09sGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwt3MdYHHXRWd9ekRz327x/GrvI636xnsdYEf1n+td1D0yg1XvcE/d6y+jb6K4gfJP1Z0DAAAAAAAAAAAAAAAAALM71gGAn6ITYIxLHeBLTnUA+DOHOgAAAAAAAAAABJ6blQeG
+   eJzt20EOgjAQBVBOoF5Pxb16/wMYLtCEZqaD9L0docz8UtLAgmUBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgXh0AAAAI0ftu/w5Nsa9eRO81oEbLyG+m6LWo7jtqPhl9sp+r0T4Dx2zOdv9aevaIb8LYPTU3M60RAAAAAAAAAAAAAAAAAAAczbU6ADBc6z//WfaEV8K5LM+Oax7Jx//mbPM5slt1AJjMpToAAAAAAAAAABT4AcgnDQA=
   </data>
  </layer>
  <layer name="meta" width="1000" height="14" opacity="0.66">

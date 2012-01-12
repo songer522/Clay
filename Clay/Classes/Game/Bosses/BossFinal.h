@@ -15,6 +15,7 @@
 @class Level;
 @class GameLayer;
 @class Projectile;
+@class PassengerCar;
 
 typedef enum {
     TRAIN_PHASE_ACCELERATE,
@@ -27,6 +28,8 @@ typedef enum {
     Sprite *_trainWheels;
     Sprite *_trainJim;
     
+    
+    
     Projectile *_bomb;
     Projectile *_door;
     
@@ -35,16 +38,21 @@ typedef enum {
     
     FinalBossPhase _phase;
     
+    NSMutableArray *_queuedPhases;
+    
     TrainPhase _trainPhase;
     
     //weak reference
     Player *_player;
     GameLayer *_gameLayer;
     
+    PassengerCar *_passengerCar;
+    
     bool _resetSpriteVisibility;
     bool _inAttack;
     bool _hasThrownBomb;
     
+    float _destinationX;
     float _speed;
     float _speedModifier;
     float _waitToSwitch;
@@ -54,11 +62,14 @@ typedef enum {
 -(void)setVisible:(bool)isVisible;
 -(void)setAlpha:(float)alpha;
 -(void)resetSpriteVisibility;
--(void)updateBossEntrance:(float)dt;
 -(void)updatePosition:(CGPoint)position;
 -(void)addSpritesToLayer:(id)layer SpriteBatch:(CCSpriteBatchNode*)spriteBatch;
--(void)moveForward:(float)dt;
+-(bool)moveRight:(float)dt;
+-(bool)moveLeft:(float)dt;
 -(void)finishedPhase;
 -(bool)checkWait:(float)dt;
 -(void)testCollisions:(Projectile*)projectile;
+-(bool)canTrigger:(FinalBossPhase)phase;
+-(void)triggerNextPhase;
+-(void)changeToAnimationNamed:(NSString*)animName forSprite:(Sprite*)sprite;
 @end

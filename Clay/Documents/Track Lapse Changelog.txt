@@ -7,13 +7,14 @@ Build 120110.01
 * Global - battery fixed to show the correct graphics and refresh properly
 * Global - fixed a bug where Tim was allowed to double jump when he was just above ground, stopping him in a sprint
 * Global - default leader board category when first opening is now for best times today instead of best time of all time
+* Global - fixed the obstacles disappearing after respawning at a checkpoint
 * Level 4 - updated tileset to add static dancers to background
 * Level 6 - mystery box no longer fully extends when shot and can now be double-jumped over
-* Level 10 - bomb attack updated to look more realistic
-* Level 10 - added grape eating "attack"
-* Level 10 - added grapes switching to a bomb attack (no collision)
-* Level 10 - fixed the train slowing down after every attack
-
+* Level 11 - bomb attack updated to look more realistic
+* Level 11 - added grape eating "attack"
+* Level 11 - added grapes switching to a bomb attack (no collision)
+* Level 11 - fixed the train slowing down after every attack
+* Level 11 - demo level for low res and high res for to show all attacks
 
 
 Build 120109.01

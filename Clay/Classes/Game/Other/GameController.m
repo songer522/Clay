@@ -13,6 +13,7 @@
 #import "HudLayer.h"
 #import "GameSettings.h"
 #import "ComicManager.h"
+#import "EndLevelLayer.h"
 
 @implementation GameController
 
@@ -28,6 +29,7 @@
     if (self) {
         // Initialization code here.
         _isPaused = false;
+        _isEndLevel = false;
         _isInputEnabled = true;
         _isSprintEnabled = true;
         _isHandlingPause = false;
@@ -154,10 +156,26 @@
     _handledPauseEvent = true;
 }
 
+-(void)endLevel
+{
+    if (!_isEndLevel) {
+        _endLevelLayer = [EndLevelLayer instance];
+        _endLevelLayer.gameController = self;
+        _isEndLevel = true;
+        //[[SoundEngine shared] playSound:@"pause"];
+        _gameLayer.isTouchEnabled = false;
+    } else {
+        [[[LayerManager sharedLayers] currentScene] removeChild:_endLevelLayer cleanup:NO];
+        _isEndLevel = false;
+        _gameLayer.isTouchEnabled = true;
+    }
+}
+
 -(void)dealloc
 {
     _gameLayer = nil;
     [_pauseMenu release];
+    [_endLevelLayer release];
     _hud = nil;
     [super dealloc];
 }

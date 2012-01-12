@@ -35,6 +35,7 @@
 #import "CreditsScene.h"
 #import "Camera.h"
 
+
 #define DEBUG_DRAW_BOUNDING_BOXES 0
 @interface GameLayer()
 
@@ -363,7 +364,10 @@
                 [_boss switchToPhase:BOSS_PHASE_CHASE_INIT];
                 break;
             case TRIGGER_FINAL_BOSS_ENTER:
-                [_boss triggerAction:FINAL_BOSS_ENTER];
+                [_boss triggerAction:FINAL_BOSS_MOVE_TO_BOMBING];
+                break;
+            case TRIGGER_FINAL_BOSS_EXITS:
+                [_boss triggerAction:FINAL_BOSS_MOVE_TO_RIGHT];
                 break;
             case TRIGGER_FINAL_BOSS_DIE:
                 [_boss triggerAction:FINAL_BOSS_DIE];
@@ -709,6 +713,12 @@
     
     
 }
+
+-(GameDebugLayer*)getDebugLayer
+{
+    return _debugLayer;
+}
+
 -(void)checkHasBeenHit
 {
      NSString *mode = [[GameSettings shared] getGlobalForKey:@"gameMode"];

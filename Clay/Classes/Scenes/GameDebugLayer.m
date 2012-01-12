@@ -17,6 +17,7 @@
 #import "Projectile.h"
 #import "PlayerAction.h"
 #import "Projectile.h"
+#import "Boss.h"
 
 @implementation GameDebugLayer
 
@@ -50,9 +51,9 @@
     NSMutableArray *projectiles = [[player getThirdAction] getProjectiles];
     if (projectiles!=nil) {
         for (Projectile *projectile in projectiles) {
-            if ([projectile getActive]) {
+            //if ([projectile getActive]) {
                 [self drawBoxForCollidable:projectile];                
-            }
+            //}
         }        
     }
     
@@ -71,6 +72,17 @@
         if (projectile!=nil && [projectile getActive]) {
             [self drawBoxForCollidable:projectile];
         }
+    }
+    
+    Boss *boss = [gameLayer getBoss];
+    if (boss!=nil) {
+        NSMutableArray *collidables = [boss getProjectilesForDebugDraw];
+        for (id collidable in collidables) {
+            if (collidable!= nil && [collidable getActive]) {
+                [self drawBoxForCollidable:collidable];                
+            }
+        }
+        [collidables release];
     }
 }
 

@@ -20,13 +20,24 @@ typedef enum {
     FINAL_BOSS_ATTACK_1,
     FINAL_BOSS_ATTACK_1B,
     FINAL_BOSS_ATTACK_1C,
+    FINAL_BOSS_ATTACK_1D,
+    FINAL_BOSS_ATTACK_1E,
     FINAL_BOSS_ATTACK_2,
     FINAL_BOSS_ATTACK_2B,
+    FINAL_BOSS_ATTACK_2C,
+    FINAL_BOSS_ATTACK_2D,
     FINAL_BOSS_ATTACK_3,
     FINAL_BOSS_ATTACK_3B,
+    FINAL_BOSS_ATTACK_3C,
+    FINAL_BOSS_ATTACK_3D,
     FINAL_BOSS_ATTACK_4,
     FINAL_BOSS_ATTACK_4B,
     FINAL_BOSS_ATTACK_4C,
+    FINAL_BOSS_ATTACK_4D,
+    FINAL_BOSS_ATTACK_4E,
+    FINAL_BOSS_MOVE_TO_BOMBING,
+    FINAL_BOSS_MOVE_TO_RIGHT,
+    FINAL_BOSS_MOVE_TO_LEFT,
     FINAL_BOSS_IDLE,
     FINAL_BOSS_ENTER,
     FINAL_BOSS_DIE
@@ -70,4 +81,5 @@ typedef enum {
 -(void)triggerGetCloser;
 -(void)triggerAction:(FinalBossPhase)phase;
 -(void)addSpritesToLayer:(id)layer SpriteBatch:(CCSpriteBatchNode*)spriteBatch;
+-(NSMutableArray*)getProjectilesForDebugDraw;
 @end
