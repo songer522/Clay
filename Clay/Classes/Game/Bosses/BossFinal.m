@@ -17,6 +17,11 @@
 
 #define BOSS_FINAL_MAX_TRAIN_X 230.0f
 
+#define TRAIN_OFFSCREEN_LEFT -600.0f
+#define TRAIN_OFFSCREEN_RIGHT 1200.0f
+#define TRAIN_BOMB_POSITION 250.0f
+#define TRAIN_Y_POSITION 132.0f
+
 @implementation BossFinal
 
 -(void)startBoss
@@ -24,6 +29,8 @@
     _player = [[LayerManager sharedLayers] getPlayer];
     _resetSpriteVisibility = FALSE;
     _gameLayer = [[LayerManager sharedLayers] currentLayer];
+    
+    _queuedPhases = [[NSMutableArray alloc] initWithCapacity:10];
     
     _trainWheels = [Sprite spriteWithFile:@"blank.png" AddToLayer:NO];
     _trainJim = [Sprite spriteWithFile:@"blank.png" AddToLayer:NO];
@@ -33,10 +40,13 @@
     
     _door = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_DARK_TRAIN_DOOR];
     [_door setBoundingBox:CGRectMake(20, 12, 14, 25)];
+    [_door setActive:YES];
     
     _bomb = nil;
     
-    [self setVisible:NO];
+    _trainPosition = ccp(-800,165);
+    [self updatePosition:_trainPosition];
+    [self setVisible:YES];
 }
 
 
@@ -59,11 +69,12 @@
 {
     //[[_train getAnimation] changeAnimationSpeed:modifier];
     if (modifier < 1.0f) {
-        _speedModifier = 0.5f * modifier;        
+        _speedModifier = modifier; //for now, eventually modifier        
     } else {
         _speedModifier = 1.0f;
     }
     [[_trainWheels getAnimation] changeAnimationSpeed:modifier];
+    [[_trainJim getAnimation] changeAnimationSpeed:modifier];
 }
 
 
@@ -71,7 +82,7 @@
 {
     bool returnVal = false;
     if (_waitToSwitch>0) {
-        _waitToSwitch-=dt;
+        _waitToSwitch-=(dt * _speedModifier);
         if (_waitToSwitch<=0.0f) {
             returnVal = true;
         }
@@ -93,7 +104,7 @@
         case FINAL_BOSS_ATTACK_2B:
         case FINAL_BOSS_ATTACK_3B:
         case FINAL_BOSS_ATTACK_4C:
-            [[AnimationController sharedController] replaceSprite:_trainJim withAnimationNamed:@"darkBossJimIdle1"];
+            [self changeToAnimationNamed:@"darkBossJimIdle1" forSprite:_trainJim];
             [self triggerAction:FINAL_BOSS_IDLE];
             break;
         case FINAL_BOSS_ATTACK_2:
@@ -107,6 +118,11 @@
             break;
         case FINAL_BOSS_ATTACK_4B:
             [self triggerAction:FINAL_BOSS_ATTACK_4C];
+            break;
+        case FINAL_BOSS_MOVE_TO_BOMBING:
+        case FINAL_BOSS_MOVE_TO_RIGHT:
+        case FINAL_BOSS_MOVE_TO_LEFT:
+            [self triggerAction:FINAL_BOSS_IDLE];
             break;
         default:
             break;
@@ -189,36 +205,70 @@
     
     switch (phase) {
             
-            //door attack
-        case FINAL_BOSS_ATTACK_1:
-            if (!_inAttack) {
-                [[AnimationController sharedController] replaceSprite:_trainJim withAnimationNamed:@"darkBossJimDoorAttack1"];
-                _trainPhase = TRAIN_PHASE_BRAKE;
+        //come from left side of screen to bomb position
+        case FINAL_BOSS_MOVE_TO_BOMBING:
+            if([self canTrigger:FINAL_BOSS_MOVE_TO_BOMBING]) {
+                _trainPosition = ccp(TRAIN_OFFSCREEN_LEFT,TRAIN_Y_POSITION);
+                _destinationX = TRAIN_BOMB_POSITION;
+                _phase = phase;
                 _inAttack = true;
-                _waitToSwitch = 0.4f;
-                _speed = 120.0f;
+            }
+            break;
+        case FINAL_BOSS_MOVE_TO_LEFT:
+            if ([self canTrigger:FINAL_BOSS_MOVE_TO_LEFT]) {
+                _destinationX = TRAIN_OFFSCREEN_LEFT;
+                _phase = phase;  
+                _inAttack = true;
+            }
+            break;
+        case FINAL_BOSS_MOVE_TO_RIGHT:
+            if ([self canTrigger:FINAL_BOSS_MOVE_TO_RIGHT]) {
+                _destinationX = TRAIN_OFFSCREEN_RIGHT;
+                _phase = phase;
+                _inAttack = true;
+            }
+            break;
+        
+            
+        //door attack
+        case FINAL_BOSS_ATTACK_1:
+            if ([self canTrigger:FINAL_BOSS_ATTACK_1]) {
+                _trainPosition = ccp(TRAIN_OFFSCREEN_RIGHT,TRAIN_Y_POSITION);
+                _destinationX = TRAIN_BOMB_POSITION;
                 _phase = phase;
             }
             break;
         case FINAL_BOSS_ATTACK_1B:
-            [[AnimationController sharedController] replaceSprite:_trainJim withAnimationNamed:@"darkBossJimDoorAttack2"];
+            [self changeToAnimationNamed:@"darkBossJimDoorAttack1" forSprite:_trainJim];
+            _trainPhase = TRAIN_PHASE_BRAKE;
+            _inAttack = true;
+            _waitToSwitch = 0.4f;
+            _speed = 120.0f;
+            _phase = phase;
+            break;
+        case FINAL_BOSS_ATTACK_1C:
+            [self changeToAnimationNamed:@"darkBossJimDoorAttack2" forSprite:_trainJim];
             _waitToSwitch = 1.7f;
             _phase = phase;
             //[_door setActive:YES];
             break;
-        case FINAL_BOSS_ATTACK_1C:
-            [[AnimationController sharedController] replaceSprite:_trainJim withAnimationNamed:@"darkBossJimDoorAttack3"];
+        case FINAL_BOSS_ATTACK_1D:
+            [self changeToAnimationNamed:@"darkBossJimDoorAttack3" forSprite:_trainJim];
             _waitToSwitch = 0.4f;
             _trainPhase = TRAIN_PHASE_ACCELERATE;
             _phase = phase;
             //[_door setActive:NO];
             break;
+        case FINAL_BOSS_ATTACK_1E:
+            _destinationX = -600;
+            _phase = phase;
+            break;
             
             
-            //bomb attack
+        //bomb attack
         case FINAL_BOSS_ATTACK_2:
-            if (!_inAttack) {
-                [[AnimationController sharedController] replaceSprite:_trainJim withAnimationNamed:@"darkBossJimBombAttack1"];
+            if ([self canTrigger:FINAL_BOSS_ATTACK_2]) {
+                [self changeToAnimationNamed:@"darkBossJimBombAttack1" forSprite:_trainJim];
                 _waitToSwitch = 1.6f; 
                 _hasThrownBomb = false;
                 _phase = phase;
@@ -228,41 +278,45 @@
             if (_bomb!=nil) {
                 [_bomb release];
             }
-            [[AnimationController sharedController] replaceSprite:_trainJim withAnimationNamed:@"darkBossJimBombAttack1Release"];
+            [self changeToAnimationNamed:@"darkBossJimBombAttack1Release" forSprite:_trainJim];
             _bomb = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_DARK_BOMB];
-            [_bomb throwBombFromPosition:CGPointMake(_trainPosition.x - 62.0f, _trainPosition.y + 40.0f)];
+            
+            CGPoint position = [[Camera sharedCamera] convertToWorldXY:CGPointMake(_trainPosition.x - 62.0f, _trainPosition.y + 40.0f)];
+            [_bomb throwBombFromPosition:position];
             _waitToSwitch = 0.4f;
             _phase = phase;
             break;
             
             
-            //grape attack
+        //grape attack
         case FINAL_BOSS_ATTACK_3:
-            if (!_inAttack) {
-                [[AnimationController sharedController] replaceSprite:_trainJim withAnimationNamed:@"darkBossJimGrapeAttack1Show"];
+            if ([self canTrigger:FINAL_BOSS_ATTACK_3]) {
+                [self changeToAnimationNamed:@"darkBossJimGrapeAttack1Show" forSprite:_trainJim];
                 _waitToSwitch = 1.6f; 
                 _hasThrownBomb = false;
                 _phase = phase;
             }
             break;
         case FINAL_BOSS_ATTACK_3B:
-            [[AnimationController sharedController] replaceSprite:_trainJim withAnimationNamed:@"darkBossJimGrapeAttack2Eat"];
+            [self changeToAnimationNamed:@"darkBossJimGrapeAttack2Eat" forSprite:_trainJim];
             _waitToSwitch = 0.6f;
             _phase = phase;
             break;
             
             
-            //fake grapes bomb attack
+            
+            
+        //fake grapes bomb attack
         case FINAL_BOSS_ATTACK_4:
-            if (!_inAttack) {
-                [[AnimationController sharedController] replaceSprite:_trainJim withAnimationNamed:@"darkBossJimGrapeAttack1Show"];
+            if ([self canTrigger:FINAL_BOSS_ATTACK_4]) {
+                [self changeToAnimationNamed:@"darkBossJimGrapeAttack1Show" forSprite:_trainJim];
                 _waitToSwitch = 1.6f; 
                 _hasThrownBomb = false;
                 _phase = phase;
             }
             break;
         case FINAL_BOSS_ATTACK_4B:
-            [[AnimationController sharedController] replaceSprite:_trainJim withAnimationNamed:@"darkBossJimGrapeAttack3Bomb"];
+            [self changeToAnimationNamed:@"darkBossJimGrapeAttack3Bomb" forSprite:_trainJim];
             _waitToSwitch = 0.4f;
             _phase = phase;            
             break;
@@ -270,79 +324,119 @@
             if (_bomb!=nil) {
                 [_bomb release];
             }
-            [[AnimationController sharedController] replaceSprite:_trainJim withAnimationNamed:@"darkBossJimBombAttack1Release"];
+            [self changeToAnimationNamed:@"darkBossJimBombAttack1Release" forSprite:_trainJim];
             _bomb = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_DARK_BOMB];
             [_bomb throwBombFromPosition:CGPointMake(_trainPosition.x - 62.0f, _trainPosition.y + 40.0f)];
             _waitToSwitch = 0.4f;
             _phase = phase;
             break;
             
-            
-            //others
-        case FINAL_BOSS_ENTER:
-            _trainPosition = CGPointMake(_player.x - 900,165); //230,135
-            [self updatePosition:_trainPosition];
-            [self setVisible:YES];
-            _trainPhase = TRAIN_PHASE_ACCELERATE;
-            _speed = 200.0f;
-            _inAttack = false;
-            _phase = phase;
-            break;
         case FINAL_BOSS_DIE:
             break;
         case FINAL_BOSS_IDLE:
-            _trainPhase = TRAIN_PHASE_ACCELERATE;
-            
-            //in case it's moving too slow when finished, speed it back up again
-            if (_speed < 250.0f) {
-                _speed = 250.0f;                
-            }
             _inAttack = false;
             _phase = phase;
-            
+            [self changeToAnimationNamed:@"darkBossJimIdle1" forSprite:_trainJim];
+            [self triggerNextPhase];
             break;
         default:
             break;
     }
 }
 
+-(bool)canTrigger:(FinalBossPhase)phase
+{
+    if (!_inAttack) {
+        return true;
+    } else {
+        [_queuedPhases addObject:[NSNumber numberWithInt:phase]];
+        return false;
+    }
+}
+
+-(void)triggerNextPhase
+{
+    FinalBossPhase phase;
+    
+    if ([_queuedPhases count] > 0) {
+        phase = [[_queuedPhases objectAtIndex:0] intValue];
+        [_queuedPhases removeObjectAtIndex:0];
+        [self triggerAction:phase];
+    }
+}
 
 -(void)update:(float)dt
 {
     if (_resetSpriteVisibility) {
         [self resetSpriteVisibility];
     }
-    
     switch (_phase) {
-        case FINAL_BOSS_ATTACK_1:
-        case FINAL_BOSS_ATTACK_1B:
-        case FINAL_BOSS_ATTACK_1C:
-        case FINAL_BOSS_ATTACK_2:
-        case FINAL_BOSS_ATTACK_2B:
-        case FINAL_BOSS_ATTACK_3:
-        case FINAL_BOSS_ATTACK_3B:
-        case FINAL_BOSS_ATTACK_4:
-        case FINAL_BOSS_ATTACK_4B:
-        case FINAL_BOSS_ATTACK_4C:
-            if ([self checkWait:dt]) {
+        case FINAL_BOSS_MOVE_TO_LEFT:
+            if ([self moveLeft:dt]) {
                 [self finishedPhase];
             }
             break;
-        case FINAL_BOSS_ENTER:
-            [self updateBossEntrance:dt];
+        case FINAL_BOSS_MOVE_TO_BOMBING:
+        case FINAL_BOSS_MOVE_TO_RIGHT:
+            if([self moveRight:dt]) {
+                [self finishedPhase];
+            }
+            break;
+        case FINAL_BOSS_ATTACK_1B:
+        case FINAL_BOSS_ATTACK_1C:
+        case FINAL_BOSS_ATTACK_1D:
+        case FINAL_BOSS_ATTACK_2:
+        case FINAL_BOSS_ATTACK_2B:
+        case FINAL_BOSS_ATTACK_2C:
+        case FINAL_BOSS_ATTACK_3:
+        case FINAL_BOSS_ATTACK_3B:
+        case FINAL_BOSS_ATTACK_3C:
+        case FINAL_BOSS_ATTACK_4:
+        case FINAL_BOSS_ATTACK_4B:
+        case FINAL_BOSS_ATTACK_4C:
+        case FINAL_BOSS_ATTACK_4D:
+            if ([self checkWait:dt]) {
+                [self finishedPhase];
+            }
             break;
             
         default:
             break;
     }
     
-    [_bomb update:dt];
+    [_bomb update:dt * _speedModifier];
     
     [_door setPosition:CGPointMake(_trainPosition.x, _trainPosition.y - 50.0f)];
     
-    [self moveForward:dt];
+    [self updatePosition:_trainPosition];
 }
 
+
+-(bool)moveRight:(float)dt
+{
+    bool returnVal = false;
+    
+    _trainPosition.x += 400.0f * dt * _speedModifier;
+    if (_trainPosition.x >= _destinationX) {
+        _trainPosition.x = _destinationX;
+        returnVal = true;
+    }
+    
+    return returnVal;
+}
+
+-(bool)moveLeft:(float)dt
+{
+    bool returnVal = false;
+    
+    _trainPosition.x -= 500.0f * dt * _speedModifier;
+    if (_trainPosition.x <= _destinationX) {
+        _trainPosition.x = _destinationX;
+        returnVal = true;
+    }    
+    
+    return returnVal;
+}
 
 -(void)updateBossEntrance:(float)dt
 {
@@ -355,17 +449,24 @@
 
 -(void)updatePosition:(CGPoint)position
 {
-    [_train setPosition:position];
-    [_trainWheels setPosition:CGPointMake(position.x - 268.0f,position.y - 118.0f)];
-    [_trainJim setPosition:CGPointMake(position.x - 268.0f,position.y - 118.0f)];
+    [_train setScreenPosition:position];
+    [_trainWheels setScreenPosition:CGPointMake(position.x - 268.0f,position.y - 118.0f)];
+    [_trainJim setScreenPosition:CGPointMake(position.x - 268.0f,position.y - 118.0f)];
     
+}
+
+-(void)changeToAnimationNamed:(NSString*)animName forSprite:(Sprite*)sprite
+{
+    [[AnimationController sharedController] replaceSprite:sprite withAnimationNamed:animName];
+    [[sprite getAnimation] changeAnimationSpeed:_speedModifier];
 }
 
 
 -(void) reset
 {
-    [self triggerAction:FINAL_BOSS_ENTER];
-    [[AnimationController sharedController] replaceSprite:_trainJim withAnimationNamed:@"darkBossJimIdle1"];
+    _trainPosition = ccp(-1500,TRAIN_Y_POSITION);
+    [self triggerAction:FINAL_BOSS_IDLE];
+    //[self changeToAnimationNamed:@"darkBossJimIdle1" forSprite:_trainJim];
     _resetSpriteVisibility = true;
 }
 

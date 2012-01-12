@@ -35,6 +35,8 @@ typedef enum {
     
     FinalBossPhase _phase;
     
+    NSMutableArray *_queuedPhases;
+    
     TrainPhase _trainPhase;
     
     //weak reference
@@ -45,6 +47,7 @@ typedef enum {
     bool _inAttack;
     bool _hasThrownBomb;
     
+    float _destinationX;
     float _speed;
     float _speedModifier;
     float _waitToSwitch;
@@ -58,7 +61,12 @@ typedef enum {
 -(void)updatePosition:(CGPoint)position;
 -(void)addSpritesToLayer:(id)layer SpriteBatch:(CCSpriteBatchNode*)spriteBatch;
 -(void)moveForward:(float)dt;
+-(bool)moveRight:(float)dt;
+-(bool)moveLeft:(float)dt;
 -(void)finishedPhase;
 -(bool)checkWait:(float)dt;
 -(void)testCollisions:(Projectile*)projectile;
+-(bool)canTrigger:(FinalBossPhase)phase;
+-(void)triggerNextPhase;
+-(void)changeToAnimationNamed:(NSString*)animName forSprite:(Sprite*)sprite;
 @end

@@ -196,8 +196,8 @@
 {
     [_sprite setPosition:position];
     [[_sprite getCCSprite] setVisible:YES];
-    _vy = 200.0f;        //was 30.0f;
-    _vx = 130.0f;
+    _vy = 230.0f;        //was 30.0f;
+    _vx = 140.0f;
     _x = position.x;
     _y = position.y;
     _angularVelocity = 8;
