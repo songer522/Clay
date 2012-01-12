@@ -326,6 +326,7 @@
 		5491677A14643E3900DFA191 /* computerLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5491677614643E3900DFA191 /* computerLevel-hd.png */; };
 		5491677B14643E3900DFA191 /* computerLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5491677714643E3900DFA191 /* computerLevel.plist */; };
 		5491677C14643E3900DFA191 /* computerLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 5491677814643E3900DFA191 /* computerLevel.png */; };
+		549513D014BF8D4E007C1D2F /* PlayerActionDetonate.m in Sources */ = {isa = PBXBuildFile; fileRef = 549513CF14BF8D4E007C1D2F /* PlayerActionDetonate.m */; };
 		549D84D91469DE9100A3599F /* chooseLevel-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 549D84D51469DE9100A3599F /* chooseLevel-hd.plist */; };
 		549D84DA1469DE9100A3599F /* chooseLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 549D84D61469DE9100A3599F /* chooseLevel-hd.png */; };
 		549D84DB1469DE9100A3599F /* chooseLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 549D84D71469DE9100A3599F /* chooseLevel.plist */; };
@@ -1077,6 +1078,8 @@
 		5491677614643E3900DFA191 /* computerLevel-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "computerLevel-hd.png"; sourceTree = "<group>"; };
 		5491677714643E3900DFA191 /* computerLevel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = computerLevel.plist; sourceTree = "<group>"; };
 		5491677814643E3900DFA191 /* computerLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = computerLevel.png; sourceTree = "<group>"; };
+		549513CE14BF8D4E007C1D2F /* PlayerActionDetonate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerActionDetonate.h; sourceTree = "<group>"; };
+		549513CF14BF8D4E007C1D2F /* PlayerActionDetonate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerActionDetonate.m; sourceTree = "<group>"; };
 		549D84D51469DE9100A3599F /* chooseLevel-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "chooseLevel-hd.plist"; path = "../menu/chooseLevel-hd.plist"; sourceTree = "<group>"; };
 		549D84D61469DE9100A3599F /* chooseLevel-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "chooseLevel-hd.png"; path = "../menu/chooseLevel-hd.png"; sourceTree = "<group>"; };
 		549D84D71469DE9100A3599F /* chooseLevel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = chooseLevel.plist; path = ../menu/chooseLevel.plist; sourceTree = "<group>"; };
@@ -2594,6 +2597,8 @@
 				545CE69C146C1AA9003EC9C1 /* PlayerActionBlock.m */,
 				54767C4F147C08660025F46F /* PlayerActionBlow.h */,
 				54767C50147C08660025F46F /* PlayerActionBlow.m */,
+				549513CE14BF8D4E007C1D2F /* PlayerActionDetonate.h */,
+				549513CF14BF8D4E007C1D2F /* PlayerActionDetonate.m */,
 				549ED7DC1461D065008BCD98 /* PlayerActionDodge.h */,
 				549ED7DD1461D065008BCD98 /* PlayerActionDodge.m */,
 				549ED7DE1461D065008BCD98 /* PlayerActionFactory.h */,
@@ -3604,6 +3609,7 @@
 				548D7A8614B97D3D00BE26FB /* BossFinal.m in Sources */,
 				544360C414BE08E4007AFB0B /* EndLevelLayer.m in Sources */,
 				54A9910E14BE67D700741281 /* PassengerCar.m in Sources */,
+				549513D014BF8D4E007C1D2F /* PlayerActionDetonate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

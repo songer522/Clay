@@ -81,5 +81,6 @@ typedef enum {
 -(void)triggerGetCloser;
 -(void)triggerAction:(FinalBossPhase)phase;
 -(void)addSpritesToLayer:(id)layer SpriteBatch:(CCSpriteBatchNode*)spriteBatch;
+-(void)detonateBombs;
 -(NSMutableArray*)getProjectilesForDebugDraw;
 @end

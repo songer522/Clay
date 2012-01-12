@@ -65,6 +65,11 @@
     [[AnimationController sharedController] replaceSprite:_trainJim withAnimationNamed:@"darkBossJimIdle1"];
 }
 
+-(void)detonateBombs
+{
+    [_bomb startCollision];
+}
+
 -(NSMutableArray*)getProjectilesForDebugDraw
 {
     NSMutableArray *array = [[NSMutableArray alloc] initWithObjects:_bomb, nil];
@@ -419,8 +424,6 @@
     
     return returnVal;
 }
-
-
 
 
 

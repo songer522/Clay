@@ -72,4 +72,6 @@ typedef enum {
 -(bool)canTrigger:(FinalBossPhase)phase;
 -(void)triggerNextPhase;
 -(void)changeToAnimationNamed:(NSString*)animName forSprite:(Sprite*)sprite;
+-(void)detonateBombs;
+
 @end
