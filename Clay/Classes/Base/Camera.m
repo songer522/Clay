@@ -65,16 +65,7 @@ static Camera *_sharedCamera = nil;
 
     //restrict the camera in certain levels
     //IPAD FIX: may need a different greater height for ipad, since the ipad has more pixels in the y plane.
-    //NSString *levelName = level.name;
-    
-    /*
-    if ([levelName isEqualToString:@"level8"]) {
-        rect.size.height = 330;
-    } else {
-        rect.size.height = 320;
-    }
-     */
-      rect.size.height = 320;
+    rect.size.height = 320;
     _boundary = rect;
     
     CGSize winSize = [[CCDirector sharedDirector] winSize];
@@ -225,12 +216,15 @@ static Camera *_sharedCamera = nil;
     
     if (_target != nil) {
         
+        /*
         float rate;
         if (onGround) {
             rate = 1.0f;
         } else {
             rate = 0.1f;
-        }
+        }*/
+        
+        
         
         CGPoint position = [_target getPosition];
         dx = (position.x - _x);
@@ -246,7 +240,7 @@ static Camera *_sharedCamera = nil;
                 _x += (magnitude * (dx/distance));
             }
             if (dy!=0) {
-                _y += rate * (magnitude * (dy/distance));                
+                _y += (magnitude * (dy/distance));                
             }
             
         } else {

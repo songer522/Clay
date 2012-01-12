@@ -224,8 +224,11 @@
     int medal = [self getMedalNumberForLevelNamed:levelName Time:bestTime];
     float requiredTime = [self getTimeForNextMedalForLevelNamed:levelName BestTime:bestTime];
     
-    [panel setNextMedal:(medal+1) RequiredTime:[TrackTimer getTimeStringFromFloat:requiredTime]];
+    NSString *requiredTimeText = [TrackTimer getTimeStringFromFloat:requiredTime];
+    [panel setNextMedal:(medal+1) RequiredTime:requiredTimeText];
     [panel loadObjectsAfterDataInit:self];
+    
+    [requiredTimeText release];
     
     return panel;
 }
@@ -484,7 +487,7 @@
     [_levelToSwitchTo release];
     _gameMode = nil;
     _gameDifficulty = nil;
-    [_bestTime release];
+    [_bestTime release]; //autoreleased
     [_background release];
     [_panelBackground release];
     [_selector release];

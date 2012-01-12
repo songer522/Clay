@@ -22,18 +22,25 @@
 -(void)initialize
 {
     _cooldown = 0.0f;
-    _cooldownStart = 0.4f;
+    _cooldownStart = 0.05f;
     _player = [[LayerManager sharedLayers] getPlayer];
+    _sprite = [Sprite spriteCenteredWithFrame:@"Level10_Anchor.png"];
+    [[_sprite getCCSprite] setVisible:NO];
+    _alpha = 0.0f;
 }
 
 -(void)startAction
 {
+    if([_parent.skin isCurrentAnimationOfType:PLAYER_ANIM_HURTING]){return;}
     if (!_inAction && _canTrigger) {
         [super startAction];
         //[_parent endTurbo:false];
-        [_parent setPlayerAnimation:PLAYER_ANIM_SPIN];
+        //[_parent setPlayerAnimation:PLAYER_ANIM_SPIN];
         //[_parent setPlayerAnimation:PLAYER_ANIM_SPIN_UP];
+        
         [[SoundEngine shared] playSound:@"waterSwimAction"];
+        [[_sprite getCCSprite] setVisible:YES];
+        [_sprite setAlpha:0.0f];
         _duration = 10.75f;
     }
 }
@@ -47,6 +54,8 @@
     }
     _duration = 0.0f;
     _parent.hasGravity=true;
+    
+    [[_sprite getCCSprite] setVisible:NO];
     
     [super endAction];    
 }
@@ -64,6 +73,7 @@
             [_parent setPlayerAnimation:PLAYER_ANIM_RUNNING];            
         }
     }
+    [[_sprite getCCSprite] setVisible:NO];
 
     [super cancelAction];
 }
@@ -73,9 +83,25 @@
 {
     if (!_inAction) {
         _isActive = false;
+        
+        if(_alpha > 0.0f) {
+            _alpha -= 10.0f * dt;
+            if (_alpha <= 0.0f) {
+                _alpha = 0.0f;
+            }
+            [_sprite setAlpha:_alpha];
+        }
     } else {
         _isActive = true;
 
+        if(_alpha < 1.0f) {
+            _alpha += 4.0f * dt;
+            if (_alpha >= 1.0f) {
+                _alpha = 1.0f;
+            }
+            [_sprite setAlpha:_alpha];
+        }
+        
         //IPAD FIX: check when on the ground, also double-check the player velocities are accurate (should swim down right pretty quickly)
         if (_player.y <= SPIN_PLAYER_GROUND_Y) {
             [self endAction];
@@ -85,6 +111,8 @@
                 [_player setVy:100.0f];
             }
             _player.vy += 10.0f * dt;
+            
+            [_sprite setPosition:ccp(_player.x - 0.0f, _player.y + 45.0f)];
         }
     }
     [super update:dt];

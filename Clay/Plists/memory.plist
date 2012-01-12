@@ -5,11 +5,11 @@
 	<key>gameScene</key>
 	<dict>
 		<key>animations</key>
-		<string>hud</string>
+		<string>hud,endLevel</string>
 		<key>sounds</key>
 		<string>jumpLand,turboStart,dead,collision,jumpStart,pause,lowBattery,batteryFullCharge,timCollision,timHurt,steppedInSand,doubleJump,checkpoint,endLevel,healthGained</string>
 		<key>textures</key>
-		<string>hudGraphics2</string>
+		<string>hudGraphics2,endLevelLayer</string>
 	</dict>
 	<key>launch</key>
 	<dict>
@@ -163,7 +163,7 @@
 		<key>sounds</key>
 		<string>darkSlowTimeAction,darkBats,darkGargoyle,darkShadowLaugh,darkSpikes</string>
 		<key>textures</key>
-		<string>darkLevel,characterSlowTime</string>
+		<string>darkLevel,darkLevel2</string>
 	</dict>
 	<key>mainMenu</key>
 	<dict>

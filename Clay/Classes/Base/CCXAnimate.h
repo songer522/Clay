@@ -17,11 +17,13 @@
     int _totalFrames;
     float _totalTime;
     bool _paused;
+    bool _looping;
     float _speed;
 }
 
 @property(nonatomic,assign) int frame;
 @property(nonatomic,assign) bool paused;
+@property(nonatomic,assign) bool looping;
 @property(nonatomic,readonly,assign) int totalFrames;
 
 +(id) actionWithAnimation: (CCAnimation*)anim restoreOriginalFrame:(BOOL)b;

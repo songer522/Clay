@@ -90,6 +90,7 @@
 //	// Enables High Res mode (Retina Display) on iPhone 4 and maintains low res on all other devices
 	if( ! [director enableRetinaDisplay:[GameSettings shouldUseRetinaForDevice]] )
 		CCLOG(@"Retina Display Not supported");
+
 	
 	//
 	// VERY IMPORTANT:
@@ -174,7 +175,7 @@
 -(void) applicationWillEnterForeground:(UIApplication*)application {
 	
     [[CCDirector sharedDirector] startAnimation];
-    [Appirater appEnteredForeground:YES];
+    //[Appirater appEnteredForeground:YES];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -195,6 +196,17 @@
 
 - (void)applicationSignificantTimeChange:(UIApplication *)application {
 	[[CCDirector sharedDirector] setNextDeltaTimeZero:YES];
+}
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    
+    // Return YES for supported orientations
+    
+	
+    //return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
+          //  interfaceOrientation == UIInterfaceOrientationLandscapeRight );
+    
+	// eg: Support 4 orientations
+	return YES;
 }
 
 

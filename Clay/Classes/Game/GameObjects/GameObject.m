@@ -52,6 +52,7 @@
 @synthesize collideWithPlayer =_collideWithPlayer;
 @synthesize hasAppeared = _hasAppeared;
 @synthesize useDefaultBatchNode = _useDefaultBatchNode;
+@synthesize isVisible = _isVisible;
 
 
 + (id) objectWithSprite:(Sprite*)sprite
@@ -345,6 +346,27 @@
                 _collided = false;
             }
             break;
+        case COLLISION_BEHAVIOR_WATER_HEALTH_BUBBLE_1:
+            if([[_player getThirdAction] inAction]) {
+                [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"waterHealth1BreakAnim"];
+                _alpha = 2.0f;
+                [[_player getThirdAction] setKilledEnemy:true];
+
+            } else {
+                _alpha = 1.2f;
+            }
+            _fadeout = true;
+            break;
+        case COLLISION_BEHAVIOR_WATER_HEALTH_BUBBLE_2:
+            if([[_player getThirdAction] inAction]) {
+                [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"waterHealth2BreakAnim"];
+                _alpha = 2.0f;
+                [[_player getThirdAction] setKilledSuperEnemy:true];
+            } else {
+                _alpha = 1.2f;
+            }
+            _fadeout = true;
+            break;
         case COLLISION_BEHAVIOR_WATER_SQUID_FADES:
         case COLLISION_BEHAVIOR_FIREBALL_LANDED:
         case COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR:
@@ -399,11 +421,12 @@
 
 -(void)update:(float)dt
 {
-    if (!_isStutterMode && !_boss) {
+    if (!_boss) {
         if ([[Camera sharedCamera ] isInVisualRange:_x]) {
             if (!_isVisible) {
                 [[_sprite getCCSprite] setVisible:YES];
                 if(_projectile!=nil){
+                    [self setPositionAtX:_x Y:_y];
                     [[_projectile getCCSprite] setVisible:YES];
                 }
                 [[_sprite getCCSprite] resumeSchedulerAndActions];
@@ -610,14 +633,14 @@
             break;
         case COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENING:
             frame = [[_sprite getAnimation] getCurrentFrameNumber];
-            if (frame<8) {
-                int heightOffset = MAX(0,frame - 4) * 13.0f;
+            if (frame<7) {
+                int heightOffset = MAX(0,frame - 4) * 5.0f;
                 [self setBoundingBox:CGRectMake(40,2,25,30 + heightOffset)];
-            } else if(frame == 8)
+            } else if(frame == 7)
             {
                 _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENED;
                 [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"zombieMysteryBoxOpenedAnim"];
-                [self setBoundingBox:CGRectMake(40, 2, 25, 90)];
+                [self setBoundingBox:CGRectMake(40, 2, 25, 45)];
             }
             break;
         case COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_FALLS:
@@ -807,6 +830,7 @@
             
             if([self closeToPlayer:550] && ![self closeToPlayer:300])
             {
+                /*
                 if (_isActive)
                 {
                 int frame = [[_sprite getAnimation] getCurrentFrameNumber];
@@ -817,6 +841,15 @@
                 }
                 _vy = _direction * 30.0f; 
                 }
+                 */
+                if(_waitToTrigger<=0)
+                {
+                    _waitToTrigger=0.5;
+                    _direction  =-1 * _direction;
+                }
+                _waitToTrigger -=dt;
+                
+                _vy = _direction * 30.0f;
                
             } 
             
@@ -836,6 +869,7 @@
               {
                  [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"waterPufferFishAnim3"];
               }
+                /*
                 if(_isActive)
                 {
                 int frame = [[_sprite getAnimation] getCurrentFrameNumber];
@@ -846,6 +880,16 @@
                 }
                 _vy = _direction * 30.0f; 
                 }
+                 */
+                if(_waitToTrigger<=0)
+                {
+                    _waitToTrigger=0.5;
+                    _direction  =-1 * _direction;
+                }
+                _waitToTrigger -=dt;
+                
+                _vy = _direction * 30.0f;
+                
             }
             
             break;
@@ -882,7 +926,7 @@
                     [_projectile setPosition:CGPointMake(_x, _y)];
                     [_projectile reset];
                     [_projectile setPosition:CGPointMake(_x - 12.0f, _y - 28.0f)];
-                    [_projectile shootWithSpeed:160.0f atAngle:(_angle - 190.0f)];
+                    [_projectile shootWithSpeed:160.0f atAngle:(_angle - 200.0f)];//190
                     [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"waterSquidAttackAnim"];
                     _hasTriggered = true;
                     _currentBehavior = COLLISION_BEHAVIOR_WATER_SQUID_RETREATS;
@@ -900,6 +944,13 @@
                 }
             }
             break;
+        case COLLISION_BEHAVIOR_WATER_HEALTH_BUBBLE_1:
+        case COLLISION_BEHAVIOR_WATER_HEALTH_BUBBLE_2:
+            if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+                _vy = -10.0f;                
+            }
+            break;
+            
         
         ////////////////////////
         //LEVEL 11 - FINAL RUN
@@ -1125,10 +1176,11 @@
 -(void) reset
 {
     if (_boss!=nil) { 
-        [_boss reset];
+        //[_boss reset];
         return;
     }
     _collideWithPlayer=false;
+    //_isVisible=true;
     _isActive = true;
     _angle = 0.0f;
     _vx = 0;
@@ -1296,10 +1348,21 @@
         [self setBoundingBox:CGRectMake(37, 2, 14, 45)];
         [_projectile setPosition:ccp(-31.0f,-13.0f)];
     }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_HEALTH_BUBBLE_1) {
+        _currentBehavior = COLLISION_BEHAVIOR_WATER_HEALTH_BUBBLE_1;
+    }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_HEALTH_BUBBLE_2) {
+        _currentBehavior = COLLISION_BEHAVIOR_WATER_HEALTH_BUBBLE_2;
+    }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_FINAL_BOSS) {
+        _currentBehavior = COLLISION_BEHAVIOR_FINAL_BOSS;
+        _collideBehavior = COLLISION_BEHAVIOR_FINAL_BOSS;
+    }
     else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_SLOW) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;     
     }
     _collided = false;
+    
 }
 
 -(Collision*) getCollision
@@ -1369,10 +1432,11 @@
         [_boss setSprite:_sprite];
         [_boss startBoss];
     } else if([behavior isEqualToString:@"finalBoss"]) {
-        _collideBehavior = COLLISION_BEHAVIOR_NONE;
-        _boss = [BossFactory buildWithType:BOSS_FINAL_JIM];
+        _boss = [BossFactory buildWithType:BOSS_FINAL_BOSS];
         [_boss setSprite:_sprite];
         [_boss startBoss];
+        _currentBehavior = COLLISION_BEHAVIOR_FINAL_BOSS;
+        _collideBehavior = COLLISION_BEHAVIOR_FINAL_BOSS;
     } else if([behavior isEqualToString:@"retroStatic"]) {
         _collideBehavior = COLLISION_BEHAVIOR_RETRO_HURDLE;
         _currentBehavior = COLLISION_BEHAVIOR_RETRO_SHOT_FROM_CANNON;
@@ -1495,7 +1559,7 @@
         _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_FIRE_FOXFIRE];
         [_projectile reset];
         [_projectile setAttachedTo:self];
-        [_projectile setPosition:ccp(-31.0f,-13.0f)];
+        [_projectile setPosition:ccp(-31.0f,0.0f)];
         [_projectile setBoundingBox:CGRectMake(15,15,30,30)];
         [_projectile setInitialVelocity];
         _projectilePersists = true;
@@ -1505,12 +1569,20 @@
         _collideBehavior = COLLISION_BEHAVIOR_WATER_SQUID_FADES;
         _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_WATER_SQUID_INK];
         [_projectile reset];
-        [_projectile setBoundingBox:CGRectMake(10,10,20,20)];
+        [_projectile setBoundingBox:CGRectMake(10,45,20,30)];
         _projectilePersists = true;
     }
     else if([behavior isEqualToString:@"tronika"]) {
         _currentBehavior = COLLISION_BEHAVIOR_WATER_TRONIKA_CHASE;
         _collideBehavior = COLLISION_BEHAVIOR_WATER_TRONIKA_CHASE;
+    }
+    else if([behavior isEqualToString:@"waterHealth1"]) {
+        _currentBehavior = COLLISION_BEHAVIOR_WATER_HEALTH_BUBBLE_1;
+        _collideBehavior = COLLISION_BEHAVIOR_WATER_HEALTH_BUBBLE_1;
+    }
+    else if([behavior isEqualToString:@"waterHealth2"]) {
+        _currentBehavior = COLLISION_BEHAVIOR_WATER_HEALTH_BUBBLE_2;
+        _collideBehavior = COLLISION_BEHAVIOR_WATER_HEALTH_BUBBLE_2;
     }
     else {
         _collideBehavior = COLLISION_BEHAVIOR_NONE;

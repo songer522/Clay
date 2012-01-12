@@ -1,5 +1,65 @@
 Track Lapse Changelog
 
+Build 120110.01
+==================
+
+* Global - fixed bug where hitting the jump and sprint buttons at the exact same time would give an incorrect location 
+* Global - battery fixed to show the correct graphics and refresh properly
+* Global - fixed a bug where Tim was allowed to double jump when he was just above ground, stopping him in a sprint
+* Global - default leader board category when first opening is now for best times today instead of best time of all time
+* Global - fixed the obstacles disappearing after respawning at a checkpoint
+* Level 4 - updated tileset to add static dancers to background
+* Level 6 - mystery box no longer fully extends when shot and can now be double-jumped over
+* Level 11 - bomb attack updated to look more realistic
+* Level 11 - added grape eating "attack"
+* Level 11 - added grapes switching to a bomb attack (no collision)
+* Level 11 - fixed the train slowing down after every attack
+* Level 11 - demo level for low res and high res for to show all attacks
+
+
+Build 120109.01
+==================
+
+* Global - death pits in all levels (except the demo level 11) are now at least 3 tiles long
+* Global - Achievements won't pop up if you've already earned it
+* Global - going to the pause menu no longer saves everything to disk and updates the data on game center
+* Global - notification windows are working in landscape now
+* Level 10 - the disappearing Tronikas *might* be fixed (haven't tested, but changed the 
+* Level 10 - removed some of the coral that showed up in death pits where they shouldn't
+* Level 10 - when Tim gets hurt, it will stop him from sprinting
+* Level 10 - Jump button will always be green after a jump
+* Level 10 - Death pits will not suck Tim in until he is half way in the death pit
+* Level 10 - When Tim gets hurt, it will show the hurt animation for a half second to show the player that they cannot use the action at that time
+* Level 11 - old boss stripped out of the level, along with the hanging bats, mine cart ledges, gargoyles, and gargoyle eggs
+* Level 11 - new tileset graphic to make the colors more intense
+* Level 11 - new final boss, jim in a train. catches up to Tim once triggered, and tries to keep up with Tim at all times. probably needs to be more aggressive than current settings
+* Level 11 - added jim door attack, but no collision detection currently
+* Level 11 - started bomb attack, he'll show the bomb and throw it, but no collision detection and there's still issues with how it looks
+
+Build 120108.01
+==================
+
+* Choose Level - fixed memory leak
+* Global - Tim no longer snaps to ledges unless he's falling over them.
+* Global - The hiccup just before the level ends has been fixed by shifting when the achievement information is sent to game center until after the black bars close down
+* Level 4 - all background dancers removed to get 60 fps
+* Level 8 - fixed bug where Tim couldn't reliably do the blow action while on the ledge
+* Level 8 - size of fireball shrunk to 85% of its original size
+* Level 8 - fire animation around firefox risen to make it more obvious that the player should double jump
+* Level 9 - new level designs for all modes
+* Level 9 - fixed the squirrel going invisible, and should have also fixed any remaining objects popping in while doing so. NOTE: the fix is not efficient, and this code should be rewritten at some point.
+* Level 9 - water puddles added to the end of the level to tie in with the end level comic
+* Level 10 - added health bubbles that can be attacked by the diving action for health
+* Level 10 - replaced diving sound
+* Level 10 - diving action now shows the anchor
+* Level 10 - new level designs for all modes
+* Level 10 - tileset graphic updated to remove a thin white line in the background
+* Level 10 - pufferfish don't start moving until they're onscreen now, so their vertical position is more predictable by the player
+* Optimization - looping animations did not need a stricter and more time consuming test that cocos2d uses to determine when to switch frames. we just keep track of the number and check against that, which is much faster
+* Optimization - switched some tests for the level name each update to check against the level number instead, which is faster
+
+
+
 Build 120106.02
 ==================
 

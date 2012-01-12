@@ -35,6 +35,7 @@
 #import "CreditsScene.h"
 #import "Camera.h"
 
+
 #define DEBUG_DRAW_BOUNDING_BOXES 0
 @interface GameLayer()
 
@@ -309,8 +310,10 @@
             }
             
             [_savePoint restoreSavePoint:_player];
-            _player.isDead = false;
-            [_player rechargeBattery];
+            
+            //already called in reset
+            //[_player rechargeBattery];
+            //_player.isDead = false; //needs to be after recharge battery, because it checks this
             
             [_level resetObstacles];
             [_level resetTriggers:false];
@@ -360,6 +363,27 @@
             case TRIGGER_BOSS_FINALJIM_SPAWN:
                 [_boss switchToPhase:BOSS_PHASE_CHASE_INIT];
                 break;
+            case TRIGGER_FINAL_BOSS_ENTER:
+                [_boss triggerAction:FINAL_BOSS_MOVE_TO_BOMBING];
+                break;
+            case TRIGGER_FINAL_BOSS_EXITS:
+                [_boss triggerAction:FINAL_BOSS_MOVE_TO_RIGHT];
+                break;
+            case TRIGGER_FINAL_BOSS_DIE:
+                [_boss triggerAction:FINAL_BOSS_DIE];
+                break;
+            case TRIGGER_FINAL_BOSS_ATTACK1:
+                [_boss triggerAction:FINAL_BOSS_ATTACK_1];
+                break;
+            case TRIGGER_FINAL_BOSS_ATTACK2:
+                [_boss triggerAction:FINAL_BOSS_ATTACK_2];
+                break;
+            case TRIGGER_FINAL_BOSS_ATTACK3:
+                [_boss triggerAction:FINAL_BOSS_ATTACK_3];
+                break;
+            case TRIGGER_FINAL_BOSS_ATTACK4:
+                [_boss triggerAction:FINAL_BOSS_ATTACK_4];
+                break;
             default:
                 break;
         }
@@ -377,7 +401,7 @@
     
     [[ComicManager shared] startComic:_level.postLevelComicName];
     [ComicManager shared].loadNextLevel = true;
-    [self saveAndReportToGameCenter];
+    //[self saveAndReportToGameCenter];
     [self checkHasBeenHit];
 }
 
@@ -397,6 +421,7 @@
     for(UITouch *touch in allTouches) {
         InputEvent *event = [InputEvent inputEventWithType:INPUT_EVENT_TYPE_TOUCHES_BEGAN];
         [event setReceiver:_gameController];
+        [event setTotalTouches:[allTouches count]];
         [event setTouchLocation:[self convertTouchToNodeSpace:touch]];
         [_inputController interpretAndReactToInputEvent:event];
     }
@@ -408,10 +433,10 @@
     for(UITouch *touch in allTouches) {
         InputEvent *event = [InputEvent inputEventWithType:INPUT_EVENT_TYPE_TOUCHES_ENDED];
         [event setReceiver:_gameController];
+        [event setTotalTouches:[allTouches count]];
         [event setTouchLocation:[self convertTouchToNodeSpace:touch]];
         [_inputController interpretAndReactToInputEvent:event];
     }
-    
 }
 
 
@@ -432,7 +457,7 @@
     }
     
     _handledPauseEvent = true;
-    [self saveAndReportToGameCenter];
+    //[self saveAndReportToGameCenter];
 }
 
 -(void)onEnter
@@ -688,6 +713,12 @@
     
     
 }
+
+-(GameDebugLayer*)getDebugLayer
+{
+    return _debugLayer;
+}
+
 -(void)checkHasBeenHit
 {
      NSString *mode = [[GameSettings shared] getGlobalForKey:@"gameMode"];

@@ -57,7 +57,7 @@
 
     if (_rightRegion !=nil) {
         for (GameObject *object in _leftRegion) {
-            [[object getCCSprite] setVisible:NO];
+            //[[object getCCSprite] setVisible:NO];
             [object moveToStartingPosition];
         }        
     }
@@ -79,8 +79,11 @@
 
     if (_leftRegion !=nil) {
         for (GameObject *object in _leftRegion) {
-            [[object getCCSprite] setVisible:NO];
-        }        
+            /*
+            if(!object.persistsBetweenRegions) {
+                [[object getCCSprite] setVisible:NO];
+            }
+                */     }        
     }
     
     if (_combinedRegion!=nil) {
@@ -98,14 +101,14 @@
     //create combined region from left and right region
     _combinedRegion = [[NSMutableSet alloc] initWithCapacity:10];    
     for (GameObject *object in _leftRegion) {
-        [[object getCCSprite] setVisible:YES];
+        //[[object getCCSprite] setVisible:YES];
         [_combinedRegion addObject:object];
         if (object.persistsBetweenRegions) {
             [_persistentObjects addObject:object];
         }
     }
     for(GameObject *object in _rightRegion) {
-        [[object getCCSprite] setVisible:YES];
+        //[[object getCCSprite] setVisible:YES];
         [_combinedRegion addObject:object];
         if (object.persistsBetweenRegions) {
             [_persistentObjects addObject:object];

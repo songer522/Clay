@@ -13,6 +13,7 @@
 
 @synthesize frame = _frame;
 @synthesize paused = _paused;
+@synthesize looping = _looping;
 @synthesize totalFrames = _totalFrames;
 
 
@@ -28,6 +29,8 @@
 	if( (self=[super initWithAnimation:anim restoreOriginalFrame:b]) ) {
         _totalTime = 0.0f;
         _speed = 1.0f;
+        _frame = -1;
+        _looping = false;
 	}
 	return self;
 }
@@ -41,18 +44,30 @@
 
     _totalFrames = numberOfFrames;
     
-    NSUInteger idx = t * _speed * numberOfFrames;
+    //NSUInteger idx = t * _speed * numberOfFrames;
+    NSUInteger idx = t * numberOfFrames;
     
     if (idx >= numberOfFrames) {
         idx = numberOfFrames - 1;
     }
     
-    _frame = idx;
     
     CCSprite *sprite = target_;
-    if (![sprite isFrameDisplayed:[frames objectAtIndex:idx]]) {
-        [sprite setDisplayFrame:[frames objectAtIndex:idx]];
+    
+    
+    if(_looping) {
+        //this optimization seems to work only with looping
+        if (idx!=_frame) {
+            [sprite setDisplayFrame:[frames objectAtIndex:idx]];
+        }
+    } else {
+        if (![sprite isFrameDisplayed:[frames objectAtIndex:idx]]) {
+            [sprite setDisplayFrame:[frames objectAtIndex:idx]];            
+        }
     }
+    
+    _frame = idx;
+    
 }
 
 -(void)setFrame:(int)frame

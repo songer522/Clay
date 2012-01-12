@@ -29,6 +29,7 @@
 #import "TextureManager.h"
 #import "RegionManager.h"
 #import "PlayerAction.h"
+#import "Boss.h"
 
 @implementation Level
 
@@ -106,6 +107,7 @@
         
         _collisionHandler = [CollisionDetection collisionHandlerWithMetaLayer:_meta Map:_map];
         
+        _levelNumber = [[levelName substringFromIndex:5] intValue];
         
         NSString *mode = [[GameSettings shared] getGlobalForKey:@"gameMode"];
         if([mode isEqualToString:@"timed"]) {
@@ -453,7 +455,49 @@
                     
                     trigger.canBeReset = true;
                     [_triggers addObject:trigger];
-                }
+                } else if([special isEqualToString:@"finalBossEnters"]) {
+                    Trigger *trigger = [[Trigger alloc] init];
+                    trigger.position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
+                    trigger.type = TRIGGER_FINAL_BOSS_ENTER;
+                    trigger.canBeReset = false;
+                    [_triggers addObject:trigger];
+                } else if([special isEqualToString:@"finalBossExits"]) {
+                    Trigger *trigger = [[Trigger alloc] init];
+                    trigger.position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
+                    trigger.type = TRIGGER_FINAL_BOSS_EXITS;
+                    trigger.canBeReset = true;
+                    [_triggers addObject:trigger];
+                } else if([special isEqualToString:@"finalBossDies"]) {
+                    Trigger *trigger = [[Trigger alloc] init];
+                    trigger.position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
+                    trigger.type = TRIGGER_FINAL_BOSS_DIE;
+                    trigger.canBeReset = false;
+                    [_triggers addObject:trigger];                    
+                } else if([special isEqualToString:@"finalBossAttack1"]) {
+                    Trigger *trigger = [[Trigger alloc] init];
+                    trigger.position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
+                    trigger.type = TRIGGER_FINAL_BOSS_ATTACK1;
+                    trigger.canBeReset = true;
+                    [_triggers addObject:trigger];
+                } else if([special isEqualToString:@"finalBossAttack2"]) {
+                    Trigger *trigger = [[Trigger alloc] init];
+                    trigger.position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
+                    trigger.type = TRIGGER_FINAL_BOSS_ATTACK2;
+                    trigger.canBeReset = true;
+                    [_triggers addObject:trigger];
+                } else if([special isEqualToString:@"finalBossAttack3"]) {
+                    Trigger *trigger = [[Trigger alloc] init];
+                    trigger.position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
+                    trigger.type = TRIGGER_FINAL_BOSS_ATTACK3;
+                    trigger.canBeReset = true;
+                    [_triggers addObject:trigger];                    
+                } else if([special isEqualToString:@"finalBossAttack4"]) {
+                    Trigger *trigger = [[Trigger alloc] init];
+                    trigger.position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
+                    trigger.type = TRIGGER_FINAL_BOSS_ATTACK4;
+                    trigger.canBeReset = true;
+                    [_triggers addObject:trigger];                    
+                }    
             }
 
             NSString *obstacle = [self getPropertyForTileCoords:coords forKey:@"obstacle"];
@@ -521,6 +565,11 @@
         if (!mapObject.placed && [mapObject.layerAbove isEqualToString:layer.layerName]) {
             mapObject.parallaxRatio = ratio;
             [[[LayerManager sharedLayers] currentLayer] addChild:[mapObject.object getCCSprite]];
+            
+            //add the rest of the train parts here
+            if ([mapObject.object getCurrentCollisionBehavior] == COLLISION_BEHAVIOR_FINAL_BOSS) {
+                [[mapObject.object getBoss] addSpritesToLayer:[[LayerManager sharedLayers] currentLayer] SpriteBatch:_obstacleSpriteBatch];
+            }
             
             mapObject.placed = true;
             
@@ -829,21 +878,24 @@
     [_obstacleManager changeRegionsBasedOnX:(playerPos.x - 384)];
     //[_backgroundManager changeRegionsBasedOnX:(playerPos.x - 128)];
     
+    /*
     NSMutableArray *obstacles = [_obstacleManager getActiveGameObjectList];
     for (GameObject *obstacle in obstacles) {
         [obstacle update:dt];
-    }
+    }*/
     
     //NSMutableArray *objects = [_backgroundManager getActiveGameObjectList];
     //for (GameObject *object in objects) {
     //    [object update:dt];
     //}
+
+    for (MapObject *object in _obstacleMapObjects) {
+        [object.object update:dt];
+    }
+
     
     for (MapObject *object in _otherMapObjects) {
         [object.object update:dt];
-        //TODO: should be calling setposition. this is resulting in 
-        //background objects not moving in parallax.
-        //[object setPosition:CGPointMake(_x, _y)];
     }
     
 }
@@ -1000,7 +1052,7 @@
         
     }
      */
-    else if([_name isEqualToString:@"level7"])
+    else if(_levelNumber == 7)
     {
         if ([GCState sharedInstance].viruesHit < maxHit) {
             [GCState sharedInstance].viruesHit++;
@@ -1075,6 +1127,11 @@
 
 
 
+}
+
+-(bool)isLevelNumber:(int)number
+{
+    return (number == _levelNumber);
 }
 
 

@@ -132,6 +132,19 @@
                 _isBehindObstacle = true;
                 _isAggressive = false;
                 break;
+            case PROJECTILE_BEHAVIOR_DARK_BOMB:
+                _sprite = [Sprite spriteWithFile:@"blank.png"];
+                [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"darkBossJimBombAttack2"];
+                [_sprite getCCSprite].anchorPoint = ccp(0.5f,0.5f);
+                [[_sprite getCCSprite] setVisible:NO];
+                _offscreenPadding = 100.0f;
+                _hasGravity = true;
+                _offsetGroundDetectionY = -10.0f;
+                _isAggressive = false;
+                break;
+            case PROJECTILE_BEHAVIOR_DARK_TRAIN_DOOR:
+                _sprite = [Sprite spriteWithFile:@"blank.png"];
+                break;
             default:
                 break;                
                 
@@ -171,9 +184,25 @@
         case PROJECTILE_BEHAVIOR_WATER_SQUID_INK:
             //call shootWithSpeed instead
             break;
+        case PROJECTILE_BEHAVIOR_DARK_BOMB:
+            //call throwBomb instead
+            break;
         default:
             break;                
     }        
+}
+
+-(void) throwBombFromPosition:(CGPoint)position
+{
+    [_sprite setPosition:position];
+    [[_sprite getCCSprite] setVisible:YES];
+    _vy = 230.0f;        //was 30.0f;
+    _vx = 140.0f;
+    _x = position.x;
+    _y = position.y;
+    _angularVelocity = 8;
+    _isActive = true;
+    [self setBoundingBox:CGRectMake(30, 30, 60, 60)];
 }
 
 //so far, used only by squid ink
@@ -321,6 +350,8 @@
         [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"zombieHeartSquishAnim"];
     } else if(_behavior == PROJECTILE_BEHAVIOR_WATER_SQUID_INK) {
         [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"waterSquidInkLandAnim"];
+    } else if(_behavior == PROJECTILE_BEHAVIOR_DARK_BOMB) {
+        [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"darkBossJimBombAttack3"];
     }
 }
 
@@ -379,7 +410,7 @@
         } else {
             if(_behavior == PROJECTILE_BEHAVIOR_FIRE_FOXFIRE) {
                 [_sprite move:CGPointMake(50.0f * dt, 0.0f * dt)];
-            } else if (_behavior!=PROJECTILE_BEHAVIOR_ZOMBIE_HEAD && _behavior!=PROJECTILE_BEHAVIOR_ZOMBIE_HEART && _behavior!=PROJECTILE_BEHAVIOR_WATER_SQUID_INK) {
+            } else if (_behavior!=PROJECTILE_BEHAVIOR_ZOMBIE_HEAD && _behavior!=PROJECTILE_BEHAVIOR_ZOMBIE_HEART && _behavior!=PROJECTILE_BEHAVIOR_WATER_SQUID_INK && _behavior != PROJECTILE_BEHAVIOR_DARK_BOMB) {
                 [_sprite move:CGPointMake(100.0f *dt, 200.0f*dt)];                
             }
         }
@@ -397,16 +428,23 @@
         float y = _y + _vy * dt;
         
         if (_hasGravity && y <= (85.0f + _offsetGroundDetectionY)) {
-            y = 85.0f + _offsetGroundDetectionY;
-            _vy = 0.0f;
-            _angularVelocity *= 0.92f;
-            _vx *= 0.92f;
-            
-            if (_behavior == PROJECTILE_BEHAVIOR_ZOMBIE_HEAD) {
+            if (_behavior == PROJECTILE_BEHAVIOR_DARK_BOMB) {
+                [self startCollision];
+                _isActive = false;
+            } else if (_behavior == PROJECTILE_BEHAVIOR_ZOMBIE_HEAD) {
+                y = 85.0f + _offsetGroundDetectionY;
+                _vy = 0.0f;
                 _angle = 0.0f;
+                _vx *= 0.92f;
                 _angularVelocity = 0.0f;
                 [_sprite getCCSprite].rotation = _angle;
+            } else {
+                y = 85.0f + _offsetGroundDetectionY;
+                _vy = 0.0f;
+                _angularVelocity *= 0.92f;
+                _vx *= 0.92f;
             }
+
         }
 
         CGPoint newPosition = CGPointMake(x, y);

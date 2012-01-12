@@ -74,7 +74,13 @@ static ComicManager *_shared = nil;
 
 -(void)startComic:(NSString*)comic
 {
-    [self startComic:comic StartPhase:COMIC_PHASE_BARS_IN];
+    NSString *mode = [[GameSettings shared] getGlobalForKey:@"gameMode"];
+    if ([mode isEqualToString:@"timed"]) {
+        //[self startComic:comic StartPhase:COMIC_PHASE_SHOW_END_LEVEL];
+        [self startComic:comic StartPhase:COMIC_PHASE_BARS_IN];
+    } else {
+        [self startComic:comic StartPhase:COMIC_PHASE_BARS_IN];
+    }
 }
 
 -(void)startComic:(NSString*)comic StartPhase:(ComicPhase)phase
@@ -122,6 +128,9 @@ static ComicManager *_shared = nil;
     _phase = phase;
     if (_isActive) {
         switch (phase) {
+            case COMIC_PHASE_SHOW_END_LEVEL:
+                [gameLayer.gameController endLevel];
+                break;
             case COMIC_PHASE_BARS_IN:
                 [_comicLayer setVisible:YES];
                 [_comicLayer startTransition:BLACKBOX_IN];
@@ -154,6 +163,8 @@ static ComicManager *_shared = nil;
                 if(_loadNextLevel)
                 {
                     [[LevelManager shared] loadNextLevel];
+                 
+                   
                 }
                 [Camera sharedCamera].trackingTarget = false;
                 [[Camera sharedCamera] snapToTarget];
@@ -174,7 +185,9 @@ static ComicManager *_shared = nil;
                 gameLayer.visible = true;
                 [_comicLayer startTransition:BLACKBOX_OUT];
                 gameLayer.gameController.isInputEnabled = false;
+                [gameLayer saveAndReportToGameCenter];
                 [[gameLayer getHud] fadeIn];
+              
                 break;
             case COMIC_PHASE_PLAY_LEVEL:
                 gameLayer.gameController.isInputEnabled = true;
@@ -203,6 +216,9 @@ static ComicManager *_shared = nil;
 
     if (_isActive) {
         switch (_phase) {
+            case COMIC_PHASE_SHOW_END_LEVEL:
+                [self switchToPhase:COMIC_PHASE_BARS_IN];
+                break;
             case COMIC_PHASE_BARS_IN:
                // [Appirater appEnteredForeground:YES];
                 

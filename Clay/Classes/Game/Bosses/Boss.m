@@ -89,5 +89,20 @@
     
 }
 
+-(void)triggerAction:(FinalBossPhase)phase
+{
+    
+}
+
+-(NSMutableArray*)getProjectilesForDebugDraw
+{
+    return nil;
+}
+
+-(void)addSpritesToLayer:(id)layer SpriteBatch:(CCSpriteBatchNode*)spriteBatch
+{
+    
+}
+
 
 @end

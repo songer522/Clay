@@ -90,6 +90,8 @@
 
 -(NSMutableArray*)getGameObjectsList;
 
+-(GameDebugLayer*)getDebugLayer;
+
 -(void)recordTimesdied;
 -(void)saveAndReportToGameCenter;
 -(void)checkHasBeenHit;

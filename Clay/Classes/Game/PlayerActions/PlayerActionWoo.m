@@ -67,8 +67,9 @@
     {
         [_parent changeHealth:2];
         _isCheering = false;
+    } else {
+        [_parent changeHealth:1];        
     }
-    [_parent changeHealth:1];
     [[_parent getSpeed] setVelocityModifier:1.0f];
     [self countWhoo];
        [super endAction];

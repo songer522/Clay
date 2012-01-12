@@ -12,6 +12,21 @@
 
 #import "Collidable.h"
 
+typedef enum {
+    LEVEL_1 = 1,
+    LEVEL_2 = 2,
+    LEVEL_3 = 3,
+    LEVEL_4 = 4,
+    LEVEL_5 = 5,
+    LEVEL_6 = 6,
+    LEVEL_7 = 7,
+    LEVEL_8 = 8,
+    LEVEL_9 = 9,
+    LEVEL_10 = 10,
+    LEVEL_11 = 11
+}LevelNumberType;
+
+
 @class GameObject;
 @class CollisionDetection;
 @class Player;
@@ -20,6 +35,8 @@
 @class GameObjectController;
 @class GameLayer;
 @class Player;
+
+
 
 @interface Level : NSObject
 {
@@ -50,6 +67,10 @@
     bool _isTimedMode;
     
     
+    
+    
+    
+    
     //any triggers in the level
     NSMutableArray *_triggers;
     
@@ -73,6 +94,7 @@
     GameLayer *_gameLayer;
     Player *_player;
     
+    LevelNumberType _levelNumber;
     
     float _x;
     float _y;
@@ -120,6 +142,8 @@
 -(void)resetTriggers:(bool)isRestartingLevel;
 -(Trigger*)testTriggers:(Player*)player;
 -(void)unloadLevel;
+
+-(bool)isLevelNumber:(int)number;
 
 -(void)setHudButtonsAndThirdAction:(NSString*)action;
 

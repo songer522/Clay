@@ -25,7 +25,10 @@
 -(void)initialize
 {
     _cooldown = 0.0f;
-    _cooldownStart = 0.4f;
+    _cooldownStart = 1.4f;
+    
+    _sprite = [Sprite spriteWithFile:@"blank.png"];
+    [[_sprite getCCSprite] setVisible:NO];
     
     GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
     _boss = [gameLayer getBoss];
@@ -40,14 +43,15 @@
         
         [self updateSlowdown:0.2f];
         _duration = 5.00f;
-        [_parent setPlayerAnimation:PLAYER_ANIM_SLOWTIME];
-        [[_parent getSpeed] startBlow];
-        [[_parent getSpeed] stop];
+        _waitToHideSprite = 0.9f;
+
+        //[_parent setPlayerAnimation:PLAYER_ANIM_SLOWTIME];
         [[_parent getSpeed] setVelocityModifier:0.8f];
         
-        [[SoundEngine shared] playSound:@"darkSlowTimeAction"];
+        [[_sprite getCCSprite] setVisible:YES];
+        [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"slowTimeAnim"];
         
-        [_boss triggerFallBack];
+        [[SoundEngine shared] playSound:@"darkSlowTimeAction"];
         
     }
 }
@@ -57,23 +61,18 @@
     [self updateSlowdown:1.0f];
     [[_parent getSpeed] setVelocityModifier:1.0f];
     [self setKilledEnemy:YES];
+    
+    [[_sprite getCCSprite] setVisible:NO];
     [super endAction];
+    
 }
 
 -(void)cancelAction
 {
-    //this gets called when the player hits something, so we use this to tell the boss to get closer
-    [_boss triggerGetCloser];
-    
-    
-    
     //NOTE: for now, can't be cancelled
     //if this gets undone in the future, keep in mind you'll need to write an exception for
     //slowdowns, because they call 'startcollision' constantly, which calls cancelAction
     return;
-    
-    //[self updateSlowdown:1.0f];
-    //[super cancelAction];
 }
 
 
@@ -83,6 +82,15 @@
         _isActive = false;
     } else {
         _isActive = true;
+        //[_sprite setPosition:ccp(_player.x - 0.0f, _player.y + 45.0f)];
+        [_sprite setPosition:ccp(_parent.x - 70.0f, _parent.y)];
+        
+        if (_waitToHideSprite > 0.0f) {
+            _waitToHideSprite -= dt;
+            if (_waitToHideSprite <=0.0f) {
+                [[_sprite getCCSprite] setVisible:NO];
+            }
+        }
     }
     [super update:dt];
 }

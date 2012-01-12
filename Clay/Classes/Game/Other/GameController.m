@@ -13,6 +13,7 @@
 #import "HudLayer.h"
 #import "GameSettings.h"
 #import "ComicManager.h"
+#import "EndLevelLayer.h"
 
 @implementation GameController
 
@@ -28,6 +29,7 @@
     if (self) {
         // Initialization code here.
         _isPaused = false;
+        _isEndLevel = false;
         _isInputEnabled = true;
         _isSprintEnabled = true;
         _isHandlingPause = false;
@@ -42,7 +44,7 @@
     return [[self alloc] init];
 }
 
--(void)reactToTouchAt:(CGPoint)location InputType:(InputType)type
+-(void)reactToTouchAt:(CGPoint)location InputType:(InputType)type TouchCount:(int)touchCount
 {
     //guards
     if (_gameLayer.inComic) {
@@ -58,7 +60,7 @@
     if (!_isInputEnabled || _handledPauseEvent) { return; }
     
     //if (location.x > 200 && location.x < 280 && location.y > 270) { //top center
-    if (location.x > 0 && location.x < 100 && location.y > 260) { //top center
+    if (touchCount == 1 && location.x > 0 && location.x < 100 && location.y > 260) { //top center
         if (type == INPUT_TOUCH_END) {
             [self pauseGame];            
         }
@@ -70,9 +72,8 @@
         //this is causing issues with endJump being called when it shouldn't, like when
         //the spin action is called
         if (type == INPUT_TOUCH_END && result == HUD_BUTTON_JUMP) {
-         
-                [_gameLayer.player endJump];
-            return;
+         [_gameLayer.player endJump];
+             return;
         }
         
         switch (result) {
@@ -155,10 +156,26 @@
     _handledPauseEvent = true;
 }
 
+-(void)endLevel
+{
+    if (!_isEndLevel) {
+        _endLevelLayer = [EndLevelLayer instance];
+        _endLevelLayer.gameController = self;
+        _isEndLevel = true;
+        //[[SoundEngine shared] playSound:@"pause"];
+        _gameLayer.isTouchEnabled = false;
+    } else {
+        [[[LayerManager sharedLayers] currentScene] removeChild:_endLevelLayer cleanup:NO];
+        _isEndLevel = false;
+        _gameLayer.isTouchEnabled = true;
+    }
+}
+
 -(void)dealloc
 {
     _gameLayer = nil;
     [_pauseMenu release];
+    [_endLevelLayer release];
     _hud = nil;
     [super dealloc];
 }

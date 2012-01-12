@@ -57,6 +57,6 @@
 
 -(CCSprite*)getCCSprite;
 -(void)reset;
-
+-(void)resetHealthIcons;
 
 @end
