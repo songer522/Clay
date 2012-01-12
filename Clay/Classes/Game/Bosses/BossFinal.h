@@ -15,6 +15,7 @@
 @class Level;
 @class GameLayer;
 @class Projectile;
+@class PassengerCar;
 
 typedef enum {
     TRAIN_PHASE_ACCELERATE,
@@ -26,6 +27,8 @@ typedef enum {
     Sprite *_train;
     Sprite *_trainWheels;
     Sprite *_trainJim;
+    
+    
     
     Projectile *_bomb;
     Projectile *_door;
@@ -43,6 +46,8 @@ typedef enum {
     Player *_player;
     GameLayer *_gameLayer;
     
+    PassengerCar *_passengerCar;
+    
     bool _resetSpriteVisibility;
     bool _inAttack;
     bool _hasThrownBomb;
@@ -57,10 +62,8 @@ typedef enum {
 -(void)setVisible:(bool)isVisible;
 -(void)setAlpha:(float)alpha;
 -(void)resetSpriteVisibility;
--(void)updateBossEntrance:(float)dt;
 -(void)updatePosition:(CGPoint)position;
 -(void)addSpritesToLayer:(id)layer SpriteBatch:(CCSpriteBatchNode*)spriteBatch;
--(void)moveForward:(float)dt;
 -(bool)moveRight:(float)dt;
 -(bool)moveLeft:(float)dt;
 -(void)finishedPhase;

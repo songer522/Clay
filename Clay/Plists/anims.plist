@@ -410,6 +410,23 @@
 		<key>spritesheetPlist</key>
 		<string>darkLevel</string>
 	</dict>
+	<key>darkBossPassengerWheelAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>4,5,6</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.05</string>
+		<key>group</key>
+		<string>level11</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>FinalBoss_2_Wheel</string>
+		<key>spritesheetPlist</key>
+		<string>darkLevel</string>
+	</dict>
 	<key>darkBossJimIdle1</key>
 	<dict>
 		<key>animationFrames</key>
@@ -447,11 +464,11 @@
 	<key>darkBossJimBombAttack1Release</key>
 	<dict>
 		<key>animationFrames</key>
-		<string>5,5,1,1,1,1</string>
+		<string>5,5,5,5,1,2,1,2,1,2,1,2</string>
 		<key>clearPreviousAnims</key>
 		<string>true</string>
 		<key>delay</key>
-		<string>0.2</string>
+		<string>0.1</string>
 		<key>group</key>
 		<string>level11</string>
 		<key>looping</key>
@@ -515,7 +532,7 @@
 	<key>darkBossJimGrapeAttack2Eat</key>
 	<dict>
 		<key>animationFrames</key>
-		<string>14,15,16,16,16</string>
+		<string>14,15,16,16,16,16,1,2,1,2,1,2,1,2</string>
 		<key>clearPreviousAnims</key>
 		<string>true</string>
 		<key>delay</key>
@@ -532,7 +549,7 @@
 	<key>darkBossJimGrapeAttack3Bomb</key>
 	<dict>
 		<key>animationFrames</key>
-		<string>6,7,8,9,3,3,3,3</string>
+		<string>6,7,8,9,3,3,3,3,1,2,1,2,1,2,1,2</string>
 		<key>clearPreviousAnims</key>
 		<string>true</string>
 		<key>delay</key>

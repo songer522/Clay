@@ -202,6 +202,7 @@
     _y = position.y;
     _angularVelocity = 8;
     _isActive = true;
+    [self setBoundingBox:CGRectMake(30, 30, 60, 60)];
 }
 
 //so far, used only by squid ink

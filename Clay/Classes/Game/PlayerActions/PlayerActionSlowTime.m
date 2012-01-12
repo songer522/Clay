@@ -25,7 +25,7 @@
 -(void)initialize
 {
     _cooldown = 0.0f;
-    _cooldownStart = 0.4f;
+    _cooldownStart = 1.4f;
     
     _sprite = [Sprite spriteWithFile:@"blank.png"];
     [[_sprite getCCSprite] setVisible:NO];

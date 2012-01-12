@@ -14,12 +14,13 @@
 #import "GameLayer.h"
 #import "GameDebugLayer.h"
 #import "Projectile.h"
+#import "PassengerCar.h"
 
 #define BOSS_FINAL_MAX_TRAIN_X 230.0f
 
 #define TRAIN_OFFSCREEN_LEFT -600.0f
 #define TRAIN_OFFSCREEN_RIGHT 1200.0f
-#define TRAIN_BOMB_POSITION 250.0f
+#define TRAIN_BOMB_POSITION 230.0f
 #define TRAIN_Y_POSITION 132.0f
 
 @implementation BossFinal
@@ -31,6 +32,9 @@
     _gameLayer = [[LayerManager sharedLayers] currentLayer];
     
     _queuedPhases = [[NSMutableArray alloc] initWithCapacity:10];
+
+    _passengerCar = [PassengerCar instance];
+    [_passengerCar setPosition:CGPointMake(-90.0f, 0.0f)];
     
     _trainWheels = [Sprite spriteWithFile:@"blank.png" AddToLayer:NO];
     _trainJim = [Sprite spriteWithFile:@"blank.png" AddToLayer:NO];
@@ -41,6 +45,7 @@
     _door = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_DARK_TRAIN_DOOR];
     [_door setBoundingBox:CGRectMake(20, 12, 14, 25)];
     [_door setActive:YES];
+    
     
     _bomb = nil;
     
@@ -53,6 +58,7 @@
 
 -(void)addSpritesToLayer:(id)layer SpriteBatch:(CCSpriteBatchNode*)spriteBatch
 {
+    [_passengerCar addToLayer:layer];
     [layer addChild:[_trainWheels getCCSprite]];
     [[AnimationController sharedController] replaceSprite:_trainWheels withAnimationNamed:@"darkBossWheelAnim"];
     [layer addChild:[_trainJim getCCSprite]];
@@ -61,7 +67,7 @@
 
 -(NSMutableArray*)getProjectilesForDebugDraw
 {
-    NSMutableArray *array = [[NSMutableArray alloc] initWithObjects:_door, nil];
+    NSMutableArray *array = [[NSMutableArray alloc] initWithObjects:_bomb, nil];
     return array;
 }
 
@@ -129,33 +135,6 @@
     }
 }
 
-
-
--(void)moveForward:(float)dt
-{
-    if(_trainPhase == TRAIN_PHASE_BRAKE) {
-        _speed -= 90.0f * dt;
-        _speed = MAX(0.0f, _speed);
-    }
-    
-    _trainPosition.x += _speed * _speedModifier * dt;        
-    [_train setPosition:_trainPosition];
-    
-    CGPoint position = [_train getCCSprite].position;
-    float dx = position.x - BOSS_FINAL_MAX_TRAIN_X;
-    if (dx > 0) {
-        _trainPosition.x -= dx;
-        _speed -= 40.0f * dt;
-    } else {
-        _speed += 40.0f * dt;
-        /*
-        if(_speed > 350.0f) {
-            _speed = 350.0f;
-        }*/
-    }
-    [self updatePosition:_trainPosition];
-    
-}
 
 
 -(void)resetSpriteVisibility
@@ -240,7 +219,6 @@
             break;
         case FINAL_BOSS_ATTACK_1B:
             [self changeToAnimationNamed:@"darkBossJimDoorAttack1" forSprite:_trainJim];
-            _trainPhase = TRAIN_PHASE_BRAKE;
             _inAttack = true;
             _waitToSwitch = 0.4f;
             _speed = 120.0f;
@@ -255,7 +233,6 @@
         case FINAL_BOSS_ATTACK_1D:
             [self changeToAnimationNamed:@"darkBossJimDoorAttack3" forSprite:_trainJim];
             _waitToSwitch = 0.4f;
-            _trainPhase = TRAIN_PHASE_ACCELERATE;
             _phase = phase;
             //[_door setActive:NO];
             break;
@@ -299,7 +276,7 @@
             break;
         case FINAL_BOSS_ATTACK_3B:
             [self changeToAnimationNamed:@"darkBossJimGrapeAttack2Eat" forSprite:_trainJim];
-            _waitToSwitch = 0.6f;
+            _waitToSwitch = 1.6f;
             _phase = phase;
             break;
             
@@ -327,7 +304,7 @@
             [self changeToAnimationNamed:@"darkBossJimBombAttack1Release" forSprite:_trainJim];
             _bomb = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_DARK_BOMB];
             [_bomb throwBombFromPosition:CGPointMake(_trainPosition.x - 62.0f, _trainPosition.y + 40.0f)];
-            _waitToSwitch = 0.4f;
+            _waitToSwitch = 0.8f;
             _phase = phase;
             break;
             
@@ -383,8 +360,6 @@
             }
             break;
         case FINAL_BOSS_ATTACK_1B:
-        case FINAL_BOSS_ATTACK_1C:
-        case FINAL_BOSS_ATTACK_1D:
         case FINAL_BOSS_ATTACK_2:
         case FINAL_BOSS_ATTACK_2B:
         case FINAL_BOSS_ATTACK_2C:
@@ -399,16 +374,23 @@
                 [self finishedPhase];
             }
             break;
-            
+        case FINAL_BOSS_ATTACK_1C:
+        case FINAL_BOSS_ATTACK_1D:
+            if ([self checkWait:dt]) {
+                [self finishedPhase];
+            }
+            [self moveLeft:0.5f * dt];            
         default:
             break;
     }
     
     [_bomb update:dt * _speedModifier];
+    [self testCollisions:_bomb];
     
     [_door setPosition:CGPointMake(_trainPosition.x, _trainPosition.y - 50.0f)];
     
     [self updatePosition:_trainPosition];
+    [_passengerCar updatePosition:_trainPosition];
 }
 
 
@@ -438,11 +420,6 @@
     return returnVal;
 }
 
--(void)updateBossEntrance:(float)dt
-{
-}
-
-
 
 
 
@@ -466,6 +443,7 @@
 {
     _trainPosition = ccp(-1500,TRAIN_Y_POSITION);
     [self triggerAction:FINAL_BOSS_IDLE];
+    _inAttack = false;
     //[self changeToAnimationNamed:@"darkBossJimIdle1" forSprite:_trainJim];
     _resetSpriteVisibility = true;
 }

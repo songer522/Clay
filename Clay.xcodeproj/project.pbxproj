@@ -463,6 +463,7 @@
 		54A60BDE1483E55F00EA2F3B /* settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54A60BDD1483E55F00EA2F3B /* settings.plist */; };
 		54A64A32146809D200853CFF /* BossJimShip.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A64A31146809D200853CFF /* BossJimShip.m */; };
 		54A6F28114B54BF60004BA13 /* ComboAttack.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A6F28014B54BF60004BA13 /* ComboAttack.m */; };
+		54A9910E14BE67D700741281 /* PassengerCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A9910D14BE67D700741281 /* PassengerCar.m */; };
 		54ABFD7114630876006F0C88 /* menuTextures-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54ABFD6D14630876006F0C88 /* menuTextures-hd.plist */; };
 		54ABFD7214630876006F0C88 /* menuTextures-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54ABFD6E14630876006F0C88 /* menuTextures-hd.png */; };
 		54ABFD7314630876006F0C88 /* menuTextures.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54ABFD6F14630876006F0C88 /* menuTextures.plist */; };
@@ -1289,6 +1290,8 @@
 		54A64A31146809D200853CFF /* BossJimShip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BossJimShip.m; sourceTree = "<group>"; };
 		54A6F27F14B54BF60004BA13 /* ComboAttack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComboAttack.h; sourceTree = "<group>"; };
 		54A6F28014B54BF60004BA13 /* ComboAttack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComboAttack.m; sourceTree = "<group>"; };
+		54A9910C14BE67D700741281 /* PassengerCar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PassengerCar.h; sourceTree = "<group>"; };
+		54A9910D14BE67D700741281 /* PassengerCar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PassengerCar.m; sourceTree = "<group>"; };
 		54ABFD6D14630876006F0C88 /* menuTextures-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "menuTextures-hd.plist"; path = "../menu/menuTextures-hd.plist"; sourceTree = "<group>"; };
 		54ABFD6E14630876006F0C88 /* menuTextures-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menuTextures-hd.png"; path = "../menu/menuTextures-hd.png"; sourceTree = "<group>"; };
 		54ABFD6F14630876006F0C88 /* menuTextures.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = menuTextures.plist; path = ../menu/menuTextures.plist; sourceTree = "<group>"; };
@@ -2471,6 +2474,8 @@
 				54A6F28014B54BF60004BA13 /* ComboAttack.m */,
 				548D7A8414B97D3D00BE26FB /* BossFinal.h */,
 				548D7A8514B97D3D00BE26FB /* BossFinal.m */,
+				54A9910C14BE67D700741281 /* PassengerCar.h */,
+				54A9910D14BE67D700741281 /* PassengerCar.m */,
 			);
 			path = Bosses;
 			sourceTree = "<group>";
@@ -3598,6 +3603,7 @@
 				54A6F28114B54BF60004BA13 /* ComboAttack.m in Sources */,
 				548D7A8614B97D3D00BE26FB /* BossFinal.m in Sources */,
 				544360C414BE08E4007AFB0B /* EndLevelLayer.m in Sources */,
+				54A9910E14BE67D700741281 /* PassengerCar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
