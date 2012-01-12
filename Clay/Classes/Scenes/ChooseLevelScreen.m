@@ -218,7 +218,7 @@
     _levelNumber=levelNumber;
     _bestTime= [self getTimestringForFloat:bestTime];
     ChooseLevelPanel *panel = [ChooseLevelPanel instance];
-    [panel setBestTime:_bestTime];
+    [panel setBestTime:[self getTimestringForFloat:bestTime]];
     [panel setLevelDataByNumber:levelNumber];
     
     int medal = [self getMedalNumberForLevelNamed:levelName Time:bestTime];
@@ -348,7 +348,7 @@
 
 -(NSString*)getTimestringForFloat:(float)time
 {
-    return [[TrackTimer getTimeStringFromFloat:time] autorelease];
+    return [TrackTimer getTimeStringFromFloat:time];
 }
 - (void)sendEasyTweet:(NSString*)tweet
 {
@@ -487,7 +487,7 @@
     [_levelToSwitchTo release];
     _gameMode = nil;
     _gameDifficulty = nil;
-    _bestTime = nil; //autoreleased
+    [_bestTime release]; //autoreleased
     [_background release];
     [_panelBackground release];
     [_selector release];

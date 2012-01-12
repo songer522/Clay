@@ -926,7 +926,7 @@
                     [_projectile setPosition:CGPointMake(_x, _y)];
                     [_projectile reset];
                     [_projectile setPosition:CGPointMake(_x - 12.0f, _y - 28.0f)];
-                    [_projectile shootWithSpeed:160.0f atAngle:(_angle - 190.0f)];
+                    [_projectile shootWithSpeed:160.0f atAngle:(_angle - 200.0f)];//190
                     [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"waterSquidAttackAnim"];
                     _hasTriggered = true;
                     _currentBehavior = COLLISION_BEHAVIOR_WATER_SQUID_RETREATS;
@@ -1569,7 +1569,7 @@
         _collideBehavior = COLLISION_BEHAVIOR_WATER_SQUID_FADES;
         _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_WATER_SQUID_INK];
         [_projectile reset];
-        [_projectile setBoundingBox:CGRectMake(10,10,20,20)];
+        [_projectile setBoundingBox:CGRectMake(10,45,20,30)];
         _projectilePersists = true;
     }
     else if([behavior isEqualToString:@"tronika"]) {
