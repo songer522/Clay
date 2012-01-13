@@ -256,6 +256,7 @@
     [_menuButton setAlpha:_alpha];
     [_finalTimeText setAlpha:_alpha];
     [_finalTimePanel setAlpha:_alpha];
+    [_timeHeaderText setAlpha:_alpha];
     
     [_replayButton update:dt];
     [_menuButton update:dt];
