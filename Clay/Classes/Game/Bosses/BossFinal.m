@@ -21,6 +21,7 @@
 #define TRAIN_OFFSCREEN_LEFT -600.0f
 #define TRAIN_OFFSCREEN_RIGHT 1200.0f
 #define TRAIN_BOMB_POSITION 230.0f
+#define TRAIN_DOOR_POSITION 310.0f
 #define TRAIN_Y_POSITION 132.0f
 
 @implementation BossFinal
@@ -71,7 +72,7 @@
 -(void)throwBomb
 {
     Projectile *bomb = [_bombs objectAtIndex:_replaceBombId];
-    _replaceBombId = (_replaceBombId + 1) % 3;
+    _replaceBombId = (_replaceBombId + 1) % 6;
     
     CGPoint position = [[Camera sharedCamera] convertToWorldXY:CGPointMake(_trainPosition.x - 62.0f, _trainPosition.y + 40.0f)];
     [bomb reset];
@@ -81,9 +82,10 @@
 -(void)throwGrape
 {
     Projectile *grape = [_grapes objectAtIndex:_replaceGrapeId];
-    _replaceGrapeId = (_replaceGrapeId + 1) % 3;
+    _replaceGrapeId = (_replaceGrapeId + 1) % 6;
     
     CGPoint position = [[Camera sharedCamera] convertToWorldXY:CGPointMake(_trainPosition.x - 62.0f, _trainPosition.y + 40.0f)];
+    [grape reset];
     [grape throwBombFromPosition:position];    
 }
 
@@ -95,21 +97,23 @@
     [[AnimationController sharedController] replaceSprite:_trainWheels withAnimationNamed:@"darkBossWheelAnim"];
     [layer addChild:[_trainJim getCCSprite]];
     [[AnimationController sharedController] replaceSprite:_trainJim withAnimationNamed:@"darkBossJimIdle1"];
+
+    for (Projectile *grape in _grapes) {
+        [layer addChild:[grape getCCSprite]];
+    }
     
     for (Projectile *bomb in _bombs) {
         [layer addChild:[bomb getCCSprite]];
     }
-    /*
-    for (Projectile *grape in _grapes) {
-        [layer addChild:[grape getCCSprite]];
-    }*/
 
 }
 
 -(void)detonateBombs
 {
     for (Projectile *bomb in _bombs) {
-        [bomb startCollision];
+        if ([bomb getActive]) {
+            [bomb startCollision];            
+        }
     }
 }
 
@@ -156,6 +160,12 @@
             [self triggerAction:FINAL_BOSS_ATTACK_1C];
             break;
         case FINAL_BOSS_ATTACK_1C:
+            [self triggerAction:FINAL_BOSS_ATTACK_1D];
+            break;
+        case FINAL_BOSS_ATTACK_1D:
+            [self triggerAction:FINAL_BOSS_ATTACK_1E];
+            break;
+        case FINAL_BOSS_ATTACK_1E:
         case FINAL_BOSS_ATTACK_2B:
         case FINAL_BOSS_ATTACK_3B:
         case FINAL_BOSS_ATTACK_4C:
@@ -261,8 +271,7 @@
         //door attack
         case FINAL_BOSS_ATTACK_1:
             if ([self canTrigger:FINAL_BOSS_ATTACK_1]) {
-                _trainPosition = ccp(TRAIN_OFFSCREEN_RIGHT,TRAIN_Y_POSITION);
-                _destinationX = TRAIN_BOMB_POSITION;
+                _destinationX = TRAIN_DOOR_POSITION;
                 _phase = phase;
             }
             break;
@@ -270,23 +279,24 @@
             [self changeToAnimationNamed:@"darkBossJimDoorAttack1" forSprite:_trainJim];
             _inAttack = true;
             _waitToSwitch = 0.4f;
-            _speed = 120.0f;
             _phase = phase;
             break;
         case FINAL_BOSS_ATTACK_1C:
             [self changeToAnimationNamed:@"darkBossJimDoorAttack2" forSprite:_trainJim];
             _waitToSwitch = 1.7f;
+            _destinationX = 50.0f;
             _phase = phase;
-            //[_door setActive:YES];
+            [_door setActive:YES];
             break;
         case FINAL_BOSS_ATTACK_1D:
             [self changeToAnimationNamed:@"darkBossJimDoorAttack3" forSprite:_trainJim];
             _waitToSwitch = 0.4f;
             _phase = phase;
-            //[_door setActive:NO];
+            [_door setActive:NO];
             break;
         case FINAL_BOSS_ATTACK_1E:
-            _destinationX = -600;
+            [self changeToAnimationNamed:@"darkBossJimIdle1" forSprite:_trainJim];
+            _destinationX = TRAIN_BOMB_POSITION;
             _phase = phase;
             break;
             
@@ -320,6 +330,23 @@
         case FINAL_BOSS_ATTACK_3B:
             [self changeToAnimationNamed:@"darkBossJimGrapeAttack2Eat" forSprite:_trainJim];
             _waitToSwitch = 1.6f;
+            _phase = phase;
+            break;
+            
+            
+        //grape attack
+        case FINAL_BOSS_ATTACK_4:
+            if ([self canTrigger:FINAL_BOSS_ATTACK_4]) {
+                [self changeToAnimationNamed:@"darkBossJimGrapeAttack1Show" forSprite:_trainJim];
+                _waitToSwitch = 0.2; 
+                _hasThrownBomb = false;
+                _phase = phase;
+            }
+            break;
+        case FINAL_BOSS_ATTACK_4B:
+            [self changeToAnimationNamed:@"darkBossJimBombAttack1Release" forSprite:_trainJim];
+            [self throwGrape];
+            _waitToSwitch = 0.3f;
             _phase = phase;
             break;
             
@@ -394,6 +421,8 @@
                 [self finishedPhase];
             }
             break;
+        case FINAL_BOSS_ATTACK_1:
+        case FINAL_BOSS_ATTACK_1E:
         case FINAL_BOSS_MOVE_TO_BOMBING:
         case FINAL_BOSS_MOVE_TO_RIGHT:
             if([self moveRight:dt]) {
@@ -401,6 +430,7 @@
             }
             break;
         case FINAL_BOSS_ATTACK_1B:
+        case FINAL_BOSS_ATTACK_1D:
         case FINAL_BOSS_ATTACK_2:
         case FINAL_BOSS_ATTACK_2B:
         case FINAL_BOSS_ATTACK_2C:
@@ -416,7 +446,6 @@
             }
             break;
         case FINAL_BOSS_ATTACK_1C:
-        case FINAL_BOSS_ATTACK_1D:
             if ([self checkWait:dt]) {
                 [self finishedPhase];
             }
@@ -488,10 +517,21 @@
 -(void) reset
 {
     _trainPosition = ccp(-1500,TRAIN_Y_POSITION);
-    [self triggerAction:FINAL_BOSS_IDLE];
+    [_queuedPhases removeAllObjects];
+    [self triggerAction:FINAL_BOSS_MOVE_TO_BOMBING];
     _inAttack = false;
     //[self changeToAnimationNamed:@"darkBossJimIdle1" forSprite:_trainJim];
     _resetSpriteVisibility = true;
+    
+    for (Projectile *bomb in _bombs) {
+        [[bomb getCCSprite] setVisible:NO];
+        [bomb setActive:NO];
+    }
+    
+    for (Projectile *grape in _grapes) {
+        [[grape getCCSprite] setVisible:NO];
+        [grape setActive:NO];
+    }
 }
 
 -(void)restartLevel
@@ -499,6 +539,11 @@
     for (Projectile *bomb in _bombs) {
         [[bomb getCCSprite] setVisible:NO];
         [bomb setActive:NO];
+    }
+    
+    for (Projectile *grape in _grapes) {
+        [[grape getCCSprite] setVisible:NO];
+        [grape setActive:NO];
     }
     _trainPosition = ccp(-1600,165);
     [[_train getCCSprite] setVisible:YES];

@@ -112,5 +112,9 @@
 	<string>confirm.caf</string>
 	<key>cancel</key>
 	<string>cancel.caf</string>
+	<key>bombDetonator</key>
+	<string>bombdetonator.wav</string>
+	<key>bombExplosion</key>
+	<string>bombexplosion.wav</string>
 </dict>
 </plist>

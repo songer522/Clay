@@ -19,6 +19,7 @@
 #import "GameLayer.h"
 #import "LayerManager.h"
 #import "BossFinalJim.h"
+#import "SoundEngine.h"
 
 
 @implementation PlayerActionDetonate
@@ -44,7 +45,8 @@
         
         [_parent setPlayerAnimation:PLAYER_ANIM_SLOWTIME];
         
-        _waitForDetonate = 0.1f;
+        _waitForDetonate = 0.15f;
+        _playedDetonateSound = false;
 
     }
 }
@@ -77,6 +79,10 @@
         
         if (_waitForDetonate > 0.0f) {
             _waitForDetonate -= dt;
+            if (_waitForDetonate<=0.1 && !_playedDetonateSound) {
+                [[SoundEngine shared] playSound:@"bombDetonator"];
+                _playedDetonateSound = true;
+            }
             if (_waitForDetonate <= 0.0f) {
                 [self pressDetonator];
             }

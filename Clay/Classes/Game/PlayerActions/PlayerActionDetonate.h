@@ -17,6 +17,7 @@
     float _slowdown;
     float _waitForDetonate;
     
+    bool _playedDetonateSound;
     Boss *_boss;
 }
 
