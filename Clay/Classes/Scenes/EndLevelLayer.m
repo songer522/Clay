@@ -269,6 +269,7 @@
     _gameController = nil;
     [_finalTimeText release];
     [_finalTimePanel release];
+    [_timeHeaderText release];
  
     //[super dealloc];
 }
