@@ -251,7 +251,7 @@
         case FINAL_BOSS_ATTACK_2:
             if ([self canTrigger:FINAL_BOSS_ATTACK_2]) {
                 [self changeToAnimationNamed:@"darkBossJimBombAttack1" forSprite:_trainJim];
-                _waitToSwitch = 1.6f; 
+                _waitToSwitch = 0.2f; 
                 _hasThrownBomb = false;
                 _phase = phase;
             }
@@ -265,7 +265,7 @@
             
             CGPoint position = [[Camera sharedCamera] convertToWorldXY:CGPointMake(_trainPosition.x - 62.0f, _trainPosition.y + 40.0f)];
             [_bomb throwBombFromPosition:position];
-            _waitToSwitch = 0.4f;
+            _waitToSwitch = 0.3f;
             _phase = phase;
             break;
             
