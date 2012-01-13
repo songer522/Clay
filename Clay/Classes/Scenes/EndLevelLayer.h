@@ -43,9 +43,11 @@ typedef enum {
     EndLevelAction _action;
     
     float _waitToSwitch;
+    NSString *_timer;
 }
 
 @property(nonatomic,retain) GameController *gameController;
+@property(nonatomic,retain)NSString *timer;
 
 
 

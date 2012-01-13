@@ -20,6 +20,8 @@
 #import "LevelManager.h"
 #import "SoundEngine.h"
 #import "HudLayer.h"
+#import "TextureManager.h"
+#import "GameSettings.h"
 
 @interface EndLevelLayer()
 
@@ -31,6 +33,7 @@
 @implementation EndLevelLayer
 
 @synthesize gameController = _gameController;
+@synthesize timer=_timer;
 
 
 +(id)instance
@@ -45,21 +48,26 @@
 
         _alpha = 0.0;
         _buttonPressed=false;
+        
         [self scheduleUpdate];
         [[[LayerManager sharedLayers] currentScene] addChild:self];
         
         [[LayerManager sharedLayers] setWorkingLayer:self];
-        
+        [[TextureManager shared] loadMemoryForKey:@"endLevel"];
         _replayButton = [ActionButton actionButtonInGameWithText:@"REPLAY"];
         _menuButton = [ActionButton actionButtonInGameWithText:@"MENU"];
         
+        _finalTimePanel = [Sprite spriteFromFrameCacheWithName:@"EndGame_TimeBack.png"];
+
         //IPAD FIX: reposition so paused text is centered on x, and slightly above center on y, and buttons are side by side, with the middle button centered on x, and each one slightly below center on y
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         float centerX = winSize.width/2.0f;
         float centerY = winSize.height/2.0f;
-        [_replayButton setPosition:ccp(centerX,centerY - 30.0f)];
-        [_menuButton setPosition:ccp(centerX + 115.0f,centerY - 30.0f)];
-        
+        [_replayButton setPosition:ccp(centerX-185,centerY - 140.0f)];
+        [_menuButton setPosition:ccp(centerX + 185.0f,centerY - 140.0f)];
+        [_finalTimePanel getCCSprite].position=ccp(centerX-225,centerY+70);
+        _timer=[[GameSettings shared] getGlobalForKey:@"finalLevelTime"];
+        _finalTimeText = [GameLabel gameLabelWithText:_timer  Scale:0.75f Position:ccp(centerX,centerY+90)];
         
         _action = END_LEVEL_NONE;
         _waitToSwitch = -1.0f;
@@ -101,6 +109,7 @@
     
     switch (_action) {
         case END_LEVEL_REPLAY:
+            /*
             [self setVisible:false];
             [gameLayer unpause];
             [gameLayer initForLevel];
@@ -112,8 +121,31 @@
             _buttonPressed=true;
             
            // [gameLayer restartLevel];
-
-                        
+            */
+            
+            //[gameLayer.gameController pauseGame];
+            //[gameLayer restartLevel];
+           
+           
+            [gameLayer unpause];
+             [gameLayer restartLevel];
+           
+            gameLayer.inComic = false;
+            gameLayer.visible = true;
+            
+            
+            [[gameLayer getHud] fadeIn];
+           
+            // gameLayer.gameController.isInputEnabled = true;
+           //gameLayer= [[LayerManager sharedLayers] currentLayer];
+              gameLayer.gameController.isInputEnabled = true;
+             gameLayer.isTouchEnabled=true;
+            gameLayer.gameController.isHandlingPause = false;
+             //[gameLayer restartLevel];
+             
+            [self onExit];
+            
+                                   
             break;
         case END_LEVEL_NONE:
             [_gameController pauseGame];
@@ -157,6 +189,8 @@
 
 -(void)onExit
 {
+   // [_finalTimePanel getCCSprite].visible = false;
+    //[_finalTimeText setText:nil];
     [self release];
     [self unscheduleUpdate];
     self.isTouchEnabled = false;
@@ -165,6 +199,7 @@
 
 -(void)update:(ccTime)dt
 {
+   
     [[SoundEngine shared] update:dt];
     
     if (_waitToSwitch>0.0f) {
@@ -173,8 +208,9 @@
         
         if (_waitToSwitch<=0.0f) {
             _waitToSwitch = 0.0f;
-            if(!_buttonPressed)
+         
             [self doButtonAction];
+            
         }
         
         if (_action != END_LEVEL_BACK && _waitToSwitch<=0.20f) {
@@ -192,14 +228,21 @@
     
     [_replayButton setAlpha:_alpha];
     [_menuButton setAlpha:_alpha];
+    [_finalTimeText setAlpha:_alpha];
+    [_finalTimePanel setAlpha:_alpha];
     
     [_replayButton update:dt];
     [_menuButton update:dt];
+    
 }
 
 -(void)dealloc
 {
+    [[TextureManager shared] unloadMemoryForKey:@"endLevel"];
     _gameController = nil;
+    [_finalTimeText release];
+    [_finalTimePanel release];
+ 
     //[super dealloc];
 }
 

@@ -228,9 +228,15 @@ static ComicManager *_shared = nil;
                 } else {
                    //[gameLayer switchToChooseLevel];
                    // [gameLayer switchToEndLevelScreen];
-                   
                     
-                    [self endTheLevel];
+                    [_comicLayer startTransition:BLACKBOX_OUT];
+                    [_comicLayer setVisible:false];
+                    float finalLevelTime = [[[gameLayer getHud] getTrackTimer] getTime];
+                    [[GameSettings shared] setGlobal:[NSString stringWithFormat:@"%f", finalLevelTime] ForKey:@"finalLevelTime"];
+                    [gameLayer onExit];
+                    [gameLayer.gameController endLevel];
+                    _isActive=false;
+                   // [self endTheLevel];
                    
                     /*
                     [_comicLayer startTransition:BLACKBOX_OUT];

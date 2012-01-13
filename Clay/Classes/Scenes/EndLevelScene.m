@@ -59,6 +59,7 @@
         
         [[TextureManager shared] loadMemoryForKey:@"endGame"];
         [[TextureManager shared] loadMemoryForKey:@"chooseMode"];
+        [[TextureManager shared] loadMemoryForKey:@"endLevel"];
         
         _endGame = [Sprite spriteFromFrameCacheWithName:@"Menu_Ending_Temp.png"];
         _bestTime = [Sprite spriteFromFrameCacheWithName:@"Menu_Ending_BestTime.png"];
@@ -228,7 +229,8 @@
     [_timer release];
     [_besttimer release];
     [[TextureManager shared] unloadMemoryForKey:@"endGame"];
-      [[TextureManager shared] unloadMemoryForKey:@"chooseMode"];
+    [[TextureManager shared] unloadMemoryForKey:@"chooseMode"];
+    [[TextureManager shared] unloadMemoryForKey:@"endLevel"];
 }
 
 
