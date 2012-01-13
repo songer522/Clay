@@ -22,6 +22,9 @@
 #import "HudLayer.h"
 #import "TextureManager.h"
 #import "GameSettings.h"
+#import "Level.h"
+#import "BestTimes.h"
+#import "TrackTimer.h"
 
 @interface EndLevelLayer()
 
@@ -58,7 +61,7 @@
         _menuButton = [ActionButton actionButtonInGameWithText:@"MENU"];
         
         _finalTimePanel = [Sprite spriteFromFrameCacheWithName:@"EndGame_TimeBack.png"];
-
+        
         //IPAD FIX: reposition so paused text is centered on x, and slightly above center on y, and buttons are side by side, with the middle button centered on x, and each one slightly below center on y
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         float centerX = winSize.width/2.0f;
@@ -66,9 +69,11 @@
         [_replayButton setPosition:ccp(centerX-185,centerY - 140.0f)];
         [_menuButton setPosition:ccp(centerX + 185.0f,centerY - 140.0f)];
         [_finalTimePanel getCCSprite].position=ccp(centerX-225,centerY+70);
-        _timer=[[GameSettings shared] getGlobalForKey:@"finalLevelTime"];
-        _finalTimeText = [GameLabel gameLabelWithText:_timer  Scale:0.75f Position:ccp(centerX,centerY+90)];
+        //_timer=[[GameSettings shared] getGlobalForKey:@"finalLevelTime"];
         
+        
+        _finalTimeText = [GameLabel gameLabelWithText:[[GameSettings shared] getGlobalForKey:@"finalLevelTimeText"]  Scale:1.0f Position:ccp(centerX,centerY+90)];
+        [self showMedal];
         _action = END_LEVEL_NONE;
         _waitToSwitch = -1.0f;
         
@@ -100,6 +105,27 @@
         
         break;
     }
+}
+
+-(void)showMedal
+{
+    NSString  *gameDifficulty = [[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
+    
+    NSString *levelName =[[LevelManager shared] currentLevel].name;
+    
+    float bestTime = [[BestTimes shared] getBestTimeForLevelName:levelName forDifficulty:gameDifficulty];
+    
+    float newTime=[[[GameSettings shared] getGlobalForKey:@"finalLevelTime"] floatValue];
+    if(bestTime > newTime)
+    {
+        _timeHeaderText = [GameLabel gameLabelWithText:@"New Record!"  Scale:0.6f Position:ccp(240,280)];
+    }
+    else
+    {
+        _timeHeaderText = [GameLabel gameLabelWithText:@"Your Time:"  Scale:0.6f Position:ccp(240,280)];
+    }
+    
+    
 }
 
 -(void) doButtonAction
@@ -147,8 +173,8 @@
             
                                    
             break;
-        case END_LEVEL_NONE:
-            [_gameController pauseGame];
+        case END_LEVEL_BACK:
+            //[_gameController pauseGame];
             
             if([gameMode isEqualToString:@"story"]) {
                 [gameLayer switchToChooseMode];
