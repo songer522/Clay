@@ -633,6 +633,7 @@
 		E4D2261214B97D860003BA65 /* rainyLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D2260E14B97D860003BA65 /* rainyLevel-hd.png */; };
 		E4D2261314B97D860003BA65 /* rainyLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4D2260F14B97D860003BA65 /* rainyLevel.plist */; };
 		E4D2261414B97D860003BA65 /* rainyLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D2261014B97D860003BA65 /* rainyLevel.png */; };
+		E4F257BF14C00DA00006985B /* EndLevelScene.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F257BE14C00DA00006985B /* EndLevelScene.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1498,6 +1499,8 @@
 		E4D2260E14B97D860003BA65 /* rainyLevel-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rainyLevel-hd.png"; sourceTree = "<group>"; };
 		E4D2260F14B97D860003BA65 /* rainyLevel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = rainyLevel.plist; sourceTree = "<group>"; };
 		E4D2261014B97D860003BA65 /* rainyLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rainyLevel.png; sourceTree = "<group>"; };
+		E4F257BD14C00D9F0006985B /* EndLevelScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndLevelScene.h; sourceTree = "<group>"; };
+		E4F257BE14C00DA00006985B /* EndLevelScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndLevelScene.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2627,6 +2630,8 @@
 				549ED7F31461D065008BCD98 /* ComicManager.m */,
 				54E1AC081497B80A00DFCA77 /* CreditsScene.h */,
 				54E1AC091497B80A00DFCA77 /* CreditsScene.m */,
+				E4F257BD14C00D9F0006985B /* EndLevelScene.h */,
+				E4F257BE14C00DA00006985B /* EndLevelScene.m */,
 				549ED7F41461D065008BCD98 /* EndGameScene.h */,
 				549ED7F51461D065008BCD98 /* EndGameScene.m */,
 				54E1AC0B1497B85200DFCA77 /* ExtrasScene.h */,
@@ -3604,6 +3609,7 @@
 				548D7A8614B97D3D00BE26FB /* BossFinal.m in Sources */,
 				544360C414BE08E4007AFB0B /* EndLevelLayer.m in Sources */,
 				54A9910E14BE67D700741281 /* PassengerCar.m in Sources */,
+				E4F257BF14C00DA00006985B /* EndLevelScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3614,8 +3620,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yang Song (9B4C2R2M4Z)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yang Song (9B4C2R2M4Z)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -3627,8 +3633,8 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "00471BC1-8292-438E-BB45-AC2F16460C6C";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A73C97DE-15E4-4607-932D-27544E266AC6";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -3638,7 +3644,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yang Song (9B4C2R2M4Z)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = NDEBUG;
@@ -3647,7 +3653,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "00471BC1-8292-438E-BB45-AC2F16460C6C";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3698,8 +3704,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yang Song (9B4C2R2M4Z)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yang Song (9B4C2R2M4Z)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = NDEBUG;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
@@ -3707,8 +3713,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "00471BC1-8292-438E-BB45-AC2F16460C6C";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A73C97DE-15E4-4607-932D-27544E266AC6";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

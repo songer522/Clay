@@ -34,6 +34,7 @@
 #import "GCHelper.h"
 #import "CreditsScene.h"
 #import "Camera.h"
+#import "EndLevelLayer.h"
 
 
 #define DEBUG_DRAW_BOUNDING_BOXES 0

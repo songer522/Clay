@@ -25,6 +25,7 @@ typedef enum {
 {
     
     float _alpha;
+    bool _buttonPressed;
     GameController *_gameController;
     
     ActionButton *_replayButton;
@@ -45,6 +46,8 @@ typedef enum {
 }
 
 @property(nonatomic,retain) GameController *gameController;
+
+
 
 +(id)instance;
 

@@ -16,6 +16,10 @@
 #import "Sprite.h"
 #import "SoundEngine.h"
 #import "GameSettings.h"
+#import "Camera.h"
+#import "LevelManager.h"
+#import "SoundEngine.h"
+#import "HudLayer.h"
 
 @interface EndLevelLayer()
 
@@ -28,6 +32,7 @@
 
 @synthesize gameController = _gameController;
 
+
 +(id)instance
 {
     return [[self alloc] init];
@@ -39,6 +44,7 @@
     if (self) {      
 
         _alpha = 0.0;
+        _buttonPressed=false;
         [self scheduleUpdate];
         [[[LayerManager sharedLayers] currentScene] addChild:self];
         
@@ -95,8 +101,19 @@
     
     switch (_action) {
         case END_LEVEL_REPLAY:
-            [_gameController pauseGame];
-            [gameLayer restartLevel];
+            [self setVisible:false];
+            [gameLayer unpause];
+            [gameLayer initForLevel];
+            gameLayer.inComic = false;
+            gameLayer.visible = true;
+            gameLayer.gameController.isInputEnabled = false;
+            
+            [[gameLayer getHud] fadeIn];
+            _buttonPressed=true;
+            
+           // [gameLayer restartLevel];
+
+                        
             break;
         case END_LEVEL_NONE:
             [_gameController pauseGame];
@@ -156,6 +173,7 @@
         
         if (_waitToSwitch<=0.0f) {
             _waitToSwitch = 0.0f;
+            if(!_buttonPressed)
             [self doButtonAction];
         }
         

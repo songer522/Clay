@@ -24,6 +24,7 @@
 #import "GameSettings.h"
 #import "LevelManager.h"
 #import "GameSettings.h"
+#import "EndLevelScene.h"
 
 @implementation ComicManager
 
@@ -225,7 +226,19 @@ static ComicManager *_shared = nil;
                 if ([gameMode isEqualToString:@"story"]) {
                     [self switchToPhase:COMIC_PHASE_STARTING_VIDEO];                    
                 } else {
-                    [gameLayer switchToChooseLevel];
+                   //[gameLayer switchToChooseLevel];
+                   // [gameLayer switchToEndLevelScreen];
+                   
+                    
+                    [self endTheLevel];
+                   
+                    /*
+                    [_comicLayer startTransition:BLACKBOX_OUT];
+                    [_comicLayer setVisible:false];
+                    _endLevelLayer=[EndLevelLayer instance];
+                    _endLevelLayer.gameController=gameLayer.gameController;
+                   */
+                    
                 }
                 break;
             case COMIC_PHASE_STARTING_VIDEO:
@@ -256,6 +269,19 @@ static ComicManager *_shared = nil;
     [[GameSettings shared] setGlobal:[NSString stringWithFormat:@"%f", finalTime] ForKey:@"finalTime"];
     
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[EndGameScene scene]]];
+    _showEndGame = false;
+    _introMovie = false;
+}
+
+-(void)endTheLevel
+{
+    GameLayer *gameLayer = (GameLayer*)[[LayerManager sharedLayers] currentLayer];
+    
+    //set the final total time for the end game screen
+    float finalTime = [[[gameLayer getHud] getTrackTimer] getTime];
+    [[GameSettings shared] setGlobal:[NSString stringWithFormat:@"%f", finalTime] ForKey:@"finalTime"];
+    
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[EndLevelScene scene]]];
     _showEndGame = false;
     _introMovie = false;
 }
