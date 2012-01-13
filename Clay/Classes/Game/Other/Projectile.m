@@ -133,7 +133,7 @@
                 _isAggressive = false;
                 break;
             case PROJECTILE_BEHAVIOR_DARK_BOMB:
-                _sprite = [Sprite spriteWithFile:@"blank.png"];
+                _sprite = [Sprite spriteWithFile:@"blank.png" AddToLayer:NO];
                 [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"darkBossJimBombAttack2"];
                 [_sprite getCCSprite].anchorPoint = ccp(0.5f,0.5f);
                 [[_sprite getCCSprite] setVisible:NO];
@@ -196,6 +196,7 @@
 
 -(void) throwBombFromPosition:(CGPoint)position
 {
+    [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"darkBossJimBombAttack2"];
     [_sprite setPosition:position];
     [[_sprite getCCSprite] setVisible:YES];
     _vy = 230.0f;        //was 30.0f;
@@ -507,6 +508,7 @@
     _sprite = nil;
     [super dealloc];
 }
+
 
 
 @end

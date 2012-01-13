@@ -32,12 +32,16 @@
     _gameLayer = [[LayerManager sharedLayers] currentLayer];
     
     _queuedPhases = [[NSMutableArray alloc] initWithCapacity:10];
+    _phase = FINAL_BOSS_IDLE;
     
     _bombs = [[NSMutableArray alloc] initWithCapacity:6];
     _grapes = [[NSMutableArray alloc] initWithCapacity:6];
 
     _passengerCar = [PassengerCar instance];
     [_passengerCar setPosition:CGPointMake(-90.0f, 0.0f)];
+    
+    _replaceGrapeId = 0;
+    _replaceBombId = 0;
     
     _trainWheels = [Sprite spriteWithFile:@"blank.png" AddToLayer:NO];
     _trainJim = [Sprite spriteWithFile:@"blank.png" AddToLayer:NO];
@@ -70,6 +74,7 @@
     _replaceBombId = (_replaceBombId + 1) % 3;
     
     CGPoint position = [[Camera sharedCamera] convertToWorldXY:CGPointMake(_trainPosition.x - 62.0f, _trainPosition.y + 40.0f)];
+    [bomb reset];
     [bomb throwBombFromPosition:position];
 }
 
@@ -90,6 +95,15 @@
     [[AnimationController sharedController] replaceSprite:_trainWheels withAnimationNamed:@"darkBossWheelAnim"];
     [layer addChild:[_trainJim getCCSprite]];
     [[AnimationController sharedController] replaceSprite:_trainJim withAnimationNamed:@"darkBossJimIdle1"];
+    
+    for (Projectile *bomb in _bombs) {
+        [layer addChild:[bomb getCCSprite]];
+    }
+    /*
+    for (Projectile *grape in _grapes) {
+        [layer addChild:[grape getCCSprite]];
+    }*/
+
 }
 
 -(void)detonateBombs
@@ -288,7 +302,6 @@
             break;
         case FINAL_BOSS_ATTACK_2B:
             [self changeToAnimationNamed:@"darkBossJimBombAttack1Release" forSprite:_trainJim];
-            
             [self throwBomb];
             _waitToSwitch = 0.3f;
             _phase = phase;
@@ -299,7 +312,7 @@
         case FINAL_BOSS_ATTACK_3:
             if ([self canTrigger:FINAL_BOSS_ATTACK_3]) {
                 [self changeToAnimationNamed:@"darkBossJimGrapeAttack1Show" forSprite:_trainJim];
-                _waitToSwitch = 1.6f; 
+                _waitToSwitch = 0.6; 
                 _hasThrownBomb = false;
                 _phase = phase;
             }
@@ -334,6 +347,7 @@
             _waitToSwitch = 0.8f;
             _phase = phase;
             break;
+         */
             
         case FINAL_BOSS_DIE:
             break;
@@ -343,7 +357,6 @@
             [self changeToAnimationNamed:@"darkBossJimIdle1" forSprite:_trainJim];
             [self triggerNextPhase];
             break;
-        */
         default:
             break;
     }
@@ -479,6 +492,16 @@
     _inAttack = false;
     //[self changeToAnimationNamed:@"darkBossJimIdle1" forSprite:_trainJim];
     _resetSpriteVisibility = true;
+}
+
+-(void)restartLevel
+{
+    for (Projectile *bomb in _bombs) {
+        [[bomb getCCSprite] setVisible:NO];
+        [bomb setActive:NO];
+    }
+    _trainPosition = ccp(-1600,165);
+    [[_train getCCSprite] setVisible:YES];
 }
 
 @end
