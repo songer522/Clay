@@ -555,11 +555,11 @@
 -(void) reset
 {
     _trainPosition = ccp(-1500,TRAIN_Y_POSITION);
+    _inAttack = false;
     [self updatePosition:_trainPosition];
     [_queuedPhases removeAllObjects];
+    [self changeToAnimationNamed:@"darkBossJimIdle1" forSprite:_trainJim];
     [self triggerAction:FINAL_BOSS_MOVE_TO_BOMBING];
-    _inAttack = false;
-    //[self changeToAnimationNamed:@"darkBossJimIdle1" forSprite:_trainJim];
     _resetSpriteVisibility = true;
     
     for (Projectile *bomb in _bombs) {
