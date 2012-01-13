@@ -55,7 +55,6 @@
 {
     //[self updateSlowdown:1.0f];
     //[[_parent getSpeed] setVelocityModifier:1.0f];
-    [self setKilledEnemy:YES];
     
     [super endAction];
     

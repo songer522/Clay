@@ -60,6 +60,9 @@ typedef enum {
     float _speed;
     float _speedModifier;
     float _waitToSwitch;
+    
+    float _waitToPlayHorn;
+    float _waitToPlayTrainSound;
 }
 
 -(void)triggerAction:(FinalBossPhase)phase;
@@ -79,5 +82,6 @@ typedef enum {
 -(void)detonateBombs;
 -(void)throwBomb;
 -(void)throwGrape;
-
+-(void)updateHorn:(float)dt;
+-(void)updateTrainSound:(float)dt;
 @end

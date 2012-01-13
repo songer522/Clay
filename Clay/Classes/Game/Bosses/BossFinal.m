@@ -15,6 +15,7 @@
 #import "GameDebugLayer.h"
 #import "Projectile.h"
 #import "PassengerCar.h"
+#import "PlayerAction.h"
 
 #define BOSS_FINAL_MAX_TRAIN_X 230.0f
 
@@ -52,7 +53,11 @@
     
     _door = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_DARK_TRAIN_DOOR];
     [_door setBoundingBox:CGRectMake(20, 12, 14, 25)];
-    [_door setActive:YES];
+    [_door disable];
+    //[_door setActive:NO];
+    
+    _waitToPlayHorn = 0.5f;
+    _waitToPlayTrainSound = 1.5f;
     
     for (int i=0; i<6; i++) {
         Projectile *bomb = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_DARK_BOMB];
@@ -77,6 +82,7 @@
     CGPoint position = [[Camera sharedCamera] convertToWorldXY:CGPointMake(_trainPosition.x - 62.0f, _trainPosition.y + 40.0f)];
     [bomb reset];
     [bomb throwBombFromPosition:position];
+    [[SoundEngine shared] playSound:@"bossFinalThrow"];
 }
 
 -(void)throwGrape
@@ -86,7 +92,8 @@
     
     CGPoint position = [[Camera sharedCamera] convertToWorldXY:CGPointMake(_trainPosition.x - 62.0f, _trainPosition.y + 40.0f)];
     [grape reset];
-    [grape throwBombFromPosition:position];    
+    [grape throwBombFromPosition:position];
+    [[SoundEngine shared] playSound:@"bossFinalThrow"];
 }
 
 
@@ -112,7 +119,8 @@
 {
     for (Projectile *bomb in _bombs) {
         if ([bomb getActive]) {
-            [bomb startCollision];            
+            [[_player getThirdAction] setKilledEnemy:YES];
+            [bomb startCollision];
         }
     }
 }
@@ -121,6 +129,7 @@
 {
     NSMutableArray *objects = [[NSMutableArray alloc] initWithArray:_bombs];
     [objects addObjectsFromArray:_grapes];
+    [objects addObject:_door];
     return objects;
 }
 
@@ -250,6 +259,7 @@
                 _destinationX = TRAIN_BOMB_POSITION;
                 _phase = phase;
                 _inAttack = true;
+                [_door setActive:YES];
             }
             break;
         case FINAL_BOSS_MOVE_TO_LEFT:
@@ -283,16 +293,16 @@
             break;
         case FINAL_BOSS_ATTACK_1C:
             [self changeToAnimationNamed:@"darkBossJimDoorAttack2" forSprite:_trainJim];
-            _waitToSwitch = 1.7f;
+            _waitToSwitch = 1.4f;
             _destinationX = 50.0f;
             _phase = phase;
-            [_door setActive:YES];
+            [_door reset];
             break;
         case FINAL_BOSS_ATTACK_1D:
             [self changeToAnimationNamed:@"darkBossJimDoorAttack3" forSprite:_trainJim];
             _waitToSwitch = 0.4f;
             _phase = phase;
-            [_door setActive:NO];
+            [_door disable];
             break;
         case FINAL_BOSS_ATTACK_1E:
             [self changeToAnimationNamed:@"darkBossJimIdle1" forSprite:_trainJim];
@@ -449,12 +459,16 @@
             if ([self checkWait:dt]) {
                 [self finishedPhase];
             }
-            [self moveLeft:0.5f * dt];            
+            [self moveLeft:0.65f * dt];            
         default:
             break;
     }
     
-    [_door setPosition:CGPointMake(_trainPosition.x, _trainPosition.y - 50.0f)];
+    CGPoint position = [[Camera sharedCamera] convertToWorldXY:_trainPosition];
+    [_door setPosition:ccp(position.x, position.y - 85.0f)];
+    if ([_door getActive]) {
+        [self testCollisions:_door];        
+    }
     
     [self updatePosition:_trainPosition];
     [_passengerCar updatePosition:_trainPosition];
@@ -468,6 +482,9 @@
         [grape update:dt];
         [self testCollisions:grape];
     }
+    
+    [self updateHorn:dt];
+    [self updateTrainSound:dt];
 }
 
 
@@ -513,10 +530,32 @@
     [[sprite getAnimation] changeAnimationSpeed:_speedModifier];
 }
 
+-(void)updateHorn:(float)dt
+{
+    if (_waitToPlayHorn > 0.0f) {
+        _waitToPlayHorn-=dt;
+        if (_waitToPlayHorn<=0.0f) {
+            [[SoundEngine shared] playSound:@"bossFinalHorn"];
+            _waitToPlayHorn = rand()%20 + 20;
+        }
+    }
+}
+
+-(void)updateTrainSound:(float)dt
+{
+    if (_waitToPlayTrainSound > 0.0f) {
+        _waitToPlayTrainSound -= dt;
+        if (_waitToPlayTrainSound <= 0.0f) {
+            [[SoundEngine shared] playSound:@"bossFinalTrain"];
+            _waitToPlayTrainSound = 10.0f;
+        }
+    }
+}
 
 -(void) reset
 {
     _trainPosition = ccp(-1500,TRAIN_Y_POSITION);
+    [self updatePosition:_trainPosition];
     [_queuedPhases removeAllObjects];
     [self triggerAction:FINAL_BOSS_MOVE_TO_BOMBING];
     _inAttack = false;
@@ -532,6 +571,8 @@
         [[grape getCCSprite] setVisible:NO];
         [grape setActive:NO];
     }
+    
+    [_door disable];
 }
 
 -(void)restartLevel
@@ -545,6 +586,7 @@
         [[grape getCCSprite] setVisible:NO];
         [grape setActive:NO];
     }
+    [_door disable];
     _trainPosition = ccp(-1600,165);
     [[_train getCCSprite] setVisible:YES];
 }

@@ -327,6 +327,11 @@
 		5491677B14643E3900DFA191 /* computerLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5491677714643E3900DFA191 /* computerLevel.plist */; };
 		5491677C14643E3900DFA191 /* computerLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 5491677814643E3900DFA191 /* computerLevel.png */; };
 		549513D014BF8D4E007C1D2F /* PlayerActionDetonate.m in Sources */ = {isa = PBXBuildFile; fileRef = 549513CF14BF8D4E007C1D2F /* PlayerActionDetonate.m */; };
+		549513D414BFF985007C1D2F /* bombdetonator.wav in Resources */ = {isa = PBXBuildFile; fileRef = 549513D214BFF985007C1D2F /* bombdetonator.wav */; };
+		549513D514BFF985007C1D2F /* bombexplosion.wav in Resources */ = {isa = PBXBuildFile; fileRef = 549513D314BFF985007C1D2F /* bombexplosion.wav */; };
+		549513D914C0BC68007C1D2F /* bossFinalHorn.wav in Resources */ = {isa = PBXBuildFile; fileRef = 549513D614C0BC68007C1D2F /* bossFinalHorn.wav */; };
+		549513DA14C0BC68007C1D2F /* bossFinalThrow.wav in Resources */ = {isa = PBXBuildFile; fileRef = 549513D714C0BC68007C1D2F /* bossFinalThrow.wav */; };
+		549513DB14C0BC68007C1D2F /* bossFinalTrain.wav in Resources */ = {isa = PBXBuildFile; fileRef = 549513D814C0BC68007C1D2F /* bossFinalTrain.wav */; };
 		549D84D91469DE9100A3599F /* chooseLevel-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 549D84D51469DE9100A3599F /* chooseLevel-hd.plist */; };
 		549D84DA1469DE9100A3599F /* chooseLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 549D84D61469DE9100A3599F /* chooseLevel-hd.png */; };
 		549D84DB1469DE9100A3599F /* chooseLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 549D84D71469DE9100A3599F /* chooseLevel.plist */; };
@@ -1080,6 +1085,11 @@
 		5491677814643E3900DFA191 /* computerLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = computerLevel.png; sourceTree = "<group>"; };
 		549513CE14BF8D4E007C1D2F /* PlayerActionDetonate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerActionDetonate.h; sourceTree = "<group>"; };
 		549513CF14BF8D4E007C1D2F /* PlayerActionDetonate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerActionDetonate.m; sourceTree = "<group>"; };
+		549513D214BFF985007C1D2F /* bombdetonator.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = bombdetonator.wav; path = Resources/sounds/bombdetonator.wav; sourceTree = "<group>"; };
+		549513D314BFF985007C1D2F /* bombexplosion.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = bombexplosion.wav; path = Resources/sounds/bombexplosion.wav; sourceTree = "<group>"; };
+		549513D614C0BC68007C1D2F /* bossFinalHorn.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = bossFinalHorn.wav; path = Resources/sounds/bossFinalHorn.wav; sourceTree = "<group>"; };
+		549513D714C0BC68007C1D2F /* bossFinalThrow.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = bossFinalThrow.wav; path = Resources/sounds/bossFinalThrow.wav; sourceTree = "<group>"; };
+		549513D814C0BC68007C1D2F /* bossFinalTrain.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = bossFinalTrain.wav; path = Resources/sounds/bossFinalTrain.wav; sourceTree = "<group>"; };
 		549D84D51469DE9100A3599F /* chooseLevel-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "chooseLevel-hd.plist"; path = "../menu/chooseLevel-hd.plist"; sourceTree = "<group>"; };
 		549D84D61469DE9100A3599F /* chooseLevel-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "chooseLevel-hd.png"; path = "../menu/chooseLevel-hd.png"; sourceTree = "<group>"; };
 		549D84D71469DE9100A3599F /* chooseLevel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = chooseLevel.plist; path = ../menu/chooseLevel.plist; sourceTree = "<group>"; };
@@ -2037,6 +2047,11 @@
 		545CBC2F142D25AB00795FC9 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				549513D614C0BC68007C1D2F /* bossFinalHorn.wav */,
+				549513D714C0BC68007C1D2F /* bossFinalThrow.wav */,
+				549513D814C0BC68007C1D2F /* bossFinalTrain.wav */,
+				549513D214BFF985007C1D2F /* bombdetonator.wav */,
+				549513D314BFF985007C1D2F /* bombexplosion.wav */,
 				548D7A8114B9537200BE26FB /* spinning.wav */,
 				54A40B2F14AE8A6B00012D0D /* cancel.caf */,
 				54A40B3014AE8A6B00012D0D /* confirm.caf */,
@@ -3389,6 +3404,11 @@
 				544360CB14BE0AEC007AFB0B /* endLevelLayer-hd.png in Resources */,
 				544360CC14BE0AEC007AFB0B /* endLevelLayer.plist in Resources */,
 				544360CD14BE0AEC007AFB0B /* endLevelLayer.png in Resources */,
+				549513D414BFF985007C1D2F /* bombdetonator.wav in Resources */,
+				549513D514BFF985007C1D2F /* bombexplosion.wav in Resources */,
+				549513D914C0BC68007C1D2F /* bossFinalHorn.wav in Resources */,
+				549513DA14C0BC68007C1D2F /* bossFinalThrow.wav in Resources */,
+				549513DB14C0BC68007C1D2F /* bossFinalTrain.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
