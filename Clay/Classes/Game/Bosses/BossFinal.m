@@ -32,6 +32,9 @@
     _gameLayer = [[LayerManager sharedLayers] currentLayer];
     
     _queuedPhases = [[NSMutableArray alloc] initWithCapacity:10];
+    
+    _bombs = [[NSMutableArray alloc] initWithCapacity:6];
+    _grapes = [[NSMutableArray alloc] initWithCapacity:6];
 
     _passengerCar = [PassengerCar instance];
     [_passengerCar setPosition:CGPointMake(-90.0f, 0.0f)];
@@ -46,14 +49,38 @@
     [_door setBoundingBox:CGRectMake(20, 12, 14, 25)];
     [_door setActive:YES];
     
+    for (int i=0; i<6; i++) {
+        Projectile *bomb = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_DARK_BOMB];
+        [_bombs addObject:bomb];
+    }
     
-    _bomb = nil;
+    for (int i=0; i<6; i++) {
+        Projectile *grape = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_DARK_GRAPES];
+        [_grapes addObject:grape];
+    }
     
     _trainPosition = ccp(-800,165);
     [self updatePosition:_trainPosition];
     [self setVisible:YES];
 }
 
+-(void)throwBomb
+{
+    Projectile *bomb = [_bombs objectAtIndex:_replaceBombId];
+    _replaceBombId = (_replaceBombId + 1) % 3;
+    
+    CGPoint position = [[Camera sharedCamera] convertToWorldXY:CGPointMake(_trainPosition.x - 62.0f, _trainPosition.y + 40.0f)];
+    [bomb throwBombFromPosition:position];
+}
+
+-(void)throwGrape
+{
+    Projectile *grape = [_grapes objectAtIndex:_replaceGrapeId];
+    _replaceGrapeId = (_replaceGrapeId + 1) % 3;
+    
+    CGPoint position = [[Camera sharedCamera] convertToWorldXY:CGPointMake(_trainPosition.x - 62.0f, _trainPosition.y + 40.0f)];
+    [grape throwBombFromPosition:position];    
+}
 
 
 -(void)addSpritesToLayer:(id)layer SpriteBatch:(CCSpriteBatchNode*)spriteBatch
@@ -67,13 +94,16 @@
 
 -(void)detonateBombs
 {
-    [_bomb startCollision];
+    for (Projectile *bomb in _bombs) {
+        [bomb startCollision];
+    }
 }
 
 -(NSMutableArray*)getProjectilesForDebugDraw
 {
-    NSMutableArray *array = [[NSMutableArray alloc] initWithObjects:_bomb, nil];
-    return array;
+    NSMutableArray *objects = [[NSMutableArray alloc] initWithArray:_bombs];
+    [objects addObjectsFromArray:_grapes];
+    return objects;
 }
 
 -(void)changeAnimationSpeed:(float)modifier
@@ -257,14 +287,9 @@
             }
             break;
         case FINAL_BOSS_ATTACK_2B:
-            if (_bomb!=nil) {
-                [_bomb release];
-            }
             [self changeToAnimationNamed:@"darkBossJimBombAttack1Release" forSprite:_trainJim];
-            _bomb = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_DARK_BOMB];
             
-            CGPoint position = [[Camera sharedCamera] convertToWorldXY:CGPointMake(_trainPosition.x - 62.0f, _trainPosition.y + 40.0f)];
-            [_bomb throwBombFromPosition:position];
+            [self throwBomb];
             _waitToSwitch = 0.3f;
             _phase = phase;
             break;
@@ -289,6 +314,7 @@
             
             
         //fake grapes bomb attack
+        /*
         case FINAL_BOSS_ATTACK_4:
             if ([self canTrigger:FINAL_BOSS_ATTACK_4]) {
                 [self changeToAnimationNamed:@"darkBossJimGrapeAttack1Show" forSprite:_trainJim];
@@ -303,12 +329,8 @@
             _phase = phase;            
             break;
         case FINAL_BOSS_ATTACK_4C:
-            if (_bomb!=nil) {
-                [_bomb release];
-            }
             [self changeToAnimationNamed:@"darkBossJimBombAttack1Release" forSprite:_trainJim];
-            _bomb = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_DARK_BOMB];
-            [_bomb throwBombFromPosition:CGPointMake(_trainPosition.x - 62.0f, _trainPosition.y + 40.0f)];
+            [self throwBomb];
             _waitToSwitch = 0.8f;
             _phase = phase;
             break;
@@ -321,6 +343,7 @@
             [self changeToAnimationNamed:@"darkBossJimIdle1" forSprite:_trainJim];
             [self triggerNextPhase];
             break;
+        */
         default:
             break;
     }
@@ -389,13 +412,20 @@
             break;
     }
     
-    [_bomb update:dt * _speedModifier];
-    [self testCollisions:_bomb];
-    
     [_door setPosition:CGPointMake(_trainPosition.x, _trainPosition.y - 50.0f)];
     
     [self updatePosition:_trainPosition];
     [_passengerCar updatePosition:_trainPosition];
+    
+    for (Projectile *bomb in _bombs) {
+        [bomb update:dt];
+        [self testCollisions:bomb];
+    }
+    
+    for (Projectile *grape in _grapes) {
+        [grape update:dt];
+        [self testCollisions:grape];
+    }
 }
 
 

@@ -187,6 +187,8 @@
         case PROJECTILE_BEHAVIOR_DARK_BOMB:
             //call throwBomb instead
             break;
+        case PROJECTILE_BEHAVIOR_DARK_GRAPES:
+            //call throwBomb for grapes also
         default:
             break;                
     }        

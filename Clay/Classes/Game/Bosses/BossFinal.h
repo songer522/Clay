@@ -30,13 +30,17 @@ typedef enum {
     
     
     
-    Projectile *_bomb;
     Projectile *_door;
     
     
     CGPoint _trainPosition;
     
     FinalBossPhase _phase;
+    
+    NSMutableArray *_bombs;
+    NSMutableArray *_grapes;
+    int _replaceBombId;
+    int _replaceGrapeId;
     
     NSMutableArray *_queuedPhases;
     
@@ -73,5 +77,7 @@ typedef enum {
 -(void)triggerNextPhase;
 -(void)changeToAnimationNamed:(NSString*)animName forSprite:(Sprite*)sprite;
 -(void)detonateBombs;
+-(void)throwBomb;
+-(void)throwGrape;
 
 @end
