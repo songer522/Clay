@@ -89,7 +89,7 @@
         _modeDict = [[NSDictionary alloc] initWithDictionary:[medalsDict objectForKey:_gameMode]];
       
         [self load];
-       
+        [[BestTimes shared] saveData];
     }
     return self;
 }

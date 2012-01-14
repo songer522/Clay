@@ -10,6 +10,7 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "EndLevelLayer.h"
 
 @class VideoPlayer;
 @class ComicLayer;
@@ -30,6 +31,7 @@ typedef enum {
     bool _isActive;
     bool _loadNextLevel;
     
+    EndLevelLayer *_endLevelLayer;
     VideoPlayer *_videoPlayer;
     NSDictionary *_videoList;
     ComicLayer *_comicLayer;
@@ -63,6 +65,7 @@ typedef enum {
 -(void)restartLevel;
 -(bool)skipComic;
 -(void)endTheGame;
+-(void)endTheLevel;
 
 @end
  

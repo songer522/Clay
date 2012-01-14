@@ -34,6 +34,7 @@
 #import "GCHelper.h"
 #import "CreditsScene.h"
 #import "Camera.h"
+#import "EndLevelLayer.h"
 
 
 #define DEBUG_DRAW_BOUNDING_BOXES 0
@@ -400,7 +401,13 @@
     [[LevelManager shared] recordLevelTime:finalLevelTime];
     
     [[ComicManager shared] startComic:_level.postLevelComicName];
+    NSString *mode = [[GameSettings shared] getGlobalForKey:@"gameMode"];
+    
+    if ([mode isEqualToString:@"story"])
+    {
     [ComicManager shared].loadNextLevel = true;
+    }
+    [ComicManager shared].isActive=true;
     //[self saveAndReportToGameCenter];
     [self checkHasBeenHit];
 }
