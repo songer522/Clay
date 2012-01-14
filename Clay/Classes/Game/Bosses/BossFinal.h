@@ -63,6 +63,8 @@ typedef enum {
     
     float _waitToPlayHorn;
     float _waitToPlayTrainSound;
+    
+    bool _waitUntilPlayerGetsBackUp;
 }
 
 -(void)triggerAction:(FinalBossPhase)phase;

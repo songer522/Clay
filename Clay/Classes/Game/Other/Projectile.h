@@ -61,6 +61,7 @@ typedef enum {
 @property(nonatomic,assign) CGRect boundingBox;
 @property(nonatomic,readonly) bool hurtsPlayer;
 @property(nonatomic,readonly) bool isBehindObstacle;
+@property(nonatomic,readonly) float vy;
 
 #pragma mark - inits
 +(id) projectileWithBehavior:(ProjectileBehavior)behavior;

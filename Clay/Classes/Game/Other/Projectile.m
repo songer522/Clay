@@ -27,6 +27,7 @@
 @synthesize boundingBox = _boundingBox;
 @synthesize hurtsPlayer = _hurtsPlayer;
 @synthesize isBehindObstacle = _isBehindObstacle;
+@synthesize vy = _vy;
 
 
 
@@ -212,7 +213,7 @@
 
 
     } else if(_behavior == PROJECTILE_BEHAVIOR_DARK_GRAPES) {
-        _vx = 340.0f;
+        _vx = 390.0f; //was 340.0f;
         [self setBoundingBox:CGRectMake(7, 18, 14, 20)];
 
     }

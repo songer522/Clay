@@ -51,10 +51,11 @@
     _speedModifier = 1.0f;
     _hasThrownBomb = false;
     
+    _waitUntilPlayerGetsBackUp = false;
+    
     _door = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_DARK_TRAIN_DOOR];
     [_door setBoundingBox:CGRectMake(20, 12, 14, 25)];
     [_door disable];
-    //[_door setActive:NO];
     
     _waitToPlayHorn = 0.5f;
     _waitToPlayTrainSound = 1.5f;
@@ -177,7 +178,7 @@
         case FINAL_BOSS_ATTACK_1E:
         case FINAL_BOSS_ATTACK_2B:
         case FINAL_BOSS_ATTACK_3B:
-        case FINAL_BOSS_ATTACK_4C:
+        case FINAL_BOSS_ATTACK_4B:
             [self changeToAnimationNamed:@"darkBossJimIdle1" forSprite:_trainJim];
             [self triggerAction:FINAL_BOSS_IDLE];
             break;
@@ -189,9 +190,6 @@
             break;
         case FINAL_BOSS_ATTACK_4:
             [self triggerAction:FINAL_BOSS_ATTACK_4B];
-            break;
-        case FINAL_BOSS_ATTACK_4B:
-            [self triggerAction:FINAL_BOSS_ATTACK_4C];
             break;
         case FINAL_BOSS_MOVE_TO_BOMBING:
         case FINAL_BOSS_MOVE_TO_RIGHT:
@@ -259,7 +257,6 @@
                 _destinationX = TRAIN_BOMB_POSITION;
                 _phase = phase;
                 _inAttack = true;
-                [_door setActive:YES];
             }
             break;
         case FINAL_BOSS_MOVE_TO_LEFT:
@@ -283,11 +280,11 @@
             if ([self canTrigger:FINAL_BOSS_ATTACK_1]) {
                 _destinationX = TRAIN_DOOR_POSITION;
                 _phase = phase;
+                _inAttack = true;
             }
             break;
         case FINAL_BOSS_ATTACK_1B:
             [self changeToAnimationNamed:@"darkBossJimDoorAttack1" forSprite:_trainJim];
-            _inAttack = true;
             _waitToSwitch = 0.4f;
             _phase = phase;
             break;
@@ -318,12 +315,13 @@
                 _waitToSwitch = 0.2f; 
                 _hasThrownBomb = false;
                 _phase = phase;
+                _inAttack = true;
             }
             break;
         case FINAL_BOSS_ATTACK_2B:
             [self changeToAnimationNamed:@"darkBossJimBombAttack1Release" forSprite:_trainJim];
             [self throwBomb];
-            _waitToSwitch = 0.3f;
+            _waitToSwitch = 0.25f;
             _phase = phase;
             break;
             
@@ -335,6 +333,7 @@
                 _waitToSwitch = 0.6; 
                 _hasThrownBomb = false;
                 _phase = phase;
+                _inAttack = true;
             }
             break;
         case FINAL_BOSS_ATTACK_3B:
@@ -351,40 +350,16 @@
                 _waitToSwitch = 0.2; 
                 _hasThrownBomb = false;
                 _phase = phase;
+                _inAttack = true;
             }
             break;
         case FINAL_BOSS_ATTACK_4B:
             [self changeToAnimationNamed:@"darkBossJimBombAttack1Release" forSprite:_trainJim];
             [self throwGrape];
-            _waitToSwitch = 0.3f;
+            _waitToSwitch = 0.25f;
             _phase = phase;
             break;
             
-            
-            
-            
-        //fake grapes bomb attack
-        /*
-        case FINAL_BOSS_ATTACK_4:
-            if ([self canTrigger:FINAL_BOSS_ATTACK_4]) {
-                [self changeToAnimationNamed:@"darkBossJimGrapeAttack1Show" forSprite:_trainJim];
-                _waitToSwitch = 1.6f; 
-                _hasThrownBomb = false;
-                _phase = phase;
-            }
-            break;
-        case FINAL_BOSS_ATTACK_4B:
-            [self changeToAnimationNamed:@"darkBossJimGrapeAttack3Bomb" forSprite:_trainJim];
-            _waitToSwitch = 0.4f;
-            _phase = phase;            
-            break;
-        case FINAL_BOSS_ATTACK_4C:
-            [self changeToAnimationNamed:@"darkBossJimBombAttack1Release" forSprite:_trainJim];
-            [self throwBomb];
-            _waitToSwitch = 0.8f;
-            _phase = phase;
-            break;
-         */
             
         case FINAL_BOSS_DIE:
             break;
@@ -414,9 +389,13 @@
     FinalBossPhase phase;
     
     if ([_queuedPhases count] > 0) {
-        phase = [[_queuedPhases objectAtIndex:0] intValue];
-        [_queuedPhases removeObjectAtIndex:0];
-        [self triggerAction:phase];
+        if (_player.isTripping) {
+            _waitUntilPlayerGetsBackUp = true;
+        } else {
+            phase = [[_queuedPhases objectAtIndex:0] intValue];
+            [_queuedPhases removeObjectAtIndex:0];
+            [self triggerAction:phase];
+        }
     }
 }
 
@@ -464,8 +443,15 @@
             break;
     }
     
+    //if we have queued attacks and the player has tripped, wait until
+    //he's gotten back up before triggering the next action
+    if (_waitUntilPlayerGetsBackUp && !_player.isTripping) {
+        [self triggerNextPhase];
+        _waitUntilPlayerGetsBackUp = false;
+    }
+    
     CGPoint position = [[Camera sharedCamera] convertToWorldXY:_trainPosition];
-    [_door setPosition:ccp(position.x, position.y - 85.0f)];
+    [_door setPosition:ccp(position.x, position.y - 95.0f)];
     if ([_door getActive]) {
         [self testCollisions:_door];        
     }
@@ -475,13 +461,17 @@
     
     for (Projectile *bomb in _bombs) {
         [bomb update:dt];
-        [self testCollisions:bomb];
+        if (bomb.vy <= 0) {
+            [self testCollisions:bomb];            
+        }
     }
     
     for (Projectile *grape in _grapes) {
         [grape update:dt];
         [self testCollisions:grape];
     }
+    
+    
     
     [self updateHorn:dt];
     [self updateTrainSound:dt];
@@ -536,7 +526,7 @@
         _waitToPlayHorn-=dt;
         if (_waitToPlayHorn<=0.0f) {
             [[SoundEngine shared] playSound:@"bossFinalHorn"];
-            _waitToPlayHorn = rand()%20 + 20;
+            _waitToPlayHorn = rand()%2 + 7;
         }
     }
 }
@@ -573,20 +563,13 @@
     }
     
     [_door disable];
+    _waitUntilPlayerGetsBackUp = false;
 }
 
 -(void)restartLevel
 {
-    for (Projectile *bomb in _bombs) {
-        [[bomb getCCSprite] setVisible:NO];
-        [bomb setActive:NO];
-    }
-    
-    for (Projectile *grape in _grapes) {
-        [[grape getCCSprite] setVisible:NO];
-        [grape setActive:NO];
-    }
-    [_door disable];
+    [self reset];
+    [self triggerAction:FINAL_BOSS_IDLE];
     _trainPosition = ccp(-1600,165);
     [[_train getCCSprite] setVisible:YES];
 }
