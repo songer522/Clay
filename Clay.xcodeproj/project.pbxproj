@@ -3635,6 +3635,7 @@
 				544360C414BE08E4007AFB0B /* EndLevelLayer.m in Sources */,
 				54A9910E14BE67D700741281 /* PassengerCar.m in Sources */,
 				549513D014BF8D4E007C1D2F /* PlayerActionDetonate.m in Sources */,
+				E4F257BF14C00DA00006985B /* EndLevelScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
