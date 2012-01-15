@@ -165,6 +165,8 @@
         
         _endLevelLayer = [EndLevelLayer instance];
                 _endLevelLayer.gameController = self;
+        _endLevelLayer.isNewRecord=_gameLayer.isNewRecord;
+        [_endLevelLayer showNewRecord];
        // _isEndLevel = true;
         //[[SoundEngine shared] playSound:@"pause"];
         _gameLayer.isTouchEnabled = false;
