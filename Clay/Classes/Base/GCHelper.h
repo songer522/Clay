@@ -108,6 +108,7 @@
 - (void) showLeaderboards;
 - (void) showAchievements;
 
+-(GKAchievement*)getAchievementByID:(NSString *)identifier;
 - (void)leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController;
 
 @end

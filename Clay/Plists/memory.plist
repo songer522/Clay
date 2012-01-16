@@ -241,7 +241,7 @@
 		<key>sounds</key>
 		<string>none</string>
 		<key>textures</key>
-		<string>endGameTextures</string>
+		<string>endGameTextures,hudGraphics2</string>
 	</dict>
 	<key>endLevel</key>
 	<dict>
