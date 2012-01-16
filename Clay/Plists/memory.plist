@@ -161,7 +161,7 @@
 		<key>animations</key>
 		<string>level11,slowtime</string>
 		<key>sounds</key>
-		<string>darkSlowTimeAction,darkBats,darkGargoyle,darkShadowLaugh,darkSpikes</string>
+		<string>bossFinalHorn,bossFinalThrow,bossFinalTrain,bombDetonator,bombExplosion,darkBats,darkSpikes</string>
 		<key>textures</key>
 		<string>darkLevel,darkLevel2</string>
 	</dict>

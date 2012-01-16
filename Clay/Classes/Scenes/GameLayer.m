@@ -375,7 +375,7 @@
                 [_boss triggerAction:FINAL_BOSS_MOVE_TO_BOMBING];
                 break;
             case TRIGGER_FINAL_BOSS_EXITS:
-                [_boss triggerAction:FINAL_BOSS_MOVE_TO_RIGHT];
+                [_boss triggerAction:FINAL_BOSS_MOVE_TO_LEFT];
                 break;
             case TRIGGER_FINAL_BOSS_DIE:
                 [_boss triggerAction:FINAL_BOSS_DIE];
@@ -491,7 +491,7 @@
 
 -(void)initializeLaserShow
 {
-    _laserShow = [LaserShow instance];
+    //_laserShow = [LaserShow instance];
 }
 -(void)stopLaserShow
 {

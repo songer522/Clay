@@ -112,5 +112,15 @@
 	<string>confirm.caf</string>
 	<key>cancel</key>
 	<string>cancel.caf</string>
+	<key>bombDetonator</key>
+	<string>bombdetonator.wav</string>
+	<key>bombExplosion</key>
+	<string>bombexplosion.wav</string>
+	<key>bossFinalHorn</key>
+	<string>bossFinalHorn.wav</string>
+	<key>bossFinalThrow</key>
+	<string>bossFinalThrow.wav</string>
+	<key>bossFinalTrain</key>
+	<string>bossFinalTrain.wav</string>
 </dict>
 </plist>

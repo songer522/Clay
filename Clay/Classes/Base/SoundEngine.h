@@ -31,7 +31,9 @@ typedef enum {
     float _masterSfxVolume;
     
     float _volume;
+    float _sfxVolume;
     SoundMode _soundMode;
+    SoundMode _sfxMode;
     
     AVAudioSession *_session;
     
@@ -47,6 +49,8 @@ typedef enum {
 -(void)loadSoundForKey:(NSString*)key;
 -(void)unloadSoundForKey:(NSString*)key;
 -(void)toggleMute;
+-(void)cueSoundFxFadeIn;
+-(void)cueSoundFxFadeOut;
 -(void)cueFadeIn;
 -(void)cueFadeOut;
 

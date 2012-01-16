@@ -30,13 +30,17 @@ typedef enum {
     
     
     
-    Projectile *_bomb;
     Projectile *_door;
     
     
     CGPoint _trainPosition;
     
     FinalBossPhase _phase;
+    
+    NSMutableArray *_bombs;
+    NSMutableArray *_grapes;
+    int _replaceBombId;
+    int _replaceGrapeId;
     
     NSMutableArray *_queuedPhases;
     
@@ -56,6 +60,11 @@ typedef enum {
     float _speed;
     float _speedModifier;
     float _waitToSwitch;
+    
+    float _waitToPlayHorn;
+    float _waitToPlayTrainSound;
+    
+    bool _waitUntilPlayerGetsBackUp;
 }
 
 -(void)triggerAction:(FinalBossPhase)phase;
@@ -72,4 +81,9 @@ typedef enum {
 -(bool)canTrigger:(FinalBossPhase)phase;
 -(void)triggerNextPhase;
 -(void)changeToAnimationNamed:(NSString*)animName forSprite:(Sprite*)sprite;
+-(void)detonateBombs;
+-(void)throwBomb;
+-(void)throwGrape;
+-(void)updateHorn:(float)dt;
+-(void)updateTrainSound:(float)dt;
 @end
