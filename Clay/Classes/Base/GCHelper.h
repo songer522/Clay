@@ -25,6 +25,10 @@
 #define gcAchievementBlock75attack   @"com.xecudev.tracklapse.achievement.blockattacks"
 #define gcAchievementFreeze200demon @"com.xecudev.tracklapse.achievement.freezedemons"
 #define gcAchievementJumpOver50frogs @"com.xecudev.tracklapse.achievement.jumpoverfrogs"
+#define gcAchievementKnock50Bubbles @"com.xecudev.tracklapse.achievement.knockbubbles"
+
+
+
 #define gcAchievementGetHitby10hurdles  @"com.xecudev.tracklapse.achievement.gethitbyhurdles"
 #define gcAchievementGetHitby10cows  @"com.xecudev.tracklapse.achievement.gethitbycows"
 #define gcAchievementGetHitby10birds  @"com.xecudev.tracklapse.achievement.gethitbybirds"
