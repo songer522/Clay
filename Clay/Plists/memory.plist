@@ -161,7 +161,7 @@
 		<key>animations</key>
 		<string>level11,slowtime</string>
 		<key>sounds</key>
-		<string>darkSlowTimeAction,darkBats,darkGargoyle,darkShadowLaugh,darkSpikes</string>
+		<string>bossFinalHorn,bossFinalThrow,bossFinalTrain,bombDetonator,bombExplosion,darkBats,darkSpikes</string>
 		<key>textures</key>
 		<string>darkLevel,darkLevel2</string>
 	</dict>
@@ -242,6 +242,19 @@
 		<string>none</string>
 		<key>textures</key>
 		<string>endGameTextures</string>
+	</dict>
+	<key>endLevel</key>
+	<dict>
+		<key>removeTextures</key>
+		<string>none</string>
+		<key>batchObstacles</key>
+		<string>none</string>
+		<key>animations</key>
+		<string>none</string>
+		<key>sounds</key>
+		<string>none</string>
+		<key>textures</key>
+		<string>endlevelLayer</string>
 	</dict>
 </dict>
 </plist>

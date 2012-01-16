@@ -775,6 +775,28 @@
 			<false/>
 		</dict>
 		
+		<key>UI_Button_Detonating.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 1}, {59, 57}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{59, 57}</string>
+			<key>spriteSourceSize</key>
+			<string>{59, 59}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{0, 0}, {59, 57}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
 		<key>UI_Button_Dodging.png</key>
 		<dict>
 			<key>aliases</key>
@@ -1013,28 +1035,6 @@
 			<true/>
 			<key>textureRect</key>
 			<string>{{61, 180}, {59, 57}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>UI_Button_SlowTime.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{0, 1}, {59, 57}}</string>
-			<key>spriteOffset</key>
-			<string>{0, -0}</string>
-			<key>spriteSize</key>
-			<string>{59, 57}</string>
-			<key>spriteSourceSize</key>
-			<string>{59, 59}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{0, 0}, {59, 57}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>

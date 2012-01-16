@@ -27,6 +27,7 @@
 @synthesize boundingBox = _boundingBox;
 @synthesize hurtsPlayer = _hurtsPlayer;
 @synthesize isBehindObstacle = _isBehindObstacle;
+@synthesize vy = _vy;
 
 
 
@@ -133,13 +134,22 @@
                 _isAggressive = false;
                 break;
             case PROJECTILE_BEHAVIOR_DARK_BOMB:
-                _sprite = [Sprite spriteWithFile:@"blank.png"];
+                _sprite = [Sprite spriteWithFile:@"blank.png" AddToLayer:NO];
                 [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"darkBossJimBombAttack2"];
                 [_sprite getCCSprite].anchorPoint = ccp(0.5f,0.5f);
                 [[_sprite getCCSprite] setVisible:NO];
                 _offscreenPadding = 100.0f;
                 _hasGravity = true;
                 _offsetGroundDetectionY = -10.0f;
+                _isAggressive = false;
+                break;
+            case PROJECTILE_BEHAVIOR_DARK_GRAPES:
+                _sprite = [Sprite spriteCenteredWithFrame:@"Grape.png" AddToLayer:NO];
+                [_sprite getCCSprite].anchorPoint = ccp(0.5f,0.5f);
+                [[_sprite getCCSprite] setVisible:NO];
+                _offscreenPadding = 100.0f;
+                _hasGravity = true;
+                _offsetGroundDetectionY = -20.0f;
                 _isAggressive = false;
                 break;
             case PROJECTILE_BEHAVIOR_DARK_TRAIN_DOOR:
@@ -187,6 +197,8 @@
         case PROJECTILE_BEHAVIOR_DARK_BOMB:
             //call throwBomb instead
             break;
+        case PROJECTILE_BEHAVIOR_DARK_GRAPES:
+            //call throwBomb for grapes also
         default:
             break;                
     }        
@@ -194,15 +206,25 @@
 
 -(void) throwBombFromPosition:(CGPoint)position
 {
+    if (_behavior == PROJECTILE_BEHAVIOR_DARK_BOMB) {
+        [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"darkBossJimBombAttack2"];        
+        _vx = 140.0f;
+        [self setBoundingBox:CGRectMake(30, 30, 60, 60)];
+
+
+    } else if(_behavior == PROJECTILE_BEHAVIOR_DARK_GRAPES) {
+        _vx = 390.0f; //was 340.0f;
+        [self setBoundingBox:CGRectMake(7, 18, 14, 20)];
+
+    }
+    
     [_sprite setPosition:position];
     [[_sprite getCCSprite] setVisible:YES];
     _vy = 230.0f;        //was 30.0f;
-    _vx = 140.0f;
     _x = position.x;
     _y = position.y;
     _angularVelocity = 8;
     _isActive = true;
-    [self setBoundingBox:CGRectMake(30, 30, 60, 60)];
 }
 
 //so far, used only by squid ink
@@ -352,6 +374,7 @@
         [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"waterSquidInkLandAnim"];
     } else if(_behavior == PROJECTILE_BEHAVIOR_DARK_BOMB) {
         [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"darkBossJimBombAttack3"];
+        [[SoundEngine shared] playSound:@"bombExplosion"];
     }
 }
 
@@ -505,6 +528,7 @@
     _sprite = nil;
     [super dealloc];
 }
+
 
 
 @end

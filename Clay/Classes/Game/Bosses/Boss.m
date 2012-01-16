@@ -94,6 +94,11 @@
     
 }
 
+-(void)detonateBombs
+{
+    
+}
+
 -(NSMutableArray*)getProjectilesForDebugDraw
 {
     return nil;

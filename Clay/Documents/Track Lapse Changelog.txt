@@ -1,5 +1,21 @@
 Track Lapse Changelog
 
+Build 120111.01
+==================
+
+* EndOfLevel - some work done on the structure, although nothing to show yet. the black bar transitions might not be working 100% currently because of the preliminary work done on this
+* Global - Achievement progress now syncs with game center, so it will keep track even if the app is erased and reinstalled
+* ChooseLevel - twitter and Facebook crash bug should be fixed
+* Level 10 - squid ink will now hit Tim in the head
+* Level 10 - timed normal mode level design has added extra health bubbles
+* Level 11 - replaced the old slow time graphic with another animation that can play on top of Tim instead
+* Level 11 - movement system replaced so the train now has set animations for the action instead of having actual velocity and trying to keep up with tim
+* Level 11 - the passenger car has been fully drawn, allowing for the train to move off the right side of the screen
+* Level 11 - slow time action now affects the train and jim's action animations (a couple of jim's actions act a little weirdly still now that this is implemented)
+* Level 11 - added collision detection for the bomb
+* Level 11 - added ability to queue jim's actions, so precise positions don't have to be known to build a level (and since the slow time action effectively slows down every action, thus getting the positions 100% correct is nearly impossible anyway)
+* Level 11 - jim's door attack is a bit glitchy so removed for tonight
+
 Build 120110.01
 ==================
 

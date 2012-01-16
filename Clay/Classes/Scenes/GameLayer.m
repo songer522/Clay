@@ -34,6 +34,7 @@
 #import "GCHelper.h"
 #import "CreditsScene.h"
 #import "Camera.h"
+#import "EndLevelLayer.h"
 
 
 #define DEBUG_DRAW_BOUNDING_BOXES 0
@@ -367,7 +368,7 @@
                 [_boss triggerAction:FINAL_BOSS_MOVE_TO_BOMBING];
                 break;
             case TRIGGER_FINAL_BOSS_EXITS:
-                [_boss triggerAction:FINAL_BOSS_MOVE_TO_RIGHT];
+                [_boss triggerAction:FINAL_BOSS_MOVE_TO_LEFT];
                 break;
             case TRIGGER_FINAL_BOSS_DIE:
                 [_boss triggerAction:FINAL_BOSS_DIE];
@@ -400,7 +401,13 @@
     [[LevelManager shared] recordLevelTime:finalLevelTime];
     
     [[ComicManager shared] startComic:_level.postLevelComicName];
+    NSString *mode = [[GameSettings shared] getGlobalForKey:@"gameMode"];
+    
+    if ([mode isEqualToString:@"story"])
+    {
     [ComicManager shared].loadNextLevel = true;
+    }
+    [ComicManager shared].isActive=true;
     //[self saveAndReportToGameCenter];
     [self checkHasBeenHit];
 }
@@ -469,7 +476,7 @@
 
 -(void)initializeLaserShow
 {
-    _laserShow = [LaserShow instance];
+    //_laserShow = [LaserShow instance];
 }
 -(void)stopLaserShow
 {

@@ -26,7 +26,8 @@ typedef enum {
     PROJECTILE_BEHAVIOR_RAINY_SQUIRREL_NUT,
     PROJECTILE_BEHAVIOR_WATER_SQUID_INK,
     PROJECTILE_BEHAVIOR_DARK_BOMB,
-    PROJECTILE_BEHAVIOR_DARK_TRAIN_DOOR
+    PROJECTILE_BEHAVIOR_DARK_TRAIN_DOOR,
+    PROJECTILE_BEHAVIOR_DARK_GRAPES
 }ProjectileBehavior;
 
 @class Sprite;
@@ -60,6 +61,7 @@ typedef enum {
 @property(nonatomic,assign) CGRect boundingBox;
 @property(nonatomic,readonly) bool hurtsPlayer;
 @property(nonatomic,readonly) bool isBehindObstacle;
+@property(nonatomic,readonly) float vy;
 
 #pragma mark - inits
 +(id) projectileWithBehavior:(ProjectileBehavior)behavior;

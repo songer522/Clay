@@ -326,6 +326,12 @@
 		5491677A14643E3900DFA191 /* computerLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5491677614643E3900DFA191 /* computerLevel-hd.png */; };
 		5491677B14643E3900DFA191 /* computerLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5491677714643E3900DFA191 /* computerLevel.plist */; };
 		5491677C14643E3900DFA191 /* computerLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 5491677814643E3900DFA191 /* computerLevel.png */; };
+		549513D014BF8D4E007C1D2F /* PlayerActionDetonate.m in Sources */ = {isa = PBXBuildFile; fileRef = 549513CF14BF8D4E007C1D2F /* PlayerActionDetonate.m */; };
+		549513D414BFF985007C1D2F /* bombdetonator.wav in Resources */ = {isa = PBXBuildFile; fileRef = 549513D214BFF985007C1D2F /* bombdetonator.wav */; };
+		549513D514BFF985007C1D2F /* bombexplosion.wav in Resources */ = {isa = PBXBuildFile; fileRef = 549513D314BFF985007C1D2F /* bombexplosion.wav */; };
+		549513D914C0BC68007C1D2F /* bossFinalHorn.wav in Resources */ = {isa = PBXBuildFile; fileRef = 549513D614C0BC68007C1D2F /* bossFinalHorn.wav */; };
+		549513DA14C0BC68007C1D2F /* bossFinalThrow.wav in Resources */ = {isa = PBXBuildFile; fileRef = 549513D714C0BC68007C1D2F /* bossFinalThrow.wav */; };
+		549513DB14C0BC68007C1D2F /* bossFinalTrain.wav in Resources */ = {isa = PBXBuildFile; fileRef = 549513D814C0BC68007C1D2F /* bossFinalTrain.wav */; };
 		549D84D91469DE9100A3599F /* chooseLevel-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 549D84D51469DE9100A3599F /* chooseLevel-hd.plist */; };
 		549D84DA1469DE9100A3599F /* chooseLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 549D84D61469DE9100A3599F /* chooseLevel-hd.png */; };
 		549D84DB1469DE9100A3599F /* chooseLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 549D84D71469DE9100A3599F /* chooseLevel.plist */; };
@@ -633,6 +639,7 @@
 		E4D2261214B97D860003BA65 /* rainyLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D2260E14B97D860003BA65 /* rainyLevel-hd.png */; };
 		E4D2261314B97D860003BA65 /* rainyLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4D2260F14B97D860003BA65 /* rainyLevel.plist */; };
 		E4D2261414B97D860003BA65 /* rainyLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D2261014B97D860003BA65 /* rainyLevel.png */; };
+		E4F257BF14C00DA00006985B /* EndLevelScene.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F257BE14C00DA00006985B /* EndLevelScene.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1077,6 +1084,13 @@
 		5491677614643E3900DFA191 /* computerLevel-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "computerLevel-hd.png"; sourceTree = "<group>"; };
 		5491677714643E3900DFA191 /* computerLevel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = computerLevel.plist; sourceTree = "<group>"; };
 		5491677814643E3900DFA191 /* computerLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = computerLevel.png; sourceTree = "<group>"; };
+		549513CE14BF8D4E007C1D2F /* PlayerActionDetonate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerActionDetonate.h; sourceTree = "<group>"; };
+		549513CF14BF8D4E007C1D2F /* PlayerActionDetonate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerActionDetonate.m; sourceTree = "<group>"; };
+		549513D214BFF985007C1D2F /* bombdetonator.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = bombdetonator.wav; path = Resources/sounds/bombdetonator.wav; sourceTree = "<group>"; };
+		549513D314BFF985007C1D2F /* bombexplosion.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = bombexplosion.wav; path = Resources/sounds/bombexplosion.wav; sourceTree = "<group>"; };
+		549513D614C0BC68007C1D2F /* bossFinalHorn.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = bossFinalHorn.wav; path = Resources/sounds/bossFinalHorn.wav; sourceTree = "<group>"; };
+		549513D714C0BC68007C1D2F /* bossFinalThrow.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = bossFinalThrow.wav; path = Resources/sounds/bossFinalThrow.wav; sourceTree = "<group>"; };
+		549513D814C0BC68007C1D2F /* bossFinalTrain.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = bossFinalTrain.wav; path = Resources/sounds/bossFinalTrain.wav; sourceTree = "<group>"; };
 		549D84D51469DE9100A3599F /* chooseLevel-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "chooseLevel-hd.plist"; path = "../menu/chooseLevel-hd.plist"; sourceTree = "<group>"; };
 		549D84D61469DE9100A3599F /* chooseLevel-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "chooseLevel-hd.png"; path = "../menu/chooseLevel-hd.png"; sourceTree = "<group>"; };
 		549D84D71469DE9100A3599F /* chooseLevel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = chooseLevel.plist; path = ../menu/chooseLevel.plist; sourceTree = "<group>"; };
@@ -1498,6 +1512,8 @@
 		E4D2260E14B97D860003BA65 /* rainyLevel-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rainyLevel-hd.png"; sourceTree = "<group>"; };
 		E4D2260F14B97D860003BA65 /* rainyLevel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = rainyLevel.plist; sourceTree = "<group>"; };
 		E4D2261014B97D860003BA65 /* rainyLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rainyLevel.png; sourceTree = "<group>"; };
+		E4F257BD14C00D9F0006985B /* EndLevelScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndLevelScene.h; sourceTree = "<group>"; };
+		E4F257BE14C00DA00006985B /* EndLevelScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndLevelScene.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2034,6 +2050,11 @@
 		545CBC2F142D25AB00795FC9 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				549513D614C0BC68007C1D2F /* bossFinalHorn.wav */,
+				549513D714C0BC68007C1D2F /* bossFinalThrow.wav */,
+				549513D814C0BC68007C1D2F /* bossFinalTrain.wav */,
+				549513D214BFF985007C1D2F /* bombdetonator.wav */,
+				549513D314BFF985007C1D2F /* bombexplosion.wav */,
 				548D7A8114B9537200BE26FB /* spinning.wav */,
 				54A40B2F14AE8A6B00012D0D /* cancel.caf */,
 				54A40B3014AE8A6B00012D0D /* confirm.caf */,
@@ -2594,6 +2615,8 @@
 				545CE69C146C1AA9003EC9C1 /* PlayerActionBlock.m */,
 				54767C4F147C08660025F46F /* PlayerActionBlow.h */,
 				54767C50147C08660025F46F /* PlayerActionBlow.m */,
+				549513CE14BF8D4E007C1D2F /* PlayerActionDetonate.h */,
+				549513CF14BF8D4E007C1D2F /* PlayerActionDetonate.m */,
 				549ED7DC1461D065008BCD98 /* PlayerActionDodge.h */,
 				549ED7DD1461D065008BCD98 /* PlayerActionDodge.m */,
 				549ED7DE1461D065008BCD98 /* PlayerActionFactory.h */,
@@ -2627,6 +2650,8 @@
 				549ED7F31461D065008BCD98 /* ComicManager.m */,
 				54E1AC081497B80A00DFCA77 /* CreditsScene.h */,
 				54E1AC091497B80A00DFCA77 /* CreditsScene.m */,
+				E4F257BD14C00D9F0006985B /* EndLevelScene.h */,
+				E4F257BE14C00DA00006985B /* EndLevelScene.m */,
 				549ED7F41461D065008BCD98 /* EndGameScene.h */,
 				549ED7F51461D065008BCD98 /* EndGameScene.m */,
 				54E1AC0B1497B85200DFCA77 /* ExtrasScene.h */,
@@ -3384,6 +3409,11 @@
 				544360CB14BE0AEC007AFB0B /* endLevelLayer-hd.png in Resources */,
 				544360CC14BE0AEC007AFB0B /* endLevelLayer.plist in Resources */,
 				544360CD14BE0AEC007AFB0B /* endLevelLayer.png in Resources */,
+				549513D414BFF985007C1D2F /* bombdetonator.wav in Resources */,
+				549513D514BFF985007C1D2F /* bombexplosion.wav in Resources */,
+				549513D914C0BC68007C1D2F /* bossFinalHorn.wav in Resources */,
+				549513DA14C0BC68007C1D2F /* bossFinalThrow.wav in Resources */,
+				549513DB14C0BC68007C1D2F /* bossFinalTrain.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3604,6 +3634,8 @@
 				548D7A8614B97D3D00BE26FB /* BossFinal.m in Sources */,
 				544360C414BE08E4007AFB0B /* EndLevelLayer.m in Sources */,
 				54A9910E14BE67D700741281 /* PassengerCar.m in Sources */,
+				549513D014BF8D4E007C1D2F /* PlayerActionDetonate.m in Sources */,
+				E4F257BF14C00DA00006985B /* EndLevelScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3614,8 +3646,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yang Song (9B4C2R2M4Z)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yang Song (9B4C2R2M4Z)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -3627,8 +3659,8 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "00471BC1-8292-438E-BB45-AC2F16460C6C";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A73C97DE-15E4-4607-932D-27544E266AC6";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -3638,7 +3670,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yang Song (9B4C2R2M4Z)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = NDEBUG;
@@ -3647,7 +3679,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "00471BC1-8292-438E-BB45-AC2F16460C6C";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3698,8 +3730,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yang Song (9B4C2R2M4Z)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yang Song (9B4C2R2M4Z)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = NDEBUG;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
@@ -3707,8 +3739,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "00471BC1-8292-438E-BB45-AC2F16460C6C";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A73C97DE-15E4-4607-932D-27544E266AC6";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -84,6 +84,7 @@
 -(void)restartLevel; //called by pause screen when restarting the level
 -(void)endLevel;
 
+
 -(void)switchToChooseLevel;
 -(void)switchToChooseMode;
 -(void)switchToCreditsScreen;

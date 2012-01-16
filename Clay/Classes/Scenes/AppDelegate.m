@@ -162,6 +162,7 @@
 }
 
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
+     [[BestTimes shared] saveData];
     [[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
 	[[CCDirector sharedDirector] purgeCachedData];
 }

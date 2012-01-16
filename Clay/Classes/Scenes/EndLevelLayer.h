@@ -25,6 +25,7 @@ typedef enum {
 {
     
     float _alpha;
+    bool _buttonPressed;
     GameController *_gameController;
     
     ActionButton *_replayButton;
@@ -42,10 +43,16 @@ typedef enum {
     EndLevelAction _action;
     
     float _waitToSwitch;
+    //NSString *_timer;
+    float _timer;
 }
 
 @property(nonatomic,retain) GameController *gameController;
+@property(assign)float timer;
+
+
 
 +(id)instance;
+-(void)showMedal;
 
 @end

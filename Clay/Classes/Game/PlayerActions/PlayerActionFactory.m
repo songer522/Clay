@@ -15,6 +15,7 @@
 #import "PlayerActionSlowTime.h"
 #import "PlayerActionSpin.h"
 #import "PlayerActionWoo.h"
+#import "PlayerActionDetonate.h"
 
 @implementation PlayerActionFactory
 
@@ -38,7 +39,7 @@
             return [PlayerActionShoot instance];
             break;
         case PLAYER_ACTION_SLOW_TIME:
-            return [PlayerActionSlowTime instance];
+            return [PlayerActionDetonate instance];
             break;
         case PLAYER_ACTION_SPIN:
             return [PlayerActionSpin instance];
@@ -99,7 +100,8 @@
     } else if([action isEqualToString:@"spin"]) {
         buttonImage = @"UI_Button_Swimming.png";
     } else if([action isEqualToString:@"slowtime"]) {
-        buttonImage = @"UI_Button_SlowTime.png";
+        //buttonImage = @"UI_Button_SlowTime.png";
+        buttonImage = @"UI_Button_Detonating.png";
     } else {
         buttonImage = @"";
     }
