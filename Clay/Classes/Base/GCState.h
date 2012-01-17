@@ -19,6 +19,7 @@
     int attacksBlocked;
     int demonsFreezed;
     int frogsJumpedOver;
+    int bubblesPoked;
     
     
     int hurdlesHit;
@@ -34,11 +35,26 @@
     int batHit;
     
     
+    int gotHit;
+    int timesWhooed;
+    int timesFellIntoDeathPit;
+    int timesFellDown;
+    
     bool flawlessRun;
     bool completeStoryEasy;
     bool completeStoryNormal;
     bool completeStoryHard;
     bool completeStoryAll;
+    
+    
+    bool facebook;
+    bool twitter;
+    bool allGoldInNormal;
+    bool allGoldInInsane;
+    bool beatStoryAndAllGold;
+    bool watchCredit;
+    bool rateOurGame;
+    
     
     bool _enabled;
 
@@ -56,6 +72,18 @@
 @property (assign) int attacksBlocked;
 @property (assign) int demonsFreezed;
 @property (assign) int frogsJumpedOver;
+@property (assign) int bubblesPoked;
+
+@property (assign) int gotHit;
+
+@property (assign) bool facebook;
+@property (assign) bool twitter;
+@property (assign) bool allGoldInNormal;
+@property (assign) bool allGoldInInsane;
+@property (assign) bool beatStoryAndAllGold;
+@property (assign) bool watchCredit;
+@property (assign) bool rateOurGame;
+
 @property (assign) int hurdlesHit;
 @property (assign) int cowsHit;
 @property (assign) int dancersHit;
@@ -68,7 +96,7 @@
 @property (assign) int fishHit;
 @property (assign) int batHit;
 
-@property (assign) int enimiesCleared;
+
 @property (assign) int timesWhooed;
 @property (assign) int timesFellIntoDeathPit;
 @property (assign) int timesFellDown;
