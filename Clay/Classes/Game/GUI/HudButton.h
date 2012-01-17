@@ -44,6 +44,7 @@ typedef enum {
 -(CCSprite*)getCCSpriteForButton;
 -(CCSprite*)getCCSpriteForOverlay;
 -(void)setButtonOpacity:(float)opacity;
+-(void)setOverlayOpacity:(float)opacity;
 -(void)setButtonScale:(float)scale;
 -(void)setPosition:(CGPoint)position;
 -(void)reset;

@@ -15,12 +15,12 @@
 #import "GameSettings.h"
 #import "LevelManager.h"
 
-#define HUD_LAYER_BUTTON_OPACITY 170 //tian's suggestion: 204
+#define HUD_LAYER_BUTTON_OPACITY 135 //old 170
 
-#define HUD_LAYER_BUTTON_Y 34
+#define HUD_LAYER_BUTTON_Y 30
 #define HUD_LAYER_JUMP_X 32
-#define HUD_LAYER_ACTION_X 380
-#define HUD_LAYER_SPRINT_X 450
+#define HUD_LAYER_ACTION_X 372
+#define HUD_LAYER_SPRINT_X 442
 #define HUD_LAYER_BUTTON_SIZE 110
 
 @implementation HudLayer
@@ -150,6 +150,7 @@
         
        
         [button setButtonOpacity:opacity];
+        //[button setOverlayOpacity:opacity];
         
         _resetButtons = true;
     }
@@ -256,6 +257,9 @@
     [_buttonJump setButtonOpacity:opacity];
     [_buttonAction setButtonOpacity:opacity];
     [_buttonSprint setButtonOpacity:opacity];
+    //[_buttonJump setOverlayOpacity:opacity];
+    //[_buttonAction setOverlayOpacity:opacity];
+    //[_buttonSprint setOverlayOpacity:opacity];
     [[_battery getCCSprite] setOpacity:opacity];
     [_trackTimer setOpacity:opacity];
     [[_pauseButton getCCSprite] setOpacity:floor(0.5f * opacity)];

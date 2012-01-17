@@ -11,11 +11,11 @@
 #import "GameSettings.h"
 #import "PlayerActionFactory.h"
 
-#define HUD_LAYER_BUTTON_OPACITY 170
-#define HUD_LAYER_BUTTON_Y 32
+#define HUD_LAYER_BUTTON_OPACITY 140
+#define HUD_LAYER_BUTTON_Y 30
 #define HUD_LAYER_JUMP_X 34
-#define HUD_LAYER_ACTION_X 384
-#define HUD_LAYER_SPRINT_X 448
+#define HUD_LAYER_ACTION_X 383
+#define HUD_LAYER_SPRINT_X 445
 #define HUD_LAYER_BUTTON_SIZE 62
 
 #define BUTTON_OPACITY 255
@@ -166,6 +166,14 @@
     [[_graphic getCCSprite] setOpacity:opacity];
     
 }
+
+-(void)setOverlayOpacity:(float)opacity
+{
+    
+    [[_greenOverlay getCCSprite] setOpacity:opacity];
+    
+}
+
 -(void)setButtonScale:(float)scale
 {
     [[_graphic getCCSprite] setScale:scale];
