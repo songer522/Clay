@@ -195,7 +195,7 @@
     int durations[] = {5,10,6,7,14,7,9,10,6,8,8,6};
     
     int comicNumber = [[comicName substringFromIndex:5] intValue];
-    if (comicNumber <= 11) {        
+    if (comicNumber <= 12) {        
         NSString *_imageName = [NSString stringWithFormat:@"Comic_%d.png",comicNumber];
         _comicPanel = [CCSprite spriteWithFile:_imageName];
         _comicPanel.anchorPoint = ccp(0,0);

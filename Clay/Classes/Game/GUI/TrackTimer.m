@@ -11,6 +11,8 @@
 #import "Animation.h"
 #import "AnimationController.h"
 #import "Sprite.h"
+#import "TextureManager.h"
+
 
 #define TRACK_TIMER_STARTX 10
 #define TRACK_TIMER_STARTY 288.5
@@ -30,6 +32,8 @@
     self = [super init];
     if (self) {
         // Initialization code here.
+       // [[TextureManager shared] loadMemoryForKey:@"hud"];
+        
         _levelTime = 0.0f;
         _isStopped = false;
         _totalTime = 0.0f;
@@ -228,6 +232,7 @@
 {
     [_timerAnimations removeAllObjects];
     [_timerAnimations release];
+   // [[TextureManager shared] unloadMemoryForKey:@"hud"];
     [super dealloc];
 }
 

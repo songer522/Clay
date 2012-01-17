@@ -557,6 +557,10 @@
 		6119ABBD14ACDC3E00A7B136 /* story_hard_level3_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 6119ABBC14ACDC3E00A7B136 /* story_hard_level3_hd.tmx */; };
 		6119ABBF14ACDC6A00A7B136 /* timed_normal_level3_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 6119ABBE14ACDC6A00A7B136 /* timed_normal_level3_hd.tmx */; };
 		6119ABC114ACDC8F00A7B136 /* timed_hard_level3_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 6119ABC014ACDC8F00A7B136 /* timed_hard_level3_hd.tmx */; };
+		612EF9C114C4DF020056401B /* Comic_12-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 612EF9BF14C4DF010056401B /* Comic_12-hd.png */; };
+		612EF9C214C4DF020056401B /* Comic_12.png in Resources */ = {isa = PBXBuildFile; fileRef = 612EF9C014C4DF010056401B /* Comic_12.png */; };
+		612EF9C514C4E1FF0056401B /* Comic_13-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 612EF9C314C4E1FC0056401B /* Comic_13-hd.png */; };
+		612EF9C614C4E1FF0056401B /* Comic_13.png in Resources */ = {isa = PBXBuildFile; fileRef = 612EF9C414C4E1FD0056401B /* Comic_13.png */; };
 		61782B4D14B3AC3F00C615E7 /* story_easy_level5_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61F6F6CB14B28643003A5C68 /* story_easy_level5_hd.tmx */; };
 		61782B5514B3E49C00C615E7 /* tileset_level_6-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 61782B5314B3E49C00C615E7 /* tileset_level_6-hd.png */; };
 		61782B5614B3E49C00C615E7 /* tileset_level_6.png in Resources */ = {isa = PBXBuildFile; fileRef = 61782B5414B3E49C00C615E7 /* tileset_level_6.png */; };
@@ -1405,6 +1409,10 @@
 		6119ABBC14ACDC3E00A7B136 /* story_hard_level3_hd.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = story_hard_level3_hd.tmx; sourceTree = "<group>"; };
 		6119ABBE14ACDC6A00A7B136 /* timed_normal_level3_hd.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = timed_normal_level3_hd.tmx; sourceTree = "<group>"; };
 		6119ABC014ACDC8F00A7B136 /* timed_hard_level3_hd.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = timed_hard_level3_hd.tmx; sourceTree = "<group>"; };
+		612EF9BF14C4DF010056401B /* Comic_12-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Comic_12-hd.png"; sourceTree = "<group>"; };
+		612EF9C014C4DF010056401B /* Comic_12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Comic_12.png; sourceTree = "<group>"; };
+		612EF9C314C4E1FC0056401B /* Comic_13-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Comic_13-hd.png"; sourceTree = "<group>"; };
+		612EF9C414C4E1FD0056401B /* Comic_13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Comic_13.png; sourceTree = "<group>"; };
 		61782B5314B3E49C00C615E7 /* tileset_level_6-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tileset_level_6-hd.png"; path = "Resources/levels/tileset_level_6-hd.png"; sourceTree = "<group>"; };
 		61782B5414B3E49C00C615E7 /* tileset_level_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tileset_level_6.png; path = Resources/levels/tileset_level_6.png; sourceTree = "<group>"; };
 		6179872914AAB8700012655D /* story_hard_level1_hd.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = story_hard_level1_hd.tmx; sourceTree = "<group>"; };
@@ -2791,6 +2799,10 @@
 		54ACB406149C272A00B353C6 /* comics */ = {
 			isa = PBXGroup;
 			children = (
+				612EF9C314C4E1FC0056401B /* Comic_13-hd.png */,
+				612EF9C414C4E1FD0056401B /* Comic_13.png */,
+				612EF9BF14C4DF010056401B /* Comic_12-hd.png */,
+				612EF9C014C4DF010056401B /* Comic_12.png */,
 				54B4048214A008DE00F55142 /* Comic_6-hd.png */,
 				54B4048314A008DE00F55142 /* Comic_6.png */,
 				54B4048414A008DE00F55142 /* Comic_7-hd.png */,
@@ -3414,6 +3426,10 @@
 				549513D914C0BC68007C1D2F /* bossFinalHorn.wav in Resources */,
 				549513DA14C0BC68007C1D2F /* bossFinalThrow.wav in Resources */,
 				549513DB14C0BC68007C1D2F /* bossFinalTrain.wav in Resources */,
+				612EF9C114C4DF020056401B /* Comic_12-hd.png in Resources */,
+				612EF9C214C4DF020056401B /* Comic_12.png in Resources */,
+				612EF9C514C4E1FF0056401B /* Comic_13-hd.png in Resources */,
+				612EF9C614C4E1FF0056401B /* Comic_13.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

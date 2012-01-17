@@ -23,8 +23,8 @@ typedef enum {
 
 @interface EndLevelScene : CCLayer
 {
-    Sprite *_endGame;
-    Sprite *_bestTime;
+    Sprite *_endGameComic;
+  
     
     CCScene *_scene;
     
@@ -33,10 +33,7 @@ typedef enum {
     
     EndGameStates _state;
     
-    TrackTimer *_timer;
-    TrackTimer *_besttimer;
-    ActionButton *_startButton;
-    ActionButton *_backButton;
+
 }
 
 +(CCScene *) scene;

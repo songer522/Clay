@@ -35,6 +35,7 @@
 #import "CreditsScene.h"
 #import "Camera.h"
 #import "EndLevelLayer.h"
+#import "BestTimes.h"
 
 
 #define DEBUG_DRAW_BOUNDING_BOXES 0
@@ -62,6 +63,8 @@
 @synthesize handledPauseEvent = _handledPauseEvent;
 @synthesize inComic = _inComic;
 @synthesize hasBeatenLevel = _hasBeatenLevel;
+@synthesize isNewRecord =_isNewRecord;
+
 
 +(CCScene *) scene
 {
@@ -104,6 +107,7 @@
         
         _paused = true;
         _inComic = false;
+        _isNewRecord =false;
         
         self.isTouchEnabled = YES;
         
@@ -150,6 +154,7 @@
     [_level resetObstacles];
     [_boss restartLevel];
     [[ComicManager shared] restartLevel];
+    _isNewRecord=false;
 }
 
 -(void)startLevel:(NSString*)levelName
@@ -162,6 +167,7 @@
     [[ComicManager shared] startComic:levelObj.preComicName StartPhase:COMIC_PHASE_STARTING_VIDEO];
     
     [[GameSettings shared] setGlobal:[NSString stringWithString:levelName] ForKey:@"continueLevelName"];
+    _isNewRecord=false;
 }
 
 -(void)initForLevel
@@ -186,6 +192,7 @@
     _hasBeatenLevel = false;
     
     [_player reset];
+    _isNewRecord=false;
     
     [_savePoint setSavePoint:_level.spawnPoint Level:_level.name];
     
@@ -407,8 +414,14 @@
     _hasBeatenLevel = true;
     
     [[SoundEngine shared] playSound:@"endLevel"];
-
+    NSString *difficulty=[[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
     float finalLevelTime = [[_hud getTrackTimer] getLevelTime];
+    float oldBestTime=[[BestTimes shared]getBestTimeForLevelName:_level.name forDifficulty:difficulty];
+    
+    if(oldBestTime > finalLevelTime)
+    {
+        _isNewRecord=true;
+    }
     [[LevelManager shared] recordLevelTime:finalLevelTime];
     
     [[ComicManager shared] startComic:_level.postLevelComicName];
@@ -419,6 +432,8 @@
     [ComicManager shared].loadNextLevel = true;
     }
     [ComicManager shared].isActive=true;
+    [[BestTimes shared] saveData];
+
     //[self saveAndReportToGameCenter];
     [self checkHasBeenHit];
 }
