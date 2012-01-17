@@ -99,7 +99,8 @@
         
         _savePoint = [SavePoint instance];
         
-        [self schedule: @selector(update:)];
+        //[self schedule: @selector(update:)];
+        [self scheduleUpdateWithPriority:-1];
         
         _paused = true;
         _inComic = false;
@@ -229,13 +230,23 @@
 
 -(void)update:(ccTime)dt
 {
-    double fixedTimeStep = 1.0f/60.0f;
+    double fixedTimeStep = 1.05f/60.0f;
+     [self updateLogic:fixedTimeStep];            
+    /*
+    //NSLog(@"Time: %f",time);
     float timeToRun = dt + time;
+    
+    
+    if (rand()%100 > 94) {
+        timeToRun -= 0.03f;
+    }
+    
     while(timeToRun >= fixedTimeStep) {
         [self updateLogic:fixedTimeStep];            
         timeToRun = timeToRun - fixedTimeStep;
     }
     time = timeToRun;
+    */
 }
 
 -(void)pause
