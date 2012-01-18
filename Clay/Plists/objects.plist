@@ -549,7 +549,7 @@
 			<key>x</key>
 			<integer>25</integer>
 			<key>y</key>
-			<integer>40</integer>
+			<integer>20</integer>
 		</dict>
 		<key>collideBehavior</key>
 		<string>flyer</string>
