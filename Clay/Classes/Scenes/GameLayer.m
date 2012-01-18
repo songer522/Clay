@@ -111,6 +111,8 @@
         
         self.isTouchEnabled = YES;
         
+        time = 0.0f;
+        
         [self updateLogic:0.001f];  //done to correctly position the camera and player before
                                     //the first render cycle
         [self setupLayers];
@@ -118,6 +120,7 @@
         NSString *startingLevel = [[GameSettings shared] getGlobalForKey:@"startingLevel"];
         
         [self startLevel:startingLevel];
+        
         
         /*
         _testAnim = [Sprite spriteCenteredWithFrame:@"Character_Woo_1.png" Position:ccp(300,160)];
@@ -237,23 +240,37 @@
 
 -(void)update:(ccTime)dt
 {
-    double fixedTimeStep = 1.05f/60.0f;
-     [self updateLogic:fixedTimeStep];            
+    //double fixedTimeStep = 1.05f/60.0f;
+    //[self updateLogic:fixedTimeStep];   
+    
     /*
-    //NSLog(@"Time: %f",time);
+    float fixedTimeStep = 1.0f/60.0f;
     float timeToRun = dt + time;
-    
-    
-    if (rand()%100 > 94) {
-        timeToRun -= 0.03f;
+    while(timeToRun >= fixedTimeStep) {
+        [self updateLogic:fixedTimeStep];
+        timeToRun = timeToRun - fixedTimeStep;
     }
+    time = timeToRun;
+    */
+    
+    if( dt > 0.022f )
+    {
+        //NSLog(@"DT: %f",dt);
+		dt = 1/60.0f;
+    }
+    //NSLog(@"DT: %f",dt);
+    /*
+    double fixedTimeStep = 1.00f/60.0f;
+    float timeToRun = dt + time;
     
     while(timeToRun >= fixedTimeStep) {
         [self updateLogic:fixedTimeStep];            
         timeToRun = timeToRun - fixedTimeStep;
     }
     time = timeToRun;
-    */
+     */
+    
+    [self updateLogic:dt];
 }
 
 -(void)pause

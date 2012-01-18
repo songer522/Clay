@@ -22,6 +22,7 @@
     float _x;
     float _y;
     float _alpha;
+    bool _isLowRes;
     
     //weak reference
     Camera *_camera;

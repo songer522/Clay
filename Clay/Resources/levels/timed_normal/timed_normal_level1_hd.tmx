@@ -4,7 +4,7 @@
   <image source="tileset_level_1-hd.png" width="1024" height="768"/>
  </tileset>
  <tileset firstgid="193" name="meta" tilewidth="64" tileheight="64">
-  <image source="meta-hd.png" width="256" height="192"/>
+  <image source="meta.png" width="256" height="192"/>
   <tile id="0">
    <properties>
     <property name="collision" value="full"/>
@@ -32,7 +32,7 @@
   </tile>
  </tileset>
  <tileset firstgid="205" name="Icons" tilewidth="64" tileheight="64">
-  <image source="TrackLapse_Icons-hd.png" width="640" height="640"/>
+  <image source="TrackLapse_Icons-hd.png" width="640" height="576"/>
   <tile id="0">
    <properties>
     <property name="obstacle" value="hurdle"/>
@@ -137,7 +137,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1l0SgiAQAGC7SHX/u1hN3aXnxreGUVj8Qae+780VkFUW6ToAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOIZ7ct0H+ky12Toe9W4Q28LUc2rja73v50R8cD5lbiZK7y93vyb3NBb9brk8S46W26swn29p7dfI1WjNOivlNZbnnH2jtKcs3XNKY60dG3OpqMmImrXUUnRea8y/do/duv1Uv0jdLKn3qL3OBmv+2wbXmbUUPT9Fa7rv6trPeUZujBb9j7Y2Wpxj072pdF0ad69YxGNmP37Dbe8JAAAAAAAAAPyJDyOnVvc=
+   eJzt1ksSgjAMAFC8iHr/u6CO3sW1w47pAE2hfNT3doa2NNgEmgYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAvle7UzzqvUFsDWP3KY3Xet7PkXjnfJq4mMg9v6nrJbmnsej/NpVnztFye2X203cvGJuaqtGSc5bLayjPOX0j11OW9pzcWrVjQy4FNRlRcpa2FN1Xjf2X9ti1x4/Ni9TNknqP2uvboOa7rXOdWUuRWm2D4/pjS/vTnDlDa2wx/2hnY4vv2LQ35X7n1t0rFvGYOY/fcNt7AwAAAAAAAAB/4gNV3lVb
   </data>
  </layer>
  <layer name="meta" width="950" height="14" opacity="0.68">

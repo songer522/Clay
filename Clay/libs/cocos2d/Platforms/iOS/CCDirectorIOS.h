@@ -228,7 +228,9 @@ typedef enum {
  */
 @interface CCDirectorDisplayLink : CCDirectorIOS
 {
-	id displayLink;
+	//id displayLink;
+    CADisplayLink *displayLink_;
+    CFTimeInterval lastDisplayTime_;
 }
 -(void) mainLoop:(id)sender;
 @end
