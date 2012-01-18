@@ -11,7 +11,8 @@
 #import "LayerManager.h"
 #import "PListLoader.h"
 #import "OptionsScene.h"
-#import "EndGameScene.h"
+#import "EndLevelScene.h"
+#import "SoundEngine.h"
 
 @implementation CreditsScene
 
@@ -33,6 +34,7 @@
         
         [[LayerManager sharedLayers] setWorkingLayer:self];
 
+        
         [self loadCredits];
         
         [[LayerManager sharedLayers] forgetWorkingLayer];
@@ -117,7 +119,7 @@
 
 -(void)switchToOptionsScreen
 {
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[EndGameScene scene]]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[EndLevelScene scene]]];
 }
 
 -(void)update:(ccTime)dt

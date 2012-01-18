@@ -149,6 +149,7 @@ static ComicManager *_shared = nil;
                 break;
             case COMIC_PHASE_PLAY_VIDEO:
                 if (_showEndGame) {
+                    
                     [self endTheGame];
                 } else {
                     [_comicLayer cueComic:_comicName];
@@ -276,7 +277,7 @@ static ComicManager *_shared = nil;
     float finalTime = [[[gameLayer getHud] getTrackTimer] getTime];
     [[GameSettings shared] setGlobal:[NSString stringWithFormat:@"%f", finalTime] ForKey:@"finalTime"];
     
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:3.5f scene:[EndGameScene scene]]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:4.5f scene:[EndGameScene scene]]];
     _showEndGame = false;
     _introMovie = false;
 }

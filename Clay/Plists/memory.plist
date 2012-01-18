@@ -237,7 +237,7 @@
 		<key>batchObstacles</key>
 		<string>none</string>
 		<key>animations</key>
-		<string>none</string>
+		<string>hud,endLevel</string>
 		<key>sounds</key>
 		<string>none</string>
 		<key>textures</key>
