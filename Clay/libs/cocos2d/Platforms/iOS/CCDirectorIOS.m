@@ -691,7 +691,7 @@ CGFloat	__ccContentScaleFactor = 1;
 - (void)setAnimationInterval:(NSTimeInterval)interval
 {
 	animationInterval_ = interval;
-	if(displayLink){
+	if(displayLink_){
 		[self stopAnimation];
 		[self startAnimation];
 	}
@@ -699,7 +699,7 @@ CGFloat	__ccContentScaleFactor = 1;
 
 - (void) startAnimation
 {
-	NSAssert( displayLink == nil, @"displayLink must be nil. Calling startAnimation twice?");
+	NSAssert( displayLink_ == nil, @"displayLink must be nil. Calling startAnimation twice?");
 
 	if ( gettimeofday( &lastUpdate_, NULL) != 0 ) {
 		CCLOG(@"cocos2d: DisplayLinkDirector: Error on gettimeofday");
@@ -711,9 +711,37 @@ CGFloat	__ccContentScaleFactor = 1;
 	
 	CCLOG(@"cocos2d: Frame interval: %d", frameInterval);
 
-	displayLink = [NSClassFromString(@"CADisplayLink") displayLinkWithTarget:self selector:@selector(mainLoop:)];
-	[displayLink setFrameInterval:frameInterval];
-	[displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+	displayLink_ = [CADisplayLink displayLinkWithTarget:self selector:@selector(mainLoop:)];
+	[displayLink_ setFrameInterval:frameInterval];
+	[displayLink_ addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+}
+
+// Overriden in order to use a more stable delta time
+-(void) calculateDeltaTime
+{
+    // New delta time
+    if( nextDeltaTimeZero_ ) {
+        dt = 0;
+        nextDeltaTimeZero_ = NO;
+    } else {
+        dt = displayLink_.timestamp - lastDisplayTime_;
+        dt = MAX(0,dt);
+    }
+    // Store this timestamp for next time
+    lastDisplayTime_ = displayLink_.timestamp;
+        
+#ifdef DEBUG
+	// If we are debugging our code, prevent big delta time
+	if( dt > 0.2f )
+		dt = 1/60.0f;
+#endif
+	if( dt > 0.2f )
+		dt = 1/60.0f;
+    /*
+    if( dt > 0.022f )
+    {
+		dt = 1/60.0f;
+    }*/
 }
 
 -(void) mainLoop:(id)sender
@@ -723,13 +751,13 @@ CGFloat	__ccContentScaleFactor = 1;
 
 - (void) stopAnimation
 {
-	[displayLink invalidate];
-	displayLink = nil;
+	[displayLink_ invalidate];
+	displayLink_ = nil;
 }
 
 -(void) dealloc
 {
-	[displayLink release];
+	[displayLink_ release];
 	[super dealloc];
 }
 @end

@@ -151,7 +151,8 @@ static Camera *_sharedCamera = nil;
 
 -(CGPoint)convertToScreenXY:(CGPoint)worldXY
 {
-    return CGPointMake(worldXY.x - _x + _center.x, worldXY.y - _y + _center.y);
+    //return CGPointMake(worldXY.x - _x + _center.x, worldXY.y - _y + _center.y);
+    return ccp(worldXY.x - _x + _center.x, worldXY.y - _y + _center.y);
 }
 
 -(CGPoint)convertToWorldXY:(CGPoint)screenXY
