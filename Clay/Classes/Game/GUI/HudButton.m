@@ -186,12 +186,25 @@
     //the cooldown expires. if it's at the very beginning, we don't want to show anything, otherwise we want to show
     //the frame that represents the appropriate percentage of the cooldown    
     
+    if (percent > 1.0f) {
+        percent = 1.0f;
+    } else if(percent < 0.0f) {
+        percent = 0.0f;
+    }
+    
     int frameNumber = floor(percent * HUD_LAYER_NUMBER_OF_OVERLAY_FRAMES);
     if (frameNumber == 0) {
         [[_greenOverlay getCCSprite] setVisible:NO];
         _overlayVisible = false;
     } else if (_currentOverlayFrame != frameNumber) {
-        [_greenOverlay setImageByName:[_overlayFrameNames objectAtIndex:frameNumber]];
+        
+        @try {
+            [_greenOverlay setImageByName:[_overlayFrameNames objectAtIndex:frameNumber]];
+        }
+        @catch (NSException *exception) {
+            CCLOG(@"Error! HudButton.m - green overlay only has 7 frames. frame requested %d",frameNumber);
+        }
+        
         
         //set visible if not already
         if (!_overlayVisible) {
