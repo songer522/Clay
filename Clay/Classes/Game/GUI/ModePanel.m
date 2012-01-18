@@ -66,7 +66,7 @@
     
     int i = 0;
     for (NSString *name in buttonNames) {
-        ActionButton *button = [[ActionButton actionButtonCustomGraphicsForIdle:@"UI_GameType_ButtonL_Blue.png" Selected:@"UI_GameType_ButtonL_Green.png"] retain];
+        ActionButton *button = [ActionButton actionButtonCustomGraphicsForIdle:@"UI_GameType_ButtonL_Blue.png" Selected:@"UI_GameType_ButtonL_Green.png"];
         [button setInitialText:name];
         [button setPosition:ccp(_position.x,(startY - i * PANEL_BUTTON_HEIGHT_WITH_GAP))];
         [button setAlpha:0.0f];
@@ -260,13 +260,16 @@
 
 -(void) dealloc
 {
+    for (ActionButton *button in _buttons) {
+        [button release]; //need to reduce the retain count
+    }
+    [_buttons release];
     [_activePanel release];
     [_inactivePanel release];
     [_activeHeader release];
     [_inactiveHeader release];
     _selectCursor = nil;
     _parentScene = nil;
-    [_buttons removeAllObjects];
     [super dealloc];
 }
 

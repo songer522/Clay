@@ -63,7 +63,6 @@
     
    
     if ((self = [super init])) {
-         _buttons = [[NSMutableArray alloc] initWithCapacity:4];        
         _levelToSwitchTo = @"level1";
         _buttons = [[NSMutableArray alloc] initWithCapacity:7];
         _alpha = 1.0f;
@@ -73,6 +72,7 @@
         _openFacebook=false;
         _waitToSwitch = 0.0f;
         _hasSwitched = false;
+        _bestTime = nil;
         self.isTouchEnabled = YES;
         
         _gameMode = [[GameSettings shared] getGlobalForKey:@"gameMode"];
@@ -216,9 +216,14 @@
     NSString *levelName = [NSString stringWithFormat:@"level%d",levelNumber];
     float bestTime = [[BestTimes shared] getBestTimeForLevelName:levelName forDifficulty:_gameDifficulty];
     _levelNumber=levelNumber;
+    
+    if (_bestTime!=nil) {
+        [_bestTime release];
+        _bestTime = nil;
+    }
     _bestTime= [self getTimestringForFloat:bestTime];
     ChooseLevelPanel *panel = [ChooseLevelPanel instance];
-    [panel setBestTime:[self getTimestringForFloat:bestTime]];
+    [panel setBestTime:_bestTime];
     [panel setLevelDataByNumber:levelNumber];
     
     int medal = [self getMedalNumberForLevelNamed:levelName Time:bestTime];
@@ -479,15 +484,20 @@
 {
     CCLOG(@"=============CHOOSE LEVEL SCREEN============");
     CCLOG(@"Dealloc: ChooseLevelScreen");
-        
-    //[_buttons removeAllObjects];
-    //[_buttons release];
-    //_buttons = nil;
+    
+    for (LevelButton *button in _buttons) {
+        [button release];
+    }
+    [_buttons release];
+    _buttons = nil;
+    
+    
+
+
     [_modeDict release];
     [_levelToSwitchTo release];
     _gameMode = nil;
     _gameDifficulty = nil;
-    [_bestTime release]; //autoreleased
     [_background release];
     [_panelBackground release];
     [_selector release];
@@ -499,6 +509,11 @@
     [_backButton release];
     [_facebookButton release];
     [_twitterButton release];
+    
+    if (_bestTime !=nil) {
+        [_bestTime release];
+        _bestTime = nil;
+    }
     
     [_frontPanel release];
     if(_backPanel != nil) { //may or may not have been released during the transition

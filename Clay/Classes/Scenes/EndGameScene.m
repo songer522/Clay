@@ -18,6 +18,7 @@
 #import "GameSettings.h"
 #import "GCHelper.h"
 #import "GCState.h"
+#import "SoundEngine.h"
 
 
 @implementation EndGameScene
