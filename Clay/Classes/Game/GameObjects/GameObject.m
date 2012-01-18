@@ -1346,7 +1346,7 @@
     else if(_currentBehavior == COLLISION_BEHAVIOR_FIREFOX_FADES || _currentBehavior == COLLISION_BEHAVIOR_FIREFOX_PREATTACK || _currentBehavior == COLLISION_BEHAVIOR_FIREFOX_POSTATTACK) {
         _currentBehavior = COLLISION_BEHAVIOR_FIREFOX_PREATTACK;
         [self setBoundingBox:CGRectMake(37, 2, 14, 45)];
-        [_projectile setPosition:ccp(-31.0f,-5.0f)];
+        [_projectile setPosition:ccp(-31.0f,0.0f)];
     }
     else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_HEALTH_BUBBLE_1) {
         _currentBehavior = COLLISION_BEHAVIOR_WATER_HEALTH_BUBBLE_1;
