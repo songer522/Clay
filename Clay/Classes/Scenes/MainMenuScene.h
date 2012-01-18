@@ -21,7 +21,7 @@ typedef enum {
     MAINMENU_TRANSITION_IN,
     MAINMENU_TRANSITION_OUT,
     MAINMENU_TRANSITION_IDLE,
-    //MAINMENU_BUTTON_TRANSITION
+    MAINMENU_BUTTON_TRANSITION
 } MainMenuTransition;
 
 typedef enum {
@@ -77,6 +77,7 @@ typedef enum {
 -(void)reinit;
 -(void)switchToTransitionIn;
 -(void)switchToTransitionOut;
+-(void)buttonTransition;
 -(void)pause;
 -(void)setAlphaForAll:(float)alpha includingButtons:(bool)alphaButtons andButtonSelection:(bool)alphaSelected;
 -(void)setButtonAlphas:(float)alpha;

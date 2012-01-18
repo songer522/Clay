@@ -172,24 +172,25 @@
             } else if ([_leaderboardsButton testCollision:position]) {
                 _switchToChoice = MENU_SWITCHTO_LEADERBOARDS;
                 _selectedButton = _leaderboardsButton;
-                //shouldStart = true;
-                [self switchToChoice];
+               
+                [self buttonTransition];
                 
             } else if ([_achievementsButton testCollision:position]) {
                 _switchToChoice = MENU_SWITCHTO_ACHIEVEMENTS;
                 _selectedButton = _achievementsButton;
-                //shouldStart = true;
-                [self switchToChoice];
+               
+                [self buttonTransition];
             } else if ([_optionsButton testCollision:position]) {
                 _switchToChoice = MENU_SWITCHTO_OPTIONS;
+               
                 [[SoundEngine shared] playSound:@"confirm"];
                 _selectedButton = _optionsButton;
                 shouldStart = true;
             }else if ([_giftButton testCollision:position]) {
                 _switchToChoice = MENU_SWITCHTO_GIFT;
+                _selectedButton=_giftButton;
                 [[SoundEngine shared] playSound:@"confirm"];
-                _selectedButton = _giftButton;
-                [self switchToChoice];
+                [self buttonTransition];
                
             } 
             else if(_isContinueButtonEnabled && [_continueButton testCollision:position]) {
@@ -202,6 +203,7 @@
         if (shouldStart) {
             [self switchToTransitionOut];
         }
+        
     }
 }
 
@@ -269,6 +271,12 @@
     _transition = MAINMENU_TRANSITION_OUT;
 }
 
+-(void)buttonTransition
+{
+    _time=0.0f;
+    _transition=MAINMENU_BUTTON_TRANSITION;
+}
+
 -(void)reinit
 {
     [self switchToTransitionIn];    
@@ -311,6 +319,19 @@
                     _switchSceneTriggered = true;
                 }
             }
+            break;
+            
+        case MAINMENU_BUTTON_TRANSITION:
+            if (_time >=1.0f) {
+                _time = 1.0f;
+                _transition=MAINMENU_TRANSITION_IDLE;
+                [self switchToChoice];
+                
+            }
+
+            [_selectedButton setSelectedAlpha:(MAX(1.0f - 8.0f * _time, 0.0f))];
+            
+            
             break;
         default:
             break;
