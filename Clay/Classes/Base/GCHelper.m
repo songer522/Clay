@@ -167,11 +167,17 @@ static GCHelper *sharedHelper = nil;
 {
     [GKAchievement loadAchievementsWithCompletionHandler:^(NSArray *achievements, NSError *error) {
         if(error == nil)
-        {
-            for(GKAchievement *object in achievements)
-            {
-                [achievementDictionary setObject:object forKey:object.identifier];
-            }
+        {dispatch_queue_t downloadQueue = dispatch_queue_create("flickr downloader", NULL);
+            dispatch_async(downloadQueue, ^{
+                for(GKAchievement *object in achievements)
+                {
+                    [achievementDictionary setObject:object forKey:object.identifier];
+                }  
+                
+            });
+            dispatch_release(downloadQueue);
+
+            
         }
      
         

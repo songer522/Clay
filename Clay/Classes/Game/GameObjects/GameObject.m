@@ -1346,7 +1346,7 @@
     else if(_currentBehavior == COLLISION_BEHAVIOR_FIREFOX_FADES || _currentBehavior == COLLISION_BEHAVIOR_FIREFOX_PREATTACK || _currentBehavior == COLLISION_BEHAVIOR_FIREFOX_POSTATTACK) {
         _currentBehavior = COLLISION_BEHAVIOR_FIREFOX_PREATTACK;
         [self setBoundingBox:CGRectMake(37, 2, 14, 45)];
-        [_projectile setPosition:ccp(-31.0f,-13.0f)];
+        [_projectile setPosition:ccp(-31.0f,-5.0f)];
     }
     else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_HEALTH_BUBBLE_1) {
         _currentBehavior = COLLISION_BEHAVIOR_WATER_HEALTH_BUBBLE_1;
@@ -1569,7 +1569,7 @@
         _collideBehavior = COLLISION_BEHAVIOR_WATER_SQUID_FADES;
         _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_WATER_SQUID_INK];
         [_projectile reset];
-        [_projectile setBoundingBox:CGRectMake(10,45,20,30)];
+        [_projectile setBoundingBox:CGRectMake(10,25,20,30)];
         _projectilePersists = true;
     }
     else if([behavior isEqualToString:@"tronika"]) {
