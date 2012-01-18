@@ -276,7 +276,7 @@ static ComicManager *_shared = nil;
     float finalTime = [[[gameLayer getHud] getTrackTimer] getTime];
     [[GameSettings shared] setGlobal:[NSString stringWithFormat:@"%f", finalTime] ForKey:@"finalTime"];
     
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[EndGameScene scene]]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:3.5f scene:[EndGameScene scene]]];
     _showEndGame = false;
     _introMovie = false;
 }

@@ -11,6 +11,7 @@
 #import "LayerManager.h"
 #import "PListLoader.h"
 #import "OptionsScene.h"
+#import "EndGameScene.h"
 
 @implementation CreditsScene
 
@@ -116,7 +117,7 @@
 
 -(void)switchToOptionsScreen
 {
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[OptionsScene scene]]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[EndGameScene scene]]];
 }
 
 -(void)update:(ccTime)dt

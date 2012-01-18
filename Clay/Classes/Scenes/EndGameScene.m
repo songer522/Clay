@@ -18,6 +18,7 @@
 #import "GameSettings.h"
 #import "GCHelper.h"
 #import "GCState.h"
+#import "CreditsScene.h"
 
 
 @implementation EndGameScene
@@ -67,11 +68,15 @@
         
         if([difficulty isEqualToString:@"hard"] && [mode isEqualToString:@"story"])
         {
-        _BonusComic=[Sprite spriteWithFile:@"Comic_12.png"];
+        _BonusComic=[Sprite spriteWithFile:@"Comic_13.png"];
+        }
+        else if ([difficulty isEqualToString:@"normal"] && [mode isEqualToString:@"story"])
+        {
+            _BonusComic=[Sprite spriteWithFile:@"Comic_14.png"];
         }
         else
         {
-            _BonusComic=[Sprite spriteWithFile:@"Comic_13.png"];
+            _BonusComic=[Sprite spriteWithFile:@"Comic_12.png"];
         }
         
       
@@ -85,7 +90,7 @@
         
         _besttimer = [TrackTimer instance];
         [_besttimer setupAnimationsAtX:232.0f Y:145.0f];
-        
+         _initialized = false;
         [self showTimers];
         
         
@@ -101,7 +106,7 @@
         [_besttimer setAlpha:0.0f];
         [_BonusComic setAlpha:0.0f];
       
-        _initialized = false;
+       
         
         [self scheduleUpdate];
         self.isTouchEnabled = true;
@@ -206,7 +211,7 @@
         
         if(_shouldExit)
         {
-              [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[MainMenuScene scene]]];
+              [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[CreditsScene scene]]];
         }
     }
 }
