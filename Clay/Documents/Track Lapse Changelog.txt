@@ -3,8 +3,9 @@ Track Lapse Changelog
 Build 120118.01
 =================
 
-* EndLevel Screen - the timer for the end level and the choose level screen now match up, instead of being slightly off from each other.
-* EndLevel Screen - replay button works again
+* Credits - credits will now automatically switch to the next screen after the current credits scroll off the screen
+* EndLevel - the timer for the end level and the choose level screen now match up, instead of being slightly off from each other.
+* EndLevel - replay button works again
 * Global - "Time for next trophy" calculations were fixed, and now says the correct next trophy name as well as the right times.
 * Global - new achievements: 'Get Pumped', 'OMG', 'Ground Tim, Tim, Ground'
 * Global - ending for the story mode added, where the credits music plays, then the last two comics are shown (depending on difficulty), then the credits, then the final "thanks for playing, here's your final time" screen, then goes back to the main menu.
