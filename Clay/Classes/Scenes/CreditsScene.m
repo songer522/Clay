@@ -13,6 +13,7 @@
 #import "OptionsScene.h"
 #import "EndLevelScene.h"
 #import "SoundEngine.h"
+#import "GameSettings.h"
 
 @implementation CreditsScene
 
