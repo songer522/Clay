@@ -285,12 +285,12 @@
     int silverTime = [[medals objectForKey:@"silver"] intValue];
     int goldTime = [[medals objectForKey:@"gold"] intValue];
     
-    if (time<goldTime) {
-        returnVal = goldTime;
-    } else if(time<silverTime) {
-        returnVal = silverTime;
-    } else if(time<bronzeTime) {
+    if (time > bronzeTime || time <= 0.0f) {
         returnVal = bronzeTime;
+    } else if(time > silverTime) {
+        returnVal = silverTime;
+    } else if(time > goldTime) {
+        returnVal = goldTime;
     } else {
         returnVal = 0;
     }
