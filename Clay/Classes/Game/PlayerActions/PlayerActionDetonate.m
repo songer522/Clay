@@ -97,7 +97,7 @@
     NSMutableArray *objects = [[[LevelManager shared] currentLevel] getActiveGameObjectList];
     
     for (GameObject *object in objects) {
-        if (!object.collided && [object closeToPlayer:450]) {
+        if (!object.collided && [object closeToPlayer:450]&& [object getCollisionBehavior] == COLLISION_BEHAVIOR_DARK_BOMB) {
             [object startCollision:YES]; //send projectile so the explosion can still hurt tim
         }
     }

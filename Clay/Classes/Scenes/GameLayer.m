@@ -38,7 +38,7 @@
 #import "BestTimes.h"
 
 
-#define DEBUG_DRAW_BOUNDING_BOXES 1
+#define DEBUG_DRAW_BOUNDING_BOXES 0
 @interface GameLayer()
 
 -(void)setupLayers;
@@ -253,16 +253,13 @@
     }*/
     //NSLog(@"DT: %f",dt);
     
-    double fixedTimeStep = 1.00f/60.0f;
-    float timeToRun = dt + time;
-    
-    while(timeToRun >= fixedTimeStep) {
-        [self updateLogic:fixedTimeStep];            
-        timeToRun = timeToRun - fixedTimeStep;
+    if( dt > 0.022f )
+    {
+        //NSLog(@"DT: %f",dt);
+		dt = 1/60.0f;
     }
-    time = timeToRun;
     
-    //[self updateLogic:dt];
+    [self updateLogic:dt];
 }
 
 -(void)pause
