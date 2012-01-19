@@ -86,7 +86,7 @@
         _boss = nil;
         _madeSound = false;
         _boundingBox = CGRectMake(0, 0, 0, 0);
-        _collisionState = [[Collision collisionNode] retain];
+        _collisionState = [Collision collisionNode];
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;
         _useDefaultBatchNode = true;
         _isAggressive = false;
@@ -1675,6 +1675,11 @@
     return _collideBehavior;
 }
 
+-(void) setSprite:(Sprite *)sprite
+{
+    _sprite = sprite;
+}
+
 -(Sprite*) getSprite
 {
     return _sprite;
@@ -1689,6 +1694,7 @@
 
 -(void)dealloc
 {
+    NSLog(@"Sprite RC: %d",[_sprite retainCount]);
     [_sprite release];
     [_collisionState release];
     [_boss release];

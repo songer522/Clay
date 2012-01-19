@@ -220,8 +220,13 @@
 {
     [_graphic release];
     [_greenOverlay release];
-    [_overlayFrameNames removeAllObjects];
+    
+    for (NSString *frameName in _overlayFrameNames) {
+        [frameName release];
+        frameName = nil;
+    }
     [_overlayFrameNames release];
+
     [super dealloc];
 }
 

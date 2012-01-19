@@ -166,6 +166,16 @@
 
 -(void)dealloc
 {
+    for (NSMutableArray *region in _regions) {
+        for (GameObject *object in region) {
+            //[object release];
+            object = nil;
+        }
+        
+        [region release];
+        region = nil;
+    }
+    [_regions release];
     
     [super dealloc];
 }

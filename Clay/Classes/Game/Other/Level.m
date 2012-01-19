@@ -336,6 +336,7 @@
         [[[LayerManager sharedLayers] currentLayer] removeChild:node cleanup:YES];
     }
     
+    /*
     for (MapObject *mapObject in _obstacleMapObjects) {
         if (mapObject!=nil) {
             [[mapObject.object getCCSprite] removeFromParentAndCleanup:YES];
@@ -346,7 +347,7 @@
         if (mapObject!=nil) {
             [[mapObject.object getCCSprite] removeFromParentAndCleanup:YES];
         }
-    }
+    }*/
 }
 
 -(void)scanThroughMapAndAddObjects

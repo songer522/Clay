@@ -298,9 +298,15 @@
 
 -(void)dealloc
 {
+    if ([_frameName isEqualToString:@"Checkpoint_1.png"]) {
+        _frameName = _frameName;
+    }
     //[_animator release];
     [_frameName release];
-    [_animation release];
+    //[_animation release];
+    _animation = nil;
+    
+    
     [sprite_cc removeFromParentAndCleanup:YES];
     sprite_cc = nil;
     [super dealloc];

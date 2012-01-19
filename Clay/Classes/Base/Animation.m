@@ -195,7 +195,7 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
     [_frames release];
 
     [_frameNames removeAllObjects];
-    [_frames release];
+    [_frameNames release];
     
     _spriteSheet = nil;
     

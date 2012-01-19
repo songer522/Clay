@@ -230,9 +230,13 @@
 
 -(void)dealloc
 {
-    [_timerAnimations removeAllObjects];
+    for (Sprite *sprite in _timerAnimations) {
+        [sprite release];
+        sprite = nil;
+    }
     [_timerAnimations release];
-   // [[TextureManager shared] unloadMemoryForKey:@"hud"];
+
+    // [[TextureManager shared] unloadMemoryForKey:@"hud"];
     [super dealloc];
 }
 
