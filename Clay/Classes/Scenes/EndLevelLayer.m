@@ -288,7 +288,8 @@
          
             [_gameLayer restartLevel];
              _gameLayer.gameController.isInputEnabled = true;
-              _gameLayer.isTouchEnabled=true;
+            [_gameLayer.gameController endLevel];
+             // _gameLayer.isTouchEnabled=true;
             [self onExit];
             
             /*
@@ -356,10 +357,13 @@
 {
    // [_finalTimePanel getCCSprite].visible = false;
     //[_finalTimeText setText:nil];
+     [self unscheduleUpdate];
+     self.isTouchEnabled = false;
     
-    [self unscheduleUpdate];
-    self.isTouchEnabled = false;
+   
+     //[[[LayerManager sharedLayers] currentScene] removeChild:self cleanup:NO];
     [self release];
+  
 }
 
 
@@ -409,10 +413,22 @@
 {
     [[TextureManager shared] unloadMemoryForKey:@"endLevel"];
     _gameController = nil;
-    [_finalTimeText release];
-    _gameLayer=nil;
+    if(_finalTimeText!=nil)
+    {
+        [_finalTimeText release];
+        _finalTimeText=nil;
+    }
+    if(_finalTimePanel!=nil)
+    {
     [_finalTimePanel release];
+        _finalTimePanel=nil;
+    }
+    if(_timeHeaderText!=nil)
+    {
     [_timeHeaderText release];
+        _timeHeaderText=nil;
+    }
+    _gameLayer=nil;
  
     //[super dealloc];
 }
