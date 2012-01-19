@@ -65,7 +65,7 @@
     }
     
     if (_inLightning) {
-        [_sprite setPosition:_position];
+        //[_sprite setPosition:_position];
     }
 }
 
@@ -101,8 +101,9 @@
 -(void)repositionSprite
 {
     //IPAD FIX: should be positioned at a random position in the background at a height where the top of the lightning bolt is just off the top of the screen
-    _position = [[Camera sharedCamera] convertToWorldXY:ccp(50 + rand()%330, 193)];
-    //[_sprite setScreenPosition:ccp(50 + rand()%330, 193)];
+    //_position = [[Camera sharedCamera] convertToWorldXY:ccp(50 + rand()%330, 193)];
+    _position = ccp(50 + rand()%330, 193);
+    [_sprite setScreenPosition:_position];
 }
 
 -(void)dealloc
