@@ -438,7 +438,9 @@
                 if(_projectile!=nil){
                     [[_projectile getCCSprite] setVisible:NO];
                 }
-                [[_sprite getCCSprite] pauseSchedulerAndActions];
+                if (_collideBehavior != COLLISION_BEHAVIOR_COMPUTER_WORM) {
+                    [[_sprite getCCSprite] pauseSchedulerAndActions];                    
+                }
                 _isVisible = false;
             }
             return; //don't bother with the rest of the update loop
@@ -661,7 +663,8 @@
             [self chaseAtDistance:210.0f DefaultSpeed:-50.0f ChaseSpeed:-175.0f ChaseSound:@"" ChaseAnimation:@"computerMelissaFastAnim" DefaultAnimation:@"computerMelissaSlowAnim"];
             break;
         case COLLISION_BEHAVIOR_COMPUTER_WORM:
-            if ([[_sprite getAnimation] getCurrentFrameNumber] == 1) {
+            frame = [[_sprite getAnimation] getCurrentFrameNumber];
+            if (frame == 1) {
                 _vx = -50.0f;
             } else {
                 _vx = 0.0f;
@@ -1195,8 +1198,6 @@
     _hasAppeared=false;
     _chaseTriggered = false;
     _isHurdle = false;
-   
-    if(self )
     _madeSound = false;
     [_sprite setAlpha:1.0f];
      
@@ -1694,7 +1695,7 @@
 
 -(void)dealloc
 {
-    NSLog(@"Sprite RC: %d",[_sprite retainCount]);
+    //NSLog(@"Sprite RC: %d",[_sprite retainCount]);
     [_sprite release];
     [_collisionState release];
     [_boss release];
