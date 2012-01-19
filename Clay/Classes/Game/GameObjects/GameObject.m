@@ -367,6 +367,34 @@
             }
             _fadeout = true;
             break;
+        case COLLISION_BEHAVIOR_DARK_BOMB:
+            
+            //if true, then bomb exploded on its own (bomb called function with true, player calls with false),
+            //and we want it to still be volatile
+            //if false, then player called it and has thus already been hit by it, and we want it to be harmless now
+            if (isProjectile) {
+                _bombStillHurts = true;
+                _collided = false;
+                
+                if ([[_player getThirdAction] inAction]) {
+                    [[_player getThirdAction] setKilledEnemy:YES];
+                }
+            } else {
+                _bombStillHurts = false;
+                _collided = true;
+            }
+            
+            if (!_hasTriggered) {
+                [self setOriginalAnimation:@"darkBossJimBombAttack2"];
+                [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"darkBombExplosionAnim"];
+                [[SoundEngine shared] playSound:@"bombExplosion"];
+                
+                _hasTriggered = true;
+                _collided = false;
+                _alpha = 1.5f;
+                _fadeout = true;
+            }
+            break;
         case COLLISION_BEHAVIOR_WATER_SQUID_FADES:
         case COLLISION_BEHAVIOR_FIREBALL_LANDED:
         case COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR:
@@ -1000,6 +1028,21 @@
                 }
             }
             break;
+        case COLLISION_BEHAVIOR_DARK_BOMB:
+            if (!_hasAppeared && [self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+                _hasAppeared = true;
+            }
+            
+            if (!_hasTriggered && [self closeToPlayer:40.0f]) {
+                [self startCollision:YES];
+            } else if(_hasTriggered && _bombStillHurts) {
+                if (_alpha > 0.3f) {
+                    _collided = false;
+                } else {
+                    _collided = true;
+                }
+            }
+            break;
         case COLLISION_BEHAVIOR_GARGOYLE:
             _vx = 0.0f;
             if (_waitToTrigger >= 0) {
@@ -1359,6 +1402,11 @@
         _currentBehavior = COLLISION_BEHAVIOR_FINAL_BOSS;
         _collideBehavior = COLLISION_BEHAVIOR_FINAL_BOSS;
     }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_DARK_BOMB) {
+        _currentBehavior = COLLISION_BEHAVIOR_DARK_BOMB;
+        _collideBehavior = COLLISION_BEHAVIOR_DARK_BOMB;
+        _hasTriggered = false;
+    }
     else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_SLOW) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;     
     }
@@ -1584,6 +1632,10 @@
     else if([behavior isEqualToString:@"waterHealth2"]) {
         _currentBehavior = COLLISION_BEHAVIOR_WATER_HEALTH_BUBBLE_2;
         _collideBehavior = COLLISION_BEHAVIOR_WATER_HEALTH_BUBBLE_2;
+    }
+    else if([behavior isEqualToString:@"bomb"]) {
+        _currentBehavior = COLLISION_BEHAVIOR_DARK_BOMB;
+        _collideBehavior = COLLISION_BEHAVIOR_DARK_BOMB;
     }
     else {
         _collideBehavior = COLLISION_BEHAVIOR_NONE;

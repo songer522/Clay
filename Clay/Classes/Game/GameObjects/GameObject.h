@@ -100,6 +100,7 @@ typedef enum {
     bool _isHurdle;
     bool _projectilePersists;
    
+    bool _bombStillHurts;
     
     Collision *_collisionState;     //used to keep track of whether the object is in midair or on
                                     //the ground.

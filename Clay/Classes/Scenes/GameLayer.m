@@ -244,14 +244,15 @@
     }
     time = timeToRun;
     */
-    
+
+    /*
     if( dt > 0.022f )
     {
         //NSLog(@"DT: %f",dt);
 		dt = 1/60.0f;
-    }
+    }*/
     //NSLog(@"DT: %f",dt);
-    /*
+    
     double fixedTimeStep = 1.00f/60.0f;
     float timeToRun = dt + time;
     
@@ -260,9 +261,8 @@
         timeToRun = timeToRun - fixedTimeStep;
     }
     time = timeToRun;
-     */
     
-    [self updateLogic:dt];
+    //[self updateLogic:dt];
 }
 
 -(void)pause
