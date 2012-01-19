@@ -126,12 +126,12 @@
     
     _timedModePanel = [ModePanel panelAtPosition:ccp(240,154)];
     [_timedModePanel setHeaderFrame:@"UI_GameType_TimeModeC.png" Inactive:@"UI_GameType_TimeModeG.png"];
-    [_timedModePanel addButtons:[NSArray arrayWithObjects:@"NORMAL",@"INSANE", nil]];
+    [_timedModePanel addButtons:[NSArray arrayWithObjects:@"NORMAL",@"INSANE",@"DLC", nil]];
     [_timedModePanel setParent:self];
     
     _extrasPanel = [ModePanel panelAtPosition:ccp(400,154)];
     [_extrasPanel setHeaderFrame:@"UI_GameType_ExtrasC.png" Inactive:@"UI_GameType_ExtrasG.png"];
-    [_extrasPanel addButtons:[NSArray arrayWithObjects:@"SKINS",@"LEVELS",@"WEB", nil]];
+    [_extrasPanel addButtons:[NSArray arrayWithObjects:@"ALBUM",@"WEB", nil]];
     [_extrasPanel setParent:self];
     
     _startButton = [ActionButton actionButtonCustomGraphicsForIdle:@"UI_GameType_ButtonS_Blue.png" Selected:@"UI_GameType_ButtonS_Green.png"];
@@ -189,18 +189,18 @@
             [[GameSettings shared] setGlobal:@"normal" ForKey:@"gameDifficulty"];
             [[GameSettings shared] setGlobal:@"timed" ForKey:@"gameMode"];
             _action = GAMEMODE_TIMED_NORMAL;
-        } else {
+        } else if(selectedButtonIndex == 1) {
             [[GameSettings shared] setGlobal:@"hard" ForKey:@"gameDifficulty"];
             [[GameSettings shared] setGlobal:@"timed" ForKey:@"gameMode"];
             _action = GAMEMODE_TIMED_INSANE;            
+        } else {
+            [[GameSettings shared] setGlobal:@"normal" ForKey:@"gameDifficulty"];
+            [[GameSettings shared] setGlobal:@"dlclevels" ForKey:@"gameMode"];
+            _action = GAMEMODE_TIMED_DLC;
         }
     } else {
         if (selectedButtonIndex == 0) {
-            [[GameSettings shared] setGlobal:@"normal" ForKey:@"gameDifficulty"];
-            [[GameSettings shared] setGlobal:@"extralevels" ForKey:@"gameMode"];
-            _action = GAMEMODE_EXTRAS_LEVELS;            
-        } else if(selectedButtonIndex == 1){
-            _action = GAMEMODE_EXTRAS_SKINS;
+            _action = GAMEMODE_EXTRAS_ALBUM;
         } else {
             _action = GAMEMODE_EXTRAS_WEB;
         }
@@ -222,10 +222,17 @@
             break;
         case GAMEMODE_TIMED_NORMAL:
         case GAMEMODE_TIMED_INSANE:
-        case GAMEMODE_EXTRAS_LEVELS:
+            [[GameSettings shared] setGlobal:@"NO" ForKey:@"timedShowDLC"];
             [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ChooseLevelScreen scene]]];
             break;
-        case GAMEMODE_EXTRAS_SKINS:
+        case GAMEMODE_TIMED_DLC:
+            [[GameSettings shared] setGlobal:@"YES" ForKey:@"timedShowDLC"];
+            [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ChooseLevelScreen scene]]];
+            break;
+        case GAMEMODE_EXTRAS_ALBUM:
+            url = [NSURL URLWithString:@"http://itunes.apple.com/ca/album/track-lapse-official-game/id494170466"];
+            [[UIApplication sharedApplication] openURL:url];
+            _isTransitioning = false;
             break;
         case GAMEMODE_EXTRAS_WEB:
             url = [NSURL URLWithString:@"http://www.tracklapse.com"];
