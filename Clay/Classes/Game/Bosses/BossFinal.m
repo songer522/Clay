@@ -574,4 +574,29 @@
     [[_train getCCSprite] setVisible:YES];
 }
 
+-(void)dealloc
+{
+    [_trainJim release];
+    [_trainWheels release];
+    
+    for (Projectile *bomb in _bombs) {
+        [bomb release];
+        bomb = nil;
+    }
+    [_bombs release];
+    
+    for (Projectile *grape in _grapes) {
+        [grape release];
+        grape = nil;
+    }
+    [_grapes release];
+    
+    [_queuedPhases removeAllObjects];
+    [_queuedPhases release];
+    
+    [_passengerCar release];
+    
+    [super dealloc];
+}
+
 @end
