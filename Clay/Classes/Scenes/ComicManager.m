@@ -149,6 +149,7 @@ static ComicManager *_shared = nil;
                 break;
             case COMIC_PHASE_PLAY_VIDEO:
                 if (_showEndGame) {
+                    
                     [self endTheGame];
                 } else {
                     [_comicLayer cueComic:_comicName];
@@ -231,10 +232,10 @@ static ComicManager *_shared = nil;
                     
                     [_comicLayer startTransition:BLACKBOX_OUT];
                     [_comicLayer setVisible:false];
-                    float finalLevelTime = [[[gameLayer getHud] getTrackTimer] getTime];
-                    NSString *timerText=[TrackTimer getTimeStringFromFloat:finalLevelTime];
-                    [[GameSettings shared] setGlobal: timerText ForKey:@"finalLevelTimeText"];
-                    [[GameSettings shared] setGlobal:[NSString stringWithFormat:@"%f",finalLevelTime] ForKey:@"finalLevelTime"];
+                    //float finalLevelTime = [[[gameLayer getHud] getTrackTimer] getTime];
+                    //NSString *timerText=[TrackTimer getTimeStringFromFloat:finalLevelTime];
+                    //[[GameSettings shared] setGlobal: timerText ForKey:@"finalLevelTimeText"];
+                   // [[GameSettings shared] setGlobal:[NSString stringWithFormat:@"%f",finalLevelTime] ForKey:@"finalLevelTime"];
                     [gameLayer onExit];
                     [gameLayer.gameController endLevel];
                     _isActive=false;
@@ -276,7 +277,7 @@ static ComicManager *_shared = nil;
     float finalTime = [[[gameLayer getHud] getTrackTimer] getTime];
     [[GameSettings shared] setGlobal:[NSString stringWithFormat:@"%f", finalTime] ForKey:@"finalTime"];
     
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[EndGameScene scene]]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:4.5f scene:[EndGameScene scene]]];
     _showEndGame = false;
     _introMovie = false;
 }

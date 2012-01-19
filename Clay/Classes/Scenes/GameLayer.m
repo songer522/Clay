@@ -142,6 +142,7 @@
 
 -(void)restartLevel
 {
+    
     [[GameSettings shared] setGlobal:@"true" ForKey:@"restarting"];
     [[Camera sharedCamera] reset];
     [_level resetTriggers:true];
@@ -276,10 +277,6 @@
 
 -(void)updateLogic:(ccTime)dt
 {    
-#if CC_ENABLE_PROFILERS
-    CCProfilingTimer *timer = [CCProfiler timerWithName:@"pfull" andInstance:self];
-    CCProfilingBeginTimingBlock(timer);
-#endif  
 
     [[ComicManager shared] update:dt];
     
@@ -318,9 +315,7 @@
     [_gameController update];
     
     
-#if CC_ENABLE_PROFILERS
-    CCProfilingEndTimingBlock(timer);
-#endif
+
 
 }
 
@@ -424,6 +419,9 @@
     [[SoundEngine shared] playSound:@"endLevel"];
     NSString *difficulty=[[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
     float finalLevelTime = [[_hud getTrackTimer] getLevelTime];
+    NSString *timerText=[TrackTimer getTimeStringFromFloat:finalLevelTime];
+    [[GameSettings shared] setGlobal: timerText ForKey:@"finalLevelTimeText"];
+    [[GameSettings shared] setGlobal:[NSString stringWithFormat:@"%f",finalLevelTime] ForKey:@"finalLevelTime"];
     float oldBestTime=[[BestTimes shared]getBestTimeForLevelName:_level.name forDifficulty:difficulty];
     
     if(oldBestTime > finalLevelTime)

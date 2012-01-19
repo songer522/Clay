@@ -343,24 +343,6 @@
 	return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown && interfaceOrientation != UIInterfaceOrientationPortrait);
 }
 
-- (void)sendEasyTweet:(NSString*)tweet
-{
-    AppDelegate *appDelegate=[[UIApplication sharedApplication] delegate];
-    // Set up the built-in twitter composition view controller.
-    TWTweetComposeViewController *tweetViewController = [[TWTweetComposeViewController alloc] init];
-    
-    // Set the initial tweet text. See the framework for additional properties that can be set.
-    [tweetViewController setInitialText:tweet];
-    
-    // Present the tweet composition view controller modally.
-    NSString *reqSysVer = @"5.0";
-    NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
-    if ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending)
-    {
-    [appDelegate.viewController presentModalViewController:tweetViewController animated:YES];
-    }
-}
-
 
 -(void)switchToChoice
 {

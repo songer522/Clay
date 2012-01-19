@@ -11,6 +11,8 @@
 #import "LayerManager.h"
 #import "PListLoader.h"
 #import "OptionsScene.h"
+#import "EndLevelScene.h"
+#import "SoundEngine.h"
 
 @implementation CreditsScene
 
@@ -34,6 +36,7 @@
         
         [[LayerManager sharedLayers] setWorkingLayer:self];
 
+        
         [self loadCredits];
         
         [[LayerManager sharedLayers] forgetWorkingLayer];
