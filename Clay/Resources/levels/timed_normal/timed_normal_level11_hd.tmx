@@ -175,7 +175,7 @@
   </tile>
   <tile id="80">
    <properties>
-    <property name="" value=""/>
+    <property name="obstacle" value="darkBomb"/>
    </properties>
   </tile>
   <tile id="91">
@@ -271,7 +271,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt2MkNAyEMAEAqSFJergJy9P+PUkEQYIzIzGtXCGRW2ItcCgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAvc7ZAQAAAADlkh0AwAB6jQAAAJBPrxEAvVoAAADIp1cLALCPR8Xz13NCLAAA0Ou9+Djrek0ea3UPWLPVtfO91rFxXm0crXH9q1/nOipfIvJplIi8XPWc9ubjbm7Bc1rWr9Fbv2fV1db993630ftZsfbV3lndfceJ+FecAtZkL4fsAAAAAAAAAAAgwQfAQRVw
+   eJzt2UkOwyAMAMC8oO3zut67/P9e9QWlZjGiM6dECGQiTJDZNgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAah2zAwAAAAC2U3YAAA2oNQIAAEA+tUYA1GoBAACIumUHsBC1WgCAddwLnj8eA2IBAIBar8nbmddzcFvUtcOYUefK91L7YL/SOKJx/atv67pXvvTIp1Z65OWs67Q2H1cTuX/+pc8lMH6J2v171L4anX/td2s9nxn3vtIzq7NvOz3+FYcOY7KWXXYAAAAAAAAAAJDgDSy3FdE=
   </data>
  </layer>
  <layer name="meta" width="1000" height="14" opacity="0.66">

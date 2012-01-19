@@ -460,7 +460,7 @@
                     Trigger *trigger = [[Trigger alloc] init];
                     trigger.position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
                     trigger.type = TRIGGER_FINAL_BOSS_ENTER;
-                    trigger.canBeReset = false;
+                    trigger.canBeReset = true;
                     [_triggers addObject:trigger];
                 } else if([special isEqualToString:@"finalBossExits"]) {
                     Trigger *trigger = [[Trigger alloc] init];
