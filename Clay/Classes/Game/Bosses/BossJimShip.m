@@ -219,10 +219,12 @@
         if(![[_player getThirdAction] isActive]) {
            if([source isMemberOfClass:[_megaCannonBullet class]])
            {
-               _player.isDoubleDemage=true;
+               Projectile *projectile = (Projectile*)source;
+               if (projectile.projectileBehavior == PROJECTILE_BEHAVIOR_BOSS_SHIP_MEGACANNON ) {
+                   _player.isDoubleDamage=true;                   
+               }
            }
             [_player startCollision:PLAYER_EFFECT_COLLIDE Source:source];
-            
         } else {
             [[_player getThirdAction] setKilledEnemy:YES];
             [[SoundEngine shared] playSound:@"deflected"];

@@ -46,7 +46,7 @@
 @synthesize inVaccuum = _inVaccuum;
 @synthesize onLedge =_onLedge;
 @synthesize gotHit=_gotHit;
-@synthesize isDoubleDemage =_isDoubleDemage;
+@synthesize isDoubleDamage =_isDoubleDamage;
 @synthesize skin = _skin;
 
 
@@ -72,7 +72,7 @@
         [factory initializeGameObject:self Name:@"player" AddToLayer:YES];
         
        
-        _isDoubleDemage=false;
+        _isDoubleDamage=false;
         _isFallingintoDeathPit=false;
         _isJumping = false;
         _isDead = false;
@@ -451,10 +451,10 @@
 
 -(void)startPlayerCollision:(bool)shouldForceFalling;
 {
-    if(_speed.inTurbo || _isDoubleDemage)
+    if(_speed.inTurbo || _isDoubleDamage)
     {
         [self changeHealth:-2];
-        _isDoubleDemage = false;
+        _isDoubleDamage = false;
     }
     else
     {
@@ -521,7 +521,7 @@
     [[gameLayer getHud] setEnabled:true ForButton:HUD_BUTTON_JUMP];
     
     [[[[gameLayer getHud] getSprintButton] getCCSpriteForOverlay] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"UI_Button_GreenLight_7.png"]]; 
-    _isDoubleDemage=false;
+    _isDoubleDamage=false;
   
     _isFallingintoDeathPit=false;
     _isJumping = false;
