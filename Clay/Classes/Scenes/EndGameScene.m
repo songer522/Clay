@@ -191,6 +191,7 @@
         
         if(_shouldExit)
         {
+            [[GameSettings shared] setGlobal:@"endGame" ForKey:@"switchToCreditsFrom"];
               [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[CreditsScene scene]]];
         }
     }
