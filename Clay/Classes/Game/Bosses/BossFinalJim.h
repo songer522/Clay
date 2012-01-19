@@ -8,7 +8,6 @@
 
 #import "Boss.h"
 
-
 @class Sprite;
 @class Level;
 @class Player;
@@ -35,7 +34,7 @@
     bool _isKicking;
     bool _isLaughing;
     bool _wasKnockedDown;
-    
+        
     BossPhase _phase;
     
     float _waitToAttack;

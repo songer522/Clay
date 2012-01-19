@@ -27,7 +27,7 @@
     if ((self=[super init])) {
         sprite_cc = nil;
         _animation = nil;
-        _animator = [Animator instance];
+        //_animator = [Animator instance]; //has significant memory leaks anyway
         _camera = [Camera sharedCamera];
         
         _isLowRes = true;
@@ -277,7 +277,7 @@
 
 -(void)updateAnimator:(float)dt
 {
-    [_animator update:dt];
+    //[_animator update:dt];
 }
 
 -(bool)reachedMinAfterModifyAlpha:(float)amount
@@ -298,9 +298,15 @@
 
 -(void)dealloc
 {
-    [_animator release];
+    if ([_frameName isEqualToString:@"Checkpoint_1.png"]) {
+        _frameName = _frameName;
+    }
+    //[_animator release];
     [_frameName release];
-    [_animation release];
+    //[_animation release];
+    _animation = nil;
+    
+    
     [sprite_cc removeFromParentAndCleanup:YES];
     sprite_cc = nil;
     [super dealloc];

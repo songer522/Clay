@@ -18,8 +18,8 @@
 #import "GameSettings.h"
 #import "GCHelper.h"
 #import "GCState.h"
-#import "CreditsScene.h"
 #import "SoundEngine.h"
+#import "CreditsScene.h"
 
 
 @implementation EndGameScene

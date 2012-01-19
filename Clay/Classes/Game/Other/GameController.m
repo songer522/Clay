@@ -161,8 +161,6 @@
 {
     if (!_isEndLevel) {
             
-      _isHandlingPause = true;
-        
         _endLevelLayer = [EndLevelLayer instance];
                 _endLevelLayer.gameController = self;
         _endLevelLayer.isNewRecord=_gameLayer.isNewRecord;

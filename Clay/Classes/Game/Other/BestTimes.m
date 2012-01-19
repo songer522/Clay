@@ -17,10 +17,40 @@ static BestTimes *_shared = nil;
 
 +(BestTimes*)shared
 {
-	if (!_shared) {
-        _shared = [[self alloc] init];
+	if (_shared == nil) {
+        _shared = [[super allocWithZone:NULL] init];
 	}
 	return _shared;
+}
+
++(id)allocWithZone:(NSZone *)zone
+{
+    return [[self shared] retain];
+}
+
+-(id)copyWithZone:(NSZone*)zone
+{
+    return self;
+}
+
+-(id)retain
+{
+    return self;
+}
+
+-(NSUInteger)retainCount
+{
+    return NSUIntegerMax; //denotes an object that cannot be released
+}
+
+-(oneway void)release
+{
+    //do nothing
+}
+
+-(id)autorelease
+{
+    return self;
 }
 
 -(id)init

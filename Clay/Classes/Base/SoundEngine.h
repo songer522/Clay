@@ -10,6 +10,7 @@
 //  TODO: there might be something here that is interfering with the VideoPlayer and causing the ringer volume control bug to happen (see Github issue #59). The video player itself is the other likely culprit.
 
 #import <Foundation/Foundation.h>
+#import "SimpleAudioEngine.h"
 
 @class SimpleAudioEngine;
 
@@ -44,6 +45,8 @@ typedef enum {
 
 -(void)playMusic:(NSString*)music;
 -(void)playSound:(NSString*)sound;
+-(ALuint)playSoundGetId:(NSString*)sound;
+-(void)stopSound:(ALuint)soundId;
 -(void)preloadAudio;
 -(void)preloadMusicForKey:(NSString*)key;
 -(void)loadSoundForKey:(NSString*)key;

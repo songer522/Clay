@@ -47,18 +47,15 @@
 
     NSString *frameName = [self getRandomImageFromList:[gameobjectSettings objectForKey:@"imageName"]];
     
-    Sprite *gameSprite;
     if ([frameName isEqualToString:@"blank.png"]) {
-        gameSprite = [Sprite spriteWithFile:frameName AddToLayer:shouldAddToLayer];        
+        [gameObject setSprite:[Sprite spriteWithFile:frameName AddToLayer:shouldAddToLayer]];
     } else {
-        gameSprite = [Sprite spriteFromFrameCacheWithName:frameName AddToLayer:shouldAddToLayer];    
+        [gameObject setSprite:[Sprite spriteFromFrameCacheWithName:frameName AddToLayer:shouldAddToLayer]];    
     }
-    
-    [gameObject setSprite:gameSprite];
     
     NSString *animation = [NSString stringWithString:[gameobjectSettings objectForKey:@"animationName"]];
     if (animation && [animation compare:@"none"] != NSOrderedSame) {
-        [[AnimationController sharedController] replaceSprite:gameSprite withAnimationNamed:animation];
+        [[AnimationController sharedController] replaceSprite:gameObject.sprite withAnimationNamed:animation];
         [gameObject setOriginalAnimation:animation];
     } else {
         [gameObject setOriginalAnimation:@"none"];
@@ -86,7 +83,6 @@
     gameObject.boundingBox = CGRectMake([[boundingBox objectForKey:@"x"] floatValue], [[boundingBox objectForKey:@"y"] floatValue], [[boundingBox objectForKey:@"width"] floatValue], [[boundingBox objectForKey:@"height"] floatValue]);
     
     [gameObject initialize:objectName];
-
 }
 
 -(NSString*)getRandomImageFromList:(NSString*)list

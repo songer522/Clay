@@ -75,6 +75,7 @@
 -(NSString*)getSequence;
 -(NSString*)getFrameList;
 -(void)changeAnimationSpeed:(float)newSpeed; //0 to 1, 1 is default
+-(void)unpause;
 
 //replaces the given sprite with this animation
 

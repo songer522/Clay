@@ -1,5 +1,76 @@
 Track Lapse Changelog
 
+Build 120118.01
+=================
+
+* Credits - credits will now automatically switch to the next screen after the current credits scroll off the screen
+* EndLevel - the timer for the end level and the choose level screen now match up, instead of being slightly off from each other.
+* EndLevel - replay button works again
+* Global - "Time for next trophy" calculations were fixed, and now says the correct next trophy name as well as the right times.
+* Global - new achievements: 'Get Pumped', 'OMG', 'Ground Tim, Tim, Ground'
+* Global - ending for the story mode added, where the credits music plays, then the last two comics are shown (depending on difficulty), then the credits, then the final "thanks for playing, here's your final time" screen, then goes back to the main menu.
+* Main Menu - performance improved by loading achievements in the background instead of waiting to load the main menu until they are loaded. most noticeable with older devices.
+* Main Menu - button transitions added to all buttons
+* Level 3 - tweaked the crow position
+* Level 3 - tweaked hitbox for crow because player's bounding box is taller now (for level 10)
+* Level 7 - the bug where the worms were not animating has been fixed
+* Level 7 - small bullets no longer deal double damage
+* Level 7 - all projectiles reset once the player dies or the level is restarted
+* Level 8 - tweaked level design so Tim won't ever hit an enemy on a ledge while he is on the ground
+* Level 8 - low res level background had the volcano looking broken, has been fixed.
+* Level 8 - firefox flames position now gets reset properly
+* Level 10 - changed level design so the seahorse won't go through Tim's head without hurting him, and fish won't come close to Tim's head while he is walking
+* Level 10 - bug where level was crashing when the action key was hit has been fixed
+* Level 11 - boss used to not be removed from memory, after the level ends/exited, now it does.
+* Level 11 - fixed the overlap of the ledges and the train
+* Level 11 - the train and horn sounds now stop when exiting the level, as well as get reset whenever the player dies or the level is restarted
+* Level 11 - the train does not always come back on screen when the player dies and has encounter a trigger to go onscreen. this should fix the perceived glitches where the train appears where it shouldn't
+* Memory Leaks - fixed all memory leaks in choose mode and choose level screens except for the twitter window, where the leaks were part of the official twitter code (also doesn't get leaked unless twitter button is pressed).
+* Memory Leaks - fixed all memory leaks in options screen, how to play screen, and credits screen
+* Memory Leaks - fixed a few major memory leaks in-game, but there's still quite a few left.
+
+
+Build 120117.02
+=================
+* Global - A second new approach to how the updates work which might work even better for the stuttering issue (although both builds should be tested)
+* Main Menu - Gifting the app added, currently points to Angry Birds, will eventually need to be changed.
+
+Build 120117.01
+=================
+
+* Global - New approach to the updates which seems to improve the stuttering issue dramatically.
+* Global - the end of the level shows a trophy if you've earned it, and the header shows if you have a new best time
+* Global - fixed bug in 'A Good Read' achievement
+* Global - tweaks to the positions of the hud buttons and battery
+* Global - the alpha of the center of the buttons reduced to make it a bit easier to see the small obstacles coming
+* Global - useless meme screen added to the end of story mode
+* Level 10 - fixed a bubble that couldn't be reached
+* Level 10 - removed a glitch in the background
+* Level 11 - new versions of the levels for all modes
+
+
+Build 120113.02
+=================
+
+* Global - Fixed the bug where the game crashing results in lost menus.
+* EndLevelLayer - added screen at the end of the timed levels that will show the time you got, and got replay and menu buttons working. Eventually will show the medal you earned for that run.
+* Level 4 - laser show removed, for now.
+* Level 11 - Tim's action changed from slowing down time to detonating bombs
+* Level 11 - Added grape projectiles that can be thrown ahead of Tim and must be jumped over.
+* Level 11 - Added support for Jim having multiple projectiles in the air at the same time.
+* Level 11 - Train resets properly
+* Level 11 - Added sound effects for ambient train noises, the train horn, the beeping detonator, jim's throw, and the bomb exploding
+* Level 11 - Updated door attack so it reflects the new movement code and isn't buggy; added collision detection for it.
+* Level 11 - Tim only gains health when bombs are actually detonated instead of just pressing the button.
+* Level 11 - Fixed Jim sometimes throwing nothing instead of bombs or grapes
+* Level 11 - Jim now throws grapes farther to allow for dashing while the grapes are thrown
+* Level 11 - Fixed checkpoint graphic showing up behind the train
+* Level 11 - Changed so the bomb doesn't hurt Tim the instant it's thrown but instead once it starts coming down from its peak, allowing for Tim to sprint in front of Jim's window without blowing up any bombs immediately with his face.
+* Level 11 - Jim now waits until Tim gets back up before starting new attacks that it had queued up.
+* Level 11 - Added ability to fade sound effects, but the effect affects all sound effects, and there's no way to affect individual sounds without digging deep into the sound engine cocos code. Used once at the very beginning of the level, but using it anywhere else probably wouldn't make sense.
+* Level 11 - Fixed map so that a new instance of the boss isn't spawned every time a "train enters" trigger is placed.
+* Level 11 - Grapes still fall behind the front of the spikes on the ground, but there isn't a way to do this, since that graphic needs to be above the spikes, and the spikes need to be above Tim, and the grapes should be behind Tim.
+
 Build 120111.01
 ==================
 
@@ -31,7 +102,6 @@ Build 120110.01
 * Level 11 - added grapes switching to a bomb attack (no collision)
 * Level 11 - fixed the train slowing down after every attack
 * Level 11 - demo level for low res and high res for to show all attacks
-
 
 Build 120109.01
 ==================

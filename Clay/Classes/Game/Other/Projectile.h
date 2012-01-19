@@ -62,6 +62,7 @@ typedef enum {
 @property(nonatomic,readonly) bool hurtsPlayer;
 @property(nonatomic,readonly) bool isBehindObstacle;
 @property(nonatomic,readonly) float vy;
+@property(nonatomic,readonly) ProjectileBehavior projectileBehavior;
 
 #pragma mark - inits
 +(id) projectileWithBehavior:(ProjectileBehavior)behavior;
