@@ -15,6 +15,8 @@
     Sprite *_sprite;
     float _timeIntoAnimation;
     float _waitUntilNewStrike;
+    CGPoint _position;
+    bool _inLightning;
 }
 
 +(id)instance;

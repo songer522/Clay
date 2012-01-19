@@ -28,8 +28,11 @@
         // Initialization code here.
         
         _sprite = [Sprite spriteWithFile:@"blank.png"];
-        [self repositionSprite];
+        
+        _inLightning = false;
+        //[self repositionSprite];
         [_sprite setAlpha:0.0f];
+        
         
         _waitUntilNewStrike = 4.0f + rand()%5;
     }
@@ -60,6 +63,10 @@
             [_sprite setAlpha:0.5f];
         } 
     }
+    
+    if (_inLightning) {
+        [_sprite setPosition:_position];
+    }
 }
 
 -(void)startStrike
@@ -76,6 +83,7 @@
         [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"rainyLightning3Anim"];
     }
     
+    _inLightning = true;
     [self repositionSprite];
     [_sprite setAlpha:1.0f];
     [[_sprite getCCSprite] setVisible:YES];
@@ -87,14 +95,14 @@
 {
     [[_sprite getCCSprite] setVisible:NO];
     _waitUntilNewStrike = 6.0f + rand()%6;
+    _inLightning = false;
 }
 
 -(void)repositionSprite
 {
     //IPAD FIX: should be positioned at a random position in the background at a height where the top of the lightning bolt is just off the top of the screen
-    [_sprite setScreenPosition:ccp(50 + rand()%330, 193)];
-    
-    
+    _position = [[Camera sharedCamera] convertToWorldXY:ccp(50 + rand()%330, 193)];
+    //[_sprite setScreenPosition:ccp(50 + rand()%330, 193)];
 }
 
 -(void)dealloc

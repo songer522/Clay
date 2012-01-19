@@ -525,7 +525,7 @@
     if (_waitToPlayHorn > 0.0f) {
         _waitToPlayHorn-=dt;
         if (_waitToPlayHorn<=0.0f) {
-            [[SoundEngine shared] playSound:@"bossFinalHorn"];
+            _hornSoundId = [[SoundEngine shared] playSoundGetId:@"bossFinalHorn"];
             _waitToPlayHorn = rand()%2 + 7;
         }
     }
@@ -536,10 +536,22 @@
     if (_waitToPlayTrainSound > 0.0f) {
         _waitToPlayTrainSound -= dt;
         if (_waitToPlayTrainSound <= 0.0f) {
-            [[SoundEngine shared] playSound:@"bossFinalTrain"];
+            _trainSoundId = [[SoundEngine shared] playSoundGetId:@"bossFinalTrain"];
             _waitToPlayTrainSound = 10.0f;
         }
     }
+}
+
+-(void)stopHornSound
+{
+    [[SoundEngine shared] stopSound:_hornSoundId];
+    _waitToPlayHorn = 0.0f;
+}
+
+-(void)stopTrainSound
+{
+    [[SoundEngine shared] stopSound:_trainSoundId];
+    _waitToPlayTrainSound = 0.0f;
 }
 
 -(void) reset
@@ -549,7 +561,7 @@
     [self updatePosition:_trainPosition];
     [_queuedPhases removeAllObjects];
     [self changeToAnimationNamed:@"darkBossJimIdle1" forSprite:_trainJim];
-    [self triggerAction:FINAL_BOSS_MOVE_TO_BOMBING];
+    [self triggerAction:FINAL_BOSS_IDLE];
     _resetSpriteVisibility = true;
     
     for (Projectile *bomb in _bombs) {
@@ -564,6 +576,9 @@
     
     [_door disable];
     _waitUntilPlayerGetsBackUp = false;
+    
+    [self stopTrainSound];
+    [self stopHornSound];
 }
 
 -(void)restartLevel
@@ -576,6 +591,9 @@
 
 -(void)dealloc
 {
+    [self stopHornSound];
+    [self stopTrainSound];
+    
     [_trainJim release];
     [_trainWheels release];
     

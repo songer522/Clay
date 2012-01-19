@@ -110,6 +110,27 @@ static SoundEngine *_shared = nil;
     }
 }
 
+-(ALuint)playSoundGetId:(NSString*)sound
+{
+    ALuint returnVal = -1;
+    
+    if (_enabled) {
+        _sfxVolume = 1.0f;
+        NSString *filename = [_soundMap objectForKey:sound];
+        
+        NSAssert(filename!=nil,@"Requested sound '%@' not in dictionary. Double-check sounds.plist",sound);
+        
+        returnVal = [[SimpleAudioEngine sharedEngine] playEffect:filename];
+    }
+    
+    return returnVal;
+}
+
+-(void) stopSound:(ALuint)soundId
+{
+    [[SimpleAudioEngine sharedEngine] stopEffect:soundId];
+}
+
 -(void) playMusic:(NSString*)music
 {
     if (_enabled) {
