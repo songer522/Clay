@@ -21,11 +21,11 @@ Build 120118.01
 * Level 8 - firefox flames position now gets reset properly
 * Level 10 - changed level design so the seahorse won't go through Tim's head without hurting him, and fish won't come close to Tim's head while he is walking
 * Level 10 - bug where level was crashing when the action key was hit has been fixed
-* Memory Leaks - fixed all memory leaks in choose mode and choose level screens except for the twitter window, where the leaks were part of the official twitter code (also doesn't get leaked unless twitter button is pressed).
 * Level 11 - boss used to not be removed from memory, after the level ends/exited, now it does.
 * Level 11 - fixed the overlap of the ledges and the train
 * Level 11 - the train and horn sounds now stop when exiting the level, as well as get reset whenever the player dies or the level is restarted
 * Level 11 - the train does not always come back on screen when the player dies and has encounter a trigger to go onscreen. this should fix the perceived glitches where the train appears where it shouldn't
+* Memory Leaks - fixed all memory leaks in choose mode and choose level screens except for the twitter window, where the leaks were part of the official twitter code (also doesn't get leaked unless twitter button is pressed).
 * Memory Leaks - fixed all memory leaks in options screen, how to play screen, and credits screen
 * Memory Leaks - fixed a few major memory leaks in-game, but there's still quite a few left.
 
