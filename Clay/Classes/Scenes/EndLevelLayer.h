@@ -14,11 +14,12 @@
 @class GameLabel;
 @class Button;
 @class ActionButton;
+@class GameLayer;
 
 typedef enum {
-    END_LEVEL_REPLAY = 0,
-    END_LEVEL_BACK = 1,
-    END_LEVEL_NONE = 2
+    END_LEVEL_REPLAY = 5,
+    END_LEVEL_BACK = 6,
+    END_LEVEL_NONE = 7
 }EndLevelAction;
 typedef enum {
     NO_TROPHY = 0,
@@ -34,7 +35,7 @@ typedef enum {
     bool _buttonPressed;
     bool _isNewRecord;
     GameController *_gameController;
-    
+    GameLayer *_gameLayer;
     ActionButton *_replayButton;
     ActionButton *_menuButton;
     

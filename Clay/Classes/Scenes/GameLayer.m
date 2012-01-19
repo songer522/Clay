@@ -151,6 +151,7 @@
 
 -(void)restartLevel
 {
+    
     [[GameSettings shared] setGlobal:@"true" ForKey:@"restarting"];
     [[Camera sharedCamera] reset];
     [_level resetTriggers:true];
@@ -285,10 +286,6 @@
 
 -(void)updateLogic:(ccTime)dt
 {    
-#if CC_ENABLE_PROFILERS
-    CCProfilingTimer *timer = [CCProfiler timerWithName:@"pfull" andInstance:self];
-    CCProfilingBeginTimingBlock(timer);
-#endif  
 
     [[ComicManager shared] update:dt];
     
@@ -327,9 +324,7 @@
     [_gameController update];
     
     
-#if CC_ENABLE_PROFILERS
-    CCProfilingEndTimingBlock(timer);
-#endif
+
 
 }
 
