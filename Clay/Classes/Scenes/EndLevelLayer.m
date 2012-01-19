@@ -410,7 +410,7 @@
     [[TextureManager shared] unloadMemoryForKey:@"endLevel"];
     _gameController = nil;
     [_finalTimeText release];
-     [_gameLayer release];
+    _gameLayer=nil;
     [_finalTimePanel release];
     [_timeHeaderText release];
  

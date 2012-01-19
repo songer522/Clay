@@ -428,6 +428,9 @@
     [[SoundEngine shared] playSound:@"endLevel"];
     NSString *difficulty=[[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
     float finalLevelTime = [[_hud getTrackTimer] getLevelTime];
+    NSString *timerText=[TrackTimer getTimeStringFromFloat:finalLevelTime];
+    [[GameSettings shared] setGlobal: timerText ForKey:@"finalLevelTimeText"];
+    [[GameSettings shared] setGlobal:[NSString stringWithFormat:@"%f",finalLevelTime] ForKey:@"finalLevelTime"];
     float oldBestTime=[[BestTimes shared]getBestTimeForLevelName:_level.name forDifficulty:difficulty];
     
     if(oldBestTime > finalLevelTime)

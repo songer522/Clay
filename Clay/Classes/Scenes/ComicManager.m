@@ -232,10 +232,10 @@ static ComicManager *_shared = nil;
                     
                     [_comicLayer startTransition:BLACKBOX_OUT];
                     [_comicLayer setVisible:false];
-                    float finalLevelTime = [[[gameLayer getHud] getTrackTimer] getTime];
-                    NSString *timerText=[TrackTimer getTimeStringFromFloat:finalLevelTime];
-                    [[GameSettings shared] setGlobal: timerText ForKey:@"finalLevelTimeText"];
-                    [[GameSettings shared] setGlobal:[NSString stringWithFormat:@"%f",finalLevelTime] ForKey:@"finalLevelTime"];
+                    //float finalLevelTime = [[[gameLayer getHud] getTrackTimer] getTime];
+                    //NSString *timerText=[TrackTimer getTimeStringFromFloat:finalLevelTime];
+                    //[[GameSettings shared] setGlobal: timerText ForKey:@"finalLevelTimeText"];
+                   // [[GameSettings shared] setGlobal:[NSString stringWithFormat:@"%f",finalLevelTime] ForKey:@"finalLevelTime"];
                     [gameLayer onExit];
                     [gameLayer.gameController endLevel];
                     _isActive=false;
