@@ -1666,6 +1666,10 @@
         _playerEffect = PLAYER_EFFECT_VACCUUM;
     } else if([effect isEqualToString:@"dance"]) {
         _playerEffect = PLAYER_EFFECT_DANCE;
+    } else if([effect isEqualToString:@"faster"]) {
+        _playerEffect = PLAYER_EFFECT_FASTER;
+    } else if([effect isEqualToString:@"slower"]) {
+        _playerEffect = PLAYER_EFFECT_SLOWER;
     } else {
         _playerEffect = PLAYER_EFFECT_NONE;
     }

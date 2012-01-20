@@ -2664,6 +2664,76 @@
 		<key>playerEffect</key>
 		<string>collide</string>
 	</dict>
+	<key>trainingConveyorRight</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>1</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>trainingConveyorRightAnim</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>60</integer>
+			<key>width</key>
+			<integer>60</integer>
+			<key>x</key>
+			<integer>73</integer>
+			<key>y</key>
+			<integer>-10</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>none</string>
+		<key>imageName</key>
+		<string>blank.png</string>
+		<key>offsetx</key>
+		<integer>73</integer>
+		<key>offsety</key>
+		<integer>-25</integer>
+		<key>playerEffect</key>
+		<string>faster</string>
+	</dict>
+	<key>trainingConveyorLeft</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>1</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>trainingConveyorLeftAnim</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>60</integer>
+			<key>width</key>
+			<integer>60</integer>
+			<key>x</key>
+			<integer>73</integer>
+			<key>y</key>
+			<integer>-10</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>none</string>
+		<key>imageName</key>
+		<string>blank.png</string>
+		<key>offsetx</key>
+		<integer>73</integer>
+		<key>offsety</key>
+		<integer>-25</integer>
+		<key>playerEffect</key>
+		<string>slower</string>
+	</dict>
 	<key>townCrow</key>
 	<dict>
 		<key>aggressive</key>

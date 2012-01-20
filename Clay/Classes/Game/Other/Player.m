@@ -365,6 +365,12 @@
     }
      */
     
+    if(!_isInMidAir) {
+        _goFaster = false;
+    }
+    
+    _goSlower = false;
+    
     if (!_isInvincible) {
         if (effect == PLAYER_EFFECT_ACTION_OR_COLLIDE) {
             if (!_isTripping && !_isDead) {
@@ -395,6 +401,10 @@
             }
         } else if(effect == PLAYER_EFFECT_SLOWDOWN) {
             [_speed slowDown];
+        } else if(effect == PLAYER_EFFECT_FASTER && _onLedge) {
+            _goFaster = true;
+        } else if(effect == PLAYER_EFFECT_SLOWER && _onLedge) {
+            _goSlower = true;
         }
     }
     
