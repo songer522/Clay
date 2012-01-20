@@ -131,7 +131,7 @@
     
     _extrasPanel = [ModePanel panelAtPosition:ccp(400,154)];
     [_extrasPanel setHeaderFrame:@"UI_GameType_ExtrasC.png" Inactive:@"UI_GameType_ExtrasG.png"];
-    [_extrasPanel addButtons:[NSArray arrayWithObjects:@"ALBUM",@"WEB", nil]];
+    [_extrasPanel addButtons:[NSArray arrayWithObjects:@"ALBUM",@"WEB",@"SUPPORT", nil]];
     [_extrasPanel setParent:self];
     
     _startButton = [ActionButton actionButtonCustomGraphicsForIdle:@"UI_GameType_ButtonS_Blue.png" Selected:@"UI_GameType_ButtonS_Green.png"];
@@ -201,8 +201,11 @@
     } else {
         if (selectedButtonIndex == 0) {
             _action = GAMEMODE_EXTRAS_ALBUM;
-        } else {
+        } else if (selectedButtonIndex == 1){
             _action = GAMEMODE_EXTRAS_WEB;
+        }
+        else{
+            _action=GameMODE_EXTRAS_SUPPORT;
         }
     }
 }
@@ -239,6 +242,12 @@
             [[UIApplication sharedApplication] openURL:url];
             _isTransitioning = false;
             break;
+        case GameMODE_EXTRAS_SUPPORT:
+            url = [NSURL URLWithString:@"mailto:support@xecudev.com"];
+            [[UIApplication sharedApplication] openURL:url];
+            _isTransitioning = false;
+            break;
+
         default:
             break;
     }
