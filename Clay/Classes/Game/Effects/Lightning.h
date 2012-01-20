@@ -9,12 +9,16 @@
 #import <Foundation/Foundation.h>
 
 @class Sprite;
+@class Player;
 
 @interface Lightning : NSObject
 {
     Sprite *_sprite;
     float _timeIntoAnimation;
     float _waitUntilNewStrike;
+    CGPoint _position;
+    bool _inLightning;
+    Player *_player;
 }
 
 +(id)instance;

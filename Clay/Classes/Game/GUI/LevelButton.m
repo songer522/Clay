@@ -9,6 +9,9 @@
 #import "LevelButton.h"
 #import "Sprite.h"
 
+#define LEVEL_BUTTON_MAX_LEVEL_NUMBER 13
+#define LEVEL_BUTTON_NUMBER_OF_NORMAL_LEVELS 11
+
 @implementation LevelButton
 
 +(id)levelButtonWithId:(int)buttonId
@@ -30,7 +33,7 @@
 {
     NSString *frameName;
     bool unlocked = true; //for now, eventually check storage
-    if (unlocked && _buttonId <= 11) {
+    if (unlocked && _buttonId <= LEVEL_BUTTON_MAX_LEVEL_NUMBER) {
         frameName = [NSString stringWithFormat:@"LevelSelector_Level%d.png",_buttonId];
     } else {
         frameName = @"LevelSelector_LevelLocked.png";
@@ -43,20 +46,22 @@
 
 -(void)setInitialPosition
 {
+    int buttonIdPos = (_buttonId > LEVEL_BUTTON_NUMBER_OF_NORMAL_LEVELS) ? (_buttonId - LEVEL_BUTTON_NUMBER_OF_NORMAL_LEVELS) : _buttonId;
+    
     //initial position
     float startX = 220; //was 212 for left panel
     float startY = 190; //was 181 for left panel and 11 levels, and 186 without
-    float row = floorf((_buttonId - 1) / 4);
+    float row = floorf((buttonIdPos - 1) / 4);
     
     //for staggered effect, move that one down one
-    if (_buttonId == 8) {
+    if (buttonIdPos == 8) {
         row = 2;
     }
     
-    float column = (_buttonId - 1) % 4;
-    if(_buttonId == 8) {
+    float column = (buttonIdPos - 1) % 4;
+    if(buttonIdPos == 8) {
         column = 0;
-    } else if(_buttonId > 8) {
+    } else if(buttonIdPos > 8) {
         column +=1;
     }
     
@@ -78,7 +83,7 @@
 
 -(bool)checkIfSelected:(CGPoint)touch
 {
-    if ([self testCollision:touch] && _buttonId <= 11) {
+    if ([self testCollision:touch] && _buttonId <= LEVEL_BUTTON_MAX_LEVEL_NUMBER) {
         [self setSelected];
         return true;
     }
@@ -101,6 +106,8 @@
 
 -(void)setTrophy:(int)trophyId
 {
+    if (trophyId < 1 || trophyId > 3) { return; }
+
     NSString *frameName = [NSString stringWithFormat:@"LevelSelector_Trophy_%d.png",trophyId];
     _trophy = [Sprite spriteFromFrameCacheWithName:frameName];
     [self setTrophyPosition];
@@ -117,9 +124,9 @@
 
 -(void)dealloc
 {
-    [_buttonGraphic release];
-    [_selector release];
     [_trophy release];
+    [_buttonGraphic release];
+    _selector = nil;
     [super dealloc];
 }
 

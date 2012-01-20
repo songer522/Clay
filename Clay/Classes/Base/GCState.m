@@ -11,10 +11,11 @@
 
 @implementation GCState
 @synthesize chickensKickedIntoCows;
-@synthesize hurdlesJumpedOver,peopleShuffled,dogsJumpedOver,zombiesShot,attacksBlocked,demonsFreezed,frogsJumpedOver;
+@synthesize hurdlesJumpedOver,peopleShuffled,dogsJumpedOver,zombiesShot,attacksBlocked,demonsFreezed,frogsJumpedOver,bubblesPoked;
 @synthesize timesDied,hurdlesHit,cowsHit,dancersHit,birdsHit,dogsHit,zombiesHit,viruesHit,fireDemonHit,frogsHit,fishHit,batHit;
 @synthesize completeStoryAll,completeStoryEasy,completeStoryHard,completeStoryNormal,flawlessRun;
-@synthesize enimiesCleared,timesWhooed,timesFellDown,timesFellIntoDeathPit;
+@synthesize timesWhooed,timesFellDown,timesFellIntoDeathPit;
+@synthesize gotHit,facebook,twitter,allGoldInInsane,allGoldInNormal,beatStoryAndAllGold,watchCredit,rateOurGame;
 
 static GCState *sharedInstance = nil;
 
@@ -60,6 +61,7 @@ static GCState *sharedInstance = nil;
     [encoder encodeInt:attacksBlocked forKey:@"attacksBlocked"];
     [encoder encodeInt:demonsFreezed forKey:@"demonsFreezed"];
     [encoder encodeInt:frogsJumpedOver forKey:@"frogsJumpedOver"];
+    [encoder encodeInt:bubblesPoked forKey:@"bubblesPoked"];
     
     
     [encoder encodeInt:hurdlesHit forKey:@"hurdlesHit"];
@@ -74,8 +76,8 @@ static GCState *sharedInstance = nil;
     [encoder encodeInt:fishHit forKey:@"fishHit"];
     [encoder encodeInt:batHit forKey:@"batHit"];
     
+      [encoder encodeInt:gotHit forKey:@"gotHit"];
     
-    [encoder encodeInt:enimiesCleared forKey:@"enimiesCleared"];
     [encoder encodeInt:timesWhooed forKey:@"timesWhooed"];
     [encoder encodeInt:timesFellIntoDeathPit forKey:@"timesFellIntoDeathPit"];
     [encoder encodeInt:timesFellDown forKey:@"timesFellDown"];
@@ -88,6 +90,16 @@ static GCState *sharedInstance = nil;
     [encoder encodeBool:completeStoryHard forKey:@"completeStoryHard"];
     [encoder encodeBool:completeStoryAll forKey:@"completeStoryAll"];
     [encoder encodeBool:flawlessRun forKey:@"flawlessRun"];
+    
+    [encoder encodeBool:facebook forKey:@"facebook"];
+    [encoder encodeBool:twitter forKey:@"twitter"];
+    [encoder encodeBool:allGoldInNormal forKey:@"allGoldInNormal"];
+    [encoder encodeBool:allGoldInInsane forKey:@"allGoldInInsane"];
+    [encoder encodeBool:beatStoryAndAllGold forKey:@"beatStoryAndAllGold"];
+    [encoder encodeBool:watchCredit forKey:@"watchCredit"];
+    [encoder encodeBool:rateOurGame forKey:@"rateOurGame"];
+    
+    
     
     
     
@@ -121,8 +133,8 @@ static GCState *sharedInstance = nil;
             frogsHit = [decoder decodeIntForKey:@"frogsHit"];
             fishHit = [decoder decodeIntForKey:@"fishHit"];
             batHit = [decoder decodeIntForKey:@"batHit"];
+            gotHit=[decoder decodeIntForKey:@"gotHit"];
             
-            enimiesCleared = [decoder decodeIntForKey:@"enimiesCleared"];
             timesWhooed = [decoder decodeIntForKey:@"timesWhooed"];
             timesFellIntoDeathPit = [decoder decodeIntForKey:@"timesFellIntoDeathPit"];
             timesFellDown = [decoder decodeIntForKey:@"timesFellDown"];
@@ -132,7 +144,16 @@ static GCState *sharedInstance = nil;
             completeStoryNormal = [ decoder decodeBoolForKey:@"completeStoryNormal"];
             completeStoryHard = [ decoder decodeBoolForKey:@"completeStoryHard"];
             completeStoryAll = [ decoder decodeBoolForKey:@"completeStoryAll"];
-            flawlessRun =[ decoder decodeBoolForKey:@"flawlessRun"];      
+            flawlessRun =[ decoder decodeBoolForKey:@"flawlessRun"];
+            
+            facebook =[ decoder decodeBoolForKey:@"facebook"];  
+            twitter =[ decoder decodeBoolForKey:@"twitter"];
+             allGoldInNormal =[ decoder decodeBoolForKey:@"allGoldInNormal"];
+             allGoldInInsane =[ decoder decodeBoolForKey:@"allGoldInInsane"];
+             beatStoryAndAllGold =[ decoder decodeBoolForKey:@"beatStoryAndAllGold"];
+             watchCredit =[ decoder decodeBoolForKey:@"watchCredit"];
+            rateOurGame=[decoder decodeBoolForKey:@"rateOurGame"];
+            
             
         }
     }

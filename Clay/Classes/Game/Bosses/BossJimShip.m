@@ -219,10 +219,12 @@
         if(![[_player getThirdAction] isActive]) {
            if([source isMemberOfClass:[_megaCannonBullet class]])
            {
-               _player.isDoubleDemage=true;
+               Projectile *projectile = (Projectile*)source;
+               if (projectile.projectileBehavior == PROJECTILE_BEHAVIOR_BOSS_SHIP_MEGACANNON ) {
+                   _player.isDoubleDamage=true;                   
+               }
            }
             [_player startCollision:PLAYER_EFFECT_COLLIDE Source:source];
-            
         } else {
             [[_player getThirdAction] setKilledEnemy:YES];
             [[SoundEngine shared] playSound:@"deflected"];
@@ -327,19 +329,28 @@
     if (_phase == BOSS_PHASE_NOT_TRIGGERED) {
     //if hasn't been triggered, do nothing
     } else {
-        _waitToShoot = -1.0f;
-        for (Projectile *_bullet in _bullets)
-        {[_bullet disable];}
-        _waitToMegaCannon = -1.0f;
-        [_megaCannonBullet disable];
+        [self resetProjectiles];
         [[_sprite getCCSprite] setVisible:YES]; //probably set not visible during gameobject reset
         _hadReset = true;
     }
 }
 
+-(void)resetProjectiles
+{
+    _waitToShoot = -1.0f;
+    for (Projectile *_bullet in _bullets)
+    {[_bullet disable];}
+    _waitToMegaCannon = -1.0f;
+    [_megaCannonBullet disable];
+    for (ComboAttack *combo in _comboAttacks) {
+        [combo disable];
+    }
+}
+
 -(void)restartLevel
 {
-    [self switchToPhase:BOSS_PHASE_NOT_TRIGGERED];    
+    [self switchToPhase:BOSS_PHASE_NOT_TRIGGERED];
+    [self resetProjectiles];
 }
 
 -(void)updateVelocity:(float)dt
@@ -384,7 +395,7 @@
 
 -(void)dealloc
 {
-    [_sprite release];
+    _sprite = nil; //deallocated by gameobject
     [_cannonAnim release];
     [_megaCannonAnim release];
     [_comboAttackAnim release];

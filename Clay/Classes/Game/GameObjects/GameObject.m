@@ -86,7 +86,7 @@
         _boss = nil;
         _madeSound = false;
         _boundingBox = CGRectMake(0, 0, 0, 0);
-        _collisionState = [[Collision collisionNode] retain];
+        _collisionState = [Collision collisionNode];
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;
         _useDefaultBatchNode = true;
         _isAggressive = false;
@@ -105,7 +105,7 @@
         _hasAppeared=false;
         _isVisible = true;
         _isHurdle = false;
-      
+        _isBouncing = false;
         _isStutterMode = [[GameSettings shared] isStutterMode];
         
         _player = [[LayerManager sharedLayers] getPlayer];
@@ -367,6 +367,34 @@
             }
             _fadeout = true;
             break;
+        case COLLISION_BEHAVIOR_DARK_BOMB:
+            
+            //if true, then bomb exploded on its own (bomb called function with true, player calls with false),
+            //and we want it to still be volatile
+            //if false, then player called it and has thus already been hit by it, and we want it to be harmless now
+            if (isProjectile) {
+                _bombStillHurts = true;
+                _collided = false;
+                
+                if ([[_player getThirdAction] inAction]) {
+                    [[_player getThirdAction] setKilledEnemy:YES];
+                }
+            } else {
+                _bombStillHurts = false;
+                _collided = true;
+            }
+            
+            if (!_hasTriggered) {
+                [self setOriginalAnimation:@"darkBossJimBombAttack2"];
+                [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"darkBombExplosionAnim"];
+                [[SoundEngine shared] playSound:@"bombExplosion"];
+                
+                _hasTriggered = true;
+                _collided = false;
+                _alpha = 1.5f;
+                _fadeout = true;
+            }
+            break;
         case COLLISION_BEHAVIOR_WATER_SQUID_FADES:
         case COLLISION_BEHAVIOR_FIREBALL_LANDED:
         case COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR:
@@ -376,6 +404,7 @@
         case COLLISION_BEHAVIOR_FADES:
         case COLLISION_BEHAVIOR_RAINY_SQUIRREL:
         case COLLISION_BEHAVIOR_COMPUTER_WORM:
+        case COLLISION_BEHAVIOR_TRAINING_EXERCISE_BALL:
             _alpha = 1.2f;
             _fadeout = true;
         default:
@@ -438,7 +467,9 @@
                 if(_projectile!=nil){
                     [[_projectile getCCSprite] setVisible:NO];
                 }
-                [[_sprite getCCSprite] pauseSchedulerAndActions];
+                if (_collideBehavior != COLLISION_BEHAVIOR_COMPUTER_WORM) {
+                    [[_sprite getCCSprite] pauseSchedulerAndActions];                    
+                }
                 _isVisible = false;
             }
             return; //don't bother with the rest of the update loop
@@ -466,8 +497,19 @@
     
     _prevLocation = CGPointMake(_x, _y);
     
+    if(_isBouncing) { //for some reason don't see the hasgravity stuff working
+        _vy += 500.0f * dt;
+    }
+    
     _x += _vx * dt;
     _y -= _vy * dt;
+    
+    
+    
+    if(_isBouncing) {
+        [self updateBounce:dt];
+    }
+    
     
     _movedBy -= _vy * dt;
     
@@ -488,6 +530,9 @@
     
     
 }
+
+
+
 -(void) playerHasCheering:(bool) cheering 
 {
     Player *player =  [[LayerManager sharedLayers] getPlayer];
@@ -510,6 +555,20 @@
         }
         [_sprite setAlpha:_setAlpha];
     } 
+}
+
+//just exercise ball for now
+-(void)updateBounce:(float)dt
+{
+    _rotationAmount -= _magnitude * dt;
+    [_sprite getCCSprite].rotation = _rotationAmount;
+    
+    if (_y <= 70) {
+        _y = 70;
+        _vy = - 0.55f * _vy;
+        _vx = 0.7f * _vx;
+        _magnitude = 0.7f * _magnitude;
+    }    
 }
 
 -(void)updateCollisionBehavior:(float)dt
@@ -661,7 +720,8 @@
             [self chaseAtDistance:210.0f DefaultSpeed:-50.0f ChaseSpeed:-175.0f ChaseSound:@"" ChaseAnimation:@"computerMelissaFastAnim" DefaultAnimation:@"computerMelissaSlowAnim"];
             break;
         case COLLISION_BEHAVIOR_COMPUTER_WORM:
-            if ([[_sprite getAnimation] getCurrentFrameNumber] == 1) {
+            frame = [[_sprite getAnimation] getCurrentFrameNumber];
+            if (frame == 1) {
                 _vx = -50.0f;
             } else {
                 _vx = 0.0f;
@@ -997,6 +1057,21 @@
                 }
             }
             break;
+        case COLLISION_BEHAVIOR_DARK_BOMB:
+            if (!_hasAppeared && [self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+                _hasAppeared = true;
+            }
+            
+            if (!_hasTriggered && [self closeToPlayer:40.0f]) {
+                [self startCollision:YES];
+            } else if(_hasTriggered && _bombStillHurts) {
+                if (_alpha > 0.3f) {
+                    _collided = false;
+                } else {
+                    _collided = true;
+                }
+            }
+            break;
         case COLLISION_BEHAVIOR_GARGOYLE:
             _vx = 0.0f;
             if (_waitToTrigger >= 0) {
@@ -1026,6 +1101,28 @@
                 }
             }
             break;
+        
+        ////////////////////////
+        //LEVEL 12 - TRAINING RUN
+        ////////////////////////
+        case COLLISION_BEHAVIOR_TRAINING_EXERCISE_BALL:
+            if (!_hasTriggered) {
+                if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+                    _hasTriggered = true;
+                    _y = 240.0f;
+                    _vy = 0.0f;
+                    _hasGravity = true;
+                    _isBouncing = true;
+                    _rotationAmount = 0.0f;
+                    _magnitude = 170.0f; //magnitude of rotation
+                    _vx = -100.0f;
+                } else {
+                    _isBouncing = false;
+                }
+            } else {
+            }
+            break;
+
             
         default:
             break;
@@ -1195,8 +1292,6 @@
     _hasAppeared=false;
     _chaseTriggered = false;
     _isHurdle = false;
-   
-    if(self )
     _madeSound = false;
     [_sprite setAlpha:1.0f];
      
@@ -1346,7 +1441,7 @@
     else if(_currentBehavior == COLLISION_BEHAVIOR_FIREFOX_FADES || _currentBehavior == COLLISION_BEHAVIOR_FIREFOX_PREATTACK || _currentBehavior == COLLISION_BEHAVIOR_FIREFOX_POSTATTACK) {
         _currentBehavior = COLLISION_BEHAVIOR_FIREFOX_PREATTACK;
         [self setBoundingBox:CGRectMake(37, 2, 14, 45)];
-        [_projectile setPosition:ccp(-31.0f,-13.0f)];
+        [_projectile setPosition:ccp(-31.0f,0.0f)];
     }
     else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_HEALTH_BUBBLE_1) {
         _currentBehavior = COLLISION_BEHAVIOR_WATER_HEALTH_BUBBLE_1;
@@ -1357,6 +1452,16 @@
     else if(_currentBehavior == COLLISION_BEHAVIOR_FINAL_BOSS) {
         _currentBehavior = COLLISION_BEHAVIOR_FINAL_BOSS;
         _collideBehavior = COLLISION_BEHAVIOR_FINAL_BOSS;
+    }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_DARK_BOMB) {
+        _currentBehavior = COLLISION_BEHAVIOR_DARK_BOMB;
+        _collideBehavior = COLLISION_BEHAVIOR_DARK_BOMB;
+        _hasTriggered = false;
+    }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_TRAINING_EXERCISE_BALL) {
+        _currentBehavior = COLLISION_BEHAVIOR_TRAINING_EXERCISE_BALL;
+        _collideBehavior = COLLISION_BEHAVIOR_TRAINING_EXERCISE_BALL;
+        _hasTriggered = false;
     }
     else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_SLOW) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;     
@@ -1569,7 +1674,7 @@
         _collideBehavior = COLLISION_BEHAVIOR_WATER_SQUID_FADES;
         _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_WATER_SQUID_INK];
         [_projectile reset];
-        [_projectile setBoundingBox:CGRectMake(10,45,20,30)];
+        [_projectile setBoundingBox:CGRectMake(10,25,20,30)];
         _projectilePersists = true;
     }
     else if([behavior isEqualToString:@"tronika"]) {
@@ -1583,6 +1688,14 @@
     else if([behavior isEqualToString:@"waterHealth2"]) {
         _currentBehavior = COLLISION_BEHAVIOR_WATER_HEALTH_BUBBLE_2;
         _collideBehavior = COLLISION_BEHAVIOR_WATER_HEALTH_BUBBLE_2;
+    }
+    else if([behavior isEqualToString:@"bomb"]) {
+        _currentBehavior = COLLISION_BEHAVIOR_DARK_BOMB;
+        _collideBehavior = COLLISION_BEHAVIOR_DARK_BOMB;
+    }
+    else if([behavior isEqualToString:@"exerciseBall"]) {
+        _currentBehavior = COLLISION_BEHAVIOR_TRAINING_EXERCISE_BALL;
+        _collideBehavior = COLLISION_BEHAVIOR_TRAINING_EXERCISE_BALL;
     }
     else {
         _collideBehavior = COLLISION_BEHAVIOR_NONE;
@@ -1613,6 +1726,10 @@
         _playerEffect = PLAYER_EFFECT_VACCUUM;
     } else if([effect isEqualToString:@"dance"]) {
         _playerEffect = PLAYER_EFFECT_DANCE;
+    } else if([effect isEqualToString:@"faster"]) {
+        _playerEffect = PLAYER_EFFECT_FASTER;
+    } else if([effect isEqualToString:@"slower"]) {
+        _playerEffect = PLAYER_EFFECT_SLOWER;
     } else {
         _playerEffect = PLAYER_EFFECT_NONE;
     }
@@ -1675,6 +1792,11 @@
     return _collideBehavior;
 }
 
+-(void) setSprite:(Sprite *)sprite
+{
+    _sprite = sprite;
+}
+
 -(Sprite*) getSprite
 {
     return _sprite;
@@ -1689,6 +1811,7 @@
 
 -(void)dealloc
 {
+    //NSLog(@"Sprite RC: %d",[_sprite retainCount]);
     [_sprite release];
     [_collisionState release];
     [_boss release];

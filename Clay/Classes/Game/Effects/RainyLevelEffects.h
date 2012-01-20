@@ -18,6 +18,7 @@
     NSMutableArray *_raindrops;
     
     Sprite *_rainBehindTim;
+    bool _rainBehindTimVisible;
     
     Lightning *_lightning;
     

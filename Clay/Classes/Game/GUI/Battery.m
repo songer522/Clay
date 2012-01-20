@@ -17,7 +17,7 @@
 #define N(x) [NSNumber numberWithFloat: x]
 
 //IPAD FIX: these numbers got moved and the battery was shifted a few pixels to the left
-#define BATTERY_X 402.0f //was 410.0f
+#define BATTERY_X 397.0f //was 410.0f
 #define BATTERY_Y 285.0f
 
 @implementation Battery

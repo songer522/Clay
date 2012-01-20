@@ -175,7 +175,7 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		<key>EndGame_Trophy_2.png</key>
+		<key>EndGame_Trophy_3.png</key>
 		<dict>
 			<key>aliases</key>
 			<array/>
@@ -194,7 +194,7 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		<key>EndGame_Trophy_3.png</key>
+		<key>EndGame_Trophy_2.png</key>
 		<dict>
 			<key>aliases</key>
 			<array/>

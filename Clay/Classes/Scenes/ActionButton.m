@@ -198,7 +198,7 @@
     [_buttonIdle release];
     [_buttonSelected release];
     if(_hasText) {
-        [_textLabel removeFromParentAndCleanup:YES];
+        [_textLabel removeFromParentAndCleanup:NO];
         _textLabel = nil;
     }
     [super dealloc];

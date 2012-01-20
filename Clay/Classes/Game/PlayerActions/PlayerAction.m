@@ -82,6 +82,12 @@
         if (_cooldown<=0.0f && !_canTrigger) {
             [self enableAction];
             _cooldown = 0.0f;
+        } else if(_cooldown < 0.0f) {
+            _cooldown = 0.0f;
+        }
+        else if (_cooldown<=0.0f)
+        {
+            _cooldown =0.0f;
         }
         
         float percent = (_cooldownStart - _cooldown)/_cooldownStart;

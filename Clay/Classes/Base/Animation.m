@@ -137,7 +137,7 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
 {
     int frame = -1;
     @try {
-        frame = _animateAction.frame;
+        frame = [_animateAction getCurrentFrame];
     }
     @catch (NSException *exception) {
         CCLOG(@"ERROR! Animation.m -> getCurrentFrameNumber -> message sent to deallocated instance of _animateAction");
@@ -152,6 +152,11 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
     } else {
         _animateAction.paused = true;
     }
+}
+
+-(void)unpause
+{
+    _animateAction.paused = false;
 }
 
 -(void)setStaticFrame:(int)frameNumber Sprite:(Sprite*)sprite
@@ -195,7 +200,7 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
     [_frames release];
 
     [_frameNames removeAllObjects];
-    [_frames release];
+    [_frameNames release];
     
     _spriteSheet = nil;
     

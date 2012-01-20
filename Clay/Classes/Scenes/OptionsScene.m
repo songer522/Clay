@@ -259,6 +259,7 @@
 
 -(void)switchToCreditsScreen
 {
+    [[GameSettings shared] setGlobal:@"options" ForKey:@"switchToCreditsFrom"];
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[CreditsScene scene]]];
 }
 

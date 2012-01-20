@@ -13,6 +13,7 @@
 #import "Camera.h"
 #import "LayerManager.h"
 #import "Animator.h"
+#import "GameSettings.h"
 
 @implementation Sprite
 
@@ -26,8 +27,13 @@
     if ((self=[super init])) {
         sprite_cc = nil;
         _animation = nil;
-        _animator = [Animator instance];
+        //_animator = [Animator instance]; //has significant memory leaks anyway
         _camera = [Camera sharedCamera];
+        
+        _isLowRes = true;
+        if ([[GameSettings shared] usingHighResolutionGraphics]) {
+            _isLowRes = false;
+        }
     }    
     return self;
 }
@@ -148,9 +154,20 @@
 
 -(void) setPositionAtX:(float)x Y:(float)y
 {
+    CGPoint position;
+    
     _x = x;
     _y = y;
-    CGPoint position = [_camera convertToScreenXY:CGPointMake(round(x), round(y))];
+
+    
+    if(_isLowRes) {
+        position = [_camera convertToScreenXY:CGPointMake(x, y)];
+        position.x = roundf((position.x * 2.0f)) / 2.0f;
+        position.y = roundf((position.y * 2.0f)) / 2.0f;
+    } else {
+        position = [_camera convertToScreenXY:CGPointMake(round(x), round(y))];
+    } 
+    
     //CGPoint position = [[Camera sharedCamera] convertToScreenXY:CGPointMake((int)x, (int)y)];
     //sprite_cc.position = ccp(position.x,position.y);
     sprite_cc.position = position;
@@ -260,7 +277,7 @@
 
 -(void)updateAnimator:(float)dt
 {
-    [_animator update:dt];
+    //[_animator update:dt];
 }
 
 -(bool)reachedMinAfterModifyAlpha:(float)amount
@@ -281,9 +298,15 @@
 
 -(void)dealloc
 {
-    [_animator release];
+    if ([_frameName isEqualToString:@"Checkpoint_1.png"]) {
+        _frameName = _frameName;
+    }
+    //[_animator release];
     [_frameName release];
-    [_animation release];
+    //[_animation release];
+    _animation = nil;
+    
+    
     [sprite_cc removeFromParentAndCleanup:YES];
     sprite_cc = nil;
     [super dealloc];

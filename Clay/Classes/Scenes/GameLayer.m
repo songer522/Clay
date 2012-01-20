@@ -102,13 +102,16 @@
         
         _savePoint = [SavePoint instance];
         
-        [self schedule: @selector(update:)];
+        //[self schedule: @selector(update:)];
+        [self scheduleUpdateWithPriority:-1];
         
         _paused = true;
         _inComic = false;
         _isNewRecord =false;
         
         self.isTouchEnabled = YES;
+        
+        time = 0.0f;
         
         [self updateLogic:0.001f];  //done to correctly position the camera and player before
                                     //the first render cycle
@@ -118,15 +121,7 @@
         
         [self startLevel:startingLevel];
         
-        /*
-        _testAnim = [Sprite spriteCenteredWithFrame:@"Character_Woo_1.png" Position:ccp(300,160)];
-        [[AnimationController sharedController] loadSequencesForGroup:@"woo"];
-        AnimationSequence *sequence = [[AnimationController sharedController] getSequenceWithName:@"wooAnim"];
-        [[_testAnim getAnimator] addAnimation:sequence forKey:@"wooAnim"];
-        [[_testAnim getAnimator] setSprite:_testAnim];
-        [[_testAnim getAnimator] setCurrentAnimation:@"wooAnim"];
-        */
-
+        
     }
 	return self;
 }
@@ -147,6 +142,7 @@
 
 -(void)restartLevel
 {
+    
     [[GameSettings shared] setGlobal:@"true" ForKey:@"restarting"];
     [[Camera sharedCamera] reset];
     [_level resetTriggers:true];
@@ -236,13 +232,33 @@
 
 -(void)update:(ccTime)dt
 {
-    double fixedTimeStep = 1.0f/60.0f;
+    //build #1 method
+    //double fixedTimeStep = 1.05f/60.0f;
+    //[self updateLogic:fixedTimeStep];   
+
+    // build #2 method
+    
+    if( dt > 0.022f )
+    {
+		dt = 1/60.0f;
+    }
+    [self updateLogic:dt];
+    
+    
+    
+    //use for simulator
+    
+    /*
+    double fixedTimeStep = 1.00f/60.0f;
     float timeToRun = dt + time;
+    
     while(timeToRun >= fixedTimeStep) {
         [self updateLogic:fixedTimeStep];            
         timeToRun = timeToRun - fixedTimeStep;
     }
-    time = timeToRun;
+    time = timeToRun;    
+     */
+    
 }
 
 -(void)pause
@@ -257,10 +273,6 @@
 
 -(void)updateLogic:(ccTime)dt
 {    
-#if CC_ENABLE_PROFILERS
-    CCProfilingTimer *timer = [CCProfiler timerWithName:@"pfull" andInstance:self];
-    CCProfilingBeginTimingBlock(timer);
-#endif  
 
     [[ComicManager shared] update:dt];
     
@@ -299,9 +311,7 @@
     [_gameController update];
     
     
-#if CC_ENABLE_PROFILERS
-    CCProfilingEndTimingBlock(timer);
-#endif
+
 
 }
 
@@ -405,6 +415,9 @@
     [[SoundEngine shared] playSound:@"endLevel"];
     NSString *difficulty=[[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
     float finalLevelTime = [[_hud getTrackTimer] getLevelTime];
+    NSString *timerText=[TrackTimer getTimeStringFromFloat:finalLevelTime];
+    [[GameSettings shared] setGlobal: timerText ForKey:@"finalLevelTimeText"];
+    [[GameSettings shared] setGlobal:[NSString stringWithFormat:@"%f",finalLevelTime] ForKey:@"finalLevelTime"];
     float oldBestTime=[[BestTimes shared]getBestTimeForLevelName:_level.name forDifficulty:difficulty];
     
     if(oldBestTime > finalLevelTime)

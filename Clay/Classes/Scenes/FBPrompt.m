@@ -67,6 +67,13 @@
     return facebook;
 }
 
+-(void)dealloc
+{
+    [facebook release];
+    _delegate = nil;
+    [_appId release];
+    [super dealloc];
+}
 
 
 @end

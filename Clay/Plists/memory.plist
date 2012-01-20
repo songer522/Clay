@@ -165,6 +165,19 @@
 		<key>textures</key>
 		<string>darkLevel,darkLevel2</string>
 	</dict>
+	<key>level12</key>
+	<dict>
+		<key>removeTextures</key>
+		<string>tileset_level_12</string>
+		<key>batchObstacles</key>
+		<string>trainingLevel</string>
+		<key>animations</key>
+		<string>level12,woo</string>
+		<key>sounds</key>
+		<string>wooAction</string>
+		<key>textures</key>
+		<string>trainingLevel,characterWoo</string>
+	</dict>
 	<key>mainMenu</key>
 	<dict>
 		<key>removeTextures</key>
@@ -237,11 +250,11 @@
 		<key>batchObstacles</key>
 		<string>none</string>
 		<key>animations</key>
-		<string>none</string>
+		<string>hud,endLevel</string>
 		<key>sounds</key>
 		<string>none</string>
 		<key>textures</key>
-		<string>endGameTextures</string>
+		<string>endGameTextures,hudGraphics2</string>
 	</dict>
 	<key>endLevel</key>
 	<dict>

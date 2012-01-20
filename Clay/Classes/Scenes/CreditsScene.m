@@ -11,6 +11,9 @@
 #import "LayerManager.h"
 #import "PListLoader.h"
 #import "OptionsScene.h"
+#import "EndLevelScene.h"
+#import "SoundEngine.h"
+#import "GameSettings.h"
 
 @implementation CreditsScene
 
@@ -29,9 +32,12 @@
         
         _lines = [[NSMutableArray alloc] initWithCapacity:10];
         _currentY = -50;
+        _hasSwitched = false;
+        
         
         [[LayerManager sharedLayers] setWorkingLayer:self];
 
+        
         [self loadCredits];
         
         [[LayerManager sharedLayers] forgetWorkingLayer];
@@ -116,13 +122,25 @@
 
 -(void)switchToOptionsScreen
 {
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[OptionsScene scene]]];
+    NSString *switchTo= [[GameSettings shared] getGlobalForKey:@"switchToCreditsFrom"];
+    if([switchTo isEqualToString:@"endGame"])
+        {
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[EndLevelScene scene]]];
+        }
+        else if ([switchTo isEqualToString:@"options"])
+          {
+              [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[OptionsScene scene]]];
+          }
 }
 
 -(void)update:(ccTime)dt
 {
     float rate = 32.0f * dt;
     self.position = ccp(self.position.x, self.position.y + rate);
+    if (!_hasSwitched && self.position.y > 1120.0f) {
+        [self switchToOptionsScreen];
+    }
+    //NSLog(@"Position Y: %f",self.position.y);
 }
 
 -(void)onExit
@@ -133,7 +151,11 @@
 
 -(void)dealloc
 {
-    [_lines removeAllObjects];
+    for (GameLabel *line in _lines) {
+        [line release];
+        line = nil;
+    }
+    [_lines release];
     [super dealloc];
 }
 

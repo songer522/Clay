@@ -512,6 +512,23 @@
 		<key>spritesheetPlist</key>
 		<string>darkLevel</string>
 	</dict>
+	<key>darkBombExplosionAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>5,4,3,3,3,3,3,3,3,3,3</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.15</string>
+		<key>group</key>
+		<string>level11</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>FinalBoss_5_Jim</string>
+		<key>spritesheetPlist</key>
+		<string>darkLevel</string>
+	</dict>
 	<key>darkBossJimGrapeAttack1Show</key>
 	<dict>
 		<key>animationFrames</key>
@@ -1718,6 +1735,40 @@
 		<string>Env_Town_CHay_</string>
 		<key>spritesheetPlist</key>
 		<string>townLevel</string>
+	</dict>
+	<key>trainingConveyorRightAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level12</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Level12_Ledge_Fast_</string>
+		<key>spritesheetPlist</key>
+		<string>trainingLevel</string>
+	</dict>
+	<key>trainingConveyorLeftAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level12</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Level12_Ledge_Slow_</string>
+		<key>spritesheetPlist</key>
+		<string>trainingLevel</string>
 	</dict>
 	<key>trippedAnim</key>
 	<dict>

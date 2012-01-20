@@ -29,6 +29,9 @@ typedef enum {
                                 //onscreen position relative to the main player
     bool _isRunning;
     bool _isNewUnderwaterPhysics;
+    
+    bool _goFaster;
+    bool _goSlower;
 
     RunningSpeed *_speed;
     

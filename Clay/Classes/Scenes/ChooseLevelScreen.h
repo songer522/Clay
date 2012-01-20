@@ -21,6 +21,8 @@
 @class Sprite;
 @class ActionButton;
 @class ChooseLevelPanel;
+@class FBPrompt;
+
 typedef enum {
     TRACK_RUN = 1,
     BARN_RUN = 2,
@@ -74,10 +76,15 @@ typedef enum {
     
     bool _panelTransition;
     bool _hasSwitched;
+    bool _inDLCMode;
     float _panelAlpha;
     
     int _selected;
+    int _numberOfLevels;
+    int _levelStartNumber;
     
+    TWTweetComposeViewController *_tweetViewController;
+    FBPrompt *_fbprompt;
     
 }
 

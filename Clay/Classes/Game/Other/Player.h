@@ -46,7 +46,7 @@ typedef enum {
     bool _firstFrameJumping;
     bool _isDead;
     bool _offLedge;
-    bool _isDoubleDemage;
+    bool _isDoubleDamage;
     
     
     float _yPosition;
@@ -96,7 +96,7 @@ typedef enum {
 @property(nonatomic,assign) bool isJumping;
 @property(nonatomic,assign) bool isWindy;
 @property(nonatomic,assign) bool hasDoubleJumped;
-@property(nonatomic,assign) bool isDoubleDemage;
+@property(nonatomic,assign) bool isDoubleDamage;
 @property(nonatomic,assign) bool inVaccuum;
 @property(nonatomic,assign) bool hadCollisionThisUpdate;
 @property(nonatomic,assign) bool onLedge;

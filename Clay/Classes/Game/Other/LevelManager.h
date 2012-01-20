@@ -16,7 +16,7 @@
 
 @interface LevelManager : NSObject
 {
-    NSMutableArray *_levels;
+    //NSMutableArray *_levels;
 
     NSDictionary *_levelSettings;
     

@@ -56,7 +56,7 @@
         
         [self scheduleUpdate];
         [[[LayerManager sharedLayers] currentScene] addChild:self];
-        
+         _gameLayer = [[LayerManager sharedLayers] currentLayer];
         [[LayerManager sharedLayers] setWorkingLayer:self];
         [[TextureManager shared] loadMemoryForKey:@"endLevel"];
         _replayButton = [ActionButton actionButtonInGameWithText:@"REPLAY"];
@@ -165,12 +165,12 @@
     int silverTime = [[medals objectForKey:@"silver"] intValue];
     int goldTime = [[medals objectForKey:@"gold"] intValue];
     
-    if (time<goldTime) {
-        returnVal = goldTime;
-    } else if(time<silverTime) {
-        returnVal = silverTime;
-    } else if(time<bronzeTime) {
+    if (time > bronzeTime || time <= 0.0f) {
         returnVal = bronzeTime;
+    } else if(time > silverTime) {
+        returnVal = silverTime;
+    } else if(time > goldTime) {
+        returnVal = goldTime;
     } else {
         returnVal = 0;
     }
@@ -276,46 +276,40 @@
 
 -(void) doButtonAction
 {
-    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+   
     NSString *gameMode = [[GameSettings shared] getGlobalForKey:@"gameMode"];
     
     switch (_action) {
         case END_LEVEL_REPLAY:
-            /*
-            [self setVisible:false];
-            [gameLayer unpause];
-            [gameLayer initForLevel];
-            gameLayer.inComic = false;
-            gameLayer.visible = true;
-            gameLayer.gameController.isInputEnabled = false;
-            
-            [[gameLayer getHud] fadeIn];
-            _buttonPressed=true;
-            
-           // [gameLayer restartLevel];
-            */
-            
-            //[gameLayer.gameController pauseGame];
-            //[gameLayer restartLevel];
-           
-           
-            [gameLayer unpause];
-             [gameLayer restartLevel];
-           
-            gameLayer.inComic = false;
-            gameLayer.visible = true;
-            
-            
-            [[gameLayer getHud] fadeIn];
-           
-            // gameLayer.gameController.isInputEnabled = true;
-           //gameLayer= [[LayerManager sharedLayers] currentLayer];
-              gameLayer.gameController.isInputEnabled = true;
-             gameLayer.isTouchEnabled=true;
-            gameLayer.gameController.isHandlingPause = false;
-             //[gameLayer restartLevel];
-             
+            [_gameLayer scheduleUpdate];
+            [[_gameLayer getHud] fadeIn];
+            _gameLayer.inComic=false;
+            [_gameLayer onEnter];
+         
+            [_gameLayer restartLevel];
+             _gameLayer.gameController.isInputEnabled = true;
+            [_gameLayer.gameController endLevel];
+             // _gameLayer.isTouchEnabled=true;
             [self onExit];
+            
+            /*
+            _gameLayer.visible = true;
+            
+            
+             [_gameLayer restartLevel];
+            
+           
+            
+            
+            [[_gameLayer getHud] fadeIn];
+             
+            
+            _gameLayer.gameController.isInputEnabled = true;
+        _gameLayer.isTouchEnabled=true;
+            _gameLayer.gameController.isHandlingPause = false;
+           */
+                        
+                        
             
                                    
             break;
@@ -323,9 +317,9 @@
             //[_gameController pauseGame];
             
             if([gameMode isEqualToString:@"story"]) {
-                [gameLayer switchToChooseMode];
+                [_gameLayer switchToChooseMode];
             } else {
-                [gameLayer switchToChooseLevel];
+                [_gameLayer switchToChooseLevel];
             }
             break;            
         default:
@@ -363,9 +357,13 @@
 {
    // [_finalTimePanel getCCSprite].visible = false;
     //[_finalTimeText setText:nil];
+     [self unscheduleUpdate];
+     self.isTouchEnabled = false;
+    
+   
+     //[[[LayerManager sharedLayers] currentScene] removeChild:self cleanup:NO];
     [self release];
-    [self unscheduleUpdate];
-    self.isTouchEnabled = false;
+  
 }
 
 
@@ -415,9 +413,22 @@
 {
     [[TextureManager shared] unloadMemoryForKey:@"endLevel"];
     _gameController = nil;
-    [_finalTimeText release];
+    if(_finalTimeText!=nil)
+    {
+        [_finalTimeText release];
+        _finalTimeText=nil;
+    }
+    if(_finalTimePanel!=nil)
+    {
     [_finalTimePanel release];
+        _finalTimePanel=nil;
+    }
+    if(_timeHeaderText!=nil)
+    {
     [_timeHeaderText release];
+        _timeHeaderText=nil;
+    }
+    _gameLayer=nil;
  
     //[super dealloc];
 }

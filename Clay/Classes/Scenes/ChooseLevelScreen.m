@@ -63,8 +63,6 @@
     
    
     if ((self = [super init])) {
-         _buttons = [[NSMutableArray alloc] initWithCapacity:4];        
-        _levelToSwitchTo = @"level1";
         _buttons = [[NSMutableArray alloc] initWithCapacity:7];
         _alpha = 1.0f;
         _selected = 1;
@@ -73,10 +71,37 @@
         _openFacebook=false;
         _waitToSwitch = 0.0f;
         _hasSwitched = false;
+        _bestTime = nil;
+        _tweetViewController = nil;
+        _fbprompt = nil;
+        _inDLCMode = false;
+        
         self.isTouchEnabled = YES;
         
         _gameMode = [[GameSettings shared] getGlobalForKey:@"gameMode"];
         _gameDifficulty = [[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
+        
+        NSString *showDLC = [[GameSettings shared] getGlobalForKey:@"timedShowDLC"];
+        if ([showDLC isEqualToString:@"YES"]) {
+            _inDLCMode = true;
+            _numberOfLevels = 1;
+            _levelStartNumber = 11;
+            _levelToSwitchTo = @"level12";
+        } else {
+            _inDLCMode = false;
+            _numberOfLevels = 11;
+            _levelStartNumber = 0;
+            _levelToSwitchTo = @"level1";
+        }
+        
+        //if timed mode had previously saved its selected level, we want to start with that one selected.
+        //otherwise, we want it to start on the first level
+        int selectedLevel = [[[GameSettings shared] getGlobalForKey:@"timedSelectedLevel"] intValue];
+        if (selectedLevel > 0) {
+            _selected = (selectedLevel - 1);
+        } else {
+            _selected = _levelStartNumber;
+        }
         
         NSString *musicStarted = [[GameSettings shared] getGlobalForKey:@"titleMusicStarted"];
         if (![musicStarted isEqualToString:@"YES"]) {
@@ -185,24 +210,28 @@
     
     
     //load level buttons (init best level time text first because it gets set in here)
-    for (int i=0; i<11; i++) {
+    for (int i=_levelStartNumber; i<(_levelStartNumber + _numberOfLevels); i++) {
         LevelButton *button = [LevelButton levelButtonWithId:i];
         [button setCursor:_selector];
 
         //by default have the first level selected
-        if(i==0) {
+        if(i==_levelStartNumber) {
             [button setSelected];
         }
         
         [_buttons addObject:button];
     }
     
-    _levelSelectText = [GameLabel gameLabelWithText:@"LEVEL SELECT" Scale:0.75f Position:ccp(365.0f,282.0f)];
+    if (_inDLCMode) {
+        _levelSelectText = [GameLabel gameLabelWithText:@"BONUS LEVELS" Scale:0.75f Position:ccp(365.0f,282.0f)];
+    } else {
+        _levelSelectText = [GameLabel gameLabelWithText:@"LEVEL SELECT" Scale:0.75f Position:ccp(365.0f,282.0f)];
+    }
     
     //load any medals earned
     [self loadMedals];
     
-    _frontPanel = [self createInformationPanelForLevel:1];
+    _frontPanel = [self createInformationPanelForLevel:(_levelStartNumber + 1)];
     
     
     [[LayerManager sharedLayers] forgetWorkingLayer];
@@ -216,9 +245,14 @@
     NSString *levelName = [NSString stringWithFormat:@"level%d",levelNumber];
     float bestTime = [[BestTimes shared] getBestTimeForLevelName:levelName forDifficulty:_gameDifficulty];
     _levelNumber=levelNumber;
+    
+    if (_bestTime!=nil) {
+        [_bestTime release];
+        _bestTime = nil;
+    }
     _bestTime= [self getTimestringForFloat:bestTime];
     ChooseLevelPanel *panel = [ChooseLevelPanel instance];
-    [panel setBestTime:[self getTimestringForFloat:bestTime]];
+    [panel setBestTime:_bestTime];
     [panel setLevelDataByNumber:levelNumber];
     
     int medal = [self getMedalNumberForLevelNamed:levelName Time:bestTime];
@@ -277,12 +311,12 @@
     int silverTime = [[medals objectForKey:@"silver"] intValue];
     int goldTime = [[medals objectForKey:@"gold"] intValue];
     
-    if (time<goldTime) {
-        returnVal = goldTime;
-    } else if(time<silverTime) {
-        returnVal = silverTime;
-    } else if(time<bronzeTime) {
+    if (time > bronzeTime || time <= 0.0f) {
         returnVal = bronzeTime;
+    } else if(time > silverTime) {
+        returnVal = silverTime;
+    } else if(time > goldTime) {
+        returnVal = goldTime;
     } else {
         returnVal = 0;
     }
@@ -354,17 +388,22 @@
 {
     AppDelegate *appDelegate=[[UIApplication sharedApplication] delegate];
     // Set up the built-in twitter composition view controller.
-    TWTweetComposeViewController *tweetViewController = [[TWTweetComposeViewController alloc] init];
+    if(_tweetViewController !=nil) {
+        [_tweetViewController release];
+        _tweetViewController = nil;
+    }
+    
+   _tweetViewController = [[TWTweetComposeViewController alloc] init];
     
     // Set the initial tweet text. See the framework for additional properties that can be set.
-    [tweetViewController setInitialText:tweet];
+    [_tweetViewController setInitialText:tweet];
     
     // Present the tweet composition view controller modally.
     NSString *reqSysVer = @"5.0";
     NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
     if ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending)
     {
-        [appDelegate.viewController presentModalViewController:tweetViewController animated:YES];
+        [appDelegate.viewController presentModalViewController:_tweetViewController animated:YES];
     }
 }
 -(void)updatePanelTransition:(float)dt
@@ -443,7 +482,6 @@
 
     [_startButton update:dt];
     [_backButton update:dt];
-    FBPrompt *prompt;
    
     NSString *description=[self covertLevelname:_levelNumber];
     if (_panelTransition) {
@@ -459,8 +497,12 @@
                 _hasSwitched = true;
             }else if(_openFacebook)
             {
-                prompt = [FBPrompt promptWithAppId:@"264174546971482" andDelegate:self];
-                [prompt showFacebookDialogWithDescription:[NSString stringWithFormat:@"Hey, here's my score for Track Lapse %@ : %@, see if you can beat me!!!",description, _bestTime] andPicture:@"http://fbrell.com/f8.jpg"];
+                if (_fbprompt !=nil) {
+                    [_fbprompt release];
+                    _fbprompt = nil;
+                }
+                _fbprompt = [FBPrompt promptWithAppId:@"264174546971482" andDelegate:self];
+                [_fbprompt showFacebookDialogWithDescription:[NSString stringWithFormat:@"Hey, here's my score for Track Lapse %@ : %@, see if you can beat me!!!",description, _bestTime] andPicture:@"http://fbrell.com/f8.jpg"];
                 _openFacebook =false;
             } else if(_openTwitter)
             {
@@ -479,15 +521,20 @@
 {
     CCLOG(@"=============CHOOSE LEVEL SCREEN============");
     CCLOG(@"Dealloc: ChooseLevelScreen");
-        
-    //[_buttons removeAllObjects];
-    //[_buttons release];
-    //_buttons = nil;
+    
+    for (LevelButton *button in _buttons) {
+        [button release];
+    }
+    [_buttons release];
+    _buttons = nil;
+    
+    
+
+
     [_modeDict release];
     [_levelToSwitchTo release];
     _gameMode = nil;
     _gameDifficulty = nil;
-    [_bestTime release]; //autoreleased
     [_background release];
     [_panelBackground release];
     [_selector release];
@@ -499,6 +546,21 @@
     [_backButton release];
     [_facebookButton release];
     [_twitterButton release];
+    
+    if (_bestTime !=nil) {
+        [_bestTime release];
+        _bestTime = nil;
+    }
+    
+    if (_tweetViewController!=nil) {
+        [_tweetViewController release];
+        _tweetViewController = nil;
+    }
+    
+    if (_fbprompt!=nil) {
+        [_fbprompt release];
+        _fbprompt = nil;
+    }
     
     [_frontPanel release];
     if(_backPanel != nil) { //may or may not have been released during the transition

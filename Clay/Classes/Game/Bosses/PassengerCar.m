@@ -52,4 +52,11 @@
     [[_wheels getAnimation] changeAnimationSpeed:speed];
 }
 
+-(void)dealloc
+{
+    [_boxcar release];
+    [_wheels release];
+    [super dealloc];
+}
+
 @end

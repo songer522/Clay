@@ -1,12 +1,12 @@
 //
-//  EndLevelScene.m
+//  EndGameScene.m
 //  Clay
 //
-//  Created by Song Yang on 1/13/12.
-//  Copyright (c) 2012 XecuDev. All rights reserved.
+//  Created by Brian Cable on 10/12/11.
+//  Copyright 2011 Xecudev, LLC. All rights reserved.
 //
 
-#import "EndlevelScene.h"
+#import "EndLevelScene.h"
 #import "LayerManager.h"
 #import "TrackTimer.h"
 #import "Sprite.h"
@@ -18,8 +18,6 @@
 #import "GameSettings.h"
 #import "GCHelper.h"
 #import "GCState.h"
-#import "ActionButton.h"
-#import "SoundEngine.h"
 
 @implementation EndLevelScene
 
@@ -58,8 +56,6 @@
         [[LayerManager sharedLayers] setWorkingLayer:self];
         
         [[TextureManager shared] loadMemoryForKey:@"endGame"];
-        [[TextureManager shared] loadMemoryForKey:@"chooseMode"];
-        [[TextureManager shared] loadMemoryForKey:@"endLevel"];
         
         _endGame = [Sprite spriteFromFrameCacheWithName:@"Menu_Ending_Temp.png"];
         _bestTime = [Sprite spriteFromFrameCacheWithName:@"Menu_Ending_BestTime.png"];
@@ -69,17 +65,6 @@
         
         _besttimer = [TrackTimer instance];
         [_besttimer setupAnimationsAtX:232.0f Y:145.0f];
-        
-        
-        
-        _startButton = [ActionButton actionButtonCustomGraphicsForIdle:@"UI_GameType_ButtonS_Blue.png" Selected:@"UI_GameType_ButtonS_Green.png"];
-        [_startButton setInitialText:@"START"];
-        [_startButton setPosition:ccp(430,18)];
-        
-        _backButton = [ActionButton actionButtonCustomGraphicsForIdle:@"UI_GameType_ButtonS_Blue.png" Selected:@"UI_GameType_ButtonS_Green.png"];
-        [_backButton setInitialText:@"BACK"];
-        [_backButton setPosition:ccp(50, 18)];
-        
         
         [[LayerManager sharedLayers] forgetWorkingLayer];
         
@@ -99,36 +84,20 @@
     return self;
 }
 
-
-
 -(void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     
-    
+    if (_state == END_LEVEL_TRANSITION_IDLE) {
+        bool shouldStart = false;
         NSSet *allTouches = [event allTouches];
+        for(UITouch *touch in allTouches) {
+            shouldStart = true;
+        }
         
-        for(UITouch *touch in allTouches)
-        {
-            CGPoint position = [self convertTouchToNodeSpace:touch];
-                           
-                if([_startButton checkIfSelected:position]) {
-                    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[MainMenuScene scene]]];
-
-                    //_waitToSwitch = 0.25f;
-                   // _isTransitioning = true;
-                    //_backToMainMenu = false;
-                    [[SoundEngine shared] playSound:@"buttonPressed"];
-                }
-                
-                if([_backButton checkIfSelected:position]) {
-                   // _waitToSwitch = 0.25f;
-                    //_isTransitioning = true;
-                    //_backToMainMenu = true;
-                    [[SoundEngine shared] playSound:@"buttonPressed"];     
-                }
-                
-            }
-   
+        if (shouldStart) {
+            [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[MainMenuScene scene]]];
+        }
+    }
 }
 
 -(void)update:(ccTime)dt
@@ -229,8 +198,6 @@
     [_timer release];
     [_besttimer release];
     [[TextureManager shared] unloadMemoryForKey:@"endGame"];
-    [[TextureManager shared] unloadMemoryForKey:@"chooseMode"];
-    [[TextureManager shared] unloadMemoryForKey:@"endLevel"];
 }
 
 
