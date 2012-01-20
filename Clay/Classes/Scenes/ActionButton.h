@@ -11,15 +11,26 @@
 @class Sprite;
 @class GameLabel;
 
+typedef enum {
+    LOCKTYPE_NOT_ENABLED,
+    LOCKTYPE_UNLOCKED,
+    LOCKTYPE_UNLOCKED_NEW,
+    LOCKTYPE_LOCKED
+}LockType;
+
 @interface ActionButton : Button
 {
     Sprite *_buttonIdle;
     Sprite *_buttonSelected;
+    Sprite *_lockingGraphic;
+    
     CCLabelBMFont *_textLabel;
     float _selectedAlpha;
     bool _hasText;
     bool facebookOrTwitter;
     bool _isEnabled;
+    
+    LockType _lockType;
 }
 @property (assign)bool facebookOrTwitter;
 
@@ -43,6 +54,6 @@
 -(bool)checkIfSelected:(CGPoint)touch;
 -(CCLabelBMFont*)getLabel;
 -(void)update:(float)dt;
-
-
+-(void)setLocked:(LockType)newType;
+-(void)setLockPositionOffset:(CGPoint)offset;
 @end

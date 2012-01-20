@@ -52,6 +52,7 @@
         _usingRelativeHitbox = false; //default
         facebookOrTwitter = false;
         _isEnabled = true;
+        _lockType = LOCKTYPE_NOT_ENABLED;
         
         if (![text isEqualToString:@""]) {
             [self setInitialText:text];            
@@ -113,6 +114,8 @@
 
 -(void)setPosition:(CGPoint)position
 {
+    _position = position;
+    
     [_buttonIdle setScreenPosition:position];
     [_buttonSelected setScreenPosition:position];
     [super setPosition:position];
@@ -191,6 +194,43 @@
     }
     
     _isEnabled = isEnabled;
+}
+
+-(void)setLocked:(LockType)newType
+{
+    //if we're changing this for the first time, initialize the object
+    if (_lockType == LOCKTYPE_NOT_ENABLED && newType != LOCKTYPE_NOT_ENABLED) {
+        _lockingGraphic = [Sprite spriteWithFile:@"blank.png"];
+        [_lockingGraphic setCentered];
+    }
+    
+    switch (newType) {
+        case LOCKTYPE_LOCKED:
+            [[_lockingGraphic getCCSprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"UI_Locked.png"]];
+            [[_lockingGraphic getCCSprite] setVisible:YES];
+            _lockType = newType;
+            break;
+        case LOCKTYPE_UNLOCKED_NEW:
+            [[_lockingGraphic getCCSprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"UI_New.png"]];
+            [[_lockingGraphic getCCSprite] setVisible:YES];
+            _lockType = newType;
+            break;
+        case LOCKTYPE_UNLOCKED:
+            [[_lockingGraphic getCCSprite] setVisible:NO];
+            _lockType = newType;
+            break;
+        default:
+            //should not have to revert back to not enabled
+            break;
+    }
+}
+
+-(void)setLockPositionOffset:(CGPoint)offset
+{
+    //make sure it's been initialized
+    if(_lockType != LOCKTYPE_NOT_ENABLED) {
+        [_lockingGraphic setScreenPosition:ccp(_position.x + offset.x, _position.y + offset.y)];
+    }
 }
 
 -(void)dealloc

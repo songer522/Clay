@@ -41,7 +41,7 @@
         _isTransitioning = false;
         _waitToSwitch = 0.0f;
         _backToMainMenu = false;
-        
+                
         [self scheduleUpdate];
         self.isTouchEnabled = YES;
         
@@ -51,6 +51,7 @@
             [[SoundEngine shared] playMusic:@"title"];
             [[GameSettings shared] setGlobal:@"YES" ForKey:@"titleMusicStarted"];
         }
+        
         
         
     }
@@ -281,6 +282,17 @@
         }
     }
 
+}
+
+-(void)updateLocked
+{
+    _isUnlockedStoryHardMode = false;
+    _isUnlockedTimedHardMode = false;
+    _isUnlockedTimedNormalMode = false;
+    
+    _isNewStoryHardMode = false;
+    _isNewTimedHardMode = false;
+    _isNewTimedNormalMode = false;
 }
 
 -(void)onExit
