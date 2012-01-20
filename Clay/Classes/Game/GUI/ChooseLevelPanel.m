@@ -13,6 +13,7 @@
 #import "LayerManager.h"
 
 #define LEVELPANEL_PANEL_X 105.0f
+#define LEVELPANEL_MAX_LEVEL_NUMBER 13
 
 @implementation ChooseLevelPanel
 
@@ -98,7 +99,7 @@
 //sets levelName, levelPreviewFrame, levelTitleFrame
 -(void)setLevelDataByNumber:(int)levelNumber
 {
-    NSAssert((levelNumber>0&&levelNumber<=11),@"ChooseLevelPanel.m - levelNumber outside range. Value: %d",levelNumber);
+    NSAssert((levelNumber>0&&levelNumber<=LEVELPANEL_MAX_LEVEL_NUMBER),@"ChooseLevelPanel.m - levelNumber outside range. Value: %d",levelNumber);
     
     NSString *difficulty = [[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
     

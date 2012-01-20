@@ -232,27 +232,19 @@
 
 -(void)update:(ccTime)dt
 {
+    //build #1 method
     //double fixedTimeStep = 1.05f/60.0f;
     //[self updateLogic:fixedTimeStep];   
-    
-    /*
-    float fixedTimeStep = 1.0f/60.0f;
-    float timeToRun = dt + time;
-    while(timeToRun >= fixedTimeStep) {
-        [self updateLogic:fixedTimeStep];
-        timeToRun = timeToRun - fixedTimeStep;
-    }
-    time = timeToRun;
-    */
 
-    /*
+    // build #2 method
     if( dt > 0.022f )
     {
-        //NSLog(@"DT: %f",dt);
 		dt = 1/60.0f;
-    }*/
-    //NSLog(@"DT: %f",dt);
+    }
+    [self updateLogic:dt];
     
+    //use for simulator
+    /*
     double fixedTimeStep = 1.00f/60.0f;
     float timeToRun = dt + time;
     
@@ -260,9 +252,8 @@
         [self updateLogic:fixedTimeStep];            
         timeToRun = timeToRun - fixedTimeStep;
     }
-    time = timeToRun;
-    
-    //[self updateLogic:dt];
+    time = timeToRun;    
+    */
 }
 
 -(void)pause

@@ -195,7 +195,7 @@
             _action = GAMEMODE_TIMED_INSANE;            
         } else {
             [[GameSettings shared] setGlobal:@"normal" ForKey:@"gameDifficulty"];
-            [[GameSettings shared] setGlobal:@"dlclevels" ForKey:@"gameMode"];
+            [[GameSettings shared] setGlobal:@"timed" ForKey:@"gameMode"];
             _action = GAMEMODE_TIMED_DLC;
         }
     } else {
