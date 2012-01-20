@@ -172,7 +172,7 @@
 		<key>batchObstacles</key>
 		<string>trainingLevel</string>
 		<key>animations</key>
-		<string>level12,wooAction</string>
+		<string>level12,woo</string>
 		<key>sounds</key>
 		<string>wooAction</string>
 		<key>textures</key>

@@ -401,7 +401,89 @@
                     [[object getCCSprite] setScale:_scale];
                     MapObject *mapObject = [MapObject mapObjectWithSprite:object AboveLayer:@"main0"];
                     [_otherMapObjects addObject:mapObject];
-                } else if([special compare:@"spawnpoint"] == NSOrderedSame) {
+                } 
+                else if([special isEqualToString:@"checkpoint100"]) { //checkpoint trigger
+                    Trigger *trigger = [[Trigger alloc] init];
+                    trigger.position = [self getXYPositionForCoordinates:CGPointMake(i,j)];
+                    trigger.type = TRIGGER_CHECKPOINT;
+                    [_triggers addObject:trigger];
+                    
+                    //SHOULD work by giving it an object property, but stupidly isn't. so doing manually
+                    GameObject *object = [_gameObjects loadGameObjectWithName:@"checkpoint100" AddToLayer:NO];
+                    CGPoint position = [self getXYPositionForCoordinates:coords];
+                    [object setPositionAtX:position.x Y:position.y];
+                    [object setStartingPosition:position];
+                    [[object getCCSprite] setScale:_scale];
+                    MapObject *mapObject = [MapObject mapObjectWithSprite:object AboveLayer:layerBelow];
+                    [_otherMapObjects addObject:mapObject];
+                    
+                }
+                else if([special isEqualToString:@"checkpoint120"]) { //checkpoint trigger
+                    Trigger *trigger = [[Trigger alloc] init];
+                    trigger.position = [self getXYPositionForCoordinates:CGPointMake(i,j)];
+                    trigger.type = TRIGGER_CHECKPOINT;
+                    [_triggers addObject:trigger];
+                    
+                    //SHOULD work by giving it an object property, but stupidly isn't. so doing manually
+                    GameObject *object = [_gameObjects loadGameObjectWithName:@"checkpoint120" AddToLayer:NO];
+                    CGPoint position = [self getXYPositionForCoordinates:coords];
+                    [object setPositionAtX:position.x Y:position.y];
+                    [object setStartingPosition:position];
+                    [[object getCCSprite] setScale:_scale];
+                    MapObject *mapObject = [MapObject mapObjectWithSprite:object AboveLayer:layerBelow];
+                    [_otherMapObjects addObject:mapObject];
+                    
+                }
+                else if([special isEqualToString:@"checkpoint140"]) { //checkpoint trigger
+                    Trigger *trigger = [[Trigger alloc] init];
+                    trigger.position = [self getXYPositionForCoordinates:CGPointMake(i,j)];
+                    trigger.type = TRIGGER_CHECKPOINT;
+                    [_triggers addObject:trigger];
+                    
+                    //SHOULD work by giving it an object property, but stupidly isn't. so doing manually
+                    GameObject *object = [_gameObjects loadGameObjectWithName:@"checkpoint140" AddToLayer:NO];
+                    CGPoint position = [self getXYPositionForCoordinates:coords];
+                    [object setPositionAtX:position.x Y:position.y];
+                    [object setStartingPosition:position];
+                    [[object getCCSprite] setScale:_scale];
+                    MapObject *mapObject = [MapObject mapObjectWithSprite:object AboveLayer:layerBelow];
+                    [_otherMapObjects addObject:mapObject];
+                    
+                }
+                else if([special isEqualToString:@"checkpoint160"]) { //checkpoint trigger
+                    Trigger *trigger = [[Trigger alloc] init];
+                    trigger.position = [self getXYPositionForCoordinates:CGPointMake(i,j)];
+                    trigger.type = TRIGGER_CHECKPOINT;
+                    [_triggers addObject:trigger];
+                    
+                    //SHOULD work by giving it an object property, but stupidly isn't. so doing manually
+                    GameObject *object = [_gameObjects loadGameObjectWithName:@"checkpoint160" AddToLayer:NO];
+                    CGPoint position = [self getXYPositionForCoordinates:coords];
+                    [object setPositionAtX:position.x Y:position.y];
+                    [object setStartingPosition:position];
+                    [[object getCCSprite] setScale:_scale];
+                    MapObject *mapObject = [MapObject mapObjectWithSprite:object AboveLayer:layerBelow];
+                    [_otherMapObjects addObject:mapObject];
+                    
+                }
+                else if([special isEqualToString:@"checkpoint180"]) { //checkpoint trigger
+                    Trigger *trigger = [[Trigger alloc] init];
+                    trigger.position = [self getXYPositionForCoordinates:CGPointMake(i,j)];
+                    trigger.type = TRIGGER_CHECKPOINT;
+                    [_triggers addObject:trigger];
+                    
+                    //SHOULD work by giving it an object property, but stupidly isn't. so doing manually
+                    GameObject *object = [_gameObjects loadGameObjectWithName:@"checkpoint180" AddToLayer:NO];
+                    CGPoint position = [self getXYPositionForCoordinates:coords];
+                    [object setPositionAtX:position.x Y:position.y];
+                    [object setStartingPosition:position];
+                    [[object getCCSprite] setScale:_scale];
+                    MapObject *mapObject = [MapObject mapObjectWithSprite:object AboveLayer:layerBelow];
+                    [_otherMapObjects addObject:mapObject];
+                    
+                }
+                
+                else if([special compare:@"spawnpoint"] == NSOrderedSame) {
                     _spawnPoint = [self getXYPositionForCoordinates:CGPointMake(i, j)];
                 } else if([special compare:@"jimAppearance1"] == NSOrderedSame) {
                     CGPoint position = [self getXYPositionForCoordinates:CGPointMake(i, j)];
