@@ -257,7 +257,8 @@
         timeToRun = timeToRun - fixedTimeStep;
     }
     time = timeToRun;    
-    */
+     */
+    
 }
 
 -(void)pause

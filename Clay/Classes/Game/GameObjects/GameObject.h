@@ -76,6 +76,7 @@ typedef enum {
     bool _hasAppeared;
     bool _chaseTriggered;
     bool _isVisible;
+    bool _isBouncing;
     float _movedBy;
     float _initialPosition;
     bool _useDefaultBatchNode;
@@ -201,6 +202,6 @@ typedef enum {
 -(void) moveAcrossBackgroundLRwithSpeed:(float)speed;
 
 -(void) moveToStartingPosition;
-
+-(void) updateBounce:(float)dt;
 
 @end

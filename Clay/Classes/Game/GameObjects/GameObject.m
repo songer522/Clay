@@ -105,7 +105,7 @@
         _hasAppeared=false;
         _isVisible = true;
         _isHurdle = false;
-      
+        _isBouncing = false;
         _isStutterMode = [[GameSettings shared] isStutterMode];
         
         _player = [[LayerManager sharedLayers] getPlayer];
@@ -404,6 +404,7 @@
         case COLLISION_BEHAVIOR_FADES:
         case COLLISION_BEHAVIOR_RAINY_SQUIRREL:
         case COLLISION_BEHAVIOR_COMPUTER_WORM:
+        case COLLISION_BEHAVIOR_TRAINING_EXERCISE_BALL:
             _alpha = 1.2f;
             _fadeout = true;
         default:
@@ -496,8 +497,19 @@
     
     _prevLocation = CGPointMake(_x, _y);
     
+    if(_isBouncing) { //for some reason don't see the hasgravity stuff working
+        _vy += 500.0f * dt;
+    }
+    
     _x += _vx * dt;
     _y -= _vy * dt;
+    
+    
+    
+    if(_isBouncing) {
+        [self updateBounce:dt];
+    }
+    
     
     _movedBy -= _vy * dt;
     
@@ -518,6 +530,9 @@
     
     
 }
+
+
+
 -(void) playerHasCheering:(bool) cheering 
 {
     Player *player =  [[LayerManager sharedLayers] getPlayer];
@@ -540,6 +555,20 @@
         }
         [_sprite setAlpha:_setAlpha];
     } 
+}
+
+//just exercise ball for now
+-(void)updateBounce:(float)dt
+{
+    _rotationAmount -= _magnitude * dt;
+    [_sprite getCCSprite].rotation = _rotationAmount;
+    
+    if (_y <= 70) {
+        _y = 70;
+        _vy = - 0.55f * _vy;
+        _vx = 0.7f * _vx;
+        _magnitude = 0.7f * _magnitude;
+    }    
 }
 
 -(void)updateCollisionBehavior:(float)dt
@@ -1072,6 +1101,28 @@
                 }
             }
             break;
+        
+        ////////////////////////
+        //LEVEL 12 - TRAINING RUN
+        ////////////////////////
+        case COLLISION_BEHAVIOR_TRAINING_EXERCISE_BALL:
+            if (!_hasTriggered) {
+                if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+                    _hasTriggered = true;
+                    _y = 240.0f;
+                    _vy = 0.0f;
+                    _hasGravity = true;
+                    _isBouncing = true;
+                    _rotationAmount = 0.0f;
+                    _magnitude = 170.0f; //magnitude of rotation
+                    _vx = -100.0f;
+                } else {
+                    _isBouncing = false;
+                }
+            } else {
+            }
+            break;
+
             
         default:
             break;
@@ -1407,6 +1458,11 @@
         _collideBehavior = COLLISION_BEHAVIOR_DARK_BOMB;
         _hasTriggered = false;
     }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_TRAINING_EXERCISE_BALL) {
+        _currentBehavior = COLLISION_BEHAVIOR_TRAINING_EXERCISE_BALL;
+        _collideBehavior = COLLISION_BEHAVIOR_TRAINING_EXERCISE_BALL;
+        _hasTriggered = false;
+    }
     else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_SLOW) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;     
     }
@@ -1636,6 +1692,10 @@
     else if([behavior isEqualToString:@"bomb"]) {
         _currentBehavior = COLLISION_BEHAVIOR_DARK_BOMB;
         _collideBehavior = COLLISION_BEHAVIOR_DARK_BOMB;
+    }
+    else if([behavior isEqualToString:@"exerciseBall"]) {
+        _currentBehavior = COLLISION_BEHAVIOR_TRAINING_EXERCISE_BALL;
+        _collideBehavior = COLLISION_BEHAVIOR_TRAINING_EXERCISE_BALL;
     }
     else {
         _collideBehavior = COLLISION_BEHAVIOR_NONE;

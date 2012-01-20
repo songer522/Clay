@@ -365,10 +365,6 @@
     }
      */
     
-    if(!_isInMidAir) {
-        _goFaster = false;
-    }
-    
     _goSlower = false;
     
     if (!_isInvincible) {
@@ -876,6 +872,10 @@
 
         _hasDoubleJumped = false;
         
+        if(state!=COLLISION_STATE_LEDGE) {
+            _goFaster = false;
+        }
+        
         if (_isJumping && !_isTripping) {                
             _isJumping = false;
             
@@ -884,7 +884,7 @@
             } else {
                 [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];
             }
-            
+                        
             //don't want high jump to execute if we're on the ledge, slows gameplay feel down too much
             //(see github issue #46)
             if (_isHighJump) {
