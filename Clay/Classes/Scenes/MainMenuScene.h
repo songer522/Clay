@@ -20,12 +20,14 @@
 typedef enum {
     MAINMENU_TRANSITION_IN,
     MAINMENU_TRANSITION_OUT,
-    MAINMENU_TRANSITION_IDLE
+    MAINMENU_TRANSITION_IDLE,
+    MAINMENU_BUTTON_TRANSITION
 } MainMenuTransition;
 
 typedef enum {
     MENU_SWITCHTO_CHOOSELEVEL,
     MENU_SWITCHTO_OPTIONS,
+    MENU_SWITCHTO_GIFT,
     MENU_SWITCHTO_LEADERBOARDS,
     MENU_SWITCHTO_ACHIEVEMENTS,
     MENU_SWITCHTO_CONTINUE
@@ -47,6 +49,7 @@ typedef enum {
     ActionButton *_leaderboardsButton;
     ActionButton *_achievementsButton;
     ActionButton *_optionsButton;
+    ActionButton *_giftButton;
     
     ActionButton *_selectedButton; //weak reference to which button was selected to perform
     
@@ -68,13 +71,13 @@ typedef enum {
     
 }
 +(CCScene *) scene;
-@property (nonatomic, retain) Facebook *facebook;
-//@property (nonatomic, retain) FBPrompt *_prompt;
+
 #pragma mark - private methods
 -(void)switchToChoice;
 -(void)reinit;
 -(void)switchToTransitionIn;
 -(void)switchToTransitionOut;
+-(void)buttonTransition;
 -(void)pause;
 -(void)setAlphaForAll:(float)alpha includingButtons:(bool)alphaButtons andButtonSelection:(bool)alphaSelected;
 -(void)setButtonAlphas:(float)alpha;

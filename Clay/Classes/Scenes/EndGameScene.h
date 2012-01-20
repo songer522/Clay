@@ -17,26 +17,32 @@
 typedef enum {
     END_GAME_TRANSITION_IN,
     END_GAME_TRANSITION_IDLE,
-    END_GAME_TRANSITION_OUT
+    END_GAME_TRANSITION_COMIC,
+    END_GAME_TRANSITION_COMIC_BONUS
 }EndGameState;
 
 @interface EndGameScene : CCLayer
 {
     Sprite *_endGame;
     Sprite *_bestTime;
-    
+    Sprite *_comic;
+    Sprite *_BonusComic;
     CCScene *_scene;
     
     float _alpha;
     bool _initialized;
-    
+    bool _shouldExit;
+    bool _bonusShowed;
     EndGameState _state;
     
     TrackTimer *_timer;
     TrackTimer *_besttimer;
+    
+    NSString *difficulty;
+    NSString *mode;
 }
 
 +(CCScene *) scene;
-
+-(void)showTimers;
 -(void)update:(float)dt;
 @end

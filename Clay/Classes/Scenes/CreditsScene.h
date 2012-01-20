@@ -13,6 +13,7 @@
 {
     float _currentY;
     NSMutableArray *_lines;
+    bool _hasSwitched;
 }
 
 +(CCScene*)scene;

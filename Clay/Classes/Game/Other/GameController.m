@@ -14,6 +14,7 @@
 #import "GameSettings.h"
 #import "ComicManager.h"
 #import "EndLevelLayer.h"
+#import "TrackTimer.h"
 
 @implementation GameController
 
@@ -159,15 +160,20 @@
 -(void)endLevel
 {
     if (!_isEndLevel) {
+            
+
+        
         _endLevelLayer = [EndLevelLayer instance];
-        _endLevelLayer.gameController = self;
-        _isEndLevel = true;
+                _endLevelLayer.gameController = self;
+        _endLevelLayer.isNewRecord=_gameLayer.isNewRecord;
+        [_endLevelLayer showNewRecord];
+       // _isEndLevel = true;
         //[[SoundEngine shared] playSound:@"pause"];
         _gameLayer.isTouchEnabled = false;
     } else {
-        [[[LayerManager sharedLayers] currentScene] removeChild:_endLevelLayer cleanup:NO];
-        _isEndLevel = false;
-        _gameLayer.isTouchEnabled = true;
+        //[[[LayerManager sharedLayers] currentScene] removeChild:_endLevelLayer cleanup:NO];
+        //_isEndLevel = false;
+        //_gameLayer.isTouchEnabled = true;
     }
 }
 

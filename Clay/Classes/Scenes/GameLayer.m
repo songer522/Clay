@@ -34,6 +34,8 @@
 #import "GCHelper.h"
 #import "CreditsScene.h"
 #import "Camera.h"
+#import "EndLevelLayer.h"
+#import "BestTimes.h"
 
 
 #define DEBUG_DRAW_BOUNDING_BOXES 0
@@ -61,6 +63,8 @@
 @synthesize handledPauseEvent = _handledPauseEvent;
 @synthesize inComic = _inComic;
 @synthesize hasBeatenLevel = _hasBeatenLevel;
+@synthesize isNewRecord =_isNewRecord;
+
 
 +(CCScene *) scene
 {
@@ -98,12 +102,16 @@
         
         _savePoint = [SavePoint instance];
         
-        [self schedule: @selector(update:)];
+        //[self schedule: @selector(update:)];
+        [self scheduleUpdateWithPriority:-1];
         
         _paused = true;
         _inComic = false;
+        _isNewRecord =false;
         
         self.isTouchEnabled = YES;
+        
+        time = 0.0f;
         
         [self updateLogic:0.001f];  //done to correctly position the camera and player before
                                     //the first render cycle
@@ -112,6 +120,7 @@
         NSString *startingLevel = [[GameSettings shared] getGlobalForKey:@"startingLevel"];
         
         [self startLevel:startingLevel];
+        
         
         /*
         _testAnim = [Sprite spriteCenteredWithFrame:@"Character_Woo_1.png" Position:ccp(300,160)];
@@ -148,6 +157,7 @@
     [_level resetObstacles];
     [_boss restartLevel];
     [[ComicManager shared] restartLevel];
+    _isNewRecord=false;
 }
 
 -(void)startLevel:(NSString*)levelName
@@ -160,6 +170,7 @@
     [[ComicManager shared] startComic:levelObj.preComicName StartPhase:COMIC_PHASE_STARTING_VIDEO];
     
     [[GameSettings shared] setGlobal:[NSString stringWithString:levelName] ForKey:@"continueLevelName"];
+    _isNewRecord=false;
 }
 
 -(void)initForLevel
@@ -184,6 +195,7 @@
     _hasBeatenLevel = false;
     
     [_player reset];
+    _isNewRecord=false;
     
     [_savePoint setSavePoint:_level.spawnPoint Level:_level.name];
     
@@ -228,13 +240,37 @@
 
 -(void)update:(ccTime)dt
 {
-    double fixedTimeStep = 1.0f/60.0f;
+    //double fixedTimeStep = 1.05f/60.0f;
+    //[self updateLogic:fixedTimeStep];   
+    
+    /*
+    float fixedTimeStep = 1.0f/60.0f;
     float timeToRun = dt + time;
+    while(timeToRun >= fixedTimeStep) {
+        [self updateLogic:fixedTimeStep];
+        timeToRun = timeToRun - fixedTimeStep;
+    }
+    time = timeToRun;
+    */
+    
+    if( dt > 0.022f )
+    {
+        //NSLog(@"DT: %f",dt);
+		dt = 1/60.0f;
+    }
+    //NSLog(@"DT: %f",dt);
+    /*
+    double fixedTimeStep = 1.00f/60.0f;
+    float timeToRun = dt + time;
+    
     while(timeToRun >= fixedTimeStep) {
         [self updateLogic:fixedTimeStep];            
         timeToRun = timeToRun - fixedTimeStep;
     }
     time = timeToRun;
+     */
+    
+    [self updateLogic:dt];
 }
 
 -(void)pause
@@ -395,12 +431,26 @@
     _hasBeatenLevel = true;
     
     [[SoundEngine shared] playSound:@"endLevel"];
-
+    NSString *difficulty=[[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
     float finalLevelTime = [[_hud getTrackTimer] getLevelTime];
+    float oldBestTime=[[BestTimes shared]getBestTimeForLevelName:_level.name forDifficulty:difficulty];
+    
+    if(oldBestTime > finalLevelTime)
+    {
+        _isNewRecord=true;
+    }
     [[LevelManager shared] recordLevelTime:finalLevelTime];
     
     [[ComicManager shared] startComic:_level.postLevelComicName];
+    NSString *mode = [[GameSettings shared] getGlobalForKey:@"gameMode"];
+    
+    if ([mode isEqualToString:@"story"])
+    {
     [ComicManager shared].loadNextLevel = true;
+    }
+    [ComicManager shared].isActive=true;
+    [[BestTimes shared] saveData];
+
     //[self saveAndReportToGameCenter];
     [self checkHasBeenHit];
 }

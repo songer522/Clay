@@ -241,7 +241,20 @@
 		<key>sounds</key>
 		<string>none</string>
 		<key>textures</key>
-		<string>endGameTextures</string>
+		<string>endGameTextures,hudGraphics2</string>
+	</dict>
+	<key>endLevel</key>
+	<dict>
+		<key>removeTextures</key>
+		<string>none</string>
+		<key>batchObstacles</key>
+		<string>none</string>
+		<key>animations</key>
+		<string>none</string>
+		<key>sounds</key>
+		<string>none</string>
+		<key>textures</key>
+		<string>endlevelLayer</string>
 	</dict>
 </dict>
 </plist>

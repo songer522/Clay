@@ -64,6 +64,12 @@
 
 -(void)dealloc
 {
+    /*
+    NSLog(@"gameobject RC: %d",[_object retainCount]);
+    if ([_object retainCount] > 2) {
+        NSLog(@"framename: %@",[_object getSprite].name);
+    }*/
+    
     [_object release];
     //[_layerAbove release];    //TODO: crashed here when released. commented out for now, but technically a memory leak
     _layerAbove = nil;

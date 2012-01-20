@@ -32,7 +32,7 @@
 
 @implementation MainMenuScene
 
-@synthesize facebook;
+
 
 
 +(CCScene *) scene
@@ -111,6 +111,11 @@
         [_optionsButton setPosition:ccp(30,24)];
         [_optionsButton setHitboxBySize:CGSizeMake(65, 65)];
 
+        //gift button
+        _giftButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_Gift_Blue.png" Selected:@"Menu_Gift_Green.png"];
+        [_giftButton setPosition:ccp(75,24)];
+        [_giftButton setHitboxBySize:CGSizeMake(65, 65)];
+
         
         [[LayerManager sharedLayers] forgetWorkingLayer];
         
@@ -167,17 +172,28 @@
             } else if ([_leaderboardsButton testCollision:position]) {
                 _switchToChoice = MENU_SWITCHTO_LEADERBOARDS;
                 _selectedButton = _leaderboardsButton;
-                [self switchToChoice];
+               
+                [self buttonTransition];
+                
             } else if ([_achievementsButton testCollision:position]) {
                 _switchToChoice = MENU_SWITCHTO_ACHIEVEMENTS;
                 _selectedButton = _achievementsButton;
-                [self switchToChoice];
+               
+                [self buttonTransition];
             } else if ([_optionsButton testCollision:position]) {
                 _switchToChoice = MENU_SWITCHTO_OPTIONS;
+               
                 [[SoundEngine shared] playSound:@"confirm"];
                 _selectedButton = _optionsButton;
                 shouldStart = true;
-            } else if(_isContinueButtonEnabled && [_continueButton testCollision:position]) {
+            }else if ([_giftButton testCollision:position]) {
+                _switchToChoice = MENU_SWITCHTO_GIFT;
+                _selectedButton=_giftButton;
+                [[SoundEngine shared] playSound:@"confirm"];
+                [self buttonTransition];
+               
+            } 
+            else if(_isContinueButtonEnabled && [_continueButton testCollision:position]) {
                 _switchToChoice = MENU_SWITCHTO_CONTINUE;
                 _selectedButton = _continueButton;
                 shouldStart = true;
@@ -187,6 +203,7 @@
         if (shouldStart) {
             [self switchToTransitionOut];
         }
+        
     }
 }
 
@@ -199,6 +216,7 @@
         [_optionsButton setAlpha:alpha];
         [_leaderboardsButton setAlpha:alpha];
         [_achievementsButton setAlpha:alpha];
+        [_giftButton setAlpha:alpha];
         
         if(_isContinueButtonEnabled) {
             [_continueButton setAlpha:alpha];
@@ -210,6 +228,7 @@
         [_leaderboardsButton setSelectedAlpha:alpha];
         [_achievementsButton setSelectedAlpha:alpha];
         [_optionsButton setSelectedAlpha:alpha];
+        [_giftButton setSelectedAlpha:alpha];
         
         if (_isContinueButtonEnabled) {
             [_continueButton setSelectedAlpha:alpha];            
@@ -224,6 +243,7 @@
 {
     [_playButton setAlpha:alpha];
     [_optionsButton setAlpha:alpha];
+    [_giftButton setAlpha:alpha];
     [_leaderboardsButton setAlpha:alpha];
     [_achievementsButton setAlpha:alpha];
     
@@ -249,6 +269,12 @@
 {
     _time = 0.0f;
     _transition = MAINMENU_TRANSITION_OUT;
+}
+
+-(void)buttonTransition
+{
+    _time=0.0f;
+    _transition=MAINMENU_BUTTON_TRANSITION;
 }
 
 -(void)reinit
@@ -293,6 +319,19 @@
                     _switchSceneTriggered = true;
                 }
             }
+            break;
+            
+        case MAINMENU_BUTTON_TRANSITION:
+            if (_time >=1.0f) {
+                _time = 1.0f;
+                _transition=MAINMENU_TRANSITION_IDLE;
+                [self switchToChoice];
+                
+            }
+
+            [_selectedButton setSelectedAlpha:(MAX(1.0f - 8.0f * _time, 0.0f))];
+            
+            
             break;
         default:
             break;
@@ -348,6 +387,10 @@
         case MENU_SWITCHTO_OPTIONS:
             [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[OptionsScene node]]];
             break;
+        case MENU_SWITCHTO_GIFT:
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://buy.itunes.apple.com/WebObjects/MZFinance.woa/wa/giftSongsWizard?gift=1&salableAdamId=343200656&productType=C&pricingParameter=STDQ"]];
+            break;
+
         default:
             break;
     }
@@ -376,6 +419,7 @@
     [_achievementsButton release];
     [_leaderboardsButton release];
     [_optionsButton release];
+    [_giftButton release];
     
     [[TextureManager shared] unloadMemoryForKey:@"mainMenu"];
     [super dealloc];

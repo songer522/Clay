@@ -101,6 +101,8 @@
 
 -(void)setTrophy:(int)trophyId
 {
+    if (trophyId < 1 || trophyId > 3) { return; }
+
     NSString *frameName = [NSString stringWithFormat:@"LevelSelector_Trophy_%d.png",trophyId];
     _trophy = [Sprite spriteFromFrameCacheWithName:frameName];
     [self setTrophyPosition];
@@ -117,9 +119,9 @@
 
 -(void)dealloc
 {
-    [_buttonGraphic release];
-    [_selector release];
     [_trophy release];
+    [_buttonGraphic release];
+    _selector = nil;
     [super dealloc];
 }
 
