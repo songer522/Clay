@@ -165,13 +165,13 @@
                 _endLevelLayer.gameController = self;
         _endLevelLayer.isNewRecord=_gameLayer.isNewRecord;
         [_endLevelLayer showNewRecord];
-       // _isEndLevel = true;
+        _isEndLevel = true;
         //[[SoundEngine shared] playSound:@"pause"];
         _gameLayer.isTouchEnabled = false;
     } else {
-        //[[[LayerManager sharedLayers] currentScene] removeChild:_endLevelLayer cleanup:NO];
-        //_isEndLevel = false;
-        //_gameLayer.isTouchEnabled = true;
+        [[[LayerManager sharedLayers] currentScene] removeChild:_endLevelLayer cleanup:NO];
+        _isEndLevel = false;
+        _gameLayer.isTouchEnabled = true;
     }
 }
 
