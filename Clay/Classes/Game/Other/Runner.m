@@ -14,6 +14,8 @@
 #define RUNNER_VELOCITY_RATE 14.0f
 #define RUNNER_STARTING_X_POSITION 20
 
+#define RUNNER_CONVEYOR_RATE 30.0f
+
 @implementation Runner
 
 @synthesize state = _state;
@@ -79,6 +81,14 @@
     
     self.vx = RUNNER_VELOCITY_RATE * _speed.velocity * 45.0f * dt;    
     self.vy += _ay * rate;
+    
+    if (_goFaster) {
+        self.vx += RUNNER_CONVEYOR_RATE * 250.0f * dt;
+    }
+    
+    if (_goSlower) {
+        self.vx -= RUNNER_CONVEYOR_RATE * 250.0f * dt;
+    }
     
     _x += _vx * dt;    
     _y -= _vy * dt;

@@ -74,7 +74,7 @@
         
         CGPoint playerPosition = [_player getPosition];
         CGPoint lightningParallaxPosition = CGPointMake(_position.x + (playerPosition.x * LIGHTNING_PARALLAX_RATIO), _position.y);
-        NSLog(@"LX: %.2f, PLX: %.2f, RAX: %.2f",_position.x,playerPosition.x,lightningParallaxPosition.x);
+        //NSLog(@"LX: %.2f, PLX: %.2f, RAX: %.2f",_position.x,playerPosition.x,lightningParallaxPosition.x);
         [_sprite setPosition:lightningParallaxPosition];
     }
 }

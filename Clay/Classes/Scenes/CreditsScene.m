@@ -140,7 +140,7 @@
     if (!_hasSwitched && self.position.y > 1120.0f) {
         [self switchToOptionsScreen];
     }
-    NSLog(@"Position Y: %f",self.position.y);
+    //NSLog(@"Position Y: %f",self.position.y);
 }
 
 -(void)onExit
