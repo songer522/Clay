@@ -28,6 +28,7 @@
 @synthesize hurtsPlayer = _hurtsPlayer;
 @synthesize isBehindObstacle = _isBehindObstacle;
 @synthesize vy = _vy;
+@synthesize projectileBehavior = _behavior;
 
 
 

@@ -82,6 +82,11 @@
     }
 }
 
+-(int)getCurrentFrame
+{
+    return _frame;
+}
+
 -(void)changeSpeed:(float)speed
 {
     _speed = speed;

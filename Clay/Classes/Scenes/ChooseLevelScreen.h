@@ -76,9 +76,12 @@ typedef enum {
     
     bool _panelTransition;
     bool _hasSwitched;
+    bool _inDLCMode;
     float _panelAlpha;
     
     int _selected;
+    int _numberOfLevels;
+    int _levelStartNumber;
     
     TWTweetComposeViewController *_tweetViewController;
     FBPrompt *_fbprompt;

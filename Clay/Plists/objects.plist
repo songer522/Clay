@@ -142,6 +142,181 @@
 		<key>playerEffect</key>
 		<string>bkg</string>
 	</dict>
+	<key>checkpoint100</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>0</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>none</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>15</integer>
+			<key>width</key>
+			<integer>87</integer>
+			<key>x</key>
+			<integer>-12</integer>
+			<key>y</key>
+			<integer>2</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>none</string>
+		<key>imageName</key>
+		<string>Level12_Scale_100.png</string>
+		<key>offsetx</key>
+		<integer>-64</integer>
+		<key>offsety</key>
+		<integer>-20</integer>
+		<key>playerEffect</key>
+		<string>bkg</string>
+	</dict>
+	<key>checkpoint120</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>0</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>none</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>15</integer>
+			<key>width</key>
+			<integer>87</integer>
+			<key>x</key>
+			<integer>-12</integer>
+			<key>y</key>
+			<integer>2</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>none</string>
+		<key>imageName</key>
+		<string>Level12_Scale_120.png</string>
+		<key>offsetx</key>
+		<integer>-64</integer>
+		<key>offsety</key>
+		<integer>-20</integer>
+		<key>playerEffect</key>
+		<string>bkg</string>
+	</dict>
+	<key>checkpoint140</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>0</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>none</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>15</integer>
+			<key>width</key>
+			<integer>87</integer>
+			<key>x</key>
+			<integer>-12</integer>
+			<key>y</key>
+			<integer>2</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>none</string>
+		<key>imageName</key>
+		<string>Level12_Scale_140.png</string>
+		<key>offsetx</key>
+		<integer>-64</integer>
+		<key>offsety</key>
+		<integer>-20</integer>
+		<key>playerEffect</key>
+		<string>bkg</string>
+	</dict>
+	<key>checkpoint160</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>0</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>none</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>15</integer>
+			<key>width</key>
+			<integer>87</integer>
+			<key>x</key>
+			<integer>-12</integer>
+			<key>y</key>
+			<integer>2</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>none</string>
+		<key>imageName</key>
+		<string>Level12_Scale_160.png</string>
+		<key>offsetx</key>
+		<integer>-64</integer>
+		<key>offsety</key>
+		<integer>-20</integer>
+		<key>playerEffect</key>
+		<string>bkg</string>
+	</dict>
+	<key>checkpoint180</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>0</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>none</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>15</integer>
+			<key>width</key>
+			<integer>87</integer>
+			<key>x</key>
+			<integer>-12</integer>
+			<key>y</key>
+			<integer>2</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>none</string>
+		<key>imageName</key>
+		<string>Level12_Scale_180.png</string>
+		<key>offsetx</key>
+		<integer>-64</integer>
+		<key>offsety</key>
+		<integer>-20</integer>
+		<key>playerEffect</key>
+		<string>bkg</string>
+	</dict>
 	<key>checkpoint8bit</key>
 	<dict>
 		<key>aggressive</key>
@@ -549,7 +724,7 @@
 			<key>x</key>
 			<integer>25</integer>
 			<key>y</key>
-			<integer>40</integer>
+			<integer>20</integer>
 		</dict>
 		<key>collideBehavior</key>
 		<string>flyer</string>
@@ -558,7 +733,7 @@
 		<key>offsetx</key>
 		<integer>0</integer>
 		<key>offsety</key>
-		<integer>135</integer>
+		<integer>140</integer>
 		<key>playerEffect</key>
 		<string>collide</string>
 	</dict>
@@ -804,6 +979,41 @@
 		<integer>0</integer>
 		<key>offsety</key>
 		<integer>-130</integer>
+		<key>playerEffect</key>
+		<string>collide</string>
+	</dict>
+	<key>darkBomb</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>0</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>darkBossJimBombAttack2</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>70</integer>
+			<key>width</key>
+			<integer>60</integer>
+			<key>x</key>
+			<integer>-10</integer>
+			<key>y</key>
+			<integer>-15</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>bomb</string>
+		<key>imageName</key>
+		<string>blank.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>-45</integer>
 		<key>playerEffect</key>
 		<string>collide</string>
 	</dict>
@@ -1179,7 +1389,7 @@
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>60</integer>
+			<integer>100</integer>
 			<key>width</key>
 			<integer>40</integer>
 			<key>x</key>
@@ -1214,7 +1424,7 @@
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>60</integer>
+			<integer>100</integer>
 			<key>width</key>
 			<integer>40</integer>
 			<key>x</key>
@@ -1897,6 +2107,111 @@
 		<integer>-45</integer>
 		<key>playerEffect</key>
 		<string>slow</string>
+	</dict>
+	<key>trainingWeight</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>0</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>none</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>15</integer>
+			<key>width</key>
+			<integer>15</integer>
+			<key>x</key>
+			<integer>-12</integer>
+			<key>y</key>
+			<integer>2</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>fades</string>
+		<key>imageName</key>
+		<string>Level12_Dumbbell.png</string>
+		<key>offsetx</key>
+		<integer>-64</integer>
+		<key>offsety</key>
+		<integer>-45</integer>
+		<key>playerEffect</key>
+		<string>collide</string>
+	</dict>
+	<key>trainingSmallBench</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>0</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>none</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>25</integer>
+			<key>width</key>
+			<integer>15</integer>
+			<key>x</key>
+			<integer>-12</integer>
+			<key>y</key>
+			<integer>2</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>fades</string>
+		<key>imageName</key>
+		<string>Level12_SitUpChair.png</string>
+		<key>offsetx</key>
+		<integer>-64</integer>
+		<key>offsety</key>
+		<integer>-45</integer>
+		<key>playerEffect</key>
+		<string>collide</string>
+	</dict>
+	<key>trainingTallBench</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>0</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>none</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>40</integer>
+			<key>width</key>
+			<integer>15</integer>
+			<key>x</key>
+			<integer>-12</integer>
+			<key>y</key>
+			<integer>2</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>fades</string>
+		<key>imageName</key>
+		<string>Level12_WeightLift.png</string>
+		<key>offsetx</key>
+		<integer>-64</integer>
+		<key>offsety</key>
+		<integer>-45</integer>
+		<key>playerEffect</key>
+		<string>collide</string>
 	</dict>
 	<key>lighting</key>
 	<dict>

@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "Boss.h"
+#import "SimpleAudioEngine.h"
+
 
 @class Sprite;
 @class Player;
@@ -65,6 +67,10 @@ typedef enum {
     float _waitToPlayTrainSound;
     
     bool _waitUntilPlayerGetsBackUp;
+    
+    ALuint _hornSoundId;
+    ALuint _trainSoundId;
+    
 }
 
 -(void)triggerAction:(FinalBossPhase)phase;
@@ -84,6 +90,8 @@ typedef enum {
 -(void)detonateBombs;
 -(void)throwBomb;
 -(void)throwGrape;
+-(void)stopHornSound;
+-(void)stopTrainSound;
 -(void)updateHorn:(float)dt;
 -(void)updateTrainSound:(float)dt;
 @end

@@ -63,7 +63,6 @@
     
    
     if ((self = [super init])) {
-        _levelToSwitchTo = @"level1";
         _buttons = [[NSMutableArray alloc] initWithCapacity:7];
         _alpha = 1.0f;
         _selected = 1;
@@ -75,11 +74,34 @@
         _bestTime = nil;
         _tweetViewController = nil;
         _fbprompt = nil;
+        _inDLCMode = false;
         
         self.isTouchEnabled = YES;
         
         _gameMode = [[GameSettings shared] getGlobalForKey:@"gameMode"];
         _gameDifficulty = [[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
+        
+        NSString *showDLC = [[GameSettings shared] getGlobalForKey:@"timedShowDLC"];
+        if ([showDLC isEqualToString:@"YES"]) {
+            _inDLCMode = true;
+            _numberOfLevels = 1;
+            _levelStartNumber = 11;
+            _levelToSwitchTo = @"level12";
+        } else {
+            _inDLCMode = false;
+            _numberOfLevels = 11;
+            _levelStartNumber = 0;
+            _levelToSwitchTo = @"level1";
+        }
+        
+        //if timed mode had previously saved its selected level, we want to start with that one selected.
+        //otherwise, we want it to start on the first level
+        int selectedLevel = [[[GameSettings shared] getGlobalForKey:@"timedSelectedLevel"] intValue];
+        if (selectedLevel > 0) {
+            _selected = (selectedLevel - 1);
+        } else {
+            _selected = _levelStartNumber;
+        }
         
         NSString *musicStarted = [[GameSettings shared] getGlobalForKey:@"titleMusicStarted"];
         if (![musicStarted isEqualToString:@"YES"]) {
@@ -188,24 +210,28 @@
     
     
     //load level buttons (init best level time text first because it gets set in here)
-    for (int i=0; i<11; i++) {
+    for (int i=_levelStartNumber; i<(_levelStartNumber + _numberOfLevels); i++) {
         LevelButton *button = [LevelButton levelButtonWithId:i];
         [button setCursor:_selector];
 
         //by default have the first level selected
-        if(i==0) {
+        if(i==_levelStartNumber) {
             [button setSelected];
         }
         
         [_buttons addObject:button];
     }
     
-    _levelSelectText = [GameLabel gameLabelWithText:@"LEVEL SELECT" Scale:0.75f Position:ccp(365.0f,282.0f)];
+    if (_inDLCMode) {
+        _levelSelectText = [GameLabel gameLabelWithText:@"BONUS LEVELS" Scale:0.75f Position:ccp(365.0f,282.0f)];
+    } else {
+        _levelSelectText = [GameLabel gameLabelWithText:@"LEVEL SELECT" Scale:0.75f Position:ccp(365.0f,282.0f)];
+    }
     
     //load any medals earned
     [self loadMedals];
     
-    _frontPanel = [self createInformationPanelForLevel:1];
+    _frontPanel = [self createInformationPanelForLevel:(_levelStartNumber + 1)];
     
     
     [[LayerManager sharedLayers] forgetWorkingLayer];
@@ -285,12 +311,12 @@
     int silverTime = [[medals objectForKey:@"silver"] intValue];
     int goldTime = [[medals objectForKey:@"gold"] intValue];
     
-    if (time<goldTime) {
-        returnVal = goldTime;
-    } else if(time<silverTime) {
-        returnVal = silverTime;
-    } else if(time<bronzeTime) {
+    if (time > bronzeTime || time <= 0.0f) {
         returnVal = bronzeTime;
+    } else if(time > silverTime) {
+        returnVal = silverTime;
+    } else if(time > goldTime) {
+        returnVal = goldTime;
     } else {
         returnVal = 0;
     }

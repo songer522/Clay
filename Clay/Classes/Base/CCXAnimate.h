@@ -31,5 +31,6 @@
 
 -(void)update:(ccTime)t;
 -(void)changeSpeed:(float)speed;
+-(int)getCurrentFrame;
 
 @end

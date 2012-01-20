@@ -65,6 +65,7 @@
 -(void)shootComboAttack;
 -(void)switchToPhase:(BossPhase)phase;
 -(void)finishedPhase;
+-(void)resetProjectiles;
 //-(bool)testCollisionsWithSource:(Projectile*)source;
 -(bool)testCollisionsWithSource:(id<Collidable>)source;
 @end

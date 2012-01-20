@@ -19,6 +19,7 @@
 #import "GCHelper.h"
 #import "GCState.h"
 #import "SoundEngine.h"
+#import "CreditsScene.h"
 
 
 @implementation EndGameScene
@@ -54,11 +55,10 @@
         _state = END_GAME_TRANSITION_IN;
         _alpha = 0.0f;
         _shouldExit=false;
-        _bonusShowed = false;
         
-        
+       
         [[LayerManager sharedLayers] setWorkingLayer:self];
-        
+         
         [[TextureManager shared] loadMemoryForKey:@"endGame"];
         
              _comic=[Sprite spriteWithFile:@"Comic_11.png"];
@@ -68,25 +68,22 @@
         
         if([difficulty isEqualToString:@"hard"] && [mode isEqualToString:@"story"])
         {
-        _BonusComic=[Sprite spriteWithFile:@"Comic_12.png"];
+        _BonusComic=[Sprite spriteWithFile:@"Comic_13.png"];
+        }
+        else if ([difficulty isEqualToString:@"normal"] && [mode isEqualToString:@"story"])
+        {
+            _BonusComic=[Sprite spriteWithFile:@"Comic_14.png"];
         }
         else
         {
-            _BonusComic=[Sprite spriteWithFile:@"Comic_13.png"];
+            _BonusComic=[Sprite spriteWithFile:@"Comic_12.png"];
         }
-        
+        [[SoundEngine shared] cueFadeIn];
+       [[SoundEngine shared] playMusic:@"credits"];
       
 
         
-        _endGame = [Sprite spriteFromFrameCacheWithName:@"Menu_Ending_Temp.png"];
-        _bestTime = [Sprite spriteFromFrameCacheWithName:@"Menu_Ending_BestTime.png"];
-        [_bestTime getCCSprite].position = ccp(350.0f, 145.0f);
-        _timer = [TrackTimer instance];
-        [_timer setupAnimationsAtX:232.0f Y:125.0f];
-        
-        _besttimer = [TrackTimer instance];
-        [_besttimer setupAnimationsAtX:232.0f Y:145.0f];
-        
+                 _initialized = false;
         [self showTimers];
         
         
@@ -96,13 +93,10 @@
         [[LayerManager sharedLayers] forgetWorkingLayer];
         
         [_comic setAlpha:0.0f];
-        [_endGame setAlpha:0.0f];
-        [_bestTime setAlpha:0.0f];
-        [_timer setAlpha:0.0f];
-        [_besttimer setAlpha:0.0f];
+        
         [_BonusComic setAlpha:0.0f];
       
-        _initialized = false;
+       
         
         [self scheduleUpdate];
         self.isTouchEnabled = true;
@@ -170,9 +164,7 @@
             [UserData sharedInstance].bestTime = finalTime;
             [[UserData sharedInstance] save];
         }
-        [_timer setTime:finalTime];
-        [_besttimer setTime:[[UserData sharedInstance] bestTime]];
-        _initialized = true;
+               _initialized = true;
     }
 
 }
@@ -191,23 +183,16 @@
         if (shouldStart && !_shouldExit) {
             
             
-            if(!_bonusShowed)
-            {
-               
+                          
                 _alpha=0;
                 _state=END_GAME_TRANSITION_COMIC_BONUS;
                 
-            }
-            else
-            {
-                _alpha=0;
-                _state = END_GAME_TRANSITION_COMIC;
-            }
         }
         
         if(_shouldExit)
         {
-              [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[MainMenuScene scene]]];
+            [[GameSettings shared] setGlobal:@"endGame" ForKey:@"switchToCreditsFrom"];
+              [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[CreditsScene scene]]];
         }
     }
 }
@@ -227,32 +212,18 @@
             }
             [_comic setAlpha:_alpha];
             break;
-        case END_GAME_TRANSITION_COMIC:
+               case END_GAME_TRANSITION_COMIC_BONUS:
             _alpha += rate;
             if (_alpha >= 1.0f) {
                 _alpha = 1.0f;
                 _state = END_GAME_TRANSITION_IDLE;
-            }
-            
-             [_endGame setAlpha:_alpha];
-             [_bestTime setAlpha:_alpha];
-             [_timer setAlpha:_alpha];
-            [_besttimer setAlpha:_alpha];
-            [_comic setAlpha:(1-_alpha)];
-            
-            _shouldExit=true;
-            break;
-        case END_GAME_TRANSITION_COMIC_BONUS:
-            _alpha += rate;
-            if (_alpha >= 1.0f) {
-                _alpha = 1.0f;
-                _state = END_GAME_TRANSITION_IDLE;
+               
             }
             
             [_BonusComic setAlpha:_alpha];
             [_comic setAlpha:(1-_alpha)];
-            _bonusShowed =true;
-        
+            
+         _shouldExit=true;
             break;
 
         default:
@@ -270,10 +241,7 @@
 {
     //NSLog(@"Dealloc: EndGameScene");
     
-    [_endGame release];
-    [_bestTime release];
-    [_timer release];
-    [_besttimer release];
+    
     [difficulty release];
     [mode release];
     [[TextureManager shared] unloadMemoryForKey:@"endGame"];

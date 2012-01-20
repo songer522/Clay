@@ -367,6 +367,34 @@
             }
             _fadeout = true;
             break;
+        case COLLISION_BEHAVIOR_DARK_BOMB:
+            
+            //if true, then bomb exploded on its own (bomb called function with true, player calls with false),
+            //and we want it to still be volatile
+            //if false, then player called it and has thus already been hit by it, and we want it to be harmless now
+            if (isProjectile) {
+                _bombStillHurts = true;
+                _collided = false;
+                
+                if ([[_player getThirdAction] inAction]) {
+                    [[_player getThirdAction] setKilledEnemy:YES];
+                }
+            } else {
+                _bombStillHurts = false;
+                _collided = true;
+            }
+            
+            if (!_hasTriggered) {
+                [self setOriginalAnimation:@"darkBossJimBombAttack2"];
+                [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"darkBombExplosionAnim"];
+                [[SoundEngine shared] playSound:@"bombExplosion"];
+                
+                _hasTriggered = true;
+                _collided = false;
+                _alpha = 1.5f;
+                _fadeout = true;
+            }
+            break;
         case COLLISION_BEHAVIOR_WATER_SQUID_FADES:
         case COLLISION_BEHAVIOR_FIREBALL_LANDED:
         case COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR:
@@ -438,7 +466,9 @@
                 if(_projectile!=nil){
                     [[_projectile getCCSprite] setVisible:NO];
                 }
-                [[_sprite getCCSprite] pauseSchedulerAndActions];
+                if (_collideBehavior != COLLISION_BEHAVIOR_COMPUTER_WORM) {
+                    [[_sprite getCCSprite] pauseSchedulerAndActions];                    
+                }
                 _isVisible = false;
             }
             return; //don't bother with the rest of the update loop
@@ -661,7 +691,8 @@
             [self chaseAtDistance:210.0f DefaultSpeed:-50.0f ChaseSpeed:-175.0f ChaseSound:@"" ChaseAnimation:@"computerMelissaFastAnim" DefaultAnimation:@"computerMelissaSlowAnim"];
             break;
         case COLLISION_BEHAVIOR_COMPUTER_WORM:
-            if ([[_sprite getAnimation] getCurrentFrameNumber] == 1) {
+            frame = [[_sprite getAnimation] getCurrentFrameNumber];
+            if (frame == 1) {
                 _vx = -50.0f;
             } else {
                 _vx = 0.0f;
@@ -997,6 +1028,21 @@
                 }
             }
             break;
+        case COLLISION_BEHAVIOR_DARK_BOMB:
+            if (!_hasAppeared && [self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+                _hasAppeared = true;
+            }
+            
+            if (!_hasTriggered && [self closeToPlayer:40.0f]) {
+                [self startCollision:YES];
+            } else if(_hasTriggered && _bombStillHurts) {
+                if (_alpha > 0.3f) {
+                    _collided = false;
+                } else {
+                    _collided = true;
+                }
+            }
+            break;
         case COLLISION_BEHAVIOR_GARGOYLE:
             _vx = 0.0f;
             if (_waitToTrigger >= 0) {
@@ -1195,8 +1241,6 @@
     _hasAppeared=false;
     _chaseTriggered = false;
     _isHurdle = false;
-   
-    if(self )
     _madeSound = false;
     [_sprite setAlpha:1.0f];
      
@@ -1357,6 +1401,11 @@
     else if(_currentBehavior == COLLISION_BEHAVIOR_FINAL_BOSS) {
         _currentBehavior = COLLISION_BEHAVIOR_FINAL_BOSS;
         _collideBehavior = COLLISION_BEHAVIOR_FINAL_BOSS;
+    }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_DARK_BOMB) {
+        _currentBehavior = COLLISION_BEHAVIOR_DARK_BOMB;
+        _collideBehavior = COLLISION_BEHAVIOR_DARK_BOMB;
+        _hasTriggered = false;
     }
     else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_SLOW) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;     
@@ -1584,6 +1633,10 @@
         _currentBehavior = COLLISION_BEHAVIOR_WATER_HEALTH_BUBBLE_2;
         _collideBehavior = COLLISION_BEHAVIOR_WATER_HEALTH_BUBBLE_2;
     }
+    else if([behavior isEqualToString:@"bomb"]) {
+        _currentBehavior = COLLISION_BEHAVIOR_DARK_BOMB;
+        _collideBehavior = COLLISION_BEHAVIOR_DARK_BOMB;
+    }
     else {
         _collideBehavior = COLLISION_BEHAVIOR_NONE;
     }
@@ -1694,7 +1747,7 @@
 
 -(void)dealloc
 {
-    NSLog(@"Sprite RC: %d",[_sprite retainCount]);
+    //NSLog(@"Sprite RC: %d",[_sprite retainCount]);
     [_sprite release];
     [_collisionState release];
     [_boss release];

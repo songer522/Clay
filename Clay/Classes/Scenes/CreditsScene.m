@@ -11,6 +11,9 @@
 #import "LayerManager.h"
 #import "PListLoader.h"
 #import "OptionsScene.h"
+#import "EndLevelScene.h"
+#import "SoundEngine.h"
+#import "GameSettings.h"
 
 @implementation CreditsScene
 
@@ -34,6 +37,7 @@
         
         [[LayerManager sharedLayers] setWorkingLayer:self];
 
+        
         [self loadCredits];
         
         [[LayerManager sharedLayers] forgetWorkingLayer];
@@ -118,8 +122,15 @@
 
 -(void)switchToOptionsScreen
 {
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[OptionsScene scene]]];
-    _hasSwitched = true;
+    NSString *switchTo= [[GameSettings shared] getGlobalForKey:@"switchToCreditsFrom"];
+    if([switchTo isEqualToString:@"endGame"])
+        {
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[EndLevelScene scene]]];
+        }
+        else if ([switchTo isEqualToString:@"options"])
+          {
+              [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[OptionsScene scene]]];
+          }
 }
 
 -(void)update:(ccTime)dt

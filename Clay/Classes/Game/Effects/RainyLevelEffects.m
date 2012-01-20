@@ -41,6 +41,7 @@
         _rainBehindTim = [Sprite instance];
         [_rainBehindTim setAnimationByName:@"rainyBehindTimAnim"];
         [[_rainBehindTim getCCSprite] setAnchorPoint:ccp(0.5f,0)];
+        _rainBehindTimVisible = true;
         
         _lightning = [Lightning instance];
         
@@ -58,10 +59,16 @@
     //IPAD FIX: place underneath tim's feet
     [_rainBehindTim setPosition:CGPointMake(player.x - 40, player.y - 12)];
     
-    if (player.isInMidAir) {
-        [[_rainBehindTim getCCSprite] setVisible:NO];
+    if (player.isInMidAir||player.onLedge) {
+        if (_rainBehindTimVisible) {
+            [[_rainBehindTim getCCSprite] setVisible:NO];
+            _rainBehindTimVisible = false;
+        }
     } else {
-        [[_rainBehindTim getCCSprite] setVisible:YES];
+        if (!_rainBehindTimVisible) {
+            [[_rainBehindTim getCCSprite] setVisible:YES];
+            _rainBehindTimVisible = true;
+        }
     }
     
     for (Raindrop *raindrop in _raindrops) {
