@@ -41,6 +41,17 @@ static GameSettings *_shared = nil;
     return self;
 }
 
+-(void)eraseData
+{
+    if (_savedSettings!=nil) {
+        [_savedSettings removeAllObjects];
+        [_savedSettings release];
+    }
+    
+    _savedSettings = [[NSMutableDictionary alloc] initWithCapacity:30];
+    [self saveToDisk];
+}
+
 -(void)setGlobal:(NSString*)setting ForKey:(NSString*)key;
 {
     [_settings setValue:[NSString stringWithString:setting] forKey:key];
@@ -130,6 +141,42 @@ static GameSettings *_shared = nil;
 {
     saveData(_savedSettings, @"savedSettings");
 }
+
+-(void)setUnlockedForKey:(NSString*)key
+{
+    //check current value, see if needs to be new unlock or not.
+    NSString *value = [self getGlobalForKey:key];
+    if ([value isEqualToString:@"unlocked"] || [value isEqualToString:@"newUnlocked"]) {
+        //do nothing we're already unlocked
+    } else {
+        [self setSerializedGlobal:@"newUnlocked" ForKey:key];
+    }
+}
+
+-(void)setNotNewForKey:(NSString*)key
+{
+    //check current value, and only change if the current value is newly unlocked
+    //(this function gets called anytime the proper action occurs, not only when unlocked)
+    NSString *value = [self getGlobalForKey:key];
+    if ([value isEqualToString:@"newUnlocked"]) {
+        [self setSerializedGlobal:@"unlocked" ForKey:key];
+    }
+}
+
+-(LockType)getLockTypeForKey:(NSString*)key
+{
+    NSString *value = [self getGlobalForKey:key];
+    if ([value isEqualToString:@"unlocked"]) {
+        return LOCKTYPE_UNLOCKED;
+    } else if([value isEqualToString:@"newUnlocked"]) {
+        return LOCKTYPE_UNLOCKED_NEW;
+    } else if(![value isEqualToString:@"locked"]) {
+        [self setSerializedGlobal:@"locked" ForKey:key];
+    }
+    
+    return LOCKTYPE_LOCKED;
+}
+
 
 -(void)dealloc
 {

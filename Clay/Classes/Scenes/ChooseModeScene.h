@@ -51,14 +51,6 @@ typedef enum {
     
     bool _isTransitioning;
     bool _playTutorial;
-    
-    bool _isUnlockedStoryHardMode;
-    bool _isUnlockedTimedNormalMode;
-    bool _isUnlockedTimedHardMode;
-    
-    bool _isNewStoryHardMode;
-    bool _isNewTimedNormalMode;
-    bool _isNewTimedHardMode;
 }
 
 @property(nonatomic,assign) bool isTransitioning;

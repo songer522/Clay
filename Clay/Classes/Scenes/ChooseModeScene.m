@@ -216,13 +216,22 @@
         case GAMEMODE_STORY_EASY:
         case GAMEMODE_STORY_NORMAL:
         case GAMEMODE_STORY_HARD:
+            if (_action == GAMEMODE_STORY_HARD) {
+                [[GameSettings shared] setNotNewForKey:@"storyHardUnlocked"];
+            }
             [[GameSettings shared] setGlobal:@"NO" ForKey:@"titleMusicStarted"];
             [[GameSettings shared] setGlobal:@"level1" ForKey:@"startingLevel"];
             [[GameSettings shared] setSerializedGlobal:@"level1" ForKey:@"storyModeCurrentLevel"];
             [self switchToStartGame];
             break;
         case GAMEMODE_TIMED_NORMAL:
+            [[GameSettings shared] setGlobal:@"NO" ForKey:@"timedShowDLC"];
+            [[GameSettings shared] setNotNewForKey:@"timedNormalUnlocked"];
+            [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ChooseLevelScreen scene]]];
+            
+            break;
         case GAMEMODE_TIMED_INSANE:
+            [[GameSettings shared] setNotNewForKey:@"timedHardUnlocked"];
             [[GameSettings shared] setGlobal:@"NO" ForKey:@"timedShowDLC"];
             [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ChooseLevelScreen scene]]];
             break;
@@ -286,38 +295,26 @@
 
 -(void)updateLocked
 {
-    _isUnlockedStoryHardMode = true;
-    _isUnlockedTimedHardMode = true;
-    _isUnlockedTimedNormalMode = true;
-    
-    _isNewStoryHardMode = true;
-    _isNewTimedHardMode = true;
-    _isNewTimedNormalMode = true;
-    
-    if (!_isUnlockedStoryHardMode) {
+     
+    LockType setting = [[GameSettings shared] getLockTypeForKey:@"storyHardUnlocked"];
+    if (setting == LOCKTYPE_UNLOCKED_NEW) {
+        [[_storyModePanel getButtonWithIndex:2] setLocked:LOCKTYPE_UNLOCKED_NEW];
+    } else if(setting == LOCKTYPE_LOCKED) {
         [[_storyModePanel getButtonWithIndex:2] setLocked:LOCKTYPE_LOCKED];
     }
-    
-    if (!_isUnlockedTimedNormalMode) {
+
+    setting = [[GameSettings shared] getLockTypeForKey:@"timedNormalUnlocked"];
+    if (setting == LOCKTYPE_UNLOCKED_NEW) {
+        [[_timedModePanel getButtonWithIndex:0] setLocked:LOCKTYPE_UNLOCKED_NEW];
+    } else if(setting == LOCKTYPE_LOCKED) {
         [[_timedModePanel getButtonWithIndex:0] setLocked:LOCKTYPE_LOCKED];
     }
     
-    if (!_isUnlockedTimedHardMode) {
-        [[_timedModePanel getButtonWithIndex:1] setLocked:LOCKTYPE_LOCKED];
-    }
-    
-    
-    
-    if (_isNewStoryHardMode) {
-        [[_storyModePanel getButtonWithIndex:2] setLocked:LOCKTYPE_UNLOCKED_NEW];
-    }
-    
-    if (_isNewTimedNormalMode) {
-        [[_timedModePanel getButtonWithIndex:0] setLocked:LOCKTYPE_UNLOCKED_NEW];
-    }
-
-    if (_isNewTimedHardMode) {
+    setting = [[GameSettings shared] getLockTypeForKey:@"timedHardUnlocked"];
+    if (setting == LOCKTYPE_UNLOCKED_NEW) {
         [[_timedModePanel getButtonWithIndex:1] setLocked:LOCKTYPE_UNLOCKED_NEW];
+    } else if(setting == LOCKTYPE_LOCKED) {
+        [[_timedModePanel getButtonWithIndex:1] setLocked:LOCKTYPE_LOCKED];
     }
     
 }

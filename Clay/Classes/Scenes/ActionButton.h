@@ -7,16 +7,12 @@
 //
 
 #import "Button.h"
+#import "GameSettings.h"
 
 @class Sprite;
 @class GameLabel;
 
-typedef enum {
-    LOCKTYPE_NOT_ENABLED,
-    LOCKTYPE_UNLOCKED,
-    LOCKTYPE_UNLOCKED_NEW,
-    LOCKTYPE_LOCKED
-}LockType;
+
 
 @interface ActionButton : Button
 {
