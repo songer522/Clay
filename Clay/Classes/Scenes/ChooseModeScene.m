@@ -158,7 +158,7 @@
     [_storyModePanel setSelectedIndex:1];
     [_storyModePanel makeCursorActive];
 
-    
+    [self updateLocked];
 
     [[LayerManager sharedLayers] forgetWorkingLayer];
 }
@@ -293,6 +293,33 @@
     _isNewStoryHardMode = false;
     _isNewTimedHardMode = false;
     _isNewTimedNormalMode = false;
+    
+    if (!_isUnlockedStoryHardMode) {
+        [[_storyModePanel getButtonWithIndex:2] setLocked:LOCKTYPE_LOCKED];
+    }
+    
+    if (!_isUnlockedTimedNormalMode) {
+        [[_timedModePanel getButtonWithIndex:0] setLocked:LOCKTYPE_LOCKED];
+    }
+    
+    if (!_isUnlockedTimedHardMode) {
+        [[_timedModePanel getButtonWithIndex:1] setLocked:LOCKTYPE_LOCKED];
+    }
+    
+    
+    
+    if (_isNewStoryHardMode) {
+        [[_storyModePanel getButtonWithIndex:2] setLocked:LOCKTYPE_UNLOCKED_NEW];
+    }
+    
+    if (_isNewTimedNormalMode) {
+        [[_timedModePanel getButtonWithIndex:0] setLocked:LOCKTYPE_UNLOCKED_NEW];
+    }
+
+    if (_isNewTimedHardMode) {
+        [[_timedModePanel getButtonWithIndex:1] setLocked:LOCKTYPE_UNLOCKED_NEW];
+    }
+    
 }
 
 -(void)onExit

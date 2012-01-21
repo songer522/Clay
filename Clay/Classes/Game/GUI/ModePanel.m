@@ -75,6 +75,12 @@
     }
 }
 
+-(ActionButton*)getButtonWithIndex:(int)index
+{
+    ActionButton *returnVal = [_buttons objectAtIndex:index];
+    return returnVal;
+}
+
 -(void)makeActive
 {
     _phase = MODE_PANEL_ACTIVE;

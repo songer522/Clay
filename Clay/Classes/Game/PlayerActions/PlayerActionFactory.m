@@ -16,6 +16,7 @@
 #import "PlayerActionSpin.h"
 #import "PlayerActionWoo.h"
 #import "PlayerActionDetonate.h"
+#import "PlayerActionPump.h"
 
 @implementation PlayerActionFactory
 
@@ -47,6 +48,9 @@
         case PLAYER_ACTION_WOO:
             return [PlayerActionWoo instance];
             break;
+        case PLAYER_ACTION_PUMP:
+            return [PlayerActionPump instance];
+            break;
         default:
             NSLog(@"PlayerActionFactory:buildPlayerAction - Error! Wrong type selected");
             break;
@@ -75,6 +79,8 @@
         _thirdAction = (PlayerAction*)[PlayerActionFactory buildPlayerAction:PLAYER_ACTION_SPIN];
     } else if([action isEqualToString:@"slowtime"]) {
         _thirdAction = (PlayerAction*)[PlayerActionFactory buildPlayerAction:PLAYER_ACTION_SLOW_TIME];
+    } else if([action isEqualToString:@"pump"]) {
+        _thirdAction = (PlayerAction*)[PlayerActionFactory buildPlayerAction:PLAYER_ACTION_PUMP];
     } else {
         NSLog(@"ERROR! PlayerActionFactory.m - No action found for %@.",action);
     }
@@ -102,6 +108,8 @@
     } else if([action isEqualToString:@"slowtime"]) {
         //buttonImage = @"UI_Button_SlowTime.png";
         buttonImage = @"UI_Button_Detonating.png";
+    } else if([action isEqualToString:@"pump"]) {
+        buttonImage = @"UI_Button_Woo.png";
     } else {
         buttonImage = @"";
     }

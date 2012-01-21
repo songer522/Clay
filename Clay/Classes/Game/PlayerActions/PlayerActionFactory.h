@@ -18,7 +18,8 @@ typedef enum {
     PLAYER_ACTION_SLOW_TIME,
     PLAYER_ACTION_SPIN,
     PLAYER_ACTION_BLOCK,
-    PLAYER_ACTION_BLOW
+    PLAYER_ACTION_BLOW,
+    PLAYER_ACTION_PUMP
 }PlayerActionType;
 
 @interface PlayerActionFactory : PlayerAction

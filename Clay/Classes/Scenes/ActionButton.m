@@ -42,6 +42,17 @@
     return [[self alloc] init];
 }
 
+-(id)init
+{
+    if((self=[super init])) {
+        _lockingGraphic = [Sprite spriteWithFile:@"blank.png"];
+        [_lockingGraphic setCentered];
+        _isEnabled = false;
+    }
+    
+    return self;
+}
+
 -(id)initWithText:(NSString*)text ButtonImageName:(NSString*)buttonName ButtonPressedImageName:(NSString*)buttonPressedName
 {
     if ((self=[super init])) {
@@ -53,6 +64,9 @@
         facebookOrTwitter = false;
         _isEnabled = true;
         _lockType = LOCKTYPE_NOT_ENABLED;
+        
+        _lockingGraphic = [Sprite spriteWithFile:@"blank.png"];
+        [_lockingGraphic setCentered];
         
         if (![text isEqualToString:@""]) {
             [self setInitialText:text];            
@@ -120,6 +134,7 @@
     [_buttonSelected setScreenPosition:position];
     [super setPosition:position];
     _textLabel.position = ccp(position.x,position.y - 3.0f);
+    [_lockingGraphic setScreenPosition:ccp(position.x + 45.0f, position.y + 11.0f)];
     
     if(!_usingRelativeHitbox) {
         [self setHitbox:CGRectMake(position.x - 48, position.y - 15, 95, 30)];
@@ -136,7 +151,8 @@
     if(_isEnabled) {
         GLubyte opacity = floor(alpha * 255);
         [[_buttonIdle getCCSprite] setOpacity:opacity];
-        [_textLabel setOpacity:opacity];        
+        [_textLabel setOpacity:opacity];
+        [[_lockingGraphic getCCSprite] setOpacity:opacity];
     }
 }
 
@@ -160,6 +176,9 @@
 
 -(bool)checkIfSelected:(CGPoint)touch
 {
+    //guard
+    if (_lockType == LOCKTYPE_LOCKED) { return false; }
+    
     if (_isEnabled && [self testCollision:touch]) {
         [_buttonSelected setAlpha:1.0f];
         _selectedAlpha = 1.0f;
@@ -198,12 +217,6 @@
 
 -(void)setLocked:(LockType)newType
 {
-    //if we're changing this for the first time, initialize the object
-    if (_lockType == LOCKTYPE_NOT_ENABLED && newType != LOCKTYPE_NOT_ENABLED) {
-        _lockingGraphic = [Sprite spriteWithFile:@"blank.png"];
-        [_lockingGraphic setCentered];
-    }
-    
     switch (newType) {
         case LOCKTYPE_LOCKED:
             [[_lockingGraphic getCCSprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"UI_Locked.png"]];
@@ -225,18 +238,11 @@
     }
 }
 
--(void)setLockPositionOffset:(CGPoint)offset
-{
-    //make sure it's been initialized
-    if(_lockType != LOCKTYPE_NOT_ENABLED) {
-        [_lockingGraphic setScreenPosition:ccp(_position.x + offset.x, _position.y + offset.y)];
-    }
-}
-
 -(void)dealloc
 {
     [_buttonIdle release];
     [_buttonSelected release];
+    [_lockingGraphic release];
     if(_hasText) {
         [_textLabel removeFromParentAndCleanup:NO];
         _textLabel = nil;
