@@ -18,6 +18,7 @@ typedef enum {
 
 @class Sprite;
 @class ChooseModeScene;
+@class ActionButton;
 
 @interface ModePanel : Button
 {
@@ -61,5 +62,7 @@ typedef enum {
 -(void)transitionToActive;
 -(void)transitionToInactive;
 -(void)update:(float)dt;
+-(void)getNextSelected;
+-(ActionButton*)getButtonWithIndex:(int)index;
 
 @end

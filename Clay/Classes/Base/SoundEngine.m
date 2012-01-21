@@ -28,7 +28,7 @@ static SoundEngine *_shared = nil;
     if (self) {
         // Initialization code here.
         
-        _enabled = true;
+        _enabled = false;
         
         _soundMode = SOUND_MODE_NORMAL;
         _masterMusicVolume = 1.0f;

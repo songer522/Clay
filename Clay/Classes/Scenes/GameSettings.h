@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum {
+    LOCKTYPE_NOT_ENABLED,
+    LOCKTYPE_UNLOCKED,
+    LOCKTYPE_UNLOCKED_NEW,
+    LOCKTYPE_LOCKED
+}LockType;
+
 @interface GameSettings : NSObject
 {
     NSMutableDictionary *_settings;
@@ -33,4 +40,9 @@
 -(bool)isStutterMode;
 -(void)loadFromSettingsPlist;
 -(void)saveToDisk;
+-(void)setUnlockedForKey:(NSString*)key;
+-(LockType)getLockTypeForKey:(NSString*)key;
+-(void)setNotNewForKey:(NSString*)key;
+-(void)eraseData;
+
 @end

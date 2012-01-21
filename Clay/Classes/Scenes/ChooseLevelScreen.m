@@ -132,7 +132,7 @@
     for(UITouch *touch in allTouches) {
         CGPoint position = [self convertTouchToNodeSpace:touch];
         for (LevelButton *button in _buttons) {
-            if([button checkIfSelected:position] && !_panelTransition) {
+            if([button checkIfSelected:position] && !_panelTransition && [button isUnlocked]) {
 
                 if (button.buttonId!=_selected) {
                     [[SoundEngine shared] playSound:@"chooseSelection"];

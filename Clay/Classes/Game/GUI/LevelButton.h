@@ -17,6 +17,7 @@
     
     Sprite *_selector;
     Sprite *_trophy;
+    bool _unlocked;
     
 }
 
@@ -38,5 +39,7 @@
 -(void)setInitialPosition;
 
 -(void)setSelected;
+
+-(bool)isUnlocked;
 
 @end

@@ -63,5 +63,5 @@ typedef enum {
 -(void)switchToMainMenu;
 -(void)switchToStartGame;
 -(void)getDesiredAction;
-
+-(void)updateLocked;
 @end

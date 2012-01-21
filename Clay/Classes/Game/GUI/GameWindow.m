@@ -117,9 +117,11 @@
 -(void)dealloc
 {
     [_background release];
-    [_header release];
-    [_message removeAllObjects];
+    for (GameLabel *line in _message) {
+        [line release];
+    }
     [_message release];
+    [_header release];
     [_choice1 release];
     [_choice2 release];
     _delegate = nil;
