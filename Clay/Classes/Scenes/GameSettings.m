@@ -48,7 +48,15 @@ static GameSettings *_shared = nil;
         [_savedSettings release];
     }
     
+    if (_settings!=nil) {
+        [_settings removeAllObjects];
+        [_settings release];
+    }
     _savedSettings = [[NSMutableDictionary alloc] initWithCapacity:30];
+    
+    _settings = [[NSMutableDictionary alloc] initWithCapacity:30];
+    [self loadFromSettingsPlist];
+    
     [self saveToDisk];
 }
 
