@@ -286,13 +286,13 @@
 
 -(void)updateLocked
 {
-    _isUnlockedStoryHardMode = false;
-    _isUnlockedTimedHardMode = false;
-    _isUnlockedTimedNormalMode = false;
+    _isUnlockedStoryHardMode = true;
+    _isUnlockedTimedHardMode = true;
+    _isUnlockedTimedNormalMode = true;
     
-    _isNewStoryHardMode = false;
-    _isNewTimedHardMode = false;
-    _isNewTimedNormalMode = false;
+    _isNewStoryHardMode = true;
+    _isNewTimedHardMode = true;
+    _isNewTimedNormalMode = true;
     
     if (!_isUnlockedStoryHardMode) {
         [[_storyModePanel getButtonWithIndex:2] setLocked:LOCKTYPE_LOCKED];

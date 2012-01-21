@@ -62,6 +62,7 @@ typedef enum {
 -(void)transitionToActive;
 -(void)transitionToInactive;
 -(void)update:(float)dt;
+-(void)getNextSelected;
 -(ActionButton*)getButtonWithIndex:(int)index;
 
 @end

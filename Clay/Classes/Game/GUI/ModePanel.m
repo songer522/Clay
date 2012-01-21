@@ -182,7 +182,7 @@
     if(_isActive) {
         int i=0;
         for (ActionButton *button in _buttons) {
-            if ([button testCollision:point]) {
+            if ([button getLocked] != LOCKTYPE_LOCKED && [button testCollision:point]) {
                 _selectedIndex = i;
                 [self makeCursorActive];
                 break;
@@ -192,6 +192,11 @@
     }
     
     return didTouch;
+}
+
+-(void)getNextSelected
+{
+    
 }
 
 -(void)transitionToActive

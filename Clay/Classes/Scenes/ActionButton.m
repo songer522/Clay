@@ -134,7 +134,7 @@
     [_buttonSelected setScreenPosition:position];
     [super setPosition:position];
     _textLabel.position = ccp(position.x,position.y - 3.0f);
-    [_lockingGraphic setScreenPosition:ccp(position.x + 45.0f, position.y + 11.0f)];
+    [_lockingGraphic setScreenPosition:ccp(position.x + 48.5f, position.y + 12.5f)];
     
     if(!_usingRelativeHitbox) {
         [self setHitbox:CGRectMake(position.x - 48, position.y - 15, 95, 30)];
@@ -172,6 +172,11 @@
 -(void)setHitboxBySize:(CGSize)size
 {
     [self setRelativeHitbox:CGRectMake(-1 * (size.width/2.0f), -1 * (size.height/2.0f), size.width, size.height)];
+}
+
+-(LockType)getLocked
+{
+    return _lockType;
 }
 
 -(bool)checkIfSelected:(CGPoint)touch
@@ -219,18 +224,18 @@
 {
     switch (newType) {
         case LOCKTYPE_LOCKED:
+            _lockType = newType;
             [[_lockingGraphic getCCSprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"UI_Locked.png"]];
             [[_lockingGraphic getCCSprite] setVisible:YES];
-            _lockType = newType;
             break;
         case LOCKTYPE_UNLOCKED_NEW:
+            _lockType = newType;
             [[_lockingGraphic getCCSprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"UI_New.png"]];
             [[_lockingGraphic getCCSprite] setVisible:YES];
-            _lockType = newType;
             break;
         case LOCKTYPE_UNLOCKED:
-            [[_lockingGraphic getCCSprite] setVisible:NO];
             _lockType = newType;
+            [[_lockingGraphic getCCSprite] setVisible:NO];
             break;
         default:
             //should not have to revert back to not enabled

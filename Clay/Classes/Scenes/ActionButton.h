@@ -55,4 +55,5 @@ typedef enum {
 -(CCLabelBMFont*)getLabel;
 -(void)update:(float)dt;
 -(void)setLocked:(LockType)newType;
+-(LockType)getLocked;
 @end
