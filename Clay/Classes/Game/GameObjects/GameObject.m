@@ -970,6 +970,7 @@
                 
             } 
             break;
+            
         case COLLISION_BEHAVIOR_WATER_SEAHORSE:
             if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
                 _vy *= 0.955f;
@@ -1638,7 +1639,7 @@
     }
     else if([behavior isEqualToString:@"waterJim"]) {
         _currentBehavior = COLLISION_BEHAVIOR_WATER_JIM;
-        
+        _collideBehavior = COLLISION_BEHAVIOR_WATER_JIM;
     }
     else if([behavior isEqualToString:@"spikes"]){
         _currentBehavior = COLLISION_BEHAVIOR_DARK_SPIKES;
