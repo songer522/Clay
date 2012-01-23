@@ -109,7 +109,7 @@
         //buttonImage = @"UI_Button_SlowTime.png";
         buttonImage = @"UI_Button_Detonating.png";
     } else if([action isEqualToString:@"pump"]) {
-        buttonImage = @"UI_Button_Woo.png";
+        buttonImage = @"UI_Button_BicepCurl.png";
     } else {
         buttonImage = @"";
     }
