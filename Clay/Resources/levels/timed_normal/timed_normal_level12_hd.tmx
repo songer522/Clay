@@ -117,6 +117,16 @@
     <property name="obstacle" value="femaleBreakdancer"/>
    </properties>
   </tile>
+  <tile id="95">
+   <properties>
+    <property name="obstacle" value="trainingConveyorRight"/>
+   </properties>
+  </tile>
+  <tile id="96">
+   <properties>
+    <property name="obstacle" value="trainingConveyorLeft"/>
+   </properties>
+  </tile>
   <tile id="97">
    <properties>
     <property name="obstacle" value="trainingWeight"/>
@@ -130,6 +140,11 @@
   <tile id="99">
    <properties>
     <property name="obstacle" value="trainingTallBench"/>
+   </properties>
+  </tile>
+  <tile id="100">
+   <properties>
+    <property name="obstacle" value="trainingExerciseBall"/>
    </properties>
   </tile>
  </tileset>
@@ -169,16 +184,16 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1ksOgjAQAFBOYLyBHlBR778xLEgMqXQYhrB5b0dbBtKZfoYBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaHmd/P6vd0GM8YC+I2W/m533ijmePIraMz6FsWYVdbyWy0j8qtz8+9bR7T335HstW2qglZdoW0Tl/FXVQMUa2RPjmeyL9G81Dv3cVo2Z3YLjolo1E23bW1OROoiMyfxH5jzJnDWRPW1tzJa1vmyruntk1msmJ2eeL8u56j1nROexetykYm+M7p+9mo/mp/rufC2OB3tczv4BAAAAAAAAADjBFzWiIas=
+   eJzt1kEOgjAQAEBeYPyBPhBR/38xHEwMKXRpF7nMXAjttpTdNjAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQMnz5PG/XglzTAf0Han1ua15z8jxbEyKzVrPu3N8xj7eqmVk/qxcrD3r6Paae+O4kj31LtUl2haRmb+sPTDrPRM9HsP6e44bfS1q7zkN9dpmxXzdgnFRpXxF23r3VFatWuaJfDvWrntE1rYVs+esL9uO+PeInv3MXP3j+7LMVe2+RTR32XGzR2d/NGZW2/PR+mTv32vyfNDjcvYCAAAAAAAAAOAEH8o8IpM=
   </data>
  </layer>
- <layer name="meta" width="1000" height="14" opacity="0.69">
+ <layer name="meta" width="1000" height="14" opacity="0.68">
   <properties>
    <property name="speedx" value="1.0"/>
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt0DENAAAIwDDwb5oTARwE0iYzsAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaClJkiRJ0uG+2P4oSZIkSdKkLwrOQQdt
+   eJzt1LEOABAMQEEG///LFjMSEmndJW8zNa1SAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAyKKNbr8F4pvdvP+AXXaFn6z2fece3AwAAAAAkVVJkiRJkgKXxes5SpIkSZJ0UhYdx8gHvQ==
   </data>
  </layer>
 </map>

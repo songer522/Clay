@@ -7,19 +7,26 @@
 //
 
 #import "Button.h"
+#import "GameSettings.h"
 
 @class Sprite;
 @class GameLabel;
+
+
 
 @interface ActionButton : Button
 {
     Sprite *_buttonIdle;
     Sprite *_buttonSelected;
+    Sprite *_lockingGraphic;
+    
     CCLabelBMFont *_textLabel;
     float _selectedAlpha;
     bool _hasText;
     bool facebookOrTwitter;
     bool _isEnabled;
+    
+    LockType _lockType;
 }
 @property (assign)bool facebookOrTwitter;
 
@@ -43,6 +50,6 @@
 -(bool)checkIfSelected:(CGPoint)touch;
 -(CCLabelBMFont*)getLabel;
 -(void)update:(float)dt;
-
-
+-(void)setLocked:(LockType)newType;
+-(LockType)getLocked;
 @end

@@ -23,6 +23,7 @@ typedef enum {
     GAMEMODE_TIMED_DLC,
     GAMEMODE_EXTRAS_ALBUM,
     GAMEMODE_EXTRAS_WEB,
+    GameMODE_EXTRAS_SUPPORT,
     GAMEMODE_NONE
 }GameModeAction;
 
@@ -62,5 +63,5 @@ typedef enum {
 -(void)switchToMainMenu;
 -(void)switchToStartGame;
 -(void)getDesiredAction;
-
+-(void)updateLocked;
 @end

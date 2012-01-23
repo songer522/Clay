@@ -1736,6 +1736,40 @@
 		<key>spritesheetPlist</key>
 		<string>townLevel</string>
 	</dict>
+	<key>trainingConveyorRightAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level12</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Level12_Ledge_Fast_</string>
+		<key>spritesheetPlist</key>
+		<string>trainingLevel</string>
+	</dict>
+	<key>trainingConveyorLeftAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level12</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Level12_Ledge_Slow_</string>
+		<key>spritesheetPlist</key>
+		<string>trainingLevel</string>
+	</dict>
 	<key>trippedAnim</key>
 	<dict>
 		<key>animationFrames</key>
@@ -2160,6 +2194,23 @@
 		<string>Character_Woo_</string>
 		<key>spritesheetPlist</key>
 		<string>characterAnims</string>
+	</dict>
+	<key>pumpAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3,4,5,6,7,8,9,10</string>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>delay</key>
+		<real>0.075</real>
+		<key>group</key>
+		<string>pump</string>
+		<key>looping</key>
+		<string>false</string>
+		<key>sequencePrefix</key>
+		<string>BicepCurl_</string>
+		<key>spritesheetPlist</key>
+		<string>characterPump</string>
 	</dict>
 	<key>clappingAnim</key>
 	<dict>

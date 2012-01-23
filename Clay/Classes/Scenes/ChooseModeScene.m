@@ -41,7 +41,7 @@
         _isTransitioning = false;
         _waitToSwitch = 0.0f;
         _backToMainMenu = false;
-        
+                
         [self scheduleUpdate];
         self.isTouchEnabled = YES;
         
@@ -51,6 +51,7 @@
             [[SoundEngine shared] playMusic:@"title"];
             [[GameSettings shared] setGlobal:@"YES" ForKey:@"titleMusicStarted"];
         }
+        
         
         
     }
@@ -131,7 +132,7 @@
     
     _extrasPanel = [ModePanel panelAtPosition:ccp(400,154)];
     [_extrasPanel setHeaderFrame:@"UI_GameType_ExtrasC.png" Inactive:@"UI_GameType_ExtrasG.png"];
-    [_extrasPanel addButtons:[NSArray arrayWithObjects:@"ALBUM",@"WEB", nil]];
+    [_extrasPanel addButtons:[NSArray arrayWithObjects:@"ALBUM",@"WEB",@"SUPPORT", nil]];
     [_extrasPanel setParent:self];
     
     _startButton = [ActionButton actionButtonCustomGraphicsForIdle:@"UI_GameType_ButtonS_Blue.png" Selected:@"UI_GameType_ButtonS_Green.png"];
@@ -157,7 +158,7 @@
     [_storyModePanel setSelectedIndex:1];
     [_storyModePanel makeCursorActive];
 
-    
+    [self updateLocked];
 
     [[LayerManager sharedLayers] forgetWorkingLayer];
 }
@@ -201,8 +202,11 @@
     } else {
         if (selectedButtonIndex == 0) {
             _action = GAMEMODE_EXTRAS_ALBUM;
-        } else {
+        } else if (selectedButtonIndex == 1){
             _action = GAMEMODE_EXTRAS_WEB;
+        }
+        else{
+            _action=GameMODE_EXTRAS_SUPPORT;
         }
     }
 }
@@ -215,13 +219,22 @@
         case GAMEMODE_STORY_EASY:
         case GAMEMODE_STORY_NORMAL:
         case GAMEMODE_STORY_HARD:
+            if (_action == GAMEMODE_STORY_HARD) {
+                [[GameSettings shared] setNotNewForKey:@"storyHardUnlocked"];
+            }
             [[GameSettings shared] setGlobal:@"NO" ForKey:@"titleMusicStarted"];
             [[GameSettings shared] setGlobal:@"level1" ForKey:@"startingLevel"];
             [[GameSettings shared] setSerializedGlobal:@"level1" ForKey:@"storyModeCurrentLevel"];
             [self switchToStartGame];
             break;
         case GAMEMODE_TIMED_NORMAL:
+            [[GameSettings shared] setGlobal:@"NO" ForKey:@"timedShowDLC"];
+            [[GameSettings shared] setNotNewForKey:@"timedNormalUnlocked"];
+            [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ChooseLevelScreen scene]]];
+            
+            break;
         case GAMEMODE_TIMED_INSANE:
+            [[GameSettings shared] setNotNewForKey:@"timedHardUnlocked"];
             [[GameSettings shared] setGlobal:@"NO" ForKey:@"timedShowDLC"];
             [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ChooseLevelScreen scene]]];
             break;
@@ -239,6 +252,12 @@
             [[UIApplication sharedApplication] openURL:url];
             _isTransitioning = false;
             break;
+        case GameMODE_EXTRAS_SUPPORT:
+            url = [NSURL URLWithString:@"mailto:support@xecudev.com"];
+            [[UIApplication sharedApplication] openURL:url];
+            _isTransitioning = false;
+            break;
+
         default:
             break;
     }
@@ -281,6 +300,32 @@
         }
     }
 
+}
+
+-(void)updateLocked
+{
+     
+    LockType setting = [[GameSettings shared] getLockTypeForKey:@"storyHardUnlocked"];
+    if (setting == LOCKTYPE_UNLOCKED_NEW) {
+        [[_storyModePanel getButtonWithIndex:2] setLocked:LOCKTYPE_UNLOCKED_NEW];
+    } else if(setting == LOCKTYPE_LOCKED) {
+        [[_storyModePanel getButtonWithIndex:2] setLocked:LOCKTYPE_LOCKED];
+    }
+
+    setting = [[GameSettings shared] getLockTypeForKey:@"timedNormalUnlocked"];
+    if (setting == LOCKTYPE_UNLOCKED_NEW) {
+        [[_timedModePanel getButtonWithIndex:0] setLocked:LOCKTYPE_UNLOCKED_NEW];
+    } else if(setting == LOCKTYPE_LOCKED) {
+        [[_timedModePanel getButtonWithIndex:0] setLocked:LOCKTYPE_LOCKED];
+    }
+    
+    setting = [[GameSettings shared] getLockTypeForKey:@"timedHardUnlocked"];
+    if (setting == LOCKTYPE_UNLOCKED_NEW) {
+        [[_timedModePanel getButtonWithIndex:1] setLocked:LOCKTYPE_UNLOCKED_NEW];
+    } else if(setting == LOCKTYPE_LOCKED) {
+        [[_timedModePanel getButtonWithIndex:1] setLocked:LOCKTYPE_LOCKED];
+    }
+    
 }
 
 -(void)onExit

@@ -34,6 +34,7 @@
 #import "GCHelper.h"
 #import "CreditsScene.h"
 #import "Camera.h"
+#import "Level.h"
 #import "EndLevelLayer.h"
 #import "BestTimes.h"
 
@@ -237,13 +238,16 @@
     //[self updateLogic:fixedTimeStep];   
 
     // build #2 method
+    
     if( dt > 0.022f )
     {
 		dt = 1/60.0f;
     }
     [self updateLogic:dt];
     
+    
     //use for simulator
+    
     /*
     double fixedTimeStep = 1.00f/60.0f;
     float timeToRun = dt + time;
@@ -254,6 +258,7 @@
     }
     time = timeToRun;    
     */
+    
 }
 
 -(void)pause
@@ -405,10 +410,28 @@
                      
 -(void)endLevel
 {
+    NSString *mode = [[GameSettings shared] getGlobalForKey:@"gameMode"];
+    NSString *difficulty=[[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
+    NSString *levelName = [[LevelManager shared] currentLevel].name;
+    
+    //set modes as unlocked if have the right settings
+    if([mode isEqualToString:@"story"]) {
+        if ([difficulty isEqualToString:@"normal"] && [levelName isEqualToString:@"level11"]) {
+            [[GameSettings shared] setUnlockedForKey:@"storyHardUnlocked"];
+        }
+        [[GameSettings shared] setSerializedGlobal:@"YES" ForKey:[NSString stringWithFormat:@"%@TimedNormalUnlocked",levelName]];
+        
+        [[GameSettings shared] setUnlockedForKey:@"timedNormalUnlocked"];        
+     } else if([mode isEqualToString:@"timed"]) {
+         if([difficulty isEqualToString:@"normal"]) {
+            [[GameSettings shared] setUnlockedForKey:@"timedHardUnlocked"];
+            [[GameSettings shared] setSerializedGlobal:@"YES" ForKey:[NSString stringWithFormat:@"%@TimedHardUnlocked",levelName]];
+         }
+    }    
+    
     _hasBeatenLevel = true;
     
     [[SoundEngine shared] playSound:@"endLevel"];
-    NSString *difficulty=[[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
     float finalLevelTime = [[_hud getTrackTimer] getLevelTime];
     NSString *timerText=[TrackTimer getTimeStringFromFloat:finalLevelTime];
     [[GameSettings shared] setGlobal: timerText ForKey:@"finalLevelTimeText"];
@@ -422,13 +445,13 @@
     [[LevelManager shared] recordLevelTime:finalLevelTime];
     
     [[ComicManager shared] startComic:_level.postLevelComicName];
-    NSString *mode = [[GameSettings shared] getGlobalForKey:@"gameMode"];
     
     if ([mode isEqualToString:@"story"])
     {
     [ComicManager shared].loadNextLevel = true;
     }
     [ComicManager shared].isActive=true;
+        
     [[BestTimes shared] saveData];
 
     //[self saveAndReportToGameCenter];

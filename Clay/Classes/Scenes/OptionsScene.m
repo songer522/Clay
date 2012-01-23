@@ -164,6 +164,8 @@
                     [_eraseWindowFirst release];
                     _eraseWindowFirst = nil;
                     _eraseWindowFirstOpen = false;
+                    [[GameSettings shared] eraseData];
+                    [[GameSettings shared] setGlobal:@"YES" ForKey:@"titleMusicStarted"];
                 } else if(type == WIN_SELECT_NO) {
                     _windowOpen = false;
                     [_eraseWindowFirst release];

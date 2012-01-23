@@ -1,5 +1,32 @@
 Track Lapse Changelog
 
+Build 120120.01
+=================
+
+* Choose Level - timed normal levels are now locked until beaten in story mode, and timed insane levels are now locked until the timed normal modes are beaten. currently no 'new' icons though.
+* Choose Mode - story hard mode, timed normal mode, and timed insane modes are now locked and shows icon until unlocked, then shows 'new' icon until chosen. story hard mode gets unlocked after story normal mode is beaten. timed normal mode is unlocked once a level is beaten in story mode, timed insane mode is unlocked once a timed normal mode level is beaten. the 'new' and 'locked' icon are currently showing under the select icon and the default selection is chosen even if it's locked (currently)
+* Choose Mode - support link added to extras
+* Options - Erase data window now closes appropriately and it now erases your data
+* Level 5 - tweaked level design
+* Level 5 - repositioned puddles so that they're on the grate
+* Level 11 - tweak to story mode level design
+* Level 12 - added pumping weights animation for action
+* Level 12 - tweaked level design
+
+
+Build 120119.01
+=================
+
+* Choose Level - New section created for DLC levels, and Level 12 added to the list.
+* Choose Mode - extras section no only has links to the album and the website, no longer skins and levels
+* Choose Mode - DLC section added to time mode
+* EndLevel - hitting replay no longer results in lowered frame rates
+* Level 5,6,10 - minor changes to level background.
+* Level 11 - added stationary bombs that blow up when they get close but can be detonated
+* Level 11 - new level design for all 5 levels that includes the stationary bomb
+* Level 12 - New level, have background, level design (rough), weights, short bench, tall bench, bouncing exercise ball, weight checkpoints, and dynamic ledges that speed up or slow down Tim
+
+
 Build 120118.01
 =================
 

@@ -8,6 +8,7 @@
 
 #import "LevelButton.h"
 #import "Sprite.h"
+#import "GameSettings.h"
 
 #define LEVEL_BUTTON_MAX_LEVEL_NUMBER 13
 #define LEVEL_BUTTON_NUMBER_OF_NORMAL_LEVELS 11
@@ -32,8 +33,27 @@
 -(void)initButton
 {
     NSString *frameName;
-    bool unlocked = true; //for now, eventually check storage
-    if (unlocked && _buttonId <= LEVEL_BUTTON_MAX_LEVEL_NUMBER) {
+    _unlocked = false; //for now, eventually check storage
+    
+    NSString *showDLC = [[GameSettings shared] getGlobalForKey:@"timedShowDLC"];
+    if ([showDLC isEqualToString:@"YES"]) {
+        _unlocked = true;
+    } else {
+        NSString *difficulty = [[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
+        if ([difficulty isEqualToString:@"normal"]) {
+            NSString *unlockedValue = [[GameSettings shared] getGlobalForKey:[NSString stringWithFormat:@"level%dTimedNormalUnlocked",_buttonId]];
+            if ([unlockedValue isEqualToString:@"YES"]) {
+                _unlocked = true;
+            }
+        } else {
+            NSString *unlockedValue = [[GameSettings shared] getGlobalForKey:[NSString stringWithFormat:@"level%dTimedHardUnlocked",_buttonId]];
+            if ([unlockedValue isEqualToString:@"YES"]) {
+                _unlocked = true;
+            }
+        }
+    }
+        
+    if (_unlocked && _buttonId <= LEVEL_BUTTON_MAX_LEVEL_NUMBER) {
         frameName = [NSString stringWithFormat:@"LevelSelector_Level%d.png",_buttonId];
     } else {
         frameName = @"LevelSelector_LevelLocked.png";
@@ -83,7 +103,7 @@
 
 -(bool)checkIfSelected:(CGPoint)touch
 {
-    if ([self testCollision:touch] && _buttonId <= LEVEL_BUTTON_MAX_LEVEL_NUMBER) {
+    if (_unlocked && [self testCollision:touch] && _buttonId <= LEVEL_BUTTON_MAX_LEVEL_NUMBER) {
         [self setSelected];
         return true;
     }
@@ -106,7 +126,7 @@
 
 -(void)setTrophy:(int)trophyId
 {
-    if (trophyId < 1 || trophyId > 3) { return; }
+    if (trophyId < 1 || trophyId > 3 || !_unlocked) { return; }
 
     NSString *frameName = [NSString stringWithFormat:@"LevelSelector_Trophy_%d.png",trophyId];
     _trophy = [Sprite spriteFromFrameCacheWithName:frameName];
@@ -115,10 +135,15 @@
 
 -(void)setTrophyPosition
 {
-    if (_trophy!=nil) {
+    if (_trophy!=nil && _unlocked) {
         CGPoint position = [_buttonGraphic getPosition];
         [_trophy setScreenPosition:ccp(position.x + 34.0f,position.y - 2.0f)];            
     }
+}
+
+-(bool)isUnlocked
+{
+    return _unlocked;    
 }
 
 

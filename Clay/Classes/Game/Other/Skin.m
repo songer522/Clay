@@ -58,6 +58,7 @@
         //_spinUp = [[NSString stringWithString:[anims objectForKey:@"spinUp"]] retain];
         _slowTimeAction = [[NSString stringWithString:[anims objectForKey:@"slowTimeAction"]] retain];
         _floating = [[NSString stringWithString:[anims objectForKey:@"floating"]] retain];
+        _pumpAction = [[NSString stringWithString:[anims objectForKey:@"pumpAction"]] retain];
         
         if (![_filename isEqualToString:@"characterAnims"]) {
             
@@ -139,6 +140,8 @@
         case PLAYER_ANIM_FLOATING:
             animName = _floating;
             break;
+        case PLAYER_ANIM_PUMP:
+            animName = _pumpAction;
         default:
             break;
     }
@@ -183,6 +186,7 @@
     [_shootAction release];
     [_blowAction release];
     [_spinAction release];
+    [_pumpAction release];
     [_spinUp release];
     [_slowTimeAction release];
     [super dealloc];

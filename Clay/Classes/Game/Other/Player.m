@@ -365,6 +365,8 @@
     }
      */
     
+    _goSlower = false;
+    
     if (!_isInvincible) {
         if (effect == PLAYER_EFFECT_ACTION_OR_COLLIDE) {
             if (!_isTripping && !_isDead) {
@@ -395,6 +397,10 @@
             }
         } else if(effect == PLAYER_EFFECT_SLOWDOWN) {
             [_speed slowDown];
+        } else if(effect == PLAYER_EFFECT_FASTER && _onLedge) {
+            _goFaster = true;
+        } else if(effect == PLAYER_EFFECT_SLOWER && _onLedge) {
+            _goSlower = true;
         }
     }
     
@@ -866,6 +872,10 @@
 
         _hasDoubleJumped = false;
         
+        if(state!=COLLISION_STATE_LEDGE) {
+            _goFaster = false;
+        }
+        
         if (_isJumping && !_isTripping) {                
             _isJumping = false;
             
@@ -874,7 +884,7 @@
             } else {
                 [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];
             }
-            
+                        
             //don't want high jump to execute if we're on the ledge, slows gameplay feel down too much
             //(see github issue #46)
             if (_isHighJump) {

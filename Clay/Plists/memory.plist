@@ -172,11 +172,11 @@
 		<key>batchObstacles</key>
 		<string>trainingLevel</string>
 		<key>animations</key>
-		<string>level12,woo</string>
+		<string>level12,pump</string>
 		<key>sounds</key>
 		<string>wooAction</string>
 		<key>textures</key>
-		<string>trainingLevel,characterWoo</string>
+		<string>trainingLevel,characterPump</string>
 	</dict>
 	<key>mainMenu</key>
 	<dict>

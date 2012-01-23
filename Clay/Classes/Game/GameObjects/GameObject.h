@@ -25,6 +25,8 @@ typedef enum {
     PLAYER_EFFECT_ACTION_OR_COLLIDE,
     PLAYER_EFFECT_VACCUUM,
     PLAYER_EFFECT_DANCE,
+    PLAYER_EFFECT_FASTER,
+    PLAYER_EFFECT_SLOWER,
     PLAYER_EFFECT_NONE
 } PlayerEffect;
 
@@ -74,6 +76,7 @@ typedef enum {
     bool _hasAppeared;
     bool _chaseTriggered;
     bool _isVisible;
+    bool _isBouncing;
     float _movedBy;
     float _initialPosition;
     bool _useDefaultBatchNode;
@@ -199,6 +202,6 @@ typedef enum {
 -(void) moveAcrossBackgroundLRwithSpeed:(float)speed;
 
 -(void) moveToStartingPosition;
-
+-(void) updateBounce:(float)dt;
 
 @end
