@@ -212,6 +212,8 @@
             [button setAlpha:0.0f];
         }
         
+        [self updateSelectableOption];
+        
         _parentScene.isTransitioning = true;
 
     }
@@ -267,6 +269,27 @@
         default:
             break;
     }
+}
+
+-(void)updateSelectableOption
+{
+    //if current selection is valid, keep it. otherwise, find the next unlocked option.
+    
+    int returnIndex = _selectedIndex;
+    ActionButton *button = [_buttons objectAtIndex:_selectedIndex];
+    
+    if ([button getLocked] == LOCKTYPE_LOCKED) {
+        int count = [_buttons count];
+        for (int i=0; i<count; i++) {
+            ActionButton *buttonCheck = [_buttons objectAtIndex:i];
+            if ([buttonCheck getLocked] != LOCKTYPE_LOCKED) {
+                returnIndex = i;
+                break;
+            }
+        }
+    }
+    
+    _selectedIndex = returnIndex;
 }
 
 -(void) dealloc

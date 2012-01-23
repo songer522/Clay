@@ -64,5 +64,6 @@ typedef enum {
 -(void)update:(float)dt;
 -(void)getNextSelected;
 -(ActionButton*)getButtonWithIndex:(int)index;
+-(void)updateSelectableOption; //if current selection is valid, keep it. otherwise, find the next unlocked option.
 
 @end
