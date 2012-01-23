@@ -132,7 +132,7 @@
     if (_hitPoints<=0) {
         _isDead = true;
         _hitPoints = 0;
-        [_battery setFrame:6];
+        [_battery setFrame:6 Resetting:YES];
         [[SoundEngine shared] playSound:@"dead"];
     } else {
         if(_hitPoints>5) {

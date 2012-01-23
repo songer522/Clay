@@ -44,7 +44,8 @@
 
 -(void) changeValueBy:(int)amount;
 -(void) adjustFrame:(int)amount;
--(void) setFrame:(int)frameNumber;
+//-(void) setFrame:(int)frameNumber;
+-(void) setFrame:(int)frameNumber Resetting:(bool)resetting;
 -(void)update:(float)dt;
 
 -(void)recharging:(float)dt;

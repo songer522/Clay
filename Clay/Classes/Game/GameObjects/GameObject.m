@@ -1082,7 +1082,7 @@
             if (!_hasTriggered && [self closeToPlayer:40.0f]) {
                 [self startCollision:YES];
             } else if(_hasTriggered && _bombStillHurts) {
-                if (_alpha > 0.3f) {
+                if (_alpha > 0.8f) {
                     _collided = false;
                 } else {
                     _collided = true;

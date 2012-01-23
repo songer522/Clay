@@ -2219,7 +2219,7 @@
 		<key>clearPreviousAnims</key>
 		<string>false</string>
 		<key>delay</key>
-		<real>0.075</real>
+		<real>0.1</real>
 		<key>group</key>
 		<string>pump</string>
 		<key>looping</key>
