@@ -316,7 +316,8 @@
     if (setting == LOCKTYPE_UNLOCKED_NEW) {
         [[_timedModePanel getButtonWithIndex:0] setLocked:LOCKTYPE_UNLOCKED_NEW];
     } else if(setting == LOCKTYPE_LOCKED) {
-        [[_timedModePanel getButtonWithIndex:0] setLocked:LOCKTYPE_LOCKED];
+        //[[_timedModePanel getButtonWithIndex:0] setLocked:LOCKTYPE_LOCKED];
+        [[_timedModePanel getButtonWithIndex:0] setLocked:LOCKTYPE_UNLOCKED_NEW];
     }
     
     setting = [[GameSettings shared] getLockTypeForKey:@"timedHardUnlocked"];

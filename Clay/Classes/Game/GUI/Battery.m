@@ -55,7 +55,7 @@
             [_healthIcons addObject:icon];
         }
         
-        [self setFrame:1];
+        [self setFrame:1 Resetting:NO];
         
         _x = BATTERY_X;
         _y = BATTERY_Y;
@@ -112,15 +112,21 @@
 
 -(void) adjustFrame:(int)amount
 {
-    [self setFrame:(_currentFrame - amount)];
+    [self setFrame:(_currentFrame - amount) Resetting:NO];
 }
 
 
--(void) setFrame:(int)frameNumber
+-(void) setFrame:(int)frameNumber Resetting:(bool)resetting
 {
     //guard
     if (frameNumber < 1 || frameNumber > 6) {
         return;
+    }
+    
+    
+    //should fix any lingering calls for displaying the battery on frame 6
+    if (frameNumber == 6 && !resetting) {
+        _player.isDead = true;
     }
     
     @try {
@@ -206,7 +212,7 @@
 -(void)startRecharge
 {
     if(_player.isDead) {
-        [self setFrame:6];
+        [self setFrame:6 Resetting:YES];
         [self resetHealthIcons];
         [self changeValueBy:5];
     } else {

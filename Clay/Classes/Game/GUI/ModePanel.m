@@ -16,8 +16,8 @@
 #define PANEL_HEADER_ACTIVE_Y 232.0f
 #define PANEL_HEIGHT_DIFFERENCE 72.0f
 
-#define PANEL_BUTTON_HEIGHT_WITH_GAP 35.5f
-#define PANEL_DEVICE_CENTER_Y 128.0f
+#define PANEL_BUTTON_HEIGHT_WITH_GAP 40.5f
+#define PANEL_BUTTON_START_Y 110.0f
 
 @interface ModePanel()
 
@@ -62,7 +62,7 @@
 -(void)addButtons:(NSArray*)buttonNames
 {
     int count = [buttonNames count];
-    float startY = PANEL_DEVICE_CENTER_Y + ((count * PANEL_BUTTON_HEIGHT_WITH_GAP) / 2.0f);
+    float startY = PANEL_BUTTON_START_Y + ((count * PANEL_BUTTON_HEIGHT_WITH_GAP) / 2.0f);
     
     int i = 0;
     for (NSString *name in buttonNames) {
