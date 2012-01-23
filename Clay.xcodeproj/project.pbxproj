@@ -43,6 +43,7 @@
 		5428AE0B1491614F00C1A1BE /* darkLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5428AE071491614F00C1A1BE /* darkLevel.plist */; };
 		5428AE0C1491614F00C1A1BE /* darkLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 5428AE081491614F00C1A1BE /* darkLevel.png */; };
 		54314C0614CA164000DDFDF5 /* PlayerActionPump.m in Sources */ = {isa = PBXBuildFile; fileRef = 54314C0514CA164000DDFDF5 /* PlayerActionPump.m */; };
+		543CF7BA14CE15D900B32C4B /* training.aifc in Resources */ = {isa = PBXBuildFile; fileRef = 543CF7B914CE15D900B32C4B /* training.aifc */; };
 		544360C414BE08E4007AFB0B /* EndLevelLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 544360C314BE08E4007AFB0B /* EndLevelLayer.m */; };
 		544360CA14BE0AEC007AFB0B /* endLevelLayer-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 544360C614BE0AEC007AFB0B /* endLevelLayer-hd.plist */; };
 		544360CB14BE0AEC007AFB0B /* endLevelLayer-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 544360C714BE0AEC007AFB0B /* endLevelLayer-hd.png */; };
@@ -695,6 +696,7 @@
 		5428AE081491614F00C1A1BE /* darkLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = darkLevel.png; sourceTree = "<group>"; };
 		54314C0414CA164000DDFDF5 /* PlayerActionPump.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerActionPump.h; sourceTree = "<group>"; };
 		54314C0514CA164000DDFDF5 /* PlayerActionPump.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerActionPump.m; sourceTree = "<group>"; };
+		543CF7B914CE15D900B32C4B /* training.aifc */ = {isa = PBXFileReference; lastKnownFileType = file; name = training.aifc; path = Resources/music/training.aifc; sourceTree = "<group>"; };
 		544360C214BE08E4007AFB0B /* EndLevelLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndLevelLayer.h; sourceTree = "<group>"; };
 		544360C314BE08E4007AFB0B /* EndLevelLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndLevelLayer.m; sourceTree = "<group>"; };
 		544360C614BE0AEC007AFB0B /* endLevelLayer-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "endLevelLayer-hd.plist"; path = "Clay/Resources/menu/endLevelLayer-hd.plist"; sourceTree = SOURCE_ROOT; };
@@ -1615,6 +1617,7 @@
 				54A40B4114AE8A7900012D0D /* title.aifc */,
 				54A40B4214AE8A7900012D0D /* town.aifc */,
 				54A40B4314AE8A7900012D0D /* track.aifc */,
+				543CF7B914CE15D900B32C4B /* training.aifc */,
 				54A40B4414AE8A7900012D0D /* underwater.aifc */,
 				54A40B4514AE8A7900012D0D /* victory.aifc */,
 				54A40B4614AE8A7900012D0D /* zombies.aifc */,
@@ -3499,6 +3502,7 @@
 				E479A79C14C9FD0500AB5864 /* discoLevel-hd.png in Resources */,
 				E479A79D14C9FD0500AB5864 /* discoLevel.plist in Resources */,
 				E479A79E14C9FD0500AB5864 /* discoLevel.png in Resources */,
+				543CF7BA14CE15D900B32C4B /* training.aifc in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
