@@ -1043,7 +1043,7 @@
 -(void)obstacleGotHitBy:(GameObject *)obstacle
 {
     int maxHit = 10;
-    int maxTotalHit =500;
+    
     if(obstacle.isHurdle)
     {
        // NSLog(@"%d",[GCState sharedInstance].hurdlesHit );
