@@ -103,47 +103,11 @@
 -(void)update:(ccTime)dt
 {
     float rate = 2.0f * dt;
-    NSString *difficulty = [[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
-    NSString *mode=[[GameSettings shared] getGlobalForKey:@"gameMode"];
+   // NSString *difficulty = [[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
+    //NSString *mode=[[GameSettings shared] getGlobalForKey:@"gameMode"];
     float finalTime = [[[GameSettings shared] getGlobalForKey:@"finalTime"] floatValue];
     
-    if([difficulty isEqualToString:@"easy"] && [mode isEqualToString:@"story"])
-    {
-        [[GCHelper sharedInstance] reportLeaderboard:gcLeaderboardStoryEasy score:100*finalTime];
-        if(![GCState sharedInstance].completeStoryEasy)
-        {
-            [GCState sharedInstance].completeStoryEasy = true;
-            //[[GCState sharedInstance] save];
-            [[GCHelper sharedInstance] reportAchievement:gcAchievementBeatStoryEasy percentComplete:100.0];
-        }
-    }
-    else if([difficulty isEqualToString:@"normal"] && [mode isEqualToString:@"story"])
-    {
-        [[GCHelper sharedInstance] reportLeaderboard:gcLeaderboardStoryNormal score:100*finalTime];
-        if(![GCState sharedInstance].completeStoryNormal)
-        {
-            [GCState sharedInstance].completeStoryNormal = true;
-            //[[GCState sharedInstance] save];
-            [[GCHelper sharedInstance] reportAchievement:gcAchievementBeatStoryNormal percentComplete:100.0];
-        }
-    }
-    else if([difficulty isEqualToString:@"hard"] && [mode isEqualToString:@"story"])
-    {
-        [[GCHelper sharedInstance] reportLeaderboard:gcLeaderboardStoryHard score:100*finalTime];
-        if(![GCState sharedInstance].completeStoryHard)
-        {
-            [GCState sharedInstance].completeStoryHard = true;
-            //[[GCState sharedInstance] save];
-            [[GCHelper sharedInstance] reportAchievement:gcAchievementBeatStoryHard percentComplete:100.0];
-        }
-    }
-    if(![GCState sharedInstance].completeStoryAll && [GCState sharedInstance].completeStoryEasy && [GCState sharedInstance].completeStoryNormal && [GCState sharedInstance].completeStoryHard)
-    {
-        [GCState sharedInstance].completeStoryAll = true;
-        //[[GCState sharedInstance] save];
-        [[GCHelper sharedInstance] reportAchievement:gcAchievementBeatStoryAll percentComplete:100.0];
-    }
-    
+        
     
     
     

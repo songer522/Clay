@@ -589,6 +589,7 @@
     int maxDemon =200;
     int maxZombies = 300;
     int maxBlocks = 75;
+    int maxBubbles=50;
     int maxGetHit =10;
     int maxDeathPitFalling = 10;
     int maxTripping = 50;
@@ -772,6 +773,24 @@
         [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHit500times percentComplete:pctComplete24];
     }
 
+    double pctComplete25 = ((double) [GCState sharedInstance].bubblesPoked / (int)maxBubbles) * 100.0;
+    
+    if(pctComplete25 < 100.0 && [_level.name isEqualToString:@"level10"])
+    {
+        //[[GCState sharedInstance] save];
+        [[GCHelper sharedInstance] reportAchievement:gcAchievementKnock50Bubbles percentComplete:pctComplete25];
+    }
+    
+    
+    if([[[GCHelper sharedInstance] getAchievementByID:gcAchievementBeatStoryAll] isCompleted] && [[[GCHelper sharedInstance] getAchievementByID:gcAchievementAllGoldInIM] isCompleted] && [[[GCHelper sharedInstance] getAchievementByID:gcAchievementAllGoldInNM] isCompleted])
+    {
+        if(![GCState sharedInstance].beatStoryAndAllGold)
+        {
+            
+            [GCState sharedInstance].beatStoryAndAllGold =true;
+            [[GCHelper sharedInstance] reportAchievement:gcAchievementAllGoldInNM percentComplete:100.0];
+        }
+    }
 
 
 
