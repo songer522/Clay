@@ -240,13 +240,13 @@
 	<key>level12</key>
 	<dict>
 		<key>preComic</key>
-		<string>level11</string>
+		<string>level21</string>
 		<key>thirdAction</key>
 		<string>pump</string>
 		<key>music</key>
-		<string>track</string>
+		<string>training</string>
 		<key>postLevelComic</key>
-		<string>level11</string>
+		<string>level21</string>
 		<key>playerOffsetY</key>
 		<integer>-9</integer>
 		<key>fileName</key>

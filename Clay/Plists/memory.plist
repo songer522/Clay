@@ -174,7 +174,7 @@
 		<key>animations</key>
 		<string>level12,pump</string>
 		<key>sounds</key>
-		<string>wooAction</string>
+		<string>pumpAction</string>
 		<key>textures</key>
 		<string>trainingLevel,characterPump</string>
 	</dict>

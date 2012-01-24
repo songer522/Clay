@@ -43,6 +43,7 @@
 		5428AE0B1491614F00C1A1BE /* darkLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5428AE071491614F00C1A1BE /* darkLevel.plist */; };
 		5428AE0C1491614F00C1A1BE /* darkLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 5428AE081491614F00C1A1BE /* darkLevel.png */; };
 		54314C0614CA164000DDFDF5 /* PlayerActionPump.m in Sources */ = {isa = PBXBuildFile; fileRef = 54314C0514CA164000DDFDF5 /* PlayerActionPump.m */; };
+		543CF7BA14CE15D900B32C4B /* training.aifc in Resources */ = {isa = PBXBuildFile; fileRef = 543CF7B914CE15D900B32C4B /* training.aifc */; };
 		544360C414BE08E4007AFB0B /* EndLevelLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 544360C314BE08E4007AFB0B /* EndLevelLayer.m */; };
 		544360CA14BE0AEC007AFB0B /* endLevelLayer-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 544360C614BE0AEC007AFB0B /* endLevelLayer-hd.plist */; };
 		544360CB14BE0AEC007AFB0B /* endLevelLayer-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 544360C714BE0AEC007AFB0B /* endLevelLayer-hd.png */; };
@@ -329,6 +330,9 @@
 		549513D914C0BC68007C1D2F /* bossFinalHorn.wav in Resources */ = {isa = PBXBuildFile; fileRef = 549513D614C0BC68007C1D2F /* bossFinalHorn.wav */; };
 		549513DA14C0BC68007C1D2F /* bossFinalThrow.wav in Resources */ = {isa = PBXBuildFile; fileRef = 549513D714C0BC68007C1D2F /* bossFinalThrow.wav */; };
 		549513DB14C0BC68007C1D2F /* bossFinalTrain.wav in Resources */ = {isa = PBXBuildFile; fileRef = 549513D814C0BC68007C1D2F /* bossFinalTrain.wav */; };
+		549740A414CE6A43000D88FF /* Comic_21-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 549740A214CE6A43000D88FF /* Comic_21-hd.png */; };
+		549740A514CE6A43000D88FF /* Comic_21.png in Resources */ = {isa = PBXBuildFile; fileRef = 549740A314CE6A43000D88FF /* Comic_21.png */; };
+		549740A814CE6FC2000D88FF /* pumpAction.wav in Resources */ = {isa = PBXBuildFile; fileRef = 549740A714CE6FC2000D88FF /* pumpAction.wav */; };
 		5498CF4114CA382100569AC7 /* characterPump-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5498CF3D14CA382100569AC7 /* characterPump-hd.plist */; };
 		5498CF4214CA382100569AC7 /* characterPump-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5498CF3E14CA382100569AC7 /* characterPump-hd.png */; };
 		5498CF4314CA382100569AC7 /* characterPump.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5498CF3F14CA382100569AC7 /* characterPump.plist */; };
@@ -695,6 +699,7 @@
 		5428AE081491614F00C1A1BE /* darkLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = darkLevel.png; sourceTree = "<group>"; };
 		54314C0414CA164000DDFDF5 /* PlayerActionPump.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerActionPump.h; sourceTree = "<group>"; };
 		54314C0514CA164000DDFDF5 /* PlayerActionPump.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerActionPump.m; sourceTree = "<group>"; };
+		543CF7B914CE15D900B32C4B /* training.aifc */ = {isa = PBXFileReference; lastKnownFileType = file; name = training.aifc; path = Resources/music/training.aifc; sourceTree = "<group>"; };
 		544360C214BE08E4007AFB0B /* EndLevelLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndLevelLayer.h; sourceTree = "<group>"; };
 		544360C314BE08E4007AFB0B /* EndLevelLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndLevelLayer.m; sourceTree = "<group>"; };
 		544360C614BE0AEC007AFB0B /* endLevelLayer-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "endLevelLayer-hd.plist"; path = "Clay/Resources/menu/endLevelLayer-hd.plist"; sourceTree = SOURCE_ROOT; };
@@ -1108,6 +1113,9 @@
 		549513D614C0BC68007C1D2F /* bossFinalHorn.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = bossFinalHorn.wav; path = Resources/sounds/bossFinalHorn.wav; sourceTree = "<group>"; };
 		549513D714C0BC68007C1D2F /* bossFinalThrow.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = bossFinalThrow.wav; path = Resources/sounds/bossFinalThrow.wav; sourceTree = "<group>"; };
 		549513D814C0BC68007C1D2F /* bossFinalTrain.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = bossFinalTrain.wav; path = Resources/sounds/bossFinalTrain.wav; sourceTree = "<group>"; };
+		549740A214CE6A43000D88FF /* Comic_21-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Comic_21-hd.png"; path = "Clay/Resources/comics/Comic_21-hd.png"; sourceTree = SOURCE_ROOT; };
+		549740A314CE6A43000D88FF /* Comic_21.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Comic_21.png; path = Clay/Resources/comics/Comic_21.png; sourceTree = SOURCE_ROOT; };
+		549740A714CE6FC2000D88FF /* pumpAction.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = pumpAction.wav; path = Resources/sounds/pumpAction.wav; sourceTree = "<group>"; };
 		5498CF3D14CA382100569AC7 /* characterPump-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "characterPump-hd.plist"; sourceTree = "<group>"; };
 		5498CF3E14CA382100569AC7 /* characterPump-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "characterPump-hd.png"; sourceTree = "<group>"; };
 		5498CF3F14CA382100569AC7 /* characterPump.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = characterPump.plist; sourceTree = "<group>"; };
@@ -1615,6 +1623,7 @@
 				54A40B4114AE8A7900012D0D /* title.aifc */,
 				54A40B4214AE8A7900012D0D /* town.aifc */,
 				54A40B4314AE8A7900012D0D /* track.aifc */,
+				543CF7B914CE15D900B32C4B /* training.aifc */,
 				54A40B4414AE8A7900012D0D /* underwater.aifc */,
 				54A40B4514AE8A7900012D0D /* victory.aifc */,
 				54A40B4614AE8A7900012D0D /* zombies.aifc */,
@@ -2089,6 +2098,7 @@
 		545CBC2F142D25AB00795FC9 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				549740A714CE6FC2000D88FF /* pumpAction.wav */,
 				549513D614C0BC68007C1D2F /* bossFinalHorn.wav */,
 				549513D714C0BC68007C1D2F /* bossFinalThrow.wav */,
 				549513D814C0BC68007C1D2F /* bossFinalTrain.wav */,
@@ -2850,6 +2860,8 @@
 		54ACB406149C272A00B353C6 /* comics */ = {
 			isa = PBXGroup;
 			children = (
+				549740A214CE6A43000D88FF /* Comic_21-hd.png */,
+				549740A314CE6A43000D88FF /* Comic_21.png */,
 				61A924E214C739C900E1E1CD /* Comic_12-hd.png */,
 				61A924E314C739C900E1E1CD /* Comic_12.png */,
 				61A924E414C739C900E1E1CD /* Comic_14-hd.png */,
@@ -3489,6 +3501,7 @@
 				E479A79C14C9FD0500AB5864 /* discoLevel-hd.png in Resources */,
 				E479A79D14C9FD0500AB5864 /* discoLevel.plist in Resources */,
 				E479A79E14C9FD0500AB5864 /* discoLevel.png in Resources */,
+				543CF7BA14CE15D900B32C4B /* training.aifc in Resources */,
 				614E840814CDCAC4008AE080 /* tileset_level_2-hd.png in Resources */,
 				614E840914CDCAC4008AE080 /* tileset_level_2.png in Resources */,
 				6108784214CDD74E00EB009A /* waterLevel-hd.plist in Resources */,
@@ -3499,6 +3512,9 @@
 				6108785314CE3B8500EB009A /* trainingLevel-hd.png in Resources */,
 				6108785414CE3B8500EB009A /* trainingLevel.plist in Resources */,
 				6108785514CE3B8500EB009A /* trainingLevel.png in Resources */,
+				549740A414CE6A43000D88FF /* Comic_21-hd.png in Resources */,
+				549740A514CE6A43000D88FF /* Comic_21.png in Resources */,
+				549740A814CE6FC2000D88FF /* pumpAction.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

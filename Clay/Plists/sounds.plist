@@ -122,5 +122,7 @@
 	<string>bossFinalThrow.wav</string>
 	<key>bossFinalTrain</key>
 	<string>bossFinalTrain.wav</string>
+	<key>pumpAction</key>
+	<string>pumpAction.wav</string>
 </dict>
 </plist>

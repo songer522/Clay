@@ -29,7 +29,7 @@
         _duration = 1.0f;
         [_parent endTurbo:false];
         [_parent setPlayerAnimation:PLAYER_ANIM_PUMP];
-        //[[SoundEngine shared] playSound:@"wooAction"];
+        [[SoundEngine shared] playSound:@"pumpAction"];
         if(!_isCheering)
         {
             [[_parent getSpeed] setVelocityModifier:0.8f];
