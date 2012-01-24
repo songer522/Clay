@@ -7,7 +7,9 @@
 		<key>showFps</key>
 		<string>YES</string>
 		<key>versionNumber</key>
-		<string>120123.01</string>
+		<string>120124.02</string>
+		<key>unlockEverything</key>
+		<string>NO</string>
 	</dict>
 </dict>
 </plist>

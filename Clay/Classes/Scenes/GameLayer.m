@@ -413,6 +413,7 @@
     NSString *mode = [[GameSettings shared] getGlobalForKey:@"gameMode"];
     NSString *difficulty=[[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
     NSString *levelName = [[LevelManager shared] currentLevel].name;
+    int levelNumber = [[levelName substringFromIndex:5] intValue];
     
     //set modes as unlocked if have the right settings
     if([mode isEqualToString:@"story"]) {
@@ -423,7 +424,8 @@
         
         [[GameSettings shared] setUnlockedForKey:@"timedNormalUnlocked"];        
      } else if([mode isEqualToString:@"timed"]) {
-         if([difficulty isEqualToString:@"normal"]) {
+         //if timed mode is normal AND the level number is not DLC (we don't want playing dlc levels to unlock insane mode).
+         if([difficulty isEqualToString:@"normal"] && levelNumber < 12) {
             [[GameSettings shared] setUnlockedForKey:@"timedHardUnlocked"];
             [[GameSettings shared] setSerializedGlobal:@"YES" ForKey:[NSString stringWithFormat:@"%@TimedHardUnlocked",levelName]];
          }

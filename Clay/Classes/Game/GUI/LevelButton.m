@@ -53,7 +53,6 @@
         }
     }
       
-    _unlocked = true;
     if (_unlocked && _buttonId <= LEVEL_BUTTON_MAX_LEVEL_NUMBER) {
         frameName = [NSString stringWithFormat:@"LevelSelector_Level%d.png",_buttonId];
     } else {
