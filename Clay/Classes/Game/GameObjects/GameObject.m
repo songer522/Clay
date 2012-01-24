@@ -954,6 +954,23 @@
             
             break;
             
+        case COLLISION_BEHAVIOR_WATER_JIM:
+            
+            if([self closeToPlayer:550])
+            {
+             
+                if(_waitToTrigger<=0)
+                {
+                    _waitToTrigger=0.5;
+                    _direction  =-1 * _direction;
+                }
+                _waitToTrigger -=dt;
+                
+                _vy = _direction * 10.0f;
+                
+            } 
+            break;
+            
         case COLLISION_BEHAVIOR_WATER_SEAHORSE:
             if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
                 _vy *= 0.955f;
@@ -1619,7 +1636,12 @@
     } else if([behavior isEqualToString:@"pufferfish"]) {
         _currentBehavior = COLLISION_BEHAVIOR_WATER_PUFFERFISH;
         _collideBehavior = COLLISION_BEHAVIOR_WATER_PUFFERFISH_FADES;
-    } else if([behavior isEqualToString:@"spikes"]){
+    }
+    else if([behavior isEqualToString:@"waterJim"]) {
+        _currentBehavior = COLLISION_BEHAVIOR_WATER_JIM;
+        _collideBehavior = COLLISION_BEHAVIOR_WATER_JIM;
+    }
+    else if([behavior isEqualToString:@"spikes"]){
         _currentBehavior = COLLISION_BEHAVIOR_DARK_SPIKES;
         _collideBehavior = COLLISION_BEHAVIOR_DARK_SPIKES;
         

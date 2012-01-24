@@ -648,9 +648,9 @@
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>20</integer>
+			<integer>17</integer>
 			<key>width</key>
-			<integer>25</integer>
+			<integer>21</integer>
 			<key>x</key>
 			<integer>15</integer>
 			<key>y</key>
@@ -1114,7 +1114,7 @@
 		<key>collideBehavior</key>
 		<string>handBag</string>
 		<key>imageName</key>
-		<string>Disco_HandBag_1.png</string>
+		<string>DIsco_HandBag_1.png</string>
 		<key>offsetx</key>
 		<integer>0</integer>
 		<key>offsety</key>
@@ -1268,6 +1268,80 @@
 		<key>playerEffect</key>
 		<string>none</string>
 	</dict>
+	<key>clappingCrowd4</key>
+	<dict>
+		<key>useDefaultBatchNode</key>
+		<string>false</string>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>0</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>clappingAnim4</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>30</integer>
+			<key>width</key>
+			<integer>25</integer>
+			<key>x</key>
+			<integer>0</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>clapping</string>
+		<key>imageName</key>
+		<string>blank.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>-30</integer>
+		<key>playerEffect</key>
+		<string>none</string>
+	</dict>
+	<key>clappingCrowd5</key>
+	<dict>
+		<key>useDefaultBatchNode</key>
+		<string>false</string>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>0</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>clappingAnim5</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>30</integer>
+			<key>width</key>
+			<integer>25</integer>
+			<key>x</key>
+			<integer>0</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>clapping</string>
+		<key>imageName</key>
+		<string>blank.png</string>
+		<key>offsetx</key>
+		<integer>0</integer>
+		<key>offsety</key>
+		<integer>-30</integer>
+		<key>playerEffect</key>
+		<string>none</string>
+	</dict>
 	<key>femaleBkgDancer</key>
 	<dict>
 		<key>aggressive</key>
@@ -1315,7 +1389,7 @@
 			<real>0.5</real>
 		</dict>
 		<key>animationName</key>
-		<string>femaleBreakdancerBlueAnim</string>
+		<string>femaleBreakdancerRedAnim</string>
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
@@ -1996,6 +2070,41 @@
 		<string>static</string>
 		<key>imageName</key>
 		<string>Barn_Jim_1.png</string>
+		<key>offsetx</key>
+		<integer>-64</integer>
+		<key>offsety</key>
+		<integer>-55</integer>
+		<key>playerEffect</key>
+		<string>bkg</string>
+	</dict>
+	<key>jimWater</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<integer>0</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>animationName</key>
+		<string>jimUnderWater</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>1</integer>
+			<key>width</key>
+			<integer>1</integer>
+			<key>x</key>
+			<integer>0</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>waterJim</string>
+		<key>imageName</key>
+		<string>blank.png</string>
 		<key>offsetx</key>
 		<integer>-64</integer>
 		<key>offsety</key>

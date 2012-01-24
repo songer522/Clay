@@ -19,6 +19,23 @@
 		<key>spritesheetPlist</key>
 		<string>darkLevel</string>
 	</dict>
+	<key>jimUnderWater</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2</string>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>delay</key>
+		<string>1.0</string>
+		<key>group</key>
+		<string>level10</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Jim_Level10_</string>
+		<key>spritesheetPlist</key>
+		<string>waterLevel</string>
+	</dict>
 	<key>batHanging</key>
 	<dict>
 		<key>animationFrames</key>
@@ -2262,6 +2279,40 @@
 		<string>Whoo_Character_TypeA_</string>
 		<key>spritesheetPlist</key>
 		<string>characterAnims</string>
+	</dict>
+	<key>clappingAnim4</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<real>0.2</real>
+		<key>group</key>
+		<string>level12</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Whoo_Character_TypeD_</string>
+		<key>spritesheetPlist</key>
+		<string>trainingLevel</string>
+	</dict>
+	<key>clappingAnim5</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<real>0.2</real>
+		<key>group</key>
+		<string>level12</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Whoo_Character_TypeE_</string>
+		<key>spritesheetPlist</key>
+		<string>trainingLevel</string>
 	</dict>
 </dict>
 </plist>

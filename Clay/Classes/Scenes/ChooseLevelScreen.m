@@ -483,7 +483,11 @@
     [_startButton update:dt];
     [_backButton update:dt];
    
+   
+  
+   
     NSString *description=[self covertLevelname:_levelNumber];
+   
     if (_panelTransition) {
         [self updatePanelTransition:dt];
     }
@@ -501,11 +505,19 @@
                     [_fbprompt release];
                     _fbprompt = nil;
                 }
+                if(!description)
+                {
+                    description=[NSString stringWithFormat:@"Training Level"];
+                }
                 _fbprompt = [FBPrompt promptWithAppId:@"264174546971482" andDelegate:self];
                 [_fbprompt showFacebookDialogWithDescription:[NSString stringWithFormat:@"Hey, here's my score for Track Lapse %@ : %@, see if you can beat me!!!",description, _bestTime] andPicture:@"http://fbrell.com/f8.jpg"];
                 _openFacebook =false;
             } else if(_openTwitter)
             {
+                if(!description)
+                {
+                    description=[NSString stringWithFormat:@"Training Level"];
+                }
                 [self sendEasyTweet:[NSString stringWithFormat:@"Hey, here's my score for Track Lapse %@ : %@, see if you can beat me!!!",description, _bestTime]];
                 _openTwitter =false;
             }
