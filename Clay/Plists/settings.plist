@@ -8,6 +8,8 @@
 		<string>YES</string>
 		<key>versionNumber</key>
 		<string>120124.02</string>
+		<key>unlockEverything</key>
+		<string>NO</string>
 	</dict>
 </dict>
 </plist>
