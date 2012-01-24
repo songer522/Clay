@@ -209,6 +209,8 @@
 		5461BFE61497F85100EF6A42 /* chooseMode.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5461BFE21497F85100EF6A42 /* chooseMode.plist */; };
 		5461BFE71497F85100EF6A42 /* chooseMode.png in Resources */ = {isa = PBXBuildFile; fileRef = 5461BFE31497F85100EF6A42 /* chooseMode.png */; };
 		5461BFEA1497FA7200EF6A42 /* ModePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5461BFE91497FA7200EF6A42 /* ModePanel.m */; };
+		5461D7AA14CF67B600BEE18E /* InAppPurchaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5461D7A914CF67B600BEE18E /* InAppPurchaseManager.m */; };
+		5461D7AC14CF739800BEE18E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5461D7AB14CF739800BEE18E /* StoreKit.framework */; };
 		5463945D1499685D0053A1F6 /* ChooseLevelPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5463945C1499685D0053A1F6 /* ChooseLevelPanel.m */; };
 		546394811499AAD90053A1F6 /* optionsScreen-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5463947D1499AAD90053A1F6 /* optionsScreen-hd.plist */; };
 		546394821499AAD90053A1F6 /* optionsScreen-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5463947E1499AAD90053A1F6 /* optionsScreen-hd.png */; };
@@ -984,6 +986,9 @@
 		5461BFE31497F85100EF6A42 /* chooseMode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chooseMode.png; sourceTree = "<group>"; };
 		5461BFE81497FA7200EF6A42 /* ModePanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModePanel.h; sourceTree = "<group>"; };
 		5461BFE91497FA7200EF6A42 /* ModePanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModePanel.m; sourceTree = "<group>"; };
+		5461D7A814CF67B600BEE18E /* InAppPurchaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppPurchaseManager.h; sourceTree = "<group>"; };
+		5461D7A914CF67B600BEE18E /* InAppPurchaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppPurchaseManager.m; sourceTree = "<group>"; };
+		5461D7AB14CF739800BEE18E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		5463945B1499685D0053A1F6 /* ChooseLevelPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseLevelPanel.h; sourceTree = "<group>"; };
 		5463945C1499685D0053A1F6 /* ChooseLevelPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseLevelPanel.m; sourceTree = "<group>"; };
 		5463947D1499AAD90053A1F6 /* optionsScreen-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "optionsScreen-hd.plist"; path = "Clay/Resources/menu/optionsScreen-hd.plist"; sourceTree = SOURCE_ROOT; };
@@ -1568,6 +1573,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5461D7AC14CF739800BEE18E /* StoreKit.framework in Frameworks */,
 				61F7F28D149A5950006B02BC /* Accounts.framework in Frameworks */,
 				61F7F28B149A5945006B02BC /* Twitter.framework in Frameworks */,
 				611293F3147AC93500AC017F /* SystemConfiguration.framework in Frameworks */,
@@ -1684,6 +1690,7 @@
 		54484CC5140449B500D0D7D9 = {
 			isa = PBXGroup;
 			children = (
+				5461D7AB14CF739800BEE18E /* StoreKit.framework */,
 				61F7F28C149A5950006B02BC /* Accounts.framework */,
 				61F7F28A149A5945006B02BC /* Twitter.framework */,
 				611293F2147AC93500AC017F /* SystemConfiguration.framework */,
@@ -2668,6 +2675,8 @@
 				548D2D1C1461E871005E1AC0 /* Skin.m */,
 				54CA7A7C1471C97C002B01AA /* TextureManager.h */,
 				54CA7A7D1471C97C002B01AA /* TextureManager.m */,
+				5461D7A814CF67B600BEE18E /* InAppPurchaseManager.h */,
+				5461D7A914CF67B600BEE18E /* InAppPurchaseManager.m */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -3738,6 +3747,7 @@
 				549513D014BF8D4E007C1D2F /* PlayerActionDetonate.m in Sources */,
 				E4F257BF14C00DA00006985B /* EndLevelScene.m in Sources */,
 				54314C0614CA164000DDFDF5 /* PlayerActionPump.m in Sources */,
+				5461D7AA14CF67B600BEE18E /* InAppPurchaseManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

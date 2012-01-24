@@ -29,17 +29,21 @@
     }        
     return self;    
 }
-                          
+
+
 -(void)initButton
 {
     NSString *frameName;
     _unlocked = false; //for now, eventually check storage
     
     NSString *showDLC = [[GameSettings shared] getGlobalForKey:@"timedShowDLC"];
+    NSString *unlockText = [[GameSettings shared] getGlobalForKey:@"unlockEverything"];
+    NSString *difficulty = [[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
+    
+    
     if ([showDLC isEqualToString:@"YES"]) {
         _unlocked = true;
     } else {
-        NSString *difficulty = [[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
         if ([difficulty isEqualToString:@"normal"]) {
             NSString *unlockedValue = [[GameSettings shared] getGlobalForKey:[NSString stringWithFormat:@"level%dTimedNormalUnlocked",_buttonId]];
             if ([unlockedValue isEqualToString:@"YES"]) {
@@ -52,7 +56,12 @@
             }
         }
     }
-      
+    
+    //if everything unlocked, then override the before
+    if ([unlockText isEqualToString:@"YES"]) {
+        _unlocked = true;
+    }
+        
     if (_unlocked && _buttonId <= LEVEL_BUTTON_MAX_LEVEL_NUMBER) {
         frameName = [NSString stringWithFormat:@"LevelSelector_Level%d.png",_buttonId];
     } else {

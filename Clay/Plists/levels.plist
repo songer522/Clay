@@ -234,8 +234,6 @@
 		<string>objects</string>
 		<key>nextLevelName</key>
 		<string>endGame</string>
-		<key>layerList</key>
-		<string>back-2,back-1,main0,pits,ledges,actives,front-1,front-2,meta</string>
 	</dict>
 	<key>level12</key>
 	<dict>
@@ -251,6 +249,27 @@
 		<integer>-9</integer>
 		<key>fileName</key>
 		<string>level12.tmx</string>
+		<key>obstacleLayer</key>
+		<string>objects</string>
+		<key>nextLevelName</key>
+		<string>endGame</string>
+		<key>layerList</key>
+		<string>back-1,main0,actives,front-1,meta</string>
+	</dict>
+	<key>level13</key>
+	<dict>
+		<key>preComic</key>
+		<string>level22</string>
+		<key>thirdAction</key>
+		<string>punch</string>
+		<key>music</key>
+		<string>training</string>
+		<key>postLevelComic</key>
+		<string>level21</string>
+		<key>playerOffsetY</key>
+		<integer>-9</integer>
+		<key>fileName</key>
+		<string>level13.tmx</string>
 		<key>obstacleLayer</key>
 		<string>objects</string>
 		<key>nextLevelName</key>
