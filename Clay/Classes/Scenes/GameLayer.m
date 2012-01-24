@@ -591,6 +591,7 @@
     int maxDeathPitFalling = 10;
     int maxTripping = 50;
     int maxWhooed = 100;
+    int maxTotalHit = 500;
     double pctComplete = ((double)[GCState sharedInstance].timesDied / (int)maxTimesToDie) * 100.0;
     //NSLog(@"diedTimes:%d",[GCState sharedInstance].timesDied );
     //NSLog(@"complete percent %f",pctComplete);
@@ -759,6 +760,15 @@
         [[GCHelper sharedInstance] reportAchievement:gcAchievementJumpOver100dogs percentComplete:pctComplete23];
     }
 
+    
+    double pctComplete24 = ((double) [GCState sharedInstance].gotHit / (int)maxTotalHit) * 100.0;
+    
+  
+    if (pctComplete24 < 100.0)
+    {
+        //[[GCState sharedInstance] save];
+        [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHit500times percentComplete:pctComplete24];
+    }
 
 
 

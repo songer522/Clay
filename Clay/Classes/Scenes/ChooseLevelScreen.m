@@ -30,6 +30,8 @@
 #import "ChooseLevelPanel.h"
 #import "FBPrompt.h"
 #import "AppDelegate.h"
+#import "GCState.h"
+#import "GCHelper.h"
 
 
 @implementation ChooseLevelScreen
@@ -75,12 +77,21 @@
         _tweetViewController = nil;
         _fbprompt = nil;
         _inDLCMode = false;
+        _allGoldMedalInNormal=false;
+        _allGoldMedalInInsane=false;
         
         self.isTouchEnabled = YES;
         
         _gameMode = [[GameSettings shared] getGlobalForKey:@"gameMode"];
         _gameDifficulty = [[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
-        
+        if([_gameDifficulty isEqualToString:@"normal"])
+        {
+            _allGoldMedalInNormal=true;
+        }
+        else if ([_gameDifficulty isEqualToString:@"hard"])
+        {
+            _allGoldMedalInInsane=true;
+        }
         NSString *showDLC = [[GameSettings shared] getGlobalForKey:@"timedShowDLC"];
         if ([showDLC isEqualToString:@"YES"]) {
             _inDLCMode = true;
@@ -114,6 +125,7 @@
         _modeDict = [[NSDictionary alloc] initWithDictionary:[medalsDict objectForKey:_gameMode]];
       
         [self load];
+        [self checkAllGold];
         [[BestTimes shared] saveData];
     }
     return self;
@@ -340,7 +352,34 @@
         if (medal>0 && medal<4) {
             [button setTrophy:medal];
         }
+        
+        if(medal!=3 && [_gameDifficulty isEqualToString:@"normal"])
+        {
+            _allGoldMedalInNormal=false;
+                   }
+        
+        if(medal!=3 && [_gameDifficulty isEqualToString:@"hard"])
+        {
+            _allGoldMedalInInsane=false;
+           
+        }
+
+            
     }
+    
+   }
+
+-(void)checkAllGold
+{
+    if(_allGoldMedalInNormal && !_inDLCMode)
+    {
+        [[GCHelper sharedInstance] reportAchievement:gcAchievementAllGoldInNM percentComplete:100];
+    }
+    if(_allGoldMedalInInsane && !_inDLCMode)
+    {
+        [[GCHelper sharedInstance] reportAchievement:gcAchievementAllGoldInIM percentComplete:100];
+    }
+
 }
 
 
