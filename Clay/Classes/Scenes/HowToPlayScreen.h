@@ -26,6 +26,7 @@
     bool _switchToGame;
     bool _hasSwitched;
     float _waitToSwitch;
+    int _currentScreen;
     
 }
 

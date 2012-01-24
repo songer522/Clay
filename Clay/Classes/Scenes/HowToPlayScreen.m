@@ -79,6 +79,8 @@
         self.isTouchEnabled = YES;
 
         
+        _currentScreen = 0;
+        
         _hasSwitched = false;
         
         _waitToSwitch = 0.0f;
