@@ -3493,6 +3493,16 @@
 				E479A79D14C9FD0500AB5864 /* discoLevel.plist in Resources */,
 				E479A79E14C9FD0500AB5864 /* discoLevel.png in Resources */,
 				543CF7BA14CE15D900B32C4B /* training.aifc in Resources */,
+				614E840814CDCAC4008AE080 /* tileset_level_2-hd.png in Resources */,
+				614E840914CDCAC4008AE080 /* tileset_level_2.png in Resources */,
+				6108784214CDD74E00EB009A /* waterLevel-hd.plist in Resources */,
+				6108784314CDD74E00EB009A /* waterLevel-hd.png in Resources */,
+				6108784414CDD74E00EB009A /* waterLevel.plist in Resources */,
+				6108784514CDD74E00EB009A /* waterLevel.png in Resources */,
+				6108785214CE3B8500EB009A /* trainingLevel-hd.plist in Resources */,
+				6108785314CE3B8500EB009A /* trainingLevel-hd.png in Resources */,
+				6108785414CE3B8500EB009A /* trainingLevel.plist in Resources */,
+				6108785514CE3B8500EB009A /* trainingLevel.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
