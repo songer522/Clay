@@ -1,0 +1,7 @@
+Track Lapse Demo Changelog
+
+Demo Build 120123.01
+=================
+
+* First build, includes first two levels, still higher file size than we want for the final version.
+

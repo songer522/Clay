@@ -1,5 +1,25 @@
 Track Lapse Changelog
 
+Build 120123.01
+=================
+
+* Global - possibly fixed zero battery issue (please test)
+* ChooseMode - new/locked icons now show above the cursor, if the default option cannot be selected it will find the next unlocked option, and some extra space given between the options so the locked icon doesn't overlap what's above it
+* Level 2 - added jim hiding behind the fence
+* Level 4 - fixed invisible blue dancers by replacing them with red dancers
+* Level 7 - tweaked hitbox for worm
+* Level 10 - added jim scuba diving
+* Level 10 - tweaked story hard mode, story normal
+* Level 10 - fixed fish that's impossible to pass
+* Level 10 - tweak to timed insane mode
+* Level 11 - tweaked stationary bombs so the detonated explosion becomes harmless faster
+* Level 12 - added sound for action
+* Level 12 - added comic before level
+* Level 12 - updated action animation
+* Level 12 - added first draft of the song for the level
+* Level 12 - added people to the level that behave like the woo action
+
+
 Build 120120.01
 =================
 
