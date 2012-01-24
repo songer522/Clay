@@ -89,15 +89,13 @@ static ComicManager *_shared = nil;
     if (!_isActive) {
         id result = [_videoList objectForKey:comic];
         
-        NSAssert([result isKindOfClass:[NSString class]],@"Result is not a string or is null. Verify what you're asking for is in the plist.");
-        
         _comicName = [[NSString stringWithString:comic] retain];
         
         _videoFileName = result;
         
         
         _introMovie = false;
-        if ([_videoFileName compare:@"endGame"] == NSOrderedSame) {
+        if (_videoFileName !=nil && [_videoFileName compare:@"endGame"] == NSOrderedSame) {
             _showEndGame = true;            
         }
         

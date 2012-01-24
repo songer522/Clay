@@ -330,6 +330,9 @@
 		549513D914C0BC68007C1D2F /* bossFinalHorn.wav in Resources */ = {isa = PBXBuildFile; fileRef = 549513D614C0BC68007C1D2F /* bossFinalHorn.wav */; };
 		549513DA14C0BC68007C1D2F /* bossFinalThrow.wav in Resources */ = {isa = PBXBuildFile; fileRef = 549513D714C0BC68007C1D2F /* bossFinalThrow.wav */; };
 		549513DB14C0BC68007C1D2F /* bossFinalTrain.wav in Resources */ = {isa = PBXBuildFile; fileRef = 549513D814C0BC68007C1D2F /* bossFinalTrain.wav */; };
+		549740A414CE6A43000D88FF /* Comic_21-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 549740A214CE6A43000D88FF /* Comic_21-hd.png */; };
+		549740A514CE6A43000D88FF /* Comic_21.png in Resources */ = {isa = PBXBuildFile; fileRef = 549740A314CE6A43000D88FF /* Comic_21.png */; };
+		549740A814CE6FC2000D88FF /* pumpAction.wav in Resources */ = {isa = PBXBuildFile; fileRef = 549740A714CE6FC2000D88FF /* pumpAction.wav */; };
 		5498CF4114CA382100569AC7 /* characterPump-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5498CF3D14CA382100569AC7 /* characterPump-hd.plist */; };
 		5498CF4214CA382100569AC7 /* characterPump-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5498CF3E14CA382100569AC7 /* characterPump-hd.png */; };
 		5498CF4314CA382100569AC7 /* characterPump.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5498CF3F14CA382100569AC7 /* characterPump.plist */; };
@@ -1110,6 +1113,9 @@
 		549513D614C0BC68007C1D2F /* bossFinalHorn.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = bossFinalHorn.wav; path = Resources/sounds/bossFinalHorn.wav; sourceTree = "<group>"; };
 		549513D714C0BC68007C1D2F /* bossFinalThrow.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = bossFinalThrow.wav; path = Resources/sounds/bossFinalThrow.wav; sourceTree = "<group>"; };
 		549513D814C0BC68007C1D2F /* bossFinalTrain.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = bossFinalTrain.wav; path = Resources/sounds/bossFinalTrain.wav; sourceTree = "<group>"; };
+		549740A214CE6A43000D88FF /* Comic_21-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Comic_21-hd.png"; path = "Clay/Resources/comics/Comic_21-hd.png"; sourceTree = SOURCE_ROOT; };
+		549740A314CE6A43000D88FF /* Comic_21.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Comic_21.png; path = Clay/Resources/comics/Comic_21.png; sourceTree = SOURCE_ROOT; };
+		549740A714CE6FC2000D88FF /* pumpAction.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = pumpAction.wav; path = Resources/sounds/pumpAction.wav; sourceTree = "<group>"; };
 		5498CF3D14CA382100569AC7 /* characterPump-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "characterPump-hd.plist"; sourceTree = "<group>"; };
 		5498CF3E14CA382100569AC7 /* characterPump-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "characterPump-hd.png"; sourceTree = "<group>"; };
 		5498CF3F14CA382100569AC7 /* characterPump.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = characterPump.plist; sourceTree = "<group>"; };
@@ -2092,6 +2098,7 @@
 		545CBC2F142D25AB00795FC9 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				549740A714CE6FC2000D88FF /* pumpAction.wav */,
 				549513D614C0BC68007C1D2F /* bossFinalHorn.wav */,
 				549513D714C0BC68007C1D2F /* bossFinalThrow.wav */,
 				549513D814C0BC68007C1D2F /* bossFinalTrain.wav */,
@@ -2853,6 +2860,8 @@
 		54ACB406149C272A00B353C6 /* comics */ = {
 			isa = PBXGroup;
 			children = (
+				549740A214CE6A43000D88FF /* Comic_21-hd.png */,
+				549740A314CE6A43000D88FF /* Comic_21.png */,
 				61A924E214C739C900E1E1CD /* Comic_12-hd.png */,
 				61A924E314C739C900E1E1CD /* Comic_12.png */,
 				61A924E414C739C900E1E1CD /* Comic_14-hd.png */,
@@ -3503,6 +3512,9 @@
 				6108785314CE3B8500EB009A /* trainingLevel-hd.png in Resources */,
 				6108785414CE3B8500EB009A /* trainingLevel.plist in Resources */,
 				6108785514CE3B8500EB009A /* trainingLevel.png in Resources */,
+				549740A414CE6A43000D88FF /* Comic_21-hd.png in Resources */,
+				549740A514CE6A43000D88FF /* Comic_21.png in Resources */,
+				549740A814CE6FC2000D88FF /* pumpAction.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
