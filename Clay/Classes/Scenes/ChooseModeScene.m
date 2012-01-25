@@ -41,6 +41,7 @@
         _isTransitioning = false;
         _waitToSwitch = 0.0f;
         _backToMainMenu = false;
+        _playTutorial = false;
                 
         [self scheduleUpdate];
         self.isTouchEnabled = YES;
@@ -51,8 +52,6 @@
             [[SoundEngine shared] playMusic:@"title"];
             [[GameSettings shared] setGlobal:@"YES" ForKey:@"titleMusicStarted"];
         }
-        
-        
         
     }
     
@@ -178,6 +177,16 @@
             [[GameSettings shared] setGlobal:@"normal" ForKey:@"gameDifficulty"];
             [[GameSettings shared] setGlobal:@"story" ForKey:@"gameMode"];
             [[GameSettings shared] setSerializedGlobal:@"normal" ForKey:@"storyModeDifficulty"];
+
+            //see if it's the first time they're playing normal mode for the first time.
+            NSString *firstNormalPlaythrough = [[GameSettings shared] getGlobalForKey:@"firstNormalPlaythrough"];
+            if (![firstNormalPlaythrough isEqualToString:@"NO"]) {
+                _playTutorial = true;
+            }
+            
+            //regardless, we're starting it, so set that value to no for the future
+            [[GameSettings shared] setGlobal:@"NO" ForKey:@"firstNormalPlaythrough"];
+
             _action = GAMEMODE_STORY_NORMAL;            
         } else {
             [[GameSettings shared] setGlobal:@"hard" ForKey:@"gameDifficulty"];
