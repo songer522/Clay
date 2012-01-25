@@ -178,6 +178,19 @@
 		<key>textures</key>
 		<string>trainingLevel,characterPump</string>
 	</dict>
+	<key>level13</key>
+	<dict>
+		<key>removeTextures</key>
+		<string>tileset_level_13</string>
+		<key>batchObstacles</key>
+		<string>dojoLevel</string>
+		<key>animations</key>
+		<string>level13</string>
+		<key>sounds</key>
+		<string>none</string>
+		<key>textures</key>
+		<string>dojoLevel</string>
+	</dict>
 	<key>mainMenu</key>
 	<dict>
 		<key>removeTextures</key>

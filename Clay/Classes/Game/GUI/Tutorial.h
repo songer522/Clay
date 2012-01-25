@@ -36,4 +36,9 @@ typedef enum {
 -(void)setAlpha:(float)alpha;
 -(void)update:(float)dt;
 -(void)addPage:(NSString*)imageFileName;
+
+-(int)currentPage;
+-(int)totalPages;
+-(void)switchToPage:(int)page;
+
 @end

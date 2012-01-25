@@ -248,6 +248,11 @@
     }
 }
 
+-(void)setText:(NSString*)text
+{
+    [_textLabel setString:text];
+}
+
 -(void)dealloc
 {
     [_buttonIdle release];

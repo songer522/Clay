@@ -41,6 +41,7 @@
         _isTransitioning = false;
         _waitToSwitch = 0.0f;
         _backToMainMenu = false;
+        _playTutorial = false;
                 
         [self scheduleUpdate];
         self.isTouchEnabled = YES;
@@ -51,8 +52,6 @@
             [[SoundEngine shared] playMusic:@"title"];
             [[GameSettings shared] setGlobal:@"YES" ForKey:@"titleMusicStarted"];
         }
-        
-        
         
     }
     
@@ -178,6 +177,16 @@
             [[GameSettings shared] setGlobal:@"normal" ForKey:@"gameDifficulty"];
             [[GameSettings shared] setGlobal:@"story" ForKey:@"gameMode"];
             [[GameSettings shared] setSerializedGlobal:@"normal" ForKey:@"storyModeDifficulty"];
+
+            //see if it's the first time they're playing normal mode for the first time.
+            NSString *firstNormalPlaythrough = [[GameSettings shared] getGlobalForKey:@"firstNormalPlaythrough"];
+            if (![firstNormalPlaythrough isEqualToString:@"NO"]) {
+                _playTutorial = true;
+            }
+            
+            //regardless, we're starting it, so set that value to no for the future
+            [[GameSettings shared] setGlobal:@"NO" ForKey:@"firstNormalPlaythrough"];
+
             _action = GAMEMODE_STORY_NORMAL;            
         } else {
             [[GameSettings shared] setGlobal:@"hard" ForKey:@"gameDifficulty"];
@@ -304,34 +313,31 @@
 
 -(void)updateLocked
 {
-    bool unlockEverything = false;
     NSString *unlockText = [[GameSettings shared] getGlobalForKey:@"unlockEverything"];
-    if ([unlockText isEqualToString:@"YES"]) {
-        unlockEverything = true;
-    }
-    
-    LockType setting = [[GameSettings shared] getLockTypeForKey:@"storyHardUnlocked"];
-    if (setting == LOCKTYPE_UNLOCKED_NEW) {
-        [[_storyModePanel getButtonWithIndex:2] setLocked:LOCKTYPE_UNLOCKED_NEW];
-    } else if(setting == LOCKTYPE_LOCKED) {
-        [[_storyModePanel getButtonWithIndex:2] setLocked:LOCKTYPE_LOCKED];
-    }
 
-    setting = [[GameSettings shared] getLockTypeForKey:@"timedNormalUnlocked"];
-    if (setting == LOCKTYPE_UNLOCKED_NEW) {
-        [[_timedModePanel getButtonWithIndex:0] setLocked:LOCKTYPE_UNLOCKED_NEW];
-    } else if(setting == LOCKTYPE_LOCKED) {
-        //[[_timedModePanel getButtonWithIndex:0] setLocked:LOCKTYPE_LOCKED];
-        [[_timedModePanel getButtonWithIndex:0] setLocked:LOCKTYPE_LOCKED];
+    if (![unlockText isEqualToString:@"YES"]) {
+        LockType setting = [[GameSettings shared] getLockTypeForKey:@"storyHardUnlocked"];
+        if (setting == LOCKTYPE_UNLOCKED_NEW) {
+            [[_storyModePanel getButtonWithIndex:2] setLocked:LOCKTYPE_UNLOCKED_NEW];
+        } else if(setting == LOCKTYPE_LOCKED) {
+            [[_storyModePanel getButtonWithIndex:2] setLocked:LOCKTYPE_LOCKED];
+        }
+        
+        setting = [[GameSettings shared] getLockTypeForKey:@"timedNormalUnlocked"];
+        if (setting == LOCKTYPE_UNLOCKED_NEW) {
+            [[_timedModePanel getButtonWithIndex:0] setLocked:LOCKTYPE_UNLOCKED_NEW];
+        } else if(setting == LOCKTYPE_LOCKED) {
+            //[[_timedModePanel getButtonWithIndex:0] setLocked:LOCKTYPE_LOCKED];
+            [[_timedModePanel getButtonWithIndex:0] setLocked:LOCKTYPE_LOCKED];
+        }
+        
+        setting = [[GameSettings shared] getLockTypeForKey:@"timedHardUnlocked"];
+        if (setting == LOCKTYPE_UNLOCKED_NEW) {
+            [[_timedModePanel getButtonWithIndex:1] setLocked:LOCKTYPE_UNLOCKED_NEW];
+        } else if(setting == LOCKTYPE_LOCKED) {
+            [[_timedModePanel getButtonWithIndex:1] setLocked:LOCKTYPE_LOCKED];
+        }        
     }
-    
-    setting = [[GameSettings shared] getLockTypeForKey:@"timedHardUnlocked"];
-    if (setting == LOCKTYPE_UNLOCKED_NEW) {
-        [[_timedModePanel getButtonWithIndex:1] setLocked:LOCKTYPE_UNLOCKED_NEW];
-    } else if(setting == LOCKTYPE_LOCKED) {
-        [[_timedModePanel getButtonWithIndex:1] setLocked:LOCKTYPE_LOCKED];
-    }
-    
 }
 
 -(void)onExit
