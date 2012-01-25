@@ -144,12 +144,23 @@
    if ([[[GCHelper sharedInstance] getAchievementByID:gcAchievementBeatStoryEasy] isCompleted] &&[[[GCHelper sharedInstance] getAchievementByID:gcAchievementBeatStoryNormal] isCompleted] &&[[[GCHelper sharedInstance] getAchievementByID:gcAchievementBeatStoryHard] isCompleted] && ![[[GCHelper sharedInstance] getAchievementByID:gcAchievementBeatStoryAll] isCompleted])
     
         {
+            if(![GCState sharedInstance].completeStoryAll)
+            {
         [GCState sharedInstance].completeStoryAll = true;
         //[[GCState sharedInstance] save];
         [[GCHelper sharedInstance] reportAchievement:gcAchievementBeatStoryAll percentComplete:100.0];
+            }
     }
     
-    
+    if([[[GCHelper sharedInstance] getAchievementByID:gcAchievementBeatStoryAll] isCompleted] && [[[GCHelper sharedInstance] getAchievementByID:gcAchievementAllGoldInIM] isCompleted] && [[[GCHelper sharedInstance] getAchievementByID:gcAchievementAllGoldInNM] isCompleted])
+    {
+        if(![GCState sharedInstance].beatStoryAndAllGold)
+        {
+        
+        [GCState sharedInstance].beatStoryAndAllGold =true;
+        [[GCHelper sharedInstance] reportAchievement:gcAchievementAllGoldInNM percentComplete:100.0];
+        }
+    }
     
     
     if (!_initialized) {

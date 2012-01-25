@@ -3,7 +3,7 @@
 //  Clay
 //
 //  Created by Yang Song on 12/14/11.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2011 XecuDev. All rights reserved.
 //
 
 #import "FBPrompt.h"
@@ -45,7 +45,7 @@
     NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                    _appId, @"app_id",
                                    @"http://developers.facebook.com/docs/reference/dialogs/", @"link",
-                                  picUrl, @"picture",
+                                  @"/Users/yangsong/Documents/Clay/Clay/Clay/Resources/icons/Icon-72.png", @"picture",
                                    @"Facebook Dialogs", @"name",
                                    @"Reference Documentation", @"caption",
                                    description, @"description",

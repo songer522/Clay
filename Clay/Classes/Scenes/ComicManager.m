@@ -185,7 +185,7 @@ static ComicManager *_shared = nil;
                 gameLayer.visible = true;
                 [_comicLayer startTransition:BLACKBOX_OUT];
                 gameLayer.gameController.isInputEnabled = false;
-                [gameLayer saveAndReportToGameCenter];
+               
                 [[gameLayer getHud] fadeIn];
               
                 break;

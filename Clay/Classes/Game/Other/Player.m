@@ -312,7 +312,7 @@
 {
     if(![obstacle respondsToSelector:@selector(getCollisionBehavior)]){return;}
     int maxHit = 10;
-    
+    int maxTotalHit=500;
     
     if([obstacle getCollisionBehavior] == COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_BD || [obstacle getCollisionBehavior] == COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST_BD || [obstacle getCollisionBehavior] == COLLISION_BEHAVIOR_DANCIN_MAN_COLLAPSE)
     {
@@ -342,6 +342,20 @@
         }
         
     }
+    
+    if ([GCState sharedInstance].gotHit < maxTotalHit) {
+        [GCState sharedInstance].gotHit++;
+        NSLog(@"gothit:%d",[GCState sharedInstance].gotHit);
+        
+        double pctComplete2 = ((double) [GCState sharedInstance].gotHit / (int)maxTotalHit) * 100.0;
+        if(pctComplete2 == 100.0)
+        {
+            //[[GCState sharedInstance] save];
+            [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHit500times percentComplete:pctComplete2];
+        }
+    }
+
+    
 
 }
 

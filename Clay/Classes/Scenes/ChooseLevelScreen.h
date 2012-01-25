@@ -77,6 +77,8 @@ typedef enum {
     bool _panelTransition;
     bool _hasSwitched;
     bool _inDLCMode;
+    bool _allGoldMedalInNormal;
+    bool _allGoldMedalInInsane;
     float _panelAlpha;
     
     int _selected;
@@ -97,6 +99,7 @@ typedef enum {
 -(float)getTimeForNextMedalForLevelNamed:(NSString*)levelName BestTime:(float)time;
 -(void)load;
 -(void)loadMedals;
+-(void)checkAllGold;
 
 -(void)popAndSwitchToLevel:(NSString*)level;
 

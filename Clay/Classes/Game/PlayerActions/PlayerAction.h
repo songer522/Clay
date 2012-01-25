@@ -75,7 +75,7 @@
 
 -(void)shuffledOver;
 -(void)shotZombie;
-
+-(void)pokeBubble;
 -(void)blockshot;
 
 
