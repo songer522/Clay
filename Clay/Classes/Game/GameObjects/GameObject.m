@@ -200,11 +200,13 @@
     
     switch (_currentBehavior) {
         case COLLISION_BEHAVIOR_FALL_OVER:
-            _fallVelocity = 425.0f; 
+            _fallVelocity = 425.0f;
+            _alpha=2.0f;
             _fadeout=true;
             break;
         case COLLISION_BEHAVIOR_DISCO_HANDBAG:
             _fallVelocity = 425.0f;
+            _alpha=2.0f;
             _fadeout=true;
             break;
         case COLLISION_BEHAVIOR_HEN_DEAD:
