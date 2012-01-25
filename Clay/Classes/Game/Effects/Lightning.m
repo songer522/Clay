@@ -15,7 +15,7 @@
 #import "LayerManager.h"
 #import "Player.h"
 
-#define LIGHTNING_PARALLAX_RATIO 0.1f
+#define LIGHTNING_PARALLAX_RATIO 0.9f
 
 @implementation Lightning
 
@@ -72,8 +72,10 @@
     
     if (_inLightning) {
         
-        CGPoint playerPosition = [_player getPosition];
-        CGPoint lightningParallaxPosition = CGPointMake(_position.x + (playerPosition.x * LIGHTNING_PARALLAX_RATIO), _position.y);
+        float camPositionX = [[Camera sharedCamera] xPosition];
+        float newPosX = (camPositionX - _originalCamPositionX) * LIGHTNING_PARALLAX_RATIO;
+        
+        CGPoint lightningParallaxPosition = CGPointMake(_position.x + newPosX, _position.y);
         //NSLog(@"LX: %.2f, PLX: %.2f, RAX: %.2f",_position.x,playerPosition.x,lightningParallaxPosition.x);
         [_sprite setPosition:lightningParallaxPosition];
     }
@@ -112,8 +114,9 @@
 {
     //IPAD FIX: should be positioned at a random position in the background at a height where the top of the lightning bolt is just off the top of the screen
     _position = [[Camera sharedCamera] convertToWorldXY:ccp(50 + rand()%330, 193)];
+    _originalCamPositionX = [[Camera sharedCamera] xPosition];
     //_position = ccp(50 + rand()%330, 193);
-    [_sprite setScreenPosition:_position];
+    [_sprite setPosition:_position];
 }
 
 -(void)dealloc

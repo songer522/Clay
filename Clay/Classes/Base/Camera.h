@@ -82,6 +82,8 @@
 -(void)snapToTargetY;
 -(void)startShiftForwardForKick;
 
+-(float) xPosition;
+
 -(void)reset;
 
 #pragma mark - private methods
