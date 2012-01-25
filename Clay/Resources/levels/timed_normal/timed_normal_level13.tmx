@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="1000" height="14" tilewidth="64" tileheight="64">
- <tileset firstgid="1" name="meta" tilewidth="64" tileheight="64">
-  <image source="meta.png" width="256" height="192"/>
+<map version="1.0" orientation="orthogonal" width="1000" height="14" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="meta" tilewidth="32" tileheight="32">
+  <image source="meta.png" width="128" height="96"/>
   <tile id="0">
    <properties>
     <property name="collision" value="full"/>
@@ -28,8 +28,8 @@
    </properties>
   </tile>
  </tileset>
- <tileset firstgid="13" name="TrackLapse_Icons" tilewidth="64" tileheight="64">
-  <image source="TrackLapse_Icons.png" width="640" height="704"/>
+ <tileset firstgid="13" name="TrackLapse_Icons" tilewidth="32" tileheight="32">
+  <image source="TrackLapse_Icons.png" width="320" height="352"/>
   <tile id="0">
    <properties>
     <property name="obstacle" value="hurdle"/>
@@ -117,8 +117,8 @@
    </properties>
   </tile>
  </tileset>
- <tileset firstgid="123" name="Level13_TiledSheet-hd" tilewidth="64" tileheight="64">
-  <image source="Level13_TiledSheet-hd.png" width="512" height="512"/>
+ <tileset firstgid="123" name="Level13_TiledSheet-hd" tilewidth="32" tileheight="32">
+  <image source="tileset_level_13.png" width="256" height="256"/>
  </tileset>
  <layer name="back-1" width="1000" height="14">
   <properties>
@@ -140,7 +140,7 @@
  </layer>
  <layer name="front-1" width="1000" height="14">
   <properties>
-   <property name="speedx" value="1.0"/>
+   <property name="speedx" value="1.05"/>
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
@@ -153,16 +153,16 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T+1rCKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4A9rAAAE=
+   eJztzkENAAAIBCATOPuntYTuPpCAKgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAODCpAPwpNMBAAAAAAAAAAhYsFwAHw==
   </data>
  </layer>
- <layer name="meta" width="1000" height="14">
+ <layer name="meta" width="1000" height="14" opacity="0.74">
   <properties>
    <property name="speedx" value="1.0"/>
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T+1rCKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4A9rAAAE=
+   eJztw0ENAAAMA6Gbf9N71gQkFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADMqaqqqqqqqqo9A5UH0Q==
   </data>
  </layer>
 </map>
