@@ -84,7 +84,7 @@
         NSString *showDLC = [[GameSettings shared] getGlobalForKey:@"timedShowDLC"];
         if ([showDLC isEqualToString:@"YES"]) {
             _inDLCMode = true;
-            _numberOfLevels = 1;
+            _numberOfLevels = 2;
             _levelStartNumber = 11;
             _levelToSwitchTo = @"level12";
         } else {
