@@ -61,7 +61,7 @@
         
         
         _startButton = [ActionButton actionButtonCustomGraphicsForIdle:@"UI_GameType_ButtonS_Blue.png" Selected:@"UI_GameType_ButtonS_Green.png"];
-        [_startButton setInitialText:@"START"];
+        [_startButton setInitialText:@"NEXT"];
         [_startButton setPosition:ccp(430,18)];
         
         NSString *preTutorial = [[GameSettings shared] getGlobalForKey:@"preTutorialScreen"];
@@ -81,6 +81,8 @@
         
         _currentScreen = 0;
         
+        _canStart = false;
+        
         _hasSwitched = false;
         
         _waitToSwitch = 0.0f;
@@ -97,17 +99,53 @@
             _waitToSwitch = 0.25f;
             [[SoundEngine shared] playSound:@"buttonPressed"];     
         } else if([_startButton checkIfSelected:position]) {
-            _waitToSwitch = 0.25f;
-            [[SoundEngine shared] playSound:@"buttonPressed"];    
-            _switchToGame = true;
+            if (_canStart) {
+                [self cueStartAction];                
+            } else {
+                [self nextPage];
+            }
         }
     }
+}
+
+-(void)nextPage
+{
+    int currentPage = [_tutorial currentPage] + 1;
+    [_tutorial switchToPage:currentPage];
+}
+
+-(void)updateStartButton
+{
+    int currentPage = [_tutorial currentPage];
+    int maxPage = ([_tutorial totalPages] - 1);
+    
+    if (_canStart) {
+        if (currentPage < maxPage) {
+            [_startButton setText:@"NEXT"];
+            _canStart = false;
+        }
+    } else {
+        if (currentPage >= maxPage) {
+            [_startButton setText:@"START"];
+            _canStart = true;
+        }
+    }
+}
+
+-(void)cueStartAction
+{
+    _waitToSwitch = 0.25f;
+    [[SoundEngine shared] playSound:@"buttonPressed"];    
+    _switchToGame = true;
+    
 }
 
 -(void)update:(ccTime)dt
 {
     [_backButton update:dt];
     [_startButton update:dt];
+    
+    [self updateStartButton];
     
     [_tutorial update:dt];
     

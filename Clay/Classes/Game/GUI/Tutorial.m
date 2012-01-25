@@ -23,8 +23,8 @@
         _inTutorial=false;
         _phase = SCROLLER_IDLE;
         
-        _pages = [[NSMutableArray alloc] initWithCapacity:3];
-        _images = [[NSMutableArray alloc] initWithCapacity:3];
+        _pages = [[NSMutableArray alloc] initWithCapacity:4];
+        _images = [[NSMutableArray alloc] initWithCapacity:4];
         
         [self addPage:@"HTP_Page_1.png"];
         [self addPage:@"HTP_Page_2.png"];
@@ -61,6 +61,11 @@
     for(CCSprite *page in _images) {
         [page setOpacity:opacity];
     }
+}
+
+-(void)switchToPage:(int)page
+{
+    [scroller moveToPage:page];
 }
 
 
@@ -113,6 +118,16 @@
         default:
             break;
     }
+}
+
+-(int)currentPage
+{
+    return [scroller currentScreen];
+}
+
+-(int)totalPages
+{
+    return [_pages count];
 }
 
 -(void)dealloc

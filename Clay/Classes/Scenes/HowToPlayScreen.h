@@ -25,8 +25,12 @@
     
     bool _switchToGame;
     bool _hasSwitched;
+    bool _enableBack;
+    
     float _waitToSwitch;
     int _currentScreen;
+    
+    bool _canStart;
     
 }
 
@@ -36,5 +40,8 @@
 
 -(void)switchToOptionsScreen;
 -(void)switchToGameScreen;
+-(void)nextPage;
+-(void)cueStartAction;
+-(void)updateStartButton;
 
 @end
