@@ -166,7 +166,7 @@
             if([levelName isEqualToString:@"level9"]) 
             {
                 [self addObstaclesToMapWithBehavior:COLLISION_BEHAVIOR_RAINY_SQUIRREL];
-                [self addObstaclesToMapWithBehavior:COLLISION_BEHAVIOR_FROG_SQUASH];
+                //[self addObstaclesToMapWithBehavior:COLLISION_BEHAVIOR_FROG_SQUASH];
             }
         } 
         else if ([layerName isEqualToString:@"ledges"]) 
