@@ -1157,6 +1157,41 @@
 		<key>playerEffect</key>
 		<string>none</string>
 	</dict>
+	<key>dojoNinjaBackground</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<real>0.5</real>
+			<key>y</key>
+			<real>0.5</real>
+		</dict>
+		<key>animationName</key>
+		<string>dojoNinjaBackgroundAnim</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>1</integer>
+			<key>width</key>
+			<integer>1</integer>
+			<key>x</key>
+			<integer>0</integer>
+			<key>y</key>
+			<integer>0</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>static</string>
+		<key>imageName</key>
+		<string>blank.png</string>
+		<key>offsetx</key>
+		<integer>8</integer>
+		<key>offsety</key>
+		<integer>34</integer>
+		<key>playerEffect</key>
+		<string>none</string>
+	</dict>
 	<key>clappingCrowd</key>
 	<dict>
 		<key>useDefaultBatchNode</key>

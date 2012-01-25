@@ -217,6 +217,10 @@
 		5461D7C114CF9E1700BEE18E /* tileset_level_13.png in Resources */ = {isa = PBXBuildFile; fileRef = 5461D7BF14CF9E1700BEE18E /* tileset_level_13.png */; };
 		5461D7C414CFA51500BEE18E /* Comic_22-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5461D7C214CFA51500BEE18E /* Comic_22-hd.png */; };
 		5461D7C514CFA51500BEE18E /* Comic_22.png in Resources */ = {isa = PBXBuildFile; fileRef = 5461D7C314CFA51500BEE18E /* Comic_22.png */; };
+		5461D7D014CFADE200BEE18E /* dojoLevel-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5461D7CC14CFADE200BEE18E /* dojoLevel-hd.plist */; };
+		5461D7D114CFADE200BEE18E /* dojoLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5461D7CD14CFADE200BEE18E /* dojoLevel-hd.png */; };
+		5461D7D214CFADE200BEE18E /* dojoLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5461D7CE14CFADE200BEE18E /* dojoLevel.plist */; };
+		5461D7D314CFADE200BEE18E /* dojoLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 5461D7CF14CFADE200BEE18E /* dojoLevel.png */; };
 		5463945D1499685D0053A1F6 /* ChooseLevelPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5463945C1499685D0053A1F6 /* ChooseLevelPanel.m */; };
 		546394811499AAD90053A1F6 /* optionsScreen-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5463947D1499AAD90053A1F6 /* optionsScreen-hd.plist */; };
 		546394821499AAD90053A1F6 /* optionsScreen-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5463947E1499AAD90053A1F6 /* optionsScreen-hd.png */; };
@@ -1001,6 +1005,10 @@
 		5461D7BF14CF9E1700BEE18E /* tileset_level_13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tileset_level_13.png; path = Resources/levels/tileset_level_13.png; sourceTree = "<group>"; };
 		5461D7C214CFA51500BEE18E /* Comic_22-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Comic_22-hd.png"; path = "Clay/Resources/comics/Comic_22-hd.png"; sourceTree = SOURCE_ROOT; };
 		5461D7C314CFA51500BEE18E /* Comic_22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Comic_22.png; path = Clay/Resources/comics/Comic_22.png; sourceTree = SOURCE_ROOT; };
+		5461D7CC14CFADE200BEE18E /* dojoLevel-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "dojoLevel-hd.plist"; sourceTree = "<group>"; };
+		5461D7CD14CFADE200BEE18E /* dojoLevel-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dojoLevel-hd.png"; sourceTree = "<group>"; };
+		5461D7CE14CFADE200BEE18E /* dojoLevel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = dojoLevel.plist; sourceTree = "<group>"; };
+		5461D7CF14CFADE200BEE18E /* dojoLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dojoLevel.png; sourceTree = "<group>"; };
 		5463945B1499685D0053A1F6 /* ChooseLevelPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseLevelPanel.h; sourceTree = "<group>"; };
 		5463945C1499685D0053A1F6 /* ChooseLevelPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseLevelPanel.m; sourceTree = "<group>"; };
 		5463947D1499AAD90053A1F6 /* optionsScreen-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "optionsScreen-hd.plist"; path = "Clay/Resources/menu/optionsScreen-hd.plist"; sourceTree = SOURCE_ROOT; };
@@ -2198,6 +2206,17 @@
 			name = hud;
 			sourceTree = "<group>";
 		};
+		5461D7CB14CFADE200BEE18E /* dojo */ = {
+			isa = PBXGroup;
+			children = (
+				5461D7CC14CFADE200BEE18E /* dojoLevel-hd.plist */,
+				5461D7CD14CFADE200BEE18E /* dojoLevel-hd.png */,
+				5461D7CE14CFADE200BEE18E /* dojoLevel.plist */,
+				5461D7CF14CFADE200BEE18E /* dojoLevel.png */,
+			);
+			path = dojo;
+			sourceTree = "<group>";
+		};
 		54642AFE14337E5F001D8212 /* art */ = {
 			isa = PBXGroup;
 			children = (
@@ -2776,6 +2795,7 @@
 		549ED84A1461D144008BCD98 /* objects */ = {
 			isa = PBXGroup;
 			children = (
+				5461D7CB14CFADE200BEE18E /* dojo */,
 				5428AE041491614F00C1A1BE /* dark */,
 				54EB13B2148C8ADD00D94191 /* water */,
 				54C71D131486E64C00A47565 /* rainy */,
@@ -3548,6 +3568,10 @@
 				5461D7C114CF9E1700BEE18E /* tileset_level_13.png in Resources */,
 				5461D7C414CFA51500BEE18E /* Comic_22-hd.png in Resources */,
 				5461D7C514CFA51500BEE18E /* Comic_22.png in Resources */,
+				5461D7D014CFADE200BEE18E /* dojoLevel-hd.plist in Resources */,
+				5461D7D114CFADE200BEE18E /* dojoLevel-hd.png in Resources */,
+				5461D7D214CFADE200BEE18E /* dojoLevel.plist in Resources */,
+				5461D7D314CFADE200BEE18E /* dojoLevel.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

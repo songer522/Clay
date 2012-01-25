@@ -716,6 +716,23 @@
 		<key>spritesheetPlist</key>
 		<string>characterAnims</string>
 	</dict>
+	<key>dojoNinjaBackgroundAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3,4,5,6,7</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level13</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>NinjaShadow_</string>
+		<key>spritesheetPlist</key>
+		<string>dojoLevel</string>
+	</dict>
 	<key>dogAnim</key>
 	<dict>
 		<key>animationFrames</key>
