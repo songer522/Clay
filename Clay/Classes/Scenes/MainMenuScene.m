@@ -28,6 +28,7 @@
 #import "OptionsScene.h"
 #import "Tutorial.h"
 #import "GameLayer.h"
+#import "InAppPurchaseManager.h"
 
 
 @implementation MainMenuScene
@@ -116,6 +117,7 @@
         [_giftButton setPosition:ccp(75,24)];
         [_giftButton setHitboxBySize:CGSizeMake(65, 65)];
 
+        [[InAppPurchaseManager shared] requestProductData];
         
         [[LayerManager sharedLayers] forgetWorkingLayer];
         

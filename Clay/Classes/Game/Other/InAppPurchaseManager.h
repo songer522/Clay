@@ -19,4 +19,8 @@
     SKProduct *_dojoLevelProduct;
 }
 
++(InAppPurchaseManager*)shared;
+- (void)requestProductData;
+- (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response;
+
 @end

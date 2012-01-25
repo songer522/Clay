@@ -345,7 +345,6 @@
     
     if ([GCState sharedInstance].gotHit < maxTotalHit) {
         [GCState sharedInstance].gotHit++;
-        NSLog(@"gothit:%d",[GCState sharedInstance].gotHit);
         
         double pctComplete2 = ((double) [GCState sharedInstance].gotHit / (int)maxTotalHit) * 100.0;
         if(pctComplete2 == 100.0)

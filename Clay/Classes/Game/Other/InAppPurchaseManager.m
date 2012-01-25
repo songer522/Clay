@@ -61,7 +61,7 @@ static InAppPurchaseManager *_shared = nil;
 
 - (void)requestProductData
 {
-    NSSet *productIdentifiers = [NSSet setWithObjects:@"com.xecudev.Clay.trainingLevelUpgrade",@"com.xecudev.Clay.dojoLevelUpgrade", nil];
+    NSSet *productIdentifiers = [NSSet setWithObjects:@"com.xecudev.Clay.trainingLevelUnlock",@"com.xecudev.Clay.dojoLevelUnlock", nil];
     _productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:productIdentifiers];
     _productsRequest.delegate = self;
     [_productsRequest start];
@@ -77,10 +77,10 @@ static InAppPurchaseManager *_shared = nil;
     NSArray *products = response.products;
     
     for (SKProduct *product in products) {
-        NSLog(@"Product title: %@" , _trainingLevelProduct.localizedTitle);
-        NSLog(@"Product description: %@" , _trainingLevelProduct.localizedDescription);
-        NSLog(@"Product price: %@" , _trainingLevelProduct.price);
-        NSLog(@"Product id: %@" , _trainingLevelProduct.productIdentifier);        
+        NSLog(@"Product title: %@" , product.localizedTitle);
+        NSLog(@"Product description: %@" , product.localizedDescription);
+        NSLog(@"Product price: %@" , product.price);
+        NSLog(@"Product id: %@" , product.productIdentifier);        
     }
     
     for (NSString *invalidProductId in response.invalidProductIdentifiers)

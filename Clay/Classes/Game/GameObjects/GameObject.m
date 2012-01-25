@@ -471,7 +471,7 @@
                 if(_projectile!=nil){
                     [[_projectile getCCSprite] setVisible:NO];
                 }
-                if (_collideBehavior != COLLISION_BEHAVIOR_COMPUTER_WORM) {
+                if (_collideBehavior != COLLISION_BEHAVIOR_COMPUTER_WORM && _collideBehavior != COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENING && _collideBehavior != COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENED && _collideBehavior != COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_UP) {
                     [[_sprite getCCSprite] pauseSchedulerAndActions];                    
                 }
                 _isVisible = false;
