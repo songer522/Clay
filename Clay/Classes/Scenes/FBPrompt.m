@@ -45,7 +45,7 @@
     NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                    _appId, @"app_id",
                                    @"http://developers.facebook.com/docs/reference/dialogs/", @"link",
-                                  @"/Users/yangsong/Documents/Clay/Clay/Clay/Resources/icons/Icon-72.png", @"picture",
+                                  picUrl, @"picture",
                                    @"Facebook Dialogs", @"name",
                                    @"Reference Documentation", @"caption",
                                    description, @"description",
