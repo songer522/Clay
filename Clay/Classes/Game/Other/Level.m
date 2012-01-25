@@ -144,23 +144,41 @@
     
     NSArray *layers = [layerList componentsSeparatedByString:@","];
     for (NSString *layerName in layers) {
-        if([layerName isEqualToString:@"front-1"]) {
-            if([levelName isEqualToString:@"level11"]) {
+        if([layerName isEqualToString:@"front-1"]) 
+        {
+            if([levelName isEqualToString:@"level11"]) 
+            {
                 [self addObstaclesToMapWithBehavior:COLLISION_BEHAVIOR_DARK_SPIKES];
             }
-        }  if([layerName isEqualToString:@"front-1"]) {
-            if([levelName isEqualToString:@"level4"]) {
+        }  
+         if([layerName isEqualToString:@"front-1"]) 
+        {
+            if([levelName isEqualToString:@"level4"]) 
+            {
                 [self addObstaclesToMapWithBehavior:COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_BD];
                  [self addObstaclesToMapWithBehavior:COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST_BD];
             }
         }
         
-        else if ([layerName isEqualToString:@"ledges"]) {
+        if ([layerName isEqualToString:@"front-1"]) 
+        {
             //stop existing rainylevel, and start new one if right level
-            if([levelName isEqualToString:@"level9"]) {
+            if([levelName isEqualToString:@"level9"]) 
+            {
+                [self addObstaclesToMapWithBehavior:COLLISION_BEHAVIOR_RAINY_SQUIRREL];
+                [self addObstaclesToMapWithBehavior:COLLISION_BEHAVIOR_FROG_SQUASH];
+            }
+        } 
+        else if ([layerName isEqualToString:@"ledges"]) 
+        {
+            //stop existing rainylevel, and start new one if right level
+            if([levelName isEqualToString:@"level9"]) 
+            {
                 [_gameLayer initializeRainyLevel];
             }
-        } else if ([layerName compare:@"actives"] == NSOrderedSame) {
+        } 
+        else if ([layerName compare:@"actives"] == NSOrderedSame) 
+        {
             
             //[player setLedgeSprite:[[LayerManager sharedLayers] currentLayer]];
             
