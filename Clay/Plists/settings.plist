@@ -5,9 +5,9 @@
 	<key>app</key>
 	<dict>
 		<key>showFps</key>
-		<string>YES</string>
+		<string>NO</string>
 		<key>versionNumber</key>
-		<string>120124.02</string>
+		<string>120124.03</string>
 		<key>unlockEverything</key>
 		<string>NO</string>
 	</dict>

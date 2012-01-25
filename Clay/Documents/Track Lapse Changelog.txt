@@ -1,5 +1,21 @@
 Track Lapse Changelog
 
+Build 120124.03
+=================
+
+* ChooseMode - changed so tutorial plays when normal story mode is played for the first time. this will be reset when data is erased also
+* Global - added achievements: "we did it", "seriously?", "impossible", "track lapse guru", "gone bubblin", "we like you", and "pretty bird"
+* Global - added ability for achievements to sync from game center so achievement progress will be the same across devices
+* Global - obstacles with "fall over behavior" temporarily set so they fade out, to test if this is preferred. tian pushed for this since technically some of the obstacles (mainly hurdles) have the wrong perspective once they've fallen over, and screenshots taken with the fallen over obstacles would look weird
+* HowToPlay - changed start button so it shows next instead and scrolls through the tutorial when pressed until the last page, then switches to start. swiping through pages still allowed
+* MainMenu - gifting our app now changed to our app id. probably will not "work" until game is actually on the app store now
+* Options - fixed so level times and medals are erased when 'erase data' is selected
+* Level 2 - removed old jim from hard mode
+* Level 6 - repositioned puddles to fit the grate
+* Level 9 - fixed thunder sound playing in story mode after level 9
+* Level 13 - added basic level environment with new background and background ninja animation
+
+
 Build 120123.01
 =================
 

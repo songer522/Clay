@@ -1,7 +1,12 @@
 Track Lapse Demo Changelog
 
+Demo Build 120124.01
+======================
+
+* added tutorial playing when play button clicked.
+
 Demo Build 120123.01
-=================
+======================
 
 * First build, includes first two levels, still higher file size than we want for the final version.
 
