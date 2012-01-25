@@ -10,8 +10,15 @@
 #import <StoreKit/StoreKit.h>
 
 #define kInAppPurchaseManagerProductsFetchedNotification @"kInAppPurchaseManagerProductsFetchedNotification"
+#define kInAppPurchaseManagerTransactionFailedNotification @"kInAppPurchaseManagerTransactionFailedNotification"
+#define kInAppPurchaseManagerTransactionSucceededNotification @"kInAppPurchaseManagerTransactionSucceededNotification"
 
-@interface InAppPurchaseManager : NSObject <SKProductsRequestDelegate>
+#define kInAppPurchaseTrainingRunProductId @"com.xecudev.Clay.trainingLevelUnlock"
+#define kInAppPurchaseDojoRunProductId @"com.xecudev.Clay.dojoLevelUnlock"
+
+
+
+@interface InAppPurchaseManager : NSObject <SKProductsRequestDelegate, SKPaymentTransactionObserver>
 {
     SKProductsRequest *_productsRequest;
     
@@ -22,5 +29,17 @@
 +(InAppPurchaseManager*)shared;
 - (void)requestProductData;
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response;
+
+//transaction functions
+- (void)loadStore;
+- (BOOL)canMakePurchases;
+
+#pragma mark -
+#pragma mark Purchasing methods
+- (void)recordTransaction:(SKPaymentTransaction *)transaction;
+- (void)provideContent:(NSString *)productId;
+-(void)purchaseTrainingLevel;
+-(void)purchaseDojoLevel;
+
 
 @end

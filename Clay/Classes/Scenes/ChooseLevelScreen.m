@@ -47,6 +47,8 @@
 	
 	// 'layer' is an autorelease object.
 	ChooseLevelScreen *layer = [ChooseLevelScreen layerWithScene:scene];
+    
+    [[LayerManager sharedLayers] setCurrentScene:scene];
 	
 	// add layer as a child to scene
 	[scene addChild: layer];
