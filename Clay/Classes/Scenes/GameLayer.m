@@ -788,6 +788,9 @@
 - (void) dealloc
 {
     //can't put these in onexit like the others for some reason
+    [self stopLaserShow];
+    [self stopRainyLevel];
+    
     [_level release];
     [_player release];
     [_gameController release];

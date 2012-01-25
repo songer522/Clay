@@ -139,6 +139,9 @@
 {
     int currentZ = 0;
 
+    [_gameLayer stopRainyLevel];
+
+    
     NSArray *layers = [layerList componentsSeparatedByString:@","];
     for (NSString *layerName in layers) {
         if([layerName isEqualToString:@"front-1"]) {
@@ -154,7 +157,6 @@
         
         else if ([layerName isEqualToString:@"ledges"]) {
             //stop existing rainylevel, and start new one if right level
-            [_gameLayer stopRainyLevel];
             if([levelName isEqualToString:@"level9"]) {
                 [_gameLayer initializeRainyLevel];
             }
