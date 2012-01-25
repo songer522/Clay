@@ -551,6 +551,14 @@
                 _fbprompt = [FBPrompt promptWithAppId:@"264174546971482" andDelegate:self];
                 [_fbprompt showFacebookDialogWithDescription:[NSString stringWithFormat:@"Hey, here's my score for Track Lapse %@ : %@, see if you can beat me!!!",description, _bestTime] andPicture:@"http://fbrell.com/f8.jpg"];
                 _openFacebook =false;
+                
+                if(![GCState sharedInstance].facebook)
+                {
+                    
+                    [GCState sharedInstance].facebook =true;
+                    [[GCHelper sharedInstance] reportAchievement:gcAchievementFacebookUs percentComplete:100.0];
+                }
+
             } else if(_openTwitter)
             {
                 if(!description)
@@ -559,6 +567,13 @@
                 }
                 [self sendEasyTweet:[NSString stringWithFormat:@"Hey, here's my score for Track Lapse %@ : %@, see if you can beat me!!!",description, _bestTime]];
                 _openTwitter =false;
+                if(![GCState sharedInstance].twitter)
+                {
+                    
+                    [GCState sharedInstance].twitter =true;
+                    [[GCHelper sharedInstance] reportAchievement:gcAchievementTwitterUs percentComplete:100.0];
+                }
+
             }
             else {
                 [self popAndSwitchToLevel:_levelToSwitchTo]; 
