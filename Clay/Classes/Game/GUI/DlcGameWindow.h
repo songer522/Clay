@@ -16,6 +16,8 @@ typedef enum {
 #define kInAppPurchaseTrainingRunProductId @"com.xecudev.Clay.trainingLevelUnlock"
 #define kInAppPurchaseDojoRunProductId @"com.xecudev.Clay.dojoLevelUnlock"
 
+
+
 @interface DlcGameWindow : GameWindow
 
 {
@@ -23,12 +25,15 @@ typedef enum {
     Sprite *miniScreenshot2;
     
     bool _showingErrorWindow;
-    
+    DlcContentType _contentId;
 }
 
-+(id)dlcGameWindowForContent:(DlcContentType)content;
++(id)dlcGameWindowForContent:(DlcContentType)content withLayer:(CCLayer*)layer;
 
--(id)initForContent:(DlcContentType)content;
+-(id)initForContent:(DlcContentType)content withLayer:(CCLayer*)layer;
 
+//-(void)handleTouchAtPoint:(CGPoint)position;
+
+-(void)triggerPurchase;
 
 @end

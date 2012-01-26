@@ -215,7 +215,7 @@
             _action = GAMEMODE_EXTRAS_WEB;
         }
         else{
-            _action=GameMODE_EXTRAS_SUPPORT;
+            _action=GAMEMODE_EXTRAS_SUPPORT;
         }
     }
 }
@@ -239,15 +239,20 @@
         case GAMEMODE_TIMED_NORMAL:
             [[GameSettings shared] setGlobal:@"NO" ForKey:@"timedShowDLC"];
             [[GameSettings shared] setNotNewForKey:@"timedNormalUnlocked"];
+            [[GameSettings shared] setGlobal:@"chooseMode" ForKey:@"previousScreenName"];
             [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ChooseLevelScreen scene]]];
             
             break;
         case GAMEMODE_TIMED_INSANE:
+            [[GameSettings shared] setGlobal:@"chooseMode" ForKey:@"previousScreenName"];
+
             [[GameSettings shared] setNotNewForKey:@"timedHardUnlocked"];
             [[GameSettings shared] setGlobal:@"NO" ForKey:@"timedShowDLC"];
             [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ChooseLevelScreen scene]]];
             break;
         case GAMEMODE_TIMED_DLC:
+            [[GameSettings shared] setGlobal:@"chooseMode" ForKey:@"previousScreenName"];
+
             [[GameSettings shared] setGlobal:@"YES" ForKey:@"timedShowDLC"];
             [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ChooseLevelScreen scene]]];
             break;
@@ -261,7 +266,7 @@
             [[UIApplication sharedApplication] openURL:url];
             _isTransitioning = false;
             break;
-        case GameMODE_EXTRAS_SUPPORT:
+        case GAMEMODE_EXTRAS_SUPPORT:
             url = [NSURL URLWithString:@"mailto:support@xecudev.com"];
             [[UIApplication sharedApplication] openURL:url];
             _isTransitioning = false;

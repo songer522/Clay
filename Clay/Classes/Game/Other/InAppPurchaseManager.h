@@ -8,13 +8,11 @@
 //  Based on code from: http://troybrant.net/blog/2010/01/in-app-purchases-a-full-walkthrough/
 
 #import <StoreKit/StoreKit.h>
+#import "DlcLevelDelegate.h"
 
 #define kInAppPurchaseManagerProductsFetchedNotification @"kInAppPurchaseManagerProductsFetchedNotification"
 #define kInAppPurchaseManagerTransactionFailedNotification @"kInAppPurchaseManagerTransactionFailedNotification"
 #define kInAppPurchaseManagerTransactionSucceededNotification @"kInAppPurchaseManagerTransactionSucceededNotification"
-
-#define kInAppPurchaseTrainingRunProductId @"com.xecudev.Clay.trainingLevelUnlock"
-#define kInAppPurchaseDojoRunProductId @"com.xecudev.Clay.dojoLevelUnlock"
 
 @class SKProduct;
 
@@ -26,6 +24,8 @@
     SKProduct *_dojoLevelProduct;
     
     NSMutableDictionary *_dlcData;
+    
+    id<DlcLevelDelegate> _delegate;
 }
 
 +(InAppPurchaseManager*)shared;
@@ -40,8 +40,8 @@
 #pragma mark Purchasing methods
 - (void)recordTransaction:(SKPaymentTransaction *)transaction;
 - (void)provideContent:(NSString *)productId;
--(void)purchaseTrainingLevel;
--(void)purchaseDojoLevel;
+- (void)purchaseProductId:(NSString*)productId Delegate:(id<DlcLevelDelegate>)delegate;
+
 
 -(SKProduct*)getProductInfoForKey:(NSString*)key;
 

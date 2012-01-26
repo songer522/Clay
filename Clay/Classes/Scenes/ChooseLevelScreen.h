@@ -14,14 +14,14 @@
 #import <Twitter/Twitter.h>
 #import <Accounts/Accounts.h>
 #import <UIKit/UIKit.h>
-
-
+#import "DlcLevelDelegate.h"
 
 @class GameLabel;
 @class Sprite;
 @class ActionButton;
 @class ChooseLevelPanel;
 @class FBPrompt;
+@class DlcGameWindow;
 
 typedef enum {
     TRACK_RUN = 1,
@@ -40,7 +40,7 @@ typedef enum {
    
 }LevelName;
 
-@interface ChooseLevelScreen : CCLayer <FBDialogDelegate,FBSessionDelegate>
+@interface ChooseLevelScreen : CCLayer <FBDialogDelegate,FBSessionDelegate,DlcLevelDelegate>
 {
     NSMutableArray *_buttons;
     
@@ -75,6 +75,10 @@ typedef enum {
     
     ChooseLevelPanel *_frontPanel;
     ChooseLevelPanel *_backPanel;
+    
+    DlcGameWindow *_dlcWindow;
+    bool _dlcWindowOpen;
+    
     
     bool _panelTransition;
     bool _hasSwitched;
@@ -115,4 +119,10 @@ typedef enum {
 
 -(void)updatePanelTransition:(float)dt;
 
+-(void)popupDlcWindow:(int)levelNumber;
+
+-(bool)checkDlcLevelUnlocked:(int)levelNumber;
+
+-(void)prepareToPlayLevel;
+-(void)updateStartButton;
 @end

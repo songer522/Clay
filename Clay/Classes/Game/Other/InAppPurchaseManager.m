@@ -198,12 +198,15 @@ static InAppPurchaseManager *_shared = nil;
         switch (transaction.transactionState)
         {
             case SKPaymentTransactionStatePurchased:
+                NSLog(@"TRANSACTION PURCHASED");
                 [self completeTransaction:transaction];
                 break;
             case SKPaymentTransactionStateFailed:
+                NSLog(@"TRANSACTION FAILED");
                 [self failedTransaction:transaction];
                 break;
             case SKPaymentTransactionStateRestored:
+                NSLog(@"TRANSACTION RESTORED");
                 [self restoreTransaction:transaction];
                 break;
             default:
@@ -232,6 +235,7 @@ static InAppPurchaseManager *_shared = nil;
 //
 - (void)recordTransaction:(SKPaymentTransaction *)transaction
 {
+    NSLog(@"RECORD TRANSACTION");
     if ([transaction.payment.productIdentifier isEqualToString:kInAppPurchaseTrainingRunProductId])
     {
         // save the transaction receipt to disk
@@ -257,12 +261,17 @@ static InAppPurchaseManager *_shared = nil;
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isTrainingRunPurchased"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         updateBonusLevelsMenu = true;
+        NSLog(@"PROVIDE CONTENT: TRAINING RUN");
+        [_delegate updateDlcLevels];
+
     }
     else if ([productId isEqualToString:kInAppPurchaseDojoRunProductId])
     {
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isDojoRunPurchased"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         updateBonusLevelsMenu = true;
+        NSLog(@"PROVIDE CONTENT: DOJO RUN");
+        [_delegate updateDlcLevels];
     }
     
     
@@ -270,16 +279,10 @@ static InAppPurchaseManager *_shared = nil;
 }
 
 
-
-- (void)purchaseTrainingLevel
+- (void)purchaseProductId:(NSString*)productId Delegate:(id<DlcLevelDelegate>)delegate
 {
-    SKPayment *payment = [SKPayment paymentWithProductIdentifier:kInAppPurchaseTrainingRunProductId];
-    [[SKPaymentQueue defaultQueue] addPayment:payment];
-}
-
-- (void)purchaseDojoLevel
-{
-    SKPayment *payment = [SKPayment paymentWithProductIdentifier:kInAppPurchaseDojoRunProductId];
+    _delegate = delegate;
+    SKPayment *payment = [SKPayment paymentWithProductIdentifier:productId];
     [[SKPaymentQueue defaultQueue] addPayment:payment];
 }
 

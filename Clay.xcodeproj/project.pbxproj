@@ -1111,6 +1111,7 @@
 		548780FE14D0B3D300EDC04B /* SKProduct+LocalizedPrice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKProduct+LocalizedPrice.m"; sourceTree = "<group>"; };
 		5487810014D0D69A00EDC04B /* DlcGameWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DlcGameWindow.h; sourceTree = "<group>"; };
 		5487810114D0D69A00EDC04B /* DlcGameWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DlcGameWindow.m; sourceTree = "<group>"; };
+		5487810714D108DE00EDC04B /* DlcLevelDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DlcLevelDelegate.h; path = ../../Scenes/DlcLevelDelegate.h; sourceTree = "<group>"; };
 		54883B8414487ED80029759E /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "Resources/icons/Icon-72.png"; sourceTree = "<group>"; };
 		54883B8514487ED80029759E /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small-50.png"; path = "Resources/icons/Icon-Small-50.png"; sourceTree = "<group>"; };
 		54883B8614487ED80029759E /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small.png"; path = "Resources/icons/Icon-Small.png"; sourceTree = "<group>"; };
@@ -2716,6 +2717,7 @@
 				548D2D1C1461E871005E1AC0 /* Skin.m */,
 				54CA7A7C1471C97C002B01AA /* TextureManager.h */,
 				54CA7A7D1471C97C002B01AA /* TextureManager.m */,
+				5487810714D108DE00EDC04B /* DlcLevelDelegate.h */,
 				5461D7A814CF67B600BEE18E /* InAppPurchaseManager.h */,
 				5461D7A914CF67B600BEE18E /* InAppPurchaseManager.m */,
 				548780FD14D0B3D300EDC04B /* SKProduct+LocalizedPrice.h */,
