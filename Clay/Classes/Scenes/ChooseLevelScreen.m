@@ -164,9 +164,13 @@
         }
         
         if([_startButton checkIfSelected:position]) {
-            _waitToSwitch = 0.25f;
-            _backToChooseMode = false;
-            [[SoundEngine shared] playSound:@"buttonPressed"];
+            if (_inDLCMode) {
+                [self popupDlcWindow:12];
+            } else {
+                _waitToSwitch = 0.25f;
+                _backToChooseMode = false;
+                [[SoundEngine shared] playSound:@"buttonPressed"];
+            }
         }
         
         if([_backButton checkIfSelected:position]) {
@@ -503,7 +507,12 @@
         case FINAL_RUN:
             levelName=[NSString stringWithFormat:@"Final Run"];
             break;
-            
+        case TRAINING_RUN:
+            levelName=[NSString stringWithFormat:@"Training Run"];
+            break;
+        case DOJO_RUN:
+            levelName=[NSString stringWithFormat:@"Dojo Run"];
+            break;
         default:
             break;
     }

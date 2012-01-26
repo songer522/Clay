@@ -56,6 +56,7 @@ static InAppPurchaseManager *_shared = nil;
 -(id)init
 {
     if ((self=[super init])) {
+        _dlcData = [[NSMutableDictionary alloc] initWithCapacity:2];
     }
     return self;
 }
@@ -80,10 +81,13 @@ static InAppPurchaseManager *_shared = nil;
     NSArray *products = response.products;
     
     for (SKProduct *product in products) {
+        [_dlcData setValue:[product retain] forKey:product.productIdentifier];
+        /*
         NSLog(@"Product title: %@" , product.localizedTitle);
         NSLog(@"Product description: %@" , product.localizedDescription);
         NSLog(@"Product price: %@" , [product localizedPrice]);
         NSLog(@"Product id: %@" , product.productIdentifier);        
+        */
     }
     
     for (NSString *invalidProductId in response.invalidProductIdentifiers)
@@ -209,6 +213,13 @@ static InAppPurchaseManager *_shared = nil;
 }
 
 
+-(SKProduct*)getProductInfoForKey:(NSString*)key
+{
+    SKProduct *product = [_dlcData objectForKey:key];
+    return product;
+}
+
+
 
 #pragma mark -
 #pragma mark Purchasing methods
@@ -271,8 +282,6 @@ static InAppPurchaseManager *_shared = nil;
     SKPayment *payment = [SKPayment paymentWithProductIdentifier:kInAppPurchaseDojoRunProductId];
     [[SKPaymentQueue defaultQueue] addPayment:payment];
 }
-
-
 
 
 

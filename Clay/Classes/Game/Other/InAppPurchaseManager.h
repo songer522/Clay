@@ -16,7 +16,7 @@
 #define kInAppPurchaseTrainingRunProductId @"com.xecudev.Clay.trainingLevelUnlock"
 #define kInAppPurchaseDojoRunProductId @"com.xecudev.Clay.dojoLevelUnlock"
 
-
+@class SKProduct;
 
 @interface InAppPurchaseManager : NSObject <SKProductsRequestDelegate, SKPaymentTransactionObserver>
 {
@@ -24,6 +24,8 @@
     
     SKProduct *_trainingLevelProduct;
     SKProduct *_dojoLevelProduct;
+    
+    NSMutableDictionary *_dlcData;
 }
 
 +(InAppPurchaseManager*)shared;
@@ -41,5 +43,6 @@
 -(void)purchaseTrainingLevel;
 -(void)purchaseDojoLevel;
 
+-(SKProduct*)getProductInfoForKey:(NSString*)key;
 
 @end

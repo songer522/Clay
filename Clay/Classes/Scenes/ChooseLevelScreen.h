@@ -34,7 +34,9 @@ typedef enum {
     VOLCANO_RUN = 8,
     AQUARIUM_RUN = 9,
     STORMY_RUN = 10,
-    FINAL_RUN = 11
+    FINAL_RUN = 11,
+    TRAINING_RUN = 12,
+    DOJO_RUN = 13
    
 }LevelName;
 
