@@ -198,15 +198,15 @@ static InAppPurchaseManager *_shared = nil;
         switch (transaction.transactionState)
         {
             case SKPaymentTransactionStatePurchased:
-                NSLog(@"TRANSACTION PURCHASED");
+                //NSLog(@"TRANSACTION PURCHASED");
                 [self completeTransaction:transaction];
                 break;
             case SKPaymentTransactionStateFailed:
-                NSLog(@"TRANSACTION FAILED");
+                //NSLog(@"TRANSACTION FAILED");
                 [self failedTransaction:transaction];
                 break;
             case SKPaymentTransactionStateRestored:
-                NSLog(@"TRANSACTION RESTORED");
+                //NSLog(@"TRANSACTION RESTORED");
                 [self restoreTransaction:transaction];
                 break;
             default:
@@ -235,7 +235,7 @@ static InAppPurchaseManager *_shared = nil;
 //
 - (void)recordTransaction:(SKPaymentTransaction *)transaction
 {
-    NSLog(@"RECORD TRANSACTION");
+    //NSLog(@"RECORD TRANSACTION");
     if ([transaction.payment.productIdentifier isEqualToString:kInAppPurchaseTrainingRunProductId])
     {
         // save the transaction receipt to disk
