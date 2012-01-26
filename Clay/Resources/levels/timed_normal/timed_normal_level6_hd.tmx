@@ -92,7 +92,7 @@
   </tile>
   <tile id="15">
    <properties>
-    <property name="obstacle" value="dancinMan"/>
+    <property name="obstacle" value="zombieMaleHead"/>
    </properties>
   </tile>
   <tile id="16">
@@ -115,6 +115,11 @@
   <tile id="20">
    <properties>
     <property name="obstacle" value="femaleBreakdancer"/>
+   </properties>
+  </tile>
+  <tile id="22">
+   <properties>
+    <property name="obstacle" value="femaleZombieHead"/>
    </properties>
   </tile>
   <tile id="23">

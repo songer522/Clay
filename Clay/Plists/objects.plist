@@ -1482,7 +1482,7 @@
 		<key>playerEffect</key>
 		<string>collide</string>
 	</dict>
-	<key>zombieMale</key>
+    <key>zombieMale</key>
 	<dict>
 		<key>aggressive</key>
 		<string>false</string>
@@ -1517,7 +1517,7 @@
 		<key>playerEffect</key>
 		<string>collide</string>
 	</dict>
-	<key>finalJimBoss</key>
+    <key>finalJimBoss</key>
 	<dict>
 		<key>aggressive</key>
 		<string>false</string>

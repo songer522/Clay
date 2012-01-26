@@ -188,7 +188,7 @@
 
 -(void)startDoubleJump
 {
-    if ((_isTripping || _isDead || [_sprite getPosition].y <= 62) && !_isNewUnderwaterPhysics) { 
+    if ((_isTripping || _isDead || [_sprite getPosition].y <= 64) && !_isNewUnderwaterPhysics) { 
     
         return; }
     if ((_isTripping || _isDead || [_sprite getPosition].y <= 22) && _isNewUnderwaterPhysics) { 
