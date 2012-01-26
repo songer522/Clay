@@ -19,8 +19,8 @@
     //weak references
     Level *_level;
 }
-
+/*
 -(void)testKickCollisions;
 -(void)updateBoundingBox;
-
+*/
 @end
