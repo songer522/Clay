@@ -347,6 +347,11 @@
         switch (trigger.type) {
             case TRIGGER_NEXTLEVEL:
                 [self endLevel];
+                if([_level.name isEqualToString:@"level11"])
+                {
+                [[self getBoss] stopTrainSound];
+                    [[self getBoss] stopHornSound];
+                }
                 break;
             case TRIGGER_CHECKPOINT:
                 [_savePoint setSavePoint:trigger.position Level:_level.name];

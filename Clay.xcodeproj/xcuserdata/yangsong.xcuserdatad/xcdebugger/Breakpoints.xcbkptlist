@@ -8,13 +8,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "Clay/Classes/Scenes/ChooseLevelScreen.m"
-         timestampString = "349134962.329072"
+         filePath = "Clay/Classes/Game/Other/Player.m"
+         timestampString = "349213998.509375"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "359"
-         endingLineNumber = "359"
-         landmarkName = "-loadMedals"
+         startingLineNumber = "191"
+         endingLineNumber = "191"
+         landmarkName = "-startDoubleJump"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

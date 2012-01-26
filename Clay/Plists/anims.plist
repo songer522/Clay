@@ -1141,6 +1141,23 @@
 		<key>spritesheetPlist</key>
 		<string>fireLevel</string>
 	</dict>
+	<key>dartLandingAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>2</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level13</string>
+		<key>looping</key>
+		<string>false</string>
+		<key>sequencePrefix</key>
+		<string>Dart_</string>
+		<key>spritesheetPlist</key>
+		<string>dojoLevel</string>
+	</dict>
 	<key>fireballMovingAnim</key>
 	<dict>
 		<key>animationFrames</key>
@@ -1157,6 +1174,23 @@
 		<string>Fireball_</string>
 		<key>spritesheetPlist</key>
 		<string>fireLevel</string>
+	</dict>
+	<key>dartMovingAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level13</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Dart_</string>
+		<key>spritesheetPlist</key>
+		<string>dojoLevel</string>
 	</dict>
 	<key>floatingAnim</key>
 	<dict>

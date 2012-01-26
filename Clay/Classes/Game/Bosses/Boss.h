@@ -74,6 +74,8 @@ typedef enum {
 -(void)setSprite:(Sprite*)sprite;
 -(void)startBoss;
 -(void)switchToPhase:(BossPhase)phase;
+-(void)stopHornSound;
+-(void)stopTrainSound;
 -(void)triggerAttack;
 -(void)triggerAttack2;
 -(void)triggerAttack3;

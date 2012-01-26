@@ -319,6 +319,10 @@
         case COLLISION_BEHAVIOR_FIREBALL_MOVING:
             _collided = false;
             break;
+        case COLLISION_BEHAVIOR_DART_START:
+        case COLLISION_BEHAVIOR_DART_MOVING:
+            _collided = false;
+            break;
         case COLLISION_BEHAVIOR_FROG_SQUASH:
             [self.sprite setAnimationByName:@"rainyFrogSquashAnim"];
             [[SoundEngine shared] playSound:@"frogSquish"];
@@ -401,6 +405,7 @@
             break;
         case COLLISION_BEHAVIOR_WATER_SQUID_FADES:
         case COLLISION_BEHAVIOR_FIREBALL_LANDED:
+         case COLLISION_BEHAVIOR_DART_LANDED:   
         case COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR:
         case COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR_WAITTOSHOOT:
         case COLLISION_BEHAVIOR_ZOMBIE_FADE:
@@ -1143,11 +1148,45 @@
             } else {
             }
             break;
-
+            ////////////////////////
+            //LEVEL 13 - DOJO RUN
+            ////////////////////////
             
+        case COLLISION_BEHAVIOR_DART_START:
+            if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+                Player *player = [[LayerManager sharedLayers] getPlayer];
+                CGPoint position = [player getPosition];
+                [self setPositionAtX:(position.x + 300.0f) Y:350.0f];
+                [self setPlayerEffect:@"none"];
+                _currentBehavior = COLLISION_BEHAVIOR_DART_MOVING;
+                _isInvincible = true;
+                
+            }
+            break;
+        case COLLISION_BEHAVIOR_DART_MOVING:
+            _vx -= 90.0f;
+            _vy += 150.0f;
+            if (_y <= 255.0f) {
+                _vx = 0.0f;
+                _vy = 0.0f;
+                _x = _prevLocation.x;
+                _y = 90.0f;
+                _isInvincible = false;
+                [self setPositionAtX:_x Y:_y];
+                [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"dartLandingAnim"];
+                _currentBehavior = COLLISION_BEHAVIOR_DART_LANDED;
+                _collideBehavior = COLLISION_BEHAVIOR_DART_LANDED;
+                [self setPlayerEffect:@"collide"];
+                //[[SoundEngine shared] playSound:@"dartLand"];
+            }
+            break;
+
         default:
             break;
     }
+    
+
+
 }
 
 -(void) chaseAtDistance:(float)distance DefaultSpeed:(float)defaultSpeed ChaseSpeed:(float)chaseSpeed
@@ -1376,7 +1415,13 @@
     } else if(_currentBehavior == COLLISION_BEHAVIOR_FIREBALL_START || _currentBehavior == COLLISION_BEHAVIOR_FIREBALL_MOVING || _currentBehavior == COLLISION_BEHAVIOR_FIREBALL_LANDED) {
         _currentBehavior = COLLISION_BEHAVIOR_FIREBALL_START;
         [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"fireballMovingAnim"];
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR_WAITTOSHOOT || _currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR) {
+    }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_DART_START || _currentBehavior == COLLISION_BEHAVIOR_DART_MOVING || _currentBehavior == COLLISION_BEHAVIOR_DART_LANDED) {
+        _currentBehavior = COLLISION_BEHAVIOR_DART_START;
+        [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"dartMovingAnim"];
+    }
+    
+    else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR_WAITTOSHOOT || _currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR) {
         _currentBehavior = COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR_WAITTOSHOOT;
         [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"fireDemonWithArmorWalking"];
     } else if(_currentBehavior == COLLISION_BEHAVIOR_FROG_SQUASH) {
@@ -1596,7 +1641,12 @@
     } else if([behavior isEqualToString:@"fireball"]) {
         _collideBehavior = COLLISION_BEHAVIOR_FIREBALL_MOVING;
         _currentBehavior = COLLISION_BEHAVIOR_FIREBALL_START;
-    } else if([behavior isEqualToString:@"frogSquash"]) {
+    }
+    else if([behavior isEqualToString:@"dart"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_DART_MOVING;
+        _currentBehavior = COLLISION_BEHAVIOR_DART_START;
+    }
+    else if([behavior isEqualToString:@"frogSquash"]) {
         _collideBehavior = COLLISION_BEHAVIOR_FROG_SQUASH;
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;
     } else if([behavior isEqualToString:@"umbrellaFlyUp"]) {
