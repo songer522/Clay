@@ -306,6 +306,8 @@
 		547845CA149ACF0200591D15 /* timed_normal_level8_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 5478455C149ACF0200591D15 /* timed_normal_level8_hd.tmx */; };
 		547845CB149ACF0200591D15 /* timed_normal_level9.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 5478455D149ACF0200591D15 /* timed_normal_level9.tmx */; };
 		547845CC149ACF0200591D15 /* timed_normal_level9_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 5478455E149ACF0200591D15 /* timed_normal_level9_hd.tmx */; };
+		548780FF14D0B3D300EDC04B /* SKProduct+LocalizedPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = 548780FE14D0B3D300EDC04B /* SKProduct+LocalizedPrice.m */; };
+		5487810214D0D69A00EDC04B /* DlcGameWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 5487810114D0D69A00EDC04B /* DlcGameWindow.m */; };
 		54883B8A14487ED80029759E /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 54883B8414487ED80029759E /* Icon-72.png */; };
 		54883B8B14487ED80029759E /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 54883B8514487ED80029759E /* Icon-Small-50.png */; };
 		54883B8C14487ED80029759E /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 54883B8614487ED80029759E /* Icon-Small.png */; };
@@ -1099,6 +1101,11 @@
 		5478455C149ACF0200591D15 /* timed_normal_level8_hd.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = timed_normal_level8_hd.tmx; sourceTree = "<group>"; };
 		5478455D149ACF0200591D15 /* timed_normal_level9.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = timed_normal_level9.tmx; sourceTree = "<group>"; };
 		5478455E149ACF0200591D15 /* timed_normal_level9_hd.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = timed_normal_level9_hd.tmx; sourceTree = "<group>"; };
+		548780FD14D0B3D300EDC04B /* SKProduct+LocalizedPrice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKProduct+LocalizedPrice.h"; sourceTree = "<group>"; };
+		548780FE14D0B3D300EDC04B /* SKProduct+LocalizedPrice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKProduct+LocalizedPrice.m"; sourceTree = "<group>"; };
+		5487810014D0D69A00EDC04B /* DlcGameWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DlcGameWindow.h; sourceTree = "<group>"; };
+		5487810114D0D69A00EDC04B /* DlcGameWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DlcGameWindow.m; sourceTree = "<group>"; };
+		5487810714D108DE00EDC04B /* DlcLevelDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DlcLevelDelegate.h; path = ../../Scenes/DlcLevelDelegate.h; sourceTree = "<group>"; };
 		54883B8414487ED80029759E /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "Resources/icons/Icon-72.png"; sourceTree = "<group>"; };
 		54883B8514487ED80029759E /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small-50.png"; path = "Resources/icons/Icon-Small-50.png"; sourceTree = "<group>"; };
 		54883B8614487ED80029759E /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small.png"; path = "Resources/icons/Icon-Small.png"; sourceTree = "<group>"; };
@@ -2673,6 +2680,8 @@
 				61DE5C041485869000D325CF /* Tutorial.m */,
 				5418B32E14A251E700FB00EC /* GameWindow.h */,
 				5418B32F14A251E700FB00EC /* GameWindow.m */,
+				5487810014D0D69A00EDC04B /* DlcGameWindow.h */,
+				5487810114D0D69A00EDC04B /* DlcGameWindow.m */,
 			);
 			path = GUI;
 			sourceTree = "<group>";
@@ -2708,8 +2717,11 @@
 				548D2D1C1461E871005E1AC0 /* Skin.m */,
 				54CA7A7C1471C97C002B01AA /* TextureManager.h */,
 				54CA7A7D1471C97C002B01AA /* TextureManager.m */,
+				5487810714D108DE00EDC04B /* DlcLevelDelegate.h */,
 				5461D7A814CF67B600BEE18E /* InAppPurchaseManager.h */,
 				5461D7A914CF67B600BEE18E /* InAppPurchaseManager.m */,
+				548780FD14D0B3D300EDC04B /* SKProduct+LocalizedPrice.h */,
+				548780FE14D0B3D300EDC04B /* SKProduct+LocalizedPrice.m */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -3796,6 +3808,8 @@
 				E4F257BF14C00DA00006985B /* EndLevelScene.m in Sources */,
 				54314C0614CA164000DDFDF5 /* PlayerActionPump.m in Sources */,
 				5461D7AA14CF67B600BEE18E /* InAppPurchaseManager.m in Sources */,
+				548780FF14D0B3D300EDC04B /* SKProduct+LocalizedPrice.m in Sources */,
+				5487810214D0D69A00EDC04B /* DlcGameWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3940,7 +3954,7 @@
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A66BB40F-B383-4FBD-90F4-1F559FA1F921";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8147A182-A688-41E1-92F6-F6529820CAE6";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

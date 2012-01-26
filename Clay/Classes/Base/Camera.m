@@ -19,6 +19,7 @@
 @synthesize isPlayerResetting = _isPlayerResetting;
 @synthesize isShiftForwardForKickAction = _isShiftForwardForKickAction;
 
+
 #define CAMERA_MOVE_TO_TARGET_SPEED 6.0f
 #define CAMERA_OFFSCREEN_PADDING_LEFT 300.0f
 #define CAMERA_OFFSCREEN_PADDING_RIGHT 780.0f //include the size of the screen (in points?)
@@ -324,6 +325,11 @@ static Camera *_sharedCamera = nil;
 {
     _totalStepsForKickShiftForward = 0;
     _isShiftForwardForKickAction = true;
+}
+
+-(float) xPosition
+{
+    return _x;
 }
 
 -(void)dealloc

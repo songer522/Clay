@@ -7,6 +7,9 @@
 //
 
 #import "InAppPurchaseManager.h"
+#import "SKProduct+LocalizedPrice.h"
+#import "LayerManager.h"
+
 
 @implementation InAppPurchaseManager
 
@@ -53,6 +56,7 @@ static InAppPurchaseManager *_shared = nil;
 -(id)init
 {
     if ((self=[super init])) {
+        _dlcData = [[NSMutableDictionary alloc] initWithCapacity:2];
     }
     return self;
 }
@@ -61,7 +65,7 @@ static InAppPurchaseManager *_shared = nil;
 
 - (void)requestProductData
 {
-    NSSet *productIdentifiers = [NSSet setWithObjects:@"com.xecudev.Clay.trainingLevelUpgrade",@"com.xecudev.Clay.dojoLevelUpgrade", nil];
+    NSSet *productIdentifiers = [NSSet setWithObjects:@"com.xecudev.Clay.trainingLevelUnlock",@"com.xecudev.Clay.dojoLevelUnlock", nil];
     _productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:productIdentifiers];
     _productsRequest.delegate = self;
     [_productsRequest start];
@@ -77,10 +81,13 @@ static InAppPurchaseManager *_shared = nil;
     NSArray *products = response.products;
     
     for (SKProduct *product in products) {
-        NSLog(@"Product title: %@" , _trainingLevelProduct.localizedTitle);
-        NSLog(@"Product description: %@" , _trainingLevelProduct.localizedDescription);
-        NSLog(@"Product price: %@" , _trainingLevelProduct.price);
-        NSLog(@"Product id: %@" , _trainingLevelProduct.productIdentifier);        
+        [_dlcData setValue:[product retain] forKey:product.productIdentifier];
+        /*
+        NSLog(@"Product title: %@" , product.localizedTitle);
+        NSLog(@"Product description: %@" , product.localizedDescription);
+        NSLog(@"Product price: %@" , [product localizedPrice]);
+        NSLog(@"Product id: %@" , product.productIdentifier);        
+        */
     }
     
     for (NSString *invalidProductId in response.invalidProductIdentifiers)
@@ -93,5 +100,192 @@ static InAppPurchaseManager *_shared = nil;
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kInAppPurchaseManagerProductsFetchedNotification object:self userInfo:nil];
 }
+
+
+
+
+//
+// call this method once on startup
+//
+- (void)loadStore
+{
+    // restarts any purchases if they were interrupted last time the app was open
+    [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
+    
+    // get the product description
+    [self requestProductData];
+}
+
+//
+// call this before making a purchase
+//
+- (BOOL)canMakePurchases
+{
+    return [SKPaymentQueue canMakePayments];
+}
+
+#pragma -
+#pragma Purchase helpers
+
+//
+// removes the transaction from the queue and posts a notification with the transaction result
+//
+- (void)finishTransaction:(SKPaymentTransaction *)transaction wasSuccessful:(BOOL)wasSuccessful
+{
+    // remove the transaction from the payment queue.
+    [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+    
+    NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:transaction, @"transaction" , nil];
+    if (wasSuccessful)
+    {
+        // send out a notification that we’ve finished the transaction
+        [[NSNotificationCenter defaultCenter] postNotificationName:kInAppPurchaseManagerTransactionSucceededNotification object:self userInfo:userInfo];
+    }
+    else
+    {
+        // send out a notification for the failed transaction
+        [[NSNotificationCenter defaultCenter] postNotificationName:kInAppPurchaseManagerTransactionFailedNotification object:self userInfo:userInfo];
+    }
+}
+
+//
+// called when the transaction was successful
+//
+- (void)completeTransaction:(SKPaymentTransaction *)transaction
+{
+    [self recordTransaction:transaction];
+    [self provideContent:transaction.payment.productIdentifier];
+    [self finishTransaction:transaction wasSuccessful:YES];
+}
+
+//
+// called when a transaction has been restored and and successfully completed
+//
+- (void)restoreTransaction:(SKPaymentTransaction *)transaction
+{
+    [self recordTransaction:transaction.originalTransaction];
+    [self provideContent:transaction.originalTransaction.payment.productIdentifier];
+    [self finishTransaction:transaction wasSuccessful:YES];
+}
+
+//
+// called when a transaction has failed
+//
+- (void)failedTransaction:(SKPaymentTransaction *)transaction
+{
+    if (transaction.error.code != SKErrorPaymentCancelled)
+    {
+        // error!
+        [self finishTransaction:transaction wasSuccessful:NO];
+    }
+    else
+    {
+        // this is fine, the user just cancelled, so don’t notify
+        [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+    }
+}
+
+#pragma mark -
+#pragma mark SKPaymentTransactionObserver methods
+
+//
+// called when the transaction status is updated
+//
+- (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions
+{
+    for (SKPaymentTransaction *transaction in transactions)
+    {
+        switch (transaction.transactionState)
+        {
+            case SKPaymentTransactionStatePurchased:
+                //NSLog(@"TRANSACTION PURCHASED");
+                [self completeTransaction:transaction];
+                break;
+            case SKPaymentTransactionStateFailed:
+                //NSLog(@"TRANSACTION FAILED");
+                [self failedTransaction:transaction];
+                break;
+            case SKPaymentTransactionStateRestored:
+                //NSLog(@"TRANSACTION RESTORED");
+                [self restoreTransaction:transaction];
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+
+-(SKProduct*)getProductInfoForKey:(NSString*)key
+{
+    SKProduct *product = [_dlcData objectForKey:key];
+    return product;
+}
+
+
+
+#pragma mark -
+#pragma mark Purchasing methods
+
+//call these methods when user says they want to make the purchase
+
+
+//
+// saves a record of the transaction by storing the receipt to disk
+//
+- (void)recordTransaction:(SKPaymentTransaction *)transaction
+{
+    //NSLog(@"RECORD TRANSACTION");
+    if ([transaction.payment.productIdentifier isEqualToString:kInAppPurchaseTrainingRunProductId])
+    {
+        // save the transaction receipt to disk
+        [[NSUserDefaults standardUserDefaults] setValue:transaction.transactionReceipt forKey:@"trainingRunTransactionReceipt" ];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    } else if ([transaction.payment.productIdentifier isEqualToString:kInAppPurchaseDojoRunProductId])
+    {
+        // save the transaction receipt to disk
+        [[NSUserDefaults standardUserDefaults] setValue:transaction.transactionReceipt forKey:@"dojoRunTransactionReceipt" ];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+}
+
+//
+// enable features
+//
+- (void)provideContent:(NSString *)productId
+{
+    bool updateBonusLevelsMenu = false;
+    
+    if ([productId isEqualToString:kInAppPurchaseTrainingRunProductId])
+    {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isTrainingRunPurchased"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        updateBonusLevelsMenu = true;
+        NSLog(@"PROVIDE CONTENT: TRAINING RUN");
+        [_delegate updateDlcLevels];
+
+    }
+    else if ([productId isEqualToString:kInAppPurchaseDojoRunProductId])
+    {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isDojoRunPurchased"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        updateBonusLevelsMenu = true;
+        NSLog(@"PROVIDE CONTENT: DOJO RUN");
+        [_delegate updateDlcLevels];
+    }
+    
+    
+    
+}
+
+
+- (void)purchaseProductId:(NSString*)productId Delegate:(id<DlcLevelDelegate>)delegate
+{
+    _delegate = delegate;
+    SKPayment *payment = [SKPayment paymentWithProductIdentifier:productId];
+    [[SKPaymentQueue defaultQueue] addPayment:payment];
+}
+
+
 
 @end

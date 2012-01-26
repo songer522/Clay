@@ -554,11 +554,13 @@
 
 -(void)switchToChooseLevel
 {
+    [[GameSettings shared] setGlobal:@"gameScreen" ForKey:@"previousScreenName"];
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[ChooseLevelScreen scene]]];
 }
 
 -(void)switchToChooseMode
 {
+    [[GameSettings shared] setGlobal:@"gameScreen" ForKey:@"previousScreenName"];
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[ChooseModeScene scene]]];    
 }
 
