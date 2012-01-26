@@ -29,7 +29,7 @@
   </tile>
  </tileset>
  <tileset firstgid="13" name="Icons" tilewidth="64" tileheight="64">
-  <image source="TrackLapse_Icons.png" width="640" height="704"/>
+  <image source="TrackLapse_Icons-hd.png" width="640" height="704"/>
   <tile id="0">
    <properties>
     <property name="obstacle" value="hurdle"/>
@@ -121,6 +121,16 @@
     <property name="object" value="dojoNinjaBackground"/>
    </properties>
   </tile>
+  <tile id="104">
+   <properties>
+    <property name="object" value="dojoNinjaBackground"/>
+   </properties>
+  </tile>
+  <tile id="105">
+   <properties>
+    <property name="obstacle" value="dojoDropNinja"/>
+   </properties>
+  </tile>
   <tile id="106">
    <properties>
     <property name="special" value="checkpointDojo"/>
@@ -182,7 +192,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztz7ENgDAMRcFMgBgWCdieipIIWySmuGv9i+fWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACArM3efuIeAACAec7k7fiwYQ9se023SFv2jzcdTyL/AgDAn63VATDIUh0AAAAAAAAAAAUuXJ4KPQ==
+   eJzt0UsKgDAMQEFPIF7W3+3di4qpLVGcWafhhXYdAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQaswO2GndY3/u/qi/9bztXgAA4NumwndLxZ1zYHa9MXPV9mQ22nEmcu+R0j8DAIDahuwAaKTPDgAAAAAAAACABBtUpgjm
   </data>
  </layer>
  <layer name="meta" width="1000" height="14" opacity="0.74">

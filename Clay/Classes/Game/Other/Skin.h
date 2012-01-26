@@ -25,6 +25,7 @@ typedef enum {
     PLAYER_ANIM_SLOWTIME,
     PLAYER_ANIM_FLOATING,
     PLAYER_ANIM_PUMP,
+    PLAYER_ANIM_PUNCH,
     PLAYER_ANIM_NONE
 }PlayerAnimation;
 
@@ -58,6 +59,7 @@ typedef enum {
     NSString *_spinUp;
     NSString *_slowTimeAction;
     NSString *_pumpAction;
+    NSString *_punchAction;
 }
 
 +(id)instance;

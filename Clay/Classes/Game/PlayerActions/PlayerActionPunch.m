@@ -7,26 +7,30 @@
 //
 
 #import "PlayerActionPunch.h"
+#import "Projectile.h"
+#import "Level.h"
+#import "LevelManager.h"
+#import "GameSettings.h"
+#import "RunningSpeed.h"
+#import "Player.h"
 
 @implementation PlayerActionPunch
-/*
+
 #define kPlayerActionKickMoveX 20.0f
 #define kPlayerActionKickFullDuration 0.38f;
 #define kPlayerActionKickActiveWhileDurationLessThan 0.75f
 
-@implementation PlayerActionKick
-
 -(void) initialize
 {
     [super initialize];
-    _kick = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_PLAYER_KICK];
+    _punch = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_DOJO_PUNCH];
     if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
     {
-        [_kick setBoundingBox:CGRectMake(0, 0, 35, 35)];
+        [_punch setBoundingBox:CGRectMake(0, 0, 35, 35)];
     }
     else
     {
-        [_kick setBoundingBox:CGRectMake(0, 35, 35, 35)];
+        [_punch setBoundingBox:CGRectMake(0, 35, 35, 35)];
     }
     _cooldownStart = 0.6f;
     _cooldown = 0.0f;
@@ -38,11 +42,10 @@
 {
     if (!_inAction && _canTrigger) {
         _duration = kPlayerActionKickFullDuration;
-        _madeFootProjectile = false;
+        _madePunchProjectile = false;
         [_parent endTurbo:false];
-        [_kick reset];
-        [_parent setPlayerAnimation:PLAYER_ANIM_KICK];
-        [[Camera sharedCamera] startShiftForwardForKick];
+        [_punch reset];
+        [_parent setPlayerAnimation:PLAYER_ANIM_PUNCH];
     }
     [super startAction];
 }
@@ -52,7 +55,7 @@
     if (_inAction) {
         if (_duration < kPlayerActionKickActiveWhileDurationLessThan) {
             _isActive = true;
-            [_kick setActive:YES];
+            [_punch setActive:YES];
             
             [self updateBoundingBox];
             
@@ -69,17 +72,17 @@
                 position.y += 33.0f;
                 
             }
-            [_kick setPosition:position];
+            [_punch setPosition:position];
             
-            if (!_madeFootProjectile) {
-                _madeFootProjectile = true;
+            if (!_madePunchProjectile) {
+                _madePunchProjectile = true;
                 [[_parent getSpeed] startKick];
             }
             
-            [self testKickCollisions];
+            [self testPunchCollisions];
             
         } else {
-            [_kick setActive:NO];
+            [_punch setActive:NO];
             _isActive = false;
         }
     }
@@ -112,22 +115,22 @@
     
     if ([[GameSettings shared] usingHighResolutionGraphics])
     {
-        [_kick setBoundingBox:CGRectMake(startX, 0, projWidth, 35)];
+        [_punch setBoundingBox:CGRectMake(startX, 0, projWidth, 35)];
     }
     else
     {
-        [_kick setBoundingBox:CGRectMake(startX, 35, projWidth, 35)];
+        [_punch setBoundingBox:CGRectMake(startX, 35, projWidth, 35)];
     }
     
 }
 
--(void)testKickCollisions
+-(void)testPunchCollisions
 {
     NSMutableArray *obstacles = [[[LevelManager shared] currentLevel] getActiveGameObjectList];
     for (GameObject *object in obstacles) {
         if([object getCurrentCollisionBehavior] == COLLISION_BEHAVIOR_HEN_STATIC)
         {
-            if([_level testCollisionWithGameObject:object Source:_kick])
+            if([_level testCollisionWithGameObject:object Source:_punch])
             {
                 [object special_kickHen];
                 [self setKilledEnemy:YES];
@@ -139,22 +142,20 @@
 -(void)cancelAction
 {
     [_parent setPlayerAnimation:PLAYER_ANIM_RUNNING];
-    [_kick disable];
+    [_punch disable];
     [super cancelAction];
-    [Camera sharedCamera].isShiftForwardForKickAction = false;
 }
 
 -(void)endAction
 {
     [_parent pushAfterAnimation:kPlayerActionKickMoveX];
-    [_kick disable];
+    [_punch disable];
     [super endAction];
-    [Camera sharedCamera].isShiftForwardForKickAction = false;
 }
 
 -(NSMutableArray*)getProjectiles
 {
-    NSMutableArray *array = [[NSMutableArray alloc] initWithObjects:_kick, nil];
+    NSMutableArray *array = [[NSMutableArray alloc] initWithObjects:_punch, nil];
     return array;
 }
 
@@ -166,10 +167,8 @@
 
 -(void)dealloc
 {
-    [_kick release];
+    [_punch release];
     [super dealloc];
 }
-*/
-
 
 @end

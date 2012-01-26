@@ -414,6 +414,7 @@
         case COLLISION_BEHAVIOR_RAINY_SQUIRREL:
         case COLLISION_BEHAVIOR_COMPUTER_WORM:
         case COLLISION_BEHAVIOR_TRAINING_EXERCISE_BALL:
+        case COLLISION_BEHAVIOR_DOJO_DROP_NINJA:
             _alpha = 1.2f;
             _fadeout = true;
         default:
@@ -507,7 +508,7 @@
     _prevLocation = CGPointMake(_x, _y);
     
     if(_isBouncing) { //for some reason don't see the hasgravity stuff working
-        _vy += 500.0f * dt;
+        _vy += _bounceGravity * dt;
     }
     
     _x += _vx * dt;
@@ -572,9 +573,9 @@
     _rotationAmount -= _magnitude * dt;
     [_sprite getCCSprite].rotation = _rotationAmount;
     
-    if (_y <= 70) {
-        _y = 70;
-        _vy = - 0.55f * _vy;
+    if (_y <= _bouncePosition) {
+        _y = _bouncePosition;
+        _vy = - _bounceYDampening * _vy;
         _vx = 0.7f * _vx;
         _magnitude = 0.7f * _magnitude;
     }    
@@ -1142,16 +1143,19 @@
                     _rotationAmount = 0.0f;
                     _magnitude = 170.0f; //magnitude of rotation
                     _vx = -100.0f;
+                    _bouncePosition = 70.0f;
+                    _bounceGravity = 500.0f;
+                    _bounceYDampening = 0.55f;
                 } else {
                     _isBouncing = false;
                 }
             } else {
             }
             break;
-            ////////////////////////
-            //LEVEL 13 - DOJO RUN
-            ////////////////////////
             
+        ////////////////////////
+        //LEVEL 13 - DOJO RUN
+        ////////////////////////
         case COLLISION_BEHAVIOR_DART_START:
             if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
                 Player *player = [[LayerManager sharedLayers] getPlayer];
@@ -1180,7 +1184,19 @@
                 //[[SoundEngine shared] playSound:@"dartLand"];
             }
             break;
-
+        case COLLISION_BEHAVIOR_DOJO_DROP_NINJA:
+            if (!_hasTriggered && [self closeToPlayer:450]) {
+                _hasTriggered = true;
+                _y = 600.0f;
+                _x -= 50.0f;
+                _isBouncing = true;
+                _bouncePosition = 90.0f;
+                _bounceGravity = 1000.0f;
+                _bounceYDampening = 0.25f;
+                _vy = 400.0f;
+            } else if(_hasTriggered) {
+            }
+            break;
         default:
             break;
     }
@@ -1529,6 +1545,10 @@
         _collideBehavior = COLLISION_BEHAVIOR_TRAINING_EXERCISE_BALL;
         _hasTriggered = false;
     }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_DOJO_DROP_NINJA) {
+        _currentBehavior = COLLISION_BEHAVIOR_DOJO_DROP_NINJA;
+        _hasTriggered = false;
+    }
     else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_SLOW) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;     
     }
@@ -1772,6 +1792,10 @@
     else if([behavior isEqualToString:@"exerciseBall"]) {
         _currentBehavior = COLLISION_BEHAVIOR_TRAINING_EXERCISE_BALL;
         _collideBehavior = COLLISION_BEHAVIOR_TRAINING_EXERCISE_BALL;
+    }
+    else if([behavior isEqualToString:@"dropninja"]) {
+        _currentBehavior = COLLISION_BEHAVIOR_DOJO_DROP_NINJA;
+        _collideBehavior = COLLISION_BEHAVIOR_DOJO_DROP_NINJA;
     }
     else {
         _collideBehavior = COLLISION_BEHAVIOR_NONE;

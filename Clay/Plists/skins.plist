@@ -10,6 +10,8 @@
 		<dict>
 			<key>pumpAction</key>
 			<string>pumpAnim</string>
+			<key>punchAction</key>
+			<string>punchingAnim</string>
 			<key>floating</key>
 			<string>floatingAnim</string>
 			<key>slowTimeAction</key>
@@ -48,6 +50,8 @@
 		<dict>
 			<key>pumpAction</key>
 			<string>pumpAnim</string>
+			<key>punchAction</key>
+			<string>punchingAnim</string>
 			<key>slowTimeAction</key>
 			<string>slowTimeAnim</string>
 			<key>floating</key>
