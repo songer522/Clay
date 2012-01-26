@@ -86,7 +86,7 @@
         
         self.isTouchEnabled = YES;
         
-        [[InAppPurchaseManager shared] loadStore];
+        [[InAppPurchaseManager shared] loadStoreWithDelegate:self];
         
         _gameMode = [[GameSettings shared] getGlobalForKey:@"gameMode"];
         _gameDifficulty = [[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
@@ -159,6 +159,14 @@
     NSSet *allTouches = [event allTouches];
     for(UITouch *touch in allTouches) {
         CGPoint position = [self convertTouchToNodeSpace:touch];
+        
+        if(_errorWindowOpen) {
+            WindowSelectionType type = [_errorWindow checkCollisionAtPoint:position];
+            if (type == WIN_SELECT_OK) {
+                [self closeErrorWindow];
+                break;
+            }
+        }
         
         for (LevelButton *button in _buttons) {
             if([button checkIfSelected:position] && !_panelTransition && [button isUnlocked]) {
@@ -251,6 +259,29 @@
 -(void)updateDlcLevels
 {
     [self updateStartButton];
+}
+
+-(void)openErrorWindowCantConnectToStore
+{
+    if (!_errorWindowOpen) {
+        _errorWindowOpen = true;
+        _errorWindow = [GameWindow gameWindowWithHeader:@"ERROR" Message:@"CANNOT CONNECT TO THE STORE AT THIS TIME. PLEASE TRY AGAIN LATER." Choices:WINDOW_CHOICE_OK Layer:self];        
+    }
+}
+
+-(void)openErrorWindowCantMakePurchases
+{
+    if (!_errorWindowOpen) {
+        _errorWindowOpen = true;
+        _errorWindow = [GameWindow gameWindowWithHeader:@"ERROR" Message:@"CANNOT MAKE PURCHASES AT THIS TIME." Choices:WINDOW_CHOICE_OK Layer:self];
+    }
+}
+
+-(void)closeErrorWindow
+{
+    _errorWindowOpen = false;
+    [_errorWindow release];
+    _errorWindow = nil;
 }
 
 -(void)updateStartButton

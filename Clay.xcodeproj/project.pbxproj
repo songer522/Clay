@@ -542,6 +542,7 @@
 		54EB13C2148C8B0600D94191 /* characterSpinning.png in Resources */ = {isa = PBXBuildFile; fileRef = 54EB13BE148C8B0600D94191 /* characterSpinning.png */; };
 		54F6E4EE14882A78002D4C65 /* Lightning.m in Sources */ = {isa = PBXBuildFile; fileRef = 54F6E4ED14882A78002D4C65 /* Lightning.m */; };
 		54F7F57F143CD0FD004EC10B /* 7 Segment.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 54F7F57E143CD0FD004EC10B /* 7 Segment.ttf */; };
+		54F8202814D1DA170028D32A /* PlayerActionPunch.m in Sources */ = {isa = PBXBuildFile; fileRef = 54F8202714D1DA170028D32A /* PlayerActionPunch.m */; };
 		54FBA2361430CBBE0010A91A /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54FBA2351430CBBE0010A91A /* MediaPlayer.framework */; };
 		57A03E9D1452173A00F2017F /* Menu_Ending_BestTime.png in Resources */ = {isa = PBXBuildFile; fileRef = 57A03E9C1452173A00F2017F /* Menu_Ending_BestTime.png */; };
 		5F8A449814687FF200CE1FC2 /* bullet-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8A449514687FF200CE1FC2 /* bullet-hd.png */; };
@@ -1431,6 +1432,8 @@
 		54F6E4EC14882A77002D4C65 /* Lightning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lightning.h; sourceTree = "<group>"; };
 		54F6E4ED14882A78002D4C65 /* Lightning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lightning.m; sourceTree = "<group>"; };
 		54F7F57E143CD0FD004EC10B /* 7 Segment.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "7 Segment.ttf"; path = "Resources/fonts/7 Segment.ttf"; sourceTree = "<group>"; };
+		54F8202614D1DA170028D32A /* PlayerActionPunch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerActionPunch.h; sourceTree = "<group>"; };
+		54F8202714D1DA170028D32A /* PlayerActionPunch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerActionPunch.m; sourceTree = "<group>"; };
 		54FBA2351430CBBE0010A91A /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		57A03E9C1452173A00F2017F /* Menu_Ending_BestTime.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Menu_Ending_BestTime.png; sourceTree = "<group>"; };
 		5F8A449514687FF200CE1FC2 /* bullet-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bullet-hd.png"; sourceTree = "<group>"; };
@@ -2753,6 +2756,8 @@
 				549ED7E71461D065008BCD98 /* PlayerActionWoo.m */,
 				54314C0414CA164000DDFDF5 /* PlayerActionPump.h */,
 				54314C0514CA164000DDFDF5 /* PlayerActionPump.m */,
+				54F8202614D1DA170028D32A /* PlayerActionPunch.h */,
+				54F8202714D1DA170028D32A /* PlayerActionPunch.m */,
 			);
 			path = PlayerActions;
 			sourceTree = "<group>";
@@ -3810,6 +3815,7 @@
 				5461D7AA14CF67B600BEE18E /* InAppPurchaseManager.m in Sources */,
 				548780FF14D0B3D300EDC04B /* SKProduct+LocalizedPrice.m in Sources */,
 				5487810214D0D69A00EDC04B /* DlcGameWindow.m in Sources */,
+				54F8202814D1DA170028D32A /* PlayerActionPunch.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

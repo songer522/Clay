@@ -648,6 +648,23 @@
 		<key>spritesheetPlist</key>
 		<string>darkLevel</string>
 	</dict>
+	<key>darkRailroadBumperAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.25</string>
+		<key>group</key>
+		<string>level11</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Bumper_</string>
+		<key>spritesheetPlist</key>
+		<string>darkLevel</string>
+	</dict>
 	<key>discoDancersAnim</key>
 	<dict>
 		<key>animationFrames</key>

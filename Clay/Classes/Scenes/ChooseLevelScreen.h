@@ -22,6 +22,7 @@
 @class ChooseLevelPanel;
 @class FBPrompt;
 @class DlcGameWindow;
+@class GameWindow;
 
 typedef enum {
     TRACK_RUN = 1,
@@ -79,6 +80,9 @@ typedef enum {
     DlcGameWindow *_dlcWindow;
     bool _dlcWindowOpen;
     
+    GameWindow *_errorWindow;
+    bool _errorWindowOpen;
+    
     
     bool _panelTransition;
     bool _hasSwitched;
@@ -125,4 +129,9 @@ typedef enum {
 
 -(void)prepareToPlayLevel;
 -(void)updateStartButton;
+
+-(void)openErrorWindowCantConnectToStore;
+-(void)openErrorWindowCantMakePurchases;
+-(void)closeErrorWindow;
+
 @end

@@ -50,10 +50,10 @@
 {
     switch (_contentId) {
         case DLC_CONTENT_LEVEL_TRAINING_RUN:
-            [[InAppPurchaseManager shared] purchaseTrainingLevel];
+            //[[InAppPurchaseManager shared] purchaseTrainingLevel];
             break;
         case DLC_CONTENT_LEVEL_DOJO_RUN:
-            [[InAppPurchaseManager shared] purchaseDojoLevel];
+            //[[InAppPurchaseManager shared] purchaseDojoLevel];
             break;
         default:
             break;

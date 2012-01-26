@@ -104,7 +104,7 @@
     NSArray *messageArray;
     
     if (_messageSeparation == MESSAGE_SEPARATOR_PIPE) {
-        messageArray = [message componentsSeparatedByString:message];
+        messageArray = [message componentsSeparatedByString:@"|"];
     } else {
         //character limit
         NSMutableArray *messages = [[NSMutableArray alloc] initWithCapacity:20];
