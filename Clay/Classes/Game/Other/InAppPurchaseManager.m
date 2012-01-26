@@ -93,6 +93,7 @@ static InAppPurchaseManager *_shared = nil;
     for (NSString *invalidProductId in response.invalidProductIdentifiers)
     {
         NSLog(@"Invalid product id: %@" , invalidProductId);
+        [_delegate openErrorWindowCantConnectToStore];
     }
     
     // finally release the reqest we alloc/init’ed in requestProUpgradeProductData
@@ -107,8 +108,10 @@ static InAppPurchaseManager *_shared = nil;
 //
 // call this method once on startup
 //
-- (void)loadStore
+- (void)loadStoreWithDelegate:(id<DlcLevelDelegate>)delegate
 {
+    _delegate = delegate;
+    
     // restarts any purchases if they were interrupted last time the app was open
     [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
     
@@ -282,8 +285,13 @@ static InAppPurchaseManager *_shared = nil;
 - (void)purchaseProductId:(NSString*)productId Delegate:(id<DlcLevelDelegate>)delegate
 {
     _delegate = delegate;
-    SKPayment *payment = [SKPayment paymentWithProductIdentifier:productId];
-    [[SKPaymentQueue defaultQueue] addPayment:payment];
+    
+    if ([self canMakePurchases]) {
+        SKPayment *payment = [SKPayment paymentWithProductIdentifier:productId];
+        [[SKPaymentQueue defaultQueue] addPayment:payment];        
+    } else {
+        [_delegate openErrorWindowCantMakePurchases];
+    }
 }
 
 

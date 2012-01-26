@@ -33,7 +33,7 @@
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response;
 
 //transaction functions
-- (void)loadStore;
+- (void)loadStoreWithDelegate:(id<DlcLevelDelegate>)delegate;
 - (BOOL)canMakePurchases;
 
 #pragma mark -
