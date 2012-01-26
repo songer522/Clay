@@ -502,6 +502,23 @@
                     [_otherMapObjects addObject:mapObject];
                     
                 }
+                else if([special isEqualToString:@"checkpointDojo"]) { //checkpoint trigger
+                    Trigger *trigger = [[Trigger alloc] init];
+                    trigger.position = [self getXYPositionForCoordinates:CGPointMake(i,j)];
+                    trigger.type = TRIGGER_CHECKPOINT;
+                    [_triggers addObject:trigger];
+                    
+                    //SHOULD work by giving it an object property, but stupidly isn't. so doing manually
+                    GameObject *object = [_gameObjects loadGameObjectWithName:@"checkpointDojo" AddToLayer:NO];
+                    CGPoint position = [self getXYPositionForCoordinates:coords];
+                    [object setPositionAtX:position.x Y:position.y];
+                    [object setStartingPosition:position];
+                    [[object getCCSprite] setScale:_scale];
+                    MapObject *mapObject = [MapObject mapObjectWithSprite:object AboveLayer:layerBelow];
+                    [_otherMapObjects addObject:mapObject];
+                    
+                }
+
                 
                 else if([special compare:@"spawnpoint"] == NSOrderedSame) {
                     _spawnPoint = [self getXYPositionForCoordinates:CGPointMake(i, j)];

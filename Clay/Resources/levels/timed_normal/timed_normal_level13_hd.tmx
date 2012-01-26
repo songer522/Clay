@@ -121,9 +121,24 @@
     <property name="object" value="dojoNinjaBackground"/>
    </properties>
   </tile>
+  <tile id="106">
+   <properties>
+    <property name="special" value="checkpointDojo"/>
+   </properties>
+  </tile>
+  <tile id="107">
+   <properties>
+    <property name="obstacle" value="dart"/>
+   </properties>
+  </tile>
+  <tile id="108">
+   <properties>
+    <property name="obstacle" value="rack"/>
+   </properties>
+  </tile>
  </tileset>
  <tileset firstgid="123" name="Dojo" tilewidth="64" tileheight="64">
-  <image source="tileset_level_13-hd.png" width="512" height="512"/>
+  <image source="tileset_level_13-hd.png" width="512" height="704"/>
  </tileset>
  <layer name="back-1" width="1000" height="14">
   <properties>
@@ -143,6 +158,15 @@
    eJztxrENwCAQBEG6N0Q2EdAtl7iGT2aklbY1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADg96Sehvfee++9995778v+TV+a3nvvvffee++9L/uVdjree++99957770vewAAAKDeBdODl9g=
   </data>
  </layer>
+ <layer name="ledges" width="1000" height="14">
+  <properties>
+   <property name="speedx" value="1.0"/>
+   <property name="speedy" value="1.0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztzskJhFAABUHzT8llBLcB15B8CXiUf7AK+t5VBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwvjo1qU1d+qW+5BAAAAB80JDGNKU5Lelf9AgAAAC+Z01b2tORznQVPQIAAAAAAAAAAAAA4MkNoUoN5A==
+  </data>
+ </layer>
  <layer name="front-1" width="1000" height="14">
   <properties>
    <property name="speedx" value="1.05"/>
@@ -158,7 +182,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztzrENACAMBLFMEDEs+ys7IMFT2PUVVwUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJzaev3DHgAAAAAAgP+t9ABc0ukBAAAAAAAAAAgYNEMGAw==
+   eJztz7ENgDAMRcFMgBgWCdieipIIWySmuGv9i+fWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACArM3efuIeAACAec7k7fiwYQ9se023SFv2jzcdTyL/AgDAn63VATDIUh0AAAAAAAAAAAUuXJ4KPQ==
   </data>
  </layer>
  <layer name="meta" width="1000" height="14" opacity="0.74">
@@ -167,7 +191,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztw0ENAAAMA6Gbf9N71gQkFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADMqaqqqqqqqqo9A5UH0Q==
+   eJztwzENAAAIA7Bx4N8yP8EBbdIEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD4olcAAAAAAAAAuJSqqqqqqqqqmgHT2Qfl
   </data>
  </layer>
 </map>
