@@ -1367,6 +1367,41 @@
 		<key>playerEffect</key>
 		<string>collide</string>
 	</dict>
+	<key>dojoDeathPit</key>
+	<dict>
+		<key>aggressive</key>
+		<string>false</string>
+		<key>anchorpoint</key>
+		<dict>
+			<key>x</key>
+			<real>0.5</real>
+			<key>y</key>
+			<real>0.5</real>
+		</dict>
+		<key>animationName</key>
+		<string>dojoDeathPitClosedAnim</string>
+		<key>boundingBox</key>
+		<dict>
+			<key>height</key>
+			<integer>110</integer>
+			<key>width</key>
+			<integer>60</integer>
+			<key>x</key>
+			<integer>50</integer>
+			<key>y</key>
+			<integer>60</integer>
+		</dict>
+		<key>collideBehavior</key>
+		<string>dojoDeathPit</string>
+		<key>imageName</key>
+		<string>blank.png</string>
+		<key>offsetx</key>
+		<integer>1</integer>
+		<key>offsety</key>
+		<integer>-16</integer>
+		<key>playerEffect</key>
+		<string>none</string>
+	</dict>
 	<key>clappingCrowd</key>
 	<dict>
 		<key>useDefaultBatchNode</key>
