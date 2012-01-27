@@ -568,6 +568,10 @@
 		6119ABBD14ACDC3E00A7B136 /* story_hard_level3_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 6119ABBC14ACDC3E00A7B136 /* story_hard_level3_hd.tmx */; };
 		6119ABBF14ACDC6A00A7B136 /* timed_normal_level3_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 6119ABBE14ACDC6A00A7B136 /* timed_normal_level3_hd.tmx */; };
 		6119ABC114ACDC8F00A7B136 /* timed_hard_level3_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 6119ABC014ACDC8F00A7B136 /* timed_hard_level3_hd.tmx */; };
+		6120C68214D343550047309F /* endGameTextures-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6120C67E14D343550047309F /* endGameTextures-hd.plist */; };
+		6120C68314D343550047309F /* endGameTextures-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6120C67F14D343550047309F /* endGameTextures-hd.png */; };
+		6120C68414D343550047309F /* endGameTextures.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6120C68014D343550047309F /* endGameTextures.plist */; };
+		6120C68514D343550047309F /* endGameTextures.png in Resources */ = {isa = PBXBuildFile; fileRef = 6120C68114D343550047309F /* endGameTextures.png */; };
 		612EF9C514C4E1FF0056401B /* Comic_13-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 612EF9C314C4E1FC0056401B /* Comic_13-hd.png */; };
 		612EF9C614C4E1FF0056401B /* Comic_13.png in Resources */ = {isa = PBXBuildFile; fileRef = 612EF9C414C4E1FD0056401B /* Comic_13.png */; };
 		614E840814CDCAC4008AE080 /* tileset_level_2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 614E840614CDCAC4008AE080 /* tileset_level_2-hd.png */; };
@@ -642,10 +646,6 @@
 		61DE5BF914853CCC00D325CF /* CCScrollLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 61DE5BF814853CCC00D325CF /* CCScrollLayer.m */; };
 		61DE5C051485869100D325CF /* Tutorial.m in Sources */ = {isa = PBXBuildFile; fileRef = 61DE5C041485869000D325CF /* Tutorial.m */; };
 		61E1584D14B7A32C00413584 /* tileset_level_8-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 61E1584B14B7A32C00413584 /* tileset_level_8-hd.png */; };
-		61E27B4314D1D0BC00EC75BF /* endGameTextures-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 61E27B3F14D1D0BB00EC75BF /* endGameTextures-hd.plist */; };
-		61E27B4414D1D0BC00EC75BF /* endGameTextures-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 61E27B4014D1D0BB00EC75BF /* endGameTextures-hd.png */; };
-		61E27B4514D1D0BC00EC75BF /* endGameTexturess.plist in Resources */ = {isa = PBXBuildFile; fileRef = 61E27B4114D1D0BC00EC75BF /* endGameTexturess.plist */; };
-		61E27B4614D1D0BC00EC75BF /* endGameTexturess.png in Resources */ = {isa = PBXBuildFile; fileRef = 61E27B4214D1D0BC00EC75BF /* endGameTexturess.png */; };
 		61E27B5C14D2073900EC75BF /* darkLevel-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 61E27B5414D2073900EC75BF /* darkLevel-hd.plist */; };
 		61E27B5D14D2073900EC75BF /* darkLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 61E27B5514D2073900EC75BF /* darkLevel-hd.png */; };
 		61E27B5E14D2073900EC75BF /* darkLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 61E27B5614D2073900EC75BF /* darkLevel.plist */; };
@@ -1465,6 +1465,10 @@
 		6119ABBC14ACDC3E00A7B136 /* story_hard_level3_hd.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = story_hard_level3_hd.tmx; sourceTree = "<group>"; };
 		6119ABBE14ACDC6A00A7B136 /* timed_normal_level3_hd.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = timed_normal_level3_hd.tmx; sourceTree = "<group>"; };
 		6119ABC014ACDC8F00A7B136 /* timed_hard_level3_hd.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = timed_hard_level3_hd.tmx; sourceTree = "<group>"; };
+		6120C67E14D343550047309F /* endGameTextures-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "endGameTextures-hd.plist"; sourceTree = "<group>"; };
+		6120C67F14D343550047309F /* endGameTextures-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "endGameTextures-hd.png"; sourceTree = "<group>"; };
+		6120C68014D343550047309F /* endGameTextures.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = endGameTextures.plist; sourceTree = "<group>"; };
+		6120C68114D343550047309F /* endGameTextures.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = endGameTextures.png; sourceTree = "<group>"; };
 		612EF9C314C4E1FC0056401B /* Comic_13-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Comic_13-hd.png"; sourceTree = "<group>"; };
 		612EF9C414C4E1FD0056401B /* Comic_13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Comic_13.png; sourceTree = "<group>"; };
 		614E840614CDCAC4008AE080 /* tileset_level_2-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tileset_level_2-hd.png"; path = "Resources/levels/tileset_level_2-hd.png"; sourceTree = "<group>"; };
@@ -1554,10 +1558,6 @@
 		61DE5C031485868F00D325CF /* Tutorial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tutorial.h; sourceTree = "<group>"; };
 		61DE5C041485869000D325CF /* Tutorial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tutorial.m; sourceTree = "<group>"; };
 		61E1584B14B7A32C00413584 /* tileset_level_8-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tileset_level_8-hd.png"; path = "Resources/levels/tileset_level_8-hd.png"; sourceTree = "<group>"; };
-		61E27B3F14D1D0BB00EC75BF /* endGameTextures-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "endGameTextures-hd.plist"; sourceTree = "<group>"; };
-		61E27B4014D1D0BB00EC75BF /* endGameTextures-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "endGameTextures-hd.png"; sourceTree = "<group>"; };
-		61E27B4114D1D0BC00EC75BF /* endGameTexturess.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = endGameTexturess.plist; sourceTree = "<group>"; };
-		61E27B4214D1D0BC00EC75BF /* endGameTexturess.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = endGameTexturess.png; sourceTree = "<group>"; };
 		61E27B5414D2073900EC75BF /* darkLevel-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "darkLevel-hd.plist"; sourceTree = "<group>"; };
 		61E27B5514D2073900EC75BF /* darkLevel-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "darkLevel-hd.png"; sourceTree = "<group>"; };
 		61E27B5614D2073900EC75BF /* darkLevel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = darkLevel.plist; sourceTree = "<group>"; };
@@ -2111,10 +2111,10 @@
 		544D50DA1445E68E00BED4CE /* scenes */ = {
 			isa = PBXGroup;
 			children = (
-				61E27B3F14D1D0BB00EC75BF /* endGameTextures-hd.plist */,
-				61E27B4014D1D0BB00EC75BF /* endGameTextures-hd.png */,
-				61E27B4114D1D0BC00EC75BF /* endGameTexturess.plist */,
-				61E27B4214D1D0BC00EC75BF /* endGameTexturess.png */,
+				6120C67E14D343550047309F /* endGameTextures-hd.plist */,
+				6120C67F14D343550047309F /* endGameTextures-hd.png */,
+				6120C68014D343550047309F /* endGameTextures.plist */,
+				6120C68114D343550047309F /* endGameTextures.png */,
 				6184E15A14C605AD00771A28 /* menuTextures-hd.plist */,
 				6184E15B14C605AD00771A28 /* menuTextures-hd.png */,
 				6184E15C14C605AD00771A28 /* menuTextures.plist */,
@@ -3592,10 +3592,6 @@
 				61ABDD2C14D1163D00EF9E32 /* dojoLevel.png in Resources */,
 				61ABDD2F14D1252A00EF9E32 /* tileset_level_13-hd.png in Resources */,
 				61ABDD3014D1252A00EF9E32 /* tileset_level_13.png in Resources */,
-				61E27B4314D1D0BC00EC75BF /* endGameTextures-hd.plist in Resources */,
-				61E27B4414D1D0BC00EC75BF /* endGameTextures-hd.png in Resources */,
-				61E27B4514D1D0BC00EC75BF /* endGameTexturess.plist in Resources */,
-				61E27B4614D1D0BC00EC75BF /* endGameTexturess.png in Resources */,
 				61E27B5C14D2073900EC75BF /* darkLevel-hd.plist in Resources */,
 				61E27B5D14D2073900EC75BF /* darkLevel-hd.png in Resources */,
 				61E27B5E14D2073900EC75BF /* darkLevel.plist in Resources */,
@@ -3609,6 +3605,10 @@
 				54F8203414D23FA40028D32A /* characterPunching.plist in Resources */,
 				54F8203514D23FA40028D32A /* characterPunching.png in Resources */,
 				54F8203814D249240028D32A /* dojo.aifc in Resources */,
+				6120C68214D343550047309F /* endGameTextures-hd.plist in Resources */,
+				6120C68314D343550047309F /* endGameTextures-hd.png in Resources */,
+				6120C68414D343550047309F /* endGameTextures.plist in Resources */,
+				6120C68514D343550047309F /* endGameTextures.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

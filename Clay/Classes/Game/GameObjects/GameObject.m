@@ -1168,7 +1168,7 @@
             if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
               //  Player *player = [[LayerManager sharedLayers] getPlayer];
                // CGPoint position = [player getPosition];
-                [self setPositionAtX:(_startingPosition.x + 620.0f) Y:(_startingPosition.y + 286.0f)];
+                [self setPositionAtX:(_startingPosition.x + 720.0f) Y:(_startingPosition.y + 286.0f)];
                 [self setPlayerEffect:@"none"];
                 _currentBehavior = COLLISION_BEHAVIOR_DART_MOVING;
                 _isInvincible = true;
