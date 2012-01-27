@@ -227,7 +227,8 @@
 {
     _waitToSwitch = 0.25f;
     _backToChooseMode = false;
-    [[SoundEngine shared] playSound:@"buttonPressed"];    
+    [[SoundEngine shared] playSound:@"buttonPressed"];
+    [[InAppPurchaseManager shared] setDelegate:nil]; //if don't do this, error messages thrown by the inapppurchasemanager will try to access this released delegate
 }
 
 -(bool)checkDlcLevelUnlocked:(int)levelNumber
@@ -513,6 +514,8 @@
 
 -(void)switchToChooseModeScreen
 {
+    [[InAppPurchaseManager shared] setDelegate:nil]; //if don't do this, error messages thrown by the inapppurchasemanager will try to access this released delegate
+
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ChooseModeScene scene]]];
 }
 

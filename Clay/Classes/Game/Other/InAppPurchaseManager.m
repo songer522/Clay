@@ -93,7 +93,10 @@ static InAppPurchaseManager *_shared = nil;
     for (NSString *invalidProductId in response.invalidProductIdentifiers)
     {
         NSLog(@"Invalid product id: %@" , invalidProductId);
-        [_delegate openErrorWindowCantConnectToStore];
+        if(_delegate!=nil) {
+            [_delegate openErrorWindowCantConnectToStore];
+        }
+        break;
     }
     
     // finally release the reqest we alloc/init’ed in requestProUpgradeProductData
@@ -103,7 +106,10 @@ static InAppPurchaseManager *_shared = nil;
 }
 
 
-
+-(void)setDelegate:(id<DlcLevelDelegate>)delegate
+{
+    _delegate = delegate;
+}
 
 //
 // call this method once on startup
@@ -264,8 +270,10 @@ static InAppPurchaseManager *_shared = nil;
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isTrainingRunPurchased"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         updateBonusLevelsMenu = true;
-        NSLog(@"PROVIDE CONTENT: TRAINING RUN");
-        [_delegate updateDlcLevels];
+        //NSLog(@"PROVIDE CONTENT: TRAINING RUN");
+        if(_delegate!=nil) {
+            [_delegate updateDlcLevels];            
+        }
 
     }
     else if ([productId isEqualToString:kInAppPurchaseDojoRunProductId])
@@ -273,8 +281,10 @@ static InAppPurchaseManager *_shared = nil;
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isDojoRunPurchased"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         updateBonusLevelsMenu = true;
-        NSLog(@"PROVIDE CONTENT: DOJO RUN");
-        [_delegate updateDlcLevels];
+        //NSLog(@"PROVIDE CONTENT: DOJO RUN");
+        if (_delegate!=nil) {
+            [_delegate updateDlcLevels];            
+        }
     }
     
     
@@ -290,7 +300,9 @@ static InAppPurchaseManager *_shared = nil;
         SKPayment *payment = [SKPayment paymentWithProductIdentifier:productId];
         [[SKPaymentQueue defaultQueue] addPayment:payment];        
     } else {
-        [_delegate openErrorWindowCantMakePurchases];
+        if (_delegate!=nil) {
+            [_delegate openErrorWindowCantMakePurchases];
+        }
     }
 }
 

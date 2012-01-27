@@ -36,6 +36,8 @@
 - (void)loadStoreWithDelegate:(id<DlcLevelDelegate>)delegate;
 - (BOOL)canMakePurchases;
 
+-(void)setDelegate:(id<DlcLevelDelegate>)delegate;
+
 #pragma mark -
 #pragma mark Purchasing methods
 - (void)recordTransaction:(SKPaymentTransaction *)transaction;

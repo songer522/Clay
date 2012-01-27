@@ -124,5 +124,21 @@
 	<string>bossFinalTrain.wav</string>
 	<key>pumpAction</key>
 	<string>pumpAction.wav</string>
+	<key>dojoKnifeGround</key>
+	<string>dojoKnifeGround.wav</string>
+	<key>dojoNinjaYell1</key>
+	<string>dojoNinjaYell1.wav</string>
+	<key>dojoNinjaYell2</key>
+	<string>dojoNinjaYell2.wav</string>
+	<key>dojoNinjaYell3</key>
+	<string>dojoNinjaYell3.wav</string>
+	<key>dojoPunch1</key>
+	<string>dojoPunch1.wav</string>
+	<key>dojoPunch2</key>
+	<string>dojoPunch2.wav</string>
+	<key>dojoPunchMiss1</key>
+	<string>dojoPunchMiss1.wav</string>
+	<key>dojoPunchMiss2</key>
+	<string>dojoPunchMiss2.wav</string>
 </dict>
 </plist>

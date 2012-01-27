@@ -3,6 +3,16 @@ Track Lapse Changelog
 Build 120126.01
 =================
 
+* Global - fixed bug where "track lapse guru" achievement wasn't working
+* ChooseLevel - added error messages for when purchases can't be made and when the store isn't accessible. these are getting called when they should, but i was apparently having trouble connecting to the store all day. i was also locked out of my personal account for the day, so that might have had something to do with it. jackbauer test user unlocked, password is now 'Clay2013'. alternatively, the "no fps" version of the build has the dlc already unlocked if the test user gets disabled again.
+* EndGame - added Facebook and twitter icon to end game
+* Level 10 - fixed the bug where the health bubbles gave tim double health
+* Level 11 - added bumper animation to the end of all levels
+* Level 13 - added new song
+* Level 13 - added punch action, will effect ninjas
+* Level 13 - added ninja that drops from rope
+* Level 13 - added white ninja (white ninja currently does not have an attack animation)
+* Level 13 - fixed the movement problem with the throwing knives, got it working so that multiple knives could be thrown at the same time, like ninjas tend to do
 
 
 Build 120125.01
