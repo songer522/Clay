@@ -54,38 +54,28 @@
 -(void)update:(float)dt
 {
     if (_inAction) {
-        if (_duration < kPlayerActionKickActiveWhileDurationLessThan) {
-            _isActive = true;
-            [_punch setActive:YES];
-            
-            [self updateBoundingBox];
-            
-            CGPoint position = [_parent getPosition];
-            
-            if ([[GameSettings shared] usingHighResolutionGraphics])
-            {
-                position.x += 10.0f;
-                position.y += 30.0f;
-            }
-            else
-            {
-                position.x += 10.0f;
-                position.y += 68.0f;
-                
-            }
-            [_punch setPosition:position];
-            
-            if (!_madePunchProjectile) {
-                _madePunchProjectile = true;
-                //[[_parent getSpeed] startKick];
-            }
-            
-            [self testPunchCollisions];
-            
-        } else {
-            [_punch setActive:NO];
-            _isActive = false;
+        [self updateBoundingBox];
+        
+        CGPoint position = [_parent getPosition];
+        
+        if ([[GameSettings shared] usingHighResolutionGraphics])
+        {
+            position.x += 10.0f;
+            position.y += 30.0f;
         }
+        else
+        {
+            position.x += 10.0f;
+            position.y += 68.0f;
+            
+        }
+        [_punch setPosition:position];
+        
+        if (!_madePunchProjectile) {
+            _madePunchProjectile = true;
+        }
+        
+        [self testPunchCollisions];
     }
     [super update:dt];
 }
