@@ -270,11 +270,12 @@ static ComicManager *_shared = nil;
 -(void)endTheGame
 {
     GameLayer *gameLayer = (GameLayer*)[[LayerManager sharedLayers] currentLayer];
-    
+    [[GameSettings shared] setSerializedGlobal:@"" ForKey:@"storyModeCurrentLevel"];
+   
     //set the final total time for the end game screen
     float finalTime = [[[gameLayer getHud] getTrackTimer] getTime];
     [[GameSettings shared] setGlobal:[NSString stringWithFormat:@"%f", finalTime] ForKey:@"finalTime"];
-    
+     [[GameSettings shared] saveToDisk];
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[EndGameScene scene]]];
     _showEndGame = false;
     _introMovie = false;
