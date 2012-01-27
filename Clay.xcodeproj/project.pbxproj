@@ -197,6 +197,14 @@
 		544B041D14AAB3F50029FAD2 /* wind2_long.caf in Resources */ = {isa = PBXBuildFile; fileRef = 544B03EF14AAB3F50029FAD2 /* wind2_long.caf */; };
 		544B041E14AAB3F50029FAD2 /* wind2_medium.caf in Resources */ = {isa = PBXBuildFile; fileRef = 544B03F014AAB3F50029FAD2 /* wind2_medium.caf */; };
 		544B041F14AAB3F50029FAD2 /* wind2_short.caf in Resources */ = {isa = PBXBuildFile; fileRef = 544B03F114AAB3F50029FAD2 /* wind2_short.caf */; };
+		544DE63E14D32C7C000DE0D8 /* dojoKnifeGround.wav in Resources */ = {isa = PBXBuildFile; fileRef = 544DE63614D32C7C000DE0D8 /* dojoKnifeGround.wav */; };
+		544DE63F14D32C7C000DE0D8 /* dojoNinjaYell1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 544DE63714D32C7C000DE0D8 /* dojoNinjaYell1.wav */; };
+		544DE64014D32C7C000DE0D8 /* dojoNinjaYell2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 544DE63814D32C7C000DE0D8 /* dojoNinjaYell2.wav */; };
+		544DE64114D32C7C000DE0D8 /* dojoNinjaYell3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 544DE63914D32C7C000DE0D8 /* dojoNinjaYell3.wav */; };
+		544DE64214D32C7C000DE0D8 /* dojoPunch1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 544DE63A14D32C7C000DE0D8 /* dojoPunch1.wav */; };
+		544DE64314D32C7C000DE0D8 /* dojoPunch2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 544DE63B14D32C7C000DE0D8 /* dojoPunch2.wav */; };
+		544DE64414D32C7C000DE0D8 /* dojoPunchMiss1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 544DE63C14D32C7C000DE0D8 /* dojoPunchMiss1.wav */; };
+		544DE64514D32C7C000DE0D8 /* dojoPunchMiss2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 544DE63D14D32C7C000DE0D8 /* dojoPunchMiss2.wav */; };
 		545CE69D146C1AA9003EC9C1 /* PlayerActionBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 545CE69C146C1AA9003EC9C1 /* PlayerActionBlock.m */; };
 		5461A0B314478A6C00D97D6C /* black_background-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5461A0B114478A6C00D97D6C /* black_background-hd.png */; };
 		5461A0B414478A6C00D97D6C /* black_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 5461A0B214478A6C00D97D6C /* black_background.png */; };
@@ -990,6 +998,14 @@
 		544B03EF14AAB3F50029FAD2 /* wind2_long.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = wind2_long.caf; path = Resources/sounds/wind2_long.caf; sourceTree = "<group>"; };
 		544B03F014AAB3F50029FAD2 /* wind2_medium.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = wind2_medium.caf; path = Resources/sounds/wind2_medium.caf; sourceTree = "<group>"; };
 		544B03F114AAB3F50029FAD2 /* wind2_short.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = wind2_short.caf; path = Resources/sounds/wind2_short.caf; sourceTree = "<group>"; };
+		544DE63614D32C7C000DE0D8 /* dojoKnifeGround.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = dojoKnifeGround.wav; path = Resources/sounds/dojoKnifeGround.wav; sourceTree = "<group>"; };
+		544DE63714D32C7C000DE0D8 /* dojoNinjaYell1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = dojoNinjaYell1.wav; path = Resources/sounds/dojoNinjaYell1.wav; sourceTree = "<group>"; };
+		544DE63814D32C7C000DE0D8 /* dojoNinjaYell2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = dojoNinjaYell2.wav; path = Resources/sounds/dojoNinjaYell2.wav; sourceTree = "<group>"; };
+		544DE63914D32C7C000DE0D8 /* dojoNinjaYell3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = dojoNinjaYell3.wav; path = Resources/sounds/dojoNinjaYell3.wav; sourceTree = "<group>"; };
+		544DE63A14D32C7C000DE0D8 /* dojoPunch1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = dojoPunch1.wav; path = Resources/sounds/dojoPunch1.wav; sourceTree = "<group>"; };
+		544DE63B14D32C7C000DE0D8 /* dojoPunch2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = dojoPunch2.wav; path = Resources/sounds/dojoPunch2.wav; sourceTree = "<group>"; };
+		544DE63C14D32C7C000DE0D8 /* dojoPunchMiss1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = dojoPunchMiss1.wav; path = Resources/sounds/dojoPunchMiss1.wav; sourceTree = "<group>"; };
+		544DE63D14D32C7C000DE0D8 /* dojoPunchMiss2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = dojoPunchMiss2.wav; path = Resources/sounds/dojoPunchMiss2.wav; sourceTree = "<group>"; };
 		545CE69B146C1AA9003EC9C1 /* PlayerActionBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerActionBlock.h; sourceTree = "<group>"; };
 		545CE69C146C1AA9003EC9C1 /* PlayerActionBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerActionBlock.m; sourceTree = "<group>"; };
 		5461A0B114478A6C00D97D6C /* black_background-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "black_background-hd.png"; sourceTree = "<group>"; };
@@ -2146,6 +2162,14 @@
 		545CBC2F142D25AB00795FC9 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				544DE63614D32C7C000DE0D8 /* dojoKnifeGround.wav */,
+				544DE63714D32C7C000DE0D8 /* dojoNinjaYell1.wav */,
+				544DE63814D32C7C000DE0D8 /* dojoNinjaYell2.wav */,
+				544DE63914D32C7C000DE0D8 /* dojoNinjaYell3.wav */,
+				544DE63A14D32C7C000DE0D8 /* dojoPunch1.wav */,
+				544DE63B14D32C7C000DE0D8 /* dojoPunch2.wav */,
+				544DE63C14D32C7C000DE0D8 /* dojoPunchMiss1.wav */,
+				544DE63D14D32C7C000DE0D8 /* dojoPunchMiss2.wav */,
 				549740A714CE6FC2000D88FF /* pumpAction.wav */,
 				549513D614C0BC68007C1D2F /* bossFinalHorn.wav */,
 				549513D714C0BC68007C1D2F /* bossFinalThrow.wav */,

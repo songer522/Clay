@@ -146,6 +146,11 @@
                 <property name="obstacle" value="rack"/>
             </properties>
         </tile>
+        <tile id="110">
+            <properties>
+                <property name="obstacle" value="dojoWhiteNinja"/>
+            </properties>
+        </tile>
     </tileset>
     <tileset firstgid="133" name="Dojo" tilewidth="32" tileheight="32">
         <image source="tileset_level_13.png" width="512" height="704"/>

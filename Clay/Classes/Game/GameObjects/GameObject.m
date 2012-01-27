@@ -406,9 +406,21 @@
         case COLLISION_BEHAVIOR_DOJO_DROP_NINJA:
             if(isProjectile) {
                 _currentBehavior = COLLISION_BEHAVIOR_DOJO_DROP_NINJA_PUNCHED;
+                [[SoundEngine shared] playSound:@"dojoNinjaYell3"];
             } else {
                 _alpha = 1.2f;
                 _fadeout = true;
+            }
+            break;
+        case COLLISION_BEHAVIOR_DOJO_WHITE_NINJA_CHARGING:
+            if (isProjectile) {
+                float magnitude = rand() % 500 + 600;
+                _angle = rand() % 70 + 10;
+                _rotationAmount = rand() % 10 * 200;
+                _vx = magnitude * cosf((_angle * 3.14159)/180.0f);
+                _vy = - magnitude * sinf((_angle * 3.14159)/180.0f);
+                _hasTriggered = true;
+                [[SoundEngine shared] playSound:@"dojoNinjaYell2"];
             }
             break;
         case COLLISION_BEHAVIOR_WATER_SQUID_FADES:
@@ -1189,7 +1201,7 @@
                 _currentBehavior = COLLISION_BEHAVIOR_DART_LANDED;
                 _collideBehavior = COLLISION_BEHAVIOR_DART_LANDED;
                 [self setPlayerEffect:@"collide"];
-                //[[SoundEngine shared] playSound:@"dartLand"];
+                [[SoundEngine shared] playSound:@"dojoKnifeGround"];
             }
             break;
         case COLLISION_BEHAVIOR_DOJO_DROP_NINJA:
@@ -1212,6 +1224,15 @@
                 _angle = -90.0f;
             }
             [_sprite getCCSprite].rotation = _angle;
+            break;
+        case COLLISION_BEHAVIOR_DOJO_WHITE_NINJA_CHARGING:
+            if(!_hasTriggered) { //hastriggered is true when the white ninja is punched
+                [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-220.0f];                
+            } else {
+                //rotate quickly
+                _angle += _rotationAmount * dt;
+                [self getCCSprite].rotation = _angle;
+            }
             break;
         default:
             break;
@@ -1565,6 +1586,11 @@
         _currentBehavior = COLLISION_BEHAVIOR_DOJO_DROP_NINJA;
         _hasTriggered = false;
     }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_DOJO_WHITE_NINJA_CHARGING) {
+        _currentBehavior = COLLISION_BEHAVIOR_DOJO_WHITE_NINJA_CHARGING;
+        _collideBehavior = COLLISION_BEHAVIOR_DOJO_WHITE_NINJA_CHARGING;
+        _hasTriggered = false;
+    }
     else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_SLOW) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;     
     }
@@ -1812,6 +1838,10 @@
     else if([behavior isEqualToString:@"dropninja"]) {
         _currentBehavior = COLLISION_BEHAVIOR_DOJO_DROP_NINJA;
         _collideBehavior = COLLISION_BEHAVIOR_DOJO_DROP_NINJA;
+    }
+    else if([behavior isEqualToString:@"whiteninja"]) {
+        _currentBehavior = COLLISION_BEHAVIOR_DOJO_WHITE_NINJA_CHARGING;
+        _collideBehavior = COLLISION_BEHAVIOR_DOJO_WHITE_NINJA_CHARGING;
     }
     else {
         _collideBehavior = COLLISION_BEHAVIOR_NONE;

@@ -227,7 +227,8 @@
 {
     _waitToSwitch = 0.25f;
     _backToChooseMode = false;
-    [[SoundEngine shared] playSound:@"buttonPressed"];    
+    [[SoundEngine shared] playSound:@"buttonPressed"];
+    [[InAppPurchaseManager shared] setDelegate:nil]; //if don't do this, error messages thrown by the inapppurchasemanager will try to access this released delegate
 }
 
 -(bool)checkDlcLevelUnlocked:(int)levelNumber
@@ -241,8 +242,9 @@
             return true;
         }        
     }
-    return true;
+    //NOTE: temporarily disabled for a build with unlocked dlc
     //return false;
+    return true;
 }
 
 -(void)popupDlcWindow:(int)levelNumber
@@ -512,6 +514,8 @@
 
 -(void)switchToChooseModeScreen
 {
+    [[InAppPurchaseManager shared] setDelegate:nil]; //if don't do this, error messages thrown by the inapppurchasemanager will try to access this released delegate
+
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ChooseModeScene scene]]];
 }
 
