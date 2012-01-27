@@ -403,6 +403,15 @@
                 _fadeout = true;
             }
             break;
+        case COLLISION_BEHAVIOR_DOJO_DROP_NINJA:
+            if(isProjectile) {
+                [[_player getThirdAction] setKilledEnemy:YES];
+                _direction = -200.0f;
+            } else {
+                _alpha = 1.2f;
+                _fadeout = true;
+            }
+            break;
         case COLLISION_BEHAVIOR_WATER_SQUID_FADES:
         case COLLISION_BEHAVIOR_FIREBALL_LANDED:
          case COLLISION_BEHAVIOR_DART_LANDED:   
@@ -414,9 +423,9 @@
         case COLLISION_BEHAVIOR_RAINY_SQUIRREL:
         case COLLISION_BEHAVIOR_COMPUTER_WORM:
         case COLLISION_BEHAVIOR_TRAINING_EXERCISE_BALL:
-        case COLLISION_BEHAVIOR_DOJO_DROP_NINJA:
             _alpha = 1.2f;
             _fadeout = true;
+            break;
         default:
             break;
     }
@@ -1187,14 +1196,21 @@
         case COLLISION_BEHAVIOR_DOJO_DROP_NINJA:
             if (!_hasTriggered && [self closeToPlayer:450]) {
                 _hasTriggered = true;
-                _y = 600.0f;
+                _y = 910.0f; //was 600.0f;
                 _x -= 50.0f;
                 _isBouncing = true;
-                _bouncePosition = 90.0f;
+                _bouncePosition = 400.0f;  //was 90.0f
                 _bounceGravity = 1000.0f;
+                _angle = 0.0f;
                 _bounceYDampening = 0.25f;
                 _vy = 400.0f;
-            } else if(_hasTriggered) {
+                _direction = 0.0f;
+            } else if(_direction!=0.0f) {
+                _angle -= 300.0f * dt;
+                if (_angle < -90.0f) {
+                    _angle = -90.0f;
+                }
+                [_sprite getCCSprite].rotation = _angle;
             }
             break;
         default:

@@ -17,7 +17,7 @@
 @implementation PlayerActionPunch
 
 #define kPlayerActionKickMoveX 20.0f
-#define kPlayerActionKickFullDuration 0.38f;
+#define kPlayerActionKickFullDuration 0.605f;
 #define kPlayerActionKickActiveWhileDurationLessThan 0.75f
 
 -(void) initialize
@@ -46,6 +46,7 @@
         [_parent endTurbo:false];
         [_punch reset];
         [_parent setPlayerAnimation:PLAYER_ANIM_PUNCH];
+        [[_parent getSpeed] setVelocityModifier:0.8f];
     }
     [super startAction];
 }
@@ -64,19 +65,19 @@
             if ([[GameSettings shared] usingHighResolutionGraphics])
             {
                 position.x += 10.0f;
-                position.y -= 5.0f;
+                position.y += 30.0f;
             }
             else
             {
                 position.x += 10.0f;
-                position.y += 33.0f;
+                position.y += 68.0f;
                 
             }
             [_punch setPosition:position];
             
             if (!_madePunchProjectile) {
                 _madePunchProjectile = true;
-                [[_parent getSpeed] startKick];
+                //[[_parent getSpeed] startKick];
             }
             
             [self testPunchCollisions];
@@ -96,20 +97,22 @@
     
     int frame = [[[_parent getSprite] getAnimation] getCurrentFrameNumber];
     switch (frame) {
-        case 1:
-            startX = 55;
-            projWidth = 25;
-            break;
         case 2:
-            startX = 30;
-            projWidth = 35;
-            break;
         case 3:
             startX = 0;
             projWidth = 45;
+            [_punch setActive:true];
+            break;
+        case 6:
+        case 7:
+            startX = 0;
+            projWidth = 30;
+            [_punch setActive:true];
             break;
         default:
-            projWidth = 0;
+            [_punch setActive:false];
+            startX = 0;
+            projWidth = 1;
             break;
     }
     
@@ -126,13 +129,16 @@
 
 -(void)testPunchCollisions
 {
+    //guard
+    if(![_punch getActive]) { return; }
+
     NSMutableArray *obstacles = [[[LevelManager shared] currentLevel] getActiveGameObjectList];
     for (GameObject *object in obstacles) {
-        if([object getCurrentCollisionBehavior] == COLLISION_BEHAVIOR_HEN_STATIC)
+        if([object getCurrentCollisionBehavior] == COLLISION_BEHAVIOR_DOJO_DROP_NINJA)
         {
             if([_level testCollisionWithGameObject:object Source:_punch])
             {
-                [object special_kickHen];
+                [object startCollision:YES];
                 [self setKilledEnemy:YES];
             }
         }
@@ -142,14 +148,18 @@
 -(void)cancelAction
 {
     [_parent setPlayerAnimation:PLAYER_ANIM_RUNNING];
+    [_punch setActive:false];
     [_punch disable];
+    [[_parent getSpeed] setVelocityModifier:1.0f];
     [super cancelAction];
 }
 
 -(void)endAction
 {
-    [_parent pushAfterAnimation:kPlayerActionKickMoveX];
+    [_punch setActive:false];
     [_punch disable];
+    [[_parent getSpeed] setVelocityModifier:1.0f];
+
     [super endAction];
 }
 
