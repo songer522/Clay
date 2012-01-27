@@ -185,11 +185,11 @@
 		<key>batchObstacles</key>
 		<string>dojoLevel</string>
 		<key>animations</key>
-		<string>level13</string>
+		<string>level13,punch</string>
 		<key>sounds</key>
 		<string>none</string>
 		<key>textures</key>
-		<string>dojoLevel</string>
+		<string>dojoLevel,characterPunching</string>
 	</dict>
 	<key>mainMenu</key>
 	<dict>

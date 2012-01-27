@@ -263,9 +263,9 @@
 		<key>preComic</key>
 		<string>level22</string>
 		<key>thirdAction</key>
-		<string>woo</string>
+		<string>punch</string>
 		<key>music</key>
-		<string>training</string>
+		<string>dojo</string>
 		<key>postLevelComic</key>
 		<string>level21</string>
 		<key>playerOffsetY</key>

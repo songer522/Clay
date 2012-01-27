@@ -86,7 +86,6 @@
         
         self.isTouchEnabled = YES;
         
-        [[InAppPurchaseManager shared] loadStoreWithDelegate:self];
         
         _gameMode = [[GameSettings shared] getGlobalForKey:@"gameMode"];
         _gameDifficulty = [[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
@@ -111,6 +110,10 @@
             _levelStartNumber = 0;
             _selected = 1;
             _levelToSwitchTo = [[NSString stringWithString:@"level1"] retain];
+        }
+        
+        if(_inDLCMode) {
+            [[InAppPurchaseManager shared] loadStoreWithDelegate:self];
         }
         
         

@@ -97,7 +97,7 @@ static InAppPurchaseManager *_shared = nil;
     }
     
     // finally release the reqest we alloc/init’ed in requestProUpgradeProductData
-    [_productsRequest release];
+    //[_productsRequest release];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kInAppPurchaseManagerProductsFetchedNotification object:self userInfo:nil];
 }
