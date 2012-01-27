@@ -146,6 +146,11 @@
                 <property name="obstacle" value="rack"/>
             </properties>
         </tile>
+        <tile id="109">
+            <properties>
+                <property name="obstacle" value="dojoDeathPit"/>
+            </properties>
+        </tile>
         <tile id="110">
             <properties>
                 <property name="obstacle" value="dojoWhiteNinja"/>
@@ -197,7 +202,7 @@
             <property name="speedy" value="1.0"/>
         </properties>
         <data encoding="base64" compression="zlib">
-            eJzt2UEKgzAQBVBPUHpZreLli4tupFQSk05g3tsFzPhhVp9MEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK2s0QEAAAAAAAAAoKHad3Dv5wAAAKAfAwBANnN0gJPeecyPnV8qW54e8/V8AADgm391hb3g263xv5fKe3dyvCru1Ob85bzfq3MrJfteO+b4zB9pzshK9gYA5PGMDgCdPKIDQDIZejUAAACMTj8HAAAOb42/Dwo=
+            eJzt10sOwiAQAFBPYLys/8sb466p5TctDX1vJ1IcYMDO6QQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANS69g5gYu14jN93/FJHi2dv80159A4AAACodtvod54r9W3xTnzfEkdtnbRlfbU0/9Y9iM6rV8OzS2uaWu/e9W4qR6fWjPceOFZOfkT1marNh61yIXX2Iu/HpfzaYr4t5zpK7npG98tVegfMab3n1sqFufOb27Yk4q6KmvPe/kNSn1NSZzYn///tZ2l7idx9iO5X2rfV3H7mtn3V3smXyudgL869AwCG1ftdkHHIJY5slPqcn6PU5wAAjMk7JUemPgcY1wc6ySSv
         </data>
     </layer>
     <layer name="meta" width="1000" height="14" opacity="0.74">
@@ -206,7 +211,7 @@
             <property name="speedy" value="1.0"/>
         </properties>
         <data encoding="base64" compression="zlib">
-            eJztwzENAAAIA7Bx4N8yP8EBbdIEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD4olcAAAAAAAAAuJSqqqqqqqqqmgHT2Qfl
+            eJzt0TEKwCAAQ1E79P5X7hqk4KCQwffg74GMAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA3OKdAgAAAAAAAIA/j6StUnuLpDOl9hZJ61J7i/wrSeqV2lsknSm1t0hal9pb5F9ppw9s6gfN
         </data>
     </layer>
 </map>
