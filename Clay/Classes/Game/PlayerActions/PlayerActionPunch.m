@@ -89,12 +89,15 @@
     switch (frame) {
         case 2:
         case 3:
+        case 4:
+        case 5:
             startX = 0;
             projWidth = 45;
             [_punch setActive:true];
             break;
         case 6:
         case 7:
+        case 8:
             startX = 0;
             projWidth = 30;
             [_punch setActive:true];
@@ -124,7 +127,7 @@
 
     NSMutableArray *obstacles = [[[LevelManager shared] currentLevel] getActiveGameObjectList];
     for (GameObject *object in obstacles) {
-        if([object getCurrentCollisionBehavior] == COLLISION_BEHAVIOR_DOJO_DROP_NINJA)
+        if([object getCurrentCollisionBehavior] == COLLISION_BEHAVIOR_DOJO_DROP_NINJA || [object getCurrentCollisionBehavior] == COLLISION_BEHAVIOR_DOJO_WHITE_NINJA_CHARGING)
         {
             if([_level testCollisionWithGameObject:object Source:_punch])
             {

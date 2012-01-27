@@ -241,8 +241,7 @@
             return true;
         }        
     }
-    return true;
-    //return false;
+    return false;
 }
 
 -(void)popupDlcWindow:(int)levelNumber
