@@ -241,7 +241,9 @@
             return true;
         }        
     }
-    return false;
+    //NOTE: temporarily disabled for a build with unlocked dlc
+    //return false;
+    return true;
 }
 
 -(void)popupDlcWindow:(int)levelNumber
