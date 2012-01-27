@@ -413,7 +413,7 @@
             }
             break;
         case COLLISION_BEHAVIOR_DOJO_WHITE_NINJA_CHARGING:
-            if (isProjectile) {
+            if (isProjectile && !_hasTriggered) {
                 float magnitude = rand() % 500 + 600;
                 _angle = rand() % 70 + 10;
                 _rotationAmount = rand() % 10 * 200;
@@ -1234,6 +1234,21 @@
                 [self getCCSprite].rotation = _angle;
             }
             break;
+        case COLLISION_BEHAVIOR_DOJO_DEATHPIT:
+            if (!_hasTriggered && [self closeToPlayer:250]) {
+                _hasTriggered = true;
+                [self setOriginalAnimation:@"dojoDeathPitClosedAnim"];
+                [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"dojoDeathPitOpeningAnim"];
+                _waitToTrigger = 0.3f;
+                _collided = true;
+            } else {
+                if (_waitToTrigger > 0.0f) {
+                    _waitToTrigger -= dt;
+                    if (_waitToTrigger<=0.0f) {
+                        [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"dojoDeathPitOpenedAnim"];
+                    }
+                }
+            }
         default:
             break;
     }
@@ -1591,6 +1606,11 @@
         _collideBehavior = COLLISION_BEHAVIOR_DOJO_WHITE_NINJA_CHARGING;
         _hasTriggered = false;
     }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_DOJO_DEATHPIT) {
+        _currentBehavior = COLLISION_BEHAVIOR_DOJO_DEATHPIT;
+        _collideBehavior = COLLISION_BEHAVIOR_DOJO_DEATHPIT;
+        _hasTriggered = false;
+    }
     else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_SLOW) {
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;     
     }
@@ -1842,6 +1862,10 @@
     else if([behavior isEqualToString:@"whiteninja"]) {
         _currentBehavior = COLLISION_BEHAVIOR_DOJO_WHITE_NINJA_CHARGING;
         _collideBehavior = COLLISION_BEHAVIOR_DOJO_WHITE_NINJA_CHARGING;
+    }
+    else if([behavior isEqualToString:@"dojoDeathPit"]) {
+        _currentBehavior = COLLISION_BEHAVIOR_DOJO_DEATHPIT;
+        _collideBehavior = COLLISION_BEHAVIOR_DOJO_DEATHPIT;
     }
     else {
         _collideBehavior = COLLISION_BEHAVIOR_NONE;
