@@ -32,7 +32,7 @@
     {
         [_punch setBoundingBox:CGRectMake(0, 35, 35, 35)];
     }
-    _cooldownStart = 0.6f;
+    _cooldownStart = 0.2f;
     _cooldown = 0.0f;
     _canTrigger = true;
     _level = [[LevelManager shared] currentLevel];

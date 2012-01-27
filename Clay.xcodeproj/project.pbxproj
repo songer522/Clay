@@ -3633,6 +3633,14 @@
 				6120C68314D343550047309F /* endGameTextures-hd.png in Resources */,
 				6120C68414D343550047309F /* endGameTextures.plist in Resources */,
 				6120C68514D343550047309F /* endGameTextures.png in Resources */,
+				544DE63E14D32C7C000DE0D8 /* dojoKnifeGround.wav in Resources */,
+				544DE63F14D32C7C000DE0D8 /* dojoNinjaYell1.wav in Resources */,
+				544DE64014D32C7C000DE0D8 /* dojoNinjaYell2.wav in Resources */,
+				544DE64114D32C7C000DE0D8 /* dojoNinjaYell3.wav in Resources */,
+				544DE64214D32C7C000DE0D8 /* dojoPunch1.wav in Resources */,
+				544DE64314D32C7C000DE0D8 /* dojoPunch2.wav in Resources */,
+				544DE64414D32C7C000DE0D8 /* dojoPunchMiss1.wav in Resources */,
+				544DE64514D32C7C000DE0D8 /* dojoPunchMiss2.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
