@@ -413,7 +413,7 @@
             }
             break;
         case COLLISION_BEHAVIOR_DOJO_WHITE_NINJA_CHARGING:
-            if (isProjectile) {
+            if (isProjectile && !_hasTriggered) {
                 float magnitude = rand() % 500 + 600;
                 _angle = rand() % 70 + 10;
                 _rotationAmount = rand() % 10 * 200;

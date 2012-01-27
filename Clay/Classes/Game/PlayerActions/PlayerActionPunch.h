@@ -16,6 +16,14 @@
     Projectile *_punch;
     bool _madePunchProjectile;
     
+    bool _punch1SoundPlay;
+    bool _punch1SoundCheck;
+    bool _punch1SoundPlayed;
+    
+    bool _punch2SoundPlay;
+    bool _punch2SoundCheck;
+    bool _punch2SoundPlayed;
+    
     //weak references
     Level *_level;
 }

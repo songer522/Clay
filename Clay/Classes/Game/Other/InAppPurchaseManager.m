@@ -96,7 +96,7 @@ static InAppPurchaseManager *_shared = nil;
         if(_delegate!=nil) {
             [_delegate openErrorWindowCantConnectToStore];
         }
-        break;
+        //break;
     }
     
     // finally release the reqest we alloc/init’ed in requestProUpgradeProductData

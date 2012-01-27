@@ -13,6 +13,7 @@
 #import "GameSettings.h"
 #import "RunningSpeed.h"
 #import "Player.h"
+#import "SoundEngine.h"
 
 @implementation PlayerActionPunch
 
@@ -47,6 +48,10 @@
         [_punch reset];
         [_parent setPlayerAnimation:PLAYER_ANIM_PUNCH];
         [[_parent getSpeed] setVelocityModifier:0.8f];
+        _punch1SoundPlay = false;
+        _punch2SoundPlay = false;
+        _punch1SoundPlayed = false;
+        _punch2SoundPlayed = false;
     }
     [super startAction];
 }
@@ -75,6 +80,20 @@
             _madePunchProjectile = true;
         }
         
+        //determine if whiff sound should be played if player hasn't yet connected
+        //trigger after first 4 frames have played, or the full duration - (0.075 delay * 4 frames)
+        if(!_punch1SoundPlayed && _duration <= 0.305f){
+            [[SoundEngine shared] playSound:@"dojoPunchMiss1"];
+            _punch1SoundPlayed = true;
+        }
+
+        //determine if whiff sound should be played if player hasn't yet connected
+        //trigger after next 3 4 frames have played, or the full duration - (0.075 delay * 4 frames)
+        if(!_punch2SoundPlayed && _duration <= 0.080f){
+            [[SoundEngine shared] playSound:@"dojoPunchMiss2"];
+            _punch2SoundPlayed = true;
+        }
+        
         [self testPunchCollisions];
     }
     [super update:dt];
@@ -85,6 +104,9 @@
     int startX = 0;
     int projWidth = 35;
     
+    _punch1SoundCheck = false;
+    _punch2SoundCheck = false;
+    
     int frame = [[[_parent getSprite] getAnimation] getCurrentFrameNumber];
     switch (frame) {
         case 2:
@@ -94,6 +116,7 @@
             startX = 0;
             projWidth = 45;
             [_punch setActive:true];
+            _punch1SoundCheck = true;
             break;
         case 6:
         case 7:
@@ -101,6 +124,7 @@
             startX = 0;
             projWidth = 30;
             [_punch setActive:true];
+            _punch2SoundCheck = true;
             break;
         default:
             [_punch setActive:false];
@@ -133,6 +157,16 @@
             {
                 [object startCollision:YES];
                 [self setKilledEnemy:YES];
+                
+                if (_punch1SoundCheck && !_punch1SoundPlayed) {
+                    [[SoundEngine shared] playSound:@"dojoPunch1"];
+                    _punch1SoundPlayed = true;
+                }
+                
+                if (_punch2SoundCheck && !_punch2SoundPlayed) {
+                    [[SoundEngine shared] playSound:@"dojoPunch2"];
+                    _punch2SoundPlayed = true;
+                }
             }
         }
     }
@@ -154,6 +188,11 @@
     [[_parent getSpeed] setVelocityModifier:1.0f];
 
     [super endAction];
+}
+
+-(bool)canStartInMidAir
+{
+    return true;
 }
 
 -(NSMutableArray*)getProjectiles
