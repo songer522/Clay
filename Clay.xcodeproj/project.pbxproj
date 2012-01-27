@@ -3604,6 +3604,11 @@
 				61E27B6114D2073900EC75BF /* darkLevel2-hd.png in Resources */,
 				61E27B6214D2073900EC75BF /* darkLevel2.plist in Resources */,
 				61E27B6314D2073900EC75BF /* darkLevel2.png in Resources */,
+				54F8203214D23FA40028D32A /* characterPunching-hd.plist in Resources */,
+				54F8203314D23FA40028D32A /* characterPunching-hd.png in Resources */,
+				54F8203414D23FA40028D32A /* characterPunching.plist in Resources */,
+				54F8203514D23FA40028D32A /* characterPunching.png in Resources */,
+				54F8203814D249240028D32A /* dojo.aifc in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
