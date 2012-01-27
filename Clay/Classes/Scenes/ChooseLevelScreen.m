@@ -30,6 +30,10 @@
 #import "ChooseLevelPanel.h"
 #import "FBPrompt.h"
 #import "AppDelegate.h"
+#import "GCState.h"
+#import "GCHelper.h"
+#import "DlcGameWindow.h"
+#import "InAppPurchaseManager.h"
 
 
 @implementation ChooseLevelScreen
@@ -45,6 +49,8 @@
 	
 	// 'layer' is an autorelease object.
 	ChooseLevelScreen *layer = [ChooseLevelScreen layerWithScene:scene];
+    
+    //[[LayerManager sharedLayers] setCurrentScene:scene];
 	
 	// add layer as a child to scene
 	[scene addChild: layer];
@@ -75,32 +81,54 @@
         _tweetViewController = nil;
         _fbprompt = nil;
         _inDLCMode = false;
+        _allGoldMedalInNormal=false;
+        _allGoldMedalInInsane=false;
         
         self.isTouchEnabled = YES;
         
+        
         _gameMode = [[GameSettings shared] getGlobalForKey:@"gameMode"];
         _gameDifficulty = [[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
-        
+        if([_gameDifficulty isEqualToString:@"normal"])
+        {
+            _allGoldMedalInNormal=true;
+        }
+        else if ([_gameDifficulty isEqualToString:@"hard"])
+        {
+            _allGoldMedalInInsane=true;
+        }
         NSString *showDLC = [[GameSettings shared] getGlobalForKey:@"timedShowDLC"];
         if ([showDLC isEqualToString:@"YES"]) {
             _inDLCMode = true;
-            _numberOfLevels = 1;
+            _numberOfLevels = 2;
             _levelStartNumber = 11;
-            _levelToSwitchTo = @"level12";
+            _selected = 12;
+            _levelToSwitchTo = [[NSString stringWithString:@"level12"] retain];
         } else {
             _inDLCMode = false;
             _numberOfLevels = 11;
             _levelStartNumber = 0;
-            _levelToSwitchTo = @"level1";
+            _selected = 1;
+            _levelToSwitchTo = [[NSString stringWithString:@"level1"] retain];
         }
+        
+        if(_inDLCMode) {
+            [[InAppPurchaseManager shared] loadStoreWithDelegate:self];
+        }
+        
         
         //if timed mode had previously saved its selected level, we want to start with that one selected.
         //otherwise, we want it to start on the first level
-        int selectedLevel = [[[GameSettings shared] getGlobalForKey:@"timedSelectedLevel"] intValue];
-        if (selectedLevel > 0) {
-            _selected = (selectedLevel - 1);
-        } else {
-            _selected = _levelStartNumber;
+        //we do not want to refer to this number if coming from choosemode
+        NSString *previousScreen = [[GameSettings shared] getGlobalForKey:@"previousScreenName"];
+        if(![previousScreen isEqualToString:@"chooseMode"]) {
+            int selectedLevel = [[[GameSettings shared] getGlobalForKey:@"timedSelectedLevel"] intValue];
+            if (selectedLevel > 0) {
+                _selected = selectedLevel;
+            } else {
+                _selected = _levelStartNumber + 1;
+            }
+            _levelToSwitchTo = [[NSString stringWithFormat:@"level%d",_selected] retain];            
         }
         
         NSString *musicStarted = [[GameSettings shared] getGlobalForKey:@"titleMusicStarted"];
@@ -113,8 +141,13 @@
         NSDictionary *medalsDict = [PListLoader loadPlistWithName:@"medals"];
         _modeDict = [[NSDictionary alloc] initWithDictionary:[medalsDict objectForKey:_gameMode]];
       
+        
         [self load];
+        [self checkAllGold];
         [[BestTimes shared] saveData];
+
+        [self updateDlcLevels];
+
     }
     return self;
 }
@@ -126,11 +159,18 @@
 
 -(void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-   
-    
     NSSet *allTouches = [event allTouches];
     for(UITouch *touch in allTouches) {
         CGPoint position = [self convertTouchToNodeSpace:touch];
+        
+        if(_errorWindowOpen) {
+            WindowSelectionType type = [_errorWindow checkCollisionAtPoint:position];
+            if (type == WIN_SELECT_OK) {
+                [self closeErrorWindow];
+                break;
+            }
+        }
+        
         for (LevelButton *button in _buttons) {
             if([button checkIfSelected:position] && !_panelTransition && [button isUnlocked]) {
 
@@ -146,13 +186,21 @@
                     _levelToSwitchTo = nil;
                 }
                 _levelToSwitchTo = [[NSString alloc] initWithFormat:@"level%d",_selected];
+                
+                [self updateStartButton];
             }
         }
         
         if([_startButton checkIfSelected:position]) {
-            _waitToSwitch = 0.25f;
-            _backToChooseMode = false;
-            [[SoundEngine shared] playSound:@"buttonPressed"];
+            if (_inDLCMode) {
+                if([self checkDlcLevelUnlocked:_selected]) {
+                    [self prepareToPlayLevel];
+                } else {
+                    [self popupDlcWindow:_selected];
+                }
+            } else {
+                [self prepareToPlayLevel];
+            }
         }
         
         if([_backButton checkIfSelected:position]) {
@@ -172,6 +220,81 @@
             [[SoundEngine shared] playSound:@"buttonPressed"];     
         }
         
+    }
+}
+
+-(void)prepareToPlayLevel
+{
+    _waitToSwitch = 0.25f;
+    _backToChooseMode = false;
+    [[SoundEngine shared] playSound:@"buttonPressed"];
+    [[InAppPurchaseManager shared] setDelegate:nil]; //if don't do this, error messages thrown by the inapppurchasemanager will try to access this released delegate
+}
+
+-(bool)checkDlcLevelUnlocked:(int)levelNumber
+{
+    if (_selected == TRAINING_RUN) {
+        if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isTrainingRunPurchased"] boolValue]) {
+            return true;
+        }        
+    } else if (_selected == DOJO_RUN) {
+        if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isDojoRunPurchased"] boolValue]) {
+            return true;
+        }        
+    }
+    //NOTE: temporarily disabled for a build with unlocked dlc
+    return false;
+    //return true;
+}
+
+-(void)popupDlcWindow:(int)levelNumber
+{
+    switch (levelNumber) {
+        case TRAINING_RUN:
+            [[InAppPurchaseManager shared] purchaseProductId:kInAppPurchaseTrainingRunProductId Delegate:self];
+            break;
+        case DOJO_RUN:
+            [[InAppPurchaseManager shared] purchaseProductId:kInAppPurchaseDojoRunProductId Delegate:self];
+            break;
+        default:
+            break;
+    }
+}
+
+-(void)updateDlcLevels
+{
+    [self updateStartButton];
+}
+
+-(void)openErrorWindowCantConnectToStore
+{
+    if (!_errorWindowOpen) {
+        _errorWindowOpen = true;
+        _errorWindow = [GameWindow gameWindowWithHeader:@"ERROR" Message:@"CANNOT CONNECT TO THE STORE AT THIS TIME. PLEASE TRY AGAIN LATER." Choices:WINDOW_CHOICE_OK Layer:self];        
+    }
+}
+
+-(void)openErrorWindowCantMakePurchases
+{
+    if (!_errorWindowOpen) {
+        _errorWindowOpen = true;
+        _errorWindow = [GameWindow gameWindowWithHeader:@"ERROR" Message:@"CANNOT MAKE PURCHASES AT THIS TIME." Choices:WINDOW_CHOICE_OK Layer:self];
+    }
+}
+
+-(void)closeErrorWindow
+{
+    _errorWindowOpen = false;
+    [_errorWindow release];
+    _errorWindow = nil;
+}
+
+-(void)updateStartButton
+{
+    if (_selected < 12 || [self checkDlcLevelUnlocked:_selected]) {
+        [_startButton setText:@"START"];
+    } else {
+        [_startButton setText:@"BUY"];
     }
 }
 
@@ -215,7 +338,7 @@
         [button setCursor:_selector];
 
         //by default have the first level selected
-        if(i==_levelStartNumber) {
+        if((i+1)==_selected) {
             [button setSelected];
         }
         
@@ -231,7 +354,7 @@
     //load any medals earned
     [self loadMedals];
     
-    _frontPanel = [self createInformationPanelForLevel:(_levelStartNumber + 1)];
+    _frontPanel = [self createInformationPanelForLevel:_selected];
     
     
     [[LayerManager sharedLayers] forgetWorkingLayer];
@@ -261,6 +384,8 @@
     NSString *requiredTimeText = [TrackTimer getTimeStringFromFloat:requiredTime];
     [panel setNextMedal:(medal+1) RequiredTime:requiredTimeText];
     [panel loadObjectsAfterDataInit:self];
+    
+    [self updateDlcLevels];
     
     [requiredTimeText release];
     
@@ -340,7 +465,34 @@
         if (medal>0 && medal<4) {
             [button setTrophy:medal];
         }
+        
+        if(medal!=3 && [_gameDifficulty isEqualToString:@"normal"])
+        {
+            _allGoldMedalInNormal=false;
+                   }
+        
+        if(medal!=3 && [_gameDifficulty isEqualToString:@"hard"])
+        {
+            _allGoldMedalInInsane=false;
+           
+        }
+
+            
     }
+    
+   }
+
+-(void)checkAllGold
+{
+    if(_allGoldMedalInNormal && !_inDLCMode)
+    {
+        [[GCHelper sharedInstance] reportAchievement:gcAchievementAllGoldInNM percentComplete:100];
+    }
+    if(_allGoldMedalInInsane && !_inDLCMode)
+    {
+        [[GCHelper sharedInstance] reportAchievement:gcAchievementAllGoldInIM percentComplete:100];
+    }
+
 }
 
 
@@ -355,12 +507,15 @@
 {
     [[GameSettings shared] setGlobal:@"NO" ForKey:@"titleMusicStarted"];
     [[GameSettings shared] setGlobal:level ForKey:@"startingLevel"];
+    [[GameSettings shared] setGlobal:[NSString stringWithFormat:@"%d",_selected] ForKey:@"timedSelectedLevel"];
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[GameLayer scene]]];
 }
 
 
 -(void)switchToChooseModeScreen
 {
+    [[InAppPurchaseManager shared] setDelegate:nil]; //if don't do this, error messages thrown by the inapppurchasemanager will try to access this released delegate
+
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[ChooseModeScene scene]]];
 }
 
@@ -462,7 +617,12 @@
         case FINAL_RUN:
             levelName=[NSString stringWithFormat:@"Final Run"];
             break;
-            
+        case TRAINING_RUN:
+            levelName=[NSString stringWithFormat:@"Training Run"];
+            break;
+        case DOJO_RUN:
+            levelName=[NSString stringWithFormat:@"Dojo Run"];
+            break;
         default:
             break;
     }
@@ -483,7 +643,11 @@
     [_startButton update:dt];
     [_backButton update:dt];
    
+   
+  
+   
     NSString *description=[self covertLevelname:_levelNumber];
+   
     if (_panelTransition) {
         [self updatePanelTransition:dt];
     }
@@ -501,13 +665,36 @@
                     [_fbprompt release];
                     _fbprompt = nil;
                 }
+                if(!description)
+                {
+                    description=[NSString stringWithFormat:@"Training Level"];
+                }
                 _fbprompt = [FBPrompt promptWithAppId:@"264174546971482" andDelegate:self];
                 [_fbprompt showFacebookDialogWithDescription:[NSString stringWithFormat:@"Hey, here's my score for Track Lapse %@ : %@, see if you can beat me!!!",description, _bestTime] andPicture:@"http://fbrell.com/f8.jpg"];
                 _openFacebook =false;
+                
+                if(![GCState sharedInstance].facebook)
+                {
+                    
+                    [GCState sharedInstance].facebook =true;
+                    [[GCHelper sharedInstance] reportAchievement:gcAchievementFacebookUs percentComplete:100.0];
+                }
+
             } else if(_openTwitter)
             {
+                if(!description)
+                {
+                    description=[NSString stringWithFormat:@"Training Level"];
+                }
                 [self sendEasyTweet:[NSString stringWithFormat:@"Hey, here's my score for Track Lapse %@ : %@, see if you can beat me!!!",description, _bestTime]];
                 _openTwitter =false;
+                if(![GCState sharedInstance].twitter)
+                {
+                    
+                    [GCState sharedInstance].twitter =true;
+                    [[GCHelper sharedInstance] reportAchievement:gcAchievementTwitterUs percentComplete:100.0];
+                }
+
             }
             else {
                 [self popAndSwitchToLevel:_levelToSwitchTo]; 

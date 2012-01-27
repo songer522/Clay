@@ -26,7 +26,7 @@
 {
     NSString *difficulty = [[GameSettings shared] getGlobalForKey:@"storyModeDifficulty"];
     
-    if ([difficulty isEqualToString:@"easy"] || [difficulty isEqualToString:@"medium"] || [difficulty isEqualToString:@"hard"]) {
+    if ([difficulty isEqualToString:@"easy"] || [difficulty isEqualToString:@"normal"] || [difficulty isEqualToString:@"hard"]) {
         return [NSString stringWithString:difficulty];
     }
     

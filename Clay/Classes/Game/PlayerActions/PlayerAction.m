@@ -141,7 +141,10 @@
         [self shotZombie];
     } else if([level isLevelNumber:7]) {
         [self blockshot];
+    }else if([level isLevelNumber:10]) {
+        [self pokeBubble];
     }
+    
 }
 
 
@@ -152,10 +155,13 @@
     _cooldown = _cooldownStart;
     if (_hasKilledEnemy) {
         [_parent changeHealth:1];
+        _hasKilledEnemy=false;
         [self reportAchievementData];
     } else if (_hasKilledSuperEnemy) {
         //so far only used by double health bubbles in level 10
         [_parent changeHealth:2];
+        _hasKilledSuperEnemy=false;
+        [self reportAchievementData];
     }
 }
 
@@ -270,6 +276,23 @@
     }
     
 }
+-(void)pokeBubble
+{
+    int maxPoke = 50;
+    
+    if ([GCState sharedInstance].bubblesPoked < maxPoke) {
+        [GCState sharedInstance].bubblesPoked++;
+        
+        double pctComplete4 = ((double) [GCState sharedInstance].bubblesPoked / (int)maxPoke) * 100.0;
+        if(pctComplete4 == 100.0)
+        {
+            // [[GCState sharedInstance] save];
+            [[GCHelper sharedInstance] reportAchievement:gcAchievementKnock50Bubbles percentComplete:pctComplete4];
+        }
+    }
+    
+}
+
 
 
 -(void)dealloc

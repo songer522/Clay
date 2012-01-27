@@ -238,7 +238,6 @@
     //[self updateLogic:fixedTimeStep];   
 
     // build #2 method
-    
     if( dt > 0.022f )
     {
 		dt = 1/60.0f;
@@ -247,8 +246,8 @@
     
     
     //use for simulator
-    
     /*
+    
     double fixedTimeStep = 1.00f/60.0f;
     float timeToRun = dt + time;
     
@@ -347,6 +346,11 @@
         switch (trigger.type) {
             case TRIGGER_NEXTLEVEL:
                 [self endLevel];
+                if([_level.name isEqualToString:@"level11"])
+                {
+                [[self getBoss] stopTrainSound];
+                    [[self getBoss] stopHornSound];
+                }
                 break;
             case TRIGGER_CHECKPOINT:
                 [_savePoint setSavePoint:trigger.position Level:_level.name];
@@ -413,6 +417,7 @@
     NSString *mode = [[GameSettings shared] getGlobalForKey:@"gameMode"];
     NSString *difficulty=[[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
     NSString *levelName = [[LevelManager shared] currentLevel].name;
+    int levelNumber = [[levelName substringFromIndex:5] intValue];
     
     //set modes as unlocked if have the right settings
     if([mode isEqualToString:@"story"]) {
@@ -423,7 +428,8 @@
         
         [[GameSettings shared] setUnlockedForKey:@"timedNormalUnlocked"];        
      } else if([mode isEqualToString:@"timed"]) {
-         if([difficulty isEqualToString:@"normal"]) {
+         //if timed mode is normal AND the level number is not DLC (we don't want playing dlc levels to unlock insane mode).
+         if([difficulty isEqualToString:@"normal"] && levelNumber < 12) {
             [[GameSettings shared] setUnlockedForKey:@"timedHardUnlocked"];
             [[GameSettings shared] setSerializedGlobal:@"YES" ForKey:[NSString stringWithFormat:@"%@TimedHardUnlocked",levelName]];
          }
@@ -547,11 +553,13 @@
 
 -(void)switchToChooseLevel
 {
+    [[GameSettings shared] setGlobal:@"gameScreen" ForKey:@"previousScreenName"];
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[ChooseLevelScreen scene]]];
 }
 
 -(void)switchToChooseMode
 {
+    [[GameSettings shared] setGlobal:@"gameScreen" ForKey:@"previousScreenName"];
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[ChooseModeScene scene]]];    
 }
 
@@ -587,10 +595,12 @@
     int maxDemon =200;
     int maxZombies = 300;
     int maxBlocks = 75;
+    int maxBubbles=50;
     int maxGetHit =10;
     int maxDeathPitFalling = 10;
     int maxTripping = 50;
     int maxWhooed = 100;
+    int maxTotalHit = 500;
     double pctComplete = ((double)[GCState sharedInstance].timesDied / (int)maxTimesToDie) * 100.0;
     //NSLog(@"diedTimes:%d",[GCState sharedInstance].timesDied );
     //NSLog(@"complete percent %f",pctComplete);
@@ -759,7 +769,34 @@
         [[GCHelper sharedInstance] reportAchievement:gcAchievementJumpOver100dogs percentComplete:pctComplete23];
     }
 
+    
+    double pctComplete24 = ((double) [GCState sharedInstance].gotHit / (int)maxTotalHit) * 100.0;
+    
+  
+    if (pctComplete24 < 100.0)
+    {
+        //[[GCState sharedInstance] save];
+        [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHit500times percentComplete:pctComplete24];
+    }
 
+    double pctComplete25 = ((double) [GCState sharedInstance].bubblesPoked / (int)maxBubbles) * 100.0;
+    
+    if(pctComplete25 < 100.0 && [_level.name isEqualToString:@"level10"])
+    {
+        //[[GCState sharedInstance] save];
+        [[GCHelper sharedInstance] reportAchievement:gcAchievementKnock50Bubbles percentComplete:pctComplete25];
+    }
+    
+    
+    if([[[GCHelper sharedInstance] getAchievementByID:gcAchievementBeatStoryAll] isCompleted] && [[[GCHelper sharedInstance] getAchievementByID:gcAchievementAllGoldInIM] isCompleted] && [[[GCHelper sharedInstance] getAchievementByID:gcAchievementAllGoldInNM] isCompleted])
+    {
+        if(![GCState sharedInstance].beatStoryAndAllGold)
+        {
+            
+            [GCState sharedInstance].beatStoryAndAllGold =true;
+            [[GCHelper sharedInstance] reportAchievement:gcAchievementAllStoryAndAllGold percentComplete:100.0];
+        }
+    }
 
 
 
@@ -786,6 +823,9 @@
 - (void) dealloc
 {
     //can't put these in onexit like the others for some reason
+    [self stopLaserShow];
+    [self stopRainyLevel];
+    
     [_level release];
     [_player release];
     [_gameController release];

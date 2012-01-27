@@ -32,5 +32,9 @@
 	<string>darkness_boss.aifc</string>
 	<key>underwater</key>
 	<string>underwater.aifc</string>
+	<key>training</key>
+	<string>training.aifc</string>
+	<key>dojo</key>
+	<string>dojo.aifc</string>
 </dict>
 </plist>

@@ -11,6 +11,7 @@
 #import "Sprite.h"
 #import "SoundEngine.h"
 #import "GameSettings.h"
+#import "GameLayer.h"
 
 @interface ActionButton()
 
@@ -45,7 +46,7 @@
 -(id)init
 {
     if((self=[super init])) {
-        _lockingGraphic = [Sprite spriteWithFile:@"blank.png"];
+        _lockingGraphic = [Sprite spriteWithFile:@"blank.png" AddToLayer:false];
         [_lockingGraphic setCentered];
         _isEnabled = false;
     }
@@ -65,7 +66,7 @@
         _isEnabled = true;
         _lockType = LOCKTYPE_NOT_ENABLED;
         
-        _lockingGraphic = [Sprite spriteWithFile:@"blank.png"];
+        _lockingGraphic = [Sprite spriteWithFile:@"blank.png" AddToLayer:false];
         [_lockingGraphic setCentered];
         
         if (![text isEqualToString:@""]) {
@@ -222,14 +223,18 @@
 
 -(void)setLocked:(LockType)newType
 {
+    GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
+    
     switch (newType) {
         case LOCKTYPE_LOCKED:
             _lockType = newType;
+            [gameLayer addChild:[_lockingGraphic getCCSprite]];
             [[_lockingGraphic getCCSprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"UI_Locked.png"]];
             [[_lockingGraphic getCCSprite] setVisible:YES];
             break;
         case LOCKTYPE_UNLOCKED_NEW:
             _lockType = newType;
+            [gameLayer addChild:[_lockingGraphic getCCSprite]];
             [[_lockingGraphic getCCSprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"UI_New.png"]];
             [[_lockingGraphic getCCSprite] setVisible:YES];
             break;
@@ -241,6 +246,11 @@
             //should not have to revert back to not enabled
             break;
     }
+}
+
+-(void)setText:(NSString*)text
+{
+    [_textLabel setString:text];
 }
 
 -(void)dealloc

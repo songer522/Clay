@@ -25,6 +25,11 @@ typedef enum {
     WIN_SELECT_NONE
 }WindowSelectionType;
 
+typedef enum {
+    MESSAGE_SEPARATOR_PIPE,
+    MESSAGE_SEPARATOR_WORD
+}MessageSeparationType;
+
 @protocol GameWindowDelegate <NSObject>
 
 -(void)userMadeGameWindowSelection:(WindowSelectionType)selection;
@@ -45,11 +50,14 @@ typedef enum {
     ActionButton *_choice1;
     ActionButton *_choice2;
     
+    MessageSeparationType _messageSeparation;
+    
     float _alpha;
     
     WindowChoiceType _choiceType;
     
     id _delegate;
+    int _characterLimit;
 }
 
 @property(nonatomic,retain) id delegate;
@@ -63,5 +71,8 @@ typedef enum {
 -(void)setupChoiceButtons; //called by init to setup the "YES/NO" buttons
 -(void)setupMessage:(NSString*)message;
 -(WindowSelectionType)checkCollisionAtPoint:(CGPoint)point;
+
+-(NSArray*)getMessageArrayForString:(NSString*)message;
+
 
 @end

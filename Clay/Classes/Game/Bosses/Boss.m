@@ -108,6 +108,13 @@
 {
     
 }
-
+-(void)stopHornSound
+{
+    
+}
+-(void)stopTrainSound
+{
+    
+}
 
 @end

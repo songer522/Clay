@@ -41,6 +41,7 @@
 -(void)setPosition:(CGPoint)position;
 -(void)setLabel:(NSString*)text;
 -(void)setHitbox:(CGRect)rect;
+-(void)setText:(NSString*)text;
 
 #pragma mark - public methods
 -(bool)testCollision:(CGPoint)position;

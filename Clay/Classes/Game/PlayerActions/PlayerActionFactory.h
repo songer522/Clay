@@ -19,7 +19,8 @@ typedef enum {
     PLAYER_ACTION_SPIN,
     PLAYER_ACTION_BLOCK,
     PLAYER_ACTION_BLOW,
-    PLAYER_ACTION_PUMP
+    PLAYER_ACTION_PUMP,
+    PLAYER_ACTION_PUNCH
 }PlayerActionType;
 
 @interface PlayerActionFactory : PlayerAction

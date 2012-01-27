@@ -5,9 +5,11 @@
 	<key>app</key>
 	<dict>
 		<key>showFps</key>
-		<string>NO</string>
+		<string>YES</string>
 		<key>versionNumber</key>
-		<string>120121.02</string>
+		<string>120127.01</string>
+		<key>unlockEverything</key>
+		<string>NO</string>
 	</dict>
 </dict>
 </plist>

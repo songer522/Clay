@@ -1,5 +1,73 @@
 Track Lapse Changelog
 
+Build 120126.01
+=================
+
+* Global - fixed bug where "track lapse guru" achievement wasn't working
+* ChooseLevel - added error messages for when purchases can't be made and when the store isn't accessible. these are getting called when they should, but i was apparently having trouble connecting to the store all day. i was also locked out of my personal account for the day, so that might have had something to do with it. jackbauer test user unlocked, password is now 'Clay2013'. alternatively, the "no fps" version of the build has the dlc already unlocked if the test user gets disabled again.
+* EndGame - added Facebook and twitter icon to end game
+* Level 10 - fixed the bug where the health bubbles gave tim double health
+* Level 11 - added bumper animation to the end of all levels
+* Level 13 - added new song
+* Level 13 - added punch action, will effect ninjas
+* Level 13 - added ninja that drops from rope
+* Level 13 - added white ninja (white ninja currently does not have an attack animation)
+* Level 13 - fixed the movement problem with the throwing knives, got it working so that multiple knives could be thrown at the same time, like ninjas tend to do
+
+
+Build 120125.01
+=================
+
+* EndGame - the comics that show in the end of story mode now fade in and out appropriately without being skippable
+* ChooseMode - added wider buttons so 'SUPPORT' fits in the box now
+* ChooseLevel - in-app purchases work now. under dlc menu, you can click the levels, and it will say 'buy' in the lower right if they need to be bought. to buy them, you must log in as a test user. the test user we have set up has the email of "jackbauer.testuser@gmail.com" and the password of "Clay2012". Once the process is complete, it should save those values (not erased when 'erase data' is clicked), and load those each time. and it's pretty neat, because even if you switch devices their store will keep track of the purchase, and you can just say 'buy' again and it will say 'oh, you already bought this, download again for free' and will unlock it again that way.
+* ChooseLevel - fixed so when you come back to the choose level screen after playing a level, the level selector and information panel will start on that level instead of always the first level.
+* Level 8 - tweaked hedgehog hitbox
+* Level 9 - squirrels now show up above the cheering crowds instead of behind them
+* Level 9 - fixed the lightning looking like it was in the foreground. should now follow the back layer pretty closely, which means it should go away when Tim dies and respawns
+* Level 11 - fixed the train noise playing during the beating the level guitar riff
+* Level 13 - added darts that function like the fireball, although the movement angle needs to be tweaked still
+* Level 13 - added dummy for checkpoint
+* Level 13 - added ledges
+* Level 13 - added sword rack as medium obstacle
+
+
+Build 120124.03
+=================
+
+* ChooseMode - changed so tutorial plays when normal story mode is played for the first time. this will be reset when data is erased also
+* Global - added achievements: "we did it", "seriously?", "impossible", "track lapse guru", "gone bubblin", "we like you", and "pretty bird"
+* Global - added ability for achievements to sync from game center so achievement progress will be the same across devices
+* Global - obstacles with "fall over behavior" temporarily set so they fade out, to test if this is preferred. tian pushed for this since technically some of the obstacles (mainly hurdles) have the wrong perspective once they've fallen over, and screenshots taken with the fallen over obstacles would look weird
+* HowToPlay - changed start button so it shows next instead and scrolls through the tutorial when pressed until the last page, then switches to start. swiping through pages still allowed
+* MainMenu - gifting our app now changed to our app id. probably will not "work" until game is actually on the app store now
+* Options - fixed so level times and medals are erased when 'erase data' is selected
+* Level 2 - removed old jim from hard mode
+* Level 6 - repositioned puddles to fit the grate
+* Level 9 - fixed thunder sound playing in story mode after level 9
+* Level 13 - added basic level environment with new background and background ninja animation
+
+
+Build 120123.01
+=================
+
+* Global - possibly fixed zero battery issue (please test)
+* ChooseMode - new/locked icons now show above the cursor, if the default option cannot be selected it will find the next unlocked option, and some extra space given between the options so the locked icon doesn't overlap what's above it
+* Level 2 - added jim hiding behind the fence
+* Level 4 - fixed invisible blue dancers by replacing them with red dancers
+* Level 7 - tweaked hitbox for worm
+* Level 10 - added jim scuba diving
+* Level 10 - tweaked story hard mode, story normal
+* Level 10 - fixed fish that's impossible to pass
+* Level 10 - tweak to timed insane mode
+* Level 11 - tweaked stationary bombs so the detonated explosion becomes harmless faster
+* Level 12 - added sound for action
+* Level 12 - added comic before level
+* Level 12 - updated action animation
+* Level 12 - added first draft of the song for the level
+* Level 12 - added people to the level that behave like the woo action
+
+
 Build 120120.01
 =================
 

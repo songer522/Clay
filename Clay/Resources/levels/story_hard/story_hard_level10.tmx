@@ -52,8 +52,7 @@
         </tile>
         <tile id="4">
             <properties>
-                <property name="layerBelow" value="back-1"/>
-                <property name="special" value="jimAppearance1"/>
+                <property name="obstacle" value="jimWater"/>
             </properties>
         </tile>
         <tile id="7">
@@ -217,7 +216,7 @@
             <property name="speedy" value="1.0"/>
         </properties>
         <data encoding="base64" compression="zlib">
-            eJzt21FShDAMANA9gXo0dxT3/jdx9s9hFoRS2qS89wNfTsyWkBS43QAAAAAAAAAAAAAAAACA0Tx6B0BYU+8AAE720zsAgGQi1M3HwhFq6jULRV/P87xkmxnn+Y2e76fsOQfgtWnDOfV89g6AVRHmzBJr66rVmsuau4jU4nj8Dttkz1OGuRyAWKL2wFeYOx8bzucy9Spn7tVEXbd/ZYgxulFyeIV6NrelvpXUwFp6/SaZanhNe6/l7M9yMz4/H0X2tbPXKPdJAHjSMwGcx+xQ7rt3AABwoq/eAcDA9JEAAIzIXjO04/l5H+rcuqX3MaO8pxl9P+asPNnnja30veb7ziMAcZT08hH60AgxjOi/78syzn5r34Bm/H9aaHF93Q+cR6UuUVuU/YsMjtbzyNevdVAm6nfbLeM6cq+tcd+dFo4AcBUj96gZ1Mzfe8W/RS562P1Ka1/kmhd1vsxG3sbx0TsALuWtdwAAAAAAAAAA0NAvOdYn8A==
+            eJzt20tuhDAMANA5QT8366ilc/+bVLOrUKEQQmKH9zawqlxPMHaA2w0AAAAAAAAAAAAAAAAAGM2jdwCENfUOAOBk370DAEgmQt18LByhpl6zUPT1PM9Ltplxnt/o+X7KnnMA/jZtOKeej94BsCrCnFlibV21WnPRc/feO4Ad1OJ4/A7bZM9ThrkcgFii9sBXmDsfG87nMvUqZ+7VRF23v2WIMbpRcniFeja3pb6V1MBaev0mmWp4TXuv5ezPcjM+Px9F9rWz1yj3SQB40jMBnMfsUO6rdwAAcKLP3gHAwPSRAACMyF4ztOP5eR/q3Lql9zGjvKcZfT/mrDzZ542t9L3m+84jAHGU9PIR+tAIMYzov+/LMs5+a9+AZvx/Wmhxfd0PnEelLlFblP2LDI7W88jXr3VQJup32y3jOnKvrXHfnRaOAHAVI/eoGdTM32vFv0Uuetj9Smtf5JoXdb7MRt7G8dY7AC7lpXcAAAAAAAAAANDQDyBdKAE=
         </data>
     </layer>
     <layer name="meta" width="1000" height="14" opacity="0.5">

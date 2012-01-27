@@ -139,26 +139,46 @@
 {
     int currentZ = 0;
 
+    [_gameLayer stopRainyLevel];
+
+    
     NSArray *layers = [layerList componentsSeparatedByString:@","];
     for (NSString *layerName in layers) {
-        if([layerName isEqualToString:@"front-1"]) {
-            if([levelName isEqualToString:@"level11"]) {
+        if([layerName isEqualToString:@"front-1"]) 
+        {
+            if([levelName isEqualToString:@"level11"]) 
+            {
                 [self addObstaclesToMapWithBehavior:COLLISION_BEHAVIOR_DARK_SPIKES];
             }
-        }  if([layerName isEqualToString:@"front-1"]) {
-            if([levelName isEqualToString:@"level4"]) {
+        }  
+         if([layerName isEqualToString:@"front-1"]) 
+        {
+            if([levelName isEqualToString:@"level4"]) 
+            {
                 [self addObstaclesToMapWithBehavior:COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_BD];
                  [self addObstaclesToMapWithBehavior:COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST_BD];
             }
         }
         
-        else if ([layerName isEqualToString:@"ledges"]) {
+        if ([layerName isEqualToString:@"front-1"]) 
+        {
             //stop existing rainylevel, and start new one if right level
-            [_gameLayer stopRainyLevel];
-            if([levelName isEqualToString:@"level9"]) {
+            if([levelName isEqualToString:@"level9"]) 
+            {
+                [self addObstaclesToMapWithBehavior:COLLISION_BEHAVIOR_RAINY_SQUIRREL];
+                //[self addObstaclesToMapWithBehavior:COLLISION_BEHAVIOR_FROG_SQUASH];
+            }
+        } 
+        else if ([layerName isEqualToString:@"ledges"]) 
+        {
+            //stop existing rainylevel, and start new one if right level
+            if([levelName isEqualToString:@"level9"]) 
+            {
                 [_gameLayer initializeRainyLevel];
             }
-        } else if ([layerName compare:@"actives"] == NSOrderedSame) {
+        } 
+        else if ([layerName compare:@"actives"] == NSOrderedSame) 
+        {
             
             //[player setLedgeSprite:[[LayerManager sharedLayers] currentLayer]];
             
@@ -482,6 +502,23 @@
                     [_otherMapObjects addObject:mapObject];
                     
                 }
+                else if([special isEqualToString:@"checkpointDojo"]) { //checkpoint trigger
+                    Trigger *trigger = [[Trigger alloc] init];
+                    trigger.position = [self getXYPositionForCoordinates:CGPointMake(i,j)];
+                    trigger.type = TRIGGER_CHECKPOINT;
+                    [_triggers addObject:trigger];
+                    
+                    //SHOULD work by giving it an object property, but stupidly isn't. so doing manually
+                    GameObject *object = [_gameObjects loadGameObjectWithName:@"checkpointDojo" AddToLayer:NO];
+                    CGPoint position = [self getXYPositionForCoordinates:coords];
+                    [object setPositionAtX:position.x Y:position.y];
+                    [object setStartingPosition:position];
+                    [[object getCCSprite] setScale:_scale];
+                    MapObject *mapObject = [MapObject mapObjectWithSprite:object AboveLayer:layerBelow];
+                    [_otherMapObjects addObject:mapObject];
+                    
+                }
+
                 
                 else if([special compare:@"spawnpoint"] == NSOrderedSame) {
                     _spawnPoint = [self getXYPositionForCoordinates:CGPointMake(i, j)];
@@ -1043,6 +1080,7 @@
 -(void)obstacleGotHitBy:(GameObject *)obstacle
 {
     int maxHit = 10;
+    
     if(obstacle.isHurdle)
     {
        // NSLog(@"%d",[GCState sharedInstance].hurdlesHit );
@@ -1207,6 +1245,8 @@
         }
         
     }
+
+        
 
 
 

@@ -28,6 +28,7 @@
 #import "OptionsScene.h"
 #import "Tutorial.h"
 #import "GameLayer.h"
+#import "InAppPurchaseManager.h"
 
 
 @implementation MainMenuScene
@@ -116,6 +117,7 @@
         [_giftButton setPosition:ccp(75,24)];
         [_giftButton setHitboxBySize:CGSizeMake(65, 65)];
 
+        [[InAppPurchaseManager shared] requestProductData];
         
         [[LayerManager sharedLayers] forgetWorkingLayer];
         
@@ -370,7 +372,7 @@
             [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[OptionsScene node]]];
             break;
         case MENU_SWITCHTO_GIFT:
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://buy.itunes.apple.com/WebObjects/MZFinance.woa/wa/giftSongsWizard?gift=1&salableAdamId=343200656&productType=C&pricingParameter=STDQ"]];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://buy.itunes.apple.com/WebObjects/MZFinance.woa/wa/giftSongsWizard?gift=1&salableAdamId=473701533&productType=C&pricingParameter=STDQ"]];
             break;
 
         default:

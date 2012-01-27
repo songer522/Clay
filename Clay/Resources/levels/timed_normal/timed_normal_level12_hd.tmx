@@ -147,6 +147,16 @@
     <property name="obstacle" value="trainingExerciseBall"/>
    </properties>
   </tile>
+  <tile id="102">
+   <properties>
+    <property name="obstacle" value="clappingCrowd4"/>
+   </properties>
+  </tile>
+  <tile id="103">
+   <properties>
+    <property name="obstacle" value="clappingCrowd5"/>
+   </properties>
+  </tile>
  </tileset>
  <tileset firstgid="123" name="Training" tilewidth="64" tileheight="64">
   <image source="tileset_level_12-hd.png" width="576" height="576"/>
@@ -184,7 +194,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1kEOgjAQAEBeYPyBPhBR/38xHEwMKXRpF7nMXAjttpTdNjAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQMnz5PG/XglzTAf0Han1ua15z8jxbEyKzVrPu3N8xj7eqmVk/qxcrD3r6Paae+O4kj31LtUl2haRmb+sPTDrPRM9HsP6e44bfS1q7zkN9dpmxXzdgnFRpXxF23r3VFatWuaJfDvWrntE1rYVs+esL9uO+PeInv3MXP3j+7LMVe2+RTR32XGzR2d/NGZW2/PR+mTv32vyfNDjcvYCAAAAAAAAAOAEH8o8IpM=
+   eJzt1lFuwyAMANCeoNoN1gN2babt/qr6F0WB2NQoP+99tcSQBIzJ5QIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADseZ7cf20pGOMx4VrWT6N9Kbqe8TfQJ+JeFNvKn9a7/ibum1GRx70cioxfkf+9e81uP3JLxrf2wVsmD/bWJdoWUTl/2RyomKP/YFxVPtwTfXq1Y/t+kZo0q35sfRePF52vvbhP60rVGT8yTm9Nl8DvI5nzsff80b1R+Z2xltknayO5ceb5sp2/o/8tFXVlNG6GT8642es2Wn++BvtBpevZDwAAAAAAAAAAJ3gBsgklng==
   </data>
  </layer>
  <layer name="meta" width="1000" height="14" opacity="0.68">
@@ -193,7 +203,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1LEOABAMQEEG///LFjMSEmndJW8zNa1SAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAyKKNbr8F4pvdvP+AXXaFn6z2fece3AwAAAAAkVVJkiRJkgKXxes5SpIkSZJ0UhYdx8gHvQ==
+   eJzt1DEOABEQQFFbuP+VNepFZLLGvpf8SsMQpQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPxD7UWtn2BljxnOw3m8m7GMM4r6OzLOgnfudI45rYn4V9wBAAAAAOx7JEmSJElK3C2+nqMkSZIkSTvdogGN1AgD
   </data>
  </layer>
 </map>

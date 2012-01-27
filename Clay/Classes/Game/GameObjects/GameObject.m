@@ -200,10 +200,14 @@
     
     switch (_currentBehavior) {
         case COLLISION_BEHAVIOR_FALL_OVER:
-            _fallVelocity = 425.0f;            
+            _fallVelocity = 425.0f;
+            _alpha=2.0f;
+            _fadeout=true;
             break;
         case COLLISION_BEHAVIOR_DISCO_HANDBAG:
-            _fallVelocity = 425.0f;            
+            _fallVelocity = 425.0f;
+            _alpha=2.0f;
+            _fadeout=true;
             break;
         case COLLISION_BEHAVIOR_HEN_DEAD:
             _hasGravity = false;
@@ -315,6 +319,10 @@
         case COLLISION_BEHAVIOR_FIREBALL_MOVING:
             _collided = false;
             break;
+        case COLLISION_BEHAVIOR_DART_START:
+        case COLLISION_BEHAVIOR_DART_MOVING:
+            _collided = false;
+            break;
         case COLLISION_BEHAVIOR_FROG_SQUASH:
             [self.sprite setAnimationByName:@"rainyFrogSquashAnim"];
             [[SoundEngine shared] playSound:@"frogSquish"];
@@ -395,8 +403,29 @@
                 _fadeout = true;
             }
             break;
+        case COLLISION_BEHAVIOR_DOJO_DROP_NINJA:
+            if(isProjectile) {
+                _currentBehavior = COLLISION_BEHAVIOR_DOJO_DROP_NINJA_PUNCHED;
+                [[SoundEngine shared] playSound:@"dojoNinjaYell3"];
+            } else {
+                _alpha = 1.2f;
+                _fadeout = true;
+            }
+            break;
+        case COLLISION_BEHAVIOR_DOJO_WHITE_NINJA_CHARGING:
+            if (isProjectile && !_hasTriggered) {
+                float magnitude = rand() % 500 + 600;
+                _angle = rand() % 70 + 10;
+                _rotationAmount = rand() % 10 * 200;
+                _vx = magnitude * cosf((_angle * 3.14159)/180.0f);
+                _vy = - magnitude * sinf((_angle * 3.14159)/180.0f);
+                _hasTriggered = true;
+                [[SoundEngine shared] playSound:@"dojoNinjaYell2"];
+            }
+            break;
         case COLLISION_BEHAVIOR_WATER_SQUID_FADES:
         case COLLISION_BEHAVIOR_FIREBALL_LANDED:
+         case COLLISION_BEHAVIOR_DART_LANDED:   
         case COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR:
         case COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR_WAITTOSHOOT:
         case COLLISION_BEHAVIOR_ZOMBIE_FADE:
@@ -407,6 +436,7 @@
         case COLLISION_BEHAVIOR_TRAINING_EXERCISE_BALL:
             _alpha = 1.2f;
             _fadeout = true;
+            break;
         default:
             break;
     }
@@ -467,7 +497,7 @@
                 if(_projectile!=nil){
                     [[_projectile getCCSprite] setVisible:NO];
                 }
-                if (_collideBehavior != COLLISION_BEHAVIOR_COMPUTER_WORM) {
+                if (_collideBehavior != COLLISION_BEHAVIOR_COMPUTER_WORM && _collideBehavior != COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENING && _collideBehavior != COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENED && _collideBehavior != COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_UP) {
                     [[_sprite getCCSprite] pauseSchedulerAndActions];                    
                 }
                 _isVisible = false;
@@ -498,7 +528,7 @@
     _prevLocation = CGPointMake(_x, _y);
     
     if(_isBouncing) { //for some reason don't see the hasgravity stuff working
-        _vy += 500.0f * dt;
+        _vy += _bounceGravity * dt;
     }
     
     _x += _vx * dt;
@@ -563,9 +593,9 @@
     _rotationAmount -= _magnitude * dt;
     [_sprite getCCSprite].rotation = _rotationAmount;
     
-    if (_y <= 70) {
-        _y = 70;
-        _vy = - 0.55f * _vy;
+    if (_y <= _bouncePosition) {
+        _y = _bouncePosition;
+        _vy = - _bounceYDampening * _vy;
         _vx = 0.7f * _vx;
         _magnitude = 0.7f * _magnitude;
     }    
@@ -954,6 +984,23 @@
             
             break;
             
+        case COLLISION_BEHAVIOR_WATER_JIM:
+            
+            if([self closeToPlayer:550])
+            {
+             
+                if(_waitToTrigger<=0)
+                {
+                    _waitToTrigger=0.5;
+                    _direction  =-1 * _direction;
+                }
+                _waitToTrigger -=dt;
+                
+                _vy = _direction * 10.0f;
+                
+            } 
+            break;
+            
         case COLLISION_BEHAVIOR_WATER_SEAHORSE:
             if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
                 _vy *= 0.955f;
@@ -1065,7 +1112,7 @@
             if (!_hasTriggered && [self closeToPlayer:40.0f]) {
                 [self startCollision:YES];
             } else if(_hasTriggered && _bombStillHurts) {
-                if (_alpha > 0.3f) {
+                if (_alpha > 0.8f) {
                     _collided = false;
                 } else {
                     _collided = true;
@@ -1116,17 +1163,98 @@
                     _rotationAmount = 0.0f;
                     _magnitude = 170.0f; //magnitude of rotation
                     _vx = -100.0f;
+                    _bouncePosition = 70.0f;
+                    _bounceGravity = 500.0f;
+                    _bounceYDampening = 0.55f;
                 } else {
                     _isBouncing = false;
                 }
             } else {
             }
             break;
-
             
+        ////////////////////////
+        //LEVEL 13 - DOJO RUN
+        ////////////////////////
+        case COLLISION_BEHAVIOR_DART_START:
+            if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+              //  Player *player = [[LayerManager sharedLayers] getPlayer];
+               // CGPoint position = [player getPosition];
+                [self setPositionAtX:(_startingPosition.x + 720.0f) Y:(_startingPosition.y + 286.0f)];
+                [self setPlayerEffect:@"none"];
+                _currentBehavior = COLLISION_BEHAVIOR_DART_MOVING;
+                _isInvincible = true;
+                
+            }
+            break;
+        case COLLISION_BEHAVIOR_DART_MOVING:
+            _vx -= 30.0f;
+            _vy += 30.0f;
+            if (_y <= 95.0f) {
+                _vx = 0.0f;
+                _vy = 0.0f;
+                //_x = _prevLocation.x;
+                _y = 95.0f;
+                _isInvincible = false;
+                [self setPositionAtX:_x Y:_y];
+                [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"dartLandingAnim"];
+                _currentBehavior = COLLISION_BEHAVIOR_DART_LANDED;
+                _collideBehavior = COLLISION_BEHAVIOR_DART_LANDED;
+                [self setPlayerEffect:@"collide"];
+                [[SoundEngine shared] playSound:@"dojoKnifeGround"];
+            }
+            break;
+        case COLLISION_BEHAVIOR_DOJO_DROP_NINJA:
+            if (!_hasTriggered && [self closeToPlayer:450]) {
+                _hasTriggered = true;
+                _y = 910.0f; //was 600.0f;
+                _x -= 50.0f;
+                _isBouncing = true;
+                _bouncePosition = 400.0f;  //was 90.0f
+                _bounceGravity = 1000.0f;
+                _angle = 0.0f;
+                _bounceYDampening = 0.25f;
+                _vy = 400.0f;
+                _direction = 0.0f;
+            }
+            break;
+        case COLLISION_BEHAVIOR_DOJO_DROP_NINJA_PUNCHED:
+            _angle -= 250.0f * dt;
+            if (_angle < -90.0f) {
+                _angle = -90.0f;
+            }
+            [_sprite getCCSprite].rotation = _angle;
+            break;
+        case COLLISION_BEHAVIOR_DOJO_WHITE_NINJA_CHARGING:
+            if(!_hasTriggered) { //hastriggered is true when the white ninja is punched
+                [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-220.0f];                
+            } else {
+                //rotate quickly
+                _angle += _rotationAmount * dt;
+                [self getCCSprite].rotation = _angle;
+            }
+            break;
+        case COLLISION_BEHAVIOR_DOJO_DEATHPIT:
+            if (!_hasTriggered && [self closeToPlayer:250]) {
+                _hasTriggered = true;
+                [self setOriginalAnimation:@"dojoDeathPitClosedAnim"];
+                [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"dojoDeathPitOpeningAnim"];
+                _waitToTrigger = 0.3f;
+                _collided = true;
+            } else {
+                if (_waitToTrigger > 0.0f) {
+                    _waitToTrigger -= dt;
+                    if (_waitToTrigger<=0.0f) {
+                        [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"dojoDeathPitOpenedAnim"];
+                    }
+                }
+            }
         default:
             break;
     }
+    
+
+
 }
 
 -(void) chaseAtDistance:(float)distance DefaultSpeed:(float)defaultSpeed ChaseSpeed:(float)chaseSpeed
@@ -1355,7 +1483,13 @@
     } else if(_currentBehavior == COLLISION_BEHAVIOR_FIREBALL_START || _currentBehavior == COLLISION_BEHAVIOR_FIREBALL_MOVING || _currentBehavior == COLLISION_BEHAVIOR_FIREBALL_LANDED) {
         _currentBehavior = COLLISION_BEHAVIOR_FIREBALL_START;
         [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"fireballMovingAnim"];
-    } else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR_WAITTOSHOOT || _currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR) {
+    }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_DART_START || _currentBehavior == COLLISION_BEHAVIOR_DART_MOVING || _currentBehavior == COLLISION_BEHAVIOR_DART_LANDED) {
+        _currentBehavior = COLLISION_BEHAVIOR_DART_START;
+        [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"dartMovingAnim"];
+    }
+    
+    else if(_currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR_WAITTOSHOOT || _currentBehavior == COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR) {
         _currentBehavior = COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR_WAITTOSHOOT;
         [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"fireDemonWithArmorWalking"];
     } else if(_currentBehavior == COLLISION_BEHAVIOR_FROG_SQUASH) {
@@ -1461,6 +1595,20 @@
     else if(_currentBehavior == COLLISION_BEHAVIOR_TRAINING_EXERCISE_BALL) {
         _currentBehavior = COLLISION_BEHAVIOR_TRAINING_EXERCISE_BALL;
         _collideBehavior = COLLISION_BEHAVIOR_TRAINING_EXERCISE_BALL;
+        _hasTriggered = false;
+    }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_DOJO_DROP_NINJA||_currentBehavior == COLLISION_BEHAVIOR_DOJO_DROP_NINJA_PUNCHED) {
+        _currentBehavior = COLLISION_BEHAVIOR_DOJO_DROP_NINJA;
+        _hasTriggered = false;
+    }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_DOJO_WHITE_NINJA_CHARGING) {
+        _currentBehavior = COLLISION_BEHAVIOR_DOJO_WHITE_NINJA_CHARGING;
+        _collideBehavior = COLLISION_BEHAVIOR_DOJO_WHITE_NINJA_CHARGING;
+        _hasTriggered = false;
+    }
+    else if(_currentBehavior == COLLISION_BEHAVIOR_DOJO_DEATHPIT) {
+        _currentBehavior = COLLISION_BEHAVIOR_DOJO_DEATHPIT;
+        _collideBehavior = COLLISION_BEHAVIOR_DOJO_DEATHPIT;
         _hasTriggered = false;
     }
     else if(_currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST && _currentBehavior != COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_SLOW) {
@@ -1575,7 +1723,12 @@
     } else if([behavior isEqualToString:@"fireball"]) {
         _collideBehavior = COLLISION_BEHAVIOR_FIREBALL_MOVING;
         _currentBehavior = COLLISION_BEHAVIOR_FIREBALL_START;
-    } else if([behavior isEqualToString:@"frogSquash"]) {
+    }
+    else if([behavior isEqualToString:@"dart"]) {
+        _collideBehavior = COLLISION_BEHAVIOR_DART_MOVING;
+        _currentBehavior = COLLISION_BEHAVIOR_DART_START;
+    }
+    else if([behavior isEqualToString:@"frogSquash"]) {
         _collideBehavior = COLLISION_BEHAVIOR_FROG_SQUASH;
         _currentBehavior = COLLISION_BEHAVIOR_STATIC;
     } else if([behavior isEqualToString:@"umbrellaFlyUp"]) {
@@ -1619,7 +1772,12 @@
     } else if([behavior isEqualToString:@"pufferfish"]) {
         _currentBehavior = COLLISION_BEHAVIOR_WATER_PUFFERFISH;
         _collideBehavior = COLLISION_BEHAVIOR_WATER_PUFFERFISH_FADES;
-    } else if([behavior isEqualToString:@"spikes"]){
+    }
+    else if([behavior isEqualToString:@"waterJim"]) {
+        _currentBehavior = COLLISION_BEHAVIOR_WATER_JIM;
+        _collideBehavior = COLLISION_BEHAVIOR_WATER_JIM;
+    }
+    else if([behavior isEqualToString:@"spikes"]){
         _currentBehavior = COLLISION_BEHAVIOR_DARK_SPIKES;
         _collideBehavior = COLLISION_BEHAVIOR_DARK_SPIKES;
         
@@ -1696,6 +1854,18 @@
     else if([behavior isEqualToString:@"exerciseBall"]) {
         _currentBehavior = COLLISION_BEHAVIOR_TRAINING_EXERCISE_BALL;
         _collideBehavior = COLLISION_BEHAVIOR_TRAINING_EXERCISE_BALL;
+    }
+    else if([behavior isEqualToString:@"dropninja"]) {
+        _currentBehavior = COLLISION_BEHAVIOR_DOJO_DROP_NINJA;
+        _collideBehavior = COLLISION_BEHAVIOR_DOJO_DROP_NINJA;
+    }
+    else if([behavior isEqualToString:@"whiteninja"]) {
+        _currentBehavior = COLLISION_BEHAVIOR_DOJO_WHITE_NINJA_CHARGING;
+        _collideBehavior = COLLISION_BEHAVIOR_DOJO_WHITE_NINJA_CHARGING;
+    }
+    else if([behavior isEqualToString:@"dojoDeathPit"]) {
+        _currentBehavior = COLLISION_BEHAVIOR_DOJO_DEATHPIT;
+        _collideBehavior = COLLISION_BEHAVIOR_DOJO_DEATHPIT;
     }
     else {
         _collideBehavior = COLLISION_BEHAVIOR_NONE;

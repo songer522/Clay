@@ -89,15 +89,13 @@ static ComicManager *_shared = nil;
     if (!_isActive) {
         id result = [_videoList objectForKey:comic];
         
-        NSAssert([result isKindOfClass:[NSString class]],@"Result is not a string or is null. Verify what you're asking for is in the plist.");
-        
         _comicName = [[NSString stringWithString:comic] retain];
         
         _videoFileName = result;
         
         
         _introMovie = false;
-        if ([_videoFileName compare:@"endGame"] == NSOrderedSame) {
+        if (_videoFileName !=nil && [_videoFileName compare:@"endGame"] == NSOrderedSame) {
             _showEndGame = true;            
         }
         
@@ -187,7 +185,7 @@ static ComicManager *_shared = nil;
                 gameLayer.visible = true;
                 [_comicLayer startTransition:BLACKBOX_OUT];
                 gameLayer.gameController.isInputEnabled = false;
-                [gameLayer saveAndReportToGameCenter];
+               
                 [[gameLayer getHud] fadeIn];
               
                 break;
@@ -272,12 +270,13 @@ static ComicManager *_shared = nil;
 -(void)endTheGame
 {
     GameLayer *gameLayer = (GameLayer*)[[LayerManager sharedLayers] currentLayer];
-    
+    [[GameSettings shared] setSerializedGlobal:@"" ForKey:@"storyModeCurrentLevel"];
+    [[GameSettings shared] setSerializedGlobal:@"" ForKey:@"storyModeDifficulty"];
     //set the final total time for the end game screen
     float finalTime = [[[gameLayer getHud] getTrackTimer] getTime];
     [[GameSettings shared] setGlobal:[NSString stringWithFormat:@"%f", finalTime] ForKey:@"finalTime"];
-    
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:4.5f scene:[EndGameScene scene]]];
+     [[GameSettings shared] saveToDisk];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[EndGameScene scene]]];
     _showEndGame = false;
     _introMovie = false;
 }

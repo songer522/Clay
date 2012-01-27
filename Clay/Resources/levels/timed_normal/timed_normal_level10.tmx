@@ -52,8 +52,7 @@
         </tile>
         <tile id="4">
             <properties>
-                <property name="layerBelow" value="back-1"/>
-                <property name="special" value="jimAppearance1"/>
+                <property name="obstacle" value="jimWater"/>
             </properties>
         </tile>
         <tile id="7">
@@ -175,7 +174,7 @@
     <tileset firstgid="113" name="Level10_TiledSheet-hd" tilewidth="32" tileheight="32">
         <image source="tileset_level_10.png" width="1024" height="640"/>
     </tileset>
-    <layer name="back-1" width="1000" height="14" opacity="0.99">
+    <layer name="back-1" width="1000" height="14">
         <properties>
             <property name="speedx" value="0.7"/>
             <property name="speedy" value="1.0"/>
@@ -217,7 +216,7 @@
             <property name="speedy" value="1.0"/>
         </properties>
         <data encoding="base64" compression="zlib">
-            eJzt20tSwzAMANCeADgaHSjc/yYMK5hOQxLiWJL93qafRSLbsmJPkssFAAAAAAAAAAAAAAAAAAAAxvCZ4BgtYoDR3KIDgCByf173Y39WLhxdd4yWo736vYXsa8bs8QFEenR92frfWV47nisrfbAu89qIXLbMpypzzrp2WZUxrOhI3o1WqzO3Z+84RcyZUWuY+gPnyHCPe9S6xY8KY7y2/siyPskSB8s+ogMYVI/cvzX6Dt+q50Sl++dZtV7/qEsAAEBVb9EBHFA5dgCYxXt0AAAbVHhuphf7LHjMmgYAyML+5f+ujb5zDrk9h+rPzmbM0619et35yX7V8xvIK8M75i2Pk8Xae1nZ6/os7yplb89o8+K3+7at/a6g1b2e6vXjLxXHNYNK/dY7P0eaH0tGbFNPZ86f2camUi0CgDNEXgufA88N1LJ1n1KxrkTV4dn2fq3Zl4/nJToApvIUHQAAAAAAAAAAdPQFgZwk/w==
+            eJzt20tygzAMANCcoJ+bNdOmvf9NumwnAwUaY0n2e5t8FiDbsrAHuFwAAAAAAAAAAAAAAAAAAABgDF8JjtEiBhjNLToACCL353U/9mflwqPrjtFytFe/t5B9zZg9PoBIS9eXvf+d5a3jubLSB9syr43IZc98qjLnrGvXVRnDih7Ju9Fqdeb2HB2niDkzag1Tf+AcGe5xj1q3+FFhjLfWH1nWJ1niYN1ndACD6pH7t0bfs3uNDmASlXJiSaX751m1Xv+MXJcAAICxvUcH8IDKsQPALD6iAwDYocJzM73YZ8EyaxoAIAv7l/+7NvrOOeT2HKo/O5sxT/f26fXgJ8dVz28grwzvmLc8ThZb72Vlr+uzvKuUvT2jzYvf7tu29buCVvd6qtePv1Qc1wwq9Vvv/BxpfqwZsU09nTl/ZhubSrUIAM4QeS18Djw3UMvefUrFuhJVh2fb+7VmXz6el+gAmMpTdAAAAAAAAAAA0NE3O+wlEA==
         </data>
     </layer>
     <layer name="meta" width="1000" height="14" opacity="0.5">

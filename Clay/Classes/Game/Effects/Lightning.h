@@ -17,6 +17,7 @@
     float _timeIntoAnimation;
     float _waitUntilNewStrike;
     CGPoint _position;
+    float _originalCamPositionX;
     bool _inLightning;
     Player *_player;
 }

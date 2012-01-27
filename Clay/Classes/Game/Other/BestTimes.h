@@ -24,5 +24,7 @@
 -(void)storeNewBestTime:(float)time forLevelNamed:(NSString*)levelName forDifficulty:(NSString*)difficulty;
 
 -(void)saveData;
+-(void)reload;
+-(void)erase;
 
 @end

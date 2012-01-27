@@ -14,14 +14,15 @@
 #import <Twitter/Twitter.h>
 #import <Accounts/Accounts.h>
 #import <UIKit/UIKit.h>
-
-
+#import "DlcLevelDelegate.h"
 
 @class GameLabel;
 @class Sprite;
 @class ActionButton;
 @class ChooseLevelPanel;
 @class FBPrompt;
+@class DlcGameWindow;
+@class GameWindow;
 
 typedef enum {
     TRACK_RUN = 1,
@@ -34,11 +35,13 @@ typedef enum {
     VOLCANO_RUN = 8,
     AQUARIUM_RUN = 9,
     STORMY_RUN = 10,
-    FINAL_RUN = 11
+    FINAL_RUN = 11,
+    TRAINING_RUN = 12,
+    DOJO_RUN = 13
    
 }LevelName;
 
-@interface ChooseLevelScreen : CCLayer <FBDialogDelegate,FBSessionDelegate>
+@interface ChooseLevelScreen : CCLayer <FBDialogDelegate,FBSessionDelegate,DlcLevelDelegate>
 {
     NSMutableArray *_buttons;
     
@@ -74,9 +77,18 @@ typedef enum {
     ChooseLevelPanel *_frontPanel;
     ChooseLevelPanel *_backPanel;
     
+    DlcGameWindow *_dlcWindow;
+    bool _dlcWindowOpen;
+    
+    GameWindow *_errorWindow;
+    bool _errorWindowOpen;
+    
+    
     bool _panelTransition;
     bool _hasSwitched;
     bool _inDLCMode;
+    bool _allGoldMedalInNormal;
+    bool _allGoldMedalInInsane;
     float _panelAlpha;
     
     int _selected;
@@ -97,6 +109,7 @@ typedef enum {
 -(float)getTimeForNextMedalForLevelNamed:(NSString*)levelName BestTime:(float)time;
 -(void)load;
 -(void)loadMedals;
+-(void)checkAllGold;
 
 -(void)popAndSwitchToLevel:(NSString*)level;
 
@@ -109,5 +122,16 @@ typedef enum {
 -(void)switchInfoPanelToLevel:(float)number;
 
 -(void)updatePanelTransition:(float)dt;
+
+-(void)popupDlcWindow:(int)levelNumber;
+
+-(bool)checkDlcLevelUnlocked:(int)levelNumber;
+
+-(void)prepareToPlayLevel;
+-(void)updateStartButton;
+
+-(void)openErrorWindowCantConnectToStore;
+-(void)openErrorWindowCantMakePurchases;
+-(void)closeErrorWindow;
 
 @end

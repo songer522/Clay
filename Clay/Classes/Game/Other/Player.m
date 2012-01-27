@@ -132,7 +132,7 @@
     if (_hitPoints<=0) {
         _isDead = true;
         _hitPoints = 0;
-        [_battery setFrame:6];
+        [_battery setFrame:6 Resetting:YES];
         [[SoundEngine shared] playSound:@"dead"];
     } else {
         if(_hitPoints>5) {
@@ -188,7 +188,7 @@
 
 -(void)startDoubleJump
 {
-    if ((_isTripping || _isDead || [_sprite getPosition].y <= 62) && !_isNewUnderwaterPhysics) { 
+    if ((_isTripping || _isDead || [_sprite getPosition].y <= 64) && !_isNewUnderwaterPhysics) { 
     
         return; }
     if ((_isTripping || _isDead || [_sprite getPosition].y <= 22) && _isNewUnderwaterPhysics) { 
@@ -312,7 +312,7 @@
 {
     if(![obstacle respondsToSelector:@selector(getCollisionBehavior)]){return;}
     int maxHit = 10;
-    
+    int maxTotalHit=500;
     
     if([obstacle getCollisionBehavior] == COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_BD || [obstacle getCollisionBehavior] == COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST_BD || [obstacle getCollisionBehavior] == COLLISION_BEHAVIOR_DANCIN_MAN_COLLAPSE)
     {
@@ -342,6 +342,19 @@
         }
         
     }
+    
+    if ([GCState sharedInstance].gotHit < maxTotalHit) {
+        [GCState sharedInstance].gotHit++;
+        
+        double pctComplete2 = ((double) [GCState sharedInstance].gotHit / (int)maxTotalHit) * 100.0;
+        if(pctComplete2 == 100.0)
+        {
+            //[[GCState sharedInstance] save];
+            [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHit500times percentComplete:pctComplete2];
+        }
+    }
+
+    
 
 }
 

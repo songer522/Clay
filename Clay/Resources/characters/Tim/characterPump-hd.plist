@@ -4,13 +4,10 @@
 <dict>
 	<key>frames</key>
 	<dict>
-		
 		<key>BicepCurl_1.png</key>
 		<dict>
 			<key>aliases</key>
-			<array>
-			
-			</array>
+			<array/>
 			<key>spriteColorRect</key>
 			<string>{{55, 11}, {145, 272}}</string>
 			<key>spriteOffset</key>
@@ -22,17 +19,14 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{485, 0}, {145, 272}}</string>
+			<string>{{342, 0}, {145, 272}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		
 		<key>BicepCurl_10.png</key>
 		<dict>
 			<key>aliases</key>
-			<array>
-			
-			</array>
+			<array/>
 			<key>spriteColorRect</key>
 			<string>{{55, 12}, {145, 272}}</string>
 			<key>spriteOffset</key>
@@ -44,17 +38,14 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{334, 0}, {145, 272}}</string>
+			<string>{{481, 556}, {145, 272}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		
 		<key>BicepCurl_2.png</key>
 		<dict>
 			<key>aliases</key>
-			<array>
-			
-			</array>
+			<array/>
 			<key>spriteColorRect</key>
 			<string>{{55, 13}, {145, 272}}</string>
 			<key>spriteOffset</key>
@@ -66,39 +57,33 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{330, 278}, {145, 272}}</string>
+			<string>{{330, 280}, {145, 272}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		
 		<key>BicepCurl_3.png</key>
 		<dict>
 			<key>aliases</key>
-			<array>
-			
-			</array>
+			<array/>
 			<key>spriteColorRect</key>
-			<string>{{55, 14}, {145, 270}}</string>
+			<string>{{48, 15}, {151, 270}}</string>
 			<key>spriteOffset</key>
-			<string>{15, 1}</string>
+			<string>{11, -0}</string>
 			<key>spriteSize</key>
-			<string>{145, 270}</string>
+			<string>{151, 270}</string>
 			<key>spriteSourceSize</key>
 			<string>{225, 300}</string>
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{636, 0}, {145, 270}}</string>
+			<string>{{0, 282}, {151, 270}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		
 		<key>BicepCurl_4.png</key>
 		<dict>
 			<key>aliases</key>
-			<array>
-			
-			</array>
+			<array/>
 			<key>spriteColorRect</key>
 			<string>{{29, 11}, {171, 276}}</string>
 			<key>spriteOffset</key>
@@ -114,35 +99,29 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		
 		<key>BicepCurl_5.png</key>
 		<dict>
 			<key>aliases</key>
-			<array>
-			
-			</array>
+			<array/>
 			<key>spriteColorRect</key>
-			<string>{{48, 13}, {151, 272}}</string>
+			<string>{{41, 12}, {159, 274}}</string>
 			<key>spriteOffset</key>
-			<string>{11, 1}</string>
+			<string>{8, 1}</string>
 			<key>spriteSize</key>
-			<string>{151, 272}</string>
+			<string>{159, 274}</string>
 			<key>spriteSourceSize</key>
 			<string>{225, 300}</string>
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{177, 0}, {151, 272}}</string>
+			<string>{{177, 0}, {159, 274}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		
 		<key>BicepCurl_6.png</key>
 		<dict>
 			<key>aliases</key>
-			<array>
-			
-			</array>
+			<array/>
 			<key>spriteColorRect</key>
 			<string>{{55, 11}, {145, 272}}</string>
 			<key>spriteOffset</key>
@@ -158,13 +137,10 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		
 		<key>BicepCurl_7.png</key>
 		<dict>
 			<key>aliases</key>
-			<array>
-			
-			</array>
+			<array/>
 			<key>spriteColorRect</key>
 			<string>{{55, 11}, {145, 274}}</string>
 			<key>spriteOffset</key>
@@ -176,39 +152,33 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{0, 282}, {145, 274}}</string>
+			<string>{{0, 558}, {145, 274}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		
 		<key>BicepCurl_8.png</key>
 		<dict>
 			<key>aliases</key>
-			<array>
-			
-			</array>
+			<array/>
 			<key>spriteColorRect</key>
-			<string>{{55, 15}, {145, 270}}</string>
+			<string>{{55, 13}, {145, 272}}</string>
 			<key>spriteOffset</key>
-			<string>{15, -0}</string>
+			<string>{15, 1}</string>
 			<key>spriteSize</key>
-			<string>{145, 270}</string>
+			<string>{145, 272}</string>
 			<key>spriteSourceSize</key>
 			<string>{225, 300}</string>
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{632, 278}, {145, 270}}</string>
+			<string>{{493, 0}, {145, 272}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		
 		<key>BicepCurl_9.png</key>
 		<dict>
 			<key>aliases</key>
-			<array>
-			
-			</array>
+			<array/>
 			<key>spriteColorRect</key>
 			<string>{{53, 11}, {147, 274}}</string>
 			<key>spriteOffset</key>
@@ -220,11 +190,10 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{177, 278}, {147, 274}}</string>
+			<string>{{177, 280}, {147, 274}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		
 	</dict>
 	<key>metadata</key>
 	<dict>

@@ -14,6 +14,8 @@
 #import "EndLevelScene.h"
 #import "SoundEngine.h"
 #import "GameSettings.h"
+#import "GCState.h"
+#import "GCHelper.h"
 
 @implementation CreditsScene
 
@@ -138,7 +140,15 @@
     float rate = 32.0f * dt;
     self.position = ccp(self.position.x, self.position.y + rate);
     if (!_hasSwitched && self.position.y > 1120.0f) {
+        if(![GCState sharedInstance].watchCredit)
+        {
+            
+            [GCState sharedInstance].watchCredit =true;
+            [[GCHelper sharedInstance] reportAchievement:gcAchievementWatchCredits percentComplete:100.0];
+        }
+
         [self switchToOptionsScreen];
+        
     }
     //NSLog(@"Position Y: %f",self.position.y);
 }
