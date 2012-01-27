@@ -158,7 +158,7 @@
         {
         
         [GCState sharedInstance].beatStoryAndAllGold =true;
-        [[GCHelper sharedInstance] reportAchievement:gcAchievementAllGoldInNM percentComplete:100.0];
+        [[GCHelper sharedInstance] reportAchievement:gcAchievementAllStoryAndAllGold percentComplete:100.0];
         }
     }
     
