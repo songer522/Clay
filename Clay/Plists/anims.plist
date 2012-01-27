@@ -784,6 +784,23 @@
 		<key>spritesheetPlist</key>
 		<string>cityLevel</string>
 	</dict>
+	<key>bumperAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.2</string>
+		<key>group</key>
+		<string>level11</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Bumper_</string>
+		<key>spritesheetPlist</key>
+		<string>darkLevel2</string>
+	</dict>
 	<key>eightBitRunningAnim</key>
 	<dict>
 		<key>animationFrames</key>

@@ -58,6 +58,11 @@
     <property name="special" value="finalBossSpawn"/>
    </properties>
   </tile>
+  <tile id="5">
+   <properties>
+    <property name="obstacle" value="bumper"/>
+   </properties>
+  </tile>
   <tile id="7">
    <properties>
     <property name="obstacle" value="hen"/>
@@ -271,7 +276,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt2E0OgyAQBlBP0PZ4/d037f33TRcua0QGhpr3dgRBgs4ncZoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADYs0v2AoAhyAIAAMh1zl4AAACr+Z8KAAAAAAAAAAB8PQLmuAXMMZpnpzGzd8XYEq/G/Znu2Qv44Rg4V0S9bnEtbEfZY7bMlvJiqc629o2uRf32ek9LRWbCqGqzKqL2W+dHaS7WtmtteSYle5hZb1nZF312W/ou1JwxZyX7tObaVvve+zx36nw//s8hewEAAAAAAAAAkOADe4IR3Q==
+   eJzt2DsOgzAMAFBO0FY9Xb971d5/rzpkLCLEwRF6b4tCjBWwiZgmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA9uyanQAwBL0AAAByXbITAABgMf9TAQAAAAAAAACAn2dAjHtAjNG8NlpTfBrW1nh3ns/0yE7gj2NgrIh6XeNWOY6yx95SzPWLuTpbOze6HvW71XtaK7InjKq1V0XUfu/+UdsXW8et1jyTmj3MrLes3hd9dpv7LrScMYuafVpyba99X/I9OAfe7xQYi306ZCcAAAAAAAAAAAm+2OAR7w==
   </data>
  </layer>
  <layer name="meta" width="1000" height="14" opacity="0.66">

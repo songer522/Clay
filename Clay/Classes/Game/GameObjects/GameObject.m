@@ -1176,9 +1176,9 @@
         ////////////////////////
         case COLLISION_BEHAVIOR_DART_START:
             if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
-                Player *player = [[LayerManager sharedLayers] getPlayer];
-                CGPoint position = [player getPosition];
-                [self setPositionAtX:(position.x + 520.0f) Y:(_startingPosition.y + 286.0f)];
+              //  Player *player = [[LayerManager sharedLayers] getPlayer];
+               // CGPoint position = [player getPosition];
+                [self setPositionAtX:(_startingPosition.x + 620.0f) Y:(_startingPosition.y + 286.0f)];
                 [self setPlayerEffect:@"none"];
                 _currentBehavior = COLLISION_BEHAVIOR_DART_MOVING;
                 _isInvincible = true;
@@ -1188,11 +1188,11 @@
         case COLLISION_BEHAVIOR_DART_MOVING:
             _vx -= 30.0f;
             _vy += 30.0f;
-            if (_y <= 90.0f) {
+            if (_y <= 95.0f) {
                 _vx = 0.0f;
                 _vy = 0.0f;
                 //_x = _prevLocation.x;
-                _y = 90.0f;
+                _y = 95.0f;
                 _isInvincible = false;
                 [self setPositionAtX:_x Y:_y];
                 [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"dartLandingAnim"];

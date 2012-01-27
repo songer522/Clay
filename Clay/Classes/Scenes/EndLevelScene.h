@@ -9,10 +9,17 @@
 
 #import "CCLayer.h"
 #import "cocos2d.h"
+#import <Twitter/Twitter.h>
+#import "FBConnect.h"
+#import <Accounts/Accounts.h>
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @class Sprite;
 @class ComicLayer;
 @class TrackTimer;
+@class ActionButton;
+@class FBPrompt;
 
 typedef enum {
     END_LEVEL_TRANSITION_IN,
@@ -20,21 +27,38 @@ typedef enum {
     END_LEVEL_TRANSITION_OUT
 }EndLevelState;
 
-@interface EndLevelScene : CCLayer
+@interface EndLevelScene : CCLayer <FBDialogDelegate,FBSessionDelegate>
 {
     Sprite *_endGame;
     Sprite *_bestTime;
     ComicLayer *_comicLayer;
+    Sprite *_facebookIcon;
+    Sprite *_twitterIcon;
     
     CCScene *_scene;
     
     float _alpha;
     bool _initialized;
+    bool _openFacebook;
+    bool _openTwitter;
+    
+    TWTweetComposeViewController *_tweetViewController;
+    FBPrompt *_fbprompt;
+
     
     EndLevelState _state;
     
     TrackTimer *_timer;
     TrackTimer *_besttimer;
+    
+    ActionButton *_facebookButton;
+    ActionButton *_twitterButton;
+    
+    NSString *_difficulty;
+    NSString *time;
+    
+    NSString *_description;
+    
 }
 
 +(CCScene *) scene;
