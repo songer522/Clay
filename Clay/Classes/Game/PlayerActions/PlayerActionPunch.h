@@ -13,14 +13,14 @@
 
 @interface PlayerActionPunch : PlayerAction
 {
-    Projectile *_kick;
-    bool _madeFootProjectile;
+    Projectile *_punch;
+    bool _madePunchProjectile;
     
     //weak references
     Level *_level;
 }
-/*
--(void)testKickCollisions;
+
+-(void)testPunchCollisions;
 -(void)updateBoundingBox;
-*/
+
 @end

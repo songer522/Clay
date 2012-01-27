@@ -59,6 +59,7 @@
         _slowTimeAction = [[NSString stringWithString:[anims objectForKey:@"slowTimeAction"]] retain];
         _floating = [[NSString stringWithString:[anims objectForKey:@"floating"]] retain];
         _pumpAction = [[NSString stringWithString:[anims objectForKey:@"pumpAction"]] retain];
+        _punchAction = [[NSString stringWithString:[anims objectForKey:@"punchAction"]] retain];
         
         if (![_filename isEqualToString:@"characterAnims"]) {
             
@@ -142,6 +143,10 @@
             break;
         case PLAYER_ANIM_PUMP:
             animName = _pumpAction;
+            break;
+        case PLAYER_ANIM_PUNCH:
+            animName = _punchAction;
+            break;
         default:
             break;
     }

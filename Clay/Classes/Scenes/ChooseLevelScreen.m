@@ -238,8 +238,8 @@
             return true;
         }        
     }
-    
-    return false;
+    return true;
+    //return false;
 }
 
 -(void)popupDlcWindow:(int)levelNumber

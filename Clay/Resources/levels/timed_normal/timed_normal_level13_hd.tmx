@@ -29,7 +29,7 @@
   </tile>
  </tileset>
  <tileset firstgid="13" name="Icons" tilewidth="64" tileheight="64">
-  <image source="TrackLapse_Icons.png" width="640" height="704"/>
+  <image source="TrackLapse_Icons-hd.png" width="640" height="704"/>
   <tile id="0">
    <properties>
     <property name="obstacle" value="hurdle"/>
@@ -119,6 +119,16 @@
   <tile id="103">
    <properties>
     <property name="object" value="dojoNinjaBackground"/>
+   </properties>
+  </tile>
+  <tile id="104">
+   <properties>
+    <property name="object" value="dojoNinjaBackground"/>
+   </properties>
+  </tile>
+  <tile id="105">
+   <properties>
+    <property name="obstacle" value="dojoDropNinja"/>
    </properties>
   </tile>
   <tile id="106">
