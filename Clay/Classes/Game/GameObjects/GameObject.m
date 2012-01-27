@@ -405,8 +405,7 @@
             break;
         case COLLISION_BEHAVIOR_DOJO_DROP_NINJA:
             if(isProjectile) {
-                [[_player getThirdAction] setKilledEnemy:YES];
-                _direction = -200.0f;
+                _currentBehavior = COLLISION_BEHAVIOR_DOJO_DROP_NINJA_PUNCHED;
             } else {
                 _alpha = 1.2f;
                 _fadeout = true;
@@ -1205,13 +1204,14 @@
                 _bounceYDampening = 0.25f;
                 _vy = 400.0f;
                 _direction = 0.0f;
-            } else if(_direction!=0.0f) {
-                _angle -= 300.0f * dt;
-                if (_angle < -90.0f) {
-                    _angle = -90.0f;
-                }
-                [_sprite getCCSprite].rotation = _angle;
             }
+            break;
+        case COLLISION_BEHAVIOR_DOJO_DROP_NINJA_PUNCHED:
+            _angle -= 250.0f * dt;
+            if (_angle < -90.0f) {
+                _angle = -90.0f;
+            }
+            [_sprite getCCSprite].rotation = _angle;
             break;
         default:
             break;
@@ -1561,7 +1561,7 @@
         _collideBehavior = COLLISION_BEHAVIOR_TRAINING_EXERCISE_BALL;
         _hasTriggered = false;
     }
-    else if(_currentBehavior == COLLISION_BEHAVIOR_DOJO_DROP_NINJA) {
+    else if(_currentBehavior == COLLISION_BEHAVIOR_DOJO_DROP_NINJA||_currentBehavior == COLLISION_BEHAVIOR_DOJO_DROP_NINJA_PUNCHED) {
         _currentBehavior = COLLISION_BEHAVIOR_DOJO_DROP_NINJA;
         _hasTriggered = false;
     }
