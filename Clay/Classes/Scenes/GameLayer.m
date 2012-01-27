@@ -238,7 +238,6 @@
     //[self updateLogic:fixedTimeStep];   
 
     // build #2 method
-    
     if( dt > 0.022f )
     {
 		dt = 1/60.0f;
@@ -247,8 +246,8 @@
     
     
     //use for simulator
-    
     /*
+    
     double fixedTimeStep = 1.00f/60.0f;
     float timeToRun = dt + time;
     
