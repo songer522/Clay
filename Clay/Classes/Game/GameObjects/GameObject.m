@@ -53,6 +53,7 @@
 @synthesize hasAppeared = _hasAppeared;
 @synthesize useDefaultBatchNode = _useDefaultBatchNode;
 @synthesize isVisible = _isVisible;
+@synthesize fadeout = _fadeout;
 
 
 + (id) objectWithSprite:(Sprite*)sprite
@@ -406,10 +407,14 @@
         case COLLISION_BEHAVIOR_DOJO_DROP_NINJA:
             if(isProjectile) {
                 _currentBehavior = COLLISION_BEHAVIOR_DOJO_DROP_NINJA_PUNCHED;
-                [[SoundEngine shared] playSound:@"dojoNinjaYell3"];
+                if(!_fadeout)
+                {
+                    [[SoundEngine shared] playSound:@"dojoNinjaYell3"];
+                }
             } else {
                 _alpha = 1.2f;
                 _fadeout = true;
+                
             }
             break;
         case COLLISION_BEHAVIOR_DOJO_WHITE_NINJA_CHARGING:

@@ -22,6 +22,7 @@
 #import "FBPrompt.h"
 #import "SoundEngine.h"
 #import "AppDelegate.h"
+#import "GameLabel.h"
 
 @implementation EndLevelScene
 
@@ -66,39 +67,77 @@
         [[LayerManager sharedLayers] setWorkingLayer:self];
         
         [[TextureManager shared] loadMemoryForKey:@"endGame"];
+        _background = [Sprite spriteFromFrameCacheWithName:@"End_Background.png"];
+        _finalTimePanel = [Sprite spriteFromFrameCacheWithName:@"End_BackBox_1.png"];
+        _facebookAndTwitterPanel =[Sprite spriteFromFrameCacheWithName:@"End_BackBox_2.png"];
+        _facebookIcon = [Sprite spriteFromFrameCacheWithName:@"End_Icon_Facebook.png"];
+        _twitterIcon =[Sprite spriteFromFrameCacheWithName:@"End_Icon_Twitter.png"];
+        _finalTimeHeader=[Sprite spriteFromFrameCacheWithName:@"End_Text_FinalTime.png"];
         
-        _endGame = [Sprite spriteFromFrameCacheWithName:@"Menu_Ending_Temp.png"];
-        _bestTime = [Sprite spriteFromFrameCacheWithName:@"Menu_Ending_BestTime.png"];
-        [_bestTime getCCSprite].position = ccp(350.0f, 145.0f);
-        _timer = [TrackTimer instance];
-        [_timer setupAnimationsAtX:232.0f Y:125.0f];
         
-        _besttimer = [TrackTimer instance];
-        [_besttimer setupAnimationsAtX:232.0f Y:145.0f];
+         if([_difficulty isEqualToString:@"easy"])
+         {
+             _difficultyHeader=[Sprite spriteFromFrameCacheWithName:@"End_Text_Easy.png"];
+         }
+        else if([_difficulty isEqualToString:@"normal"])
+        {
+            _difficultyHeader=[Sprite spriteFromFrameCacheWithName:@"End_Text_Normal.png"];
+        }
+        else if([_difficulty isEqualToString:@"hard"])
+        {
+            _difficultyHeader=[Sprite spriteFromFrameCacheWithName:@"End_Text_Hard.png"];
+        }
         
-        _facebookIcon = [Sprite spriteCenteredWithFrame:@"Icon_Facebook.png"];
-        _twitterIcon = [Sprite spriteCenteredWithFrame:@"Icon_Twitter.png"];
-        [_facebookIcon setScreenPosition:ccp(280,79)];
-        [_twitterIcon setScreenPosition:ccp(350,79)];
+        
+        _menuButton = [ActionButton actionButtonInGameWithText:@"MENU"];
+        
+        CGSize winSize = [[CCDirector sharedDirector] winSize];
+        float centerX = winSize.width/2.0f;
+        float centerY = winSize.height/2.0f;
+        [_menuButton setPosition:ccp(centerX + 185.0f,centerY - 140.0f)];
+        [_background getCCSprite].position=ccp(centerX-240,centerY-160);
+        [_finalTimePanel getCCSprite].position=ccp(centerX-225,centerY+70);
+        [_facebookAndTwitterPanel getCCSprite].position=ccp(centerX-225,centerY-85);
+        [_finalTimeHeader getCCSprite].position=ccp(centerX-215,centerY+120);
+        [_difficultyHeader getCCSprite].position=ccp(centerX+65,centerY+120);
+        
+        
+        
+        
+       
+        [_facebookIcon setScreenPosition:ccp(centerX-215,centerY-25)];
+        [_twitterIcon setScreenPosition:ccp(centerX-215,centerY-75)];
         _facebookButton =[ActionButton actionButtonManualSetup];
         _facebookButton.facebookOrTwitter=true;
-        [_facebookButton setPosition:ccp(280, 80)];
+        [_facebookButton setPosition:ccp(centerX-215,centerY-25)];
         [_facebookButton setEnabled:true];
         
         _twitterButton =[ ActionButton actionButtonManualSetup];
         _twitterButton.facebookOrTwitter=true;
-        [_twitterButton setPosition:ccp(350, 80)];
+        [_twitterButton setPosition:ccp(centerX-225,centerY-75)];
         [_twitterButton setEnabled:true];
 
         
         
         [[LayerManager sharedLayers] forgetWorkingLayer];
         
+         
+        [_background setAlpha:0.0f];
+        [_facebookIcon setAlpha:0.0f];
+        [_twitterIcon setAlpha:0.0f];
+        [_finalTimePanel setAlpha:0.0f];
+        [_finalTimeHeader setAlpha:0.0f];
+        [_difficultyHeader setAlpha:0.0f];
+        [_facebookAndTwitterPanel setAlpha:0.0f];
+        [_timeHeaderText setAlpha:0.0f];
+        [_finalTimeText setAlpha:0.0f];
+        [_facebookButton setAlpha:0.0f];
+        [_twitterButton setAlpha:0.0f];
+        [_menuButton setAlpha:0.0f];
+
         
-        [_endGame setAlpha:0.0f];
-        [_bestTime setAlpha:0.0f];
-        [_timer setAlpha:0.0f];
-        [_besttimer setAlpha:0.0f];
+        
+       
         
         _initialized = false;
         
@@ -184,9 +223,11 @@
             [UserData sharedInstance].bestTime = finalTime;
             [[UserData sharedInstance] save];
         }
-        [_timer setTime:finalTime];
-        [_besttimer setTime:[[UserData sharedInstance] bestTime]];
-        
+        NSString *timerText=[TrackTimer getTimeStringFromFloat:finalTime];
+        [[LayerManager sharedLayers] setWorkingLayer:self];
+        _finalTimeText = [GameLabel gameLabelWithText:timerText  Scale:1.0f Position:ccp(240,250)];
+       
+        [[LayerManager sharedLayers] forgetWorkingLayer];
         _initialized = true;
     }
     
@@ -229,10 +270,18 @@
                 _alpha = 1.0f;
                 _state = END_LEVEL_TRANSITION_IDLE;
             }
-            [_endGame setAlpha:_alpha];
-            [_bestTime setAlpha:_alpha];
-            [_timer setAlpha:_alpha];
-            [_besttimer setAlpha:_alpha];
+            [_background setAlpha:_alpha];
+            [_facebookIcon setAlpha:_alpha];
+            [_twitterIcon setAlpha:_alpha];
+            [_finalTimePanel setAlpha:_alpha];
+            [_finalTimeHeader setAlpha:_alpha];
+            [_difficultyHeader setAlpha:_alpha];
+            [_facebookAndTwitterPanel setAlpha:_alpha];
+            [_timeHeaderText setAlpha:_alpha];
+            [_finalTimeText setAlpha:_alpha];
+            [_facebookButton setAlpha:_alpha];
+            [_twitterButton setAlpha:_alpha];
+            [_menuButton setAlpha:_alpha];
             break;
         case END_LEVEL_TRANSITION_OUT:
             break;
@@ -263,10 +312,18 @@
     [_twitterIcon release];
     [_facebookButton release];
     [_twitterButton release];
-    [_endGame release];
-    [_bestTime release];
-    [_timer release];
-    [_besttimer release];
+   [_background release];
+   
+   
+    [_finalTimePanel release];
+    [_finalTimeHeader release];
+    [_difficultyHeader release];
+    [_facebookAndTwitterPanel release];
+    [_timeHeaderText release];
+    [_finalTimeText release];
+    [_menuButton release];
+    
+    
     [[TextureManager shared] unloadMemoryForKey:@"endGame"];
 }
 
