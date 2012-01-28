@@ -79,6 +79,9 @@ typedef enum {
     bool _isBouncing;
     float _movedBy;
     float _initialPosition;
+    float _bouncePosition;
+    float _bounceYDampening;
+    float _bounceGravity;
     bool _useDefaultBatchNode;
     
     CGRect _range;       //range in which this object can move on screen. absolute positions.

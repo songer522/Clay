@@ -52,4 +52,6 @@
 -(void)update:(float)dt;
 -(void)setLocked:(LockType)newType;
 -(LockType)getLocked;
+-(void)setText:(NSString *)text;
+
 @end

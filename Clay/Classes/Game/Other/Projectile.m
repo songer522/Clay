@@ -59,6 +59,7 @@
         
         switch (_behavior) {
             case PROJECTILE_BEHAVIOR_PLAYER_KICK:
+            case PROJECTILE_BEHAVIOR_DOJO_PUNCH:
                 //make it blank so we can access the sprite position for debug drawing. for now at least.
                 _sprite = [Sprite spriteWithFile:@"blank.png"];
                 break;

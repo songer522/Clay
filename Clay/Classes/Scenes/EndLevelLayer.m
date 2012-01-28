@@ -234,7 +234,7 @@
 -(void)showMedal
 {
    // GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
- //   NSString  *gameDifficulty = [[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
+    //NSString  *gameDifficulty = [[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
     
     NSString *levelName =[[LevelManager shared] currentLevel].name;
     
@@ -246,7 +246,7 @@
    
     
     int medalForNewTime = [self getMedalNumberForLevelNamed:levelName Time:newTime];
-    //int medalForBestTime =[self getMedalNumberForLevelNamed:levelName Time:bestTime];
+       //int medalForBestTime =[self getMedalNumberForLevelNamed:levelName Time:bestTime];
    // if (medalForNewTime>0 && medalForNewTime<4 && medalForNewTime > medalForBestTime) {
      if (medalForNewTime>=0 && medalForNewTime<4) {
         [self setNewTrophy:medalForNewTime];

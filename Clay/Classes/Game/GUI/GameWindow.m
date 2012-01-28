@@ -33,9 +33,12 @@
         
         _header = [GameLabel gameLabelWithText:header Scale:0.65f Position:ccp(240,240)];
         
+        _messageSeparation = MESSAGE_SEPARATOR_PIPE; //default
+        
         [self setupMessage:message];
 
         _choiceType = choices;
+        _characterLimit = 20;
         
         [self setupChoiceButtons];
         
@@ -86,13 +89,50 @@
     float curYPos = 180.0f;
     _message = [[NSMutableArray alloc] initWithCapacity:10];
     
-    NSArray *messageStrings = [message componentsSeparatedByString:@"|"];
+    NSArray *messageStrings = [self getMessageArrayForString:message];
     for (NSString *lineText in messageStrings) {
         GameLabel *line = [GameLabel gameLabelWithText:lineText Scale:0.5f];
         [line setPosition:ccp(240,curYPos)];
         [_message addObject:line];
         curYPos -= 15.0f;
     }
+}
+
+-(NSArray*)getMessageArrayForString:(NSString*)message
+{
+    NSMutableString *remainingMessage;
+    NSArray *messageArray;
+    
+    if (_messageSeparation == MESSAGE_SEPARATOR_PIPE) {
+        messageArray = [message componentsSeparatedByString:@"|"];
+    } else {
+        //character limit
+        NSMutableArray *messages = [[NSMutableArray alloc] initWithCapacity:20];
+        
+        int currentPos = 0;
+        
+        while([remainingMessage length] > _characterLimit) {
+            NSString *workingString = [remainingMessage substringToIndex:_characterLimit];
+            currentPos = [workingString length] - 1;
+            while(currentPos >= 0 && [workingString characterAtIndex:currentPos] != ' ') {
+                currentPos--;
+            }
+            
+            if (currentPos < 0) {
+                [messages addObject:workingString];
+                [remainingMessage setString:[remainingMessage substringFromIndex:_characterLimit]];
+            } else {
+                [messages addObject:[workingString substringToIndex:currentPos]];
+                [remainingMessage setString:[remainingMessage substringFromIndex:currentPos]];
+            }
+        }
+        
+        messageArray = [NSArray arrayWithArray:messages];      
+    }
+    
+    NSLog(@"Contents of Array: %@",[messageArray description]);
+    
+    return messageArray;
 }
 
 -(WindowSelectionType)checkCollisionAtPoint:(CGPoint)point

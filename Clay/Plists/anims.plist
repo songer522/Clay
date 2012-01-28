@@ -19,6 +19,23 @@
 		<key>spritesheetPlist</key>
 		<string>darkLevel</string>
 	</dict>
+	<key>jimUnderWater</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2</string>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>delay</key>
+		<string>1.0</string>
+		<key>group</key>
+		<string>level10</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Jim_Level10_</string>
+		<key>spritesheetPlist</key>
+		<string>waterLevel</string>
+	</dict>
 	<key>batHanging</key>
 	<dict>
 		<key>animationFrames</key>
@@ -631,6 +648,23 @@
 		<key>spritesheetPlist</key>
 		<string>darkLevel</string>
 	</dict>
+	<key>darkRailroadBumperAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.25</string>
+		<key>group</key>
+		<string>level11</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Bumper_</string>
+		<key>spritesheetPlist</key>
+		<string>darkLevel</string>
+	</dict>
 	<key>discoDancersAnim</key>
 	<dict>
 		<key>animationFrames</key>
@@ -699,6 +733,91 @@
 		<key>spritesheetPlist</key>
 		<string>characterAnims</string>
 	</dict>
+	<key>dojoNinjaBackgroundAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3,4,5,6,7</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level13</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>NinjaShadow_</string>
+		<key>spritesheetPlist</key>
+		<string>dojoLevel</string>
+	</dict>
+	<key>dojoWhiteNinjaAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2,3,4</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.075</string>
+		<key>group</key>
+		<string>level13</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Level13_WhiteNinja_</string>
+		<key>spritesheetPlist</key>
+		<string>dojoLevel</string>
+	</dict>
+	<key>dojoDeathPitClosedAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,1</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.2</string>
+		<key>group</key>
+		<string>level13</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>DeathPit_</string>
+		<key>spritesheetPlist</key>
+		<string>dojoLevel</string>
+	</dict>
+	<key>dojoDeathPitOpeningAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>2,3,4,5,5,5,5,5,5,5,5,5,5</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.075</string>
+		<key>group</key>
+		<string>level13</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>DeathPit_</string>
+		<key>spritesheetPlist</key>
+		<string>dojoLevel</string>
+	</dict>
+	<key>dojoDeathPitOpenedAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>5,5</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.2</string>
+		<key>group</key>
+		<string>level13</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>DeathPit_</string>
+		<key>spritesheetPlist</key>
+		<string>dojoLevel</string>
+	</dict>
 	<key>dogAnim</key>
 	<dict>
 		<key>animationFrames</key>
@@ -715,6 +834,23 @@
 		<string>City_Puppy_</string>
 		<key>spritesheetPlist</key>
 		<string>cityLevel</string>
+	</dict>
+	<key>bumperAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.2</string>
+		<key>group</key>
+		<string>level11</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Bumper_</string>
+		<key>spritesheetPlist</key>
+		<string>darkLevel2</string>
 	</dict>
 	<key>eightBitRunningAnim</key>
 	<dict>
@@ -1107,6 +1243,23 @@
 		<key>spritesheetPlist</key>
 		<string>fireLevel</string>
 	</dict>
+	<key>dartLandingAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>2</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level13</string>
+		<key>looping</key>
+		<string>false</string>
+		<key>sequencePrefix</key>
+		<string>Dart_</string>
+		<key>spritesheetPlist</key>
+		<string>dojoLevel</string>
+	</dict>
 	<key>fireballMovingAnim</key>
 	<dict>
 		<key>animationFrames</key>
@@ -1123,6 +1276,23 @@
 		<string>Fireball_</string>
 		<key>spritesheetPlist</key>
 		<string>fireLevel</string>
+	</dict>
+	<key>dartMovingAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<string>0.1</string>
+		<key>group</key>
+		<string>level13</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Dart_</string>
+		<key>spritesheetPlist</key>
+		<string>dojoLevel</string>
 	</dict>
 	<key>floatingAnim</key>
 	<dict>
@@ -1274,6 +1444,23 @@
 		<string>false</string>
 		<key>sequencePrefix</key>
 		<string>character_kicking_</string>
+		<key>spritesheetPlist</key>
+		<string>characterAnims</string>
+	</dict>
+	<key>punchingAnim</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>2,3,4,5,6,7,8,9,10,10,10,10,10,10,10,10,10,10</string>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>delay</key>
+		<string>0.075</string>
+		<key>group</key>
+		<string>punch</string>
+		<key>looping</key>
+		<string>false</string>
+		<key>sequencePrefix</key>
+		<string>Character_Punching_</string>
 		<key>spritesheetPlist</key>
 		<string>characterAnims</string>
 	</dict>
@@ -2202,7 +2389,7 @@
 		<key>clearPreviousAnims</key>
 		<string>false</string>
 		<key>delay</key>
-		<real>0.075</real>
+		<real>0.1</real>
 		<key>group</key>
 		<string>pump</string>
 		<key>looping</key>
@@ -2262,6 +2449,40 @@
 		<string>Whoo_Character_TypeA_</string>
 		<key>spritesheetPlist</key>
 		<string>characterAnims</string>
+	</dict>
+	<key>clappingAnim4</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<real>0.2</real>
+		<key>group</key>
+		<string>level12</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Whoo_Character_TypeD_</string>
+		<key>spritesheetPlist</key>
+		<string>trainingLevel</string>
+	</dict>
+	<key>clappingAnim5</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>1,2</string>
+		<key>clearPreviousAnims</key>
+		<string>true</string>
+		<key>delay</key>
+		<real>0.2</real>
+		<key>group</key>
+		<string>level12</string>
+		<key>looping</key>
+		<string>true</string>
+		<key>sequencePrefix</key>
+		<string>Whoo_Character_TypeE_</string>
+		<key>spritesheetPlist</key>
+		<string>trainingLevel</string>
 	</dict>
 </dict>
 </plist>

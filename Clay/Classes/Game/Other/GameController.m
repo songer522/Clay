@@ -168,6 +168,7 @@
         _isEndLevel = true;
         //[[SoundEngine shared] playSound:@"pause"];
         _gameLayer.isTouchEnabled = false;
+        [_gameLayer saveAndReportToGameCenter];
     } else {
         [[[LayerManager sharedLayers] currentScene] removeChild:_endLevelLayer cleanup:NO];
         _isEndLevel = false;

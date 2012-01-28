@@ -135,8 +135,10 @@ static GameSettings *_shared = nil;
     NSDictionary *appSettings = [settings objectForKey:@"app"];
     NSString *versionNumber = [appSettings objectForKey:@"versionNumber"];
     NSString *showFps = [appSettings objectForKey:@"showFps"];
+    NSString *unlockEverything = [appSettings objectForKey:@"unlockEverything"];
     [self setGlobal:versionNumber ForKey:@"versionNumber"];
     [self setGlobal:showFps ForKey:@"showFps"];
+    [self setGlobal:unlockEverything ForKey:@"unlockEverything"];
 }
 
 -(void)setSerializedGlobal:(NSString*)setting ForKey:(NSString*)key

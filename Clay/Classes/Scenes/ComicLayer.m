@@ -192,11 +192,29 @@
 
 -(void)cueComic:(NSString*)comicName
 {
-    int durations[] = {5,10,6,7,14,7,9,10,6,8,8,6};
+    bool showComic = false;
+    //int durations[] = {5,10,6,7,14,7,9,10,6,8,8,6,10};
+    int durations[] = {7,12,8,9,16,9,11,12,8,10,10,8,12};    
+    int durationNumber = 0;
+    NSString *_imageName;
+
     
     int comicNumber = [[comicName substringFromIndex:5] intValue];
-    if (comicNumber <= 12) {        
-        NSString *_imageName = [NSString stringWithFormat:@"Comic_%d.png",comicNumber];
+    if (comicNumber <= 12) { 
+        _imageName = [NSString stringWithFormat:@"Comic_%d.png",comicNumber];
+        durationNumber = comicNumber;
+        showComic = true;
+    }
+    else if(comicNumber > 20) {
+        _imageName = [NSString stringWithFormat:@"Comic_%d.png",comicNumber];
+        durationNumber = comicNumber - 9;
+        showComic = true;
+    }
+    else {
+        [_comicManager finishedAction];
+    }
+
+     if (showComic) {            
         _comicPanel = [CCSprite spriteWithFile:_imageName];
         _comicPanel.anchorPoint = ccp(0,0);
         [_comicPanel setOpacity:0];
@@ -208,12 +226,10 @@
         [self addChild:_skipButton];
         
         _transition = BLACKBOX_PLAY_COMIC_FADE_IN;
-        _timeToWait = durations[comicNumber];
+        _timeToWait = durations[durationNumber];
         _comicAlpha = 0.0f;
         [[SoundEngine shared] cueFadeIn];
         [[SoundEngine shared] playMusic:@"cutscene"];
-    } else {
-        [_comicManager finishedAction];
     }
 }
 

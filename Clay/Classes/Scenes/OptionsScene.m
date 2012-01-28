@@ -20,6 +20,7 @@
 #import "HowToPlayScreen.h"
 #import "GameWindow.h"
 #import "GameSettings.h"
+#import "BestTimes.h"
 
 //IPAD FIX: width and offset
 #define OPTIONS_SCENE_OFFSET_X 30.0f
@@ -165,6 +166,8 @@
                     _eraseWindowFirst = nil;
                     _eraseWindowFirstOpen = false;
                     [[GameSettings shared] eraseData];
+                    [[BestTimes shared] erase];
+                    [[BestTimes shared] reload];
                     [[GameSettings shared] setGlobal:@"YES" ForKey:@"titleMusicStarted"];
                 } else if(type == WIN_SELECT_NO) {
                     _windowOpen = false;

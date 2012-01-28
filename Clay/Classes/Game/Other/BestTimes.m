@@ -56,13 +56,34 @@ static BestTimes *_shared = nil;
 -(id)init
 {
     if ((self=[super init])) {
-        _bestTimeData = [[NSMutableDictionary alloc] initWithCapacity:20];
-        NSDictionary *levelData = loadData(@"levelData");
-        if(levelData!=nil) {
-            _bestTimeData = [[NSMutableDictionary alloc] initWithDictionary:levelData];
-        }
+        [self reload];
     }
     return self;
+}
+
+-(void)reload
+{
+    if (_bestTimeData !=nil) {
+        [_bestTimeData release];
+        _bestTimeData = nil;
+    }
+    
+    _bestTimeData = [[NSMutableDictionary alloc] initWithCapacity:20];
+    NSDictionary *levelData = loadData(@"levelData");
+    if(levelData!=nil) {
+        _bestTimeData = [[NSMutableDictionary alloc] initWithDictionary:levelData];
+    }
+}
+
+-(void)erase
+{
+    if (_bestTimeData !=nil) {
+        [_bestTimeData release];
+        _bestTimeData = nil;
+    }
+    
+    _bestTimeData = [[NSMutableDictionary alloc] initWithCapacity:20];
+    saveData(_bestTimeData, @"levelData");
 }
 
 -(float)getBestTimeForLevelNumber:(int)number

@@ -16,8 +16,8 @@
 #define PANEL_HEADER_ACTIVE_Y 232.0f
 #define PANEL_HEIGHT_DIFFERENCE 72.0f
 
-#define PANEL_BUTTON_HEIGHT_WITH_GAP 35.5f
-#define PANEL_DEVICE_CENTER_Y 128.0f
+#define PANEL_BUTTON_HEIGHT_WITH_GAP 40.5f
+#define PANEL_BUTTON_START_Y 110.0f
 
 @interface ModePanel()
 
@@ -62,7 +62,7 @@
 -(void)addButtons:(NSArray*)buttonNames
 {
     int count = [buttonNames count];
-    float startY = PANEL_DEVICE_CENTER_Y + ((count * PANEL_BUTTON_HEIGHT_WITH_GAP) / 2.0f);
+    float startY = PANEL_BUTTON_START_Y + ((count * PANEL_BUTTON_HEIGHT_WITH_GAP) / 2.0f);
     
     int i = 0;
     for (NSString *name in buttonNames) {
@@ -212,6 +212,8 @@
             [button setAlpha:0.0f];
         }
         
+        [self updateSelectableOption];
+        
         _parentScene.isTransitioning = true;
 
     }
@@ -267,6 +269,27 @@
         default:
             break;
     }
+}
+
+-(void)updateSelectableOption
+{
+    //if current selection is valid, keep it. otherwise, find the next unlocked option.
+    
+    int returnIndex = _selectedIndex;
+    ActionButton *button = [_buttons objectAtIndex:_selectedIndex];
+    
+    if ([button getLocked] == LOCKTYPE_LOCKED) {
+        int count = [_buttons count];
+        for (int i=0; i<count; i++) {
+            ActionButton *buttonCheck = [_buttons objectAtIndex:i];
+            if ([buttonCheck getLocked] != LOCKTYPE_LOCKED) {
+                returnIndex = i;
+                break;
+            }
+        }
+    }
+    
+    _selectedIndex = returnIndex;
 }
 
 -(void) dealloc
