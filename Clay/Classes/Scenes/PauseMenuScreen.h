@@ -36,6 +36,8 @@ typedef enum {
     
     Sprite *_hintBox;
     Sprite *_hintHeader;
+    
+    CCLabelTTF *_hintText;
         
     PauseAction _action;
     float _waitToSwitch;

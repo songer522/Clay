@@ -71,6 +71,11 @@
         _hintHeader = [Sprite spriteCenteredWithFrame:@"UI_HintBox_2.png"];
         [_hintHeader setScreenPosition:ccp(128.0f,centerY + 166.5f)];
         
+        _hintText = [CCLabelTTF labelWithString:@"Double jump over the hurdles for an immense epic win of awesomeness with some lorem ipsum." dimensions:CGSizeMake(250, 250) alignment:UITextAlignmentCenter fontName:@"Impact.ttf" fontSize:12];
+        
+        [_hintText setPosition:ccp(240.0f,203.0f)];
+        [self addChild:_hintText];
+        
         _action = PAUSE_ACTION_NONE;
         _waitToSwitch = -1.0f;
         
