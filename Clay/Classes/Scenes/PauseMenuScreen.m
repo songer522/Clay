@@ -58,12 +58,18 @@
         //IPAD FIX: reposition so paused text is centered on x, and slightly above center on y, and buttons are side by side, with the middle button centered on x, and each one slightly below center on y
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         float centerX = winSize.width/2.0f;
-        float centerY = winSize.height/2.0f;
+        float centerY = winSize.height/2.0f - 35.0f;
         [_pausedText setPosition:ccp(centerX,centerY+30.0f)];
-        [_resumeButton setPosition:ccp(centerX - 115.0f,centerY - 30.0f)];
-        [_restartButton setPosition:ccp(centerX,centerY - 30.0f)];
-        [_menuButton setPosition:ccp(centerX + 115.0f,centerY - 30.0f)];
+        [_resumeButton setPosition:ccp(centerX - 115.0f,centerY - 35.0f)];
+        [_restartButton setPosition:ccp(centerX,centerY - 35.0f)];
+        [_menuButton setPosition:ccp(centerX + 115.0f,centerY - 35.0f)];
         
+        
+        _hintBox = [Sprite spriteCenteredWithFrame:@"UI_HintBox_1.png"];
+        [_hintBox setScreenPosition:ccp(240.0f,centerY + 140.0f)];
+
+        _hintHeader = [Sprite spriteCenteredWithFrame:@"UI_HintBox_2.png"];
+        [_hintHeader setScreenPosition:ccp(128.0f,centerY + 166.5f)];
         
         _action = PAUSE_ACTION_NONE;
         _waitToSwitch = -1.0f;

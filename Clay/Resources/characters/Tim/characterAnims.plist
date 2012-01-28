@@ -396,7 +396,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{189, 139}, {96, 136}}</string>
+			<string>{{104, 282}, {96, 136}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -550,7 +550,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{104, 282}, {96, 138}}</string>
+			<string>{{189, 139}, {96, 138}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -573,6 +573,28 @@
 			<true/>
 			<key>textureRect</key>
 			<string>{{202, 279}, {94, 138}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>Checkpoint_1.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {92, 45}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{92, 45}</string>
+			<key>spriteSourceSize</key>
+			<string>{92, 45}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{0, 423}, {92, 45}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -655,7 +677,7 @@
 		<key>name</key>
 		<string>characterAnims.zwd</string>
 		<key>premultipliedAlpha</key>
-		<false/>
+		<true/>
 		<key>target</key>
 		<dict>
 			<key>name</key>
@@ -669,7 +691,7 @@
 			<key>coordinatesFileExtension</key>
 			<string>.plist</string>
 			<key>premultipliedAlpha</key>
-			<false/>
+			<true/>
 		</dict>
 	</dict>
 </dict>

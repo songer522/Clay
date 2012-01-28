@@ -34,6 +34,9 @@ typedef enum {
     ActionButton *_restartButton;
     ActionButton *_menuButton;
     
+    Sprite *_hintBox;
+    Sprite *_hintHeader;
+        
     PauseAction _action;
     float _waitToSwitch;
 }
