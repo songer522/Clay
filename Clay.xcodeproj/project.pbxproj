@@ -333,6 +333,7 @@
 		5491677B14643E3900DFA191 /* computerLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5491677714643E3900DFA191 /* computerLevel.plist */; };
 		5491677C14643E3900DFA191 /* computerLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 5491677814643E3900DFA191 /* computerLevel.png */; };
 		5491F20F14D4A3B200758671 /* Impact.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5491F20E14D4A3B200758671 /* Impact.ttf */; };
+		5491F21214D4B68900758671 /* hints.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5491F21114D4B68900758671 /* hints.plist */; };
 		549513D014BF8D4E007C1D2F /* PlayerActionDetonate.m in Sources */ = {isa = PBXBuildFile; fileRef = 549513CF14BF8D4E007C1D2F /* PlayerActionDetonate.m */; };
 		549513D414BFF985007C1D2F /* bombdetonator.wav in Resources */ = {isa = PBXBuildFile; fileRef = 549513D214BFF985007C1D2F /* bombdetonator.wav */; };
 		549513D514BFF985007C1D2F /* bombexplosion.wav in Resources */ = {isa = PBXBuildFile; fileRef = 549513D314BFF985007C1D2F /* bombexplosion.wav */; };
@@ -1148,6 +1149,7 @@
 		5491677714643E3900DFA191 /* computerLevel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = computerLevel.plist; sourceTree = "<group>"; };
 		5491677814643E3900DFA191 /* computerLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = computerLevel.png; sourceTree = "<group>"; };
 		5491F20E14D4A3B200758671 /* Impact.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Impact.ttf; path = Resources/fonts/Impact.ttf; sourceTree = "<group>"; };
+		5491F21114D4B68900758671 /* hints.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = hints.plist; path = Plists/hints.plist; sourceTree = "<group>"; };
 		549513CE14BF8D4E007C1D2F /* PlayerActionDetonate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerActionDetonate.h; sourceTree = "<group>"; };
 		549513CF14BF8D4E007C1D2F /* PlayerActionDetonate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerActionDetonate.m; sourceTree = "<group>"; };
 		549513D214BFF985007C1D2F /* bombdetonator.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = bombdetonator.wav; path = Resources/sounds/bombdetonator.wav; sourceTree = "<group>"; };
@@ -1711,6 +1713,7 @@
 				54A60BDD1483E55F00EA2F3B /* settings.plist */,
 				549ED75B1461CD63008BCD98 /* skins.plist */,
 				549ED75C1461CD63008BCD98 /* sounds.plist */,
+				5491F21114D4B68900758671 /* hints.plist */,
 			);
 			name = Plists;
 			sourceTree = "<group>";
@@ -3645,6 +3648,7 @@
 				6120C69514D37B7D0047309F /* endGameTexturess.plist in Resources */,
 				6120C69614D37B7D0047309F /* endGameTexturess.png in Resources */,
 				5491F20F14D4A3B200758671 /* Impact.ttf in Resources */,
+				5491F21214D4B68900758671 /* hints.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

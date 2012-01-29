@@ -16,6 +16,9 @@
 #import "Sprite.h"
 #import "SoundEngine.h"
 #import "GameSettings.h"
+#import "LevelManager.h"
+#import "PListLoader.h"
+#import "Level.h"
 
 @interface PauseMenuScreen()
 
@@ -47,13 +50,13 @@
         [[[LayerManager sharedLayers] currentScene] addChild:self];
         
         [[LayerManager sharedLayers] setWorkingLayer:self];
-
-        
         
         _pausedText = [GameLabel gameLabelWithText:@"PAUSED" Scale:1.0f];
         _resumeButton = [ActionButton actionButtonInGameWithText:@"RESUME"];
         _restartButton = [ActionButton actionButtonInGameWithText:@"REDO"];
         _menuButton = [ActionButton actionButtonInGameWithText:@"MENU"];
+        
+        _hintList = [[NSMutableArray alloc] initWithCapacity:10];
         
         //IPAD FIX: reposition so paused text is centered on x, and slightly above center on y, and buttons are side by side, with the middle button centered on x, and each one slightly below center on y
         CGSize winSize = [[CCDirector sharedDirector] winSize];
@@ -71,13 +74,24 @@
         _hintHeader = [Sprite spriteCenteredWithFrame:@"UI_HintBox_2.png"];
         [_hintHeader setScreenPosition:ccp(128.0f,centerY + 166.5f)];
         
-        _hintText = [CCLabelTTF labelWithString:@"Double jump over the hurdles for an immense epic win of awesomeness with some lorem ipsum." dimensions:CGSizeMake(250, 250) alignment:UITextAlignmentCenter fontName:@"Impact.ttf" fontSize:12];
+        
+        [self loadHints];
+
+        NSString *hint = [self getNewHint];
+        
+        _hintText = [CCLabelTTF labelWithString:hint dimensions:CGSizeMake(250, 100) alignment:UITextAlignmentCenter fontName:@"Impact.ttf" fontSize:12];
+        
+
+        
+        
+        
         
         [_hintText setPosition:ccp(240.0f,203.0f)];
         [self addChild:_hintText];
         
         _action = PAUSE_ACTION_NONE;
         _waitToSwitch = -1.0f;
+        
         
          [[LayerManager sharedLayers] forgetWorkingLayer];
          
@@ -165,6 +179,37 @@
     glEnable(GL_TEXTURE_2D);
 }
 
+-(void)loadHints
+{
+    NSString *levelName = [[LevelManager shared] currentLevel].name;
+    
+    NSDictionary *allHints = [PListLoader loadPlistWithName:@"hints"];
+    
+    NSDictionary *globalHints = [allHints objectForKey:@"global"];
+    if (globalHints) {
+        for (id hint in globalHints) {
+            [_hintList addObject:[NSString stringWithString:[hint stringValue]]];
+        }
+    }
+    
+    NSDictionary *levelHints = [allHints objectForKey:levelName];
+    if (levelHints) {
+        for (id hint in levelHints) {
+            [_hintList addObject:[NSString stringWithString:[hint stringValue]]];
+        }
+    }
+}
+
+-(NSString*)getNewHint
+{
+    int count = [_hintList count];
+    if (count > 0) {
+        int choice = rand()%count;
+        return [_hintList objectAtIndex:choice];        
+    }
+    
+    return nil;
+}
 
 
 -(void)onExit

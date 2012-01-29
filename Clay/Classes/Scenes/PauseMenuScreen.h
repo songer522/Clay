@@ -34,6 +34,9 @@ typedef enum {
     ActionButton *_restartButton;
     ActionButton *_menuButton;
     
+    NSMutableArray *_hintList;
+    
+    
     Sprite *_hintBox;
     Sprite *_hintHeader;
     
@@ -46,6 +49,7 @@ typedef enum {
 @property(nonatomic,retain) GameController *gameController;
 
 +(id)instance;
-
+-(void)loadHints;
+-(NSString*)getNewHint;
 
 @end

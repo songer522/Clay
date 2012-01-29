@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>level1</key>
+	<dict>
+		<key>1</key>
+		<string>Double jump to get over the red hurdles.</string>
+		<key>2</key>
+		<string>Try jumping over one hurdle, then double jumping to get over the next hurdle.</string>
+		<key>3</key>
+		<string>Try sprinting through the sand pits.</string>
+	</dict>
+	<key>level2</key>
+	<dict>
+		<key>1</key>
+		<string>Try double jumping early to get over the pigs.</string>
+		<key>2</key>
+		<string>Press the action button to kick the chickens.</string>
+		<key>3</key>
+		<string>Kicked chickens are the best way to defeat cows.</string>
+	</dict>
+	<key>level3</key>
+	<dict>
+		<key>1</key>
+		<string>Don&apos;t double-jump when you see a crow.</string>
+	</dict>
+	<key>global</key>
+	<dict>
+		<key>1</key>
+		<string>You can jump again in the air. This will help you get over hurdles.</string>
+		<key>2</key>
+		<string>The battery shows how much health you have left.</string>
+	</dict>
+</dict>
+</plist>
