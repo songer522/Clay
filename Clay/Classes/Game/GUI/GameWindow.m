@@ -130,7 +130,7 @@
         messageArray = [NSArray arrayWithArray:messages];      
     }
     
-    NSLog(@"Contents of Array: %@",[messageArray description]);
+    //NSLog(@"Contents of Array: %@",[messageArray description]);
     
     return messageArray;
 }

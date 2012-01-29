@@ -1,5 +1,15 @@
 Track Lapse Changelog
 
+Build 120128.01
+=================
+
+* Global - Updated the text in comics to new in-game font.
+* Global - fixed (hopefully) the bug where Tian could make Tim fly. I couldn't get this to work in the first place, so Tian needs to test it.
+* ChooseLevel - There is now a shopping cart icon that appears over the level icons before they have been purchased.
+* PauseMenu - Hint text is now displayed, and will rotate between the different hints. It will first show any hints specific to the level, and then it will cycle through any hints pertinent to the entire game. I could use text for these hints. There is no limit to the number of hints, but there's a limit to the size of each hint (must fit the box).
+* Level 11 - updated passenger car graphic so it no longer looks detached from the front car
+* Memory Leak - fixed significant memory leak caused by the pause menu not removing itself from memory fully
+
 Build 120126.01
 =================
 
