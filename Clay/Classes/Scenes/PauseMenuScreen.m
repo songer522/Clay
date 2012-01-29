@@ -79,14 +79,11 @@
 
         NSString *hint = [self getNewHint];
         
-        _hintText = [CCLabelTTF labelWithString:hint dimensions:CGSizeMake(250, 100) alignment:UITextAlignmentCenter fontName:@"Impact.ttf" fontSize:12];
-        
-
+        _hintText = [CCLabelTTF labelWithString:hint dimensions:CGSizeMake(250, 100) alignment:UITextAlignmentLeft fontName:@"Impact.ttf" fontSize:12];
         
         
         
-        
-        [_hintText setPosition:ccp(240.0f,203.0f)];
+        [_hintText setPosition:ccp(240.0f,229.0f)]; //pause was 211i
         [self addChild:_hintText];
         
         _action = PAUSE_ACTION_NONE;
@@ -187,15 +184,23 @@
     
     NSDictionary *globalHints = [allHints objectForKey:@"global"];
     if (globalHints) {
-        for (id hint in globalHints) {
-            [_hintList addObject:[NSString stringWithString:[hint stringValue]]];
-        }
+            [self loadHintsFromDictionary:globalHints];
     }
     
     NSDictionary *levelHints = [allHints objectForKey:levelName];
     if (levelHints) {
-        for (id hint in levelHints) {
-            [_hintList addObject:[NSString stringWithString:[hint stringValue]]];
+            [self loadHintsFromDictionary:levelHints];
+    }
+}
+
+-(void)loadHintsFromDictionary:(NSDictionary*)dict
+{
+    NSEnumerator *enumerator = [dict objectEnumerator];
+    
+    id hint;
+    while ((hint = [enumerator nextObject])) {
+        if(hint) {
+            [_hintList addObject:[NSString stringWithString:hint]];
         }
     }
 }
@@ -246,9 +251,16 @@
     
     [_pausedText setAlpha:_alpha];
     
+    [_hintBox setAlpha:_alpha];
+    [_hintHeader setAlpha:_alpha];
+    
+    GLubyte opacity = _alpha * 255;
+    [_hintText setOpacity:opacity];
+    
     [_resumeButton setAlpha:_alpha];
     [_restartButton setAlpha:_alpha];
     [_menuButton setAlpha:_alpha];
+    
     
     [_resumeButton update:dt];
     [_restartButton update:dt];

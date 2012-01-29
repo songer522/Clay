@@ -52,4 +52,8 @@ typedef enum {
 -(void)loadHints;
 -(NSString*)getNewHint;
 
+
+#pragma mark - private methods
+-(void)loadHintsFromDictionary:(NSDictionary*)dict;
+
 @end

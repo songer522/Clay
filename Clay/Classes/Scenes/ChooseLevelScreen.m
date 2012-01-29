@@ -243,8 +243,8 @@
         }        
     }
     //NOTE: temporarily disabled for a build with unlocked dlc
-    return false;
-    //return true;
+    //return false;
+    return true;
 }
 
 -(void)popupDlcWindow:(int)levelNumber
@@ -264,6 +264,15 @@
 -(void)updateDlcLevels
 {
     [self updateStartButton];
+    
+    for (LevelButton *button in _buttons) {
+        int levelNumber = button.buttonId;
+        if ([self checkDlcLevelUnlocked:levelNumber]) {
+            [button setPurchased:YES];
+        } else {
+            [button setPurchased:NO];
+        }
+    }
 }
 
 -(void)openErrorWindowCantConnectToStore

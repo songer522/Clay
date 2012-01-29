@@ -17,6 +17,8 @@
     
     Sprite *_selector;
     Sprite *_trophy;
+    Sprite *_cart;
+    
     bool _unlocked;
     
 }
@@ -41,5 +43,7 @@
 -(void)setSelected;
 
 -(bool)isUnlocked;
+
+-(void)setPurchased:(bool)isPurchased;
 
 @end
