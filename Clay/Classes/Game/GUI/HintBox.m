@@ -12,6 +12,8 @@
 #import "Level.h"
 #import "Sprite.h"
 
+#define HINTBOX_SECONDS_BEFORE_NEXT_HINT 6.5f
+
 @implementation HintBox
 
 +(id)hintboxOnLayer:(id)layer
@@ -34,14 +36,18 @@
         _hintHeader = [Sprite spriteCenteredWithFrame:@"UI_HintBox_2.png"];
         [_hintHeader setScreenPosition:ccp(128.0f,centerY + 166.5f)];
         
+        _textAlpha = 1.0f;
+        _currentHintId = -1;
         
         [self loadHints];
         
         NSString *hint = [self getNewHint];
         
         _hintText = [CCLabelTTF labelWithString:hint dimensions:CGSizeMake(250, 100) alignment:UITextAlignmentLeft fontName:@"Impact.ttf" fontSize:12];
+                
+        _waitUntilNextHint = HINTBOX_SECONDS_BEFORE_NEXT_HINT + 1.0f;
         
-        
+        _phase = HINTBOX_WAITING;
         
         [_hintText setPosition:ccp(240.0f,229.0f)]; //pause was 211i
         [layer addChild:_hintText];
@@ -57,14 +63,14 @@
     
     NSDictionary *allHints = [PListLoader loadPlistWithName:@"hints"];
     
-    NSDictionary *globalHints = [allHints objectForKey:@"global"];
-    if (globalHints) {
-        [self loadHintsFromDictionary:globalHints];
-    }
-    
     NSDictionary *levelHints = [allHints objectForKey:levelName];
     if (levelHints) {
         [self loadHintsFromDictionary:levelHints];
+    }
+    
+    NSDictionary *globalHints = [allHints objectForKey:@"global"];
+    if (globalHints) {
+        [self loadHintsFromDictionary:globalHints];
     }
 }
 
@@ -84,20 +90,62 @@
 {
     int count = [_hintList count];
     if (count > 0) {
-        int choice = rand()%count;
-        return [_hintList objectAtIndex:choice];        
+        //int choice = rand()%count;
+        _currentHintId = (_currentHintId + 1) % count;
+        return [_hintList objectAtIndex:_currentHintId];        
     }
     
     return nil;
 }
 
--(void)setAlpha:(float)alpha
+-(void)setTextAlpha:(float)alpha
 {
     [_hintBox setAlpha:alpha];
     [_hintHeader setAlpha:alpha];
     
-    GLubyte opacity = alpha * 255;
+    GLubyte opacity = (alpha * _textAlpha) * 255;
     [_hintText setOpacity:opacity];
+}
+
+-(void)update:(float)dt
+{
+    float rate = 1.5f * dt;
+    switch (_phase) {
+        case HINTBOX_WAITING:
+            _waitUntilNextHint -= dt;
+            if (_waitUntilNextHint<=0.0f) {
+                _textAlpha = 1.0f;
+                _phase = HINTBOX_TRANSITION_OUT;
+            }
+            break;
+        case HINTBOX_TRANSITION_OUT:
+            _textAlpha -= rate;
+            if (_textAlpha<=0.0f) {
+                [self switchHint];
+                _textAlpha = 0.0f;
+                _phase = HINTBOX_TRANSITION_IN;
+            }
+            break;
+        case HINTBOX_TRANSITION_IN:
+            _textAlpha += rate;
+            if (_textAlpha >= 1.0f) {
+                _textAlpha = 1.0f;
+                _waitUntilNextHint = HINTBOX_SECONDS_BEFORE_NEXT_HINT;
+                _phase = HINTBOX_WAITING;
+            }
+            break;
+        default:
+            //shouldn't get here, but restart the process just in case
+            _phase = HINTBOX_WAITING;
+            _waitUntilNextHint = HINTBOX_SECONDS_BEFORE_NEXT_HINT;
+            break;
+    }
+    
+}
+
+-(void)switchHint
+{
+    [_hintText setString:[self getNewHint]];
 }
 
 -(void)dealloc

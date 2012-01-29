@@ -9,6 +9,12 @@
 #import "cocos2d.h"
 #import <Foundation/Foundation.h>
 
+typedef enum {
+    HINTBOX_TRANSITION_IN,
+    HINTBOX_TRANSITION_OUT,
+    HINTBOX_WAITING
+}HintboxPhase;
+
 @class Sprite;
 
 @interface HintBox : NSObject
@@ -20,6 +26,14 @@
     Sprite *_hintHeader;
     
     CCLabelTTF *_hintText;
+    
+    float _textAlpha;
+    
+    HintboxPhase _phase;
+    
+    int _currentHintId;
+    
+    float _waitUntilNextHint;
 }
 
 +(id)hintboxOnLayer:(id)layer;
@@ -28,6 +42,8 @@
 -(void)loadHints;
 -(NSString*)getNewHint;
 -(void)loadHintsFromDictionary:(NSDictionary*)dict;
--(void)setAlpha:(float)alpha;
+-(void)setTextAlpha:(float)alpha;
+-(void)switchHint;
+-(void)update:(float)dt;
 
 @end

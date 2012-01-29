@@ -195,7 +195,8 @@
     
     [_pausedText setAlpha:_alpha];
     
-    [_hintBox setAlpha:_alpha];
+    [_hintBox update:dt];
+    [_hintBox setTextAlpha:_alpha];
     
     [_resumeButton setAlpha:_alpha];
     [_restartButton setAlpha:_alpha];
