@@ -18,6 +18,7 @@
 @class Sprite;
 @class ComicLayer;
 @class TrackTimer;
+@class GameLabel;
 @class ActionButton;
 @class FBPrompt;
 
@@ -29,11 +30,15 @@ typedef enum {
 
 @interface EndLevelScene : CCLayer <FBDialogDelegate,FBSessionDelegate>
 {
-    Sprite *_endGame;
-    Sprite *_bestTime;
+    
     ComicLayer *_comicLayer;
+    Sprite *_background;
     Sprite *_facebookIcon;
     Sprite *_twitterIcon;
+    Sprite *_finalTimePanel;
+    Sprite *_finalTimeHeader;
+    Sprite *_difficultyHeader;
+    Sprite *_facebookAndTwitterPanel;
     
     CCScene *_scene;
     
@@ -48,11 +53,13 @@ typedef enum {
     
     EndLevelState _state;
     
-    TrackTimer *_timer;
-    TrackTimer *_besttimer;
+    GameLabel *_timeHeaderText;
+    GameLabel *_finalTimeText;
+    
     
     ActionButton *_facebookButton;
     ActionButton *_twitterButton;
+    ActionButton *_menuButton;
     
     NSString *_difficulty;
     NSString *time;

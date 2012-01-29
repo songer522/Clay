@@ -263,11 +263,11 @@
 		<key>batchObstacles</key>
 		<string>none</string>
 		<key>animations</key>
-		<string>hud,endLevel</string>
+		<string>endLevel</string>
 		<key>sounds</key>
 		<string>none</string>
 		<key>textures</key>
-		<string>endGameTextures,hudGraphics2</string>
+		<string>hudGraphics2,endGameTextures</string>
 	</dict>
 	<key>endLevel</key>
 	<dict>

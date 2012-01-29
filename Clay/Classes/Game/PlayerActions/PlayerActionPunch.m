@@ -27,11 +27,11 @@
     _punch = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_DOJO_PUNCH];
     if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
     {
-        [_punch setBoundingBox:CGRectMake(0, 0, 35, 35)];
+        [_punch setBoundingBox:CGRectMake(30, 0, 35, 35)];
     }
     else
     {
-        [_punch setBoundingBox:CGRectMake(0, 35, 35, 35)];
+        [_punch setBoundingBox:CGRectMake(30, 35, 35, 35)];
     }
     _cooldownStart = 0.2f;
     _cooldown = 0.0f;
@@ -159,12 +159,19 @@
                 [self setKilledEnemy:YES];
                 
                 if (_punch1SoundCheck && !_punch1SoundPlayed) {
-                    [[SoundEngine shared] playSound:@"dojoPunch1"];
-                    _punch1SoundPlayed = true;
+                    if(!object.fadeout)
+                    
+                    {
+                        [[SoundEngine shared] playSound:@"dojoPunch1"];
+                    }
+                        _punch1SoundPlayed = true;
                 }
                 
                 if (_punch2SoundCheck && !_punch2SoundPlayed) {
-                    [[SoundEngine shared] playSound:@"dojoPunch2"];
+                    if(!object.fadeout)
+                    {
+                        [[SoundEngine shared] playSound:@"dojoPunch2"];
+                    }
                     _punch2SoundPlayed = true;
                 }
             }
