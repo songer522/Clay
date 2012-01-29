@@ -19,6 +19,7 @@
 #import "LevelManager.h"
 #import "PListLoader.h"
 #import "Level.h"
+#import "HintBox.h"
 
 @interface PauseMenuScreen()
 
@@ -56,8 +57,6 @@
         _restartButton = [ActionButton actionButtonInGameWithText:@"REDO"];
         _menuButton = [ActionButton actionButtonInGameWithText:@"MENU"];
         
-        _hintList = [[NSMutableArray alloc] initWithCapacity:10];
-        
         //IPAD FIX: reposition so paused text is centered on x, and slightly above center on y, and buttons are side by side, with the middle button centered on x, and each one slightly below center on y
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         float centerX = winSize.width/2.0f;
@@ -67,24 +66,7 @@
         [_restartButton setPosition:ccp(centerX,centerY - 35.0f)];
         [_menuButton setPosition:ccp(centerX + 115.0f,centerY - 35.0f)];
         
-        
-        _hintBox = [Sprite spriteCenteredWithFrame:@"UI_HintBox_1.png"];
-        [_hintBox setScreenPosition:ccp(240.0f,centerY + 140.0f)];
-
-        _hintHeader = [Sprite spriteCenteredWithFrame:@"UI_HintBox_2.png"];
-        [_hintHeader setScreenPosition:ccp(128.0f,centerY + 166.5f)];
-        
-        
-        [self loadHints];
-
-        NSString *hint = [self getNewHint];
-        
-        _hintText = [CCLabelTTF labelWithString:hint dimensions:CGSizeMake(250, 100) alignment:UITextAlignmentLeft fontName:@"Impact.ttf" fontSize:12];
-        
-        
-        
-        [_hintText setPosition:ccp(240.0f,229.0f)]; //pause was 211i
-        [self addChild:_hintText];
+        _hintBox = [HintBox hintboxOnLayer:self];
         
         _action = PAUSE_ACTION_NONE;
         _waitToSwitch = -1.0f;
@@ -176,45 +158,7 @@
     glEnable(GL_TEXTURE_2D);
 }
 
--(void)loadHints
-{
-    NSString *levelName = [[LevelManager shared] currentLevel].name;
-    
-    NSDictionary *allHints = [PListLoader loadPlistWithName:@"hints"];
-    
-    NSDictionary *globalHints = [allHints objectForKey:@"global"];
-    if (globalHints) {
-            [self loadHintsFromDictionary:globalHints];
-    }
-    
-    NSDictionary *levelHints = [allHints objectForKey:levelName];
-    if (levelHints) {
-            [self loadHintsFromDictionary:levelHints];
-    }
-}
 
--(void)loadHintsFromDictionary:(NSDictionary*)dict
-{
-    NSEnumerator *enumerator = [dict objectEnumerator];
-    
-    id hint;
-    while ((hint = [enumerator nextObject])) {
-        if(hint) {
-            [_hintList addObject:[NSString stringWithString:hint]];
-        }
-    }
-}
-
--(NSString*)getNewHint
-{
-    int count = [_hintList count];
-    if (count > 0) {
-        int choice = rand()%count;
-        return [_hintList objectAtIndex:choice];        
-    }
-    
-    return nil;
-}
 
 
 -(void)onExit
@@ -252,10 +196,6 @@
     [_pausedText setAlpha:_alpha];
     
     [_hintBox setAlpha:_alpha];
-    [_hintHeader setAlpha:_alpha];
-    
-    GLubyte opacity = _alpha * 255;
-    [_hintText setOpacity:opacity];
     
     [_resumeButton setAlpha:_alpha];
     [_restartButton setAlpha:_alpha];
@@ -269,9 +209,13 @@
 
 -(void)dealloc
 {
+    [_hintBox release];
+    [_resumeButton release];
+    [_restartButton release];
+    [_menuButton release];
     [_pausedText release];
     _gameController = nil;
-    //[super dealloc];
+    [super dealloc];
 }
 
 @end

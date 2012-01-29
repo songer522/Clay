@@ -14,6 +14,7 @@
 @class Sprite;
 @class GameLabel;
 @class Button;
+@class HintBox;
 @class ActionButton;
 
 typedef enum {
@@ -33,15 +34,9 @@ typedef enum {
     ActionButton *_resumeButton;
     ActionButton *_restartButton;
     ActionButton *_menuButton;
+
+    HintBox *_hintBox;
     
-    NSMutableArray *_hintList;
-    
-    
-    Sprite *_hintBox;
-    Sprite *_hintHeader;
-    
-    CCLabelTTF *_hintText;
-        
     PauseAction _action;
     float _waitToSwitch;
 }
@@ -49,11 +44,8 @@ typedef enum {
 @property(nonatomic,retain) GameController *gameController;
 
 +(id)instance;
--(void)loadHints;
--(NSString*)getNewHint;
 
 
-#pragma mark - private methods
--(void)loadHintsFromDictionary:(NSDictionary*)dict;
+
 
 @end

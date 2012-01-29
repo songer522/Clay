@@ -340,6 +340,7 @@
 		5491F21C14D521F700758671 /* Comic_13.png in Resources */ = {isa = PBXBuildFile; fileRef = 5491F21614D521F500758671 /* Comic_13.png */; };
 		5491F21D14D521F700758671 /* Comic_14-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5491F21714D521F600758671 /* Comic_14-hd.png */; };
 		5491F21E14D521F700758671 /* Comic_14.png in Resources */ = {isa = PBXBuildFile; fileRef = 5491F21814D521F700758671 /* Comic_14.png */; };
+		5491F22114D552B900758671 /* HintBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 5491F22014D552B800758671 /* HintBox.m */; };
 		549513D014BF8D4E007C1D2F /* PlayerActionDetonate.m in Sources */ = {isa = PBXBuildFile; fileRef = 549513CF14BF8D4E007C1D2F /* PlayerActionDetonate.m */; };
 		549513D414BFF985007C1D2F /* bombdetonator.wav in Resources */ = {isa = PBXBuildFile; fileRef = 549513D214BFF985007C1D2F /* bombdetonator.wav */; };
 		549513D514BFF985007C1D2F /* bombexplosion.wav in Resources */ = {isa = PBXBuildFile; fileRef = 549513D314BFF985007C1D2F /* bombexplosion.wav */; };
@@ -1156,6 +1157,8 @@
 		5491F21614D521F500758671 /* Comic_13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Comic_13.png; path = Clay/Resources/comics/Comic_13.png; sourceTree = SOURCE_ROOT; };
 		5491F21714D521F600758671 /* Comic_14-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Comic_14-hd.png"; path = "Clay/Resources/comics/Comic_14-hd.png"; sourceTree = SOURCE_ROOT; };
 		5491F21814D521F700758671 /* Comic_14.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Comic_14.png; path = Clay/Resources/comics/Comic_14.png; sourceTree = SOURCE_ROOT; };
+		5491F21F14D552B800758671 /* HintBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HintBox.h; sourceTree = "<group>"; };
+		5491F22014D552B800758671 /* HintBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HintBox.m; sourceTree = "<group>"; };
 		549513CE14BF8D4E007C1D2F /* PlayerActionDetonate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerActionDetonate.h; sourceTree = "<group>"; };
 		549513CF14BF8D4E007C1D2F /* PlayerActionDetonate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerActionDetonate.m; sourceTree = "<group>"; };
 		549513D214BFF985007C1D2F /* bombdetonator.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = bombdetonator.wav; path = Resources/sounds/bombdetonator.wav; sourceTree = "<group>"; };
@@ -2703,6 +2706,8 @@
 		549ED7BC1461D065008BCD98 /* GUI */ = {
 			isa = PBXGroup;
 			children = (
+				5491F21F14D552B800758671 /* HintBox.h */,
+				5491F22014D552B800758671 /* HintBox.m */,
 				54E25D79146B23900016ADEB /* ActionButton.h */,
 				54E25D7A146B23910016ADEB /* ActionButton.m */,
 				5463945B1499685D0053A1F6 /* ChooseLevelPanel.h */,
@@ -3876,6 +3881,7 @@
 				548780FF14D0B3D300EDC04B /* SKProduct+LocalizedPrice.m in Sources */,
 				5487810214D0D69A00EDC04B /* DlcGameWindow.m in Sources */,
 				54F8202814D1DA170028D32A /* PlayerActionPunch.m in Sources */,
+				5491F22114D552B900758671 /* HintBox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
