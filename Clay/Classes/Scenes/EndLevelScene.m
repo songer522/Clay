@@ -56,17 +56,20 @@
         
         _state = END_LEVEL_TRANSITION_IN;
         _alpha = 0.0f;
+        _time = 0.0f;
         _openFacebook=false;
         _openTwitter=false;
         _tweetViewController = nil;
         _fbprompt = nil;
         _difficulty = [[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
        
-        _description= [NSString stringWithFormat:@"story mode %@",_difficulty];
+        //_description= [NSString stringWithFormat:@"story mode %@",_difficulty];
         
         [[LayerManager sharedLayers] setWorkingLayer:self];
         
         [[TextureManager shared] loadMemoryForKey:@"endGame"];
+        
+        
         _background = [Sprite spriteFromFrameCacheWithName:@"End_Background.png"];
         _finalTimePanel = [Sprite spriteFromFrameCacheWithName:@"End_BackBox_1.png"];
         _facebookAndTwitterPanel =[Sprite spriteFromFrameCacheWithName:@"End_BackBox_2.png"];
@@ -105,16 +108,17 @@
         
         
        
-        [_facebookIcon setScreenPosition:ccp(centerX-215,centerY-25)];
-        [_twitterIcon setScreenPosition:ccp(centerX-215,centerY-75)];
+        [_facebookIcon setScreenPosition:ccp(centerX-216,centerY-23)];
+        [_twitterIcon setScreenPosition:ccp(centerX-216,centerY-72)];
+        
         _facebookButton =[ActionButton actionButtonManualSetup];
-        _facebookButton.facebookOrTwitter=true;
-        [_facebookButton setPosition:ccp(centerX-215,centerY-25)];
+        _facebookButton.facebookOrTwitterEndStroy=true;
+        [_facebookButton setPosition:ccp(24,127)];
         [_facebookButton setEnabled:true];
         
         _twitterButton =[ ActionButton actionButtonManualSetup];
-        _twitterButton.facebookOrTwitter=true;
-        [_twitterButton setPosition:ccp(centerX-225,centerY-75)];
+        _twitterButton.facebookOrTwitterEndStroy=true;
+        [_twitterButton setPosition:ccp(24,82)];
         [_twitterButton setEnabled:true];
 
         
@@ -182,21 +186,25 @@
             NSSet *allTouches = [event allTouches];
             for(UITouch *touch in allTouches) {
                 CGPoint position = [self convertTouchToNodeSpace:touch];
-            
-        
+                    
             if([_facebookButton checkIfSelected:position]) {
                 
-                //_openFacebook = true;
+                _openFacebook = true;
+                _selectedButton= _facebookButton;
                 [[SoundEngine shared] playSound:@"buttonPressed"];     
             }
             else if([_twitterButton checkIfSelected:position]) {
             
-                //_openTwitter= true;
+                _openTwitter= true;
+                _selectedButton= _twitterButton;
                 [[SoundEngine shared] playSound:@"buttonPressed"];     
             }
-                else
+                else if ([_menuButton checkIfSelected:position])
                 {
-                   [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[MainMenuScene scene]]]; 
+                    _selectedButton=_menuButton;
+                    _time=0.0f;
+                    _state=END_LEVEL_TRANSITION_OUT;
+                  
                 }
             }
            }
@@ -205,9 +213,11 @@
 -(void)update:(ccTime)dt
 {
     float rate = 2.0f * dt;
+    _time += 2*dt;
+    
     float finalTime = [[[GameSettings shared] getGlobalForKey:@"finalTime"] floatValue];
     
-        
+        NSString *_description= [NSString stringWithFormat:@"story mode %@",_difficulty];
     
     
     
@@ -237,9 +247,9 @@
             [_fbprompt release];
             _fbprompt = nil;
         }
-        time=[TrackTimer getTimeStringFromFloat:finalTime];
+        _timer=[TrackTimer getTimeStringFromFloat:finalTime];
         _fbprompt = [FBPrompt promptWithAppId:@"264174546971482" andDelegate:self];
-        [_fbprompt showFacebookDialogWithDescription:[NSString stringWithFormat:@"Hey, here's my score for Track Lapse %@ : %@, see if you can beat me!!!",_description, time] andPicture:@"http://fbrell.com/f8.jpg"];
+        [_fbprompt showFacebookDialogWithDescription:[NSString stringWithFormat:@"Hey, here's my score for Track Lapse %@ : %@, see if you can beat me!!!",_description, _timer] andPicture:@"http://fbrell.com/f8.jpg"];
         _openFacebook =false;
         
         if(![GCState sharedInstance].facebook)
@@ -251,8 +261,8 @@
         
     } else if(_openTwitter)
     {
-        
-        [self sendEasyTweet:[NSString stringWithFormat:@"Hey, here's my score for Track Lapse %@ : %@, see if you can beat me!!!",_description, time]];
+         _timer=[TrackTimer getTimeStringFromFloat:finalTime];
+        [self sendEasyTweet:[NSString stringWithFormat:@"Hey, here's my score for Track Lapse %@ : %@, see if you can beat me!!!",_description, _timer]];
         _openTwitter =false;
         if(![GCState sharedInstance].twitter)
         {
@@ -284,10 +294,34 @@
             [_menuButton setAlpha:_alpha];
             break;
         case END_LEVEL_TRANSITION_OUT:
+            
+            if (_time >=1.0f)
+            {
+                _time = 1.0f;
+                //[_selectedButton setAlpha:1.0];
+                [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[MainMenuScene scene]]];
+            } 
+            /*
+            // [_selectedButton setAlpha:(1-_time)];
+            //[_background setAlpha:(1-_time)];
+            [_facebookIcon setAlpha:(1-_time)];
+            [_twitterIcon setAlpha:(1-_time)];
+            [_finalTimePanel setAlpha:(1-_time)];
+            [_finalTimeHeader setAlpha:(1-_time)];
+            [_difficultyHeader setAlpha:(1-_time)];
+            [_facebookAndTwitterPanel setAlpha:(1-_time)];
+            [_timeHeaderText setAlpha:(1-_time)];
+            [_finalTimeText setAlpha:(1-_time)];
+            [_facebookButton setAlpha:(1-_time)];
+            [_twitterButton setAlpha:(1-_time)];
+            //[_menuButton setAlpha:(1-_time)];
+             */
+
             break;
         default:
             break;
     }
+    
 }
 
 -(void)onExit
@@ -313,7 +347,7 @@
     [_facebookButton release];
     [_twitterButton release];
    [_background release];
-   
+    _selectedButton=nil;
    
     [_finalTimePanel release];
     [_finalTimeHeader release];

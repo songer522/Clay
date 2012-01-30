@@ -21,7 +21,8 @@
 
 
 @implementation ActionButton
-@synthesize facebookOrTwitter;
+@synthesize facebookOrTwitter=_facebookOrTwitter;
+@synthesize facebookOrTwitterEndStroy=_facebookOrTwitterEndStroy;
 
 +(id)actionButtonWithText:(NSString*)text
 {
@@ -62,7 +63,8 @@
         [self setSelectedSpriteFrame:buttonPressedName];
         
         _usingRelativeHitbox = false; //default
-        facebookOrTwitter = false;
+        _facebookOrTwitter = false;
+        _facebookOrTwitterEndStroy =false;
         _isEnabled = true;
         _lockType = LOCKTYPE_NOT_ENABLED;
         
@@ -141,9 +143,13 @@
         [self setHitbox:CGRectMake(position.x - 48, position.y - 15, 95, 30)];
     }
     
-    if(facebookOrTwitter)
+    if(_facebookOrTwitter)
     {
         [self setHitbox:CGRectMake(position.x - 48, position.y - 15, 30, 30)];
+    }
+    if(_facebookOrTwitterEndStroy)
+    {
+        [self setHitbox:CGRectMake(position.x , position.y, 44, 44)];
     }
 }
 
