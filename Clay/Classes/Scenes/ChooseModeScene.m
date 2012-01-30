@@ -73,6 +73,7 @@
                     [_timedModePanel transitionToInactive];
                     [_extrasPanel transitionToInactive];
                     [_selectCursor setAlpha:0.0f];
+                    [[SoundEngine shared] playSound:@"guiSwitchSections"];
                     _currentPanel = _storyModePanel;
                 }
             } else if ([_timedModePanel testCollision:position]) {
@@ -81,6 +82,7 @@
                     [_storyModePanel transitionToInactive];
                     [_extrasPanel transitionToInactive];
                     [_selectCursor setAlpha:0.0f];
+                    [[SoundEngine shared] playSound:@"guiSwitchSections"];
                     _currentPanel = _timedModePanel;
                 }
             } else if ([_extrasPanel testCollision:position]) {
@@ -89,6 +91,7 @@
                     [_timedModePanel transitionToInactive];
                     [_storyModePanel transitionToInactive];
                     [_selectCursor setAlpha:0.0f];
+                    [[SoundEngine shared] playSound:@"guiSwitchSections"];
                     _currentPanel = _extrasPanel;
                 }
             }

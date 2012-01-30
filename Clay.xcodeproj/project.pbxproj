@@ -441,6 +441,8 @@
 		549F754014D6F998005B31A9 /* waterSwimAction.wav in Resources */ = {isa = PBXBuildFile; fileRef = 549F753E14D6F998005B31A9 /* waterSwimAction.wav */; };
 		549F754814D73C8F005B31A9 /* guiSelectionBack.wav in Resources */ = {isa = PBXBuildFile; fileRef = 549F754614D73C8F005B31A9 /* guiSelectionBack.wav */; };
 		549F754914D73C8F005B31A9 /* guiSelectionForward.wav in Resources */ = {isa = PBXBuildFile; fileRef = 549F754714D73C8F005B31A9 /* guiSelectionForward.wav */; };
+		549F754B14D74CF0005B31A9 /* eraseData.wav in Resources */ = {isa = PBXBuildFile; fileRef = 549F754A14D74CF0005B31A9 /* eraseData.wav */; };
+		549F754D14D74EB2005B31A9 /* guiSwitchSections.wav in Resources */ = {isa = PBXBuildFile; fileRef = 549F754C14D74EB2005B31A9 /* guiSwitchSections.wav */; };
 		54A183BB146C2623009209EA /* hudGraphics2-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54A183B7146C2623009209EA /* hudGraphics2-hd.plist */; };
 		54A183BC146C2623009209EA /* hudGraphics2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A183B8146C2623009209EA /* hudGraphics2-hd.png */; };
 		54A183BD146C2623009209EA /* hudGraphics2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54A183B9146C2623009209EA /* hudGraphics2.plist */; };
@@ -1332,6 +1334,8 @@
 		549F753E14D6F998005B31A9 /* waterSwimAction.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = waterSwimAction.wav; path = Resources/sounds/waterSwimAction.wav; sourceTree = "<group>"; };
 		549F754614D73C8F005B31A9 /* guiSelectionBack.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = guiSelectionBack.wav; path = Resources/sounds/guiSelectionBack.wav; sourceTree = "<group>"; };
 		549F754714D73C8F005B31A9 /* guiSelectionForward.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = guiSelectionForward.wav; path = Resources/sounds/guiSelectionForward.wav; sourceTree = "<group>"; };
+		549F754A14D74CF0005B31A9 /* eraseData.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = eraseData.wav; path = Resources/sounds/eraseData.wav; sourceTree = "<group>"; };
+		549F754C14D74EB2005B31A9 /* guiSwitchSections.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = guiSwitchSections.wav; path = Resources/sounds/guiSwitchSections.wav; sourceTree = "<group>"; };
 		54A183B7146C2623009209EA /* hudGraphics2-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "hudGraphics2-hd.plist"; sourceTree = "<group>"; };
 		54A183B8146C2623009209EA /* hudGraphics2-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hudGraphics2-hd.png"; sourceTree = "<group>"; };
 		54A183B9146C2623009209EA /* hudGraphics2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = hudGraphics2.plist; sourceTree = "<group>"; };
@@ -2173,6 +2177,8 @@
 		545CBC2F142D25AB00795FC9 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				549F754C14D74EB2005B31A9 /* guiSwitchSections.wav */,
+				549F754A14D74CF0005B31A9 /* eraseData.wav */,
 				549F754614D73C8F005B31A9 /* guiSelectionBack.wav */,
 				549F754714D73C8F005B31A9 /* guiSelectionForward.wav */,
 				549F753D14D6F998005B31A9 /* blowAction.wav */,
@@ -3660,6 +3666,8 @@
 				549F754014D6F998005B31A9 /* waterSwimAction.wav in Resources */,
 				549F754814D73C8F005B31A9 /* guiSelectionBack.wav in Resources */,
 				549F754914D73C8F005B31A9 /* guiSelectionForward.wav in Resources */,
+				549F754B14D74CF0005B31A9 /* eraseData.wav in Resources */,
+				549F754D14D74EB2005B31A9 /* guiSwitchSections.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

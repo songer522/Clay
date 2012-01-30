@@ -144,5 +144,9 @@
 	<string>guiSelectionForward.wav</string>
 	<key>guiSelectionBack</key>
 	<string>guiSelectionBack.wav</string>
+	<key>eraseData</key>
+	<string>eraseData.wav</string>
+	<key>guiSwitchSections</key>
+	<string>guiSwitchSections.wav</string>
 </dict>
 </plist>

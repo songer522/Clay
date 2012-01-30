@@ -185,7 +185,7 @@
                     [[BestTimes shared] erase];
                     [[BestTimes shared] reload];
                     [[GameSettings shared] setGlobal:@"YES" ForKey:@"titleMusicStarted"];
-                    [[SoundEngine shared] playSound:@"guiSelectionForward"];
+                    [[SoundEngine shared] playSound:@"eraseData"];
                 } else if(type == WIN_SELECT_NO) {
                     _windowOpen = false;
                     [_eraseWindowSecond release];
