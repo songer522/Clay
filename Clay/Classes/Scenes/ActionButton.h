@@ -23,12 +23,14 @@
     CCLabelBMFont *_textLabel;
     float _selectedAlpha;
     bool _hasText;
-    bool facebookOrTwitter;
+    bool _facebookOrTwitter;
+    bool _facebookOrTwitterEndStroy;
     bool _isEnabled;
     
     LockType _lockType;
 }
 @property (assign)bool facebookOrTwitter;
+@property (assign)bool facebookOrTwitterEndStroy;
 
 +(id)actionButtonWithText:(NSString*)text;
 +(id)actionButtonInGameWithText:(NSString*)text;
