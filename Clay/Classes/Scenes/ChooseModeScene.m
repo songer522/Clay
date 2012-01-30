@@ -122,17 +122,17 @@
     
     _background = [Sprite spriteFromFrameCacheWithName:@"UI_GameType_Background.png"];
     
-    _storyModePanel = [ModePanel panelAtPosition:ccp(80,154)];
+    _storyModePanel = [ModePanel panelAtPosition:ccp(80,154) PanelType:MODEPANEL_PANEL_STORY];
     [_storyModePanel setHeaderFrame:@"UI_GameType_StoryModeC.png" Inactive:@"UI_GameType_StoryModeG.png"];
     [_storyModePanel addButtons:[NSArray arrayWithObjects:@"EASY",@"NORMAL",@"HARD", nil]];
     [_storyModePanel setParent:self];
     
-    _timedModePanel = [ModePanel panelAtPosition:ccp(240,154)];
+    _timedModePanel = [ModePanel panelAtPosition:ccp(240,154) PanelType:MODEPANEL_PANEL_TIMED];
     [_timedModePanel setHeaderFrame:@"UI_GameType_TimeModeC.png" Inactive:@"UI_GameType_TimeModeG.png"];
     [_timedModePanel addButtons:[NSArray arrayWithObjects:@"NORMAL",@"INSANE",@"DLC", nil]];
     [_timedModePanel setParent:self];
     
-    _extrasPanel = [ModePanel panelAtPosition:ccp(400,154)];
+    _extrasPanel = [ModePanel panelAtPosition:ccp(400,154) PanelType:MODEPANEL_PANEL_EXTRAS];
     [_extrasPanel setHeaderFrame:@"UI_GameType_ExtrasC.png" Inactive:@"UI_GameType_ExtrasG.png"];
     [_extrasPanel addButtons:[NSArray arrayWithObjects:@"ALBUM",@"WEB",@"SUPPORT", nil]];
     [_extrasPanel setParent:self];

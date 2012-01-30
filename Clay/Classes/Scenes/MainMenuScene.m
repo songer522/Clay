@@ -174,18 +174,16 @@
             } else if ([_leaderboardsButton testCollision:position]) {
                 _switchToChoice = MENU_SWITCHTO_LEADERBOARDS;
                 _selectedButton = _leaderboardsButton;
-               
                 [self buttonTransition];
-                
+                [[SoundEngine shared] playSound:@"confirm"];
             } else if ([_achievementsButton testCollision:position]) {
                 _switchToChoice = MENU_SWITCHTO_ACHIEVEMENTS;
                 _selectedButton = _achievementsButton;
-               
+                [[SoundEngine shared] playSound:@"confirm"];
                 [self buttonTransition];
             } else if ([_optionsButton testCollision:position]) {
                 _switchToChoice = MENU_SWITCHTO_OPTIONS;
-               
-                [[SoundEngine shared] playSound:@"confirm"];
+                [[SoundEngine shared] playSound:@"guiSelectionForward"];
                 _selectedButton = _optionsButton;
                 shouldStart = true;
             }else if ([_giftButton testCollision:position]) {

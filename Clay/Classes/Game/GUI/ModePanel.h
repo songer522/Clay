@@ -16,6 +16,12 @@ typedef enum {
     MODE_PANEL_SWITCHTO_INACTIVE
 }ModePanelPhase;
 
+typedef enum {
+    MODEPANEL_PANEL_STORY = 0,
+    MODEPANEL_PANEL_TIMED = 1,
+    MODEPANEL_PANEL_EXTRAS = 2
+}ModePanelType;
+
 @class Sprite;
 @class ChooseModeScene;
 @class ActionButton;
@@ -36,18 +42,20 @@ typedef enum {
     int _selectedIndex;
     
     ModePanelPhase _phase;
+    ModePanelType _panelType;
     
     float _alpha;
     float _wait;
     
     bool _isActive;
     bool _isSelected;
+    
 }
 
 @property(nonatomic,assign) bool isActive;
 @property(nonatomic,assign) int selectedIndex;
 
-+(id)panelAtPosition:(CGPoint)position;
++(id)panelAtPosition:(CGPoint)position PanelType:(ModePanelType)panelType;
 
 
 
