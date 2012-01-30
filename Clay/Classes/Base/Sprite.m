@@ -255,6 +255,11 @@
     [_animation setFrame:frame];    
 }
 
+-(void)setVisible:(bool)isVisible
+{
+    [sprite_cc setVisible:isVisible];
+}
+
 -(void)setImageByName:(NSString*)frameName
 {
     [sprite_cc setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName]];

@@ -107,30 +107,38 @@
     _punch1SoundCheck = false;
     _punch2SoundCheck = false;
     
-    int frame = [[[_parent getSprite] getAnimation] getCurrentFrameNumber];
-    switch (frame) {
-        case 2:
-        case 3:
-        case 4:
-        case 5:
-            startX = 0;
-            projWidth = 45;
-            [_punch setActive:true];
-            _punch1SoundCheck = true;
-            break;
-        case 6:
-        case 7:
-        case 8:
-            startX = 0;
-            projWidth = 30;
-            [_punch setActive:true];
-            _punch2SoundCheck = true;
-            break;
-        default:
-            [_punch setActive:false];
-            startX = 0;
-            projWidth = 1;
-            break;
+    @try {
+        Animation *anim = [[_parent getSprite] getAnimation];
+        
+        int frame = [anim getCurrentFrameNumber];
+        switch (frame) {
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+                startX = 0;
+                projWidth = 45;
+                [_punch setActive:true];
+                _punch1SoundCheck = true;
+                break;
+            case 6:
+            case 7:
+            case 8:
+                startX = 0;
+                projWidth = 30;
+                [_punch setActive:true];
+                _punch2SoundCheck = true;
+                break;
+            default:
+                [_punch setActive:false];
+                startX = 0;
+                projWidth = 1;
+                break;
+        }
+    
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Error! PlayerActionPunch.m - Most likely animation or frame no longer exists when game is run at lower framerate, like in a simulator.");
     }
     
     if ([[GameSettings shared] usingHighResolutionGraphics])

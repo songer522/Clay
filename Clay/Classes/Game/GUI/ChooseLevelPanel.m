@@ -17,6 +17,8 @@
 
 @implementation ChooseLevelPanel
 
+@synthesize levelId = _levelId;
+
 +(id)instance
 {
     return [[self alloc] init];
@@ -37,9 +39,10 @@
     float medTextScale = 0.53f;
     float smallTextScale = 0.5f;
     
-    _root = [[CCNode alloc] init];
+    _rootUnlocked = [[CCNode alloc] init];
+    _rootLocked = [[CCNode alloc] init];
     
-    [[LayerManager sharedLayers] setWorkingLayer:_root];
+    [[LayerManager sharedLayers] setWorkingLayer:_rootUnlocked];
     
     _currentXPos = LEVELPANEL_PANEL_X;
     
@@ -65,15 +68,39 @@
     
     [[LayerManager sharedLayers] forgetWorkingLayer];
         
-    [layer addChild:_root];
+    [layer addChild:_rootUnlocked];
     
     [self setPanelXPosition:LEVELPANEL_PANEL_X];
 }
 
+-(void)setUnlocked:(bool)isUnlocked
+{
+    if (isUnlocked) {
+        [_facebookIcon setVisible:YES];
+        [_twitterIcon setVisible:YES];
+        [_bestTimeLabel setVisible:YES];
+        [_bestTimeValue setVisible:YES];
+        [_timeForMedalLabel setVisible:YES];
+        [_timeForMedalValue setVisible:YES];
+    } else {
+        [_facebookIcon setVisible:NO];
+        [_twitterIcon setVisible:NO];
+        [_bestTimeLabel setVisible:NO];
+        [_bestTimeValue setVisible:NO];
+        [_timeForMedalLabel setVisible:NO];
+        [_timeForMedalValue setVisible:NO];
+    }
+}
+
+-(void)setDlcText:(NSString*)text
+{
+//    _dlcDescription = [CCLabelTTF labelWithString:text fontName:@"Impact.ttf" fontSize:ccp(
+}
+
 -(void)reset:(id)layer
 {
-    [_root removeFromParentAndCleanup:NO];
-    [layer addChild:_root];
+    [_rootUnlocked removeFromParentAndCleanup:NO];
+    [layer addChild:_rootUnlocked];
 }
 
 -(void)setAlpha:(float)alpha
@@ -102,6 +129,8 @@
     NSAssert((levelNumber>0&&levelNumber<=LEVELPANEL_MAX_LEVEL_NUMBER),@"ChooseLevelPanel.m - levelNumber outside range. Value: %d",levelNumber);
     
     NSString *difficulty = [[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
+    
+    _levelId = levelNumber;
     
     _levelNameText = [NSString stringWithFormat:@"LEVEL %d",levelNumber];
     _levelPreviewFrameName = [NSString stringWithFormat:@"LevelPreview_%d.png",levelNumber];
@@ -185,8 +214,8 @@
     [_levelTitleFrameName release];
      */
 
-    [_root removeFromParentAndCleanup:NO];
-    [_root release];
+    [_rootUnlocked removeFromParentAndCleanup:NO];
+    [_rootUnlocked release];
     
     [super dealloc];
 }

@@ -227,16 +227,16 @@
 -(void)boostJump:(RunnerJump)type
 {
     if (_isJumping) {
-        [self endJump];
+        [self endJump:true];
     }
 }
 
 
 
--(void)endJump
+-(void)endJump:(bool)switchToFallingAnim
 {
     
-    if (!_isTripping && _isInMidAir ) {
+    if (switchToFallingAnim && !_isTripping && _isInMidAir && !_hasDoubleJumped ) {
      [_skin setPlayerAnimation:PLAYER_ANIM_FALLING ForSprite:_sprite];
     }
    
@@ -874,10 +874,15 @@
     } else if (state == COLLISION_STATE_MIDAIR) {
         _isInMidAir = true;
         
-        if (_isJumping && !_isTripping && !_hasDoubleJumped && _waitToEndJump>0.0f) {
+        if (_isJumping && !_hasDoubleJumped && _waitToEndJump>0.0f) {
             _waitToEndJump-=dt;
             if (_waitToEndJump<=0.0f) {
-                [self endJump];
+                if(!_isTripping) {
+                    [self endJump:true];                    
+                } else {
+                    //THIS SHOULD FIX TIAN'S FLYING TIM, I THINK
+                    [self endJump:false];
+                }
             }
         }
         

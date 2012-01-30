@@ -161,20 +161,37 @@
             if (_eraseWindowFirstOpen) {
                 WindowSelectionType type = [_eraseWindowFirst checkCollisionAtPoint:position];
                 if (type == WIN_SELECT_YES) {
-                    _windowOpen = false;
                     [_eraseWindowFirst release];
                     _eraseWindowFirst = nil;
                     _eraseWindowFirstOpen = false;
-                    [[GameSettings shared] eraseData];
-                    [[BestTimes shared] erase];
-                    [[BestTimes shared] reload];
-                    [[GameSettings shared] setGlobal:@"YES" ForKey:@"titleMusicStarted"];
+                    _eraseWindowSecond = [GameWindow gameWindowWithHeader:@"ERASE DATA" Message:@"Seriously, there's no way to undo this. Are you sure you want to delete your data?" Choices:WINDOW_CHOICE_YESNO Layer:self];
+                    _eraseWindowSecondOpen = true;
+
+                    
                 } else if(type == WIN_SELECT_NO) {
                     _windowOpen = false;
                     [_eraseWindowFirst release];
                     _eraseWindowFirst = nil;
                     _eraseWindowFirstOpen = false;
                 }
+            } else if(_eraseWindowSecondOpen) {
+                WindowSelectionType type = [_eraseWindowSecond checkCollisionAtPoint:position];
+                if (type == WIN_SELECT_YES) {
+                    _windowOpen = false;
+                    [_eraseWindowSecond release];
+                    _eraseWindowSecond = nil;
+                    _eraseWindowSecondOpen = false;
+                    [[GameSettings shared] eraseData];
+                    [[BestTimes shared] erase];
+                    [[BestTimes shared] reload];
+                    [[GameSettings shared] setGlobal:@"YES" ForKey:@"titleMusicStarted"];
+                } else if(type == WIN_SELECT_NO) {
+                    _windowOpen = false;
+                    [_eraseWindowSecond release];
+                    _eraseWindowSecond = nil;
+                    _eraseWindowSecondOpen = false;
+                }
+                
             }
             
         } else {
@@ -192,7 +209,7 @@
                     _switchToType = OPTIONS_SWITCHTO_CREDITS;
                 } else if([_eraseDataButton checkIfSelected:position]) {
                     _windowOpen = true;
-                    _eraseWindowFirst = [GameWindow gameWindowWithHeader:@"ERASE DATA" Message:@"THIS WILL DELETE ALL OF YOUR|DATA. ARE YOU SURE YOU WANT|TO DO THIS?" Choices:WINDOW_CHOICE_YESNO Layer:self];
+                    _eraseWindowFirst = [GameWindow gameWindowWithHeader:@"ERASE DATA" Message:@"This will delete all of your data, except achievements and leaderboard scores. Are you sure you want to do this?" Choices:WINDOW_CHOICE_NOYES Layer:self];
                     _eraseWindowFirstOpen = true;
                 }
                 

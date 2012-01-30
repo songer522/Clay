@@ -16,6 +16,10 @@
 #import "Sprite.h"
 #import "SoundEngine.h"
 #import "GameSettings.h"
+#import "LevelManager.h"
+#import "PListLoader.h"
+#import "Level.h"
+#import "HintBox.h"
 
 @interface PauseMenuScreen()
 
@@ -47,8 +51,6 @@
         [[[LayerManager sharedLayers] currentScene] addChild:self];
         
         [[LayerManager sharedLayers] setWorkingLayer:self];
-
-        
         
         _pausedText = [GameLabel gameLabelWithText:@"PAUSED" Scale:1.0f];
         _resumeButton = [ActionButton actionButtonInGameWithText:@"RESUME"];
@@ -58,15 +60,17 @@
         //IPAD FIX: reposition so paused text is centered on x, and slightly above center on y, and buttons are side by side, with the middle button centered on x, and each one slightly below center on y
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         float centerX = winSize.width/2.0f;
-        float centerY = winSize.height/2.0f;
+        float centerY = winSize.height/2.0f - 35.0f;
         [_pausedText setPosition:ccp(centerX,centerY+30.0f)];
-        [_resumeButton setPosition:ccp(centerX - 115.0f,centerY - 30.0f)];
-        [_restartButton setPosition:ccp(centerX,centerY - 30.0f)];
-        [_menuButton setPosition:ccp(centerX + 115.0f,centerY - 30.0f)];
+        [_resumeButton setPosition:ccp(centerX - 115.0f,centerY - 35.0f)];
+        [_restartButton setPosition:ccp(centerX,centerY - 35.0f)];
+        [_menuButton setPosition:ccp(centerX + 115.0f,centerY - 35.0f)];
         
+        _hintBox = [HintBox hintboxOnLayer:self];
         
         _action = PAUSE_ACTION_NONE;
         _waitToSwitch = -1.0f;
+        
         
          [[LayerManager sharedLayers] forgetWorkingLayer];
          
@@ -156,6 +160,7 @@
 
 
 
+
 -(void)onExit
 {
     [self release];
@@ -190,9 +195,13 @@
     
     [_pausedText setAlpha:_alpha];
     
+    [_hintBox update:dt];
+    [_hintBox setTextAlpha:_alpha];
+    
     [_resumeButton setAlpha:_alpha];
     [_restartButton setAlpha:_alpha];
     [_menuButton setAlpha:_alpha];
+    
     
     [_resumeButton update:dt];
     [_restartButton update:dt];
@@ -201,9 +210,13 @@
 
 -(void)dealloc
 {
+    [_hintBox release];
+    [_resumeButton release];
+    [_restartButton release];
+    [_menuButton release];
     [_pausedText release];
     _gameController = nil;
-    //[super dealloc];
+    [super dealloc];
 }
 
 @end
