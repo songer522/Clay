@@ -103,7 +103,7 @@
 	<key>selectOptionsMenu</key>
 	<string>selectOptionsMenu.caf</string>
 	<key>healthGained</key>
-	<string>healthGained.caf</string>
+	<string>healthGained.wav</string>
 	<key>endLevel</key>
 	<string>victory.caf</string>
 	<key>pigEnters</key>

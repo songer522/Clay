@@ -171,7 +171,6 @@
 		544B040314AAB3F50029FAD2 /* Footstep.caf in Resources */ = {isa = PBXBuildFile; fileRef = 544B03D514AAB3F50029FAD2 /* Footstep.caf */; };
 		544B040414AAB3F50029FAD2 /* frogSquish1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 544B03D614AAB3F50029FAD2 /* frogSquish1.caf */; };
 		544B040514AAB3F50029FAD2 /* frogSquish2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 544B03D714AAB3F50029FAD2 /* frogSquish2.caf */; };
-		544B040614AAB3F50029FAD2 /* healthGained.caf in Resources */ = {isa = PBXBuildFile; fileRef = 544B03D814AAB3F50029FAD2 /* healthGained.caf */; };
 		544B040714AAB3F50029FAD2 /* HurdleCollision.caf in Resources */ = {isa = PBXBuildFile; fileRef = 544B03D914AAB3F50029FAD2 /* HurdleCollision.caf */; };
 		544B040814AAB3F50029FAD2 /* jimShipCharge.caf in Resources */ = {isa = PBXBuildFile; fileRef = 544B03DA14AAB3F50029FAD2 /* jimShipCharge.caf */; };
 		544B040914AAB3F50029FAD2 /* JimShipShoot.caf in Resources */ = {isa = PBXBuildFile; fileRef = 544B03DB14AAB3F50029FAD2 /* JimShipShoot.caf */; };
@@ -341,6 +340,7 @@
 		5491F21D14D521F700758671 /* Comic_14-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5491F21714D521F600758671 /* Comic_14-hd.png */; };
 		5491F21E14D521F700758671 /* Comic_14.png in Resources */ = {isa = PBXBuildFile; fileRef = 5491F21814D521F700758671 /* Comic_14.png */; };
 		5491F22114D552B900758671 /* HintBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 5491F22014D552B800758671 /* HintBox.m */; };
+		5491F22B14D63C6C00758671 /* healthGained.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5491F22A14D63C6C00758671 /* healthGained.wav */; };
 		549513D014BF8D4E007C1D2F /* PlayerActionDetonate.m in Sources */ = {isa = PBXBuildFile; fileRef = 549513CF14BF8D4E007C1D2F /* PlayerActionDetonate.m */; };
 		549513D414BFF985007C1D2F /* bombdetonator.wav in Resources */ = {isa = PBXBuildFile; fileRef = 549513D214BFF985007C1D2F /* bombdetonator.wav */; };
 		549513D514BFF985007C1D2F /* bombexplosion.wav in Resources */ = {isa = PBXBuildFile; fileRef = 549513D314BFF985007C1D2F /* bombexplosion.wav */; };
@@ -975,7 +975,6 @@
 		544B03D514AAB3F50029FAD2 /* Footstep.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Footstep.caf; path = Resources/sounds/Footstep.caf; sourceTree = "<group>"; };
 		544B03D614AAB3F50029FAD2 /* frogSquish1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = frogSquish1.caf; path = Resources/sounds/frogSquish1.caf; sourceTree = "<group>"; };
 		544B03D714AAB3F50029FAD2 /* frogSquish2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = frogSquish2.caf; path = Resources/sounds/frogSquish2.caf; sourceTree = "<group>"; };
-		544B03D814AAB3F50029FAD2 /* healthGained.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = healthGained.caf; path = Resources/sounds/healthGained.caf; sourceTree = "<group>"; };
 		544B03D914AAB3F50029FAD2 /* HurdleCollision.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = HurdleCollision.caf; path = Resources/sounds/HurdleCollision.caf; sourceTree = "<group>"; };
 		544B03DA14AAB3F50029FAD2 /* jimShipCharge.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = jimShipCharge.caf; path = Resources/sounds/jimShipCharge.caf; sourceTree = "<group>"; };
 		544B03DB14AAB3F50029FAD2 /* JimShipShoot.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = JimShipShoot.caf; path = Resources/sounds/JimShipShoot.caf; sourceTree = "<group>"; };
@@ -1159,6 +1158,7 @@
 		5491F21814D521F700758671 /* Comic_14.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Comic_14.png; path = Clay/Resources/comics/Comic_14.png; sourceTree = SOURCE_ROOT; };
 		5491F21F14D552B800758671 /* HintBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HintBox.h; sourceTree = "<group>"; };
 		5491F22014D552B800758671 /* HintBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HintBox.m; sourceTree = "<group>"; };
+		5491F22A14D63C6C00758671 /* healthGained.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = healthGained.wav; path = Resources/sounds/healthGained.wav; sourceTree = "<group>"; };
 		549513CE14BF8D4E007C1D2F /* PlayerActionDetonate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerActionDetonate.h; sourceTree = "<group>"; };
 		549513CF14BF8D4E007C1D2F /* PlayerActionDetonate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerActionDetonate.m; sourceTree = "<group>"; };
 		549513D214BFF985007C1D2F /* bombdetonator.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = bombdetonator.wav; path = Resources/sounds/bombdetonator.wav; sourceTree = "<group>"; };
@@ -2170,6 +2170,7 @@
 		545CBC2F142D25AB00795FC9 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				5491F22A14D63C6C00758671 /* healthGained.wav */,
 				544DE63614D32C7C000DE0D8 /* dojoKnifeGround.wav */,
 				544DE63714D32C7C000DE0D8 /* dojoNinjaYell1.wav */,
 				544DE63814D32C7C000DE0D8 /* dojoNinjaYell2.wav */,
@@ -2209,7 +2210,6 @@
 				544B03D514AAB3F50029FAD2 /* Footstep.caf */,
 				544B03D614AAB3F50029FAD2 /* frogSquish1.caf */,
 				544B03D714AAB3F50029FAD2 /* frogSquish2.caf */,
-				544B03D814AAB3F50029FAD2 /* healthGained.caf */,
 				544B03D914AAB3F50029FAD2 /* HurdleCollision.caf */,
 				544B03DA14AAB3F50029FAD2 /* jimShipCharge.caf */,
 				544B03DB14AAB3F50029FAD2 /* JimShipShoot.caf */,
@@ -3462,7 +3462,6 @@
 				544B040314AAB3F50029FAD2 /* Footstep.caf in Resources */,
 				544B040414AAB3F50029FAD2 /* frogSquish1.caf in Resources */,
 				544B040514AAB3F50029FAD2 /* frogSquish2.caf in Resources */,
-				544B040614AAB3F50029FAD2 /* healthGained.caf in Resources */,
 				544B040714AAB3F50029FAD2 /* HurdleCollision.caf in Resources */,
 				544B040814AAB3F50029FAD2 /* jimShipCharge.caf in Resources */,
 				544B040914AAB3F50029FAD2 /* JimShipShoot.caf in Resources */,
@@ -3654,6 +3653,7 @@
 				5491F21C14D521F700758671 /* Comic_13.png in Resources */,
 				5491F21D14D521F700758671 /* Comic_14-hd.png in Resources */,
 				5491F21E14D521F700758671 /* Comic_14.png in Resources */,
+				5491F22B14D63C6C00758671 /* healthGained.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
