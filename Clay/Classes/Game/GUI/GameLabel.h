@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "VisibleElement.h"
 
 typedef enum {
     TEXT_ALIGN_LEFT = 0,
@@ -34,5 +35,6 @@ typedef enum {
 -(void)setVerticalAlignment:(TextAlignment)alignment;
 -(void)setMultilineCentered;
 -(void)setCentered;
+-(void)setVisible:(bool)isVisible;
 
 @end

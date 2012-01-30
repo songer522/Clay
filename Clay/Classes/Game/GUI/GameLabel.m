@@ -93,6 +93,11 @@
     [_label setOpacity:opacity];
 }
 
+-(void)setVisible:(bool)isVisible
+{
+    [_label setVisible:isVisible];
+}
+
 -(void)dealloc
 {
     [_label removeFromParentAndCleanup:YES];

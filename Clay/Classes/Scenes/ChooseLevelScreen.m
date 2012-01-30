@@ -273,6 +273,21 @@
             [button setPurchased:NO];
         }
     }
+
+    int levelNumber = _frontPanel.levelId;
+    if ([self checkDlcLevelUnlocked:levelNumber]) {
+        [_frontPanel setUnlocked:YES];
+    } else {
+        [_frontPanel setUnlocked:NO];
+    }
+    
+    levelNumber = _backPanel.levelId;
+    if ([self checkDlcLevelUnlocked:levelNumber]) {
+        [_backPanel setUnlocked:YES];
+    } else {
+        [_backPanel setUnlocked:NO];
+    }
+    
 }
 
 -(void)openErrorWindowCantConnectToStore

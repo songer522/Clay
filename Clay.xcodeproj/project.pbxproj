@@ -1159,6 +1159,7 @@
 		5491F21F14D552B800758671 /* HintBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HintBox.h; sourceTree = "<group>"; };
 		5491F22014D552B800758671 /* HintBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HintBox.m; sourceTree = "<group>"; };
 		5491F22A14D63C6C00758671 /* healthGained.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = healthGained.wav; path = Resources/sounds/healthGained.wav; sourceTree = "<group>"; };
+		5491F22D14D640FE00758671 /* VisibleElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VisibleElement.h; sourceTree = "<group>"; };
 		549513CE14BF8D4E007C1D2F /* PlayerActionDetonate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerActionDetonate.h; sourceTree = "<group>"; };
 		549513CF14BF8D4E007C1D2F /* PlayerActionDetonate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerActionDetonate.m; sourceTree = "<group>"; };
 		549513D214BFF985007C1D2F /* bombdetonator.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = bombdetonator.wav; path = Resources/sounds/bombdetonator.wav; sourceTree = "<group>"; };
@@ -2774,6 +2775,7 @@
 				5461D7A914CF67B600BEE18E /* InAppPurchaseManager.m */,
 				548780FD14D0B3D300EDC04B /* SKProduct+LocalizedPrice.h */,
 				548780FE14D0B3D300EDC04B /* SKProduct+LocalizedPrice.m */,
+				5491F22D14D640FE00758671 /* VisibleElement.h */,
 			);
 			path = Other;
 			sourceTree = "<group>";
