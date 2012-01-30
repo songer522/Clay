@@ -589,6 +589,8 @@
 		6120C69414D37B7D0047309F /* endGameTextures-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6120C69014D37B7D0047309F /* endGameTextures-hd.png */; };
 		6120C69514D37B7D0047309F /* endGameTexturess.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6120C69114D37B7D0047309F /* endGameTexturess.plist */; };
 		6120C69614D37B7D0047309F /* endGameTexturess.png in Resources */ = {isa = PBXBuildFile; fileRef = 6120C69214D37B7D0047309F /* endGameTexturess.png */; };
+		612EF9C514C4E1FF0056401B /* Comic_13-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 612EF9C314C4E1FC0056401B /* Comic_13-hd.png */; };
+		612EF9C614C4E1FF0056401B /* Comic_13.png in Resources */ = {isa = PBXBuildFile; fileRef = 612EF9C414C4E1FD0056401B /* Comic_13.png */; };
 		614E840814CDCAC4008AE080 /* tileset_level_2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 614E840614CDCAC4008AE080 /* tileset_level_2-hd.png */; };
 		614E840914CDCAC4008AE080 /* tileset_level_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 614E840714CDCAC4008AE080 /* tileset_level_2.png */; };
 		61782B4D14B3AC3F00C615E7 /* story_easy_level5_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61F6F6CB14B28643003A5C68 /* story_easy_level5_hd.tmx */; };
@@ -1501,6 +1503,8 @@
 		6120C69014D37B7D0047309F /* endGameTextures-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "endGameTextures-hd.png"; sourceTree = "<group>"; };
 		6120C69114D37B7D0047309F /* endGameTexturess.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = endGameTexturess.plist; sourceTree = "<group>"; };
 		6120C69214D37B7D0047309F /* endGameTexturess.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = endGameTexturess.png; sourceTree = "<group>"; };
+		612EF9C314C4E1FC0056401B /* Comic_13-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Comic_13-hd.png"; sourceTree = "<group>"; };
+		612EF9C414C4E1FD0056401B /* Comic_13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Comic_13.png; sourceTree = "<group>"; };
 		614E840614CDCAC4008AE080 /* tileset_level_2-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tileset_level_2-hd.png"; path = "Resources/levels/tileset_level_2-hd.png"; sourceTree = "<group>"; };
 		614E840714CDCAC4008AE080 /* tileset_level_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tileset_level_2.png; path = Resources/levels/tileset_level_2.png; sourceTree = "<group>"; };
 		61782B5314B3E49C00C615E7 /* tileset_level_6-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tileset_level_6-hd.png"; path = "Resources/levels/tileset_level_6-hd.png"; sourceTree = "<group>"; };
@@ -3660,6 +3664,8 @@
 				5491F21D14D521F700758671 /* Comic_14-hd.png in Resources */,
 				5491F21E14D521F700758671 /* Comic_14.png in Resources */,
 				5491F22B14D63C6C00758671 /* healthGained.wav in Resources */,
+				E42CEFA514D53F2700ABDC24 /* endGameTextures.plist in Resources */,
+				E42CEFA614D53F2700ABDC24 /* endGameTextures.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
