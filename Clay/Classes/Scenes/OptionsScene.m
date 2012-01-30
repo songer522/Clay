@@ -130,7 +130,7 @@
     {
         CGPoint position = [self convertTouchToNodeSpace:touch];
         if(!_isTransitioning && !_inTutorial) {
-            [self sliderReactionAtPosition:position];
+            [self sliderReactionAtPosition:position LastTouch:NO];
         }
     }
 }
@@ -143,7 +143,7 @@
     {
         CGPoint position = [self convertTouchToNodeSpace:touch];
         if(!_isTransitioning && !_inTutorial) {
-            [self sliderReactionAtPosition:position];
+            [self sliderReactionAtPosition:position LastTouch:NO];
         }
     }
 }
@@ -218,6 +218,8 @@
                     [[SoundEngine shared] playSound:@"buttonPressed"];
                 }
                 
+                [self sliderReactionAtPosition:position LastTouch:YES];
+
                 if([_backButton checkIfSelected:position]) {
                     _waitToSwitch = 0.25f;
                     _backToMainMenu = true;
@@ -263,13 +265,16 @@
     [_sfxMask setClippingRegion:CGRectMake(0,0,xPos,768)];
 }
              
--(void)sliderReactionAtPosition:(CGPoint)position
+-(void)sliderReactionAtPosition:(CGPoint)position LastTouch:(bool)isLastTouch
 {
     //IPAD FIX: should correspond to the y positions for the music and sfx volume
     if (position.y > 200 && position.y < 260) {
         [self setMusicXPosition:position.x];
     } else if(position.y > 120 && position.y < 180) {
         [self setSfxXPosition:position.x];
+        if (isLastTouch) {
+            [[SoundEngine shared] playSound:@"checkpoint"];
+        }
     }
 }
 

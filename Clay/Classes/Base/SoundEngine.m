@@ -158,23 +158,34 @@ static SoundEngine *_shared = nil;
 -(void)cueFadeIn
 {
     _volume = 0.0f;
+    _fadeRate = 0.5f;
     _soundMode = SOUND_MODE_FADEIN;
 }
 
 -(void)cueFadeOut
 {
     _volume = 1.0f;
+    _fadeRate = 0.5f;
+    _soundMode = SOUND_MODE_FADEOUT;
+}
+
+-(void)cueFastFadeOut
+{
+    _volume = 1.0f;
+    _fadeRate = 2.0f;
     _soundMode = SOUND_MODE_FADEOUT;
 }
 
 -(void)cueSoundFxFadeIn
 {
+    _fadeRate = 0.5f;
     _sfxVolume = 0.0f;
     _sfxMode = SOUND_MODE_FADEIN;
     
 }
 -(void)cueSoundFxFadeOut
 {
+    _fadeRate = 0.5f;
     _sfxVolume = 1.0f;
     _sfxMode = SOUND_MODE_FADEOUT;
 }
@@ -216,7 +227,7 @@ static SoundEngine *_shared = nil;
 {
     if (_enabled) {
 
-        float rate = 0.5f * dt;
+        float rate = _fadeRate * dt;
         
         switch (_sfxMode) {
             case SOUND_MODE_FADEOUT:
