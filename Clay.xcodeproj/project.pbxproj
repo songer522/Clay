@@ -152,7 +152,6 @@
 		54484E30140449B700D0D7D9 /* ZFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 54484E2F140449B700D0D7D9 /* ZFont.m */; };
 		54484E35140449B700D0D7D9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 54484E34140449B700D0D7D9 /* main.m */; };
 		544B03F214AAB3F50029FAD2 /* BatteryFullCharge.caf in Resources */ = {isa = PBXBuildFile; fileRef = 544B03C414AAB3F50029FAD2 /* BatteryFullCharge.caf */; };
-		544B03F314AAB3F50029FAD2 /* blowAction.caf in Resources */ = {isa = PBXBuildFile; fileRef = 544B03C514AAB3F50029FAD2 /* blowAction.caf */; };
 		544B03F414AAB3F50029FAD2 /* checkpoint.caf in Resources */ = {isa = PBXBuildFile; fileRef = 544B03C614AAB3F50029FAD2 /* checkpoint.caf */; };
 		544B03F514AAB3F50029FAD2 /* chooseSelection.caf in Resources */ = {isa = PBXBuildFile; fileRef = 544B03C714AAB3F50029FAD2 /* chooseSelection.caf */; };
 		544B03F614AAB3F50029FAD2 /* clearedObstacle.caf in Resources */ = {isa = PBXBuildFile; fileRef = 544B03C814AAB3F50029FAD2 /* clearedObstacle.caf */; };
@@ -192,7 +191,6 @@
 		544B041914AAB3F50029FAD2 /* waterBubbles.caf in Resources */ = {isa = PBXBuildFile; fileRef = 544B03EB14AAB3F50029FAD2 /* waterBubbles.caf */; };
 		544B041A14AAB3F50029FAD2 /* waterPufferFish.caf in Resources */ = {isa = PBXBuildFile; fileRef = 544B03EC14AAB3F50029FAD2 /* waterPufferFish.caf */; };
 		544B041B14AAB3F50029FAD2 /* waterSeaHorse.caf in Resources */ = {isa = PBXBuildFile; fileRef = 544B03ED14AAB3F50029FAD2 /* waterSeaHorse.caf */; };
-		544B041C14AAB3F50029FAD2 /* waterSwimAction.caf in Resources */ = {isa = PBXBuildFile; fileRef = 544B03EE14AAB3F50029FAD2 /* waterSwimAction.caf */; };
 		544B041D14AAB3F50029FAD2 /* wind2_long.caf in Resources */ = {isa = PBXBuildFile; fileRef = 544B03EF14AAB3F50029FAD2 /* wind2_long.caf */; };
 		544B041E14AAB3F50029FAD2 /* wind2_medium.caf in Resources */ = {isa = PBXBuildFile; fileRef = 544B03F014AAB3F50029FAD2 /* wind2_medium.caf */; };
 		544B041F14AAB3F50029FAD2 /* wind2_short.caf in Resources */ = {isa = PBXBuildFile; fileRef = 544B03F114AAB3F50029FAD2 /* wind2_short.caf */; };
@@ -440,6 +438,8 @@
 		549ED8491461D065008BCD98 /* PauseMenuScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 549ED8011461D065008BCD98 /* PauseMenuScreen.m */; };
 		549ED8F41461D145008BCD98 /* bullet.png in Resources */ = {isa = PBXBuildFile; fileRef = 549ED89F1461D145008BCD98 /* bullet.png */; };
 		549ED8FA1461D145008BCD98 /* zombieHead.png in Resources */ = {isa = PBXBuildFile; fileRef = 549ED8A51461D145008BCD98 /* zombieHead.png */; };
+		549F753F14D6F998005B31A9 /* blowAction.wav in Resources */ = {isa = PBXBuildFile; fileRef = 549F753D14D6F998005B31A9 /* blowAction.wav */; };
+		549F754014D6F998005B31A9 /* waterSwimAction.wav in Resources */ = {isa = PBXBuildFile; fileRef = 549F753E14D6F998005B31A9 /* waterSwimAction.wav */; };
 		54A183BB146C2623009209EA /* hudGraphics2-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54A183B7146C2623009209EA /* hudGraphics2-hd.plist */; };
 		54A183BC146C2623009209EA /* hudGraphics2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 54A183B8146C2623009209EA /* hudGraphics2-hd.png */; };
 		54A183BD146C2623009209EA /* hudGraphics2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54A183B9146C2623009209EA /* hudGraphics2.plist */; };
@@ -587,10 +587,6 @@
 		6119ABC114ACDC8F00A7B136 /* timed_hard_level3_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 6119ABC014ACDC8F00A7B136 /* timed_hard_level3_hd.tmx */; };
 		6120C69314D37B7D0047309F /* endGameTextures-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6120C68F14D37B7D0047309F /* endGameTextures-hd.plist */; };
 		6120C69414D37B7D0047309F /* endGameTextures-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6120C69014D37B7D0047309F /* endGameTextures-hd.png */; };
-		6120C69514D37B7D0047309F /* endGameTexturess.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6120C69114D37B7D0047309F /* endGameTexturess.plist */; };
-		6120C69614D37B7D0047309F /* endGameTexturess.png in Resources */ = {isa = PBXBuildFile; fileRef = 6120C69214D37B7D0047309F /* endGameTexturess.png */; };
-		612EF9C514C4E1FF0056401B /* Comic_13-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 612EF9C314C4E1FC0056401B /* Comic_13-hd.png */; };
-		612EF9C614C4E1FF0056401B /* Comic_13.png in Resources */ = {isa = PBXBuildFile; fileRef = 612EF9C414C4E1FD0056401B /* Comic_13.png */; };
 		614E840814CDCAC4008AE080 /* tileset_level_2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 614E840614CDCAC4008AE080 /* tileset_level_2-hd.png */; };
 		614E840914CDCAC4008AE080 /* tileset_level_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 614E840714CDCAC4008AE080 /* tileset_level_2.png */; };
 		61782B4D14B3AC3F00C615E7 /* story_easy_level5_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61F6F6CB14B28643003A5C68 /* story_easy_level5_hd.tmx */; };
@@ -960,7 +956,6 @@
 		54484E33140449B700D0D7D9 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		54484E34140449B700D0D7D9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		544B03C414AAB3F50029FAD2 /* BatteryFullCharge.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = BatteryFullCharge.caf; path = Resources/sounds/BatteryFullCharge.caf; sourceTree = "<group>"; };
-		544B03C514AAB3F50029FAD2 /* blowAction.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = blowAction.caf; path = Resources/sounds/blowAction.caf; sourceTree = "<group>"; };
 		544B03C614AAB3F50029FAD2 /* checkpoint.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = checkpoint.caf; path = Resources/sounds/checkpoint.caf; sourceTree = "<group>"; };
 		544B03C714AAB3F50029FAD2 /* chooseSelection.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = chooseSelection.caf; path = Resources/sounds/chooseSelection.caf; sourceTree = "<group>"; };
 		544B03C814AAB3F50029FAD2 /* clearedObstacle.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = clearedObstacle.caf; path = Resources/sounds/clearedObstacle.caf; sourceTree = "<group>"; };
@@ -1000,7 +995,6 @@
 		544B03EB14AAB3F50029FAD2 /* waterBubbles.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = waterBubbles.caf; path = Resources/sounds/waterBubbles.caf; sourceTree = "<group>"; };
 		544B03EC14AAB3F50029FAD2 /* waterPufferFish.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = waterPufferFish.caf; path = Resources/sounds/waterPufferFish.caf; sourceTree = "<group>"; };
 		544B03ED14AAB3F50029FAD2 /* waterSeaHorse.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = waterSeaHorse.caf; path = Resources/sounds/waterSeaHorse.caf; sourceTree = "<group>"; };
-		544B03EE14AAB3F50029FAD2 /* waterSwimAction.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = waterSwimAction.caf; path = Resources/sounds/waterSwimAction.caf; sourceTree = "<group>"; };
 		544B03EF14AAB3F50029FAD2 /* wind2_long.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = wind2_long.caf; path = Resources/sounds/wind2_long.caf; sourceTree = "<group>"; };
 		544B03F014AAB3F50029FAD2 /* wind2_medium.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = wind2_medium.caf; path = Resources/sounds/wind2_medium.caf; sourceTree = "<group>"; };
 		544B03F114AAB3F50029FAD2 /* wind2_short.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = wind2_short.caf; path = Resources/sounds/wind2_short.caf; sourceTree = "<group>"; };
@@ -1334,6 +1328,8 @@
 		549ED8011461D065008BCD98 /* PauseMenuScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PauseMenuScreen.m; sourceTree = "<group>"; };
 		549ED89F1461D145008BCD98 /* bullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bullet.png; sourceTree = "<group>"; };
 		549ED8A51461D145008BCD98 /* zombieHead.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zombieHead.png; sourceTree = "<group>"; };
+		549F753D14D6F998005B31A9 /* blowAction.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = blowAction.wav; path = Resources/sounds/blowAction.wav; sourceTree = "<group>"; };
+		549F753E14D6F998005B31A9 /* waterSwimAction.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = waterSwimAction.wav; path = Resources/sounds/waterSwimAction.wav; sourceTree = "<group>"; };
 		54A183B7146C2623009209EA /* hudGraphics2-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "hudGraphics2-hd.plist"; sourceTree = "<group>"; };
 		54A183B8146C2623009209EA /* hudGraphics2-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hudGraphics2-hd.png"; sourceTree = "<group>"; };
 		54A183B9146C2623009209EA /* hudGraphics2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = hudGraphics2.plist; sourceTree = "<group>"; };
@@ -1501,10 +1497,6 @@
 		6119ABC014ACDC8F00A7B136 /* timed_hard_level3_hd.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = timed_hard_level3_hd.tmx; sourceTree = "<group>"; };
 		6120C68F14D37B7D0047309F /* endGameTextures-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "endGameTextures-hd.plist"; sourceTree = "<group>"; };
 		6120C69014D37B7D0047309F /* endGameTextures-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "endGameTextures-hd.png"; sourceTree = "<group>"; };
-		6120C69114D37B7D0047309F /* endGameTexturess.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = endGameTexturess.plist; sourceTree = "<group>"; };
-		6120C69214D37B7D0047309F /* endGameTexturess.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = endGameTexturess.png; sourceTree = "<group>"; };
-		612EF9C314C4E1FC0056401B /* Comic_13-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Comic_13-hd.png"; sourceTree = "<group>"; };
-		612EF9C414C4E1FD0056401B /* Comic_13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Comic_13.png; sourceTree = "<group>"; };
 		614E840614CDCAC4008AE080 /* tileset_level_2-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tileset_level_2-hd.png"; path = "Resources/levels/tileset_level_2-hd.png"; sourceTree = "<group>"; };
 		614E840714CDCAC4008AE080 /* tileset_level_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tileset_level_2.png; path = Resources/levels/tileset_level_2.png; sourceTree = "<group>"; };
 		61782B5314B3E49C00C615E7 /* tileset_level_6-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tileset_level_6-hd.png"; path = "Resources/levels/tileset_level_6-hd.png"; sourceTree = "<group>"; };
@@ -2179,6 +2171,8 @@
 		545CBC2F142D25AB00795FC9 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				549F753D14D6F998005B31A9 /* blowAction.wav */,
+				549F753E14D6F998005B31A9 /* waterSwimAction.wav */,
 				5491F22A14D63C6C00758671 /* healthGained.wav */,
 				544DE63614D32C7C000DE0D8 /* dojoKnifeGround.wav */,
 				544DE63714D32C7C000DE0D8 /* dojoNinjaYell1.wav */,
@@ -2200,7 +2194,6 @@
 				54A40B3114AE8A6B00012D0D /* pigSqueal.caf */,
 				54A40B3214AE8A6B00012D0D /* victory.caf */,
 				544B03C414AAB3F50029FAD2 /* BatteryFullCharge.caf */,
-				544B03C514AAB3F50029FAD2 /* blowAction.caf */,
 				544B03C614AAB3F50029FAD2 /* checkpoint.caf */,
 				544B03C714AAB3F50029FAD2 /* chooseSelection.caf */,
 				544B03C814AAB3F50029FAD2 /* clearedObstacle.caf */,
@@ -2240,7 +2233,6 @@
 				544B03EB14AAB3F50029FAD2 /* waterBubbles.caf */,
 				544B03EC14AAB3F50029FAD2 /* waterPufferFish.caf */,
 				544B03ED14AAB3F50029FAD2 /* waterSeaHorse.caf */,
-				544B03EE14AAB3F50029FAD2 /* waterSwimAction.caf */,
 				544B03EF14AAB3F50029FAD2 /* wind2_long.caf */,
 				544B03F014AAB3F50029FAD2 /* wind2_medium.caf */,
 				544B03F114AAB3F50029FAD2 /* wind2_short.caf */,
@@ -3453,7 +3445,6 @@
 				6102504F14A02FBA005FD377 /* characterWoo.plist in Resources */,
 				6102505014A02FBA005FD377 /* characterWoo.png in Resources */,
 				544B03F214AAB3F50029FAD2 /* BatteryFullCharge.caf in Resources */,
-				544B03F314AAB3F50029FAD2 /* blowAction.caf in Resources */,
 				544B03F414AAB3F50029FAD2 /* checkpoint.caf in Resources */,
 				544B03F514AAB3F50029FAD2 /* chooseSelection.caf in Resources */,
 				544B03F614AAB3F50029FAD2 /* clearedObstacle.caf in Resources */,
@@ -3493,7 +3484,6 @@
 				544B041914AAB3F50029FAD2 /* waterBubbles.caf in Resources */,
 				544B041A14AAB3F50029FAD2 /* waterPufferFish.caf in Resources */,
 				544B041B14AAB3F50029FAD2 /* waterSeaHorse.caf in Resources */,
-				544B041C14AAB3F50029FAD2 /* waterSwimAction.caf in Resources */,
 				544B041D14AAB3F50029FAD2 /* wind2_long.caf in Resources */,
 				544B041E14AAB3F50029FAD2 /* wind2_medium.caf in Resources */,
 				544B041F14AAB3F50029FAD2 /* wind2_short.caf in Resources */,
@@ -3653,8 +3643,6 @@
 				544DE64514D32C7C000DE0D8 /* dojoPunchMiss2.wav in Resources */,
 				6120C69314D37B7D0047309F /* endGameTextures-hd.plist in Resources */,
 				6120C69414D37B7D0047309F /* endGameTextures-hd.png in Resources */,
-				6120C69514D37B7D0047309F /* endGameTexturess.plist in Resources */,
-				6120C69614D37B7D0047309F /* endGameTexturess.png in Resources */,
 				5491F20F14D4A3B200758671 /* Impact.ttf in Resources */,
 				5491F21214D4B68900758671 /* hints.plist in Resources */,
 				5491F21914D521F700758671 /* Comic_12-hd.png in Resources */,
@@ -3666,6 +3654,8 @@
 				5491F22B14D63C6C00758671 /* healthGained.wav in Resources */,
 				E42CEFA514D53F2700ABDC24 /* endGameTextures.plist in Resources */,
 				E42CEFA614D53F2700ABDC24 /* endGameTextures.png in Resources */,
+				549F753F14D6F998005B31A9 /* blowAction.wav in Resources */,
+				549F754014D6F998005B31A9 /* waterSwimAction.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

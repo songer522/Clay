@@ -59,7 +59,7 @@
 	<key>shuffling</key>
 	<string>shuffling.caf</string>
 	<key>blowAction</key>
-	<string>blowAction.caf</string>
+	<string>blowAction.wav</string>
 	<key>crowAppears</key>
 	<string>crow.caf</string>
 	<key>maddogBark</key>
