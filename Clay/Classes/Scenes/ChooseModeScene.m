@@ -104,7 +104,7 @@
                 _waitToSwitch = 0.25f;
                 _isTransitioning = true;
                 _backToMainMenu = true;
-                [[SoundEngine shared] playSound:@"buttonPressed"];     
+                [[SoundEngine shared] playSound:@"guiSelectionBack"];
             }
 
         }

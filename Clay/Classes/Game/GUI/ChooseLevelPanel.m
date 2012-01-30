@@ -12,6 +12,7 @@
 #import "GameSettings.h"
 #import "LayerManager.h"
 
+
 #define LEVELPANEL_PANEL_X 105.0f
 #define LEVELPANEL_MAX_LEVEL_NUMBER 13
 
@@ -67,8 +68,11 @@
     _levelNumber = [GameLabel gameLabelWithText:_levelNameText Scale:smallTextScale];
     
     [[LayerManager sharedLayers] forgetWorkingLayer];
-        
+    
+    [self setDlcText:@"blah"];
+    
     [layer addChild:_rootUnlocked];
+    [layer addChild:_rootLocked];
     
     [self setPanelXPosition:LEVELPANEL_PANEL_X];
 }
@@ -82,6 +86,7 @@
         [_bestTimeValue setVisible:YES];
         [_timeForMedalLabel setVisible:YES];
         [_timeForMedalValue setVisible:YES];
+        [_dlcDescription setVisible:NO];
     } else {
         [_facebookIcon setVisible:NO];
         [_twitterIcon setVisible:NO];
@@ -89,12 +94,21 @@
         [_bestTimeValue setVisible:NO];
         [_timeForMedalLabel setVisible:NO];
         [_timeForMedalValue setVisible:NO];
+        [_dlcDescription setVisible:YES];
     }
 }
 
 -(void)setDlcText:(NSString*)text
 {
-//    _dlcDescription = [CCLabelTTF labelWithString:text fontName:@"Impact.ttf" fontSize:ccp(
+    if (_levelId == 12) {
+        text = @"Help Tim train for the big race! This bonus level finds Tim at his local gym…but this isn’t your typical workout.";
+    } else if(_levelId == 13) {
+        text = @"Tim’s daydreaming doesn’t just get him in trouble during long races: this bonus level finds Tim working out at the Dojo, fighting off ninjas and dodging throwing stars. Fortunately, it’s all in his head…isn’t it?";
+        
+    }
+    _dlcDescription = [CCLabelTTF labelWithString:text dimensions:CGSizeMake(172, 80) alignment:UITextAlignmentLeft fontName:@"Impact.ttf" fontSize:10];
+    [_dlcDescription setPosition:ccp(106,97)];
+    [_rootLocked addChild:_dlcDescription];
 }
 
 -(void)reset:(id)layer
@@ -115,6 +129,7 @@
     [_timeForMedalLabel setAlpha:alpha];
     [_timeForMedalValue setAlpha:alpha];
     [_levelNumber setAlpha:alpha];
+    [_dlcDescription setOpacity:((int)(255 * alpha))];
 }
 
 //sets bestTimeText
@@ -173,6 +188,7 @@
     float iconX = newX + 70.0f;
     float textX = newX - 89.0f;
     float levelNumberX = newX + 56.0f;
+    float dlcX = newX - 0.0f;
     
     [_background setScreenPosition:ccp(newX,155)];
     [_levelPreview setScreenPosition:ccp(newX,219)];
@@ -184,6 +200,7 @@
     [_timeForMedalLabel setPosition:ccp(textX,85)];
     [_timeForMedalValue setPosition:ccp(textX,70)];
     [_levelNumber setPosition:ccp(levelNumberX, 37)];
+    [_dlcDescription setPosition:ccp(dlcX,97)];
 }
 
 -(void)setPanelTransitionAmount:(float)amount

@@ -166,13 +166,13 @@
                     _eraseWindowFirstOpen = false;
                     _eraseWindowSecond = [GameWindow gameWindowWithHeader:@"ERASE DATA" Message:@"Seriously, there's no way to undo this. Are you sure you want to delete your data?" Choices:WINDOW_CHOICE_YESNO Layer:self];
                     _eraseWindowSecondOpen = true;
-
-                    
+                    [[SoundEngine shared] playSound:@"guiSelectionForward"];                    
                 } else if(type == WIN_SELECT_NO) {
                     _windowOpen = false;
                     [_eraseWindowFirst release];
                     _eraseWindowFirst = nil;
                     _eraseWindowFirstOpen = false;
+                    [[SoundEngine shared] playSound:@"guiSelectionBack"];
                 }
             } else if(_eraseWindowSecondOpen) {
                 WindowSelectionType type = [_eraseWindowSecond checkCollisionAtPoint:position];
@@ -185,11 +185,14 @@
                     [[BestTimes shared] erase];
                     [[BestTimes shared] reload];
                     [[GameSettings shared] setGlobal:@"YES" ForKey:@"titleMusicStarted"];
+                    [[SoundEngine shared] playSound:@"guiSelectionForward"];
                 } else if(type == WIN_SELECT_NO) {
                     _windowOpen = false;
                     [_eraseWindowSecond release];
                     _eraseWindowSecond = nil;
                     _eraseWindowSecondOpen = false;
+                    [[SoundEngine shared] playSound:@"guiSelectionBack"];
+
                 }
                 
             }
@@ -207,16 +210,18 @@
                     _waitToSwitch = 0.25f;
                     _backToMainMenu = false;
                     _switchToType = OPTIONS_SWITCHTO_CREDITS;
+                    [[SoundEngine shared] playSound:@"buttonPressed"];
                 } else if([_eraseDataButton checkIfSelected:position]) {
                     _windowOpen = true;
                     _eraseWindowFirst = [GameWindow gameWindowWithHeader:@"ERASE DATA" Message:@"This will delete all of your data, except achievements and leaderboard scores. Are you sure you want to do this?" Choices:WINDOW_CHOICE_NOYES Layer:self];
                     _eraseWindowFirstOpen = true;
+                    [[SoundEngine shared] playSound:@"buttonPressed"];
                 }
                 
                 if([_backButton checkIfSelected:position]) {
                     _waitToSwitch = 0.25f;
                     _backToMainMenu = true;
-                    [[SoundEngine shared] playSound:@"buttonPressed"];     
+                    [[SoundEngine shared] playSound:@"guiSelectionBack"];
                 }
             } else if(_inTutorial && _tutorial.scroller.currentScreen==3) {
                 if (position.y < 60.0f && position.x < 120.0f) {

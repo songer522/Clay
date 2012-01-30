@@ -10,6 +10,7 @@
 #import "Sprite.h"
 #import "ActionButton.h"
 #import "ChooseModeScene.h"
+#import "SoundEngine.h"
 
 //IPAD FIX: positions for the header text inside the panel when the panel is active and inactive
 #define PANEL_HEADER_INACTIVE_Y 160.0f
@@ -183,6 +184,9 @@
         int i=0;
         for (ActionButton *button in _buttons) {
             if ([button getLocked] != LOCKTYPE_LOCKED && [button testCollision:point]) {
+                if (i != _selectedIndex) {
+                    [[SoundEngine shared] playSound:@"guiSelectionForward"];
+                }
                 _selectedIndex = i;
                 [self makeCursorActive];
                 break;

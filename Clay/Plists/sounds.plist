@@ -55,7 +55,7 @@
 	<key>deflected</key>
 	<string>deflected.caf</string>
 	<key>chooseSelection</key>
-	<string>chooseSelection.caf</string>
+	<string>guiSelectionForward.wav</string>
 	<key>shuffling</key>
 	<string>shuffling.caf</string>
 	<key>blowAction</key>
@@ -140,5 +140,9 @@
 	<string>dojoPunchMiss1.wav</string>
 	<key>dojoPunchMiss2</key>
 	<string>dojoPunchMiss2.wav</string>
+	<key>guiSelectionForward</key>
+	<string>guiSelectionForward.wav</string>
+	<key>guiSelectionBack</key>
+	<string>guiSelectionBack.wav</string>
 </dict>
 </plist>
