@@ -23,7 +23,9 @@ typedef enum {
 {
     float _currentXPos;
     
-    CCNode *_root;
+    CCNode *_rootUnlocked;
+    CCNode *_rootLocked;
+    
     
     Sprite *_background;
     Sprite *_levelTitle;
@@ -38,6 +40,10 @@ typedef enum {
     GameLabel *_timeForMedalValue;
     GameLabel *_levelNumber;
     
+    CCLabelTTF *_dlcDescription;
+    
+    int _levelId;
+    
     //required data
     NSString *_levelNameText;
     NSString *_timeForMedalLabelText;
@@ -47,6 +53,8 @@ typedef enum {
     NSString *_levelTitleFrameName;
     
 }
+
+@property(nonatomic,readonly) int levelId;
 
 +(id)instance;
 
@@ -66,7 +74,10 @@ typedef enum {
 //sets timeForMedal label and value text
 -(void)setNextMedal:(int)medalId RequiredTime:(NSString*)time;
 
+-(void)setDlcText:(NSString*)text;
+
 -(void)setPanelXPosition:(float)newX;
 -(void)setPanelTransitionAmount:(float)amount;
+-(void)setUnlocked:(bool)isUnlocked;
 
 @end

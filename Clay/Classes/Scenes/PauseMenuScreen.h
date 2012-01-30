@@ -14,6 +14,7 @@
 @class Sprite;
 @class GameLabel;
 @class Button;
+@class HintBox;
 @class ActionButton;
 
 typedef enum {
@@ -33,6 +34,8 @@ typedef enum {
     ActionButton *_resumeButton;
     ActionButton *_restartButton;
     ActionButton *_menuButton;
+
+    HintBox *_hintBox;
     
     PauseAction _action;
     float _waitToSwitch;
@@ -41,6 +44,8 @@ typedef enum {
 @property(nonatomic,retain) GameController *gameController;
 
 +(id)instance;
+
+
 
 
 @end

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>level1</key>
+	<dict>
+		<key>1</key>
+		<string>Double jump to get over the red hurdles.</string>
+		<key>2</key>
+		<string>Try jumping over one hurdle, then double jumping to get over the next hurdle.</string>
+		<key>3</key>
+		<string>Try sprinting through the sand pits.</string>
+		<key>4</key>
+		<string>Press the action button to cheer and gain health.</string>
+		<key>5</key>
+		<string>Press the action button in front of other people to gain double health.</string>
+	</dict>
+	<key>level2</key>
+	<dict>
+		<key>1</key>
+		<string>Try double jumping early to get over the pigs.</string>
+		<key>2</key>
+		<string>Press the action button to kick the chickens.</string>
+		<key>3</key>
+		<string>Kicked chickens are the best way to defeat cows.</string>
+	</dict>
+	<key>level3</key>
+	<dict>
+		<key>1</key>
+		<string>Don&apos;t double-jump when you see a crow.</string>
+	</dict>
+	<key>level4</key>
+	<dict>
+		<key>1</key>
+		<string>Press the action button to shuffle past the other dancers.</string>
+	</dict>
+	<key>level5</key>
+	<dict>
+		<key>2</key>
+		<string>Press the action button to cheer and gain health.</string>
+		<key>1</key>
+		<string>Sprint to get enough speed to get over the long pits.</string>
+		<key>3</key>
+		<string>Press the action button in front of other people to gain double health.</string>
+	</dict>
+	<key>level6</key>
+	<dict>
+		<key>2</key>
+		<string>Don&apos;t shoot the boxes or they becoming harder to jump over.</string>
+		<key>1</key>
+		<string>Sprint to get enough speed to get over the long pits.</string>
+	</dict>
+	<key>level7</key>
+	<dict>
+		<key>1</key>
+		<string>Press the action button to block the ship&apos;s attacks.</string>
+		<key>2</key>
+		<string>Blocking the ship&apos;s attacks will give you health.</string>
+	</dict>
+	<key>level8</key>
+	<dict>
+		<key>1</key>
+		<string>Press the action button to blow out the fire demons.</string>
+		<key>2</key>
+		<string>Blow the fire off the foxes to jump over them easier.</string>
+	</dict>
+	<key>level9</key>
+	<dict>
+		<key>1</key>
+		<string>Press the sprint button when it gets windy.</string>
+	</dict>
+	<key>level10</key>
+	<dict>
+		<key>1</key>
+		<string>You can jump as much as you want in this level.</string>
+		<key>2</key>
+		<string>Press and hold the action button to dive down faster after jumping.</string>
+		<key>3</key>
+		<string>Sprint on the ground to speed up to get faster times.</string>
+	</dict>
+	<key>level11</key>
+	<dict>
+		<key>1</key>
+		<string>Press the action button to detonate any bombs you see.</string>
+		<key>2</key>
+		<string>Sprint to outrun the bombs Jim throws.</string>
+		<key>3</key>
+		<string>Jump on the minecarts to help get past the spikes.</string>
+	</dict>
+	<key>level12</key>
+	<dict>
+		<key>1</key>
+		<string>Jump on the treadmills pointing right to gain extra speeds.</string>
+	</dict>
+	<key>global</key>
+	<dict>
+		<key>1</key>
+		<string>You can jump again in the air. This will help you get over hurdles.</string>
+		<key>2</key>
+		<string>The battery shows how much health you have left.</string>
+		<key>3</key>
+		<string>Press the sprint button to run faster. Then you can press it again to slow back down.</string>
+	</dict>
+</dict>
+</plist>

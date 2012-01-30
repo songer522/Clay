@@ -8,12 +8,13 @@
 //  A wrapper class that hides some of the ugly initialization of CCSprites into a single line of code (usually). Also allows for saving its position in the world, but displaying the sprite based on the current Camera position.
 
 #import "cocos2d.h"
+#import "VisibleElement.h"
 
 @class Animation;
 @class Animator;
 @class Camera;
 
-@interface Sprite : NSObject
+@interface Sprite : NSObject<VisibleElement>
 {
     CCSprite *sprite_cc;
     NSString *_frameName;

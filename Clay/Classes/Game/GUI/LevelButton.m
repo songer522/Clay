@@ -70,6 +70,9 @@
     
     _buttonGraphic = [Sprite spriteFromFrameCacheWithName:frameName];
     
+    _cart = [Sprite spriteCenteredWithFrame:@"LevelSelector_ShoppingCart.png"];
+    [[_cart getCCSprite] setVisible:NO];
+    
     [self setInitialPosition];
 }
 
@@ -106,6 +109,7 @@
 -(void)setPosition:(CGPoint)position
 {
     [_buttonGraphic setScreenPosition:position];
+    [_cart setScreenPosition:ccp(position.x + 43.0f,position.y + 10.0f)];
     [self setTrophyPosition];
     [self setHitbox:CGRectMake(position.x, position.y, 55, 55)];
 }
@@ -126,6 +130,15 @@
     //position.y -= 4.0f;
     [_selector setScreenPosition:position];
     [[_selector getCCSprite] setVisible:YES];    
+}
+
+-(void)setPurchased:(bool)isPurchased
+{
+    if (isPurchased) {
+        [[_cart getCCSprite] setVisible:NO];
+    } else {
+        [[_cart getCCSprite] setVisible:YES];
+    }
 }
 
 -(void)setCursor:(Sprite*)cursor

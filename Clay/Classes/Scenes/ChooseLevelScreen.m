@@ -147,7 +147,7 @@
         [[BestTimes shared] saveData];
 
         [self updateDlcLevels];
-
+        
     }
     return self;
 }
@@ -243,8 +243,8 @@
         }        
     }
     //NOTE: temporarily disabled for a build with unlocked dlc
-    return false;
-    //return true;
+    //return false;
+    return true;
 }
 
 -(void)popupDlcWindow:(int)levelNumber
@@ -264,13 +264,37 @@
 -(void)updateDlcLevels
 {
     [self updateStartButton];
+    
+    for (LevelButton *button in _buttons) {
+        int levelNumber = button.buttonId;
+        if ([self checkDlcLevelUnlocked:levelNumber]) {
+            [button setPurchased:YES];
+        } else {
+            [button setPurchased:NO];
+        }
+    }
+
+    int levelNumber = _frontPanel.levelId;
+    if ([self checkDlcLevelUnlocked:levelNumber]) {
+        [_frontPanel setUnlocked:YES];
+    } else {
+        [_frontPanel setUnlocked:NO];
+    }
+    
+    levelNumber = _backPanel.levelId;
+    if ([self checkDlcLevelUnlocked:levelNumber]) {
+        [_backPanel setUnlocked:YES];
+    } else {
+        [_backPanel setUnlocked:NO];
+    }
+    
 }
 
 -(void)openErrorWindowCantConnectToStore
 {
     if (!_errorWindowOpen) {
         _errorWindowOpen = true;
-        _errorWindow = [GameWindow gameWindowWithHeader:@"ERROR" Message:@"CANNOT CONNECT TO THE STORE AT THIS TIME. PLEASE TRY AGAIN LATER." Choices:WINDOW_CHOICE_OK Layer:self];        
+        _errorWindow = [GameWindow gameWindowWithHeader:@"ERROR!" Message:@"Cannot connect to the store at this time. Please try again later." Choices:WINDOW_CHOICE_OK Layer:self];        
     }
 }
 
@@ -278,7 +302,7 @@
 {
     if (!_errorWindowOpen) {
         _errorWindowOpen = true;
-        _errorWindow = [GameWindow gameWindowWithHeader:@"ERROR" Message:@"CANNOT MAKE PURCHASES AT THIS TIME." Choices:WINDOW_CHOICE_OK Layer:self];
+        _errorWindow = [GameWindow gameWindowWithHeader:@"ERROR!" Message:@"Cannot make purchases at this time. Please try again later." Choices:WINDOW_CHOICE_OK Layer:self];
     }
 }
 
