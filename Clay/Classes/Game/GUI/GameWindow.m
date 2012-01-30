@@ -33,10 +33,11 @@
         
         _header = [GameLabel gameLabelWithText:header Scale:0.65f Position:ccp(240,240)];
         
-        _messageSeparation = MESSAGE_SEPARATOR_PIPE; //default
-        
-        [self setupMessage:message];
+        _message = [CCLabelTTF labelWithString:message dimensions:CGSizeMake(260, 110) alignment:UITextAlignmentLeft fontName:@"Impact.ttf" fontSize:14];
+        [_message setPosition:ccp(240.0f,160.0f)];
+        [_root addChild:_message];
 
+        
         _choiceType = choices;
         _characterLimit = 20;
         
@@ -56,9 +57,15 @@
     CGPoint choice1Pos;
     CGPoint choice2Pos;
     switch (_choiceType) {
-        case WINDOW_CHOICE_YESNO:
+        case WINDOW_CHOICE_NOYES:
             choice1Text = @"NO";
             choice2Text = @"YES";
+            choice1Pos = ccp(160,82);
+            choice2Pos = ccp(320,82);
+            break;
+        case WINDOW_CHOICE_YESNO:
+            choice1Text = @"YES";
+            choice2Text = @"NO";
             choice1Pos = ccp(160,82);
             choice2Pos = ccp(320,82);
             break;
@@ -84,69 +91,22 @@
     }
 }
 
--(void)setupMessage:(NSString*)message
-{
-    float curYPos = 180.0f;
-    _message = [[NSMutableArray alloc] initWithCapacity:10];
-    
-    NSArray *messageStrings = [self getMessageArrayForString:message];
-    for (NSString *lineText in messageStrings) {
-        GameLabel *line = [GameLabel gameLabelWithText:lineText Scale:0.5f];
-        [line setPosition:ccp(240,curYPos)];
-        [_message addObject:line];
-        curYPos -= 15.0f;
-    }
-}
-
--(NSArray*)getMessageArrayForString:(NSString*)message
-{
-    NSMutableString *remainingMessage;
-    NSArray *messageArray;
-    
-    if (_messageSeparation == MESSAGE_SEPARATOR_PIPE) {
-        messageArray = [message componentsSeparatedByString:@"|"];
-    } else {
-        //character limit
-        NSMutableArray *messages = [[NSMutableArray alloc] initWithCapacity:20];
-        
-        int currentPos = 0;
-        
-        while([remainingMessage length] > _characterLimit) {
-            NSString *workingString = [remainingMessage substringToIndex:_characterLimit];
-            currentPos = [workingString length] - 1;
-            while(currentPos >= 0 && [workingString characterAtIndex:currentPos] != ' ') {
-                currentPos--;
-            }
-            
-            if (currentPos < 0) {
-                [messages addObject:workingString];
-                [remainingMessage setString:[remainingMessage substringFromIndex:_characterLimit]];
-            } else {
-                [messages addObject:[workingString substringToIndex:currentPos]];
-                [remainingMessage setString:[remainingMessage substringFromIndex:currentPos]];
-            }
-        }
-        
-        messageArray = [NSArray arrayWithArray:messages];      
-    }
-    
-    //NSLog(@"Contents of Array: %@",[messageArray description]);
-    
-    return messageArray;
-}
-
 -(WindowSelectionType)checkCollisionAtPoint:(CGPoint)point
 {
     WindowSelectionType returnVal = WIN_SELECT_NONE;
     
     if ([_choice1 checkIfSelected:point]) {
         if (_choiceType == WINDOW_CHOICE_YESNO) {
+            returnVal = WIN_SELECT_YES;
+        } else if(_choiceType == WINDOW_CHOICE_NOYES) {
             returnVal = WIN_SELECT_NO;
         } else {
             returnVal = WIN_SELECT_OK;
         }
     } else if([_choice2 checkIfSelected:point]) {
         if (_choiceType == WINDOW_CHOICE_YESNO) {
+            returnVal = WIN_SELECT_NO;
+        } else if(_choiceType == WINDOW_CHOICE_NOYES) {
             returnVal = WIN_SELECT_YES;
         }
     }
@@ -157,10 +117,7 @@
 -(void)dealloc
 {
     [_background release];
-    for (GameLabel *line in _message) {
-        [line release];
-    }
-    [_message release];
+    [_message removeFromParentAndCleanup:YES];
     [_header release];
     [_choice1 release];
     [_choice2 release];

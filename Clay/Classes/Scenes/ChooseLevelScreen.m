@@ -147,7 +147,7 @@
         [[BestTimes shared] saveData];
 
         [self updateDlcLevels];
-
+        
     }
     return self;
 }
@@ -279,7 +279,7 @@
 {
     if (!_errorWindowOpen) {
         _errorWindowOpen = true;
-        _errorWindow = [GameWindow gameWindowWithHeader:@"ERROR" Message:@"CANNOT CONNECT TO THE STORE AT THIS TIME. PLEASE TRY AGAIN LATER." Choices:WINDOW_CHOICE_OK Layer:self];        
+        _errorWindow = [GameWindow gameWindowWithHeader:@"ERROR!" Message:@"Cannot connect to the store at this time. Please try again later." Choices:WINDOW_CHOICE_OK Layer:self];        
     }
 }
 
@@ -287,7 +287,7 @@
 {
     if (!_errorWindowOpen) {
         _errorWindowOpen = true;
-        _errorWindow = [GameWindow gameWindowWithHeader:@"ERROR" Message:@"CANNOT MAKE PURCHASES AT THIS TIME." Choices:WINDOW_CHOICE_OK Layer:self];
+        _errorWindow = [GameWindow gameWindowWithHeader:@"ERROR!" Message:@"Cannot make purchases at this time. Please try again later." Choices:WINDOW_CHOICE_OK Layer:self];
     }
 }
 

@@ -58,6 +58,7 @@ typedef enum {
     
     bool _windowOpen;
     bool _eraseWindowFirstOpen;
+    bool _eraseWindowSecondOpen;
     GameWindow *_eraseWindowFirst;
     GameWindow *_eraseWindowSecond;
     
