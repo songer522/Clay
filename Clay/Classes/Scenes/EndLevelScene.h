@@ -61,10 +61,15 @@ typedef enum {
     ActionButton *_twitterButton;
     ActionButton *_menuButton;
     
-    NSString *_difficulty;
-    NSString *time;
     
-    NSString *_description;
+    ActionButton *_selectedButton;
+    
+    NSString *_difficulty;
+    NSString *_timer;
+    float _time;
+    
+    
+    
     
 }
 

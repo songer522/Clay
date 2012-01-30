@@ -685,6 +685,8 @@
 		61F53A3314ABBFE80003ABAC /* timed_normal_level1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61F53A3214ABBFE80003ABAC /* timed_normal_level1.tmx */; };
 		61F7F28B149A5945006B02BC /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F7F28A149A5945006B02BC /* Twitter.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		61F7F28D149A5950006B02BC /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F7F28C149A5950006B02BC /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		E42CEFA514D53F2700ABDC24 /* endGameTextures.plist in Resources */ = {isa = PBXBuildFile; fileRef = E42CEFA314D53F2600ABDC24 /* endGameTextures.plist */; };
+		E42CEFA614D53F2700ABDC24 /* endGameTextures.png in Resources */ = {isa = PBXBuildFile; fileRef = E42CEFA414D53F2600ABDC24 /* endGameTextures.png */; };
 		E479A79B14C9FD0500AB5864 /* discoLevel-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = E479A79714C9FD0500AB5864 /* discoLevel-hd.plist */; };
 		E479A79C14C9FD0500AB5864 /* discoLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = E479A79814C9FD0500AB5864 /* discoLevel-hd.png */; };
 		E479A79D14C9FD0500AB5864 /* discoLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = E479A79914C9FD0500AB5864 /* discoLevel.plist */; };
@@ -1620,6 +1622,8 @@
 		61F6F6D414B29795003A5C68 /* cityLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cityLevel.png; sourceTree = "<group>"; };
 		61F7F28A149A5945006B02BC /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		61F7F28C149A5950006B02BC /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		E42CEFA314D53F2600ABDC24 /* endGameTextures.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = endGameTextures.plist; sourceTree = "<group>"; };
+		E42CEFA414D53F2600ABDC24 /* endGameTextures.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = endGameTextures.png; sourceTree = "<group>"; };
 		E479A79714C9FD0500AB5864 /* discoLevel-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "discoLevel-hd.plist"; sourceTree = "<group>"; };
 		E479A79814C9FD0500AB5864 /* discoLevel-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "discoLevel-hd.png"; sourceTree = "<group>"; };
 		E479A79914C9FD0500AB5864 /* discoLevel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = discoLevel.plist; sourceTree = "<group>"; };
@@ -2136,10 +2140,10 @@
 		544D50DA1445E68E00BED4CE /* scenes */ = {
 			isa = PBXGroup;
 			children = (
+				E42CEFA314D53F2600ABDC24 /* endGameTextures.plist */,
+				E42CEFA414D53F2600ABDC24 /* endGameTextures.png */,
 				6120C68F14D37B7D0047309F /* endGameTextures-hd.plist */,
 				6120C69014D37B7D0047309F /* endGameTextures-hd.png */,
-				6120C69114D37B7D0047309F /* endGameTexturess.plist */,
-				6120C69214D37B7D0047309F /* endGameTexturess.png */,
 				6184E15A14C605AD00771A28 /* menuTextures-hd.plist */,
 				6184E15B14C605AD00771A28 /* menuTextures-hd.png */,
 				6184E15C14C605AD00771A28 /* menuTextures.plist */,
