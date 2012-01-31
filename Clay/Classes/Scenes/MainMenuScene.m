@@ -87,7 +87,6 @@
         }
         [_playButton setHitboxBySize:CGSizeMake(319, 71)];
        
-        
         //continue button
         _continueButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_ContinueBlue.png" Selected:@"Menu_ContinueGreen.png"];
         [_continueButton setPosition:ccp(240,158)];

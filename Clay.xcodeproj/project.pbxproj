@@ -186,7 +186,6 @@
 		544B041514AAB3F50029FAD2 /* supersonic.caf in Resources */ = {isa = PBXBuildFile; fileRef = 544B03E714AAB3F50029FAD2 /* supersonic.caf */; };
 		544B041614AAB3F50029FAD2 /* timFell.caf in Resources */ = {isa = PBXBuildFile; fileRef = 544B03E814AAB3F50029FAD2 /* timFell.caf */; };
 		544B041714AAB3F50029FAD2 /* UhOh.caf in Resources */ = {isa = PBXBuildFile; fileRef = 544B03E914AAB3F50029FAD2 /* UhOh.caf */; };
-		544B041814AAB3F50029FAD2 /* waterAnglerFish.caf in Resources */ = {isa = PBXBuildFile; fileRef = 544B03EA14AAB3F50029FAD2 /* waterAnglerFish.caf */; };
 		544B041914AAB3F50029FAD2 /* waterBubbles.caf in Resources */ = {isa = PBXBuildFile; fileRef = 544B03EB14AAB3F50029FAD2 /* waterBubbles.caf */; };
 		544B041A14AAB3F50029FAD2 /* waterPufferFish.caf in Resources */ = {isa = PBXBuildFile; fileRef = 544B03EC14AAB3F50029FAD2 /* waterPufferFish.caf */; };
 		544B041B14AAB3F50029FAD2 /* waterSeaHorse.caf in Resources */ = {isa = PBXBuildFile; fileRef = 544B03ED14AAB3F50029FAD2 /* waterSeaHorse.caf */; };
@@ -353,6 +352,14 @@
 		5498CF4414CA382100569AC7 /* characterPump.png in Resources */ = {isa = PBXBuildFile; fileRef = 5498CF4014CA382100569AC7 /* characterPump.png */; };
 		549CAD2814D76AAF00E6BA2E /* comboAttackMove.wav in Resources */ = {isa = PBXBuildFile; fileRef = 549CAD2614D76AAF00E6BA2E /* comboAttackMove.wav */; };
 		549CAD2914D76AAF00E6BA2E /* squirrelAppear.wav in Resources */ = {isa = PBXBuildFile; fileRef = 549CAD2714D76AAF00E6BA2E /* squirrelAppear.wav */; };
+		549CAD3314D7873800E6BA2E /* discoBlondAppear.wav in Resources */ = {isa = PBXBuildFile; fileRef = 549CAD2B14D7873800E6BA2E /* discoBlondAppear.wav */; };
+		549CAD3414D7873800E6BA2E /* fireRockMonsterProjectile.wav in Resources */ = {isa = PBXBuildFile; fileRef = 549CAD2C14D7873800E6BA2E /* fireRockMonsterProjectile.wav */; };
+		549CAD3514D7873800E6BA2E /* rainyUmbrellaAppear.wav in Resources */ = {isa = PBXBuildFile; fileRef = 549CAD2D14D7873800E6BA2E /* rainyUmbrellaAppear.wav */; };
+		549CAD3614D7873800E6BA2E /* townRollingHayAppear.wav in Resources */ = {isa = PBXBuildFile; fileRef = 549CAD2E14D7873800E6BA2E /* townRollingHayAppear.wav */; };
+		549CAD3714D7873800E6BA2E /* waterAnglerAppear.wav in Resources */ = {isa = PBXBuildFile; fileRef = 549CAD2F14D7873800E6BA2E /* waterAnglerAppear.wav */; };
+		549CAD3814D7873800E6BA2E /* waterSquidAppear.wav in Resources */ = {isa = PBXBuildFile; fileRef = 549CAD3014D7873800E6BA2E /* waterSquidAppear.wav */; };
+		549CAD3914D7873800E6BA2E /* waterSquidProjectile.wav in Resources */ = {isa = PBXBuildFile; fileRef = 549CAD3114D7873800E6BA2E /* waterSquidProjectile.wav */; };
+		549CAD3A14D7873800E6BA2E /* waterTronikaAppear.wav in Resources */ = {isa = PBXBuildFile; fileRef = 549CAD3214D7873800E6BA2E /* waterTronikaAppear.wav */; };
 		549D71D614C8EC810066E78E /* timed_normal_level12_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 549D71D414C8EC810066E78E /* timed_normal_level12_hd.tmx */; };
 		549D71D714C8EC810066E78E /* timed_normal_level12.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 549D71D514C8EC810066E78E /* timed_normal_level12.tmx */; };
 		549D71DB14C8ECCD0066E78E /* tileset_level_12-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 549D71D914C8ECCD0066E78E /* tileset_level_12-hd.png */; };
@@ -995,7 +1002,6 @@
 		544B03E714AAB3F50029FAD2 /* supersonic.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = supersonic.caf; path = Resources/sounds/supersonic.caf; sourceTree = "<group>"; };
 		544B03E814AAB3F50029FAD2 /* timFell.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = timFell.caf; path = Resources/sounds/timFell.caf; sourceTree = "<group>"; };
 		544B03E914AAB3F50029FAD2 /* UhOh.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = UhOh.caf; path = Resources/sounds/UhOh.caf; sourceTree = "<group>"; };
-		544B03EA14AAB3F50029FAD2 /* waterAnglerFish.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = waterAnglerFish.caf; path = Resources/sounds/waterAnglerFish.caf; sourceTree = "<group>"; };
 		544B03EB14AAB3F50029FAD2 /* waterBubbles.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = waterBubbles.caf; path = Resources/sounds/waterBubbles.caf; sourceTree = "<group>"; };
 		544B03EC14AAB3F50029FAD2 /* waterPufferFish.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = waterPufferFish.caf; path = Resources/sounds/waterPufferFish.caf; sourceTree = "<group>"; };
 		544B03ED14AAB3F50029FAD2 /* waterSeaHorse.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = waterSeaHorse.caf; path = Resources/sounds/waterSeaHorse.caf; sourceTree = "<group>"; };
@@ -1178,6 +1184,14 @@
 		5498CF4014CA382100569AC7 /* characterPump.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = characterPump.png; sourceTree = "<group>"; };
 		549CAD2614D76AAF00E6BA2E /* comboAttackMove.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = comboAttackMove.wav; path = Resources/sounds/comboAttackMove.wav; sourceTree = "<group>"; };
 		549CAD2714D76AAF00E6BA2E /* squirrelAppear.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = squirrelAppear.wav; path = Resources/sounds/squirrelAppear.wav; sourceTree = "<group>"; };
+		549CAD2B14D7873800E6BA2E /* discoBlondAppear.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = discoBlondAppear.wav; path = Resources/sounds/discoBlondAppear.wav; sourceTree = "<group>"; };
+		549CAD2C14D7873800E6BA2E /* fireRockMonsterProjectile.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = fireRockMonsterProjectile.wav; path = Resources/sounds/fireRockMonsterProjectile.wav; sourceTree = "<group>"; };
+		549CAD2D14D7873800E6BA2E /* rainyUmbrellaAppear.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = rainyUmbrellaAppear.wav; path = Resources/sounds/rainyUmbrellaAppear.wav; sourceTree = "<group>"; };
+		549CAD2E14D7873800E6BA2E /* townRollingHayAppear.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = townRollingHayAppear.wav; path = Resources/sounds/townRollingHayAppear.wav; sourceTree = "<group>"; };
+		549CAD2F14D7873800E6BA2E /* waterAnglerAppear.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = waterAnglerAppear.wav; path = Resources/sounds/waterAnglerAppear.wav; sourceTree = "<group>"; };
+		549CAD3014D7873800E6BA2E /* waterSquidAppear.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = waterSquidAppear.wav; path = Resources/sounds/waterSquidAppear.wav; sourceTree = "<group>"; };
+		549CAD3114D7873800E6BA2E /* waterSquidProjectile.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = waterSquidProjectile.wav; path = Resources/sounds/waterSquidProjectile.wav; sourceTree = "<group>"; };
+		549CAD3214D7873800E6BA2E /* waterTronikaAppear.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = waterTronikaAppear.wav; path = Resources/sounds/waterTronikaAppear.wav; sourceTree = "<group>"; };
 		549D71D414C8EC810066E78E /* timed_normal_level12_hd.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = timed_normal_level12_hd.tmx; sourceTree = "<group>"; };
 		549D71D514C8EC810066E78E /* timed_normal_level12.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = timed_normal_level12.tmx; sourceTree = "<group>"; };
 		549D71D914C8ECCD0066E78E /* tileset_level_12-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tileset_level_12-hd.png"; path = "Resources/levels/tileset_level_12-hd.png"; sourceTree = "<group>"; };
@@ -2181,6 +2195,14 @@
 		545CBC2F142D25AB00795FC9 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				549CAD2B14D7873800E6BA2E /* discoBlondAppear.wav */,
+				549CAD2C14D7873800E6BA2E /* fireRockMonsterProjectile.wav */,
+				549CAD2D14D7873800E6BA2E /* rainyUmbrellaAppear.wav */,
+				549CAD2E14D7873800E6BA2E /* townRollingHayAppear.wav */,
+				549CAD2F14D7873800E6BA2E /* waterAnglerAppear.wav */,
+				549CAD3014D7873800E6BA2E /* waterSquidAppear.wav */,
+				549CAD3114D7873800E6BA2E /* waterSquidProjectile.wav */,
+				549CAD3214D7873800E6BA2E /* waterTronikaAppear.wav */,
 				549CAD2614D76AAF00E6BA2E /* comboAttackMove.wav */,
 				549CAD2714D76AAF00E6BA2E /* squirrelAppear.wav */,
 				549F754C14D74EB2005B31A9 /* guiSwitchSections.wav */,
@@ -2244,7 +2266,6 @@
 				544B03E714AAB3F50029FAD2 /* supersonic.caf */,
 				544B03E814AAB3F50029FAD2 /* timFell.caf */,
 				544B03E914AAB3F50029FAD2 /* UhOh.caf */,
-				544B03EA14AAB3F50029FAD2 /* waterAnglerFish.caf */,
 				544B03EB14AAB3F50029FAD2 /* waterBubbles.caf */,
 				544B03EC14AAB3F50029FAD2 /* waterPufferFish.caf */,
 				544B03ED14AAB3F50029FAD2 /* waterSeaHorse.caf */,
@@ -3494,7 +3515,6 @@
 				544B041514AAB3F50029FAD2 /* supersonic.caf in Resources */,
 				544B041614AAB3F50029FAD2 /* timFell.caf in Resources */,
 				544B041714AAB3F50029FAD2 /* UhOh.caf in Resources */,
-				544B041814AAB3F50029FAD2 /* waterAnglerFish.caf in Resources */,
 				544B041914AAB3F50029FAD2 /* waterBubbles.caf in Resources */,
 				544B041A14AAB3F50029FAD2 /* waterPufferFish.caf in Resources */,
 				544B041B14AAB3F50029FAD2 /* waterSeaHorse.caf in Resources */,
@@ -3676,6 +3696,14 @@
 				549F754D14D74EB2005B31A9 /* guiSwitchSections.wav in Resources */,
 				549CAD2814D76AAF00E6BA2E /* comboAttackMove.wav in Resources */,
 				549CAD2914D76AAF00E6BA2E /* squirrelAppear.wav in Resources */,
+				549CAD3314D7873800E6BA2E /* discoBlondAppear.wav in Resources */,
+				549CAD3414D7873800E6BA2E /* fireRockMonsterProjectile.wav in Resources */,
+				549CAD3514D7873800E6BA2E /* rainyUmbrellaAppear.wav in Resources */,
+				549CAD3614D7873800E6BA2E /* townRollingHayAppear.wav in Resources */,
+				549CAD3714D7873800E6BA2E /* waterAnglerAppear.wav in Resources */,
+				549CAD3814D7873800E6BA2E /* waterSquidAppear.wav in Resources */,
+				549CAD3914D7873800E6BA2E /* waterSquidProjectile.wav in Resources */,
+				549CAD3A14D7873800E6BA2E /* waterTronikaAppear.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

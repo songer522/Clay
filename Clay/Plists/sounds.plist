@@ -81,7 +81,7 @@
 	<key>windLong</key>
 	<string>wind2_long.caf</string>
 	<key>waterAnglerFish</key>
-	<string>waterAnglerFish.caf</string>
+	<string>waterAnglerAppear.wav</string>
 	<key>waterBubbles</key>
 	<string>waterBubbles.caf</string>
 	<key>waterPufferFish</key>
@@ -152,5 +152,19 @@
 	<string>comboAttackMove.wav</string>
 	<key>squirrelAppear</key>
 	<string>squirrelAppear.wav</string>
+	<key>discoBlondAppear</key>
+	<string>discoBlondAppear.wav</string>
+	<key>fireRockMonsterProjectile</key>
+	<string>fireRockMonsterProjectile.wav</string>
+	<key>rainyUmbrellaAppear</key>
+	<string>rainyUmbrellaAppear.wav</string>
+	<key>townRollingHayAppear</key>
+	<string>townRollingHayAppear.wav</string>
+	<key>waterSquidAppear</key>
+	<string>waterSquidAppear.wav</string>
+	<key>waterSquidProjectile</key>
+	<string>waterSquidProjectile.wav</string>
+	<key>waterTronikaAppear</key>
+	<string>waterTronikaAppear.wav</string>
 </dict>
 </plist>

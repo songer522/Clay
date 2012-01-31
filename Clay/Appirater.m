@@ -100,6 +100,7 @@ NSString *templateReviewURL = @"itms-apps://ax.itunes.apple.com/WebObjects/MZSto
 		@synchronized(self) {
 			if (appirater == nil) {
 				appirater = [[Appirater alloc] init];
+                
                 [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillResignActive) name:@"UIApplicationWillResignActiveNotification" object:nil];
             }
         }

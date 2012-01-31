@@ -126,7 +126,6 @@ extern NSString *const kAppiraterDeclinedToRate;
 @interface Appirater : NSObject <UIAlertViewDelegate> {
 
 	UIAlertView		*ratingAlert;
-    bool _forceShowRating;
 }
 
 @property(nonatomic, retain) UIAlertView *ratingAlert;
