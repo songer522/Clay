@@ -55,7 +55,7 @@
         _state = END_GAME_TRANSITION_IN;
         _alpha = 0.0f;
         _shouldExit=false;
-        
+        _shouldSwitch=false;
        
         [[LayerManager sharedLayers] setWorkingLayer:self];
          
@@ -238,9 +238,12 @@
             _alpha -= 0.3*rate;
             if (_alpha <= 0.0f) {
                 _alpha=0.0f;
+                if(!_shouldSwitch)
+                {
                 [[GameSettings shared] setGlobal:@"endGame" ForKey:@"switchToCreditsFrom"];
                 [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[CreditsScene scene]]];
-
+                    _shouldSwitch=true;
+                }
             }
             [_BonusComic setAlpha:_alpha];
             break;    

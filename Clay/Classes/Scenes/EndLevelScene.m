@@ -59,6 +59,7 @@
         _alpha = 0.0f;
         _time = 0.0f;
         _openFacebook=false;
+        _hasSwitch=false;
         _openTwitter=false;
         _rateWindowShowed=false;
         _tweetViewController = nil;
@@ -301,13 +302,17 @@
             {
                 _time = 1.0f;
                 //[_selectedButton setAlpha:1.0];
+                if(!_hasSwitch)
+                {
                 [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[MainMenuScene scene]]];
+                    _hasSwitch=true;
                 if(!_rateWindowShowed)
                 {
                     [[Appirater sharedInstance] setShouldForceShowingWindow:YES];
                     _rateWindowShowed=true;
                 }
             } 
+            }
             /*
             // [_selectedButton setAlpha:(1-_time)];
             //[_background setAlpha:(1-_time)];

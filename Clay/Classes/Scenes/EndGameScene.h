@@ -33,6 +33,7 @@ typedef enum {
     bool _initialized;
     bool _shouldExit;
     EndGameState _state;
+    bool _shouldSwitch;
     
     
     

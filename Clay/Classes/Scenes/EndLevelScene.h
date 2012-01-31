@@ -67,6 +67,7 @@ typedef enum {
     NSString *_difficulty;
     NSString *_timer;
     float _time;
+    bool _hasSwitch;
     
     
     
