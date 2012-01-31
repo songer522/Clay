@@ -115,8 +115,8 @@
 {
     
     if ([[GameSettings shared] usingHighResolutionGraphics]){
-        [_textLabel setScale:0.65f];
         _textLabel = [CCLabelBMFont labelWithString:text fntFile:@"GraphicFont.fnt" width:width alignment:UITextAlignmentLeft];
+        [_textLabel setScale:0.65f];
     }
     else
     {

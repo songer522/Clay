@@ -174,9 +174,13 @@
 
     
     if(_isLowRes) {
+        /*
         position = [_camera convertToScreenXY:CGPointMake(x, y)];
         position.x = roundf((position.x * 2.0f)) / 2.0f;
         position.y = roundf((position.y * 2.0f)) / 2.0f;
+         */
+        position = [_camera convertToScreenXY:CGPointMake(x,y)];
+
     } else {
         position = [_camera convertToScreenXY:CGPointMake(round(x), round(y))];
         //position = [_camera convertToScreenXYNew:CGPointMake(x, y)];
