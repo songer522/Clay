@@ -252,6 +252,8 @@
         if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isDojoRunPurchased"] boolValue]) {
             return true;
         }        
+    } else if(levelNumber<=11) {
+        return true;
     }
     //NOTE: temporarily disabled for a build with unlocked dlc
     //return false;

@@ -153,6 +153,8 @@
     float rate = 32.0f * dt;
     self.position = ccp(self.position.x, self.position.y + rate);
     if (!_hasSwitched && self.position.y > 1280.0f) {
+        _hasSwitched = true;
+
         if(![GCState sharedInstance].watchCredit)
         {
             
@@ -161,7 +163,6 @@
         }
 
         [self switchToOptionsScreen];
-        _hasSwitched = true;
     }
 }
 

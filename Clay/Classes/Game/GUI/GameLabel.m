@@ -30,8 +30,12 @@
 
 -(id)initWithText:(NSString*)text Scale:(float)scale Width:(int)width Position:(CGPoint)position
 {
-    if((self=[super init])) {        
-        _label = [CCLabelBMFont labelWithString:text fntFile:@"GraphicFont.fnt" width:width alignment:UITextAlignmentLeft];
+    if((self=[super init])) {
+        if ([[GameSettings shared] usingHighResolutionGraphics]) {
+            _label = [CCLabelBMFont labelWithString:text fntFile:@"GraphicFont.fnt" width:width alignment:UITextAlignmentLeft];            
+        } else {
+            _label = [CCLabelBMFont labelWithString:text fntFile:@"GraphicFont_LowRes22.fnt" width:width alignment:UITextAlignmentLeft];            
+        }
         [self setScale:scale];
         [self setPosition:position];
         [[[LayerManager sharedLayers] currentLayer] addChild:_label];
@@ -52,7 +56,8 @@
     }
     else
     {
-        [_label setScale:(scale/2.0f)];
+        [_label setScale:scale];
+        //[_label setScale:(scale/2.0f)];
     }
 }
 

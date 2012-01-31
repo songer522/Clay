@@ -1,5 +1,44 @@
 Track Lapse Changelog
 
+Build 120130.01
+=================
+
+***Please test*** - *Global - pressing continue should now continue story mode at the level after the one you completed, and also restore the time you had when you completed that level, so the saving can't be abused for better leader board scores.
+*Global - updated all error windows to new font
+*Global - updated all comics to versions with new font
+*Global - got the cutscene music during the comics fading out properly
+*Global - got rate our game pop up window fully working, will pop up on main menu if they've beaten the game and go back to the main menu (this is not saved between sessions currently), removed "remind me later" button because description would not display in landscape mode otherwise
+*ChooseMode - updated a bunch of sounds
+*ChooseLevel - fixed a bug where the error messages added 2 builds ago were crashing the game
+*ChooseLevel - got the information panels to display different information if you haven't purchased the level yet, including the descriptive text for the DLC levels
+*ChooseLevel - previously earned trophies no longer show up if the game thinks you haven't purchased the dlc levels yet
+*Credits - updated the credits text
+*Credits - fixed so the credits music loads and plays when accessed by the options menu
+*Credits - fixed a bug that was causing transition issues
+*EndGame - twitter and Facebook buttons are now functional
+*EndGame - replaced the end game screen with a new one
+*EndGame - fixed the bug where the background image wasn't displaying by replacing the whole screen
+*MainMenu - updated a few sounds
+*Options - added second confirmation window for erasing data, and a special sound for when erase data is clicked
+*Options - updated a bunch of sounds
+*HowToPlay - added sound effect for clicking next
+*All Levels - story normal mode and story easy mode made easier for less frustrating gameplay
+*Level 4 - added a whistle sound when blond girl appears on screen
+*Level 4 - added jim to the background
+*Level 6 - added jim on a bike in the background
+*Level 7 - fixed so all ship attacks use the same warning sound, and the triple attack has a new sound when they move in for the kill
+*Level 8 - removed the bass from the action sound, added an out of place sounding sound for rock projectiles (will fix tomorrow)
+*Level 8 - added jim
+*Level 9 - added sounds for when squirrel appears on screen, and when the umbrella is about to appear on screen
+*Level 10 - replaced most of the sounds, added a few that were missing, removed the annoying bass from the action sound
+*Level 10 - fixed the issue where the anchor image for the action was jittering on top of Tim
+*Level 12 - tweaked and extended the level
+*Level 13 - tweaked and extended the level
+*Level 13 - tweaked so death pits don't reveal themselves until tim is closer
+*Level 13 - updated comic
+*Level 13 - you can now jump while punching
+*Levels 10,11,12,13 - updated to final, mastered music
+
 Build 120128.01
 =================
 

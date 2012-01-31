@@ -42,6 +42,7 @@
 #import "Support/CCFileUtils.h"
 #import "Support/CGPointExtension.h"
 #import "Support/uthash.h"
+#import "GameSettings.h"
 
 #pragma mark -
 #pragma mark FNTConfig Cache - free functions
@@ -693,6 +694,13 @@ typedef struct _KerningHashElement
 	totalHeight = configuration_->commonHeight_ * quantityOfLines;
 	nextFontPositionY = -(configuration_->commonHeight_ - configuration_->commonHeight_*quantityOfLines);
 	
+    float adjustKerning;
+    if ([[GameSettings shared] usingHighResolutionGraphics]) {
+        adjustKerning = -13;
+    } else {
+        adjustKerning = -9.5f;
+    }
+    
 	for(NSUInteger i=0; i<stringLen; i++) {
 		unichar c = [string_ characterAtIndex:i];
 		NSAssert( c < kCCBMFontMaxChars, @"LabelBMFont: character outside bounds");
@@ -733,7 +741,8 @@ typedef struct _KerningHashElement
 		// update kerning
         
         //XECUDEV HARDCODING A KERNING VALUE OF NEGATIVE CONSTANT VALUE BELOW
-		nextFontPositionX += configuration_->BMFontArray_[c].xAdvance + kerningAmount - 13;
+		
+        nextFontPositionX += configuration_->BMFontArray_[c].xAdvance + kerningAmount + adjustKerning;
 		
         //nextFontPositionX += configuration_->BMFontArray_[c].xAdvance + kerningAmount;
 		prev = c;

@@ -107,6 +107,7 @@
 	[director setDeviceOrientation:kCCDeviceOrientationLandscapeLeft];
 #endif
 	
+    [UIApplication sharedApplication].idleTimerDisabled = YES;
     
 	[director setAnimationInterval:1.0f/60.0f];
 

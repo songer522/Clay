@@ -292,9 +292,10 @@
     
     if (!_paused && !_inComic) {
         
+        [_player update:dt Level:_level];
+        
         [_level update:dt Velocity:_player.vx];
         
-        [_player update:dt Level:_level];
         
         [self updateTriggers:dt];
         
