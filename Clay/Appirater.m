@@ -54,7 +54,7 @@ NSString *templateReviewURL = @"itms-apps://ax.itunes.apple.com/WebObjects/MZSto
 
 @interface Appirater (hidden)
 - (BOOL)connectedToNetwork;
-+ (Appirater*)sharedInstance;
+
 - (void)showRatingAlert;
 - (BOOL)ratingConditionsHaveBeenMet;
 - (void)incrementUseCount;
@@ -93,21 +93,18 @@ NSString *templateReviewURL = @"itms-apps://ax.itunes.apple.com/WebObjects/MZSto
     return ((isReachable && !needsConnection) || nonWiFi) ? (testConnection ? YES : NO) : NO;
 }
 
-+ (Appirater*)sharedInstance {
-	static Appirater *appirater = nil;
-	if (appirater == nil)
-	{
-		@synchronized(self) {
-			if (appirater == nil) {
-				appirater = [[Appirater alloc] init];
-                
-                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillResignActive) name:@"UIApplicationWillResignActiveNotification" object:nil];
-            }
-        }
-	}
-	
-	return appirater;
+
+-(id)init
+{
+    if(self=[super init])
+    {
+        _shouldForceShowing=false;
+    }
+    return self;
 }
+ 
+
+
 
 - (void)showRatingAlert {
     [[CCDirector sharedDirector] pause];
@@ -115,7 +112,7 @@ NSString *templateReviewURL = @"itms-apps://ax.itunes.apple.com/WebObjects/MZSto
 														 message:APPIRATER_MESSAGE
 														delegate:self
 											   cancelButtonTitle:APPIRATER_CANCEL_BUTTON
-											   otherButtonTitles:APPIRATER_RATE_BUTTON, APPIRATER_RATE_LATER, nil] autorelease];
+											   otherButtonTitles:APPIRATER_RATE_BUTTON, nil] autorelease];
 	self.ratingAlert = alertView;
 	[alertView show];
 }
@@ -123,15 +120,23 @@ NSString *templateReviewURL = @"itms-apps://ax.itunes.apple.com/WebObjects/MZSto
 - (BOOL)ratingConditionsHaveBeenMet {
 	if (APPIRATER_DEBUG)
 		return YES;
- 
+	
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    // has the user previously declined to rate this version of the app?
+	if ([userDefaults boolForKey:kAppiraterDeclinedToRate])
+		return NO;
+	
+	// has the user already rated the app?
+	if ([userDefaults boolForKey:kAppiraterRatedCurrentVersion])
+		return NO;
+    if (_shouldForceShowing)
+        return YES;
 	
 	NSDate *dateOfFirstLaunch = [NSDate dateWithTimeIntervalSince1970:[userDefaults doubleForKey:kAppiraterFirstUseDate]];
 	NSTimeInterval timeSinceFirstLaunch = [[NSDate date] timeIntervalSinceDate:dateOfFirstLaunch];
 	NSTimeInterval timeUntilRate = 60 * 60 * 24 * APPIRATER_DAYS_UNTIL_PROMPT;
 	if (timeSinceFirstLaunch < timeUntilRate)
 		return NO;
-	
 	// check if the app has been used enough
 	int useCount = [userDefaults integerForKey:kAppiraterUseCount];
 	if (useCount <= APPIRATER_USES_UNTIL_PROMPT)
@@ -141,15 +146,8 @@ NSString *templateReviewURL = @"itms-apps://ax.itunes.apple.com/WebObjects/MZSto
 	int sigEventCount = [userDefaults integerForKey:kAppiraterSignificantEventCount];
 	if (sigEventCount <= APPIRATER_SIG_EVENTS_UNTIL_PROMPT)
 		return NO;
-	// has the user previously declined to rate this version of the app?
-	if ([userDefaults boolForKey:kAppiraterDeclinedToRate])
-		return NO;
 	
-	// has the user already rated the app?
-	if ([userDefaults boolForKey:kAppiraterRatedCurrentVersion])
-		return NO;
-	
-	
+		
 	// if the user wanted to be reminded later, has enough time passed?
 	NSDate *reminderRequestDate = [NSDate dateWithTimeIntervalSince1970:[userDefaults doubleForKey:kAppiraterReminderRequestDate]];
 	NSTimeInterval timeSinceReminderRequest = [[NSDate date] timeIntervalSinceDate:reminderRequestDate];
@@ -256,6 +254,8 @@ NSString *templateReviewURL = @"itms-apps://ax.itunes.apple.com/WebObjects/MZSto
 	[userDefaults synchronize];
 }
 
+
+
 @end
 
 
@@ -266,6 +266,23 @@ NSString *templateReviewURL = @"itms-apps://ax.itunes.apple.com/WebObjects/MZSto
 @implementation Appirater
 
 @synthesize ratingAlert;
+
+
++ (Appirater*)sharedInstance {
+	static Appirater *appirater = nil;
+	if (appirater == nil)
+	{
+		@synchronized(self) {
+			if (appirater == nil) {
+				appirater = [[Appirater alloc] init];
+                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillResignActive) name:@"UIApplicationWillResignActiveNotification" object:nil];
+            }
+        }
+	}
+	
+	return appirater;
+}
+
 
 - (void)incrementAndRate:(NSNumber*)_canPromptForRating {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
@@ -296,6 +313,13 @@ NSString *templateReviewURL = @"itms-apps://ax.itunes.apple.com/WebObjects/MZSto
 	
 	[pool release];
 }
+
+-(void)setShouldForceShowingWindow:(BOOL)shouldForceShowingWindow
+{
+    _shouldForceShowing=shouldForceShowingWindow;
+    [self incrementAndRate:[NSNumber numberWithBool:YES]];
+}
+
 
 + (void)appLaunched {
 	[Appirater appLaunched:YES];

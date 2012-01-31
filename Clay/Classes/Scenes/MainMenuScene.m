@@ -140,7 +140,6 @@
             [[SoundEngine shared] playMusic:@"title"];
             [[GameSettings shared] setGlobal:@"YES" ForKey:@"titleMusicStarted"];
         }
-                
         [myPool drain];
 
     }

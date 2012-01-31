@@ -1256,7 +1256,7 @@
             }
             break;
         case COLLISION_BEHAVIOR_DOJO_DEATHPIT:
-            if (!_hasTriggered && [self closeToPlayer:250]) {
+            if (!_hasTriggered && [self closeToPlayer:150]) {
                 _hasTriggered = true;
                 [self setOriginalAnimation:@"dojoDeathPitClosedAnim"];
                 [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"dojoDeathPitOpeningAnim"];

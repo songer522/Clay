@@ -161,6 +161,11 @@
     <property name="obstacle" value="fireHedgehog"/>
    </properties>
   </tile>
+  <tile id="112">
+   <properties>
+    <property name="obstacle" value="fireJim"/>
+   </properties>
+  </tile>
  </tileset>
  <tileset firstgid="133" name="Level8_TiledSheet-hd" tilewidth="64" tileheight="64">
   <image source="tileset_level_8-hd.png" width="960" height="704"/>
@@ -216,7 +221,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt20sOgjAQAFBOoF6GpR+8/6FcakhoYfpR4b2ECFFKIcO0ScdhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADoa6zY1rNiWwCwVWQc6jl2jbNPADiC68d2NEe9bwAA+Cfm7f/N2iTsR27txNoKlDHfAQAAAAAAAACgt0jNyr16L37fVHDu2lra1DV61lNPC/vEtfoPb7Ru85E5jlqKl3NBm7l8E4nR1DsZ/W5JSb5Ul7t/qfhoPdbeCs6N5LSSPJCTe1Zbn2Xu3TNOUksqftbGbep3veaPa/LJPG+06NelQZu8nb7dAQAAAAAAAICDeAE18w7s
+   eJzt20sOgjAQAFBPoF6GpR+8l3d3ZTQktNCfQt9LDApSKxmmTTocDgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbQ0F23oUbAsA1koZh1qOXcNkCwA9uHy9etPr/wYAgC0xb982a5OwH7G1E2srkMd8BwAAAAAAAACA1lJqVm7Fe/H/xoxzl9bShn6jZT31OPOedLWe4U2t27xHPqd6x8tzsv+U0WYs36TEaOieTD02Jydfqsvdv1B81B5rrxnnpuS0nDwQE7tWa69l7N4zTlJKKH6Wxm3oe63mj0vyyTRv1OjXuUKbfBx/3QEAAAAAAACATrwAgJAPaQ==
   </data>
  </layer>
  <layer name="meta" width="950" height="14" opacity="0.43">

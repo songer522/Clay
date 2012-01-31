@@ -158,6 +158,12 @@
     <property name="obstacle" value="zombieMale"/>
    </properties>
   </tile>
+  <tile id="111">
+   <properties>
+    <property name="layerBelow" value="main0"/>
+    <property name="object" value="zombieJim"/>
+   </properties>
+  </tile>
  </tileset>
  <tileset firstgid="133" name="Level6_TiledSheet-hd" tilewidth="64" tileheight="64">
   <image source="tileset_level_6-hd.png" width="1024" height="1024"/>
