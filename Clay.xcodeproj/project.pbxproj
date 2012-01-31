@@ -3656,6 +3656,22 @@
 				618CD33B14D75688008D7CDF /* fireLevel-hd.png in Resources */,
 				618CD33C14D75688008D7CDF /* fireLevel.plist in Resources */,
 				618CD33D14D75688008D7CDF /* fireLevel.png in Resources */,
+				549F753F14D6F998005B31A9 /* blowAction.wav in Resources */,
+				549F754014D6F998005B31A9 /* waterSwimAction.wav in Resources */,
+				549F754814D73C8F005B31A9 /* guiSelectionBack.wav in Resources */,
+				549F754914D73C8F005B31A9 /* guiSelectionForward.wav in Resources */,
+				549F754B14D74CF0005B31A9 /* eraseData.wav in Resources */,
+				549F754D14D74EB2005B31A9 /* guiSwitchSections.wav in Resources */,
+				549CAD2814D76AAF00E6BA2E /* comboAttackMove.wav in Resources */,
+				549CAD2914D76AAF00E6BA2E /* squirrelAppear.wav in Resources */,
+				549CAD3314D7873800E6BA2E /* discoBlondAppear.wav in Resources */,
+				549CAD3414D7873800E6BA2E /* fireRockMonsterProjectile.wav in Resources */,
+				549CAD3514D7873800E6BA2E /* rainyUmbrellaAppear.wav in Resources */,
+				549CAD3614D7873800E6BA2E /* townRollingHayAppear.wav in Resources */,
+				549CAD3714D7873800E6BA2E /* waterAnglerAppear.wav in Resources */,
+				549CAD3814D7873800E6BA2E /* waterSquidAppear.wav in Resources */,
+				549CAD3914D7873800E6BA2E /* waterSquidProjectile.wav in Resources */,
+				549CAD3A14D7873800E6BA2E /* waterTronikaAppear.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

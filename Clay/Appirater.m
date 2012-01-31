@@ -120,7 +120,7 @@ NSString *templateReviewURL = @"itms-apps://ax.itunes.apple.com/WebObjects/MZSto
 - (BOOL)ratingConditionsHaveBeenMet {
 	if (APPIRATER_DEBUG)
 		return YES;
- 
+	
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     // has the user previously declined to rate this version of the app?
 	if ([userDefaults boolForKey:kAppiraterDeclinedToRate])
