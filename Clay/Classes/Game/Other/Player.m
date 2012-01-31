@@ -48,6 +48,7 @@
 @synthesize gotHit=_gotHit;
 @synthesize isDoubleDamage =_isDoubleDamage;
 @synthesize skin = _skin;
+@synthesize isDojoLevel = _isDojoLevel;
 
 
 +(id) instance
@@ -177,10 +178,12 @@
     
     _y += 2.0f;
     _isJumping = true;
-    [_skin setPlayerAnimation:PLAYER_ANIM_JUMPING ForSprite:_sprite];
+    if (!_isDojoLevel || ![_thirdAction inAction]) {
+        [_skin setPlayerAnimation:PLAYER_ANIM_JUMPING ForSprite:_sprite];        
+        [[SoundEngine shared] playSound:@"jumpStart"];
+    }
     [[self getCollision] processNewCollisionState:COLLISION_STATE_MIDAIR];
     [self setPositionAtX:_x Y:_y];
-    [[SoundEngine shared] playSound:@"jumpStart"];
     _waitToEndJump =0.2f;
    
     [_speed startJump];
@@ -196,6 +199,10 @@
         return; }
     
     if([_thirdAction inAction] && ![_thirdAction playerAllowedToJump]) { return; }
+    
+    if(_isDojoLevel && [_thirdAction inAction]) {
+        [_thirdAction cancelAction];
+    }
     
     self.hasGravity = true;
     

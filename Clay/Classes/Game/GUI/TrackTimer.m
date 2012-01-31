@@ -12,6 +12,7 @@
 #import "AnimationController.h"
 #import "Sprite.h"
 #import "TextureManager.h"
+#import "GameSettings.h"
 
 
 #define TRACK_TIMER_STARTX 10
@@ -124,14 +125,23 @@
 
 -(void)startLevel
 {
+    NSString *mode = [[GameSettings shared] getGlobalForKey:@"gameMode"];
+
     _levelTime = 0.0f;
-    _totalTimeBeforeLevel = _totalTime;
+
+    if ([mode isEqualToString:@"story"]) {
+        _totalTimeBeforeLevel = [[[GameSettings shared] getGlobalForKey:@"storyModeCurrentTime"] floatValue];
+        _totalTime = _totalTimeBeforeLevel;
+    } else {
+        _totalTimeBeforeLevel = _totalTime;        
+    }
+
 }
 
 -(void)restartLevel
 {
     _levelTime = 0.0f;
-    _totalTime = _totalTimeBeforeLevel;
+    _totalTime = _totalTimeBeforeLevel;        
 }
 
 -(float)getLevelTime

@@ -152,6 +152,19 @@
     sprite_cc.position = ccp(position.x,position.y);
 }
 
+-(void) setPlayerObjectPosition:(CGPoint)position
+{
+    if(_isLowRes) {
+        position = [_camera convertToScreenXY:position];
+        position.x = roundf((position.x * 2.0f)) / 2.0f;
+        position.y = roundf((position.y * 2.0f)) / 2.0f;
+    } else {
+        position = [_camera convertToScreenXY:position];
+    }
+    
+    sprite_cc.position = position;
+}
+
 -(void) setPositionAtX:(float)x Y:(float)y
 {
     CGPoint position;
@@ -166,7 +179,9 @@
         position.y = roundf((position.y * 2.0f)) / 2.0f;
     } else {
         position = [_camera convertToScreenXY:CGPointMake(round(x), round(y))];
-    } 
+        //position = [_camera convertToScreenXYNew:CGPointMake(x, y)];
+        //position = CGPointMake(roundf(position.x), roundf(position.y));
+    }
     
     //CGPoint position = [[Camera sharedCamera] convertToScreenXY:CGPointMake((int)x, (int)y)];
     //sprite_cc.position = ccp(position.x,position.y);

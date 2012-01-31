@@ -66,6 +66,7 @@
 -(void)updateOnScreenRange;
 
 -(CGPoint)convertToScreenXY:(CGPoint)worldXY;
+-(CGPoint)convertToScreenXYNew:(CGPoint)worldXY;
 -(float)convertToScreenX:(float)worldX;
 -(float)convertToScreenY:(float)worldY;
 

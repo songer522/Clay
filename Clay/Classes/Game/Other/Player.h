@@ -86,6 +86,8 @@ typedef enum {
     NSMutableArray *projectiles;
     
     Skin *_skin;
+    
+    bool _isDojoLevel;
         
     Sprite *_playerOnledge;
     Sprite *_tempSprite;
@@ -101,6 +103,7 @@ typedef enum {
 @property(nonatomic,assign) bool hadCollisionThisUpdate;
 @property(nonatomic,assign) bool onLedge;
 @property(nonatomic,assign) bool gotHit;
+@property(nonatomic,assign) bool isDojoLevel;
 @property(nonatomic,assign)Skin *skin;
 
 

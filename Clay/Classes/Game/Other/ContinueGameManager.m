@@ -14,7 +14,7 @@
 
 +(bool)isAbleToContinueGame
 {
-    if (![[self getContinueGameDifficulty] isEqualToString:@""] && ![[self getContinueGameLevel] isEqualToString:@""])
+    if (![[self getContinueGameDifficulty] isEqualToString:@""] && ![[self getContinueGameLevel] isEqualToString:@""] && [[self getContinueGameTime] floatValue] > 0)
     {
         return true;
     }
@@ -45,6 +45,15 @@
     
 }
 
++(NSString*)getContinueGameTime
+{
+    NSString *levelTime = [[GameSettings shared] getGlobalForKey:@"storyModeCurrentTime"];
+    if (levelTime) {
+        return [NSString stringWithString:levelTime];
+    }
+    
+    return @"0";
+}
 
 
 @end

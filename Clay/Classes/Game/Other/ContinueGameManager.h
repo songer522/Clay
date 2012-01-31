@@ -13,5 +13,6 @@
 +(bool)isAbleToContinueGame;
 +(NSString*)getContinueGameDifficulty;
 +(NSString*)getContinueGameLevel;
++(NSString*)getContinueGameTime;
 
 @end
