@@ -59,6 +59,7 @@
         _alpha = 0.0f;
         _time = 0.0f;
         _openFacebook=false;
+        _hasSwitch=false;
         _openTwitter=false;
         _rateWindowShowed=false;
         _tweetViewController = nil;

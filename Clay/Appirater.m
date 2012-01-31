@@ -385,6 +385,7 @@ NSString *templateReviewURL = @"itms-apps://ax.itunes.apple.com/WebObjects/MZSto
 			// they don't want to rate it
 			[userDefaults setBool:YES forKey:kAppiraterDeclinedToRate];
 			[userDefaults synchronize];
+             [[CCDirector sharedDirector] resume];
 			break;
 		}
 		case 1:
