@@ -28,7 +28,7 @@ typedef enum {
     END_LEVEL_TRANSITION_OUT
 }EndLevelState;
 
-@interface EndLevelScene : CCLayer <FBDialogDelegate,FBSessionDelegate>
+@interface EndLevelScene : CCLayer <FBDialogDelegate,FBSessionDelegate,UIAlertViewDelegate>
 {
     
     ComicLayer *_comicLayer;
@@ -68,7 +68,8 @@ typedef enum {
     NSString *_timer;
     float _time;
     bool _hasSwitch;
-    
+    UIAlertView		*_twitterSupportingAlert;
+
     
     
     

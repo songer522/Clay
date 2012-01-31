@@ -41,7 +41,7 @@ typedef enum {
    
 }LevelName;
 
-@interface ChooseLevelScreen : CCLayer <FBDialogDelegate,FBSessionDelegate,DlcLevelDelegate>
+@interface ChooseLevelScreen : CCLayer <FBDialogDelegate,FBSessionDelegate,DlcLevelDelegate,UIAlertViewDelegate>
 {
     NSMutableArray *_buttons;
     
@@ -97,6 +97,7 @@ typedef enum {
     
     TWTweetComposeViewController *_tweetViewController;
     FBPrompt *_fbprompt;
+    UIAlertView		*_twitterSupportingAlert;
     
 }
 

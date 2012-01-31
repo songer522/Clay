@@ -155,6 +155,16 @@
     
     return self;
 }
+- (void)showTwitterSupportingAlert {
+    [[CCDirector sharedDirector] pause];
+	UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:@"Sorry..."
+														 message:@"We currently only support iOS 5.0, please upgrade your system."
+														delegate:self
+											   cancelButtonTitle:@"Okay"
+											   otherButtonTitles: nil] autorelease];
+	_twitterSupportingAlert = alertView;
+	[alertView show];
+}
 
 - (void)sendEasyTweet:(NSString*)tweet
 {
@@ -176,6 +186,10 @@
     if ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending)
     {
         [appDelegate.viewController presentModalViewController:_tweetViewController animated:YES];
+    }
+    else
+    {
+        [self showTwitterSupportingAlert];
     }
 }
 
@@ -335,6 +349,26 @@
     }
     
 }
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+	
+	
+	switch (buttonIndex) {
+		case 0:
+		{
+			// they don't want to rate it
+            [[CCDirector sharedDirector] resume];
+			break;
+		}
+		case 1:
+		{
+			// they want to rate it
+			[[CCDirector sharedDirector] resume];
+			break;
+		}
+        default:
+			break;
+	}
+}
 
 -(void)onExit
 {
@@ -359,6 +393,7 @@
     [_facebookButton release];
     [_twitterButton release];
    [_background release];
+    
     _selectedButton=nil;
    
     [_finalTimePanel release];

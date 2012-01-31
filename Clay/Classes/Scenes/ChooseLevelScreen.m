@@ -573,6 +573,19 @@
 {
     return [TrackTimer getTimeStringFromFloat:time];
 }
+
+- (void)showTwitterSupportingAlert {
+    [[CCDirector sharedDirector] pause];
+	UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:@"Sorry..."
+														 message:@"We currently only support iOS 5.0, please upgrade your system."
+														delegate:self
+											   cancelButtonTitle:@"okay"
+											   otherButtonTitles: nil] autorelease];
+	_twitterSupportingAlert = alertView;
+	[alertView show];
+}
+
+
 - (void)sendEasyTweet:(NSString*)tweet
 {
     AppDelegate *appDelegate=[[UIApplication sharedApplication] delegate];
@@ -597,7 +610,7 @@
     
     else
     {
-    //if not support twitter, do something
+        [self showTwitterSupportingAlert];
     }
 }
 -(void)updatePanelTransition:(float)dt
@@ -736,6 +749,29 @@
     }
 }
 
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+	
+	
+	switch (buttonIndex) {
+		case 0:
+		{
+			// they don't want to rate it
+            [[CCDirector sharedDirector] resume];
+			break;
+		}
+		case 1:
+		{
+			// they want to rate it
+			[[CCDirector sharedDirector] resume];
+			break;
+		}
+        default:
+			break;
+	}
+}
+
+
 -(void)dealloc
 {
     CCLOG(@"=============CHOOSE LEVEL SCREEN============");
@@ -757,8 +793,7 @@
     [_background release];
     [_panelBackground release];
     [_selector release];
-    
-    [_levelSelectText release];
+        [_levelSelectText release];
     [_bestLevelTimeText release];
     
     [_startButton release];
