@@ -272,6 +272,8 @@ static ComicManager *_shared = nil;
     GameLayer *gameLayer = (GameLayer*)[[LayerManager sharedLayers] currentLayer];
     [[GameSettings shared] setSerializedGlobal:@"" ForKey:@"storyModeCurrentLevel"];
     [[GameSettings shared] setSerializedGlobal:@"" ForKey:@"storyModeDifficulty"];
+    [[GameSettings shared] setSerializedGlobal:@"" ForKey:@"storyModeCurrentTime"];
+    
     //set the final total time for the end game screen
     float finalTime = [[[gameLayer getHud] getTrackTimer] getTime];
     [[GameSettings shared] setGlobal:[NSString stringWithFormat:@"%f", finalTime] ForKey:@"finalTime"];

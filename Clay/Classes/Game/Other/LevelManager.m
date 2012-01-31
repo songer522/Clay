@@ -148,6 +148,7 @@ static LevelManager *_shared = nil;
     
     if ([mode isEqualToString:@"story"]) {
         [[GameSettings shared] setSerializedGlobal:_currentLevel.nextLevelName ForKey:@"storyModeCurrentLevel"];
+        //[[GameSettings shared] setSerializedGlobal:@"0" ForKey:@"storyModeCurrentTime"];
     }
     
     //might as well save while we're at it.

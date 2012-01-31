@@ -458,6 +458,11 @@
     }
     [[LevelManager shared] recordLevelTime:finalLevelTime];
     
+    if ([mode isEqualToString:@"story"]) {
+        float currentStoryTime = [[_hud getTrackTimer] getTime];
+        [[GameSettings shared] setSerializedGlobal:[NSString stringWithFormat:@"%f",currentStoryTime] ForKey:@"storyModeCurrentTime"];
+    }
+    
     [[ComicManager shared] startComic:_level.postLevelComicName];
     
     if ([mode isEqualToString:@"story"])

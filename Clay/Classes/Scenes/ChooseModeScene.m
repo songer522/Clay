@@ -235,8 +235,10 @@
                 [[GameSettings shared] setNotNewForKey:@"storyHardUnlocked"];
             }
             [[GameSettings shared] setGlobal:@"NO" ForKey:@"titleMusicStarted"];
-            [[GameSettings shared] setGlobal:@"level11" ForKey:@"startingLevel"];
+            [[GameSettings shared] setGlobal:@"level1" ForKey:@"startingLevel"];
             [[GameSettings shared] setSerializedGlobal:@"level1" ForKey:@"storyModeCurrentLevel"];
+            [[GameSettings shared] setSerializedGlobal:@"0" ForKey:@"storyModeCurrentTime"];
+
             [self switchToStartGame];
             break;
         case GAMEMODE_TIMED_NORMAL:
