@@ -698,7 +698,7 @@ typedef struct _KerningHashElement
     if ([[GameSettings shared] usingHighResolutionGraphics]) {
         adjustKerning = -13;
     } else {
-        adjustKerning = -9;
+        adjustKerning = -9.5f;
     }
     
 	for(NSUInteger i=0; i<stringLen; i++) {
