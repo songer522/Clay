@@ -51,13 +51,13 @@ extern NSString *const kAppiraterDeclinedToRate;
 /*
  Your app's name.
  */
-#define APPIRATER_APP_NAME				[[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleNameKey]
+#define APPIRATER_APP_NAME				[NSString stringWithFormat:@"Track Lapse"]
 
 /*
  This is the message your users will see once they've passed the day+launches
  threshold.
  */
-#define APPIRATER_MESSAGE				[NSString stringWithFormat:@"If you enjoy using %@, would you mind taking a moment to rate it? It won't take more than a minute. Thanks for your support!", APPIRATER_APP_NAME]
+#define APPIRATER_MESSAGE				[NSString stringWithFormat:@"If you enjoy playing Track Lapse, would you mind taking a moment to rate it? It won't take more than a minute. Thanks for your support!"]
 
 /*
  This is the title of the message alert that users will see.
@@ -72,7 +72,7 @@ extern NSString *const kAppiraterDeclinedToRate;
 /*
  Text of button that will send user to app review page.
  */
-#define APPIRATER_RATE_BUTTON			[NSString stringWithFormat:@"Rate %@", APPIRATER_APP_NAME]
+#define APPIRATER_RATE_BUTTON			[NSString stringWithFormat:@"Rate"]
 
 /*
  Text for button to remind the user to review later.
@@ -108,7 +108,7 @@ extern NSString *const kAppiraterDeclinedToRate;
  a significant event, call the method:
  [Appirater userDidSignificantEvent:];
  */
-#define APPIRATER_SIG_EVENTS_UNTIL_PROMPT	1	// integer
+#define APPIRATER_SIG_EVENTS_UNTIL_PROMPT	-1	// integer
 
 /*
  Once the rating alert is presented to the user, they might select
@@ -126,7 +126,7 @@ extern NSString *const kAppiraterDeclinedToRate;
 @interface Appirater : NSObject <UIAlertViewDelegate> {
 
 	UIAlertView		*ratingAlert;
-    
+    bool _shouldForceShowing;
 }
 
 @property(nonatomic, retain) UIAlertView *ratingAlert;
@@ -138,6 +138,8 @@ extern NSString *const kAppiraterDeclinedToRate;
  Calls [Appirater appLaunched:YES]. See appLaunched: for details of functionality.
  */
 + (void)appLaunched;
+
++ (Appirater*)sharedInstance;
 
 /*
  Tells Appirater that the app has launched, and on devices that do NOT
@@ -196,5 +198,7 @@ extern NSString *const kAppiraterDeclinedToRate;
  whether to rate the app.
  */
 + (void)rateApp;
+
+-(void)setShouldForceShowingWindow:(BOOL)shouldForceShowingWindow;
 
 @end

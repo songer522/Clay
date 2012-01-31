@@ -304,7 +304,7 @@
                 [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[MainMenuScene scene]]];
                 if(!_rateWindowShowed)
                 {
-                [Appirater userDidSignificantEvent:YES];
+                    [[Appirater sharedInstance] setShouldForceShowingWindow:YES];
                     _rateWindowShowed=true;
                 }
             } 
