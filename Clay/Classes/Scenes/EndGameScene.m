@@ -80,6 +80,7 @@
         }
         [[SoundEngine shared] cueFadeIn];
        [[SoundEngine shared] playMusic:@"credits"];
+        [[GameSettings shared] setGlobal:@"YES" ForKey:@"creditsMusicStarted"];
       
 
         

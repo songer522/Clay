@@ -35,7 +35,6 @@
         _targetPosition = 0.0f;
         _rate = 1.0f;
         _atTarget = false;
-        
     }
     
     return self;
@@ -96,7 +95,7 @@
             if (_timeToWait<=0.0f) {
                 _transition = BLACKBOX_PLAY_COMIC_FADE_OUT;
                 _comicAlpha = 1.0f;
-                [[SoundEngine shared] cueFadeOut];
+                [[SoundEngine shared] cueFastFadeOut];
             }
             break;
         case BLACKBOX_PLAY_COMIC_FADE_OUT:
@@ -197,7 +196,7 @@
     int durations[] = {7,12,8,9,16,9,11,12,8,10,10,8,12};    
     int durationNumber = 0;
     NSString *_imageName;
-
+    
     
     int comicNumber = [[comicName substringFromIndex:5] intValue];
     if (comicNumber <= 12) { 
@@ -240,6 +239,8 @@
     if (_transition == BLACKBOX_PLAY_COMIC_WAIT) {
         _transition = BLACKBOX_PLAY_COMIC_FADE_OUT;
         couldSkip = true;
+        [[SoundEngine shared] playSound:@"buttonPressed"];
+        [[SoundEngine shared] cueFastFadeOut];
     }
     return couldSkip;
 }

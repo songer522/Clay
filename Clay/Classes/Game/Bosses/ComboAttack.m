@@ -9,6 +9,7 @@
 #import "ComboAttack.h"
 #import "Sprite.h"
 #import "AnimationController.h"
+#import "SoundEngine.h"
 
 @implementation ComboAttack
 
@@ -112,6 +113,7 @@
             [self switchToPhase:COMBO_WAIT_TO_ATTACK];
             break;
         case COMBO_WAIT_TO_ATTACK:
+            [[SoundEngine shared] playSound:@"comboAttackMove"];
             [self switchToPhase:COMBO_ATTACK];
             break;
         case COMBO_ATTACK:

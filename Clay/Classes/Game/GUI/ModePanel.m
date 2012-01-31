@@ -10,6 +10,7 @@
 #import "Sprite.h"
 #import "ActionButton.h"
 #import "ChooseModeScene.h"
+#import "SoundEngine.h"
 
 //IPAD FIX: positions for the header text inside the panel when the panel is active and inactive
 #define PANEL_HEADER_INACTIVE_Y 160.0f
@@ -21,7 +22,7 @@
 
 @interface ModePanel()
 
--(id)initAtPosition:(CGPoint)position;
+-(id)initAtPosition:(CGPoint)position PanelType:(ModePanelType)panelType;
 -(void)setHeaderAlpha:(float)alpha Position:(CGPoint)position;
 -(void)setPanelAlpha:(float)alpha;
 -(void)setButtonTransitionAmount:(float)alpha;
@@ -33,12 +34,12 @@
 @synthesize isActive = _isActive;
 @synthesize selectedIndex = _selectedIndex;
 
-+(id)panelAtPosition:(CGPoint)position
++(id)panelAtPosition:(CGPoint)position PanelType:(ModePanelType)panelType
 {
-    return [[self alloc] initAtPosition:position];
+    return [[self alloc] initAtPosition:position PanelType:panelType];
 }
 
--(id)initAtPosition:(CGPoint)position
+-(id)initAtPosition:(CGPoint)position PanelType:(ModePanelType)panelType
 {
     if((self=[super init])){
         _inactivePanel = [Sprite spriteCenteredWithFrame:@"UI_GameType_PanelGray.png" Position:position];
@@ -48,6 +49,7 @@
         _position = position;
         _isActive = false;
         _isSelected = false;
+        _panelType = panelType;
         _selectedIndex = 0;
         _buttons = [[NSMutableArray alloc] initWithCapacity:3];
         
@@ -183,6 +185,13 @@
         int i=0;
         for (ActionButton *button in _buttons) {
             if ([button getLocked] != LOCKTYPE_LOCKED && [button testCollision:point]) {
+                if (i != _selectedIndex) {
+                    if (_panelType == MODEPANEL_PANEL_EXTRAS ) {
+                        [[SoundEngine shared] playSound:@"confirm"];
+                    } else {
+                        [[SoundEngine shared] playSound:@"guiSelectionForward"];
+                    }
+                }
                 _selectedIndex = i;
                 [self makeCursorActive];
                 break;

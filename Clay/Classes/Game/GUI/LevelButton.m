@@ -136,8 +136,14 @@
 {
     if (isPurchased) {
         [[_cart getCCSprite] setVisible:NO];
+        if (_trophy!=nil) {
+            [_trophy setVisible:YES];
+        }
     } else {
         [[_cart getCCSprite] setVisible:YES];
+        if (_trophy!=nil) {
+            [_trophy setVisible:NO];
+        }
     }
 }
 

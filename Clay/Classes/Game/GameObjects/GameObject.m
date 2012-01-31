@@ -690,7 +690,7 @@
         //LEVEL 3 - TOWN RUN
         ///////////////////////////
         case COLLISION_BEHAVIOR_ROLLING_HAYBALE:
-            [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-150.0f];
+            [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-150.0f ChaseSound:@"townRollingHayAppear"];
             break;
         case COLLISION_BEHAVIOR_FLYER:
             [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-250.0f ChaseSound:@"crowAppears"];
@@ -699,7 +699,13 @@
         ///////////////////////////
         //LEVEL 4 - DISCO RUN
         ///////////////////////////
-        
+        case COLLISION_BEHAVIOR_DISCO_TRIXTER_WAITING:
+        case COLLISION_BEHAVIOR_DISCO_TRIXTER_DANCING:
+            if (!_madeSound && [self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN - 50.0f]) {
+                _madeSound = true;
+                [[SoundEngine shared] playSound:@"discoBlondAppear"];
+            }
+            break;
             
             
         ///////////////////////////
@@ -793,6 +799,7 @@
                         [_projectile reset];
                         [_projectile setPosition:CGPointMake(_x + 53, _y - 20 )];
                         [_projectile setBoundingBox:CGRectMake(-7, 12, 16, 16)];
+                        [[SoundEngine shared] playSound:@"fireRockMonsterProjectile"];
                     } 
                 } else {
                     if ([self closeToPlayer:300.0f]) {
@@ -841,6 +848,11 @@
         ///////////////////////////
         case COLLISION_BEHAVIOR_UMBRELLA_FLY_UP:
             _vx = 0.0f;
+            if(!_madeSound && [self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+                _madeSound = true;
+                [[SoundEngine shared] playSound:@"rainyUmbrellaAppear"];
+            }
+            
             if ([self closeToPlayer:315]) {
                 _angle+=200.0f*dt;
                 if(_angle>-120.0f) {
@@ -905,6 +917,10 @@
                     }
                     else if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
                         _vx = 100.0f;
+                        if(!_madeSound) {
+                            [[SoundEngine shared] playSound:@"squirrelAppear"];
+                            _madeSound = true;
+                        }
                         
                     }
                     
@@ -1026,13 +1042,18 @@
             [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-100.0f ChaseSound:@"waterAnglerFish"];
             break;
         case COLLISION_BEHAVIOR_WATER_TRONIKA_CHASE:
-            [self chaseAtDistance:180.0f DefaultSpeed:-60.0f ChaseSpeed:-200.0f ChaseSound:@"" ChaseAnimation:@"waterTronikaAttackAnim" DefaultAnimation:@"waterTronikaCalmAnim"];
+            [self chaseAtDistance:180.0f DefaultSpeed:-60.0f ChaseSpeed:-200.0f ChaseSound:@"waterTronikaAppear" ChaseAnimation:@"waterTronikaAttackAnim" DefaultAnimation:@"waterTronikaCalmAnim"];
             break;
         case COLLISION_BEHAVIOR_WATER_SQUID_ATTACKS:
             playerPos = [_player getPosition];
             _angle = [self getAngleBetweenPoint1:CGPointMake(_x, _y) Point2:playerPos];
             [_sprite getCCSprite].rotation = -(_angle - 85.0f);
             if (!_hasTriggered) {
+                if (!_madeSound && [self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
+                    _madeSound = true;
+                    [[SoundEngine shared] playSound:@"waterSquidAppear"];
+                }
+                
                 
                 if ([self closeToPlayer:300]) {
                     [_projectile setPosition:CGPointMake(_x, _y)];
@@ -1040,6 +1061,7 @@
                     [_projectile setPosition:CGPointMake(_x - 12.0f, _y - 28.0f)];
                     [_projectile shootWithSpeed:160.0f atAngle:(_angle - 200.0f)];//190
                     [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"waterSquidAttackAnim"];
+                    [[SoundEngine shared] playSound:@"waterSquidProjectile"];
                     _hasTriggered = true;
                     _currentBehavior = COLLISION_BEHAVIOR_WATER_SQUID_RETREATS;
                     _waitToTrigger = 0.2f;

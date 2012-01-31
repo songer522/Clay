@@ -74,7 +74,7 @@
         [[_megaCannonAnim getCCSprite] setVisible:YES];
         [[AnimationController sharedController] replaceSprite:_megaCannonAnim withAnimationNamed:@"computerMegaCannonAnim"];
         _waitToMegaCannon = 1.1f;
-        //[[SoundEngine shared] playSound:@""];
+        [[SoundEngine shared] playSound:@"jimShipCharge"];        
     }
 }
 
@@ -84,7 +84,7 @@
         for (ComboAttack *attack in _comboAttacks) {
             [attack startAttack];
         }
-        //[[SoundEngine shared] playSound:@""];
+        [[SoundEngine shared] playSound:@"jimShipCharge"];        
     }
 }
 

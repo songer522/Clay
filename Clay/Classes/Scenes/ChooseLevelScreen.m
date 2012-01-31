@@ -112,9 +112,16 @@
             _levelToSwitchTo = [[NSString stringWithString:@"level1"] retain];
         }
         
+        /*
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"isTrainingRunPurchased"];
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"isDojoRunPurchased"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        */
+        
         if(_inDLCMode) {
             [[InAppPurchaseManager shared] loadStoreWithDelegate:self];
         }
+        
         
         
         //if timed mode had previously saved its selected level, we want to start with that one selected.
@@ -206,18 +213,22 @@
         if([_backButton checkIfSelected:position]) {
             _waitToSwitch = 0.25f;
             _backToChooseMode = true;
-            [[SoundEngine shared] playSound:@"buttonPressed"];     
+            [[SoundEngine shared] playSound:@"guiSelectionBack"];
         }
         
         if([_facebookButton checkIfSelected:position]) {
-            _waitToSwitch = 0.25f;
-            _openFacebook = true;
-            [[SoundEngine shared] playSound:@"buttonPressed"];     
+            if ([self checkDlcLevelUnlocked:_frontPanel.levelId]) {
+                _waitToSwitch = 0.25f;
+                _openFacebook = true;
+                [[SoundEngine shared] playSound:@"buttonPressed"];                
+            }
         }
         if([_twitterButton checkIfSelected:position]) {
-            _waitToSwitch = 0.25f;
-            _openTwitter= true;
-            [[SoundEngine shared] playSound:@"buttonPressed"];     
+            if ([self checkDlcLevelUnlocked:_frontPanel.levelId]) {
+                _waitToSwitch = 0.25f;
+                _openTwitter= true;
+                [[SoundEngine shared] playSound:@"buttonPressed"];     
+            }
         }
         
     }
@@ -409,8 +420,6 @@
     [panel setNextMedal:(medal+1) RequiredTime:requiredTimeText];
     [panel loadObjectsAfterDataInit:self];
     
-    [self updateDlcLevels];
-    
     [requiredTimeText release];
     
     return panel;
@@ -549,6 +558,7 @@
     _panelTransition = true;
     _backPanel = [self createInformationPanelForLevel:number];
     [_backPanel setAlpha:0.0f];
+    [self updateDlcLevels];
 }
 
 -(void)transitionOut
@@ -603,7 +613,6 @@
         _frontPanel = _backPanel;
         _backPanel = nil;
     } else {
-        //[_frontPanel setAlpha:(1.0f - _panelAlpha)];
         [_backPanel setAlpha:_panelAlpha];
         [_backPanel setPanelTransitionAmount:_panelAlpha];
     }

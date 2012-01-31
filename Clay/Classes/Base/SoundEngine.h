@@ -33,6 +33,9 @@ typedef enum {
     
     float _volume;
     float _sfxVolume;
+    
+    float _fadeRate;
+    
     SoundMode _soundMode;
     SoundMode _sfxMode;
     
@@ -56,6 +59,8 @@ typedef enum {
 -(void)cueSoundFxFadeOut;
 -(void)cueFadeIn;
 -(void)cueFadeOut;
+-(void)cueFastFadeOut;
+
 
 -(float)getMastersMusicVolume;
 -(float)getMastersSfxVolume;

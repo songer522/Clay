@@ -81,7 +81,7 @@ typedef enum {
 -(void)setMusicPositionByVolume:(float)volume;
 -(void)setSfxPositionByVolume:(float)volume;
 
--(void)sliderReactionAtPosition:(CGPoint)position;
+-(void)sliderReactionAtPosition:(CGPoint)position LastTouch:(bool)isLastTouch;
 
 -(void)switchToMainMenuScreen;
 -(void)switchToTutorial;

@@ -97,7 +97,7 @@
         CGPoint position = [self convertTouchToNodeSpace:touch];
         if([_backButton checkIfSelected:position]) {
             _waitToSwitch = 0.25f;
-            [[SoundEngine shared] playSound:@"buttonPressed"];     
+            [[SoundEngine shared] playSound:@"guiSelectionBackward"];     
         } else if([_startButton checkIfSelected:position]) {
             if (_canStart) {
                 [self cueStartAction];                
@@ -112,6 +112,7 @@
 {
     int currentPage = [_tutorial currentPage] + 1;
     [_tutorial switchToPage:currentPage];
+    [[SoundEngine shared] playSound:@"guiSelectionForward"];
 }
 
 -(void)updateStartButton
