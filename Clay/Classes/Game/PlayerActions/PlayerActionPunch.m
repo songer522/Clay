@@ -221,6 +221,10 @@
     return true;
 }
 
+-(bool)playerAllowedToJump
+{
+    return true;
+}
 
 -(void)dealloc
 {

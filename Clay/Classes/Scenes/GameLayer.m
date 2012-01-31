@@ -184,6 +184,13 @@
         [[_player getSpeed] setIsUnderwater:false];
         _player.isNewUnderwaterPhysics = false;
     }
+
+    if ([_level.name isEqualToString:@"level13"]){
+        _player.isDojoLevel = true;
+    } else {
+        _player.isDojoLevel = false;
+    }
+
     
     _hasBeatenLevel = false;
     
