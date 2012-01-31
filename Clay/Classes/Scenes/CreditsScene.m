@@ -152,7 +152,7 @@
     
     float rate = 32.0f * dt;
     self.position = ccp(self.position.x, self.position.y + rate);
-    if (!_hasSwitched && self.position.y > 1420.0f) {
+    if (!_hasSwitched && self.position.y > 1280.0f) {
         if(![GCState sharedInstance].watchCredit)
         {
             
@@ -161,9 +161,8 @@
         }
 
         [self switchToOptionsScreen];
-        
+        _hasSwitched = true;
     }
-    //NSLog(@"Position Y: %f",self.position.y);
 }
 
 -(void)onExit
@@ -174,12 +173,10 @@
 
 -(void)dealloc
 {
-    /*
     for (GameLabel *line in _lines) {
         [line release];
         line = nil;
-    }*/
-    //[_lines removeAllObjects];
+    }
     [_lines release];
     [super dealloc];
 }
