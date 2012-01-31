@@ -46,7 +46,7 @@ typedef enum {
     bool _initialized;
     bool _openFacebook;
     bool _openTwitter;
-    
+    bool _rateWindowShowed;
     TWTweetComposeViewController *_tweetViewController;
     FBPrompt *_fbprompt;
 

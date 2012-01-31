@@ -176,7 +176,7 @@
 -(void) applicationWillEnterForeground:(UIApplication*)application {
 	
     [[CCDirector sharedDirector] startAnimation];
-    //[Appirater appEnteredForeground:YES];
+    [Appirater appEnteredForeground:YES];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

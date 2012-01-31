@@ -23,6 +23,7 @@
 #import "SoundEngine.h"
 #import "AppDelegate.h"
 #import "GameLabel.h"
+#import "Appirater.h"
 
 @implementation EndLevelScene
 
@@ -59,6 +60,7 @@
         _time = 0.0f;
         _openFacebook=false;
         _openTwitter=false;
+        _rateWindowShowed=false;
         _tweetViewController = nil;
         _fbprompt = nil;
         _difficulty = [[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
@@ -300,6 +302,11 @@
                 _time = 1.0f;
                 //[_selectedButton setAlpha:1.0];
                 [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[MainMenuScene scene]]];
+                if(!_rateWindowShowed)
+                {
+                [Appirater userDidSignificantEvent:YES];
+                    _rateWindowShowed=true;
+                }
             } 
             /*
             // [_selectedButton setAlpha:(1-_time)];

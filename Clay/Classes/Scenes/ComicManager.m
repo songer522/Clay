@@ -220,7 +220,7 @@ static ComicManager *_shared = nil;
                 [self switchToPhase:COMIC_PHASE_BARS_IN];
                 break;
             case COMIC_PHASE_BARS_IN:
-               // [Appirater appEnteredForeground:YES];
+              
                 
                 if ([gameMode isEqualToString:@"story"]) {
                     [self switchToPhase:COMIC_PHASE_STARTING_VIDEO];                    

@@ -158,6 +158,12 @@
     <property name="obstacle" value="zombieMale"/>
    </properties>
   </tile>
+  <tile id="111">
+   <properties>
+    <property name="layerBelow" value="main0"/>
+    <property name="object" value="zombieJim"/>
+   </properties>
+  </tile>
  </tileset>
  <tileset firstgid="133" name="Level6_TiledSheet-hd" tilewidth="64" tileheight="64">
   <image source="tileset_level_6-hd.png" width="1024" height="1024"/>
@@ -213,7 +219,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1VEKwjAMANCdQD3EQA+m7v438EsoZZOubVo/3oP9DJqEJN2WBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgvPfsAgAAAAizNpzdKs89G3JGxMm19CRX26M9r46xUo+guLnroDyp1llG7FjPnegZ69urnjFL9djtUXs82q951N6p2r0unVPPb+gZ94P3M+qpmc2ZuUT9//7VqBmuybMNzFvqNrsAYNdldgEAAAAAAABAmA8JjwkN
+   eJzt1V0KwjAMAOCdQD3EQA823SU8vE/CKFO6/qQK3wd7GTQJSbpNEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAvMfoAgCALM/RBQDwl+aKs2vhuaUiZ484qZqepEp7tOfeMNbWrVPc1Dkoz1btLHvsWMudaBnr3auWMXO12O2oPY72bR6ld6p0r3Pn1PIbesT1w/sR9ZTM5shcev3/flXUDOfNswbmzXUZXQCw6zS6AAAAAAAAAKCbFxxoCYk=
   </data>
  </layer>
  <layer name="meta" width="900" height="14" opacity="0.4">
