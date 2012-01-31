@@ -483,7 +483,6 @@
 		54A40B4914AE8A7900012D0D /* computer.aifc in Resources */ = {isa = PBXBuildFile; fileRef = 54A40B3914AE8A7900012D0D /* computer.aifc */; };
 		54A40B4A14AE8A7900012D0D /* credits.aifc in Resources */ = {isa = PBXBuildFile; fileRef = 54A40B3A14AE8A7900012D0D /* credits.aifc */; };
 		54A40B4B14AE8A7900012D0D /* cutscene.aifc in Resources */ = {isa = PBXBuildFile; fileRef = 54A40B3B14AE8A7900012D0D /* cutscene.aifc */; };
-		54A40B4C14AE8A7900012D0D /* darkness_boss.aifc in Resources */ = {isa = PBXBuildFile; fileRef = 54A40B3C14AE8A7900012D0D /* darkness_boss.aifc */; };
 		54A40B4D14AE8A7900012D0D /* darkness.aifc in Resources */ = {isa = PBXBuildFile; fileRef = 54A40B3D14AE8A7900012D0D /* darkness.aifc */; };
 		54A40B4E14AE8A7900012D0D /* disco.aifc in Resources */ = {isa = PBXBuildFile; fileRef = 54A40B3E14AE8A7900012D0D /* disco.aifc */; };
 		54A40B4F14AE8A7900012D0D /* fire.aifc in Resources */ = {isa = PBXBuildFile; fileRef = 54A40B3F14AE8A7900012D0D /* fire.aifc */; };
@@ -1389,7 +1388,6 @@
 		54A40B3914AE8A7900012D0D /* computer.aifc */ = {isa = PBXFileReference; lastKnownFileType = file; name = computer.aifc; path = Resources/music/computer.aifc; sourceTree = "<group>"; };
 		54A40B3A14AE8A7900012D0D /* credits.aifc */ = {isa = PBXFileReference; lastKnownFileType = file; name = credits.aifc; path = Resources/music/credits.aifc; sourceTree = "<group>"; };
 		54A40B3B14AE8A7900012D0D /* cutscene.aifc */ = {isa = PBXFileReference; lastKnownFileType = file; name = cutscene.aifc; path = Resources/music/cutscene.aifc; sourceTree = "<group>"; };
-		54A40B3C14AE8A7900012D0D /* darkness_boss.aifc */ = {isa = PBXFileReference; lastKnownFileType = file; name = darkness_boss.aifc; path = Resources/music/darkness_boss.aifc; sourceTree = "<group>"; };
 		54A40B3D14AE8A7900012D0D /* darkness.aifc */ = {isa = PBXFileReference; lastKnownFileType = file; name = darkness.aifc; path = Resources/music/darkness.aifc; sourceTree = "<group>"; };
 		54A40B3E14AE8A7900012D0D /* disco.aifc */ = {isa = PBXFileReference; lastKnownFileType = file; name = disco.aifc; path = Resources/music/disco.aifc; sourceTree = "<group>"; };
 		54A40B3F14AE8A7900012D0D /* fire.aifc */ = {isa = PBXFileReference; lastKnownFileType = file; name = fire.aifc; path = Resources/music/fire.aifc; sourceTree = "<group>"; };
@@ -1710,7 +1708,6 @@
 				54A40B3914AE8A7900012D0D /* computer.aifc */,
 				54A40B3A14AE8A7900012D0D /* credits.aifc */,
 				54A40B3B14AE8A7900012D0D /* cutscene.aifc */,
-				54A40B3C14AE8A7900012D0D /* darkness_boss.aifc */,
 				54A40B3D14AE8A7900012D0D /* darkness.aifc */,
 				54A40B3E14AE8A7900012D0D /* disco.aifc */,
 				54A40B3F14AE8A7900012D0D /* fire.aifc */,
@@ -3564,7 +3561,6 @@
 				54A40B4914AE8A7900012D0D /* computer.aifc in Resources */,
 				54A40B4A14AE8A7900012D0D /* credits.aifc in Resources */,
 				54A40B4B14AE8A7900012D0D /* cutscene.aifc in Resources */,
-				54A40B4C14AE8A7900012D0D /* darkness_boss.aifc in Resources */,
 				54A40B4D14AE8A7900012D0D /* darkness.aifc in Resources */,
 				54A40B4E14AE8A7900012D0D /* disco.aifc in Resources */,
 				54A40B4F14AE8A7900012D0D /* fire.aifc in Resources */,

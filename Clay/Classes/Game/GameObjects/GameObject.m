@@ -549,20 +549,14 @@
     _movedBy -= _vy * dt;
     
     [self setPositionAtX:_x Y:_y];
+    //[self setPosition:CGPointMake(_x, _y)];
 
     [self updateFadeOut:dt];
     
     [self updateCollisionBehavior:dt];
     
     [self updateFlags];
-    
-    if (_isStutterMode) {
-        [self updateLights:dt];        
-    } else {
-        //unneeded
-    }
-    
-    
+
     
 }
 

@@ -44,7 +44,13 @@
     return @"";
     
 }
-
+/*
++(NSString*)getContinueGameTime
+{
+    NSString *levelTime = [[GameSettings shared] getGlobalForKey:@"storyModeCurrentTime"];
+    
+}
+*/
 
 
 @end

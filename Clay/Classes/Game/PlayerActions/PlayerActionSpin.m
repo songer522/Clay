@@ -111,8 +111,7 @@
                 [_player setVy:100.0f];
             }
             _player.vy += 10.0f * dt;
-            
-            [_sprite setPosition:ccp(_player.x - 0.0f, _player.y + 45.0f)];
+            [_sprite setPlayerObjectPosition:CGPointMake(_player.x - 0.0f, _player.y + 45.0f)];
         }
     }
     [super update:dt];
