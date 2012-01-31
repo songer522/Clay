@@ -345,6 +345,8 @@
     for (ComboAttack *combo in _comboAttacks) {
         [combo disable];
     }
+    [[_cannonAnim getCCSprite] setVisible:NO];
+    [[_megaCannonAnim getCCSprite] setVisible:NO];
 }
 
 -(void)restartLevel
