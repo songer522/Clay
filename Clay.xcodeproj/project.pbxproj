@@ -588,6 +588,10 @@
 		6119ABC114ACDC8F00A7B136 /* timed_hard_level3_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 6119ABC014ACDC8F00A7B136 /* timed_hard_level3_hd.tmx */; };
 		6120C69314D37B7D0047309F /* endGameTextures-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6120C68F14D37B7D0047309F /* endGameTextures-hd.plist */; };
 		6120C69414D37B7D0047309F /* endGameTextures-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6120C69014D37B7D0047309F /* endGameTextures-hd.png */; };
+		6132627614D8918200539203 /* zombieLevel-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6132627214D8918200539203 /* zombieLevel-hd.plist */; };
+		6132627714D8918200539203 /* zombieLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6132627314D8918200539203 /* zombieLevel-hd.png */; };
+		6132627814D8918200539203 /* zombieLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6132627414D8918200539203 /* zombieLevel.plist */; };
+		6132627914D8918200539203 /* zombieLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 6132627514D8918200539203 /* zombieLevel.png */; };
 		614E840814CDCAC4008AE080 /* tileset_level_2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 614E840614CDCAC4008AE080 /* tileset_level_2-hd.png */; };
 		614E840914CDCAC4008AE080 /* tileset_level_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 614E840714CDCAC4008AE080 /* tileset_level_2.png */; };
 		61782B4D14B3AC3F00C615E7 /* story_easy_level5_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61F6F6CB14B28643003A5C68 /* story_easy_level5_hd.tmx */; };
@@ -609,10 +613,6 @@
 		618CD31D14D701C0008D7CDF /* howtoplayScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 618CD31914D701C0008D7CDF /* howtoplayScreen.png */; };
 		618CD32414D740AB008D7CDF /* tileset_level_4-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 618CD32214D740AB008D7CDF /* tileset_level_4-hd.png */; };
 		618CD32514D740AB008D7CDF /* tileset_level_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 618CD32314D740AB008D7CDF /* tileset_level_4.png */; };
-		618CD33214D751C0008D7CDF /* zombieLevel-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 618CD32E14D751C0008D7CDF /* zombieLevel-hd.plist */; };
-		618CD33314D751C0008D7CDF /* zombieLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 618CD32F14D751C0008D7CDF /* zombieLevel-hd.png */; };
-		618CD33414D751C0008D7CDF /* zombieLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 618CD33014D751C0008D7CDF /* zombieLevel.plist */; };
-		618CD33514D751C0008D7CDF /* zombieLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 618CD33114D751C0008D7CDF /* zombieLevel.png */; };
 		618CD33A14D75688008D7CDF /* fireLevel-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 618CD33614D75688008D7CDF /* fireLevel-hd.plist */; };
 		618CD33B14D75688008D7CDF /* fireLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 618CD33714D75688008D7CDF /* fireLevel-hd.png */; };
 		618CD33C14D75688008D7CDF /* fireLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 618CD33814D75688008D7CDF /* fireLevel.plist */; };
@@ -1507,6 +1507,10 @@
 		6119ABC014ACDC8F00A7B136 /* timed_hard_level3_hd.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = timed_hard_level3_hd.tmx; sourceTree = "<group>"; };
 		6120C68F14D37B7D0047309F /* endGameTextures-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "endGameTextures-hd.plist"; sourceTree = "<group>"; };
 		6120C69014D37B7D0047309F /* endGameTextures-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "endGameTextures-hd.png"; sourceTree = "<group>"; };
+		6132627214D8918200539203 /* zombieLevel-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "zombieLevel-hd.plist"; sourceTree = "<group>"; };
+		6132627314D8918200539203 /* zombieLevel-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zombieLevel-hd.png"; sourceTree = "<group>"; };
+		6132627414D8918200539203 /* zombieLevel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = zombieLevel.plist; sourceTree = "<group>"; };
+		6132627514D8918200539203 /* zombieLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zombieLevel.png; sourceTree = "<group>"; };
 		614E840614CDCAC4008AE080 /* tileset_level_2-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tileset_level_2-hd.png"; path = "Resources/levels/tileset_level_2-hd.png"; sourceTree = "<group>"; };
 		614E840714CDCAC4008AE080 /* tileset_level_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tileset_level_2.png; path = Resources/levels/tileset_level_2.png; sourceTree = "<group>"; };
 		61782B5314B3E49C00C615E7 /* tileset_level_6-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tileset_level_6-hd.png"; path = "Resources/levels/tileset_level_6-hd.png"; sourceTree = "<group>"; };
@@ -1527,10 +1531,6 @@
 		618CD31914D701C0008D7CDF /* howtoplayScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = howtoplayScreen.png; sourceTree = "<group>"; };
 		618CD32214D740AB008D7CDF /* tileset_level_4-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tileset_level_4-hd.png"; path = "Resources/levels/tileset_level_4-hd.png"; sourceTree = "<group>"; };
 		618CD32314D740AB008D7CDF /* tileset_level_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tileset_level_4.png; path = Resources/levels/tileset_level_4.png; sourceTree = "<group>"; };
-		618CD32E14D751C0008D7CDF /* zombieLevel-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "zombieLevel-hd.plist"; sourceTree = "<group>"; };
-		618CD32F14D751C0008D7CDF /* zombieLevel-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zombieLevel-hd.png"; sourceTree = "<group>"; };
-		618CD33014D751C0008D7CDF /* zombieLevel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = zombieLevel.plist; sourceTree = "<group>"; };
-		618CD33114D751C0008D7CDF /* zombieLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zombieLevel.png; sourceTree = "<group>"; };
 		618CD33614D75688008D7CDF /* fireLevel-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "fireLevel-hd.plist"; path = "fire/fireLevel-hd.plist"; sourceTree = "<group>"; };
 		618CD33714D75688008D7CDF /* fireLevel-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fireLevel-hd.png"; path = "fire/fireLevel-hd.png"; sourceTree = "<group>"; };
 		618CD33814D75688008D7CDF /* fireLevel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = fireLevel.plist; path = fire/fireLevel.plist; sourceTree = "<group>"; };
@@ -2970,10 +2970,10 @@
 		549ED89E1461D145008BCD98 /* zombie */ = {
 			isa = PBXGroup;
 			children = (
-				618CD32E14D751C0008D7CDF /* zombieLevel-hd.plist */,
-				618CD32F14D751C0008D7CDF /* zombieLevel-hd.png */,
-				618CD33014D751C0008D7CDF /* zombieLevel.plist */,
-				618CD33114D751C0008D7CDF /* zombieLevel.png */,
+				6132627214D8918200539203 /* zombieLevel-hd.plist */,
+				6132627314D8918200539203 /* zombieLevel-hd.png */,
+				6132627414D8918200539203 /* zombieLevel.plist */,
+				6132627514D8918200539203 /* zombieLevel.png */,
 				5F8A449514687FF200CE1FC2 /* bullet-hd.png */,
 				549ED89F1461D145008BCD98 /* bullet.png */,
 				5F8A449714687FF200CE1FC2 /* zombieHead-hd.png */,
@@ -3662,10 +3662,6 @@
 				618CD31D14D701C0008D7CDF /* howtoplayScreen.png in Resources */,
 				618CD32414D740AB008D7CDF /* tileset_level_4-hd.png in Resources */,
 				618CD32514D740AB008D7CDF /* tileset_level_4.png in Resources */,
-				618CD33214D751C0008D7CDF /* zombieLevel-hd.plist in Resources */,
-				618CD33314D751C0008D7CDF /* zombieLevel-hd.png in Resources */,
-				618CD33414D751C0008D7CDF /* zombieLevel.plist in Resources */,
-				618CD33514D751C0008D7CDF /* zombieLevel.png in Resources */,
 				618CD33A14D75688008D7CDF /* fireLevel-hd.plist in Resources */,
 				618CD33B14D75688008D7CDF /* fireLevel-hd.png in Resources */,
 				618CD33C14D75688008D7CDF /* fireLevel.plist in Resources */,
