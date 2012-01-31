@@ -122,7 +122,7 @@ NSString *templateReviewURL = @"itms-apps://ax.itunes.apple.com/WebObjects/MZSto
 - (BOOL)ratingConditionsHaveBeenMet {
 	if (APPIRATER_DEBUG)
 		return YES;
-	
+ 
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	
 	NSDate *dateOfFirstLaunch = [NSDate dateWithTimeIntervalSince1970:[userDefaults doubleForKey:kAppiraterFirstUseDate]];
@@ -140,7 +140,6 @@ NSString *templateReviewURL = @"itms-apps://ax.itunes.apple.com/WebObjects/MZSto
 	int sigEventCount = [userDefaults integerForKey:kAppiraterSignificantEventCount];
 	if (sigEventCount <= APPIRATER_SIG_EVENTS_UNTIL_PROMPT)
 		return NO;
-	
 	// has the user previously declined to rate this version of the app?
 	if ([userDefaults boolForKey:kAppiraterDeclinedToRate])
 		return NO;
@@ -148,6 +147,7 @@ NSString *templateReviewURL = @"itms-apps://ax.itunes.apple.com/WebObjects/MZSto
 	// has the user already rated the app?
 	if ([userDefaults boolForKey:kAppiraterRatedCurrentVersion])
 		return NO;
+	
 	
 	// if the user wanted to be reminded later, has enough time passed?
 	NSDate *reminderRequestDate = [NSDate dateWithTimeIntervalSince1970:[userDefaults doubleForKey:kAppiraterReminderRequestDate]];

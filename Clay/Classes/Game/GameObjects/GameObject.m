@@ -902,6 +902,7 @@
                     if ([self closeToPlayer:400.0f]) {
                         _waitToTrigger = 0.28f;
                         _hasAppeared=true;
+                        [[SoundEngine shared] playSound:@"squirrelAppear"];
                     }
                     else if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
                         _vx = 100.0f;

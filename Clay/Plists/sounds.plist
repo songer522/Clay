@@ -148,5 +148,9 @@
 	<string>eraseData.wav</string>
 	<key>guiSwitchSections</key>
 	<string>guiSwitchSections.wav</string>
+	<key>comboAttackMove</key>
+	<string>comboAttackMove.wav</string>
+	<key>squirrelAppear</key>
+	<string>squirrelAppear.wav</string>
 </dict>
 </plist>
