@@ -46,6 +46,14 @@
         
         [self scheduleUpdate];
         self.isTouchEnabled = YES;
+        
+        [[GameSettings shared] setGlobal:@"NO" ForKey:@"titleMusicStarted"];
+        
+        NSString *creditsMusicStarted = [[GameSettings shared] getGlobalForKey:@"creditsMusicStarted"];
+        if(![creditsMusicStarted isEqualToString:@"YES"]) {
+            [[SoundEngine shared] playMusic:@"credits"];
+            [[SoundEngine shared] cueFadeIn];
+        }
     }
     
     return self;
@@ -113,33 +121,38 @@
 -(void)loadCredits
 {
     NSDictionary *credits = [PListLoader loadPlistWithName:@"credits"];
-    NSEnumerator *enumerator = [credits objectEnumerator];
 
-    id group;
-    while ((group = [enumerator nextObject])) {
-        [self addGroup:(NSDictionary*)group];
-        _currentY -= 25.0f;
-    }
+    NSDictionary *group1 = [credits objectForKey:@"group1"];
+    [self addGroup:group1];
+    _currentY -= 90.0f;
+    
+    NSDictionary *group2 = [credits objectForKey:@"group2"];
+    [self addGroup:group2];
 }
 
 -(void)switchToOptionsScreen
 {
+    [[GameSettings shared] setGlobal:@"NO" ForKey:@"creditsMusicStarted"];
+    
     NSString *switchTo= [[GameSettings shared] getGlobalForKey:@"switchToCreditsFrom"];
     if([switchTo isEqualToString:@"endGame"])
-        {
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[EndLevelScene scene]]];
-        }
-        else if ([switchTo isEqualToString:@"options"])
-          {
-              [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[OptionsScene scene]]];
-          }
+    {
+        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[EndLevelScene scene]]];
+    }
+    else if ([switchTo isEqualToString:@"options"])
+    {
+        [[SoundEngine shared] cueFastFadeOut];
+        [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[OptionsScene scene]]];
+    }
 }
 
 -(void)update:(ccTime)dt
 {
+    [[SoundEngine shared] update:dt];
+    
     float rate = 32.0f * dt;
     self.position = ccp(self.position.x, self.position.y + rate);
-    if (!_hasSwitched && self.position.y > 1120.0f) {
+    if (!_hasSwitched && self.position.y > 1420.0f) {
         if(![GCState sharedInstance].watchCredit)
         {
             
@@ -161,10 +174,12 @@
 
 -(void)dealloc
 {
+    /*
     for (GameLabel *line in _lines) {
         [line release];
         line = nil;
-    }
+    }*/
+    //[_lines removeAllObjects];
     [_lines release];
     [super dealloc];
 }

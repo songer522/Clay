@@ -48,6 +48,15 @@
         _inTutorial = false;
         _waitToSwitch = 0.0f;
         _windowOpen = false;
+        
+        
+        //check to see if the title menu music is loaded. if not, play it.
+        NSString *musicStarted = [[GameSettings shared] getGlobalForKey:@"titleMusicStarted"];
+        if (![musicStarted isEqualToString:@"YES"]) {
+            [[SoundEngine shared] playMusic:@"title"];
+            [[GameSettings shared] setGlobal:@"YES" ForKey:@"titleMusicStarted"];
+            [[SoundEngine shared] cueFadeIn];
+        }
     }
     
     return self;
@@ -298,6 +307,8 @@
 
 -(void)update:(ccTime)dt
 {
+    [[SoundEngine shared] update:dt];
+    
     [_backButton update:dt];
     //[_tutorial update:dt];
     

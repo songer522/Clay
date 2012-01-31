@@ -2,12 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>group</key>
+	<key>group1</key>
 	<dict>
 		<key>count</key>
-		<string>10</string>
+		<string>4</string>
 		<key>name</key>
-		<string>Xecudev, LLC.</string>
+		<string>Xecudev</string>
 		<key>1</key>
 		<string>Executive Producer:Jeff Koehler</string>
 		<key>2</key>
@@ -15,19 +15,24 @@
 		<key>3</key>
 		<string>Programmer/Level Design:Yang Song</string>
 		<key>4</key>
-		<string>Programmer:Dustin Werner</string>
-		<key>5</key>
 		<string>Game Artist:Tianyu Wang</string>
-		<key>6</key>
+	</dict>
+	<key>group2</key>
+	<dict>
+		<key>count</key>
+		<string>12</string>
+		<key>name</key>
+		<string>Special Thanks</string>
+		<key>1</key>
+		<string>Story:Dan Stuckey</string>
+		<key>2</key>
 		<string>Music:Sam Stuckey</string>
-		<key>7</key>
-		<string>Writer:Dan Stuckey</string>
-		<key>8</key>
-		<string>Recruiter:Nina Koehler</string>
-		<key>9</key>
-		<string>Special Thanks:Kevin Skerrett</string>
-		<key>10</key>
-		<string>Beta Testers:Austin Clark,Brett Clark,Mike Lewinski,Michelle Lewinski</string>
+		<key>3</key>
+		<string>Tim:Tim Skerrett</string>
+		<key>4</key>
+		<string>Additional Programming:Dustin Werner</string>
+		<key>5</key>
+		<string>Testers:Nina Koehler,Kevin Skerrett,Austin Clark,Brett Harbaugh-Clark,Michelle Lewinski,Mike Lewinski</string>
 	</dict>
 </dict>
 </plist>
