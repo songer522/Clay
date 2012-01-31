@@ -65,7 +65,8 @@
         _tweetViewController = nil;
         _fbprompt = nil;
         _difficulty = [[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
-       
+        _hasSwitched = true;
+        
         //_description= [NSString stringWithFormat:@"story mode %@",_difficulty];
         
         [[LayerManager sharedLayers] setWorkingLayer:self];
@@ -302,13 +303,14 @@
                 _time -= 2.0f * dt;
                 if (_time <=0.0f) {
                     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[MainMenuScene scene]]];
+                    _hasSwitched = true;
                     if(!_rateWindowShowed)
                     {
                         [[Appirater sharedInstance] setShouldForceShowingWindow:YES];
                         _rateWindowShowed=true;
                     }                    
                 }
-            }
+            } 
 
             break;
         default:

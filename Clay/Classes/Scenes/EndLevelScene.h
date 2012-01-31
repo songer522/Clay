@@ -64,7 +64,7 @@ typedef enum {
     
     ActionButton *_selectedButton;
     
-    //bool _hasSwitched;
+    bool _hasSwitched;
     
     NSString *_difficulty;
     NSString *_timer;

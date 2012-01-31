@@ -113,14 +113,16 @@
 
 -(void)setInitialMultilineText:(NSString*)text Width:(int)width
 {
-    _textLabel = [CCLabelBMFont labelWithString:text fntFile:@"GraphicFont.fnt" width:width alignment:UITextAlignmentLeft];
     
     if ([[GameSettings shared] usingHighResolutionGraphics]){
         [_textLabel setScale:0.65f];
+        _textLabel = [CCLabelBMFont labelWithString:text fntFile:@"GraphicFont.fnt" width:width alignment:UITextAlignmentLeft];
     }
     else
     {
-        [_textLabel setScale:0.325f];
+        _textLabel = [CCLabelBMFont labelWithString:text fntFile:@"GraphicFont_LowRes22.fnt" width:width alignment:UITextAlignmentLeft];
+        [_textLabel setScale:0.65f];
+        //[_textLabel setScale:0.325f];
     }
     
     _textLabel.anchorPoint = ccp(0.5f,0.5f);

@@ -103,7 +103,7 @@
     if (_levelId == 12) {
         text = @"Help Tim train for the big race! This bonus level finds Tim at his local gym…but this isn’t your typical workout.";
     } else if(_levelId == 13) {
-        text = @"Tim’s daydreaming doesn’t just get him in trouble during long races: this bonus level finds Tim working out at the Dojo, fighting off ninjas and dodging throwing stars. Fortunately, it’s all in his head…isn’t it?";
+        text = @"This bonus level finds Tim working out at the Dojo, fighting off ninjas and dodging throwing stars. Fortunately, it’s all in his head…isn’t it?";
         
     }
     _dlcDescription = [CCLabelTTF labelWithString:text dimensions:CGSizeMake(172, 80) alignment:UITextAlignmentLeft fontName:@"Impact.ttf" fontSize:10];

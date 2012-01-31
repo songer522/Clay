@@ -10,6 +10,7 @@
 #import "Button.h"
 #import "LayerManager.h"
 #import "GameLabel.h"
+#import "GameSettings.h"
 
 //private methods
 @interface Button()
@@ -53,7 +54,12 @@
 -(id)initWithText:(NSString*)text AtPoint:(CGPoint)point
 {
     if ((self=[super init])) {
-        _buttonLabel=[CCLabelBMFont labelWithString:text fntFile:@"GraphicFont.fnt"];
+        if ([[GameSettings shared] usingHighResolutionGraphics]) {
+            _buttonLabel=[CCLabelBMFont labelWithString:text fntFile:@"GraphicFont.fnt"];            
+        } else {
+            _buttonLabel=[CCLabelBMFont labelWithString:text fntFile:@"GraphicFont_LowRes22.fnt"];
+        }
+        
         _buttonLabel.position=ccp(point.x, point.y);
     
         [[[LayerManager sharedLayers] currentLayer] addChild:_buttonLabel];
@@ -69,7 +75,12 @@
 {
     if ((self=[super init])) {
         
-        _buttonLabel=[CCLabelBMFont labelWithString:text fntFile:@"GraphicFont.fnt"];
+        if ([[GameSettings shared] usingHighResolutionGraphics]) {
+            _buttonLabel=[CCLabelBMFont labelWithString:text fntFile:@"GraphicFont.fnt"];            
+        } else {
+            _buttonLabel=[CCLabelBMFont labelWithString:text fntFile:@"GraphicFont_LowRes22.fnt"];
+        }
+
         _buttonLabel.position=ccp(point.x, point.y);
         
         [layer addChild:_buttonLabel];
@@ -87,7 +98,13 @@
 {
     CGPoint labelPosition=_buttonLabel.position;
     [[[LayerManager sharedLayers] currentLayer] removeChild:_buttonLabel cleanup:NO];
-    _buttonLabel=[CCLabelBMFont labelWithString:text fntFile:@"GraphicFont.fnt"];
+    
+    if ([[GameSettings shared] usingHighResolutionGraphics]) {
+        _buttonLabel=[CCLabelBMFont labelWithString:text fntFile:@"GraphicFont.fnt"];            
+    } else {
+        _buttonLabel=[CCLabelBMFont labelWithString:text fntFile:@"GraphicFont_LowRes22.fnt"];
+    }
+
     _buttonLabel.position=labelPosition;
     [[[LayerManager sharedLayers] currentLayer] addChild:_buttonLabel];
 }
