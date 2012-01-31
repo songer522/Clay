@@ -206,7 +206,7 @@
     }
     else if(comicNumber > 20) {
         _imageName = [NSString stringWithFormat:@"Comic_%d.png",comicNumber];
-        durationNumber = comicNumber - 9;
+        durationNumber = comicNumber - 10;
         showComic = true;
     }
     else {

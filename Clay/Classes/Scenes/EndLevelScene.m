@@ -204,7 +204,7 @@
                 else if ([_menuButton checkIfSelected:position])
                 {
                     _selectedButton=_menuButton;
-                    _time=0.0f;
+                    _time=0.5f;
                     _state=END_LEVEL_TRANSITION_OUT;
                   
                 }
@@ -215,7 +215,6 @@
 -(void)update:(ccTime)dt
 {
     float rate = 2.0f * dt;
-    _time += 2*dt;
     
     float finalTime = [[[GameSettings shared] getGlobalForKey:@"finalTime"] floatValue];
     
@@ -297,32 +296,18 @@
             break;
         case END_LEVEL_TRANSITION_OUT:
             
-            if (_time >=1.0f)
+            if (_time >0.0f)
             {
-                _time = 1.0f;
-                //[_selectedButton setAlpha:1.0];
-                [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[MainMenuScene scene]]];
-                if(!_rateWindowShowed)
-                {
-                    [[Appirater sharedInstance] setShouldForceShowingWindow:YES];
-                    _rateWindowShowed=true;
+                _time -= 2.0f * dt;
+                if (_time <=0.0f) {
+                    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[MainMenuScene scene]]];
+                    if(!_rateWindowShowed)
+                    {
+                        [[Appirater sharedInstance] setShouldForceShowingWindow:YES];
+                        _rateWindowShowed=true;
+                    }                    
                 }
-            } 
-            /*
-            // [_selectedButton setAlpha:(1-_time)];
-            //[_background setAlpha:(1-_time)];
-            [_facebookIcon setAlpha:(1-_time)];
-            [_twitterIcon setAlpha:(1-_time)];
-            [_finalTimePanel setAlpha:(1-_time)];
-            [_finalTimeHeader setAlpha:(1-_time)];
-            [_difficultyHeader setAlpha:(1-_time)];
-            [_facebookAndTwitterPanel setAlpha:(1-_time)];
-            [_timeHeaderText setAlpha:(1-_time)];
-            [_finalTimeText setAlpha:(1-_time)];
-            [_facebookButton setAlpha:(1-_time)];
-            [_twitterButton setAlpha:(1-_time)];
-            //[_menuButton setAlpha:(1-_time)];
-             */
+            }
 
             break;
         default:
