@@ -106,7 +106,7 @@
         text = @"This bonus level finds Tim working out at the Dojo, fighting off ninjas and dodging throwing stars. Fortunately, it’s all in his head…isn’t it?";
         
     }
-    _dlcDescription = [CCLabelTTF labelWithString:text dimensions:CGSizeMake(172, 80) alignment:UITextAlignmentLeft fontName:@"Impact.ttf" fontSize:10];
+    _dlcDescription = [CCLabelTTF labelWithString:text dimensions:CGSizeMake(172, 80) alignment:UITextAlignmentLeft fontName:@"Impact.ttf" fontSize:12];
     [_dlcDescription setPosition:ccp(106,97)];
     [_rootLocked addChild:_dlcDescription];
 }
