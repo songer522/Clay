@@ -566,7 +566,7 @@
         _waitToPlayTrainSound -= dt;
         if (_waitToPlayTrainSound <= 0.0f) {
             _trainSoundId = [[SoundEngine shared] playSoundGetId:@"bossFinalTrain"];
-            _waitToPlayTrainSound = 10.0f;
+            _waitToPlayTrainSound = 9.1f;
         }
     }
 }

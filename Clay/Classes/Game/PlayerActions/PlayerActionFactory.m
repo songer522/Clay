@@ -117,8 +117,7 @@
     } else if([action isEqualToString:@"pump"]) {
         buttonImage = @"UI_Button_BicepCurl.png";
     } else if([action isEqualToString:@"punch"]) {
-        buttonImage = @"UI_Button_BicepCurl.png";
-        //buttonImage = @"UI_Button_Punch.png";
+        buttonImage = @"UI_Button_Punching.png";
     } else {
         buttonImage = @"";
     }

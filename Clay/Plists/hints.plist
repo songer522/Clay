@@ -5,47 +5,61 @@
 	<key>level1</key>
 	<dict>
 		<key>1</key>
-		<string>Double jump to get over the red hurdles.</string>
+		<string>Always double jump to get over the red hurdles.</string>
 		<key>2</key>
-		<string>Try jumping over one hurdle, then double jumping to get over the next hurdle.</string>
+		<string>Try jumping over one hurdle, then double jump without landing to get over the next hurdle.</string>
 		<key>3</key>
 		<string>Try sprinting through the sand pits.</string>
 		<key>4</key>
-		<string>Press the action button to cheer and gain health.</string>
+		<string>Press the action button to cheer and gain one health.</string>
 		<key>5</key>
-		<string>Press the action button in front of other people to gain double health.</string>
+		<string>Press the action button in front of other people to gain two health.</string>
 	</dict>
 	<key>level2</key>
 	<dict>
 		<key>1</key>
 		<string>Try double jumping early to get over the pigs.</string>
 		<key>2</key>
-		<string>Press the action button to kick the chickens.</string>
+		<string>Press the action button to kick the chickens and gain one health.</string>
 		<key>3</key>
+		<string>Don&apos;t kick the stone chickens.</string>
+		<key>4</key>
 		<string>Kicked chickens are the best way to defeat cows.</string>
 	</dict>
 	<key>level3</key>
 	<dict>
 		<key>1</key>
 		<string>Don&apos;t double-jump when you see a crow.</string>
+		<key>2</key>
+		<string>Press the action button to cheer and gain one health.</string>
+		<key>3</key>
+		<string>Press the action button in front of other people to gain two health.</string>
 	</dict>
 	<key>level4</key>
 	<dict>
 		<key>1</key>
-		<string>Press the action button to shuffle past the other dancers.</string>
+		<string>Press the action button to shuffle past the dancers and get one health.</string>
+		<key>2</key>
+		<string>Try jumping over the redhead instead of dancing with her.</string>
+		<key>3</key>
+		<string>The blonde dancer will slow you down.  Try running past her.</string>
 	</dict>
 	<key>level5</key>
 	<dict>
-		<key>2</key>
-		<string>Press the action button to cheer and gain health.</string>
 		<key>1</key>
+		<string>Press the action button to cheer and gain health.</string>
+		<key>2</key>
 		<string>Sprint to get enough speed to get over the long pits.</string>
 		<key>3</key>
-		<string>Press the action button in front of other people to gain double health.</string>
+		<string>Press the action button in front of other people to gain two health.</string>
 	</dict>
 	<key>level6</key>
 	<dict>
 		<key>1</key>
+		<string>Use the ledges to jump over the hearts and brains.</string>
+		<key>2</key>
+		<string>Shoot the zombies to gain one health.</string>
+		<key>3</key>
 		<string>Sprint to get enough speed to get over the long pits.</string>
 	</dict>
 	<key>level7</key>
@@ -58,14 +72,24 @@
 	<key>level8</key>
 	<dict>
 		<key>1</key>
-		<string>Press the action button to blow out the fire demons.</string>
+		<string>Press the action button to blow out the fire demons and gain one health.</string>
 		<key>2</key>
-		<string>Blow the fire off the foxes to jump over them easier.</string>
+		<string>Utilize the ledges to complete the level.</string>
+		<key>3</key>
+		<string>Try sprinting when going against the rock lava enemy.</string>
+		<key>4</key>
+		<string>Blow the fire off the foxes to jump over them easier and also to gain one health.</string>
 	</dict>
 	<key>level9</key>
 	<dict>
 		<key>1</key>
-		<string>Press the sprint button when it gets windy.</string>
+		<string>Press the action button to cheer and gain one health.</string>
+		<key>2</key>
+		<string>Press the action button in front of other people to gain two health.</string>
+		<key>3</key>
+		<string>Don&apos;t jump when you see the umbrella.</string>
+		<key>4</key>
+		<string>Try sprinting against the wind.</string>
 	</dict>
 	<key>level10</key>
 	<dict>
@@ -74,30 +98,49 @@
 		<key>2</key>
 		<string>Press and hold the action button to dive down faster after jumping.</string>
 		<key>3</key>
+		<string>Use the action button to pop the bubbles for one or two health.</string>
+		<key>4</key>
 		<string>Sprint on the ground to speed up to get faster times.</string>
 	</dict>
 	<key>level11</key>
 	<dict>
 		<key>1</key>
-		<string>Press the action button to detonate any bombs you see.</string>
+		<string>Press the action button to detonate any bombs you see to gain one health.</string>
 		<key>2</key>
-		<string>Sprint to outrun the bombs Jim throws.</string>
+		<string>A well timed sprint will help you get past the bats.</string>
 		<key>3</key>
 		<string>Jump on the minecarts to help get past the spikes.</string>
 	</dict>
 	<key>level12</key>
 	<dict>
 		<key>1</key>
-		<string>Jump on the treadmills pointing right to gain extra speeds.</string>
+		<string>Press the action button to pump weights and gain one health.</string>
+		<key>2</key>
+		<string>Press the action button in front of the trainers to gain two health.</string>
+		<key>3</key>
+		<string>Be aware of the direction the treadmills are going before using them.</string>
+	</dict>
+	<key>level13</key>
+	<dict>
+		<key>1</key>
+		<string>Punch the ninjas to gain one health.</string>
 	</dict>
 	<key>global</key>
 	<dict>
 		<key>1</key>
-		<string>You can jump again in the air. This will help you get over hurdles.</string>
+		<string>You can jump again in the air. This will help you get over enemies or pits.</string>
 		<key>2</key>
 		<string>The battery shows how much health you have left.</string>
 		<key>3</key>
 		<string>Press the sprint button to run faster. Then you can press it again to slow back down.</string>
+		<key>4</key>
+		<string>Double jumping slows you down.  Use sparingly when going for faster times.</string>
+		<key>5</key>
+		<string>If you are speed bursting you can use a smaller jump to get over some enemies.</string>
+		<key>6</key>
+		<string>Remember, tap for small jump, hold for medium jump.</string>
+		<key>7</key>
+		<string>Completing an action successfully gains health.</string>
 	</dict>
 </dict>
 </plist>
