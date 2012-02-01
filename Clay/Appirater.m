@@ -37,6 +37,9 @@
 #import "Appirater.h"
 #import "GameConfig.h"
 #import "GameLayer.h"
+#import "GCState.h"
+#import "GCHelper.h"
+#import "GameSettings.h"
 
 #import <SystemConfiguration/SCNetworkReachability.h>
 #include <netinet/in.h>
@@ -375,6 +378,10 @@ NSString *templateReviewURL = @"itms-apps://ax.itunes.apple.com/WebObjects/MZSto
 	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:reviewURL]];
 #endif
 }
+-(void)reportAchievement
+{
+    [[GameSettings shared] setGlobal:@"YES" ForKey:@"RatedOurGame"];
+}
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -391,6 +398,7 @@ NSString *templateReviewURL = @"itms-apps://ax.itunes.apple.com/WebObjects/MZSto
 		case 1:
 		{
 			// they want to rate it
+            [self reportAchievement];
 			[Appirater rateApp];
 			break;
 		}

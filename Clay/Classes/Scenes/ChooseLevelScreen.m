@@ -520,14 +520,20 @@
 -(void)checkAllGold
 {
     if(_allGoldMedalInNormal && !_inDLCMode)
-    {
+    { if(![GCState sharedInstance].allGoldInNormal)
+      {
+        [GCState sharedInstance].allGoldInNormal=true;
         [[GCHelper sharedInstance] reportAchievement:gcAchievementAllGoldInNM percentComplete:100];
+      }
     }
     if(_allGoldMedalInInsane && !_inDLCMode)
     {
+        if(![GCState sharedInstance].allGoldInInsane)
+      {
+          [GCState sharedInstance].allGoldInInsane=true;
         [[GCHelper sharedInstance] reportAchievement:gcAchievementAllGoldInIM percentComplete:100];
+      }
     }
-
 }
 
 

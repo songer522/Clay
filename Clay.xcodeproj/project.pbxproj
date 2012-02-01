@@ -592,6 +592,10 @@
 		6132627714D8918200539203 /* zombieLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6132627314D8918200539203 /* zombieLevel-hd.png */; };
 		6132627814D8918200539203 /* zombieLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6132627414D8918200539203 /* zombieLevel.plist */; };
 		6132627914D8918200539203 /* zombieLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 6132627514D8918200539203 /* zombieLevel.png */; };
+		6132628714D8BED900539203 /* dojoLevel-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6132628314D8BED900539203 /* dojoLevel-hd.plist */; };
+		6132628814D8BED900539203 /* dojoLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6132628414D8BED900539203 /* dojoLevel-hd.png */; };
+		6132628914D8BED900539203 /* dojoLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6132628514D8BED900539203 /* dojoLevel.plist */; };
+		6132628A14D8BED900539203 /* dojoLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 6132628614D8BED900539203 /* dojoLevel.png */; };
 		614E840814CDCAC4008AE080 /* tileset_level_2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 614E840614CDCAC4008AE080 /* tileset_level_2-hd.png */; };
 		614E840914CDCAC4008AE080 /* tileset_level_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 614E840714CDCAC4008AE080 /* tileset_level_2.png */; };
 		61782B4D14B3AC3F00C615E7 /* story_easy_level5_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61F6F6CB14B28643003A5C68 /* story_easy_level5_hd.tmx */; };
@@ -625,10 +629,6 @@
 		61A667B31487E33800FB0A80 /* townLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 61A667AF1487E33800FB0A80 /* townLevel.png */; };
 		61A9E198147D63C0008D2179 /* dummyLevel_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61A9E194147D63C0008D2179 /* dummyLevel_hd.tmx */; };
 		61A9E199147D63C0008D2179 /* dummyLevel.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61A9E195147D63C0008D2179 /* dummyLevel.tmx */; };
-		61ABDD2914D1163D00EF9E32 /* dojoLevel-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 61ABDD2514D1163D00EF9E32 /* dojoLevel-hd.plist */; };
-		61ABDD2A14D1163D00EF9E32 /* dojoLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 61ABDD2614D1163D00EF9E32 /* dojoLevel-hd.png */; };
-		61ABDD2B14D1163D00EF9E32 /* dojoLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 61ABDD2714D1163D00EF9E32 /* dojoLevel.plist */; };
-		61ABDD2C14D1163D00EF9E32 /* dojoLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 61ABDD2814D1163D00EF9E32 /* dojoLevel.png */; };
 		61ABDD2F14D1252A00EF9E32 /* tileset_level_13-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 61ABDD2D14D1252A00EF9E32 /* tileset_level_13-hd.png */; };
 		61ABDD3014D1252A00EF9E32 /* tileset_level_13.png in Resources */ = {isa = PBXBuildFile; fileRef = 61ABDD2E14D1252A00EF9E32 /* tileset_level_13.png */; };
 		61B10498149957BA003B4A8E /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 61B10480149957BA003B4A8E /* Facebook.m */; };
@@ -1511,6 +1511,10 @@
 		6132627314D8918200539203 /* zombieLevel-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zombieLevel-hd.png"; sourceTree = "<group>"; };
 		6132627414D8918200539203 /* zombieLevel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = zombieLevel.plist; sourceTree = "<group>"; };
 		6132627514D8918200539203 /* zombieLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zombieLevel.png; sourceTree = "<group>"; };
+		6132628314D8BED900539203 /* dojoLevel-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "dojoLevel-hd.plist"; sourceTree = "<group>"; };
+		6132628414D8BED900539203 /* dojoLevel-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dojoLevel-hd.png"; sourceTree = "<group>"; };
+		6132628514D8BED900539203 /* dojoLevel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = dojoLevel.plist; sourceTree = "<group>"; };
+		6132628614D8BED900539203 /* dojoLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dojoLevel.png; sourceTree = "<group>"; };
 		614E840614CDCAC4008AE080 /* tileset_level_2-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tileset_level_2-hd.png"; path = "Resources/levels/tileset_level_2-hd.png"; sourceTree = "<group>"; };
 		614E840714CDCAC4008AE080 /* tileset_level_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tileset_level_2.png; path = Resources/levels/tileset_level_2.png; sourceTree = "<group>"; };
 		61782B5314B3E49C00C615E7 /* tileset_level_6-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tileset_level_6-hd.png"; path = "Resources/levels/tileset_level_6-hd.png"; sourceTree = "<group>"; };
@@ -1543,10 +1547,6 @@
 		61A667AF1487E33800FB0A80 /* townLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = townLevel.png; sourceTree = "<group>"; };
 		61A9E194147D63C0008D2179 /* dummyLevel_hd.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = dummyLevel_hd.tmx; path = Resources/levels/dummyLevel_hd.tmx; sourceTree = "<group>"; };
 		61A9E195147D63C0008D2179 /* dummyLevel.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = dummyLevel.tmx; path = Resources/levels/dummyLevel.tmx; sourceTree = "<group>"; };
-		61ABDD2514D1163D00EF9E32 /* dojoLevel-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "dojoLevel-hd.plist"; sourceTree = "<group>"; };
-		61ABDD2614D1163D00EF9E32 /* dojoLevel-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dojoLevel-hd.png"; sourceTree = "<group>"; };
-		61ABDD2714D1163D00EF9E32 /* dojoLevel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = dojoLevel.plist; sourceTree = "<group>"; };
-		61ABDD2814D1163D00EF9E32 /* dojoLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dojoLevel.png; sourceTree = "<group>"; };
 		61ABDD2D14D1252A00EF9E32 /* tileset_level_13-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tileset_level_13-hd.png"; path = "Resources/levels/tileset_level_13-hd.png"; sourceTree = "<group>"; };
 		61ABDD2E14D1252A00EF9E32 /* tileset_level_13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tileset_level_13.png; path = Resources/levels/tileset_level_13.png; sourceTree = "<group>"; };
 		61B1047F149957BA003B4A8E /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Facebook.h; sourceTree = "<group>"; };
@@ -2292,10 +2292,10 @@
 		5461D7CB14CFADE200BEE18E /* dojo */ = {
 			isa = PBXGroup;
 			children = (
-				61ABDD2514D1163D00EF9E32 /* dojoLevel-hd.plist */,
-				61ABDD2614D1163D00EF9E32 /* dojoLevel-hd.png */,
-				61ABDD2714D1163D00EF9E32 /* dojoLevel.plist */,
-				61ABDD2814D1163D00EF9E32 /* dojoLevel.png */,
+				6132628314D8BED900539203 /* dojoLevel-hd.plist */,
+				6132628414D8BED900539203 /* dojoLevel-hd.png */,
+				6132628514D8BED900539203 /* dojoLevel.plist */,
+				6132628614D8BED900539203 /* dojoLevel.png */,
 			);
 			path = dojo;
 			sourceTree = "<group>";
@@ -3616,10 +3616,6 @@
 				5461D7BC14CF993000BEE18E /* timed_normal_level13.tmx in Resources */,
 				5461D7C414CFA51500BEE18E /* Comic_22-hd.png in Resources */,
 				5461D7C514CFA51500BEE18E /* Comic_22.png in Resources */,
-				61ABDD2914D1163D00EF9E32 /* dojoLevel-hd.plist in Resources */,
-				61ABDD2A14D1163D00EF9E32 /* dojoLevel-hd.png in Resources */,
-				61ABDD2B14D1163D00EF9E32 /* dojoLevel.plist in Resources */,
-				61ABDD2C14D1163D00EF9E32 /* dojoLevel.png in Resources */,
 				61ABDD2F14D1252A00EF9E32 /* tileset_level_13-hd.png in Resources */,
 				61ABDD3014D1252A00EF9E32 /* tileset_level_13.png in Resources */,
 				61E27B5C14D2073900EC75BF /* darkLevel-hd.plist in Resources */,
@@ -3686,6 +3682,16 @@
 				6132627714D8918200539203 /* zombieLevel-hd.png in Resources */,
 				6132627814D8918200539203 /* zombieLevel.plist in Resources */,
 				6132627914D8918200539203 /* zombieLevel.png in Resources */,
+				540E997914D87D5900D6F944 /* GraphicFont_LowRes.fnt in Resources */,
+				540E997A14D87D5900D6F944 /* GraphicFont_LowRes.png in Resources */,
+				540E998414D88C6900D6F944 /* GraphicFont_LowRes22.fnt in Resources */,
+				540E998514D88C6900D6F944 /* GraphicFont_LowRes22.png in Resources */,
+				540E998614D88C6900D6F944 /* GraphicFont_LowRes29.fnt in Resources */,
+				540E998714D88C6900D6F944 /* GraphicFont_LowRes29.png in Resources */,
+				6132628714D8BED900539203 /* dojoLevel-hd.plist in Resources */,
+				6132628814D8BED900539203 /* dojoLevel-hd.png in Resources */,
+				6132628914D8BED900539203 /* dojoLevel.plist in Resources */,
+				6132628A14D8BED900539203 /* dojoLevel.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
