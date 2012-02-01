@@ -201,10 +201,6 @@
 		545CE69D146C1AA9003EC9C1 /* PlayerActionBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 545CE69C146C1AA9003EC9C1 /* PlayerActionBlock.m */; };
 		5461A0B314478A6C00D97D6C /* black_background-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5461A0B114478A6C00D97D6C /* black_background-hd.png */; };
 		5461A0B414478A6C00D97D6C /* black_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 5461A0B214478A6C00D97D6C /* black_background.png */; };
-		5461BFE41497F85100EF6A42 /* chooseMode-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5461BFE01497F85100EF6A42 /* chooseMode-hd.plist */; };
-		5461BFE51497F85100EF6A42 /* chooseMode-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5461BFE11497F85100EF6A42 /* chooseMode-hd.png */; };
-		5461BFE61497F85100EF6A42 /* chooseMode.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5461BFE21497F85100EF6A42 /* chooseMode.plist */; };
-		5461BFE71497F85100EF6A42 /* chooseMode.png in Resources */ = {isa = PBXBuildFile; fileRef = 5461BFE31497F85100EF6A42 /* chooseMode.png */; };
 		5461BFEA1497FA7200EF6A42 /* ModePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5461BFE91497FA7200EF6A42 /* ModePanel.m */; };
 		5461D7AA14CF67B600BEE18E /* InAppPurchaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5461D7A914CF67B600BEE18E /* InAppPurchaseManager.m */; };
 		5461D7AC14CF739800BEE18E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5461D7AB14CF739800BEE18E /* StoreKit.framework */; };
@@ -588,6 +584,14 @@
 		6132627714D8918200539203 /* zombieLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6132627314D8918200539203 /* zombieLevel-hd.png */; };
 		6132627814D8918200539203 /* zombieLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6132627414D8918200539203 /* zombieLevel.plist */; };
 		6132627914D8918200539203 /* zombieLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 6132627514D8918200539203 /* zombieLevel.png */; };
+		6132628714D8BED900539203 /* dojoLevel-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6132628314D8BED900539203 /* dojoLevel-hd.plist */; };
+		6132628814D8BED900539203 /* dojoLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6132628414D8BED900539203 /* dojoLevel-hd.png */; };
+		6132628914D8BED900539203 /* dojoLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6132628514D8BED900539203 /* dojoLevel.plist */; };
+		6132628A14D8BED900539203 /* dojoLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 6132628614D8BED900539203 /* dojoLevel.png */; };
+		6132628F14D8E42700539203 /* chooseMode-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6132628B14D8E42700539203 /* chooseMode-hd.plist */; };
+		6132629014D8E42700539203 /* chooseMode-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6132628C14D8E42700539203 /* chooseMode-hd.png */; };
+		6132629114D8E42700539203 /* chooseMode.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6132628D14D8E42700539203 /* chooseMode.plist */; };
+		6132629214D8E42700539203 /* chooseMode.png in Resources */ = {isa = PBXBuildFile; fileRef = 6132628E14D8E42700539203 /* chooseMode.png */; };
 		614E840814CDCAC4008AE080 /* tileset_level_2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 614E840614CDCAC4008AE080 /* tileset_level_2-hd.png */; };
 		614E840914CDCAC4008AE080 /* tileset_level_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 614E840714CDCAC4008AE080 /* tileset_level_2.png */; };
 		61782B4D14B3AC3F00C615E7 /* story_easy_level5_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61F6F6CB14B28643003A5C68 /* story_easy_level5_hd.tmx */; };
@@ -621,10 +625,6 @@
 		61A667B31487E33800FB0A80 /* townLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 61A667AF1487E33800FB0A80 /* townLevel.png */; };
 		61A9E198147D63C0008D2179 /* dummyLevel_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61A9E194147D63C0008D2179 /* dummyLevel_hd.tmx */; };
 		61A9E199147D63C0008D2179 /* dummyLevel.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61A9E195147D63C0008D2179 /* dummyLevel.tmx */; };
-		61ABDD2914D1163D00EF9E32 /* dojoLevel-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 61ABDD2514D1163D00EF9E32 /* dojoLevel-hd.plist */; };
-		61ABDD2A14D1163D00EF9E32 /* dojoLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 61ABDD2614D1163D00EF9E32 /* dojoLevel-hd.png */; };
-		61ABDD2B14D1163D00EF9E32 /* dojoLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 61ABDD2714D1163D00EF9E32 /* dojoLevel.plist */; };
-		61ABDD2C14D1163D00EF9E32 /* dojoLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 61ABDD2814D1163D00EF9E32 /* dojoLevel.png */; };
 		61ABDD2F14D1252A00EF9E32 /* tileset_level_13-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 61ABDD2D14D1252A00EF9E32 /* tileset_level_13-hd.png */; };
 		61ABDD3014D1252A00EF9E32 /* tileset_level_13.png in Resources */ = {isa = PBXBuildFile; fileRef = 61ABDD2E14D1252A00EF9E32 /* tileset_level_13.png */; };
 		61B10498149957BA003B4A8E /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 61B10480149957BA003B4A8E /* Facebook.m */; };
@@ -1011,10 +1011,6 @@
 		545CE69C146C1AA9003EC9C1 /* PlayerActionBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerActionBlock.m; sourceTree = "<group>"; };
 		5461A0B114478A6C00D97D6C /* black_background-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "black_background-hd.png"; sourceTree = "<group>"; };
 		5461A0B214478A6C00D97D6C /* black_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = black_background.png; sourceTree = "<group>"; };
-		5461BFE01497F85100EF6A42 /* chooseMode-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "chooseMode-hd.plist"; sourceTree = "<group>"; };
-		5461BFE11497F85100EF6A42 /* chooseMode-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chooseMode-hd.png"; sourceTree = "<group>"; };
-		5461BFE21497F85100EF6A42 /* chooseMode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = chooseMode.plist; sourceTree = "<group>"; };
-		5461BFE31497F85100EF6A42 /* chooseMode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chooseMode.png; sourceTree = "<group>"; };
 		5461BFE81497FA7200EF6A42 /* ModePanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModePanel.h; sourceTree = "<group>"; };
 		5461BFE91497FA7200EF6A42 /* ModePanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModePanel.m; sourceTree = "<group>"; };
 		5461D7A814CF67B600BEE18E /* InAppPurchaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppPurchaseManager.h; sourceTree = "<group>"; };
@@ -1503,6 +1499,14 @@
 		6132627314D8918200539203 /* zombieLevel-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zombieLevel-hd.png"; sourceTree = "<group>"; };
 		6132627414D8918200539203 /* zombieLevel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = zombieLevel.plist; sourceTree = "<group>"; };
 		6132627514D8918200539203 /* zombieLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zombieLevel.png; sourceTree = "<group>"; };
+		6132628314D8BED900539203 /* dojoLevel-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "dojoLevel-hd.plist"; sourceTree = "<group>"; };
+		6132628414D8BED900539203 /* dojoLevel-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dojoLevel-hd.png"; sourceTree = "<group>"; };
+		6132628514D8BED900539203 /* dojoLevel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = dojoLevel.plist; sourceTree = "<group>"; };
+		6132628614D8BED900539203 /* dojoLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dojoLevel.png; sourceTree = "<group>"; };
+		6132628B14D8E42700539203 /* chooseMode-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "chooseMode-hd.plist"; sourceTree = "<group>"; };
+		6132628C14D8E42700539203 /* chooseMode-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chooseMode-hd.png"; sourceTree = "<group>"; };
+		6132628D14D8E42700539203 /* chooseMode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = chooseMode.plist; sourceTree = "<group>"; };
+		6132628E14D8E42700539203 /* chooseMode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chooseMode.png; sourceTree = "<group>"; };
 		614E840614CDCAC4008AE080 /* tileset_level_2-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tileset_level_2-hd.png"; path = "Resources/levels/tileset_level_2-hd.png"; sourceTree = "<group>"; };
 		614E840714CDCAC4008AE080 /* tileset_level_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tileset_level_2.png; path = Resources/levels/tileset_level_2.png; sourceTree = "<group>"; };
 		61782B5314B3E49C00C615E7 /* tileset_level_6-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tileset_level_6-hd.png"; path = "Resources/levels/tileset_level_6-hd.png"; sourceTree = "<group>"; };
@@ -1535,10 +1539,6 @@
 		61A667AF1487E33800FB0A80 /* townLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = townLevel.png; sourceTree = "<group>"; };
 		61A9E194147D63C0008D2179 /* dummyLevel_hd.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = dummyLevel_hd.tmx; path = Resources/levels/dummyLevel_hd.tmx; sourceTree = "<group>"; };
 		61A9E195147D63C0008D2179 /* dummyLevel.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = dummyLevel.tmx; path = Resources/levels/dummyLevel.tmx; sourceTree = "<group>"; };
-		61ABDD2514D1163D00EF9E32 /* dojoLevel-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "dojoLevel-hd.plist"; sourceTree = "<group>"; };
-		61ABDD2614D1163D00EF9E32 /* dojoLevel-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dojoLevel-hd.png"; sourceTree = "<group>"; };
-		61ABDD2714D1163D00EF9E32 /* dojoLevel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = dojoLevel.plist; sourceTree = "<group>"; };
-		61ABDD2814D1163D00EF9E32 /* dojoLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dojoLevel.png; sourceTree = "<group>"; };
 		61ABDD2D14D1252A00EF9E32 /* tileset_level_13-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tileset_level_13-hd.png"; path = "Resources/levels/tileset_level_13-hd.png"; sourceTree = "<group>"; };
 		61ABDD2E14D1252A00EF9E32 /* tileset_level_13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tileset_level_13.png; path = Resources/levels/tileset_level_13.png; sourceTree = "<group>"; };
 		61B1047F149957BA003B4A8E /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Facebook.h; sourceTree = "<group>"; };
@@ -2145,6 +2145,10 @@
 		544D50DA1445E68E00BED4CE /* scenes */ = {
 			isa = PBXGroup;
 			children = (
+				6132628B14D8E42700539203 /* chooseMode-hd.plist */,
+				6132628C14D8E42700539203 /* chooseMode-hd.png */,
+				6132628D14D8E42700539203 /* chooseMode.plist */,
+				6132628E14D8E42700539203 /* chooseMode.png */,
 				618CD31614D701C0008D7CDF /* howtoplayScreen-hd.plist */,
 				618CD31714D701C0008D7CDF /* howtoplayScreen-hd.png */,
 				618CD31814D701C0008D7CDF /* howtoplayScreen.plist */,
@@ -2169,10 +2173,6 @@
 				549D84D61469DE9100A3599F /* chooseLevel-hd.png */,
 				549D84D71469DE9100A3599F /* chooseLevel.plist */,
 				549D84D81469DE9100A3599F /* chooseLevel.png */,
-				5461BFE01497F85100EF6A42 /* chooseMode-hd.plist */,
-				5461BFE11497F85100EF6A42 /* chooseMode-hd.png */,
-				5461BFE21497F85100EF6A42 /* chooseMode.plist */,
-				5461BFE31497F85100EF6A42 /* chooseMode.png */,
 			);
 			name = scenes;
 			sourceTree = "<group>";
@@ -2284,10 +2284,10 @@
 		5461D7CB14CFADE200BEE18E /* dojo */ = {
 			isa = PBXGroup;
 			children = (
-				61ABDD2514D1163D00EF9E32 /* dojoLevel-hd.plist */,
-				61ABDD2614D1163D00EF9E32 /* dojoLevel-hd.png */,
-				61ABDD2714D1163D00EF9E32 /* dojoLevel.plist */,
-				61ABDD2814D1163D00EF9E32 /* dojoLevel.png */,
+				6132628314D8BED900539203 /* dojoLevel-hd.plist */,
+				6132628414D8BED900539203 /* dojoLevel-hd.png */,
+				6132628514D8BED900539203 /* dojoLevel.plist */,
+				6132628614D8BED900539203 /* dojoLevel.png */,
 			);
 			path = dojo;
 			sourceTree = "<group>";
@@ -3338,10 +3338,6 @@
 				61D7BCFF14918C69002790E9 /* memory.plist in Resources */,
 				54E1AC121497BC9000DFCA77 /* credits.plist in Resources */,
 				54E1AC131497BC9000DFCA77 /* medals.plist in Resources */,
-				5461BFE41497F85100EF6A42 /* chooseMode-hd.plist in Resources */,
-				5461BFE51497F85100EF6A42 /* chooseMode-hd.png in Resources */,
-				5461BFE61497F85100EF6A42 /* chooseMode.plist in Resources */,
-				5461BFE71497F85100EF6A42 /* chooseMode.png in Resources */,
 				61B10499149957BA003B4A8E /* FBDialog.bundle in Resources */,
 				546394811499AAD90053A1F6 /* optionsScreen-hd.plist in Resources */,
 				546394821499AAD90053A1F6 /* optionsScreen-hd.png in Resources */,
@@ -3604,10 +3600,6 @@
 				5461D7BC14CF993000BEE18E /* timed_normal_level13.tmx in Resources */,
 				5461D7C414CFA51500BEE18E /* Comic_22-hd.png in Resources */,
 				5461D7C514CFA51500BEE18E /* Comic_22.png in Resources */,
-				61ABDD2914D1163D00EF9E32 /* dojoLevel-hd.plist in Resources */,
-				61ABDD2A14D1163D00EF9E32 /* dojoLevel-hd.png in Resources */,
-				61ABDD2B14D1163D00EF9E32 /* dojoLevel.plist in Resources */,
-				61ABDD2C14D1163D00EF9E32 /* dojoLevel.png in Resources */,
 				61ABDD2F14D1252A00EF9E32 /* tileset_level_13-hd.png in Resources */,
 				61ABDD3014D1252A00EF9E32 /* tileset_level_13.png in Resources */,
 				61E27B5C14D2073900EC75BF /* darkLevel-hd.plist in Resources */,

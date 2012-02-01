@@ -19,6 +19,8 @@
 #import "GameLayer.h"
 #import "GameSettings.h"
 #import "HowToPlayScreen.h"
+#import "ContinueGameManager.h"
+#import "GameWindow.h"
 
 @implementation ChooseModeScene
 
@@ -42,7 +44,9 @@
         _waitToSwitch = 0.0f;
         _backToMainMenu = false;
         _playTutorial = false;
-                
+        _warningWindowOpen=false;
+        _isContinueButtonEnabled=[ContinueGameManager isAbleToContinueGame];
+        _action=GAMEMODE_NONE;
         [self scheduleUpdate];
         self.isTouchEnabled = YES;
         
@@ -57,8 +61,38 @@
     
     return self;
 }
+- (void)showTwitterSupportingAlert {
+    [[CCDirector sharedDirector] pause];
+	UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:@"Sorry..."
+														 message:@"You will lose the current process in story mode, are you sure?"
+														delegate:self
+											   cancelButtonTitle:@"Cancel"
+											   otherButtonTitles: @"Yes",nil] autorelease];
+	//_twitterSupportingAlert = alertView;
+	[alertView show];
+}
+
+-(void)openWarningWindowLosingProcess
+{
+   // [[CCDirector sharedDirector] pause];
+    if (!_warningWindowOpen) {
+        _warningWindowOpen = true;
+        _warningWindow = [GameWindow gameWindowWithHeader:@"Warning" Message:@"You will lose the current progress in story mode, are you sure?" Choices:WINDOW_CHOICE_NOYES Layer:self];        
+    }
+}
+
+-(void)closeWarningWindow
+{
+    _warningWindowOpen = false;
+    [_warningWindow release];
+    _warningWindow = nil;
+}
 
 
+-(bool)checkContinueButton
+{
+    return [ContinueGameManager isAbleToContinueGame];    
+}
 -(void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     NSSet *allTouches = [event allTouches];
@@ -66,6 +100,28 @@
     for(UITouch *touch in allTouches)
     {
         CGPoint position = [self convertTouchToNodeSpace:touch];
+        
+        if(_warningWindowOpen) {
+            WindowSelectionType type = [_warningWindow checkCollisionAtPoint:position];
+            if (type == WIN_SELECT_YES) {
+                //[[CCDirector sharedDirector] resume];
+                _action=_actionSwitchTo;
+                if(_action==GAMEMODE_STORY_NORMAL)
+                {
+                    [[GameSettings shared] setGlobal:@"NO" ForKey:@"firstNormalPlaythrough"];
+                }
+                [self closeWarningWindow];
+                [self switchToAction];
+            }
+            else if(type == WIN_SELECT_NO)
+            {
+               // [[CCDirector sharedDirector] resume];
+                _isTransitioning = false;
+                _action = GAMEMODE_NONE;
+                [self closeWarningWindow];
+
+            }
+        }
         if(!_isTransitioning) {
             if ([_storyModePanel testCollision:position]) {
                 if (_currentPanel!=_storyModePanel) {
@@ -175,7 +231,16 @@
             [[GameSettings shared] setGlobal:@"story" ForKey:@"gameMode"];
             [[GameSettings shared] setSerializedGlobal:@"easy" ForKey:@"storyModeDifficulty"];
             _playTutorial = true;
-            _action = GAMEMODE_STORY_EASY;
+        _actionSwitchTo= GAMEMODE_STORY_EASY;
+            if(_isContinueButtonEnabled)
+            {
+                [self openWarningWindowLosingProcess];
+            }
+           else
+           {
+               _action = GAMEMODE_STORY_EASY;
+               [self switchToAction];
+           }
         } else if(selectedButtonIndex == 1) {
             [[GameSettings shared] setGlobal:@"normal" ForKey:@"gameDifficulty"];
             [[GameSettings shared] setGlobal:@"story" ForKey:@"gameMode"];
@@ -186,39 +251,68 @@
             if (![firstNormalPlaythrough isEqualToString:@"NO"]) {
                 _playTutorial = true;
             }
-            
-            //regardless, we're starting it, so set that value to no for the future
-            [[GameSettings shared] setGlobal:@"NO" ForKey:@"firstNormalPlaythrough"];
+            _actionSwitchTo= GAMEMODE_STORY_NORMAL;
+            if(_isContinueButtonEnabled)
+            {
+                [self openWarningWindowLosingProcess];
+            }
+            else
+            {
+                [[GameSettings shared] setGlobal:@"NO" ForKey:@"firstNormalPlaythrough"];
+                
+                _action = GAMEMODE_STORY_NORMAL; 
+                  [self switchToAction];
+                
+            }
 
-            _action = GAMEMODE_STORY_NORMAL;            
+            //regardless, we're starting it, so set that value to no for the future
+           
         } else {
             [[GameSettings shared] setGlobal:@"hard" ForKey:@"gameDifficulty"];
             [[GameSettings shared] setGlobal:@"story" ForKey:@"gameMode"];
             [[GameSettings shared] setSerializedGlobal:@"hard" ForKey:@"storyModeDifficulty"];
-            _action = GAMEMODE_STORY_HARD;            
+            
+            _actionSwitchTo= GAMEMODE_STORY_HARD;
+            if(_isContinueButtonEnabled)
+            {
+                [self openWarningWindowLosingProcess];
+            }
+            else
+            {
+                _action = GAMEMODE_STORY_HARD; 
+                  [self switchToAction];
+            }
+
+                       
         }
     } else if(_currentPanel == _timedModePanel) {
         if (selectedButtonIndex == 0) {
             [[GameSettings shared] setGlobal:@"normal" ForKey:@"gameDifficulty"];
             [[GameSettings shared] setGlobal:@"timed" ForKey:@"gameMode"];
             _action = GAMEMODE_TIMED_NORMAL;
+            [self switchToAction];
         } else if(selectedButtonIndex == 1) {
             [[GameSettings shared] setGlobal:@"hard" ForKey:@"gameDifficulty"];
             [[GameSettings shared] setGlobal:@"timed" ForKey:@"gameMode"];
-            _action = GAMEMODE_TIMED_INSANE;            
+            _action = GAMEMODE_TIMED_INSANE;  
+            [self switchToAction];
         } else {
             [[GameSettings shared] setGlobal:@"normal" ForKey:@"gameDifficulty"];
             [[GameSettings shared] setGlobal:@"timed" ForKey:@"gameMode"];
             _action = GAMEMODE_TIMED_DLC;
+            [self switchToAction];
         }
     } else {
         if (selectedButtonIndex == 0) {
             _action = GAMEMODE_EXTRAS_ALBUM;
+            [self switchToAction];
         } else if (selectedButtonIndex == 1){
             _action = GAMEMODE_EXTRAS_WEB;
+            [self switchToAction];
         }
         else{
             _action=GAMEMODE_EXTRAS_SUPPORT;
+            [self switchToAction];
         }
     }
 }
@@ -314,7 +408,7 @@
                 [self switchToMainMenu];
             }  else {
                 [self getDesiredAction];
-                [self switchToAction];
+                //[self switchToAction];
             }
         }
     }
@@ -355,6 +449,34 @@
     //[self release];
     [self unscheduleUpdate];
     self.isTouchEnabled = false;
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+	
+	
+	switch (buttonIndex) {
+		case 0:
+		{
+			// they don't want to rate it
+            //[[CCDirector sharedDirector] resume];
+             _isTransitioning = false;
+            _action = GAMEMODE_NONE;
+			break;
+		}
+		case 1:
+		{
+			// they want to rate it
+			//[[CCDirector sharedDirector] resume];
+            _action=_actionSwitchTo;
+            if(_action==GAMEMODE_STORY_NORMAL)
+            {
+                [[GameSettings shared] setGlobal:@"NO" ForKey:@"firstNormalPlaythrough"];
+            }
+            [self switchToAction];
+			break;
+		}
+        default:
+			break;
+	}
 }
 
 -(void)dealloc

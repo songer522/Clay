@@ -1248,7 +1248,8 @@
             break;
         case COLLISION_BEHAVIOR_DOJO_WHITE_NINJA_CHARGING:
             if(!_hasTriggered) { //hastriggered is true when the white ninja is punched
-                [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-220.0f];                
+               // [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-220.0f];  
+                [self chaseAtDistance:50 DefaultSpeed:-200.0f ChaseSpeed:-200.0f ChaseSound:@"" ChaseAnimation:@"dojoWhiteNinjaAnim2" DefaultAnimation:@"dojoWhiteNinjaAnim"];
             } else {
                 //rotate quickly
                 _angle += _rotationAmount * dt;

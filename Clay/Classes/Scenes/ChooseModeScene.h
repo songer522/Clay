@@ -8,11 +8,14 @@
 
 #import "CCLayer.h"
 #import "cocos2d.h"
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 @class Sprite;
 @class ModePanel;
 @class GameLabel;
 @class ActionButton;
+@class GameWindow;
 
 typedef enum {
     GAMEMODE_STORY_EASY,
@@ -27,7 +30,7 @@ typedef enum {
     GAMEMODE_NONE
 }GameModeAction;
 
-@interface ChooseModeScene : CCLayer
+@interface ChooseModeScene : CCLayer<UIAlertViewDelegate>
 {
     Sprite *_background;
     
@@ -46,12 +49,16 @@ typedef enum {
     Sprite *_selectCursor;
     
     GameModeAction _action;
+    GameModeAction _actionSwitchTo;
     
     float _waitToSwitch;
     float _backToMainMenu;
     
     bool _isTransitioning;
     bool _playTutorial;
+    bool _isContinueButtonEnabled;
+    GameWindow *_warningWindow;
+    bool _warningWindowOpen;
 }
 
 @property(nonatomic,assign) bool isTransitioning;

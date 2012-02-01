@@ -784,6 +784,23 @@
 		<key>spritesheetPlist</key>
 		<string>dojoLevel</string>
 	</dict>
+	<key>dojoWhiteNinjaAnim2</key>
+	<dict>
+		<key>animationFrames</key>
+		<string>5,6,7</string>
+		<key>clearPreviousAnims</key>
+		<string>false</string>
+		<key>delay</key>
+		<string>0.075</string>
+		<key>group</key>
+		<string>level13</string>
+		<key>looping</key>
+		<string>false</string>
+		<key>sequencePrefix</key>
+		<string>Level13_WhiteNinja_</string>
+		<key>spritesheetPlist</key>
+		<string>dojoLevel</string>
+	</dict>
 	<key>dojoDeathPitClosedAnim</key>
 	<dict>
 		<key>animationFrames</key>

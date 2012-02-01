@@ -29,6 +29,8 @@
 #import "Tutorial.h"
 #import "GameLayer.h"
 #import "InAppPurchaseManager.h"
+#import "GCHelper.h"
+#import "GCState.h"
 
 
 @implementation MainMenuScene
@@ -119,7 +121,7 @@
         [[InAppPurchaseManager shared] requestProductData];
         
         [[LayerManager sharedLayers] forgetWorkingLayer];
-        
+        //_hasCheckedAchievement=false;
         
         //initial values
         _totalTime = 0.0f;
@@ -133,6 +135,7 @@
         
         [self scheduleUpdate];
         self.isTouchEnabled = YES;
+                
         
         //check to see if the title menu music is loaded. if not, play it.
         NSString *musicStarted = [[GameSettings shared] getGlobalForKey:@"titleMusicStarted"];
@@ -261,8 +264,21 @@
     
     [_trackBackground setAlpha:1.0f];
 }
+-(void)checkAchievement
+{
+    if([[[GameSettings shared] getGlobalForKey:@"RatedOurGame"] isEqualToString:@"YES"])
+    {
+        if(![GCState sharedInstance].rateOurGame)
+        {
+            [GCState sharedInstance].allGoldInNormal=true;
+            [[GCHelper sharedInstance] reportAchievement:gcAchievementRateTheGame percentComplete:100];
+            
+            [[GameSettings shared] setGlobal:@"NO" ForKey:@"RatedOurGame"];
+        }
+        
+    }
 
-
+}
 -(void)switchToTransitionOut
 {
     _time = 0.0f;
@@ -288,6 +304,9 @@
     
     _totalTime += rate;
     _time += dt;
+    
+    
+    
     
     switch (_transition) {
         case MAINMENU_TRANSITION_IN:
