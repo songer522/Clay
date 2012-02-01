@@ -36,10 +36,10 @@
     }
     
     if(productInfo!=nil) {
-        self = [super initWithHeader:productInfo.localizedTitle Message:productInfo.localizedDescription Choices:WINDOW_CHOICE_YESNO Layer:layer];
+        self = [super initWithHeader:productInfo.localizedTitle Message:productInfo.localizedDescription Choices:WINDOW_CHOICE_YESNO Layer:layer withBackground:@"MessageBox2.png"];
         _showingErrorWindow = false;
     } else {
-        self = [super initWithHeader:@"ERROR" Message:@"COULD NOT GET INFORMATION FROM THE STORE.|PLEASE TRY AGAIN LATER OR CONTACT SUPPORT." Choices:WINDOW_CHOICE_OK Layer:layer];
+        self = [super initWithHeader:@"ERROR" Message:@"COULD NOT GET INFORMATION FROM THE STORE.|PLEASE TRY AGAIN LATER OR CONTACT SUPPORT." Choices:WINDOW_CHOICE_OK Layer:layer withBackground:@"MessageBox2.png"];
         _showingErrorWindow = true;
     }
     

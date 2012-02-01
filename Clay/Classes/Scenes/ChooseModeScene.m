@@ -77,7 +77,7 @@
    // [[CCDirector sharedDirector] pause];
     if (!_warningWindowOpen) {
         _warningWindowOpen = true;
-        _warningWindow = [GameWindow gameWindowWithHeader:@"Warning" Message:@"You will lose the current progress in story mode, are you sure?" Choices:WINDOW_CHOICE_NOYES Layer:self];        
+        _warningWindow = [GameWindow gameWindowWithHeader:@"Warning" Message:@"You will lose the current progress in story mode, are you sure?" Choices:WINDOW_CHOICE_NOYES Layer:self withBackground:@"MessageBox.png"];        
     }
 }
 

@@ -179,6 +179,7 @@
                 break;
             }
         }
+         
         
         for (LevelButton *button in _buttons) {
             if([button checkIfSelected:position] && !_panelTransition && [button isUnlocked]) {
@@ -332,7 +333,7 @@
 {
     if (!_errorWindowOpen) {
         _errorWindowOpen = true;
-        _errorWindow = [GameWindow gameWindowWithHeader:@"ERROR!" Message:@"Cannot connect to the store at this time. Please try again later." Choices:WINDOW_CHOICE_OK Layer:self];        
+        _errorWindow = [GameWindow gameWindowWithHeader:@"ERROR!" Message:@"Cannot connect to the store at this time. Please try again later." Choices:WINDOW_CHOICE_OK Layer:self withBackground:@"MessageBox2.png"];        
     }
 }
 
@@ -340,7 +341,7 @@
 {
     if (!_errorWindowOpen) {
         _errorWindowOpen = true;
-        _errorWindow = [GameWindow gameWindowWithHeader:@"ERROR!" Message:@"Cannot make purchases at this time. Please try again later." Choices:WINDOW_CHOICE_OK Layer:self];
+        _errorWindow = [GameWindow gameWindowWithHeader:@"ERROR!" Message:@"Cannot make purchases at this time. Please try again later." Choices:WINDOW_CHOICE_OK Layer:self withBackground:@"MessageBox2.png"];
     }
 }
 
