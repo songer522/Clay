@@ -8,13 +8,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "Clay/Classes/Scenes/ChooseModeScene.m"
-         timestampString = "349761576.367935"
+         filePath = "Clay/Classes/Scenes/EndGameScene.m"
+         timestampString = "349764654.866994"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "330"
-         endingLineNumber = "330"
-         landmarkName = "-switchToAction"
+         startingLineNumber = "121"
+         endingLineNumber = "121"
+         landmarkName = "-showTimers"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -22,27 +22,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "Clay/Classes/Scenes/ChooseModeScene.m"
-         timestampString = "349761576.367935"
+         filePath = "Clay/Classes/Scenes/ChooseLevelScreen.m"
+         timestampString = "349773431.075271"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "456"
-         endingLineNumber = "456"
-         landmarkName = "-alertView:clickedButtonAtIndex:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Clay/Classes/Scenes/ChooseModeScene.m"
-         timestampString = "349761576.367935"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "464"
-         endingLineNumber = "464"
-         landmarkName = "-alertView:clickedButtonAtIndex:"
+         startingLineNumber = "124"
+         endingLineNumber = "124"
+         landmarkName = "-initWithScene:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

@@ -44,10 +44,10 @@
      */
     NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                    _appId, @"app_id",
-                                   @"http://developers.facebook.com/docs/reference/dialogs/", @"link",
+                                   @"http://itunes.apple.com/us/app/track-lapse/id473701533?ls=1&mt=8", @"link",
                                   picUrl, @"picture",
-                                   @"Facebook Dialogs", @"name",
-                                   @"Reference Documentation", @"caption",
+                                   @"Track Lapse", @"name",
+                                   @"  ", @"caption",
                                    description, @"description",
                                    @"Facebook Dialogs are so easy!",  @"message",
                                    nil];

@@ -53,6 +53,9 @@ typedef enum {
     bool _inTutorial;
     bool _openFacebook;
     bool _openTwitter;
+    
+    bool _openErrorCantConnectToStore;
+    bool _openErrorCantMakePurchases;
     NSString *_levelToSwitchTo;
     
     NSString *_gameMode; //weak references
@@ -134,5 +137,8 @@ typedef enum {
 -(void)openErrorWindowCantConnectToStore;
 -(void)openErrorWindowCantMakePurchases;
 -(void)closeErrorWindow;
+
+-(void)setCantConnectToStore:(BOOL)CantConnectToStore;
+-(void)setCantMakePurchases:(BOOL)CantMakePurchases;
 
 @end

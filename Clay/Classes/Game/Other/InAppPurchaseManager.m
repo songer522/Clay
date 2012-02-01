@@ -94,7 +94,8 @@ static InAppPurchaseManager *_shared = nil;
     {
         NSLog(@"Invalid product id: %@" , invalidProductId);
         if(_delegate!=nil) {
-            [_delegate openErrorWindowCantConnectToStore];
+           //[_delegate openErrorWindowCantConnectToStore];
+            [_delegate setCantConnectToStore:YES];
         }
         //break;
     }
@@ -301,7 +302,8 @@ static InAppPurchaseManager *_shared = nil;
         [[SKPaymentQueue defaultQueue] addPayment:payment];        
     } else {
         if (_delegate!=nil) {
-            [_delegate openErrorWindowCantMakePurchases];
+            //[_delegate openErrorWindowCantMakePurchases];
+            [_delegate setCantMakePurchases:YES];
         }
     }
 }
