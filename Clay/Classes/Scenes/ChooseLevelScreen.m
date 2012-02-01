@@ -628,7 +628,7 @@
 - (void)showTwitterSupportingAlert {
     [[CCDirector sharedDirector] pause];
 	UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:@"Sorry..."
-														 message:@"We currently only support iOS 5.0, please upgrade your system."
+														 message:@"We currently support iOS 5.0 only, please upgrade your system."
 														delegate:self
 											   cancelButtonTitle:@"okay"
 											   otherButtonTitles: nil] autorelease];
@@ -768,7 +768,7 @@
                     _fbprompt = nil;
                 }
                 NSString *description=[self covertLevelname:_levelNumber];
-                               _fbprompt = [FBPrompt promptWithAppId:@"264174546971482" andDelegate:self];
+                               _fbprompt = [FBPrompt promptWithAppId:@"382449345103856" andDelegate:self];
                 [_fbprompt showFacebookDialogWithDescription:[NSString stringWithFormat:@"Here is my time for Track Lapse on %@: %@",description, _bestTime] andPicture:@"http://i1077.photobucket.com/albums/w480/xecudev/IconForFB_128.png"];
                 _openFacebook =false;
                 

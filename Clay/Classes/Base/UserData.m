@@ -9,7 +9,7 @@
 #import "UserData.h"
 #import "Database.h"
 @implementation UserData
-@synthesize bestTime;
+@synthesize bestTimeEasy,bestTimeNormal,bestTimeHard;
 @synthesize currentLevel;
 
 
@@ -46,13 +46,17 @@ static UserData *sharedInstance = nil;
 -(void)encodeWithCoder:(NSCoder *)encoder {
     
     [encoder encodeInt:currentLevel forKey:@"currentLevel"];
-    [encoder encodeFloat:bestTime forKey:@"bestTime"];
+    [encoder encodeFloat:bestTimeEasy forKey:@"bestTimeEasy"];
+    [encoder encodeFloat:bestTimeNormal forKey:@"bestTimeNormal"];
+    [encoder encodeFloat:bestTimeHard forKey:@"bestTimeHard"];
 }
 
 -(id)initWithCoder:(NSCoder *)decoder {
     if ((self = [super  init])) {
         currentLevel = [decoder decodeIntForKey:@"currentLevel"];
-        bestTime = [decoder decodeFloatForKey:@"bestTime"];
+        bestTimeEasy = [decoder decodeFloatForKey:@"bestTimeEasy"];
+        bestTimeNormal=[decoder decodeFloatForKey:@"bestTimeNormal"];
+        bestTimeHard=[decoder decodeFloatForKey:@"bestTimeHard"];
     }
     return self;
 }

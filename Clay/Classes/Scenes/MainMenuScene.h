@@ -65,7 +65,7 @@ typedef enum {
     bool _reinit;
     bool _switchSceneTriggered;
     bool _isContinueButtonEnabled;
-    //bool _hasCheckedAchievement;
+    bool _hasCheckedAchievement;
       
     
    

@@ -32,6 +32,7 @@
 -(bool)canStartInMidAir;
 -(bool)canStartOnGround;
 -(void)setIsNear:(bool)isNear;
+-(void)resetProjectile;
 
 
 @end
@@ -70,6 +71,7 @@
 -(bool) playerAllowedToJump;
 -(bool) playerAllowedToSprint;
 -(bool) shouldActionStopPlayer;
+
 
 
 #pragma mark - achievements 
