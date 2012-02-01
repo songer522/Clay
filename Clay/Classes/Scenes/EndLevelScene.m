@@ -328,7 +328,7 @@
         _finalTimeText = [GameLabel gameLabelWithText:timerText  Scale:1.0f Position:ccp(240,250)];
         if(_isNewRecord)
         {
-            _timeHeaderText=[GameLabel gameLabelWithText:@"NEW RECORD!"  Scale:0.7f Position:ccp(240,275)];
+            _timeHeaderText=[GameLabel gameLabelWithText:@"NEW RECORD!"  Scale:0.6f Position:ccp(240,275)];
         }
         
         [[LayerManager sharedLayers] forgetWorkingLayer];
