@@ -63,6 +63,7 @@
         _hasSwitch=false;
         _openTwitter=false;
         _rateWindowShowed=false;
+        _isNewRecord=false;
         _tweetViewController = nil;
         _fbprompt = nil;
         _difficulty = [[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
@@ -81,6 +82,9 @@
         _facebookIcon = [Sprite spriteFromFrameCacheWithName:@"End_Icon_Facebook.png"];
         _twitterIcon =[Sprite spriteFromFrameCacheWithName:@"End_Icon_Twitter.png"];
         _finalTimeHeader=[Sprite spriteFromFrameCacheWithName:@"End_Text_FinalTime.png"];
+        
+        
+        
         
         
          if([_difficulty isEqualToString:@"easy"])
@@ -258,34 +262,80 @@
 -(void)update:(ccTime)dt
 {
     float rate = 2.0f * dt;
-    
     float finalTime = [[[GameSettings shared] getGlobalForKey:@"finalTime"] floatValue];
     
     
-     
-
-        
+    
+    
+    
     
     if (!_initialized) {
         
-        if ([[UserData sharedInstance] bestTime] > finalTime)
+       NSString *mode = [[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
+        
+        if([mode isEqualToString:@"easy"])
         {
-            [UserData sharedInstance].bestTime = finalTime;
-            [[UserData sharedInstance] save];
+            
+            if ([[UserData sharedInstance] bestTimeEasy] > finalTime)
+            {
+                [UserData sharedInstance].bestTimeEasy = finalTime;
+                [[UserData sharedInstance] save];
+                _isNewRecord=true;
+            }
+            else if ([[UserData sharedInstance] bestTimeEasy] == 0.0f)
+            {
+                [UserData sharedInstance].bestTimeEasy = finalTime;
+                [[UserData sharedInstance] save];
+                  _isNewRecord=true;
+            }
+
         }
-        else if ([[UserData sharedInstance] bestTime] == 0.0f)
+        else if([mode isEqualToString:@"normal"])
         {
-            [UserData sharedInstance].bestTime = finalTime;
-            [[UserData sharedInstance] save];
+            if ([[UserData sharedInstance] bestTimeNormal] > finalTime)
+            {
+                [UserData sharedInstance].bestTimeNormal = finalTime;
+                [[UserData sharedInstance] save];
+                  _isNewRecord=true;
+            }
+            else if ([[UserData sharedInstance] bestTimeNormal] == 0.0f)
+            {
+                [UserData sharedInstance].bestTimeNormal = finalTime;
+                [[UserData sharedInstance] save];
+                  _isNewRecord=true;
+            }
         }
+        else if([mode isEqualToString:@"hard"])
+        {
+            if ([[UserData sharedInstance] bestTimeHard] > finalTime)
+            {
+                [UserData sharedInstance].bestTimeHard = finalTime;
+                [[UserData sharedInstance] save];
+                  _isNewRecord=true;
+            }
+            else if ([[UserData sharedInstance] bestTimeHard] == 0.0f)
+            {
+                [UserData sharedInstance].bestTimeHard = finalTime;
+                [[UserData sharedInstance] save];
+                  _isNewRecord=true;
+            }
+
+        }
+
+        
         NSString *timerText=[TrackTimer getTimeStringFromFloat:finalTime];
         [[LayerManager sharedLayers] setWorkingLayer:self];
         _finalTimeText = [GameLabel gameLabelWithText:timerText  Scale:1.0f Position:ccp(240,250)];
-       
+        if(_isNewRecord)
+        {
+            _timeHeaderText=[GameLabel gameLabelWithText:@"NEW RECORD!"  Scale:0.7f Position:ccp(240,275)];
+        }
+        
         [[LayerManager sharedLayers] forgetWorkingLayer];
         _initialized = true;
     }
-    
+
+        
     if(_openFacebook)
     {
         if (_fbprompt !=nil) {

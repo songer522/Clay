@@ -129,6 +129,7 @@
         _transition = MAINMENU_TRANSITION_IN;
         _switchSceneTriggered = false;
         _reinit = false;
+        _hasCheckedAchievement=false;
         
         //make everything except track background transparent
         [self setAlphaForAll:0.0f includingButtons:YES andButtonSelection:YES];
@@ -313,6 +314,11 @@
             if (_time>=1.0f) {
                 _time = 1.0f;
                 _transition = MAINMENU_TRANSITION_IDLE;
+                if(!_hasCheckedAchievement)
+                {
+                [self checkAchievement];
+                    _hasCheckedAchievement=true;
+                }
             }
             [_logo move:ccp(0, rate)];
             [_copyright move:ccp(0,-0.5f * rate)];

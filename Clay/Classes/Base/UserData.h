@@ -12,7 +12,9 @@
 
 @interface UserData : NSObject 
 {
-    float bestTime;
+    float bestTimeEasy;
+    float bestTimeNormal;
+    float bestTimeHard;
     int currentLevel;
 }
 
@@ -20,6 +22,8 @@
 + (UserData *) sharedInstance;
 - (void)save;
 
-@property (assign) float bestTime;
+@property (assign) float bestTimeEasy;
+@property (assign) float bestTimeNormal;
+@property (assign) float bestTimeHard;
 @property (assign) int currentLevel;
 @end

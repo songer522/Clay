@@ -163,7 +163,7 @@
         }
     }
     
-    
+    /*
     if (!_initialized) {
         
         if ([[UserData sharedInstance] bestTime] > finalTime)
@@ -178,7 +178,7 @@
         }
                _initialized = true;
     }
-
+    */
 }
 
 
