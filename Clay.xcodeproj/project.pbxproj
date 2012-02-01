@@ -217,8 +217,8 @@
 		546B8FF414D95BC100735EFA /* dojoLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6132628414D8BED900539203 /* dojoLevel-hd.png */; };
 		546B8FF514D95BC100735EFA /* dojoLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6132628514D8BED900539203 /* dojoLevel.plist */; };
 		546B8FF614D95BC100735EFA /* dojoLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 6132628614D8BED900539203 /* dojoLevel.png */; };
-		546B8FF714D95BC100735EFA /* chooseLevel_.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6132629314D92AA200539203 /* chooseLevel_.plist */; };
-		546B8FF814D95BC100735EFA /* chooseLevel_.png in Resources */ = {isa = PBXBuildFile; fileRef = 6132629414D92AA200539203 /* chooseLevel_.png */; };
+		546B8FF714D95BC100735EFA /* chooseLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6132629314D92AA200539203 /* chooseLevel.plist */; };
+		546B8FF814D95BC100735EFA /* chooseLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 6132629414D92AA200539203 /* chooseLevel.png */; };
 		546B8FF914D95BC100735EFA /* chooseLevel-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6132629514D92AA200539203 /* chooseLevel-hd.plist */; };
 		546B8FFA14D95BC100735EFA /* chooseLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6132629614D92AA200539203 /* chooseLevel-hd.png */; };
 		546B8FFB14D95BC100735EFA /* chooseMode-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6132628B14D8E42700539203 /* chooseMode-hd.plist */; };
@@ -592,18 +592,8 @@
 		6132627714D8918200539203 /* zombieLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6132627314D8918200539203 /* zombieLevel-hd.png */; };
 		6132627814D8918200539203 /* zombieLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6132627414D8918200539203 /* zombieLevel.plist */; };
 		6132627914D8918200539203 /* zombieLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 6132627514D8918200539203 /* zombieLevel.png */; };
-		6132628714D8BED900539203 /* dojoLevel-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6132628314D8BED900539203 /* dojoLevel-hd.plist */; };
-		6132628814D8BED900539203 /* dojoLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6132628414D8BED900539203 /* dojoLevel-hd.png */; };
-		6132628914D8BED900539203 /* dojoLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6132628514D8BED900539203 /* dojoLevel.plist */; };
-		6132628A14D8BED900539203 /* dojoLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 6132628614D8BED900539203 /* dojoLevel.png */; };
-		6132628F14D8E42700539203 /* chooseMode-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6132628B14D8E42700539203 /* chooseMode-hd.plist */; };
-		6132629014D8E42700539203 /* chooseMode-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6132628C14D8E42700539203 /* chooseMode-hd.png */; };
 		6132629114D8E42700539203 /* chooseMode.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6132628D14D8E42700539203 /* chooseMode.plist */; };
-		6132629214D8E42700539203 /* chooseMode.png in Resources */ = {isa = PBXBuildFile; fileRef = 6132628E14D8E42700539203 /* chooseMode.png */; };
 		6132629714D92AA200539203 /* chooseLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6132629314D92AA200539203 /* chooseLevel.plist */; };
-		6132629814D92AA200539203 /* chooseLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 6132629414D92AA200539203 /* chooseLevel.png */; };
-		6132629914D92AA200539203 /* chooseLevel-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6132629514D92AA200539203 /* chooseLevel-hd.plist */; };
-		6132629A14D92AA200539203 /* chooseLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6132629614D92AA200539203 /* chooseLevel-hd.png */; };
 		614E840814CDCAC4008AE080 /* tileset_level_2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 614E840614CDCAC4008AE080 /* tileset_level_2-hd.png */; };
 		614E840914CDCAC4008AE080 /* tileset_level_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 614E840714CDCAC4008AE080 /* tileset_level_2.png */; };
 		61782B4D14B3AC3F00C615E7 /* story_easy_level5_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61F6F6CB14B28643003A5C68 /* story_easy_level5_hd.tmx */; };
@@ -3233,8 +3223,8 @@
 				546B8FF414D95BC100735EFA /* dojoLevel-hd.png in Resources */,
 				546B8FF514D95BC100735EFA /* dojoLevel.plist in Resources */,
 				546B8FF614D95BC100735EFA /* dojoLevel.png in Resources */,
-				546B8FF714D95BC100735EFA /* chooseLevel_.plist in Resources */,
-				546B8FF814D95BC100735EFA /* chooseLevel_.png in Resources */,
+				546B8FF714D95BC100735EFA /* chooseLevel.plist in Resources */,
+				546B8FF814D95BC100735EFA /* chooseLevel.png in Resources */,
 				546B8FF914D95BC100735EFA /* chooseLevel-hd.plist in Resources */,
 				546B8FFA14D95BC100735EFA /* chooseLevel-hd.png in Resources */,
 				546B8FFB14D95BC100735EFA /* chooseMode-hd.plist in Resources */,
@@ -3688,20 +3678,8 @@
 				6132627914D8918200539203 /* zombieLevel.png in Resources */,
 				540E998414D88C6900D6F944 /* GraphicFont_LowRes22.fnt in Resources */,
 				540E998514D88C6900D6F944 /* GraphicFont_LowRes22.png in Resources */,
-				540E998614D88C6900D6F944 /* GraphicFont_LowRes29.fnt in Resources */,
-				540E998714D88C6900D6F944 /* GraphicFont_LowRes29.png in Resources */,
-				6132628714D8BED900539203 /* dojoLevel-hd.plist in Resources */,
-				6132628814D8BED900539203 /* dojoLevel-hd.png in Resources */,
-				6132628914D8BED900539203 /* dojoLevel.plist in Resources */,
-				6132628A14D8BED900539203 /* dojoLevel.png in Resources */,
-				6132628F14D8E42700539203 /* chooseMode-hd.plist in Resources */,
-				6132629014D8E42700539203 /* chooseMode-hd.png in Resources */,
 				6132629114D8E42700539203 /* chooseMode.plist in Resources */,
-				6132629214D8E42700539203 /* chooseMode.png in Resources */,
 				6132629714D92AA200539203 /* chooseLevel.plist in Resources */,
-				6132629814D92AA200539203 /* chooseLevel.png in Resources */,
-				6132629914D92AA200539203 /* chooseLevel-hd.plist in Resources */,
-				6132629A14D92AA200539203 /* chooseLevel-hd.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
