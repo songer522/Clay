@@ -376,7 +376,6 @@
         [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"waterSquidInkLandAnim"];
     } else if(_behavior == PROJECTILE_BEHAVIOR_DARK_BOMB) {
         [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"darkBossJimBombAttack3"];
-        [[SoundEngine shared] playSound:@"bombExplosion"];
     }
 }
 
@@ -455,6 +454,7 @@
         if (_hasGravity && y <= (85.0f + _offsetGroundDetectionY)) {
             if (_behavior == PROJECTILE_BEHAVIOR_DARK_BOMB) {
                 [self startCollision];
+                [[SoundEngine shared] playSound:@"bombExplosion"];
                 _isActive = false;
             } else if (_behavior == PROJECTILE_BEHAVIOR_ZOMBIE_HEAD) {
                 y = 85.0f + _offsetGroundDetectionY;

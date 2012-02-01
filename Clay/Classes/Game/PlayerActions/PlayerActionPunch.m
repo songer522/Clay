@@ -138,7 +138,7 @@
     
     }
     @catch (NSException *exception) {
-        NSLog(@"Error! PlayerActionPunch.m - Most likely animation or frame no longer exists when game is run at lower framerate, like in a simulator.");
+        //NSLog(@"Error! PlayerActionPunch.m - Most likely animation or frame no longer exists when game is run at lower framerate, like in a simulator.");
     }
     
     if ([[GameSettings shared] usingHighResolutionGraphics])

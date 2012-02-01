@@ -30,7 +30,9 @@ typedef enum {
     Sprite *_trainWheels;
     Sprite *_trainJim;
     
-    
+    bool _isOnScreen;
+    bool _isPlayingHorn;
+    bool _isPlayingTrain;
     
     Projectile *_door;
     

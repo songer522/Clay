@@ -88,7 +88,7 @@ typedef enum {
     Skin *_skin;
     
     bool _isDojoLevel;
-        
+    bool _isHurting;
     Sprite *_playerOnledge;
     Sprite *_tempSprite;
 }

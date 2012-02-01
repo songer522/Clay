@@ -391,12 +391,12 @@
             } else {
                 _bombStillHurts = false;
                 _collided = true;
+                [[SoundEngine shared] playSound:@"bombExplosion"];
             }
             
             if (!_hasTriggered) {
                 [self setOriginalAnimation:@"darkBossJimBombAttack2"];
                 [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"darkBombExplosionAnim"];
-                [[SoundEngine shared] playSound:@"bombExplosion"];
                 
                 _hasTriggered = true;
                 _collided = false;
@@ -695,7 +695,7 @@
         ///////////////////////////
         case COLLISION_BEHAVIOR_DISCO_TRIXTER_WAITING:
         case COLLISION_BEHAVIOR_DISCO_TRIXTER_DANCING:
-            if (!_madeSound && [self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN - 50.0f]) {
+            if (!_madeSound && [self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN - 100.0f]) {
                 _madeSound = true;
                 [[SoundEngine shared] playSound:@"discoBlondAppear"];
             }

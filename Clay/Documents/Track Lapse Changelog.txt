@@ -1,5 +1,39 @@
 Track Lapse Changelog
 
+Build 120131.RC1
+==================
+
+**please test**
+*EndGame - fixed bug where game settings were being removed from memory when switching from end game comics to credits screen, which caused the game to crash when trying to access those now nonexistent values when switching from credits screen to the final time screen, causing the game to crash.
+
+*ChooseMode - window added when try to start a new game when you can continue an existing game
+*ChooseLevel - fixed temporary issue where shopping carts were showing up for all non-dlc levels
+*ChooseLevel - dojo description is shorter, which allowed to make the font size larger for the description box
+*ChooseLevel - dlc error messages won't show immediately, but will wait until the buy button is pressed.
+*ChooseLevel - if for some reason the expected level is locked on load, it will find the next unlocked level and select it (mainly noticeable when level 1 was locked in timed insane mode but another level wasn't)
+*Global - fixed an issue causing the end games scenes not to transition properly
+*Global - updated the font for the low-res version so it doesn't look so pixelated
+*Global - disabled the iPhone dimming while playing the game, which fixes the iPhone going to sleep during the credits
+*Global - added notification that twitter is only supported on iOS 5.0+ phones for ios 4 users
+*Global - tweaked the code so that the low-resolution obstacles appear to shake left and right less
+*Global - fixed bug where if you got hit by something while you were in the middle of an action (for example the rock projectile in level 8), sometimes your sprint was disabled until you got hurt again
+*Global - added new sharing picture and updated the text for Facebook and twitter
+*Global - added a bunch of hints and reworded some existing hints
+*Level 4 - reduced volume of whistle sound effect and extended the time you dance in front of the girl
+*Level 6 - replaced mystery box with chainsaw
+*Level 7 - fixed bug where wearing signal isn't reset
+*Level 8 - removed some obstacles on ledges that would hurt the player when on the ground
+*Level 9 - replaced tree graphics with one that has a darkened trunk
+*Level 11 - removed all the tiny specks that were still on the level that shouldn't be there
+*Level 11 - detonating multiple bombs only plays the sound once now
+*Level 11 - fixed the train and horn sounds ending for the rest of the level when the game pauses or the player dies
+*Level 11 - changed so the horn sound only plays when the train is offscreen, and the train sound only plays when the train is onscreen
+*Level 13 - updated comic to show Tim with his full face
+*Level 13 - added the sword attack to the white ninja, slowed down white ninja slightly
+*Level 13 - shortened cool down for punch
+*Level 13 - added the punch action icon
+
+
 Build 120130.01
 =================
 

@@ -45,6 +45,10 @@
     _replaceGrapeId = 0;
     _replaceBombId = 0;
     
+    _isPlayingHorn = false;
+    _isPlayingTrain = false;
+    
+    
     _trainWheels = [Sprite spriteWithFile:@"blank.png" AddToLayer:NO];
     _trainJim = [Sprite spriteWithFile:@"blank.png" AddToLayer:NO];
     
@@ -118,11 +122,18 @@
 
 -(void)detonateBombs
 {
+    bool _shouldPlaySound = false;
+    
     for (Projectile *bomb in _bombs) {
         if ([bomb getActive]) {
             [[_player getThirdAction] setKilledEnemy:YES];
             [bomb startCollision];
+            _shouldPlaySound = true;
         }
+    }
+    
+    if (_shouldPlaySound) {
+        [[SoundEngine shared] playSound:@"bombExplosion"];
     }
 }
 
@@ -257,6 +268,7 @@
                 _destinationX = TRAIN_BOMB_POSITION;
                 _phase = phase;
                 _inAttack = true;
+                _isOnScreen = true;
             }
             break;
         case FINAL_BOSS_MOVE_TO_LEFT:
@@ -264,6 +276,7 @@
                 _destinationX = TRAIN_OFFSCREEN_LEFT;
                 _phase = phase;  
                 _inAttack = true;
+                _isOnScreen = false;
             }
             break;
         case FINAL_BOSS_MOVE_TO_RIGHT:
@@ -472,6 +485,22 @@
     }
     
     
+    if (_isOnScreen) {
+        if (!_isPlayingTrain) {
+            _isPlayingHorn = false;
+            _waitToPlayHorn = 500.0f;
+            _isPlayingTrain = true;
+            _waitToPlayTrainSound = 0.0f;
+        }
+    } else {
+        if (!_isPlayingHorn) {
+            _isPlayingHorn = true;
+            _waitToPlayHorn = 0.0f;
+            _isPlayingTrain = false;
+            _waitToPlayTrainSound = 500.0f;
+        }
+    }
+    
     
     [self updateHorn:dt];
     [self updateTrainSound:dt];
@@ -522,7 +551,7 @@
 
 -(void)updateHorn:(float)dt
 {
-    if (_waitToPlayHorn > 0.0f) {
+    if (_isPlayingHorn) {
         _waitToPlayHorn-=dt;
         if (_waitToPlayHorn<=0.0f) {
             _hornSoundId = [[SoundEngine shared] playSoundGetId:@"bossFinalHorn"];
@@ -533,11 +562,11 @@
 
 -(void)updateTrainSound:(float)dt
 {
-    if (_waitToPlayTrainSound > 0.0f) {
+    if (_isPlayingTrain) {
         _waitToPlayTrainSound -= dt;
         if (_waitToPlayTrainSound <= 0.0f) {
             _trainSoundId = [[SoundEngine shared] playSoundGetId:@"bossFinalTrain"];
-            _waitToPlayTrainSound = 10.0f;
+            _waitToPlayTrainSound = 9.1f;
         }
     }
 }
@@ -545,13 +574,13 @@
 -(void)stopHornSound
 {
     [[SoundEngine shared] stopSound:_hornSoundId];
-    _waitToPlayHorn = 0.0f;
+    _waitToPlayHorn = 0.1f;
 }
 
 -(void)stopTrainSound
 {
     [[SoundEngine shared] stopSound:_trainSoundId];
-    _waitToPlayTrainSound = 0.0f;
+    _waitToPlayTrainSound = 0.1f;
 }
 
 -(void) reset
@@ -576,9 +605,9 @@
     
     [_door disable];
     _waitUntilPlayerGetsBackUp = false;
-    
-    [self stopTrainSound];
-    [self stopHornSound];
+    _isOnScreen = false;
+    //[self stopTrainSound];
+    //[self stopHornSound];
 }
 
 -(void)restartLevel

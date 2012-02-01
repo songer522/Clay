@@ -276,8 +276,8 @@
     //NSLog(@"Dealloc: EndGameScene");
     
     
-    [difficulty release];
-    [mode release];
+    //[difficulty release];
+    //[mode release];
     [[TextureManager shared] unloadMemoryForKey:@"endGame"];
 }
 

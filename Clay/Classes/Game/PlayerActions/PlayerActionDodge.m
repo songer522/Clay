@@ -31,7 +31,7 @@
         if (!_isDancingWithGirl) {
             _duration = kPlayerActionDodgeFullDuration;            
         } else {
-            _duration = 4.0f * kPlayerActionDodgeFullDuration;
+            _duration = 5.0f * kPlayerActionDodgeFullDuration;
         }
         [[SoundEngine shared] playSound:@"shuffling"];
         [_parent setPlayerAnimation:PLAYER_ANIM_DODGE];

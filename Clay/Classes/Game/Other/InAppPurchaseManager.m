@@ -92,7 +92,7 @@ static InAppPurchaseManager *_shared = nil;
     
     for (NSString *invalidProductId in response.invalidProductIdentifiers)
     {
-        NSLog(@"Invalid product id: %@" , invalidProductId);
+        //NSLog(@"Invalid product id: %@" , invalidProductId);
         if(_delegate!=nil) {
            //[_delegate openErrorWindowCantConnectToStore];
             [_delegate setCantConnectToStore:YES];

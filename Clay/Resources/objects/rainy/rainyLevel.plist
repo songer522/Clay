@@ -867,7 +867,7 @@
 	<key>metadata</key>
 	<dict>
 		<key>version</key>
-		<string>1.5.2</string>
+		<string>1.5 GM</string>
 		<key>format</key>
 		<integer>3</integer>
 		<key>size</key>
@@ -881,11 +881,11 @@
 			<key>name</key>
 			<string>s</string>
 			<key>textureFileName</key>
-			<string>rainyLevel</string>
+			<string>s</string>
 			<key>textureFileExtension</key>
 			<string>.png</string>
 			<key>coordinatesFileName</key>
-			<string>rainyLevel</string>
+			<string>s</string>
 			<key>coordinatesFileExtension</key>
 			<string>.plist</string>
 			<key>premultipliedAlpha</key>

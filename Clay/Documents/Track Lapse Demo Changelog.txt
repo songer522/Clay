@@ -1,5 +1,15 @@
 Track Lapse Demo Changelog
 
+Demo Build 120131.01
+======================
+
+* added upsell screen, although menu text still won't show
+* updated options screen (still needs erase data removed), credits screen, how to play screen to match non-demo build
+* added the hint box to the pause menu
+* added missing sound files
+* trimmed the file size by using 128kbps mp3s to get below 20MB, although this has since crept back up when the upsell screen added. might consider lowering to 96kbps.
+
+
 Demo Build 120124.01
 ======================
 
