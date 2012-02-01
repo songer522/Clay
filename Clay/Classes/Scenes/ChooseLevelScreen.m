@@ -247,11 +247,11 @@
 
 -(bool)checkDlcLevelUnlocked:(int)levelNumber
 {
-    if (_selected == TRAINING_RUN) {
+    if (levelNumber == TRAINING_RUN) {
         if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isTrainingRunPurchased"] boolValue]) {
             return true;
         }        
-    } else if (_selected == DOJO_RUN) {
+    } else if (levelNumber == DOJO_RUN) {
         if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isDojoRunPurchased"] boolValue]) {
             return true;
         }        
