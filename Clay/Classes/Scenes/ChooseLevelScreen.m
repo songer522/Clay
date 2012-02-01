@@ -341,7 +341,7 @@
 {
     if (!_errorWindowOpen) {
         _errorWindowOpen = true;
-        _errorWindow = [GameWindow gameWindowWithHeader:@"ERROR!" Message:@"Cannot make purchase at this time. Please try again later or make sure to have in app purchases enabled in Settings>General>Restrictions." Choices:WINDOW_CHOICE_OK Layer:self];
+        _errorWindow = [GameWindow gameWindowWithHeader:@"ERROR!" Message:@"Cannot make purchase at this time. Please try again later or make sure to have in app purchases enabled in Settings>General>Restrictions." Choices:WINDOW_CHOICE_OK Layer:self withBackground:@"MessageBox2.png"];
     }
 }
 
