@@ -10,6 +10,7 @@ Build 120131.RC1
 *ChooseLevel - fixed temporary issue where shopping carts were showing up for all non-dlc levels
 *ChooseLevel - dojo description is shorter, which allowed to make the font size larger for the description box
 *ChooseLevel - dlc error messages won't show immediately, but will wait until the buy button is pressed.
+*ChooseLevel - if for some reason the expected level is locked on load, it will find the next unlocked level and select it (mainly noticeable when level 1 was locked in timed insane mode but another level wasn't)
 *Global - fixed an issue causing the end games scenes not to transition properly
 *Global - updated the font for the low-res version so it doesn't look so pixelated
 *Global - disabled the iPhone dimming while playing the game, which fixes the iPhone going to sleep during the credits
