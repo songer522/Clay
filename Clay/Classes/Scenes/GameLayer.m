@@ -246,6 +246,11 @@
 
     // build #2 method
     
+    /*
+    if (dt > 0.044f) {
+        dt = 2/60.0f;
+    } else */
+    
     if( dt > 0.022f )
     {
 		dt = 1/60.0f;
@@ -292,9 +297,10 @@
     
     if (!_paused && !_inComic) {
         
+        [_level update:dt Velocity:_player.vx];
+
         [_player update:dt Level:_level];
         
-        [_level update:dt Velocity:_player.vx];
         
         
         [self updateTriggers:dt];

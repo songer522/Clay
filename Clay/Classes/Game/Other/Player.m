@@ -258,7 +258,7 @@
     
 
     
-    if ((_isTripping || _isDead || _isInMidAir || _waitToGetUp > 0.f) && !_isNewUnderwaterPhysics) { return; }
+    if ((_isTripping || _isDead || _isInMidAir || _waitToGetUp > 0.0f) && !_isNewUnderwaterPhysics) { return; }
     if ([_thirdAction inAction] && ![_thirdAction playerAllowedToSprint]) { return; }
     
     if (_hitPoints > 1) {
@@ -518,6 +518,8 @@
         }
        
         _waitToGetUp = 0.3f;
+        _isHurting = true;
+        
     }
     
     if (_thirdAction.inAction) {
@@ -556,6 +558,7 @@
     _hasDoubleJumped = false;
     [self resetSprint];
     _waitToGetUp = 0.0f;
+    _isHurting = false;
     _timeLeftBeforeVulnerable = 2.0f;
     _isDead = false;
     self.hasGravity = true;
@@ -733,7 +736,15 @@
                 [self endTurbo:false];
             }
         }
+    } else if(_isHurting) {
+        _waitToGetUp -= dt;
+        if(_waitToGetUp<=0.0f) {
+            _isHurting = false;
+            _waitToGetUp = 0.0f;
+        }
     }
+    
+    
     if(_hitPoints<=1)
     {
         _isCooldown=false;

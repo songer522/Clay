@@ -256,8 +256,8 @@
         return true;
     }
     //NOTE: temporarily disabled for a build with unlocked dlc
-    //return false;
-    return true;
+    return false;
+    //return true;
 }
 
 -(void)popupDlcWindow:(int)levelNumber
@@ -315,7 +315,7 @@
 {
     if (!_errorWindowOpen) {
         _errorWindowOpen = true;
-        _errorWindow = [GameWindow gameWindowWithHeader:@"ERROR!" Message:@"Cannot make purchases at this time. Please try again later." Choices:WINDOW_CHOICE_OK Layer:self];
+        _errorWindow = [GameWindow gameWindowWithHeader:@"ERROR!" Message:@"Cannot make purchase at this time. Please try again later or make sure to have in app purchases enabled in Settings>General>Restrictions." Choices:WINDOW_CHOICE_OK Layer:self];
     }
 }
 
