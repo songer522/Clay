@@ -592,8 +592,8 @@
 		6132629014D8E42700539203 /* chooseMode-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6132628C14D8E42700539203 /* chooseMode-hd.png */; };
 		6132629114D8E42700539203 /* chooseMode.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6132628D14D8E42700539203 /* chooseMode.plist */; };
 		6132629214D8E42700539203 /* chooseMode.png in Resources */ = {isa = PBXBuildFile; fileRef = 6132628E14D8E42700539203 /* chooseMode.png */; };
-		6132629714D92AA200539203 /* chooseLevel_.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6132629314D92AA200539203 /* chooseLevel_.plist */; };
-		6132629814D92AA200539203 /* chooseLevel_.png in Resources */ = {isa = PBXBuildFile; fileRef = 6132629414D92AA200539203 /* chooseLevel_.png */; };
+		6132629714D92AA200539203 /* chooseLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6132629314D92AA200539203 /* chooseLevel.plist */; };
+		6132629814D92AA200539203 /* chooseLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 6132629414D92AA200539203 /* chooseLevel.png */; };
 		6132629914D92AA200539203 /* chooseLevel-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6132629514D92AA200539203 /* chooseLevel-hd.plist */; };
 		6132629A14D92AA200539203 /* chooseLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6132629614D92AA200539203 /* chooseLevel-hd.png */; };
 		614E840814CDCAC4008AE080 /* tileset_level_2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 614E840614CDCAC4008AE080 /* tileset_level_2-hd.png */; };
@@ -1511,8 +1511,8 @@
 		6132628C14D8E42700539203 /* chooseMode-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chooseMode-hd.png"; sourceTree = "<group>"; };
 		6132628D14D8E42700539203 /* chooseMode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = chooseMode.plist; sourceTree = "<group>"; };
 		6132628E14D8E42700539203 /* chooseMode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chooseMode.png; sourceTree = "<group>"; };
-		6132629314D92AA200539203 /* chooseLevel_.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = chooseLevel_.plist; sourceTree = "<group>"; };
-		6132629414D92AA200539203 /* chooseLevel_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chooseLevel_.png; sourceTree = "<group>"; };
+		6132629314D92AA200539203 /* chooseLevel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = chooseLevel.plist; sourceTree = "<group>"; };
+		6132629414D92AA200539203 /* chooseLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chooseLevel.png; sourceTree = "<group>"; };
 		6132629514D92AA200539203 /* chooseLevel-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "chooseLevel-hd.plist"; sourceTree = "<group>"; };
 		6132629614D92AA200539203 /* chooseLevel-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chooseLevel-hd.png"; sourceTree = "<group>"; };
 		614E840614CDCAC4008AE080 /* tileset_level_2-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tileset_level_2-hd.png"; path = "Resources/levels/tileset_level_2-hd.png"; sourceTree = "<group>"; };
@@ -2153,8 +2153,8 @@
 		544D50DA1445E68E00BED4CE /* scenes */ = {
 			isa = PBXGroup;
 			children = (
-				6132629314D92AA200539203 /* chooseLevel_.plist */,
-				6132629414D92AA200539203 /* chooseLevel_.png */,
+				6132629314D92AA200539203 /* chooseLevel.plist */,
+				6132629414D92AA200539203 /* chooseLevel.png */,
 				6132629514D92AA200539203 /* chooseLevel-hd.plist */,
 				6132629614D92AA200539203 /* chooseLevel-hd.png */,
 				6132628B14D8E42700539203 /* chooseMode-hd.plist */,
@@ -3688,8 +3688,8 @@
 				6132629014D8E42700539203 /* chooseMode-hd.png in Resources */,
 				6132629114D8E42700539203 /* chooseMode.plist in Resources */,
 				6132629214D8E42700539203 /* chooseMode.png in Resources */,
-				6132629714D92AA200539203 /* chooseLevel_.plist in Resources */,
-				6132629814D92AA200539203 /* chooseLevel_.png in Resources */,
+				6132629714D92AA200539203 /* chooseLevel.plist in Resources */,
+				6132629814D92AA200539203 /* chooseLevel.png in Resources */,
 				6132629914D92AA200539203 /* chooseLevel-hd.plist in Resources */,
 				6132629A14D92AA200539203 /* chooseLevel-hd.png in Resources */,
 			);
