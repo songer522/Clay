@@ -56,9 +56,9 @@ typedef enum {
 
 @property(nonatomic,retain) id delegate;
 
-+(id) gameWindowWithHeader:(NSString*)header Message:(NSString*)message Choices:(WindowChoiceType)choices Layer:(CCLayer*)layer;
++(id) gameWindowWithHeader:(NSString*)header Message:(NSString*)message Choices:(WindowChoiceType)choices Layer:(CCLayer*)layer withBackground:(NSString *) backgroundImage;
 
--(id) initWithHeader:(NSString*)header Message:(NSString*)message Choices:(WindowChoiceType)choices Layer:(CCLayer*)layer;
+-(id) initWithHeader:(NSString*)header Message:(NSString*)message Choices:(WindowChoiceType)choices Layer:(CCLayer*)layer withBackground:(NSString *) backgroundImage;
 
 
 #pragma mark - private methods

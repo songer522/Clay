@@ -16,5 +16,8 @@
 -(void)updateDlcLevels;
 -(void)openErrorWindowCantConnectToStore;
 -(void)openErrorWindowCantMakePurchases;
+-(void)setCantConnectToStore:(BOOL)CantConnectToStore;
+-(void)setCantMakePurchases:(BOOL)CantMakePurchases;
+
 
 @end

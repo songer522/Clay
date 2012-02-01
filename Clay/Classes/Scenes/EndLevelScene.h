@@ -71,7 +71,9 @@ typedef enum {
     float _time;
     bool _hasSwitch;
     UIAlertView		*_twitterSupportingAlert;
+    
 
+  
     
     
     

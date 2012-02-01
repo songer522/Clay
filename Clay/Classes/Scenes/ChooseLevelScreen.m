@@ -83,6 +83,8 @@
         _inDLCMode = false;
         _allGoldMedalInNormal=false;
         _allGoldMedalInInsane=false;
+        _openErrorCantConnectToStore=false;
+        _openErrorCantConnectToStore=false;
         
         self.isTouchEnabled = YES;
         
@@ -177,6 +179,7 @@
                 break;
             }
         }
+         
         
         for (LevelButton *button in _buttons) {
             if([button checkIfSelected:position] && !_panelTransition && [button isUnlocked]) {
@@ -262,6 +265,21 @@
 
 -(void)popupDlcWindow:(int)levelNumber
 {
+    if(_openErrorCantConnectToStore)
+    {
+        [self openErrorWindowCantConnectToStore];
+       // _openErrorCantConnectToStore=false;
+        return;
+    }
+    if(_openErrorCantMakePurchases)
+    {
+        [self openErrorWindowCantMakePurchases];
+        //_openErrorCantMakePurchases=false;
+        return;
+    }
+    
+    
+    
     switch (levelNumber) {
         case TRAINING_RUN:
             [[InAppPurchaseManager shared] purchaseProductId:kInAppPurchaseTrainingRunProductId Delegate:self];
@@ -302,12 +320,20 @@
     }
     
 }
+-(void)setCantConnectToStore:(BOOL)CantConnectToStore
+{
+    _openErrorCantConnectToStore=CantConnectToStore;
+}
+-(void)setCantMakePurchases:(BOOL)CantMakePurchases
+{
+    _openErrorCantMakePurchases=CantMakePurchases;
+}
 
 -(void)openErrorWindowCantConnectToStore
 {
     if (!_errorWindowOpen) {
         _errorWindowOpen = true;
-        _errorWindow = [GameWindow gameWindowWithHeader:@"ERROR!" Message:@"Cannot connect to the store at this time. Please try again later." Choices:WINDOW_CHOICE_OK Layer:self];        
+        _errorWindow = [GameWindow gameWindowWithHeader:@"ERROR!" Message:@"Cannot connect to the store at this time. Please try again later." Choices:WINDOW_CHOICE_OK Layer:self withBackground:@"MessageBox2.png"];        
     }
 }
 
@@ -368,7 +394,7 @@
     [_twitterButton setPosition:ccp(210, 80)];
     [_twitterButton setEnabled:true];
     
-    
+    LevelButton *selectedButton=nil;
     //load level buttons (init best level time text first because it gets set in here)
     for (int i=_levelStartNumber; i<(_levelStartNumber + _numberOfLevels); i++) {
         LevelButton *button = [LevelButton levelButtonWithId:i];
@@ -377,11 +403,28 @@
         //by default have the first level selected
         if((i+1)==_selected) {
             [button setSelected];
+            selectedButton=button;
         }
         
         [_buttons addObject:button];
     }
-    
+    if ([selectedButton isUnlocked]) {
+        //do nothing
+    } else {
+        for (LevelButton *button in _buttons) {
+            if ([button isUnlocked]) {
+                [button setSelected];
+                _selected = button.buttonId;
+                if(_levelToSwitchTo) {
+                    [_levelToSwitchTo release];
+                    _levelToSwitchTo = nil;
+                }
+                _levelToSwitchTo = [[NSString alloc] initWithFormat:@"level%d",_selected];
+                
+                break;
+            }
+        }
+    }    
     if (_inDLCMode) {
         _levelSelectText = [GameLabel gameLabelWithText:@"BONUS LEVELS" Scale:0.75f Position:ccp(365.0f,282.0f)];
     } else {
@@ -705,7 +748,7 @@
    
   
    
-    NSString *description=[self covertLevelname:_levelNumber];
+    
    
     if (_panelTransition) {
         [self updatePanelTransition:dt];
@@ -724,8 +767,9 @@
                     [_fbprompt release];
                     _fbprompt = nil;
                 }
+                NSString *description=[self covertLevelname:_levelNumber];
                                _fbprompt = [FBPrompt promptWithAppId:@"264174546971482" andDelegate:self];
-                [_fbprompt showFacebookDialogWithDescription:[NSString stringWithFormat:@"Hey, here's my score for Track Lapse %@ : %@, see if you can beat me!!!",description, _bestTime] andPicture:@"http://fbrell.com/f8.jpg"];
+                [_fbprompt showFacebookDialogWithDescription:[NSString stringWithFormat:@"Here is my time for Track Lapse on %@: %@",description, _bestTime] andPicture:@"http://i1077.photobucket.com/albums/w480/xecudev/IconForFB_128.png"];
                 _openFacebook =false;
                 
                 if(![GCState sharedInstance].facebook)
@@ -738,8 +782,9 @@
             } else if(_openTwitter)
             {
                
-                
-                [self sendEasyTweet:[NSString stringWithFormat:@"Hey, here's my score for Track Lapse %@ : %@, see if you can beat me!!!",description, _bestTime]];
+                NSString *description=[self covertLevelname:_levelNumber];
+                NSString *_url= [NSString stringWithFormat:@"http://itunes.apple.com/us/app/track-lapse/id473701533?ls=1&mt=8"];
+                [self sendEasyTweet:[NSString stringWithFormat:@"Here is my time for Track Lapse on %@: %@ %@",description, _bestTime,_url]];
                 _openTwitter =false;
                 if(![GCState sharedInstance].twitter)
                 {

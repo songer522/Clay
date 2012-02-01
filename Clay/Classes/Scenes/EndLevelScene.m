@@ -56,6 +56,7 @@
         
         
         _state = END_LEVEL_TRANSITION_IN;
+        //_UpperCasedifficulty= [NSString stringWithFormat:@""];
         _alpha = 0.0f;
         _time = 0.0f;
         _openFacebook=false;
@@ -85,17 +86,20 @@
          if([_difficulty isEqualToString:@"easy"])
          {
              _difficultyHeader=[Sprite spriteFromFrameCacheWithName:@"End_Text_Easy.png"];
+             //_UpperCasedifficulty=[NSString stringWithFormat:@"Easy"];
          }
         else if([_difficulty isEqualToString:@"normal"])
         {
             _difficultyHeader=[Sprite spriteFromFrameCacheWithName:@"End_Text_Normal.png"];
+            //_UpperCasedifficulty=[NSString stringWithFormat:@"Normal"];
         }
         else if([_difficulty isEqualToString:@"hard"])
         {
             _difficultyHeader=[Sprite spriteFromFrameCacheWithName:@"End_Text_Hard.png"];
+            //_UpperCasedifficulty=[NSString stringWithFormat:@"Hard"];
         }
         
-        
+        //_description= [NSString stringWithFormat:@"%@ Story Mode",_UpperCasedifficulty];
         _menuButton = [ActionButton actionButtonInGameWithText:@"MENU"];
         
         CGSize winSize = [[CCDirector sharedDirector] winSize];
@@ -167,6 +171,10 @@
 	[alertView show];
 }
 
+-(void)checkUpperCase
+{
+    }
+
 - (void)sendEasyTweet:(NSString*)tweet
 {
     AppDelegate *appDelegate=[[UIApplication sharedApplication] delegate];
@@ -228,15 +236,35 @@
            }
 }
 
+-(void)openfacebook:(NSString *)description
+{
+    float finalTime = [[[GameSettings shared] getGlobalForKey:@"finalTime"] floatValue];
+    _timer=[TrackTimer getTimeStringFromFloat:finalTime];
+    _fbprompt = [FBPrompt promptWithAppId:@"264174546971482" andDelegate:self];
+    [_fbprompt showFacebookDialogWithDescription:[NSString stringWithFormat:@"Here is my time for Track Lapse on %@: %@",description, _timer] andPicture:@"http://i1077.photobucket.com/albums/w480/xecudev/IconForFB_128.png"];
+    _openFacebook =false;
+
+}
+-(void)opentwitter:(NSString *)description
+{
+    float finalTime = [[[GameSettings shared] getGlobalForKey:@"finalTime"] floatValue];
+    NSString *_url= [NSString stringWithFormat:@"http://itunes.apple.com/us/app/track-lapse/id473701533?ls=1&mt=8"];
+    _timer=[TrackTimer getTimeStringFromFloat:finalTime];
+    [self sendEasyTweet:[NSString stringWithFormat:@"Here is my time for Track Lapse on %@: %@ %@",description, _timer,_url]];
+    _openTwitter =false;
+
+}
+
 -(void)update:(ccTime)dt
 {
     float rate = 2.0f * dt;
     
     float finalTime = [[[GameSettings shared] getGlobalForKey:@"finalTime"] floatValue];
     
-        NSString *_description= [NSString stringWithFormat:@"story mode %@",_difficulty];
     
-    
+     
+
+        
     
     if (!_initialized) {
         
@@ -264,11 +292,26 @@
             [_fbprompt release];
             _fbprompt = nil;
         }
-        _timer=[TrackTimer getTimeStringFromFloat:finalTime];
-        _fbprompt = [FBPrompt promptWithAppId:@"264174546971482" andDelegate:self];
-        [_fbprompt showFacebookDialogWithDescription:[NSString stringWithFormat:@"Hey, here's my score for Track Lapse %@ : %@, see if you can beat me!!!",_description, _timer] andPicture:@"http://fbrell.com/f8.jpg"];
-        _openFacebook =false;
+        if([_difficulty isEqualToString:@"easy"])
+        {
+            NSString *_description= [NSString stringWithFormat:@"Easy Story Mode"];
+            [self openfacebook:_description];
+        }
+        else if([_difficulty isEqualToString:@"normal"])
+        {
+            NSString *_description= [NSString stringWithFormat:@"Normal Story Mode"];
+            [self openfacebook:_description];
+        }
+        else if([_difficulty isEqualToString:@"hard"])
+        {
+            NSString *_description= [NSString stringWithFormat:@"Hard Story Mode"];
+            [self openfacebook:_description];
+        }
         
+
+                //NSString *_url= [NSString stringWithFormat:@"http://itunes.apple.com/ca/album/track-lapse-official-game/id494170466"];
+
+               
         if(![GCState sharedInstance].facebook)
         {
             
@@ -278,10 +321,25 @@
         
     } else if(_openTwitter)
     {
-         _timer=[TrackTimer getTimeStringFromFloat:finalTime];
-        [self sendEasyTweet:[NSString stringWithFormat:@"Hey, here's my score for Track Lapse %@ : %@, see if you can beat me!!!",_description, _timer]];
-        _openTwitter =false;
-        if(![GCState sharedInstance].twitter)
+        
+        if([_difficulty isEqualToString:@"easy"])
+        {
+            NSString *_description= [NSString stringWithFormat:@"Easy Story Mode"];
+            [self opentwitter:_description];
+        }
+        else if([_difficulty isEqualToString:@"normal"])
+        {
+            NSString *_description= [NSString stringWithFormat:@"Normal Story Mode"];
+            [self opentwitter:_description];
+        }
+        else if([_difficulty isEqualToString:@"hard"])
+        {
+            NSString *_description= [NSString stringWithFormat:@"Hard Story Mode"];
+            [self opentwitter:_description];
+        }
+
+        
+          if(![GCState sharedInstance].twitter)
         {
             
             [GCState sharedInstance].twitter =true;

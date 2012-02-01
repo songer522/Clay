@@ -16,12 +16,12 @@
 
 @synthesize delegate = _delegate;
 
-+(id) gameWindowWithHeader:(NSString*)header Message:(NSString*)message Choices:(WindowChoiceType)choices Layer:(CCLayer*)layer;
++(id) gameWindowWithHeader:(NSString*)header Message:(NSString*)message Choices:(WindowChoiceType)choices Layer:(CCLayer*)layer withBackground:(NSString *) backgroundImage
 {
-    return [[self alloc] initWithHeader:header Message:message Choices:choices Layer:layer];
+    return [[self alloc] initWithHeader:header Message:message Choices:choices Layer:layer withBackground:backgroundImage];
 }
 
--(id) initWithHeader:(NSString*)header Message:(NSString*)message Choices:(WindowChoiceType)choices  Layer:(CCLayer*)layer
+-(id) initWithHeader:(NSString*)header Message:(NSString*)message Choices:(WindowChoiceType)choices  Layer:(CCLayer*)layer withBackground:(NSString *) backgroundImage
 {
     if ((self=[super init])) {
         
@@ -29,7 +29,7 @@
         
         [[LayerManager sharedLayers] setWorkingLayer:_root];
         
-        _background = [Sprite spriteCenteredWithFrame:@"MessageBox.png" Position:ccp(240,160)];
+        _background = [Sprite spriteCenteredWithFrame:backgroundImage Position:ccp(240,160)];
         
         _header = [GameLabel gameLabelWithText:header Scale:0.65f Position:ccp(240,240)];
         
