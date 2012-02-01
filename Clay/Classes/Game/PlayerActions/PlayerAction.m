@@ -97,6 +97,11 @@
  
 }
 
+-(void)resetProjectile
+{
+    
+}
+
 -(void) enableAction
 {
     _canTrigger = true;

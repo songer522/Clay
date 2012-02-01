@@ -67,6 +67,15 @@
     
 }
 
+-(void)resetProjectile
+{
+    for(Projectile *bullet in _bullets)
+    {
+        [bullet getCCSprite].visible=false;
+    }
+}
+
+
 -(void)enableAction
 {
     [[SoundEngine shared] playSound:@"shootActionReload"];

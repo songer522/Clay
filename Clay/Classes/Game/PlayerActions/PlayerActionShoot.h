@@ -17,6 +17,8 @@
 }
 
 -(void)createBullet;
+-(void)resetProjectile;
+
 
 
 @end
