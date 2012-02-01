@@ -71,7 +71,7 @@
 -(bool) playerAllowedToJump;
 -(bool) playerAllowedToSprint;
 -(bool) shouldActionStopPlayer;
--(void)resetProjectile;
+
 
 
 #pragma mark - achievements 

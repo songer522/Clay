@@ -37,6 +37,7 @@
 #import "Level.h"
 #import "EndLevelLayer.h"
 #import "BestTimes.h"
+#import "PlayerAction.h"
 
 
 #define DEBUG_DRAW_BOUNDING_BOXES 0
@@ -148,6 +149,7 @@
     [[Camera sharedCamera] reset];
     [_level resetTriggers:true];
     [_level resetObstacles];
+    [[_player getThirdAction] resetProjectile];
     [_boss restartLevel];
     [[ComicManager shared] restartLevel];
     _isNewRecord=false;
