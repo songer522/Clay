@@ -290,23 +290,29 @@
             [[GameSettings shared] setGlobal:@"normal" ForKey:@"gameDifficulty"];
             [[GameSettings shared] setGlobal:@"timed" ForKey:@"gameMode"];
             _action = GAMEMODE_TIMED_NORMAL;
+            [self switchToAction];
         } else if(selectedButtonIndex == 1) {
             [[GameSettings shared] setGlobal:@"hard" ForKey:@"gameDifficulty"];
             [[GameSettings shared] setGlobal:@"timed" ForKey:@"gameMode"];
-            _action = GAMEMODE_TIMED_INSANE;            
+            _action = GAMEMODE_TIMED_INSANE;  
+            [self switchToAction];
         } else {
             [[GameSettings shared] setGlobal:@"normal" ForKey:@"gameDifficulty"];
             [[GameSettings shared] setGlobal:@"timed" ForKey:@"gameMode"];
             _action = GAMEMODE_TIMED_DLC;
+            [self switchToAction];
         }
     } else {
         if (selectedButtonIndex == 0) {
             _action = GAMEMODE_EXTRAS_ALBUM;
+            [self switchToAction];
         } else if (selectedButtonIndex == 1){
             _action = GAMEMODE_EXTRAS_WEB;
+            [self switchToAction];
         }
         else{
             _action=GAMEMODE_EXTRAS_SUPPORT;
+            [self switchToAction];
         }
     }
 }
