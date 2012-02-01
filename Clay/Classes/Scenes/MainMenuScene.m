@@ -29,7 +29,8 @@
 #import "Tutorial.h"
 #import "GameLayer.h"
 #import "InAppPurchaseManager.h"
-
+#import "GCHelper.h"
+#import "GCState.h"
 
 
 @implementation MainMenuScene
