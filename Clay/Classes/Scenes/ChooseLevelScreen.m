@@ -394,7 +394,7 @@
     [_twitterButton setPosition:ccp(210, 80)];
     [_twitterButton setEnabled:true];
     
-    
+    LevelButton *selectedButton=nil;
     //load level buttons (init best level time text first because it gets set in here)
     for (int i=_levelStartNumber; i<(_levelStartNumber + _numberOfLevels); i++) {
         LevelButton *button = [LevelButton levelButtonWithId:i];
@@ -403,11 +403,28 @@
         //by default have the first level selected
         if((i+1)==_selected) {
             [button setSelected];
+            selectedButton=button;
         }
         
         [_buttons addObject:button];
     }
-    
+    if ([selectedButton isUnlocked]) {
+        //do nothing
+    } else {
+        for (LevelButton *button in _buttons) {
+            if ([button isUnlocked]) {
+                [button setSelected];
+                _selected = button.buttonId;
+                if(_levelToSwitchTo) {
+                    [_levelToSwitchTo release];
+                    _levelToSwitchTo = nil;
+                }
+                _levelToSwitchTo = [[NSString alloc] initWithFormat:@"level%d",_selected];
+                
+                break;
+            }
+        }
+    }    
     if (_inDLCMode) {
         _levelSelectText = [GameLabel gameLabelWithText:@"BONUS LEVELS" Scale:0.75f Position:ccp(365.0f,282.0f)];
     } else {
