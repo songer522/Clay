@@ -1,5 +1,20 @@
 Track Lapse Changelog
 
+Build 120201.RC4
+==================
+
+*ChooseLevel - fixed the shopping carts appearing and disappearing incorrectly
+*ChooseLevel - fixed the missing graphic for this
+*EndGame - changed the font size of 'new record!' text to make it smaller so it doesn't overlap 'normal mode'
+*Global - 'rate our app' achievement now shows on the main menu, and is given to the user whether they choose to rate the game or not, since the window will not come back if they choose not to rate the game
+*Global - story mode used to only store and compare one 'best time' for all difficulties for the 'new record!' to display at the end of the game, now it keeps track separately for each difficulty.
+*Global - changed Facebook plugin to our new Facebook id
+*Main Menu - added the 'play' sound effect to the 'continue' button
+*Level 4 - fixed missing foreground
+*Level 5 - removed artifact from map
+*Level 6 - fixed the bullets not being reset after pressing redo from pause menu
+
+
 Build 120131.RC1
 ==================
 
