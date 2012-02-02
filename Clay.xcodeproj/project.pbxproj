@@ -592,8 +592,6 @@
 		6132627714D8918200539203 /* zombieLevel-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6132627314D8918200539203 /* zombieLevel-hd.png */; };
 		6132627814D8918200539203 /* zombieLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6132627414D8918200539203 /* zombieLevel.plist */; };
 		6132627914D8918200539203 /* zombieLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 6132627514D8918200539203 /* zombieLevel.png */; };
-		6132629114D8E42700539203 /* chooseMode.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6132628D14D8E42700539203 /* chooseMode.plist */; };
-		6132629714D92AA200539203 /* chooseLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6132629314D92AA200539203 /* chooseLevel.plist */; };
 		614E840814CDCAC4008AE080 /* tileset_level_2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 614E840614CDCAC4008AE080 /* tileset_level_2-hd.png */; };
 		614E840914CDCAC4008AE080 /* tileset_level_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 614E840714CDCAC4008AE080 /* tileset_level_2.png */; };
 		61782B4D14B3AC3F00C615E7 /* story_easy_level5_hd.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61F6F6CB14B28643003A5C68 /* story_easy_level5_hd.tmx */; };
@@ -3678,8 +3676,6 @@
 				6132627914D8918200539203 /* zombieLevel.png in Resources */,
 				540E998414D88C6900D6F944 /* GraphicFont_LowRes22.fnt in Resources */,
 				540E998514D88C6900D6F944 /* GraphicFont_LowRes22.png in Resources */,
-				6132629114D8E42700539203 /* chooseMode.plist in Resources */,
-				6132629714D92AA200539203 /* chooseLevel.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
