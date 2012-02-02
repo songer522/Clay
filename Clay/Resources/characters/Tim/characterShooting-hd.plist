@@ -22,7 +22,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{183, 0}, {149, 272}}</string>
+			<string>{{342, 0}, {149, 272}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -66,29 +66,7 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{0, 276}, {272, 155}}</string>
-			<key>textureRotated</key>
-			<true/>
-		</dict>
-		
-		<key>Character_Shooting_4.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{44, 15}, {155, 268}}</string>
-			<key>spriteOffset</key>
-			<string>{9, 1}</string>
-			<key>spriteSize</key>
-			<string>{155, 268}</string>
-			<key>spriteSourceSize</key>
-			<string>{225, 300}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{336, 0}, {155, 268}}</string>
+			<string>{{183, 0}, {155, 272}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
