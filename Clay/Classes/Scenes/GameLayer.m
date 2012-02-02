@@ -315,9 +315,10 @@
         
         //[_testAnim updateAnimator:0.5f * dt];
         
-        if (_laserShow!=nil) {
-            [_laserShow update:dt];
-        } else if(_rainyLevelEffects !=nil) {
+        //if (_laserShow!=nil) {
+        //    [_laserShow update:dt];
+        //} else 
+        if(_rainyLevelEffects !=nil) {
             [_rainyLevelEffects update:dt];
         }
         

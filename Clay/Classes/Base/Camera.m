@@ -83,11 +83,6 @@ static Camera *_sharedCamera = nil;
 
 -(void)keepWithinBoundaries
 {
-    if ([[GameSettings shared] isStutterMode]) {
-        [self keepWithinBoundaries_old];
-        return;
-    }
-    
     float bottom = _y - _center.y;
     float top = bottom + _precalculateWinsizeHeight; 
     
@@ -95,29 +90,6 @@ static Camera *_sharedCamera = nil;
         _y = _precalculateBoundaryYplusBoundaryHeight - _precalculateWinsizeHeight + _center.y;
     } else if (bottom < _precalculateBoundaryY) {
         _y = _precalculateBoundaryY + _center.y;
-    }
-}
-
-
--(void)keepWithinBoundaries_old
-{
-    CGSize winSize = [[CCDirector sharedDirector] winSize];
-    
-    float left = _x - _center.x;
-    float right = left + winSize.width;
-    float bottom = _y - _center.y;
-    float top = bottom + winSize.height;
-    
-    if(left < _boundary.origin.x) {
-        _x = _boundary.origin.x + _center.x;
-    } else if(right > (_boundary.origin.x + _boundary.size.width)) {
-        _x = _boundary.origin.x + _boundary.size.width - winSize.width + _center.x;
-    }
-    
-    if(top > (_boundary.origin.y + _boundary.size.height)) {
-        _y = _boundary.origin.y + _boundary.size.height - winSize.height + _center.y;
-    } else if (bottom < _boundary.origin.y) {
-        _y = _boundary.origin.y + _center.y;
     }
 }
 
@@ -141,13 +113,6 @@ static Camera *_sharedCamera = nil;
 -(void)restoreDefaultCenter:(CGPoint)point
 {
     _center = _defaultCenter;
-}
-
--(void)moveByX:(float)x Y:(float)y
-{
-    _x += x;
-    //_y += y;
-    [self keepWithinBoundaries];    
 }
 
 -(CGPoint)convertToScreenXY:(CGPoint)worldXY
@@ -180,39 +145,6 @@ static Camera *_sharedCamera = nil;
     return (worldY - _y + _center.y);    
 }
 
-
--(void)moveTowardsTargetNew:(float)dt
-{
-    //CGPoint position = [_target getPosition];
-    //float dx = (position.x - _x);
-    
-    //float speed = [_player getVelocityX];
-    
-    if(_trackingTarget) {
-        //_x = _target.
-    }
-    
-    /*
-    float distance = sqrtf(dx*dx);
-    if (distance > 0.1f) {
-        if (_trackingTarget) {
-            
-            if (dx > 0) {
-                _vx += 6.0f * dt;
-                _vx = MIN(40.0f, _vx);
-            } else {
-                _vx -= 6.0f * dt;
-                _vx = MAX(-40.0f, _vx);                
-            }
-            _x += _vx;         
-        }
-    } else {
-        if (_trackingTarget) {
-            _vx = 0.0f;
-            _x = position.x;            
-        }
-    }*/
-}
 
 -(void)moveTowardsTarget:(float)dt PlayerOnGround:(bool)onGround
 {

@@ -368,28 +368,12 @@
 
 -(void)startCollision:(PlayerEffect)effect Source:(id<Collidable>)source
 {
-    //update vaccuum effect
-    /*
-    if(effect == PLAYER_EFFECT_VACCUUM) {
-        //don't want this set if in spin action
-        if(!_thirdAction.inAction) {
-            _speed.velocity *= 0.98f;
-            self.hasGravity = false;
-            self.vy = -50.0f;
-        }
-        [_speed stop];
-        if (!_inVaccuum) {
-            [self startVaccuum];
-        }
-       
-    }
-     */
-    
+
     _goSlower = false;
     
     if (!_isInvincible) {
         if (effect == PLAYER_EFFECT_ACTION_OR_COLLIDE) {
-            if (!_isTripping && !_isDead) {
+            if (!_isTripping && !_isDead && !_isHurting) {
                 if (![_thirdAction isActive]) {
                     if ([_thirdAction shouldTriggerPlayerHurtCollision]) {
                         [self startPlayerCollision:false];
@@ -406,7 +390,7 @@
                 }
             }
         } else if (effect == PLAYER_EFFECT_COLLIDE) {
-            if (!_isTripping && !_isDead) {
+            if (!_isTripping && !_isDead && !_isHurting) {
                 [self startPlayerCollision:false];
                 [self obstacleGotHitBy:source];
                 if(!_gotHit)
@@ -435,20 +419,6 @@
     }
     
     _currentPlayerEffect = effect;
-}
-
--(void)startVaccuum
-{
-    _inVaccuum = true;
-    self.hasGravity = false;
-    [_skin setPlayerAnimation:PLAYER_ANIM_FLOATING ForSprite:_sprite];    
-}
-    
--(void)endVaccuum
-{
-    _inVaccuum = false;
-    self.hasGravity = true;
-    [_speed start];
 }
 
 //right now this is only called by the falling animation, sinc tim actually
@@ -523,9 +493,6 @@
     }
     
     if (_thirdAction.inAction) {
-        [_thirdAction cancelAction];
-    } else if([[[LevelManager shared] currentLevel] isLevelNumber:11]) {
-        //HACK: done just to force cancel action to be called when the player is hit.
         [_thirdAction cancelAction];
     }
 }
@@ -696,8 +663,6 @@
 
     [self updateJump:dt];
     
-    //[self updateInvulnerable:dt];
-
     if (_adjustX != 0.0f) {
         self.x += _adjustX;
         _adjustX = 0.0f;
@@ -952,53 +917,17 @@
         
     
          
-        else if(![_skin isCurrentAnimationOfType:PLAYER_ANIM_RUNNING] && !_isInMidAir && !_speed.inTurbo && !_isTripping && !_inVaccuum && ![_thirdAction inAction] && _waitToGetUp <=0.0f) {
+        else if(![_skin isCurrentAnimationOfType:PLAYER_ANIM_RUNNING] && !_isInMidAir && !_speed.inTurbo && !_isTripping && ![_thirdAction inAction] && _waitToGetUp <=0.0f) {
             [_skin setPlayerAnimation:PLAYER_ANIM_RUNNING ForSprite:_sprite];
             
             
         }
-        /*
-        else if(![_skin isCurrentAnimationOfType:PLAYER_ANIM_SPRINTING] && !_isInMidAir && _speed.inTurbo && !_isTripping &&  !_inVaccuum &&![_thirdAction inAction] && _waitToGetUp <=0.0f) {
-            [_skin setPlayerAnimation:PLAYER_ANIM_SPRINTING ForSprite:_sprite];
-            
-            
-        }   
-         */
+
         _vy = 0;
         _ay = 0;
         
     }
 }
-
-
--(void)updateInvulnerable:(float)dt
-{
-    return; //temporarily don't want to do;
-    
-    _totalTime += dt;
-    
-    //make character blink to show that they're invulnerable
-    float blink = sinf(8.0f * _totalTime);
-    if (blink < 0.95f) {
-        [_sprite setAlpha:1.0f];
-        [[_sprite getCCSprite] setColor:ccc3(255, 255, 255)];
-    } else {
-        [_sprite setAlpha:1.0f];
-        [[_sprite getCCSprite] setColor:ccc3(200, 200, 0)];
-    }
-    
-    
-    if (_timeLeftBeforeVulnerable >=0.0f) {
-        _timeLeftBeforeVulnerable -= dt;
-        _isInvincible = true;
-        
-        if (_timeLeftBeforeVulnerable<=0.0f) {
-            _isInvincible = false;
-            [[_sprite getCCSprite] setColor:ccc3(255, 255, 255)];
-        }
-    }
-}
-
 
 
 -(void)updateSlow:(float)dt
@@ -1014,28 +943,7 @@
                 _waitToPlaySlowSound = 0.4f;
             }
         }
-     }
-    
-    //end vaccuum effect if no longer in it
-    if(_inVaccuum) {
-        if(_currentPlayerEffect == PLAYER_EFFECT_VACCUUM) {
-            _waitToPlaySlowSound -= dt;
-            if (_waitToPlaySlowSound<=0.0f) {
-                [[SoundEngine shared] playSound:@"waterBubbles"];
-                _waitToPlaySlowSound = 0.4f;
-            }
-            
-        } else if (_currentPlayerEffect == PLAYER_EFFECT_NONE) {
-            [self endVaccuum];
-            if ([_thirdAction inAction]) {
-                [_thirdAction setKilledEnemy:true];
-            }
-            if ([_skin isCurrentAnimationOfType:PLAYER_ANIM_FLOATING] && _isInMidAir) {
-                [_skin setPlayerAnimation:PLAYER_ANIM_FALLING ForSprite:_sprite];
-            }
-        }
-    }
-    
+     }    
 }
 
 -(void)updateSkin:(SkinType)skin

@@ -60,7 +60,6 @@
 +(Camera*)sharedCamera;
 
 #pragma mark - public methods
--(void)moveByX:(float)x Y:(float)y;
 -(void)setBoundaries:(CGRect)rect Level:(Level*)level;
 
 -(void)updateOnScreenRange;
@@ -87,7 +86,6 @@
 -(void)reset;
 
 #pragma mark - private methods
--(void)keepWithinBoundaries_old;
 -(void)keepWithinBoundaries;
 
 -(bool)isInVisualRange:(float)xPosition;
