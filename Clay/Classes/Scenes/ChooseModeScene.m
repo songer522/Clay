@@ -44,7 +44,8 @@
         _waitToSwitch = 0.0f;
         _backToMainMenu = false;
         _playTutorial = false;
-        _warningWindowOpen=false;
+        _losingProgressWarningWindowOpen=false;
+        _lockedWarningWindow=false;
         _isContinueButtonEnabled=[ContinueGameManager isAbleToContinueGame];
         _action=GAMEMODE_NONE;
         [self scheduleUpdate];
@@ -72,20 +73,54 @@
 	[alertView show];
 }
 
--(void)openWarningWindowLosingProcess
+-(void)openWarningWindowLosingProgress
 {
    // [[CCDirector sharedDirector] pause];
-    if (!_warningWindowOpen) {
-        _warningWindowOpen = true;
-        _warningWindow = [GameWindow gameWindowWithHeader:@"Warning" Message:@"You will lose the current progress in story mode, are you sure?" Choices:WINDOW_CHOICE_NOYES Layer:self withBackground:@"MessageBox.png"];        
+    if (!_losingProgressWarningWindowOpen) {
+        _losingProgressWarningWindowOpen = true;
+        _losingProgressWarningWindow = [GameWindow gameWindowWithHeader:@"Warning" Message:@"You will lose the current progress in story mode, are you sure?" Choices:WINDOW_CHOICE_NOYES Layer:self withBackground:@"MessageBox.png"];        
     }
 }
 
--(void)closeWarningWindow
+-(void)openWarningWindowLockedHardStory
 {
-    _warningWindowOpen = false;
-    [_warningWindow release];
-    _warningWindow = nil;
+    if (!_lockedWarningWindowOpen) {
+        _lockedWarningWindowOpen = true;
+        _lockedWarningWindow = [GameWindow gameWindowWithHeader:@"NOTE" Message:@"Please beat normal story mode to unlock this." Choices:WINDOW_CHOICE_OK Layer:self withBackground:@"MessageBox.png"];        
+    }
+
+}
+
+-(void)openWarningWindowLockedNormalTimed
+{
+    if (!_lockedWarningWindowOpen) {
+        _lockedWarningWindowOpen = true;
+        _lockedWarningWindow = [GameWindow gameWindowWithHeader:@"NOTE" Message:@"Please beat a normal story mode level to unlock this." Choices:WINDOW_CHOICE_OK Layer:self withBackground:@"MessageBox.png"];        
+    }
+    
+}
+
+-(void)openWarningWindowLockedInsaneTimed
+{
+    if (!_lockedWarningWindowOpen) {
+        _lockedWarningWindowOpen = true;
+        _lockedWarningWindow = [GameWindow gameWindowWithHeader:@"NOTE" Message:@"Please beat a corresponding level in normal timed mode to unlock this." Choices:WINDOW_CHOICE_OK Layer:self withBackground:@"MessageBox.png"];        
+    }
+    
+}
+
+-(void)closeLosingProgressWarningWindow
+{
+    _losingProgressWarningWindowOpen = false;
+    [_losingProgressWarningWindow release];
+    _losingProgressWarningWindow = nil;
+}
+
+-(void)closeLockedWarningWindow
+{
+    _lockedWarningWindowOpen = false;
+    [_lockedWarningWindow release];
+    _lockedWarningWindow = nil;
 }
 
 
@@ -101,8 +136,8 @@
     {
         CGPoint position = [self convertTouchToNodeSpace:touch];
         
-        if(_warningWindowOpen) {
-            WindowSelectionType type = [_warningWindow checkCollisionAtPoint:position];
+        if(_losingProgressWarningWindowOpen) {
+            WindowSelectionType type = [_losingProgressWarningWindow checkCollisionAtPoint:position];
             if (type == WIN_SELECT_YES) {
                 //[[CCDirector sharedDirector] resume];
                 _action=_actionSwitchTo;
@@ -110,7 +145,7 @@
                 {
                     [[GameSettings shared] setGlobal:@"NO" ForKey:@"firstNormalPlaythrough"];
                 }
-                [self closeWarningWindow];
+                [self closeLosingProgressWarningWindow];
                 [self switchToAction];
             }
             else if(type == WIN_SELECT_NO)
@@ -118,9 +153,21 @@
                // [[CCDirector sharedDirector] resume];
                 _isTransitioning = false;
                 _action = GAMEMODE_NONE;
-                [self closeWarningWindow];
+                [self closeLosingProgressWarningWindow];
 
             }
+                   }
+        
+        if(_lockedWarningWindowOpen)
+        {
+            WindowSelectionType type = [_lockedWarningWindow checkCollisionAtPoint:position];
+            if(type ==WIN_SELECT_OK)
+            {
+               // _isTransitioning =false;
+                [self closeLockedWarningWindow];
+            }
+            break;
+
         }
         if(!_isTransitioning) {
             if ([_storyModePanel testCollision:position]) {
@@ -234,7 +281,7 @@
         _actionSwitchTo= GAMEMODE_STORY_EASY;
             if(_isContinueButtonEnabled)
             {
-                [self openWarningWindowLosingProcess];
+                [self openWarningWindowLosingProgress];
             }
            else
            {
@@ -254,7 +301,7 @@
             _actionSwitchTo= GAMEMODE_STORY_NORMAL;
             if(_isContinueButtonEnabled)
             {
-                [self openWarningWindowLosingProcess];
+                [self openWarningWindowLosingProgress];
             }
             else
             {
@@ -275,7 +322,7 @@
             _actionSwitchTo= GAMEMODE_STORY_HARD;
             if(_isContinueButtonEnabled)
             {
-                [self openWarningWindowLosingProcess];
+                [self openWarningWindowLosingProgress];
             }
             else
             {
@@ -390,6 +437,9 @@
         [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0f scene:[GameLayer scene]]];
     }
 }
+
+
+
 
 
 -(void)update:(ccTime)dt
