@@ -86,7 +86,7 @@
 {
     if (!_lockedWarningWindowOpen) {
         _lockedWarningWindowOpen = true;
-        _lockedWarningWindow = [GameWindow gameWindowWithHeader:@"NOTE" Message:@"Please beat normal story mode to unlock this." Choices:WINDOW_CHOICE_OK Layer:self withBackground:@"MessageBox.png"];        
+        _lockedWarningWindow = [GameWindow gameWindowWithHeader:@"NOTE" Message:@"Please beat Normal Story Mode to unlock this." Choices:WINDOW_CHOICE_OK Layer:self withBackground:@"MessageBox.png"];        
     }
 
 }
@@ -95,7 +95,7 @@
 {
     if (!_lockedWarningWindowOpen) {
         _lockedWarningWindowOpen = true;
-        _lockedWarningWindow = [GameWindow gameWindowWithHeader:@"NOTE" Message:@"Please beat a normal story mode level to unlock this." Choices:WINDOW_CHOICE_OK Layer:self withBackground:@"MessageBox.png"];        
+        _lockedWarningWindow = [GameWindow gameWindowWithHeader:@"NOTE" Message:@"Please beat any Story Mode level to unlock this." Choices:WINDOW_CHOICE_OK Layer:self withBackground:@"MessageBox.png"];        
     }
     
 }
@@ -104,7 +104,7 @@
 {
     if (!_lockedWarningWindowOpen) {
         _lockedWarningWindowOpen = true;
-        _lockedWarningWindow = [GameWindow gameWindowWithHeader:@"NOTE" Message:@"Please beat a corresponding level in normal timed mode to unlock this." Choices:WINDOW_CHOICE_OK Layer:self withBackground:@"MessageBox.png"];        
+        _lockedWarningWindow = [GameWindow gameWindowWithHeader:@"NOTE" Message:@"Please beat a Normal Timed level to unlock this." Choices:WINDOW_CHOICE_OK Layer:self withBackground:@"MessageBox.png"];        
     }
     
 }
