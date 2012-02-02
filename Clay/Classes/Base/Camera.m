@@ -216,31 +216,16 @@ static Camera *_sharedCamera = nil;
 
 -(void)moveTowardsTarget:(float)dt PlayerOnGround:(bool)onGround
 {
-    //[self moveTowardsTargetNew:dt];
-    //return;
-    
-    float dx,dy;
+    float dx;
     float magnitude;
-    //float oldx = _x, oldy = _y;
     
     if (_target != nil) {
         
-        /*
-        float rate;
-        if (onGround) {
-            rate = 1.0f;
-        } else {
-            rate = 0.1f;
-        }*/
-        
-        
-        
         CGPoint position = [_target getPosition];
         dx = (position.x - _x);
-        dy = (position.y - _y);
+        _y = 54.0f; //this is the setting it would rest on from when we actually used to track the y position
         
-        
-        float distance = sqrtf(dx*dx + dy*dy);
+        float distance = sqrtf(dx*dx);
         
         magnitude = distance * CAMERA_MOVE_TO_TARGET_SPEED * dt;
         
@@ -248,15 +233,10 @@ static Camera *_sharedCamera = nil;
             if (_trackingTarget) {
                 _x += (magnitude * (dx/distance));
             }
-            if (dy!=0) {
-                _y += (magnitude * (dy/distance));                
-            }
-            
         } else {
             if (_trackingTarget) {
                 _x = position.x;
             }
-            _y = position.y;
             _isPlayerResetting = false;
         }
         
@@ -266,37 +246,14 @@ static Camera *_sharedCamera = nil;
             _x += 0.83333333f;
         }
     }
-    if (dy!=0) {
-        [self keepWithinBoundaries];
-    }
-    
     [self updateOnScreenRange];
-    /*
-    float newdx = oldx - _x;
-    if(newdx < -1.0f && newdx != -2.80f && newdx > -4.0f) {
-        NSLog(@"NewDx: %.2f",newdx);
-    }*/
-    //NSLog(@"OX: %.2f, OY: %.2f, | NX: %.2f, NY: %.2f",oldx,oldy,_x,_y);
-    //NSLog(@"DX: %.2f, DY: %.2f MAG: %.2f",dx,dy,magnitude);
-    
-    NSLog(@"CAMERA X: %.2f Y: %.2f",_x,_y);
 }
 
 -(void)snapToTarget
 {
-    if (_target!=nil) {
+    if (_target!=nil) { 
         _x = _target.x;
-        _y = _target.y;
-        [self keepWithinBoundaries];
-
-    }
-}
-
--(void)snapToTargetY
-{
-    if (_target!=nil) {
-        _y = _target.y;
-        [self keepWithinBoundaries];
+        _y = 54.0f;
     }
 }
 
@@ -319,7 +276,7 @@ static Camera *_sharedCamera = nil;
 -(void)reset
 {
     _x = 0;
-    _y = 0;
+    _y = 54.0f;
     _isShiftForwardForKickAction = false;
     [self keepWithinBoundaries];
 }

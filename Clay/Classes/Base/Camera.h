@@ -80,7 +80,6 @@
 
 -(void)moveTowardsTarget:(float)dt PlayerOnGround:(bool)onGround;
 -(void)snapToTarget;
--(void)snapToTargetY;
 -(void)startShiftForwardForKick;
 
 -(float) xPosition;
