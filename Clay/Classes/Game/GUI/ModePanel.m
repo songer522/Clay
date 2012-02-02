@@ -12,6 +12,7 @@
 #import "ChooseModeScene.h"
 #import "SoundEngine.h"
 
+
 //IPAD FIX: positions for the header text inside the panel when the panel is active and inactive
 #define PANEL_HEADER_INACTIVE_Y 160.0f
 #define PANEL_HEADER_ACTIVE_Y 232.0f
@@ -195,6 +196,29 @@
                 _selectedIndex = i;
                 [self makeCursorActive];
                 break;
+            }
+            
+            else if ([button getLocked] == LOCKTYPE_LOCKED && [button testCollision:point])
+            {
+                if(_panelType==MODEPANEL_PANEL_STORY)
+                {
+                    //window for how to unlock hard
+                    [_parentScene openWarningWindowLockedHardStory];
+                    
+                }
+                else if(_panelType==MODEPANEL_PANEL_TIMED)
+                {
+                    if(i==0)
+                    {
+                        //window for how to unlock time normal
+                        [_parentScene openWarningWindowLockedNormalTimed];
+                    }
+                    else if(i==1)
+                    {
+                        //window for how to unlock time insane
+                        [_parentScene openWarningWindowLockedInsaneTimed];
+                    }
+                }
             }
             i++;
         }
