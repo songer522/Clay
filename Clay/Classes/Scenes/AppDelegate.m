@@ -163,8 +163,10 @@
 }
 
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
-     [[BestTimes shared] saveData];
-    [[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
+    [[BestTimes shared] saveData];
+    [[GameSettings shared] saveToDisk];
+
+    //[[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
 	[[CCDirector sharedDirector] purgeCachedData];
 }
 
@@ -182,6 +184,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
 	[[TextureManager shared] unloadMemoryForKey:@"launch"];
+    [[GameSettings shared] saveToDisk];
     
     [[BestTimes shared] saveData];
     

@@ -138,7 +138,7 @@ static SoundEngine *_shared = nil;
         
         NSString *filename = [_musicMap objectForKey:music];
         
-        NSAssert(filename!=nil,@"Requested music '%@' not in dictionary. Double-check music.plist",music);
+        //NSAssert(filename!=nil,@"Requested music '%@' not in dictionary. Double-check music.plist",music);
 
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:filename];
     }

@@ -278,6 +278,8 @@ static Camera *_sharedCamera = nil;
     }*/
     //NSLog(@"OX: %.2f, OY: %.2f, | NX: %.2f, NY: %.2f",oldx,oldy,_x,_y);
     //NSLog(@"DX: %.2f, DY: %.2f MAG: %.2f",dx,dy,magnitude);
+    
+    NSLog(@"CAMERA X: %.2f Y: %.2f",_x,_y);
 }
 
 -(void)snapToTarget

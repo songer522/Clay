@@ -135,7 +135,7 @@
 {
     float rate = 100.0f * dt;
     
-
+    
     float opacity=[button getButtonOpacity];
     float scale=[button getButtonScale];
     
@@ -147,9 +147,6 @@
         
        
         [button setButtonOpacity:opacity];
-        //[button setOverlayOpacity:opacity];
-        
-        _resetButtons = true;
     }
     
     if (scale < _buttonScale) {
@@ -176,6 +173,7 @@
 
 -(void)update:(float)dt
 {
+    /*
     _resetButtons = true;
     if (_resetButtons) {
         _resetButtons = false; //gets reset to true in reduceButtonOpacity if still need to transition
@@ -183,7 +181,11 @@
         [self resettingButton:_buttonJump TimePassed:dt];
         [self resettingButton:_buttonSprint TimePassed:dt];  
         
-    }
+    }*/
+    
+    [_buttonAction resettingWithDt:dt TargetScale:_buttonScale];
+    [_buttonJump resettingWithDt:dt TargetScale:_buttonScale];
+    [_buttonSprint resettingWithDt:dt TargetScale:_buttonScale];
     
     [self updateTransitions:dt];
     

@@ -28,7 +28,10 @@ typedef enum {
     int _currentOverlayFrame;
     
     float _scale;
+    float _buttonScale;
     bool _initialized;
+    
+    float _opacity;
     
     NSMutableArray *_overlayFrameNames;
 }
@@ -48,6 +51,7 @@ typedef enum {
 -(void)setButtonScale:(float)scale;
 -(void)setPosition:(CGPoint)position;
 -(void)reset;
+-(void)resettingWithDt:(float)dt TargetScale:(float)targetScale;
 
 -(void)updateOverlayImageByPercentage:(float)percent; //0 to 1, not 0 to 100%
 

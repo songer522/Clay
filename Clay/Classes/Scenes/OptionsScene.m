@@ -232,6 +232,7 @@
                 if([_backButton checkIfSelected:position]) {
                     _waitToSwitch = 0.25f;
                     _backToMainMenu = true;
+                    _isTransitioning = true;
                     [[SoundEngine shared] playSound:@"guiSelectionBack"];
                 }
             } else if(_inTutorial && _tutorial.scroller.currentScreen==3) {

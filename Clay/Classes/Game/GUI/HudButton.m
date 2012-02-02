@@ -11,7 +11,7 @@
 #import "GameSettings.h"
 #import "PlayerActionFactory.h"
 
-#define HUD_LAYER_BUTTON_OPACITY 140
+#define HUD_LAYER_BUTTON_OPACITY 135
 #define HUD_LAYER_BUTTON_Y 30
 #define HUD_LAYER_JUMP_X 34
 #define HUD_LAYER_ACTION_X 383
@@ -47,7 +47,8 @@
         [self prepareButtonWithType:type Action:action];
      
         _initialized = true;
-        
+        _opacity = HUD_LAYER_BUTTON_OPACITY;
+        _buttonScale = 1.0f;
         
         _overlayFrameNames = [[NSMutableArray alloc] initWithCapacity:8];
         for (int i=0; i<8; i++) {
@@ -95,7 +96,9 @@
     _graphic = [Sprite spriteFromFrameCacheWithName:image];
     [[_graphic getCCSprite] setOpacity:BUTTON_OPACITY];
     [[_graphic getCCSprite] setScale:[[UIScreen mainScreen] scale] / _scale];
-   
+    
+    _buttonScale = [[UIScreen mainScreen] scale] / _scale;
+    
     [[_graphic getCCSprite] setAnchorPoint:ccp(0.5f, 0.5f)];
 
     _greenOverlay = [Sprite spriteFromFrameCacheWithName:@"UI_Button_GreenLight_7.png"];
@@ -129,6 +132,39 @@
     }
 }
 
+-(void)resettingWithDt:(float)dt TargetScale:(float)targetScale
+{
+    float rate = 100.0f * dt;
+    float previousOpacity = _opacity;
+    float previousScale = _buttonScale;
+    
+    if (_opacity > HUD_LAYER_BUTTON_OPACITY) {
+        _opacity = (int)(_opacity - 1.5f * rate);
+        if (_opacity < HUD_LAYER_BUTTON_OPACITY) {
+            _opacity = HUD_LAYER_BUTTON_OPACITY;
+        }
+        
+        if(previousOpacity!=_opacity) {
+            [self setButtonOpacity:_opacity];            
+        }
+    }
+    
+    if (_buttonScale < targetScale) {
+        _buttonScale += 0.01f * rate * targetScale;
+        
+        if (_buttonScale > targetScale) {
+            _buttonScale = targetScale;
+        }
+        
+        if (previousScale != _buttonScale) {
+            [self setButtonScale:_buttonScale];            
+        }
+    }
+    
+    //NSLog(@"prevScale: %.2f butScale: %.2f",previousScale,_buttonScale);
+    
+}
+
 -(CCSprite*)getCCSpriteForButton
 {
     return [_graphic getCCSprite];
@@ -143,11 +179,13 @@
     if ([self getCCSpriteForOverlay].visible && _currentOverlayFrame==7)
     
      {
+         _opacity = BUTTON_OPACITY;
+         _buttonScale = BUTTON_SCALE * [[UIScreen mainScreen] scale] / _scale;
         [[_graphic getCCSprite] setOpacity:BUTTON_OPACITY];
-        [[_graphic getCCSprite] setScale:BUTTON_SCALE * [[UIScreen mainScreen] scale] / _scale]; 
+        [[_graphic getCCSprite] setScale:_buttonScale]; 
      
     [[_greenOverlay getCCSprite] setOpacity:BUTTON_OPACITY];
-    [[_greenOverlay getCCSprite] setScale:BUTTON_SCALE * [[UIScreen mainScreen] scale] / _scale];
+    [[_greenOverlay getCCSprite] setScale:_buttonScale];
      }
 }
 
@@ -163,6 +201,7 @@
 -(void)setButtonOpacity:(float)opacity
 {
    
+    _opacity = opacity;
     [[_graphic getCCSprite] setOpacity:opacity];
     
 }
@@ -176,6 +215,7 @@
 
 -(void)setButtonScale:(float)scale
 {
+    _buttonScale = scale;
     [[_graphic getCCSprite] setScale:scale];
     [[_greenOverlay getCCSprite] setScale:scale];
 }

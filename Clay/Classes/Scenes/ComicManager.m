@@ -234,9 +234,14 @@ static ComicManager *_shared = nil;
                     //NSString *timerText=[TrackTimer getTimeStringFromFloat:finalLevelTime];
                     //[[GameSettings shared] setGlobal: timerText ForKey:@"finalLevelTimeText"];
                    // [[GameSettings shared] setGlobal:[NSString stringWithFormat:@"%f",finalLevelTime] ForKey:@"finalLevelTime"];
+                    
                     [gameLayer onExit];
                     [gameLayer.gameController endLevel];
                     _isActive=false;
+                    if ([gameMode isEqualToString:@"timed"]) {
+                        [[GameSettings shared] saveToDisk];                        
+                    }
+
                    // [self endTheLevel];
                    
                     /*
