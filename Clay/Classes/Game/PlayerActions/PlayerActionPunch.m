@@ -52,6 +52,8 @@
         _punch2SoundPlay = false;
         _punch1SoundPlayed = false;
         _punch2SoundPlayed = false;
+        _hasKilledSuperEnemy = false;
+        _hasKilledEnemy = false;
     }
     [super startAction];
 }
