@@ -46,7 +46,7 @@
 
 -(void)countWhoo
 {
-    int maxWhoo =10;
+    int maxWhoo =100;
     if ([GCState sharedInstance].timesWhooed < maxWhoo) {
         [GCState sharedInstance].timesWhooed++;
         
