@@ -111,15 +111,15 @@
  <tileset firstgid="133" name="Level4_TiledSheet-hd" tilewidth="64" tileheight="64">
   <image source="tileset_level_4-hd.png" width="1024" height="640"/>
  </tileset>
-    <layer name="back-1" width="950" height="14">
-        <properties>
-            <property name="speedx" value="1.0"/>
-            <property name="speedy" value="1.0"/>
-        </properties>
-        <data encoding="base64" compression="zlib">
-            eJztx0sNhFAQAEFeshKQgHUWDPARgAQkIAEBjIhhuFQndeiukyRJkiRJkiRJkiR90Rj+YQqz995777333vvXX7ktYQ1b2L333nvvvffev/7K7QAAAKCUcjsBAAAopdwuAAAASim3GwAAgFLK7dcAAACopNz6BgAAQCXlNjQAAAAqSZIkSZIkSZIkSZIkSZIkSZK+7QERfhOU
-        </data>
-    </layer>
+ <layer name="back-1" width="950" height="14">
+  <properties>
+   <property name="speedx" value="1.0"/>
+   <property name="speedy" value="1.0"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztx0sNhFAQAEFeshKQgHUWDPARgAQkIAEBjIhhuFQndeiukyRJkiRJkiRJkiR90Rj+YQqz995777333vvXX7ktYQ1b2L333nvvvffev/7K7QAAAKCUcjsBAAAopdwuAAAASim3GwAAgFLK7dcAAACopNz6BgAAQCXlNjQAAAAqSZIkSZIkSZIkSZIkSZIkSZK+7QERfhOU
+  </data>
+ </layer>
  <layer name="main0" width="950" height="14">
   <properties>
    <property name="speedx" value="1.0"/>
@@ -149,7 +149,7 @@
  </layer>
  <layer name="objects" width="950" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt1lFuozAQANCeYNXfVVvV2dz/jiukIqGRjQ1MGqt97weMh4nH2JCXFwAAAAAAAAAAAAAAAAAAAAAAAH6Cz8q1kpDvSo5HivWWSXJlyx7b7M91lb2et/fWcs+ghPbVcc78rEs4ZuZczPiMM/ZyvGfGOhdlc35ljFl5vkP5OmaMs4T2TLU/6nu55pmp1sV2PCUh3zbHbLVulc159pqete7ydcwaX3a+LNn/DdY8s9W5KJvzGccHAAAAAAAAAAAAAMA5f8WJEydOnDhx4sSJEydO3EPiAAAAAJ7lPbTvB+N7fWu+t+ERtd0GYv6diKnVvFfnno9Of20erlw7ojY3rToz10VPq66j13tuE5xHmbXfG/1H19J7OGZqzUXG9SP7uLWe994fvb09Mo4jc7qOJebrXR/Rq+VMDaPzsxp5n4/ce/Q81jbaF8U9dKWd8X1ctdbB3vO7JfQv7uFYi7nimd/Ps+t7e1/rPGrN9d4cxr5nt3uWdZq17s98Yxdn3ssfnd8bMfJ8W3uptq569r4Nce8+qh1/r9WuqY3/deA+5vfn2QMAAAAAAAAA+CX+A1ODIbA=
+   eJzt1UtugzAQANCcoOq+ySLh/nesWCC1I3/GxhWR+t4GbPPxDGN8uwEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADANbbO+H1w7Hje19x0fnkmrnlNXFOKuRVny6MzXsrDmb4RpdzU4oz9Z+qipxbXaH/P8w3Oo5Wxb5Xx0Vq6h+NKtVys6B9Zx7V6bv0/ems7M4+RnB5zic/r9Wf0YpmJIZufQ+Z/nrl39DzGlh2L4ho6016xPx5qddD6fs8F47stHEvXnHHl/jlb3z/vq51HtVy3chjHrm737HW6qu5n9tjdzH/50XlfRub71tZSqa56WntDXLt/1Y7vq7VLSvP/TNzH+/u4egIAAAAAAAAA/8Q3bzYSCg==
   </data>
  </layer>
  <layer name="meta" width="950" height="14" opacity="0.62">

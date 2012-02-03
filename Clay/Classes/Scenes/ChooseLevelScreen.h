@@ -85,7 +85,7 @@ typedef enum {
     
     GameWindow *_errorWindow;
     bool _errorWindowOpen;
-    
+    bool _lockedLevelWindowOpen;
     
     bool _panelTransition;
     bool _hasSwitched;
@@ -137,6 +137,8 @@ typedef enum {
 -(void)openErrorWindowCantConnectToStore;
 -(void)openErrorWindowCantMakePurchases;
 -(void)closeErrorWindow;
+-(void)openLockedLevelWindow;
+
 
 -(void)setCantConnectToStore:(BOOL)CantConnectToStore;
 -(void)setCantMakePurchases:(BOOL)CantMakePurchases;

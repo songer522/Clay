@@ -167,7 +167,7 @@
 - (void)showTwitterSupportingAlert {
     [[CCDirector sharedDirector] pause];
 	UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:@"Sorry..."
-														 message:@"We currently only support iOS 5.0, please upgrade your system."
+														 message:@"We currently only support iOS 5.0+ for Twitter. If you want to tweet your time please upgrade your system."
 														delegate:self
 											   cancelButtonTitle:@"Okay"
 											   otherButtonTitles: nil] autorelease];

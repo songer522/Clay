@@ -204,6 +204,7 @@
                 {
                     //window for how to unlock hard
                     [_parentScene openWarningWindowLockedHardStory];
+                      [[SoundEngine shared] playSound:@"windowOpenWarning"]; 
                     
                 }
                 else if(_panelType==MODEPANEL_PANEL_TIMED)
@@ -212,11 +213,13 @@
                     {
                         //window for how to unlock time normal
                         [_parentScene openWarningWindowLockedNormalTimed];
+                          [[SoundEngine shared] playSound:@"windowOpenWarning"]; 
                     }
                     else if(i==1)
                     {
                         //window for how to unlock time insane
                         [_parentScene openWarningWindowLockedInsaneTimed];
+                          [[SoundEngine shared] playSound:@"windowOpenWarning"]; 
                     }
                 }
             }

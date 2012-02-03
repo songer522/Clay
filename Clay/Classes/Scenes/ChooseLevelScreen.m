@@ -86,6 +86,8 @@
         _openErrorCantConnectToStore=false;
         _openErrorCantConnectToStore=false;
         
+        _lockedLevelWindowOpen=false;
+        
         self.isTouchEnabled = YES;
         
         
@@ -176,11 +178,23 @@
             WindowSelectionType type = [_errorWindow checkCollisionAtPoint:position];
             if (type == WIN_SELECT_OK) {
                 [self closeErrorWindow];
+                [[SoundEngine shared] playSound:@"guiSelectionForward"];  
                 break;
             }
         }
-         
         
+        if(_lockedLevelWindowOpen)
+        {
+            WindowSelectionType type = [_errorWindow checkCollisionAtPoint:position];
+            if (type == WIN_SELECT_OK) {
+                [self closeErrorWindow];
+                _lockedLevelWindowOpen=false;
+                [[SoundEngine shared] playSound:@"guiSelectionForward"];  
+                break;
+
+        }
+         
+        }
         for (LevelButton *button in _buttons) {
             if([button checkIfSelected:position] && !_panelTransition && [button isUnlocked]) {
 
@@ -198,6 +212,11 @@
                 _levelToSwitchTo = [[NSString alloc] initWithFormat:@"level%d",_selected];
                 
                 [self updateStartButton];
+            }
+            else if([button checkIfTouched:position] && !_panelTransition && ![button isUnlocked])
+            {
+                [self openLockedLevelWindow];
+                [[SoundEngine shared] playSound:@"windowOpenWarning"]; 
             }
         }
         
@@ -268,12 +287,14 @@
     if(_openErrorCantConnectToStore)
     {
         [self openErrorWindowCantConnectToStore];
+          [[SoundEngine shared] playSound:@"windowOpenWarning"]; 
        // _openErrorCantConnectToStore=false;
         return;
     }
     if(_openErrorCantMakePurchases)
     {
         [self openErrorWindowCantMakePurchases];
+          [[SoundEngine shared] playSound:@"windowOpenWarning"]; 
         //_openErrorCantMakePurchases=false;
         return;
     }
@@ -334,6 +355,26 @@
     if (!_errorWindowOpen) {
         _errorWindowOpen = true;
         _errorWindow = [GameWindow gameWindowWithHeader:@"ERROR!" Message:@"Cannot connect to the store at this time. Please try again later." Choices:WINDOW_CHOICE_OK Layer:self withBackground:@"MessageBox2.png"];        
+    }
+}
+
+
+-(void)openLockedLevelWindow
+{
+    if(!_lockedLevelWindowOpen)
+    {
+        _lockedLevelWindowOpen=true;
+        
+        if([_gameDifficulty isEqualToString:@"normal"])
+        {
+            _errorWindow=[GameWindow gameWindowWithHeader:@"NOTE" Message:@"Please beat a corresponding level in normal story mode to unlock this." Choices:WINDOW_CHOICE_OK Layer:self withBackground:@"MessageBox2.png"];
+        }
+        else if ([_gameDifficulty isEqualToString:@"hard"])
+        {
+            _errorWindow=[GameWindow gameWindowWithHeader:@"NOTE" Message:@"Please beat a corresponding level in normal timed mode to unlock this." Choices:WINDOW_CHOICE_OK Layer:self withBackground:@"MessageBox2.png"];
+        }
+
+        
     }
 }
 
@@ -628,7 +669,7 @@
 - (void)showTwitterSupportingAlert {
     [[CCDirector sharedDirector] pause];
 	UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:@"Sorry..."
-														 message:@"We currently support iOS 5.0 only, please upgrade your system."
+														 message:@"We currently only support iOS 5.0+ for Twitter. If you want to tweet your time please upgrade your system."
 														delegate:self
 											   cancelButtonTitle:@"okay"
 											   otherButtonTitles: nil] autorelease];

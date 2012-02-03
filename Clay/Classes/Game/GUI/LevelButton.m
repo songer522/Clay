@@ -123,6 +123,16 @@
     return false;
 }
 
+-(bool)checkIfTouched:(CGPoint)touch
+{
+    if ([self testCollision:touch] && _buttonId <= LEVEL_BUTTON_MAX_LEVEL_NUMBER) {
+       // [self setSelected];
+        return true;
+    }
+    return false;
+}
+
+
 -(void)setSelected
 {
     CGPoint position = [_buttonGraphic getCCSprite].position;
