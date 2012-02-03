@@ -164,7 +164,10 @@
             if([_level testCollisionWithGameObject:object Source:_punch])
             {
                 [object startCollision:YES];
-                [self setKilledEnemy:YES];
+                
+                if (_inAction) { //not necessarily in action when doing this collision
+                    [self setKilledEnemy:YES];                    
+                }
                 
                 if (_punch1SoundCheck && !_punch1SoundPlayed) {
                     if(!object.fadeout)
