@@ -111,15 +111,15 @@
  <tileset firstgid="113" name="Level4_TiledSheet-hd" tilewidth="64" tileheight="64">
   <image source="tileset_level_4-hd.png" width="1024" height="640"/>
  </tileset>
- <layer name="back-1" width="950" height="14">
-  <properties>
-   <property name="speedx" value="1.0"/>
-   <property name="speedy" value="1.0"/>
-  </properties>
-  <data encoding="base64" compression="zlib">
-   eJztx0kRAlEQBcHBAVYHMMBigMUAiwAkIAEJSEACT0T/5pIVkYeap2laxTo2MXvvvffee++9H/aqbxu72MfBe++999577/3QV33HOMU5Lt5777333nvvh77qu8Yt7vHw3nvvvffeez/0Vd8TAACANqrvBQAAQBvV9wYAAKCN6vsAAADQRvV9AQAAaKMBLQAAAGij8pYLAAAAukiSJEmSJEmSJEmSJEmSJEmS/t8PDtxIAg==
-  </data>
- </layer>
+    <layer name="back-1" width="950" height="14">
+        <properties>
+            <property name="speedx" value="1.0"/>
+            <property name="speedy" value="1.0"/>
+        </properties>
+        <data encoding="base64" compression="zlib">
+            eJztx0sNhFAQAEFeshKQgHUWDPARgAQkIAEBjIhhuFQndeiukyRJkiRJkiRJkiR90Rj+YQqz995777333vvXX7ktYQ1b2L333nvvvffev/7K7QAAAKCUcjsBAAAopdwuAAAASim3GwAAgFLK7dcAAACopNz6BgAAQCXlNjQAAAAqSZIkSZIkSZIkSZIkSZIkSZK+7QERfhOU
+        </data>
+    </layer>
  <layer name="main0" width="950" height="14">
   <properties>
    <property name="speedx" value="1.0"/>

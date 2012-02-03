@@ -86,6 +86,9 @@
         
         [self setVisible:NO];
         
+        _numberOfUpdates = 0;
+        _averageDt = 0;
+        
         [[CCDirector sharedDirector] setProjection:CCDirectorProjection2D];
 
         [[LayerManager sharedLayers] setCurrentLayer:self];
@@ -244,33 +247,20 @@
 
 -(void)update:(ccTime)dt
 {
-    //build #1 method
-    //double fixedTimeStep = 1.05f/60.0f;
-    //[self updateLogic:fixedTimeStep];   
-
-    // build #2 method
     
-    /*
-    if (dt > 0.044f) {
-        dt = 2/60.0f;
-    } else */
+    //[self updateAverageDtWithDt:dt];
     
-    if(_currentLevel == 12) {
-        if( dt > 0.03f )
-        {
-            dt = 1/60.0f;
-        }        
-    } else {
-        if( dt > 0.022f )
-        {
-            dt = 1/60.0f;
-        }
+    if( dt > 0.022f )
+    {
+        dt = 1/60.0f;
     }
     
     [self updateLogic:dt];    
     
-    //use for simulator
+
     
+    
+    //use for simulator, and maybe modify this for airplay mode later
     /*
     double fixedTimeStep = 1.00f/60.0f;
     float timeToRun = dt + time;
@@ -282,6 +272,19 @@
     time = timeToRun;    
     */
     
+}
+
+-(void)updateAverageDtWithDt:(float)dt
+{
+    //NOTE: leave this function commented out unless you want to test it. waste of resources otherwise, plus it logs.
+    int _oldUpdateNumber = _numberOfUpdates;
+    _numberOfUpdates += 1;
+    
+    _averageDt = ((_averageDt * _oldUpdateNumber) + dt) / _numberOfUpdates;
+    
+    if ((_numberOfUpdates % 20) == 0) {
+        CCLOG(@"Average DT: %.4f",_averageDt);
+    }
 }
 
 -(void)pause

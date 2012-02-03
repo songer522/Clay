@@ -47,6 +47,9 @@
     
     Boss *_boss;
     
+    int _numberOfUpdates;
+    double _averageDt;
+    
     int _currentLevel;
     
     Sprite *_testAnim;
@@ -102,5 +105,6 @@
 -(void)recordTimesdied;
 -(void)saveAndReportToGameCenter;
 -(void)checkHasBeenHit;
+-(void)updateAverageDtWithDt:(float)dt;
 
 @end

@@ -3,7 +3,12 @@ Track Lapse Changelog
 Build 120202.RC5
 ==================
 
-
+* Global - added preloading of the sounds added in the last couple days, which were causing slight hiccups in the game levels when they were first played
+* Global - updated Tim's animations to lower his left eye slightly to make it level with his right and make his mouth more square and consistent between actions
+* Choose Mode - added windows that pop up when you click a locked mode explaining what you need to do to unlock it
+* Level 4 - foreground lifted a bit so it doesn't look like Tim is running on the railing
+* Level 10 - should have fixed the player losing all his health instantly if he hits a vertical row of fish. this was fixed by stopping tim from taking damage in general (very briefly) when he gets hit. this was in place before but was changed while working on the final levels. should not have an adverse effect on the rest of the game, but please check. also check that it fixed it, please.
+* Optimization - camera never moves up and down or needs to check its boundaries so i removed the code that checks those values
 
 Build 120201.RC4
 ==================

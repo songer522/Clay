@@ -213,7 +213,7 @@
 		<key>animations</key>
 		<string>none</string>
 		<key>sounds</key>
-		<string>buttonPressed,chooseSelection,guiSelectionForward,guiSelectionBack</string>
+		<string>buttonPressed,chooseSelection,guiSelectionForward,guiSelectionBack,windowOpenNewContent,windowOpenWarning</string>
 		<key>textures</key>
 		<string>chooseLevel</string>
 	</dict>
@@ -226,7 +226,7 @@
 		<key>animations</key>
 		<string>none</string>
 		<key>sounds</key>
-		<string>buttonPressed,chooseSelection,guiSelectionForward,guiSelectionBack</string>
+		<string>buttonPressed,chooseSelection,guiSelectionForward,guiSelectionBack,windowOpenNewContent,windowOpenWarning</string>
 		<key>textures</key>
 		<string>chooseMode</string>
 	</dict>
