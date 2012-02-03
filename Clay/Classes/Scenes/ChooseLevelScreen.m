@@ -178,7 +178,7 @@
             WindowSelectionType type = [_errorWindow checkCollisionAtPoint:position];
             if (type == WIN_SELECT_OK) {
                 [self closeErrorWindow];
-                [[SoundEngine shared] playSound:@"guiSelectionForward"];  
+                
                 break;
             }
         }
@@ -189,7 +189,7 @@
             if (type == WIN_SELECT_OK) {
                 [self closeErrorWindow];
                 _lockedLevelWindowOpen=false;
-                [[SoundEngine shared] playSound:@"guiSelectionForward"];  
+               // [[SoundEngine shared] playSound:@"guiSelectionForward"];  
                 break;
 
         }
@@ -304,9 +304,11 @@
     switch (levelNumber) {
         case TRAINING_RUN:
             [[InAppPurchaseManager shared] purchaseProductId:kInAppPurchaseTrainingRunProductId Delegate:self];
+            [[SoundEngine shared] playSound:@"guiSelectionForward"]; 
             break;
         case DOJO_RUN:
             [[InAppPurchaseManager shared] purchaseProductId:kInAppPurchaseDojoRunProductId Delegate:self];
+            [[SoundEngine shared] playSound:@"guiSelectionForward"]; 
             break;
         default:
             break;
@@ -388,6 +390,7 @@
 
 -(void)closeErrorWindow
 {
+    [[SoundEngine shared] playSound:@"guiSelectionForward"];  
     _errorWindowOpen = false;
     [_errorWindow release];
     _errorWindow = nil;
