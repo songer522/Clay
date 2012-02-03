@@ -45,7 +45,15 @@
         _backToMainMenu = false;
         _playTutorial = false;
         _losingProgressWarningWindowOpen=false;
-        _lockedWarningWindow=false;
+        _lockedWarningWindowOpen=false;
+        
+        _newHardStoryWindowOpen=false;
+        _newNormalTimedWindowOpen=false;
+        _newInsaneTimedWindowOpen=false;
+        
+        _waitToCheckNewNormalTimed=3.0f;
+        _waitToCheckNewInsaneTimed=3.0f;
+        
         _isContinueButtonEnabled=[ContinueGameManager isAbleToContinueGame];
         _action=GAMEMODE_NONE;
         [self scheduleUpdate];
@@ -109,6 +117,33 @@
     
 }
 
+-(void)openWindowForNewHardStory
+{
+    if (!_newHardStoryWindowOpen) {
+        _newHardStoryWindowOpen = true;
+        _lockedWarningWindow = [GameWindow gameWindowWithHeader:@"NOTE" Message:@"New mode unlocked: Hard Story Mode." Choices:WINDOW_CHOICE_OK Layer:self withBackground:@"MessageBox.png"];        
+    }
+
+}
+
+
+-(void)openWindowForNewNormalTimed
+{
+    if (!_newNormalTimedWindowOpen) {
+        _newNormalTimedWindowOpen = true;
+        _lockedWarningWindow = [GameWindow gameWindowWithHeader:@"NOTE" Message:@"New mode unlocked: Normal Timed Mode." Choices:WINDOW_CHOICE_OK Layer:self withBackground:@"MessageBox.png"];        
+    }
+
+}
+-(void)openWindowForNewInsaneTimed
+{
+    if (!_newInsaneTimedWindowOpen) {
+        _newInsaneTimedWindowOpen = true;
+        _lockedWarningWindow = [GameWindow gameWindowWithHeader:@"NOTE" Message:@"New mode unlocked: Insane Timed Mode." Choices:WINDOW_CHOICE_OK Layer:self withBackground:@"MessageBox.png"];        
+    }
+
+}
+
 -(void)closeLosingProgressWarningWindow
 {
     _losingProgressWarningWindowOpen = false;
@@ -169,6 +204,56 @@
             break;
 
         }
+        
+        if(_newNormalTimedWindowOpen)
+        {
+            WindowSelectionType type = [_lockedWarningWindow checkCollisionAtPoint:position];
+            if(type ==WIN_SELECT_OK)
+            {
+                // _isTransitioning =false;
+                [self closeLockedWarningWindow];
+                NSString *newUnlocked=[[GameSettings shared] getGlobalForKey:@"storyHardNew"];
+                if([ newUnlocked isEqualToString:@"YES"])
+                {
+                    [self openWindowForNewHardStory];
+                    [[GameSettings shared] setGlobal:@"NO" ForKey:@"storyHardNew"];
+                }
+            }
+            _newNormalTimedWindowOpen=false;
+            break;
+
+        }
+        
+        if(_newHardStoryWindowOpen)
+        {
+            WindowSelectionType type = [_lockedWarningWindow checkCollisionAtPoint:position];
+            if(type ==WIN_SELECT_OK)
+            {
+                // _isTransitioning =false;
+                [self closeLockedWarningWindow];
+                _newHardStoryWindowOpen=false;
+            }
+            break;
+            
+        }
+        
+        if(_newInsaneTimedWindowOpen)
+        {
+            WindowSelectionType type = [_lockedWarningWindow checkCollisionAtPoint:position];
+            if(type ==WIN_SELECT_OK)
+            {
+                // _isTransitioning =false;
+                [self closeLockedWarningWindow];
+                _newInsaneTimedWindowOpen=false;
+            }
+            break;
+            
+        }
+
+
+        
+        
+        
         if(!_isTransitioning) {
             if ([_storyModePanel testCollision:position]) {
                 if (_currentPanel!=_storyModePanel) {
@@ -376,7 +461,7 @@
                 [[GameSettings shared] setNotNewForKey:@"storyHardUnlocked"];
             }
             [[GameSettings shared] setGlobal:@"NO" ForKey:@"titleMusicStarted"];
-            [[GameSettings shared] setGlobal:@"level1" ForKey:@"startingLevel"];
+            [[GameSettings shared] setGlobal:@"level11" ForKey:@"startingLevel"];
             [[GameSettings shared] setSerializedGlobal:@"level1" ForKey:@"storyModeCurrentLevel"];
             [[GameSettings shared] setSerializedGlobal:@"0" ForKey:@"storyModeCurrentTime"];
 
@@ -459,6 +544,46 @@
             }  else {
                 [self getDesiredAction];
                 //[self switchToAction];
+            }
+        }
+    }
+    
+    if (_waitToCheckNewNormalTimed>0.0f)
+    {
+        _waitToCheckNewNormalTimed-=dt;
+        if(_waitToCheckNewNormalTimed<=0.0f)
+        {
+            _waitToCheckNewNormalTimed=0.0f;
+            NSString *newUnlocked =[[GameSettings shared] getGlobalForKey:@"timeNormalNew"];
+            if([newUnlocked isEqualToString:@"YES"])
+            {
+                [self openWindowForNewNormalTimed];
+                [[GameSettings shared] setGlobal:@"NO" ForKey:@"timeNormalNew"];
+                
+            }
+            else
+            {
+                NSString *newUnlocked = [[GameSettings shared] getGlobalForKey:@"storyHardNew"];
+                if([newUnlocked isEqualToString:@"YES"])
+                {
+                    [self openWindowForNewHardStory];
+                    [[GameSettings shared] setGlobal:@"NO" ForKey:@"storyHardNew"];
+                }
+            }
+        }
+    }
+    
+    if(_waitToCheckNewInsaneTimed>0.0f)
+    {
+        _waitToCheckNewInsaneTimed-=dt;
+        if(_waitToCheckNewInsaneTimed<=0.0f)
+        {
+            _waitToCheckNewInsaneTimed=0.0f;
+            NSString *newUnlocked=[[GameSettings shared] getGlobalForKey:@"timeHardNew"];
+            if([newUnlocked isEqualToString:@"YES"])
+            {
+                [self openWindowForNewInsaneTimed];
+                [[GameSettings shared] setGlobal:@"NO" ForKey:@"timeHardNew"];
             }
         }
     }
