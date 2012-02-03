@@ -68,7 +68,6 @@
         _modeDict = [[NSDictionary alloc] initWithDictionary:[medalsDict objectForKey:@"timed"]];
 
         [self showMedal];
-     //  _trophyFront = [Sprite spriteFromFrameCacheWithName:@"EndGame_Trophy_3.png"];
         
         //IPAD FIX: reposition so paused text is centered on x, and slightly above center on y, and buttons are side by side, with the middle button centered on x, and each one slightly below center on y
         CGSize winSize = [[CCDirector sharedDirector] winSize];
@@ -77,9 +76,6 @@
         [_replayButton setPosition:ccp(centerX-185,centerY - 140.0f)];
         [_menuButton setPosition:ccp(centerX + 185.0f,centerY - 140.0f)];
         [_finalTimePanel getCCSprite].position=ccp(centerX-225,centerY+70);
-        
-        //_timer=[[GameSettings shared] getGlobalForKey:@"finalLevelTime"];
-        
         
         _finalTimeText = [GameLabel gameLabelWithText:[[GameSettings shared] getGlobalForKey:@"finalLevelTimeText"]  Scale:1.0f Position:ccp(centerX,centerY+90)];
         
@@ -91,8 +87,6 @@
         
         
         [[LayerManager sharedLayers] forgetWorkingLayer];
-        
-        //[[SoundEngine shared] cueFadeOut];
         
         self.isTouchEnabled = YES;
     }
@@ -204,11 +198,9 @@
 
 -(void)setTrophyPosition
 {
-    // if (_trophyFront!=nil) {
-    //CGPoint position = [_buttonGraphic getPosition];
-    // [_trophyFront getCCSprite].position= ccp(240,160);  
-    [_trophyFront getCCSprite].position=ccp(200,65);
-    // }
+    if (_trophyFront!=nil) {
+        [_trophyFront getCCSprite].position=ccp(200,65);
+    }
 }
 
 -(void)setNewTrophy:(int)trophyId
@@ -233,31 +225,18 @@
 
 -(void)showMedal
 {
-   // GameLayer *gameLayer = [[LayerManager sharedLayers] currentLayer];
-    //NSString  *gameDifficulty = [[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
-    
     NSString *levelName =[[LevelManager shared] currentLevel].name;
     
-   // float bestTime = [[BestTimes shared] getBestTimeForLevelName:levelName forDifficulty:gameDifficulty];
-  
     float newTime=[[[GameSettings shared] getGlobalForKey:@"finalLevelTime"] floatValue];
-    //NSLog(@"%f",newTime);
-       
-   
     
     int medalForNewTime = [self getMedalNumberForLevelNamed:levelName Time:newTime];
-       //int medalForBestTime =[self getMedalNumberForLevelNamed:levelName Time:bestTime];
-   // if (medalForNewTime>0 && medalForNewTime<4 && medalForNewTime > medalForBestTime) {
-     if (medalForNewTime>=0 && medalForNewTime<4) {
+    if (medalForNewTime>=0 && medalForNewTime<4) {
         [self setNewTrophy:medalForNewTime];
     }
     else
     {
        // [self setOldTrophy:medalForBestTime];
     }
-
-    
-    
 }
 
 -(void)showNewRecord
@@ -290,28 +269,7 @@
              _gameLayer.gameController.isInputEnabled = true;
             [_gameLayer.gameController endLevel];
              // _gameLayer.isTouchEnabled=true;
-            [self onExit];
-            
-            /*
-            _gameLayer.visible = true;
-            
-            
-             [_gameLayer restartLevel];
-            
-           
-            
-            
-            [[_gameLayer getHud] fadeIn];
-             
-            
-            _gameLayer.gameController.isInputEnabled = true;
-        _gameLayer.isTouchEnabled=true;
-            _gameLayer.gameController.isHandlingPause = false;
-           */
-                        
-                        
-            
-                                   
+            [self onExit];                                   
             break;
         case END_LEVEL_BACK:
             //[_gameController pauseGame];
@@ -355,14 +313,10 @@
 
 -(void)onExit
 {
-   // [_finalTimePanel getCCSprite].visible = false;
-    //[_finalTimeText setText:nil];
      [self unscheduleUpdate];
      self.isTouchEnabled = false;
-    
    
-     //[[[LayerManager sharedLayers] currentScene] removeChild:self cleanup:NO];
-    [self release];
+    //[self release];
   
 }
 
@@ -411,26 +365,29 @@
 
 -(void)dealloc
 {
-    [[TextureManager shared] unloadMemoryForKey:@"endLevel"];
     _gameController = nil;
+    _gameLayer=nil;
+    
+    
+    [_trophyFront release];
+    
     if(_finalTimeText!=nil)
     {
         [_finalTimeText release];
-        _finalTimeText=nil;
     }
     if(_finalTimePanel!=nil)
     {
-    [_finalTimePanel release];
-        _finalTimePanel=nil;
+        [_finalTimePanel release];
     }
     if(_timeHeaderText!=nil)
     {
-    [_timeHeaderText release];
-        _timeHeaderText=nil;
+        [_timeHeaderText release];
     }
-    _gameLayer=nil;
- 
-    //[super dealloc];
+    if (_trophyText!=nil) {
+        [_trophyText release];
+    }
+    [[TextureManager shared] unloadMemoryForKey:@"endLevel"]; 
+    [super dealloc];
 }
 
 @end
