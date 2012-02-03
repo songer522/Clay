@@ -483,7 +483,7 @@
     [_twitterIcon release];
     [_facebookButton release];
     [_twitterButton release];
-   [_background release];
+    [_background release];
     
     _selectedButton=nil;
    
