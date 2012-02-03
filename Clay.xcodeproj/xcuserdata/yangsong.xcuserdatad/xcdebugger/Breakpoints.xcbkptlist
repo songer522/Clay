@@ -41,20 +41,22 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "283"
-         endingLineNumber = "283">
+         endingLineNumber = "283"
+         landmarkName = "-update:"
+         landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "Clay/Classes/Scenes/ChooseLevelScreen.m"
-         timestampString = "349939967.53776"
+         filePath = "Clay/Classes/Game/Other/Level.m"
+         timestampString = "349990278.147984"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "217"
-         endingLineNumber = "217"
-         landmarkName = "-ccTouchesEnded:withEvent:"
+         startingLineNumber = "880"
+         endingLineNumber = "880"
+         landmarkName = "-testCollisionsForAggressive:Obstacles:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

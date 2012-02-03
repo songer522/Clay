@@ -872,7 +872,7 @@
             if (collision) {
                 NSString *mode = [[GameSettings shared] getGlobalForKey:@"gameMode"];
 
-                if ([source getCollisionBehavior] == COLLISION_BEHAVIOR_HEN_KICKED && [mode isEqualToString:@"timed"]) {
+                if ([source getCollisionBehavior] == COLLISION_BEHAVIOR_HEN_DEAD && [mode isEqualToString:@"timed"]) {
                     //NSLog(@"Counting Chicken Kicked Into Cow");
                     int maxKicksIntoCow = 100;
                     
