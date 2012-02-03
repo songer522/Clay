@@ -47,6 +47,9 @@
         _duration = 0.78f;
         _startedWindAnimation = false;
 
+        _hasKilledEnemy = false;
+        _hasKilledSuperEnemy = false;
+        
         [[_parent getSpeed] startBlow];
         [[_parent getSpeed] stop];
     }
@@ -94,7 +97,7 @@
 {
     NSMutableArray *obstacles = [[[LevelManager shared] currentLevel] getActiveGameObjectList];
     for (GameObject *object in obstacles) {
-        if([object getCollisionBehavior] == COLLISION_BEHAVIOR_FIRE_DEMON)
+        if(![object hasBeenHit] && [object getCollisionBehavior] == COLLISION_BEHAVIOR_FIRE_DEMON)
         {
             if([[[LevelManager shared] currentLevel] testCollisionWithGameObject:object Source:_windProjectile])
             {
@@ -102,7 +105,7 @@
                 if(!object.hasAppeared)
                     [self freezeFireDemon:object];
             }
-        } else if([object getCurrentCollisionBehavior] == COLLISION_BEHAVIOR_FIREFOX_PREATTACK) {
+        } else if(![object hasBeenHit] && [object getCurrentCollisionBehavior] == COLLISION_BEHAVIOR_FIREFOX_PREATTACK) {
             if([[[LevelManager shared] currentLevel] testCollisionWithGameObject:object Source:_windProjectile])
             {
                 [object startCollision:true];
