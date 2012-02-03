@@ -37,6 +37,7 @@
 -(void)setPosition:(CGPoint)position;
 
 -(bool)checkIfSelected:(CGPoint)touch;
+-(bool)checkIfTouched:(CGPoint)touch;
 
 -(void)setInitialPosition;
 

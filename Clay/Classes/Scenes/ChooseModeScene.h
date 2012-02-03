@@ -61,12 +61,15 @@ typedef enum {
     GameWindow *_lockedWarningWindow;
     bool _losingProgressWarningWindowOpen;
     bool _lockedWarningWindowOpen;
-    bool _newHardStoryWindowOpen;
-    bool _newNormalTimedWindowOpen;
-    bool _newInsaneTimedWindowOpen;
+    bool _newHardStoryModeWindowOpen;
+    bool _newNormalTimedModeWindowOpen;
+    bool _newInsaneTimedModeWindowOpen;
+    bool _newNormalTimedLevelWindowOpen;
+    bool _newInsaneTimedLevelWindowOpen;
     
-    float _waitToCheckNewNormalTimed;
-    float _waitToCheckNewInsaneTimed;
+    
+    float _waitToCheckNewNormalTimedMode;
+    float _waitToCheckNewInsaneTimedMode;
 }
 
 @property(nonatomic,assign) bool isTransitioning;

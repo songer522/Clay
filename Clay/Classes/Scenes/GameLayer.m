@@ -441,12 +441,25 @@
         if ([difficulty isEqualToString:@"normal"] && [levelName isEqualToString:@"level11"]) {
             [[GameSettings shared] setUnlockedForKey:@"storyHardUnlocked"];
         }
+        //before set the normal time level unlock to YES, check if it is locked, if so then set first time unlock to YES
+        NSString *levelUnlocked=[[GameSettings shared] getGlobalForKey:[NSString stringWithFormat:@"%@TimedNormalUnlocked",levelName]];
+        if(![levelUnlocked isEqualToString:@"YES"])
+        {
+            [[GameSettings shared] setGlobal:@"YES" ForKey:@"newTimedModeLevelUnlocked"];
+        }        
         [[GameSettings shared] setSerializedGlobal:@"YES" ForKey:[NSString stringWithFormat:@"%@TimedNormalUnlocked",levelName]];
-        
         [[GameSettings shared] setUnlockedForKey:@"timedNormalUnlocked"];        
      } else if([mode isEqualToString:@"timed"]) {
          //if timed mode is normal AND the level number is not DLC (we don't want playing dlc levels to unlock insane mode).
          if([difficulty isEqualToString:@"normal"] && levelNumber < 12) {
+             
+             //before set the insane time level unlock to YES, check if it is locked, if so then set first time unlock to YES
+             NSString *levelUnlocked=[[GameSettings shared] getGlobalForKey:[NSString stringWithFormat:@"%@TimedHardUnlocked",levelName]];
+             if(![levelUnlocked isEqualToString:@"YES"])
+             {
+                 [[GameSettings shared] setGlobal:@"YES" ForKey:@"newInsaneModeLevelUnlocked"];
+             }       
+             
             [[GameSettings shared] setUnlockedForKey:@"timedHardUnlocked"];
             [[GameSettings shared] setSerializedGlobal:@"YES" ForKey:[NSString stringWithFormat:@"%@TimedHardUnlocked",levelName]];
          }

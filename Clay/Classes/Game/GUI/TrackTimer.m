@@ -203,7 +203,7 @@
     if (seconds < 10) {
         [timeString appendString:@"0"];
     }
-    [timeString appendFormat:@"%d:",seconds];
+    [timeString appendFormat:@"%d.",seconds];
     
     //milliseconds
     if (milliseconds < 10) {
