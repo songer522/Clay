@@ -47,6 +47,8 @@
     
     Boss *_boss;
     
+    int _currentLevel;
+    
     Sprite *_testAnim;
     
     bool _hasBeatenLevel; //to keep player from doing weird things between the flag and transitioning to the next level

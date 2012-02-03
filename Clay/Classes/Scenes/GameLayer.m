@@ -193,6 +193,8 @@
         _player.isDojoLevel = false;
     }
 
+    _currentLevel = [_level getLevelNumber];
+    
     
     _hasBeatenLevel = false;
     
@@ -253,12 +255,19 @@
         dt = 2/60.0f;
     } else */
     
-    if( dt > 0.022f )
-    {
-		dt = 1/60.0f;
+    if(_currentLevel == 12) {
+        if( dt > 0.03f )
+        {
+            dt = 1/60.0f;
+        }        
+    } else {
+        if( dt > 0.022f )
+        {
+            dt = 1/60.0f;
+        }
     }
-    [self updateLogic:dt];
     
+    [self updateLogic:dt];    
     
     //use for simulator
     

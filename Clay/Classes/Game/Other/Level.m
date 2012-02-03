@@ -1257,6 +1257,10 @@
     return (number == _levelNumber);
 }
 
+-(int)getLevelNumber
+{
+    return _levelNumber;
+}
 
 -(void)dealloc
 {
