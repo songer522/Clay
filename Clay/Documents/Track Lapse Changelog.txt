@@ -1,5 +1,21 @@
 Track Lapse Changelog
 
+Build 120202.RC6 RTM Candidate
+================================
+
+* Same as RC6, but signed with the app store distribution certificate.
+
+Build 120202.RC6
+==================
+
+* ChooseLevel - added windows that pop up when you click a locked level explaining what you need to do to unlock the level.
+* ChooseLevel - updated medal times for all levels to match times decided when jeff was play testing and comparing with tian's times
+* ChooseMode - added window notification when new content is unlocked
+* Global - several missing UI sound effects added, including new sounds for the opening of warning/popup windows, and the buy button being clicked.
+* EndLevelTimed - cleaned up some unresolved memory issues which may have also fixed an occasional problem with crashes after the menu button is clicked
+* Levels 4,12 - levels play smoother on iPhone 4 after removing excess tiles from their maps
+
+
 Build 120202.RC5
 ==================
 
