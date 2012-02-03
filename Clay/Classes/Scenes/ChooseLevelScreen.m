@@ -178,9 +178,10 @@
             WindowSelectionType type = [_errorWindow checkCollisionAtPoint:position];
             if (type == WIN_SELECT_OK) {
                 [self closeErrorWindow];
-                [[SoundEngine shared] playSound:@"guiSelectionForward"];  
-                break;
+                
+                
             }
+            break;
         }
         
         if(_lockedLevelWindowOpen)
@@ -189,11 +190,11 @@
             if (type == WIN_SELECT_OK) {
                 [self closeErrorWindow];
                 _lockedLevelWindowOpen=false;
-                [[SoundEngine shared] playSound:@"guiSelectionForward"];  
-                break;
+               // [[SoundEngine shared] playSound:@"guiSelectionForward"];  
+                
 
         }
-         
+         break;
         }
         for (LevelButton *button in _buttons) {
             if([button checkIfSelected:position] && !_panelTransition && [button isUnlocked]) {
@@ -216,7 +217,7 @@
             else if([button checkIfTouched:position] && !_panelTransition && ![button isUnlocked])
             {
                 [self openLockedLevelWindow];
-                [[SoundEngine shared] playSound:@"windowOpenWarning"]; 
+                
             }
         }
         
@@ -304,9 +305,11 @@
     switch (levelNumber) {
         case TRAINING_RUN:
             [[InAppPurchaseManager shared] purchaseProductId:kInAppPurchaseTrainingRunProductId Delegate:self];
+            [[SoundEngine shared] playSound:@"guiSelectionForward"]; 
             break;
         case DOJO_RUN:
             [[InAppPurchaseManager shared] purchaseProductId:kInAppPurchaseDojoRunProductId Delegate:self];
+            [[SoundEngine shared] playSound:@"guiSelectionForward"]; 
             break;
         default:
             break;
@@ -361,6 +364,7 @@
 
 -(void)openLockedLevelWindow
 {
+    [[SoundEngine shared] playSound:@"windowOpenWarning"]; 
     if(!_lockedLevelWindowOpen)
     {
         _lockedLevelWindowOpen=true;
@@ -388,6 +392,7 @@
 
 -(void)closeErrorWindow
 {
+    [[SoundEngine shared] playSound:@"guiSelectionForward"];  
     _errorWindowOpen = false;
     [_errorWindow release];
     _errorWindow = nil;
