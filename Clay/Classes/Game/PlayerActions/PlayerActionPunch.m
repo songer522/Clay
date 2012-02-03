@@ -161,7 +161,7 @@
 
     NSMutableArray *obstacles = [[[LevelManager shared] currentLevel] getActiveGameObjectList];
     for (GameObject *object in obstacles) {
-        if([object getCurrentCollisionBehavior] == COLLISION_BEHAVIOR_DOJO_DROP_NINJA || [object getCurrentCollisionBehavior] == COLLISION_BEHAVIOR_DOJO_WHITE_NINJA_CHARGING)
+        if(![object hasBeenHit] && ([object getCurrentCollisionBehavior] == COLLISION_BEHAVIOR_DOJO_DROP_NINJA || [object getCurrentCollisionBehavior] == COLLISION_BEHAVIOR_DOJO_WHITE_NINJA_CHARGING))
         {
             if([_level testCollisionWithGameObject:object Source:_punch])
             {
