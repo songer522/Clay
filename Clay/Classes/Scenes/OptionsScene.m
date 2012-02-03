@@ -166,7 +166,6 @@
         CGPoint position = [self convertTouchToNodeSpace:touch];
         
         if(_windowOpen) {
-            
             if (_eraseWindowFirstOpen) {
                 WindowSelectionType type = [_eraseWindowFirst checkCollisionAtPoint:position];
                 if (type == WIN_SELECT_YES) {
@@ -224,7 +223,7 @@
                     _windowOpen = true;
                     _eraseWindowFirst = [GameWindow gameWindowWithHeader:@"ERASE DATA" Message:@"This will delete all of your data, except achievements and leaderboard scores. Are you sure you want to do this?" Choices:WINDOW_CHOICE_NOYES Layer:self withBackground:@"MessageBox.png"];
                     _eraseWindowFirstOpen = true;
-                    [[SoundEngine shared] playSound:@"buttonPressed"];
+                   [[SoundEngine shared] playSound:@"windowOpenWarning"]; 
                 }
                 
                 [self sliderReactionAtPosition:position LastTouch:YES];

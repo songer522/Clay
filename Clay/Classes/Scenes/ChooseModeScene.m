@@ -243,6 +243,8 @@
                 if([ newUnlocked isEqualToString:@"YES"])
                 {
                     [self openWindowForNewHardStory];
+                    
+                    [[SoundEngine shared] playSound:@"windowOpenNewContent"]; 
                     [[GameSettings shared] setGlobal:@"NO" ForKey:@"storyHardNew"];
                 }
             }
@@ -264,6 +266,7 @@
                 {
                     //open new normal timed mode level window
                     [self openWindowForNewNoramlTimedLevel];
+                    [[SoundEngine shared] playSound:@"windowOpenNewContent"]; 
                     [[GameSettings shared] setGlobal:@"NO" ForKey:@"newTimedModeLevelUnlocked"];
                 }
 
@@ -438,6 +441,7 @@
             if(_isContinueButtonEnabled)
             {
                 [self openWarningWindowLosingProgress];
+                [[SoundEngine shared] playSound:@"windowOpenWarning"]; 
             }
            else
            {
@@ -458,6 +462,7 @@
             if(_isContinueButtonEnabled)
             {
                 [self openWarningWindowLosingProgress];
+                  [[SoundEngine shared] playSound:@"windowOpenWarning"]; 
             }
             else
             {
@@ -479,6 +484,7 @@
             if(_isContinueButtonEnabled)
             {
                 [self openWarningWindowLosingProgress];
+                  [[SoundEngine shared] playSound:@"windowOpenWarning"]; 
             }
             else
             {
@@ -532,7 +538,7 @@
                 [[GameSettings shared] setNotNewForKey:@"storyHardUnlocked"];
             }
             [[GameSettings shared] setGlobal:@"NO" ForKey:@"titleMusicStarted"];
-            [[GameSettings shared] setGlobal:@"level4" ForKey:@"startingLevel"];
+            [[GameSettings shared] setGlobal:@"level1" ForKey:@"startingLevel"];
             [[GameSettings shared] setSerializedGlobal:@"level1" ForKey:@"storyModeCurrentLevel"];
             [[GameSettings shared] setSerializedGlobal:@"0" ForKey:@"storyModeCurrentTime"];
 
@@ -629,6 +635,7 @@
             if([newUnlocked isEqualToString:@"YES"])
             {
                 [self openWindowForNewNormalTimed];
+                [[SoundEngine shared] playSound:@"windowOpenNewContent"]; 
                 [[GameSettings shared] setGlobal:@"NO" ForKey:@"timeNormalNew"];
                 
             }
@@ -638,6 +645,7 @@
                 if([newUnlocked isEqualToString:@"YES"])
                 {
                     [self openWindowForNewHardStory];
+                    [[SoundEngine shared] playSound:@"windowOpenNewContent"]; 
                     [[GameSettings shared] setGlobal:@"NO" ForKey:@"storyHardNew"];
                 }
                 else
@@ -647,6 +655,7 @@
                     {
                         //open new normal timed mode level window
                         [self openWindowForNewNoramlTimedLevel];
+                        [[SoundEngine shared] playSound:@"windowOpenNewContent"]; 
                         [[GameSettings shared] setGlobal:@"NO" ForKey:@"newTimedModeLevelUnlocked"];
                     }
                 }
@@ -664,6 +673,7 @@
             if([newUnlocked isEqualToString:@"YES"])
             {
                 [self openWindowForNewInsaneTimed];
+                [[SoundEngine shared] playSound:@"windowOpenNewContent"]; 
                 [[GameSettings shared] setGlobal:@"NO" ForKey:@"timeHardNew"];
             }
             else
@@ -674,6 +684,7 @@
                 {
                     //open new insane timed level window
                     [self openWindowForNewInsaneTimedLevel];
+                    [[SoundEngine shared] playSound:@"windowOpenNewContent"]; 
                     [[GameSettings shared] setGlobal:@"NO" ForKey:@"newInsaneModeLevelUnlocked"];
                 }
             }

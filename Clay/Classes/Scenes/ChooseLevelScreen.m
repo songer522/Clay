@@ -216,6 +216,7 @@
             else if([button checkIfTouched:position] && !_panelTransition && ![button isUnlocked])
             {
                 [self openLockedLevelWindow];
+                [[SoundEngine shared] playSound:@"windowOpenWarning"]; 
             }
         }
         
@@ -286,12 +287,14 @@
     if(_openErrorCantConnectToStore)
     {
         [self openErrorWindowCantConnectToStore];
+          [[SoundEngine shared] playSound:@"windowOpenWarning"]; 
        // _openErrorCantConnectToStore=false;
         return;
     }
     if(_openErrorCantMakePurchases)
     {
         [self openErrorWindowCantMakePurchases];
+          [[SoundEngine shared] playSound:@"windowOpenWarning"]; 
         //_openErrorCantMakePurchases=false;
         return;
     }
@@ -355,13 +358,6 @@
     }
 }
 
--(void)openWindowLockedLevel
-{
-    if (!_errorWindowOpen) {
-        _errorWindowOpen = true;
-        _errorWindow = [GameWindow gameWindowWithHeader:@"ERROR!" Message:@"Cannot connect to the store at this time. Please try again later." Choices:WINDOW_CHOICE_OK Layer:self withBackground:@"MessageBox2.png"];        
-    }
-}
 
 -(void)openLockedLevelWindow
 {
