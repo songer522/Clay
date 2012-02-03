@@ -198,6 +198,7 @@
             else if(_isContinueButtonEnabled && [_continueButton testCollision:position]) {
                 _switchToChoice = MENU_SWITCHTO_CONTINUE;
                 _selectedButton = _continueButton;
+                [[SoundEngine shared] playSound:@"menuPlayButton"];
                 shouldStart = true;
             }
         }

@@ -47,6 +47,11 @@
     
     Boss *_boss;
     
+    int _numberOfUpdates;
+    double _averageDt;
+    
+    int _currentLevel;
+    
     Sprite *_testAnim;
     
     bool _hasBeatenLevel; //to keep player from doing weird things between the flag and transitioning to the next level
@@ -100,5 +105,6 @@
 -(void)recordTimesdied;
 -(void)saveAndReportToGameCenter;
 -(void)checkHasBeenHit;
+-(void)updateAverageDtWithDt:(float)dt;
 
 @end

@@ -83,11 +83,6 @@ static Camera *_sharedCamera = nil;
 
 -(void)keepWithinBoundaries
 {
-    if ([[GameSettings shared] isStutterMode]) {
-        [self keepWithinBoundaries_old];
-        return;
-    }
-    
     float bottom = _y - _center.y;
     float top = bottom + _precalculateWinsizeHeight; 
     
@@ -95,29 +90,6 @@ static Camera *_sharedCamera = nil;
         _y = _precalculateBoundaryYplusBoundaryHeight - _precalculateWinsizeHeight + _center.y;
     } else if (bottom < _precalculateBoundaryY) {
         _y = _precalculateBoundaryY + _center.y;
-    }
-}
-
-
--(void)keepWithinBoundaries_old
-{
-    CGSize winSize = [[CCDirector sharedDirector] winSize];
-    
-    float left = _x - _center.x;
-    float right = left + winSize.width;
-    float bottom = _y - _center.y;
-    float top = bottom + winSize.height;
-    
-    if(left < _boundary.origin.x) {
-        _x = _boundary.origin.x + _center.x;
-    } else if(right > (_boundary.origin.x + _boundary.size.width)) {
-        _x = _boundary.origin.x + _boundary.size.width - winSize.width + _center.x;
-    }
-    
-    if(top > (_boundary.origin.y + _boundary.size.height)) {
-        _y = _boundary.origin.y + _boundary.size.height - winSize.height + _center.y;
-    } else if (bottom < _boundary.origin.y) {
-        _y = _boundary.origin.y + _center.y;
     }
 }
 
@@ -141,13 +113,6 @@ static Camera *_sharedCamera = nil;
 -(void)restoreDefaultCenter:(CGPoint)point
 {
     _center = _defaultCenter;
-}
-
--(void)moveByX:(float)x Y:(float)y
-{
-    _x += x;
-    //_y += y;
-    [self keepWithinBoundaries];    
 }
 
 -(CGPoint)convertToScreenXY:(CGPoint)worldXY
@@ -181,66 +146,18 @@ static Camera *_sharedCamera = nil;
 }
 
 
--(void)moveTowardsTargetNew:(float)dt
-{
-    //CGPoint position = [_target getPosition];
-    //float dx = (position.x - _x);
-    
-    //float speed = [_player getVelocityX];
-    
-    if(_trackingTarget) {
-        //_x = _target.
-    }
-    
-    /*
-    float distance = sqrtf(dx*dx);
-    if (distance > 0.1f) {
-        if (_trackingTarget) {
-            
-            if (dx > 0) {
-                _vx += 6.0f * dt;
-                _vx = MIN(40.0f, _vx);
-            } else {
-                _vx -= 6.0f * dt;
-                _vx = MAX(-40.0f, _vx);                
-            }
-            _x += _vx;         
-        }
-    } else {
-        if (_trackingTarget) {
-            _vx = 0.0f;
-            _x = position.x;            
-        }
-    }*/
-}
-
 -(void)moveTowardsTarget:(float)dt PlayerOnGround:(bool)onGround
 {
-    //[self moveTowardsTargetNew:dt];
-    //return;
-    
-    float dx,dy;
+    float dx;
     float magnitude;
-    //float oldx = _x, oldy = _y;
     
     if (_target != nil) {
         
-        /*
-        float rate;
-        if (onGround) {
-            rate = 1.0f;
-        } else {
-            rate = 0.1f;
-        }*/
-        
-        
-        
         CGPoint position = [_target getPosition];
         dx = (position.x - _x);
-        dy = (position.y - _y);
+        _y = 54.0f; //this is the setting it would rest on from when we actually used to track the y position
         
-        
-        float distance = sqrtf(dx*dx + dy*dy);
+        float distance = sqrtf(dx*dx);
         
         magnitude = distance * CAMERA_MOVE_TO_TARGET_SPEED * dt;
         
@@ -248,15 +165,10 @@ static Camera *_sharedCamera = nil;
             if (_trackingTarget) {
                 _x += (magnitude * (dx/distance));
             }
-            if (dy!=0) {
-                _y += (magnitude * (dy/distance));                
-            }
-            
         } else {
             if (_trackingTarget) {
                 _x = position.x;
             }
-            _y = position.y;
             _isPlayerResetting = false;
         }
         
@@ -266,35 +178,14 @@ static Camera *_sharedCamera = nil;
             _x += 0.83333333f;
         }
     }
-    if (dy!=0) {
-        [self keepWithinBoundaries];
-    }
-    
     [self updateOnScreenRange];
-    /*
-    float newdx = oldx - _x;
-    if(newdx < -1.0f && newdx != -2.80f && newdx > -4.0f) {
-        NSLog(@"NewDx: %.2f",newdx);
-    }*/
-    //NSLog(@"OX: %.2f, OY: %.2f, | NX: %.2f, NY: %.2f",oldx,oldy,_x,_y);
-    //NSLog(@"DX: %.2f, DY: %.2f MAG: %.2f",dx,dy,magnitude);
 }
 
 -(void)snapToTarget
 {
-    if (_target!=nil) {
+    if (_target!=nil) { 
         _x = _target.x;
-        _y = _target.y;
-        [self keepWithinBoundaries];
-
-    }
-}
-
--(void)snapToTargetY
-{
-    if (_target!=nil) {
-        _y = _target.y;
-        [self keepWithinBoundaries];
+        _y = 54.0f;
     }
 }
 
@@ -317,7 +208,7 @@ static Camera *_sharedCamera = nil;
 -(void)reset
 {
     _x = 0;
-    _y = 0;
+    _y = 54.0f;
     _isShiftForwardForKickAction = false;
     [self keepWithinBoundaries];
 }

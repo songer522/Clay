@@ -144,6 +144,8 @@
 	<string>guiSelectionForward.wav</string>
 	<key>guiSelectionBack</key>
 	<string>guiSelectionBack.wav</string>
+	<key>guiSelectionBackward</key>
+	<string>guiSelectionBack.wav</string>
 	<key>eraseData</key>
 	<string>eraseData.wav</string>
 	<key>guiSwitchSections</key>
@@ -166,5 +168,9 @@
 	<string>waterSquidProjectile.wav</string>
 	<key>waterTronikaAppear</key>
 	<string>waterTronikaAppear.wav</string>
+	<key>windowOpenNewContent</key>
+	<string>windowOpenNewContent.wav</string>
+	<key>windowOpenWarning</key>
+	<string>windowOpenWarning.wav</string>
 </dict>
 </plist>

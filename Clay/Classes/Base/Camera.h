@@ -60,7 +60,6 @@
 +(Camera*)sharedCamera;
 
 #pragma mark - public methods
--(void)moveByX:(float)x Y:(float)y;
 -(void)setBoundaries:(CGRect)rect Level:(Level*)level;
 
 -(void)updateOnScreenRange;
@@ -80,7 +79,6 @@
 
 -(void)moveTowardsTarget:(float)dt PlayerOnGround:(bool)onGround;
 -(void)snapToTarget;
--(void)snapToTargetY;
 -(void)startShiftForwardForKick;
 
 -(float) xPosition;
@@ -88,7 +86,6 @@
 -(void)reset;
 
 #pragma mark - private methods
--(void)keepWithinBoundaries_old;
 -(void)keepWithinBoundaries;
 
 -(bool)isInVisualRange:(float)xPosition;

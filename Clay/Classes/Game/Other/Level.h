@@ -144,6 +144,7 @@ typedef enum {
 -(void)unloadLevel;
 
 -(bool)isLevelNumber:(int)number;
+-(int)getLevelNumber;
 
 -(void)setHudButtonsAndThirdAction:(NSString*)action;
 

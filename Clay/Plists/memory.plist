@@ -57,7 +57,7 @@
 		<key>animations</key>
 		<string>level3,woo</string>
 		<key>sounds</key>
-		<string>wooAction,crowAppears</string>
+		<string>wooAction,crowAppears,townRollingHayAppear</string>
 		<key>textures</key>
 		<string>townLevel,characterWoo</string>
 	</dict>
@@ -70,7 +70,7 @@
 		<key>animations</key>
 		<string>level4,dodge</string>
 		<key>sounds</key>
-		<string>shuffling</string>
+		<string>shuffling,discoBlondAppear</string>
 		<key>textures</key>
 		<string>discoLevel,characterDodging</string>
 	</dict>
@@ -122,7 +122,7 @@
 		<key>animations</key>
 		<string>level8,blow</string>
 		<key>sounds</key>
-		<string>blowAction,fireballLand</string>
+		<string>blowAction,fireballLand,fireRockMonsterProjectile</string>
 		<key>textures</key>
 		<string>fireLevel,characterBlowing</string>
 	</dict>
@@ -135,7 +135,7 @@
 		<key>animations</key>
 		<string>level9,woo</string>
 		<key>sounds</key>
-		<string>wooAction,frogSquish,lightning,windShort,windMedium,windLong</string>
+		<string>wooAction,frogSquish,lightning,windShort,windMedium,windLong,squirrelAppear,rainyUmbrellaAppear</string>
 		<key>textures</key>
 		<string>rainyLevel,characterWoo</string>
 	</dict>
@@ -148,7 +148,7 @@
 		<key>animations</key>
 		<string>level10,spin</string>
 		<key>sounds</key>
-		<string>waterAnglerFish,waterBubbles,waterPufferFish,waterSeaHorse,waterSwimAction</string>
+		<string>waterAnglerFish,waterBubbles,waterPufferFish,waterSeaHorse,waterSwimAction,waterSquidAppear,waterSquidProjectile,waterTronikaAppear</string>
 		<key>textures</key>
 		<string>waterLevel,characterSpinning</string>
 	</dict>
@@ -187,7 +187,7 @@
 		<key>animations</key>
 		<string>level13,punch</string>
 		<key>sounds</key>
-		<string>none</string>
+		<string>dojoPunch1,dojoPunch2,dojoNinjaYell1,dojoNinjaYell2,dojoNinjaYell3,dojoPunchMiss1,dojoPunchMiss2,dojoKnifeGround</string>
 		<key>textures</key>
 		<string>dojoLevel,characterPunching</string>
 	</dict>
@@ -213,7 +213,7 @@
 		<key>animations</key>
 		<string>none</string>
 		<key>sounds</key>
-		<string>buttonPressed,chooseSelection</string>
+		<string>buttonPressed,chooseSelection,guiSelectionForward,guiSelectionBack,windowOpenNewContent,windowOpenWarning</string>
 		<key>textures</key>
 		<string>chooseLevel</string>
 	</dict>
@@ -226,7 +226,7 @@
 		<key>animations</key>
 		<string>none</string>
 		<key>sounds</key>
-		<string>buttonPressed</string>
+		<string>buttonPressed,chooseSelection,guiSelectionForward,guiSelectionBack,windowOpenNewContent,windowOpenWarning</string>
 		<key>textures</key>
 		<string>chooseMode</string>
 	</dict>
@@ -239,7 +239,7 @@
 		<key>animations</key>
 		<string>none</string>
 		<key>sounds</key>
-		<string>buttonPressed,turboStart,jumpStart,dead,doubleJump,cancel</string>
+		<string>buttonPressed,cancel,batteryFullCharge,eraseData,guiSelectionForward,guiSelectionBack</string>
 		<key>textures</key>
 		<string>optionsScreen</string>
 	</dict>
@@ -252,7 +252,7 @@
 		<key>animations</key>
 		<string>none</string>
 		<key>sounds</key>
-		<string>buttonPressed</string>
+		<string>buttonPressed,guiSelectionForward,guiSelectionBack</string>
 		<key>textures</key>
 		<string>howtoplayScreen</string>
 	</dict>

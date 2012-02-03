@@ -152,7 +152,6 @@ typedef enum {
 
 -(void)pushAfterAnimation:(float)xAmount;
 
--(void)updateInvulnerable:(float)dt;
 -(void)updateLedge:(float)dt;
 -(void)updatePitFalling:(float)dt;
 -(void)updatePlayerPosition:(float)dt Level:(Level*)level;
@@ -161,9 +160,6 @@ typedef enum {
 -(void)updateTurbo:(float)dt;
 
 -(bool)isMoving;
-
--(void)startVaccuum;
--(void)endVaccuum;
 
 -(void)setThirdAction:(NSString*)action;
 -(id<PlayerActionProtocol>)getThirdAction;

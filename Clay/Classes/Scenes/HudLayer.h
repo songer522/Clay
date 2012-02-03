@@ -40,6 +40,8 @@ typedef enum {
     bool _resetButtons;
     
     float _alpha;
+    float _buttonOpacity;
+
     float _delay;
     
     HudTransition _currentTransition;
