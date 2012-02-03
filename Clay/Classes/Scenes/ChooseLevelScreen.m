@@ -179,8 +179,9 @@
             if (type == WIN_SELECT_OK) {
                 [self closeErrorWindow];
                 
-                break;
+                
             }
+            break;
         }
         
         if(_lockedLevelWindowOpen)
@@ -190,10 +191,10 @@
                 [self closeErrorWindow];
                 _lockedLevelWindowOpen=false;
                // [[SoundEngine shared] playSound:@"guiSelectionForward"];  
-                break;
+                
 
         }
-         
+         break;
         }
         for (LevelButton *button in _buttons) {
             if([button checkIfSelected:position] && !_panelTransition && [button isUnlocked]) {
@@ -216,7 +217,7 @@
             else if([button checkIfTouched:position] && !_panelTransition && ![button isUnlocked])
             {
                 [self openLockedLevelWindow];
-                [[SoundEngine shared] playSound:@"windowOpenWarning"]; 
+                
             }
         }
         
@@ -363,6 +364,7 @@
 
 -(void)openLockedLevelWindow
 {
+    [[SoundEngine shared] playSound:@"windowOpenWarning"]; 
     if(!_lockedLevelWindowOpen)
     {
         _lockedLevelWindowOpen=true;
