@@ -52,6 +52,8 @@
         _punch2SoundPlay = false;
         _punch1SoundPlayed = false;
         _punch2SoundPlayed = false;
+        _hasKilledSuperEnemy = false;
+        _hasKilledEnemy = false;
     }
     [super startAction];
 }
@@ -159,12 +161,15 @@
 
     NSMutableArray *obstacles = [[[LevelManager shared] currentLevel] getActiveGameObjectList];
     for (GameObject *object in obstacles) {
-        if([object getCurrentCollisionBehavior] == COLLISION_BEHAVIOR_DOJO_DROP_NINJA || [object getCurrentCollisionBehavior] == COLLISION_BEHAVIOR_DOJO_WHITE_NINJA_CHARGING)
+        if(![object hasBeenHit] && ([object getCurrentCollisionBehavior] == COLLISION_BEHAVIOR_DOJO_DROP_NINJA || [object getCurrentCollisionBehavior] == COLLISION_BEHAVIOR_DOJO_WHITE_NINJA_CHARGING))
         {
             if([_level testCollisionWithGameObject:object Source:_punch])
             {
                 [object startCollision:YES];
-                [self setKilledEnemy:YES];
+                
+                if (_inAction) { //not necessarily in action when doing this collision
+                    [self setKilledEnemy:YES];                    
+                }
                 
                 if (_punch1SoundCheck && !_punch1SoundPlayed) {
                     if(!object.fadeout)

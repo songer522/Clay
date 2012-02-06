@@ -33,6 +33,8 @@
         _cooldown = 0.0f;
         _cooldownStart = 0.1f;
         _canTrigger = true;
+        _hasKilledEnemy = false;
+        _hasKilledSuperEnemy = false;
         _isCheering = false;
         _hud = [[[LayerManager sharedLayers] currentLayer] getHud];
         _actionButton = [[[[LayerManager sharedLayers] currentLayer] getHud] getActionButton];

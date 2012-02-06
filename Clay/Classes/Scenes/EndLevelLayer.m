@@ -316,7 +316,7 @@
      [self unscheduleUpdate];
      self.isTouchEnabled = false;
    
-    //[self release];
+    [self release];
   
 }
 
@@ -367,8 +367,9 @@
 {
     _gameController = nil;
     _gameLayer=nil;
-    
-    
+
+    [_replayButton release];
+    [_menuButton release];
     [_trophyFront release];
     
     if(_finalTimeText!=nil)

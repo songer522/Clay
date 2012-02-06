@@ -151,21 +151,6 @@ static GameSettings *_shared = nil;
 {
     saveData(_savedSettings, @"savedSettings");
 }
--(void)setUnlockedWindowForKey:(NSString*)key
-{
-    if([key isEqualToString:@"storyHardUnlocked"])
-    {
-        [self setGlobal:@"YES" ForKey:@"storyHardNew"];
-    }
-    else if([key isEqualToString:@"timedNormalUnlocked"])
-    {
-        [self setGlobal:@"YES" ForKey:@"timeNormalNew"];
-    }
-    else if([key isEqualToString:@"timedHardUnlocked"])
-    {
-        [self setGlobal:@"YES" ForKey:@"timeHardNew"];
-    }
-}
 
 -(void)setUnlockedForKey:(NSString*)key
 {
@@ -175,7 +160,6 @@ static GameSettings *_shared = nil;
         //do nothing we're already unlocked
     } else {
         [self setSerializedGlobal:@"newUnlocked" ForKey:key];
-        [self setUnlockedWindowForKey:key];
     }
 }
 
@@ -188,7 +172,6 @@ static GameSettings *_shared = nil;
         [self setSerializedGlobal:@"unlocked" ForKey:key];
     }
 }
-
 
 -(LockType)getLockTypeForKey:(NSString*)key
 {

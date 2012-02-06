@@ -135,20 +135,20 @@
 			<key>normal</key>
 			<dict>
 				<key>bronze</key>
-				<string>225</string>
+				<string>180</string>
 				<key>silver</key>
-				<string>200</string>
+				<string>150</string>
 				<key>gold</key>
-				<string>175</string>
+				<string>120</string>
 			</dict>
 			<key>hard</key>
 			<dict>
 				<key>bronze</key>
-				<string>275</string>
+				<string>185</string>
 				<key>silver</key>
-				<string>240</string>
+				<string>155</string>
 				<key>gold</key>
-				<string>200</string>
+				<string>125</string>
 			</dict>
 		</dict>
 		<key>level8</key>
@@ -156,20 +156,20 @@
 			<key>normal</key>
 			<dict>
 				<key>bronze</key>
-				<string>225</string>
+				<string>185</string>
 				<key>silver</key>
-				<string>200</string>
+				<string>155</string>
 				<key>gold</key>
-				<string>175</string>
+				<string>125</string>
 			</dict>
 			<key>hard</key>
 			<dict>
 				<key>bronze</key>
-				<string>275</string>
+				<string>195</string>
 				<key>silver</key>
-				<string>240</string>
+				<string>165</string>
 				<key>gold</key>
-				<string>200</string>
+				<string>135</string>
 			</dict>
 		</dict>
 		<key>level9</key>
