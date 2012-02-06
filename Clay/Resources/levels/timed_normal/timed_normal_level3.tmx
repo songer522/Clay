@@ -29,7 +29,7 @@
         </tile>
     </tileset>
     <tileset firstgid="13" name="TrackLapse_Icons" tilewidth="32" tileheight="32">
-        <image source="TrackLapse_Icons.png" width="640" height="576"/>
+        <image source="TrackLapse_Icons.png" width="640" height="768"/>
         <tile id="0">
             <properties>
                 <property name="obstacle" value="hurdle"/>
@@ -97,7 +97,7 @@
             </properties>
         </tile>
     </tileset>
-    <tileset firstgid="103" name="Level3_TiledSheet-hd" tilewidth="32" tileheight="32">
+    <tileset firstgid="133" name="Level3_TiledSheet-hd" tilewidth="32" tileheight="32">
         <image source="tileset_level_3.png" width="1024" height="768"/>
     </tileset>
     <layer name="back-1" width="950" height="14">
@@ -106,7 +106,7 @@
             <property name="speedy" value="1.0"/>
         </properties>
         <data encoding="base64" compression="zlib">
-            eJztyTluAlEURcHer01jwCZBZoaQ0ZB6q1z9FZA+dR2potN3XdcDACBJKtoSAIBGklSzEwAAjSSpZiMAABpJUs1+AQBoJEk1+wQAoJEk1ewDAIBGklSzBQAAjSSpZuP4iklMYxbf8RNz3/d93/f9AX1JUs1WsY5NbGMX+zjE0fd93/d9f0BfklSzc1ziGre4x1884un7vu/7vj+gL0mq2T8AAI0kSZIkSZIkSZIkSZKk93sB6KNT/Q==
+            eJztyUuOQWEYRdE7fURR6FTEo9D0pmtuTv4R6MmXu1ayW7vrAAAAAAAAAPiGoyRJkloA1DSSJElSC4CalpIkSWoBUNNQkiRJLQBqGkiSJKkFQE1/kiRJagFQ0zj9pEmapt80S/O08H3f933f79EHoKZVWqdN2qb/tEv7dPB93/d93+/RB6CmUzqnS7qmW7qnR3r6vu/7vu/36ANQ00uSJEktAAAAAAAAAADgc2+Nk+V9
         </data>
     </layer>
     <layer name="main0" width="950" height="14">
@@ -115,7 +115,7 @@
             <property name="speedy" value="1.0"/>
         </properties>
         <data encoding="base64" compression="zlib">
-            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
+            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
         </data>
     </layer>
     <layer name="front-1" width="950" height="14">
@@ -124,7 +124,7 @@
             <property name="speedy" value="1.0"/>
         </properties>
         <data encoding="base64" compression="zlib">
-            eJztx0ENACEQBMH1b40DAxxoYWxsUpX0o6sAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoGqkL820vPfee++99977Zr/Tn0663nvvvffee+99swcAAIDOHi6EKX0=
+            eJztx7ENwCAQBMHvv1MMDWAIuDZempE22CoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAqBrpSzMt77333nvvvfe+2e/0p5Ou995777333nvf7AEAAKCzB4rPCDQ=
         </data>
     </layer>
     <layer name="front2" width="950" height="14">
