@@ -29,7 +29,7 @@
   </tile>
  </tileset>
  <tileset firstgid="13" name="TrackLapse_Icons" tilewidth="64" tileheight="64">
-  <image source="TrackLapse_Icons.png" width="640" height="640"/>
+  <image source="TrackLapse_Icons.png" width="640" height="768"/>
   <tile id="0">
    <properties>
     <property name="obstacle" value="hurdle"/>
@@ -97,7 +97,7 @@
    </properties>
   </tile>
  </tileset>
- <tileset firstgid="113" name="Level3_TiledSheet-hd" tilewidth="64" tileheight="64">
+ <tileset firstgid="133" name="Level3_TiledSheet-hd" tilewidth="64" tileheight="64">
   <image source="tileset_level_3-hd.png" width="1024" height="768"/>
  </tileset>
  <layer name="back-1" width="950" height="14">
@@ -106,7 +106,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztyTluAlEURcHetE1jwCZBZoaQ0ZB6l1z9FZA+dR2potN3XdcDACBJKtoSAIBGklSzEwAAjSSpZiMAABpJUs1+AQBoJEk1+wQAoJEk1ewDAIBGklSzBQAAjSSpZuP4iklMYxbf8RNz3/d93/f9AX1JUs1WsY5NbGMX+zjE0fd93/d9f0BfklSzc1ziGre4x1884un7vu/7vj+gL0mq2T8AAI0kSZIkSZIkSZIkSZKk93sBdQxk3A==
+   eJztyUuOQWEYRdE7fURR6FTEo9D0pmtuTv4R6MmXu1ayW7vrAAAAAAAAAPiGoyRJkloA1DSSJElSC4CalpIkSWoBUNNQkiRJLQBqGkiSJKkFQE1/kiRJagFQ0zj9pEmapt80S/O08H3f933f79EHoKZVWqdN2qb/tEv7dPB93/d93+/RB6CmUzqnS7qmW7qnR3r6vu/7vu/36ANQ00uSJEktAAAAAAAAAADgc2+Nk+V9
   </data>
  </layer>
  <layer name="main0" width="950" height="14">
@@ -115,7 +115,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer name="front-1" width="950" height="14">
@@ -124,7 +124,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztx0ENACEQBMH1748DAxzIYGxsUpX0o6sAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoGqkL820vPfee++99977Zr/Tn0663nvvvffee+99swcAAIDOHqKYc7U=
+   eJztx7ENwCAQBMHvv1MMDWAIuDZempE22CoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAqBrpSzMt77333nvvvfe+2e/0p5Ou995777333nvf7AEAAKCzB4rPCDQ=
   </data>
  </layer>
  <layer name="front2" width="950" height="14">
