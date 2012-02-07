@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="950" height="14" tilewidth="64" tileheight="64">
  <tileset firstgid="1" name="Track" tilewidth="64" tileheight="64">
-  <image source="tileset_level_1-hd.png" width="1024" height="768"/>
+  <image source="tileset_level_1-hd.png" width="1024" height="896"/>
  </tileset>
- <tileset firstgid="193" name="meta" tilewidth="64" tileheight="64">
+ <tileset firstgid="225" name="meta" tilewidth="64" tileheight="64">
   <image source="meta.png" width="256" height="192"/>
   <tile id="0">
    <properties>
@@ -31,7 +31,7 @@
    </properties>
   </tile>
  </tileset>
- <tileset firstgid="205" name="Icons" tilewidth="64" tileheight="64">
+ <tileset firstgid="237" name="Icons" tilewidth="64" tileheight="64">
   <image source="TrackLapse_Icons-hd.png" width="640" height="768"/>
   <tile id="0">
    <properties>
@@ -119,7 +119,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztxscJwEAAxMDrvwvHv2N93jK8MAMCjQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPAvU5rT4r333nvvvffeF/6RznR577333nvvvfeFv6Yt7d5777333nvvfeHf6Umv995777333ntf+AAAANDsAyJz8jg=
+   eJzt0kdOREEQRMG5/y2wGzwMbPAeBu+9OQp5gllSv/UjpJTestTqwQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaMl2tpPtZnu1p1BkPzvIDrOj4lvGOc9G2UV2WXxLV8xl89lCtlh8C/1ynJ1kp9lZ8S0AAFfZdXaT3RbfQo277D57yB6LbxnnLXvPPrLP4lu6YjPbypay5eJb6Jen7Dl7yV6LbwEA/tdENplNdai/su/sJ/vtwD3aH2j9Tm+i+9D+ntZaa93fXslWszWttdZaa6211rrBns5mslmttdZaa6211rrBHmbr2YbWWmuttdZaa91gAwAAQMv+AIpXFhk=
   </data>
  </layer>
  <layer name="front-1" width="950" height="14">
@@ -137,7 +137,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1EkOgzAMAED4SMv//9JF8Jeee0LqoUi2CdBl5mxbieO46wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgNz2+uN6pb1tvrzq3Rmeo+oQeROucC288u9RTy/kt3jbT10zs0n2GRI+zPYnGb/0nIn2aGtV5J9qHyBmyNSt7cslYzNtz52VmdKt5fhXdYdG3j8Rl5igy09F7V+djdl+ZD0Dd9egDAAAAAAAAAPyJJ9hrIIo=
+   eJzt1EESwiAMBdB6CY+j3v8uakcv4KpLnU+g7ajvrUkIITBNAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPBbjofvyPsp36mw16j6evLcx5QwxHWn2NS5o8+99VXit77bljl8d57LgBwj1j+DNdX+Jn1K9q+++7QPSQ2tOUd6FOO2fBctfVlznhfpH5befVJDyxwlM52euzofi7kzHoC6294FAAAAAAAAAPyJF1mUGwM=
   </data>
  </layer>
  <layer name="meta" width="950" height="14" opacity="0.57">
@@ -146,7 +146,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztwwEJAAAMA6D1b7Vmi3EOCiYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAL9VVVVVVVVV1ZMDYpmYuA==
+   eJztwwEJAAAMA6D1b7kmi3EOCiYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAL9VVVVVVVVV1ZMDcFGGRw==
   </data>
  </layer>
 </map>
