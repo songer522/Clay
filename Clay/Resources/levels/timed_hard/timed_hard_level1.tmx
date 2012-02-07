@@ -32,7 +32,7 @@
         </tile>
     </tileset>
     <tileset firstgid="205" name="Icons" tilewidth="32" tileheight="32">
-        <image source="TrackLapse_Icons-hd.png" width="640" height="576"/>
+        <image source="TrackLapse_Icons-hd.png" width="640" height="768"/>
         <tile id="0">
             <properties>
                 <property name="obstacle" value="hurdle"/>
@@ -95,7 +95,7 @@
             <property name="speedy" value="1.0"/>
         </properties>
         <data encoding="base64" compression="zlib">
-            eJzt18Wu1mAYhVFuAXd3d7fg7u7BHYI7BHcI7nKp7MEZnPzppJSGDtZKnkG/vPsC2qEDAAAAAAAAAP9Dx4I6pc6pS+qauqXuqUfqmXql3qlP6pv6pf5pQMVt1X1dWwAAAJprYEGD0uA0JA1Nw9LwNCKNTKPS6DQmjU3j0vg0oeK26r6uLQAAAM01saBJaXKakqamaWl6mpFmpllpdprT9tb+vcx2bpqX5re9V93XtQUAAKC5FhS0MC1Ki9OStDQtS8vTirQyrUqr297av5fZrklr07q0/h/s69oCAADQXBsK2pg2pc1pS9qatqXtaUfamXal3WlP2pv2lbxt/a77vsoWAACA5tpf0IF0MB1Kh9ORdDQdS8fTiXQynUqn05l0tuRt63fd91W2AAAANNe5gs6nC+liupQupyvparqWrqcb6Wa6lW6nOyVvW7/rvq+yBQAAoLnuFnQv3U8P0sP0KD1OT9LT9Cw9Ty/Sy/QqvS552/pd932VLQAAAM31pqW36V1b79OH9DF9Sp/Tl/Q1fUvf04/0M/1Kv9vty24BAADgb/ivBQAAAAAAAAAAAADK+gMaG+GP
+            eJzt18XO1WAYhdH/VnB39+Du7sEdgjsEdwjucqnswRmcNJ18lCYdrJU8g3559wV0YAAAAAAAAAAAAAAAoMygmganIWloGpaGpxFpZBqVRqcxaWwal8anCWliw23TfVtbAAAAumtSTZPTlDQ1TUvT04w0M81Ks9OcNLf31v9esp2X5qcFvfem+7a2AAAAdNfCmhalxWlJWpqWpeVpRVqZVqXVaU3vrf+9ZLs2rUvr04b/sG9rCwAAQHdtrGlT2py2pK1pW9qedqSdaVfanfakvWlf2l94W/1u+77JFgAAgO46UNPBdCgdTkfS0XQsHU8n0sl0Kp1OZ9LZdK7wtvrd9n2TLQAAAN11vqYL6WK6lC6nK+lqupaupxvpZrqVbqc76W7hbfW77fsmWwAAALrrXk3304P0MD1Kj9OT9DQ9S8/Ti/QyvUqv05vC2+p32/dNtgAAAHTX20rv0vteH9LH9Cl9Tl/S1/QtfU8/0s/0K/1Of/r2pVsAAAD4F/5rAQAAAAAAAAAAAIBSfwFmx9qr
         </data>
     </layer>
     <layer name="main0" width="950" height="14">

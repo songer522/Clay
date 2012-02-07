@@ -106,7 +106,7 @@
             <property name="speedy" value="1.0"/>
         </properties>
         <data encoding="base64" compression="zlib">
-            eJztyTkOgWEYRlHbR8waEbPSTGtvngW8vf9LzkludXs9AAAAAAAAAP7hIkmS1EgAUBlKkiQ1EgBU1pIkSY0EAJWBJElSIwFApS9JktRIAFBZSZIkNRIAVEZpnCZpmmZpnhZp6fu+7/u+36EPAJVN2qZd2qdDOqZTOvu+7/u+73foA0Dlmm7pnh7pmV7pnT6+7/u+7/sd+gBQ+UqSJDUSAAAAAAAAAADQHT+SqVLR
+            eJztyTkKQlEUBcG/fRVnExFnU2dT9+ZZwE3M/oMq6Ki7DgAAAAAAAAAAAADgPyNJkqRGAoDKRpIkqZEAoDKUJElqJACoDCRJkhoJACprSZKkRgKAyjhN0jTN0jwt0jKtfN/3fd/3e/QBoLJNu7RPh3RMp3ROF9/3fd/3/R59AKhc0y3d0yM90yu908f3fd/3fb9HHwAqX0mSpEYCAAAAAAAAAAD64wfpBdvL
         </data>
     </layer>
     <layer name="main0" width="950" height="14">
