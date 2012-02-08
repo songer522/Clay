@@ -8,13 +8,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "Clay/Classes/Scenes/ChooseLevelScreen.m"
-         timestampString = "349939967.53776"
+         filePath = "Clay/Classes/Base/GCHelper.m"
+         timestampString = "350411772.504513"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "290"
-         endingLineNumber = "290"
-         landmarkName = "-popupDlcWindow:"
+         startingLineNumber = "366"
+         endingLineNumber = "366"
+         landmarkName = "-loadAchievements"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -22,13 +22,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "Clay/Classes/Scenes/ChooseLevelScreen.m"
-         timestampString = "349939967.53776"
+         filePath = "Clay/Classes/Base/GCHelper.m"
+         timestampString = "350411772.504513"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "297"
-         endingLineNumber = "297"
-         landmarkName = "-popupDlcWindow:"
+         startingLineNumber = "405"
+         endingLineNumber = "405"
+         landmarkName = "-authenticateLocalUser"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -36,13 +36,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "Clay/Classes/Scenes/EndLevelScene.m"
-         timestampString = "349821803.736276"
+         filePath = "Clay/Classes/Base/GCHelper.m"
+         timestampString = "350411772.504513"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "283"
-         endingLineNumber = "283"
-         landmarkName = "-update:"
+         startingLineNumber = "431"
+         endingLineNumber = "431"
+         landmarkName = "-reportAchievement:percentComplete:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -50,14 +50,91 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "Clay/Classes/Game/Other/Level.m"
-         timestampString = "349990278.147984"
+         filePath = "Clay/Classes/Base/GCHelper.m"
+         timestampString = "350411772.504513"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "880"
-         endingLineNumber = "880"
-         landmarkName = "-testCollisionsForAggressive:Obstacles:"
+         startingLineNumber = "445"
+         endingLineNumber = "445"
+         landmarkName = "-reportAchievement:percentComplete:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Clay/Classes/Base/GCState.m"
+         timestampString = "350410309.540863"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "155"
+         endingLineNumber = "155"
+         landmarkName = "-initWithCoder:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Clay/Classes/Base/GCHelper.m"
+         timestampString = "350410991.066688"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "358"
+         endingLineNumber = "358"
+         landmarkName = "-loadAchievements"
+         landmarkType = "5">
+         <Locations>
+            <Location
+               shouldBeEnabled = "Yes"
+               ignoreCount = "0"
+               continueAfterRunningActions = "No"
+               symbolName = "-[GCHelper loadAchievements]"
+               urlString = "file://localhost/Users/yangsong/Documents/Clay/Clay/Clay/Classes/Base/GCHelper.m"
+               timestampString = "350434537.295917"
+               startingColumnNumber = "9223372036854775807"
+               endingColumnNumber = "9223372036854775807"
+               startingLineNumber = "358"
+               endingLineNumber = "358">
+            </Location>
+            <Location
+               shouldBeEnabled = "Yes"
+               ignoreCount = "0"
+               continueAfterRunningActions = "No"
+               symbolName = "__28-[GCHelper loadAchievements]_block_invoke_0"
+               urlString = "file://localhost/Users/yangsong/Documents/Clay/Clay/Clay/Classes/Base/GCHelper.m"
+               timestampString = "350434537.296163"
+               startingColumnNumber = "9223372036854775807"
+               endingColumnNumber = "9223372036854775807"
+               startingLineNumber = "358"
+               endingLineNumber = "358">
+            </Location>
+         </Locations>
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Clay/Classes/Base/GCHelper.m"
+         timestampString = "350417887.8945"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "130"
+         endingLineNumber = "130"
+         landmarkName = "-sendAchievement:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
+   <ExceptionBreakpoints>
+      <ExceptionBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         scope = "0"
+         stopOnStyle = "0">
+      </ExceptionBreakpoint>
+   </ExceptionBreakpoints>
 </Bucket>

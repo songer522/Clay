@@ -15,6 +15,7 @@
 #import "GCHelper.h"
 #import "LevelManager.h"
 #import "Level.h"
+#import "GameSettings.h"
 
 @implementation PlayerAction
 
@@ -141,14 +142,15 @@
 -(void)reportAchievementData
 {
     Level *level = [[LevelManager shared] currentLevel];
+    NSString *mode = [[GameSettings shared] getGlobalForKey:@"gameMode"];
     
-    if ([level isLevelNumber:4]) {
+    if ([level isLevelNumber:4] && [mode isEqualToString:@"timed"]) {
         [self shuffledOver];
-    } else if([level isLevelNumber:6]) {
+    } else if([level isLevelNumber:6] && [mode isEqualToString:@"timed"]) {
         [self shotZombie];
-    } else if([level isLevelNumber:7]) {
+    } else if([level isLevelNumber:7] && [mode isEqualToString:@"timed"]) {
         [self blockshot];
-    }else if([level isLevelNumber:10]) {
+    }else if([level isLevelNumber:10] && [mode isEqualToString:@"timed"]) {
         [self pokeBubble];
     }
     

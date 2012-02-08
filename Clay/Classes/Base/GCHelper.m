@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 #import "GCHelper.h"
 #import "Database.h"
@@ -355,14 +356,15 @@ static GCHelper *sharedHelper = nil;
 -(void)loadAchievements
 {
     [GKAchievement loadAchievementsWithCompletionHandler:^(NSArray *achievements, NSError *error) {
-        if(error == nil)
-        {dispatch_queue_t downloadQueue = dispatch_queue_create("achievements downloader", NULL);
+        if(error == NULL)
+        {
+            dispatch_queue_t downloadQueue = dispatch_queue_create("achievements downloader", NULL);
             dispatch_async(downloadQueue, ^{
                 for(GKAchievement *object in achievements)
                 {
                     [achievementDictionary setObject:object forKey:object.identifier];
                     [self syncLocalAchievementsData:object];
-                     }  
+                }  
                      
                      });
                      dispatch_release(downloadQueue);
@@ -374,7 +376,7 @@ static GCHelper *sharedHelper = nil;
                      }];
                     
                     
-                }
+        }
 
 
 -(GKAchievement*)getAchievementByID:(NSString *)identifier
