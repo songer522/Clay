@@ -708,7 +708,7 @@
     if(pctComplete10 < 100.0 && [_level.name isEqualToString:@"level2"])
     {
         //[[GCState sharedInstance] save];
-        [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10hurdles percentComplete:pctComplete10];
+        [[GCHelper sharedInstance] reportAchievement:gcAchievementGetHitby10cows percentComplete:pctComplete10];
     }
     double pctComplete11 = ((double) [GCState sharedInstance].birdsHit / (int)maxGetHit) * 100.0;
     
@@ -788,18 +788,18 @@
         //[[GCState sharedInstance] save];
         [[GCHelper sharedInstance] reportAchievement:gcAchievementFalldown50times percentComplete:pctComplete21];
     }
-    double pctComplete22 = ((double) [GCState sharedInstance].timesFellDown / (int)maxWhooed) * 100.0;
+    double pctComplete22 = ((double) [GCState sharedInstance].timesWhooed / (int)maxWhooed) * 100.0;
     
    // if(pctComplete22 < 100.0 && ([_level.name isEqualToString:@"level1"] || [_level.name isEqualToString:@"level3"]||[_level.name isEqualToString:@"level5"]||[_level.name isEqualToString:@"level9"]))
     if (pctComplete22 < 100.0)
     {
         //[[GCState sharedInstance] save];
-        [[GCHelper sharedInstance] reportAchievement:gcAchievementFalldown50times percentComplete:pctComplete22];
+        [[GCHelper sharedInstance] reportAchievement:gcAchievementWhoo100times percentComplete:pctComplete22];
     }
     double pctComplete23 = ((double) [GCState sharedInstance].dogsJumpedOver / (int)maxDogs) * 100.0;
     
     // if(pctComplete22 < 100.0 && ([_level.name isEqualToString:@"level1"] || [_level.name isEqualToString:@"level3"]||[_level.name isEqualToString:@"level5"]||[_level.name isEqualToString:@"level9"]))
-    if (pctComplete23 < 100.0)
+    if (pctComplete23 < 100.0 && [_level.name isEqualToString:@"level5"])
     {
         //[[GCState sharedInstance] save];
         [[GCHelper sharedInstance] reportAchievement:gcAchievementJumpOver100dogs percentComplete:pctComplete23];
