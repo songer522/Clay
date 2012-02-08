@@ -269,7 +269,7 @@
              _gameLayer.gameController.isInputEnabled = true;
             [_gameLayer.gameController endLevel];
              // _gameLayer.isTouchEnabled=true;
-            [self onExit];                                   
+            //[self onExit];                                   
             break;
         case END_LEVEL_BACK:
             //[_gameController pauseGame];
@@ -313,11 +313,9 @@
 
 -(void)onExit
 {
-     [self unscheduleUpdate];
-     self.isTouchEnabled = false;
-   
     [self release];
-  
+    [self unscheduleUpdate];
+    self.isTouchEnabled = false;
 }
 
 

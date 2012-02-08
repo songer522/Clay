@@ -66,11 +66,13 @@
         
         NSString *preTutorial = [[GameSettings shared] getGlobalForKey:@"preTutorialScreen"];
         if ([preTutorial isEqualToString:@"options"]) {
-            [_startButton setEnabled:false];
+            [_startButton setEnabled:true];
             _switchToGame = false;
+            _startButtonText = [NSString stringWithString:@"AGAIN"];
         } else {
             [_backButton setEnabled:false];
             _switchToGame = true;
+            _startButtonText = [NSString stringWithString:@"START"];
         }
         
         [[LayerManager sharedLayers] forgetWorkingLayer];
@@ -127,7 +129,8 @@
         }
     } else {
         if (currentPage >= maxPage) {
-            [_startButton setText:@"START"];
+            
+            [_startButton setText:_startButtonText];
             _canStart = true;
         }
     }
@@ -135,9 +138,15 @@
 
 -(void)cueStartAction
 {
-    _waitToSwitch = 0.25f;
-    [[SoundEngine shared] playSound:@"buttonPressed"];    
-    _switchToGame = true;
+    if ([_startButtonText isEqualToString:@"START"]) {
+        [[SoundEngine shared] playSound:@"buttonPressed"];    
+        _switchToGame = true;        
+        _waitToSwitch = 0.25f;
+    } else {
+        _switchToGame = false;
+        [_tutorial switchToPage:0];
+        [[SoundEngine shared] playSound:@"guiSelectionForward"];
+    }
     
 }
 

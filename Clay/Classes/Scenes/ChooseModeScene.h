@@ -51,6 +51,7 @@ typedef enum {
     GameModeAction _action;
     GameModeAction _actionSwitchTo;
     
+    
     float _waitToSwitch;
     float _backToMainMenu;
     

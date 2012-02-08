@@ -280,7 +280,7 @@
 		<key>sounds</key>
 		<string>none</string>
 		<key>textures</key>
-		<string>endlevelLayer</string>
+		<string>endLevelLayer</string>
 	</dict>
 </dict>
 </plist>

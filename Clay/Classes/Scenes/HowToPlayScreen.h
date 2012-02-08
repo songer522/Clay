@@ -23,6 +23,8 @@
     ActionButton *_backButton;
     ActionButton *_startButton;
     
+    NSString *_startButtonText;
+    
     bool _switchToGame;
     bool _hasSwitched;
     bool _enableBack;
