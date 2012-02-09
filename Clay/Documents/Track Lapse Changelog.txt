@@ -1,5 +1,14 @@
 Track Lapse Changelog
 
+Build 120208 v1.0.1 RC1
+=========================
+
+* EndLevel - fixed bug where game crashed when replay button was hit
+* Level 1,2 - new versions of these levels in normal and easy story modes to make them easier.
+* Level 1 - signs added to tell the player how to play in the level for story mode normal and easy
+* All Levels - all excess tiles in the maps have been removed, should make them run a bit smoother, check for anything that got accidentally deleted or a map that didn't get loaded
+* HowToPlay - added next button to tutorial when coming from options screen.
+
 Build 120202.RC6 RTM Candidate
 ================================
 
