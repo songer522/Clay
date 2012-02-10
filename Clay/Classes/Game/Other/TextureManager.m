@@ -10,6 +10,8 @@
 #import "PListLoader.h"
 #import "SoundEngine.h"
 #import "AnimationController.h"
+#import "GameSettings.h"
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 
 @implementation TextureManager
 
@@ -37,6 +39,20 @@ static TextureManager *_shared = nil;
 {
     NSDictionary *dict = [_memoryDictionary objectForKey:key];
     
+    NSString *appendhd = @"";
+    if (IS_IPAD && ((key == @"mainMenu") || (key == @"chooseLevel")))
+    {
+        appendhd = @"-ipad";
+    }
+    else if([[GameSettings shared] usingHighResolutionGraphics])
+    {
+        	appendhd = @"-hd";
+    }
+    else
+    {
+        appendhd = @"";
+    }
+        
     //NSLog(@"Loading memory for key: %@",key);
     
     //load textures
@@ -44,12 +60,13 @@ static TextureManager *_shared = nil;
     NSArray *textureArray = [NSArray arrayWithArray:[textureList componentsSeparatedByString:@","]];
     for (NSString *texture in textureArray) {
         if (![texture isEqualToString:@"none"]) {
+            texture = [texture stringByAppendingString:appendhd];
             [self loadTexturesForFile:texture];            
         }
-    }
+    }   
     
     //load animations
-    NSString *animList = [dict objectForKey:@"animations"];
+    NSString *animList = [dict objectForKey:@"animations"];	
     NSArray *animArray = [NSArray arrayWithArray:[animList componentsSeparatedByString:@","]];
     for (NSString *anim in animArray) {
         if (![anim isEqualToString:@"none"]) {
@@ -80,12 +97,25 @@ static TextureManager *_shared = nil;
     //NSLog(@"Unloading memory for key: %@",key);
 
     NSDictionary *dict = [_memoryDictionary objectForKey:key];
-    
+    NSString *appendhd = @"";
+    if (IS_IPAD && ((key == @"mainMenu") || (key == @"chooseLevel")))
+    {
+        appendhd = @"-ipad";
+    }
+    else if([[GameSettings shared] usingHighResolutionGraphics])
+    {
+        appendhd = @"-hd";
+    }
+    else
+    {
+        appendhd = @"";
+    }
     //unload textures
     NSString *textureList = [dict objectForKey:@"textures"];
     NSArray *textureArray = [NSArray arrayWithArray:[textureList componentsSeparatedByString:@","]];
     for (NSString *texture in textureArray) {
         if (![texture isEqualToString:@"none"]) {
+            texture = [texture stringByAppendingString:appendhd];
             [self unloadTexturesForFile:texture];
         }
     }
@@ -95,6 +125,7 @@ static TextureManager *_shared = nil;
     textureArray = [NSArray arrayWithArray:[textureList componentsSeparatedByString:@","]];
     for (NSString *texture in textureArray) {
         if (![texture isEqualToString:@"none"]) {
+            texture = [texture stringByAppendingString:appendhd];
             [self unloadTexturesForFile:texture];
         }
     }

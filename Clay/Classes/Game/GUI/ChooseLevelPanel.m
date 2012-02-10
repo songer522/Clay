@@ -205,7 +205,7 @@
 
 -(void)setPanelTransitionAmount:(float)amount
 {
-    [self setPanelXPosition:(LEVELPANEL_PANEL_X - (1.0f - amount) * 20)];
+    [self setPanelXPosition:((LEVELPANEL_PANEL_X - (1.0f - amount) * 20))];
 }
 
 -(void)dealloc

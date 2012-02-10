@@ -14,6 +14,7 @@
 #import "GameSettings.h"
 #import "GameLayer.h"
 
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 @implementation Laser
 
 +(id)laserWithId:(int)num
@@ -75,14 +76,18 @@
     //IPAD FIX: want to place the laser at a random position in front of the player to the edge of the screen,
     //also make sure they are not going off the top of the screen. *may* require either taller lasers drawn by tian
     //or less extreme of a sprite rotation located at ("[_sprite getCCSprite].rotation = (rand() % 80) - 40;" below).
-    if ([[GameSettings shared] usingHighResolutionGraphics]) {
+    if (IS_IPAD)
+    {
+        _position = CGPointMake(playerPosition.x + rand()%600, 500.0f);  
+    }
+    else if ([[GameSettings shared] usingHighResolutionGraphics]) {
         _position = CGPointMake(playerPosition.x + rand()%600, 200.0f);        
     } else {
         _position = CGPointMake(playerPosition.x + rand()%600, 200.0f);
     }    
     
     [_sprite setPosition:_position];
-    [_sprite getCCSprite].rotation = (rand() % 80) - 40;
+    [_sprite getCCSprite].rotation = (rand() % 60) - 40;
     [_sprite setAlpha:_alpha];
     [[_sprite getCCSprite] setVisible:YES];    
     

@@ -14,6 +14,9 @@
 #import "GameSettings.h"
 #import "HealthIcon.h"
 
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
+#define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 #define N(x) [NSNumber numberWithFloat: x]
 
 //IPAD FIX: these numbers got moved and the battery was shifted a few pixels to the left

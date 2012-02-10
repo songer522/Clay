@@ -14,9 +14,9 @@
 
 
 //IPAD FIX: positions for the header text inside the panel when the panel is active and inactive
-#define PANEL_HEADER_INACTIVE_Y 160.0f
-#define PANEL_HEADER_ACTIVE_Y 232.0f
-#define PANEL_HEIGHT_DIFFERENCE 72.0f
+#define PANEL_HEADER_INACTIVE_Y 370.0f
+#define PANEL_HEADER_ACTIVE_Y 510.0f
+#define PANEL_HEIGHT_DIFFERENCE 144.0f
 
 #define PANEL_BUTTON_HEIGHT_WITH_GAP 40.5f
 #define PANEL_BUTTON_START_Y 110.0f
@@ -55,7 +55,7 @@
         _buttons = [[NSMutableArray alloc] initWithCapacity:3];
         
         //IPAD FIX: hitbox centered on the button the size of the button graphic
-        [self setHitbox:CGRectMake(position.x-71.5f, position.y-114.0f, 143, 228)];
+        [self setHitbox:CGRectMake(position.x-71.5f * MULTIPLIERX, position.y-114.0f * MULTIPLIERY, 143 * MULTIPLIERX, 228 * MULTIPLIERY)];
         
         _wait = 1.0f;
     }
@@ -89,7 +89,7 @@
     _phase = MODE_PANEL_ACTIVE;
     _isActive = true;
     [self setPanelAlpha:1.0f];
-    [self setHeaderAlpha:1.0f Position:ccp(_position.x,PANEL_HEADER_ACTIVE_Y)];
+    [self setHeaderAlpha:1.0f Position:ccp(_position.x, PANEL_HEADER_ACTIVE_Y)];
     
     for (ActionButton *button in _buttons) {
         [button setAlpha:1.0f];

@@ -25,7 +25,9 @@
 #import "GCState.h"
 #import "GCHelper.h"
 
-
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
+#define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 #define PLAYER_SPRITE_FILE @"player_idle_01.png"
 #define PLAYER_STARTING_VELOCITY 0
 #define PLAYER_STARTING_Y_POSITION 40
@@ -64,8 +66,8 @@
         NSAssert(settings!=nil,@"Error loading player.plist");
         
         NSDictionary *cameraTracking = [settings objectForKey:@"cameraTracking"];
-        int cameraX = [[cameraTracking objectForKey:@"x"] intValue];
-        int cameraY = [[cameraTracking objectForKey:@"y"] intValue];
+        int cameraX = [[cameraTracking objectForKey:@"x"] intValue] * MULTIPLIERX;
+        int cameraY = ([[cameraTracking objectForKey:@"y"] intValue] * MULTIPLIERY) - 4;
         [[Camera sharedCamera] setCenter:CGPointMake(cameraX, cameraY)];
         [[Camera sharedCamera] setDefaultCenter:CGPointMake(cameraX, cameraY)];
         
@@ -160,7 +162,6 @@
     }
 }
 
-
 -(void)startJump:(RunnerJump)type
 {
     //guard
@@ -170,10 +171,22 @@
     _firstFrameJumping = true;
     _isHighJump = false;
     
-    if (_isNewUnderwaterPhysics) {
-        _vy = -86.25f; //75% original        
-    } else {
-        _vy = -115.0f;
+    if (IS_IPAD)
+    {
+        
+        if (_isNewUnderwaterPhysics) {
+            _vy = -86.25f; //75% original        
+        } else {
+            _vy = -230.0f;
+        }
+    }
+    else
+    {
+        if (_isNewUnderwaterPhysics) {
+            _vy = -86.25f; //75% original        
+        } else {
+            _vy = -115.0f;
+        }
     }
     
     _y += 2.0f;
@@ -185,9 +198,9 @@
     [[self getCollision] processNewCollisionState:COLLISION_STATE_MIDAIR];
     [self setPositionAtX:_x Y:_y];
     _waitToEndJump =0.2f;
-   
+    
     [_speed startJump];
-   }
+}
 
 -(void)startDoubleJump
 {
@@ -205,11 +218,21 @@
     }
     
     self.hasGravity = true;
-    
-    if (_isNewUnderwaterPhysics) {
-        _vy = -187.5f;
-    } else {
-        _vy = -250.0f;
+    if (IS_IPAD)
+    {   
+        if (_isNewUnderwaterPhysics) {
+            _vy = -187.5f;
+        } else {
+            _vy = -365.0;
+        }
+    }
+    else
+    {
+        if (_isNewUnderwaterPhysics) {
+            _vy = -187.5f;
+        } else {
+            _vy = -250.0;
+        }
     }
     _ay = 0.0f;
     _isJumping = true;

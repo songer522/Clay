@@ -13,6 +13,9 @@
 #import "GameSettings.h"
 #import "SoundEngine.h"
 
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
+#define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 @implementation ComicLayer
 
 @synthesize comicManager = _comicManager;
@@ -254,7 +257,11 @@
 {
     //if (_transition == BLACKBOX_IN || _transition == BLACKBOX_OUT || _transition == BLACKBOX_IDLE || _transition == BLACKBOX_PLAY_COMIC_FADE_IN) {
         float scale = 1.0f;
-        if ([[GameSettings shared] usingHighResolutionGraphics]) {
+        if (IS_IPAD)
+        {
+            scale = 1.0f;
+        }
+        else if ([[GameSettings shared] usingHighResolutionGraphics]) {
             scale = 2.0f;        
         }
         [self ccDrawFilledRectFrom:ccp(0,0) To:ccp(960,position * scale)];

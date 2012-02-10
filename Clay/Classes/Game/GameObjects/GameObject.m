@@ -23,7 +23,10 @@
 #import "GCHelper.h"
 #import "GCState.h"
 
-#define GAME_OBJECT_DISTANCE_ONSCREEN 550.0f
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
+#define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
+#define GAME_OBJECT_DISTANCE_ONSCREEN 1000.0f
 
 #define MULTIPLIER_ANGLE_TO_RADS 0.1745328f //pre-calculation for Math.pi/180
 
@@ -149,8 +152,8 @@
 
 -(void) setOffsetForX:(float)x Y:(float)y
 {
-    _offsetX = x;
-    _offsetY = y;
+    _offsetX = x * MULTIPLIERX;
+    _offsetY = y * MULTIPLIERY;
 }
 
 -(void) setPosition:(CGPoint)position
@@ -457,7 +460,7 @@
     _hasGravity = true;
     _collided = false;  //want it to remain aggressive
     _isAggressive = true;
-    float magnitude = 555.0f;
+    float magnitude = 880.0f;
     _angle = -20; //old was -30
     _rotationAmount = 75;
     _vx = magnitude * cosf((_angle * 3.14159)/180.0f);

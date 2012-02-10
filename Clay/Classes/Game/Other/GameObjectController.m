@@ -12,6 +12,10 @@
 #import "Sprite.h"
 #import "AnimationController.h"
 
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
+#define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
+
 @implementation GameObjectController
 
 - (id)init
@@ -60,9 +64,14 @@
     } else {
         [gameObject setOriginalAnimation:@"none"];
     }
-    
-    [gameObject setOffsetForX:[[gameobjectSettings objectForKey:@"offsetx"] floatValue] Y:[[gameobjectSettings objectForKey:@"offsety"] floatValue]];
-    
+    if (IS_IPAD)
+    {
+        [gameObject setOffsetForX:[[gameobjectSettings objectForKey:@"offsetx"] floatValue] Y:[[gameobjectSettings objectForKey:@"offsety"] floatValue] + 7];
+    }
+    else
+    {
+        [gameObject setOffsetForX:[[gameobjectSettings objectForKey:@"offsetx"] floatValue] Y:[[gameobjectSettings objectForKey:@"offsety"] floatValue]];
+    }
     bool aggressive = [[gameobjectSettings objectForKey:@"aggressive"] boolValue];
     gameObject.isAggressive = aggressive;
     
@@ -80,7 +89,7 @@
     NSDictionary *anchorPoint = [gameobjectSettings objectForKey:@"anchorpoint"];
     [[gameObject getCCSprite] setAnchorPoint:ccp([[anchorPoint objectForKey:@"x"] floatValue], [[anchorPoint objectForKey:@"y"] floatValue])];
     NSDictionary *boundingBox = [gameobjectSettings objectForKey:@"boundingBox"];
-    gameObject.boundingBox = CGRectMake([[boundingBox objectForKey:@"x"] floatValue], [[boundingBox objectForKey:@"y"] floatValue], [[boundingBox objectForKey:@"width"] floatValue], [[boundingBox objectForKey:@"height"] floatValue]);
+    gameObject.boundingBox = CGRectMake([[boundingBox objectForKey:@"x"] floatValue] * MULTIPLIERX, [[boundingBox objectForKey:@"y"] floatValue], [[boundingBox objectForKey:@"width"] floatValue] * MULTIPLIERX, [[boundingBox objectForKey:@"height"] floatValue] * MULTIPLIERY);
     
     [gameObject initialize:objectName];
 }

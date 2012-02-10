@@ -83,11 +83,11 @@
         _playButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_PlayBlue.png" Selected:@"Menu_PlayGreen.png"];
         
         if (_isContinueButtonEnabled) {
-            [_playButton setPosition:ccp(240,115)];            
+            [_playButton setPosition:ccp(240 * MULTIPLIERX,115 * MULTIPLIERY)];            
         } else {
-            [_playButton setPosition:ccp(240,142)];                        
+            [_playButton setPosition:ccp(240 * MULTIPLIERX,142 * MULTIPLIERY)];                        
         }
-        [_playButton setHitboxBySize:CGSizeMake(319, 71)];
+        [_playButton setHitboxBySize:CGSizeMake(319 * MULTIPLIERX, 71 * MULTIPLIERY)];
        
         //continue button
         _continueButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_ContinueBlue.png" Selected:@"Menu_ContinueGreen.png"];
@@ -97,11 +97,15 @@
             [_continueButton setAlpha:0.0f];            
         }
         
+        _logo = [Sprite spriteFromFrameCacheWithName:@"Menu_Logo.png"];
+        [_logo setAlpha:0.0f];
+        [_logo getCCSprite].anchorPoint = ccp(0.5f, 0.5f);
+        [_logo getCCSprite].position = ccp(240 * MULTIPLIERX, 258 * MULTIPLIERY); //final 240, 262
         
         //leaderboards button
         _leaderboardsButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_LeaderBoardBlue.png" Selected:@"Menu_LeaderBoardGreen.png"];
-        [_leaderboardsButton setPosition:ccp(450,24)];
-        [_leaderboardsButton setHitboxBySize:CGSizeMake(65, 65)];
+        [_leaderboardsButton setPosition:ccp(450 * MULTIPLIERX,24 * MULTIPLIERY)];
+        [_leaderboardsButton setHitboxBySize:CGSizeMake(65 * MULTIPLIERX, 65 * MULTIPLIERY)];
         
         //achievements button
         _achievementsButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_AchievementBlue.png" Selected:@"Menu_AchievementGreen.png"];
@@ -110,8 +114,8 @@
         
         //options button
         _optionsButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_OptionsBlue.png" Selected:@"Menu_OptionsGreen.png"];
-        [_optionsButton setPosition:ccp(30,24)];
-        [_optionsButton setHitboxBySize:CGSizeMake(65, 65)];
+        [_optionsButton setPosition:ccp(30 * MULTIPLIERX,24 * MULTIPLIERY)];
+        [_optionsButton setHitboxBySize:CGSizeMake(65 * MULTIPLIERX, 65 * MULTIPLIERY)];
 
         //gift button
         _giftButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_Gift_Blue.png" Selected:@"Menu_Gift_Green.png"];
@@ -301,9 +305,7 @@
 
 -(void)update:(ccTime)dt
 {
-    
-    float rate = 12.0f * dt;
-    
+    float rate = 12.0f * MULTIPLIERX * dt;
     _totalTime += rate;
     _time += dt;
     

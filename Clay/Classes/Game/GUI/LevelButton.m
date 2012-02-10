@@ -101,9 +101,9 @@
     if (row == 1) {
         column += 0.5f;
     }
-
-    CGPoint position = ccp(startX + 64 * column, startY - 64 * row);
-    [self setPosition:position];    
+    
+    CGPoint position = ccp(startX + (64 * MULTIPLIERX) * column, startY - (64 * MULTIPLIERY) * row);
+    [self setPosition:position];
 }
 
 -(void)setPosition:(CGPoint)position
@@ -111,7 +111,7 @@
     [_buttonGraphic setScreenPosition:position];
     [_cart setScreenPosition:ccp(position.x + 43.0f,position.y + 10.0f)];
     [self setTrophyPosition];
-    [self setHitbox:CGRectMake(position.x, position.y, 55, 55)];
+    [self setHitbox:CGRectMake(position.x, position.y, 55 * MULTIPLIERX, 55 * MULTIPLIERY)];
 }
 
 -(bool)checkIfSelected:(CGPoint)touch
@@ -175,7 +175,7 @@
 {
     if (_trophy!=nil && _unlocked) {
         CGPoint position = [_buttonGraphic getPosition];
-        [_trophy setScreenPosition:ccp(position.x + 34.0f,position.y - 2.0f)];            
+        [_trophy setScreenPosition:ccp(position.x + 34.0f * MULTIPLIERX,position.y - 2.0f * MULTIPLIERY)];            
     }
 }
 

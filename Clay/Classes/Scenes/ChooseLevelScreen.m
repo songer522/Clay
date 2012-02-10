@@ -425,10 +425,10 @@
     [[_selector getCCSprite] setVisible:NO];
     
     _startButton = [ActionButton actionButtonWithText:@"START"];
-    [_startButton setPosition:ccp(430,18)];
+    [_startButton setPosition:ccp(430 * MULTIPLIERX,18 * MULTIPLIERY)];
     
     _backButton = [ActionButton actionButtonWithText:@"BACK"];
-    [_backButton setPosition:ccp(50, 18)];
+    [_backButton setPosition:ccp(50 * MULTIPLIERX, 18 * MULTIPLIERY)];
     
     _facebookButton =[ActionButton actionButtonManualSetup];
     _facebookButton.facebookOrTwitter=true;

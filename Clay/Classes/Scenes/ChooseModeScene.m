@@ -251,20 +251,20 @@
     
     _startButton = [ActionButton actionButtonCustomGraphicsForIdle:@"UI_GameType_ButtonS_Blue.png" Selected:@"UI_GameType_ButtonS_Green.png"];
     [_startButton setInitialText:@"START"];
-    [_startButton setPosition:ccp(430,18)];
+    [_startButton setPosition:ccp(430 * MULTIPLIERX,18 * MULTIPLIERY)];
     
     _backButton = [ActionButton actionButtonCustomGraphicsForIdle:@"UI_GameType_ButtonS_Blue.png" Selected:@"UI_GameType_ButtonS_Green.png"];
     [_backButton setInitialText:@"BACK"];
-    [_backButton setPosition:ccp(50, 18)];
+    [_backButton setPosition:ccp(50 * MULTIPLIERX, 18 * MULTIPLIERY)];
     
-    _selectCursor = [Sprite spriteCenteredWithFrame:@"UI_GameType_Select.png" Position:ccp(240,160)];
+    _selectCursor = [Sprite spriteCenteredWithFrame:@"UI_GameType_Select.png" Position:ccp(240 * MULTIPLIERX,160 * MULTIPLIERY)];
     [_storyModePanel setSelectCursor:_selectCursor];
     [_timedModePanel setSelectCursor:_selectCursor];
     [_extrasPanel setSelectCursor:_selectCursor];
     [_selectCursor setAlpha:0.0f];
     
     _selectModeText = [GameLabel gameLabelWithText:@"SELECT GAME TYPE" Scale:0.65f];
-    [_selectModeText setPosition:ccp(240.0f,292.0f)];
+    [_selectModeText setPosition:ccp(240.0f * MULTIPLIERX,292.0f * MULTIPLIERY)];
     
     //setup default selections
     _currentPanel = _storyModePanel;
