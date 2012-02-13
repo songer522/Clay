@@ -13,8 +13,12 @@
 #import "LayerManager.h"
 
 
-#define LEVELPANEL_PANEL_X 105.0f
+
 #define LEVELPANEL_MAX_LEVEL_NUMBER 13
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
+#define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
+#define LEVELPANEL_PANEL_X 210.0f
 
 @implementation ChooseLevelPanel
 
@@ -106,7 +110,7 @@
         text = @"This bonus level finds Tim working out at the Dojo, fighting off ninjas and dodging throwing stars. Fortunately, it’s all in his head…isn’t it?";
         
     }
-    _dlcDescription = [CCLabelTTF labelWithString:text dimensions:CGSizeMake(172, 80) alignment:UITextAlignmentLeft fontName:@"Impact.ttf" fontSize:12];
+    _dlcDescription = [CCLabelTTF labelWithString:text dimensions:CGSizeMake(172*MULTIPLIERX, 100*MULTIPLIERY) alignment:UITextAlignmentLeft fontName:@"Impact.ttf" fontSize:22];
     [_dlcDescription setPosition:ccp(106,97)];
     [_rootLocked addChild:_dlcDescription];
 }
@@ -185,22 +189,22 @@
 {
     //IPAD FIX: refer to reference for proper positions, this is the level information panel in the choose level screen
     _currentXPos = newX;
-    float iconX = newX + 70.0f;
-    float textX = newX - 89.0f;
-    float levelNumberX = newX + 56.0f;
-    float dlcX = newX - 0.0f;
+    float iconX = newX + 70.0f * MULTIPLIERX;
+    float textX = newX - 78.0f * MULTIPLIERX;
+    float levelNumberX = newX + 53.0f * MULTIPLIERX;
+     float dlcX = newX - 0.0f;
     
-    [_background setScreenPosition:ccp(newX,155)];
-    [_levelPreview setScreenPosition:ccp(newX,219)];
-    [_levelTitle setScreenPosition:ccp(newX,160)];
-    [_facebookIcon setScreenPosition:ccp(iconX,121)];
-    [_twitterIcon setScreenPosition:ccp(iconX,79)];
-    [_bestTimeLabel setPosition:ccp(textX,128)];
-    [_bestTimeValue setPosition:ccp(textX,113)];
-    [_timeForMedalLabel setPosition:ccp(textX,85)];
-    [_timeForMedalValue setPosition:ccp(textX,70)];
-    [_levelNumber setPosition:ccp(levelNumberX, 37)];
-    [_dlcDescription setPosition:ccp(dlcX,97)];
+    [_background setScreenPosition:ccp(newX,165 * MULTIPLIERY)];
+    [_levelPreview setScreenPosition:ccp(newX,219 * MULTIPLIERY)];
+    [_levelTitle setScreenPosition:ccp(newX,170 * MULTIPLIERY)];
+    [_facebookIcon setScreenPosition:ccp(iconX,131 * MULTIPLIERY)];
+    [_twitterIcon setScreenPosition:ccp(iconX,89 * MULTIPLIERY)];
+    [_bestTimeLabel setPosition:ccp(textX,138 * MULTIPLIERY)];
+    [_bestTimeValue setPosition:ccp(textX,123 * MULTIPLIERY)];
+    [_timeForMedalLabel setPosition:ccp(textX,95 * MULTIPLIERY)];
+    [_timeForMedalValue setPosition:ccp(textX,80 * MULTIPLIERY)];
+    [_levelNumber setPosition:ccp(levelNumberX, 67 * MULTIPLIERY)];
+    [_dlcDescription setPosition:ccp(dlcX,97* MULTIPLIERY)];
 }
 
 -(void)setPanelTransitionAmount:(float)amount

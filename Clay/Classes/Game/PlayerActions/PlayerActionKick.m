@@ -73,8 +73,12 @@
             [self updateBoundingBox];
             
             CGPoint position = [_parent getPosition];
-            
-            if ([[GameSettings shared] usingHighResolutionGraphics])
+            if (IS_IPAD)
+            {
+                position.x += 10.0f * MULTIPLIERX;
+                position.y += 33.0f * MULTIPLIERY;
+            }
+            else if ([[GameSettings shared] usingHighResolutionGraphics])
             {
                 position.x += 10.0f;
                 position.y -= 5.0f;
@@ -125,8 +129,11 @@
             projWidth = 0;
             break;
     }
-    
-    if ([[GameSettings shared] usingHighResolutionGraphics])
+    if (IS_IPAD)
+    {
+        [_kick setBoundingBox:CGRectMake(startX, 10, projWidth * MULTIPLIERX, 35 * MULTIPLIERY)];
+    }
+    else if ([[GameSettings shared] usingHighResolutionGraphics])
     {
         [_kick setBoundingBox:CGRectMake(startX, 0, projWidth, 35)];
     }

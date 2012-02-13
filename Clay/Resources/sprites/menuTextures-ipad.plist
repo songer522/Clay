@@ -4,48 +4,57 @@
 <dict>
 	<key>frames</key>
 	<dict>
+		
 		<key>Menu_AchievementBlue.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
-			<string>{{0, 0}, {65, 65}}</string>
+			<string>{{0, 1}, {81, 79}}</string>
 			<key>spriteOffset</key>
 			<string>{0, -0}</string>
 			<key>spriteSize</key>
-			<string>{65, 65}</string>
+			<string>{81, 79}</string>
 			<key>spriteSourceSize</key>
-			<string>{65, 65}</string>
+			<string>{81, 81}</string>
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{952, 768}, {65, 65}}</string>
+			<string>{{1107, 274}, {81, 79}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 		<key>Menu_AchievementGreen.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
-			<string>{{0, 0}, {65, 65}}</string>
+			<string>{{0, 1}, {81, 79}}</string>
 			<key>spriteOffset</key>
 			<string>{0, -0}</string>
 			<key>spriteSize</key>
-			<string>{65, 65}</string>
+			<string>{81, 79}</string>
 			<key>spriteSourceSize</key>
-			<string>{65, 65}</string>
+			<string>{81, 81}</string>
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{822, 768}, {65, 65}}</string>
+			<string>{{1128, 824}, {81, 79}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 		<key>Menu_Background.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{0, 0}, {1024, 768}}</string>
 			<key>spriteOffset</key>
@@ -61,48 +70,57 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 		<key>Menu_ContinueBlue.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
-			<string>{{0, 0}, {277, 61}}</string>
+			<string>{{0, 0}, {342, 80}}</string>
 			<key>spriteOffset</key>
 			<string>{0, -0}</string>
 			<key>spriteSize</key>
-			<string>{277, 61}</string>
+			<string>{342, 80}</string>
 			<key>spriteSourceSize</key>
-			<string>{277, 61}</string>
+			<string>{342, 80}</string>
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{0, 768}, {277, 61}}</string>
+			<string>{{1029, 646}, {342, 80}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 		<key>Menu_ContinueGreen.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
-			<string>{{0, 0}, {277, 61}}</string>
+			<string>{{0, 0}, {342, 80}}</string>
 			<key>spriteOffset</key>
 			<string>{0, -0}</string>
 			<key>spriteSize</key>
-			<string>{277, 61}</string>
+			<string>{342, 80}</string>
 			<key>spriteSourceSize</key>
-			<string>{277, 61}</string>
+			<string>{342, 80}</string>
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{0, 829}, {277, 61}}</string>
+			<string>{{415, 935}, {342, 80}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 		<key>Menu_Copyright.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{3, 0}, {276, 23}}</string>
 			<key>spriteOffset</key>
@@ -114,52 +132,105 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{0, 890}, {276, 23}}</string>
+			<string>{{1064, 473}, {276, 23}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
+		<key>Menu_Gift_Blue.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 1}, {81, 79}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{81, 79}</string>
+			<key>spriteSourceSize</key>
+			<string>{81, 81}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{1250, 932}, {81, 79}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>Menu_Gift_Green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 1}, {81, 79}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{81, 79}</string>
+			<key>spriteSourceSize</key>
+			<string>{81, 81}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{1245, 847}, {81, 79}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
 		<key>Menu_LeaderBoardBlue.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
-			<string>{{0, 0}, {65, 65}}</string>
+			<string>{{0, 1}, {81, 79}}</string>
 			<key>spriteOffset</key>
 			<string>{0, -0}</string>
 			<key>spriteSize</key>
-			<string>{65, 65}</string>
+			<string>{81, 79}</string>
 			<key>spriteSourceSize</key>
-			<string>{65, 65}</string>
+			<string>{81, 81}</string>
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{887, 768}, {65, 65}}</string>
+			<string>{{1150, 931}, {81, 79}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 		<key>Menu_LeaderBoardGreen.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
-			<string>{{0, 0}, {65, 65}}</string>
+			<string>{{0, 1}, {81, 79}}</string>
 			<key>spriteOffset</key>
 			<string>{0, -0}</string>
 			<key>spriteSize</key>
-			<string>{65, 65}</string>
+			<string>{81, 79}</string>
 			<key>spriteSourceSize</key>
-			<string>{65, 65}</string>
+			<string>{81, 81}</string>
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{952, 833}, {65, 65}}</string>
+			<string>{{1243, 252}, {81, 79}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 		<key>Menu_Logo.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{0, 0}, {822, 144}}</string>
 			<key>spriteOffset</key>
@@ -171,133 +242,108 @@
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{0, 1524}, {822, 144}}</string>
+			<string>{{19, 777}, {822, 144}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 		<key>Menu_OptionsBlue.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
-			<string>{{0, 0}, {65, 65}}</string>
+			<string>{{0, 1}, {81, 79}}</string>
 			<key>spriteOffset</key>
 			<string>{0, -0}</string>
 			<key>spriteSize</key>
-			<string>{65, 65}</string>
+			<string>{81, 79}</string>
 			<key>spriteSourceSize</key>
-			<string>{65, 65}</string>
+			<string>{81, 81}</string>
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{822, 833}, {65, 65}}</string>
+			<string>{{1073, 35}, {81, 79}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 		<key>Menu_OptionsGreen.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
-			<string>{{0, 0}, {65, 65}}</string>
+			<string>{{0, 1}, {81, 79}}</string>
 			<key>spriteOffset</key>
 			<string>{0, -0}</string>
 			<key>spriteSize</key>
-			<string>{65, 65}</string>
+			<string>{81, 79}</string>
 			<key>spriteSourceSize</key>
-			<string>{65, 65}</string>
+			<string>{81, 81}</string>
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{887, 833}, {65, 65}}</string>
+			<string>{{1179, 110}, {81, 79}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 		<key>Menu_PlayBlue.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
-			<string>{{0, 0}, {277, 61}}</string>
+			<string>{{0, 0}, {342, 80}}</string>
 			<key>spriteOffset</key>
 			<string>{0, -0}</string>
 			<key>spriteSize</key>
-			<string>{277, 61}</string>
+			<string>{342, 80}</string>
 			<key>spriteSourceSize</key>
-			<string>{277, 61}</string>
+			<string>{342, 80}</string>
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{277, 768}, {277, 61}}</string>
+			<string>{{10, 937}, {342, 80}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 		<key>Menu_PlayGreen.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
-			<string>{{0, 0}, {277, 61}}</string>
+			<string>{{0, 0}, {342, 80}}</string>
 			<key>spriteOffset</key>
 			<string>{0, -0}</string>
 			<key>spriteSize</key>
-			<string>{277, 61}</string>
+			<string>{342, 80}</string>
 			<key>spriteSourceSize</key>
-			<string>{277, 61}</string>
+			<string>{342, 80}</string>
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{277, 829}, {277, 61}}</string>
+			<string>{{782, 938}, {342, 80}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		<key>Menu_Rain_01.png</key>
-		<dict>
-			<key>aliases</key>
-			<array/>
-			<key>spriteColorRect</key>
-			<string>{{0, 0}, {1024, 762}}</string>
-			<key>spriteOffset</key>
-			<string>{0, 3}</string>
-			<key>spriteSize</key>
-			<string>{1024, 762}</string>
-			<key>spriteSourceSize</key>
-			<string>{1024, 768}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{1024, 0}, {1024, 762}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		<key>Menu_Rain_02.png</key>
-		<dict>
-			<key>aliases</key>
-			<array/>
-			<key>spriteColorRect</key>
-			<string>{{0, 0}, {1024, 762}}</string>
-			<key>spriteOffset</key>
-			<string>{0, 3}</string>
-			<key>spriteSize</key>
-			<string>{1024, 762}</string>
-			<key>spriteSourceSize</key>
-			<string>{1024, 768}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{1024, 762}, {1024, 762}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
+		
 	</dict>
 	<key>metadata</key>
 	<dict>
 		<key>version</key>
-		<string>1.5 GM</string>
+		<string>1.5.1</string>
 		<key>format</key>
 		<integer>3</integer>
 		<key>size</key>
-		<string>{2048, 2048}</string>
+		<string>{2048, 1024}</string>
 		<key>name</key>
 		<string>menuTextures-ipad</string>
 		<key>premultipliedAlpha</key>

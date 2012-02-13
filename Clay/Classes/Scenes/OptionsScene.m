@@ -21,6 +21,9 @@
 #import "GameWindow.h"
 #import "GameSettings.h"
 #import "BestTimes.h"
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
+#define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 
 //IPAD FIX: width and offset
 #define OPTIONS_SCENE_OFFSET_X 62.0f

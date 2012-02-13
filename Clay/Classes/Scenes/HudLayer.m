@@ -53,7 +53,7 @@
         _battery = [Battery instance];
         
         _pauseButton = [Sprite spriteFromFrameCacheWithName:@"Pause.png"];
-        [_pauseButton getCCSprite].position = ccp(9,287);  
+        [_pauseButton getCCSprite].position = ccp(9,700);  
         
         _alpha = 0.0f;
         _currentTransition = HUD_TRANSITION_IDLE;

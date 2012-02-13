@@ -11,6 +11,8 @@
 #include <sys/sysctl.h>
 #import "PListLoader.h"
 #import "Database.h"
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIER (IS_IPAD ? 2 : 1)
 
 #define SETTING_IS_STUTTER_MODE_DEFAULT 0
 

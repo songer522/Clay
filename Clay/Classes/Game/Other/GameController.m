@@ -62,8 +62,7 @@
     
     if (!_isInputEnabled || _handledPauseEvent) { return; }
     
-    //if (location.x > 200 && location.x < 280 && location.y > 270) { //top center
-    if (touchCount == 1 && location.x > 0 && location.x < 100 && location.y > 260) { //top center
+    if (location.x > 500 && location.x < 580 && location.y > 700) {
         if (type == INPUT_TOUCH_END) {
             [self pauseGame];            
         }

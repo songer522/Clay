@@ -43,6 +43,7 @@
         
         _healthIcons = [[NSMutableArray alloc] initWithCapacity:8];
         _batterySpriteFrames = [[NSMutableArray alloc] initWithCapacity:7];
+        [sprite setScreenPosition:ccp(412 * MULTIPLIERX,285 * MULTIPLIERY)];
         
         for (int i=0; i<7;i++) {
             //starts at 0 just so we can directly access the object quickly

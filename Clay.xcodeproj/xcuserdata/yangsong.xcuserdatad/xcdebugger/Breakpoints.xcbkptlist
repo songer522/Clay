@@ -8,13 +8,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "Clay/Classes/Base/GCHelper.m"
-         timestampString = "350411772.504513"
+         filePath = "Clay/Classes/Game/Other/Level.m"
+         timestampString = "350859965.061269"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "366"
-         endingLineNumber = "366"
-         landmarkName = "-loadAchievements"
+         startingLineNumber = "265"
+         endingLineNumber = "265"
+         landmarkName = "-addObstaclesToMapAndRegion"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -22,109 +22,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "Clay/Classes/Base/GCHelper.m"
-         timestampString = "350411772.504513"
+         filePath = "Clay/Classes/Game/Other/Level.m"
+         timestampString = "350860054.768756"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "405"
-         endingLineNumber = "405"
-         landmarkName = "-authenticateLocalUser"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Clay/Classes/Base/GCHelper.m"
-         timestampString = "350411772.504513"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "431"
-         endingLineNumber = "431"
-         landmarkName = "-reportAchievement:percentComplete:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Clay/Classes/Base/GCHelper.m"
-         timestampString = "350411772.504513"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "445"
-         endingLineNumber = "445"
-         landmarkName = "-reportAchievement:percentComplete:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Clay/Classes/Base/GCState.m"
-         timestampString = "350410309.540863"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "155"
-         endingLineNumber = "155"
-         landmarkName = "-initWithCoder:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Clay/Classes/Base/GCHelper.m"
-         timestampString = "350410991.066688"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "358"
-         endingLineNumber = "358"
-         landmarkName = "-loadAchievements"
-         landmarkType = "5">
-         <Locations>
-            <Location
-               shouldBeEnabled = "Yes"
-               ignoreCount = "0"
-               continueAfterRunningActions = "No"
-               symbolName = "-[GCHelper loadAchievements]"
-               urlString = "file://localhost/Users/yangsong/Documents/Clay/Clay/Clay/Classes/Base/GCHelper.m"
-               timestampString = "350587769.432966"
-               startingColumnNumber = "9223372036854775807"
-               endingColumnNumber = "9223372036854775807"
-               startingLineNumber = "358"
-               endingLineNumber = "358">
-            </Location>
-            <Location
-               shouldBeEnabled = "Yes"
-               ignoreCount = "0"
-               continueAfterRunningActions = "No"
-               symbolName = "__28-[GCHelper loadAchievements]_block_invoke_0"
-               urlString = "file://localhost/Users/yangsong/Documents/Clay/Clay/Clay/Classes/Base/GCHelper.m"
-               timestampString = "350587769.433318"
-               startingColumnNumber = "9223372036854775807"
-               endingColumnNumber = "9223372036854775807"
-               startingLineNumber = "358"
-               endingLineNumber = "358">
-            </Location>
-         </Locations>
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Clay/Classes/Base/GCHelper.m"
-         timestampString = "350417887.8945"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "130"
-         endingLineNumber = "130"
-         landmarkName = "-sendAchievement:"
+         startingLineNumber = "272"
+         endingLineNumber = "272"
+         landmarkName = "-addObstaclesToMapAndRegion"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

@@ -16,6 +16,9 @@
 #import "GameSettings.h"
 #import "GCState.h"
 #import "GCHelper.h"
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
+#define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 
 @implementation CreditsScene
 
@@ -124,7 +127,7 @@
 
     NSDictionary *group1 = [credits objectForKey:@"group1"];
     [self addGroup:group1];
-    _currentY -= 90.0f;
+    _currentY -= 90.0f* MULTIPLIERY;
     
     NSDictionary *group2 = [credits objectForKey:@"group2"];
     [self addGroup:group2];

@@ -17,9 +17,13 @@
 #define PANEL_HEADER_INACTIVE_Y 370.0f
 #define PANEL_HEADER_ACTIVE_Y 510.0f
 #define PANEL_HEIGHT_DIFFERENCE 144.0f
-
-#define PANEL_BUTTON_HEIGHT_WITH_GAP 40.5f
 #define PANEL_BUTTON_START_Y 110.0f
+
+#define PANEL_BUTTON_HEIGHT_WITH_GAP 71.0f
+#define PANEL_DEVICE_CENTER_Y 310.0f
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
+#define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 
 @interface ModePanel()
 
@@ -65,8 +69,9 @@
 -(void)addButtons:(NSArray*)buttonNames
 {
     int count = [buttonNames count];
-    float startY = PANEL_BUTTON_START_Y + ((count * PANEL_BUTTON_HEIGHT_WITH_GAP) / 2.0f);
-    
+     //float startY = PANEL_BUTTON_START_Y + ((count * PANEL_BUTTON_HEIGHT_WITH_GAP) / 2.0f);
+    //float startY = PANEL_BUTTON_START_Y + ((count * PANEL_BUTTON_HEIGHT_WITH_GAP) / 2.0f);
+    float startY = (PANEL_DEVICE_CENTER_Y + ((count * PANEL_BUTTON_HEIGHT_WITH_GAP) / 2.0f));
     int i = 0;
     for (NSString *name in buttonNames) {
         ActionButton *button = [ActionButton actionButtonCustomGraphicsForIdle:@"UI_GameType_ButtonL_Blue.png" Selected:@"UI_GameType_ButtonL_Green.png"];

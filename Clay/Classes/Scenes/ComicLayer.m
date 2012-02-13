@@ -266,8 +266,12 @@
         }
         [self ccDrawFilledRectFrom:ccp(0,0) To:ccp(960,position * scale)];
         [self ccDrawFilledRectFrom:ccp(0,640) To:ccp(960,(320.0f - position) * scale)];    
-    //}
-}
+    scale = 1.0f;
+    
+    [self ccDrawFilledRectFrom:ccp(0 * MULTIPLIERX,0 * MULTIPLIERY) To:ccp(960 * MULTIPLIERX,(position * MULTIPLIERY) * scale)];
+    [self ccDrawFilledRectFrom:ccp(0 * MULTIPLIERX,640 * MULTIPLIERY) To:ccp(960 * MULTIPLIERX,((320.0f - position) * MULTIPLIERY) * scale)];    
+    }
+
 
 
 -(void) ccDrawFilledRectFrom:(CGPoint)v1 To:(CGPoint)v2

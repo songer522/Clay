@@ -247,11 +247,11 @@
 -(void)addObstaclesToMapAndRegion
 {
 
-    _obstacleSpriteBatch = [[CCSpriteBatchNode batchNodeWithFile:[[TextureManager shared] getBatchObstacleFilename]] retain];
+    //_obstacleSpriteBatch = [[CCSpriteBatchNode batchNodeWithFile:[[TextureManager shared] getBatchObstacleFilename]] retain];
     
-    [[[LayerManager sharedLayers] currentLayer] addChild:_obstacleSpriteBatch];
+   // [[[LayerManager sharedLayers] currentLayer] addChild:_obstacleSpriteBatch];
     
-    [[LayerManager sharedLayers] setWorkingLayer:_obstacleSpriteBatch];
+   // [[LayerManager sharedLayers] setWorkingLayer:_obstacleSpriteBatch];
     
     for (MapObject *mapObject in _obstacleMapObjects) {
         GameObject *obstacle = mapObject.object;
@@ -287,8 +287,8 @@
         }
     }
     
-    [[LayerManager sharedLayers] forgetWorkingLayer];
-}
+   // [[LayerManager sharedLayers] forgetWorkingLayer];
+ }
 
 -(CGRect)getLevelBoundaries
 {

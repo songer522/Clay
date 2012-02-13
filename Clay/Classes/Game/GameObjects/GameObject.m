@@ -501,7 +501,7 @@
             }
         } else {
             if (_isVisible) {
-                [[_sprite getCCSprite] setVisible:NO];
+               [[_sprite getCCSprite] setVisible:NO];
                 if(_projectile!=nil){
                     [[_projectile getCCSprite] setVisible:NO];
                 }

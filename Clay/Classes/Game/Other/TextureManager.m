@@ -40,9 +40,10 @@ static TextureManager *_shared = nil;
     NSDictionary *dict = [_memoryDictionary objectForKey:key];
     
     NSString *appendhd = @"";
-    if (IS_IPAD && ((key == @"mainMenu") || (key == @"chooseLevel")))
+    if (IS_IPAD && ((key == @"mainMenu") || (key == @"chooseLevel")|| (key == @"chooseMode")|| (key == @"optionsScreen")))
     {
         appendhd = @"-ipad";
+        //appendhd = @"-hd";
     }
     else if([[GameSettings shared] usingHighResolutionGraphics])
     {
@@ -98,9 +99,10 @@ static TextureManager *_shared = nil;
 
     NSDictionary *dict = [_memoryDictionary objectForKey:key];
     NSString *appendhd = @"";
-    if (IS_IPAD && ((key == @"mainMenu") || (key == @"chooseLevel")))
+    if (IS_IPAD && ((key == @"mainMenu") || (key == @"chooseLevel") || (key == @"chooseMode")|| (key == @"optionsScreen")))
     {
         appendhd = @"-ipad";
+        //appendhd = @"-hd";
     }
     else if([[GameSettings shared] usingHighResolutionGraphics])
     {

@@ -69,7 +69,7 @@ static Camera *_sharedCamera = nil;
 
     //restrict the camera in certain levels
     //IPAD FIX: may need a different greater height for ipad, since the ipad has more pixels in the y plane.
-    rect.size.height = 320;
+    rect.size.height =  402 * MULTIPLIERX;
     _boundary = rect;
     
     CGSize winSize = [[CCDirector sharedDirector] winSize];
