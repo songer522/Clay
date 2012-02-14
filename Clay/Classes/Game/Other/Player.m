@@ -204,10 +204,10 @@
 
 -(void)startDoubleJump
 {
-    if ((_isTripping || _isDead || [_sprite getPosition].y <= 64) && !_isNewUnderwaterPhysics) { 
+    if ((_isTripping || _isDead || [_sprite getPosition].y <= 64*MULTIPLIERY) && !_isNewUnderwaterPhysics) { 
     
         return; }
-    if ((_isTripping || _isDead || [_sprite getPosition].y <= 22) && _isNewUnderwaterPhysics) { 
+    if ((_isTripping || _isDead || [_sprite getPosition].y <= 22*MULTIPLIERY) && _isNewUnderwaterPhysics) { 
         
         return; }
     

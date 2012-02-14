@@ -12,7 +12,7 @@
 #import "GameObject.h"
 #import "GameSettings.h"
 
-#define REGION_MANAGER_TILES_PER_REGION 20 //should allow for ipad as well, plus some bleeding
+#define REGION_MANAGER_TILES_PER_REGION 26 //should allow for ipad as well, plus some bleeding
 
 @implementation RegionManager
 

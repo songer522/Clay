@@ -195,8 +195,8 @@ static Camera *_sharedCamera = nil;
 -(void)updateOnScreenRange
 {
     float currentX = _x - _center.x;
-    _leftOnscreen = currentX - CAMERA_OFFSCREEN_PADDING_LEFT;
-    _rightOnscreen = currentX + CAMERA_OFFSCREEN_PADDING_RIGHT;
+    _leftOnscreen = currentX - CAMERA_OFFSCREEN_PADDING_LEFT*MULTIPLIERX;
+    _rightOnscreen = currentX + CAMERA_OFFSCREEN_PADDING_RIGHT*MULTIPLIERX;
 }
 
 -(bool)isInVisualRange:(float)xPosition

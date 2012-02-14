@@ -52,7 +52,7 @@
         _targetPosition = 35.0f;
         _timeToWait = 1.0f;
     } else {
-        _position = 240.0f;
+        _position = 240.0f*MULTIPLIERX;
         _targetPosition = 35.0f;
         _timeToWait = 0.00f;
     }
@@ -162,7 +162,7 @@
     _phase = 2;
     _rate = 1.0f;
     if (_transition == BLACKBOX_IN) {
-        _targetPosition = 240.0f;
+        _targetPosition = 240.0f*MULTIPLIERX;
         _timeToWait = 0.0f;
         _atTarget = false;
     } else {
@@ -260,17 +260,17 @@
         float scale = 1.0f;
         if (IS_IPAD)
         {
-            scale = 1.0f;
+            scale = 2.0f;
         }
         else if ([[GameSettings shared] usingHighResolutionGraphics]) {
             scale = 2.0f;        
         }
-        [self ccDrawFilledRectFrom:ccp(0,0) To:ccp(960,position * scale)];
-        [self ccDrawFilledRectFrom:ccp(0,640) To:ccp(960,(320.0f - position) * scale)];    
+        [self ccDrawFilledRectFrom:ccp(0,0) To:ccp(1024,position * scale)];
+        [self ccDrawFilledRectFrom:ccp(0,768) To:ccp(1024,(384.0f - position) * scale)];    
     scale = 1.0f;
     
-    [self ccDrawFilledRectFrom:ccp(0 * MULTIPLIERX,0 * MULTIPLIERY) To:ccp(960 * MULTIPLIERX,(position * MULTIPLIERY) * scale)];
-    [self ccDrawFilledRectFrom:ccp(0 * MULTIPLIERX,640 * MULTIPLIERY) To:ccp(960 * MULTIPLIERX,((320.0f - position) * MULTIPLIERY) * scale)];    
+    [self ccDrawFilledRectFrom:ccp(0 * MULTIPLIERX,0 * MULTIPLIERY) To:ccp(1024 * MULTIPLIERX,(position * MULTIPLIERY) * scale)];
+    [self ccDrawFilledRectFrom:ccp(0 * MULTIPLIERX,768 * MULTIPLIERY) To:ccp(1024 * MULTIPLIERX,((384.0f - position) * MULTIPLIERY) * scale)];    
     }
 
 
