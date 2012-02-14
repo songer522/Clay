@@ -40,7 +40,7 @@ static TextureManager *_shared = nil;
     NSDictionary *dict = [_memoryDictionary objectForKey:key];
     
     NSString *appendhd = @"";
-    if (IS_IPAD && ((key == @"mainMenu") || (key == @"chooseLevel")|| (key == @"chooseMode")|| (key == @"optionsScreen")))
+    if (IS_IPAD && ((key == @"mainMenu") || (key == @"chooseLevel")|| (key == @"chooseMode")|| (key == @"optionsScreen")||(key == @"howtoplayScreen")))
     {
         appendhd = @"-ipad";
         //appendhd = @"-hd";
@@ -99,7 +99,7 @@ static TextureManager *_shared = nil;
 
     NSDictionary *dict = [_memoryDictionary objectForKey:key];
     NSString *appendhd = @"";
-    if (IS_IPAD && ((key == @"mainMenu") || (key == @"chooseLevel") || (key == @"chooseMode")|| (key == @"optionsScreen")))
+    if (IS_IPAD && ((key == @"mainMenu") || (key == @"chooseLevel") || (key == @"chooseMode")|| (key == @"optionsScreen") ||(key ==@"howtoplayScreen")))
     {
         appendhd = @"-ipad";
         //appendhd = @"-hd";

@@ -13,7 +13,9 @@
 #import "Sprite.h"
 
 #define HINTBOX_SECONDS_BEFORE_NEXT_HINT 6.5f
-
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
+#define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 @implementation HintBox
 
 +(id)hintboxOnLayer:(id)layer
@@ -26,15 +28,15 @@
     if ((self=[super init])) {
         
         CGSize winSize = [[CCDirector sharedDirector] winSize];
-        float centerY = winSize.height/2.0f - 35.0f;
+        float centerY = winSize.height/2.0f - 35.0f*MULTIPLIERY;
 
         _hintList = [[NSMutableArray alloc] initWithCapacity:10];
         
         _hintBox = [Sprite spriteCenteredWithFrame:@"UI_HintBox_1.png"];
-        [_hintBox setScreenPosition:ccp(240.0f,centerY + 140.0f)];
+        [_hintBox setScreenPosition:ccp(240.0f*MULTIPLIERX,centerY + 140.0f*MULTIPLIERY)];
         
         _hintHeader = [Sprite spriteCenteredWithFrame:@"UI_HintBox_2.png"];
-        [_hintHeader setScreenPosition:ccp(128.0f,centerY + 166.5f)];
+        [_hintHeader setScreenPosition:ccp(128.0f*MULTIPLIERX,centerY + 166.5f*MULTIPLIERY)];
         
         _textAlpha = 1.0f;
         _currentHintId = -1;
@@ -43,13 +45,13 @@
         
         NSString *hint = [self getNewHint];
         
-        _hintText = [CCLabelTTF labelWithString:hint dimensions:CGSizeMake(250, 100) alignment:UITextAlignmentLeft fontName:@"Impact.ttf" fontSize:12];
+        _hintText = [CCLabelTTF labelWithString:hint dimensions:CGSizeMake(250*MULTIPLIERX, 100*MULTIPLIERY) alignment:UITextAlignmentLeft fontName:@"Impact.ttf" fontSize:22];
                 
         _waitUntilNextHint = HINTBOX_SECONDS_BEFORE_NEXT_HINT + 1.0f;
         
         _phase = HINTBOX_WAITING;
         
-        [_hintText setPosition:ccp(240.0f,229.0f)]; //pause was 211i
+        [_hintText setPosition:ccp(240.0f*MULTIPLIERX,229.0f*MULTIPLIERY)]; //pause was 211i
         [layer addChild:_hintText];
 
     }

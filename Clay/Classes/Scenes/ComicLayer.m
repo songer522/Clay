@@ -203,12 +203,12 @@
     
     int comicNumber = [[comicName substringFromIndex:5] intValue];
     if (comicNumber <= 12) { 
-        _imageName = [NSString stringWithFormat:@"Comic_%d.png",comicNumber];
+        _imageName = [NSString stringWithFormat:@"Comic_%d-hd.png",comicNumber];
         durationNumber = comicNumber;
         showComic = true;
     }
     else if(comicNumber > 20) {
-        _imageName = [NSString stringWithFormat:@"Comic_%d.png",comicNumber];
+        _imageName = [NSString stringWithFormat:@"Comic_%d-hd.png",comicNumber];
         durationNumber = comicNumber - 10;
         showComic = true;
     }
@@ -218,12 +218,13 @@
 
      if (showComic) {            
         _comicPanel = [CCSprite spriteWithFile:_imageName];
+         _comicPanel.position= ccp(32,64);
         _comicPanel.anchorPoint = ccp(0,0);
         [_comicPanel setOpacity:0];
         [self addChild:_comicPanel];
 
-        _skipButton = [CCSprite spriteWithFile:@"Comic_Button_Skip.png"];
-        _skipButton.position = ccp(460,20);
+        _skipButton = [CCSprite spriteWithFile:@"Comic_Button_Skip-hd.png"];
+        _skipButton.position = ccp(460*MULTIPLIERX,20*MULTIPLIERY);
         _skipButton.anchorPoint = ccp(0.5f,0.5f);
         [self addChild:_skipButton];
         

@@ -593,10 +593,6 @@
 		6182D7EC14E9B6CD0013E1D3 /* optionsScreen-ipad.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6182D7E414E9B6CD0013E1D3 /* optionsScreen-ipad.plist */; };
 		6182D7ED14E9B6CD0013E1D3 /* optionsScreen-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 6182D7E514E9B6CD0013E1D3 /* optionsScreen-ipad.png */; };
 		6184E16314C63BDA00771A28 /* tileset_level_8.png in Resources */ = {isa = PBXBuildFile; fileRef = 6184E16214C63BDA00771A28 /* tileset_level_8.png */; };
-		618CD31A14D701C0008D7CDF /* howtoplayScreen-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 618CD31614D701C0008D7CDF /* howtoplayScreen-hd.plist */; };
-		618CD31B14D701C0008D7CDF /* howtoplayScreen-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 618CD31714D701C0008D7CDF /* howtoplayScreen-hd.png */; };
-		618CD31C14D701C0008D7CDF /* howtoplayScreen.plist in Resources */ = {isa = PBXBuildFile; fileRef = 618CD31814D701C0008D7CDF /* howtoplayScreen.plist */; };
-		618CD31D14D701C0008D7CDF /* howtoplayScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 618CD31914D701C0008D7CDF /* howtoplayScreen.png */; };
 		618CD32414D740AB008D7CDF /* tileset_level_4-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 618CD32214D740AB008D7CDF /* tileset_level_4-hd.png */; };
 		618CD32514D740AB008D7CDF /* tileset_level_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 618CD32314D740AB008D7CDF /* tileset_level_4.png */; };
 		618CD33A14D75688008D7CDF /* fireLevel-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 618CD33614D75688008D7CDF /* fireLevel-hd.plist */; };
@@ -613,6 +609,8 @@
 		61A9E199147D63C0008D2179 /* dummyLevel.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 61A9E195147D63C0008D2179 /* dummyLevel.tmx */; };
 		61ABDD2F14D1252A00EF9E32 /* tileset_level_13-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 61ABDD2D14D1252A00EF9E32 /* tileset_level_13-hd.png */; };
 		61ABDD3014D1252A00EF9E32 /* tileset_level_13.png in Resources */ = {isa = PBXBuildFile; fileRef = 61ABDD2E14D1252A00EF9E32 /* tileset_level_13.png */; };
+		61ADF5AB14EAC6AC00B5A885 /* howtoplayScreen-ipad.plist in Resources */ = {isa = PBXBuildFile; fileRef = 61ADF5A914EAC6AC00B5A885 /* howtoplayScreen-ipad.plist */; };
+		61ADF5AC14EAC6AC00B5A885 /* howtoplayScreen-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 61ADF5AA14EAC6AC00B5A885 /* howtoplayScreen-ipad.png */; };
 		61B10498149957BA003B4A8E /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 61B10480149957BA003B4A8E /* Facebook.m */; };
 		61B10499149957BA003B4A8E /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 61B10483149957BA003B4A8E /* FBDialog.bundle */; };
 		61B1049A149957BA003B4A8E /* FBDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 61B10485149957BA003B4A8E /* FBDialog.m */; };
@@ -1493,10 +1491,6 @@
 		6182D7E414E9B6CD0013E1D3 /* optionsScreen-ipad.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "optionsScreen-ipad.plist"; sourceTree = "<group>"; };
 		6182D7E514E9B6CD0013E1D3 /* optionsScreen-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "optionsScreen-ipad.png"; sourceTree = "<group>"; };
 		6184E16214C63BDA00771A28 /* tileset_level_8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tileset_level_8.png; path = Resources/levels/tileset_level_8.png; sourceTree = "<group>"; };
-		618CD31614D701C0008D7CDF /* howtoplayScreen-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "howtoplayScreen-hd.plist"; sourceTree = "<group>"; };
-		618CD31714D701C0008D7CDF /* howtoplayScreen-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "howtoplayScreen-hd.png"; sourceTree = "<group>"; };
-		618CD31814D701C0008D7CDF /* howtoplayScreen.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = howtoplayScreen.plist; sourceTree = "<group>"; };
-		618CD31914D701C0008D7CDF /* howtoplayScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = howtoplayScreen.png; sourceTree = "<group>"; };
 		618CD32214D740AB008D7CDF /* tileset_level_4-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tileset_level_4-hd.png"; path = "Resources/levels/tileset_level_4-hd.png"; sourceTree = "<group>"; };
 		618CD32314D740AB008D7CDF /* tileset_level_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tileset_level_4.png; path = Resources/levels/tileset_level_4.png; sourceTree = "<group>"; };
 		618CD33614D75688008D7CDF /* fireLevel-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "fireLevel-hd.plist"; path = "fire/fireLevel-hd.plist"; sourceTree = "<group>"; };
@@ -1513,6 +1507,8 @@
 		61A9E195147D63C0008D2179 /* dummyLevel.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = dummyLevel.tmx; path = Resources/levels/dummyLevel.tmx; sourceTree = "<group>"; };
 		61ABDD2D14D1252A00EF9E32 /* tileset_level_13-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tileset_level_13-hd.png"; path = "Resources/levels/tileset_level_13-hd.png"; sourceTree = "<group>"; };
 		61ABDD2E14D1252A00EF9E32 /* tileset_level_13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tileset_level_13.png; path = Resources/levels/tileset_level_13.png; sourceTree = "<group>"; };
+		61ADF5A914EAC6AC00B5A885 /* howtoplayScreen-ipad.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "howtoplayScreen-ipad.plist"; sourceTree = "<group>"; };
+		61ADF5AA14EAC6AC00B5A885 /* howtoplayScreen-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "howtoplayScreen-ipad.png"; sourceTree = "<group>"; };
 		61B1047F149957BA003B4A8E /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Facebook.h; sourceTree = "<group>"; };
 		61B10480149957BA003B4A8E /* Facebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Facebook.m; sourceTree = "<group>"; };
 		61B10481149957BA003B4A8E /* facebook_ios_sdk_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = facebook_ios_sdk_Prefix.pch; sourceTree = "<group>"; };
@@ -2117,6 +2113,8 @@
 		544D50DA1445E68E00BED4CE /* scenes */ = {
 			isa = PBXGroup;
 			children = (
+				61ADF5A914EAC6AC00B5A885 /* howtoplayScreen-ipad.plist */,
+				61ADF5AA14EAC6AC00B5A885 /* howtoplayScreen-ipad.png */,
 				6182D7DE14E9B6CD0013E1D3 /* chooseLevel-ipad.plist */,
 				6182D7DF14E9B6CD0013E1D3 /* chooseLevel-ipad.png */,
 				6182D7E014E9B6CD0013E1D3 /* chooseMode-ipad.plist */,
@@ -2125,10 +2123,6 @@
 				6182D7E314E9B6CD0013E1D3 /* menuTextures-ipad.png */,
 				6182D7E414E9B6CD0013E1D3 /* optionsScreen-ipad.plist */,
 				6182D7E514E9B6CD0013E1D3 /* optionsScreen-ipad.png */,
-				618CD31614D701C0008D7CDF /* howtoplayScreen-hd.plist */,
-				618CD31714D701C0008D7CDF /* howtoplayScreen-hd.png */,
-				618CD31814D701C0008D7CDF /* howtoplayScreen.plist */,
-				618CD31914D701C0008D7CDF /* howtoplayScreen.png */,
 				E42CEFA314D53F2600ABDC24 /* endGameTextures.plist */,
 				E42CEFA414D53F2600ABDC24 /* endGameTextures.png */,
 				6120C68F14D37B7D0047309F /* endGameTextures-hd.plist */,
@@ -3578,10 +3572,6 @@
 				5491F22B14D63C6C00758671 /* healthGained.wav in Resources */,
 				E42CEFA514D53F2700ABDC24 /* endGameTextures.plist in Resources */,
 				E42CEFA614D53F2700ABDC24 /* endGameTextures.png in Resources */,
-				618CD31A14D701C0008D7CDF /* howtoplayScreen-hd.plist in Resources */,
-				618CD31B14D701C0008D7CDF /* howtoplayScreen-hd.png in Resources */,
-				618CD31C14D701C0008D7CDF /* howtoplayScreen.plist in Resources */,
-				618CD31D14D701C0008D7CDF /* howtoplayScreen.png in Resources */,
 				618CD32414D740AB008D7CDF /* tileset_level_4-hd.png in Resources */,
 				618CD32514D740AB008D7CDF /* tileset_level_4.png in Resources */,
 				618CD33A14D75688008D7CDF /* fireLevel-hd.plist in Resources */,
@@ -3620,6 +3610,8 @@
 				6182D7EB14E9B6CD0013E1D3 /* menuTextures-ipad.png in Resources */,
 				6182D7EC14E9B6CD0013E1D3 /* optionsScreen-ipad.plist in Resources */,
 				6182D7ED14E9B6CD0013E1D3 /* optionsScreen-ipad.png in Resources */,
+				61ADF5AB14EAC6AC00B5A885 /* howtoplayScreen-ipad.plist in Resources */,
+				61ADF5AC14EAC6AC00B5A885 /* howtoplayScreen-ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

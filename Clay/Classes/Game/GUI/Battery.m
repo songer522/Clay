@@ -64,7 +64,7 @@
         _x = BATTERY_X;
         _y = BATTERY_Y;
         
-        [sprite setScreenPosition:ccp(BATTERY_X,BATTERY_Y)];
+        [sprite setScreenPosition:ccp(BATTERY_X* MULTIPLIERX,BATTERY_Y* MULTIPLIERY)];
         
         _wasLowBattery = false;
     }

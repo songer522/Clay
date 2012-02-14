@@ -63,18 +63,18 @@
         case WINDOW_CHOICE_NOYES:
             choice1Text = @"NO";
             choice2Text = @"YES";
-            choice1Pos = ccp(160*MULTIPLIERX,90*MULTIPLIERY);
-            choice2Pos = ccp(320*MULTIPLIERX,90*MULTIPLIERY);
+            choice1Pos = ccp(160*MULTIPLIERX,93*MULTIPLIERY);
+            choice2Pos = ccp(320*MULTIPLIERX,93*MULTIPLIERY);
             break;
         case WINDOW_CHOICE_YESNO:
             choice1Text = @"YES";
             choice2Text = @"NO";
-            choice1Pos = ccp(160*MULTIPLIERX,90*MULTIPLIERY);
-            choice2Pos = ccp(320*MULTIPLIERX,90*MULTIPLIERY);
+            choice1Pos = ccp(160*MULTIPLIERX,93*MULTIPLIERY);
+            choice2Pos = ccp(320*MULTIPLIERX,93*MULTIPLIERY);
             break;
         case WINDOW_CHOICE_OK:
             choice1Text = @"OK";
-            choice1Pos = ccp(240*MULTIPLIERX,90*MULTIPLIERY);
+            choice1Pos = ccp(240*MULTIPLIERX,93*MULTIPLIERY);
         default:
             break;
     }

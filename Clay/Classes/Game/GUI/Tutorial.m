@@ -8,8 +8,13 @@
 
 #import "Tutorial.h"
 
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
+#define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
+
 @implementation Tutorial
 @synthesize scroller;
+
 
 +(id)TutorialWithinLayer:(CCLayer *)layer
 {
@@ -31,7 +36,7 @@
         [self addPage:@"HTP_Page_3.png"];
         [self addPage:@"HTP_Page_4.png"];
 
-        scroller = [[CCScrollLayer alloc] initWithLayers:_pages widthOffset: 120.0f];
+        scroller = [[CCScrollLayer alloc] initWithLayers:_pages widthOffset: 120.0f*MULTIPLIERX];
         scroller.minimumTouchLengthToChangePage = 30.0f;
         
         [layer addChild:scroller];
@@ -47,7 +52,7 @@
     CCLayer *page = [[CCLayer alloc] init];
     //CCSprite *image=[CCSprite spriteWithFile:imageFileName];
     CCSprite *image = [CCSprite spriteWithSpriteFrameName:imageFileName];
-    [image setPosition:ccp(240,152)];
+    [image setPosition:ccp(240*MULTIPLIERX,152*MULTIPLIERY)];
     [image setScale:1];
     [page addChild:image];
     [_images addObject:image];

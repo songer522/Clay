@@ -20,6 +20,10 @@
 #import "PListLoader.h"
 #import "Level.h"
 #import "HintBox.h"
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
+#define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
+
 
 @interface PauseMenuScreen()
 
@@ -61,10 +65,10 @@
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         float centerX = winSize.width/2.0f;
         float centerY = winSize.height/2.0f - 35.0f;
-        [_pausedText setPosition:ccp(centerX,centerY+30.0f)];
-        [_resumeButton setPosition:ccp(centerX - 115.0f,centerY - 35.0f)];
-        [_restartButton setPosition:ccp(centerX,centerY - 35.0f)];
-        [_menuButton setPosition:ccp(centerX + 115.0f,centerY - 35.0f)];
+        [_pausedText setPosition:ccp(centerX,centerY+30.0f*MULTIPLIERY)];
+        [_resumeButton setPosition:ccp(centerX - 115.0f*MULTIPLIERX,centerY - 35.0f*MULTIPLIERY)];
+        [_restartButton setPosition:ccp(centerX,centerY - 35.0f*MULTIPLIERY)];
+        [_menuButton setPosition:ccp(centerX + 115.0f*MULTIPLIERX,centerY - 35.0f*MULTIPLIERY)];
         
         _hintBox = [HintBox hintboxOnLayer:self];
         

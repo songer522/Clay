@@ -51,7 +51,8 @@
     
     //guards
     if (_gameLayer.inComic) {
-        if (location.x > 440 && location.x < 480 && location.y < 40) {
+        
+        if (location.x > 920 && location.x < 1024 && location.y < 80) {
             if ([[ComicManager shared] skipComic]) {
                 _hasSkippedComic = true;            
             }            
@@ -62,7 +63,7 @@
     
     if (!_isInputEnabled || _handledPauseEvent) { return; }
     
-    if (location.x > 500 && location.x < 580 && location.y > 700) {
+    if (location.x > 0 && location.x < 80 && location.y > 710) {
         if (type == INPUT_TOUCH_END) {
             [self pauseGame];            
         }
