@@ -8,13 +8,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "Clay/Classes/Game/Other/Level.m"
-         timestampString = "350859965.061269"
+         filePath = "Clay/Classes/Base/CollisionDetection.m"
+         timestampString = "350951567.980617"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "265"
-         endingLineNumber = "265"
-         landmarkName = "-addObstaclesToMapAndRegion"
+         startingLineNumber = "129"
+         endingLineNumber = "129"
+         landmarkName = "-checkCollisionForObject:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -22,13 +22,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "Clay/Classes/Game/Other/Level.m"
-         timestampString = "350860054.768756"
+         filePath = "Clay/Classes/Base/CollisionDetection.m"
+         timestampString = "350951704.573494"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "272"
-         endingLineNumber = "272"
-         landmarkName = "-addObstaclesToMapAndRegion"
+         startingLineNumber = "133"
+         endingLineNumber = "133"
+         landmarkName = "-checkCollisionForObject:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

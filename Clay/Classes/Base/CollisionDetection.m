@@ -13,6 +13,8 @@
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define COLLISION_PLAYER_GROUND_Y_POSITION 64.0f
+#define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
+#define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 
 @implementation CollisionDetection
 
@@ -40,6 +42,7 @@
         {
             _preCalculateAccurateCoordsY = (_mapHeight * _tileSize) / _tileSize;
             _preCalculateTileSize = _tileSize;
+             _preCalculateAccurateCoordsTileSize = 1.0f /  (float)_tileSize;
         }
         else if ([[GameSettings shared] usingHighResolutionGraphics])
         {
@@ -123,7 +126,7 @@
         
         //if landed on the ledge, put them on top of that ledge
         if (object.vy >= 0.0f && _ledgeHeightAtColumn[(int)coords.x] == coords.y) {
-            desiredPosition.y = (_mapHeight - coords.y - 1) * _preCalculateTileSize  + 32.0f;            
+            desiredPosition.y = (_mapHeight - coords.y - 1) * _preCalculateTileSize ;            
             [[object getCollision] setCurrentState:COLLISION_STATE_LEDGE];            
         } else {
             //otherwise they're in midair, don't change their position
