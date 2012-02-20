@@ -16,6 +16,9 @@
 #import "AnimationController.h"
 #import "GCState.h"
 #import "GCHelper.h"
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
+#define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 
 @implementation PlayerActionBlow
 -(void)initialize
@@ -132,13 +135,13 @@
                 [[AnimationController sharedController] replaceSprite:_wind withAnimationNamed:@"blowingWindAnim"];
                 [[_wind getCCSprite] setVisible:YES];            
                 CGPoint position = [_parent getPosition];
-                [_wind setPosition:CGPointMake(position.x + 15, position.y + 30)];
-                [_windProjectile setPosition:CGPointMake(position.x + 15, position.y + 30)];
+                [_wind setPosition:CGPointMake(position.x + 15*MULTIPLIERX, position.y + 30*MULTIPLIERY)];
+                [_windProjectile setPosition:CGPointMake(position.x + 15*MULTIPLIERX, position.y + 30*MULTIPLIERY)];
             }
         } else {
             CGPoint position = [_parent getPosition];
-            [_wind setPosition:CGPointMake(position.x + 15, position.y + 30)];            
-            [_windProjectile setPosition:CGPointMake(position.x + 15, position.y + 30)];
+            [_wind setPosition:CGPointMake(position.x + 15*MULTIPLIERX, position.y + 30*MULTIPLIERY)];            
+            [_windProjectile setPosition:CGPointMake(position.x + 15*MULTIPLIERX, position.y + 30*MULTIPLIERY)];
         }
         
         if (_duration <= 0.37f) { //was 0.27f
