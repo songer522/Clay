@@ -142,7 +142,7 @@
     [_buttonSelected setScreenPosition:position];
     [super setPosition:position];
     _textLabel.position = ccp(position.x,position.y - 3.0f);
-    [_lockingGraphic setScreenPosition:ccp(position.x + 48.5f, position.y + 12.5f)];
+    [_lockingGraphic setScreenPosition:ccp(position.x + 48.5f * MULTIPLIERX, position.y + 12.5f* MULTIPLIERY)];
     
     if(!_usingRelativeHitbox) {
         [self setHitbox:CGRectMake(position.x - 48, position.y - 15, 95 * MULTIPLIERX, 30 * MULTIPLIERY)];
