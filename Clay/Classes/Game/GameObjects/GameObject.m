@@ -1099,10 +1099,16 @@
                     _madeSound = true;
                     [[SoundEngine shared] playSound:@"darkBats"];
                 }
-                _angle+=200*dt;
                 _magnitude=300;
-                _vx = -0.12*_magnitude;
-                _vy =1.1*_magnitude * cosf((_angle * 3.14159)/180.0f);
+                if ([[GameSettings shared] isIpad]) {
+                    _angle+=100*dt;
+                    _vx = -0.24*_magnitude;
+                    _vy =2.2*_magnitude * cosf((_angle * 3.14159)/180.0f);
+                } else {
+                    _angle+=200*dt;
+                    _vx = -0.12*_magnitude;
+                    _vy =1.1*_magnitude * cosf((_angle * 3.14159)/180.0f);                    
+                }
             }
             break;
         case COLLISION_BEHAVIOR_DARK_SPIKES:

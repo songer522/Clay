@@ -92,7 +92,7 @@
     
     CGPoint position;
     if ([[GameSettings shared] isIpad]) {
-        position = [[Camera sharedCamera] convertToWorldXY:CGPointMake(_trainPosition.x - 262.0f, _trainPosition.y + 240.0f)];
+        position = [[Camera sharedCamera] convertToWorldXY:CGPointMake(_trainPosition.x +  112.0f, _trainPosition.y + 260.0f)];
     } else {
         position = [[Camera sharedCamera] convertToWorldXY:CGPointMake(_trainPosition.x - 62.0f, _trainPosition.y + 40.0f)];        
     }
@@ -108,7 +108,7 @@
     
     CGPoint position;
     if ([[GameSettings shared] isIpad]) {
-        position = [[Camera sharedCamera] convertToWorldXY:CGPointMake(_trainPosition.x +  87.0f, _trainPosition.y + 260.0f)];
+        position = [[Camera sharedCamera] convertToWorldXY:CGPointMake(_trainPosition.x +  112.0f, _trainPosition.y + 260.0f)];
     } else {
         position = [[Camera sharedCamera] convertToWorldXY:CGPointMake(_trainPosition.x - 62.0f, _trainPosition.y + 40.0f)];        
     }

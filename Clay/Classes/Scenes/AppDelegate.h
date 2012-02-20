@@ -34,7 +34,11 @@
     CCScene             *_chooseLevelScene;
     //Facebook *facebook;
     //NSMutableDictionary *userPermissions;
+    
+    NSMutableArray *_wasteMemoryForIpad1;
 }
+
+-(void)simulateIpad1Memory;
 
 @property (nonatomic, retain) UIWindow *window;
 @property (nonatomic, retain) RootViewController *viewController;
