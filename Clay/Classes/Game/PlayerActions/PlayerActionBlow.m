@@ -15,6 +15,7 @@
 #import "RunningSpeed.h"
 #import "AnimationController.h"
 #import "GCState.h"
+#import "GameSettings.h"
 #import "GCHelper.h"
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
@@ -34,7 +35,15 @@
     }
     else
     {
+        if([[GameSettings shared] isIpad])
+        {
+            [_windProjectile setBoundingBox:CGRectMake(0, 75, 280, 200)];
+
+        }
+        else
+        {
         [_windProjectile setBoundingBox:CGRectMake(0, 75, 140, 140)];
+        }
     }
     [super initialize];    
 }
@@ -135,13 +144,13 @@
                 [[AnimationController sharedController] replaceSprite:_wind withAnimationNamed:@"blowingWindAnim"];
                 [[_wind getCCSprite] setVisible:YES];            
                 CGPoint position = [_parent getPosition];
-                [_wind setPosition:CGPointMake(position.x + 15*MULTIPLIERX, position.y + 30*MULTIPLIERY)];
-                [_windProjectile setPosition:CGPointMake(position.x + 15*MULTIPLIERX, position.y + 30*MULTIPLIERY)];
+                [_wind setPosition:CGPointMake(position.x + 15*MULTIPLIERX, position.y + 50*MULTIPLIERY)];
+                [_windProjectile setPosition:CGPointMake(position.x + 15*MULTIPLIERX, position.y + 50*MULTIPLIERY)];
             }
         } else {
             CGPoint position = [_parent getPosition];
-            [_wind setPosition:CGPointMake(position.x + 15*MULTIPLIERX, position.y + 30*MULTIPLIERY)];            
-            [_windProjectile setPosition:CGPointMake(position.x + 15*MULTIPLIERX, position.y + 30*MULTIPLIERY)];
+            [_wind setPosition:CGPointMake(position.x + 15*MULTIPLIERX, position.y + 50*MULTIPLIERY)];            
+            [_windProjectile setPosition:CGPointMake(position.x + 15*MULTIPLIERX, position.y + 50*MULTIPLIERY)];
         }
         
         if (_duration <= 0.37f) { //was 0.27f
