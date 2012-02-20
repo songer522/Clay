@@ -2239,7 +2239,7 @@
 			<key>x</key>
 			<integer>20</integer>
 			<key>y</key>
-			<integer>60</integer>
+			<integer>130</integer>
 		</dict>
 		<key>collideBehavior</key>
 		<string>rolling</string>
@@ -2272,7 +2272,7 @@
 			<key>width</key>
 			<integer>15</integer>
 			<key>x</key>
-			<integer>35</integer>
+			<integer>30</integer>
 			<key>y</key>
 			<integer>2</integer>
 		</dict>
