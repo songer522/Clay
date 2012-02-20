@@ -540,8 +540,8 @@
 {
     if ([[GameSettings shared] isIpad]) {
         [_train setScreenPosition:CGPointMake(position.x + 280.0f, position.y + 189.0f)];
-        [_trainWheels setScreenPosition:CGPointMake(position.x - 257.0f,position.y - 42.0f)];
-        [_trainJim setScreenPosition:CGPointMake(position.x - 257.0f,position.y - 42.0f)];   
+        [_trainWheels setScreenPosition:CGPointMake(position.x - 257.0f,position.y - 43.0f)];
+        [_trainJim setScreenPosition:CGPointMake(position.x - 257.0f,position.y - 48.0f)];   
     } else {
         [_train setScreenPosition:position];
         [_trainWheels setScreenPosition:CGPointMake(position.x - 268.0f,position.y - 118.0f)];

@@ -10,6 +10,7 @@
 #import "Sprite.h"
 #import "AnimationController.h"
 #import "Animation.h"
+#import "GameSettings.h"
 
 
 @implementation PassengerCar
@@ -37,8 +38,13 @@
 
 -(void)setPosition:(CGPoint)position
 {
-    _boxcarPosition = CGPointMake(position.x, position.y);
-    _wheelsPosition = CGPointMake(position.x - 265.0f, position.y - 118.0f);
+    if ([[GameSettings shared] isIpad]) {
+        _boxcarPosition = CGPointMake(position.x + 190.0f, position.y + 189.0f);
+        _wheelsPosition = CGPointMake(position.x - 345.0f, position.y - 43.0f);
+    } else {
+        _boxcarPosition = CGPointMake(position.x, position.y);
+        _wheelsPosition = CGPointMake(position.x - 265.0f, position.y - 118.0f);
+    }
 }
 
 -(void)updatePosition:(CGPoint)attachedPosition
