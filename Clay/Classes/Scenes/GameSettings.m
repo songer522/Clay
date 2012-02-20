@@ -144,6 +144,11 @@ static GameSettings *_shared = nil;
     return YES; //assume future devices can all handle the retina display
 }
 
+-(bool)isIpad
+{
+    return true;
+}
+
 -(void)loadFromSettingsPlist
 {
     NSDictionary *settings = [PListLoader loadPlistWithName:@"settings"];

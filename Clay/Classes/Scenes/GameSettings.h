@@ -36,6 +36,8 @@ typedef enum {
 -(bool)usingHighResolutionGraphics;  //use throughout code to check high res, includes 'shouldUseRetinaForDevice' method
 -(bool)calculateShouldUseHighRes; //ONLY SHOULD BE CALLED BY INIT, TO SAVE PROCESSING TIME
 
+-(bool)isIpad;
+
 -(void)setStutterMode:(int)shouldStutter;
 -(bool)isStutterMode;
 -(void)loadFromSettingsPlist;
