@@ -462,7 +462,13 @@
     _isAggressive = true;
     float magnitude = 880.0f;
     _angle = -20; //old was -30
-    _rotationAmount = 75;
+    
+    if ([[GameSettings shared] isIpad]) {
+        _rotationAmount = 50;
+    } else {
+        _rotationAmount = 75;
+    }
+    
     _vx = magnitude * cosf((_angle * 3.14159)/180.0f);
     _vy = magnitude * sinf((_angle * 3.14159)/180.0f);
     _currentBehavior = COLLISION_BEHAVIOR_HEN_KICKED;
