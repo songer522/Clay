@@ -1127,8 +1127,14 @@
             }
             else if(_vy<0)
             {
-                if (_movedBy > 65.0f) {
-                    _movedBy = 65.0f;                
+                float finalPosition = 65.0f;
+                if ([[GameSettings shared] isIpad]) {
+                    finalPosition = 165.0f;
+                }
+                
+                
+                if (_movedBy > finalPosition) {
+                    _movedBy = finalPosition;                
                     _y = _initialPosition + _movedBy;
                     _vy = 0.0f;
                 }

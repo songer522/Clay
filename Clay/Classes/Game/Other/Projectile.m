@@ -14,6 +14,7 @@
 #import "LevelManager.h"
 #import "LayerManager.h"
 #import "Player.h"
+#import "GameSettings.h"
 
 @interface Projectile()
 
@@ -211,18 +212,24 @@
     if (_behavior == PROJECTILE_BEHAVIOR_DARK_BOMB) {
         [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"darkBossJimBombAttack2"];        
         _vx = 140.0f;
+        _vy = 230.0f;
         [self setBoundingBox:CGRectMake(30, 30, 60, 60)];
 
 
     } else if(_behavior == PROJECTILE_BEHAVIOR_DARK_GRAPES) {
-        _vx = 390.0f; //was 340.0f;
+        if ([[GameSettings shared] isIpad]) {
+            _vx = 650.0f;
+            _vy = 330.0f;
+        } else {
+            _vx = 390.0f;
+            _vy = 230.0f;
+        }
         [self setBoundingBox:CGRectMake(7, 18, 14, 20)];
 
     }
     
     [_sprite setPosition:position];
     [[_sprite getCCSprite] setVisible:YES];
-    _vy = 230.0f;        //was 30.0f;
     _x = position.x;
     _y = position.y;
     _angularVelocity = 8;
@@ -444,27 +451,38 @@
         
         //apply gravity if needed
         if(_hasGravity) {
-            _vy -= 600.0f * dt;
+            if ([[GameSettings shared] isIpad]) {
+                _vy -= 900.0f * dt;                
+            } else {
+                _vy -= 600.0f * dt;
+            }
         }
         
         //update position
         float x = _x + _vx * dt;
         float y = _y + _vy * dt;
         
-        if (_hasGravity && y <= (85.0f + _offsetGroundDetectionY)) {
+        float groundPosition;
+        if ([[GameSettings shared] isIpad]) {
+            groundPosition = 140.0f;
+        } else {
+            groundPosition = 85.0f;
+        }
+        
+        if (_hasGravity && y <= (groundPosition + _offsetGroundDetectionY)) {
             if (_behavior == PROJECTILE_BEHAVIOR_DARK_BOMB) {
                 [self startCollision];
                 [[SoundEngine shared] playSound:@"bombExplosion"];
                 _isActive = false;
             } else if (_behavior == PROJECTILE_BEHAVIOR_ZOMBIE_HEAD) {
-                y = 85.0f + _offsetGroundDetectionY;
+                y = groundPosition + _offsetGroundDetectionY;
                 _vy = 0.0f;
                 _angle = 0.0f;
                 _vx *= 0.92f;
                 _angularVelocity = 0.0f;
                 [_sprite getCCSprite].rotation = _angle;
             } else {
-                y = 85.0f + _offsetGroundDetectionY;
+                y = groundPosition + _offsetGroundDetectionY;
                 _vy = 0.0f;
                 _angularVelocity *= 0.92f;
                 _vx *= 0.92f;
