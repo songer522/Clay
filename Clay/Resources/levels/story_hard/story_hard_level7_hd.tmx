@@ -181,6 +181,9 @@
  <tileset firstgid="133" name="Level7_TiledSheet-hd" tilewidth="64" tileheight="64">
   <image source="tileset_level_7-hd.png" width="1024" height="640"/>
  </tileset>
+ <tileset firstgid="293" name="Dark" tilewidth="64" tileheight="64">
+  <image source="tileset_level_11-hd.png" width="960" height="1024"/>
+ </tileset>
  <layer name="back-1" width="950" height="14">
   <properties>
    <property name="speedx" value="0.7"/>
@@ -205,7 +208,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztxQEJAAAMw7D513MJF/bbGCRQmgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAdNtv3N3d3d3d3UsPAAAAzQ7N2bnH
+   eJztxUEJADAMBMH4f0dCJVRChDWfijiYgWWrAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACyzXbd3d3d3d3dQ9/bcXd3d3d3dw/79wCfC/uV
   </data>
  </layer>
  <layer name="objects" width="950" height="14">

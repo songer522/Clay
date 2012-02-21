@@ -172,7 +172,7 @@
   </tile>
  </tileset>
  <tileset firstgid="133" name="Level10_TiledSheet-hd" tilewidth="64" tileheight="64">
-  <image source="tileset_level_10-hd.png" width="1024" height="640"/>
+  <image source="tileset_level_10-hd.png" width="1024" height="704"/>
  </tileset>
  <layer name="back-1" width="1000" height="14">
   <properties>
@@ -207,7 +207,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztxSEBAAAIA7DTAvoXRRIBs5klAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHC6kinbtm3btv05AAAA8G8Bu0hjnQ==
+   eJztxUENACAMBMGrC3AA/g3SHxL6mUk2mwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAtyrZ5e7u7u7u7u6TP911d3d3d3d399E/vLwFyA==
   </data>
  </layer>
  <layer name="objects" width="1000" height="14">
