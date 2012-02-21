@@ -1256,15 +1256,25 @@
             break;
         case COLLISION_BEHAVIOR_DOJO_DROP_NINJA:
             if (!_hasTriggered && [self closeToPlayer:450]) {
+                
+                if ([[GameSettings shared] isIpad]) {
+                    _y = 1500.0f;
+                    _bouncePosition = 650.0f;  //was 90.0f
+                    _bounceGravity = 2000.0f;
+                    _vy = 600.0f;                                        
+                    _x -= 100.0f;                    
+                } else {
+                    _y = 910.0f;
+                    _bouncePosition = 400.0f;  //was 90.0f
+                    _bounceGravity = 1000.0f;
+                    _vy = 400.0f;                                        
+                    _x -= 50.0f;
+                }
+                
                 _hasTriggered = true;
-                _y = 910.0f; //was 600.0f;
-                _x -= 50.0f;
                 _isBouncing = true;
-                _bouncePosition = 400.0f;  //was 90.0f
-                _bounceGravity = 1000.0f;
                 _angle = 0.0f;
                 _bounceYDampening = 0.25f;
-                _vy = 400.0f;
                 _direction = 0.0f;
             }
             break;
