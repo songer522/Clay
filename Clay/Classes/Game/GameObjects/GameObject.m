@@ -820,7 +820,7 @@
             if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
                 Player *player = [[LayerManager sharedLayers] getPlayer];
                 CGPoint position = [player getPosition];
-                [self setPositionAtX:(position.x - 100.0f) Y:350.0f];
+                [self setPositionAtX:(position.x - 100.0f*MULTIPLIERX) Y:350.0f*MULTIPLIERY];
                 [self setPlayerEffect:@"none"];
                 _currentBehavior = COLLISION_BEHAVIOR_FIREBALL_MOVING;
                 _isInvincible = true;
@@ -830,11 +830,11 @@
         case COLLISION_BEHAVIOR_FIREBALL_MOVING:
             _vx += 160.0f;
             _vy += 100.0f;
-            if (_y <= 75.0f) {
+            if (_y <= 60.0f*MULTIPLIERY) {
                 _vx = 0.0f;
                 _vy = 0.0f;
                 _x = _prevLocation.x;
-                _y = 90.0f;
+                _y = 80.0f*MULTIPLIERY;
                 _isInvincible = false;
                 [self setPositionAtX:_x Y:_y];
                 [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"fireballLandingAnim"];
@@ -1636,7 +1636,7 @@
     else if(_currentBehavior == COLLISION_BEHAVIOR_FIREFOX_FADES || _currentBehavior == COLLISION_BEHAVIOR_FIREFOX_PREATTACK || _currentBehavior == COLLISION_BEHAVIOR_FIREFOX_POSTATTACK) {
         _currentBehavior = COLLISION_BEHAVIOR_FIREFOX_PREATTACK;
         [self setBoundingBox:CGRectMake(37, 2, 14, 45)];
-        [_projectile setPosition:ccp(-31.0f,0.0f)];
+        [_projectile setPosition:ccp(-31.0f*MULTIPLIERX,0.0f)];
     }
     else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_HEALTH_BUBBLE_1) {
         _currentBehavior = COLLISION_BEHAVIOR_WATER_HEALTH_BUBBLE_1;
@@ -1883,8 +1883,8 @@
         _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_FIRE_FOXFIRE];
         [_projectile reset];
         [_projectile setAttachedTo:self];
-        [_projectile setPosition:ccp(-31.0f,0.0f)];
-        [_projectile setBoundingBox:CGRectMake(15,15,30,30)];
+        [_projectile setPosition:ccp(-31.0f*MULTIPLIERX,0.0f)];
+        [_projectile setBoundingBox:CGRectMake(15,15,30*MULTIPLIERX,30)];
         [_projectile setInitialVelocity];
         _projectilePersists = true;
     }

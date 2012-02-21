@@ -205,7 +205,7 @@
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztxQEJAAAMw7D513MJF/bbGCRQmgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAdNtv3N3d3d3d3UsPAAAAzQ7N2bnH
+   eJztxUEJADAMBMH4f0dCJVRChDWfijiYgWWrAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACyzXbd3d3d3d3dQ9/bcXd3d3d3dw/79wCfC/uV
   </data>
  </layer>
  <layer name="objects" width="950" height="14">
@@ -217,7 +217,7 @@
    eJzt20sOgjAQAFBOYLyGG/8bE+9/LuPKxoC2pSPEvrccaCnNzMCmwwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/LvD0gsocAu4xstx6QUAAAAAAAAAAAAAAAAAACTOBfHrxL1T8W/PKHFqMMealOz7L+Kpsb2+ZIxjXGndRMdTJXVekwP3ijFP+8pxuXJ7Uk7fKelNkWfy5+RBaup9ej0nn1sjNfWRkw+5ORNVM5/yJ92b1t+I2t7xrse8bZELNf9cPez12r7nc/r7WM1G9JFdwJypbfD8tLVZegEAAAAAAAAAnXgAVL8MrQ==
   </data>
  </layer>
- <layer name="meta" width="950" height="14" opacity="0.51">
+ <layer name="meta" width="950" height="14" opacity="0.5">
   <properties>
    <property name="speedx" value="1.0"/>
    <property name="speedy" value="1.0"/>

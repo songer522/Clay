@@ -8,13 +8,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "Clay/Classes/Base/CollisionDetection.m"
-         timestampString = "350951567.980617"
+         filePath = "Clay/Classes/Game/PlayerActions/PlayerActionBlow.m"
+         timestampString = "351469259.284141"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "129"
-         endingLineNumber = "129"
-         landmarkName = "-checkCollisionForObject:"
+         startingLineNumber = "45"
+         endingLineNumber = "45"
+         landmarkName = "-initialize"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -22,13 +22,27 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "Clay/Classes/Base/CollisionDetection.m"
-         timestampString = "350951704.573494"
+         filePath = "Clay/Classes/Game/PlayerActions/PlayerActionBlow.m"
+         timestampString = "351469259.284141"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "133"
-         endingLineNumber = "133"
-         landmarkName = "-checkCollisionForObject:"
+         startingLineNumber = "34"
+         endingLineNumber = "34"
+         landmarkName = "-initialize"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Clay/Classes/Game/PlayerActions/PlayerActionBlow.m"
+         timestampString = "351469314.951545"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "40"
+         endingLineNumber = "40"
+         landmarkName = "-initialize"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

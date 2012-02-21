@@ -254,11 +254,11 @@
  </layer>
  <layer name="front-1" width="1000" height="14">
   <properties>
-   <property name="speedx" value="1.0"/>
+   <property name="speedx" value="1.05"/>
    <property name="speedy" value="1.0"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1ksKgDAMBcD0oH4O4Of+O7N2oxWkWmbgEbLrIimJAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgP4MJWLMTJm5tH4NAEC/3F0AALSw5O25ZrbMXq57+AJzyptq/8W7/bn+dV7tHwAAAADw1AGMuBsl
+   eJzt1rsNgCAUQFHYyQ2cw88AfvbvfI2NjVoYhJyTvNzQUQAhJQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGjPkFMaY6aYOZfeDQBAu/y7AAAoYYm/5xqzxez5fg1/4Jzypbfv4tP1tbWeV/cPqFUXb1SfVVVVVVVVVbVETwfgsgcP
   </data>
  </layer>
  <layer name="front-2" width="1000" height="14">
