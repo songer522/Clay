@@ -1099,10 +1099,16 @@
                     _madeSound = true;
                     [[SoundEngine shared] playSound:@"darkBats"];
                 }
-                _angle+=200*dt;
                 _magnitude=300;
-                _vx = -0.12*_magnitude;
-                _vy =1.1*_magnitude * cosf((_angle * 3.14159)/180.0f);
+                if ([[GameSettings shared] isIpad]) {
+                    _angle+=100*dt;
+                    _vx = -0.24*_magnitude;
+                    _vy =2.2*_magnitude * cosf((_angle * 3.14159)/180.0f);
+                } else {
+                    _angle+=200*dt;
+                    _vx = -0.12*_magnitude;
+                    _vy =1.1*_magnitude * cosf((_angle * 3.14159)/180.0f);                    
+                }
             }
             break;
         case COLLISION_BEHAVIOR_DARK_SPIKES:
@@ -1127,8 +1133,14 @@
             }
             else if(_vy<0)
             {
-                if (_movedBy > 65.0f) {
-                    _movedBy = 65.0f;                
+                float finalPosition = 65.0f;
+                if ([[GameSettings shared] isIpad]) {
+                    finalPosition = 165.0f;
+                }
+                
+                
+                if (_movedBy > finalPosition) {
+                    _movedBy = finalPosition;                
                     _y = _initialPosition + _movedBy;
                     _vy = 0.0f;
                 }
@@ -1186,16 +1198,24 @@
             if (!_hasTriggered) {
                 if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
                     _hasTriggered = true;
-                    _y = 240.0f;
                     _vy = 0.0f;
                     _hasGravity = true;
                     _isBouncing = true;
                     _rotationAmount = 0.0f;
                     _magnitude = 170.0f; //magnitude of rotation
-                    _vx = -100.0f;
-                    _bouncePosition = 70.0f;
-                    _bounceGravity = 500.0f;
                     _bounceYDampening = 0.55f;
+                    
+                    if ([[GameSettings shared] isIpad]) {
+                        _y = 500.0f;
+                        _vx = -180.0f;
+                        _bounceGravity = 1000.0f;
+                        _bouncePosition = 110.0f;
+                    } else {
+                        _vx = -100.0f;
+                        _y = 240.0f;
+                        _bounceGravity = 500.0f;
+                        _bouncePosition = 70.0f;
+                    }
                 } else {
                     _isBouncing = false;
                 }

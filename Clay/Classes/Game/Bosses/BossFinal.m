@@ -21,6 +21,7 @@
 #define BOSS_FINAL_MAX_TRAIN_X 230.0f
 
 #define TRAIN_OFFSCREEN_LEFT -600.0f
+#define TRAIN_OFFSCREEN_LEFT_IPAD -900.0f
 #define TRAIN_OFFSCREEN_RIGHT 1200.0f
 #define TRAIN_BOMB_POSITION 230.0f
 #define TRAIN_DOOR_POSITION 310.0f
@@ -75,7 +76,11 @@
         [_grapes addObject:grape];
     }
     
-    _trainPosition = ccp(-800,165);
+    if ([[GameSettings shared] isIpad]) {
+        _trainPosition = ccp(-1000,165);        
+    } else {
+        _trainPosition = ccp(-800,165);
+    }
     [self updatePosition:_trainPosition];
     [self setVisible:YES];
 }
@@ -85,7 +90,12 @@
     Projectile *bomb = [_bombs objectAtIndex:_replaceBombId];
     _replaceBombId = (_replaceBombId + 1) % 6;
     
-    CGPoint position = [[Camera sharedCamera] convertToWorldXY:CGPointMake(_trainPosition.x - 62.0f, _trainPosition.y + 40.0f)];
+    CGPoint position;
+    if ([[GameSettings shared] isIpad]) {
+        position = [[Camera sharedCamera] convertToWorldXY:CGPointMake(_trainPosition.x +  112.0f, _trainPosition.y + 260.0f)];
+    } else {
+        position = [[Camera sharedCamera] convertToWorldXY:CGPointMake(_trainPosition.x - 62.0f, _trainPosition.y + 40.0f)];        
+    }
     [bomb reset];
     [bomb throwBombFromPosition:position];
     [[SoundEngine shared] playSound:@"bossFinalThrow"];
@@ -96,7 +106,13 @@
     Projectile *grape = [_grapes objectAtIndex:_replaceGrapeId];
     _replaceGrapeId = (_replaceGrapeId + 1) % 6;
     
-    CGPoint position = [[Camera sharedCamera] convertToWorldXY:CGPointMake(_trainPosition.x - 62.0f, _trainPosition.y + 40.0f)];
+    CGPoint position;
+    if ([[GameSettings shared] isIpad]) {
+        position = [[Camera sharedCamera] convertToWorldXY:CGPointMake(_trainPosition.x +  112.0f, _trainPosition.y + 260.0f)];
+    } else {
+        position = [[Camera sharedCamera] convertToWorldXY:CGPointMake(_trainPosition.x - 62.0f, _trainPosition.y + 40.0f)];        
+    }
+    
     [grape reset];
     [grape throwBombFromPosition:position];
     [[SoundEngine shared] playSound:@"bossFinalThrow"];
@@ -265,7 +281,11 @@
         //come from left side of screen to bomb position
         case FINAL_BOSS_MOVE_TO_BOMBING:
             if([self canTrigger:FINAL_BOSS_MOVE_TO_BOMBING]) {
-                _trainPosition = ccp(TRAIN_OFFSCREEN_LEFT,TRAIN_Y_POSITION);
+                if ([[GameSettings shared] isIpad]) {
+                    _trainPosition = ccp(TRAIN_OFFSCREEN_LEFT,TRAIN_Y_POSITION);
+                } else {
+                    _trainPosition = ccp(TRAIN_OFFSCREEN_LEFT_IPAD,TRAIN_Y_POSITION);
+                }
                 _destinationX = TRAIN_BOMB_POSITION;
                 _phase = phase;
                 _inAttack = true;
@@ -274,7 +294,11 @@
             break;
         case FINAL_BOSS_MOVE_TO_LEFT:
             if ([self canTrigger:FINAL_BOSS_MOVE_TO_LEFT]) {
-                _destinationX = TRAIN_OFFSCREEN_LEFT;
+                if ([[GameSettings shared] isIpad]) {
+                    _destinationX = TRAIN_OFFSCREEN_LEFT_IPAD;
+                } else {
+                    _destinationX = TRAIN_OFFSCREEN_LEFT;
+                }
                 _phase = phase;  
                 _inAttack = true;
                 _isOnScreen = false;
@@ -305,7 +329,11 @@
         case FINAL_BOSS_ATTACK_1C:
             [self changeToAnimationNamed:@"darkBossJimDoorAttack2" forSprite:_trainJim];
             _waitToSwitch = 1.4f;
-            _destinationX = 50.0f;
+            if ([[GameSettings shared] isIpad]) {
+                _destinationX = -180.0f;
+            } else {
+                _destinationX = 50.0f;
+            }
             _phase = phase;
             [_door reset];
             break;
@@ -415,20 +443,34 @@
 
 -(void)update:(float)dt
 {
+    float rate;
+    
     if (_resetSpriteVisibility) {
         [self resetSpriteVisibility];
     }
     switch (_phase) {
         case FINAL_BOSS_MOVE_TO_LEFT:
-            if ([self moveLeft:dt]) {
+            
+            rate = 1.0f * dt;
+            if ([[GameSettings shared] isIpad]) {
+                rate *= 2.0f;
+            }
+            
+            if ([self moveLeft:rate]) {
                 [self finishedPhase];
             }
+
             break;
         case FINAL_BOSS_ATTACK_1:
         case FINAL_BOSS_ATTACK_1E:
         case FINAL_BOSS_MOVE_TO_BOMBING:
         case FINAL_BOSS_MOVE_TO_RIGHT:
-            if([self moveRight:dt]) {
+            rate = 1.0f * dt;
+            if ([[GameSettings shared] isIpad]) {
+                rate *= 2.0f;
+            }
+            
+            if([self moveRight:rate]) {
                 [self finishedPhase];
             }
             break;
@@ -452,7 +494,11 @@
             if ([self checkWait:dt]) {
                 [self finishedPhase];
             }
-            [self moveLeft:0.65f * dt];            
+            if ([[GameSettings shared] isIpad]) {
+                [self moveLeft:1.30f * dt];
+            } else {
+                [self moveLeft:0.65f * dt];
+            }
         default:
             break;
     }
@@ -465,7 +511,11 @@
     }
     
     CGPoint position = [[Camera sharedCamera] convertToWorldXY:_trainPosition];
-    [_door setPosition:ccp(position.x, position.y - 95.0f)];
+    if ([[GameSettings shared] isIpad]) {
+        [_door setPosition:ccp(position.x + 250.0f , position.y - 15.0f)];        
+    } else {
+        [_door setPosition:ccp(position.x, position.y - 95.0f)];        
+    }
     if ([_door getActive]) {
         [self testCollisions:_door];        
     }
@@ -540,8 +590,8 @@
 {
     if ([[GameSettings shared] isIpad]) {
         [_train setScreenPosition:CGPointMake(position.x + 280.0f, position.y + 189.0f)];
-        [_trainWheels setScreenPosition:CGPointMake(position.x - 257.0f,position.y - 42.0f)];
-        [_trainJim setScreenPosition:CGPointMake(position.x - 257.0f,position.y - 42.0f)];   
+        [_trainWheels setScreenPosition:CGPointMake(position.x - 257.0f,position.y - 43.0f)];
+        [_trainJim setScreenPosition:CGPointMake(position.x - 257.0f,position.y - 48.0f)];   
     } else {
         [_train setScreenPosition:position];
         [_trainWheels setScreenPosition:CGPointMake(position.x - 268.0f,position.y - 118.0f)];
@@ -591,7 +641,11 @@
 
 -(void) reset
 {
-    _trainPosition = ccp(-1500,TRAIN_Y_POSITION);
+    if ([[GameSettings shared] isIpad]) {
+        _trainPosition = ccp(-1800,TRAIN_Y_POSITION);        
+    } else {
+        _trainPosition = ccp(-1500,TRAIN_Y_POSITION);
+    }
     _inAttack = false;
     [self updatePosition:_trainPosition];
     [_queuedPhases removeAllObjects];
@@ -620,7 +674,11 @@
 {
     [self reset];
     [self triggerAction:FINAL_BOSS_IDLE];
-    _trainPosition = ccp(-1600,165);
+    if([[GameSettings shared] isIpad]) {
+        _trainPosition = ccp(-1800,165);        
+    } else {
+        _trainPosition = ccp(-1600,165);
+    }
     [[_train getCCSprite] setVisible:YES];
 }
 
