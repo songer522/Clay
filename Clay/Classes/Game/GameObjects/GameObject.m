@@ -1198,16 +1198,24 @@
             if (!_hasTriggered) {
                 if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
                     _hasTriggered = true;
-                    _y = 240.0f;
                     _vy = 0.0f;
                     _hasGravity = true;
                     _isBouncing = true;
                     _rotationAmount = 0.0f;
                     _magnitude = 170.0f; //magnitude of rotation
-                    _vx = -100.0f;
-                    _bouncePosition = 70.0f;
-                    _bounceGravity = 500.0f;
                     _bounceYDampening = 0.55f;
+                    
+                    if ([[GameSettings shared] isIpad]) {
+                        _y = 500.0f;
+                        _vx = -180.0f;
+                        _bounceGravity = 1000.0f;
+                        _bouncePosition = 110.0f;
+                    } else {
+                        _vx = -100.0f;
+                        _y = 240.0f;
+                        _bounceGravity = 500.0f;
+                        _bouncePosition = 70.0f;
+                    }
                 } else {
                     _isBouncing = false;
                 }
