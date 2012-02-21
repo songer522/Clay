@@ -200,7 +200,8 @@
             float offsety = [[tmxLayer propertyNamed:@"offsety"] floatValue];
             bool isOpaque = [[tmxLayer propertyNamed:@"opaque"] boolValue];
             
-            CGPoint offsetPoint = ccp(0, 0);
+            CGPoint offsetPoint = ccp(0, 5);//It was (0,0), changed to(0,5) to fixed iPad version's top empty bar 
+            
             if (offsety && offsety!= 0.0f && speedy != 0.0f) {
                 offsetPoint = ccp(0, offsety * _map.tileSize.width);
             }
