@@ -211,15 +211,20 @@
 {
     if (_behavior == PROJECTILE_BEHAVIOR_DARK_BOMB) {
         [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"darkBossJimBombAttack2"];        
-        _vx = 140.0f;
-        _vy = 230.0f;
+        if ([[GameSettings shared] isIpad]) {
+            _vx = 280.0f;
+            _vy = 460.0f;
+        } else {
+            _vx = 140.0f;
+            _vy = 230.0f;
+        }
         [self setBoundingBox:CGRectMake(30, 30, 60, 60)];
 
 
     } else if(_behavior == PROJECTILE_BEHAVIOR_DARK_GRAPES) {
         if ([[GameSettings shared] isIpad]) {
-            _vx = 650.0f;
-            _vy = 330.0f;
+            _vx = 800.0f;
+            _vy = 460.0f;
         } else {
             _vx = 390.0f;
             _vy = 230.0f;

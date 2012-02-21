@@ -1098,10 +1098,13 @@
                 if (!_madeSound) {
                     _madeSound = true;
                     [[SoundEngine shared] playSound:@"darkBats"];
+                    if ([[GameSettings shared] isIpad]) {
+                        _y = 160.0f;
+                    }
                 }
                 _magnitude=300;
                 if ([[GameSettings shared] isIpad]) {
-                    _angle+=100*dt;
+                    _angle+=200*dt;
                     _vx = -0.24*_magnitude;
                     _vy =2.2*_magnitude * cosf((_angle * 3.14159)/180.0f);
                 } else {
@@ -1296,6 +1299,7 @@
             }
             break;
         case COLLISION_BEHAVIOR_DOJO_DEATHPIT:
+            
             if (!_hasTriggered && [self closeToPlayer:150]) {
                 _hasTriggered = true;
                 [self setOriginalAnimation:@"dojoDeathPitClosedAnim"];

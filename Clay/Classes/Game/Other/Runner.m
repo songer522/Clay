@@ -10,6 +10,7 @@
 #import "RunningSpeed.h"
 #import "GameObject.h"
 #import "PlayerAction.h"
+#import "GameSettings.h"
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
@@ -98,12 +99,18 @@
 
     
     if (_isNewUnderwaterPhysics) {
-        if (_y > 220.0f) {
-            _y = 220.0f;
+        float topOfScreen = 220.0f;
+        if ([[GameSettings shared] isIpad]) {
+            topOfScreen = 458.0f;
+        }
+        
+        if (_y > topOfScreen) {
+            _y = topOfScreen;
             if (_ay < 0) {
                 _ay = 0.0f;
             }
         }
+
     }
     
     [self updateFlags]; //need to know if the player is falling
