@@ -6,6 +6,7 @@
 //  Copyright 2011 Xecudev, LLC. All rights reserved.
 //
 
+
 #import "cocos2d.h"
 #import "BaseClasses.h"
 #import "Player.h"
@@ -24,6 +25,7 @@
 #import "Boss.h"
 #import "GCState.h"
 #import "GCHelper.h"
+#import "GameSettings.h"
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
@@ -175,7 +177,7 @@
     {
         
         if (_isNewUnderwaterPhysics) {
-            _vy = -86.25f; //75% original        
+            _vy = -172.5f; //75% original        
         } else {
             _vy = -230.0f;
         }
@@ -221,7 +223,7 @@
     if (IS_IPAD)
     {   
         if (_isNewUnderwaterPhysics) {
-            _vy = -187.5f;
+            _vy = -375.0f;
         } else {
             _vy = -365.0;
         }
@@ -502,7 +504,11 @@
         [_skin setPlayerAnimation:PLAYER_ANIM_HURTING ForSprite:_sprite];
        
         if (_isNewUnderwaterPhysics) {
-            _vy = 25.0f;
+            if ([[GameSettings shared] isIpad]) {
+                _vy = 50.0f;
+            } else {
+                _vy = 25.0f;                
+            }
              [_speed stop];
     
         } else {

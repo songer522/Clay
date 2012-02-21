@@ -101,7 +101,7 @@
     if (_isNewUnderwaterPhysics) {
         float topOfScreen = 220.0f;
         if ([[GameSettings shared] isIpad]) {
-            topOfScreen = 458.0f;
+            topOfScreen = 444.0f;
         }
         
         if (_y > topOfScreen) {
