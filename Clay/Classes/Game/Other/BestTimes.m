@@ -71,6 +71,7 @@ static BestTimes *_shared = nil;
     _bestTimeData = [[NSMutableDictionary alloc] initWithCapacity:20];
     NSDictionary *levelData = loadData(@"levelData");
     if(levelData!=nil) {
+        [_bestTimeData release];
         _bestTimeData = [[NSMutableDictionary alloc] initWithDictionary:levelData];
     }
 }

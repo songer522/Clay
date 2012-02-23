@@ -186,7 +186,7 @@
             TrophyName=[NSString stringWithFormat:@"You Won A Bronze Trophy !"];
             break;
         case SLIVER_TROPHY:
-            TrophyName=[NSString stringWithFormat:@"You Won A Sliver Trophy !"];
+            TrophyName=[NSString stringWithFormat:@"You Won A Silver Trophy !"];
             break;
         case GOLD_TROPHY:
             TrophyName=[NSString stringWithFormat:@"You Won A Gold Trophy !"];

@@ -157,6 +157,7 @@
     [_hintBox release];
     [_hintHeader release];
     [_hintText removeFromParentAndCleanup:YES];
+    [super dealloc];
 }
 
 @end

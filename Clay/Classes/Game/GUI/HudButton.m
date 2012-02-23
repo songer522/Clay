@@ -59,7 +59,7 @@
         
         _overlayFrameNames = [[NSMutableArray alloc] initWithCapacity:8];
         for (int i=0; i<8; i++) {
-            NSString *frameName = [[NSString stringWithFormat:@"UI_Button_GreenLight_%d.png",i] retain];
+            NSString *frameName = [NSString stringWithFormat:@"UI_Button_GreenLight_%d.png",i];
             [_overlayFrameNames addObject:frameName];
         }
         
@@ -269,10 +269,11 @@
     [_graphic release];
     [_greenOverlay release];
     
+    /*
     for (NSString *frameName in _overlayFrameNames) {
         [frameName release];
         frameName = nil;
-    }
+    }*/
     [_overlayFrameNames release];
 
     [super dealloc];

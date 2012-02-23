@@ -111,24 +111,31 @@
     int startX = 0;
     int projWidth = 35;
     
-    int frame = [[[_parent getSprite] getAnimation] getCurrentFrameNumber];
-    switch (frame) {
-        case 1:
-            startX = 55;
-            projWidth = 25;
-            break;
-        case 2:
-            startX = 30;
-            projWidth = 35;
-            break;
-        case 3:
-            startX = 0;
-            projWidth = 45;
-            break;
-        default:
-            projWidth = 0;
-            break;
+    @try {
+        Animation *animation = [[_parent getSprite] getAnimation];
+        int frame = [animation getCurrentFrameNumber];
+        switch (frame) {
+            case 1:
+                startX = 55;
+                projWidth = 25;
+                break;
+            case 2:
+                startX = 30;
+                projWidth = 35;
+                break;
+            case 3:
+                startX = 0;
+                projWidth = 45;
+                break;
+            default:
+                projWidth = 0;
+                break;
+        }
     }
+    @catch (NSException *exception) {
+        //NSLog(@"Error! PlayerActionPunch.m - Most likely animation or frame no longer exists when game is run at lower framerate, like in a simulator.");
+    }
+    
     if (IS_IPAD)
     {
         [_kick setBoundingBox:CGRectMake(startX, 10, projWidth * MULTIPLIERX, 35 * MULTIPLIERY)];
