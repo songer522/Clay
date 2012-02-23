@@ -17,6 +17,7 @@
 #import "MapObject.h"
 #import "GameObject.h"
 #import "Sprite.h"
+#import "GameSettings.h"
 
 @implementation RainyLevelEffects
 
@@ -57,8 +58,10 @@
     Player *player = [[LayerManager sharedLayers] getPlayer];
     
     //IPAD FIX: place underneath tim's feet
-    [_rainBehindTim setPosition:CGPointMake(player.x - 40, player.y - 12)];
-    
+   // if([[GameSettings shared] isIpad])
+   // {
+    [_rainBehindTim setPosition:CGPointMake(player.x - 70, player.y +40)];
+   // }
     if (player.isInMidAir||player.onLedge) {
         if (_rainBehindTimVisible) {
             [[_rainBehindTim getCCSprite] setVisible:NO];

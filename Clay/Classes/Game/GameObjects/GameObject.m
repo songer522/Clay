@@ -856,40 +856,40 @@
                 [[SoundEngine shared] playSound:@"rainyUmbrellaAppear"];
             }
             
-            if ([self closeToPlayer:315]) {
+            if ([self closeToPlayer:MULTIPLIERX*315]) {
                 _angle+=200.0f*dt;
                 if(_angle>-120.0f) {
                     _angle = -120.0f;
                 }
                 [_sprite getCCSprite].rotation = -30.0f + ((_angle + 180.0f) / (2.66667f));
-                _vx = _magnitude * cosf((_angle * 3.14159)/180.0f);
-                _vy = _magnitude * sinf((_angle * 3.14159)/180.0f);
+                _vx =MULTIPLIERX* _magnitude * cosf((_angle * 3.14159)/180.0f);
+                _vy = MULTIPLIERY*_magnitude * sinf((_angle * 3.14159)/180.0f);
                 
             } else if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
-                _vx = -1 * _magnitude;
+                _vx = MULTIPLIERX*-1 * _magnitude;
                 _angle = -180.0f;
                 [_sprite getCCSprite].rotation = -30.0f;
             }        
             break;
         case COLLISION_BEHAVIOR_PAPERPLANE:
             _vx = 0.0f;
-            if ([self closeToPlayer:480]) {
+            if ([self closeToPlayer:MULTIPLIERX*480]) {
                 _angle+=110.0f*dt;
                 if(_angle > -60.0f) {
                     _stopCurve=true;
                     _angle = - 60.0f;
                     
-                    _vx = -1 * _magnitude;
+                    _vx = MULTIPLIERX*-1 * _magnitude;
                     _vy=0;
                 }
                 if(!_stopCurve)
                 {
-                    _vx = _magnitude * cosf((_angle * 3.14159)/180.0f);
-                    _vy = -1*_magnitude * sinf((_angle * 3.14159)/180.0f);
+                    _vx =MULTIPLIERX* _magnitude * cosf((_angle * 3.14159)/180.0f);
+                    _vy = MULTIPLIERY*-1*_magnitude * sinf((_angle * 3.14159)/180.0f);
                 }
                 
-            }else if  ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
-                _vx = -1 * _magnitude;
+            }else if  ([self closeToPlayer:MULTIPLIERX*GAME_OBJECT_DISTANCE_ONSCREEN]) {
+                _vx = MULTIPLIERX*-1 * _magnitude;
                 _angle = -180;
             }            
             break;
