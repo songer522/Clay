@@ -30,7 +30,7 @@
     _level = [[LevelManager shared] currentLevel];
     
     _velocity = CGPointMake(-5.0f, 0.0f);
-    _targetOnScreen = CGRectMake(240, 100, 140, 400);
+    _targetOnScreen = CGRectMake(240*2.133, 100*2.4, 140, 400);
     
     [_sprite setAlpha:1.0f];
     [[_sprite getCCSprite] setVisible:YES];
@@ -98,7 +98,7 @@
     [[_cannonAnim getCCSprite] setVisible:NO];
     
     CGPoint shipWorldPos = [[Camera sharedCamera] convertToWorldXY:[_sprite getScreenPosition]];    
-    [bullet setPosition:CGPointMake(shipWorldPos.x - 120,shipWorldPos.y + 20.0f)];
+    [bullet setPosition:CGPointMake(shipWorldPos.x - 120*2.133,shipWorldPos.y + 20.0f*2.4)];
     [bullet reset];
 }
 
@@ -140,7 +140,7 @@
     if (_firstUpdate) {
         _firstUpdate = false;
         _velocity = CGPointMake(0.0f, 0.0f);
-        [_sprite getCCSprite].position = ccp(1500,160);
+        [_sprite getCCSprite].position = ccp(1500*2.133,160*2.4);
         _cannonAnim = [Sprite spriteWithFile:@"blank.png"];
         _megaCannonAnim = [Sprite spriteWithFile:@"blank.png"];
         _comboAttackAnim = [Sprite spriteWithFile:@"blank.png"];
@@ -286,20 +286,20 @@
     
     switch (phase) {
         case BOSS_PHASE_NOT_TRIGGERED:
-            _x = 1500;
-            _y = 230;
-            _target = ccp(1500,230);
-            [_sprite getCCSprite].position = ccp(1500,230);
+            _x = 1500*2.133;
+            _y = 230*2.4;
+            _target = ccp(1500*2.133,230*2.4);
+            [_sprite getCCSprite].position = ccp(1500*2.133,230*2.4);
             [[_sprite getCCSprite] setVisible:NO];
             _isActive = false;
             break;
         case BOSS_PHASE_ENTERING:
             [[_sprite getCCSprite] setVisible:YES];
-            _target = ccp(380,230);
+            _target = ccp(380*2.133,230*2.4);
             _isActive = false;
             break;
         case BOSS_PHASE_EXITING:
-            _target = ccp(1500,230);
+            _target = ccp(1500*2.133,230*2.4);
             _isActive = false;
             break;
         case BOSS_PHASE_ATTACKING:
@@ -369,9 +369,9 @@
         xthrust = -1;
     }
     
-    if (position.y > 260) {
+    if (position.y > 260*2.4) {
         ythrust = 0;
-    } else if (position.y < 200) {
+    } else if (position.y < 200*2.4) {
         ythrust = 1;
     }
     
