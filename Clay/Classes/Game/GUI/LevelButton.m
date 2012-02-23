@@ -27,7 +27,7 @@
 {
     if ((self=[super init])) {
         _buttonId = buttonId + 1;
-        
+        _cart = nil;
         [self initButton];
     }        
     return self;    
@@ -192,6 +192,11 @@
 {
     [_trophy release];
     [_buttonGraphic release];
+    
+    if (_cart !=nil) {
+        [_cart release];
+        _cart = nil;
+    }
     _selector = nil;
     [super dealloc];
 }

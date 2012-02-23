@@ -275,10 +275,26 @@
 {
     [[LayerManager sharedLayers] setWorkingLayer:self];
     
+    /*
     [_buttonSprint reset];
     [_buttonJump reset];
     [_buttonAction reset];
+    */
     
+    if(_buttonJump !=nil) {
+        [_buttonJump release];
+        _buttonJump = nil;
+    }
+    
+    if (_buttonAction !=nil) {
+        [_buttonAction release];
+        _buttonAction = nil;
+    }
+    
+    if (_buttonSprint != nil) {
+        [_buttonSprint release];
+        _buttonSprint = nil;
+    }
     
     _buttonSprint = [HudButton buttonWithType:HUD_BUTTON_SPRINT Action:@""];
     _buttonJump = [HudButton buttonWithType:HUD_BUTTON_JUMP Action:@""];

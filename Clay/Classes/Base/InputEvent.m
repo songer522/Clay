@@ -45,6 +45,7 @@
 
 -(void)dealloc
 {
+    _receiver = nil;
     [super dealloc];
 }
 

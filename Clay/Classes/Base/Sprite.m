@@ -327,8 +327,11 @@
     }
     //[_animator release];
     [_frameName release];
-    //[_animation release];
-    _animation = nil;
+    
+    if (_animation != nil) {
+        [_animation release];        
+        _animation = nil;
+    }
     
     
     [sprite_cc removeFromParentAndCleanup:YES];
