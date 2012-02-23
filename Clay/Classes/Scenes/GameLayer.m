@@ -40,7 +40,7 @@
 #import "PlayerAction.h"
 
 
-#define DEBUG_DRAW_BOUNDING_BOXES 1
+#define DEBUG_DRAW_BOUNDING_BOXES 0
 @interface GameLayer()
 
 -(void)setupLayers;
