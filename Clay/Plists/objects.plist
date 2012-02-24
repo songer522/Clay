@@ -1922,7 +1922,7 @@
 			<key>width</key>
 			<integer>14</integer>
 			<key>x</key>
-			<integer>37</integer>
+			<integer>25</integer>
 			<key>y</key>
 			<integer>2</integer>
 		</dict>
@@ -2239,7 +2239,7 @@
 			<key>x</key>
 			<integer>20</integer>
 			<key>y</key>
-			<integer>60</integer>
+			<integer>130</integer>
 		</dict>
 		<key>collideBehavior</key>
 		<string>rolling</string>
@@ -2272,7 +2272,7 @@
 			<key>width</key>
 			<integer>15</integer>
 			<key>x</key>
-			<integer>35</integer>
+			<integer>30</integer>
 			<key>y</key>
 			<integer>2</integer>
 		</dict>
@@ -2898,13 +2898,13 @@
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>125</integer>
+			<integer>100</integer>
 			<key>width</key>
 			<integer>32</integer>
 			<key>x</key>
 			<integer>20</integer>
 			<key>y</key>
-			<integer>0</integer>
+			<integer>-10</integer>
 		</dict>
 		<key>imageName</key>
 		<string>blank.png</string>
@@ -3924,7 +3924,7 @@
 		<key>offsetx</key>
 		<integer>0</integer>
 		<key>offsety</key>
-		<integer>-8</integer>
+		<integer>35</integer>
 		<key>playerEffect</key>
 		<string>collide</string>
 	</dict>

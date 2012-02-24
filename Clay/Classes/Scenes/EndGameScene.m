@@ -61,22 +61,26 @@
          
         [[TextureManager shared] loadMemoryForKey:@"endGame"];
         
-             _comic=[Sprite spriteWithFile:@"Comic_11.png"];
+             _comic=[Sprite spriteWithFile:@"Comic_11-hd.png"];
+        [_comic getCCSprite].position=ccp(32,64);
         
         difficulty = [[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
         mode=[[GameSettings shared] getGlobalForKey:@"gameMode"];
         
         if([difficulty isEqualToString:@"hard"] && [mode isEqualToString:@"story"])
         {
-        _BonusComic=[Sprite spriteWithFile:@"Comic_13.png"];
+        _BonusComic=[Sprite spriteWithFile:@"Comic_13-hd.png"];
+            [_BonusComic getCCSprite].position=ccp(32,64);
         }
         else if ([difficulty isEqualToString:@"normal"] && [mode isEqualToString:@"story"])
         {
-            _BonusComic=[Sprite spriteWithFile:@"Comic_14.png"];
+            _BonusComic=[Sprite spriteWithFile:@"Comic_14-hd.png"];
+            [_BonusComic getCCSprite].position=ccp(32,64);
         }
         else
         {
-            _BonusComic=[Sprite spriteWithFile:@"Comic_12.png"];
+            _BonusComic=[Sprite spriteWithFile:@"Comic_12-hd.png"];
+            [_BonusComic getCCSprite].position=ccp(32,64);
         }
         [[SoundEngine shared] cueFadeIn];
        [[SoundEngine shared] playMusic:@"credits"];

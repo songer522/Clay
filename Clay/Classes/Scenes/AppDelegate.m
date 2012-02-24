@@ -110,6 +110,8 @@
     [UIApplication sharedApplication].idleTimerDisabled = YES;
     
 	[director setAnimationInterval:1.0f/60.0f];
+    
+    //[self simulateIpad1Memory];
 
     NSString *showFps = [[GameSettings shared] getGlobalForKey:@"showFps"];
     if ([showFps isEqualToString:@"YES"]) {
@@ -197,6 +199,7 @@
 	[window release];
 	
 	[director end];	
+    
 }
 
 - (void)applicationSignificantTimeChange:(UIApplication *)application {
@@ -215,6 +218,18 @@
 }
 
 
+-(void)simulateIpad1Memory
+{
+    //basically allocate 256MB of memory so there is less to work with, at least in theory. doesn't seem to be working though.
+    int chunkCount = 256;
+    int chunkSize = 1L * 1024L * 1024L; //1 megabyte
+    
+    _wasteMemoryForIpad1 = [[NSMutableArray alloc] initWithCapacity:chunkCount];
+    for (int i = 0; i<chunkCount; i++) {
+        [_wasteMemoryForIpad1 addObject:[NSValue valueWithPointer:malloc(chunkSize)]];
+    }
+}
+
 - (void)dealloc {
     [window release];
     [viewController release];
@@ -225,6 +240,17 @@
     [_mainMenuScene release];
 	[[CCDirector sharedDirector] end];
 	[window release];
+    
+    
+    if ([_wasteMemoryForIpad1 count]) {
+        for (NSValue* val in _wasteMemoryForIpad1) {
+            free([val pointerValue]);
+        }
+        [_wasteMemoryForIpad1 removeAllObjects];
+    }
+    [_wasteMemoryForIpad1 release];
+    
+    
 	[super dealloc];
 }
 

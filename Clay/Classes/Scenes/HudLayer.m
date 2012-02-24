@@ -53,7 +53,7 @@
         _battery = [Battery instance];
         
         _pauseButton = [Sprite spriteFromFrameCacheWithName:@"Pause.png"];
-        [_pauseButton getCCSprite].position = ccp(9,287);  
+        [_pauseButton getCCSprite].position = ccp(9,700);  
         
         _alpha = 0.0f;
         _currentTransition = HUD_TRANSITION_IDLE;
@@ -275,10 +275,26 @@
 {
     [[LayerManager sharedLayers] setWorkingLayer:self];
     
+    /*
     [_buttonSprint reset];
     [_buttonJump reset];
     [_buttonAction reset];
+    */
     
+    if(_buttonJump !=nil) {
+        [_buttonJump release];
+        _buttonJump = nil;
+    }
+    
+    if (_buttonAction !=nil) {
+        [_buttonAction release];
+        _buttonAction = nil;
+    }
+    
+    if (_buttonSprint != nil) {
+        [_buttonSprint release];
+        _buttonSprint = nil;
+    }
     
     _buttonSprint = [HudButton buttonWithType:HUD_BUTTON_SPRINT Action:@""];
     _buttonJump = [HudButton buttonWithType:HUD_BUTTON_JUMP Action:@""];

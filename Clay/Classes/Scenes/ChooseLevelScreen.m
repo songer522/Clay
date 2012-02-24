@@ -34,6 +34,9 @@
 #import "GCHelper.h"
 #import "DlcGameWindow.h"
 #import "InAppPurchaseManager.h"
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
+#define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 
 
 @implementation ChooseLevelScreen
@@ -279,8 +282,8 @@
         return true;
     }
     //NOTE: temporarily disabled for a build with unlocked dlc
-    return false;
-    //return true;
+    //return false;
+    return true;
 }
 
 -(void)popupDlcWindow:(int)levelNumber
@@ -425,19 +428,19 @@
     [[_selector getCCSprite] setVisible:NO];
     
     _startButton = [ActionButton actionButtonWithText:@"START"];
-    [_startButton setPosition:ccp(430,18)];
+    [_startButton setPosition:ccp(430 * MULTIPLIERX,18 * MULTIPLIERY)];
     
     _backButton = [ActionButton actionButtonWithText:@"BACK"];
-    [_backButton setPosition:ccp(50, 18)];
+    [_backButton setPosition:ccp(50 * MULTIPLIERX, 18 * MULTIPLIERY)];
     
     _facebookButton =[ActionButton actionButtonManualSetup];
     _facebookButton.facebookOrTwitter=true;
-    [_facebookButton setPosition:ccp(210, 120)];
+    [_facebookButton setPosition:ccp(210 * MULTIPLIERX, 120 * MULTIPLIERY)];
     [_facebookButton setEnabled:true];
     
     _twitterButton =[ ActionButton actionButtonManualSetup];
     _twitterButton.facebookOrTwitter=true;
-    [_twitterButton setPosition:ccp(210, 80)];
+    [_twitterButton setPosition:ccp(210 * MULTIPLIERX, 80 * MULTIPLIERY)];
     [_twitterButton setEnabled:true];
     
     LevelButton *selectedButton=nil;
@@ -472,10 +475,12 @@
         }
     }    
     if (_inDLCMode) {
-        _levelSelectText = [GameLabel gameLabelWithText:@"BONUS LEVELS" Scale:0.75f Position:ccp(365.0f,282.0f)];
+        _levelSelectText = [GameLabel gameLabelWithText:@"BONUS LEVELS" Scale:0.75f Position:ccp(778.0f,667.0f)];
     } else {
-        _levelSelectText = [GameLabel gameLabelWithText:@"LEVEL SELECT" Scale:0.75f Position:ccp(365.0f,282.0f)];
+        _levelSelectText = [GameLabel gameLabelWithText:@"LEVEL SELECT" Scale:0.75f Position:ccp(778.0f,667.0f)];
     }
+    
+    //_levelSelectText = [GameLabel gameLabelWithText:@"LEVEL SELECT" Scale:0.75f Position:ccp(778.0f,667.0f)];
     
     //load any medals earned
     [self loadMedals];

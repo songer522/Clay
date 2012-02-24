@@ -21,10 +21,13 @@
 #import "GameWindow.h"
 #import "GameSettings.h"
 #import "BestTimes.h"
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
+#define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 
 //IPAD FIX: width and offset
-#define OPTIONS_SCENE_OFFSET_X 30.0f
-#define OPTIONS_SCENE_WIDTH 420.0f
+#define OPTIONS_SCENE_OFFSET_X 62.0f
+#define OPTIONS_SCENE_WIDTH 768.0f
 
 @implementation OptionsScene
 
@@ -64,11 +67,11 @@
 
 -(void)load
 {
-    float eraseX = 85.0f;
-    float tutorialX = 240.0f;
-    float creditsX = 395.0f;
+    float eraseX = 85.0f * MULTIPLIERX;
+    float tutorialX = 240.0f *MULTIPLIERX;
+    float creditsX = 395.0f *MULTIPLIERX;
     float textScale = 0.68f;
-    float smallPanelY = 76.0f;
+    float smallPanelY = 76.0f *MULTIPLIERY;
 
     
     [[LayerManager sharedLayers] setWorkingLayer:self];    
@@ -76,55 +79,55 @@
     [[TextureManager shared] loadMemoryForKey:@"optionsScreen"];
 
     _background = [Sprite spriteFromFrameCacheWithName:@"Options_Background.png"];
-    _musicPanel = [Sprite spriteCenteredWithFrame:@"Options_Panel_L.png" Position:ccp(240,232)];
-    _musicVolumeHeader = [Sprite spriteCenteredWithFrame:@"Options_Title_1.png" Position:ccp(97,264)];
+    _musicPanel = [Sprite spriteCenteredWithFrame:@"Options_Panel_L.png" Position:ccp(240 * MULTIPLIERX,232 *MULTIPLIERY)];
+    _musicVolumeHeader = [Sprite spriteCenteredWithFrame:@"Options_Title_1.png" Position:ccp(97 * MULTIPLIERX,264* MULTIPLIERY)];
     _musicSheetMasked = [Sprite spriteCenteredWithFrame:@"Options_Stave_TypeA_2.png" AddToLayer:NO];
 
-    [_musicSheetMasked setScreenPosition:ccp(240,230)];
+    [_musicSheetMasked setScreenPosition:ccp(240 * MULTIPLIERX,230 * MULTIPLIERY)];
 
     _musicMask = [[ClippingNode alloc] init];
     [self addChild:_musicMask];
     [_musicMask addChild:[_musicSheetMasked getCCSprite]];
     [self setMusicPositionByVolume:[[SoundEngine shared] getMastersMusicVolume]];
     
-    _musicSheetTop = [Sprite spriteCenteredWithFrame:@"Options_Stave_TypeA_1.png" Position:ccp(240,230)];
-    _sfxPanel = [Sprite spriteCenteredWithFrame:@"Options_Panel_L.png" Position:ccp(240,152)];
-    _sfxVolumeHeader = [Sprite spriteCenteredWithFrame:@"Options_Title_2.png" Position:ccp(391,184)];
+    _musicSheetTop = [Sprite spriteCenteredWithFrame:@"Options_Stave_TypeA_1.png" Position:ccp(240 * MULTIPLIERX,230 * MULTIPLIERY)];
+    _sfxPanel = [Sprite spriteCenteredWithFrame:@"Options_Panel_L.png" Position:ccp(240 * MULTIPLIERX,152 *MULTIPLIERY)];
+    _sfxVolumeHeader = [Sprite spriteCenteredWithFrame:@"Options_Title_2.png" Position:ccp(391 *MULTIPLIERX,184 *MULTIPLIERY)];
     _sfxSheetMasked = [Sprite spriteCenteredWithFrame:@"Options_Stave_TypeB_2.png" AddToLayer:NO];
-    [_sfxSheetMasked setScreenPosition:ccp(240,150)];
+    [_sfxSheetMasked setScreenPosition:ccp(240 *MULTIPLIERX,150 *MULTIPLIERY)];
     
     _sfxMask = [[ClippingNode alloc] init];
     [self addChild:_sfxMask];
     [_sfxMask addChild:[_sfxSheetMasked getCCSprite]];
     [self setSfxPositionByVolume:[[SoundEngine shared] getMastersSfxVolume]];
     
-    _sfxSheetTop = [Sprite spriteCenteredWithFrame:@"Options_Stave_TypeB_1.png" Position:ccp(240,150)];
+    _sfxSheetTop = [Sprite spriteCenteredWithFrame:@"Options_Stave_TypeB_1.png" Position:ccp(240 *MULTIPLIERX,150* MULTIPLIERY)];
     
     _howToPlayButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Options_Panel_S.png" Selected:@"Options_Panel_S.png"];
-    [_howToPlayButton setPosition:ccp(240,smallPanelY)];
-    [_howToPlayButton setHitboxBySize:CGSizeMake(143, 70)];
+    [_howToPlayButton setPosition:ccp(240 *MULTIPLIERX,smallPanelY)];
+    [_howToPlayButton setHitboxBySize:CGSizeMake(143 *MULTIPLIERX, 70 *MULTIPLIERY)];
 
     _eraseDataButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Options_Panel_S.png" Selected:@"Options_Panel_S.png"];
-    [_eraseDataButton setPosition:ccp(85,smallPanelY)];
-    [_eraseDataButton setHitboxBySize:CGSizeMake(143, 70)];
+    [_eraseDataButton setPosition:ccp(85 *MULTIPLIERX,smallPanelY)];
+    [_eraseDataButton setHitboxBySize:CGSizeMake(143 *MULTIPLIERX, 70 *MULTIPLIERY)];
     
-    _eraseText = [GameLabel gameLabelWithText:@"ERASE" Scale:textScale Position:ccp(eraseX,83)];
-    _dataText = [GameLabel gameLabelWithText:@"DATA" Scale:textScale Position:ccp(eraseX,65)];
+    _eraseText = [GameLabel gameLabelWithText:@"ERASE" Scale:textScale Position:ccp(eraseX,83 * MULTIPLIERY)];
+    _dataText = [GameLabel gameLabelWithText:@"DATA" Scale:textScale Position:ccp(eraseX,65 *MULTIPLIERY)];
 
-    _howToText = [GameLabel gameLabelWithText:@"HOW TO" Scale:textScale Position:ccp(tutorialX,83)];
-    _playText = [GameLabel gameLabelWithText:@"PLAY" Scale:textScale Position:ccp(tutorialX,65)];
+    _howToText = [GameLabel gameLabelWithText:@"HOW TO" Scale:textScale Position:ccp(tutorialX,83 *MULTIPLIERY)];
+    _playText = [GameLabel gameLabelWithText:@"PLAY" Scale:textScale Position:ccp(tutorialX,65 *MULTIPLIERY)];
     
     _creditsButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Options_Panel_S.png" Selected:@"Options_Panel_S.png"];
     _creditsText = [GameLabel gameLabelWithText:@"CREDITS" Scale:textScale Position:ccp(creditsX,smallPanelY - 2)];
     [_creditsButton setPosition:ccp(creditsX,smallPanelY)];
-    [_creditsButton setHitboxBySize:CGSizeMake(143, 70)];
+    [_creditsButton setHitboxBySize:CGSizeMake(143 *MULTIPLIERX, 70 *MULTIPLIERY)];
     
     
     _optionsHeader = [GameLabel gameLabelWithText:@"OPTIONS" Scale:0.65f];
-    [_optionsHeader setPosition:ccp(240.0f,291.0f)];
+    [_optionsHeader setPosition:ccp(240.0f * MULTIPLIERX,291.0f *MULTIPLIERY)];
 
     _backButton = [ActionButton actionButtonWithText:@"BACK"];
-    [_backButton setPosition:ccp(50, 18)];
+    [_backButton setPosition:ccp(50 *MULTIPLIERX, 18 *MULTIPLIERY)];
     
     //_tutorial = [[Tutorial alloc] initWithinLayer:self];
     
@@ -248,13 +251,13 @@
 -(void)setMusicPositionByVolume:(float)volume
 {
     float xPos = volume * OPTIONS_SCENE_WIDTH + OPTIONS_SCENE_OFFSET_X;
-    [_musicMask setClippingRegion:CGRectMake(0,0,xPos,768)];
+    [_musicMask setClippingRegion:CGRectMake(0,0,xPos,768 * MULTIPLIERY)];
 }
 
 -(void)setSfxPositionByVolume:(float)volume
 {
     float xPos = volume * OPTIONS_SCENE_WIDTH + OPTIONS_SCENE_OFFSET_X;
-    [_sfxMask setClippingRegion:CGRectMake(0,0,xPos,768)];  
+    [_sfxMask setClippingRegion:CGRectMake(0,0,xPos,768 * MULTIPLIERY)];  
 }
 
 
@@ -263,7 +266,8 @@
     float volume = (xPos - OPTIONS_SCENE_OFFSET_X)/OPTIONS_SCENE_WIDTH;
     
     [[SoundEngine shared] setMasterMusicVolume:volume];
-    [_musicMask setClippingRegion:CGRectMake(0,0,xPos,768)];
+    [_musicMask setClippingRegion:CGRectMake(0,0,xPos,768 * MULTIPLIERY)];
+    
 }
 
 -(void)setSfxXPosition:(float)xPos
@@ -271,15 +275,15 @@
     float volume = (xPos - OPTIONS_SCENE_OFFSET_X)/OPTIONS_SCENE_WIDTH;
     
     [[SoundEngine shared] setMasterSfxVolume:volume];
-    [_sfxMask setClippingRegion:CGRectMake(0,0,xPos,768)];
+    [_sfxMask setClippingRegion:CGRectMake(0,0,xPos,768 * MULTIPLIERY)];
 }
              
 -(void)sliderReactionAtPosition:(CGPoint)position LastTouch:(bool)isLastTouch
 {
     //IPAD FIX: should correspond to the y positions for the music and sfx volume
-    if (position.y > 200 && position.y < 260) {
+    if (position.y > (200 * MULTIPLIERY) && position.y < (260 * MULTIPLIERY)) {
         [self setMusicXPosition:position.x];
-    } else if(position.y > 120 && position.y < 180) {
+    } else if(position.y > (120 * MULTIPLIERY) && position.y < (180 * MULTIPLIERY)) {
         [self setSfxXPosition:position.x];
         if (isLastTouch) {
             [[SoundEngine shared] playSound:@"checkpoint"];

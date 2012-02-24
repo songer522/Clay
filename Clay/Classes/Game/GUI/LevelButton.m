@@ -9,6 +9,9 @@
 #import "LevelButton.h"
 #import "Sprite.h"
 #import "GameSettings.h"
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
+#define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 
 #define LEVEL_BUTTON_MAX_LEVEL_NUMBER 13
 #define LEVEL_BUTTON_NUMBER_OF_NORMAL_LEVELS 11
@@ -24,7 +27,7 @@
 {
     if ((self=[super init])) {
         _buttonId = buttonId + 1;
-        
+        _cart = nil;
         [self initButton];
     }        
     return self;    
@@ -81,8 +84,8 @@
     int buttonIdPos = (_buttonId > LEVEL_BUTTON_NUMBER_OF_NORMAL_LEVELS) ? (_buttonId - LEVEL_BUTTON_NUMBER_OF_NORMAL_LEVELS) : _buttonId;
     
     //initial position
-    float startX = 220; //was 212 for left panel
-    float startY = 190; //was 181 for left panel and 11 levels, and 186 without
+    float startX = 220 * MULTIPLIERX; //was 212 for left panel
+    float startY = 190 * MULTIPLIERY; //was 181 for left panel and 11 levels, and 186 without
     float row = floorf((buttonIdPos - 1) / 4);
     
     //for staggered effect, move that one down one
@@ -101,9 +104,9 @@
     if (row == 1) {
         column += 0.5f;
     }
-
-    CGPoint position = ccp(startX + 64 * column, startY - 64 * row);
-    [self setPosition:position];    
+    
+    CGPoint position = ccp(startX + (64 * MULTIPLIERX) * column, startY - (64 * MULTIPLIERY) * row);
+    [self setPosition:position];
 }
 
 -(void)setPosition:(CGPoint)position
@@ -111,7 +114,7 @@
     [_buttonGraphic setScreenPosition:position];
     [_cart setScreenPosition:ccp(position.x + 43.0f,position.y + 10.0f)];
     [self setTrophyPosition];
-    [self setHitbox:CGRectMake(position.x, position.y, 55, 55)];
+    [self setHitbox:CGRectMake(position.x, position.y, 55 * MULTIPLIERX, 55 * MULTIPLIERY)];
 }
 
 -(bool)checkIfSelected:(CGPoint)touch
@@ -175,7 +178,7 @@
 {
     if (_trophy!=nil && _unlocked) {
         CGPoint position = [_buttonGraphic getPosition];
-        [_trophy setScreenPosition:ccp(position.x + 34.0f,position.y - 2.0f)];            
+        [_trophy setScreenPosition:ccp(position.x + 34.0f * MULTIPLIERX,position.y - 2.0f * MULTIPLIERY)];            
     }
 }
 
@@ -189,6 +192,11 @@
 {
     [_trophy release];
     [_buttonGraphic release];
+    
+    if (_cart !=nil) {
+        [_cart release];
+        _cart = nil;
+    }
     _selector = nil;
     [super dealloc];
 }

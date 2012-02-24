@@ -23,13 +23,20 @@
 #define kPlayerActionKickFullDuration 0.38f;
 #define kPlayerActionKickActiveWhileDurationLessThan 0.75f
 
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
+#define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 @implementation PlayerActionKick
 
 -(void) initialize
 {
     [super initialize];
     _kick = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_PLAYER_KICK];
-    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
+    if (IS_IPAD)
+    {
+        [_kick setBoundingBox:CGRectMake(0, 10, 35* MULTIPLIERX, 35 * MULTIPLIERY)];
+    }
+    else if ([[GameSettings shared] usingHighResolutionGraphics])
     {
     [_kick setBoundingBox:CGRectMake(0, 0, 35, 35)];
     }
@@ -66,8 +73,12 @@
             [self updateBoundingBox];
             
             CGPoint position = [_parent getPosition];
-            
-            if ([[GameSettings shared] usingHighResolutionGraphics])
+            if (IS_IPAD)
+            {
+                position.x += 10.0f * MULTIPLIERX;
+                position.y += 33.0f * MULTIPLIERY;
+            }
+            else if ([[GameSettings shared] usingHighResolutionGraphics])
             {
                 position.x += 10.0f;
                 position.y -= 5.0f;
@@ -100,26 +111,36 @@
     int startX = 0;
     int projWidth = 35;
     
-    int frame = [[[_parent getSprite] getAnimation] getCurrentFrameNumber];
-    switch (frame) {
-        case 1:
-            startX = 55;
-            projWidth = 25;
-            break;
-        case 2:
-            startX = 30;
-            projWidth = 35;
-            break;
-        case 3:
-            startX = 0;
-            projWidth = 45;
-            break;
-        default:
-            projWidth = 0;
-            break;
+    @try {
+        Animation *animation = [[_parent getSprite] getAnimation];
+        int frame = [animation getCurrentFrameNumber];
+        switch (frame) {
+            case 1:
+                startX = 55;
+                projWidth = 25;
+                break;
+            case 2:
+                startX = 30;
+                projWidth = 35;
+                break;
+            case 3:
+                startX = 0;
+                projWidth = 45;
+                break;
+            default:
+                projWidth = 0;
+                break;
+        }
+    }
+    @catch (NSException *exception) {
+        //NSLog(@"Error! PlayerActionPunch.m - Most likely animation or frame no longer exists when game is run at lower framerate, like in a simulator.");
     }
     
-    if ([[GameSettings shared] usingHighResolutionGraphics])
+    if (IS_IPAD)
+    {
+        [_kick setBoundingBox:CGRectMake(startX, 10, projWidth * MULTIPLIERX, 35 * MULTIPLIERY)];
+    }
+    else if ([[GameSettings shared] usingHighResolutionGraphics])
     {
         [_kick setBoundingBox:CGRectMake(startX, 0, projWidth, 35)];
     }

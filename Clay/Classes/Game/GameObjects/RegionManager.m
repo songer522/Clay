@@ -128,7 +128,7 @@
 
 -(int)getRegionIndex:(float)xPosition
 {
-    return floor(xPosition / (32 * REGION_MANAGER_TILES_PER_REGION));
+    return floor(xPosition / (64 * REGION_MANAGER_TILES_PER_REGION));
 }
 
 -(NSArray*)getActiveGameObjectList

@@ -26,6 +26,9 @@
 #import "BestTimes.h"
 #import "TrackTimer.h"
 #import "PListLoader.h"
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
+#define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 
 @interface EndLevelLayer()
 
@@ -73,11 +76,11 @@
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         float centerX = winSize.width/2.0f;
         float centerY = winSize.height/2.0f;
-        [_replayButton setPosition:ccp(centerX-185,centerY - 140.0f)];
-        [_menuButton setPosition:ccp(centerX + 185.0f,centerY - 140.0f)];
-        [_finalTimePanel getCCSprite].position=ccp(centerX-225,centerY+70);
+        [_replayButton setPosition:ccp(centerX-185*MULTIPLIERX,centerY - 140.0f*MULTIPLIERY)];
+        [_menuButton setPosition:ccp(centerX + 185.0f*MULTIPLIERX,centerY - 140.0f*MULTIPLIERY)];
+        [_finalTimePanel getCCSprite].position=ccp(centerX-225*MULTIPLIERX,centerY+70*MULTIPLIERY);
         
-        _finalTimeText = [GameLabel gameLabelWithText:[[GameSettings shared] getGlobalForKey:@"finalLevelTimeText"]  Scale:1.0f Position:ccp(centerX,centerY+90)];
+        _finalTimeText = [GameLabel gameLabelWithText:[[GameSettings shared] getGlobalForKey:@"finalLevelTimeText"]  Scale:1.0f Position:ccp(centerX,centerY+90*MULTIPLIERY)];
         
         _action = END_LEVEL_NONE;
         _waitToSwitch = -1.0f;
@@ -183,7 +186,7 @@
             TrophyName=[NSString stringWithFormat:@"You Won A Bronze Trophy !"];
             break;
         case SLIVER_TROPHY:
-            TrophyName=[NSString stringWithFormat:@"You Won A Sliver Trophy !"];
+            TrophyName=[NSString stringWithFormat:@"You Won A Silver Trophy !"];
             break;
         case GOLD_TROPHY:
             TrophyName=[NSString stringWithFormat:@"You Won A Gold Trophy !"];
@@ -199,7 +202,7 @@
 -(void)setTrophyPosition
 {
     if (_trophyFront!=nil) {
-        [_trophyFront getCCSprite].position=ccp(200,65);
+        [_trophyFront getCCSprite].position=ccp(200*MULTIPLIERX,65*MULTIPLIERY);
     }
 }
 
@@ -209,7 +212,7 @@
     _trophyFront = [Sprite spriteFromFrameCacheWithName:frameName];
   
     [self setTrophyPosition];
-    _trophyText = [GameLabel gameLabelWithText:[self covertTrophyname:trophyId]  Scale:0.6f Position:ccp(240,50)];
+    _trophyText = [GameLabel gameLabelWithText:[self covertTrophyname:trophyId]  Scale:0.6f Position:ccp(240*MULTIPLIERX,50*MULTIPLIERY)];
 }
 
 -(void)setOldTrophy:(int)trophyId
@@ -244,7 +247,7 @@
     [[LayerManager sharedLayers] setWorkingLayer:self];
     if(_isNewRecord)
     {
-        _timeHeaderText = [GameLabel gameLabelWithText:@"New Record!"  Scale:0.6f Position:ccp(240,280)];
+        _timeHeaderText = [GameLabel gameLabelWithText:@"New Record!"  Scale:0.6f Position:ccp(240*MULTIPLIERX,270*MULTIPLIERY)];
     }
     else
     {

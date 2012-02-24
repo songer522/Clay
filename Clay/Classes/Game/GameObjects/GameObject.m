@@ -23,7 +23,10 @@
 #import "GCHelper.h"
 #import "GCState.h"
 
-#define GAME_OBJECT_DISTANCE_ONSCREEN 550.0f
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
+#define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
+#define GAME_OBJECT_DISTANCE_ONSCREEN 1000.0f
 
 #define MULTIPLIER_ANGLE_TO_RADS 0.1745328f //pre-calculation for Math.pi/180
 
@@ -149,8 +152,8 @@
 
 -(void) setOffsetForX:(float)x Y:(float)y
 {
-    _offsetX = x;
-    _offsetY = y;
+    _offsetX = x * MULTIPLIERX;
+    _offsetY = y * MULTIPLIERY;
 }
 
 -(void) setPosition:(CGPoint)position
@@ -457,9 +460,15 @@
     _hasGravity = true;
     _collided = false;  //want it to remain aggressive
     _isAggressive = true;
-    float magnitude = 555.0f;
+    float magnitude = 880.0f;
     _angle = -20; //old was -30
-    _rotationAmount = 75;
+    
+    if ([[GameSettings shared] isIpad]) {
+        _rotationAmount = 50;
+    } else {
+        _rotationAmount = 75;
+    }
+    
     _vx = magnitude * cosf((_angle * 3.14159)/180.0f);
     _vy = magnitude * sinf((_angle * 3.14159)/180.0f);
     _currentBehavior = COLLISION_BEHAVIOR_HEN_KICKED;
@@ -498,7 +507,7 @@
             }
         } else {
             if (_isVisible) {
-                [[_sprite getCCSprite] setVisible:NO];
+               [[_sprite getCCSprite] setVisible:NO];
                 if(_projectile!=nil){
                     [[_projectile getCCSprite] setVisible:NO];
                 }
@@ -811,7 +820,7 @@
             if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
                 Player *player = [[LayerManager sharedLayers] getPlayer];
                 CGPoint position = [player getPosition];
-                [self setPositionAtX:(position.x - 100.0f) Y:350.0f];
+                [self setPositionAtX:(position.x - 100.0f*MULTIPLIERX) Y:350.0f*MULTIPLIERY];
                 [self setPlayerEffect:@"none"];
                 _currentBehavior = COLLISION_BEHAVIOR_FIREBALL_MOVING;
                 _isInvincible = true;
@@ -821,11 +830,11 @@
         case COLLISION_BEHAVIOR_FIREBALL_MOVING:
             _vx += 160.0f;
             _vy += 100.0f;
-            if (_y <= 75.0f) {
+            if (_y <= 60.0f*MULTIPLIERY) {
                 _vx = 0.0f;
                 _vy = 0.0f;
                 _x = _prevLocation.x;
-                _y = 90.0f;
+                _y = 80.0f*MULTIPLIERY;
                 _isInvincible = false;
                 [self setPositionAtX:_x Y:_y];
                 [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"fireballLandingAnim"];
@@ -847,40 +856,40 @@
                 [[SoundEngine shared] playSound:@"rainyUmbrellaAppear"];
             }
             
-            if ([self closeToPlayer:315]) {
+            if ([self closeToPlayer:MULTIPLIERX*315]) {
                 _angle+=200.0f*dt;
                 if(_angle>-120.0f) {
                     _angle = -120.0f;
                 }
                 [_sprite getCCSprite].rotation = -30.0f + ((_angle + 180.0f) / (2.66667f));
-                _vx = _magnitude * cosf((_angle * 3.14159)/180.0f);
-                _vy = _magnitude * sinf((_angle * 3.14159)/180.0f);
+                _vx =MULTIPLIERX* _magnitude * cosf((_angle * 3.14159)/180.0f);
+                _vy = MULTIPLIERY*_magnitude * sinf((_angle * 3.14159)/180.0f);
                 
             } else if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
-                _vx = -1 * _magnitude;
+                _vx = MULTIPLIERX*-1 * _magnitude;
                 _angle = -180.0f;
                 [_sprite getCCSprite].rotation = -30.0f;
             }        
             break;
         case COLLISION_BEHAVIOR_PAPERPLANE:
             _vx = 0.0f;
-            if ([self closeToPlayer:480]) {
+            if ([self closeToPlayer:MULTIPLIERX*480]) {
                 _angle+=110.0f*dt;
                 if(_angle > -60.0f) {
                     _stopCurve=true;
                     _angle = - 60.0f;
                     
-                    _vx = -1 * _magnitude;
+                    _vx = MULTIPLIERX*-1 * _magnitude;
                     _vy=0;
                 }
                 if(!_stopCurve)
                 {
-                    _vx = _magnitude * cosf((_angle * 3.14159)/180.0f);
-                    _vy = -1*_magnitude * sinf((_angle * 3.14159)/180.0f);
+                    _vx =MULTIPLIERX* _magnitude * cosf((_angle * 3.14159)/180.0f);
+                    _vy = MULTIPLIERY*-1*_magnitude * sinf((_angle * 3.14159)/180.0f);
                 }
                 
-            }else if  ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
-                _vx = -1 * _magnitude;
+            }else if  ([self closeToPlayer:MULTIPLIERX*GAME_OBJECT_DISTANCE_ONSCREEN]) {
+                _vx = MULTIPLIERX*-1 * _magnitude;
                 _angle = -180;
             }            
             break;
@@ -1089,11 +1098,20 @@
                 if (!_madeSound) {
                     _madeSound = true;
                     [[SoundEngine shared] playSound:@"darkBats"];
+                    if ([[GameSettings shared] isIpad]) {
+                        _y = 160.0f;
+                    }
                 }
-                _angle+=200*dt;
                 _magnitude=300;
-                _vx = -0.12*_magnitude;
-                _vy =1.1*_magnitude * cosf((_angle * 3.14159)/180.0f);
+                if ([[GameSettings shared] isIpad]) {
+                    _angle+=200*dt;
+                    _vx = -0.24*_magnitude;
+                    _vy =2.2*_magnitude * cosf((_angle * 3.14159)/180.0f);
+                } else {
+                    _angle+=200*dt;
+                    _vx = -0.12*_magnitude;
+                    _vy =1.1*_magnitude * cosf((_angle * 3.14159)/180.0f);                    
+                }
             }
             break;
         case COLLISION_BEHAVIOR_DARK_SPIKES:
@@ -1118,8 +1136,14 @@
             }
             else if(_vy<0)
             {
-                if (_movedBy > 65.0f) {
-                    _movedBy = 65.0f;                
+                float finalPosition = 65.0f;
+                if ([[GameSettings shared] isIpad]) {
+                    finalPosition = 165.0f;
+                }
+                
+                
+                if (_movedBy > finalPosition) {
+                    _movedBy = finalPosition;                
                     _y = _initialPosition + _movedBy;
                     _vy = 0.0f;
                 }
@@ -1177,16 +1201,24 @@
             if (!_hasTriggered) {
                 if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
                     _hasTriggered = true;
-                    _y = 240.0f;
                     _vy = 0.0f;
                     _hasGravity = true;
                     _isBouncing = true;
                     _rotationAmount = 0.0f;
                     _magnitude = 170.0f; //magnitude of rotation
-                    _vx = -100.0f;
-                    _bouncePosition = 70.0f;
-                    _bounceGravity = 500.0f;
                     _bounceYDampening = 0.55f;
+                    
+                    if ([[GameSettings shared] isIpad]) {
+                        _y = 500.0f;
+                        _vx = -180.0f;
+                        _bounceGravity = 1000.0f;
+                        _bouncePosition = 110.0f;
+                    } else {
+                        _vx = -100.0f;
+                        _y = 240.0f;
+                        _bounceGravity = 500.0f;
+                        _bouncePosition = 70.0f;
+                    }
                 } else {
                     _isBouncing = false;
                 }
@@ -1227,15 +1259,25 @@
             break;
         case COLLISION_BEHAVIOR_DOJO_DROP_NINJA:
             if (!_hasTriggered && [self closeToPlayer:450]) {
+                
+                if ([[GameSettings shared] isIpad]) {
+                    _y = 1500.0f;
+                    _bouncePosition = 650.0f;  //was 90.0f
+                    _bounceGravity = 2000.0f;
+                    _vy = 600.0f;                                        
+                    _x -= 100.0f;                    
+                } else {
+                    _y = 910.0f;
+                    _bouncePosition = 400.0f;  //was 90.0f
+                    _bounceGravity = 1000.0f;
+                    _vy = 400.0f;                                        
+                    _x -= 50.0f;
+                }
+                
                 _hasTriggered = true;
-                _y = 910.0f; //was 600.0f;
-                _x -= 50.0f;
                 _isBouncing = true;
-                _bouncePosition = 400.0f;  //was 90.0f
-                _bounceGravity = 1000.0f;
                 _angle = 0.0f;
                 _bounceYDampening = 0.25f;
-                _vy = 400.0f;
                 _direction = 0.0f;
             }
             break;
@@ -1257,6 +1299,7 @@
             }
             break;
         case COLLISION_BEHAVIOR_DOJO_DEATHPIT:
+            
             if (!_hasTriggered && [self closeToPlayer:150]) {
                 _hasTriggered = true;
                 [self setOriginalAnimation:@"dojoDeathPitClosedAnim"];
@@ -1597,7 +1640,7 @@
     else if(_currentBehavior == COLLISION_BEHAVIOR_FIREFOX_FADES || _currentBehavior == COLLISION_BEHAVIOR_FIREFOX_PREATTACK || _currentBehavior == COLLISION_BEHAVIOR_FIREFOX_POSTATTACK) {
         _currentBehavior = COLLISION_BEHAVIOR_FIREFOX_PREATTACK;
         [self setBoundingBox:CGRectMake(37, 2, 14, 45)];
-        [_projectile setPosition:ccp(-31.0f,0.0f)];
+        [_projectile setPosition:ccp(-31.0f*MULTIPLIERX,0.0f)];
     }
     else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_HEALTH_BUBBLE_1) {
         _currentBehavior = COLLISION_BEHAVIOR_WATER_HEALTH_BUBBLE_1;
@@ -1844,8 +1887,8 @@
         _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_FIRE_FOXFIRE];
         [_projectile reset];
         [_projectile setAttachedTo:self];
-        [_projectile setPosition:ccp(-31.0f,0.0f)];
-        [_projectile setBoundingBox:CGRectMake(15,15,30,30)];
+        [_projectile setPosition:ccp(-31.0f*MULTIPLIERX,0.0f)];
+        [_projectile setBoundingBox:CGRectMake(15,15,30*MULTIPLIERX,30)];
         [_projectile setInitialVelocity];
         _projectilePersists = true;
     }

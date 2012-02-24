@@ -519,6 +519,7 @@
         [event setTotalTouches:[allTouches count]];
         [event setTouchLocation:[self convertTouchToNodeSpace:touch]];
         [_inputController interpretAndReactToInputEvent:event];
+        [event release];
     }
 }
 
@@ -531,6 +532,7 @@
         [event setTotalTouches:[allTouches count]];
         [event setTouchLocation:[self convertTouchToNodeSpace:touch]];
         [_inputController interpretAndReactToInputEvent:event];
+        [event release];
     }
 }
 

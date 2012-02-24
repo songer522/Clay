@@ -12,6 +12,9 @@
 #import "SoundEngine.h"
 #import "GameSettings.h"
 #import "GameLayer.h"
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
+#define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 
 @interface ActionButton()
 
@@ -125,7 +128,7 @@
         //[_textLabel setScale:0.325f];
     }
     
-    _textLabel.anchorPoint = ccp(0.5f,0.5f);
+    _textLabel.anchorPoint = ccp(0.5f,0.55f);
     [[[LayerManager sharedLayers] currentLayer] addChild:_textLabel];    
     _hasText = true;
 }
@@ -139,15 +142,15 @@
     [_buttonSelected setScreenPosition:position];
     [super setPosition:position];
     _textLabel.position = ccp(position.x,position.y - 3.0f);
-    [_lockingGraphic setScreenPosition:ccp(position.x + 48.5f, position.y + 12.5f)];
+    [_lockingGraphic setScreenPosition:ccp(position.x + 48.5f * MULTIPLIERX, position.y + 12.5f* MULTIPLIERY)];
     
     if(!_usingRelativeHitbox) {
-        [self setHitbox:CGRectMake(position.x - 48, position.y - 15, 95, 30)];
+        [self setHitbox:CGRectMake(position.x - 48, position.y - 15, 95 * MULTIPLIERX, 30 * MULTIPLIERY)];
     }
     
     if(_facebookOrTwitter)
     {
-        [self setHitbox:CGRectMake(position.x - 48, position.y - 15, 30, 30)];
+        [self setHitbox:CGRectMake(position.x - 48* MULTIPLIERX, position.y - 15, 30 * MULTIPLIERX, 30 * MULTIPLIERY)];
     }
     if(_facebookOrTwitterEndStroy)
     {

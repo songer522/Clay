@@ -75,7 +75,7 @@
         float camPositionX = [[Camera sharedCamera] xPosition];
         float newPosX = (camPositionX - _originalCamPositionX) * LIGHTNING_PARALLAX_RATIO;
         
-        CGPoint lightningParallaxPosition = CGPointMake(_position.x + newPosX, _position.y);
+        CGPoint lightningParallaxPosition = CGPointMake(_position.x + newPosX, _position.y*2.4);
         //NSLog(@"LX: %.2f, PLX: %.2f, RAX: %.2f",_position.x,playerPosition.x,lightningParallaxPosition.x);
         [_sprite setPosition:lightningParallaxPosition];
     }

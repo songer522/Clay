@@ -11,6 +11,8 @@
 #include <sys/sysctl.h>
 #import "PListLoader.h"
 #import "Database.h"
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIER (IS_IPAD ? 2 : 1)
 
 #define SETTING_IS_STUTTER_MODE_DEFAULT 0
 
@@ -88,6 +90,18 @@ static GameSettings *_shared = nil;
 
 -(bool)usingHighResolutionGraphics
 {
+    if (IS_IPAD)
+    {
+        return [GameSettings shouldUseRetinaForDevice];
+    }
+    else if ((([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)) && [GameSettings shouldUseRetinaForDevice])
+    {
+        return YES;
+    }
+    else
+    {
+        return [GameSettings shouldUseRetinaForDevice];
+    }
     return _usingHighResolutionGraphics;
 }
 
@@ -120,13 +134,19 @@ static GameSettings *_shared = nil;
     if ([platform isEqualToString:@"iPod2,1"]) return NO;       //ipod touch 2g
     if ([platform isEqualToString:@"iPod3,1"]) return NO;       //ipod touch 3g
     if ([platform isEqualToString:@"iPod4,1"]) return NO;       //ipod touch 4g
-    if ([platform isEqualToString:@"iPad1,1"]) return NO;       //ipad
-    if ([platform isEqualToString:@"iPad2,1"]) return NO;      //ipad 2 (wifi)
-    if ([platform isEqualToString:@"iPad2,2"]) return NO;      //ipad 2 (gsm)
-    if ([platform isEqualToString:@"iPad2,3"]) return NO;      //ipad 2 (cdma)
-    if ([platform isEqualToString:@"i386"]) return YES;         //simulator, which can always be changed manually
+    if ([platform isEqualToString:@"iPad1,1"]) return YES;       //ipad
+    if ([platform isEqualToString:@"iPad2,1"]) return YES;      //ipad 2 (wifi)
+    if ([platform isEqualToString:@"iPad2,2"]) return YES;      //ipad 2 (gsm)
+    if ([platform isEqualToString:@"iPad2,3"]) return YES;     //ipad 2 (cdma)
+    if ([platform isEqualToString:@"i386"]) return NO;         //simulator, which can always be changed manually
     if ([platform isEqualToString:@"iPod touch"]) return NO;
+    if ([platform isEqualToString:@"x86_64"]) return YES; //simulator
     return YES; //assume future devices can all handle the retina display
+}
+
+-(bool)isIpad
+{
+    return true;
 }
 
 -(void)loadFromSettingsPlist

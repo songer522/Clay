@@ -11,6 +11,7 @@
 #import "Player.h"
 #import "Battery.h"
 #import "SoundEngine.h"
+#import "GameSettings.h"
 
 @implementation HealthIcon
 
@@ -49,7 +50,12 @@
     [_sprite setAlpha:0.0f];
     _willAdjustBattery = false;
     
-    float offsetY = 0;
+    float offsetY = 0, offsetX = 0;
+    
+    if ([[GameSettings shared] isIpad]) {
+        offsetY = 140.0f;
+        offsetX = 30.0f;
+    }
     
     switch (healthType) {
         case HEALTHICON_POSITIVE:
@@ -68,7 +74,7 @@
     
     switch (_animType) {
         case HEALTHANIM_PLAYER_LOW_RIGHT:
-            _position.x += 19.0f;
+            _position.x += (19.0f + offsetX);
             _position.y += 12.0f + offsetY;
             if (healthType == HEALTHICON_POSITIVE) {
                 _waitToStart = 0.05f;                
@@ -77,12 +83,12 @@
             }
             break;
         case HEALTHANIM_PLAYER_MID_LEFT:
-            _position.x -= 12.0f;
+            _position.x -= (12.0f + offsetX);
             _position.y += 45.0f + offsetY;
             _waitToStart = 0.15f;
             break;
         case HEALTHANIM_PLAYER_UP_RIGHT:
-            _position.x += 25.0f;
+            _position.x += (25.0f + offsetX);
             _position.y += 77.0f + offsetY;
             if (healthType == HEALTHICON_POSITIVE) {
                 _waitToStart = 0.35f;                
@@ -91,32 +97,57 @@
             }
             break;
         case HEALTHANIM_INTO_BATTERY_1:
-            _position.x = -10.0f;
-            _position.y = 13.0f;
+            if ([[GameSettings shared] isIpad]) {
+                _position.x = 420.0f;
+                _position.y = 425.0f;
+            } else {
+                _position.x = -10.0f;
+                _position.y = 13.0f;
+            }
             _waitToStart = 0.05f;
             _willAdjustBattery = true;
             break;
         case HEALTHANIM_INTO_BATTERY_2:
-            _position.x = -10.0f;
-            _position.y = 13.0f;
+            if ([[GameSettings shared] isIpad]) {
+                _position.x = 420.0f;
+                _position.y = 425.0f;
+            } else {
+                _position.x = -10.0f;
+                _position.y = 13.0f;
+            }
             _waitToStart = 0.4f;
             _willAdjustBattery = true;
             break;
         case HEALTHANIM_INTO_BATTERY_3:
-            _position.x = -10.0f;
-            _position.y = 13.0f;
+            if ([[GameSettings shared] isIpad]) {
+                _position.x = 420.0f;
+                _position.y = 425.0f;
+            } else {
+                _position.x = -10.0f;
+                _position.y = 13.0f;
+            }
             _waitToStart = 0.75f;            
             _willAdjustBattery = true;
             break;
         case HEALTHANIM_INTO_BATTERY_4:
-            _position.x = -10.0f;
-            _position.y = 13.0f;
+            if ([[GameSettings shared] isIpad]) {
+                _position.x = 420.0f;
+                _position.y = 425.0f;
+            } else {
+                _position.x = -10.0f;
+                _position.y = 13.0f;
+            }
             _waitToStart = 1.10f;            
             _willAdjustBattery = true;
             break;
         case HEALTHANIM_INTO_BATTERY_5:
-            _position.x = -10.0f;
-            _position.y = 13.0f;
+            if ([[GameSettings shared] isIpad]) {
+                _position.x = 420.0f;
+                _position.y = 425.0f;
+            } else {
+                _position.x = -10.0f;
+                _position.y = 13.0f;
+            }
             _waitToStart = 1.45f;            
             _willAdjustBattery = true;
             break;

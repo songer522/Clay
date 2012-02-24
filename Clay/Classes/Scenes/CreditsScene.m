@@ -16,6 +16,9 @@
 #import "GameSettings.h"
 #import "GCState.h"
 #import "GCHelper.h"
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
+#define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 
 @implementation CreditsScene
 
@@ -87,21 +90,21 @@
 
 -(void)addHeader:(NSString*)header
 {
-    GameLabel *label = [GameLabel gameLabelWithText:[header uppercaseString] Scale:1.25f Position:ccp(240,_currentY)];
+    GameLabel *label = [GameLabel gameLabelWithText:[header uppercaseString] Scale:1.25f Position:ccp(240 * MULTIPLIERX,_currentY * MULTIPLIERY)];
     [_lines addObject:label];
     _currentY -= 60;
 }
 
 -(void)addCredit:(NSString*)name
 {
-    GameLabel *creditLabel = [GameLabel gameLabelWithText:[name uppercaseString] Scale:0.9f Position:ccp(240,_currentY)];
+    GameLabel *creditLabel = [GameLabel gameLabelWithText:[name uppercaseString] Scale:0.9f Position:ccp(240 * MULTIPLIERX,_currentY * MULTIPLIERY)];
     [_lines addObject:creditLabel];
     _currentY -= 23;    
 }
 
 -(void)addTitle:(NSString*)title;
 {
-    GameLabel *titleLabel = [GameLabel gameLabelWithText:[title uppercaseString] Scale:0.5f Position:ccp(240,_currentY)];
+    GameLabel *titleLabel = [GameLabel gameLabelWithText:[title uppercaseString] Scale:0.5f Position:ccp(240 * MULTIPLIERX,_currentY * MULTIPLIERY)];
     [_lines addObject:titleLabel];
     _currentY -= 20;
 }
@@ -124,7 +127,7 @@
 
     NSDictionary *group1 = [credits objectForKey:@"group1"];
     [self addGroup:group1];
-    _currentY -= 90.0f;
+    _currentY -= 90.0f* MULTIPLIERY;
     
     NSDictionary *group2 = [credits objectForKey:@"group2"];
     [self addGroup:group2];

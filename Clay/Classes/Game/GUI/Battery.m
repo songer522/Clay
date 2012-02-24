@@ -14,6 +14,9 @@
 #import "GameSettings.h"
 #import "HealthIcon.h"
 
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
+#define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 #define N(x) [NSNumber numberWithFloat: x]
 
 //IPAD FIX: these numbers got moved and the battery was shifted a few pixels to the left
@@ -40,6 +43,7 @@
         
         _healthIcons = [[NSMutableArray alloc] initWithCapacity:8];
         _batterySpriteFrames = [[NSMutableArray alloc] initWithCapacity:7];
+        [sprite setScreenPosition:ccp(412 * MULTIPLIERX,285 * MULTIPLIERY)];
         
         for (int i=0; i<7;i++) {
             //starts at 0 just so we can directly access the object quickly
@@ -60,7 +64,7 @@
         _x = BATTERY_X;
         _y = BATTERY_Y;
         
-        [sprite setScreenPosition:ccp(BATTERY_X,BATTERY_Y)];
+        [sprite setScreenPosition:ccp(BATTERY_X* MULTIPLIERX,BATTERY_Y* MULTIPLIERY)];
         
         _wasLowBattery = false;
     }

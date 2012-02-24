@@ -11,7 +11,10 @@
 #import "GameObject.h"
 #import "GameSettings.h"
 
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define COLLISION_PLAYER_GROUND_Y_POSITION 64.0f
+#define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
+#define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 
 @implementation CollisionDetection
 
@@ -35,7 +38,13 @@
         _mapWidth = _map.mapSize.width;
         
         //do any precalculations for performance
-        if ([[GameSettings shared] usingHighResolutionGraphics])
+        if (IS_IPAD)
+        {
+            _preCalculateAccurateCoordsY = (_mapHeight * _tileSize) / _tileSize;
+            _preCalculateTileSize = _tileSize;
+             _preCalculateAccurateCoordsTileSize = 1.0f /  (float)_tileSize;
+        }
+        else if ([[GameSettings shared] usingHighResolutionGraphics])
         {
             _preCalculateAccurateCoordsY = (_mapHeight * _halfTileSize) / _halfTileSize;
             _preCalculateTileSize = _halfTileSize;
@@ -59,7 +68,7 @@
 {
     CGPoint desiredPosition = [object getPosition];
     CGPoint testPosition = CGPointMake(desiredPosition.x - 4.0f, desiredPosition.y); //the bottom middle point of the character is at object.x - 4, object.y
-   
+    
     //if on the ground, test if a deathpit or not.
     if (testPosition.y < COLLISION_PLAYER_GROUND_Y_POSITION) {
         testPosition.y -= 4.0f; //bump the position a bit lower just to make sure we're grabbing the tile below and not the tile above
@@ -117,7 +126,7 @@
         
         //if landed on the ledge, put them on top of that ledge
         if (object.vy >= 0.0f && _ledgeHeightAtColumn[(int)coords.x] == coords.y) {
-            desiredPosition.y = (_mapHeight - coords.y - 1) * _preCalculateTileSize  + 32.0f;            
+            desiredPosition.y = (_mapHeight - coords.y - 1) * _preCalculateTileSize ;            
             [[object getCollision] setCurrentState:COLLISION_STATE_LEDGE];            
         } else {
             //otherwise they're in midair, don't change their position
@@ -141,12 +150,12 @@
     //keep x between 0 and _mapWidth - 1
     x = MAX(0, x);
     x = MIN((_mapWidth - 1),x);
-
+    
     //keep y between 0 and _mapHeight - 1
     y = MAX(0,y);
     y = MIN((_mapHeight - 1),y);
-        
-    return ccp(x,y);
+    
+    return ccp(x,y -1);
 }
 
 -(NSString*)getCollisionPropertyForTileCoords:(CGPoint)coords
@@ -166,7 +175,6 @@
     } else {
         returnVal = [NSString stringWithString:@"none"];
     }
-    
     return returnVal;
 }
 

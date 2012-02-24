@@ -16,6 +16,9 @@
 #import "OptionsScene.h"
 #import "GameLayer.h"
 #import "SoundEngine.h"
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
+#define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 
 @implementation HowToPlayScreen
 
@@ -53,16 +56,16 @@
         
         _backButton = [ActionButton actionButtonCustomGraphicsForIdle:@"UI_GameType_ButtonS_Blue.png" Selected:@"UI_GameType_ButtonS_Green.png"];
         [_backButton setInitialText:@"BACK"];
-        [_backButton setPosition:ccp(50, 18)];
+        [_backButton setPosition:ccp(50 *MULTIPLIERX, 18*MULTIPLIERY)];
         
         _header = [GameLabel gameLabelWithText:@"HOW TO PLAY" Scale:0.65f];
-        [_header setPosition:ccp(375.0f,284.0f)];
+        [_header setPosition:ccp(375.0f*MULTIPLIERX,284.0f*MULTIPLIERY)];
         
         
         
         _startButton = [ActionButton actionButtonCustomGraphicsForIdle:@"UI_GameType_ButtonS_Blue.png" Selected:@"UI_GameType_ButtonS_Green.png"];
         [_startButton setInitialText:@"NEXT"];
-        [_startButton setPosition:ccp(430,18)];
+        [_startButton setPosition:ccp(430*MULTIPLIERX,18*MULTIPLIERY)];
         
         NSString *preTutorial = [[GameSettings shared] getGlobalForKey:@"preTutorialScreen"];
         if ([preTutorial isEqualToString:@"options"]) {

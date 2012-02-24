@@ -13,6 +13,7 @@
 #import "Sprite.h"
 #import "SoundEngine.h"
 #import "Player.h"
+#import "GameSettings.h"
 
 #define SPIN_PLAYER_GROUND_Y 64
 
@@ -108,10 +109,20 @@
         } else {
             //[_player setVelocity:30.0f];
             if (_player.vy < 0) {
-                [_player setVy:100.0f];
+                if ([[GameSettings shared] isIpad]) {
+                    [_player setVy:200.0f];
+                } else {
+                    [_player setVy:100.0f];
+                }
             }
-            _player.vy += 10.0f * dt;
-            [_sprite setPlayerObjectPosition:CGPointMake(_player.x - 0.0f, _player.y + 45.0f)];
+            
+            if ([[GameSettings shared] isIpad]) {
+                [_sprite setPlayerObjectPosition:CGPointMake(_player.x - 0.0f, _player.y + 155.0f)];                
+                _player.vy += 20.0f * dt;
+            } else {
+                [_sprite setPlayerObjectPosition:CGPointMake(_player.x - 0.0f, _player.y + 45.0f)];
+                _player.vy += 10.0f * dt;
+            }
         }
     }
     [super update:dt];

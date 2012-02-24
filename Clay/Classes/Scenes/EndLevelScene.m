@@ -24,6 +24,9 @@
 #import "AppDelegate.h"
 #import "GameLabel.h"
 #import "Appirater.h"
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
+#define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 
 @implementation EndLevelScene
 
@@ -109,28 +112,28 @@
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         float centerX = winSize.width/2.0f;
         float centerY = winSize.height/2.0f;
-        [_menuButton setPosition:ccp(centerX + 185.0f,centerY - 140.0f)];
-        [_background getCCSprite].position=ccp(centerX-240,centerY-160);
-        [_finalTimePanel getCCSprite].position=ccp(centerX-225,centerY+70);
-        [_facebookAndTwitterPanel getCCSprite].position=ccp(centerX-225,centerY-85);
-        [_finalTimeHeader getCCSprite].position=ccp(centerX-215,centerY+120);
-        [_difficultyHeader getCCSprite].position=ccp(centerX+65,centerY+120);
+        [_menuButton setPosition:ccp(centerX + 185.0f*MULTIPLIERX,centerY - 140.0f*MULTIPLIERY)];
+        [_background getCCSprite].position=ccp(32,84);
+        [_finalTimePanel getCCSprite].position=ccp(centerX-225*MULTIPLIERX,centerY+70*MULTIPLIERY);
+        [_facebookAndTwitterPanel getCCSprite].position=ccp(centerX-225*MULTIPLIERX,centerY-85*MULTIPLIERY);
+        [_finalTimeHeader getCCSprite].position=ccp(centerX-215*MULTIPLIERX,centerY+120*MULTIPLIERY);
+        [_difficultyHeader getCCSprite].position=ccp(centerX+65*MULTIPLIERX,centerY+120*MULTIPLIERY);
         
         
         
         
        
-        [_facebookIcon setScreenPosition:ccp(centerX-216,centerY-23)];
-        [_twitterIcon setScreenPosition:ccp(centerX-216,centerY-72)];
+        [_facebookIcon setScreenPosition:ccp(centerX-216*MULTIPLIERX,centerY-23*MULTIPLIERY)];
+        [_twitterIcon setScreenPosition:ccp(centerX-216*MULTIPLIERX,centerY-72*MULTIPLIERY)];
         
         _facebookButton =[ActionButton actionButtonManualSetup];
         _facebookButton.facebookOrTwitterEndStroy=true;
-        [_facebookButton setPosition:ccp(24,127)];
+        [_facebookButton setPosition:ccp(24*MULTIPLIERX,127*MULTIPLIERY)];
         [_facebookButton setEnabled:true];
         
         _twitterButton =[ ActionButton actionButtonManualSetup];
         _twitterButton.facebookOrTwitterEndStroy=true;
-        [_twitterButton setPosition:ccp(24,82)];
+        [_twitterButton setPosition:ccp(24*MULTIPLIERX,82*MULTIPLIERY)];
         [_twitterButton setEnabled:true];
 
         
@@ -325,10 +328,10 @@
         
         NSString *timerText=[TrackTimer getTimeStringFromFloat:finalTime];
         [[LayerManager sharedLayers] setWorkingLayer:self];
-        _finalTimeText = [GameLabel gameLabelWithText:timerText  Scale:1.0f Position:ccp(240,250)];
+        _finalTimeText = [GameLabel gameLabelWithText:timerText  Scale:1.0f Position:ccp(240*MULTIPLIERX,245*MULTIPLIERY)];
         if(_isNewRecord)
         {
-            _timeHeaderText=[GameLabel gameLabelWithText:@"NEW RECORD!"  Scale:0.6f Position:ccp(240,275)];
+            _timeHeaderText=[GameLabel gameLabelWithText:@"NEW RECORD!"  Scale:0.6f Position:ccp(240*MULTIPLIERX,270*MULTIPLIERY)];
         }
         
         [[LayerManager sharedLayers] forgetWorkingLayer];

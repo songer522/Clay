@@ -33,11 +33,12 @@
     
     switch (event.type) {
         case INPUT_EVENT_TYPE_TOUCHES_BEGAN:
-            _inputBeganEvent = event;
+            _inputBeganEvent = [event retain];
             [receiver reactToTouchAt:event.touchLocation InputType:INPUT_TOUCH_PRESSED TouchCount:event.totalTouches];
             [self schedule:@selector(reactMediumHold) interval:0.2f];
             break;
         case INPUT_EVENT_TYPE_TOUCHES_MOVED:
+            
             break;
         case INPUT_EVENT_TYPE_TOUCHES_ENDED:
             [receiver reactToTouchAt:event.touchLocation InputType:INPUT_TOUCH_END TouchCount:event.totalTouches];
@@ -45,7 +46,7 @@
             break;
         default:
             break;
-    }
+    }    
 }
 
 -(void)reactMediumHold
@@ -53,11 +54,16 @@
     GameController *receiver = (GameController*)_inputBeganEvent.receiver;
     [receiver reactToTouchAt:_inputBeganEvent.touchLocation InputType:INPUT_TOUCH_HOLD_MEDIUM TouchCount:_inputBeganEvent.totalTouches];
     [self unschedule:@selector(reactMediumHold)];
+    [_inputBeganEvent release];
+    _inputBeganEvent = nil;
 }
 
 -(void)dealloc
 {
-    [_inputBeganEvent release];
+    if (_inputBeganEvent!=nil) {
+        [_inputBeganEvent release];
+        _inputBeganEvent = nil;
+    }
     [super dealloc];
 }
 

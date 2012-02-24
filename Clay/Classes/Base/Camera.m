@@ -13,6 +13,9 @@
 #import "Player.h"
 #import "GameSettings.h"
 
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
+#define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 @implementation Camera
 
 @synthesize trackingTarget = _trackingTarget;
@@ -66,7 +69,7 @@ static Camera *_sharedCamera = nil;
 
     //restrict the camera in certain levels
     //IPAD FIX: may need a different greater height for ipad, since the ipad has more pixels in the y plane.
-    rect.size.height = 320;
+    rect.size.height =  402 * MULTIPLIERX;
     _boundary = rect;
     
     CGSize winSize = [[CCDirector sharedDirector] winSize];
@@ -192,8 +195,8 @@ static Camera *_sharedCamera = nil;
 -(void)updateOnScreenRange
 {
     float currentX = _x - _center.x;
-    _leftOnscreen = currentX - CAMERA_OFFSCREEN_PADDING_LEFT;
-    _rightOnscreen = currentX + CAMERA_OFFSCREEN_PADDING_RIGHT;
+    _leftOnscreen = currentX - CAMERA_OFFSCREEN_PADDING_LEFT*MULTIPLIERX;
+    _rightOnscreen = currentX + CAMERA_OFFSCREEN_PADDING_RIGHT*MULTIPLIERX;
 }
 
 -(bool)isInVisualRange:(float)xPosition

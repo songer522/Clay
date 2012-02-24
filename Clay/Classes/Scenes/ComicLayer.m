@@ -13,6 +13,9 @@
 #import "GameSettings.h"
 #import "SoundEngine.h"
 
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
+#define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 @implementation ComicLayer
 
 @synthesize comicManager = _comicManager;
@@ -49,7 +52,7 @@
         _targetPosition = 35.0f;
         _timeToWait = 1.0f;
     } else {
-        _position = 240.0f;
+        _position = 240.0f*MULTIPLIERX;
         _targetPosition = 35.0f;
         _timeToWait = 0.00f;
     }
@@ -159,7 +162,7 @@
     _phase = 2;
     _rate = 1.0f;
     if (_transition == BLACKBOX_IN) {
-        _targetPosition = 240.0f;
+        _targetPosition = 240.0f*MULTIPLIERX;
         _timeToWait = 0.0f;
         _atTarget = false;
     } else {
@@ -200,12 +203,12 @@
     
     int comicNumber = [[comicName substringFromIndex:5] intValue];
     if (comicNumber <= 12) { 
-        _imageName = [NSString stringWithFormat:@"Comic_%d.png",comicNumber];
+        _imageName = [NSString stringWithFormat:@"Comic_%d-hd.png",comicNumber];
         durationNumber = comicNumber;
         showComic = true;
     }
     else if(comicNumber > 20) {
-        _imageName = [NSString stringWithFormat:@"Comic_%d.png",comicNumber];
+        _imageName = [NSString stringWithFormat:@"Comic_%d-hd.png",comicNumber];
         durationNumber = comicNumber - 10;
         showComic = true;
     }
@@ -215,12 +218,13 @@
 
      if (showComic) {            
         _comicPanel = [CCSprite spriteWithFile:_imageName];
+         _comicPanel.position= ccp(32,64);
         _comicPanel.anchorPoint = ccp(0,0);
         [_comicPanel setOpacity:0];
         [self addChild:_comicPanel];
 
-        _skipButton = [CCSprite spriteWithFile:@"Comic_Button_Skip.png"];
-        _skipButton.position = ccp(460,20);
+        _skipButton = [CCSprite spriteWithFile:@"Comic_Button_Skip-hd.png"];
+        _skipButton.position = ccp(460*MULTIPLIERX,20*MULTIPLIERY);
         _skipButton.anchorPoint = ccp(0.5f,0.5f);
         [self addChild:_skipButton];
         
@@ -254,13 +258,21 @@
 {
     //if (_transition == BLACKBOX_IN || _transition == BLACKBOX_OUT || _transition == BLACKBOX_IDLE || _transition == BLACKBOX_PLAY_COMIC_FADE_IN) {
         float scale = 1.0f;
-        if ([[GameSettings shared] usingHighResolutionGraphics]) {
+        if (IS_IPAD)
+        {
+            scale = 2.0f;
+        }
+        else if ([[GameSettings shared] usingHighResolutionGraphics]) {
             scale = 2.0f;        
         }
-        [self ccDrawFilledRectFrom:ccp(0,0) To:ccp(960,position * scale)];
-        [self ccDrawFilledRectFrom:ccp(0,640) To:ccp(960,(320.0f - position) * scale)];    
-    //}
-}
+        [self ccDrawFilledRectFrom:ccp(0,0) To:ccp(1024,position * scale)];
+        [self ccDrawFilledRectFrom:ccp(0,768) To:ccp(1024,(384.0f - position) * scale)];    
+    scale = 1.0f;
+    
+    [self ccDrawFilledRectFrom:ccp(0 * MULTIPLIERX,0 * MULTIPLIERY) To:ccp(1024 * MULTIPLIERX,(position * MULTIPLIERY) * scale)];
+    [self ccDrawFilledRectFrom:ccp(0 * MULTIPLIERX,768 * MULTIPLIERY) To:ccp(1024 * MULTIPLIERX,((384.0f - position) * MULTIPLIERY) * scale)];    
+    }
+
 
 
 -(void) ccDrawFilledRectFrom:(CGPoint)v1 To:(CGPoint)v2

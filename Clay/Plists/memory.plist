@@ -92,13 +92,13 @@
 		<key>removeTextures</key>
 		<string>tileset_level_6</string>
 		<key>batchObstacles</key>
-		<string>zombieLevel</string>
+		<string>zombieLevel1</string>
 		<key>animations</key>
 		<string>level6,shoot</string>
 		<key>sounds</key>
 		<string>zombieMoan,shootActionReload,shootAction</string>
 		<key>textures</key>
-		<string>zombieLevel,characterShooting</string>
+		<string>zombieLevel1,zombieLevel2,characterShooting</string>
 	</dict>
 	<key>level7</key>
 	<dict>
