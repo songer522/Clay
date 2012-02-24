@@ -31,7 +31,7 @@
         [[_shield getCCSprite] setVisible:YES];
         
         CGPoint position = [_parent getPosition];
-        [_shield setPosition:CGPointMake(position.x + 2*2.133, position.y*2.4 + 15)];
+        [_shield setPosition:CGPointMake(position.x + 2, position.y + 110)];
         
         _duration = 0.5f;
         [[SoundEngine shared] playSound:@"shield"];
@@ -48,6 +48,7 @@
 {
     [[_shield getCCSprite] setVisible:NO];
     [super cancelAction];
+    
 }
 
 
@@ -59,7 +60,7 @@
         _isActive = true;
         
         CGPoint position = [_parent getPosition];
-        [_shield setPosition:CGPointMake(position.x + 2*2.133, position.y*2.4 + 15)];
+        [_shield setPosition:CGPointMake(position.x + 2, position.y + 110)];
     }
     [super update:dt];
 }
