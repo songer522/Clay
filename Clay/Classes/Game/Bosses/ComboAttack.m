@@ -31,19 +31,19 @@
         
         switch (comboId) {
             case 0:
-                _initialPosition = ccp(18,-70);
-                _attackPosition = ccp(420,35);
-                _endAttackPosition = ccp(-200,35);
+                _initialPosition = ccp(18*2.133,-70*4);
+                _attackPosition = ccp(420*2.133,45*4);
+                _endAttackPosition = ccp(-200*2.133,45*4);
                 break;
             case 1:
-                _initialPosition = ccp(-18,-70);
-                _attackPosition = ccp(420,65);
-                _endAttackPosition = ccp(-200,65);
+                _initialPosition = ccp(-18*2.133,-70*4);
+                _attackPosition = ccp(420*2.133,70*4);
+                _endAttackPosition = ccp(-200*2.133,70*4);
                 break;
             case 2:
-                _initialPosition = ccp(0,-45);
-                _attackPosition = ccp(380,220);
-                _endAttackPosition = ccp(-150,-50);
+                _initialPosition = ccp(0,-45*3);
+                _attackPosition = ccp(380*2.133,220*3);
+                _endAttackPosition = ccp(-150*2.133,-50*3);
                 break;
             default:
                 break;
@@ -51,7 +51,7 @@
         
         _isActive = false;
         [self switchToPhase:COMBO_IDLE];
-        [self setBoundingBox:CGRectMake(12,12,24,24)];
+        [self setBoundingBox:CGRectMake(12*2.133,12*2.4,24,24)];
     }
     return self;    
 }

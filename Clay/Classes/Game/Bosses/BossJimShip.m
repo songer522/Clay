@@ -109,7 +109,7 @@
     [[_megaCannonAnim getCCSprite] setVisible:NO];
     
     CGPoint shipWorldPos = [[Camera sharedCamera] convertToWorldXY:[_sprite getScreenPosition]];    
-    [_megaCannonBullet setPosition:CGPointMake(shipWorldPos.x + 73,shipWorldPos.y + 28.0f)];
+    [_megaCannonBullet setPosition:CGPointMake(shipWorldPos.x + 73*2.133,shipWorldPos.y + 28.0f*2.4)];
     [_megaCannonBullet reset];
     
 }
@@ -121,7 +121,7 @@
     [[_megaCannonAnim getCCSprite] setVisible:NO];
     
     CGPoint shipWorldPos = [[Camera sharedCamera] convertToWorldXY:[_sprite getScreenPosition]];    
-    [_megaCannonBullet setPosition:CGPointMake(shipWorldPos.x - 120,shipWorldPos.y + 20.0f)];
+    [_megaCannonBullet setPosition:CGPointMake(shipWorldPos.x - 120*2.133,shipWorldPos.y + 20.0f*2.4)];
     [_megaCannonBullet reset];
 }
 
@@ -249,9 +249,9 @@
 {
     CGPoint shipPos = [_sprite getScreenPosition];
     if(_frame == 1) {
-        [_cannonAnim setScreenPosition:CGPointMake(shipPos.x - 136, shipPos.y + 16.0f)];
+        [_cannonAnim setScreenPosition:CGPointMake(shipPos.x - 136*2, shipPos.y + 16.0f*2.26)];
     } else {
-        [_cannonAnim setScreenPosition:CGPointMake(shipPos.x - 136, shipPos.y + 10.0f)];
+        [_cannonAnim setScreenPosition:CGPointMake(shipPos.x - 136*2, shipPos.y + 10.0f*2.26)];
     }
     
     if (_waitToShoot > 0.0f) {
@@ -267,9 +267,9 @@
     CGPoint shipPos = [_sprite getScreenPosition];
     
     if (_frame == 1) {
-        [_megaCannonAnim setScreenPosition:ccp(shipPos.x + 73,shipPos.y + 28.0f)];        
+        [_megaCannonAnim setScreenPosition:ccp(shipPos.x + 73*2,shipPos.y + 28.0f*2.2)];        
     } else {
-        [_megaCannonAnim setScreenPosition:ccp(shipPos.x + 73,shipPos.y + 31.0f)];        
+        [_megaCannonAnim setScreenPosition:ccp(shipPos.x + 73*2,shipPos.y + 31.0f*2.2)];        
     }
     
     if (_waitToMegaCannon > 0.0f) {

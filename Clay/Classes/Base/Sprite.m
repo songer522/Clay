@@ -329,7 +329,7 @@
     [_frameName release];
     
     if (_animation != nil) {
-        [_animation release];        
+        //[_animation release];        
         _animation = nil;
     }
     
