@@ -69,7 +69,6 @@
 	
 	// Init the View Controller
 	viewController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
-	viewController.wantsFullScreenLayout = YES;
 	
 	//
 	// Create the EAGLView manually
@@ -81,14 +80,20 @@
 								   pixelFormat:kEAGLColorFormatRGB565	// kEAGLColorFormatRGBA8
 								   depthFormat:0						// GL_DEPTH_COMPONENT16_OES
 						];
+	glView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	
 //    glView.opaque = YES;
     
 	// attach the openglView to the director
 	[director setOpenGLView:glView];
 	
-//	// Enables High Res mode (Retina Display) on iPhone 4 and maintains low res on all other devices
-	if( ! [director enableRetinaDisplay:[GameSettings shouldUseRetinaForDevice]] )
+//	// This project was authored with iPad-specific HD assets and legacy point math.
+//	// Keeping Retina mode off on iPad preserves the original coordinate system.
+    BOOL shouldEnableRetinaDisplay = [GameSettings shouldUseRetinaForDevice];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        shouldEnableRetinaDisplay = NO;
+    }
+	if( ! [director enableRetinaDisplay:shouldEnableRetinaDisplay] )
 		CCLOG(@"Retina Display Not supported");
 
 	
@@ -126,8 +131,8 @@
 	// make the OpenGLView a child of the view controller
 	[viewController setView:glView];
 	
-	// make the View Controller a child of the main window
-	[window addSubview: viewController.view];
+	// Modern iOS expects a root view controller for lifecycle and rotation.
+	[window setRootViewController:viewController];
 	
 	[window makeKeyAndVisible];
 	
@@ -194,10 +199,6 @@
 	
 	[[director openGLView] removeFromSuperview];
 	
-	[viewController release];
-	
-	[window release];
-	
 	[director end];	
     
 }
@@ -237,9 +238,10 @@
     [_debugLayer release];
     [_hudLayer release];
     [_comicManager release];
+    [_endGameScene release];
     [_mainMenuScene release];
+    [_chooseLevelScene release];
 	[[CCDirector sharedDirector] end];
-	[window release];
     
     
     if ([_wasteMemoryForIpad1 count]) {

@@ -12,6 +12,16 @@
 #define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
 #define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 
+static CGPoint TutorialLegacyPhoneOffset(void)
+{
+    if (IS_IPAD) {
+        return CGPointZero;
+    }
+    
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    return ccp(MAX(0.0f, floorf((winSize.width - 480.0f) / 2.0f)), 0.0f);
+}
+
 @implementation Tutorial
 @synthesize scroller;
 
@@ -36,7 +46,8 @@
         [self addPage:@"HTP_Page_3.png"];
         [self addPage:@"HTP_Page_4.png"];
 
-        scroller = [[CCScrollLayer alloc] initWithLayers:_pages widthOffset: 120.0f*MULTIPLIERX];
+        int pageOffset = IS_IPAD ? (int)(120.0f * MULTIPLIERX) : 0;
+        scroller = [[CCScrollLayer alloc] initWithLayers:_pages widthOffset:pageOffset];
         scroller.minimumTouchLengthToChangePage = 30.0f;
         
         [layer addChild:scroller];
@@ -52,11 +63,13 @@
     CCLayer *page = [[CCLayer alloc] init];
     //CCSprite *image=[CCSprite spriteWithFile:imageFileName];
     CCSprite *image = [CCSprite spriteWithSpriteFrameName:imageFileName];
-    [image setPosition:ccp(240*MULTIPLIERX,152*MULTIPLIERY)];
+    CGPoint offset = TutorialLegacyPhoneOffset();
+    [image setPosition:ccp(offset.x + (240 * MULTIPLIERX), offset.y + (152 * MULTIPLIERY))];
     [image setScale:1];
     [page addChild:image];
     [_images addObject:image];
     [_pages addObject:page];
+    [page release];
 }
 
 -(void)setAlpha:(float)alpha

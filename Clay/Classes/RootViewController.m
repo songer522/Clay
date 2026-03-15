@@ -16,6 +16,14 @@
 #import "RootViewController.h"
 #import "GameConfig.h"
 
+@interface RootViewController()
+
+- (CGRect)currentOpenGLViewFrame;
+- (void)resizeOpenGLViewForBounds:(CGRect)bounds;
+- (void)resizeOpenGLViewToCurrentLayout;
+
+@end
+
 @implementation RootViewController
 
 @synthesize volumeOverridePlayer;
@@ -105,29 +113,7 @@
 #if GAME_AUTOROTATION == kGameAutorotationUIViewController
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
-	//
-	// Assuming that the main window has the size of the screen
-	// BUG: This won't work if the EAGLView is not fullscreen
-	///
-	CGRect screenRect = [[UIScreen mainScreen] bounds];
-	CGRect rect = CGRectZero;
-
-	
-	if(toInterfaceOrientation == UIInterfaceOrientationPortrait || toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)		
-		rect = screenRect;
-	
-	else if(toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || toInterfaceOrientation == UIInterfaceOrientationLandscapeRight)
-		rect.size = CGSizeMake( screenRect.size.height, screenRect.size.width );
-	
-	CCDirector *director = [CCDirector sharedDirector];
-	EAGLView *glView = [director openGLView];
-	float contentScaleFactor = [director contentScaleFactor];
-	
-	if( contentScaleFactor != 1 ) {
-		rect.size.width *= contentScaleFactor;
-		rect.size.height *= contentScaleFactor;
-	}
-	glView.frame = rect;
+	[self resizeOpenGLViewToCurrentLayout];
 }
 #endif // GAME_AUTOROTATION == kGameAutorotationUIViewController
 
@@ -143,8 +129,27 @@
 {
     [super viewDidLoad];
     
-    volumeOverridePlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL URLWithString:[[NSBundle mainBundle] pathForResource:@"hurt" ofType:@"caf"]] error:nil];
+    NSURL *hurtURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"hurt" ofType:@"caf"]];
+    volumeOverridePlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:hurtURL error:nil];
     [volumeOverridePlayer prepareToPlay];
+}
+
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    [self resizeOpenGLViewToCurrentLayout];
+}
+
+- (void)viewWillTransitionToSize:(CGSize)size
+       withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    CGRect targetBounds = CGRectMake(0.0f, 0.0f, size.width, size.height);
+    [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+        [self resizeOpenGLViewForBounds:targetBounds];
+    } completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+        [self resizeOpenGLViewForBounds:targetBounds];
+    }];
 }
 
 - (void)viewDidUnload {
@@ -153,11 +158,70 @@
     // e.g. self.myOutlet = nil;
 }
 
+- (BOOL)shouldAutorotate
+{
+    return YES;
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+#if GAME_AUTOROTATION==kGameAutorotationNone || GAME_AUTOROTATION==kGameAutorotationCCDirector
+    return UIInterfaceOrientationMaskPortrait;
+#elif GAME_AUTOROTATION == kGameAutorotationUIViewController
+    return UIInterfaceOrientationMaskLandscape;
+#else
+    return UIInterfaceOrientationMaskAll;
+#endif
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{
+#if GAME_AUTOROTATION == kGameAutorotationUIViewController
+    return UIInterfaceOrientationLandscapeRight;
+#else
+    return UIInterfaceOrientationPortrait;
+#endif
+}
+
+- (CGRect)currentOpenGLViewFrame
+{
+    UIView *containerView = self.view.superview;
+    if (containerView != nil) {
+        return containerView.bounds;
+    }
+    
+    UIWindow *windowRef = self.view.window;
+    if (windowRef != nil) {
+        return windowRef.bounds;
+    }
+    
+    return [[UIScreen mainScreen] bounds];
+}
+
+- (void)resizeOpenGLViewForBounds:(CGRect)bounds
+{
+    CCDirector *director = [CCDirector sharedDirector];
+    EAGLView *glView = [director openGLView];
+    if (glView == nil) {
+        return;
+    }
+    
+    CGRect frame = CGRectMake(0.0f, 0.0f, bounds.size.width, bounds.size.height);
+    if (!CGRectEqualToRect(glView.frame, frame)) {
+        glView.frame = frame;
+    }
+}
+
+- (void)resizeOpenGLViewToCurrentLayout
+{
+    [self resizeOpenGLViewForBounds:[self currentOpenGLViewFrame]];
+}
+
 
 - (void)dealloc {
+    [volumeOverridePlayer release];
     [super dealloc];
 }
 
 
 @end
-

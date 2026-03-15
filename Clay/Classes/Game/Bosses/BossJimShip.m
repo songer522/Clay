@@ -21,6 +21,32 @@
 #import "PlayerAction.h"
 #import "ComboAttack.h"
 
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+
+static CGFloat BossShipScreenX(CGFloat value)
+{
+    return IS_IPAD ? value * 2.133f : value;
+}
+
+static CGFloat BossShipScreenY(CGFloat value)
+{
+    return IS_IPAD ? value * 2.4f : value;
+}
+
+static CGFloat BossShipCannonX(CGFloat value)
+{
+    return IS_IPAD ? value * 2.0f : value;
+}
+
+static CGFloat BossShipCannonY(CGFloat value)
+{
+    return IS_IPAD ? value * 2.26f : value;
+}
+
+static CGFloat BossShipMegaY(CGFloat value)
+{
+    return IS_IPAD ? value * 2.2f : value;
+}
 
 @implementation BossJimShip
 
@@ -30,7 +56,7 @@
     _level = [[LevelManager shared] currentLevel];
     
     _velocity = CGPointMake(-5.0f, 0.0f);
-    _targetOnScreen = CGRectMake(240*2.133, 100*2.4, 140, 400);
+    _targetOnScreen = CGRectMake(BossShipScreenX(240.0f), BossShipScreenY(100.0f), 140.0f, 400.0f);
     
     [_sprite setAlpha:1.0f];
     [[_sprite getCCSprite] setVisible:YES];
@@ -98,7 +124,7 @@
     [[_cannonAnim getCCSprite] setVisible:NO];
     
     CGPoint shipWorldPos = [[Camera sharedCamera] convertToWorldXY:[_sprite getScreenPosition]];    
-    [bullet setPosition:CGPointMake(shipWorldPos.x - 120*2.133,shipWorldPos.y + 20.0f*2.4)];
+    [bullet setPosition:CGPointMake(shipWorldPos.x - BossShipScreenX(120.0f), shipWorldPos.y + BossShipScreenY(20.0f))];
     [bullet reset];
 }
 
@@ -109,7 +135,7 @@
     [[_megaCannonAnim getCCSprite] setVisible:NO];
     
     CGPoint shipWorldPos = [[Camera sharedCamera] convertToWorldXY:[_sprite getScreenPosition]];    
-    [_megaCannonBullet setPosition:CGPointMake(shipWorldPos.x + 73*2.133,shipWorldPos.y + 28.0f*2.4)];
+    [_megaCannonBullet setPosition:CGPointMake(shipWorldPos.x + BossShipScreenX(73.0f), shipWorldPos.y + BossShipScreenY(28.0f))];
     [_megaCannonBullet reset];
     
 }
@@ -121,7 +147,7 @@
     [[_megaCannonAnim getCCSprite] setVisible:NO];
     
     CGPoint shipWorldPos = [[Camera sharedCamera] convertToWorldXY:[_sprite getScreenPosition]];    
-    [_megaCannonBullet setPosition:CGPointMake(shipWorldPos.x - 120*2.133,shipWorldPos.y + 20.0f*2.4)];
+    [_megaCannonBullet setPosition:CGPointMake(shipWorldPos.x - BossShipScreenX(120.0f), shipWorldPos.y + BossShipScreenY(20.0f))];
     [_megaCannonBullet reset];
 }
 
@@ -140,7 +166,7 @@
     if (_firstUpdate) {
         _firstUpdate = false;
         _velocity = CGPointMake(0.0f, 0.0f);
-        [_sprite getCCSprite].position = ccp(1500*2.133,160*2.4);
+        [_sprite getCCSprite].position = ccp(BossShipScreenX(1500.0f), BossShipScreenY(160.0f));
         _cannonAnim = [Sprite spriteWithFile:@"blank.png"];
         _megaCannonAnim = [Sprite spriteWithFile:@"blank.png"];
         _comboAttackAnim = [Sprite spriteWithFile:@"blank.png"];
@@ -249,9 +275,9 @@
 {
     CGPoint shipPos = [_sprite getScreenPosition];
     if(_frame == 1) {
-        [_cannonAnim setScreenPosition:CGPointMake(shipPos.x - 136*2, shipPos.y + 16.0f*2.26)];
+        [_cannonAnim setScreenPosition:CGPointMake(shipPos.x - BossShipCannonX(136.0f), shipPos.y + BossShipCannonY(16.0f))];
     } else {
-        [_cannonAnim setScreenPosition:CGPointMake(shipPos.x - 136*2, shipPos.y + 10.0f*2.26)];
+        [_cannonAnim setScreenPosition:CGPointMake(shipPos.x - BossShipCannonX(136.0f), shipPos.y + BossShipCannonY(10.0f))];
     }
     
     if (_waitToShoot > 0.0f) {
@@ -267,9 +293,9 @@
     CGPoint shipPos = [_sprite getScreenPosition];
     
     if (_frame == 1) {
-        [_megaCannonAnim setScreenPosition:ccp(shipPos.x + 73*2,shipPos.y + 28.0f*2.2)];        
+        [_megaCannonAnim setScreenPosition:ccp(shipPos.x + BossShipCannonX(73.0f), shipPos.y + BossShipMegaY(28.0f))];
     } else {
-        [_megaCannonAnim setScreenPosition:ccp(shipPos.x + 73*2,shipPos.y + 31.0f*2.2)];        
+        [_megaCannonAnim setScreenPosition:ccp(shipPos.x + BossShipCannonX(73.0f), shipPos.y + BossShipMegaY(31.0f))];
     }
     
     if (_waitToMegaCannon > 0.0f) {
@@ -286,20 +312,20 @@
     
     switch (phase) {
         case BOSS_PHASE_NOT_TRIGGERED:
-            _x = 1500*2.133;
-            _y = 230*2.4;
-            _target = ccp(1500*2.133,230*2.4);
-            [_sprite getCCSprite].position = ccp(1500*2.133,230*2.4);
+            _x = BossShipScreenX(1500.0f);
+            _y = BossShipScreenY(230.0f);
+            _target = ccp(BossShipScreenX(1500.0f), BossShipScreenY(230.0f));
+            [_sprite getCCSprite].position = ccp(BossShipScreenX(1500.0f), BossShipScreenY(230.0f));
             [[_sprite getCCSprite] setVisible:NO];
             _isActive = false;
             break;
         case BOSS_PHASE_ENTERING:
             [[_sprite getCCSprite] setVisible:YES];
-            _target = ccp(380*2.133,230*2.4);
+            _target = ccp(BossShipScreenX(380.0f), BossShipScreenY(230.0f));
             _isActive = false;
             break;
         case BOSS_PHASE_EXITING:
-            _target = ccp(1500*2.133,230*2.4);
+            _target = ccp(BossShipScreenX(1500.0f), BossShipScreenY(230.0f));
             _isActive = false;
             break;
         case BOSS_PHASE_ATTACKING:
@@ -369,9 +395,9 @@
         xthrust = -1;
     }
     
-    if (position.y > 260*2.4) {
+    if (position.y > BossShipScreenY(260.0f)) {
         ythrust = 0;
-    } else if (position.y < 200*2.4) {
+    } else if (position.y < BossShipScreenY(200.0f)) {
         ythrust = 1;
     }
     

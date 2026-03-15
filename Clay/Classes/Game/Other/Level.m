@@ -34,6 +34,32 @@
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
 #define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
+
+static CGRect CollisionRectForObject(id<Collidable> object)
+{
+    // Most legacy obstacles are visually placed with sprite offsets, so collisions
+    // need to follow the rendered sprite position instead of the raw world origin.
+    CGPoint position = [object getCCSprite].position;
+    CGRect boundingBox = [object getBoundingBox];
+    CGRect rect = CGRectMake(position.x - boundingBox.origin.x,
+                             position.y - boundingBox.origin.y,
+                             boundingBox.size.width,
+                             boundingBox.size.height);
+    
+    // The yellow "small hurdle" uses a very low diagonal sprite, so its original
+    // phone-era box can miss the player's feet on modern iPhone layouts.
+    if (!IS_IPAD && [object isKindOfClass:[GameObject class]]) {
+        GameObject *gameObject = (GameObject *)object;
+        if (gameObject.isHurdle && boundingBox.size.height <= 15.0f && boundingBox.size.width <= 15.0f) {
+            rect.origin.x -= 36.0f;
+            rect.size.width += 42.0f;
+            rect.size.height += 10.0f;
+        }
+    }
+    
+    return rect;
+}
+
 @implementation Level
 
 @synthesize name = _name;
@@ -95,7 +121,7 @@
         }
         
         
-        _scale = [[UIScreen mainScreen] scale] / _divide;
+        _scale = [GameSettings currentRenderScale] / _divide;
         
         [self scanThroughMapAndAddObjects];
                 
@@ -797,12 +823,7 @@
         return false;
     }
 
-    CGPoint sourcePosition = [source getCCSprite].position;
-    CGRect sourceBoundingBox = [source getBoundingBox];
-    sourceBoundingBox.origin.x = sourcePosition.x - sourceBoundingBox.origin.x;
-    sourceBoundingBox.size.width = sourceBoundingBox.origin.x + sourceBoundingBox.size.width;
-    sourceBoundingBox.origin.y = sourcePosition.y - sourceBoundingBox.origin.y;
-    sourceBoundingBox.size.height = sourceBoundingBox.origin.y + sourceBoundingBox.size.height;    
+    CGRect sourceBoundingBox = CollisionRectForObject(source);
     
     for (GameObject *obstacle in obstacles) {
         if(!obstacle.collided && !obstacle.isInvincible) {
@@ -865,12 +886,7 @@
     bool collision = false;
     
     //prepare source bounding box, so we don't have to build it for every object
-    CGPoint position = [source getCCSprite].position;
-    CGRect sourceBoundingBox = [source getBoundingBox];
-    sourceBoundingBox.origin.x = position.x - sourceBoundingBox.origin.x;
-    sourceBoundingBox.size.width = sourceBoundingBox.origin.x + sourceBoundingBox.size.width;
-    sourceBoundingBox.origin.y = position.y - sourceBoundingBox.origin.y;
-    sourceBoundingBox.size.height = sourceBoundingBox.origin.y + sourceBoundingBox.size.height;  
+    CGRect sourceBoundingBox = CollisionRectForObject(source);
     
     for (GameObject *obstacle in obstacles) {
         if(![obstacle hasBeenHit] && [obstacle canAggressiveHit]) {
@@ -906,17 +922,17 @@
 
 -(bool)testCollisionWithGameObject:(id<Collidable>)target BoundingBox:(CGRect)source
 {
-    CGPoint position = [target getCCSprite].position;
-    CGRect boundingBox = [target getBoundingBox];
-    float targetLeft = position.x - (boundingBox.origin.x);
-    float targetRight = targetLeft + (boundingBox.size.width);
-    float targetBottom = position.y - (boundingBox.origin.y);
-    float targetTop = targetBottom + (boundingBox.size.height);
+    CGRect targetBounds = CollisionRectForObject(target);
     
-    float sourceLeft = source.origin.x;
-    float sourceRight = source.size.width;
-    float sourceBottom = source.origin.y;
-    float sourceTop = source.size.height;    
+    float targetLeft = CGRectGetMinX(targetBounds);
+    float targetRight = CGRectGetMaxX(targetBounds);
+    float targetBottom = CGRectGetMinY(targetBounds);
+    float targetTop = CGRectGetMaxY(targetBounds);
+    
+    float sourceLeft = CGRectGetMinX(source);
+    float sourceRight = CGRectGetMaxX(source);
+    float sourceBottom = CGRectGetMinY(source);
+    float sourceTop = CGRectGetMaxY(source);    
     
     //assume that a collision happened unless the sides of the
     //target object indicate there can't possibly be
@@ -932,19 +948,17 @@
 
 -(bool)testCollisionWithGameObject:(id<Collidable>)target Source:(id<Collidable>)source
 {
-    CGPoint position = [target getCCSprite].position;
-    CGRect boundingBox = [target getBoundingBox];
-    float targetLeft = position.x - (boundingBox.origin.x);
-    float targetRight = targetLeft + (boundingBox.size.width);
-    float targetBottom = position.y - (boundingBox.origin.y);
-    float targetTop = targetBottom + (boundingBox.size.height);
+    CGRect targetBounds = CollisionRectForObject(target);
+    CGRect sourceBounds = CollisionRectForObject(source);
+    float targetLeft = CGRectGetMinX(targetBounds);
+    float targetRight = CGRectGetMaxX(targetBounds);
+    float targetBottom = CGRectGetMinY(targetBounds);
+    float targetTop = CGRectGetMaxY(targetBounds);
     
-    position = [source getCCSprite].position;
-    boundingBox = [source getBoundingBox];
-    float sourceLeft = position.x - (boundingBox.origin.x);
-    float sourceRight = sourceLeft + (boundingBox.size.width);
-    float sourceBottom = position.y - (boundingBox.origin.y);
-    float sourceTop = sourceBottom + (boundingBox.size.height);
+    float sourceLeft = CGRectGetMinX(sourceBounds);
+    float sourceRight = CGRectGetMaxX(sourceBounds);
+    float sourceBottom = CGRectGetMinY(sourceBounds);
+    float sourceTop = CGRectGetMaxY(sourceBounds);
     
     
     //assume that a collision happened unless the sides of the

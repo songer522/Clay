@@ -20,6 +20,22 @@
 #define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
 #define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 
+static CGPoint HowToPlayLegacyPhoneOffset(void)
+{
+    if (IS_IPAD) {
+        return CGPointZero;
+    }
+    
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    return ccp(MAX(0.0f, floorf((winSize.width - 480.0f) / 2.0f)), 0.0f);
+}
+
+static CGPoint HowToPlayPhonePoint(CGFloat x, CGFloat y)
+{
+    CGPoint offset = HowToPlayLegacyPhoneOffset();
+    return ccp(offset.x + x, offset.y + y);
+}
+
 @implementation HowToPlayScreen
 
 +(CCScene *) scene
@@ -50,22 +66,23 @@
         [[TextureManager shared] loadMemoryForKey:@"howtoplayScreen"];
         
         _background = [Sprite spriteFromFrameCacheWithName:@"HTP_Background.png"];
+        [_background setScreenPosition:HowToPlayLegacyPhoneOffset()];
         
         _tutorial = [[Tutorial alloc] initWithinLayer:self];
         [_tutorial switchToTutorial];
         
         _backButton = [ActionButton actionButtonCustomGraphicsForIdle:@"UI_GameType_ButtonS_Blue.png" Selected:@"UI_GameType_ButtonS_Green.png"];
         [_backButton setInitialText:@"BACK"];
-        [_backButton setPosition:ccp(50 *MULTIPLIERX, 18*MULTIPLIERY)];
+        [_backButton setPosition:HowToPlayPhonePoint(50 *MULTIPLIERX, 18*MULTIPLIERY)];
         
         _header = [GameLabel gameLabelWithText:@"HOW TO PLAY" Scale:0.65f];
-        [_header setPosition:ccp(375.0f*MULTIPLIERX,284.0f*MULTIPLIERY)];
+        [_header setPosition:HowToPlayPhonePoint(375.0f*MULTIPLIERX,284.0f*MULTIPLIERY)];
         
         
         
         _startButton = [ActionButton actionButtonCustomGraphicsForIdle:@"UI_GameType_ButtonS_Blue.png" Selected:@"UI_GameType_ButtonS_Green.png"];
         [_startButton setInitialText:@"NEXT"];
-        [_startButton setPosition:ccp(430*MULTIPLIERX,18*MULTIPLIERY)];
+        [_startButton setPosition:HowToPlayPhonePoint(430*MULTIPLIERX,18*MULTIPLIERY)];
         
         NSString *preTutorial = [[GameSettings shared] getGlobalForKey:@"preTutorialScreen"];
         if ([preTutorial isEqualToString:@"options"]) {

@@ -11,6 +11,7 @@
 #include <sys/sysctl.h>
 #import "PListLoader.h"
 #import "Database.h"
+#import "cocos2d.h"
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define MULTIPLIER (IS_IPAD ? 2 : 1)
 
@@ -20,6 +21,31 @@
 
 
 static GameSettings *_shared = nil;
+
+static void SeedUnlockedLevelFlags(GameSettings *settings, NSString *difficultyKeySuffix)
+{
+    for (int levelNumber = 1; levelNumber <= 13; levelNumber++) {
+        [settings setSerializedGlobal:@"YES"
+                               ForKey:[NSString stringWithFormat:@"level%d%@",
+                                       levelNumber,
+                                       difficultyKeySuffix]];
+    }
+}
+
+static void ClearForcedLevelSevenContinueSlotIfNeeded(GameSettings *settings)
+{
+    NSString *level = [settings getGlobalForKey:@"storyModeCurrentLevel"];
+    NSString *difficulty = [settings getGlobalForKey:@"storyModeDifficulty"];
+    NSString *time = [settings getGlobalForKey:@"storyModeCurrentTime"];
+    
+    if ([level isEqualToString:@"level7"] &&
+        [difficulty isEqualToString:@"normal"] &&
+        [time isEqualToString:@"1"]) {
+        [settings setSerializedGlobal:@"" ForKey:@"storyModeCurrentLevel"];
+        [settings setSerializedGlobal:@"" ForKey:@"storyModeDifficulty"];
+        [settings setSerializedGlobal:@"" ForKey:@"storyModeCurrentTime"];
+    }
+}
 
 +(GameSettings*)shared
 {
@@ -36,6 +62,7 @@ static GameSettings *_shared = nil;
         _savedSettings = [[NSMutableDictionary alloc] initWithDictionary:gameSettings];
         _settings = [[NSMutableDictionary alloc] initWithDictionary:gameSettings];
         [self loadFromSettingsPlist];
+        [self applyUnlockEverythingDefaults];
         _usingHighResolutionGraphics = [self calculateShouldUseHighRes];
         [self setStutterMode:SETTING_IS_STUTTER_MODE_DEFAULT];
         
@@ -86,6 +113,34 @@ static GameSettings *_shared = nil;
     NSString *platform = [NSString stringWithUTF8String:machine];
     free(machine);
     return platform;
+}
+
++(CGFloat)currentRenderScale
+{
+    CGFloat scale = 1.0f;
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
+        scale = [[UIScreen mainScreen] scale];
+    }
+    
+    @try {
+        CCDirector *director = [CCDirector sharedDirector];
+        if (director != nil) {
+            CGFloat directorScale = [director contentScaleFactor];
+            if (directorScale >= 1.0f) {
+                scale = directorScale;
+            }
+        }
+    }
+    @catch (NSException *exception) {
+    }
+    
+    if (scale > 2.0f) {
+        scale = 2.0f;
+    }
+    if (scale < 1.0f) {
+        scale = 1.0f;
+    }
+    return scale;
 }
 
 -(bool)usingHighResolutionGraphics
@@ -146,7 +201,7 @@ static GameSettings *_shared = nil;
 
 -(bool)isIpad
 {
-    return true;
+    return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad;
 }
 
 -(void)loadFromSettingsPlist
@@ -159,6 +214,23 @@ static GameSettings *_shared = nil;
     [self setGlobal:versionNumber ForKey:@"versionNumber"];
     [self setGlobal:showFps ForKey:@"showFps"];
     [self setGlobal:unlockEverything ForKey:@"unlockEverything"];
+}
+
+-(void)applyUnlockEverythingDefaults
+{
+    if (![[self getGlobalForKey:@"unlockEverything"] isEqualToString:@"YES"]) {
+        return;
+    }
+    
+    [self setSerializedGlobal:@"unlocked" ForKey:@"storyHardUnlocked"];
+    [self setSerializedGlobal:@"unlocked" ForKey:@"timedNormalUnlocked"];
+    [self setSerializedGlobal:@"unlocked" ForKey:@"timedHardUnlocked"];
+    
+    SeedUnlockedLevelFlags(self, @"TimedNormalUnlocked");
+    SeedUnlockedLevelFlags(self, @"TimedHardUnlocked");
+    ClearForcedLevelSevenContinueSlotIfNeeded(self);
+    
+    [self saveToDisk];
 }
 
 -(void)setSerializedGlobal:(NSString*)setting ForKey:(NSString*)key
@@ -212,6 +284,7 @@ static GameSettings *_shared = nil;
 {
     [_settings removeAllObjects];
     [_settings release];
+    [super dealloc];
 }
 
 @end

@@ -16,6 +16,22 @@
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
 #define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
+#define LEGACY_PHONE_HEIGHT 320.0f
+
+static float CameraPhoneVerticalOffset(void)
+{
+    if (IS_IPAD) {
+        return 0.0f;
+    }
+    
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    return MAX((winSize.height - LEGACY_PHONE_HEIGHT) * 0.5f, 0.0f);
+}
+
+static float CameraRestingY(void)
+{
+    return 54.0f - CameraPhoneVerticalOffset();
+}
 @implementation Camera
 
 @synthesize trackingTarget = _trackingTarget;
@@ -158,7 +174,7 @@ static Camera *_sharedCamera = nil;
         
         CGPoint position = [_target getPosition];
         dx = (position.x - _x);
-        _y = 54.0f; //this is the setting it would rest on from when we actually used to track the y position
+        _y = CameraRestingY();
         
         float distance = sqrtf(dx*dx);
         
@@ -188,7 +204,7 @@ static Camera *_sharedCamera = nil;
 {
     if (_target!=nil) { 
         _x = _target.x;
-        _y = 54.0f;
+        _y = CameraRestingY();
     }
 }
 
@@ -211,7 +227,7 @@ static Camera *_sharedCamera = nil;
 -(void)reset
 {
     _x = 0;
-    _y = 54.0f;
+    _y = CameraRestingY();
     _isShiftForwardForKickAction = false;
     [self keepWithinBoundaries];
 }

@@ -16,6 +16,11 @@
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
 #define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
+#define HINTBOX_CENTER_X 240.0f
+#define HINTBOX_HEADER_X 128.0f
+#define HINTBOX_BOX_OFFSET_Y 140.0f
+#define HINTBOX_HEADER_OFFSET_Y 166.5f
+#define HINTBOX_TEXT_OFFSET_Y -36.0f
 @implementation HintBox
 
 +(id)hintboxOnLayer:(id)layer
@@ -33,10 +38,11 @@
         _hintList = [[NSMutableArray alloc] initWithCapacity:10];
         
         _hintBox = [Sprite spriteCenteredWithFrame:@"UI_HintBox_1.png"];
-        [_hintBox setScreenPosition:ccp(240.0f*MULTIPLIERX,centerY + 140.0f*MULTIPLIERY)];
+        CGPoint boxPosition = ccp(HINTBOX_CENTER_X * MULTIPLIERX, centerY + HINTBOX_BOX_OFFSET_Y * MULTIPLIERY);
+        [_hintBox setScreenPosition:boxPosition];
         
         _hintHeader = [Sprite spriteCenteredWithFrame:@"UI_HintBox_2.png"];
-        [_hintHeader setScreenPosition:ccp(128.0f*MULTIPLIERX,centerY + 166.5f*MULTIPLIERY)];
+        [_hintHeader setScreenPosition:ccp(HINTBOX_HEADER_X * MULTIPLIERX, centerY + HINTBOX_HEADER_OFFSET_Y * MULTIPLIERY)];
         
         _textAlpha = 1.0f;
         _currentHintId = -1;
@@ -51,7 +57,7 @@
         
         _phase = HINTBOX_WAITING;
         
-        [_hintText setPosition:ccp(240.0f*MULTIPLIERX,229.0f*MULTIPLIERY)]; //pause was 211i
+        [_hintText setPosition:ccp(boxPosition.x, boxPosition.y + HINTBOX_TEXT_OFFSET_Y * MULTIPLIERY)];
         [layer addChild:_hintText];
 
     }

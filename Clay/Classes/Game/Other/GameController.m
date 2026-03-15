@@ -16,6 +16,12 @@
 #import "EndLevelLayer.h"
 #import "TrackTimer.h"
 
+static CGRect PauseTouchRect(void)
+{
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    return CGRectMake(0.0f, winSize.height - 80.0f, 80.0f, 80.0f);
+}
+
 @implementation GameController
 
 @synthesize layer = _gameLayer;
@@ -63,7 +69,7 @@
     
     if (!_isInputEnabled || _handledPauseEvent) { return; }
     
-    if (location.x > 0 && location.x < 80 && location.y > 710) {
+    if (CGRectContainsPoint(PauseTouchRect(), location)) {
         if (type == INPUT_TOUCH_END) {
             [self pauseGame];            
         }

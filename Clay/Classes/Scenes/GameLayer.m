@@ -41,6 +41,7 @@
 
 
 #define DEBUG_DRAW_BOUNDING_BOXES 0
+
 @interface GameLayer()
 
 -(void)setupLayers;
@@ -83,7 +84,6 @@
 -(id) init
 {
 	if( (self=[super init])) {
-        
         [self setVisible:NO];
         
         _numberOfUpdates = 0;

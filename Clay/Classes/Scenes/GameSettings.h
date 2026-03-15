@@ -33,6 +33,7 @@ typedef enum {
 
 +(bool)shouldUseRetinaForDevice; //tell whether we want to use low-res for this device
 +(NSString*)platform;
++(CGFloat)currentRenderScale;
 -(bool)usingHighResolutionGraphics;  //use throughout code to check high res, includes 'shouldUseRetinaForDevice' method
 -(bool)calculateShouldUseHighRes; //ONLY SHOULD BE CALLED BY INIT, TO SAVE PROCESSING TIME
 

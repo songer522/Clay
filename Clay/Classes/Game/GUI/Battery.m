@@ -18,10 +18,24 @@
 #define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
 #define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 #define N(x) [NSNumber numberWithFloat: x]
+#define LEGACY_PHONE_WIDTH 480.0f
+#define LEGACY_PHONE_HEIGHT 320.0f
 
 //IPAD FIX: these numbers got moved and the battery was shifted a few pixels to the left
 #define BATTERY_X 397.0f //was 410.0f
 #define BATTERY_Y 285.0f
+
+static CGPoint BatteryScreenPosition(void)
+{
+    if (IS_IPAD) {
+        return ccp(BATTERY_X * MULTIPLIERX, BATTERY_Y * MULTIPLIERY);
+    }
+    
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    float x = winSize.width - (LEGACY_PHONE_WIDTH - BATTERY_X);
+    float y = BATTERY_Y + MAX((winSize.height - LEGACY_PHONE_HEIGHT) * 0.5f, 0.0f);
+    return ccp(x, y);
+}
 
 @implementation Battery
 
@@ -43,7 +57,6 @@
         
         _healthIcons = [[NSMutableArray alloc] initWithCapacity:8];
         _batterySpriteFrames = [[NSMutableArray alloc] initWithCapacity:7];
-        [sprite setScreenPosition:ccp(412 * MULTIPLIERX,285 * MULTIPLIERY)];
         
         for (int i=0; i<7;i++) {
             //starts at 0 just so we can directly access the object quickly
@@ -61,10 +74,10 @@
         
         [self setFrame:1 Resetting:NO];
         
-        _x = BATTERY_X;
-        _y = BATTERY_Y;
-        
-        [sprite setScreenPosition:ccp(BATTERY_X* MULTIPLIERX,BATTERY_Y* MULTIPLIERY)];
+        CGPoint screenPosition = BatteryScreenPosition();
+        _x = screenPosition.x;
+        _y = screenPosition.y;
+        [sprite setScreenPosition:screenPosition];
         
         _wasLowBattery = false;
     }

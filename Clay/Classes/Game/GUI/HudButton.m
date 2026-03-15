@@ -17,6 +17,8 @@
 #define HUD_LAYER_ACTION_X 383
 #define HUD_LAYER_SPRINT_X 445
 #define HUD_LAYER_BUTTON_SIZE 62
+#define LEGACY_PHONE_WIDTH 480.0f
+#define LEGACY_PHONE_HEIGHT 320.0f
 
 #define BUTTON_OPACITY 255
 #define BUTTON_SCALE 0.85f
@@ -26,6 +28,61 @@
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
 #define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
+
+static float HudButtonPhoneVerticalOffset(void)
+{
+    if (IS_IPAD) {
+        return 0.0f;
+    }
+    
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    return MAX((winSize.height - LEGACY_PHONE_HEIGHT) * 0.5f, 0.0f);
+}
+
+static float HudButtonX(HudButtonType type)
+{
+    if (IS_IPAD) {
+        switch (type) {
+            case HUD_BUTTON_JUMP:
+                return HUD_LAYER_JUMP_X * MULTIPLIERX;
+            case HUD_BUTTON_ACTION:
+                return HUD_LAYER_ACTION_X * MULTIPLIERX;
+            case HUD_BUTTON_SPRINT:
+                return HUD_LAYER_SPRINT_X * MULTIPLIERX;
+            default:
+                return 0.0f;
+        }
+    }
+    
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    switch (type) {
+        case HUD_BUTTON_JUMP:
+            return HUD_LAYER_JUMP_X;
+        case HUD_BUTTON_ACTION:
+            return winSize.width - (LEGACY_PHONE_WIDTH - HUD_LAYER_ACTION_X);
+        case HUD_BUTTON_SPRINT:
+            return winSize.width - (LEGACY_PHONE_WIDTH - HUD_LAYER_SPRINT_X);
+        default:
+            return 0.0f;
+    }
+}
+
+static float HudButtonY(void)
+{
+    if (IS_IPAD) {
+        return HUD_LAYER_BUTTON_Y * MULTIPLIERY;
+    }
+    
+    return HUD_LAYER_BUTTON_Y + HudButtonPhoneVerticalOffset();
+}
+
+static CGRect HudButtonHitbox(CGPoint position, float size)
+{
+    return CGRectMake(position.x - (0.5f * size),
+                      position.y - (0.5f * size),
+                      size,
+                      size);
+}
 @implementation HudButton
 
 
@@ -39,18 +96,7 @@
 {
     if((self=[super init])){
         
-        if (IS_IPAD)
-        {
-            _scale = 1.0f;
-        }
-        if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
-        {
-            _scale = 2.0f;
-        }
-        else
-        {
-            _scale = 1.0f;
-        }
+        _scale = [GameSettings currentRenderScale];
         [self prepareButtonWithType:type Action:action];
      
         _initialized = true;
@@ -77,22 +123,30 @@
     
     switch (type) {
         case HUD_BUTTON_JUMP:
+        {
             [self createSpriteFromImage:@"UI_Button_Jumping.png"];
-           [self setPosition:ccp(HUD_LAYER_JUMP_X * MULTIPLIERX, HUD_LAYER_BUTTON_Y * MULTIPLIERY)];
+            CGPoint position = ccp(HudButtonX(type), HudButtonY());
+            [self setPosition:position];
             float size = 200.0f;
-            
-            [self setHitbox:CGRectMake((HUD_LAYER_JUMP_X - 0.5f * size) * MULTIPLIERX, (HUD_LAYER_BUTTON_Y - 0.5F * size) * MULTIPLIERY, size * MULTIPLIERX, size * MULTIPLIERY)];
+            [self setHitbox:HudButtonHitbox(position, size)];
             break;
+        }
         case HUD_BUTTON_SPRINT:
+        {
             [self createSpriteFromImage:@"UI_Button_Sprinting.png"];
-            [self setPosition:ccp(HUD_LAYER_SPRINT_X * MULTIPLIERX, HUD_LAYER_BUTTON_Y * MULTIPLIERY)];
-            [self setHitbox:CGRectMake((HUD_LAYER_SPRINT_X - 0.5f * HUD_LAYER_BUTTON_SIZE) * MULTIPLIERX, (HUD_LAYER_BUTTON_Y - 0.5F * HUD_LAYER_BUTTON_SIZE) * MULTIPLIERY, HUD_LAYER_BUTTON_SIZE * MULTIPLIERX, HUD_LAYER_BUTTON_SIZE * MULTIPLIERY)];
+            CGPoint position = ccp(HudButtonX(type), HudButtonY());
+            [self setPosition:position];
+            [self setHitbox:HudButtonHitbox(position, HUD_LAYER_BUTTON_SIZE)];
             break;
+        }
         case HUD_BUTTON_ACTION:
+        {
             [self createSpriteFromAction:action];
-            [self setPosition:ccp(HUD_LAYER_ACTION_X * MULTIPLIERX, HUD_LAYER_BUTTON_Y * MULTIPLIERY)];
-            [self setHitbox:CGRectMake((HUD_LAYER_ACTION_X - 0.5f * HUD_LAYER_BUTTON_SIZE) * MULTIPLIERX, (HUD_LAYER_BUTTON_Y - 0.5F * HUD_LAYER_BUTTON_SIZE) * MULTIPLIERY, HUD_LAYER_BUTTON_SIZE * MULTIPLIERX, HUD_LAYER_BUTTON_SIZE * MULTIPLIERY)];
+            CGPoint position = ccp(HudButtonX(type), HudButtonY());
+            [self setPosition:position];
+            [self setHitbox:HudButtonHitbox(position, HUD_LAYER_BUTTON_SIZE)];
             break;
+        }
         default:
             break;
     }
@@ -103,22 +157,23 @@
 {
     _graphic = [Sprite spriteFromFrameCacheWithName:image];
     [[_graphic getCCSprite] setOpacity:BUTTON_OPACITY];
-    [[_graphic getCCSprite] setScale:[[UIScreen mainScreen] scale] / _scale];
+    [[_graphic getCCSprite] setScale:1.0f];
     
-    _buttonScale = [[UIScreen mainScreen] scale] / _scale;
+    _buttonScale = 1.0f;
     
     [[_graphic getCCSprite] setAnchorPoint:ccp(0.5f, 0.5f)];
 
     _greenOverlay = [Sprite spriteFromFrameCacheWithName:@"UI_Button_GreenLight_7.png"];
     [[_greenOverlay getCCSprite] setAnchorPoint:ccp(0.5f, 0.5f)];
     [[_greenOverlay getCCSprite] setOpacity:BUTTON_OPACITY];
-    [[_greenOverlay getCCSprite] setScale:[[UIScreen mainScreen] scale] / _scale];
+    [[_greenOverlay getCCSprite] setScale:1.0f];
 
 }
 
 
 -(void)setPosition:(CGPoint)position
 {
+    [super setPosition:position];
     [_graphic getCCSprite].position = position;
     [_greenOverlay getCCSprite].position = position;
 }
@@ -188,7 +243,7 @@
     
      {
          _opacity = BUTTON_OPACITY;
-         _buttonScale = BUTTON_SCALE * [[UIScreen mainScreen] scale] / _scale;
+         _buttonScale = BUTTON_SCALE;
         [[_graphic getCCSprite] setOpacity:BUTTON_OPACITY];
         [[_graphic getCCSprite] setScale:_buttonScale]; 
      

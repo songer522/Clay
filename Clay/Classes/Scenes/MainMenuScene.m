@@ -36,6 +36,22 @@
 #import "GCHelper.h"
 #import "GCState.h"
 
+static CGPoint MainMenuLegacyPhoneOffset(void)
+{
+    if (IS_IPAD) {
+        return CGPointZero;
+    }
+    
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    return ccp(MAX(0.0f, floorf((winSize.width - 480.0f) / 2.0f)), 0.0f);
+}
+
+static CGPoint MainMenuPhonePoint(CGFloat x, CGFloat y)
+{
+    CGPoint offset = MainMenuLegacyPhoneOffset();
+    return ccp(offset.x + x, offset.y + y);
+}
+
 
 @implementation MainMenuScene
 
@@ -76,9 +92,10 @@
         [[TextureManager shared] loadMemoryForKey:@"mainMenu"];
           
         //initialize sprites
-        _trackBackground = [Sprite spriteFromFrameCacheWithName:@"Menu_Background.png"];        
-        _logo = [Sprite spriteCenteredWithFrame:@"Menu_Logo.png" Position:ccp(240 * MULTIPLIERX,258 * MULTIPLIERY)]; //final y: 262
-        _copyright = [Sprite spriteCenteredWithFrame:@"Menu_Copyright.png" Position:ccp(240 * MULTIPLIERX,24 * MULTIPLIERY)]; //final y: 20
+        _trackBackground = [Sprite spriteFromFrameCacheWithName:@"Menu_Background.png"];
+        [_trackBackground setScreenPosition:MainMenuLegacyPhoneOffset()];
+        _logo = [Sprite spriteCenteredWithFrame:@"Menu_Logo.png" Position:MainMenuPhonePoint(240 * MULTIPLIERX,258 * MULTIPLIERY)]; //final y: 262
+        _copyright = [Sprite spriteCenteredWithFrame:@"Menu_Copyright.png" Position:MainMenuPhonePoint(240 * MULTIPLIERX,24 * MULTIPLIERY)]; //final y: 20
         
         //check whether we can continue the game
         _isContinueButtonEnabled = [ContinueGameManager isAbleToContinueGame];        
@@ -87,15 +104,15 @@
         _playButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_PlayBlue.png" Selected:@"Menu_PlayGreen.png"];
         
         if (_isContinueButtonEnabled) {
-            [_playButton setPosition:ccp(240 * MULTIPLIERX,115 * MULTIPLIERY)];            
+            [_playButton setPosition:MainMenuPhonePoint(240 * MULTIPLIERX,115 * MULTIPLIERY)];
         } else {
-            [_playButton setPosition:ccp(240 * MULTIPLIERX,142 * MULTIPLIERY)];                        
+            [_playButton setPosition:MainMenuPhonePoint(240 * MULTIPLIERX,142 * MULTIPLIERY)];
         }
         [_playButton setHitboxBySize:CGSizeMake(319 * MULTIPLIERX, 71 * MULTIPLIERY)];
        
         //continue button
         _continueButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_ContinueBlue.png" Selected:@"Menu_ContinueGreen.png"];
-        [_continueButton setPosition:ccp(240 * MULTIPLIERX,158 * MULTIPLIERY)];
+        [_continueButton setPosition:MainMenuPhonePoint(240 * MULTIPLIERX,158 * MULTIPLIERY)];
         [_continueButton setHitboxBySize:CGSizeMake(319 * MULTIPLIERX, 71 * MULTIPLIERY)];
         if (!_isContinueButtonEnabled) {
             [_continueButton setAlpha:0.0f];            
@@ -109,22 +126,22 @@
         
         //leaderboards button
         _leaderboardsButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_LeaderBoardBlue.png" Selected:@"Menu_LeaderBoardGreen.png"];
-        [_leaderboardsButton setPosition:ccp(450 * MULTIPLIERX,24 * MULTIPLIERY)];
+        [_leaderboardsButton setPosition:MainMenuPhonePoint(450 * MULTIPLIERX,24 * MULTIPLIERY)];
         [_leaderboardsButton setHitboxBySize:CGSizeMake(65 * MULTIPLIERX, 65 * MULTIPLIERY)];
         
         //achievements button
         _achievementsButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_AchievementBlue.png" Selected:@"Menu_AchievementGreen.png"];
-        [_achievementsButton setPosition:ccp(405 * MULTIPLIERX,24 * MULTIPLIERY)];
+        [_achievementsButton setPosition:MainMenuPhonePoint(405 * MULTIPLIERX,24 * MULTIPLIERY)];
         [_achievementsButton setHitboxBySize:CGSizeMake(65 * MULTIPLIERX, 65 * MULTIPLIERY)];        
         
         //options button
         _optionsButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_OptionsBlue.png" Selected:@"Menu_OptionsGreen.png"];
-        [_optionsButton setPosition:ccp(30 * MULTIPLIERX,24 * MULTIPLIERY)];
+        [_optionsButton setPosition:MainMenuPhonePoint(30 * MULTIPLIERX,24 * MULTIPLIERY)];
         [_optionsButton setHitboxBySize:CGSizeMake(65 * MULTIPLIERX, 65 * MULTIPLIERY)];
 
         //gift button
         _giftButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_Gift_Blue.png" Selected:@"Menu_Gift_Green.png"];
-        [_giftButton setPosition:ccp(75 * MULTIPLIERX,24* MULTIPLIERY)];
+        [_giftButton setPosition:MainMenuPhonePoint(75 * MULTIPLIERX,24* MULTIPLIERY)];
         [_giftButton setHitboxBySize:CGSizeMake(65 * MULTIPLIERX, 65* MULTIPLIERY)];
 
         [[InAppPurchaseManager shared] requestProductData];

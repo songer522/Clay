@@ -16,6 +16,14 @@
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
 #define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
+
+static CGPoint ComicPanelOriginForCurrentScreen(CGSize panelSize)
+{
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    return ccp(MAX(0.0f, floorf((winSize.width - panelSize.width) / 2.0f)),
+               MAX(0.0f, floorf((winSize.height - panelSize.height) / 2.0f)));
+}
+
 @implementation ComicLayer
 
 @synthesize comicManager = _comicManager;
@@ -218,14 +226,16 @@
 
      if (showComic) {            
         _comicPanel = [CCSprite spriteWithFile:_imageName];
-         _comicPanel.position= ccp(32,64);
         _comicPanel.anchorPoint = ccp(0,0);
+        CGPoint panelOrigin = ComicPanelOriginForCurrentScreen(_comicPanel.contentSize);
+        _comicPanel.position = panelOrigin;
         [_comicPanel setOpacity:0];
         [self addChild:_comicPanel];
 
         _skipButton = [CCSprite spriteWithFile:@"Comic_Button_Skip-hd.png"];
-        _skipButton.position = ccp(460*MULTIPLIERX,20*MULTIPLIERY);
         _skipButton.anchorPoint = ccp(0.5f,0.5f);
+        _skipButton.position = ccp(panelOrigin.x + _comicPanel.contentSize.width - 20.0f,
+                                   panelOrigin.y + 20.0f);
         [self addChild:_skipButton];
         
         _transition = BLACKBOX_PLAY_COMIC_FADE_IN;

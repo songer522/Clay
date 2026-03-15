@@ -125,6 +125,7 @@
     [_choice1 release];
     [_choice2 release];
     _delegate = nil;
+    [super dealloc];
 }
 
 

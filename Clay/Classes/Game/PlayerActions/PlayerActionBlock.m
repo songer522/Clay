@@ -12,6 +12,24 @@
 #import "Sprite.h"
 #import "SoundEngine.h"
 #import "Player.h"
+#import "GameSettings.h"
+
+static CGFloat BlockShieldOffsetY(Player *player)
+{
+    if ([[GameSettings shared] isIpad]) {
+        return 110.0f;
+    }
+
+    CGFloat playerHeight = [[player getSprite] getHeight];
+    if (playerHeight > 0.0f) {
+        return MAX(44.0f, MIN(56.0f, floorf(playerHeight * 0.33f)));
+    }
+
+    if ([GameSettings currentRenderScale] >= 2.0f) {
+        return 48.0f;
+    }
+    return 44.0f;
+}
 
 @implementation PlayerActionBlock
 
@@ -31,7 +49,7 @@
         [[_shield getCCSprite] setVisible:YES];
         
         CGPoint position = [_parent getPosition];
-        [_shield setPosition:CGPointMake(position.x + 2, position.y + 110)];
+        [_shield setPosition:CGPointMake(position.x + 2, position.y + BlockShieldOffsetY(_parent))];
         
         _duration = 0.5f;
         [[SoundEngine shared] playSound:@"shield"];
@@ -60,7 +78,7 @@
         _isActive = true;
         
         CGPoint position = [_parent getPosition];
-        [_shield setPosition:CGPointMake(position.x + 2, position.y + 110)];
+        [_shield setPosition:CGPointMake(position.x + 2, position.y + BlockShieldOffsetY(_parent))];
     }
     [super update:dt];
 }

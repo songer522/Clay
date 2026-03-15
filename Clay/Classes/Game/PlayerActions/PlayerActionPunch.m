@@ -25,7 +25,7 @@
 {
     [super initialize];
     _punch = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_DOJO_PUNCH];
-    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
+    if ([GameSettings currentRenderScale] >= 2.0f)
     {
         [_punch setBoundingBox:CGRectMake(30, 0, 35, 35)];
     }

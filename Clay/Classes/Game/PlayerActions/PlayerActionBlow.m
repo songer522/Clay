@@ -29,7 +29,7 @@
     _wind = [Sprite spriteWithFile:@"blank.png"];
     _windProjectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_PLAYER_BLOWING];
     
-    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
+    if ([GameSettings currentRenderScale] >= 2.0f)
     {
         [_windProjectile setBoundingBox:CGRectMake(0, 30, 140, 140)];
     }

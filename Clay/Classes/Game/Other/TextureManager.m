@@ -13,6 +13,15 @@
 #import "GameSettings.h"
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 
+static BOOL TextureManagerUsesIPadTextureSet(NSString *key)
+{
+    return [key isEqualToString:@"mainMenu"] ||
+        [key isEqualToString:@"chooseLevel"] ||
+        [key isEqualToString:@"chooseMode"] ||
+        [key isEqualToString:@"optionsScreen"] ||
+        [key isEqualToString:@"howtoplayScreen"];
+}
+
 @implementation TextureManager
 
 static TextureManager *_shared = nil;
@@ -38,21 +47,6 @@ static TextureManager *_shared = nil;
 -(void)loadMemoryForKey:(NSString*)key
 {
     NSDictionary *dict = [_memoryDictionary objectForKey:key];
-    
-    NSString *appendhd = @"";
-    if (IS_IPAD && ((key == @"mainMenu") || (key == @"chooseLevel")|| (key == @"chooseMode")|| (key == @"optionsScreen")||(key == @"howtoplayScreen")))
-    {
-        appendhd = @"-ipad";
-        //appendhd = @"-hd";
-    }
-    else if([[GameSettings shared] usingHighResolutionGraphics])
-    {
-        	appendhd = @"-hd";
-    }
-    else
-    {
-        appendhd = @"";
-    }
         
     //NSLog(@"Loading memory for key: %@",key);
     
@@ -61,8 +55,8 @@ static TextureManager *_shared = nil;
     NSArray *textureArray = [NSArray arrayWithArray:[textureList componentsSeparatedByString:@","]];
     for (NSString *texture in textureArray) {
         if (![texture isEqualToString:@"none"]) {
-            texture = [texture stringByAppendingString:appendhd];
-            [self loadTexturesForFile:texture];            
+            NSString *resolvedTexture = [self resolvedTextureFilenameForBaseName:texture memoryKey:key];
+            [self loadTexturesForFile:resolvedTexture];
         }
     }   
     
@@ -98,27 +92,13 @@ static TextureManager *_shared = nil;
     //NSLog(@"Unloading memory for key: %@",key);
 
     NSDictionary *dict = [_memoryDictionary objectForKey:key];
-    NSString *appendhd = @"";
-    if (IS_IPAD && ((key == @"mainMenu") || (key == @"chooseLevel") || (key == @"chooseMode")|| (key == @"optionsScreen") ||(key ==@"howtoplayScreen")))
-    {
-        appendhd = @"-ipad";
-        //appendhd = @"-hd";
-    }
-    else if([[GameSettings shared] usingHighResolutionGraphics])
-    {
-        appendhd = @"-hd";
-    }
-    else
-    {
-        appendhd = @"";
-    }
     //unload textures
     NSString *textureList = [dict objectForKey:@"textures"];
     NSArray *textureArray = [NSArray arrayWithArray:[textureList componentsSeparatedByString:@","]];
     for (NSString *texture in textureArray) {
         if (![texture isEqualToString:@"none"]) {
-            texture = [texture stringByAppendingString:appendhd];
-            [self unloadTexturesForFile:texture];
+            NSString *resolvedTexture = [self resolvedTextureFilenameForBaseName:texture memoryKey:key];
+            [self unloadTexturesForFile:resolvedTexture];
         }
     }
     
@@ -127,8 +107,8 @@ static TextureManager *_shared = nil;
     textureArray = [NSArray arrayWithArray:[textureList componentsSeparatedByString:@","]];
     for (NSString *texture in textureArray) {
         if (![texture isEqualToString:@"none"]) {
-            texture = [texture stringByAppendingString:appendhd];
-            [self unloadTexturesForFile:texture];
+            NSString *resolvedTexture = [self resolvedTextureFilenameForBaseName:texture memoryKey:key];
+            [self unloadTexturesForFile:resolvedTexture];
         }
     }
     
@@ -162,8 +142,8 @@ static TextureManager *_shared = nil;
 
 -(void)setBatchObstacleFilename:(NSString*)batchName
 {
-    NSString *name = [[NSString stringWithFormat:@"%@.png",batchName] retain];
-    _batchObstacleFilename = name;
+    [_batchObstacleFilename release];
+    _batchObstacleFilename = [[NSString stringWithFormat:@"%@.png",batchName] retain];
 }
 
 
@@ -171,6 +151,64 @@ static TextureManager *_shared = nil;
 ////////////////////////
 //  PRIVATE METHODS
 ////////////////////////
+
+-(BOOL)textureAtlasExistsForFilename:(NSString*)filename
+{
+    NSBundle *bundle = [NSBundle mainBundle];
+    return [bundle pathForResource:filename ofType:@"plist"] != nil &&
+        [bundle pathForResource:filename ofType:@"png"] != nil;
+}
+
+-(NSArray*)candidateTextureFilenamesForBaseName:(NSString*)baseName memoryKey:(NSString*)key
+{
+    NSMutableArray *candidates = [NSMutableArray arrayWithCapacity:3];
+    BOOL usesIPadTextureSet = TextureManagerUsesIPadTextureSet(key);
+    BOOL prefersHighResolution = [[GameSettings shared] usingHighResolutionGraphics];
+    
+    if (usesIPadTextureSet && IS_IPAD) {
+        [candidates addObject:[baseName stringByAppendingString:@"-ipad"]];
+    } else if (prefersHighResolution) {
+        [candidates addObject:[baseName stringByAppendingString:@"-hd"]];
+    } else {
+        [candidates addObject:baseName];
+    }
+    
+    if (![candidates containsObject:baseName]) {
+        [candidates addObject:baseName];
+    }
+    
+    if (prefersHighResolution) {
+        NSString *highResolutionName = [baseName stringByAppendingString:@"-hd"];
+        if (![candidates containsObject:highResolutionName]) {
+            [candidates addObject:highResolutionName];
+        }
+    }
+    
+    if (usesIPadTextureSet) {
+        NSString *ipadName = [baseName stringByAppendingString:@"-ipad"];
+        if (![candidates containsObject:ipadName]) {
+            [candidates addObject:ipadName];
+        }
+    }
+    
+    return candidates;
+}
+
+-(NSString*)resolvedTextureFilenameForBaseName:(NSString*)baseName memoryKey:(NSString*)key
+{
+    NSArray *candidates = [self candidateTextureFilenamesForBaseName:baseName memoryKey:key];
+    for (NSString *candidate in candidates) {
+        if ([self textureAtlasExistsForFilename:candidate]) {
+            return candidate;
+        }
+    }
+    
+    CCLOG(@"TextureManager: could not find atlas for %@ in %@. Tried: %@",
+          baseName,
+          key,
+          [candidates componentsJoinedByString:@", "]);
+    return [candidates objectAtIndex:0];
+}
 
 -(void)loadTexturesForFile:(NSString*)filename
 {
@@ -192,6 +230,7 @@ static TextureManager *_shared = nil;
 {
     [_memoryDictionary release];
     [_batchObstacleFilename release];
+    [super dealloc];
 }
 
 @end

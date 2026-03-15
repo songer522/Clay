@@ -55,7 +55,6 @@
 		54484CE3140449B500D0D7D9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54484CE2140449B500D0D7D9 /* CoreGraphics.framework */; };
 		54484CE7140449B500D0D7D9 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 54484CE6140449B500D0D7D9 /* Default.png */; };
 		54484CE9140449B500D0D7D9 /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = 54484CE8140449B500D0D7D9 /* fps_images.png */; };
-		54484CF8140449B500D0D7D9 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 54484CF7140449B500D0D7D9 /* iTunesArtwork */; };
 		54484CFD140449B500D0D7D9 /* CCAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 54484CFC140449B500D0D7D9 /* CCAction.m */; };
 		54484D00140449B500D0D7D9 /* CCActionCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 54484CFF140449B500D0D7D9 /* CCActionCamera.m */; };
 		54484D03140449B500D0D7D9 /* CCActionEase.m in Sources */ = {isa = PBXBuildFile; fileRef = 54484D02140449B500D0D7D9 /* CCActionEase.m */; };
@@ -734,7 +733,7 @@
 		54484CE6140449B500D0D7D9 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/Default.png; sourceTree = "<group>"; };
 		54484CE8140449B500D0D7D9 /* fps_images.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fps_images.png; path = Resources/fps_images.png; sourceTree = "<group>"; };
 		54484CF6140449B500D0D7D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
-		54484CF7140449B500D0D7D9 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork; path = Resources/iTunesArtwork; sourceTree = "<group>"; };
+		54484CF7140449B500D0D7D9 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = text; name = iTunesArtwork; path = Resources/iTunesArtwork; sourceTree = "<group>"; };
 		54484CFB140449B500D0D7D9 /* CCAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CCAction.h; path = libs/cocos2d/CCAction.h; sourceTree = "<group>"; };
 		54484CFC140449B500D0D7D9 /* CCAction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CCAction.m; path = libs/cocos2d/CCAction.m; sourceTree = "<group>"; };
 		54484CFE140449B500D0D7D9 /* CCActionCamera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CCActionCamera.h; path = libs/cocos2d/CCActionCamera.h; sourceTree = "<group>"; };
@@ -1608,6 +1607,7 @@
 		E4D2261014B97D860003BA65 /* rainyLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rainyLevel.png; sourceTree = "<group>"; };
 		E4F257BD14C00D9F0006985B /* EndLevelScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndLevelScene.h; sourceTree = "<group>"; };
 		E4F257BE14C00DA00006985B /* EndLevelScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndLevelScene.m; sourceTree = "<group>"; };
+		FC530ABD233F0EAB00D5B74E /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iTunesArtwork.png; path = Resources/iTunesArtwork.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1725,7 +1725,6 @@
 				54883B8914487ED80029759E /* Icon@2x.png */,
 				54179E26142BBFA400D3A79E /* Default@2x.png */,
 				54484CE6140449B500D0D7D9 /* Default.png */,
-				54484CF7140449B500D0D7D9 /* iTunesArtwork */,
 			);
 			name = "app artwork";
 			sourceTree = "<group>";
@@ -1784,6 +1783,8 @@
 		54484CE5140449B500D0D7D9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				54484CF7140449B500D0D7D9 /* iTunesArtwork */,
+				FC530ABD233F0EAB00D5B74E /* iTunesArtwork.png */,
 				54642AFE14337E5F001D8212 /* art */,
 				543C09601420F3CF00F259BA /* app artwork */,
 				54F7F580143CD103004EC10B /* fonts */,
@@ -3146,12 +3147,19 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0420;
+				TargetAttributes = {
+					54484CCF140449B500D0D7D9 = {
+						DevelopmentTeam = 4UXP3NANFN;
+						ProvisioningStyle = Automatic;
+					};
+				};
 			};
 			buildConfigurationList = 54484CCA140449B500D0D7D9 /* Build configuration list for PBXProject "Clay" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 54484CC5140449B500D0D7D9;
@@ -3185,7 +3193,6 @@
 				5411DEC714B369EF00046594 /* tileset_level_5.png in Resources */,
 				54484CE7140449B500D0D7D9 /* Default.png in Resources */,
 				54484CE9140449B500D0D7D9 /* fps_images.png in Resources */,
-				54484CF8140449B500D0D7D9 /* iTunesArtwork in Resources */,
 				54179E27142BBFA400D3A79E /* Default@2x.png in Resources */,
 				54090E20142CCE6700FC3ABE /* ball.png in Resources */,
 				54F7F57F143CD0FD004EC10B /* 7 Segment.ttf in Resources */,
@@ -3849,7 +3856,7 @@
 		54484E40140449B700D0D7D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3862,7 +3869,7 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
@@ -3873,7 +3880,7 @@
 		54484E41140449B700D0D7D9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3881,7 +3888,7 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -3894,20 +3901,24 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ARCHS = "$(ARCHS_STANDARD)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = 4UXP3NANFN;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Clay/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = Clay/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				OTHER_LDFLAGS = "-lz";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yang.clay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = 2;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -3916,22 +3927,25 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ARCHS = "$(ARCHS_STANDARD)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = 4UXP3NANFN;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Clay/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = Clay/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				OTHER_LDFLAGS = "-lz";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yang.clay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				TARGETED_DEVICE_FAMILY = 2;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3940,7 +3954,7 @@
 		54A0A68B146C5367002CCC26 /* Ad-Hoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: XecuDev LLC";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3948,7 +3962,7 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8147A182-A688-41E1-92F6-F6529820CAE6";
@@ -3961,22 +3975,25 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: XecuDev LLC";
+				ARCHS = "$(ARCHS_STANDARD)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = 4UXP3NANFN;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Clay/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = Clay/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				OTHER_LDFLAGS = "-lz";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yang.clay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				TARGETED_DEVICE_FAMILY = 2;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

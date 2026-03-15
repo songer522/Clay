@@ -121,7 +121,7 @@
 	{
 		
         //XECUDEV: replaced deprecated code
-        theMovie.controlStyle = MPMovieControlModeHidden;
+        //theMovie.controlStyle = MPMovieControlModeHidden;
 	}
 //#endif
 //#endif

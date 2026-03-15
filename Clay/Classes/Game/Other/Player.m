@@ -179,7 +179,7 @@
         if (_isNewUnderwaterPhysics) {
             _vy = -172.5f; //75% original        
         } else {
-            _vy = -230.0f;
+            _vy = -220.0f;
         }
     }
     else
@@ -191,7 +191,7 @@
         }
     }
     
-    _y += 2.0f;
+    _y += 2.0f*MULTIPLIERY;
     _isJumping = true;
     if (!_isDojoLevel || ![_thirdAction inAction]) {
         [_skin setPlayerAnimation:PLAYER_ANIM_JUMPING ForSprite:_sprite];        

@@ -22,6 +22,39 @@
 #define HUD_LAYER_ACTION_X 372
 #define HUD_LAYER_SPRINT_X 442
 #define HUD_LAYER_BUTTON_SIZE 110
+#define LEGACY_PHONE_HEIGHT 320.0f
+#define HUD_TIMER_X 40.0f
+#define HUD_TIMER_Y 287.0f
+#define HUD_PAUSE_X 10.0f
+#define HUD_PAUSE_Y 287.0f
+
+static float HudLayerPhoneVerticalOffset(void)
+{
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        return 0.0f;
+    }
+    
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    return MAX((winSize.height - LEGACY_PHONE_HEIGHT) * 0.5f, 0.0f);
+}
+
+static float HudLayerTopY(float legacyY)
+{
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        return legacyY;
+    }
+    
+    return legacyY + HudLayerPhoneVerticalOffset();
+}
+
+static CGPoint HudLayerPausePosition(void)
+{
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        return ccp(9,700);
+    }
+    
+    return ccp(HUD_PAUSE_X, HudLayerTopY(HUD_PAUSE_Y));
+}
 
 @implementation HudLayer
 
@@ -35,25 +68,18 @@
     self = [super init];
     if (self) {
         // Initialization code here.
-        if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2)
-        {
-            _buttonScale = [[UIScreen mainScreen] scale] / 2.0f;
-        }
-        else
-        {
-            _buttonScale = [[UIScreen mainScreen] scale];
-        }
+        _buttonScale = 1.0f;
         
         [[[LayerManager sharedLayers] currentScene] addChild:self];
         [[LayerManager sharedLayers] setWorkingLayer:self];
         
         _trackTimer = [TrackTimer instance];
-        [_trackTimer setupAnimationsAtX:40.0f Y:287.0f];
+        [_trackTimer setupAnimationsAtX:HUD_TIMER_X Y:HudLayerTopY(HUD_TIMER_Y)];
         
         _battery = [Battery instance];
         
         _pauseButton = [Sprite spriteFromFrameCacheWithName:@"Pause.png"];
-        [_pauseButton getCCSprite].position = ccp(9,700);  
+        [_pauseButton getCCSprite].position = HudLayerPausePosition();
         
         _alpha = 0.0f;
         _currentTransition = HUD_TRANSITION_IDLE;
