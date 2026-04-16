@@ -19,6 +19,7 @@
 #define HUD_LAYER_BUTTON_SIZE 62
 #define LEGACY_PHONE_WIDTH 480.0f
 #define LEGACY_PHONE_HEIGHT 320.0f
+#define LEGACY_IPAD_WIDTH 1024.0f
 
 #define BUTTON_OPACITY 255
 #define BUTTON_SCALE 0.85f
@@ -34,7 +35,7 @@ static float HudButtonPhoneVerticalOffset(void)
     if (IS_IPAD) {
         return 0.0f;
     }
-    
+
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     return MAX((winSize.height - LEGACY_PHONE_HEIGHT) * 0.5f, 0.0f);
 }
@@ -42,18 +43,19 @@ static float HudButtonPhoneVerticalOffset(void)
 static float HudButtonX(HudButtonType type)
 {
     if (IS_IPAD) {
+        CGSize winSize = [[CCDirector sharedDirector] winSize];
         switch (type) {
             case HUD_BUTTON_JUMP:
                 return HUD_LAYER_JUMP_X * MULTIPLIERX;
             case HUD_BUTTON_ACTION:
-                return HUD_LAYER_ACTION_X * MULTIPLIERX;
+                return winSize.width - (LEGACY_IPAD_WIDTH - (HUD_LAYER_ACTION_X * MULTIPLIERX));
             case HUD_BUTTON_SPRINT:
-                return HUD_LAYER_SPRINT_X * MULTIPLIERX;
+                return winSize.width - (LEGACY_IPAD_WIDTH - (HUD_LAYER_SPRINT_X * MULTIPLIERX));
             default:
                 return 0.0f;
         }
     }
-    
+
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     switch (type) {
         case HUD_BUTTON_JUMP:
@@ -76,12 +78,21 @@ static float HudButtonY(void)
     return HUD_LAYER_BUTTON_Y + HudButtonPhoneVerticalOffset();
 }
 
-static CGRect HudButtonHitbox(CGPoint position, float size)
+static CGSize HudButtonHitboxSize(CGFloat baseSize)
 {
-    return CGRectMake(position.x - (0.5f * size),
-                      position.y - (0.5f * size),
-                      size,
-                      size);
+    if (IS_IPAD) {
+        return CGSizeMake(baseSize * MULTIPLIERX, baseSize * MULTIPLIERY);
+    }
+
+    return CGSizeMake(baseSize, baseSize);
+}
+
+static CGRect HudButtonHitbox(CGPoint position, CGSize size)
+{
+    return CGRectMake(position.x - (0.5f * size.width),
+                      position.y - (0.5f * size.height),
+                      size.width,
+                      size.height);
 }
 @implementation HudButton
 
@@ -127,7 +138,7 @@ static CGRect HudButtonHitbox(CGPoint position, float size)
             [self createSpriteFromImage:@"UI_Button_Jumping.png"];
             CGPoint position = ccp(HudButtonX(type), HudButtonY());
             [self setPosition:position];
-            float size = 200.0f;
+            CGSize size = HudButtonHitboxSize(200.0f);
             [self setHitbox:HudButtonHitbox(position, size)];
             break;
         }
@@ -136,7 +147,7 @@ static CGRect HudButtonHitbox(CGPoint position, float size)
             [self createSpriteFromImage:@"UI_Button_Sprinting.png"];
             CGPoint position = ccp(HudButtonX(type), HudButtonY());
             [self setPosition:position];
-            [self setHitbox:HudButtonHitbox(position, HUD_LAYER_BUTTON_SIZE)];
+            [self setHitbox:HudButtonHitbox(position, HudButtonHitboxSize(HUD_LAYER_BUTTON_SIZE))];
             break;
         }
         case HUD_BUTTON_ACTION:
@@ -144,7 +155,7 @@ static CGRect HudButtonHitbox(CGPoint position, float size)
             [self createSpriteFromAction:action];
             CGPoint position = ccp(HudButtonX(type), HudButtonY());
             [self setPosition:position];
-            [self setHitbox:HudButtonHitbox(position, HUD_LAYER_BUTTON_SIZE)];
+            [self setHitbox:HudButtonHitbox(position, HudButtonHitboxSize(HUD_LAYER_BUTTON_SIZE))];
             break;
         }
         default:

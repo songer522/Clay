@@ -16,10 +16,27 @@
 #import "EndLevelLayer.h"
 #import "TrackTimer.h"
 
-static CGRect PauseTouchRect(void)
+#define LEGACY_IPAD_HEIGHT 768.0f
+#define HUD_PAUSE_Y 287.0f
+
+static CGPoint PauseButtonPosition(void)
 {
     CGSize winSize = [[CCDirector sharedDirector] winSize];
-    return CGRectMake(0.0f, winSize.height - 80.0f, 80.0f, 80.0f);
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        CGFloat yOffset = MAX(winSize.height - LEGACY_IPAD_HEIGHT, 0.0f);
+        return ccp(9.0f, (HUD_PAUSE_Y * 2.4f) + yOffset);
+    }
+
+    return ccp(10.0f, winSize.height - 33.0f);
+}
+
+static CGRect PauseTouchRect(void)
+{
+    CGPoint pausePosition = PauseButtonPosition();
+    return CGRectMake(MAX(0.0f, pausePosition.x - 40.0f),
+                      MAX(0.0f, pausePosition.y - 40.0f),
+                      80.0f,
+                      80.0f);
 }
 
 @implementation GameController

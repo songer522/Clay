@@ -23,6 +23,7 @@
 #define HUD_LAYER_SPRINT_X 442
 #define HUD_LAYER_BUTTON_SIZE 110
 #define LEGACY_PHONE_HEIGHT 320.0f
+#define LEGACY_IPAD_HEIGHT 768.0f
 #define HUD_TIMER_X 40.0f
 #define HUD_TIMER_Y 287.0f
 #define HUD_PAUSE_X 10.0f
@@ -33,15 +34,25 @@ static float HudLayerPhoneVerticalOffset(void)
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         return 0.0f;
     }
-    
+
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     return MAX((winSize.height - LEGACY_PHONE_HEIGHT) * 0.5f, 0.0f);
+}
+
+static float HudLayerIpadVerticalOffset(void)
+{
+    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
+        return 0.0f;
+    }
+
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    return MAX(winSize.height - LEGACY_IPAD_HEIGHT, 0.0f);
 }
 
 static float HudLayerTopY(float legacyY)
 {
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        return legacyY;
+        return legacyY + (HudLayerIpadVerticalOffset() / 2.4f);
     }
     
     return legacyY + HudLayerPhoneVerticalOffset();
@@ -50,7 +61,7 @@ static float HudLayerTopY(float legacyY)
 static CGPoint HudLayerPausePosition(void)
 {
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        return ccp(9,700);
+        return ccp(9.0f, (HUD_PAUSE_Y * 2.4f) + HudLayerIpadVerticalOffset());
     }
     
     return ccp(HUD_PAUSE_X, HudLayerTopY(HUD_PAUSE_Y));

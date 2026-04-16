@@ -30,6 +30,7 @@
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
 #define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
+#define LEGACY_IPAD_HEIGHT 768.0f
 #define PLAYER_SPRITE_FILE @"player_idle_01.png"
 #define PLAYER_STARTING_VELOCITY 0
 #define PLAYER_STARTING_Y_POSITION 40
@@ -37,6 +38,16 @@
 #define PLAYER_VELOCITY_MULTIPLIER 2
 
 #define PLAYER_SPRINT_COOLDOWN 1.0
+
+static CGFloat ModernIpadGameplayVerticalOffset(void)
+{
+    if (!IS_IPAD) {
+        return 0.0f;
+    }
+
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    return MAX(0.0f, winSize.height - LEGACY_IPAD_HEIGHT);
+}
 
 @implementation Player
 
@@ -69,7 +80,7 @@
         
         NSDictionary *cameraTracking = [settings objectForKey:@"cameraTracking"];
         int cameraX = [[cameraTracking objectForKey:@"x"] intValue] * MULTIPLIERX;
-        int cameraY = ([[cameraTracking objectForKey:@"y"] intValue] * MULTIPLIERY) - 4;
+        int cameraY = (([[cameraTracking objectForKey:@"y"] intValue] * MULTIPLIERY) - 4) + ModernIpadGameplayVerticalOffset();
         [[Camera sharedCamera] setCenter:CGPointMake(cameraX, cameraY)];
         [[Camera sharedCamera] setDefaultCenter:CGPointMake(cameraX, cameraY)];
         

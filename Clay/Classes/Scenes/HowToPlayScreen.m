@@ -19,21 +19,36 @@
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
 #define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
+#define HOWTOPLAY_LEGACY_PHONE_WIDTH 480.0f
+#define HOWTOPLAY_LEGACY_PHONE_HEIGHT 320.0f
+#define HOWTOPLAY_LEGACY_IPAD_WIDTH 1024.0f
+#define HOWTOPLAY_LEGACY_IPAD_HEIGHT 768.0f
 
-static CGPoint HowToPlayLegacyPhoneOffset(void)
+static CGPoint HowToPlayLayoutOffset(void)
 {
-    if (IS_IPAD) {
-        return CGPointZero;
-    }
-    
     CGSize winSize = [[CCDirector sharedDirector] winSize];
-    return ccp(MAX(0.0f, floorf((winSize.width - 480.0f) / 2.0f)), 0.0f);
+    CGFloat legacyWidth = IS_IPAD ? HOWTOPLAY_LEGACY_IPAD_WIDTH : HOWTOPLAY_LEGACY_PHONE_WIDTH;
+    CGFloat legacyHeight = IS_IPAD ? HOWTOPLAY_LEGACY_IPAD_HEIGHT : HOWTOPLAY_LEGACY_PHONE_HEIGHT;
+    return ccp(MAX(0.0f, floorf((winSize.width - legacyWidth) / 2.0f)),
+               MAX(0.0f, floorf((winSize.height - legacyHeight) / 2.0f)));
 }
 
-static CGPoint HowToPlayPhonePoint(CGFloat x, CGFloat y)
+static CGPoint HowToPlayLayoutPoint(CGFloat x, CGFloat y)
 {
-    CGPoint offset = HowToPlayLegacyPhoneOffset();
+    CGPoint offset = HowToPlayLayoutOffset();
     return ccp(offset.x + x, offset.y + y);
+}
+
+static void HowToPlayConfigureBackground(Sprite *background)
+{
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    CCSprite *backgroundSprite = [background getCCSprite];
+    backgroundSprite.anchorPoint = ccp(0.5f, 0.5f);
+    backgroundSprite.position = ccp(winSize.width * 0.5f, winSize.height * 0.5f);
+
+    CGFloat widthScale = winSize.width / [background getWidth];
+    CGFloat heightScale = winSize.height / [background getHeight];
+    [backgroundSprite setScale:MAX(widthScale, heightScale)];
 }
 
 @implementation HowToPlayScreen
@@ -66,23 +81,23 @@ static CGPoint HowToPlayPhonePoint(CGFloat x, CGFloat y)
         [[TextureManager shared] loadMemoryForKey:@"howtoplayScreen"];
         
         _background = [Sprite spriteFromFrameCacheWithName:@"HTP_Background.png"];
-        [_background setScreenPosition:HowToPlayLegacyPhoneOffset()];
+        HowToPlayConfigureBackground(_background);
         
         _tutorial = [[Tutorial alloc] initWithinLayer:self];
         [_tutorial switchToTutorial];
         
         _backButton = [ActionButton actionButtonCustomGraphicsForIdle:@"UI_GameType_ButtonS_Blue.png" Selected:@"UI_GameType_ButtonS_Green.png"];
         [_backButton setInitialText:@"BACK"];
-        [_backButton setPosition:HowToPlayPhonePoint(50 *MULTIPLIERX, 18*MULTIPLIERY)];
+        [_backButton setPosition:HowToPlayLayoutPoint(50 *MULTIPLIERX, 18*MULTIPLIERY)];
         
         _header = [GameLabel gameLabelWithText:@"HOW TO PLAY" Scale:0.65f];
-        [_header setPosition:HowToPlayPhonePoint(375.0f*MULTIPLIERX,284.0f*MULTIPLIERY)];
+        [_header setPosition:HowToPlayLayoutPoint(375.0f*MULTIPLIERX,284.0f*MULTIPLIERY)];
         
         
         
         _startButton = [ActionButton actionButtonCustomGraphicsForIdle:@"UI_GameType_ButtonS_Blue.png" Selected:@"UI_GameType_ButtonS_Green.png"];
         [_startButton setInitialText:@"NEXT"];
-        [_startButton setPosition:HowToPlayPhonePoint(430*MULTIPLIERX,18*MULTIPLIERY)];
+        [_startButton setPosition:HowToPlayLayoutPoint(430*MULTIPLIERX,18*MULTIPLIERY)];
         
         NSString *preTutorial = [[GameSettings shared] getGlobalForKey:@"preTutorialScreen"];
         if ([preTutorial isEqualToString:@"options"]) {

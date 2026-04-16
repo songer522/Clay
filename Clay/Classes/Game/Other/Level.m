@@ -46,14 +46,21 @@ static CGRect CollisionRectForObject(id<Collidable> object)
                              boundingBox.size.width,
                              boundingBox.size.height);
     
-    // The yellow "small hurdle" uses a very low diagonal sprite, so its original
-    // phone-era box can miss the player's feet on modern iPhone layouts.
+    // Some very low legacy phone-era obstacles need a little extra overlap on
+    // modern phones so the player's feet still enter the intended effect area.
     if (!IS_IPAD && [object isKindOfClass:[GameObject class]]) {
         GameObject *gameObject = (GameObject *)object;
+        NSString *spriteName = [[gameObject getSprite] name];
+
         if (gameObject.isHurdle && boundingBox.size.height <= 15.0f && boundingBox.size.width <= 15.0f) {
             rect.origin.x -= 36.0f;
             rect.size.width += 42.0f;
             rect.size.height += 10.0f;
+        } else if ([spriteName isEqualToString:@"Track_Sandpit_1.png"]) {
+            rect.origin.x -= 18.0f;
+            rect.size.width += 36.0f;
+            rect.origin.y -= 10.0f;
+            rect.size.height += 18.0f;
         }
     }
     

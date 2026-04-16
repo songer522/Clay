@@ -56,7 +56,9 @@ static TextureManager *_shared = nil;
     for (NSString *texture in textureArray) {
         if (![texture isEqualToString:@"none"]) {
             NSString *resolvedTexture = [self resolvedTextureFilenameForBaseName:texture memoryKey:key];
-            [self loadTexturesForFile:resolvedTexture];
+            if (resolvedTexture != nil) {
+                [self loadTexturesForFile:resolvedTexture];
+            }
         }
     }   
     
@@ -98,7 +100,9 @@ static TextureManager *_shared = nil;
     for (NSString *texture in textureArray) {
         if (![texture isEqualToString:@"none"]) {
             NSString *resolvedTexture = [self resolvedTextureFilenameForBaseName:texture memoryKey:key];
-            [self unloadTexturesForFile:resolvedTexture];
+            if (resolvedTexture != nil) {
+                [self unloadTexturesForFile:resolvedTexture];
+            }
         }
     }
     
@@ -108,7 +112,9 @@ static TextureManager *_shared = nil;
     for (NSString *texture in textureArray) {
         if (![texture isEqualToString:@"none"]) {
             NSString *resolvedTexture = [self resolvedTextureFilenameForBaseName:texture memoryKey:key];
-            [self unloadTexturesForFile:resolvedTexture];
+            if (resolvedTexture != nil) {
+                [self unloadTexturesForFile:resolvedTexture];
+            }
         }
     }
     
@@ -207,7 +213,7 @@ static TextureManager *_shared = nil;
           baseName,
           key,
           [candidates componentsJoinedByString:@", "]);
-    return [candidates objectAtIndex:0];
+    return nil;
 }
 
 -(void)loadTexturesForFile:(NSString*)filename

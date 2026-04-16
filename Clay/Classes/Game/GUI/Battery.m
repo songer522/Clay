@@ -20,6 +20,8 @@
 #define N(x) [NSNumber numberWithFloat: x]
 #define LEGACY_PHONE_WIDTH 480.0f
 #define LEGACY_PHONE_HEIGHT 320.0f
+#define LEGACY_IPAD_WIDTH 1024.0f
+#define LEGACY_IPAD_HEIGHT 768.0f
 
 //IPAD FIX: these numbers got moved and the battery was shifted a few pixels to the left
 #define BATTERY_X 397.0f //was 410.0f
@@ -28,7 +30,10 @@
 static CGPoint BatteryScreenPosition(void)
 {
     if (IS_IPAD) {
-        return ccp(BATTERY_X * MULTIPLIERX, BATTERY_Y * MULTIPLIERY);
+        CGSize winSize = [[CCDirector sharedDirector] winSize];
+        CGFloat x = winSize.width - (LEGACY_IPAD_WIDTH - (BATTERY_X * MULTIPLIERX));
+        CGFloat yOffset = MAX(winSize.height - LEGACY_IPAD_HEIGHT, 0.0f);
+        return ccp(x, (BATTERY_Y * MULTIPLIERY) + yOffset);
     }
     
     CGSize winSize = [[CCDirector sharedDirector] winSize];

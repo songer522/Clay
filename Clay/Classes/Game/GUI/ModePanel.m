@@ -20,10 +20,33 @@
 #define PANEL_BUTTON_START_Y 110.0f
 
 #define PANEL_BUTTON_HEIGHT_WITH_GAP 71.0f
+#define PANEL_PHONE_CENTER_Y 154.0f
 #define PANEL_DEVICE_CENTER_Y 310.0f
+#define PANEL_IPAD_ACTIVE_HEADER_OFFSET_Y 140.0f
+#define PANEL_IPAD_BUTTON_START_OFFSET_Y 47.0f
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
 #define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
+
+static CGFloat ModePanelInactiveHeaderY(CGFloat panelCenterY)
+{
+    return panelCenterY;
+}
+
+static CGFloat ModePanelActiveHeaderY(CGFloat panelCenterY)
+{
+    return panelCenterY + PANEL_IPAD_ACTIVE_HEADER_OFFSET_Y;
+}
+
+static BOOL ModePanelHeaderShouldBeVisible(CGFloat panelCenterY, CGFloat headerY)
+{
+    if (IS_IPAD) {
+        return YES;
+    }
+
+    CGFloat halfPanelHeight = 114.0f;
+    return headerY >= (panelCenterY - halfPanelHeight) && headerY <= (panelCenterY + halfPanelHeight);
+}
 
 @interface ModePanel()
 
@@ -71,9 +94,10 @@
     int count = [buttonNames count];
     float startY;
     if (IS_IPAD) {
-        startY = (PANEL_DEVICE_CENTER_Y + ((count * PANEL_BUTTON_HEIGHT_WITH_GAP) / 2.0f));
+        startY = _position.y + PANEL_IPAD_BUTTON_START_OFFSET_Y;
     } else {
-        startY = (PANEL_BUTTON_START_Y + ((count * PANEL_BUTTON_HEIGHT_WITH_GAP) / 2.0f));
+        float legacyStartY = PANEL_BUTTON_START_Y + ((count * PANEL_BUTTON_HEIGHT_WITH_GAP) / 2.0f);
+        startY = _position.y + (legacyStartY - PANEL_PHONE_CENTER_Y);
     }
     int i = 0;
     for (NSString *name in buttonNames) {
@@ -97,7 +121,7 @@
     _phase = MODE_PANEL_ACTIVE;
     _isActive = true;
     [self setPanelAlpha:1.0f];
-    [self setHeaderAlpha:1.0f Position:ccp(_position.x, PANEL_HEADER_ACTIVE_Y)];
+    [self setHeaderAlpha:1.0f Position:ccp(_position.x, ModePanelActiveHeaderY(_position.y))];
     
     for (ActionButton *button in _buttons) {
         [button setAlpha:1.0f];
@@ -151,15 +175,18 @@
 
 -(void)setHeaderAlpha:(float)alpha Position:(CGPoint)position
 {
-    [_activeHeader setAlpha:alpha];
+    BOOL headerVisible = ModePanelHeaderShouldBeVisible(_position.y, position.y);
+    [_activeHeader setAlpha:headerVisible ? alpha : 0.0f];
+    [_inactiveHeader setAlpha:headerVisible ? (1.0f - alpha) : 0.0f];
     [_activeHeader getCCSprite].position = position;
     [_inactiveHeader getCCSprite].position = position;
 }
 
 -(void)setHeaderFrame:(NSString*)activeName Inactive:(NSString*)inactiveName
 {
-    _inactiveHeader = [Sprite spriteCenteredWithFrame:inactiveName Position:ccp(_position.x,PANEL_HEADER_INACTIVE_Y)];
-    _activeHeader = [Sprite spriteCenteredWithFrame:activeName Position:ccp(_position.x,PANEL_HEADER_INACTIVE_Y)];
+    CGFloat inactiveHeaderY = ModePanelInactiveHeaderY(_position.y);
+    _inactiveHeader = [Sprite spriteCenteredWithFrame:inactiveName Position:ccp(_position.x,inactiveHeaderY)];
+    _activeHeader = [Sprite spriteCenteredWithFrame:activeName Position:ccp(_position.x,inactiveHeaderY)];
     [_activeHeader setAlpha:0.0f];
 }
 
@@ -296,7 +323,7 @@
                 [self makeCursorActive];
             }
             [self setPanelAlpha:_alpha];
-            [self setHeaderAlpha:_alpha Position:ccp(_position.x,PANEL_HEADER_INACTIVE_Y + (_alpha * PANEL_HEIGHT_DIFFERENCE))];
+            [self setHeaderAlpha:_alpha Position:ccp(_position.x,ModePanelInactiveHeaderY(_position.y) + (_alpha * PANEL_HEIGHT_DIFFERENCE))];
             [self setButtonTransitionAmount:_alpha];
             break;
         case MODE_PANEL_SWITCHTO_INACTIVE:
@@ -307,7 +334,7 @@
                 _isActive = false;
             }
             [self setPanelAlpha:_alpha];
-            [self setHeaderAlpha:_alpha Position:ccp(_position.x,PANEL_HEADER_INACTIVE_Y + (_alpha * PANEL_HEIGHT_DIFFERENCE))];            
+            [self setHeaderAlpha:_alpha Position:ccp(_position.x,ModePanelInactiveHeaderY(_position.y) + (_alpha * PANEL_HEIGHT_DIFFERENCE))];
             [self setButtonTransitionAmount:_alpha];
             break;
         default:

@@ -21,6 +21,12 @@
 #import "SoundEngine.h"
 #import "CreditsScene.h"
 
+static CGPoint EndGameComicOrigin(CGSize comicSize)
+{
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    return ccp(MAX(0.0f, floorf((winSize.width - comicSize.width) * 0.5f)),
+               MAX(0.0f, floorf((winSize.height - comicSize.height) * 0.5f)));
+}
 
 @implementation EndGameScene
 
@@ -61,26 +67,26 @@
          
         [[TextureManager shared] loadMemoryForKey:@"endGame"];
         
-             _comic=[Sprite spriteWithFile:@"Comic_11-hd.png"];
-        [_comic getCCSprite].position=ccp(32,64);
+        _comic=[Sprite spriteWithFile:@"Comic_11-hd.png"];
+        [_comic setScreenPosition:EndGameComicOrigin([_comic getCCSprite].contentSize)];
         
         difficulty = [[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
         mode=[[GameSettings shared] getGlobalForKey:@"gameMode"];
         
         if([difficulty isEqualToString:@"hard"] && [mode isEqualToString:@"story"])
         {
-        _BonusComic=[Sprite spriteWithFile:@"Comic_13-hd.png"];
-            [_BonusComic getCCSprite].position=ccp(32,64);
+            _BonusComic=[Sprite spriteWithFile:@"Comic_13-hd.png"];
+            [_BonusComic setScreenPosition:EndGameComicOrigin([_BonusComic getCCSprite].contentSize)];
         }
         else if ([difficulty isEqualToString:@"normal"] && [mode isEqualToString:@"story"])
         {
             _BonusComic=[Sprite spriteWithFile:@"Comic_14-hd.png"];
-            [_BonusComic getCCSprite].position=ccp(32,64);
+            [_BonusComic setScreenPosition:EndGameComicOrigin([_BonusComic getCCSprite].contentSize)];
         }
         else
         {
             _BonusComic=[Sprite spriteWithFile:@"Comic_12-hd.png"];
-            [_BonusComic getCCSprite].position=ccp(32,64);
+            [_BonusComic setScreenPosition:EndGameComicOrigin([_BonusComic getCCSprite].contentSize)];
         }
         [[SoundEngine shared] cueFadeIn];
        [[SoundEngine shared] playMusic:@"credits"];

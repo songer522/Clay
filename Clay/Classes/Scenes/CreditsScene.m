@@ -20,6 +20,45 @@
 #define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
 #define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 
+static CGFloat CreditsCenterX(void)
+{
+    if (IS_IPAD) {
+        return 240.0f * MULTIPLIERX;
+    }
+
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    return floorf(winSize.width * 0.5f);
+}
+
+static CGFloat CreditsInitialY(void)
+{
+    if (IS_IPAD) {
+        return -50.0f;
+    }
+
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    return -MAX(24.0f, floorf(winSize.height * 0.06f));
+}
+
+static CGFloat CreditsInterGroupSpacing(void)
+{
+    if (IS_IPAD) {
+        return 90.0f * MULTIPLIERY;
+    }
+
+    return 54.0f;
+}
+
+static CGFloat CreditsExitPadding(void)
+{
+    if (IS_IPAD) {
+        return 320.0f;
+    }
+
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    return MAX(56.0f, floorf(winSize.height * 0.18f));
+}
+
 @implementation CreditsScene
 
 +(CCScene*)scene
@@ -36,7 +75,7 @@
         
         
         _lines = [[NSMutableArray alloc] initWithCapacity:10];
-        _currentY = -50;
+        _currentY = CreditsInitialY();
         _hasSwitched = false;
         
         
@@ -90,21 +129,21 @@
 
 -(void)addHeader:(NSString*)header
 {
-    GameLabel *label = [GameLabel gameLabelWithText:[header uppercaseString] Scale:1.25f Position:ccp(240 * MULTIPLIERX,_currentY * MULTIPLIERY)];
+    GameLabel *label = [GameLabel gameLabelWithText:[header uppercaseString] Scale:1.25f Position:ccp(CreditsCenterX(),_currentY * MULTIPLIERY)];
     [_lines addObject:label];
     _currentY -= 60;
 }
 
 -(void)addCredit:(NSString*)name
 {
-    GameLabel *creditLabel = [GameLabel gameLabelWithText:[name uppercaseString] Scale:0.9f Position:ccp(240 * MULTIPLIERX,_currentY * MULTIPLIERY)];
+    GameLabel *creditLabel = [GameLabel gameLabelWithText:[name uppercaseString] Scale:0.9f Position:ccp(CreditsCenterX(),_currentY * MULTIPLIERY)];
     [_lines addObject:creditLabel];
     _currentY -= 23;    
 }
 
 -(void)addTitle:(NSString*)title;
 {
-    GameLabel *titleLabel = [GameLabel gameLabelWithText:[title uppercaseString] Scale:0.5f Position:ccp(240 * MULTIPLIERX,_currentY * MULTIPLIERY)];
+    GameLabel *titleLabel = [GameLabel gameLabelWithText:[title uppercaseString] Scale:0.5f Position:ccp(CreditsCenterX(),_currentY * MULTIPLIERY)];
     [_lines addObject:titleLabel];
     _currentY -= 20;
 }
@@ -127,7 +166,7 @@
 
     NSDictionary *group1 = [credits objectForKey:@"group1"];
     [self addGroup:group1];
-    _currentY -= 90.0f* MULTIPLIERY;
+    _currentY -= CreditsInterGroupSpacing();
     
     NSDictionary *group2 = [credits objectForKey:@"group2"];
     [self addGroup:group2];
@@ -155,7 +194,7 @@
     
     float rate = 32.0f * dt;
     self.position = ccp(self.position.x, self.position.y + rate);
-    if (!_hasSwitched && self.position.y > 1280.0f) {
+    if (!_hasSwitched && self.position.y > (-_currentY) + CreditsExitPadding()) {
         _hasSwitched = true;
 
         if(![GCState sharedInstance].watchCredit)

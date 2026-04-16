@@ -121,14 +121,14 @@
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
+
     // Release any cached data, images, etc that aren't in use.
 }
 
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     NSURL *hurtURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"hurt" ofType:@"caf"]];
     volumeOverridePlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:hurtURL error:nil];
     [volumeOverridePlayer prepareToPlay];
@@ -185,12 +185,20 @@
 
 - (CGRect)currentOpenGLViewFrame
 {
-    UIView *containerView = self.view.superview;
+    UIView *view = self.view;
+    if (view != nil) {
+        CGRect bounds = view.bounds;
+        if (!CGRectIsEmpty(bounds) && bounds.size.width > 0.0f && bounds.size.height > 0.0f) {
+            return bounds;
+        }
+    }
+
+    UIView *containerView = view.superview;
     if (containerView != nil) {
         return containerView.bounds;
     }
     
-    UIWindow *windowRef = self.view.window;
+    UIWindow *windowRef = view.window;
     if (windowRef != nil) {
         return windowRef.bounds;
     }

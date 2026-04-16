@@ -24,21 +24,36 @@
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
 #define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
+#define CHOOSEMODE_LEGACY_PHONE_WIDTH 480.0f
+#define CHOOSEMODE_LEGACY_PHONE_HEIGHT 320.0f
+#define CHOOSEMODE_LEGACY_IPAD_WIDTH 1024.0f
+#define CHOOSEMODE_LEGACY_IPAD_HEIGHT 768.0f
 
-static CGPoint ChooseModeLegacyPhoneOffset(void)
+static CGPoint ChooseModeLayoutOffset(void)
 {
-    if (IS_IPAD) {
-        return CGPointZero;
-    }
-    
     CGSize winSize = [[CCDirector sharedDirector] winSize];
-    return ccp(MAX(0.0f, floorf((winSize.width - 480.0f) / 2.0f)), 0.0f);
+    CGFloat legacyWidth = IS_IPAD ? CHOOSEMODE_LEGACY_IPAD_WIDTH : CHOOSEMODE_LEGACY_PHONE_WIDTH;
+    CGFloat legacyHeight = IS_IPAD ? CHOOSEMODE_LEGACY_IPAD_HEIGHT : CHOOSEMODE_LEGACY_PHONE_HEIGHT;
+    return ccp(MAX(0.0f, floorf((winSize.width - legacyWidth) / 2.0f)),
+               MAX(0.0f, floorf((winSize.height - legacyHeight) / 2.0f)));
 }
 
-static CGPoint ChooseModePhonePoint(CGFloat x, CGFloat y)
+static CGPoint ChooseModeLayoutPoint(CGFloat x, CGFloat y)
 {
-    CGPoint offset = ChooseModeLegacyPhoneOffset();
+    CGPoint offset = ChooseModeLayoutOffset();
     return ccp(offset.x + x, offset.y + y);
+}
+
+static void ChooseModeConfigureBackground(Sprite *background)
+{
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    CCSprite *backgroundSprite = [background getCCSprite];
+    backgroundSprite.anchorPoint = ccp(0.5f, 0.5f);
+    backgroundSprite.position = ccp(winSize.width * 0.5f, winSize.height * 0.5f);
+
+    CGFloat widthScale = winSize.width / [background getWidth];
+    CGFloat heightScale = winSize.height / [background getHeight];
+    [backgroundSprite setScale:MAX(widthScale, heightScale)];
 }
 
 @implementation ChooseModeScene
@@ -252,39 +267,39 @@ static CGPoint ChooseModePhonePoint(CGFloat x, CGFloat y)
     [[TextureManager shared] loadMemoryForKey:@"chooseMode"];
     
     _background = [Sprite spriteFromFrameCacheWithName:@"UI_GameType_Background.png"];
-    [_background setScreenPosition:ChooseModeLegacyPhoneOffset()];
+    ChooseModeConfigureBackground(_background);
     
-    _storyModePanel = [ModePanel panelAtPosition:ChooseModePhonePoint(80 * MULTIPLIERX ,154 * MULTIPLIERY) PanelType:MODEPANEL_PANEL_STORY];
+    _storyModePanel = [ModePanel panelAtPosition:ChooseModeLayoutPoint(80 * MULTIPLIERX ,154 * MULTIPLIERY) PanelType:MODEPANEL_PANEL_STORY];
     [_storyModePanel setHeaderFrame:@"UI_GameType_StoryModeC.png" Inactive:@"UI_GameType_StoryModeG.png"];
     [_storyModePanel addButtons:[NSArray arrayWithObjects:@"EASY",@"NORMAL",@"HARD", nil]];
     [_storyModePanel setParent:self];
     
-    _timedModePanel = [ModePanel panelAtPosition:ChooseModePhonePoint(240 * MULTIPLIERX,154 * MULTIPLIERY) PanelType:MODEPANEL_PANEL_TIMED];
+    _timedModePanel = [ModePanel panelAtPosition:ChooseModeLayoutPoint(240 * MULTIPLIERX,154 * MULTIPLIERY) PanelType:MODEPANEL_PANEL_TIMED];
     [_timedModePanel setHeaderFrame:@"UI_GameType_TimeModeC.png" Inactive:@"UI_GameType_TimeModeG.png"];
     [_timedModePanel addButtons:[NSArray arrayWithObjects:@"NORMAL",@"INSANE",@"DLC", nil]];
     [_timedModePanel setParent:self];
     
-    _extrasPanel = [ModePanel panelAtPosition:ChooseModePhonePoint(400 * MULTIPLIERX,154 * MULTIPLIERY) PanelType:MODEPANEL_PANEL_EXTRAS];
+    _extrasPanel = [ModePanel panelAtPosition:ChooseModeLayoutPoint(400 * MULTIPLIERX,154 * MULTIPLIERY) PanelType:MODEPANEL_PANEL_EXTRAS];
     [_extrasPanel setHeaderFrame:@"UI_GameType_ExtrasC.png" Inactive:@"UI_GameType_ExtrasG.png"];
     [_extrasPanel addButtons:[NSArray arrayWithObjects:@"ALBUM",@"WEB",@"SUPPORT", nil]];
     [_extrasPanel setParent:self];
     
     _startButton = [ActionButton actionButtonCustomGraphicsForIdle:@"UI_GameType_ButtonS_Blue.png" Selected:@"UI_GameType_ButtonS_Green.png"];
     [_startButton setInitialText:@"START"];
-    [_startButton setPosition:ChooseModePhonePoint(430 * MULTIPLIERX,18 * MULTIPLIERY)];
+    [_startButton setPosition:ChooseModeLayoutPoint(430 * MULTIPLIERX,18 * MULTIPLIERY)];
     
     _backButton = [ActionButton actionButtonCustomGraphicsForIdle:@"UI_GameType_ButtonS_Blue.png" Selected:@"UI_GameType_ButtonS_Green.png"];
     [_backButton setInitialText:@"BACK"];
-    [_backButton setPosition:ChooseModePhonePoint(50 * MULTIPLIERX, 18 * MULTIPLIERY)];
+    [_backButton setPosition:ChooseModeLayoutPoint(50 * MULTIPLIERX, 18 * MULTIPLIERY)];
     
-    _selectCursor = [Sprite spriteCenteredWithFrame:@"UI_GameType_Select.png" Position:ChooseModePhonePoint(240 * MULTIPLIERX,160 * MULTIPLIERY)];
+    _selectCursor = [Sprite spriteCenteredWithFrame:@"UI_GameType_Select.png" Position:ChooseModeLayoutPoint(240 * MULTIPLIERX,160 * MULTIPLIERY)];
     [_storyModePanel setSelectCursor:_selectCursor];
     [_timedModePanel setSelectCursor:_selectCursor];
     [_extrasPanel setSelectCursor:_selectCursor];
     [_selectCursor setAlpha:0.0f];
     
     _selectModeText = [GameLabel gameLabelWithText:@"SELECT GAME TYPE" Scale:0.65f];
-    [_selectModeText setPosition:ChooseModePhonePoint(240.0f * MULTIPLIERX,292.0f * MULTIPLIERY)];
+    [_selectModeText setPosition:ChooseModeLayoutPoint(240.0f * MULTIPLIERX,292.0f * MULTIPLIERY)];
     
     //setup default selections
     _currentPanel = _storyModePanel;

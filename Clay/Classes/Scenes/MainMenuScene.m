@@ -28,6 +28,10 @@
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
 #define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
+#define MAINMENU_LEGACY_PHONE_WIDTH 480.0f
+#define MAINMENU_LEGACY_PHONE_HEIGHT 320.0f
+#define MAINMENU_LEGACY_IPAD_WIDTH 1024.0f
+#define MAINMENU_LEGACY_IPAD_HEIGHT 768.0f
 
 #import "OptionsScene.h"
 #import "Tutorial.h"
@@ -36,20 +40,31 @@
 #import "GCHelper.h"
 #import "GCState.h"
 
-static CGPoint MainMenuLegacyPhoneOffset(void)
+static CGPoint MainMenuLayoutOffset(void)
 {
-    if (IS_IPAD) {
-        return CGPointZero;
-    }
-    
     CGSize winSize = [[CCDirector sharedDirector] winSize];
-    return ccp(MAX(0.0f, floorf((winSize.width - 480.0f) / 2.0f)), 0.0f);
+    CGFloat legacyWidth = IS_IPAD ? MAINMENU_LEGACY_IPAD_WIDTH : MAINMENU_LEGACY_PHONE_WIDTH;
+    CGFloat legacyHeight = IS_IPAD ? MAINMENU_LEGACY_IPAD_HEIGHT : MAINMENU_LEGACY_PHONE_HEIGHT;
+    return ccp(MAX(0.0f, floorf((winSize.width - legacyWidth) / 2.0f)),
+               MAX(0.0f, floorf((winSize.height - legacyHeight) / 2.0f)));
 }
 
-static CGPoint MainMenuPhonePoint(CGFloat x, CGFloat y)
+static CGPoint MainMenuLayoutPoint(CGFloat x, CGFloat y)
 {
-    CGPoint offset = MainMenuLegacyPhoneOffset();
+    CGPoint offset = MainMenuLayoutOffset();
     return ccp(offset.x + x, offset.y + y);
+}
+
+static void MainMenuConfigureBackground(Sprite *background)
+{
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    CCSprite *backgroundSprite = [background getCCSprite];
+    backgroundSprite.anchorPoint = ccp(0.5f, 0.5f);
+    backgroundSprite.position = ccp(winSize.width * 0.5f, winSize.height * 0.5f);
+
+    CGFloat widthScale = winSize.width / [background getWidth];
+    CGFloat heightScale = winSize.height / [background getHeight];
+    [backgroundSprite setScale:MAX(widthScale, heightScale)];
 }
 
 
@@ -93,9 +108,9 @@ static CGPoint MainMenuPhonePoint(CGFloat x, CGFloat y)
           
         //initialize sprites
         _trackBackground = [Sprite spriteFromFrameCacheWithName:@"Menu_Background.png"];
-        [_trackBackground setScreenPosition:MainMenuLegacyPhoneOffset()];
-        _logo = [Sprite spriteCenteredWithFrame:@"Menu_Logo.png" Position:MainMenuPhonePoint(240 * MULTIPLIERX,258 * MULTIPLIERY)]; //final y: 262
-        _copyright = [Sprite spriteCenteredWithFrame:@"Menu_Copyright.png" Position:MainMenuPhonePoint(240 * MULTIPLIERX,24 * MULTIPLIERY)]; //final y: 20
+        MainMenuConfigureBackground(_trackBackground);
+        _logo = [Sprite spriteCenteredWithFrame:@"Menu_Logo.png" Position:MainMenuLayoutPoint(240 * MULTIPLIERX,258 * MULTIPLIERY)]; //final y: 262
+        _copyright = [Sprite spriteCenteredWithFrame:@"Menu_Copyright.png" Position:MainMenuLayoutPoint(240 * MULTIPLIERX,24 * MULTIPLIERY)]; //final y: 20
         
         //check whether we can continue the game
         _isContinueButtonEnabled = [ContinueGameManager isAbleToContinueGame];        
@@ -104,15 +119,15 @@ static CGPoint MainMenuPhonePoint(CGFloat x, CGFloat y)
         _playButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_PlayBlue.png" Selected:@"Menu_PlayGreen.png"];
         
         if (_isContinueButtonEnabled) {
-            [_playButton setPosition:MainMenuPhonePoint(240 * MULTIPLIERX,115 * MULTIPLIERY)];
+            [_playButton setPosition:MainMenuLayoutPoint(240 * MULTIPLIERX,115 * MULTIPLIERY)];
         } else {
-            [_playButton setPosition:MainMenuPhonePoint(240 * MULTIPLIERX,142 * MULTIPLIERY)];
+            [_playButton setPosition:MainMenuLayoutPoint(240 * MULTIPLIERX,142 * MULTIPLIERY)];
         }
         [_playButton setHitboxBySize:CGSizeMake(319 * MULTIPLIERX, 71 * MULTIPLIERY)];
        
         //continue button
         _continueButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_ContinueBlue.png" Selected:@"Menu_ContinueGreen.png"];
-        [_continueButton setPosition:MainMenuPhonePoint(240 * MULTIPLIERX,158 * MULTIPLIERY)];
+        [_continueButton setPosition:MainMenuLayoutPoint(240 * MULTIPLIERX,158 * MULTIPLIERY)];
         [_continueButton setHitboxBySize:CGSizeMake(319 * MULTIPLIERX, 71 * MULTIPLIERY)];
         if (!_isContinueButtonEnabled) {
             [_continueButton setAlpha:0.0f];            
@@ -126,22 +141,22 @@ static CGPoint MainMenuPhonePoint(CGFloat x, CGFloat y)
         
         //leaderboards button
         _leaderboardsButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_LeaderBoardBlue.png" Selected:@"Menu_LeaderBoardGreen.png"];
-        [_leaderboardsButton setPosition:MainMenuPhonePoint(450 * MULTIPLIERX,24 * MULTIPLIERY)];
+        [_leaderboardsButton setPosition:MainMenuLayoutPoint(450 * MULTIPLIERX,24 * MULTIPLIERY)];
         [_leaderboardsButton setHitboxBySize:CGSizeMake(65 * MULTIPLIERX, 65 * MULTIPLIERY)];
         
         //achievements button
         _achievementsButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_AchievementBlue.png" Selected:@"Menu_AchievementGreen.png"];
-        [_achievementsButton setPosition:MainMenuPhonePoint(405 * MULTIPLIERX,24 * MULTIPLIERY)];
+        [_achievementsButton setPosition:MainMenuLayoutPoint(405 * MULTIPLIERX,24 * MULTIPLIERY)];
         [_achievementsButton setHitboxBySize:CGSizeMake(65 * MULTIPLIERX, 65 * MULTIPLIERY)];        
         
         //options button
         _optionsButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_OptionsBlue.png" Selected:@"Menu_OptionsGreen.png"];
-        [_optionsButton setPosition:MainMenuPhonePoint(30 * MULTIPLIERX,24 * MULTIPLIERY)];
+        [_optionsButton setPosition:MainMenuLayoutPoint(30 * MULTIPLIERX,24 * MULTIPLIERY)];
         [_optionsButton setHitboxBySize:CGSizeMake(65 * MULTIPLIERX, 65 * MULTIPLIERY)];
 
         //gift button
         _giftButton = [ActionButton actionButtonCustomGraphicsForIdle:@"Menu_Gift_Blue.png" Selected:@"Menu_Gift_Green.png"];
-        [_giftButton setPosition:MainMenuPhonePoint(75 * MULTIPLIERX,24* MULTIPLIERY)];
+        [_giftButton setPosition:MainMenuLayoutPoint(75 * MULTIPLIERX,24* MULTIPLIERY)];
         [_giftButton setHitboxBySize:CGSizeMake(65 * MULTIPLIERX, 65* MULTIPLIERY)];
 
         [[InAppPurchaseManager shared] requestProductData];

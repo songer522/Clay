@@ -38,6 +38,23 @@
 #define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
 #define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 
+static void ChooseLevelConfigureBackground(Sprite *background)
+{
+    if (IS_IPAD) {
+        [background setScreenPosition:ccp(0.0f, 0.0f)];
+        return;
+    }
+
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    CCSprite *backgroundSprite = [background getCCSprite];
+    backgroundSprite.anchorPoint = ccp(0.5f, 0.5f);
+    backgroundSprite.position = ccp(winSize.width * 0.5f, winSize.height * 0.5f);
+
+    CGFloat widthScale = winSize.width / [background getWidth];
+    CGFloat heightScale = winSize.height / [background getHeight];
+    [backgroundSprite setScale:MAX(widthScale, heightScale)];
+}
+
 
 @implementation ChooseLevelScreen
 
@@ -417,7 +434,7 @@
     [[TextureManager shared] loadMemoryForKey:@"chooseLevel"];
     
     _background = [Sprite spriteFromFrameCacheWithName:@"LevelSelector_Background.png"];
-    [_background setScreenPosition:ccp(0,0)];
+    ChooseLevelConfigureBackground(_background);
     
     //_panelBackground = [Sprite spriteCenteredWithFrame:@"LevelSelector_LevelInfo.png"];
     //[_panelBackground setScreenPosition:ccp(105,155)];

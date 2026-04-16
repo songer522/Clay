@@ -682,6 +682,7 @@
 		E4D2261314B97D860003BA65 /* rainyLevel.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4D2260F14B97D860003BA65 /* rainyLevel.plist */; };
 		E4D2261414B97D860003BA65 /* rainyLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D2261014B97D860003BA65 /* rainyLevel.png */; };
 		E4F257BF14C00DA00006985B /* EndLevelScene.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F257BE14C00DA00006985B /* EndLevelScene.m */; };
+		FC7AA0013B21210000ABCDEF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC7AA0003B21210000ABCDEF /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1607,6 +1608,7 @@
 		E4D2261014B97D860003BA65 /* rainyLevel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rainyLevel.png; sourceTree = "<group>"; };
 		E4F257BD14C00D9F0006985B /* EndLevelScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndLevelScene.h; sourceTree = "<group>"; };
 		E4F257BE14C00DA00006985B /* EndLevelScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndLevelScene.m; sourceTree = "<group>"; };
+		FC7AA0003B21210000ABCDEF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Resources/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FC530ABD233F0EAB00D5B74E /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iTunesArtwork.png; path = Resources/iTunesArtwork.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1793,6 +1795,7 @@
 				545CBC2F142D25AB00795FC9 /* sounds */,
 				54484CE8140449B500D0D7D9 /* fps_images.png */,
 				54090E1F142CCE6700FC3ABE /* ball.png */,
+				FC7AA0003B21210000ABCDEF /* LaunchScreen.storyboard */,
 				54484CF6140449B500D0D7D9 /* Info.plist */,
 			);
 			name = Resources;
@@ -3177,6 +3180,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC7AA0013B21210000ABCDEF /* LaunchScreen.storyboard in Resources */,
 				546B8FF314D95BC100735EFA /* dojoLevel-hd.plist in Resources */,
 				546B8FF414D95BC100735EFA /* dojoLevel-hd.png in Resources */,
 				546B8FF514D95BC100735EFA /* dojoLevel.plist in Resources */,
