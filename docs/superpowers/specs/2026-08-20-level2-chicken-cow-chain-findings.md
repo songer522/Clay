@@ -4,20 +4,22 @@
 **Branch:** `feature/chicken`  
 **Device:** Modern iPhone (user repro; overlay enabled)
 
-## Primary cause (updated)
+## Primary cause (updated again)
 
-**`rects` (AABB mismatch), with trajectory as a contributing factor**
+**Aggressive-test gate bug in `Level testCollisions:`**
 
-Initial overlay read suggested trajectory. After flight retune, user reported the hen **looks** like it hits the second cow, but only the first cow is detected. That points to the kicked hen’s legacy **15×15** collision box not covering the visual sprite, so gameplay AABB misses while sprites appear to overlap.
+```objc
+if (!collision && obstacle.isAggressive)
+```
 
-## Evidence
+While the player AABB still overlaps the kicked hen (very common right after kick, worse after enlarging the hen box), `collision` is true for that frame, so **hen→cow tests are skipped**. First cow can still fall (player body contact and/or a brief window when AABBs separate). Later cows only see the hen visually; aggressive detection never runs in time.
 
-1. First cow falls; later cows in the row do not.
-2. After iPhone flight retune (940 / -14° / gravity 380), visual contact with later cows still fails to register.
-3. Idle hen kick feel was already OK — only airborne hen→cow chaining fails.
+Contributing factors (addressed, not sufficient alone):
+- Tiny legacy kicked-hen AABB vs visual sprite
+- Flight arc on modern layouts
 
-## Fix path
+## Fix
 
-- **Task 4B (done):** flatter/faster iPhone kick arc (kept).
-- **Task 4A (in progress):** enlarge AABB only while `COLLISION_BEHAVIOR_HEN_KICKED`; explicitly set `_collided` on cow collapse so the aggressive loop can advance to the next cow.
-- Keep per-frame single-cow `break` (original design).
+1. Always run aggressive tests when `obstacle.isAggressive` (remove `!collision` gate).
+2. Widen player↔hen proximity window for those tests (`900` → `2500`).
+3. Keep prior kicked-hen AABB expand + iPhone flight retune.
