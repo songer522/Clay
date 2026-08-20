@@ -229,6 +229,9 @@
             [[SoundEngine shared] playSound:@"cowDied"];
             _alpha = 1.5f;
             _fadeout = true;
+            // Always mark hit so aggressive hens can advance to the next cow.
+            // (Normally set via playerEffect==collide; keep explicit for chain hits.)
+            _collided = true;
             break;
         case COLLISION_BEHAVIOR_DANCIN_MAN_COLLAPSE:
             [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"dancinManDied"];

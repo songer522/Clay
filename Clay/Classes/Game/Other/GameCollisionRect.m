@@ -37,6 +37,20 @@ CGRect GameCollisionRectForObject(id<Collidable> object)
             rect.size.height += 18.0f;
         }
     }
+
+    // Kicked hens use a tiny legacy 15x15 box that no longer matches the visual
+    // sprite on modern phones, so cow-row chains look like hits but miss AABB.
+    // Expand only while airborne/kicked; leave idle hen kick targeting alone.
+    if ([object isKindOfClass:[GameObject class]]) {
+        GameObject *gameObject = (GameObject *)object;
+        CollisionBehavior behavior = [gameObject getCurrentCollisionBehavior];
+        if (behavior == COLLISION_BEHAVIOR_HEN_KICKED) {
+            rect.origin.x -= 18.0f;
+            rect.origin.y -= 20.0f;
+            rect.size.width += 36.0f;
+            rect.size.height += 40.0f;
+        }
+    }
     
     return rect;
 }
