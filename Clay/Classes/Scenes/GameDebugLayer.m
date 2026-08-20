@@ -18,6 +18,7 @@
 #import "PlayerAction.h"
 #import "Projectile.h"
 #import "Boss.h"
+#import "GameCollisionRect.h"
 
 @implementation GameDebugLayer
 
@@ -88,19 +89,17 @@
 
 -(void)drawBoxForCollidable:(id<Collidable>)object
 {
-    CGPoint point = [object getCCSprite].position;
-    CGRect boundingBox = [object getBoundingBox];
+    CGRect rect = GameCollisionRectForObject(object);
     
-    float left = point.x - boundingBox.origin.x;
-    float right = point.x - boundingBox.origin.x + boundingBox.size.width;
-    float bottom = point.y - boundingBox.origin.y;
-    float top = point.y - boundingBox.origin.y + boundingBox.size.height;
+    float left = rect.origin.x;
+    float right = rect.origin.x + rect.size.width;
+    float bottom = rect.origin.y;
+    float top = rect.origin.y + rect.size.height;
     
     ccDrawLine(ccp(left, top), ccp(right, top));
     ccDrawLine(ccp(right, top), ccp(right, bottom));
     ccDrawLine(ccp(right, bottom), ccp(left, bottom));
     ccDrawLine(ccp(left, bottom), ccp(left, top));
-    
 }
 
 -(void)dealloc

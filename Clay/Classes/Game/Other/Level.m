@@ -30,42 +30,11 @@
 #import "RegionManager.h"
 #import "PlayerAction.h"
 #import "Boss.h"
+#import "GameCollisionRect.h"
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
 #define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
-
-static CGRect CollisionRectForObject(id<Collidable> object)
-{
-    // Most legacy obstacles are visually placed with sprite offsets, so collisions
-    // need to follow the rendered sprite position instead of the raw world origin.
-    CGPoint position = [object getCCSprite].position;
-    CGRect boundingBox = [object getBoundingBox];
-    CGRect rect = CGRectMake(position.x - boundingBox.origin.x,
-                             position.y - boundingBox.origin.y,
-                             boundingBox.size.width,
-                             boundingBox.size.height);
-    
-    // Some very low legacy phone-era obstacles need a little extra overlap on
-    // modern phones so the player's feet still enter the intended effect area.
-    if (!IS_IPAD && [object isKindOfClass:[GameObject class]]) {
-        GameObject *gameObject = (GameObject *)object;
-        NSString *spriteName = [[gameObject getSprite] name];
-
-        if (gameObject.isHurdle && boundingBox.size.height <= 15.0f && boundingBox.size.width <= 15.0f) {
-            rect.origin.x -= 36.0f;
-            rect.size.width += 42.0f;
-            rect.size.height += 10.0f;
-        } else if ([spriteName isEqualToString:@"Track_Sandpit_1.png"]) {
-            rect.origin.x -= 18.0f;
-            rect.size.width += 36.0f;
-            rect.origin.y -= 10.0f;
-            rect.size.height += 18.0f;
-        }
-    }
-    
-    return rect;
-}
 
 @implementation Level
 
@@ -830,7 +799,7 @@ static CGRect CollisionRectForObject(id<Collidable> object)
         return false;
     }
 
-    CGRect sourceBoundingBox = CollisionRectForObject(source);
+    CGRect sourceBoundingBox = GameCollisionRectForObject(source);
     
     for (GameObject *obstacle in obstacles) {
         if(!obstacle.collided && !obstacle.isInvincible) {
@@ -893,7 +862,7 @@ static CGRect CollisionRectForObject(id<Collidable> object)
     bool collision = false;
     
     //prepare source bounding box, so we don't have to build it for every object
-    CGRect sourceBoundingBox = CollisionRectForObject(source);
+    CGRect sourceBoundingBox = GameCollisionRectForObject(source);
     
     for (GameObject *obstacle in obstacles) {
         if(![obstacle hasBeenHit] && [obstacle canAggressiveHit]) {
@@ -929,7 +898,7 @@ static CGRect CollisionRectForObject(id<Collidable> object)
 
 -(bool)testCollisionWithGameObject:(id<Collidable>)target BoundingBox:(CGRect)source
 {
-    CGRect targetBounds = CollisionRectForObject(target);
+    CGRect targetBounds = GameCollisionRectForObject(target);
     
     float targetLeft = CGRectGetMinX(targetBounds);
     float targetRight = CGRectGetMaxX(targetBounds);
@@ -955,8 +924,8 @@ static CGRect CollisionRectForObject(id<Collidable> object)
 
 -(bool)testCollisionWithGameObject:(id<Collidable>)target Source:(id<Collidable>)source
 {
-    CGRect targetBounds = CollisionRectForObject(target);
-    CGRect sourceBounds = CollisionRectForObject(source);
+    CGRect targetBounds = GameCollisionRectForObject(target);
+    CGRect sourceBounds = GameCollisionRectForObject(source);
     float targetLeft = CGRectGetMinX(targetBounds);
     float targetRight = CGRectGetMaxX(targetBounds);
     float targetBottom = CGRectGetMinY(targetBounds);
