@@ -59,7 +59,6 @@
 		isTouchEnabled_ = NO;
 
 #ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
-		isAccelerometerEnabled_ = NO;
 #elif defined(__MAC_OS_X_VERSION_MAX_ALLOWED)
 		isMouseEnabled_ = NO;
 		isKeyboardEnabled_ = NO;
@@ -69,30 +68,12 @@
 	return self;
 }
 
-#pragma mark Layer - Touch and Accelerometer related
+#pragma mark Layer - Touch related
 
 #ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
 -(void) registerWithTouchDispatcher
 {
 	[[CCTouchDispatcher sharedDispatcher] addStandardDelegate:self priority:0];
-}
-
--(BOOL) isAccelerometerEnabled
-{
-	return isAccelerometerEnabled_;
-}
-
--(void) setIsAccelerometerEnabled:(BOOL)enabled
-{
-	if( enabled != isAccelerometerEnabled_ ) {
-		isAccelerometerEnabled_ = enabled;
-		if( isRunning_ ) {
-			if( enabled )
-				[[UIAccelerometer sharedAccelerometer] setDelegate:self];
-			else
-				[[UIAccelerometer sharedAccelerometer] setDelegate:nil];
-		}
-	}
 }
 
 -(BOOL) isTouchEnabled
@@ -221,11 +202,6 @@
 // Can't register mouse, touches here because of #issue #1018, and #1021
 -(void) onEnterTransitionDidFinish
 {
-#ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
-	if( isAccelerometerEnabled_ )
-		[[UIAccelerometer sharedAccelerometer] setDelegate:self];
-#endif
-	
 	[super onEnterTransitionDidFinish];
 }
 
@@ -235,9 +211,6 @@
 #ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
 	if( isTouchEnabled_ )
 		[[CCTouchDispatcher sharedDispatcher] removeDelegate:self];
-	
-	if( isAccelerometerEnabled_ )
-		[[UIAccelerometer sharedAccelerometer] setDelegate:nil];
 
 #elif defined(__MAC_OS_X_VERSION_MAX_ALLOWED)
 	if( isMouseEnabled_ )
@@ -303,7 +276,7 @@
 			squareVertices_[i].x = 0.0f;
 			squareVertices_[i].y = 0.0f;
 		}
-				
+			
 		[self updateColor];
 		[self setContentSize:CGSizeMake(w, h) ];
 	}
@@ -354,7 +327,7 @@
 }
 
 - (void)draw
-{		
+{	
 	[super draw];
 
 	// Default GL states: GL_TEXTURE_2D, GL_VERTEX_ARRAY, GL_COLOR_ARRAY, GL_TEXTURE_COORD_ARRAY
@@ -611,4 +584,3 @@
 	[self addChild: [layers_ objectAtIndex:n]];		
 }
 @end
-

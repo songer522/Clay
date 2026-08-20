@@ -28,7 +28,7 @@
 
 #import <Availability.h>
 #ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
-#import <UIKit/UIKit.h>					// Needed for UIAccelerometerDelegate
+#import <UIKit/UIKit.h>
 #import "Platforms/iOS/CCTouchDelegateProtocol.h"		// Touches only supported on iOS
 #elif defined(__MAC_OS_X_VERSION_MAX_ALLOWED)
 #import "Platforms/Mac/CCEventDispatcher.h"
@@ -44,13 +44,11 @@
  
  All features from CCNode are valid, plus the following new features:
  - It can receive iPhone Touches
- - It can receive Accelerometer input
 */
 #ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
-@interface CCLayer : CCNode <UIAccelerometerDelegate, CCStandardTouchDelegate, CCTargetedTouchDelegate>
+@interface CCLayer : CCNode <CCStandardTouchDelegate, CCTargetedTouchDelegate>
 {
 	BOOL isTouchEnabled_;
-	BOOL isAccelerometerEnabled_;
 }
 /** If isTouchEnabled, this method is called onEnter. Override it to change the
  way CCLayer receives touch events.
@@ -76,14 +74,6 @@
  @since v0.8.1
  */
 @property(nonatomic,assign) BOOL isTouchEnabled;
-/** whether or not it will receive Accelerometer events
- You can enable / disable accelerometer events with this property.
- 
- Valid only on iOS. Not valid on Mac.
-
- @since v0.8.1
- */
-@property(nonatomic,assign) BOOL isAccelerometerEnabled;
 
 #elif defined(__MAC_OS_X_VERSION_MAX_ALLOWED)
 

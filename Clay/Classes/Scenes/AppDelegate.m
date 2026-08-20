@@ -29,144 +29,14 @@
 @synthesize window;
 @synthesize viewController;
 
-
-- (void) removeStartupFlicker
+// Window and view controller setup now happens in SceneDelegate,
+// since UIKit requires scene-based life cycle adoption. AppDelegate
+// still exposes .window and .viewController, populated by
+// SceneDelegate, because other classes (EndLevelScene,
+// ChooseLevelScreen) reach them via [[UIApplication sharedApplication] delegate].
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-	//
-	// THIS CODE REMOVES THE STARTUP FLICKER
-	//
-	// Uncomment the following code if you Application only supports landscape mode
-	//
-#if GAME_AUTOROTATION == kGameAutorotationUIViewController
-
-//	CC_ENABLE_DEFAULT_GL_STATES();
-//	CCDirector *director = [CCDirector sharedDirector];
-//	CGSize size = [director winSize];
-//	CCSprite *sprite = [CCSprite spriteWithFile:@"Default.png"];
-//	sprite.position = ccp(size.width/2, size.height/2);
-//	sprite.rotation = -90;
-//	[sprite visit];
-//	[[director openGLView] swapBuffers];
-//	CC_ENABLE_DEFAULT_GL_STATES();
-	
-    
-#endif // GAME_AUTOROTATION == kGameAutorotationUIViewController	
-}
-- (void) applicationDidFinishLaunching:(UIApplication*)application
-{
-	// Init the window
-	window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
-  
-	
-    // Try to use CADisplayLink director
-	// if it fails (SDK < 3.1) use the default director
-	if( ! [CCDirector setDirectorType:kCCDirectorTypeDisplayLink] )
-		[CCDirector setDirectorType:kCCDirectorTypeDefault];
-	
-	
-	CCDirector *director = [CCDirector sharedDirector];
-	
-	// Init the View Controller
-	viewController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
-	
-	//
-	// Create the EAGLView manually
-	//  1. Create a RGB565 format. Alternative: RGBA8
-	//	2. depth format of 0 bit. Use 16 or 24 bit for 3d effects, like CCPageTurnTransition
-	//
-	//
-	EAGLView *glView = [EAGLView viewWithFrame:[window bounds]
-								   pixelFormat:kEAGLColorFormatRGB565	// kEAGLColorFormatRGBA8
-								   depthFormat:0						// GL_DEPTH_COMPONENT16_OES
-						];
-	glView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-	
-//    glView.opaque = YES;
-    
-	// attach the openglView to the director
-	[director setOpenGLView:glView];
-	
-//	// This project was authored with iPad-specific HD assets and legacy point math.
-//	// Keeping Retina mode off on iPad preserves the original coordinate system.
-    BOOL shouldEnableRetinaDisplay = [GameSettings shouldUseRetinaForDevice];
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        shouldEnableRetinaDisplay = NO;
-    }
-	if( ! [director enableRetinaDisplay:shouldEnableRetinaDisplay] )
-		CCLOG(@"Retina Display Not supported");
-
-	
-	//
-	// VERY IMPORTANT:
-	// If the rotation is going to be controlled by a UIViewController
-	// then the device orientation should be "Portrait".
-	//
-	// IMPORTANT:
-	// By default, this template only supports Landscape orientations.
-	// Edit the RootViewController.m file to edit the supported orientations.
-	//
-#if GAME_AUTOROTATION == kGameAutorotationUIViewController
-	[director setDeviceOrientation:kCCDeviceOrientationPortrait];
-#else
-	[director setDeviceOrientation:kCCDeviceOrientationLandscapeLeft];
-#endif
-	
-    [UIApplication sharedApplication].idleTimerDisabled = YES;
-    
-	[director setAnimationInterval:1.0f/60.0f];
-    
-    //[self simulateIpad1Memory];
-
-    NSString *showFps = [[GameSettings shared] getGlobalForKey:@"showFps"];
-    if ([showFps isEqualToString:@"YES"]) {
-        [director setDisplayFPS:YES];        
-    } else {
-        [director setDisplayFPS:NO];
-    }
-   // facebook = [[Facebook alloc] initWithAppId:@"264174546971482" andDelegate:viewController];
-    
-    //userPermissions = [[NSMutableDictionary alloc] initWithCapacity:1];
-	
-	// make the OpenGLView a child of the view controller
-	[viewController setView:glView];
-	
-	// Modern iOS expects a root view controller for lifecycle and rotation.
-	[window setRootViewController:viewController];
-	
-	[window makeKeyAndVisible];
-	
-	// Default texture format for PNG/BMP/TIFF/JPEG/GIF images
-	// It can be RGBA8888, RGBA4444, RGB5_A1, RGB565
-	// You can change anytime.
-	[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
-    //[CCTexture2D setDefaultAlphaPixelFormat:kTexture2DPixelFormat_RGB5A1];
-	
-	// Removes the startup flicker
-	[self removeStartupFlicker];
-	
-    
-    [[GameSettings shared] setGlobal:@"YES" ForKey:@"titleMusicStarted"];
-    [[SoundEngine shared] playMusic:@"title"];
-    [[TextureManager shared] loadMemoryForKey:@"launch"];
-    
-    [[CCDirector sharedDirector] runWithScene:[MainMenuScene scene]]; 
-    
-    [[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
-    
-    [[CCDirector sharedDirector] setProjection:CCDirectorProjection2D];
-    //[[CCDirector sharedDirector] setDepthBufferFormat:CCDepthBuffer16]; 
-    
-    [Appirater appLaunched:YES];
-
-}
-
-- (void)applicationWillResignActive:(UIApplication *)application {
-	[[CCDirector sharedDirector] pause];
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-	[[CCDirector sharedDirector] resume];
+	return YES;
 }
 
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
@@ -175,18 +45,6 @@
 
     //[[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
 	[[CCDirector sharedDirector] purgeCachedData];
-}
-
--(void) applicationDidEnterBackground:(UIApplication*)application {
-    [[BestTimes shared] saveData];
-    [[GameSettings shared] saveToDisk];
-	[[CCDirector sharedDirector] stopAnimation];
-}
-
--(void) applicationWillEnterForeground:(UIApplication*)application {
-	
-    [[CCDirector sharedDirector] startAnimation];
-    [Appirater appEnteredForeground:YES];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
