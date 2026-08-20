@@ -460,6 +460,8 @@
     _hasGravity = true;
     _collided = false;  //want it to remain aggressive
     _isAggressive = true;
+    // Legacy (iPad): 880 / -20. iPhone: flatter, slightly faster arc so the hen
+    // keeps sweeping cow bodies after the first hit on taller modern layouts.
     float magnitude = 880.0f;
     _angle = -20; //old was -30
     
@@ -467,6 +469,8 @@
         _rotationAmount = 50;
     } else {
         _rotationAmount = 75;
+        magnitude = 940.0f;
+        _angle = -14;
     }
     
     _vx = magnitude * cosf((_angle * 3.14159)/180.0f);
@@ -681,7 +685,12 @@
         case COLLISION_BEHAVIOR_HEN_DEAD:
             _angle += _rotationAmount * dt;
             [self getCCSprite].rotation = _angle;
-            _vy += 500.0f * dt;
+            // Lower gravity on iPhone keeps kicked hens in the cow hit band longer.
+            if ([[GameSettings shared] isIpad]) {
+                _vy += 500.0f * dt;
+            } else {
+                _vy += 380.0f * dt;
+            }
             break;
         case COLLISION_BEHAVIOR_PIG:
             [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-100.0f ChaseSound:@"pigEnters"];
