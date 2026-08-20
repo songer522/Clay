@@ -836,10 +836,12 @@
             }
                 
 
-            if(abs(dist) < 900) {
-                
-                //if aggressive, test the object against the non-aggressive objects (example of aggressive: chickens in barn level)
-                if (!collision && obstacle.isAggressive) {
+            // Keep testing kicked hens even when the player AABB still overlaps the
+            // hen (common right after kick / with larger modern hitboxes). The old
+            // `!collision` guard skipped hen→cow tests for those frames, so only the
+            // first cow in a row ever fell.
+            if(abs(dist) < 2500) {
+                if (obstacle.isAggressive) {
                     [self testCollisionsForAggressive:obstacle Obstacles:obstacles];
                 }
             }
