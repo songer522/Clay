@@ -865,10 +865,30 @@
     
     //prepare source bounding box, so we don't have to build it for every object
     CGRect sourceBoundingBox = GameCollisionRectForObject(source);
+    bool sourceIsKickedHen = [source isKindOfClass:[GameObject class]]
+        && [(GameObject *)source getCurrentCollisionBehavior] == COLLISION_BEHAVIOR_HEN_KICKED;
+    float sourceWorldX = 0.0f;
+    float sourceWorldY = 0.0f;
+    if (sourceIsKickedHen) {
+        CGPoint sourcePos = [(GameObject *)source getPosition];
+        sourceWorldX = sourcePos.x;
+        sourceWorldY = sourcePos.y;
+    }
     
     for (GameObject *obstacle in obstacles) {
         if(![obstacle hasBeenHit] && [obstacle canAggressiveHit]) {
             collision = [self testCollisionWithGameObject:obstacle BoundingBox:sourceBoundingBox];
+            // Screen-space AABB can miss on modern layouts even when the hen
+            // visually sweeps the row. Fall back to a world-space band for
+            // kicked hens vs cows so a connected kick chains the whole row.
+            if (!collision && sourceIsKickedHen
+                && [obstacle getCollisionBehavior] == COLLISION_BEHAVIOR_COW_COLLAPSE) {
+                CGPoint cowPos = [obstacle getPosition];
+                if (fabsf(sourceWorldX - cowPos.x) < 120.0f
+                    && fabsf(sourceWorldY - cowPos.y) < 100.0f) {
+                    collision = true;
+                }
+            }
             if (collision) {
                 NSString *mode = [[GameSettings shared] getGlobalForKey:@"gameMode"];
 

@@ -30,11 +30,14 @@ CGRect GameCollisionRectForObject(id<Collidable> object)
             rect.origin.x -= 36.0f;
             rect.size.width += 42.0f;
             rect.size.height += 10.0f;
-        } else if ([spriteName isEqualToString:@"Track_Sandpit_1.png"]) {
-            rect.origin.x -= 18.0f;
-            rect.size.width += 36.0f;
-            rect.origin.y -= 10.0f;
-            rect.size.height += 18.0f;
+        } else if ([spriteName isEqualToString:@"Track_Sandpit_1.png"]
+                   || [spriteName isEqualToString:@"Barn_Poop_1.png"]) {
+            // Low slow-pads (sandpit / Level 2 manure): tiny legacy 15pt box misses
+            // modern foot height — expand modestly (too tall forces double-jump).
+            rect.origin.x -= 12.0f;
+            rect.size.width += 24.0f;
+            rect.origin.y -= 8.0f;
+            rect.size.height += 22.0f;
         }
     }
 

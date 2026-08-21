@@ -42,5 +42,17 @@
 #error(unknown architecture)
 #endif
 
+// Collision / hit-box overlay (GameDebugLayer).
+// Enabled automatically for Xcode Debug builds (`DEBUG=1`).
+// Override in a target prefix header or build setting if needed, e.g.:
+//   DEBUG_DRAW_BOUNDING_BOXES=0
+#ifndef DEBUG_DRAW_BOUNDING_BOXES
+#ifdef DEBUG
+#define DEBUG_DRAW_BOUNDING_BOXES 1
+#else
+#define DEBUG_DRAW_BOUNDING_BOXES 0
+#endif
+#endif
+
 #endif // __GAME_CONFIG_H
 
