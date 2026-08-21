@@ -155,7 +155,11 @@
 {
     NSMutableArray *obstacles = [[[LevelManager shared] currentLevel] getActiveGameObjectList];
     for (GameObject *object in obstacles) {
-        if([object getCurrentCollisionBehavior] == COLLISION_BEHAVIOR_HEN_STATIC)
+        CollisionBehavior behavior = [object getCurrentCollisionBehavior];
+        // Also allow upgrading a same-frame body-touch HEN_DEAD into a real kick
+        // so we don't keep the weak curved fade hop on modern hitboxes.
+        if(behavior == COLLISION_BEHAVIOR_HEN_STATIC
+           || behavior == COLLISION_BEHAVIOR_HEN_DEAD)
         {
            if([_level testCollisionWithGameObject:object Source:_kick])
            {

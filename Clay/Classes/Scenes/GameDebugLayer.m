@@ -18,6 +18,7 @@
 #import "PlayerAction.h"
 #import "Projectile.h"
 #import "Boss.h"
+#import "GameCollisionRect.h"
 
 @implementation GameDebugLayer
 
@@ -25,8 +26,11 @@
 {
     self = [super init];
     if (self) {
-        // Initialization code here.
-        [scene addChild:[GameDebugLayer node]];
+        // Add this layer (not a second anonymous node) so respawn/restart
+        // doesn't leave duplicate overlays drawing stale boxes.
+        if (scene != nil) {
+            [scene addChild:self];
+        }
     }
     
     return self;
@@ -51,9 +55,9 @@
     NSMutableArray *projectiles = [[player getThirdAction] getProjectiles];
     if (projectiles!=nil) {
         for (Projectile *projectile in projectiles) {
-            //if ([projectile getActive]) {
-                [self drawBoxForCollidable:projectile];                
-            //}
+            if ([projectile getActive]) {
+                [self drawBoxForCollidable:projectile];
+            }
         }        
     }
     
@@ -64,7 +68,13 @@
     
     for (MapObject *mapObject in obstacles) {
         GameObject *obstacle = mapObject.object;
-        if (!obstacle.collided) {
+        // Skip hidden / inactive sprites. After checkpoint respawn, MapObject
+        // reset hides obstacles until they re-enter camera range; their sprite
+        // screen positions can be stale and would otherwise leave ghost boxes.
+        if (!obstacle.collided
+            && [obstacle getActive]
+            && [obstacle getCCSprite] != nil
+            && [obstacle getCCSprite].visible) {
             [self drawBoxForCollidable:obstacle];
         }
         
@@ -88,19 +98,17 @@
 
 -(void)drawBoxForCollidable:(id<Collidable>)object
 {
-    CGPoint point = [object getCCSprite].position;
-    CGRect boundingBox = [object getBoundingBox];
+    CGRect rect = GameCollisionRectForObject(object);
     
-    float left = point.x - boundingBox.origin.x;
-    float right = point.x - boundingBox.origin.x + boundingBox.size.width;
-    float bottom = point.y - boundingBox.origin.y;
-    float top = point.y - boundingBox.origin.y + boundingBox.size.height;
+    float left = rect.origin.x;
+    float right = rect.origin.x + rect.size.width;
+    float bottom = rect.origin.y;
+    float top = rect.origin.y + rect.size.height;
     
     ccDrawLine(ccp(left, top), ccp(right, top));
     ccDrawLine(ccp(right, top), ccp(right, bottom));
     ccDrawLine(ccp(right, bottom), ccp(left, bottom));
     ccDrawLine(ccp(left, bottom), ccp(left, top));
-    
 }
 
 -(void)dealloc

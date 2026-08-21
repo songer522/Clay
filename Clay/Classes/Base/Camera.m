@@ -41,7 +41,10 @@ static float CameraRestingY(void)
 
 #define CAMERA_MOVE_TO_TARGET_SPEED 6.0f
 #define CAMERA_OFFSCREEN_PADDING_LEFT 300.0f
-#define CAMERA_OFFSCREEN_PADDING_RIGHT 780.0f //include the size of the screen (in points?)
+// Legacy phone used RIGHT=780 ≈ 480 (screen) + 300 (past right edge).
+// Derive from the live winSize so modern wider phones don't cull/freeze
+// kicked hens while they are still visible on the right.
+#define CAMERA_OFFSCREEN_PADDING_RIGHT_EXTRA 300.0f
 
 static Camera *_sharedCamera = nil;
 
@@ -211,8 +214,10 @@ static Camera *_sharedCamera = nil;
 -(void)updateOnScreenRange
 {
     float currentX = _x - _center.x;
-    _leftOnscreen = currentX - CAMERA_OFFSCREEN_PADDING_LEFT*MULTIPLIERX;
-    _rightOnscreen = currentX + CAMERA_OFFSCREEN_PADDING_RIGHT*MULTIPLIERX;
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    _leftOnscreen = currentX - CAMERA_OFFSCREEN_PADDING_LEFT * MULTIPLIERX;
+    // Screen width + extra padding past the true right edge (legacy: 480+300).
+    _rightOnscreen = currentX + winSize.width + CAMERA_OFFSCREEN_PADDING_RIGHT_EXTRA * MULTIPLIERX;
 }
 
 -(bool)isInVisualRange:(float)xPosition

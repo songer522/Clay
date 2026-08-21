@@ -30,42 +30,11 @@
 #import "RegionManager.h"
 #import "PlayerAction.h"
 #import "Boss.h"
+#import "GameCollisionRect.h"
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
 #define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
-
-static CGRect CollisionRectForObject(id<Collidable> object)
-{
-    // Most legacy obstacles are visually placed with sprite offsets, so collisions
-    // need to follow the rendered sprite position instead of the raw world origin.
-    CGPoint position = [object getCCSprite].position;
-    CGRect boundingBox = [object getBoundingBox];
-    CGRect rect = CGRectMake(position.x - boundingBox.origin.x,
-                             position.y - boundingBox.origin.y,
-                             boundingBox.size.width,
-                             boundingBox.size.height);
-    
-    // Some very low legacy phone-era obstacles need a little extra overlap on
-    // modern phones so the player's feet still enter the intended effect area.
-    if (!IS_IPAD && [object isKindOfClass:[GameObject class]]) {
-        GameObject *gameObject = (GameObject *)object;
-        NSString *spriteName = [[gameObject getSprite] name];
-
-        if (gameObject.isHurdle && boundingBox.size.height <= 15.0f && boundingBox.size.width <= 15.0f) {
-            rect.origin.x -= 36.0f;
-            rect.size.width += 42.0f;
-            rect.size.height += 10.0f;
-        } else if ([spriteName isEqualToString:@"Track_Sandpit_1.png"]) {
-            rect.origin.x -= 18.0f;
-            rect.size.width += 36.0f;
-            rect.origin.y -= 10.0f;
-            rect.size.height += 18.0f;
-        }
-    }
-    
-    return rect;
-}
 
 @implementation Level
 
@@ -830,7 +799,7 @@ static CGRect CollisionRectForObject(id<Collidable> object)
         return false;
     }
 
-    CGRect sourceBoundingBox = CollisionRectForObject(source);
+    CGRect sourceBoundingBox = GameCollisionRectForObject(source);
     
     for (GameObject *obstacle in obstacles) {
         if(!obstacle.collided && !obstacle.isInvincible) {
@@ -867,10 +836,12 @@ static CGRect CollisionRectForObject(id<Collidable> object)
             }
                 
 
-            if(abs(dist) < 900) {
-                
-                //if aggressive, test the object against the non-aggressive objects (example of aggressive: chickens in barn level)
-                if (!collision && obstacle.isAggressive) {
+            // Keep testing kicked hens even when the player AABB still overlaps the
+            // hen (common right after kick / with larger modern hitboxes). The old
+            // `!collision` guard skipped hen→cow tests for those frames, so only the
+            // first cow in a row ever fell.
+            if(abs(dist) < 2500) {
+                if (obstacle.isAggressive) {
                     [self testCollisionsForAggressive:obstacle Obstacles:obstacles];
                 }
             }
@@ -893,11 +864,31 @@ static CGRect CollisionRectForObject(id<Collidable> object)
     bool collision = false;
     
     //prepare source bounding box, so we don't have to build it for every object
-    CGRect sourceBoundingBox = CollisionRectForObject(source);
+    CGRect sourceBoundingBox = GameCollisionRectForObject(source);
+    bool sourceIsKickedHen = [source isKindOfClass:[GameObject class]]
+        && [(GameObject *)source getCurrentCollisionBehavior] == COLLISION_BEHAVIOR_HEN_KICKED;
+    float sourceWorldX = 0.0f;
+    float sourceWorldY = 0.0f;
+    if (sourceIsKickedHen) {
+        CGPoint sourcePos = [(GameObject *)source getPosition];
+        sourceWorldX = sourcePos.x;
+        sourceWorldY = sourcePos.y;
+    }
     
     for (GameObject *obstacle in obstacles) {
         if(![obstacle hasBeenHit] && [obstacle canAggressiveHit]) {
             collision = [self testCollisionWithGameObject:obstacle BoundingBox:sourceBoundingBox];
+            // Screen-space AABB can miss on modern layouts even when the hen
+            // visually sweeps the row. Fall back to a world-space band for
+            // kicked hens vs cows so a connected kick chains the whole row.
+            if (!collision && sourceIsKickedHen
+                && [obstacle getCollisionBehavior] == COLLISION_BEHAVIOR_COW_COLLAPSE) {
+                CGPoint cowPos = [obstacle getPosition];
+                if (fabsf(sourceWorldX - cowPos.x) < 120.0f
+                    && fabsf(sourceWorldY - cowPos.y) < 100.0f) {
+                    collision = true;
+                }
+            }
             if (collision) {
                 NSString *mode = [[GameSettings shared] getGlobalForKey:@"gameMode"];
 
@@ -920,7 +911,9 @@ static CGRect CollisionRectForObject(id<Collidable> object)
                     
                 }
                 [obstacle startCollision:true];
-                break;
+                // Allow one kicked hen to knock multiple overlapping cows in the
+                // same frame (dense rows on modern layouts).
+                continue;
             }
         }        
     }
@@ -929,7 +922,7 @@ static CGRect CollisionRectForObject(id<Collidable> object)
 
 -(bool)testCollisionWithGameObject:(id<Collidable>)target BoundingBox:(CGRect)source
 {
-    CGRect targetBounds = CollisionRectForObject(target);
+    CGRect targetBounds = GameCollisionRectForObject(target);
     
     float targetLeft = CGRectGetMinX(targetBounds);
     float targetRight = CGRectGetMaxX(targetBounds);
@@ -955,8 +948,8 @@ static CGRect CollisionRectForObject(id<Collidable> object)
 
 -(bool)testCollisionWithGameObject:(id<Collidable>)target Source:(id<Collidable>)source
 {
-    CGRect targetBounds = CollisionRectForObject(target);
-    CGRect sourceBounds = CollisionRectForObject(source);
+    CGRect targetBounds = GameCollisionRectForObject(target);
+    CGRect sourceBounds = GameCollisionRectForObject(source);
     float targetLeft = CGRectGetMinX(targetBounds);
     float targetRight = CGRectGetMaxX(targetBounds);
     float targetBottom = CGRectGetMinY(targetBounds);

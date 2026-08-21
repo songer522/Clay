@@ -25,7 +25,194 @@
 
 #import "CDAudioManager.h"
 
+#import <objc/runtime.h>
+#import <AVFoundation/AVFoundation.h>
+
 NSString * const kCDN_AudioManagerInitialised = @"kCDN_AudioManagerInitialised";
+
+#pragma mark - Main-thread AVAudioSession shim (iOS 27+)
+
+/*
+ iOS 27 Thread Performance Checker:
+ - sync setActive: on main → hang risk
+ - setCategory: on main while session is active → SessionCore warning
+
+ AVAudioPlayer and CocosDenshion both hit these. On the main thread:
+ - setActive → async activate/deactivate
+ - setCategory → run the real call on a background queue (no async API)
+*/
+static BOOL (*CDOrigSetActiveError)(AVAudioSession *, SEL, BOOL, NSError **);
+static BOOL (*CDOrigSetActiveOptionsError)(AVAudioSession *, SEL, BOOL, AVAudioSessionSetActiveOptions, NSError **);
+static BOOL (*CDOrigSetCategoryError)(AVAudioSession *, SEL, AVAudioSessionCategory, NSError **);
+static BOOL (*CDOrigSetCategoryOptionsError)(AVAudioSession *, SEL, AVAudioSessionCategory, AVAudioSessionCategoryOptions, NSError **);
+
+static BOOL CDAudioSessionHasAsyncActivation(AVAudioSession *session)
+{
+	return [session respondsToSelector:@selector(activateWithOptions:completionHandler:)]
+		&& [session respondsToSelector:@selector(deactivateWithOptions:completionHandler:)];
+}
+
+static BOOL CDRedirectMainThreadSetActive(AVAudioSession *session, BOOL active, NSError **error)
+{
+	if (active) {
+		[session activateWithOptions:0 completionHandler:^(BOOL activated, NSError * _Nullable err) {
+			if (!activated) {
+				NSLog(@"[audio] async activate failed: %@", err);
+			}
+		}];
+	} else {
+		[session deactivateWithOptions:0 completionHandler:^(BOOL deactivated, NSError * _Nullable err) {
+			if (!deactivated) {
+				NSLog(@"[audio] async deactivate failed: %@", err);
+			}
+		}];
+	}
+	if (error) {
+		*error = nil;
+	}
+	return YES;
+}
+
+static BOOL CDSwizzledSetActiveError(AVAudioSession *self, SEL _cmd, BOOL active, NSError **error)
+{
+	if ([NSThread isMainThread] && CDAudioSessionHasAsyncActivation(self)) {
+		return CDRedirectMainThreadSetActive(self, active, error);
+	}
+	if (CDOrigSetActiveError == NULL) {
+		return NO;
+	}
+	return CDOrigSetActiveError(self, _cmd, active, error);
+}
+
+static BOOL CDSwizzledSetActiveOptionsError(AVAudioSession *self, SEL _cmd, BOOL active,
+											AVAudioSessionSetActiveOptions options, NSError **error)
+{
+	if ([NSThread isMainThread] && CDAudioSessionHasAsyncActivation(self)) {
+		return CDRedirectMainThreadSetActive(self, active, error);
+	}
+	if (CDOrigSetActiveOptionsError == NULL) {
+		return NO;
+	}
+	return CDOrigSetActiveOptionsError(self, _cmd, active, options, error);
+}
+
+static BOOL CDSwizzledSetCategoryError(AVAudioSession *self, SEL _cmd, AVAudioSessionCategory category, NSError **error)
+{
+	if (CDOrigSetCategoryError == NULL) {
+		return NO;
+	}
+	if (![NSThread isMainThread]) {
+		return CDOrigSetCategoryError(self, _cmd, category, error);
+	}
+
+	// Prefer async hop — dispatch_sync from main can trip Swift concurrency
+	// diagnostics on newer iOS. Category apply is safe to complete shortly after.
+	AVAudioSessionCategory categoryCopy = [category copy];
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+		NSError *localError = nil;
+		CDOrigSetCategoryError(self, _cmd, categoryCopy, &localError);
+		[categoryCopy release];
+	});
+	if (error) {
+		*error = nil;
+	}
+	return YES;
+}
+
+static BOOL CDSwizzledSetCategoryOptionsError(AVAudioSession *self, SEL _cmd, AVAudioSessionCategory category,
+											  AVAudioSessionCategoryOptions options, NSError **error)
+{
+	if (CDOrigSetCategoryOptionsError == NULL) {
+		return NO;
+	}
+	if (![NSThread isMainThread]) {
+		return CDOrigSetCategoryOptionsError(self, _cmd, category, options, error);
+	}
+
+	AVAudioSessionCategory categoryCopy = [category copy];
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+		NSError *localError = nil;
+		CDOrigSetCategoryOptionsError(self, _cmd, categoryCopy, options, &localError);
+		[categoryCopy release];
+	});
+	if (error) {
+		*error = nil;
+	}
+	return YES;
+}
+
+static void CDSwizzleAudioSessionOnClass(Class cls)
+{
+	if (cls == Nil) {
+		return;
+	}
+
+	Method m1 = class_getInstanceMethod(cls, @selector(setActive:error:));
+	if (m1 != NULL) {
+		IMP previous = method_setImplementation(m1, (IMP)CDSwizzledSetActiveError);
+		if (CDOrigSetActiveError == NULL) {
+			CDOrigSetActiveError = (BOOL (*)(AVAudioSession *, SEL, BOOL, NSError **))previous;
+		}
+	}
+
+	Method m2 = class_getInstanceMethod(cls, @selector(setActive:withOptions:error:));
+	if (m2 != NULL) {
+		IMP previous = method_setImplementation(m2, (IMP)CDSwizzledSetActiveOptionsError);
+		if (CDOrigSetActiveOptionsError == NULL) {
+			CDOrigSetActiveOptionsError =
+				(BOOL (*)(AVAudioSession *, SEL, BOOL, AVAudioSessionSetActiveOptions, NSError **))previous;
+		}
+	}
+
+	Method m3 = class_getInstanceMethod(cls, @selector(setCategory:error:));
+	if (m3 != NULL) {
+		IMP previous = method_setImplementation(m3, (IMP)CDSwizzledSetCategoryError);
+		if (CDOrigSetCategoryError == NULL) {
+			CDOrigSetCategoryError = (BOOL (*)(AVAudioSession *, SEL, AVAudioSessionCategory, NSError **))previous;
+		}
+	}
+
+	Method m4 = class_getInstanceMethod(cls, @selector(setCategory:withOptions:error:));
+	if (m4 != NULL) {
+		IMP previous = method_setImplementation(m4, (IMP)CDSwizzledSetCategoryOptionsError);
+		if (CDOrigSetCategoryOptionsError == NULL) {
+			CDOrigSetCategoryOptionsError =
+				(BOOL (*)(AVAudioSession *, SEL, AVAudioSessionCategory, AVAudioSessionCategoryOptions, NSError **))previous;
+		}
+	}
+}
+
+static void CDInstallAudioSessionMainThreadShim(void)
+{
+	static dispatch_once_t once;
+	dispatch_once(&once, ^{
+		Class baseClass = [AVAudioSession class];
+		CDSwizzleAudioSessionOnClass(baseClass);
+
+		AVAudioSession *session = [AVAudioSession sharedInstance];
+		Class concreteClass = object_getClass(session);
+		if (concreteClass != baseClass) {
+			CDSwizzleAudioSessionOnClass(concreteClass);
+		}
+
+		NSLog(@"[audio] AVAudioSession main-thread shim installed on %@ / %@",
+			  NSStringFromClass(baseClass),
+			  NSStringFromClass(concreteClass));
+		// Do NOT activate here — setCategory must run first. Activating early
+		// caused SessionCore "setCategory while session is active" warnings.
+	});
+}
+
+@interface CDAudioSessionMainThreadShim : NSObject
+@end
+@implementation CDAudioSessionMainThreadShim
++(void)load
+{
+	CDInstallAudioSessionMainThreadShim();
+}
+@end
+
+#pragma mark -
 
 //NSOperation object used to asynchronously initialise 
 @implementation CDAsynchInitialiser
@@ -72,8 +259,12 @@ NSString * const kCDN_AudioManagerInitialised = @"kCDN_AudioManagerInitialised";
 		NSString *path = [CDUtilities fullPathFromRelativePath:audioSourceFilePath];
 		audioSourcePlayer = [(AVAudioPlayer*)[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:path] error:&error];
 		if (error == nil) {
-			[audioSourcePlayer prepareToPlay];
 			audioSourcePlayer.delegate = self;
+			// prepareToPlay activates the audio session; keep it off the main thread.
+			AVAudioPlayer *player = audioSourcePlayer;
+			dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+				[player prepareToPlay];
+			});
 			if (delegate && [delegate respondsToSelector:@selector(cdAudioSourceFileDidChange:)]) {
 				//Tell our delegate the file has changed
 				[delegate cdAudioSourceFileDidChange:self];
@@ -226,6 +417,7 @@ NSString * const kCDN_AudioManagerInitialised = @"kCDN_AudioManagerInitialised";
 -(BOOL) audioSessionSetActive:(BOOL) active;
 -(BOOL) audioSessionSetCategory:(NSString*) category;
 -(void) badAlContextHandler;
+-(void) restoreAudioSessionAfterResumeWithAttempt:(int)attempt;
 @end
 
 
@@ -239,8 +431,38 @@ static tAudioManagerMode configuredMode;
 static BOOL configured = FALSE;
 
 -(BOOL) audioSessionSetActive:(BOOL) active {
+	AVAudioSession *session = [AVAudioSession sharedInstance];
+
+	// iOS 27+: sync setActive: on the main thread can stall UI. Prefer async APIs.
+	if ([session respondsToSelector:@selector(activateWithOptions:completionHandler:)]
+		&& [session respondsToSelector:@selector(deactivateWithOptions:completionHandler:)]) {
+		__block CDAudioManager *manager = self;
+		if (active) {
+			[session activateWithOptions:0 completionHandler:^(BOOL activated, NSError * _Nullable error) {
+				if (activated) {
+					manager->_audioSessionActive = YES;
+					CDLOGINFO(@"Denshion::CDAudioManager - Audio session activate (async) succeeded");
+				} else {
+					CDLOG(@"Denshion::CDAudioManager - Audio session activate (async) failed with error %@", error);
+				}
+			}];
+		} else {
+			[session deactivateWithOptions:0 completionHandler:^(BOOL deactivated, NSError * _Nullable error) {
+				if (deactivated) {
+					manager->_audioSessionActive = NO;
+					CDLOGINFO(@"Denshion::CDAudioManager - Audio session deactivate (async) succeeded");
+				} else {
+					CDLOG(@"Denshion::CDAudioManager - Audio session deactivate (async) failed with error %@", error);
+				}
+			}];
+		}
+		// Optimistic for legacy callers; completion handler updates the real flag.
+		_audioSessionActive = active;
+		return YES;
+	}
+
 	NSError *activationError = nil;
-	if ([[AVAudioSession sharedInstance] setActive:active error:&activationError]) {
+	if ([session setActive:active error:&activationError]) {
 		_audioSessionActive = active;
 		CDLOGINFO(@"Denshion::CDAudioManager - Audio session set active %i succeeded", active); 
 		return YES;
@@ -252,16 +474,25 @@ static BOOL configured = FALSE;
 }	
 
 -(BOOL) audioSessionSetCategory:(NSString*) category {
-	NSError *categoryError = nil;
-	if ([[AVAudioSession sharedInstance] setCategory:category error:&categoryError]) {
-		CDLOGINFO(@"Denshion::CDAudioManager - Audio session set category %@ succeeded", category); 
-		return YES;
+	AVAudioSession *session = [AVAudioSession sharedInstance];
+	NSString *categoryCopy = [[category copy] autorelease];
+
+	void (^applyCategory)(void) = ^{
+		NSError *categoryError = nil;
+		if ([session setCategory:categoryCopy error:&categoryError]) {
+			CDLOGINFO(@"Denshion::CDAudioManager - Audio session set category %@ succeeded", categoryCopy);
+		} else {
+			CDLOG(@"Denshion::CDAudioManager - Audio session set category %@ failed with error %@", categoryCopy, categoryError);
+		}
+	};
+
+	if ([NSThread isMainThread]) {
+		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), applyCategory);
 	} else {
-		//Failed
-		CDLOG(@"Denshion::CDAudioManager - Audio session set category %@ failed with error %@", category, categoryError); 
-		return NO;
-	}	
-}	
+		applyCategory();
+	}
+	return YES;
+}
 
 // Init
 + (CDAudioManager *) sharedManager
@@ -752,38 +983,58 @@ static BOOL configured = FALSE;
 	if (_interrupted) {
 		CDLOGINFO(@"Denshion::CDAudioManager - Audio session resumed"); 
 		_interrupted = NO;
-		
-		BOOL activationResult = NO;
-		// Reactivate the current audio session
-		activationResult = [self audioSessionSetActive:YES]; 
-		
-		//This code is to handle a problem with iOS 4.0 and 4.01 where reactivating the session can fail if
-		//task switching is performed too rapidly. A test case that reliably reproduces the issue is to call the
-		//iPhone and then hang up after two rings (timing may vary ;))
-		//Basically we keep waiting and trying to let the OS catch up with itself but the number of tries is
-		//limited.
-		if (!activationResult) {
-			CDLOG(@"Denshion::CDAudioManager - Failure reactivating audio session, will try wait-try cycle"); 
-			int activateCount = 0;
-			while (!activationResult && activateCount < 10) {
-				[NSThread sleepForTimeInterval:0.5];
-				activationResult = [self audioSessionSetActive:YES]; 
-				activateCount++;
-				CDLOGINFO(@"Denshion::CDAudioManager - Reactivation attempt %i status = %i",activateCount,activationResult); 
-			}	
-		}
-		
-		if (alcGetCurrentContext() == NULL) {
-			CDLOGINFO(@"Denshion::CDAudioManager - Restoring OpenAL context"); 
-			ALenum  error = AL_NO_ERROR;
-			// Restore open al context 
-			alcMakeContextCurrent([soundEngine openALContext]); 
-			if((error = alGetError()) != AL_NO_ERROR) {
-				CDLOG(@"Denshion::CDAudioManager - Error making context current%x\n", error);
-			} 
-			#pragma unused(error)
-		}	
+		[self restoreAudioSessionAfterResumeWithAttempt:0];
 	}	
+}
+
+-(void)restoreAudioSessionAfterResumeWithAttempt:(int)attempt
+{
+	AVAudioSession *session = [AVAudioSession sharedInstance];
+	__block CDAudioManager *manager = self;
+
+	void (^finishRestore)(BOOL) = ^(BOOL activationResult) {
+		if (!activationResult && attempt < 10) {
+			CDLOG(@"Denshion::CDAudioManager - Failure reactivating audio session, will retry (%i)", attempt + 1);
+			dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)),
+						   dispatch_get_main_queue(), ^{
+				[manager restoreAudioSessionAfterResumeWithAttempt:attempt + 1];
+			});
+			return;
+		}
+
+		if (alcGetCurrentContext() == NULL) {
+			CDLOGINFO(@"Denshion::CDAudioManager - Restoring OpenAL context");
+			ALenum error = AL_NO_ERROR;
+			alcMakeContextCurrent([[manager soundEngine] openALContext]);
+			if ((error = alGetError()) != AL_NO_ERROR) {
+				CDLOG(@"Denshion::CDAudioManager - Error making context current%x\n", error);
+			}
+			#pragma unused(error)
+		}
+	};
+
+	if ([session respondsToSelector:@selector(activateWithOptions:completionHandler:)]) {
+		[session activateWithOptions:0 completionHandler:^(BOOL activated, NSError * _Nullable error) {
+			dispatch_async(dispatch_get_main_queue(), ^{
+				if (activated) {
+					manager->_audioSessionActive = YES;
+				} else {
+					CDLOG(@"Denshion::CDAudioManager - Audio session resume activate failed: %@", error);
+				}
+				finishRestore(activated);
+			});
+		}];
+		return;
+	}
+
+	BOOL activationResult = [self audioSessionSetActive:YES];
+	// Legacy iOS 4 workaround used a blocking sleep loop; keep retries but
+	// off the runloop so we don't freeze the UI.
+	if (!activationResult && attempt < 10) {
+		finishRestore(NO);
+		return;
+	}
+	finishRestore(activationResult);
 }
 
 +(void) end {

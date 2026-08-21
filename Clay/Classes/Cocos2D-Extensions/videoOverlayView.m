@@ -70,7 +70,7 @@
 -(void)viewDidLoad
 {
     volumeOverridePlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL URLWithString:[[NSBundle mainBundle] pathForResource:@"hurt" ofType:@"caf"]] error:nil];
-    [volumeOverridePlayer prepareToPlay];
+    // Skip prepareToPlay here — avoids main-thread AVAudioSession setActive warnings.
 }
 
 

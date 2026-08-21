@@ -38,9 +38,7 @@
 #import "EndLevelLayer.h"
 #import "BestTimes.h"
 #import "PlayerAction.h"
-
-
-#define DEBUG_DRAW_BOUNDING_BOXES 0
+#import "GameConfig.h"
 
 @interface GameLayer()
 
@@ -357,6 +355,9 @@
             }
             
             [_savePoint restoreSavePoint:_player];
+            // Snap camera before resetting obstacles so their sprite screen
+            // positions (and debug boxes) aren't computed against the death camera.
+            [[Camera sharedCamera] snapToTarget];
             
             //already called in reset
             //[_player rechargeBattery];

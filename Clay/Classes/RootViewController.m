@@ -131,7 +131,8 @@
 
     NSURL *hurtURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"hurt" ofType:@"caf"]];
     volumeOverridePlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:hurtURL error:nil];
-    [volumeOverridePlayer prepareToPlay];
+    // Avoid prepareToPlay on the main thread — it sync-activates AVAudioSession
+    // (iOS 27 hang-risk warning). The player will prepare lazily on first use.
 }
 
 - (void)viewDidLayoutSubviews

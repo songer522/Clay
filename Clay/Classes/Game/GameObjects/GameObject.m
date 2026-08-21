@@ -229,6 +229,9 @@
             [[SoundEngine shared] playSound:@"cowDied"];
             _alpha = 1.5f;
             _fadeout = true;
+            // Always mark hit so aggressive hens can advance to the next cow.
+            // (Normally set via playerEffect==collide; keep explicit for chain hits.)
+            _collided = true;
             break;
         case COLLISION_BEHAVIOR_DANCIN_MAN_COLLAPSE:
             [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"dancinManDied"];
@@ -457,20 +460,23 @@
 {
     _fadeout = false;
     _alpha = 1.0f;
-    _hasGravity = true;
     _collided = false;  //want it to remain aggressive
     _isAggressive = true;
+
+    // Flat cruise is the intended modern kick feel: lock altitude until past the
+    // live right edge, then fall+fade. Scales vx with width so exit timing ≈ 480pt.
+    CGFloat winWidth = [[CCDirector sharedDirector] winSize].width;
+    CGFloat legacyWidth = 480.0f;
+    float widthScale = (winWidth > legacyWidth) ? (winWidth / legacyWidth) : 1.0f;
     float magnitude = 880.0f;
-    _angle = -20; //old was -30
-    
-    if ([[GameSettings shared] isIpad]) {
-        _rotationAmount = 50;
-    } else {
-        _rotationAmount = 75;
-    }
-    
-    _vx = magnitude * cosf((_angle * 3.14159)/180.0f);
-    _vy = magnitude * sinf((_angle * 3.14159)/180.0f);
+
+    _rotationAmount = [[GameSettings shared] isIpad] ? 50 : 75;
+    _angle = -20; // sprite spin only — not launch direction
+    _hasGravity = false;
+    _vx = magnitude * cosf((-20.0f * 3.14159f) / 180.0f) * widthScale;
+    _vy = 0.0f;
+    _initialPosition = _y; // lock cruise altitude
+
     _currentBehavior = COLLISION_BEHAVIOR_HEN_KICKED;
     [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"henKicked"];
     [[SoundEngine shared] playSound:@"henKicked"];
@@ -495,7 +501,14 @@
 -(void)update:(float)dt
 {
     if (!_boss) {
-        if ([[Camera sharedCamera ] isInVisualRange:_x]) {
+        bool keepUpdatingKickedHen = (_currentBehavior == COLLISION_BEHAVIOR_HEN_KICKED);
+        // Kicked hens stay visible until their sprite is past the live right edge
+        // (cruise flight); world-space visual-range cull was freezing/hiding them
+        // mid-screen on wider phones.
+        bool inVisualRange = keepUpdatingKickedHen
+            ? ([self getCCSprite].position.x < [[CCDirector sharedDirector] winSize].width + 40.0f)
+            : [[Camera sharedCamera] isInVisualRange:_x];
+        if (inVisualRange) {
             if (!_isVisible) {
                 [[_sprite getCCSprite] setVisible:YES];
                 if(_projectile!=nil){
@@ -505,7 +518,7 @@
                 [[_sprite getCCSprite] resumeSchedulerAndActions];
                 _isVisible = true;
             }
-        } else {
+        } else if (!keepUpdatingKickedHen) {
             if (_isVisible) {
                [[_sprite getCCSprite] setVisible:NO];
                 if(_projectile!=nil){
@@ -517,6 +530,12 @@
                 _isVisible = false;
             }
             return; //don't bother with the rest of the update loop
+        } else {
+            // Past right edge while kicked: keep simulating (fade/fall) but hide.
+            if (_isVisible) {
+                [[_sprite getCCSprite] setVisible:NO];
+                _isVisible = false;
+            }
         }
     }
     
@@ -543,6 +562,13 @@
     
     if(_isBouncing) { //for some reason don't see the hasgravity stuff working
         _vy += _bounceGravity * dt;
+    }
+
+    // Hard-lock kicked-hen cruise altitude every frame so nothing else can
+    // reintroduce a parabolic vy/y (bounce, stale vy, etc.).
+    if (_currentBehavior == COLLISION_BEHAVIOR_HEN_KICKED && !_hasGravity) {
+        _vy = 0.0f;
+        _y = _initialPosition;
     }
     
     _x += _vx * dt;
@@ -681,7 +707,23 @@
         case COLLISION_BEHAVIOR_HEN_DEAD:
             _angle += _rotationAmount * dt;
             [self getCCSprite].rotation = _angle;
-            _vy += 500.0f * dt;
+            if (_currentBehavior == COLLISION_BEHAVIOR_HEN_KICKED) {
+                // Use the rendered sprite's screen X (includes offsets) so we
+                // don't fade based on a mismatched world→screen conversion.
+                CGFloat screenX = [self getCCSprite].position.x;
+                CGFloat rightEdge = [[CCDirector sharedDirector] winSize].width;
+                if (!_hasGravity && screenX > rightEdge) {
+                    // Past the visible right edge: start falling + fading.
+                    _hasGravity = true;
+                    _vy = 200.0f;
+                    _fadeout = true;
+                    _alpha = 1.0f;
+                } else if (_hasGravity) {
+                    _vy += 500.0f * dt;
+                }
+            } else {
+                _vy += 500.0f * dt;
+            }
             break;
         case COLLISION_BEHAVIOR_PIG:
             [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-100.0f ChaseSound:@"pigEnters"];

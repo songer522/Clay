@@ -28,6 +28,7 @@
 		5411DECC14B393C200046594 /* cityLevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 61F6F6D414B29795003A5C68 /* cityLevel.png */; };
 		5411FC731496C7BF005FAFDB /* ContinueGameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5411FC721496C7BF005FAFDB /* ContinueGameManager.m */; };
 		54125E3E149285D1007679C5 /* Calculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 54125E3D149285D1007679C5 /* Calculator.m */; };
+		558C0E20CE074582B69E852C /* GameCollisionRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4B592062734EC7BE5EAE4A /* GameCollisionRect.m */; };
 		54142C7D14468F7300A74447 /* hen_squawk.caf in Resources */ = {isa = PBXBuildFile; fileRef = 54142C7B14468F7300A74447 /* hen_squawk.caf */; };
 		54142C7E14468F7300A74447 /* woo_action.caf in Resources */ = {isa = PBXBuildFile; fileRef = 54142C7C14468F7300A74447 /* woo_action.caf */; };
 		54142C811446B57F00A74447 /* cow_moo.caf in Resources */ = {isa = PBXBuildFile; fileRef = 54142C801446B57F00A74447 /* cow_moo.caf */; };
@@ -702,6 +703,8 @@
 		5411FC721496C7BF005FAFDB /* ContinueGameManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContinueGameManager.m; sourceTree = "<group>"; };
 		54125E3C149285D0007679C5 /* Calculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Calculator.h; sourceTree = "<group>"; };
 		54125E3D149285D1007679C5 /* Calculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Calculator.m; sourceTree = "<group>"; };
+		2E1ED422DD1E421DA675460F /* GameCollisionRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCollisionRect.h; sourceTree = "<group>"; };
+		4D4B592062734EC7BE5EAE4A /* GameCollisionRect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCollisionRect.m; sourceTree = "<group>"; };
 		54142C7B14468F7300A74447 /* hen_squawk.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = hen_squawk.caf; path = Resources/sounds/hen_squawk.caf; sourceTree = "<group>"; };
 		54142C7C14468F7300A74447 /* woo_action.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = woo_action.caf; path = Resources/sounds/woo_action.caf; sourceTree = "<group>"; };
 		54142C801446B57F00A74447 /* cow_moo.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = cow_moo.caf; path = Resources/sounds/cow_moo.caf; sourceTree = "<group>"; };
@@ -2730,6 +2733,8 @@
 				5411FC721496C7BF005FAFDB /* ContinueGameManager.m */,
 				549ED7C71461D065008BCD98 /* GameController.h */,
 				549ED7C81461D065008BCD98 /* GameController.m */,
+				2E1ED422DD1E421DA675460F /* GameCollisionRect.h */,
+				4D4B592062734EC7BE5EAE4A /* GameCollisionRect.m */,
 				549ED7C91461D065008BCD98 /* GameObjectController.h */,
 				549ED7CA1461D065008BCD98 /* GameObjectController.m */,
 				549ED7CB1461D065008BCD98 /* Level.h */,
@@ -3821,6 +3826,7 @@
 				54A1EF6C148D821C00A6ADF7 /* WaterLevelEffects.m in Sources */,
 				FC7890563037593900C5D4C1 /* SceneDelegate.m in Sources */,
 				54125E3E149285D1007679C5 /* Calculator.m in Sources */,
+				558C0E20CE074582B69E852C /* GameCollisionRect.m in Sources */,
 				5411FC731496C7BF005FAFDB /* ContinueGameManager.m in Sources */,
 				54E1AC041497B5D500DFCA77 /* OptionsScene.m in Sources */,
 				54E1AC071497B7CB00DFCA77 /* ChooseModeScene.m in Sources */,
