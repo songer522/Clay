@@ -48,6 +48,7 @@
 @synthesize rotateLights = _rotateLights;
 @synthesize beatsPlayerAction = _beatsPlayerAction;
 @synthesize originalAnimation=_originalAnimation;
+@synthesize objectType = _objectType;
 @synthesize magnitude = _magnitude;
 @synthesize persistsBetweenRegions = _persistsBetweenRegions;
 @synthesize slowTimeModifier = _slowTimeModifier;
@@ -111,6 +112,7 @@
         _isHurdle = false;
         _isBouncing = false;
         _isStutterMode = [[GameSettings shared] isStutterMode];
+        _objectType = nil;
         
         _player = [[LayerManager sharedLayers] getPlayer];
         
@@ -2092,6 +2094,7 @@
     [_sprite release];
     [_collisionState release];
     [_boss release];
+    [_objectType release];
     
     [super dealloc];
 }
