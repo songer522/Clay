@@ -40,3 +40,22 @@ Final formulas (Task 5):
 | chase distance scale | 1000 | `1000 * max(1, winWidth/480)` |
 
 Spot-check: hurdles / tall haybale still unverified on device; backlog if needed. Crow `offsety` left unchanged (defer to human Task 6).
+
+## Verification checklist
+
+- [ ] iPhone: rolling hay, mud, small hay collide; green boxes aligned — **PENDING human device**
+- [ ] iPad: same — **PENDING human device**
+- [ ] Crow dodge/hit timing acceptable on both — **PENDING human device**
+- [ ] Rolling-hay chase not extreme on either — **PENDING human device**
+- [ ] Hurdles / tall haybale: no new obvious miss or unfair hit — **PENDING human device**
+- [x] Woo / achievements untouched (no intentional edits) — verified by git diff scope (Tasks 2–5)
+
+## Implementation status (agent)
+
+Code changes complete on `feature/level3`:
+- objectType tagging
+- haybaleRolling bbox y 130→40
+- GameCollisionRect dual-platform lifts (provisional constants)
+- FLYER / ROLLING_HAYBALE chase scaled by max(1, winWidth/480)
+
+Device overlay tuning may still adjust Phase B constants after human playtest.
