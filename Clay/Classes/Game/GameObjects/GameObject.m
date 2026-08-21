@@ -737,11 +737,25 @@
         //LEVEL 3 - TOWN RUN
         ///////////////////////////
         case COLLISION_BEHAVIOR_ROLLING_HAYBALE:
-            [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-150.0f ChaseSound:@"townRollingHayAppear"];
+        {
+            CGFloat widthScale = [[CCDirector sharedDirector] winSize].width / 480.0f;
+            if (widthScale < 1.0f) { widthScale = 1.0f; }
+            [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN * widthScale
+                     DefaultSpeed:0.0f
+                       ChaseSpeed:-150.0f * widthScale
+                       ChaseSound:@"townRollingHayAppear"];
             break;
+        }
         case COLLISION_BEHAVIOR_FLYER:
-            [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-250.0f ChaseSound:@"crowAppears"];
+        {
+            CGFloat widthScale = [[CCDirector sharedDirector] winSize].width / 480.0f;
+            if (widthScale < 1.0f) { widthScale = 1.0f; }
+            [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN * widthScale
+                     DefaultSpeed:0.0f
+                       ChaseSpeed:-250.0f * widthScale
+                       ChaseSound:@"crowAppears"];
             break;
+        }
         
         ///////////////////////////
         //LEVEL 4 - DISCO RUN

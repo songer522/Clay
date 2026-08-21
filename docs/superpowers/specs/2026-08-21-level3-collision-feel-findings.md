@@ -26,8 +26,17 @@ Starting plan numbers applied in `GameCollisionRect` (both iPhone and iPad via `
 
 ## Phase C feel (fill during implementation)
 
+**Provisional (device feel check deferred to Task 6 / human)**
+
+Final formulas (Task 5):
+- `widthScale = max(1, winWidth / 480)`
+- ChaseSpeed = legacy × widthScale
+- chase distance = `GAME_OBJECT_DISTANCE_ONSCREEN` (1000) × widthScale
+
 | Knob | Legacy | Final |
 |---|---|---|
-| rolling ChaseSpeed | -150 | |
-| crow ChaseSpeed | -250 | |
-| chase distance scale | 1000 | |
+| rolling ChaseSpeed | -150 | `-150 * max(1, winWidth/480)` |
+| crow ChaseSpeed | -250 | `-250 * max(1, winWidth/480)` |
+| chase distance scale | 1000 | `1000 * max(1, winWidth/480)` |
+
+Spot-check: hurdles / tall haybale still unverified on device; backlog if needed. Crow `offsety` left unchanged (defer to human Task 6).
