@@ -891,7 +891,9 @@
                     
                 }
                 [obstacle startCollision:true];
-                break;
+                // Allow one kicked hen to knock multiple overlapping cows in the
+                // same frame (dense rows on modern layouts).
+                continue;
             }
         }        
     }

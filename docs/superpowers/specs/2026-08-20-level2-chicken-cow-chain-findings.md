@@ -1,25 +1,30 @@
 # Level 2 Chicken→Cow Chain — Diagnosis Findings
 
-**Date:** 2026-08-20  
+**Date:** 2026-08-20 (updated 2026-08-21)  
 **Branch:** `feature/chicken`  
-**Device:** Modern iPhone (user repro; overlay enabled)
+**Device:** Modern iPhone (wider than legacy 480pt)
 
-## Primary cause (updated again)
+## Root causes
 
-**Aggressive-test gate bug in `Level testCollisions:`**
+### 1. Aggressive-test gate (fixed)
+`if (!collision && obstacle.isAggressive)` skipped hen→cow tests while the player still overlapped the hen.
 
-```objc
-if (!collision && obstacle.isAggressive)
-```
+### 2. Camera visual cull used legacy 480-wide math (fixed)
+`CAMERA_OFFSCREEN_PADDING_RIGHT` was hardcoded `780` (≈480+300). On wider phones the hen was culled/frozen around screen-x≈780 while still on-screen — looks like a mid-right fade, and physics stops before later cows.
 
-While the player AABB still overlaps the kicked hen (very common right after kick, worse after enlarging the hen box), `collision` is true for that frame, so **hen→cow tests are skipped**. First cow can still fall (player body contact and/or a brief window when AABBs separate). Later cows only see the hen visually; aggressive detection never runs in time.
+### 3. Trajectory on modern layouts (retuned again)
+iPhone kick: magnitude `1100`, angle `-8°`, gravity `320` (iPad keeps legacy `880/-20/500`). Aim: connected kicks sweep a full cow row like the 3.5″ original.
 
-Contributing factors (addressed, not sufficient alone):
-- Tiny legacy kicked-hen AABB vs visual sprite
-- Flight arc on modern layouts
+### 4. Supporting fixes already in tree
+- Shared `GameCollisionRectForObject` for debug + gameplay
+- Expanded kicked-hen AABB
+- Explicit `_collided` on cow collapse
+- Aggressive distance window `2500`
+- Multi-cow hits allowed in one aggressive pass (`continue` instead of `break`)
 
-## Fix
+## Verification checklist
 
-1. Always run aggressive tests when `obstacle.isAggressive` (remove `!collision` gate).
-2. Widen player↔hen proximity window for those tests (`900` → `2500`).
-3. Keep prior kicked-hen AABB expand + iPhone flight retune.
+- [ ] Connected kick knocks down **all** cows in a typical row
+- [ ] Misses are rare (kick miss), not “first cow only”
+- [ ] Kicked hen disappears **past** the right edge, not mid-screen
+- [ ] Kick→hen feel still OK

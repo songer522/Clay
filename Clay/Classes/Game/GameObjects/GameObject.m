@@ -463,8 +463,9 @@
     _hasGravity = true;
     _collided = false;  //want it to remain aggressive
     _isAggressive = true;
-    // Legacy (iPad): 880 / -20. iPhone: flatter, slightly faster arc so the hen
-    // keeps sweeping cow bodies after the first hit on taller modern layouts.
+    // Legacy (iPad / original phone): 880 / -20 / gravity 500.
+    // Modern wider phones: keep the hen in the cow hit band longer and carry
+    // farther horizontally so a connected kick can sweep a full cow row.
     float magnitude = 880.0f;
     _angle = -20; //old was -30
     
@@ -472,8 +473,8 @@
         _rotationAmount = 50;
     } else {
         _rotationAmount = 75;
-        magnitude = 940.0f;
-        _angle = -14;
+        magnitude = 1100.0f;
+        _angle = -8;
     }
     
     _vx = magnitude * cosf((_angle * 3.14159)/180.0f);
@@ -502,7 +503,11 @@
 -(void)update:(float)dt
 {
     if (!_boss) {
-        if ([[Camera sharedCamera ] isInVisualRange:_x]) {
+        bool inVisualRange = [[Camera sharedCamera ] isInVisualRange:_x];
+        // Kicked hens must keep simulating past the cull line so they can finish
+        // sweeping a cow row on wide modern screens.
+        bool keepUpdatingKickedHen = (_currentBehavior == COLLISION_BEHAVIOR_HEN_KICKED);
+        if (inVisualRange) {
             if (!_isVisible) {
                 [[_sprite getCCSprite] setVisible:YES];
                 if(_projectile!=nil){
@@ -512,7 +517,7 @@
                 [[_sprite getCCSprite] resumeSchedulerAndActions];
                 _isVisible = true;
             }
-        } else {
+        } else if (!keepUpdatingKickedHen) {
             if (_isVisible) {
                [[_sprite getCCSprite] setVisible:NO];
                 if(_projectile!=nil){
@@ -524,6 +529,13 @@
                 _isVisible = false;
             }
             return; //don't bother with the rest of the update loop
+        } else {
+            // Past cull line but still kicked: hide (should be off the right edge
+            // now that visual range uses live winSize) and keep simulating.
+            if (_isVisible) {
+                [[_sprite getCCSprite] setVisible:NO];
+                _isVisible = false;
+            }
         }
     }
     
@@ -688,11 +700,11 @@
         case COLLISION_BEHAVIOR_HEN_DEAD:
             _angle += _rotationAmount * dt;
             [self getCCSprite].rotation = _angle;
-            // Lower gravity on iPhone keeps kicked hens in the cow hit band longer.
+            // Lower gravity on iPhone keeps kicked hens sweeping cow bodies.
             if ([[GameSettings shared] isIpad]) {
                 _vy += 500.0f * dt;
             } else {
-                _vy += 380.0f * dt;
+                _vy += 320.0f * dt;
             }
             break;
         case COLLISION_BEHAVIOR_PIG:
