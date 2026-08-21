@@ -8,6 +8,8 @@
 #import "Sprite.h"
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133f : 1.0f)
+#define MULTIPLIERY (IS_IPAD ? 2.4f : 1.0f)
 
 CGRect GameCollisionRectForObject(id<Collidable> object)
 {
@@ -52,6 +54,32 @@ CGRect GameCollisionRectForObject(id<Collidable> object)
             rect.origin.y -= 20.0f;
             rect.size.width += 36.0f;
             rect.size.height += 40.0f;
+        }
+    }
+
+    // Level 3 mud / hay: raise low sprite-driven boxes into the path foot band
+    // on both iPhone and iPad (do not gate behind !IS_IPAD).
+    if ([object isKindOfClass:[GameObject class]]) {
+        GameObject *gameObject = (GameObject *)object;
+        NSString *type = gameObject.objectType;
+
+        if ([type isEqualToString:@"leafpile"]) {
+            // Mud slow-pad: raise into path foot band (both iPhone and iPad).
+            rect.origin.x -= 12.0f * MULTIPLIERX;
+            rect.size.width += 24.0f * MULTIPLIERX;
+            rect.origin.y += 40.0f * MULTIPLIERY;
+            rect.size.height += 22.0f * MULTIPLIERY;
+        } else if ([type isEqualToString:@"haybaleSmall"]) {
+            rect.origin.y += 40.0f * MULTIPLIERY;
+            rect.size.height += 18.0f * MULTIPLIERY;
+            rect.origin.x -= 6.0f * MULTIPLIERX;
+            rect.size.width += 12.0f * MULTIPLIERX;
+        } else if ([type isEqualToString:@"haybaleRolling"]
+                   || [gameObject getCurrentCollisionBehavior] == COLLISION_BEHAVIOR_ROLLING_HAYBALE) {
+            rect.origin.y += 36.0f * MULTIPLIERY;
+            rect.size.height += 20.0f * MULTIPLIERY;
+            rect.origin.x -= 8.0f * MULTIPLIERX;
+            rect.size.width += 16.0f * MULTIPLIERX;
         }
     }
     
