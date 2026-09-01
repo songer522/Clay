@@ -48,6 +48,7 @@
 
     NSDictionary *gameobjectSettings = [_objectSettings objectForKey:objectName];
     NSAssert(gameobjectSettings != nil, @"Object could not be found. Please ensure %@ is in objects.plist",objectName);
+    gameObject.objectType = objectName;
 
     NSString *frameName = [self getRandomImageFromList:[gameobjectSettings objectForKey:@"imageName"]];
     

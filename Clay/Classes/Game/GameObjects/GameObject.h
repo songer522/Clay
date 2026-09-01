@@ -93,6 +93,7 @@ typedef enum {
     CGRect _originalBoundingBox; //used by zombies
     
     NSString *_originalAnimation;
+    NSString *_objectType;
     
     Projectile *_projectile;
     
@@ -130,6 +131,7 @@ typedef enum {
 @property(nonatomic,assign) CGRect boundingBox;
 @property(nonatomic,assign) CollisionBehavior CurrentBehavior;
 @property(nonatomic, retain)NSString *originalAnimation;
+@property(nonatomic, copy) NSString *objectType;
 @property(nonatomic,assign) bool collided;
 @property(nonatomic,assign) bool fadeout;
 @property(nonatomic,assign) bool hasGravity;
