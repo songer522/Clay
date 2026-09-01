@@ -57,29 +57,36 @@ CGRect GameCollisionRectForObject(id<Collidable> object)
         }
     }
 
-    // Level 3 mud / hay: raise low sprite-driven boxes into the path foot band
-    // on both iPhone and iPad (do not gate behind !IS_IPAD).
+    // Level 3 mud / hay: modest pad like Level 2 sandpit/manure — both platforms.
+    // Do not add large origin.y lifts here: haybaleRolling already had bbox.y lowered
+    // 130→40 in objects.plist; stacking +36–40*MULTIPLIERY floated boxes above the path.
     if ([object isKindOfClass:[GameObject class]]) {
         GameObject *gameObject = (GameObject *)object;
         NSString *type = gameObject.objectType;
 
         if ([type isEqualToString:@"leafpile"]) {
-            // Mud slow-pad: raise into path foot band (both iPhone and iPad).
             rect.origin.x -= 12.0f * MULTIPLIERX;
             rect.size.width += 24.0f * MULTIPLIERX;
-            rect.origin.y += 40.0f * MULTIPLIERY;
+            rect.origin.y -= 8.0f * MULTIPLIERY;
             rect.size.height += 22.0f * MULTIPLIERY;
         } else if ([type isEqualToString:@"haybaleSmall"]) {
-            rect.origin.y += 40.0f * MULTIPLIERY;
-            rect.size.height += 18.0f * MULTIPLIERY;
             rect.origin.x -= 6.0f * MULTIPLIERX;
             rect.size.width += 12.0f * MULTIPLIERX;
+            rect.origin.y -= 8.0f * MULTIPLIERY;
+            rect.size.height += 18.0f * MULTIPLIERY;
         } else if ([type isEqualToString:@"haybaleRolling"]
                    || [gameObject getCurrentCollisionBehavior] == COLLISION_BEHAVIOR_ROLLING_HAYBALE) {
-            rect.origin.y += 36.0f * MULTIPLIERY;
-            rect.size.height += 20.0f * MULTIPLIERY;
+            // Baseline Y from plist bbox.y=40. Phone pad is fine; on iPad
+            // height*MULTIPLIERY (load) + pad*MULTIPLIERY floats the box above the bale.
             rect.origin.x -= 8.0f * MULTIPLIERX;
             rect.size.width += 16.0f * MULTIPLIERX;
+            if (IS_IPAD) {
+                rect.origin.y -= 64.0f;
+                rect.size.height += 14.0f;
+            } else {
+                rect.origin.y -= 6.0f;
+                rect.size.height += 14.0f;
+            }
         }
     }
     
