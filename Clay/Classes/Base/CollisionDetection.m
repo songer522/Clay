@@ -122,12 +122,25 @@
     } else {
         //in the air, test to see if they landed on a ledge
         CGPoint coords = [self accurateCoords:testPosition];
-        
-        
-        //if landed on the ledge, put them on top of that ledge
-        if (object.vy >= 0.0f && _ledgeHeightAtColumn[(int)coords.x] == coords.y) {
-            desiredPosition.y = (_mapHeight - coords.y - 1) * _preCalculateTileSize ;            
-            [[object getCollision] setCurrentState:COLLISION_STATE_LEDGE];            
+        int ledgeRow = _ledgeHeightAtColumn[(int)coords.x];
+
+        // On iPhone HD the collision grid is half a visual tile. Snapping to the cell
+        // bottom leaves Tim halfway through the ledge art; add one half-tile so he
+        // stands on the authored top surface. That raised pose probes one row above
+        // the meta ledgefull tile, so accept both the meta row and the row above or
+        // the feet will flicker between LEDGE and MIDAIR every frame.
+        float ledgeTopBoost = 0.0f;
+        if (!IS_IPAD && [[GameSettings shared] usingHighResolutionGraphics]) {
+            ledgeTopBoost = _preCalculateTileSize;
+        }
+
+        bool onLedgeTile = (ledgeRow >= 0) &&
+            (coords.y == ledgeRow ||
+             (ledgeTopBoost > 0.0f && coords.y == ledgeRow - 1));
+
+        if (object.vy >= 0.0f && onLedgeTile) {
+            desiredPosition.y = (_mapHeight - ledgeRow - 1) * _preCalculateTileSize + ledgeTopBoost;
+            [[object getCollision] setCurrentState:COLLISION_STATE_LEDGE];
         } else {
             //otherwise they're in midair, don't change their position
             [[object getCollision] setCurrentState:COLLISION_STATE_MIDAIR];

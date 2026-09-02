@@ -18,7 +18,22 @@
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
 #define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
-#define LEVELPANEL_PANEL_X 210.0f
+// Phone keeps the original left-panel X; 210 was an iPad-only value that was
+// incorrectly applied to phones and overlaps the level grid.
+#define LEVELPANEL_PANEL_X (IS_IPAD ? 210.0f : 105.0f)
+#define LEVELPANEL_LEGACY_PHONE_WIDTH 480.0f
+#define LEVELPANEL_LEGACY_PHONE_HEIGHT 320.0f
+#define LEVELPANEL_LEGACY_IPAD_WIDTH 1024.0f
+#define LEVELPANEL_LEGACY_IPAD_HEIGHT 768.0f
+
+static CGPoint ChooseLevelPanelLayoutOffset(void)
+{
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    CGFloat legacyWidth = IS_IPAD ? LEVELPANEL_LEGACY_IPAD_WIDTH : LEVELPANEL_LEGACY_PHONE_WIDTH;
+    CGFloat legacyHeight = IS_IPAD ? LEVELPANEL_LEGACY_IPAD_HEIGHT : LEVELPANEL_LEGACY_PHONE_HEIGHT;
+    return ccp(MAX(0.0f, floorf((winSize.width - legacyWidth) / 2.0f)),
+               MAX(0.0f, floorf((winSize.height - legacyHeight) / 2.0f)));
+}
 
 @implementation ChooseLevelPanel
 
@@ -188,23 +203,24 @@
 -(void)setPanelXPosition:(float)newX
 {
     //IPAD FIX: refer to reference for proper positions, this is the level information panel in the choose level screen
+    CGPoint offset = ChooseLevelPanelLayoutOffset();
     _currentXPos = newX;
     float iconX = newX + 70.0f * MULTIPLIERX;
     float textX = newX - 78.0f * MULTIPLIERX;
     float levelNumberX = newX + 53.0f * MULTIPLIERX;
      float dlcX = newX - 0.0f;
     
-    [_background setScreenPosition:ccp(newX,165 * MULTIPLIERY)];
-    [_levelPreview setScreenPosition:ccp(newX,219 * MULTIPLIERY)];
-    [_levelTitle setScreenPosition:ccp(newX,170 * MULTIPLIERY)];
-    [_facebookIcon setScreenPosition:ccp(iconX,131 * MULTIPLIERY)];
-    [_twitterIcon setScreenPosition:ccp(iconX,89 * MULTIPLIERY)];
-    [_bestTimeLabel setPosition:ccp(textX,138 * MULTIPLIERY)];
-    [_bestTimeValue setPosition:ccp(textX,123 * MULTIPLIERY)];
-    [_timeForMedalLabel setPosition:ccp(textX,95 * MULTIPLIERY)];
-    [_timeForMedalValue setPosition:ccp(textX,80 * MULTIPLIERY)];
-    [_levelNumber setPosition:ccp(levelNumberX, 67 * MULTIPLIERY)];
-    [_dlcDescription setPosition:ccp(dlcX,97* MULTIPLIERY)];
+    [_background setScreenPosition:ccp(offset.x + newX, offset.y + 165 * MULTIPLIERY)];
+    [_levelPreview setScreenPosition:ccp(offset.x + newX, offset.y + 219 * MULTIPLIERY)];
+    [_levelTitle setScreenPosition:ccp(offset.x + newX, offset.y + 170 * MULTIPLIERY)];
+    [_facebookIcon setScreenPosition:ccp(offset.x + iconX, offset.y + 131 * MULTIPLIERY)];
+    [_twitterIcon setScreenPosition:ccp(offset.x + iconX, offset.y + 89 * MULTIPLIERY)];
+    [_bestTimeLabel setPosition:ccp(offset.x + textX, offset.y + 138 * MULTIPLIERY)];
+    [_bestTimeValue setPosition:ccp(offset.x + textX, offset.y + 123 * MULTIPLIERY)];
+    [_timeForMedalLabel setPosition:ccp(offset.x + textX, offset.y + 95 * MULTIPLIERY)];
+    [_timeForMedalValue setPosition:ccp(offset.x + textX, offset.y + 80 * MULTIPLIERY)];
+    [_levelNumber setPosition:ccp(offset.x + levelNumberX, offset.y + 67 * MULTIPLIERY)];
+    [_dlcDescription setPosition:ccp(offset.x + dlcX, offset.y + 97* MULTIPLIERY)];
 }
 
 -(void)setPanelTransitionAmount:(float)amount

@@ -675,14 +675,26 @@
             [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-150.0f];
             break;
         case COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_BD:
-            [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-150.0f];
+        {
+            CGFloat widthScale = [[CCDirector sharedDirector] winSize].width / 480.0f;
+            if (widthScale < 1.0f) { widthScale = 1.0f; }
+            [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN * widthScale
+                     DefaultSpeed:0.0f
+                       ChaseSpeed:-150.0f * widthScale];
             break;
+        }
         case COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST:
             [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-200.0f];
             break;
         case COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_FAST_BD:
-            [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-200.0f];
+        {
+            CGFloat widthScale = [[CCDirector sharedDirector] winSize].width / 480.0f;
+            if (widthScale < 1.0f) { widthScale = 1.0f; }
+            [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN * widthScale
+                     DefaultSpeed:0.0f
+                       ChaseSpeed:-200.0f * widthScale];
             break;
+        }
         case COLLISION_BEHAVIOR_CLAPPING_CROWD:
             if ([self closeToPlayer:400] )
             {
@@ -762,11 +774,15 @@
         ///////////////////////////
         case COLLISION_BEHAVIOR_DISCO_TRIXTER_WAITING:
         case COLLISION_BEHAVIOR_DISCO_TRIXTER_DANCING:
-            if (!_madeSound && [self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN - 100.0f]) {
+        {
+            CGFloat widthScale = [[CCDirector sharedDirector] winSize].width / 480.0f;
+            if (widthScale < 1.0f) { widthScale = 1.0f; }
+            if (!_madeSound && [self closeToPlayer:(GAME_OBJECT_DISTANCE_ONSCREEN - 100.0f) * widthScale]) {
                 _madeSound = true;
                 [[SoundEngine shared] playSound:@"discoBlondAppear"];
             }
             break;
+        }
             
             
         ///////////////////////////

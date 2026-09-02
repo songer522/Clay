@@ -514,9 +514,7 @@ static void ChooseModeConfigureBackground(Sprite *background)
 
 -(void)updateLocked
 {
-    NSString *unlockText = [[GameSettings shared] getGlobalForKey:@"unlockEverything"];
-
-    if (![unlockText isEqualToString:@"YES"]) {
+    if (![[GameSettings shared] isUnlockEverythingEnabled]) {
         LockType setting = [[GameSettings shared] getLockTypeForKey:@"storyHardUnlocked"];
         if (setting == LOCKTYPE_UNLOCKED_NEW) {
             [[_storyModePanel getButtonWithIndex:2] setLocked:LOCKTYPE_UNLOCKED_NEW];

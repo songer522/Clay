@@ -12,6 +12,7 @@
 #import "PListLoader.h"
 #import "Database.h"
 #import "cocos2d.h"
+#import "GameConfig.h"
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define MULTIPLIER (IS_IPAD ? 2 : 1)
 
@@ -30,6 +31,15 @@ static void SeedUnlockedLevelFlags(GameSettings *settings, NSString *difficultyK
                                        levelNumber,
                                        difficultyKeySuffix]];
     }
+}
+
+static void ApplyDebugDlcPurchases(void)
+{
+#if DEBUG_UNLOCK_EVERYTHING
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isTrainingRunPurchased"];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isDojoRunPurchased"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+#endif
 }
 
 static void ClearForcedLevelSevenContinueSlotIfNeeded(GameSettings *settings)
@@ -216,9 +226,18 @@ static void ClearForcedLevelSevenContinueSlotIfNeeded(GameSettings *settings)
     [self setGlobal:unlockEverything ForKey:@"unlockEverything"];
 }
 
+-(BOOL)isUnlockEverythingEnabled
+{
+#if DEBUG_UNLOCK_EVERYTHING
+    return YES;
+#else
+    return [[self getGlobalForKey:@"unlockEverything"] isEqualToString:@"YES"];
+#endif
+}
+
 -(void)applyUnlockEverythingDefaults
 {
-    if (![[self getGlobalForKey:@"unlockEverything"] isEqualToString:@"YES"]) {
+    if (![self isUnlockEverythingEnabled]) {
         return;
     }
     
@@ -229,6 +248,7 @@ static void ClearForcedLevelSevenContinueSlotIfNeeded(GameSettings *settings)
     SeedUnlockedLevelFlags(self, @"TimedNormalUnlocked");
     SeedUnlockedLevelFlags(self, @"TimedHardUnlocked");
     ClearForcedLevelSevenContinueSlotIfNeeded(self);
+    ApplyDebugDlcPurchases();
     
     [self saveToDisk];
 }

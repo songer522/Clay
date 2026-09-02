@@ -109,15 +109,98 @@ NSString *templateReviewURL = @"itms-apps://ax.itunes.apple.com/WebObjects/MZSto
 
 
 
+- (UIViewController *)ratingAlertPresenter {
+	UIWindow *window = nil;
+	for (UIScene *scene in UIApplication.sharedApplication.connectedScenes) {
+		if (scene.activationState != UISceneActivationStateForegroundActive) {
+			continue;
+		}
+		if (![scene isKindOfClass:[UIWindowScene class]]) {
+			continue;
+		}
+		for (UIWindow *candidate in ((UIWindowScene *)scene).windows) {
+			if (candidate.isKeyWindow) {
+				window = candidate;
+				break;
+			}
+		}
+		if (window == nil && ((UIWindowScene *)scene).windows.count > 0) {
+			window = ((UIWindowScene *)scene).windows.firstObject;
+		}
+		if (window != nil) {
+			break;
+		}
+	}
+	UIViewController *presenter = window.rootViewController;
+	while (presenter.presentedViewController != nil) {
+		presenter = presenter.presentedViewController;
+	}
+	return presenter;
+}
+
+- (void)handleRatingAlertActionAtIndex:(NSInteger)buttonIndex {
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+
+	switch (buttonIndex) {
+		case 0:
+		{
+			// they don't want to rate it
+			[userDefaults setBool:YES forKey:kAppiraterDeclinedToRate];
+			[userDefaults synchronize];
+			[self reportAchievement];
+			[[CCDirector sharedDirector] resume];
+			break;
+		}
+		case 1:
+		{
+			// they want to rate it
+			[self reportAchievement];
+			[Appirater rateApp];
+			[[CCDirector sharedDirector] resume];
+			break;
+		}
+		case 2:
+			// remind them later
+			[userDefaults setDouble:[[NSDate date] timeIntervalSince1970] forKey:kAppiraterReminderRequestDate];
+			[userDefaults synchronize];
+			[[CCDirector sharedDirector] resume];
+			break;
+		default:
+			[[CCDirector sharedDirector] resume];
+			break;
+	}
+
+	self.ratingAlert = nil;
+}
+
 - (void)showRatingAlert {
-    [[CCDirector sharedDirector] pause];
-	UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:APPIRATER_MESSAGE_TITLE
-														 message:APPIRATER_MESSAGE
-														delegate:self
-											   cancelButtonTitle:APPIRATER_CANCEL_BUTTON
-											   otherButtonTitles:APPIRATER_RATE_BUTTON, nil] autorelease];
-	self.ratingAlert = alertView;
-	[alertView show];
+	[[CCDirector sharedDirector] pause];
+
+	UIAlertController *alert = [UIAlertController alertControllerWithTitle:APPIRATER_MESSAGE_TITLE
+																   message:APPIRATER_MESSAGE
+															preferredStyle:UIAlertControllerStyleAlert];
+
+	__block Appirater *blockSelf = self;
+	[alert addAction:[UIAlertAction actionWithTitle:APPIRATER_CANCEL_BUTTON
+											  style:UIAlertActionStyleCancel
+											handler:^(UIAlertAction *action) {
+		[blockSelf handleRatingAlertActionAtIndex:0];
+	}]];
+	[alert addAction:[UIAlertAction actionWithTitle:APPIRATER_RATE_BUTTON
+											  style:UIAlertActionStyleDefault
+											handler:^(UIAlertAction *action) {
+		[blockSelf handleRatingAlertActionAtIndex:1];
+	}]];
+
+	self.ratingAlert = alert;
+
+	UIViewController *presenter = [self ratingAlertPresenter];
+	if (presenter != nil) {
+		[presenter presentViewController:alert animated:YES completion:nil];
+	} else {
+		[[CCDirector sharedDirector] resume];
+		self.ratingAlert = nil;
+	}
 }
 
 - (BOOL)ratingConditionsHaveBeenMet {
@@ -337,12 +420,13 @@ NSString *templateReviewURL = @"itms-apps://ax.itunes.apple.com/WebObjects/MZSto
 }
 
 - (void)hideRatingAlert {
-	if (self.ratingAlert.visible) {
+	if (self.ratingAlert != nil && self.ratingAlert.presentingViewController != nil) {
 		if (APPIRATER_DEBUG)
 			NSLog(@"APPIRATER Hiding Alert");
-		[self.ratingAlert dismissWithClickedButtonIndex:-1 animated:NO];
-        [[CCDirector sharedDirector] resume];
-	}	
+		[self.ratingAlert dismissViewControllerAnimated:NO completion:nil];
+		self.ratingAlert = nil;
+		[[CCDirector sharedDirector] resume];
+	}
 }
 
 + (void)appWillResignActive {
@@ -381,38 +465,6 @@ NSString *templateReviewURL = @"itms-apps://ax.itunes.apple.com/WebObjects/MZSto
 -(void)reportAchievement
 {
     [[GameSettings shared] setGlobal:@"YES" ForKey:@"RatedOurGame"];
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	
-	switch (buttonIndex) {
-		case 0:
-		{
-			// they don't want to rate it
-			[userDefaults setBool:YES forKey:kAppiraterDeclinedToRate];
-			[userDefaults synchronize];
-            [self reportAchievement];
-             [[CCDirector sharedDirector] resume];
-			break;
-		}
-		case 1:
-		{
-			// they want to rate it
-            [self reportAchievement];
-			[Appirater rateApp];
-			break;
-		}
-		case 2:
-			// remind them later
-			[userDefaults setDouble:[[NSDate date] timeIntervalSince1970] forKey:kAppiraterReminderRequestDate];
-			[userDefaults synchronize];
-            [[CCDirector sharedDirector] resume];
-                      
-			break;
-		default:
-			break;
-	}
 }
 
 @end

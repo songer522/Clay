@@ -37,11 +37,30 @@
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
 #define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
+#define CHOOSELEVEL_LEGACY_PHONE_WIDTH 480.0f
+#define CHOOSELEVEL_LEGACY_PHONE_HEIGHT 320.0f
+#define CHOOSELEVEL_LEGACY_IPAD_WIDTH 1024.0f
+#define CHOOSELEVEL_LEGACY_IPAD_HEIGHT 768.0f
+
+static CGPoint ChooseLevelLayoutOffset(void)
+{
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    CGFloat legacyWidth = IS_IPAD ? CHOOSELEVEL_LEGACY_IPAD_WIDTH : CHOOSELEVEL_LEGACY_PHONE_WIDTH;
+    CGFloat legacyHeight = IS_IPAD ? CHOOSELEVEL_LEGACY_IPAD_HEIGHT : CHOOSELEVEL_LEGACY_PHONE_HEIGHT;
+    return ccp(MAX(0.0f, floorf((winSize.width - legacyWidth) / 2.0f)),
+               MAX(0.0f, floorf((winSize.height - legacyHeight) / 2.0f)));
+}
+
+static CGPoint ChooseLevelLayoutPoint(CGFloat x, CGFloat y)
+{
+    CGPoint offset = ChooseLevelLayoutOffset();
+    return ccp(offset.x + x, offset.y + y);
+}
 
 static void ChooseLevelConfigureBackground(Sprite *background)
 {
     if (IS_IPAD) {
-        [background setScreenPosition:ccp(0.0f, 0.0f)];
+        [background setScreenPosition:ChooseLevelLayoutPoint(0.0f, 0.0f)];
         return;
     }
 
@@ -287,6 +306,10 @@ static void ChooseLevelConfigureBackground(Sprite *background)
 
 -(bool)checkDlcLevelUnlocked:(int)levelNumber
 {
+    if ([[GameSettings shared] isUnlockEverythingEnabled]) {
+        return true;
+    }
+
     if (levelNumber == TRAINING_RUN) {
         if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isTrainingRunPurchased"] boolValue]) {
             return true;
@@ -445,19 +468,22 @@ static void ChooseLevelConfigureBackground(Sprite *background)
     [[_selector getCCSprite] setVisible:NO];
     
     _startButton = [ActionButton actionButtonWithText:@"START"];
-    [_startButton setPosition:ccp(430 * MULTIPLIERX,18 * MULTIPLIERY)];
+    [_startButton setPosition:ChooseLevelLayoutPoint(430 * MULTIPLIERX,18 * MULTIPLIERY)];
     
     _backButton = [ActionButton actionButtonWithText:@"BACK"];
-    [_backButton setPosition:ccp(50 * MULTIPLIERX, 18 * MULTIPLIERY)];
+    [_backButton setPosition:ChooseLevelLayoutPoint(50 * MULTIPLIERX, 18 * MULTIPLIERY)];
     
+    // Hit targets for the share icons on the left info panel (panel X is 105 on phone).
+    float panelX = IS_IPAD ? 210.0f : 105.0f;
+    float shareIconX = panelX + 70.0f * MULTIPLIERX;
     _facebookButton =[ActionButton actionButtonManualSetup];
     _facebookButton.facebookOrTwitter=true;
-    [_facebookButton setPosition:ccp(210 * MULTIPLIERX, 120 * MULTIPLIERY)];
+    [_facebookButton setPosition:ChooseLevelLayoutPoint(shareIconX, 120 * MULTIPLIERY)];
     [_facebookButton setEnabled:true];
     
     _twitterButton =[ ActionButton actionButtonManualSetup];
     _twitterButton.facebookOrTwitter=true;
-    [_twitterButton setPosition:ccp(210 * MULTIPLIERX, 80 * MULTIPLIERY)];
+    [_twitterButton setPosition:ChooseLevelLayoutPoint(shareIconX, 80 * MULTIPLIERY)];
     [_twitterButton setEnabled:true];
     
     LevelButton *selectedButton=nil;
@@ -492,9 +518,9 @@ static void ChooseLevelConfigureBackground(Sprite *background)
         }
     }    
     if (_inDLCMode) {
-        _levelSelectText = [GameLabel gameLabelWithText:@"BONUS LEVELS" Scale:0.75f Position:ccp(778.0f,667.0f)];
+        _levelSelectText = [GameLabel gameLabelWithText:@"BONUS LEVELS" Scale:0.75f Position:ChooseLevelLayoutPoint(IS_IPAD ? 778.0f : 350.0f, IS_IPAD ? 667.0f : 292.0f)];
     } else {
-        _levelSelectText = [GameLabel gameLabelWithText:@"LEVEL SELECT" Scale:0.75f Position:ccp(778.0f,667.0f)];
+        _levelSelectText = [GameLabel gameLabelWithText:@"LEVEL SELECT" Scale:0.75f Position:ChooseLevelLayoutPoint(IS_IPAD ? 778.0f : 350.0f, IS_IPAD ? 667.0f : 292.0f)];
     }
     
     //_levelSelectText = [GameLabel gameLabelWithText:@"LEVEL SELECT" Scale:0.75f Position:ccp(778.0f,667.0f)];

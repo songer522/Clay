@@ -54,5 +54,14 @@
 #endif
 #endif
 
+// Unlock all modes, timed levels, and DLC IAP flags (Debug builds only).
+#ifndef DEBUG_UNLOCK_EVERYTHING
+#ifdef DEBUG
+#define DEBUG_UNLOCK_EVERYTHING 1
+#else
+#define DEBUG_UNLOCK_EVERYTHING 0
+#endif
+#endif
+
 #endif // __GAME_CONFIG_H
 

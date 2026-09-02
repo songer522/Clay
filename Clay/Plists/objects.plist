@@ -1208,9 +1208,9 @@
 		<key>boundingBox</key>
 		<dict>
 			<key>height</key>
-			<integer>15</integer>
+			<integer>30</integer>
 			<key>width</key>
-			<integer>15</integer>
+			<integer>30</integer>
 			<key>x</key>
 			<integer>20</integer>
 			<key>y</key>
