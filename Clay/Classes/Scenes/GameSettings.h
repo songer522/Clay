@@ -47,5 +47,6 @@ typedef enum {
 -(LockType)getLockTypeForKey:(NSString*)key;
 -(void)setNotNewForKey:(NSString*)key;
 -(void)eraseData;
+-(BOOL)isUnlockEverythingEnabled;
 
 @end

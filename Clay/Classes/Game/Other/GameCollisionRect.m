@@ -64,11 +64,38 @@ CGRect GameCollisionRectForObject(id<Collidable> object)
         GameObject *gameObject = (GameObject *)object;
         NSString *type = gameObject.objectType;
 
-        if ([type isEqualToString:@"leafpile"]) {
+        if ([type isEqualToString:@"leafpile"]
+            || [type isEqualToString:@"spilledDrink"]) {
+            // Level 3 mud / Level 4 spilled drink: same low slow-pad layout.
             rect.origin.x -= 12.0f * MULTIPLIERX;
             rect.size.width += 24.0f * MULTIPLIERX;
             rect.origin.y -= 8.0f * MULTIPLIERY;
             rect.size.height += 22.0f * MULTIPLIERY;
+        } else if ([type isEqualToString:@"discoHandbag"]) {
+            // Phone keeps the jumpable 30×30 plist box. On iPad width/height*MULTIPLIER
+            // outgrow the purse art, so shrink modestly while staying near the floor.
+            if (IS_IPAD) {
+                const CGFloat shrinkW = 18.0f;
+                const CGFloat shrinkH = 22.0f;
+                rect.origin.x += shrinkW * 0.5f;
+                rect.origin.y += shrinkH * 0.2f;
+                rect.size.width -= shrinkW;
+                rect.size.height -= shrinkH;
+            }
+        } else if ([type isEqualToString:@"femaleBreakdancerRed"]
+                   || [type isEqualToString:@"femaleBreakdancerBlue"]) {
+            // plist bbox.y=50 is not multiplied at load while height is *MULTIPLIERY.
+            // On iPad that leaves the box on the dancer's head instead of the rolling body.
+            // After the Y fix, MULTIPLIER size is still a bit fat vs the rolling sprite.
+            if (IS_IPAD) {
+                rect.origin.y -= 70.0f; // 50 * (MULTIPLIERY - 1)
+                const CGFloat shrinkW = 14.0f;
+                const CGFloat shrinkH = 16.0f;
+                rect.origin.x += shrinkW * 0.5f;
+                rect.origin.y += shrinkH * 0.15f;
+                rect.size.width -= shrinkW;
+                rect.size.height -= shrinkH;
+            }
         } else if ([type isEqualToString:@"haybaleSmall"]) {
             rect.origin.x -= 6.0f * MULTIPLIERX;
             rect.size.width += 12.0f * MULTIPLIERX;

@@ -12,9 +12,22 @@
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
 #define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
+#define LEVEL_BUTTON_LEGACY_PHONE_WIDTH 480.0f
+#define LEVEL_BUTTON_LEGACY_PHONE_HEIGHT 320.0f
+#define LEVEL_BUTTON_LEGACY_IPAD_WIDTH 1024.0f
+#define LEVEL_BUTTON_LEGACY_IPAD_HEIGHT 768.0f
 
 #define LEVEL_BUTTON_MAX_LEVEL_NUMBER 13
 #define LEVEL_BUTTON_NUMBER_OF_NORMAL_LEVELS 11
+
+static CGPoint LevelButtonLayoutOffset(void)
+{
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    CGFloat legacyWidth = IS_IPAD ? LEVEL_BUTTON_LEGACY_IPAD_WIDTH : LEVEL_BUTTON_LEGACY_PHONE_WIDTH;
+    CGFloat legacyHeight = IS_IPAD ? LEVEL_BUTTON_LEGACY_IPAD_HEIGHT : LEVEL_BUTTON_LEGACY_PHONE_HEIGHT;
+    return ccp(MAX(0.0f, floorf((winSize.width - legacyWidth) / 2.0f)),
+               MAX(0.0f, floorf((winSize.height - legacyHeight) / 2.0f)));
+}
 
 @implementation LevelButton
 
@@ -40,7 +53,7 @@
     _unlocked = false; //for now, eventually check storage
     
     NSString *showDLC = [[GameSettings shared] getGlobalForKey:@"timedShowDLC"];
-    NSString *unlockText = [[GameSettings shared] getGlobalForKey:@"unlockEverything"];
+    BOOL unlockEverything = [[GameSettings shared] isUnlockEverythingEnabled];
     NSString *difficulty = [[GameSettings shared] getGlobalForKey:@"gameDifficulty"];
     
     
@@ -61,7 +74,7 @@
     }
     
     //if everything unlocked, then override the before
-    if ([unlockText isEqualToString:@"YES"]) {
+    if (unlockEverything) {
         _unlocked = true;
     }
         
@@ -84,6 +97,7 @@
     int buttonIdPos = (_buttonId > LEVEL_BUTTON_NUMBER_OF_NORMAL_LEVELS) ? (_buttonId - LEVEL_BUTTON_NUMBER_OF_NORMAL_LEVELS) : _buttonId;
     
     //initial position
+    CGPoint offset = LevelButtonLayoutOffset();
     float startX = 220 * MULTIPLIERX; //was 212 for left panel
     float startY = 190 * MULTIPLIERY; //was 181 for left panel and 11 levels, and 186 without
     float row = floorf((buttonIdPos - 1) / 4);
@@ -105,7 +119,8 @@
         column += 0.5f;
     }
     
-    CGPoint position = ccp(startX + (64 * MULTIPLIERX) * column, startY - (64 * MULTIPLIERY) * row);
+    CGPoint position = ccp(offset.x + startX + (64 * MULTIPLIERX) * column,
+                           offset.y + startY - (64 * MULTIPLIERY) * row);
     [self setPosition:position];
 }
 
