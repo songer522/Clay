@@ -234,14 +234,78 @@ bob as the blow frames change size. Legacy constant kept as a fallback.
 Worth noting the old constant was ~17pt too high on iPad but only ~11pt on phone, so this
 also removes a device inconsistency rather than just nudging one number.
 
+## Round 3 — further play-test defects (2026-09-05)
+
+### L6 — brains and hearts sat low on iPad and could be walked past
+
+*Reported: "the brains and hearts from zombies sometimes are low, player can just walk
+pass it ... happening on iPad for sure."*
+
+**This was a regression introduced by the round-1 hitbox pass.** `bbox.y` is an *inverted
+sink offset* — `GameCollisionRectForObject` computes `origin.y = spriteY - bbox.y` — and
+the plist loader at `GameObjectController.m:93` deliberately scales `x`, `width` and
+`height` for iPad while leaving **`y` raw** for exactly that reason. Adding `MULTIPLIERY`
+to `y` on the code-set boxes dragged them downward:
+
+| brain box on iPad (resting at world 130) | rect | top |
+|---|---|---|
+| legacy (`y` raw, `h` raw) | 97 – 122 | 122 |
+| round 1 (`y × 2.4`, `h × 2.4`) | **50.8 – 110.8** | **110.8** |
+| fixed (`y` raw, `h × 2.4`) | 97 – 157 | 157 |
+
+The box sank 46pt and its top dropped 11pt, so it hung below the brain. `MULTIPLIERY` is 1
+on phone, which is exactly why the reporter saw it on iPad and not iPhone.
+
+Restored the loader convention on all eight boxes that pass touched: brain, heart,
+fire-demon bullet, firefox (both states), mystery box (all three states). Net effect versus
+the original code is now purely the height scaling, with box position unchanged.
+
+**Deliberate exception:** `PlayerActionShoot` keeps `MULTIPLIERY` on its `y`. There
+`y = 200` against `height = 420`, so it is a *centring* offset for the swept bullet column,
+not a sink offset; leaving it raw would put the column at `spriteY-200 … +808` on iPad.
+
+The convention is now documented in a comment in `GameObject.m` so it is not reintroduced.
+
+### L5/L6/L8 — `slow` strips never slowed the player
+
+*Reported: "the water pit in level 6 is also too low, doesn't slow down player at all."*
+
+`zombieWater` has `offsety -63`, which puts its sprite at 33, and `bbox.y -22` lifts the box
+back only to **55–70**. The player's box starts at **74** — a 4pt gap, so it never made
+contact and the slow effect could never fire.
+
+Listing every `playerEffect = slow` strip showed they *all* have this shape, including
+`sandpit`, `manure`, `leafpile` and `spilledDrink`. Those work only because levels 1–3 gave
+them a pad in `GameCollisionRect.m` (`origin.y -= 8; height += 22`, net top +14). The level
+5/6/8 strips were never added to it. So they join the existing rule rather than getting a
+new one:
+
+| strip | before | after | vs player bottom 74 |
+|---|---|---|---|
+| `zombieWater` (L6) | 55–70 | 47–84 | ✓ |
+| `sewerWater` (L5) | 55–70 | 47–84 | ✓ |
+| `VolcanoBBQLarge` / `Small` (L8) | 49–64 | 41–78 | ✓ |
+| `leafpile` (already working) | 49–64 | 41–78 | ✓ |
+
+That the same pad lands `leafpile` at a top of 78 — a strip confirmed working in play —
+corroborates the 74 figure for the player's box bottom that this whole analysis rests on.
+
+Scope note: only L6 was reported, but L5 and L8 carry the identical defect and were fixed
+with it. `rainyWater` (level 9) has it too and was **left unchanged** as out of scope.
+
 ## Still open
 
-- **Re-check the two round-2 fixes in play:** the L7 combo attack should now sweep just
-  above the player's feet (jumpable, not buried), and the L8 landed rock should stop the
-  player unless he jumps. If the rock still passes through, the next lever is its
-  `GameCollisionRect` rule, not the landing height.
+- **Re-check the round-2 and round-3 fixes in play:** the L7 combo attack should sweep just
+  above the player's feet; the L8 landed rock should stop the player on a *single* jump (an
+  earlier attempt made it 40 tall and forced a double jump); the L6 brains/hearts should be
+  hittable on **iPad**; and the L5/L6/L8 `slow` strips should actually slow. If the rock
+  still passes through, the lever is the lift in its `GameCollisionRect` rule, not the
+  landing height.
 - **The L7 boss ship's own y still has the vertical drift** described in round 2. Left
   alone on purpose; check whether the ship looks low relative to the world on a tall phone.
+- **Every gameplay defect so far was found by the user playing, not by me.** Four were
+  reported across rounds 2 and 3; two were gaps in the legacy code and two were regressions
+  introduced by this pass. Treat the unplayed changes below with that hit rate in mind.
 - **Gameplay feel was not verified by me.** No simulator UI automation was available in this
   environment (XcodeBuildMCP's UI automation workflow is not enabled, and the Xcode 27
   simulator host runs windowless so there was no window to drive). The following need a
@@ -257,11 +321,11 @@ also removes a device inconsistency rather than just nudging one number.
 - **Chase constants are first-pass.** Every level 5–8 chase now scales with width, but the
   scaled values have not been played. Levels 1–4 each needed several device rounds; expect
   some of these to want a second pass.
-- **Data-level suspects untouched**, pending overlay measurement: the three L8 blow targets
-  with `boundingBox.x = -50`, the `slow` strips (`sewerWater`, `zombieWater`,
-  `VolcanoBBQLarge/Small`, all 87×15 with `offsetx -60/-64`), and L5 `garbage` with
-  `offsetx 90`. These are the low-wide-pad class that needed retuning in levels 1–4, but
-  changing plist baselines without an overlay measurement risks the double-lift mistake
-  from level 3.
+- **Data-level suspects still untouched**, pending overlay measurement: the three L8 blow
+  targets with `boundingBox.x = -50`, and L5 `garbage` with `offsetx 90`. Changing plist
+  baselines without an overlay measurement risks the double-lift mistake from level 3.
+  (The `slow` strips from this list were measured and fixed in round 3.)
+- **`rainyWater` (level 9) has the same `slow`-strip defect** — its box tops out at 70
+  against the player's 74. Left unchanged because level 9 is outside this branch's scope.
 - **`timed_hard` for L5/L6/L8 has zero checkpoints**, so pit deaths restart from spawn.
   Worth a design decision now that pits are reachable and frequent.

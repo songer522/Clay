@@ -59,9 +59,22 @@ runtime**; the app's deployment target means only iOS 26+ simulators are eligibl
       hitboxes; blow-action branch ordering.
 - [ ] **Play each level on phone and iPad with the overlay on** and lock the chase
       constants. See "Still open" in the findings doc for the specific checks.
-- [ ] Measure the `slow` strips, the three `boundingBox.x = -50` blow targets, and L5
-      `garbage offsetx 90` with the overlay before touching plist baselines. Change the
-      plist baseline **or** the code pad, never both in one pass (level 3's double-lift).
+- [x] The `slow` strips (`sewerWater`, `zombieWater`, `VolcanoBBQLarge/Small`) were measured
+      in round 3 and joined the existing `leafpile` pad in `GameCollisionRect`.
+- [ ] Still to measure with the overlay: the three `boundingBox.x = -50` blow targets and L5
+      `garbage offsetx 90`. Change the plist baseline **or** the code pad, never both in one
+      pass (level 3's double-lift, and round 2's rock which forced a double jump).
+
+### Task 3b: Round 2/3 play-test fixes — DONE, unverified in play
+
+Reported by the user playing levels 5-8; see the findings doc for the measurements.
+
+- [x] L7 combo attack swept below the player's feet (missing camera letterbox offset).
+- [x] L8 landed rock walked through, then over-corrected into a double-jump obstacle.
+- [x] Jump touch zone biased right and far too small.
+- [x] Blow plume rode above Tim's forehead.
+- [x] L6 brains/hearts sank on iPad (regression: `bbox.y` must stay raw).
+- [x] L5/L6/L8 `slow` strips never reached the player's box.
 
 ### Task 4: Docs — DONE
 
