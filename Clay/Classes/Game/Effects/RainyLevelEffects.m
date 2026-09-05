@@ -19,6 +19,10 @@
 #import "Sprite.h"
 #import "GameSettings.h"
 
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133f : 1.0f)
+#define MULTIPLIERY (IS_IPAD ? 2.4f : 1.0f)
+
 @implementation RainyLevelEffects
 
 +(id)instance
@@ -57,11 +61,9 @@
 {
     Player *player = [[LayerManager sharedLayers] getPlayer];
     
-    //IPAD FIX: place underneath tim's feet
-   // if([[GameSettings shared] isIpad])
-   // {
-    [_rainBehindTim setPosition:CGPointMake(player.x - 70, player.y +40)];
-   // }
+    //place underneath tim's feet. The offsets were authored against the phone and the iPad
+    //branch was left commented out, so on iPad the splash sat up by his waist.
+    [_rainBehindTim setPosition:CGPointMake(player.x - 70 * MULTIPLIERX, player.y + 40 * MULTIPLIERY)];
     if (player.isInMidAir||player.onLedge) {
         if (_rainBehindTimVisible) {
             [[_rainBehindTim getCCSprite] setVisible:NO];

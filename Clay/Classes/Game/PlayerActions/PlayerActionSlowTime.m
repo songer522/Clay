@@ -19,6 +19,9 @@
 #import "LayerManager.h"
 #import "BossFinalJim.h"
 
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133f : 1.0f)
+
 
 @implementation PlayerActionSlowTime
 
@@ -83,7 +86,7 @@
     } else {
         _isActive = true;
         //[_sprite setPosition:ccp(_player.x - 0.0f, _player.y + 45.0f)];
-        [_sprite setPosition:ccp(_parent.x - 70.0f, _parent.y)];
+        [_sprite setPosition:ccp(_parent.x - 70.0f * MULTIPLIERX, _parent.y)];
         
         if (_waitToHideSprite > 0.0f) {
             _waitToHideSprite -= dt;

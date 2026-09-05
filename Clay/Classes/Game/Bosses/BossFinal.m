@@ -17,8 +17,11 @@
 #import "PassengerCar.h"
 #import "PlayerAction.h"
 #import "GameSettings.h"
+#import "Camera.h"
 
-#define BOSS_FINAL_MAX_TRAIN_X 230.0f
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133f : 1.0f)
+#define MULTIPLIERY (IS_IPAD ? 2.4f : 1.0f)
 
 #define TRAIN_OFFSCREEN_LEFT -600.0f
 #define TRAIN_OFFSCREEN_LEFT_IPAD -900.0f
@@ -26,6 +29,42 @@
 #define TRAIN_BOMB_POSITION 230.0f
 #define TRAIN_DOOR_POSITION 310.0f
 #define TRAIN_Y_POSITION 132.0f
+
+// GameCollisionRectForObject builds every box as (spritePosition - bbox.origin, bbox.size),
+// and both the door and the player resolve to screen space, so the two can be lined up
+// directly. The player stands at world 64*MULTIPLIERY and his plist bbox.y is a raw -10, so
+// his collision box starts PLAYER_BOX_OFFSET_Y above his feet.
+//
+// The authored -95 (phone) / -15 (iPad) offsets below the train put the door box 130pt to
+// 330pt BELOW that, where it could never touch him - the door attack landed no hits at all.
+// The gap also grew with the camera letterbox, so it got worse on taller modern screens.
+// Anchor the box bottom to the player's grounded box bottom instead, and read the door's own
+// bbox origin back so the two cannot drift apart.
+#define PLAYER_GROUNDED_WORLD_Y 64.0f
+#define PLAYER_BOX_OFFSET_Y 10.0f
+
+static CGFloat FinalBossDoorScreenY(Projectile *door)
+{
+    CGFloat playerBoxBottom =
+        [[Camera sharedCamera] convertToScreenY:(PLAYER_GROUNDED_WORLD_Y * MULTIPLIERY)]
+        + PLAYER_BOX_OFFSET_Y;
+    return playerBoxBottom + [door getBoundingBox].origin.y;
+}
+
+// The train's stage x values are screen-space and were authored against a 480-wide phone
+// (230 is its centre) / 1024-wide iPad. The player is pinned near the left edge
+// (player.plist cameraTracking x 75), so every extra point of a modern screen's width
+// appears to his right - a literal 230 now parks the train on top of him instead of
+// across from him, the same defect the Level 7 pass fixed in BossJimShip. Shift the stage
+// by exactly the width beyond the authored size, leaving the per-device sprite offsets in
+// updatePosition untouched. Exact no-op at 480 phone / 1024 iPad.
+static CGFloat FinalBossStageX(CGFloat legacyStageX)
+{
+    CGFloat legacyWidth = IS_IPAD ? 1024.0f : 480.0f;
+    CGFloat extraWidth = [[CCDirector sharedDirector] winSize].width - legacyWidth;
+    if (extraWidth < 0.0f) { extraWidth = 0.0f; }
+    return legacyStageX + extraWidth;
+}
 
 @implementation BossFinal
 
@@ -60,7 +99,7 @@
     _waitUntilPlayerGetsBackUp = false;
     
     _door = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_DARK_TRAIN_DOOR];
-    [_door setBoundingBox:CGRectMake(20, 12, 14, 25)];
+    [_door setBoundingBox:CGRectMake(20 * MULTIPLIERX, 12, 14 * MULTIPLIERX, 25 * MULTIPLIERY)];
     [_door disable];
     
     _waitToPlayHorn = 0.5f;
@@ -281,12 +320,18 @@
         //come from left side of screen to bomb position
         case FINAL_BOSS_MOVE_TO_BOMBING:
             if([self canTrigger:FINAL_BOSS_MOVE_TO_BOMBING]) {
+                // The two constants were swapped here: iPad snapped to the phone value
+                // (-600), which is not enough clearance for a sprite drawn at
+                // position.x + 280 in updatePosition, so the train popped into frame
+                // mid-entrance; the phone started 300pt further out than intended and
+                // arrived ~0.75s late at moveRight's 400pt/s. FINAL_BOSS_MOVE_TO_LEFT
+                // below pairs them correctly and is the reference.
                 if ([[GameSettings shared] isIpad]) {
-                    _trainPosition = ccp(TRAIN_OFFSCREEN_LEFT,TRAIN_Y_POSITION);
-                } else {
                     _trainPosition = ccp(TRAIN_OFFSCREEN_LEFT_IPAD,TRAIN_Y_POSITION);
+                } else {
+                    _trainPosition = ccp(TRAIN_OFFSCREEN_LEFT,TRAIN_Y_POSITION);
                 }
-                _destinationX = TRAIN_BOMB_POSITION;
+                _destinationX = FinalBossStageX(TRAIN_BOMB_POSITION);
                 _phase = phase;
                 _inAttack = true;
                 _isOnScreen = true;
@@ -306,7 +351,7 @@
             break;
         case FINAL_BOSS_MOVE_TO_RIGHT:
             if ([self canTrigger:FINAL_BOSS_MOVE_TO_RIGHT]) {
-                _destinationX = TRAIN_OFFSCREEN_RIGHT;
+                _destinationX = FinalBossStageX(TRAIN_OFFSCREEN_RIGHT);
                 _phase = phase;
                 _inAttack = true;
             }
@@ -316,7 +361,7 @@
         //door attack
         case FINAL_BOSS_ATTACK_1:
             if ([self canTrigger:FINAL_BOSS_ATTACK_1]) {
-                _destinationX = TRAIN_DOOR_POSITION;
+                _destinationX = FinalBossStageX(TRAIN_DOOR_POSITION);
                 _phase = phase;
                 _inAttack = true;
             }
@@ -330,9 +375,9 @@
             [self changeToAnimationNamed:@"darkBossJimDoorAttack2" forSprite:_trainJim];
             _waitToSwitch = 1.4f;
             if ([[GameSettings shared] isIpad]) {
-                _destinationX = -180.0f;
+                _destinationX = FinalBossStageX(-180.0f);
             } else {
-                _destinationX = 50.0f;
+                _destinationX = FinalBossStageX(50.0f);
             }
             _phase = phase;
             [_door reset];
@@ -345,7 +390,7 @@
             break;
         case FINAL_BOSS_ATTACK_1E:
             [self changeToAnimationNamed:@"darkBossJimIdle1" forSprite:_trainJim];
-            _destinationX = TRAIN_BOMB_POSITION;
+            _destinationX = FinalBossStageX(TRAIN_BOMB_POSITION);
             _phase = phase;
             break;
             
@@ -510,12 +555,11 @@
         _waitUntilPlayerGetsBackUp = false;
     }
     
-    CGPoint position = [[Camera sharedCamera] convertToWorldXY:_trainPosition];
-    if ([[GameSettings shared] isIpad]) {
-        [_door setPosition:ccp(position.x + 250.0f , position.y - 15.0f)];        
-    } else {
-        [_door setPosition:ccp(position.x, position.y - 95.0f)];        
-    }
+    // Horizontal alignment with the door art is authored and kept as-is; the vertical
+    // placement is derived from the player's collision band. See FinalBossDoorScreenY.
+    CGPoint doorScreen = CGPointMake(_trainPosition.x + (IS_IPAD ? 250.0f : 0.0f),
+                                     FinalBossDoorScreenY(_door));
+    [_door setPosition:[[Camera sharedCamera] convertToWorldXY:doorScreen]];
     if ([_door getActive]) {
         [self testCollisions:_door];        
     }

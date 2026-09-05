@@ -990,7 +990,10 @@ static CGFloat GameObjectWidthScale(void)
                 [[SoundEngine shared] playSound:@"rainyUmbrellaAppear"];
             }
             
-            if ([self closeToPlayer:MULTIPLIERX*315]) {
+            //was MULTIPLIERX*315: MULTIPLIERX scales for iPad only, never for a wide
+            //phone. GameObjectWidthScale() is 1.0 at 480 and 2.133 at 1024, so it
+            //reproduces both authored sizes exactly and also covers modern phones.
+            if ([self closeToPlayer:315*GameObjectWidthScale()]) {
                 _angle+=200.0f*dt;
                 if(_angle>-120.0f) {
                     _angle = -120.0f;
@@ -1007,7 +1010,8 @@ static CGFloat GameObjectWidthScale(void)
             break;
         case COLLISION_BEHAVIOR_PAPERPLANE:
             _vx = 0.0f;
-            if ([self closeToPlayer:MULTIPLIERX*480]) {
+            //see the umbrella note above: was MULTIPLIERX*480.
+            if ([self closeToPlayer:480*GameObjectWidthScale()]) {
                 _angle+=110.0f*dt;
                 if(_angle > -60.0f) {
                     _stopCurve=true;
@@ -1022,7 +1026,7 @@ static CGFloat GameObjectWidthScale(void)
                     _vy = MULTIPLIERY*-1*_magnitude * sinf((_angle * 3.14159)/180.0f);
                 }
                 
-            }else if  ([self closeToPlayer:MULTIPLIERX*GAME_OBJECT_DISTANCE_ONSCREEN]) {
+            }else if  ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN*GameObjectWidthScale()]) {
                 _vx = MULTIPLIERX*-1 * _magnitude;
                 _angle = -180;
             }            
@@ -1043,12 +1047,12 @@ static CGFloat GameObjectWidthScale(void)
                         }
                         _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_RAINY_SQUIRREL_NUT];
                         [_projectile reset];
-                        [_projectile setPosition:CGPointMake(_x - 25.0f, _y + 19)];
-                        [_projectile setBoundingBox:CGRectMake(5, 12, 16, 16)];
+                        [_projectile setPosition:CGPointMake(_x - 25.0f * MULTIPLIERX, _y + 19 * MULTIPLIERY)];
+                        [_projectile setBoundingBox:CGRectMake(5 * MULTIPLIERX, 12, 16 * MULTIPLIERX, 16 * MULTIPLIERY)];
                         [_projectile setInitialVelocity];
                     } 
                 } else {
-                    if ([self closeToPlayer:400.0f]) {
+                    if ([self closeToPlayer:400.0f * GameObjectWidthScale()]) {
                         _waitToTrigger = 0.28f;
                         _hasAppeared=true;
                     }
@@ -1076,7 +1080,7 @@ static CGFloat GameObjectWidthScale(void)
         ///////////////////////////
         case COLLISION_BEHAVIOR_WATER_PUFFERFISH:
             
-            if([self closeToPlayer:550] && ![self closeToPlayer:300])
+            if([self closeToPlayer:550 * GameObjectWidthScale()] && ![self closeToPlayer:300 * GameObjectWidthScale()])
             {
                 /*
                 if (_isActive)
@@ -1102,7 +1106,7 @@ static CGFloat GameObjectWidthScale(void)
             } 
             
             
-            if([self closeToPlayer:300] && ! [self closeToPlayer:150])
+            if([self closeToPlayer:300 * GameObjectWidthScale()] && ! [self closeToPlayer:150 * GameObjectWidthScale()])
             {
                 if  (![[_sprite.getAnimation name] isEqualToString:@"waterPufferFishAnim2"])
                 {
@@ -1111,7 +1115,7 @@ static CGFloat GameObjectWidthScale(void)
                 _vy = 0;
             }
             
-            if([self closeToPlayer:150])
+            if([self closeToPlayer:150 * GameObjectWidthScale()])
             {
               if  (![[[_sprite getAnimation] name] isEqualToString:@"waterPufferFishAnim3"])
               {
@@ -1144,7 +1148,7 @@ static CGFloat GameObjectWidthScale(void)
             
         case COLLISION_BEHAVIOR_WATER_JIM:
             
-            if([self closeToPlayer:550])
+            if([self closeToPlayer:550 * GameObjectWidthScale()])
             {
              
                 if(_waitToTrigger<=0)
@@ -1176,11 +1180,25 @@ static CGFloat GameObjectWidthScale(void)
             }
             break;
         case COLLISION_BEHAVIOR_CHARGE_AT_PLAYER_SLOW:
-            [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-100.0f ChaseSound:@"waterAnglerFish"];
+        {
+            CGFloat widthScale = GameObjectWidthScale();
+            [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN * widthScale
+                     DefaultSpeed:0.0f
+                       ChaseSpeed:-100.0f * widthScale
+                       ChaseSound:@"waterAnglerFish"];
             break;
+        }
         case COLLISION_BEHAVIOR_WATER_TRONIKA_CHASE:
-            [self chaseAtDistance:180.0f DefaultSpeed:-60.0f ChaseSpeed:-200.0f ChaseSound:@"waterTronikaAppear" ChaseAnimation:@"waterTronikaAttackAnim" DefaultAnimation:@"waterTronikaCalmAnim"];
+        {
+            CGFloat widthScale = GameObjectWidthScale();
+            [self chaseAtDistance:180.0f * widthScale
+                     DefaultSpeed:-60.0f * widthScale
+                       ChaseSpeed:-200.0f * widthScale
+                       ChaseSound:@"waterTronikaAppear"
+                    ChaseAnimation:@"waterTronikaAttackAnim"
+                  DefaultAnimation:@"waterTronikaCalmAnim"];
             break;
+        }
         case COLLISION_BEHAVIOR_WATER_SQUID_ATTACKS:
             playerPos = [_player getPosition];
             _angle = [self getAngleBetweenPoint1:CGPointMake(_x, _y) Point2:playerPos];
@@ -1192,10 +1210,10 @@ static CGFloat GameObjectWidthScale(void)
                 }
                 
                 
-                if ([self closeToPlayer:300]) {
+                if ([self closeToPlayer:300 * GameObjectWidthScale()]) {
                     [_projectile setPosition:CGPointMake(_x, _y)];
                     [_projectile reset];
-                    [_projectile setPosition:CGPointMake(_x - 12.0f, _y - 28.0f)];
+                    [_projectile setPosition:CGPointMake(_x - 12.0f * MULTIPLIERX, _y - 28.0f * MULTIPLIERY)];
                     [_projectile shootWithSpeed:160.0f atAngle:(_angle - 200.0f)];//190
                     [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"waterSquidAttackAnim"];
                     [[SoundEngine shared] playSound:@"waterSquidProjectile"];
@@ -1262,7 +1280,7 @@ static CGFloat GameObjectWidthScale(void)
                     }
                 }
             }
-            else if([self closeToPlayer:150] && !_hasTriggered)
+            else if([self closeToPlayer:150 * GameObjectWidthScale()] && !_hasTriggered)
             {
                 _waitToTrigger=0.3f;
                 _hasTriggered=true;
@@ -1270,6 +1288,8 @@ static CGFloat GameObjectWidthScale(void)
             }
             else if(_vy<0)
             {
+                //Left as an explicit per-device pair on purpose: 165 is not 65*MULTIPLIERY
+                //(that would be 156), so it is a hand-tuned iPad value, not a scaling bug.
                 float finalPosition = 65.0f;
                 if ([[GameSettings shared] isIpad]) {
                     finalPosition = 165.0f;
@@ -1288,7 +1308,7 @@ static CGFloat GameObjectWidthScale(void)
                 _hasAppeared = true;
             }
             
-            if (!_hasTriggered && [self closeToPlayer:40.0f]) {
+            if (!_hasTriggered && [self closeToPlayer:40.0f * GameObjectWidthScale()]) {
                 [self startCollision:YES];
             } else if(_hasTriggered && _bombStillHurts) {
                 if (_alpha > 0.8f) {
@@ -1312,7 +1332,7 @@ static CGFloat GameObjectWidthScale(void)
                 }
             }
             
-            else if ([self closeToPlayer:300] && !_hasTriggered){
+            else if ([self closeToPlayer:300 * GameObjectWidthScale()] && !_hasTriggered){
                 
                 _waitToTrigger=0.4f;
                 _hasTriggered = true;
@@ -1323,7 +1343,7 @@ static CGFloat GameObjectWidthScale(void)
                 {
                     [self setOriginalAnimation:@"gargoyleOpened"];
                     [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"gargoyleOpened"];
-                    [self setBoundingBox:CGRectMake(-45, 0, 25, 60)];
+                    [self setBoundingBox:CGRectMake(-45 * MULTIPLIERX, 0, 25 * MULTIPLIERX, 60 * MULTIPLIERY)];
                 }
             }
             break;
@@ -2031,7 +2051,7 @@ static CGFloat GameObjectWidthScale(void)
         _collideBehavior = COLLISION_BEHAVIOR_WATER_SQUID_FADES;
         _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_WATER_SQUID_INK];
         [_projectile reset];
-        [_projectile setBoundingBox:CGRectMake(10,25,20,30)];
+        [_projectile setBoundingBox:CGRectMake(10 * MULTIPLIERX, 25, 20 * MULTIPLIERX, 30 * MULTIPLIERY)];
         _projectilePersists = true;
     }
     else if([behavior isEqualToString:@"tronika"]) {

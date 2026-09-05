@@ -17,6 +17,10 @@
 #import "GameSettings.h"
 #import "CollisionDetection.h"
 
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133f : 1.0f)
+#define MULTIPLIERY (IS_IPAD ? 2.4f : 1.0f)
+
 @interface Projectile()
 
 -(id) initWithBehavior:(ProjectileBehavior)behavior;
@@ -195,6 +199,7 @@
             _angularVelocity = -1 * (rand()%10 + 10);
             _vy = 75.0f;
             _vx = -1.0f * (50.0f + rand()%100);
+            break;
         case PROJECTILE_BEHAVIOR_WATER_SQUID_INK:
             //call shootWithSpeed instead
             break;
@@ -219,7 +224,7 @@
             _vx = 140.0f;
             _vy = 230.0f;
         }
-        [self setBoundingBox:CGRectMake(30, 30, 60, 60)];
+        [self setBoundingBox:CGRectMake(30 * MULTIPLIERX, 30, 60 * MULTIPLIERX, 60 * MULTIPLIERY)];
 
 
     } else if(_behavior == PROJECTILE_BEHAVIOR_DARK_GRAPES) {
@@ -230,7 +235,7 @@
             _vx = 390.0f;
             _vy = 230.0f;
         }
-        [self setBoundingBox:CGRectMake(7, 18, 14, 20)];
+        [self setBoundingBox:CGRectMake(7 * MULTIPLIERX, 18, 14 * MULTIPLIERX, 20 * MULTIPLIERY)];
 
     }
     
