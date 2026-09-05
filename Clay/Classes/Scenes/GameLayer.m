@@ -163,6 +163,14 @@
     [[LevelManager shared] loadLevelNamed:levelName];
     [self initForLevel];
     Level *levelObj = [[LevelManager shared] currentLevel];
+#if DEBUG
+    // Set only by the -startLevel debug jump in SceneDelegate; never on a normal launch.
+    // The pre-level comic waits for a tap a scripted simulator run cannot give it, so skip
+    // starting it here. The actual handover happens in onEnter - see debugStartLevelNow.
+    if ([[[GameSettings shared] getGlobalForKey:@"debugSkipPreComic"] isEqualToString:@"YES"]) {
+        //deliberately no comic
+    } else
+#endif
     [[ComicManager shared] startComic:levelObj.preComicName StartPhase:COMIC_PHASE_STARTING_VIDEO];
     
     [[GameSettings shared] setGlobal:[NSString stringWithString:levelName] ForKey:@"continueLevelName"];
@@ -563,7 +571,30 @@
     _paused = false;
     [super onEnter];
     _handledPauseEvent = true;
+
+#if DEBUG
+    [self debugStartLevelNow];
+#endif
 }
+
+#if DEBUG
+// Completes the -startLevel debug jump. This must run from onEnter, not from startLevel:
+// startLevel is called out of GameLayer's init, before the scene is live, so a HUD fadeIn
+// scheduled there never runs and the layer state is overwritten as init finishes.
+-(void)debugStartLevelNow
+{
+    if (_debugStartedLevel) { return; }
+    if (![[[GameSettings shared] getGlobalForKey:@"debugSkipPreComic"] isEqualToString:@"YES"]) { return; }
+    _debugStartedLevel = true;
+
+    [self setVisible:YES];
+    [self unpause];
+    _inComic = false;
+    _gameController.isInputEnabled = true;
+    [[self getHud] fadeIn];
+    [[SoundEngine shared] playMusic:[[LevelManager shared] currentLevel].musicName];
+}
+#endif
 
 -(void)initializeLaserShow
 {

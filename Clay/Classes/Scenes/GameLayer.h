@@ -33,6 +33,9 @@
     Player *_player;
     
     GameController *_gameController;
+#if DEBUG
+    bool _debugStartedLevel;    //guards the one-shot -startLevel handover in onEnter
+#endif
     
     InputController *_inputController;
     

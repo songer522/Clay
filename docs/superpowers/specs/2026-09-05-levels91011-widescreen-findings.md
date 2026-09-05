@@ -207,6 +207,54 @@ So either the bomb has been broken since 2012, or there is a constraint here not
 in the code. The overlay will settle it in seconds; guessing will not. Needs a decision on
 where the bomb should leave Jim's hands before anything is changed.
 
+## Simulator run — 2026-09-05, iPhone 17 Pro (874×402pt, iOS 27)
+
+Driven through a new DEBUG-only `-startLevel` launch-argument hook (see below). widthScale
+on this device is ≈1.82, so it exercises the wide-phone case directly.
+
+**Passed.** All three levels load, render and run with no errors in the runtime log. Level 9
+gameplay is live and reacting at sensible distances — the umbrella flies up, a paper plane
+crosses, the squirrel throws a nut. Levels 10 and 11 render correctly. The player's collision
+box hugs the sprite from feet to head on every level; the level 9 frog/squirrel boxes and the
+level 11 bat boxes track their sprites.
+
+### Tooling defect found and fixed: the debug overlay was painted over
+
+`DEBUG_DRAW_BOUNDING_BOXES` appeared to do nothing. `GameDebugLayer` added itself with
+`[scene addChild:self]` at the default `z == 0`, but `GameLayer +scene` adds the game layer to
+the scene **after** `setupLayers` has added the debug layer, so at equal z the insertion order
+put the world on top and the boxes were painted over. Fixed with an explicit `z:1000`.
+
+This matters beyond this branch: **every "verify with the overlay" step in the levels 2–11
+plans was relying on a layer that could be invisible.**
+
+### Level 9 has no rain or lightning at all — pre-existing, not a regression
+
+The level's defining effect never appears. Tested directly rather than assumed: the
+pre-change `Raindrop.m` / `Lightning.m` / `RainyLevelEffects.m` were checked out from the
+merge base (`e8d2dcb6`), rebuilt, and **the rain is missing there too**.
+
+So it is not a regression from this branch — but it has an uncomfortable implication:
+**the rain and lightning positioning fixes above are unverified and possibly moot**, because
+they correct the coordinates of something that never renders. The real defect is upstream of
+those coordinates and has not been diagnosed. `initializeRainyLevel` is reached (level 9's
+layer list contains `ledges`), and `RainyLevelEffects update:` is inside the executed
+`!_paused && !_inComic` block, so the fault is below that.
+
+### Level 10 fails to load three animations
+
+`waterBubblesLAnim`, `spinningAnim`, `floatingAnim` all log
+`ERROR! AnimationController.m - unable to load animation with name: …`. All three exist in
+`anims.plist`, so their spritesheet is not loaded at that point. Pre-existing — this branch
+touched no plists and no animation code.
+
+### Still not covered by the run
+
+The level 11 boss was not reached. The player auto-runs but has no input, so he cannot clear
+the pits and never gets to the `finalBossEnters` triggers. **The door hitbox, the train
+framing and the bomb spawn are therefore still unverified in play** — they remain the
+priority for a human pass, which the hook now makes cheap to set up.
+
 ## P1 — No level 9–11 chase or trigger used the `widthScale` idiom
 
 `closeToPlayer:` (`GameObject.m`) is a plain world-space X comparison, and the player is
@@ -341,8 +389,11 @@ By explicit decision this pass changes no TMX file. Recorded here so the gaps ar
 
 Everything above builds clean with no new warnings, but **none of it has been played**.
 
-- [ ] Play levels 9, 10 and 11 on a modern iPhone **and** an iPad with
-      `DEBUG_DRAW_BOUNDING_BOXES` on, and lock the retuned chase constants.
+- [x] Levels 9–11 load, render and run on a modern iPhone with the overlay on
+      (see the simulator run section). Chase constants **not** locked - that needs play.
+- [ ] Repeat on an **iPad**, which none of this has touched.
+- [ ] Diagnose why level 9's rain and lightning never render. Until that is fixed the
+      positioning work in this branch cannot be confirmed.
 - [ ] L9: confirm the raindrops land on the track and the lightning reads correctly on a
       phone (see the note under the P0 rain/lightning entry).
 - [ ] L10: confirm the `spin` anchor ends on floor contact on both devices, and decide
