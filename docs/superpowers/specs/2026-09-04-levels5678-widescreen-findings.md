@@ -42,9 +42,11 @@ All formulas below reproduce the original numbers exactly at legacy 480×320 pho
 | Arrival test | integer `abs()` on a float | `fabsf()` |
 | Bullet re-aim gate | raw `120.0f` | `BossShipScreenY(120.0f)` |
 
-Measured at runtime — phone 844×390: station `[604.0 .. 744.0]`, entrance `744.0`,
-approach `527.5`. iPad 1210×834: station `[698.1 .. 996.7]`, entrance `996.7`, approach
-`756.2`. The ship now holds station to the right of the player (pinned at x 75) on both.
+Measured at runtime, all **screen x** (the ship's y is untouched by this table — see the
+round-4 probe below for its y) — phone 844×390: station `[604.0 .. 744.0]`, entrance `744.0`,
+approach speed `527.5` pt/s. iPad 1210×834: station `[698.1 .. 996.7]`, entrance `996.7`,
+approach speed `756.2` pt/s. The ship now holds station to the right of the player (pinned at
+screen x 75) on both.
 
 ### Level 7 combo attack
 
@@ -376,7 +378,7 @@ real values on both simulators (since removed; `project.pbxproj` restored byte-i
 | | iPhone 16e 844×390 | iPad Pro 1210×834 |
 |---|---|---|
 | `center.y − cam._y` | −1.0 | +60.0 |
-| ship screen y → world y | 230 → 231 | 552 → 492 |
+| ship screen **y** → world y | 230 → 231 | 552 → 492 |
 | **bullet spawn world y** | **251.0** | **540.0** |
 | gate (round 4) | 120.0 | 184.4 |
 | result | **FIRES** | **FIRES** |
@@ -384,6 +386,9 @@ real values on both simulators (since removed; `project.pbxproj` restored byte-i
 
 So the bullet homes on both, with margin, and the review's figure is reproduced exactly by
 substituting the constructor `center.y` — which is the single point of divergence.
+
+These are the ship's **y**; the station/entrance figures in "Level 7 boss" above are its
+**x** and describe a different axis, not a different value for the same one.
 
 The probe sampled the ship at its resting `BossShipScreenY(230)`. Re-running the same
 formula across the full attack-phase bob from `updateVelocity` (200–260 phone, 480–624 iPad)
