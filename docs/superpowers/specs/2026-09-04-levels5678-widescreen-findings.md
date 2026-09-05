@@ -365,13 +365,36 @@ A review raised that `BOSS_SHIP_BULLET` has no initial velocity, so the re-aim g
 only thing that moves it, and calculated that the gate never fires on modern devices. The
 mechanism is correct but the arithmetic used `center.y = winSize.height / 2`, which is
 `Camera`'s constructor value (`Camera.m:74`). `Player.m:83-84` overwrites it at level load
-to `(22 × MULTIPLIERY − 4) + ModernIpadGameplayVerticalOffset()` — 18 on phone, 48.8 / 114.8
-on iPad — and the only other `setCenter` caller is `BossFinalJim` (level 11).
+to `(22 × MULTIPLIERY − 4) + ModernIpadGameplayVerticalOffset()` — 18 on phone, **48 / 114**
+on iPad (`cameraY` is declared `int`, so the 2.4 scaling truncates) — and the only other
+`setCenter` caller is `BossFinalJim` (level 11). The probe's measured `center.y − cam._y` of
++60.0 on iPad confirms the truncated 114, not 114.8.
 
-With the live value the bullet's world y at spawn is 286 (legacy phone), 251 (iPhone 16e),
-605 (legacy iPad), 539 (iPad Pro) against a gate of 120 / 184.4, so it fires everywhere with
-margin. No change made. **This is arithmetic, not observation — confirm it in the iPad play
-test.**
+**Now measured, not derived.** A temporary probe booted straight into level 7 and logged the
+real values on both simulators (since removed; `project.pbxproj` restored byte-identical):
+
+| | iPhone 16e 844×390 | iPad Pro 1210×834 |
+|---|---|---|
+| `center.y − cam._y` | −1.0 | +60.0 |
+| ship screen y → world y | 230 → 231 | 552 → 492 |
+| **bullet spawn world y** | **251.0** | **540.0** |
+| gate (round 4) | 120.0 | 184.4 |
+| result | **FIRES** | **FIRES** |
+| same model with `center.y = winH/2` | 109.0 → would be dead | 237.0 |
+
+So the bullet homes on both, with margin, and the review's figure is reproduced exactly by
+substituting the constructor `center.y` — which is the single point of divergence.
+
+The probe sampled the ship at its resting `BossShipScreenY(230)`. Re-running the same
+formula across the full attack-phase bob from `updateVelocity` (200–260 phone, 480–624 iPad)
+gives bullet world y of 221–281 and 468–612, so it fires across the whole range, not just at
+the resting position.
+
+The probe also settled a second question. Sampling the player over time showed world y
+**128** during the pre-level comic (the map spawn row) dropping to **64** once the level
+actually runs (player x advancing 1060 → 5671). So the grounded player world y is 64 on
+*both* devices, which is the premise the round-4 anchor rests on: box 74–174 on phone and
+74–314 on iPad, midsections 124 and 194, against gates of 120 and 184.4.
 
 ## Still open
 
@@ -388,7 +411,8 @@ test.**
 - **Level 4 on iPad** needs a smoke check for the `Camera` clamp axis fix (round 4). It is
   the only level 1–4 exposure from the engine-wide changes.
 - **iPad boss bullets** need a look after the round-4 re-aim change: they should straighten
-  out around the player's midsection, not near his head.
+  out around the player's midsection, not near his head. (That the gate *fires* at all is now
+  measured on both devices; where the bullet stops homing is still a feel question.)
 - **Every gameplay defect so far was found by the user playing, not by me.** Four were
   reported across rounds 2 and 3; two were gaps in the legacy code and two were regressions
   introduced by this pass. Treat the unplayed changes below with that hit rate in mind.
