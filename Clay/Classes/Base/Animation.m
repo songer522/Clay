@@ -103,16 +103,31 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
         [[sprite getCCSprite] setBatchNode:_spriteSheet];
     }
     [[sprite getCCSprite] setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:frameName]];
-    _anim = [CCAnimation animationWithFrames:_frames delay:_delay]; //memory leak from previous?
-    
-    _animateAction = [CCXAnimate actionWithAnimation:_anim restoreOriginalFrame:NO];
-    
+
+    //These three are queried after this method returns (getCurrentFrameNumber, setFrame:,
+    //togglePauseAnimation). The running action wrapper is owned by the sprite's action manager,
+    //which frees it as soon as the action finishes or the sprite's actions are stopped, so we
+    //have to own our own reference rather than borrow the action manager's.
+    CCAnimation *newAnim = [CCAnimation animationWithFrames:_frames delay:_delay];
+    CCXAnimate *newAnimateAction = [CCXAnimate actionWithAnimation:newAnim restoreOriginalFrame:NO];
+
+    CCActionInterval *newSpeedAction;
     if (_looping) {
-        _speedAction = [CCRepeatForeverWithSpeed actionWithAction:_animateAction speed:1.0f];
-        _animateAction.looping = true;
+        newSpeedAction = [CCRepeatForeverWithSpeed actionWithAction:newAnimateAction speed:1.0f];
+        newAnimateAction.looping = true;
     } else {
-        _speedAction = [CCRepeat actionWithAction:_animateAction times:1]; //TODO: need to add speed to this too or else might cause changespeed issues
+        newSpeedAction = [CCRepeat actionWithAction:newAnimateAction times:1]; //TODO: need to add speed to this too or else might cause changespeed issues
     }
+
+    [newAnim retain];
+    [newAnimateAction retain];
+    [newSpeedAction retain];
+    [_anim release];
+    [_animateAction release];
+    [_speedAction release];
+    _anim = newAnim;
+    _animateAction = newAnimateAction;
+    _speedAction = newSpeedAction;
         
     if (_clearPreviousAnimations) {
         [[sprite getCCSprite] stopAllActions];        
@@ -123,26 +138,20 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
 
 -(int)getTotalFramesCount
 {
-    int totalFrames = -1;
-    @try {
-        totalFrames = _animateAction.totalFrames;
+    if (_animateAction == nil) {
+        return -1;
     }
-    @catch (NSException *exception) {
-        CCLOG(@"ERROR! Animation.m -> getTotalFramesCount -> message sent to deallocated instance of _animateAction");
-    }
-    return totalFrames;
+    return _animateAction.totalFrames;
 }
 
 -(int)getCurrentFrameNumber
 {
-    int frame = -1;
-    @try {
-        frame = [_animateAction getCurrentFrame];
+    //CCXAnimate reports -1 once it is no longer running, so callers that outlive the
+    //animation (the punch hitbox, for one) see "no frame" instead of a stale frame number.
+    if (_animateAction == nil) {
+        return -1;
     }
-    @catch (NSException *exception) {
-        CCLOG(@"ERROR! Animation.m -> getCurrentFrameNumber -> message sent to deallocated instance of _animateAction");
-    }
-    return frame;
+    return [_animateAction getCurrentFrame];
 }
 
 -(void)togglePauseAnimation
@@ -207,7 +216,12 @@ static NSString * const ANIMATION_SPRITE_CACHE_SUFFIX = @".plist";
     [_firstFrameName release];
     [_sequence release];
     
+    [_anim release];
+    _anim = nil;
+    [_animateAction release];
     _animateAction = nil;
+    [_speedAction release];
+    _speedAction = nil;
     
     [super dealloc];
 }
