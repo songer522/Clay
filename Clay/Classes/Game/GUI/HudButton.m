@@ -20,6 +20,7 @@
 #define LEGACY_PHONE_WIDTH 480.0f
 #define LEGACY_PHONE_HEIGHT 320.0f
 #define LEGACY_IPAD_WIDTH 1024.0f
+#define LEGACY_IPAD_HEIGHT 768.0f
 
 #define BUTTON_OPACITY 255
 #define BUTTON_SCALE 0.85f
@@ -69,10 +70,24 @@ static float HudButtonX(HudButtonType type)
     }
 }
 
+//The iPad playfield is anchored to the top of the viewport, so on a screen taller than the
+//authored 768 the world's bottom edge sits this far up. Player.m's
+//ModernIpadGameplayVerticalOffset() and HudLayer.m's HudLayerIpadVerticalOffset() already
+//follow it; the buttons did not, which stranded them in the black band below the world.
+static float HudButtonIpadVerticalOffset(void)
+{
+    if (!IS_IPAD) {
+        return 0.0f;
+    }
+
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    return MAX(winSize.height - LEGACY_IPAD_HEIGHT, 0.0f);
+}
+
 static float HudButtonY(void)
 {
     if (IS_IPAD) {
-        return HUD_LAYER_BUTTON_Y * MULTIPLIERY;
+        return (HUD_LAYER_BUTTON_Y * MULTIPLIERY) + HudButtonIpadVerticalOffset();
     }
     
     return HUD_LAYER_BUTTON_Y + HudButtonPhoneVerticalOffset();
