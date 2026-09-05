@@ -57,6 +57,7 @@ typedef enum {
     bool _fadeOut;
     bool _isBehindObstacle;
     bool _hurtsPlayer;
+    bool _hasFallenPastGround; //fell through a death-pit column; never re-ground it
 }
 
 @property(nonatomic,assign) CGRect boundingBox;

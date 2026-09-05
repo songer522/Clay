@@ -59,6 +59,11 @@
 
 +(Camera*)sharedCamera;
 
+//The vertical offset the camera applies to the world on phones taller than the legacy 320pt
+//design height. Absolute screen-space positions (bosses, boss attacks) must add this or they
+//sit low relative to the world and the player.
++(float)phoneVerticalOffset;
+
 #pragma mark - public methods
 -(void)setBoundaries:(CGRect)rect Level:(Level*)level;
 

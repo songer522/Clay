@@ -47,4 +47,7 @@
 -(void)precalculateDeathpits;
 -(void)precalculateLedges;
 
+-(BOOL)hasDeathpitAtWorldX:(float)worldX; //is the column at this world x a death pit?
+-(float)ledgeTopAtWorldX:(float)worldX; //top surface y of the ledge in this column, or -1 if none
+
 @end

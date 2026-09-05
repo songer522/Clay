@@ -13,6 +13,7 @@
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define COLLISION_PLAYER_GROUND_Y_POSITION 64.0f
+#define COLLISION_MAX_COLUMNS 1300
 #define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
 #define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 
@@ -36,6 +37,12 @@
         _halfTileSize = _tileSize / 2.0f;
         _mapHeight = _map.mapSize.height;
         _mapWidth = _map.mapSize.width;
+
+        //the per-column pit/ledge tables are fixed size, so never scan past them
+        if (_mapWidth > COLLISION_MAX_COLUMNS) {
+            CCLOG(@"CollisionDetection: map is %d columns, clamping to %d", _mapWidth, COLLISION_MAX_COLUMNS);
+            _mapWidth = COLLISION_MAX_COLUMNS;
+        }
         
         //do any precalculations for performance
         if (IS_IPAD)
@@ -171,6 +178,31 @@
     return ccp(x,y -1);
 }
 
+// World-space queries so other systems (projectiles) can resolve ground against the real map
+// instead of assuming a flat floor.
+-(BOOL)hasDeathpitAtWorldX:(float)worldX
+{
+    CGPoint coords = [self accurateCoords:CGPointMake(worldX, 0.0f)];
+    return _hasDeathpitAtColumn[(int)coords.x] ? YES : NO;
+}
+
+-(float)ledgeTopAtWorldX:(float)worldX
+{
+    CGPoint coords = [self accurateCoords:CGPointMake(worldX, 0.0f)];
+    int ledgeRow = _ledgeHeightAtColumn[(int)coords.x];
+
+    if (ledgeRow < 0) {
+        return -1.0f;
+    }
+
+    float ledgeTopBoost = 0.0f;
+    if (!IS_IPAD && [[GameSettings shared] usingHighResolutionGraphics]) {
+        ledgeTopBoost = _preCalculateTileSize;
+    }
+
+    return (_mapHeight - ledgeRow - 1) * _preCalculateTileSize + ledgeTopBoost;
+}
+
 -(NSString*)getCollisionPropertyForTileCoords:(CGPoint)coords
 {
     NSString *returnVal;
@@ -193,8 +225,10 @@
 
 -(void)precalculateDeathpits
 {
-    int deathpitRow = 13;
-    for (int i=0; i<1300; i++) {
+    // Was a hardcoded 13, which is the bottom row only because every shipped map is 14 rows
+    // tall. Derive it so a re-authored map can't silently lose its pits.
+    int deathpitRow = _mapHeight - 1;
+    for (int i=0; i<COLLISION_MAX_COLUMNS; i++) {
         _hasDeathpitAtColumn[i] = 1;
         
         if (i < _mapWidth) {
@@ -216,7 +250,7 @@
     
     /*
     NSMutableString *deathpits = [NSMutableString stringWithString:@"Deathpits: "];
-    for(int i=0;i<1300;i++) {
+    for(int i=0;i<COLLISION_MAX_COLUMNS;i++) {
         [deathpits appendFormat:@"%d,",_hasDeathpitAtColumn[i]];
     }
     NSLog(@"%@",deathpits);
@@ -226,11 +260,17 @@
 -(void)precalculateLedges
 {
     
-    for (int column = 0; column < 1300; column++) {
+    // The ledge band was hardcoded as rows 10..7, which on the shipped 14-row maps means the
+    // four rows starting three above the bottom row. Level 8 is the first level to use all
+    // four (as a staircase - no column carries more than one ledge row).
+    int highestLedgeRow = _mapHeight - 8;
+    int lowestLedgeRow = _mapHeight - 4;
+
+    for (int column = 0; column < COLLISION_MAX_COLUMNS; column++) {
         bool found = false;
         
         if (column < _mapWidth) {
-            for (int row = 10; row > 6; row--) {
+            for (int row = lowestLedgeRow; row > highestLedgeRow; row--) {
                 
                 int tileGid = [_collisionData tileGIDAt:CGPointMake(column, row)];
                 

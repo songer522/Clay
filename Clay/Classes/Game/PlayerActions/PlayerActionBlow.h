@@ -17,6 +17,7 @@
 
     Sprite *_wind;
     bool _startedWindAnimation;
+    CGFloat _windOffsetY; //cached at startAction so the plume doesn't bob between blow frames
 }
 
 -(void)testBlowCollisions;

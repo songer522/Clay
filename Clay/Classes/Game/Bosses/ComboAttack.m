@@ -10,6 +10,47 @@
 #import "Sprite.h"
 #import "AnimationController.h"
 #import "SoundEngine.h"
+#import "Camera.h"
+
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+
+// Legacy authoring space is 480x320 on phone and 1024x768 on iPad. The original code
+// multiplied every position below by the iPad factors (2.133 / 4 / 3) with no IS_IPAD
+// guard, so on a phone the attack staged ~900pt to the right and at a y above the top of
+// the screen: attack 3 played its sound and was never visible. Scale only on iPad, and
+// keep the iPad numbers byte-for-byte identical to what shipped.
+static CGFloat ComboAttackX(CGFloat value)
+{
+    return IS_IPAD ? value * 2.133f : value;
+}
+
+// These y values are ABSOLUTE screen positions, but the camera shifts the whole world up by
+// CameraPhoneVerticalOffset() on phones taller than the legacy 320pt design height. Without
+// adding it back the attack sweeps below the player's feet - on an 844x390 phone the world
+// moves up 35pt, which put combo 0 and 1 into the ground. Adding it restores the authored
+// gap between the attack and the player. iPad offset is 0, so iPad is unaffected.
+static CGFloat ComboAttackScreenY(CGFloat value, CGFloat ipadScale)
+{
+    CGFloat scaled = IS_IPAD ? value * ipadScale : value;
+    return scaled + [Camera phoneVerticalOffset];
+}
+
+// Offsets relative to the ship, which is already positioned in the same screen space -
+// these must NOT get the world offset added.
+static CGFloat ComboAttackY(CGFloat value, CGFloat ipadScale)
+{
+    return IS_IPAD ? value * ipadScale : value;
+}
+
+// The attack stages just inside the right edge and then sweeps off to the left. Both edges
+// were authored against the legacy width, so measure in from the live right edge instead of
+// hardcoding an x. On a legacy 480 screen this reproduces the original 420, and on a legacy
+// 1024 iPad it reproduces 896.
+static CGFloat ComboAttackStageX(CGFloat legacyInsetFromRight)
+{
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    return winSize.width - ComboAttackX(legacyInsetFromRight);
+}
 
 @implementation ComboAttack
 
@@ -31,19 +72,19 @@
         
         switch (comboId) {
             case 0:
-                _initialPosition = ccp(18*2.133,-70*4);
-                _attackPosition = ccp(420*2.133,45*4);
-                _endAttackPosition = ccp(-200*2.133,45*4);
+                _initialPosition = ccp(ComboAttackX(18),-ComboAttackY(70,4));
+                _attackPosition = ccp(ComboAttackStageX(60),ComboAttackScreenY(45,4));
+                _endAttackPosition = ccp(-ComboAttackX(200),ComboAttackScreenY(45,4));
                 break;
             case 1:
-                _initialPosition = ccp(-18*2.133,-70*4);
-                _attackPosition = ccp(420*2.133,70*4);
-                _endAttackPosition = ccp(-200*2.133,70*4);
+                _initialPosition = ccp(-ComboAttackX(18),-ComboAttackY(70,4));
+                _attackPosition = ccp(ComboAttackStageX(60),ComboAttackScreenY(70,4));
+                _endAttackPosition = ccp(-ComboAttackX(200),ComboAttackScreenY(70,4));
                 break;
             case 2:
-                _initialPosition = ccp(0,-45*3);
-                _attackPosition = ccp(380*2.133,220*3);
-                _endAttackPosition = ccp(-150*2.133,-50*3);
+                _initialPosition = ccp(0,-ComboAttackY(45,3));
+                _attackPosition = ccp(ComboAttackStageX(100),ComboAttackScreenY(220,3));
+                _endAttackPosition = ccp(-ComboAttackX(150),ComboAttackScreenY(-50,3));
                 break;
             default:
                 break;
@@ -51,7 +92,10 @@
         
         _isActive = false;
         [self switchToPhase:COMBO_IDLE];
-        [self setBoundingBox:CGRectMake(12*2.133,12*2.4,24,24)];
+        // The origin was iPad-scaled while the 24x24 size was not, so GameCollisionRectForObject
+        // produced a box sitting entirely up-and-left of the sprite. Scale both consistently.
+        [self setBoundingBox:CGRectMake(ComboAttackX(12),ComboAttackY(12,2.4),
+                                        ComboAttackX(24),ComboAttackY(24,2.4))];
     }
     return self;    
 }

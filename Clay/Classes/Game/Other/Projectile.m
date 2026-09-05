@@ -15,6 +15,7 @@
 #import "LayerManager.h"
 #import "Player.h"
 #import "GameSettings.h"
+#import "CollisionDetection.h"
 
 @interface Projectile()
 
@@ -406,6 +407,7 @@
     [[_sprite getCCSprite] setVisible:YES];
     _isActive = true;
     _fadeOut = false;
+    _hasFallenPastGround = false;
     [_sprite setAlpha:1.0f];
     if(_behavior == PROJECTILE_BEHAVIOR_WATER_SQUID_INK) { //should be safe for other behaviors, but no time to check so being safe
         _vx = 0;
@@ -473,8 +475,35 @@
         } else {
             groundPosition = 85.0f;
         }
-        
-        if (_hasGravity && y <= (groundPosition + _offsetGroundDetectionY)) {
+
+        // The flat constants above ignore the map, so a bouncing zombie head came to rest in
+        // mid-air over a Level 6 death pit and sank through ledges. Resolve against the real
+        // column instead: no ground at all over a pit, and the ledge top where there is one.
+        // Only gravity projectiles reach this - ZOMBIE_HEAD/HEART (L6), RAINY_SQUIRREL_NUT
+        // (L9) and the L11 boss bomb/grapes - so levels 1-5, 7 and 8 are untouched.
+        bool hasGround = true;
+
+        if (_hasGravity) {
+            CollisionDetection *collisionHandler = [[[LevelManager shared] currentLevel] collisionHandler];
+            if (collisionHandler != nil) {
+                if ([collisionHandler hasDeathpitAtWorldX:x]) {
+                    hasGround = false;
+                    // Latch it. The column is recomputed every frame, so a head that has
+                    // already dropped into a pit would otherwise teleport back up to the
+                    // ground plane the moment its x drifted over solid tiles again.
+                    if (y < groundPosition) {
+                        _hasFallenPastGround = true;
+                    }
+                } else {
+                    float ledgeTop = [collisionHandler ledgeTopAtWorldX:x];
+                    if (ledgeTop > groundPosition) {
+                        groundPosition = ledgeTop;
+                    }
+                }
+            }
+        }
+
+        if (_hasGravity && hasGround && !_hasFallenPastGround && y <= (groundPosition + _offsetGroundDetectionY)) {
             if (_behavior == PROJECTILE_BEHAVIOR_DARK_BOMB) {
                 [self startCollision];
                 [[SoundEngine shared] playSound:@"bombExplosion"];
@@ -526,23 +555,18 @@
 //simple bounds test with the screen
 -(bool) checkIfOnScreen:(CGPoint)position
 {
+    // Legacy code hardcoded 480x320 (with a commented-out 1024x768 iPad twin) here.
+    // That capped aggressive-projectile collision testing at the legacy phone width, so
+    // on any wider screen bullets stopped hurting anything past screen x 480 - on Level 6
+    // that is mid-screen, and the player watches bullets pass through visible zombies.
+    // Use the live screen size plus this projectile's own _offscreenPadding instead.
     CGPoint screenPosition = [[Camera sharedCamera] convertToScreenXY:position];
-    if (screenPosition.x > 0 && screenPosition.x < 480 && screenPosition.y > 0 && screenPosition.y < 320) {
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+
+    if (screenPosition.x > -_offscreenPadding && screenPosition.x < winSize.width + _offscreenPadding &&
+        screenPosition.y > -_offscreenPadding && screenPosition.y < winSize.height + _offscreenPadding) {
         return true;
     }
-    //NOTE: USER_INTERFACE_IDIOM is SLOOOOOOOOOOOW
-    /*
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        //float minAmount = 
-        
-        if (screenPosition.x > 0 && screenPosition.x < 1024 && screenPosition.y > 0 && screenPosition.y < 768) {
-            return true;
-        }
-    } else if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-        if (screenPosition.x > 0 && screenPosition.x < 480 && screenPosition.y > 0 && screenPosition.y < 320) {
-            return true;
-        }
-    }*/
     return false;
 }
 

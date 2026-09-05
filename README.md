@@ -9,7 +9,12 @@ You run through themed levels — Track Run, Barn Run, Town Run, Disco Run, City
 Run, Undead Run, Computer Run, Volcano Run — dodging and interacting with
 obstacles, chaining reactions (kicked hens into cows, rolling hay, zombies),
 and racing the clock for bronze/silver/gold medals. Levels are separated by
-comic-panel cutscenes, and later levels end in boss fights.
+comic-panel cutscenes, and some levels feature boss encounters.
+
+Note that boss encounters are driven by objects placed in the TMX maps, not by the
+`boss` key in `levels.plist` — that key is present on level 6 but is read by nothing.
+Of levels 1–8, only **level 7** has a boss (`jimSpaceShip` → `Bosses/BossJimShip.m`);
+the remaining boss code (`BossFinal`, `BossFinalJim`) belongs to level 11.
 
 ## Requirements
 
