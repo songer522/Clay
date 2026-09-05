@@ -293,6 +293,52 @@ corroborates the 74 figure for the player's box bottom that this whole analysis 
 Scope note: only L6 was reported, but L5 and L8 carry the identical defect and were fixed
 with it. `rainyWater` (level 9) has it too and was **left unchanged** as out of scope.
 
+## Round 4 — code review response (2026-09-05)
+
+### Blast radius of the three global engine changes
+
+The review flagged that three fixes are engine-wide rather than 5–8-scoped. Checked each:
+
+| change | reaches levels 1–4? |
+|---|---|
+| `Projectile` map-aware ground | **No.** Guarded on `_hasGravity`, and the only gravity projectiles are `ZOMBIE_HEAD`/`ZOMBIE_HEART` (L6), `RAINY_SQUIRREL_NUT` (L9) and the L11 boss bomb/grapes. Levels 1–5, 7 and 8 never enter the block. |
+| `checkIfOnScreen` widening | **No.** Only aggressive projectiles pass through the gate; in levels 1–4 the sole one is the level 2 kick box, which `PlayerActionKick` pins to the player (`position + 10, +33`) at screen x ≈ 85. Inside both the old 480 bound and the new one. |
+| `Camera` clamp axis | **Yes, level 4 on iPad only.** The clamp only bites where the camera has vertical range to use, i.e. levels with ledges. Levels 1–3 have none. |
+
+So the level 1–4 smoke check narrows to **level 4 on iPad**, not a full replay. The review's
+specific worry — that level 4's 76 ledge columns would change gravity-projectile resting
+heights — does not apply, because level 4 spawns no gravity projectile.
+
+The comment on that block previously said "Level 6 and 8"; level 8's projectiles
+(`FIRE_DEMON_BULLET`, `FIRE_FOXFIRE`) have no gravity, so it now names the right levels.
+
+### Bullet re-aim cut-off re-derived
+
+The review was right that `BossShipScreenY(120.0f)` was the least-justified value in the
+pass, and it was too high. `bulletPos` is a world coordinate; the intent (per the legacy
+comment) is "around the midsection of the player".
+
+The player's box runs from world y **74** — grounded world y 64 plus the raw `bbox.y` of
+−10 — upward by `100 × MULTIPLIERY`. So the legacy 120 sits **46% up that box** on a phone.
+Scaling the whole value put it near the top of his head on iPad:
+
+| | threshold | player box | position on his body |
+|---|---|---|---|
+| phone (legacy, unchanged) | 120.0 | 74–174 | 46% |
+| iPad, flat `120 × 2.4` | 288.0 | 74–314 | **89% — top of his head** |
+| iPad, anchored (now) | 184.4 | 74–314 | 46% |
+
+Now anchors at the box bottom and scales only the part above it, so the cut-off stays at the
+same point on the player's body. Phone is byte-identical to legacy.
+
+### `-FLT_MAX` sentinel replaced
+
+Swapped for an explicit `hasGround` bool, per the review. Behaviour is identical; the
+projectile still falls indefinitely over a pit, which is what makes pit-falls read correctly.
+Not addressed: such a projectile is never disabled and accelerates forever off-screen. That
+is pre-existing (the `[self disable]` call in `update:` is commented out with a note) and
+changing it would alter behaviour beyond this pass.
+
 ## Still open
 
 - **Re-check the round-2 and round-3 fixes in play:** the L7 combo attack should sweep just
@@ -303,6 +349,12 @@ with it. `rainyWater` (level 9) has it too and was **left unchanged** as out of 
   landing height.
 - **The L7 boss ship's own y still has the vertical drift** described in round 2. Left
   alone on purpose; check whether the ship looks low relative to the world on a tall phone.
+  Note this interacts with the combo attack, which *was* offset-corrected — so on a tall
+  phone the plume now sits correctly relative to the world while the ship does not.
+- **Level 4 on iPad** needs a smoke check for the `Camera` clamp axis fix (round 4). It is
+  the only level 1–4 exposure from the engine-wide changes.
+- **iPad boss bullets** need a look after the round-4 re-aim change: they should straighten
+  out around the player's midsection, not near his head.
 - **Every gameplay defect so far was found by the user playing, not by me.** Four were
   reported across rounds 2 and 3; two were gaps in the legacy code and two were regressions
   introduced by this pass. Treat the unplayed changes below with that hit rate in mind.

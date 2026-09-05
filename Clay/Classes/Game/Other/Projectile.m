@@ -475,14 +475,18 @@
             groundPosition = 85.0f;
         }
 
-        // The flat constants above ignore the map, so on Level 6 and 8 a bouncing zombie head
-        // came to rest in mid-air over a death pit and sank through ledges. Resolve against the
-        // real column: fall forever over a pit, and rest on a ledge top when there is one.
+        // The flat constants above ignore the map, so a bouncing zombie head came to rest in
+        // mid-air over a Level 6 death pit and sank through ledges. Resolve against the real
+        // column instead: no ground at all over a pit, and the ledge top where there is one.
+        // Only gravity projectiles reach this - ZOMBIE_HEAD/HEART (L6), RAINY_SQUIRREL_NUT
+        // (L9) and the L11 boss bomb/grapes - so levels 1-5, 7 and 8 are untouched.
+        bool hasGround = true;
+
         if (_hasGravity) {
             CollisionDetection *collisionHandler = [[[LevelManager shared] currentLevel] collisionHandler];
             if (collisionHandler != nil) {
                 if ([collisionHandler hasDeathpitAtWorldX:x]) {
-                    groundPosition = -FLT_MAX;
+                    hasGround = false;
                 } else {
                     float ledgeTop = [collisionHandler ledgeTopAtWorldX:x];
                     if (ledgeTop > groundPosition) {
@@ -492,7 +496,7 @@
             }
         }
 
-        if (_hasGravity && y <= (groundPosition + _offsetGroundDetectionY)) {
+        if (_hasGravity && hasGround && y <= (groundPosition + _offsetGroundDetectionY)) {
             if (_behavior == PROJECTILE_BEHAVIOR_DARK_BOMB) {
                 [self startCollision];
                 [[SoundEngine shared] playSound:@"bombExplosion"];

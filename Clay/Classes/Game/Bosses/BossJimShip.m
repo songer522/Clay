@@ -66,6 +66,19 @@ static CGFloat BossShipOffscreenRight(CGFloat legacyValue)
     return winSize.width + BossShipScreenX(legacyValue - 480.0f);
 }
 
+// The bullet re-aim cut-off is "around the midsection of the player" (see updateBullets).
+// The player's collision box runs from world y 74 - his grounded world y of 64 plus the raw
+// bbox.y of -10 - upward by 100*MULTIPLIERY, so the legacy 120 sat 46% up that box on a
+// phone. Anchor at the box bottom and scale only the part above it, so the cut-off stays at
+// the same point on his body. A flat 120*MULTIPLIERY would put it at 288 on iPad, up near
+// the top of his head, and bullets would straighten out far too late.
+#define BOSS_SHIP_PLAYER_BOX_BOTTOM 74.0f
+
+static CGFloat BossShipPlayerBandY(CGFloat legacyPhoneY)
+{
+    return BOSS_SHIP_PLAYER_BOX_BOTTOM + BossShipScreenY(legacyPhoneY - BOSS_SHIP_PLAYER_BOX_BOTTOM);
+}
+
 // Matches the widthScale idiom used for the Level 3/4 chase retunes.
 static CGFloat BossShipWidthScale(void)
 {
@@ -247,7 +260,7 @@ static CGFloat BossShipWidthScale(void)
             
             //redirect the bullet towards the player unless the bullet drops below a certain Y point (around the midsection of the player)
             CGPoint bulletPos = [_bullet getPosition];
-            if (bulletPos.y > BossShipScreenY(120.0f)) {
+            if (bulletPos.y > BossShipPlayerBandY(120.0f)) {
                 [_bullet pointTowardPlayerMaxAngle:-1.0f];
             }
             
