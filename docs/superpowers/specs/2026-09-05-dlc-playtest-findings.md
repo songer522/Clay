@@ -4,6 +4,8 @@
 
 **Status after the follow-up fix pass (2026-09-05, same day).** Both P1 findings and the P2 hint overflow are fixed and re-tested; the P2 iPad layout finding is only partly fixed. Each carries a note below. Sign-off is still outstanding: the fixes address the reported defects, but end-to-end completion of either DLC map — finish trigger, medal award and saved completion — remains unverified, exactly as it was after the original pass, and the black band below the iPad world is unchanged (only the controls stranded in it were moved). See the revised completion notes at the end.
 
+**Status after code review (2026-09-05).** The fix pass was reviewed on PR #7 with no blockers. Review raised two verification gaps and two nits, all closed; the notes below fold in what that produced. Two of its points changed the record rather than just confirming it — the "iPad panel is never scaled" claim had been reasoned rather than measured, and is now measured; and the hint box's measuring font turned out to resolve through a path nobody had traced. The crash, knife and HUD fixes were reviewed as sound and are unchanged.
+
 ## Scope and method
 
 Tested the two shipped DLC levels: **Training Run (12, pump)** and **Dojo Run (13, punch)**, reached through **Play → Timed Mode → DLC**. Both DLC maps ship only in `timed/normal`; there are no additional DLC difficulty variants to test.
@@ -70,7 +72,7 @@ Smoke-tested Level 9 first, then, on review, Levels 6 and 7 — the mystery box 
 
 **Fixed** (`5c47b1ef`). The landing height, the launch offset and the throw accelerations now scale with the world (`MULTIPLIERX`/`MULTIPLIERY`), so the parabola keeps its authored shape instead of stretching over a 2.4x taller fall. This matches the fireball-rock fix immediately above it in the same switch, which had the same class of defect. Phone multipliers are 1, so phone behaviour is arithmetically unchanged.
 
-Re-tested on iPad Pro 13-inch: the knife now comes to rest on the tatami with its collision box sharing the player's ground baseline, where before the box floated in the dark understructure with no sprite on the running surface.
+Re-tested on iPad Pro 13-inch: the knife now comes to rest on the tatami with its collision box sharing the player's ground baseline, where before the box floated in the dark understructure with no sprite on the running surface. Reviewed as sound and unchanged since.
 
 ## P2 — Phone pause hints overflow their panel
 
@@ -111,7 +113,7 @@ An empty hint list would have produced a zero-height label; every shipped level 
 
 **The black band itself is unchanged.** Only the stranded controls were moved. Eliminating the band means reframing the world or its camera, which would touch collision alignment on every level, not just the DLC maps — that remains an open call, and is the part of this finding still outstanding.
 
-Verified numerically rather than visually: the available iPad simulator letterboxes the app into portrait instead of running true landscape, so a screenshot would not have represented the reported configuration. A temporary probe logged `winSize=1376.0x1032.0 legacyY=72.0 offset=264.0 finalY=336.0` in place, the 264 matching the band width measured independently during the original pass. The probe was removed afterwards.
+Verified numerically rather than visually: the available iPad simulator letterboxes the app into portrait instead of running true landscape, so a screenshot would not have represented the reported configuration. A temporary probe logged `winSize=1376.0x1032.0 legacyY=72.0 offset=264.0 finalY=336.0` in place, the 264 matching the band width measured independently during the original pass. The probe was removed afterwards. Review checked the formula against `Player.m:49` and `HudLayer.m:49` and the 72 -> 336 arithmetic, and confirmed both; the fix is unchanged.
 
 ## Debug-only observations
 
@@ -130,6 +132,15 @@ Both levels were exercised interactively on all three viewport sizes. **These we
 
 No production code, content or balance changes remained from the investigation itself; the report and selected evidence images were its only repository additions. Full touch-driver logs and local evidence are retained under the ignored `build/` directories.
 
-The follow-up fix pass then made the production changes recorded above, in `76db046b` and `5c47b1ef`, touching `Animation`, `CCXAnimate`, `GameObject` (dart behaviour only), `HintBox` and `HudButton`. Both temporary probes used during that pass were removed and the tree verified clean; the restored sources build successfully and the test-only simulators were shut down.
+The follow-up fix pass then made the production changes recorded above, touching `Animation`, `CCXAnimate`, `GameObject` (dart behaviour only), `HintBox` and `HudButton`, across four commits:
+
+| Commit | What it did |
+|---|---|
+| `76db046b` | Animation action ownership — the P1 crash |
+| `5c47b1ef` | iPad knife baseline, pause-hint sizing and centring, iPad HUD button offset |
+| `beda07d5` | This findings doc, plus the evidence images the investigation left untracked |
+| `0a06a03c` | Review follow-ups: measuring-font cleanup, empty-hint-list fallback, measured panel sizes |
+
+Four temporary probes were used in total across the fix and review passes — two measuring HUD button geometry and hint panel geometry, one resolving font names, and a DEBUG hook that built a `HintBox` without the pause menu, needed because the available iPad simulator letterboxes the app into portrait and would not take reliable taps. All four were removed and the tree verified clean; the sources build successfully and the test-only simulators were shut down.
 
 **What still blocks sign-off.** The crash no longer reproduces, so the original blocker is cleared, but the completion gaps above are unchanged: neither DLC map has been driven to its finish trigger, and the completion screen, medal award and saved completion remain unverified on every viewport. The iPad black band is still present. Real purchase and restore flows remain out of scope. A sign-off pass should now attempt end-to-end clears of both maps, which the crash previously prevented.
