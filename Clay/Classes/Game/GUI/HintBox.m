@@ -33,20 +33,25 @@
 #define HINTBOX_PAD_TOP 6.0f
 #define HINTBOX_PAD_BOTTOM 6.0f
 
-//The panel art is 288.5x54.5 on a phone, which holds about two lines at the authored 22pt
-//while most hints wrap to three or four - that is what used to spill onto the level. Shrink
-//the text only as far as HINTBOX_MIN_FONT_SIZE, then grow the panel to cover the rest, so
-//the hints stay readable instead of collapsing to fit a fixed box. The iPad panel already
-//fits every hint at 22pt, so it keeps its current appearance and is never scaled.
+//The panel art measures 288.5x54.5 points on a phone and 577x109 on iPad, which loads the
+//-hd atlas. The phone panel holds about two lines at the authored 22pt while most hints wrap
+//to three or four - that is what used to spill onto the level. Shrink the text only as far
+//as HINTBOX_MIN_FONT_SIZE, then grow the panel to cover the rest, so the hints stay readable
+//instead of collapsing to fit a fixed box. Measured outcome: a phone settles at 16pt with
+//the panel grown 1.30x; the iPad fits every hint at 22pt, so scaleY stays 1.0 and its
+//appearance is unchanged.
 #define HINTBOX_FONT_SIZE 22.0f
 #define HINTBOX_MIN_FONT_SIZE 16.0f
 
+//Measuring font for the fitting pass below. CCLabelTTF is handed "Impact.ttf", which
+//+[UIFont fontWithName:] does not resolve - cocos2d falls through to FontManager's zFont,
+//which loads the bundled TTF by filename (CCTexture2D.m:549, CC_FONT_LABEL_SUPPORT is on).
+//UIFont resolves the same typeface under its real name, so measuring with "Impact" matches
+//what actually gets drawn. The system fallback only matters if the bundled font goes away,
+//in which case cocos2d substitutes too and the measurement stays in the right ballpark.
 static UIFont *HintBoxFont(CGFloat size)
 {
     UIFont *font = [UIFont fontWithName:@"Impact" size:size];
-    if (font == nil) {
-        font = [UIFont fontWithName:@"Impact.ttf" size:size];
-    }
     if (font == nil) {
         font = [UIFont systemFontOfSize:size];
     }
@@ -95,6 +100,11 @@ static UIFont *HintBoxFont(CGFloat size)
         float fontSize = [self fittingFontSizeForTextWidth:textWidth
                                             interiorHeight:panelHeight - padY];
         float textHeight = [self heightForTallestHintAtWidth:textWidth fontSize:fontSize];
+        if (textHeight <= 0.0f) {
+            //No hints for this level: keep the panel as drawn rather than collapsing the
+            //label to nothing.
+            textHeight = panelHeight - padY;
+        }
 
         //Grow the panel downwards if the tallest hint still needs more room at that size.
         //The top edge stays put so the HINT tab remains attached to it.
