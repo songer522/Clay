@@ -28,6 +28,12 @@
 #define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 #define GAME_OBJECT_DISTANCE_ONSCREEN 1000.0f
 
+// Bounding-box convention, matching the plist loader at GameObjectController.m:93 -
+// x, width and height scale for iPad, but *y stays raw*. bbox.y is an inverted sink
+// offset (GameCollisionRectForObject does origin.y = spriteY - bbox.y), so multiplying it
+// drags the box below the sprite on iPad. Scaling the Level 6 brain/heart y by MULTIPLIERY
+// sank their boxes 46pt and the player walked straight through them.
+
 // Chase/trigger distances were authored against a 480pt-wide screen with the player pinned
 // near the left edge, so every extra point of modern screen width is runway the object has
 // to cross before it reacts. Same idiom as the inline widthScale blocks in the Level 3/4
@@ -280,7 +286,7 @@ static CGFloat GameObjectWidthScale(void)
                 _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_ZOMBIE_HEAD];
                 [_projectile reset];
                 [_projectile setPosition:CGPointMake(_x, _y + 41 * MULTIPLIERY)];
-                [_projectile setBoundingBox:CGRectMake(15 * MULTIPLIERX, 33 * MULTIPLIERY, 14 * MULTIPLIERX, 25 * MULTIPLIERY)];
+                [_projectile setBoundingBox:CGRectMake(15 * MULTIPLIERX, 33, 14 * MULTIPLIERX, 25 * MULTIPLIERY)];
                 [[[[LayerManager sharedLayers] getPlayer] getThirdAction] setKilledEnemy:YES];
             }
             else
@@ -300,7 +306,7 @@ static CGFloat GameObjectWidthScale(void)
                 _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_ZOMBIE_HEART];
                 [_projectile reset];
                 [_projectile setPosition:CGPointMake(_x, _y + 11 * MULTIPLIERY)];
-                [_projectile setBoundingBox:CGRectMake(15 * MULTIPLIERX, 33 * MULTIPLIERY, 14 * MULTIPLIERX, 25 * MULTIPLIERY)];
+                [_projectile setBoundingBox:CGRectMake(15 * MULTIPLIERX, 33, 14 * MULTIPLIERX, 25 * MULTIPLIERY)];
                 [[[[LayerManager sharedLayers] getPlayer] getThirdAction] setKilledEnemy:YES];
             }
             
@@ -314,7 +320,7 @@ static CGFloat GameObjectWidthScale(void)
         case COLLISION_BEHAVIOR_FIREFOX_FADES:
             if (isProjectile)
             {
-                [self setBoundingBox:CGRectMake(37 * MULTIPLIERX, 2 * MULTIPLIERY, 14 * MULTIPLIERX, 15 * MULTIPLIERY)];
+                [self setBoundingBox:CGRectMake(37 * MULTIPLIERX, 2, 14 * MULTIPLIERX, 15 * MULTIPLIERY)];
                 _collided = false;                
                 [_projectile startCollision];
                 [[[[LayerManager sharedLayers] getPlayer] getThirdAction] setKilledEnemy:YES];
@@ -840,12 +846,12 @@ static CGFloat GameObjectWidthScale(void)
             frame = [[_sprite getAnimation] getCurrentFrameNumber];
             if (frame<7) {
                 int heightOffset = MAX(0,frame - 4) * 5.0f;
-                [self setBoundingBox:CGRectMake(40 * MULTIPLIERX, 2 * MULTIPLIERY, 25 * MULTIPLIERX, (30 + heightOffset) * MULTIPLIERY)];
+                [self setBoundingBox:CGRectMake(40 * MULTIPLIERX, 2, 25 * MULTIPLIERX, (30 + heightOffset) * MULTIPLIERY)];
             } else if(frame == 7)
             {
                 _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENED;
                 [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"zombieMysteryBoxOpenedAnim"];
-                [self setBoundingBox:CGRectMake(40 * MULTIPLIERX, 2 * MULTIPLIERY, 25 * MULTIPLIERX, 45 * MULTIPLIERY)];
+                [self setBoundingBox:CGRectMake(40 * MULTIPLIERX, 2, 25 * MULTIPLIERX, 45 * MULTIPLIERY)];
             }
             break;
         case COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_FALLS:
@@ -918,7 +924,7 @@ static CGFloat GameObjectWidthScale(void)
                         _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_FIRE_DEMON_BULLET];
                         [_projectile reset];
                         [_projectile setPosition:CGPointMake(_x + 53 * MULTIPLIERX, _y - 20 * MULTIPLIERY)];
-                        [_projectile setBoundingBox:CGRectMake(-7 * MULTIPLIERX, 12 * MULTIPLIERY, 16 * MULTIPLIERX, 16 * MULTIPLIERY)];
+                        [_projectile setBoundingBox:CGRectMake(-7 * MULTIPLIERX, 12, 16 * MULTIPLIERX, 16 * MULTIPLIERY)];
                         [[SoundEngine shared] playSound:@"fireRockMonsterProjectile"];
                     } 
                 } else {
@@ -1753,7 +1759,7 @@ static CGFloat GameObjectWidthScale(void)
     else if(_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_UP || _currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENING || _currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENED || _currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_FALLS) {
         _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_UP;
         _collideBehavior = COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENING;
-        [self setBoundingBox:CGRectMake(70 * MULTIPLIERX, 2 * MULTIPLIERY, 14 * MULTIPLIERX, 25 * MULTIPLIERY)];
+        [self setBoundingBox:CGRectMake(70 * MULTIPLIERX, 2, 14 * MULTIPLIERX, 25 * MULTIPLIERY)];
     }
     else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_TRONIKA_CHASE) {
         _currentBehavior = COLLISION_BEHAVIOR_WATER_TRONIKA_CHASE;
@@ -1767,7 +1773,7 @@ static CGFloat GameObjectWidthScale(void)
     }
     else if(_currentBehavior == COLLISION_BEHAVIOR_FIREFOX_FADES || _currentBehavior == COLLISION_BEHAVIOR_FIREFOX_PREATTACK || _currentBehavior == COLLISION_BEHAVIOR_FIREFOX_POSTATTACK) {
         _currentBehavior = COLLISION_BEHAVIOR_FIREFOX_PREATTACK;
-        [self setBoundingBox:CGRectMake(37 * MULTIPLIERX, 2 * MULTIPLIERY, 14 * MULTIPLIERX, 45 * MULTIPLIERY)];
+        [self setBoundingBox:CGRectMake(37 * MULTIPLIERX, 2, 14 * MULTIPLIERX, 45 * MULTIPLIERY)];
         [_projectile setPosition:ccp(-31.0f*MULTIPLIERX,0.0f)];
     }
     else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_HEALTH_BUBBLE_1) {
@@ -2016,7 +2022,7 @@ static CGFloat GameObjectWidthScale(void)
         [_projectile reset];
         [_projectile setAttachedTo:self];
         [_projectile setPosition:ccp(-31.0f*MULTIPLIERX,0.0f)];
-        [_projectile setBoundingBox:CGRectMake(15 * MULTIPLIERX, 15 * MULTIPLIERY, 30 * MULTIPLIERX, 30 * MULTIPLIERY)];
+        [_projectile setBoundingBox:CGRectMake(15 * MULTIPLIERX, 15, 30 * MULTIPLIERX, 30 * MULTIPLIERY)];
         [_projectile setInitialVelocity];
         _projectilePersists = true;
     }

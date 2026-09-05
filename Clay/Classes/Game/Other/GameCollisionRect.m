@@ -65,8 +65,16 @@ CGRect GameCollisionRectForObject(id<Collidable> object)
         NSString *type = gameObject.objectType;
 
         if ([type isEqualToString:@"leafpile"]
-            || [type isEqualToString:@"spilledDrink"]) {
+            || [type isEqualToString:@"spilledDrink"]
+            || [type isEqualToString:@"sewerWater"]
+            || [type isEqualToString:@"zombieWater"]
+            || [type isEqualToString:@"VolcanoBBQLarge"]
+            || [type isEqualToString:@"VolcanoBBQSmall"]) {
             // Level 3 mud / Level 4 spilled drink: same low slow-pad layout.
+            // Level 5 sewer water, Level 6 zombie water and the Level 8 BBQ strips are the
+            // same family and were missed by the earlier passes. Their 15pt box topped out
+            // at 70 (water) / 64 (BBQ) while the player's box starts at 74, so the player
+            // ran straight through with no slow effect. Same pad as the sandpit/manure fix.
             rect.origin.x -= 12.0f * MULTIPLIERX;
             rect.size.width += 24.0f * MULTIPLIERX;
             rect.origin.y -= 8.0f * MULTIPLIERY;
