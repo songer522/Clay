@@ -29,6 +29,8 @@
 +(id) actionWithAnimation: (CCAnimation*)anim restoreOriginalFrame:(BOOL)b;
 -(id) initWithAnimation: (CCAnimation*)anim restoreOriginalFrame:(BOOL) b;
 
+-(void)startWithTarget:(id)aTarget;
+-(void)stop;
 -(void)update:(ccTime)t;
 -(void)changeSpeed:(float)speed;
 -(int)getCurrentFrame;

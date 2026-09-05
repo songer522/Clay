@@ -42,6 +42,8 @@ typedef enum {
 -(void)loadHints;
 -(NSString*)getNewHint;
 -(void)loadHintsFromDictionary:(NSDictionary*)dict;
+-(float)fittingFontSizeForTextWidth:(float)width interiorHeight:(float)interiorHeight;
+-(float)heightForTallestHintAtWidth:(float)width fontSize:(float)fontSize;
 -(void)setTextAlpha:(float)alpha;
 -(void)switchHint;
 -(void)update:(float)dt;

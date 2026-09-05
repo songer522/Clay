@@ -35,6 +35,20 @@
 	return self;
 }
 
+-(void)startWithTarget:(id)aTarget
+{
+    [super startWithTarget:aTarget];
+    _frame = -1;
+}
+
+-(void)stop
+{
+    //Once the action is no longer running there is no current frame. Readers that outlive the
+    //animation (PlayerActionPunch's hitbox, for one) must not be handed the last frame we drew.
+    _frame = -1;
+    [super stop];
+}
+
 -(void)update:(ccTime)t
 {
     if (_paused) { return; }

@@ -1387,7 +1387,10 @@ static CGFloat GameObjectWidthScale(void)
             if ([self closeToPlayer:GAME_OBJECT_DISTANCE_ONSCREEN]) {
               //  Player *player = [[LayerManager sharedLayers] getPlayer];
                // CGPoint position = [player getPosition];
-                [self setPositionAtX:(_startingPosition.x + 720.0f) Y:(_startingPosition.y + 286.0f)];
+                //The throw arc was authored against the phone playfield. Scale the launch
+                //offset with the world so the knife starts the same distance up-and-right of
+                //its rack on iPad; unscaled it began well inside the wider screen.
+                [self setPositionAtX:(_startingPosition.x + 720.0f*MULTIPLIERX) Y:(_startingPosition.y + 286.0f*MULTIPLIERY)];
                 [self setPlayerEffect:@"none"];
                 _currentBehavior = COLLISION_BEHAVIOR_DART_MOVING;
                 _isInvincible = true;
@@ -1395,13 +1398,18 @@ static CGFloat GameObjectWidthScale(void)
             }
             break;
         case COLLISION_BEHAVIOR_DART_MOVING:
-            _vx -= 30.0f;
-            _vy += 30.0f;
-            if (_y <= 95.0f) {
+            //Scaled with the launch offset above so the parabola keeps its authored shape
+            //instead of stretching over a 2.4x taller fall. (_y -= _vy*dt, so +_vy is down.)
+            _vx -= 30.0f*MULTIPLIERX;
+            _vy += 30.0f*MULTIPLIERY;
+            //The knife has to come to rest on the ground the player runs on. 95 is the
+            //authored phone baseline; on iPad the running surface is MULTIPLIERY higher, so
+            //the raw value dropped the knife into the dark structure below the floor.
+            if (_y <= 95.0f*MULTIPLIERY) {
                 _vx = 0.0f;
                 _vy = 0.0f;
                 //_x = _prevLocation.x;
-                _y = 95.0f;
+                _y = 95.0f*MULTIPLIERY;
                 _isInvincible = false;
                 [self setPositionAtX:_x Y:_y];
                 [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"dartLandingAnim"];

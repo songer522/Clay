@@ -20,7 +20,44 @@
 #define HINTBOX_HEADER_X 128.0f
 #define HINTBOX_BOX_OFFSET_Y 140.0f
 #define HINTBOX_HEADER_OFFSET_Y 166.5f
-#define HINTBOX_TEXT_OFFSET_Y -36.0f
+
+//Hints were laid out against a 480pt-wide screen with the box pinned at x=240, so on a wide
+//phone the whole group stayed at 27% of the width instead of centred. winSize/2 reproduces
+//the authored position exactly at 480 and follows the live viewport on modern screens.
+//Same idiom as GameObjectWidthScale() in GameObject.m.
+#define HINTBOX_HEADER_INSET_X (HINTBOX_CENTER_X - HINTBOX_HEADER_X)
+
+//Interior padding of the blue panel art. The HINT tab sits just above the panel's top edge
+//rather than over it, so only a thin inset is needed.
+#define HINTBOX_PAD_X 10.0f
+#define HINTBOX_PAD_TOP 6.0f
+#define HINTBOX_PAD_BOTTOM 6.0f
+
+//The panel art measures 288.5x54.5 points on a phone and 577x109 on iPad, which loads the
+//-hd atlas. The phone panel holds about two lines at the authored 22pt while most hints wrap
+//to three or four - that is what used to spill onto the level. Shrink the text only as far
+//as HINTBOX_MIN_FONT_SIZE, then grow the panel to cover the rest, so the hints stay readable
+//instead of collapsing to fit a fixed box. Measured outcome: a phone settles at 16pt with
+//the panel grown 1.30x; the iPad fits every hint at 22pt, so scaleY stays 1.0 and its
+//appearance is unchanged.
+#define HINTBOX_FONT_SIZE 22.0f
+#define HINTBOX_MIN_FONT_SIZE 16.0f
+
+//Measuring font for the fitting pass below. CCLabelTTF is handed "Impact.ttf", which
+//+[UIFont fontWithName:] does not resolve - cocos2d falls through to FontManager's zFont,
+//which loads the bundled TTF by filename (CCTexture2D.m:549, CC_FONT_LABEL_SUPPORT is on).
+//UIFont resolves the same typeface under its real name, so measuring with "Impact" matches
+//what actually gets drawn. The system fallback only matters if the bundled font goes away,
+//in which case cocos2d substitutes too and the measurement stays in the right ballpark.
+static UIFont *HintBoxFont(CGFloat size)
+{
+    UIFont *font = [UIFont fontWithName:@"Impact" size:size];
+    if (font == nil) {
+        font = [UIFont systemFontOfSize:size];
+    }
+    return font;
+}
+
 @implementation HintBox
 
 +(id)hintboxOnLayer:(id)layer
@@ -37,12 +74,14 @@
 
         _hintList = [[NSMutableArray alloc] initWithCapacity:10];
         
+        float centerX = winSize.width/2.0f;
+
         _hintBox = [Sprite spriteCenteredWithFrame:@"UI_HintBox_1.png"];
-        CGPoint boxPosition = ccp(HINTBOX_CENTER_X * MULTIPLIERX, centerY + HINTBOX_BOX_OFFSET_Y * MULTIPLIERY);
+        CGPoint boxPosition = ccp(centerX, centerY + HINTBOX_BOX_OFFSET_Y * MULTIPLIERY);
         [_hintBox setScreenPosition:boxPosition];
         
         _hintHeader = [Sprite spriteCenteredWithFrame:@"UI_HintBox_2.png"];
-        [_hintHeader setScreenPosition:ccp(HINTBOX_HEADER_X * MULTIPLIERX, centerY + HINTBOX_HEADER_OFFSET_Y * MULTIPLIERY)];
+        [_hintHeader setScreenPosition:ccp(centerX - HINTBOX_HEADER_INSET_X * MULTIPLIERX, centerY + HINTBOX_HEADER_OFFSET_Y * MULTIPLIERY)];
         
         _textAlpha = 1.0f;
         _currentHintId = -1;
@@ -51,13 +90,42 @@
         
         NSString *hint = [self getNewHint];
         
-        _hintText = [CCLabelTTF labelWithString:hint dimensions:CGSizeMake(250*MULTIPLIERX, 100*MULTIPLIERY) alignment:UITextAlignmentLeft fontName:@"Impact.ttf" fontSize:22];
+        //Size the text block from the panel art rather than a fixed 250x100 box that was
+        //taller than the panel interior, which is what let long hints spill onto the level.
+        float panelWidth = [_hintBox getWidth];
+        float panelHeight = [_hintBox getHeight];
+        float textWidth = panelWidth - HINTBOX_PAD_X * 2.0f * MULTIPLIERX;
+        float padY = (HINTBOX_PAD_TOP + HINTBOX_PAD_BOTTOM) * MULTIPLIERY;
+
+        float fontSize = [self fittingFontSizeForTextWidth:textWidth
+                                            interiorHeight:panelHeight - padY];
+        float textHeight = [self heightForTallestHintAtWidth:textWidth fontSize:fontSize];
+        if (textHeight <= 0.0f) {
+            //No hints for this level: keep the panel as drawn rather than collapsing the
+            //label to nothing.
+            textHeight = panelHeight - padY;
+        }
+
+        //Grow the panel downwards if the tallest hint still needs more room at that size.
+        //The top edge stays put so the HINT tab remains attached to it.
+        float panelTop = boxPosition.y + panelHeight/2.0f;
+        float neededHeight = textHeight + padY;
+        if (neededHeight > panelHeight) {
+            [[_hintBox getCCSprite] setScaleY:neededHeight / panelHeight];
+            panelHeight = neededHeight;
+            [_hintBox setScreenPosition:ccp(boxPosition.x, panelTop - panelHeight/2.0f)];
+        }
+
+        CGSize textSize = CGSizeMake(textWidth, textHeight);
+        _hintText = [CCLabelTTF labelWithString:hint dimensions:textSize alignment:UITextAlignmentLeft fontName:@"Impact.ttf" fontSize:fontSize];
                 
         _waitUntilNextHint = HINTBOX_SECONDS_BEFORE_NEXT_HINT + 1.0f;
         
         _phase = HINTBOX_WAITING;
         
-        [_hintText setPosition:ccp(boxPosition.x, boxPosition.y + HINTBOX_TEXT_OFFSET_Y * MULTIPLIERY)];
+        //Top-align the block against the panel interior instead of hanging it off the centre.
+        float textCenterY = panelTop - HINTBOX_PAD_TOP * MULTIPLIERY - textHeight/2.0f;
+        [_hintText setPosition:ccp(boxPosition.x, textCenterY)];
         [layer addChild:_hintText];
 
     }
@@ -92,6 +160,42 @@
             [_hintList addObject:[NSString stringWithString:hint]];
         }
     }
+}
+
+//The tallest wrapped hint in the rotation. Every hint shares one font size and one box
+//height so the text does not jump around as the panel cycles through them.
+-(float)heightForTallestHintAtWidth:(float)width fontSize:(float)fontSize
+{
+    NSDictionary *attributes = [NSDictionary dictionaryWithObject:HintBoxFont(fontSize)
+                                                           forKey:NSFontAttributeName];
+    float tallest = 0.0f;
+    for (NSString *hint in _hintList) {
+        CGRect bounds = [hint boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
+                                           options:NSStringDrawingUsesLineFragmentOrigin
+                                        attributes:attributes
+                                           context:nil];
+        if (bounds.size.height > tallest) {
+            tallest = bounds.size.height;
+        }
+    }
+    return ceilf(tallest);
+}
+
+//Largest size at which every hint fits the panel as drawn, never going below the readable
+//floor. Anything the floor still cannot fit is absorbed by growing the panel instead.
+-(float)fittingFontSizeForTextWidth:(float)width interiorHeight:(float)interiorHeight
+{
+    if (width <= 0.0f || interiorHeight <= 0.0f) {
+        return HINTBOX_FONT_SIZE;
+    }
+
+    for (float fontSize = HINTBOX_FONT_SIZE; fontSize > HINTBOX_MIN_FONT_SIZE; fontSize -= 1.0f) {
+        if ([self heightForTallestHintAtWidth:width fontSize:fontSize] <= interiorHeight) {
+            return fontSize;
+        }
+    }
+
+    return HINTBOX_MIN_FONT_SIZE;
 }
 
 -(NSString*)getNewHint
