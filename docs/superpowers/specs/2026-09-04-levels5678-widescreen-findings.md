@@ -339,6 +339,40 @@ Not addressed: such a projectile is never disabled and accelerates forever off-s
 is pre-existing (the `[self disable]` call in `update:` is commented out with a note) and
 changing it would alter behaviour beyond this pass.
 
+### Pit falls are now latched
+
+A second review pass raised that the pit column is recomputed every frame, so a zombie head
+that had already dropped into a Level 6 pit would teleport back up to the ground plane as
+soon as its x drifted over solid tiles again. Real artifact, introduced by the map-aware
+ground change. Latched with `_hasFallenPastGround`, cleared in `reset()`.
+
+The same review suggested the heads were lost health pickups. They are not: `Level.m:852`
+only tests projectiles where `projectile.hurtsPlayer`, and neither `ZOMBIE_HEAD` nor
+`ZOMBIE_HEART` clears that flag, so they are hazards.
+
+### Correction to the "no-op at legacy size" claim
+
+The claim holds for 480×320 and for the screen-anchored helpers (`BossShipInsetFromRight`,
+`BossShipOffscreenRight`, `ComboAttackStageX`) at both legacy sizes. It does **not** hold
+for anything derived from `widthScale`, because `widthScale = winWidth / 480` is 2.133 at a
+legacy 1024-wide iPad regardless of device — that covers the boss approach speed and all the
+level 5–8 chase retunes. The boss station-box width (140 → 298.6 on iPad) is likewise a
+deliberate change, not a no-op.
+
+### Boss bullet gate — reviewed and left as is
+
+A review raised that `BOSS_SHIP_BULLET` has no initial velocity, so the re-aim gate is the
+only thing that moves it, and calculated that the gate never fires on modern devices. The
+mechanism is correct but the arithmetic used `center.y = winSize.height / 2`, which is
+`Camera`'s constructor value (`Camera.m:74`). `Player.m:83-84` overwrites it at level load
+to `(22 × MULTIPLIERY − 4) + ModernIpadGameplayVerticalOffset()` — 18 on phone, 48.8 / 114.8
+on iPad — and the only other `setCenter` caller is `BossFinalJim` (level 11).
+
+With the live value the bullet's world y at spawn is 286 (legacy phone), 251 (iPhone 16e),
+605 (legacy iPad), 539 (iPad Pro) against a gate of 120 / 184.4, so it fires everywhere with
+margin. No change made. **This is arithmetic, not observation — confirm it in the iPad play
+test.**
+
 ## Still open
 
 - **Re-check the round-2 and round-3 fixes in play:** the L7 combo attack should sweep just

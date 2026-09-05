@@ -407,6 +407,7 @@
     [[_sprite getCCSprite] setVisible:YES];
     _isActive = true;
     _fadeOut = false;
+    _hasFallenPastGround = false;
     [_sprite setAlpha:1.0f];
     if(_behavior == PROJECTILE_BEHAVIOR_WATER_SQUID_INK) { //should be safe for other behaviors, but no time to check so being safe
         _vx = 0;
@@ -487,6 +488,12 @@
             if (collisionHandler != nil) {
                 if ([collisionHandler hasDeathpitAtWorldX:x]) {
                     hasGround = false;
+                    // Latch it. The column is recomputed every frame, so a head that has
+                    // already dropped into a pit would otherwise teleport back up to the
+                    // ground plane the moment its x drifted over solid tiles again.
+                    if (y < groundPosition) {
+                        _hasFallenPastGround = true;
+                    }
                 } else {
                     float ledgeTop = [collisionHandler ledgeTopAtWorldX:x];
                     if (ledgeTop > groundPosition) {
@@ -496,7 +503,7 @@
             }
         }
 
-        if (_hasGravity && hasGround && y <= (groundPosition + _offsetGroundDetectionY)) {
+        if (_hasGravity && hasGround && !_hasFallenPastGround && y <= (groundPosition + _offsetGroundDetectionY)) {
             if (_behavior == PROJECTILE_BEHAVIOR_DARK_BOMB) {
                 [self startCollision];
                 [[SoundEngine shared] playSound:@"bombExplosion"];
