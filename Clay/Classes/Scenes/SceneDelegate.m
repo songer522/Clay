@@ -140,6 +140,34 @@
     [[SoundEngine shared] playMusic:@"title"];
     [[TextureManager shared] loadMemoryForKey:@"launch"];
     
+#if DEBUG
+    // Debug-only level jump, for driving a level straight from the simulator without
+    // tapping through the menus (the overlay play-tests the Level 2-11 collision work
+    // depends on). Launch arguments, e.g.:
+    //
+    //   -startLevel level9                        (defaults to story / normal)
+    //   -startLevel level11 -startMode timed -startDifficulty hard
+    //
+    // The pre-level comic is skipped, since it waits for a tap the harness cannot give.
+    //
+    // With no -startLevel the app boots to the main menu exactly as it always has.
+    NSString *debugLevel = [[NSUserDefaults standardUserDefaults] stringForKey:@"startLevel"];
+    if ([debugLevel length] > 0) {
+        NSString *mode = [[NSUserDefaults standardUserDefaults] stringForKey:@"startMode"];
+        NSString *difficulty = [[NSUserDefaults standardUserDefaults] stringForKey:@"startDifficulty"];
+        [[GameSettings shared] setGlobal:(mode.length ? mode : @"story") ForKey:@"gameMode"];
+        [[GameSettings shared] setGlobal:(difficulty.length ? difficulty : @"normal") ForKey:@"gameDifficulty"];
+        [[GameSettings shared] setGlobal:debugLevel ForKey:@"startingLevel"];
+        [[GameSettings shared] setGlobal:@"NO" ForKey:@"titleMusicStarted"];
+        [[GameSettings shared] setGlobal:@"YES" ForKey:@"debugSkipPreComic"];
+
+        CCLOG(@"DEBUG: jumping straight to %@ (%@/%@)", debugLevel,
+              [[GameSettings shared] getGlobalForKey:@"gameMode"],
+              [[GameSettings shared] getGlobalForKey:@"gameDifficulty"]);
+
+        [[CCDirector sharedDirector] runWithScene:[GameLayer scene]];
+    } else
+#endif
     [[CCDirector sharedDirector] runWithScene:[MainMenuScene scene]]; 
     
     [[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];

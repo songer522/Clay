@@ -17,6 +17,22 @@
 
 #define LIGHTNING_PARALLAX_RATIO 0.9f
 
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERY (IS_IPAD ? 2.4f : 1.0f)
+
+// Strikes were spread over a hardcoded 480-wide span, so on iPad every bolt landed in the
+// left 380pt of a 1024pt screen. Spread them across the live width instead, keeping the
+// legacy 50..380 span exactly at 480.
+static CGFloat LightningSpanStart(void)
+{
+    return 50.0f * ([[CCDirector sharedDirector] winSize].width / 480.0f);
+}
+
+static CGFloat LightningSpanWidth(void)
+{
+    return 330.0f * ([[CCDirector sharedDirector] winSize].width / 480.0f);
+}
+
 @implementation Lightning
 
 
@@ -75,7 +91,9 @@
         float camPositionX = [[Camera sharedCamera] xPosition];
         float newPosX = (camPositionX - _originalCamPositionX) * LIGHTNING_PARALLAX_RATIO;
         
-        CGPoint lightningParallaxPosition = CGPointMake(_position.x + newPosX, _position.y*2.4);
+        // The 2.4 here was MULTIPLIERY applied on every device, so on a phone the bolt was
+        // drawn at 2.4x its own world y.
+        CGPoint lightningParallaxPosition = CGPointMake(_position.x + newPosX, _position.y * MULTIPLIERY);
         //NSLog(@"LX: %.2f, PLX: %.2f, RAX: %.2f",_position.x,playerPosition.x,lightningParallaxPosition.x);
         [_sprite setPosition:lightningParallaxPosition];
     }
@@ -112,10 +130,12 @@
 
 -(void)repositionSprite
 {
-    //IPAD FIX: should be positioned at a random position in the background at a height where the top of the lightning bolt is just off the top of the screen
-    _position = [[Camera sharedCamera] convertToWorldXY:ccp(50 + rand()%330, 193)];
+    //a random position in the background at a height where the top of the lightning bolt is
+    //just off the top of the screen. Was a hardcoded 50 + rand()%330, a 480-wide span.
+    int span = (int)LightningSpanWidth();
+    if (span < 1) { span = 1; }
+    _position = [[Camera sharedCamera] convertToWorldXY:ccp(LightningSpanStart() + (rand() % span), 193)];
     _originalCamPositionX = [[Camera sharedCamera] xPosition];
-    //_position = ccp(50 + rand()%330, 193);
     [_sprite setPosition:_position];
 }
 

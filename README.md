@@ -13,8 +13,13 @@ comic-panel cutscenes, and some levels feature boss encounters.
 
 Note that boss encounters are driven by objects placed in the TMX maps, not by the
 `boss` key in `levels.plist` — that key is present on level 6 but is read by nothing.
-Of levels 1–8, only **level 7** has a boss (`jimSpaceShip` → `Bosses/BossJimShip.m`);
-the remaining boss code (`BossFinal`, `BossFinalJim`) belongs to level 11.
+Of levels 1–8, only **level 7** has a boss (`jimSpaceShip` → `Bosses/BossJimShip.m`).
+Level 11's boss is the train, `finalJimBoss` → `Bosses/BossFinal.m`. `BossFinalJim` —
+the shadow-Tim chase the level 11 `slowtime` action is themed around — is **unreachable
+in every shipped map**: no level 11 variant contains the `finalBossSpawn` tile that would
+trigger it, and `GameLayer` would route that trigger to the `BossFinal` train anyway. No
+map contains `finalBossDies` either, so the final boss is never killed, only sent
+offscreen.
 
 ## Requirements
 
@@ -136,7 +141,7 @@ The project began as a 2011 cocos2d-iphone game and has been brought forward:
 
 Legacy collision fixes per level are documented in `docs/superpowers`, with a
 design / plan / findings trio for each investigation (Level 2 chicken–cow
-chain, Level 3 collision + feel).
+chain, Level 3 collision + feel, Levels 5–8 widescreen, Levels 9–11 widescreen).
 
 ## Third-party code and licenses
 

@@ -29,7 +29,10 @@
         // Add this layer (not a second anonymous node) so respawn/restart
         // doesn't leave duplicate overlays drawing stale boxes.
         if (scene != nil) {
-            [scene addChild:self];
+            // Explicit high z. GameLayer +scene adds the game layer to the scene *after*
+            // setupLayers has added this one, so at the default z==0 insertion order put the
+            // world on top and the boxes were painted over.
+            [scene addChild:self z:1000];
         }
     }
     

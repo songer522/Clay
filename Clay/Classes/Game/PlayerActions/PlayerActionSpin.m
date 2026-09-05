@@ -15,7 +15,18 @@
 #import "Player.h"
 #import "GameSettings.h"
 
-#define SPIN_PLAYER_GROUND_Y 64
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERY (IS_IPAD ? 2.4f : 1.0f)
+
+// The end-of-swim floor test. Every other floor in the game scales: the player is grounded
+// at 64*MULTIPLIERY (Player.m) and Level 10's underwater floor gate is 22*MULTIPLIERY, so a
+// bare 64 matched neither on iPad and the anchor ran its full 10.75s duration instead of
+// ending on contact. Scale it so the phone reproduces the legacy 64 exactly and iPad lands
+// at the same point relative to its floor.
+//
+// The phone baseline itself is left at 64, which sits above the 22 underwater floor gate.
+// That is the shipped feel; do not retune it without an overlay measurement.
+#define SPIN_PLAYER_GROUND_Y (64.0f * MULTIPLIERY)
 
 @implementation PlayerActionSpin
 
