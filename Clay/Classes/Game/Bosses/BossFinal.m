@@ -18,6 +18,7 @@
 #import "PlayerAction.h"
 #import "GameSettings.h"
 #import "Camera.h"
+#import "GameCollisionRect.h"
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define MULTIPLIERX (IS_IPAD ? 2.133f : 1.0f)
@@ -314,6 +315,29 @@ static CGFloat FinalBossStageX(CGFloat legacyStageX)
 }
 
 
+// Where the train must stop so the door's box lands on the player.
+//
+// This endpoint is NOT a stage position and must not go through FinalBossStageX: the station
+// x values are anchored to the right edge, but the door sweep is a lunge *at the player*, who
+// is pinned near the left. Right-anchoring it pushed the sweep 337pt clear of him on an
+// 874-wide phone.
+//
+// The authored values missed him even at the design sizes - by 11pt on a 480 phone and 60pt
+// on a 1024 iPad - so there is no legacy behaviour worth preserving here. Derive it from the
+// player's live collision rect instead; he is pinned horizontally, so reading it once at
+// trigger time is stable, and it stays correct if either box is ever retuned.
+-(CGFloat)doorLungeDestinationX
+{
+    CGRect playerRect = GameCollisionRectForObject(_player);
+    CGRect doorBox = [_door getBoundingBox];
+
+    CGFloat playerCentreX = CGRectGetMidX(playerRect);
+    //invert what GameCollisionRectForObject does to the door, so its box centres on his
+    CGFloat doorScreenX = playerCentreX + doorBox.origin.x - (doorBox.size.width * 0.5f);
+
+    return doorScreenX - (IS_IPAD ? 250.0f : 0.0f);   //back out the sprite offset in update:
+}
+
 -(void)triggerAction:(FinalBossPhase)phase
 {    
     
@@ -376,10 +400,23 @@ static CGFloat FinalBossStageX(CGFloat legacyStageX)
         case FINAL_BOSS_ATTACK_1C:
             [self changeToAnimationNamed:@"darkBossJimDoorAttack2" forSprite:_trainJim];
             _waitToSwitch = 1.4f;
-            if ([[GameSettings shared] isIpad]) {
-                _destinationX = FinalBossStageX(-180.0f);
-            } else {
-                _destinationX = FinalBossStageX(50.0f);
+            _destinationX = [self doorLungeDestinationX];
+
+            // The sweep starts from a right-anchored door position, so on a wide screen it has
+            // much further to travel; at the authored rate it would still be in transit when
+            // the 1.4s phase ends. Size the rate to the distance, and budget only part of the
+            // phase for travel so the door still DWELLS on the player long enough to register
+            // - sized to arrive exactly at the end, an 874-wide phone gave a zero-length hit
+            // window. Never go below the authored rate, so at 480/1024 the train arrives as
+            // early as it always did and the legacy feel is untouched.
+            {
+                const CGFloat travelFraction = 0.6f;    //40% of the phase left as dwell
+                CGFloat legacyRate = IS_IPAD ? 1.30f : 0.65f;
+                CGFloat distance = _trainPosition.x - _destinationX;
+                //moveLeft: covers 500pt per unit of its argument
+                CGFloat travelTime = _waitToSwitch * travelFraction;
+                CGFloat neededRate = (distance > 0.0f) ? (distance / (travelTime * 500.0f)) : 0.0f;
+                _doorLungeRate = MAX(legacyRate, neededRate);
             }
             _phase = phase;
             [_door reset];
@@ -541,11 +578,7 @@ static CGFloat FinalBossStageX(CGFloat legacyStageX)
             if ([self checkWait:dt]) {
                 [self finishedPhase];
             }
-            if ([[GameSettings shared] isIpad]) {
-                [self moveLeft:1.30f * dt];
-            } else {
-                [self moveLeft:0.65f * dt];
-            }
+            [self moveLeft:_doorLungeRate * dt];
         default:
             break;
     }

@@ -62,6 +62,7 @@ typedef enum {
     
     float _destinationX;
     float _speed;
+    float _doorLungeRate;   //moveLeft: multiplier for the ATTACK_1C door sweep
     float _speedModifier;
     float _waitToSwitch;
     

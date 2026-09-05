@@ -151,6 +151,48 @@ The box covers the bottom quarter of the player — a legs-height sweep, which s
 door. The height is left on the authored 25 (×`MULTIPLIERY`) baseline; if it needs to catch
 him higher, move the height, not the anchor.
 
+### The door also missed *horizontally* — regression plus a pre-existing miss
+
+Raised in review: applying `FinalBossStageX()` to the `ATTACK_1C` endpoint pushed the whole
+sweep rightward, so on an 874-wide phone the train stopped at x 444 and the door box sat at
+424–438, nowhere near the player. Correct, and confirmed — that regression defeated the
+vertical fix above.
+
+Checking the authored values showed the horizontal reach **never worked on either device**.
+Note `cameraTracking.x` is scaled (`Player.m:82`, `75 * MULTIPLIERX`), so the player sits at
+screen x 75 on a phone and 160 on an iPad:
+
+| | player box x | door box x | result |
+|---|---|---|---|
+| legacy phone 480, dest 50 | 55 – 87 | 30 – 44 | **miss by 11** |
+| legacy iPad 1024, dest −180 | 117.3 – 185.6 | 27.3 – 57.2 | **miss by 60** |
+| iPhone 17 Pro 874, dest 444 (this branch) | 55 – 87 | 424 – 438 | **miss by 337** |
+
+So there was no legacy behaviour worth preserving in that endpoint.
+
+**Root of the mistake:** `FinalBossStageX` is right for *station* positions, which are
+anchored to the screen's right edge. The door sweep is not a station - it is a lunge **at the
+player**, who is pinned near the left. Applying the right-anchor to it was a category error.
+
+**Fixed:** `doorLungeDestinationX` derives the endpoint from the player's live collision rect
+and the door's own bbox, so the door box centres on him. It reads the player rect rather than
+re-deriving from the plist, so it stays correct if either box is retuned.
+
+The sweep also has much further to travel from a right-anchored start on a wide screen. The
+rate is now sized to the distance with 60% of the phase budgeted for travel, leaving 40% as
+dwell so the door rests on the player long enough to register - sized to arrive exactly at the
+end, an 874-wide phone gave a **zero-length hit window**. The rate never drops below the
+authored one, so both design sizes are untouched:
+
+| | overlap with player | arrives | dwell | rate (legacy) |
+|---|---|---|---|---|
+| legacy phone 480 | 43.8% of his width | 0.70 s | 0.70 s | 0.65 (0.65) |
+| iPhone 17 Pro 874 | 43.8% | 0.84 s | 0.56 s | 1.48 (0.65) |
+| legacy iPad 1024 | 43.7% | 0.59 s | 0.81 s | 1.30 (1.30) |
+| iPad ~1366 | 43.7% | 0.84 s | 0.56 s | 1.72 (1.30) |
+
+Still arithmetic, not play — the boss has not been reached in the simulator.
+
 ### Hitbox activation window — already correct, no change made
 
 Checked because it was raised alongside the placement. The door art is part of Jim's own
