@@ -168,6 +168,45 @@ instant the door reaches fully open. `changeToAnimationNamed:` and `checkWait:` 
 by `_speedModifier`, so the animation and the phase timer stay in sync under slow-time. No
 extra frame-number gating was added.
 
+## P0 (open, NOT fixed) — the Level 11 bomb spawns below the ground plane
+
+Raised in review as "the same failure shape as the door". Checked, and it is. **Not fixed
+in this branch** — see the reasoning at the end.
+
+`throwBomb` / `throwGrape` build the spawn point as
+`convertToWorldXY(_trainPosition + authored screen offset)` — `+40` on phone, `+260` on
+iPad — and `Projectile.update:` then ground-triggers whenever the world y falls to
+`groundPosition + _offsetGroundDetectionY` (85/140 resolved against the pit/ledge map,
+plus −10 for the bomb and −20 for the grape). Running the spawn through the same camera
+arithmetic the door used:
+
+| projectile | config | spawn world y | ground threshold | ground-triggers |
+|---|---|---|---|---|
+| bomb | legacy phone 480×320 | 66.0 | 75.0 | **frame 1** |
+| bomb | iPhone 16 ≈956×440 | −54.0 | 75.0 | **frame 1** |
+| bomb | iPad 1024×768 | 62.0 | 130.0 | **frame 1** |
+| grape | legacy phone 480×320 | 66.0 | 65.0 | frame 46 (0.77 s) — a real arc |
+| grape | iPhone 16 ≈956×440 | −54.0 | 65.0 | **frame 1** |
+| grape | iPad 1024×768 | 62.0 | 120.0 | **frame 1** |
+
+For `PROJECTILE_BEHAVIOR_DARK_BOMB` a ground trigger is `[self startCollision]` +
+`bombExplosion` + `_isActive = false`, so the bomb detonates at the train on the frame it
+is thrown and never travels toward the player.
+
+**Why this is not fixed here.** Two things say the spawn constants are more subtle than
+they look, and picking new ones blind is exactly the mistake that produced the door bug:
+
+1. The grape works on a legacy 480×320 phone and nowhere else. That one configuration
+   producing a sensible 0.77 s arc is good evidence the model above is right — but it
+   clears its threshold by **1pt** (66 vs 65). Constants that fragile were tuned against
+   something, and the bomb misses its own threshold by only 9pt.
+2. The authored offsets are `+40` (phone) and `+260` (iPad) — a 6.5× difference where
+   `MULTIPLIERY` is 2.4. At least one of them was already wrong before any of this work.
+
+So either the bomb has been broken since 2012, or there is a constraint here not visible
+in the code. The overlay will settle it in seconds; guessing will not. Needs a decision on
+where the bomb should leave Jim's hands before anything is changed.
+
 ## P1 — No level 9–11 chase or trigger used the `widthScale` idiom
 
 `closeToPlayer:` (`GameObject.m`) is a plain world-space X comparison, and the player is
@@ -198,6 +237,14 @@ at all for a wide phone.
 
 The bare `GAME_OBJECT_DISTANCE_ONSCREEN` "has appeared" triggers were left alone where
 they are already 1000pt — wider than any device.
+
+**Note that the chase *speeds* are not a no-op on iPad** (angler −100 → −213, tronika
+−60/−200 → −128/−427). That is deliberate and is not an arbitrary difficulty change: the
+player's own world speed already scales by `MULTIPLIERX`
+(`Runner.m`, `RUNNER_VELOCITY_RATE 14.0f * MULTIPLIERX`), so an unscaled chase speed left
+the obstacle *relatively* 2.133× slower on iPad than authored. Scaling restores the
+intended ratio. Still worth confirming on the overlay, since it does change iPad feel
+against what shipped.
 
 ## P1 — Boss stage positions were anchored to a 480-wide screen
 
@@ -306,10 +353,10 @@ Everything above builds clean with no new warnings, but **none of it has been pl
 - [ ] L11: confirm the re-anchored door box now connects, and decide whether a
       legs-height sweep (bottom 25% of the player's box) is the intended feel or whether
       the door should catch more of him — if so raise the **height**, not the anchor.
-- [ ] **The bomb and grape boxes have not had the same placement check the door just
-      failed.** Their positions come from `throwBomb`/`throwGrape`'s device-branched
-      offsets and then follow gravity, so they are not a fixed-offset bug of the same
-      shape, but confirm on the overlay that they actually reach the player's band.
+- [ ] **The bomb spawn — highest priority.** Confirmed above: the bomb ground-triggers on
+      frame 1 on every device and the grape does so everywhere except a legacy 480×320
+      phone. Watch one bomb attack on the overlay and decide where the throw should
+      originate, then fix the spawn offsets. Do not guess them.
 - [ ] The remaining `//IPAD FIX:` comment in `BossFinalJim.m` (shadow feet alignment,
       `SHADOW_YPOS 133`) is untouched — that class is unreachable, so it was not worth
       retuning blind.

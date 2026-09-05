@@ -72,10 +72,27 @@ box, the dark bomb, the grapes, and the train door.
 
 ## Approach
 
-Same as the 5–8 pass. Every formula reproduces the legacy numbers exactly at 480×320
-phone and 1024×768 iPad, so each change is a no-op at the authored design size and
-diverges only where the screen is genuinely bigger. `GameCollisionRectForObject` stays
-the single AABB source; nothing in this pass needed a new pad there.
+Same as the 5–8 pass: derive from live `winSize` rather than literals.
+`GameCollisionRectForObject` stays the single AABB source; nothing in this pass needed a
+new pad there.
+
+**Scope of the "no-op at the authored size" claim.** This holds for the pure widescreen
+work — `FinalBossStageX` (`extraWidth` is 0 at both 480 and 1024) and the
+`MULTIPLIERX`→`GameObjectWidthScale()` swaps (the two are equal at 1024). It does **not**
+hold blanket-wide, and three groups of change deliberately alter one reference device:
+
+- **The two Level 9 effect clips pick different references.** The lightning span was
+  authored at 480, so it is a no-op on phone and changes iPad (50–380 → ~107–811). The
+  raindrop span was authored at 1024, so it is a no-op on iPad and changes phone. That
+  asymmetry is inherent — each clip was written against one device and broken on the
+  other.
+- **Chase *speeds* scale on iPad** (angler −100 → −213, tronika −60/−200 → −128/−427).
+  This is not an arbitrary difficulty change: the player's own world speed already scales
+  by `MULTIPLIERX` (`Runner.m`, `RUNNER_VELOCITY_RATE 14.0f * MULTIPLIERX`), so an
+  unscaled chase speed made the obstacle *relatively* 2.133× slower on iPad than
+  authored. Scaling restores the intended ratio, and matches the 5–8 idiom.
+- **A bug fix changes the device it was broken on**, by definition — the swapped boss
+  entrance constants, the door hitbox, the `spin` floor test.
 
 Where a per-device pair turned out to be hand-tuned rather than a scaling bug — the
 level 11 spike stop height (65 / 165, where `65*MULTIPLIERY` would be 156) and the bat's

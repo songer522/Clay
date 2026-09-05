@@ -38,8 +38,10 @@
 // The authored -95 (phone) / -15 (iPad) offsets below the train put the door box 130pt to
 // 330pt BELOW that, where it could never touch him - the door attack landed no hits at all.
 // The gap also grew with the camera letterbox, so it got worse on taller modern screens.
-// Anchor the box bottom to the player's grounded box bottom instead, and read the door's own
-// bbox origin back so the two cannot drift apart.
+// Anchor the box bottom to the player's grounded box bottom instead. Adding the door's own
+// bbox origin.y here cancels against the subtraction GameCollisionRectForObject does, so the
+// net box bottom is exactly the player's box bottom - the round trip exists only so that
+// retuning the door's bbox cannot silently move the anchor.
 #define PLAYER_GROUNDED_WORLD_Y 64.0f
 #define PLAYER_BOX_OFFSET_Y 10.0f
 
