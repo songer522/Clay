@@ -28,6 +28,16 @@
 #define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 #define GAME_OBJECT_DISTANCE_ONSCREEN 1000.0f
 
+// Chase/trigger distances were authored against a 480pt-wide screen with the player pinned
+// near the left edge, so every extra point of modern screen width is runway the object has
+// to cross before it reacts. Same idiom as the inline widthScale blocks in the Level 3/4
+// chase cases.
+static CGFloat GameObjectWidthScale(void)
+{
+    CGFloat scale = [[CCDirector sharedDirector] winSize].width / 480.0f;
+    return scale < 1.0f ? 1.0f : scale;
+}
+
 #define MULTIPLIER_ANGLE_TO_RADS 0.1745328f //pre-calculation for Math.pi/180
 
 @implementation GameObject
@@ -269,8 +279,8 @@
                 _fadeout = true;
                 _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_ZOMBIE_HEAD];
                 [_projectile reset];
-                [_projectile setPosition:CGPointMake(_x, _y + 41)];
-                [_projectile setBoundingBox:CGRectMake(15, 33, 14, 25)];
+                [_projectile setPosition:CGPointMake(_x, _y + 41 * MULTIPLIERY)];
+                [_projectile setBoundingBox:CGRectMake(15 * MULTIPLIERX, 33 * MULTIPLIERY, 14 * MULTIPLIERX, 25 * MULTIPLIERY)];
                 [[[[LayerManager sharedLayers] getPlayer] getThirdAction] setKilledEnemy:YES];
             }
             else
@@ -289,8 +299,8 @@
                 _fadeout = true;
                 _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_ZOMBIE_HEART];
                 [_projectile reset];
-                [_projectile setPosition:CGPointMake(_x, _y + 11)];
-                [_projectile setBoundingBox:CGRectMake(15, 33, 14, 25)];
+                [_projectile setPosition:CGPointMake(_x, _y + 11 * MULTIPLIERY)];
+                [_projectile setBoundingBox:CGRectMake(15 * MULTIPLIERX, 33 * MULTIPLIERY, 14 * MULTIPLIERX, 25 * MULTIPLIERY)];
                 [[[[LayerManager sharedLayers] getPlayer] getThirdAction] setKilledEnemy:YES];
             }
             
@@ -304,7 +314,7 @@
         case COLLISION_BEHAVIOR_FIREFOX_FADES:
             if (isProjectile)
             {
-                [self setBoundingBox:CGRectMake(37, 2, 14, 15)];
+                [self setBoundingBox:CGRectMake(37 * MULTIPLIERX, 2 * MULTIPLIERY, 14 * MULTIPLIERX, 15 * MULTIPLIERY)];
                 _collided = false;                
                 [_projectile startCollision];
                 [[[[LayerManager sharedLayers] getPlayer] getThirdAction] setKilledEnemy:YES];
@@ -696,7 +706,7 @@
             break;
         }
         case COLLISION_BEHAVIOR_CLAPPING_CROWD:
-            if ([self closeToPlayer:400] )
+            if ([self closeToPlayer:400 * GameObjectWidthScale()] )
             {
              if(!_hasTriggered)
              {
@@ -789,35 +799,53 @@
         //LEVEL 5 - CITY RUN
         ///////////////////////////
         case COLLISION_BEHAVIOR_MAD_DOG:
-            [self chaseAtDistance:200.0f DefaultSpeed:0.0f ChaseSpeed:-150.0f ChaseSound:@"maddogBark" ChaseAnimation:@"madDogAnim" DefaultAnimation:@"dogAnim"];
+        {
+            CGFloat widthScale = [[CCDirector sharedDirector] winSize].width / 480.0f;
+            if (widthScale < 1.0f) { widthScale = 1.0f; }
+            [self chaseAtDistance:200.0f * widthScale
+                     DefaultSpeed:0.0f
+                       ChaseSpeed:-150.0f * widthScale
+                       ChaseSound:@"maddogBark"
+                   ChaseAnimation:@"madDogAnim"
+                 DefaultAnimation:@"dogAnim"];
             break;
+        }
         
 
         ///////////////////////////
         //LEVEL 6 - UNDEAD RUN
         ///////////////////////////
         case COLLISION_BEHAVIOR_ZOMBIE_WALK:
-            [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-40.0f ChaseSound:@"zombieMoan"];
-            break;
         case COLLISION_BEHAVIOR_MALEZOMBIE_WALK:
-            [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-40.0f ChaseSound:@"zombieMoan"];
+        {
+            CGFloat widthScale = [[CCDirector sharedDirector] winSize].width / 480.0f;
+            if (widthScale < 1.0f) { widthScale = 1.0f; }
+            [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN * widthScale
+                     DefaultSpeed:0.0f
+                       ChaseSpeed:-40.0f * widthScale
+                       ChaseSound:@"zombieMoan"];
             break;
+        }
         case COLLISION_BEHAVIOR_MALEZOMBIE_FADE:
-            [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-60.0f];
-            break;
         case COLLISION_BEHAVIOR_ZOMBIE_WALK_FAST:
-            [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-60.0f];
+        {
+            CGFloat widthScale = [[CCDirector sharedDirector] winSize].width / 480.0f;
+            if (widthScale < 1.0f) { widthScale = 1.0f; }
+            [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN * widthScale
+                     DefaultSpeed:0.0f
+                       ChaseSpeed:-60.0f * widthScale];
             break;
+        }
         case COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENING:
             frame = [[_sprite getAnimation] getCurrentFrameNumber];
             if (frame<7) {
                 int heightOffset = MAX(0,frame - 4) * 5.0f;
-                [self setBoundingBox:CGRectMake(40,2,25,30 + heightOffset)];
+                [self setBoundingBox:CGRectMake(40 * MULTIPLIERX, 2 * MULTIPLIERY, 25 * MULTIPLIERX, (30 + heightOffset) * MULTIPLIERY)];
             } else if(frame == 7)
             {
                 _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENED;
                 [[AnimationController sharedController] replaceSprite:_sprite withAnimationNamed:@"zombieMysteryBoxOpenedAnim"];
-                [self setBoundingBox:CGRectMake(40, 2, 25, 45)];
+                [self setBoundingBox:CGRectMake(40 * MULTIPLIERX, 2 * MULTIPLIERY, 25 * MULTIPLIERX, 45 * MULTIPLIERY)];
             }
             break;
         case COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_FALLS:
@@ -835,8 +863,17 @@
         //LEVEL 7 - COMPUTER RUN
         ///////////////////////////
         case COLLISION_BEHAVIOR_COMPUTER_MELISSA:
-            [self chaseAtDistance:210.0f DefaultSpeed:-50.0f ChaseSpeed:-175.0f ChaseSound:@"" ChaseAnimation:@"computerMelissaFastAnim" DefaultAnimation:@"computerMelissaSlowAnim"];
+        {
+            CGFloat widthScale = [[CCDirector sharedDirector] winSize].width / 480.0f;
+            if (widthScale < 1.0f) { widthScale = 1.0f; }
+            [self chaseAtDistance:210.0f * widthScale
+                     DefaultSpeed:-50.0f * widthScale
+                       ChaseSpeed:-175.0f * widthScale
+                       ChaseSound:@""
+                   ChaseAnimation:@"computerMelissaFastAnim"
+                 DefaultAnimation:@"computerMelissaSlowAnim"];
             break;
+        }
         case COLLISION_BEHAVIOR_COMPUTER_WORM:
             frame = [[_sprite getAnimation] getCurrentFrameNumber];
             if (frame == 1) {
@@ -854,10 +891,16 @@
         case COLLISION_BEHAVIOR_FIREFOX_PREATTACK:
             break;
         case COLLISION_BEHAVIOR_FIRE_DEMON:
-            [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN DefaultSpeed:0.0f ChaseSpeed:-25.0f];
+        {
+            CGFloat widthScale = [[CCDirector sharedDirector] winSize].width / 480.0f;
+            if (widthScale < 1.0f) { widthScale = 1.0f; }
+            [self chaseAtDistance:GAME_OBJECT_DISTANCE_ONSCREEN * widthScale
+                     DefaultSpeed:0.0f
+                       ChaseSpeed:-25.0f * widthScale];
             _angle += _rotationAmount * dt;
             [self getCCSprite].rotation = _angle;
             break;
+        }
         case COLLISION_BEHAVIOR_FIRE_DEMON_ARMOR:
             _vx = 0.0f;
             break;
@@ -874,12 +917,12 @@
                         }
                         _projectile = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_FIRE_DEMON_BULLET];
                         [_projectile reset];
-                        [_projectile setPosition:CGPointMake(_x + 53, _y - 20 )];
-                        [_projectile setBoundingBox:CGRectMake(-7, 12, 16, 16)];
+                        [_projectile setPosition:CGPointMake(_x + 53 * MULTIPLIERX, _y - 20 * MULTIPLIERY)];
+                        [_projectile setBoundingBox:CGRectMake(-7 * MULTIPLIERX, 12 * MULTIPLIERY, 16 * MULTIPLIERX, 16 * MULTIPLIERY)];
                         [[SoundEngine shared] playSound:@"fireRockMonsterProjectile"];
                     } 
                 } else {
-                    if ([self closeToPlayer:300.0f]) {
+                    if ([self closeToPlayer:300.0f * GameObjectWidthScale()]) {
                         [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"fireDemonWithArmorShooting"];
                         _waitToTrigger = 0.28f;
                     }
@@ -902,13 +945,23 @@
             }
             break;
         case COLLISION_BEHAVIOR_FIREBALL_MOVING:
-            _vx += 160.0f;
-            _vy += 100.0f;
-            if (_y <= 60.0f*MULTIPLIERY) {
+            // These were applied once per frame with no dt, tying the fireball's arc to the frame
+            // rate. Scale by dt against the 60fps the arc was authored at so the shape is
+            // unchanged at 60fps but no longer drifts when the frame rate does.
+            _vx += 160.0f * 60.0f * dt;
+            _vy += 100.0f * 60.0f * dt;
+        {
+            // The rock must come to rest on the same ground the level authored it on. The old
+            // 80*MULTIPLIERY happened to equal the ground row on iPad (192) but gave 80 on a
+            // phone, where the authored ground row is 96 - so the landed rock's collision box
+            // sat entirely below the player's and he walked straight through it.
+            // _startingPosition is where the TMX placed it before it was flung into the sky.
+            CGFloat restY = (_startingPosition.y > 0.0f) ? _startingPosition.y : 80.0f*MULTIPLIERY;
+            if (_y <= restY) {
                 _vx = 0.0f;
                 _vy = 0.0f;
                 _x = _prevLocation.x;
-                _y = 80.0f*MULTIPLIERY;
+                _y = restY;
                 _isInvincible = false;
                 [self setPositionAtX:_x Y:_y];
                 [[AnimationController sharedController] replaceSprite:self.sprite withAnimationNamed:@"fireballLandingAnim"];
@@ -918,6 +971,7 @@
                 [[SoundEngine shared] playSound:@"fireballLand"];
             }
             break;
+        }
             
             
         ///////////////////////////
@@ -1699,7 +1753,7 @@
     else if(_currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_UP || _currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENING || _currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENED || _currentBehavior == COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_FALLS) {
         _currentBehavior = COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_UP;
         _collideBehavior = COLLISION_BEHAVIOR_ZOMBIE_MYSTERYBOX_OPENING;
-        [self setBoundingBox:CGRectMake(70, 2, 14, 25)];
+        [self setBoundingBox:CGRectMake(70 * MULTIPLIERX, 2 * MULTIPLIERY, 14 * MULTIPLIERX, 25 * MULTIPLIERY)];
     }
     else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_TRONIKA_CHASE) {
         _currentBehavior = COLLISION_BEHAVIOR_WATER_TRONIKA_CHASE;
@@ -1713,7 +1767,7 @@
     }
     else if(_currentBehavior == COLLISION_BEHAVIOR_FIREFOX_FADES || _currentBehavior == COLLISION_BEHAVIOR_FIREFOX_PREATTACK || _currentBehavior == COLLISION_BEHAVIOR_FIREFOX_POSTATTACK) {
         _currentBehavior = COLLISION_BEHAVIOR_FIREFOX_PREATTACK;
-        [self setBoundingBox:CGRectMake(37, 2, 14, 45)];
+        [self setBoundingBox:CGRectMake(37 * MULTIPLIERX, 2 * MULTIPLIERY, 14 * MULTIPLIERX, 45 * MULTIPLIERY)];
         [_projectile setPosition:ccp(-31.0f*MULTIPLIERX,0.0f)];
     }
     else if(_currentBehavior == COLLISION_BEHAVIOR_WATER_HEALTH_BUBBLE_1) {
@@ -1962,7 +2016,7 @@
         [_projectile reset];
         [_projectile setAttachedTo:self];
         [_projectile setPosition:ccp(-31.0f*MULTIPLIERX,0.0f)];
-        [_projectile setBoundingBox:CGRectMake(15,15,30*MULTIPLIERX,30)];
+        [_projectile setBoundingBox:CGRectMake(15 * MULTIPLIERX, 15 * MULTIPLIERY, 30 * MULTIPLIERX, 30 * MULTIPLIERY)];
         [_projectile setInitialVelocity];
         _projectilePersists = true;
     }

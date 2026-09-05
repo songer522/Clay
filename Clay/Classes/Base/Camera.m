@@ -34,6 +34,11 @@ static float CameraRestingY(void)
 }
 @implementation Camera
 
++(float)phoneVerticalOffset
+{
+    return CameraPhoneVerticalOffset();
+}
+
 @synthesize trackingTarget = _trackingTarget;
 @synthesize isPlayerResetting = _isPlayerResetting;
 @synthesize isShiftForwardForKickAction = _isShiftForwardForKickAction;
@@ -88,7 +93,9 @@ static Camera *_sharedCamera = nil;
 
     //restrict the camera in certain levels
     // Preserve the old framing, but don't clamp shorter than the visible screen on modern iPads.
-    rect.size.height = MAX(402 * MULTIPLIERX, [[CCDirector sharedDirector] winSize].height);
+    // This is a height, so it scales on the Y axis - MULTIPLIERX here was a typo that left the
+    // iPad vertical clamp at 857.5 instead of 964.8, costing camera range on the ledge levels.
+    rect.size.height = MAX(402 * MULTIPLIERY, [[CCDirector sharedDirector] winSize].height);
     _boundary = rect;
     
     CGSize winSize = [[CCDirector sharedDirector] winSize];

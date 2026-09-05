@@ -94,6 +94,42 @@ static CGRect HudButtonHitbox(CGPoint position, CGSize size)
                       size.width,
                       size.height);
 }
+
+// How much of the screen width the jump touch zone may claim, and how much clearance to
+// leave in front of the action button so a stretched thumb never jumps by accident.
+#define HUD_JUMP_TOUCH_WIDTH_FRACTION 0.6f
+#define HUD_JUMP_TOUCH_ACTION_MARGIN 80.0f
+
+// Jump used to get a fixed 200x200 box centred on the button art, which sits 34pt from the
+// left edge. Two-thirds of that box fell off-screen, so the usable area ran 0..134 with its
+// centre at 67 - visibly biased to the right of the art, which is what made centre-of-button
+// taps feel unreliable. It also left the middle of a modern wide screen completely dead.
+//
+// Jump is the primary verb in a runner, so anchor a generous left-side zone to the screen
+// instead: full height, from the left edge to 60% of the width, and always stopping clear of
+// the action button. The pause button is tested before the HUD (GameController), so the
+// top-left corner still pauses.
+static CGRect HudButtonJumpHitbox(void)
+{
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+
+    CGFloat right = winSize.width * HUD_JUMP_TOUCH_WIDTH_FRACTION;
+
+    CGFloat actionHalfWidth = 0.5f * HudButtonHitboxSize(HUD_LAYER_BUTTON_SIZE).width;
+    CGFloat actionLeftEdge = HudButtonX(HUD_BUTTON_ACTION) - actionHalfWidth;
+    CGFloat limit = actionLeftEdge - (HUD_JUMP_TOUCH_ACTION_MARGIN * MULTIPLIERX);
+    if (right > limit) {
+        right = limit;
+    }
+
+    // Never end up smaller than the legacy on-screen area (0..134 on a phone).
+    CGFloat legacyRight = HudButtonX(HUD_BUTTON_JUMP) + (0.5f * HudButtonHitboxSize(200.0f).width);
+    if (right < legacyRight) {
+        right = legacyRight;
+    }
+
+    return CGRectMake(0.0f, 0.0f, right, winSize.height);
+}
 @implementation HudButton
 
 
@@ -138,8 +174,8 @@ static CGRect HudButtonHitbox(CGPoint position, CGSize size)
             [self createSpriteFromImage:@"UI_Button_Jumping.png"];
             CGPoint position = ccp(HudButtonX(type), HudButtonY());
             [self setPosition:position];
-            CGSize size = HudButtonHitboxSize(200.0f);
-            [self setHitbox:HudButtonHitbox(position, size)];
+            //the art stays where it is; only the touch zone is widened
+            [self setHitbox:HudButtonJumpHitbox()];
             break;
         }
         case HUD_BUTTON_SPRINT:

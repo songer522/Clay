@@ -114,6 +114,18 @@ CGRect GameCollisionRectForObject(id<Collidable> object)
                 rect.origin.y -= 6.0f;
                 rect.size.height += 14.0f;
             }
+        } else if ([gameObject getCurrentCollisionBehavior] == COLLISION_BEHAVIOR_FIREBALL_LANDED) {
+            // Level 8 landed rock. Its plist box is 12x20 at bbox.y=0, so it sits at the
+            // sprite origin and barely reaches the player's box, whose bottom is lifted to
+            // his waist by player bbox.y=-10 - hence the walk-through.
+            //
+            // Lift it only. Do NOT also grow the height: matching fireDemon's 40-tall box
+            // made the top 106 and forced a double jump. The rock is a low single-jump
+            // obstacle like fireHedgehog (top 74), not a standing enemy.
+            //   lift only        -> 66..86  (20 tall) — solid overlap, still single-jump
+            //   +20 height       -> 66..106            — forces a double jump
+            // If it ever needs tuning, move this lift; leave the height on the plist baseline.
+            rect.origin.y += 10.0f * MULTIPLIERY;
         }
     }
     

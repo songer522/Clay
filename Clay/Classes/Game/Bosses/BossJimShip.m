@@ -48,6 +48,31 @@ static CGFloat BossShipMegaY(CGFloat value)
     return IS_IPAD ? value * 2.2f : value;
 }
 
+// The ship was authored to hold station opposite the player on a 480-wide screen, so its
+// station-keeping box and entrance/exit targets were absolute x values measured in that
+// space. The player is pinned near the left edge (player.plist cameraTracking x 75), so all
+// the extra width of a modern screen appears to his right: a literal 240 or 380 now lands
+// the ship on top of him instead of across from him. Measure in from the live right edge.
+// On a legacy 480 phone / 1024 iPad these reproduce the original numbers exactly.
+static CGFloat BossShipInsetFromRight(CGFloat legacyInset)
+{
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    return winSize.width - BossShipScreenX(legacyInset);
+}
+
+static CGFloat BossShipOffscreenRight(CGFloat legacyValue)
+{
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    return winSize.width + BossShipScreenX(legacyValue - 480.0f);
+}
+
+// Matches the widthScale idiom used for the Level 3/4 chase retunes.
+static CGFloat BossShipWidthScale(void)
+{
+    CGFloat scale = [[CCDirector sharedDirector] winSize].width / 480.0f;
+    return scale < 1.0f ? 1.0f : scale;
+}
+
 @implementation BossJimShip
 
 
@@ -56,7 +81,9 @@ static CGFloat BossShipMegaY(CGFloat value)
     _level = [[LevelManager shared] currentLevel];
     
     _velocity = CGPointMake(-5.0f, 0.0f);
-    _targetOnScreen = CGRectMake(BossShipScreenX(240.0f), BossShipScreenY(100.0f), 140.0f, 400.0f);
+    // Right-anchored station box; the width was previously left unscaled on iPad.
+    _targetOnScreen = CGRectMake(BossShipInsetFromRight(240.0f), BossShipScreenY(100.0f),
+                                 BossShipScreenX(140.0f), BossShipScreenY(400.0f));
     
     [_sprite setAlpha:1.0f];
     [[_sprite getCCSprite] setVisible:YES];
@@ -166,7 +193,7 @@ static CGFloat BossShipMegaY(CGFloat value)
     if (_firstUpdate) {
         _firstUpdate = false;
         _velocity = CGPointMake(0.0f, 0.0f);
-        [_sprite getCCSprite].position = ccp(BossShipScreenX(1500.0f), BossShipScreenY(160.0f));
+        [_sprite getCCSprite].position = ccp(BossShipOffscreenRight(1500.0f), BossShipScreenY(160.0f));
         _cannonAnim = [Sprite spriteWithFile:@"blank.png"];
         _megaCannonAnim = [Sprite spriteWithFile:@"blank.png"];
         _comboAttackAnim = [Sprite spriteWithFile:@"blank.png"];
@@ -199,13 +226,15 @@ static CGFloat BossShipMegaY(CGFloat value)
         [self updateBullets:dt];
         
     } else if(_phase != BOSS_PHASE_IDLE && _phase != BOSS_PHASE_NOT_TRIGGERED) {
-        if (abs(_target.x - _x)<8.0f) {
+        // fabsf, not the integer abs() this used to call on a float difference.
+        CGFloat approachSpeed = 300.0f * BossShipWidthScale();
+        if (fabsf(_target.x - _x)<8.0f) {
             _x = _target.x;
             [self finishedPhase];
         } else if(_x > _target.x) {
-            _x -= 300.0f * dt;
+            _x -= approachSpeed * dt;
         } else {
-            _x += 300.0f * dt;
+            _x += approachSpeed * dt;
         }
         [_sprite setScreenPosition:ccp(_x,_y)];
     }
@@ -218,7 +247,7 @@ static CGFloat BossShipMegaY(CGFloat value)
             
             //redirect the bullet towards the player unless the bullet drops below a certain Y point (around the midsection of the player)
             CGPoint bulletPos = [_bullet getPosition];
-            if (bulletPos.y > 120.0f) {
+            if (bulletPos.y > BossShipScreenY(120.0f)) {
                 [_bullet pointTowardPlayerMaxAngle:-1.0f];
             }
             
@@ -312,20 +341,20 @@ static CGFloat BossShipMegaY(CGFloat value)
     
     switch (phase) {
         case BOSS_PHASE_NOT_TRIGGERED:
-            _x = BossShipScreenX(1500.0f);
+            _x = BossShipOffscreenRight(1500.0f);
             _y = BossShipScreenY(230.0f);
-            _target = ccp(BossShipScreenX(1500.0f), BossShipScreenY(230.0f));
-            [_sprite getCCSprite].position = ccp(BossShipScreenX(1500.0f), BossShipScreenY(230.0f));
+            _target = ccp(BossShipOffscreenRight(1500.0f), BossShipScreenY(230.0f));
+            [_sprite getCCSprite].position = ccp(BossShipOffscreenRight(1500.0f), BossShipScreenY(230.0f));
             [[_sprite getCCSprite] setVisible:NO];
             _isActive = false;
             break;
         case BOSS_PHASE_ENTERING:
             [[_sprite getCCSprite] setVisible:YES];
-            _target = ccp(BossShipScreenX(380.0f), BossShipScreenY(230.0f));
+            _target = ccp(BossShipInsetFromRight(100.0f), BossShipScreenY(230.0f));
             _isActive = false;
             break;
         case BOSS_PHASE_EXITING:
-            _target = ccp(BossShipScreenX(1500.0f), BossShipScreenY(230.0f));
+            _target = ccp(BossShipOffscreenRight(1500.0f), BossShipScreenY(230.0f));
             _isActive = false;
             break;
         case BOSS_PHASE_ATTACKING:
@@ -359,6 +388,19 @@ static CGFloat BossShipMegaY(CGFloat value)
         [[_sprite getCCSprite] setVisible:YES]; //probably set not visible during gameobject reset
         _hadReset = true;
     }
+}
+
+// Without this the base Boss implementation returns nil, so DEBUG_DRAW_BOUNDING_BOXES drew
+// nothing at all for Level 7 - which is why the ComboAttack hitbox mismatch went unnoticed.
+// Caller (GameDebugLayer) releases the array, so hand back a +1 retained one like BossFinal.
+-(NSMutableArray*)getProjectilesForDebugDraw
+{
+    NSMutableArray *objects = [[NSMutableArray alloc] initWithArray:_bullets];
+    if (_megaCannonBullet != nil) {
+        [objects addObject:_megaCannonBullet];
+    }
+    [objects addObjectsFromArray:_comboAttacks];
+    return objects;
 }
 
 -(void)resetProjectiles

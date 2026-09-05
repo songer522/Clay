@@ -20,6 +20,10 @@
 #define PLAYER_ACTION_SHOOT_OFFSET_BULLET_X_LOWRES 0
 #define PLAYER_ACTION_SHOOT_OFFSET_BULLET_Y_LOWRES 140
 
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
+#define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
+
 @implementation PlayerActionShoot
 
 -(void)initialize
@@ -33,9 +37,14 @@
     Projectile *b1 = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_BULLET];
     Projectile *b2 = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_BULLET];
     Projectile *b3 = [Projectile projectileWithBehavior:PROJECTILE_BEHAVIOR_BULLET];
-    [b1 setBoundingBox:CGRectMake(50, 200, 50, 420)];
-    [b2 setBoundingBox:CGRectMake(50, 200, 50, 420)];
-    [b3 setBoundingBox:CGRectMake(50, 200, 50, 420)];
+    // A tall swept column trailing the bullet, so a fast bullet still catches what it passed.
+    // The 420 height was authored to span a 320pt-tall playfield; unscaled it no longer covers
+    // the full column on iPad, letting high zombies survive a direct hit.
+    CGRect bulletBox = CGRectMake(50 * MULTIPLIERX, 200 * MULTIPLIERY,
+                                  50 * MULTIPLIERX, 420 * MULTIPLIERY);
+    [b1 setBoundingBox:bulletBox];
+    [b2 setBoundingBox:bulletBox];
+    [b3 setBoundingBox:bulletBox];
     
     _bullets = [[NSArray alloc] initWithObjects:b1,b2,b3,nil];
     _currentBulletIndex = 0;
