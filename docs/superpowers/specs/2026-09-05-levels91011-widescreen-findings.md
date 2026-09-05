@@ -228,18 +228,48 @@ put the world on top and the boxes were painted over. Fixed with an explicit `z:
 This matters beyond this branch: **every "verify with the overlay" step in the levels 2–11
 plans was relying on a layer that could be invisible.**
 
-### Level 9 has no rain or lightning at all — pre-existing, not a regression
+### Level 9 rain was invisible — diagnosed and fixed (z-ordering)
 
-The level's defining effect never appears. Tested directly rather than assumed: the
-pre-change `Raindrop.m` / `Lightning.m` / `RainyLevelEffects.m` were checked out from the
-merge base (`e8d2dcb6`), rebuilt, and **the rain is missing there too**.
+Pre-existing, not a regression: verified by checking the pre-change `Raindrop.m` /
+`Lightning.m` / `RainyLevelEffects.m` out of the merge base (`e8d2dcb6`) and rebuilding —
+the rain is missing there too.
 
-So it is not a regression from this branch — but it has an uncomfortable implication:
-**the rain and lightning positioning fixes above are unverified and possibly moot**, because
-they correct the coordinates of something that never renders. The real defect is upstream of
-those coordinates and has not been diagnosed. `initializeRainyLevel` is reached (level 9's
-layer list contains `ledges`), and `RainyLevelEffects update:` is inside the executed
-`!_paused && !_inComic` block, so the fault is below that.
+**Instrumented rather than guessed.** Logging each raindrop after its animation loaded gave:
+
+```
+parent=<GameLayer> pos=(777.0,83.0) visible=1 opacity=255 scale=1.00 size=(14.5,11.5)
+```
+
+All six drops: attached to the GameLayer, on screen, fully opaque, real 14.5×11.5 frame
+loaded (not the 4×4 `blank.png` placeholder). So they were being drawn and something was
+covering them.
+
+**Root cause: z-ordering.** `Sprite` adds to the GameLayer at the default `z == 0`, and
+every TMX map layer is *also* `z == 0` because `Level.m`'s `currentZ += 1` is commented out
+(`Level.m:226`). Ordering therefore falls back to insertion order, and `RainyLevelEffects`
+is constructed part-way through `loadLayers` (at the `ledges` entry) — so `ledges`,
+`front-1` and `meta`, added after it, paint straight over the rain.
+
+**Corrections to the earlier report in this doc:**
+
+- The `Rain_RP_` frames are **ground splash ripples at track height**, not falling streaks.
+  That makes the world-y fix above (`42*MULTIPLIERY`, i.e. 42–74 on a phone, straddling the
+  track at 64) correct *and* necessary — the original unconditional `42*2.4` put the ripples
+  at 100–133, floating in the air above the track. It simply could not be observed while the
+  z bug hid them.
+- **The lightning was never broken.** It renders fine; strikes are just 4–9 s apart and the
+  earlier screenshots missed the gaps. It escapes the z bug because it draws up in the sky,
+  where the later layers have no opaque art. Claiming it was missing was wrong.
+
+**Fix:** lift the ripples above the map with an explicit z. Because every other node is at
+`z == 0` there is no value that sits above the track art but below the player, so they now
+draw over him as well — the lesser evil against not rendering at all. Verified in the
+simulator, including a temporary 4× scale to prove the ripples render before trusting them at
+their real size.
+
+`_rainBehindTim` (the splash around Tim) is very likely hidden by the same mechanism, and is
+**not** fixed here: its name says it belongs behind the player, and the flat `z == 0` world
+gives no slot between the track art and the player. Left for a deliberate layering pass.
 
 ### Level 10 fails to load three animations
 
@@ -392,8 +422,11 @@ Everything above builds clean with no new warnings, but **none of it has been pl
 - [x] Levels 9–11 load, render and run on a modern iPhone with the overlay on
       (see the simulator run section). Chase constants **not** locked - that needs play.
 - [ ] Repeat on an **iPad**, which none of this has touched.
-- [ ] Diagnose why level 9's rain and lightning never render. Until that is fixed the
-      positioning work in this branch cannot be confirmed.
+- [x] Level 9 rain diagnosed and fixed (z-ordering); lightning was never broken.
+- [ ] `_rainBehindTim` is probably hidden by the same z bug. Needs a deliberate decision
+      about layering, since it is meant to sit behind the player.
+- [ ] The flat `z == 0` world (`Level.m:226`) is the underlying hazard and has now produced
+      two visible bugs (the debug overlay and the rain). Worth a considered pass.
 - [ ] L9: confirm the raindrops land on the track and the lightning reads correctly on a
       phone (see the note under the P0 rain/lightning entry).
 - [ ] L10: confirm the `spin` anchor ends on floor contact on both devices, and decide
