@@ -35,7 +35,7 @@ static CGFloat ModePanelInactiveHeaderY(CGFloat panelCenterY)
 
 static CGFloat ModePanelActiveHeaderY(CGFloat panelCenterY)
 {
-    return panelCenterY + PANEL_IPAD_ACTIVE_HEADER_OFFSET_Y;
+    return panelCenterY + (IS_IPAD ? PANEL_IPAD_ACTIVE_HEADER_OFFSET_Y : 82.0f);
 }
 
 static BOOL ModePanelHeaderShouldBeVisible(CGFloat panelCenterY, CGFloat headerY)
@@ -96,14 +96,15 @@ static BOOL ModePanelHeaderShouldBeVisible(CGFloat panelCenterY, CGFloat headerY
     if (IS_IPAD) {
         startY = _position.y + PANEL_IPAD_BUTTON_START_OFFSET_Y;
     } else {
-        float legacyStartY = PANEL_BUTTON_START_Y + ((count * PANEL_BUTTON_HEIGHT_WITH_GAP) / 2.0f);
-        startY = _position.y + (legacyStartY - PANEL_PHONE_CENTER_Y);
+        // Leave room for the active panel title. Previously it moved above the
+        // panel and was hidden, leaving phones with no label for the selected mode.
+        startY = _position.y + 28.0f;
     }
     int i = 0;
     for (NSString *name in buttonNames) {
         ActionButton *button = [ActionButton actionButtonCustomGraphicsForIdle:@"UI_GameType_ButtonL_Blue.png" Selected:@"UI_GameType_ButtonL_Green.png"];
         [button setInitialText:name];
-        [button setPosition:ccp(_position.x,(startY - i * PANEL_BUTTON_HEIGHT_WITH_GAP))];
+        [button setPosition:ccp(_position.x,(startY - i * (IS_IPAD ? PANEL_BUTTON_HEIGHT_WITH_GAP : 60.0f)))];
         [button setAlpha:0.0f];
         [_buttons addObject:button];
         i++;

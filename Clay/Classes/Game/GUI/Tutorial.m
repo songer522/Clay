@@ -14,12 +14,9 @@
 
 static CGPoint TutorialLegacyPhoneOffset(void)
 {
-    if (IS_IPAD) {
-        return CGPointZero;
-    }
-    
     CGSize winSize = [[CCDirector sharedDirector] winSize];
-    return ccp(MAX(0.0f, floorf((winSize.width - 480.0f) / 2.0f)), 0.0f);
+    return ccp(MAX(0.0f, floorf((winSize.width - (IS_IPAD ? 1024.0f : 480.0f)) / 2.0f)),
+               MAX(0.0f, floorf((winSize.height - (IS_IPAD ? 768.0f : 320.0f)) / 2.0f)));
 }
 
 @implementation Tutorial
@@ -46,8 +43,7 @@ static CGPoint TutorialLegacyPhoneOffset(void)
         [self addPage:@"HTP_Page_3.png"];
         [self addPage:@"HTP_Page_4.png"];
 
-        int pageOffset = IS_IPAD ? (int)(120.0f * MULTIPLIERX) : 0;
-        scroller = [[CCScrollLayer alloc] initWithLayers:_pages widthOffset:pageOffset];
+        scroller = [[CCScrollLayer alloc] initWithLayers:_pages widthOffset:0];
         scroller.minimumTouchLengthToChangePage = 30.0f;
         
         [layer addChild:scroller];

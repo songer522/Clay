@@ -59,11 +59,6 @@ static CGPoint ChooseLevelLayoutPoint(CGFloat x, CGFloat y)
 
 static void ChooseLevelConfigureBackground(Sprite *background)
 {
-    if (IS_IPAD) {
-        [background setScreenPosition:ChooseLevelLayoutPoint(0.0f, 0.0f)];
-        return;
-    }
-
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     CCSprite *backgroundSprite = [background getCCSprite];
     backgroundSprite.anchorPoint = ccp(0.5f, 0.5f);

@@ -30,11 +30,6 @@
 
 static void EndLevelConfigureBackground(Sprite *background)
 {
-    if (IS_IPAD) {
-        [background setScreenPosition:ccp(0.0f, 0.0f)];
-        return;
-    }
-
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     CCSprite *backgroundSprite = [background getCCSprite];
     backgroundSprite.anchorPoint = ccp(0.5f, 0.5f);
@@ -347,10 +342,11 @@ static void EndLevelConfigureBackground(Sprite *background)
         [[LayerManager sharedLayers] setWorkingLayer:self];
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         CGFloat centerX = winSize.width * 0.5f;
-        _finalTimeText = [GameLabel gameLabelWithText:timerText  Scale:1.0f Position:ccp(centerX,245*MULTIPLIERY)];
+        CGFloat centerY = winSize.height * 0.5f;
+        _finalTimeText = [GameLabel gameLabelWithText:timerText  Scale:1.0f Position:ccp(centerX,centerY + 85*MULTIPLIERY)];
         if(_isNewRecord)
         {
-            _timeHeaderText=[GameLabel gameLabelWithText:@"NEW RECORD!"  Scale:0.6f Position:ccp(centerX,270*MULTIPLIERY)];
+            _timeHeaderText=[GameLabel gameLabelWithText:@"NEW RECORD!"  Scale:0.6f Position:ccp(centerX,centerY + 110*MULTIPLIERY)];
         }
         
         [[LayerManager sharedLayers] forgetWorkingLayer];
