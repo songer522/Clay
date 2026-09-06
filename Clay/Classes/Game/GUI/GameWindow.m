@@ -15,6 +15,15 @@
 #define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
 #define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 
+// CCLabelTTF receives the bundled file name "Impact.ttf". cocos2d's FontManager
+// resolves that file to the typeface UIKit exposes as "Impact", so use the latter
+// for sizing the same glyphs before the label is created.
+static UIFont *GameWindowFont(CGFloat size)
+{
+    UIFont *font = [UIFont fontWithName:@"Impact" size:size];
+    return font ?: [UIFont systemFontOfSize:size];
+}
+
 @implementation GameWindow
 
 @synthesize delegate = _delegate;
@@ -46,20 +55,27 @@
         CGFloat fontSize = 25;
         CGFloat textHeight = 0;
         do {
-            UIFont *font = [UIFont fontWithName:@"Impact" size:fontSize] ?: [UIFont systemFontOfSize:fontSize];
+            UIFont *font = GameWindowFont(fontSize);
             textHeight = ceilf([displayMessage boundingRectWithSize:CGSizeMake(textWidth, CGFLOAT_MAX)
                 options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
                 attributes:@{NSFontAttributeName:font} context:nil].size.height);
             if (textHeight <= 100 * MULTIPLIERY || fontSize <= 16) break;
             fontSize -= 1;
         } while (YES);
-        // Grow downward for longer localized descriptions without reducing legibility.
-        CGFloat extraHeight = MAX(0, textHeight - 100 * MULTIPLIERY);
+        // Keep one line of breathing room for renderer rounding. Limit the panel's
+        // growth by the available distance above the bottom control target, so an
+        // unusually long Store description cannot make the dialog undismissable.
+        textHeight += ceilf([GameWindowFont(fontSize) lineHeight]);
+        CGFloat baseButtonY = winSize.height / 2.0f + (93.0f - 160.0f) * MULTIPLIERY;
+        CGFloat minimumButtonY = 30.0f * MULTIPLIERY;
+        CGFloat maximumExtraHeight = MAX(0, 2.0f * (baseButtonY - minimumButtonY));
+        CGFloat extraHeight = MIN(MAX(0, textHeight - 100 * MULTIPLIERY), maximumExtraHeight);
+        CGFloat visibleTextHeight = MIN(textHeight, 100 * MULTIPLIERY + extraHeight);
         [_background getCCSprite].scaleY = ([_background getHeight] + extraHeight) / [_background getHeight];
         [_background setScreenPosition:ccp(240 * MULTIPLIERX, 160 * MULTIPLIERY - extraHeight / 2)];
-        _message = [CCLabelTTF labelWithString:displayMessage dimensions:CGSizeMake(textWidth, textHeight + 2)
+        _message = [CCLabelTTF labelWithString:displayMessage dimensions:CGSizeMake(textWidth, visibleTextHeight)
             alignment:UITextAlignmentLeft fontName:@"Impact.ttf" fontSize:fontSize];
-        [_message setPosition:ccp(240 * MULTIPLIERX, 205 * MULTIPLIERY - (textHeight + 2) / 2)];
+        [_message setPosition:ccp(240 * MULTIPLIERX, 205 * MULTIPLIERY - visibleTextHeight / 2)];
         [_root addChild:_message];
 
         
