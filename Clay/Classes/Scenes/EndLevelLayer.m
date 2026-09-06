@@ -202,7 +202,8 @@
 -(void)setTrophyPosition
 {
     if (_trophyFront!=nil) {
-        [_trophyFront getCCSprite].position=ccp(200*MULTIPLIERX,65*MULTIPLIERY);
+        CGSize size = [[CCDirector sharedDirector] winSize];
+        [_trophyFront getCCSprite].position=ccp(size.width / 2 - 40*MULTIPLIERX,size.height / 2 - 95*MULTIPLIERY);
     }
 }
 
@@ -212,7 +213,8 @@
     _trophyFront = [Sprite spriteFromFrameCacheWithName:frameName];
   
     [self setTrophyPosition];
-    _trophyText = [GameLabel gameLabelWithText:[self covertTrophyname:trophyId]  Scale:0.6f Position:ccp(240*MULTIPLIERX,50*MULTIPLIERY)];
+    CGSize size = [[CCDirector sharedDirector] winSize];
+    _trophyText = [GameLabel gameLabelWithText:[self covertTrophyname:trophyId]  Scale:0.6f Position:ccp(size.width / 2,size.height / 2 - 110*MULTIPLIERY)];
 }
 
 -(void)setOldTrophy:(int)trophyId
@@ -247,7 +249,8 @@
     [[LayerManager sharedLayers] setWorkingLayer:self];
     if(_isNewRecord)
     {
-        _timeHeaderText = [GameLabel gameLabelWithText:@"New Record!"  Scale:0.6f Position:ccp(240*MULTIPLIERX,270*MULTIPLIERY)];
+        CGSize size = [[CCDirector sharedDirector] winSize];
+        _timeHeaderText = [GameLabel gameLabelWithText:@"New Record!"  Scale:0.6f Position:ccp(size.width / 2,size.height / 2 + 110*MULTIPLIERY)];
     }
     else
     {

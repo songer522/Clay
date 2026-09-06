@@ -145,7 +145,8 @@
     [_lockingGraphic setScreenPosition:ccp(position.x + 48.5f * MULTIPLIERX, position.y + 12.5f* MULTIPLIERY)];
     
     if(!_usingRelativeHitbox) {
-        [self setHitbox:CGRectMake(position.x - 48, position.y - 15, 95 * MULTIPLIERX, 30 * MULTIPLIERY)];
+        [self setHitbox:CGRectMake(position.x - 47.5f * MULTIPLIERX, position.y - 15 * MULTIPLIERY,
+                                  95 * MULTIPLIERX, 30 * MULTIPLIERY)];
     }
     
     if(_facebookOrTwitter)

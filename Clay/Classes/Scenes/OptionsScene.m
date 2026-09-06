@@ -25,9 +25,6 @@
 #define MULTIPLIERX (IS_IPAD ? 2.133 : 1)
 #define MULTIPLIERY (IS_IPAD ? 2.4 : 1)
 
-//IPAD FIX: width and offset
-#define OPTIONS_SCENE_OFFSET_X 62.0f
-#define OPTIONS_SCENE_WIDTH 768.0f
 #define OPTIONS_LEGACY_PHONE_WIDTH 480.0f
 #define OPTIONS_LEGACY_PHONE_HEIGHT 320.0f
 #define OPTIONS_LEGACY_IPAD_WIDTH 1024.0f
@@ -282,34 +279,39 @@ static CGPoint OptionsPhonePoint(CGFloat x, CGFloat y)
 
 -(void)setMusicPositionByVolume:(float)volume
 {
-    float xPos = OptionsLegacyPhoneOffset().x + (volume * OPTIONS_SCENE_WIDTH) + OPTIONS_SCENE_OFFSET_X;
-    [_musicMask setClippingRegion:CGRectMake(0,0,xPos,768 * MULTIPLIERY)];
+    CGRect bounds = [[_musicSheetMasked getCCSprite] boundingBox];
+    float xPos = CGRectGetMinX(bounds) + MIN(MAX(volume, 0), 1) * bounds.size.width;
+    [_musicMask setClippingRegion:CGRectMake(0,0,xPos,[[CCDirector sharedDirector] winSize].height)];
 }
 
 -(void)setSfxPositionByVolume:(float)volume
 {
-    float xPos = OptionsLegacyPhoneOffset().x + (volume * OPTIONS_SCENE_WIDTH) + OPTIONS_SCENE_OFFSET_X;
-    [_sfxMask setClippingRegion:CGRectMake(0,0,xPos,768 * MULTIPLIERY)];  
+    CGRect bounds = [[_sfxSheetMasked getCCSprite] boundingBox];
+    float xPos = CGRectGetMinX(bounds) + MIN(MAX(volume, 0), 1) * bounds.size.width;
+    [_sfxMask setClippingRegion:CGRectMake(0,0,xPos,[[CCDirector sharedDirector] winSize].height)];
 }
 
 
 -(void)setMusicXPosition:(float)xPos
 {
-    float volume = (xPos - OptionsLegacyPhoneOffset().x - OPTIONS_SCENE_OFFSET_X)/OPTIONS_SCENE_WIDTH;
+    // Use the visible stave bounds for both the fill and touch mapping.
+    CGRect bounds = [[_musicSheetMasked getCCSprite] boundingBox];
+    float volume = (xPos - CGRectGetMinX(bounds)) / bounds.size.width;
     volume = MIN(MAX(volume, 0.0f), 1.0f);
     
     [[SoundEngine shared] setMasterMusicVolume:volume];
-    [_musicMask setClippingRegion:CGRectMake(0,0,xPos,768 * MULTIPLIERY)];
+    [self setMusicPositionByVolume:volume];
     
 }
 
 -(void)setSfxXPosition:(float)xPos
 {
-    float volume = (xPos - OptionsLegacyPhoneOffset().x - OPTIONS_SCENE_OFFSET_X)/OPTIONS_SCENE_WIDTH;
+    CGRect bounds = [[_sfxSheetMasked getCCSprite] boundingBox];
+    float volume = (xPos - CGRectGetMinX(bounds)) / bounds.size.width;
     volume = MIN(MAX(volume, 0.0f), 1.0f);
     
     [[SoundEngine shared] setMasterSfxVolume:volume];
-    [_sfxMask setClippingRegion:CGRectMake(0,0,xPos,768 * MULTIPLIERY)];
+    [self setSfxPositionByVolume:volume];
 }
              
 -(void)sliderReactionAtPosition:(CGPoint)position LastTouch:(bool)isLastTouch

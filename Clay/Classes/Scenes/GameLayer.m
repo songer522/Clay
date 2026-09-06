@@ -74,7 +74,9 @@
 	
 	GameLayer *layer = [GameLayer node];
 	
-    [scene addChild: layer];
+    // HUD/comic layers are created during GameLayer's init, before this add.
+    // Keep the world behind them regardless of insertion order (including debug launches).
+    [scene addChild:layer z:-1];
     
 	return scene;
 }

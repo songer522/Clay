@@ -22,10 +22,6 @@
 
 static CGFloat CreditsCenterX(void)
 {
-    if (IS_IPAD) {
-        return 240.0f * MULTIPLIERX;
-    }
-
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     return floorf(winSize.width * 0.5f);
 }
@@ -43,20 +39,10 @@ static CGFloat CreditsInitialY(void)
 static CGFloat CreditsInterGroupSpacing(void)
 {
     if (IS_IPAD) {
-        return 90.0f * MULTIPLIERY;
+        return 90.0f;
     }
 
     return 54.0f;
-}
-
-static CGFloat CreditsExitPadding(void)
-{
-    if (IS_IPAD) {
-        return 320.0f;
-    }
-
-    CGSize winSize = [[CCDirector sharedDirector] winSize];
-    return MAX(56.0f, floorf(winSize.height * 0.18f));
 }
 
 @implementation CreditsScene
@@ -111,6 +97,9 @@ static CGFloat CreditsExitPadding(void)
     for (int i=1; i<=count; i++) {
         NSString *credit = [dict objectForKey:[NSString stringWithFormat:@"%d",i]];
         NSArray *creditLine = [credit componentsSeparatedByString:@":"];
+        // The shipped second group declares 12 entries but only contains five.
+        // Missing entries must not generate blank credits and a long empty tail.
+        if ([creditLine count] < 2) continue;
 
         
         NSString *title = [creditLine objectAtIndex:0];
@@ -192,9 +181,11 @@ static CGFloat CreditsExitPadding(void)
 {
     [[SoundEngine shared] update:dt];
     
-    float rate = 32.0f * dt;
+    float rate = 32.0f * MULTIPLIERY * dt;
     self.position = ccp(self.position.x, self.position.y + rate);
-    if (!_hasSwitched && self.position.y > (-_currentY) + CreditsExitPadding()) {
+    // _currentY is authored in phone units, while each line is positioned in
+    // device points. Wait until the final line has actually cleared the viewport.
+    if (!_hasSwitched && self.position.y > (-_currentY * MULTIPLIERY) + [[CCDirector sharedDirector] winSize].height) {
         _hasSwitched = true;
 
         if(![GCState sharedInstance].watchCredit)
