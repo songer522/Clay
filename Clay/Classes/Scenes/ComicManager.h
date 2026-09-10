@@ -53,6 +53,9 @@ typedef enum {
 
 +(id)instance;
 
++(bool)hasSeenComic:(NSString*)comic;
++(void)markComicSeen:(NSString*)comic;
+
 -(void)preload;
 -(void)update:(ccTime)dt;
 

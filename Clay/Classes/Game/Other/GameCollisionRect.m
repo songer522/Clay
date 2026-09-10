@@ -104,6 +104,19 @@ CGRect GameCollisionRectForObject(id<Collidable> object)
                 rect.size.width -= shrinkW;
                 rect.size.height -= shrinkH;
             }
+        } else if ([type isEqualToString:@"rainyFrog"]) {
+            // Level 9 frog. Its plist box tops out just below the player's, so the two
+            // never overlap and the player runs straight through him:
+            //
+            //   frog  sprite y = tileY 96 + offsety -41 = 55, box = 55 - bbox.y 13 -> 42..62
+            //   player sprite y = 64 + playerOffsetY -9 = 55, box = 55 + 10        -> 65..165
+            //
+            // A 3pt miss on a phone, and a 3pt graze on iPad - i.e. the squash never lands.
+            // Lift only, like the Level 8 landed rock: the frog is a low single-jump hazard,
+            // so growing the height instead would push the top out of single-jump range.
+            // 15 puts him at 57..77, a 12pt overlap on the player's shins, cleared by 12pt
+            // of a 40pt jump.
+            rect.origin.y += 15.0f * MULTIPLIERY;
         } else if ([type isEqualToString:@"haybaleSmall"]) {
             rect.origin.x -= 6.0f * MULTIPLIERX;
             rect.size.width += 12.0f * MULTIPLIERX;

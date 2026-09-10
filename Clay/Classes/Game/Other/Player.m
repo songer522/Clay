@@ -288,6 +288,31 @@ static CGFloat ModernIpadGameplayVerticalOffset(void)
 }
 
 
+// The end-of-level exit is a scripted run-off: the camera stops tracking and the player is
+// meant to leave the frame just as the black bars close. Both the run speed and the player's
+// pinned screen x scale by MULTIPLIERX, so at the two authored sizes he covers the 405pt
+// (480 phone) / 864pt (1024 iPad) to the right edge in the ~2.8s the bars take - but on a
+// modern phone the frame is far wider while the bars are unchanged, so he froze mid-screen
+// when the comic paused the world (measured: 573 of 874 on an iPhone 17 Pro).
+//
+// Scale his velocity by exactly the extra distance so the run-off still finishes in the same
+// time. Exact no-op at 480 phone / 1024 iPad, and RunningSpeed.reset restores the modifier on
+// the next level load.
+-(void)startLevelExitRun
+{
+    CGFloat legacyWidth = IS_IPAD ? 1024.0f : 480.0f;
+    CGFloat pinnedX = 75.0f * MULTIPLIERX;      //player.plist cameraTracking x
+    CGFloat legacyRunOff = legacyWidth - pinnedX;
+    CGFloat runOff = [[CCDirector sharedDirector] winSize].width - pinnedX;
+
+    if (legacyRunOff <= 0.0f) { return; }
+
+    CGFloat modifier = runOff / legacyRunOff;
+    if (modifier < 1.0f) { modifier = 1.0f; }
+
+    [_speed setVelocityModifier:modifier];
+}
+
 -(void)startTurbo
 {
     //guard

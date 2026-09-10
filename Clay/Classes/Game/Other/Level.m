@@ -99,6 +99,7 @@
         
         _scale = [GameSettings currentRenderScale] / _divide;
         
+        [self precalculateDrawnWorldRightEdge];
         [self scanThroughMapAndAddObjects];
                 
         [self loadLayers:layerList Player:player Name:levelName];
@@ -298,6 +299,42 @@
     int width = _map.mapSize.width * _map.tileSize.width;
     int height = _map.mapSize.height * _map.tileSize.height;
     return CGRectMake(0, 0, width, height);
+}
+
+// World x of the right-hand edge of the last column main0 actually draws.
+//
+// The maps are wider than their art: level 4 is 950 columns but its floor stops at column
+// 864, only 800pt past the nextlevelNE trigger. That was ample on the authored 480-wide
+// phone, where the end-of-level camera (frozen by the comic's BARS_IN) reached 26805+480 =
+// 27285; on a 956-wide phone it reaches 27761 and the last 81pt of the frame fall past the
+// art, showing bare background where the floor should be. Report the real extent so the
+// camera can stop there instead.
+-(float)drawnWorldRightEdge
+{
+    return _drawnWorldRightEdge;
+}
+
+// Must run while main0 is still a child of _map: loadLayers re-parents every tile layer into
+// its own CCParallaxNode, after which -layerNamed: no longer finds it.
+-(void)precalculateDrawnWorldRightEdge
+{
+    _drawnWorldRightEdge = 0.0f;
+
+    CCTMXLayer *worldLayer = [_map layerNamed:@"main0"];
+    if (worldLayer == nil) { return; }
+
+    int lastColumn = -1;
+    for (int i = _map.mapSize.width - 1; i >= 0 && lastColumn < 0; i--) {
+        for (int j = 0; j < _map.mapSize.height; j++) {
+            if ([worldLayer tileGIDAt:ccp(i, j)]) {
+                lastColumn = i;
+                break;
+            }
+        }
+    }
+    if (lastColumn < 0) { return; }
+
+    _drawnWorldRightEdge = (lastColumn + 1) * (_map.tileSize.width / _divide);
 }
 
 -(CGPoint)checkCollisionForObject:(GameObject*)object

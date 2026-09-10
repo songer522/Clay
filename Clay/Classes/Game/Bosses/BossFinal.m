@@ -322,18 +322,26 @@ static CGFloat FinalBossStageX(CGFloat legacyStageX)
 // is pinned near the left. Right-anchoring it pushed the sweep 337pt clear of him on an
 // 874-wide phone.
 //
-// The authored values missed him even at the design sizes - by 11pt on a 480 phone and 60pt
-// on a 1024 iPad - so there is no legacy behaviour worth preserving here. Derive it from the
-// player's live collision rect instead; he is pinned horizontally, so reading it once at
-// trigger time is stable, and it stays correct if either box is ever retuned.
+// The attack is a SWEEP PAST the player, not a park on top of him. The authored endpoints
+// (50 on a 480 phone, -180 on a 1024 iPad) both finish just to his left, and the hit happens
+// while the box crosses him on the way there. Centring the endpoint on him instead made the
+// hit window the whole remaining phase - 0.56s on an 874-wide phone, 0.70s at the authored
+// 480 - while a single jump only clears a 25-tall box for 0.33s. The attack was then
+// impossible to jump no matter how it was timed. Ending past him puts the window back at the
+// crossing: (player 32 + door 14) / rate, i.e. 0.14s at the authored rate.
+//
+// Derived from the live boxes rather than the two authored literals so it holds at any screen
+// size; it reproduces them closely at both design sizes (49 vs 50 phone, -145 vs -180 iPad).
 -(CGFloat)doorLungeDestinationX
 {
     CGRect playerRect = GameCollisionRectForObject(_player);
     CGRect doorBox = [_door getBoundingBox];
 
-    CGFloat playerCentreX = CGRectGetMidX(playerRect);
-    //invert what GameCollisionRectForObject does to the door, so its box centres on his
-    CGFloat doorScreenX = playerCentreX + doorBox.origin.x - (doorBox.size.width * 0.5f);
+    //invert what GameCollisionRectForObject does to the door, so its box's right edge
+    //finishes clear of the player's left edge
+    const CGFloat clearance = 12.0f * MULTIPLIERX;
+    CGFloat doorScreenX = CGRectGetMinX(playerRect) - clearance
+                          + doorBox.origin.x - doorBox.size.width;
 
     return doorScreenX - (IS_IPAD ? 250.0f : 0.0f);   //back out the sprite offset in update:
 }
@@ -404,11 +412,12 @@ static CGFloat FinalBossStageX(CGFloat legacyStageX)
 
             // The sweep starts from a right-anchored door position, so on a wide screen it has
             // much further to travel; at the authored rate it would still be in transit when
-            // the 1.4s phase ends. Size the rate to the distance, and budget only part of the
-            // phase for travel so the door still DWELLS on the player long enough to register
-            // - sized to arrive exactly at the end, an 874-wide phone gave a zero-length hit
-            // window. Never go below the authored rate, so at 480/1024 the train arrives as
-            // early as it always did and the legacy feel is untouched.
+            // the 1.4s phase ends. Size the rate to the distance and budget 60% of the phase
+            // for travel, which lands the crossing at roughly the same point in the phase as
+            // the authored 480 does (0.80s of 1.4s), leaving the rest as idle time with the
+            // door parked clear to the player's left. Never go below the authored rate, so at
+            // 480/1024 the train arrives as early as it always did and the legacy feel is
+            // untouched.
             {
                 const CGFloat travelFraction = 0.6f;    //40% of the phase left as dwell
                 CGFloat legacyRate = IS_IPAD ? 1.30f : 0.65f;
