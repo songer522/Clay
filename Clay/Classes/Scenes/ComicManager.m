@@ -47,6 +47,33 @@ static ComicManager *_shared = nil;
     return [[self alloc] init];
 }
 
+// A level's preComic and the previous level's postLevelComic are the SAME reel
+// (level9's preComic is "level8", which is Part9_AfterLv8) - so the pre-level slot only ever
+// replays something the post-level slot has already shown. Playing it again every time the
+// player enters a level he has already finished is the "comic on a completed level" report.
+// Remember which reels have played and gate the pre-level slot on it; the post-level slot,
+// which is the one the story is actually told in, is never gated.
++(NSString*)seenKeyForComic:(NSString*)comic
+{
+    return [NSString stringWithFormat:@"comicSeen_%@", comic];
+}
+
++(bool)hasSeenComic:(NSString*)comic
+{
+    if ([comic length] == 0) { return false; }
+    return [[[GameSettings shared] getGlobalForKey:[self seenKeyForComic:comic]] isEqualToString:@"YES"];
+}
+
++(void)markComicSeen:(NSString*)comic
+{
+    if ([comic length] == 0) { return; }
+    if ([self hasSeenComic:comic]) { return; }
+    [[GameSettings shared] setSerializedGlobal:@"YES" ForKey:[self seenKeyForComic:comic]];
+    //setSerializedGlobal only writes memory; the flag has to outlive the app for this to
+    //mean anything, and a comic is a scene transition so the write costs nothing here.
+    [[GameSettings shared] saveToDisk];
+}
+
 - (id)init
 {
     self = [super init];
@@ -137,6 +164,7 @@ static ComicManager *_shared = nil;
                 gameLayer.gameController.isInputEnabled = false;
                 [Camera sharedCamera].trackingTarget = false;
                 [gameLayer.player setHasGravity:true];
+                [gameLayer.player startLevelExitRun];
                 [[gameLayer getHud] fadeOut];
                 break;
             case COMIC_PHASE_STARTING_VIDEO:
@@ -150,6 +178,7 @@ static ComicManager *_shared = nil;
                     
                     [self endTheGame];
                 } else {
+                    [ComicManager markComicSeen:_comicName];
                     [_comicLayer cueComic:_comicName];
                     //[_videoPlayer playMovie:_videoFileName];
                     //[[CCDirector sharedDirector] stopAnimation];

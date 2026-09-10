@@ -165,16 +165,26 @@
     [[LevelManager shared] loadLevelNamed:levelName];
     [self initForLevel];
     Level *levelObj = [[LevelManager shared] currentLevel];
+    bool skipPreComicEntirely = false;
 #if DEBUG
     // Set only by the -startLevel debug jump in SceneDelegate; never on a normal launch.
     // The pre-level comic waits for a tap a scripted simulator run cannot give it, so skip
     // starting it here. The actual handover happens in onEnter - see debugStartLevelNow.
-    if ([[[GameSettings shared] getGlobalForKey:@"debugSkipPreComic"] isEqualToString:@"YES"]) {
-        //deliberately no comic
-    } else
+    skipPreComicEntirely = [[[GameSettings shared] getGlobalForKey:@"debugSkipPreComic"] isEqualToString:@"YES"];
 #endif
-    [[ComicManager shared] startComic:levelObj.preComicName StartPhase:COMIC_PHASE_STARTING_VIDEO];
-    
+    if (!skipPreComicEntirely) {
+        // A level's preComic is the previous level's postLevelComic, so entering a level the
+        // player has already finished replayed a reel he watched when he finished it. Show
+        // the pre-level slot only the first time; otherwise run the same phase machine from
+        // BARS_OUT, which fades in from black and hands over to play exactly as the comic
+        // path does.
+        if ([ComicManager hasSeenComic:levelObj.preComicName]) {
+            [[ComicManager shared] startComic:levelObj.preComicName StartPhase:COMIC_PHASE_BARS_OUT];
+        } else {
+            [[ComicManager shared] startComic:levelObj.preComicName StartPhase:COMIC_PHASE_STARTING_VIDEO];
+        }
+    }
+
     [[GameSettings shared] setGlobal:[NSString stringWithString:levelName] ForKey:@"continueLevelName"];
     _isNewRecord=false;
 }
@@ -187,8 +197,18 @@
     
     [_player setOffsetForX:0 Y:[[LevelManager shared] playerOffsetY]];
     
-    [_player setPositionAtX:_level.spawnPoint.x Y:_level.spawnPoint.y];
-    
+    CGPoint spawnPoint = _level.spawnPoint;
+#if DEBUG
+    // Debug-only spawn override, so a scripted run can start next to the part of the level
+    // it needs to look at (the end-of-level run-off, for instance) instead of having to
+    // survive the whole track with no input. Launch argument: -startAtX 26800
+    NSString *debugSpawnX = [[NSUserDefaults standardUserDefaults] stringForKey:@"startAtX"];
+    if ([debugSpawnX length] > 0) {
+        spawnPoint.x = [debugSpawnX floatValue];
+    }
+#endif
+    [_player setPositionAtX:spawnPoint.x Y:spawnPoint.y];
+
     //check to see if underwater physics should be set
     if ([_level.name isEqualToString:@"level10"]){
         [[_player getSpeed] setIsUnderwater:true];
@@ -212,7 +232,7 @@
     [_player reset];
     _isNewRecord=false;
     
-    [_savePoint setSavePoint:_level.spawnPoint Level:_level.name];
+    [_savePoint setSavePoint:spawnPoint Level:_level.name];
     
     [self initCamera];
     

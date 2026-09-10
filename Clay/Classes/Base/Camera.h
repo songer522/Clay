@@ -39,6 +39,8 @@
     float _precalculateBoundaryYplusBoundaryHeight;
     float _precalculateBoundaryY;
     float _precalculateWinsizeHeight;
+    float _precalculateWinsizeWidth;
+    float _drawnWorldRightEdge;  //0 when unknown; see keepWithinHorizontalBoundary
     float _precalculateBottomBound;
     float _precalculateTopBound;
     
@@ -66,6 +68,7 @@
 
 #pragma mark - public methods
 -(void)setBoundaries:(CGRect)rect Level:(Level*)level;
+-(void)keepWithinHorizontalBoundary;
 
 -(void)updateOnScreenRange;
 

@@ -119,6 +119,7 @@ typedef enum {
 -(void)endJump:(bool)switchToFallingAnim;
 -(void)updateJump:(float)dt;
 
+-(void)startLevelExitRun;
 -(void)startTurbo;
 -(bool)getIsTurbo;
 

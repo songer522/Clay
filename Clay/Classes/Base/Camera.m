@@ -100,6 +100,8 @@ static Camera *_sharedCamera = nil;
     
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     _precalculateWinsizeHeight = winSize.height;
+    _precalculateWinsizeWidth = winSize.width;
+    _drawnWorldRightEdge = [level drawnWorldRightEdge];
     _precalculateBoundaryY = _boundary.origin.y;
     _precalculateBoundaryYplusBoundaryHeight = _boundary.origin.y + _boundary.size.height;
     
@@ -107,6 +109,7 @@ static Camera *_sharedCamera = nil;
     _player = [[LayerManager sharedLayers] getPlayer];
     
     [self keepWithinBoundaries];
+    [self keepWithinHorizontalBoundary];
     [self updateOnScreenRange];
 }
 
@@ -120,6 +123,20 @@ static Camera *_sharedCamera = nil;
     } else if (bottom < _precalculateBoundaryY) {
         _y = _precalculateBoundaryY + _center.y;
     }
+}
+
+// The maps run out of art before they run out of columns, and the end-of-level camera is
+// frozen wherever the finish trigger left it - so on a phone wider than the authored 480 the
+// right of the frame can sit past the last drawn column and show bare background where the
+// floor should be. Never scroll the right edge past the art. No-op on every level whose art
+// reaches the map edge, and at the authored widths.
+-(void)keepWithinHorizontalBoundary
+{
+    if (_drawnWorldRightEdge <= 0.0f) { return; }
+
+    float maxX = _drawnWorldRightEdge - _precalculateWinsizeWidth + _center.x;
+    if (maxX < 0.0f) { return; }        //map narrower than the screen: nothing sensible to clamp to
+    if (_x > maxX) { _x = maxX; }
 }
 
 -(void)setTarget:(Sprite *)sprite
@@ -207,6 +224,7 @@ static Camera *_sharedCamera = nil;
             _x += 0.83333333f;
         }
     }
+    [self keepWithinHorizontalBoundary];
     [self updateOnScreenRange];
 }
 
@@ -215,6 +233,7 @@ static Camera *_sharedCamera = nil;
     if (_target!=nil) { 
         _x = _target.x;
         _y = CameraRestingY();
+        [self keepWithinHorizontalBoundary];
     }
 }
 
