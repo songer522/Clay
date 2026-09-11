@@ -61,9 +61,15 @@
 {
     Player *player = [[LayerManager sharedLayers] getPlayer];
     
-    //place underneath tim's feet. The offsets were authored against the phone and the iPad
-    //branch was left commented out, so on iPad the splash sat up by his waist.
-    [_rainBehindTim setPosition:CGPointMake(player.x - 70 * MULTIPLIERX, player.y + 40 * MULTIPLIERY)];
+    //Place underneath tim's feet, which is what the comment always claimed and what the art
+    //is: `rainyBehindTimAnim` is a ground splash ripple, anchored bottom-centre.
+    //
+    //The authored y was `player.y + 40`, i.e. 40pt ABOVE his logical position - and his
+    //logical y is the track (64), not his rendered feet, which sit playerOffsetY lower
+    //again. The splash therefore floated ~50pt over the track, reading as rain falling in
+    //mid-air beside him. Read the player's sprite y instead of re-deriving it, so the splash
+    //cannot drift from the feet it is supposed to sit under.
+    [_rainBehindTim setPosition:CGPointMake(player.x - 70 * MULTIPLIERX, [player getSprite].y)];
     if (player.isInMidAir||player.onLedge) {
         if (_rainBehindTimVisible) {
             [[_rainBehindTim getCCSprite] setVisible:NO];

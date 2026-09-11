@@ -31,6 +31,10 @@
 #define TRAIN_DOOR_POSITION 310.0f
 #define TRAIN_Y_POSITION 132.0f
 
+// How long the door sweep itself runs. 1B (open) and 1D (close) are locked to their 0.4s
+// animations, so this is the only tunable part of the attack.
+#define DOOR_ATTACK_SWEEP_SECONDS 0.4f
+
 // GameCollisionRectForObject builds every box as (spritePosition - bbox.origin, bbox.size),
 // and both the door and the player resolve to screen space, so the two can be lined up
 // directly. The player stands at world 64*MULTIPLIERY and his plist bbox.y is a raw -10, so
@@ -48,10 +52,15 @@
 
 static CGFloat FinalBossDoorScreenY(Projectile *door)
 {
-    CGFloat playerBoxBottom =
-        [[Camera sharedCamera] convertToScreenY:(PLAYER_GROUNDED_WORLD_Y * MULTIPLIERY)]
-        + PLAYER_BOX_OFFSET_Y;
-    return playerBoxBottom + [door getBoundingBox].origin.y;
+    // Anchored to the player's grounded FEET, not to the bottom of his collision box. His
+    // plist bbox.y is a raw -10, so his box starts PLAYER_BOX_OFFSET_Y above his feet; lining
+    // the door up with that box put the sweep at shin height and left only 15pt of a 40pt
+    // jump as clearance. Dropping it by that same offset keeps a solid 15pt overlap while he
+    // is grounded and gives the jump 10pt more room - reported from play as "the hit box
+    // needs to be slightly lower".
+    CGFloat playerFeet =
+        [[Camera sharedCamera] convertToScreenY:(PLAYER_GROUNDED_WORLD_Y * MULTIPLIERY)];
+    return playerFeet + [door getBoundingBox].origin.y;
 }
 
 // The train's stage x values are screen-space and were authored against a 480-wide phone
@@ -407,25 +416,48 @@ static CGFloat FinalBossStageX(CGFloat legacyStageX)
             break;
         case FINAL_BOSS_ATTACK_1C:
             [self changeToAnimationNamed:@"darkBossJimDoorAttack2" forSprite:_trainJim];
-            _waitToSwitch = 1.4f;
             _destinationX = [self doorLungeDestinationX];
 
-            // The sweep starts from a right-anchored door position, so on a wide screen it has
-            // much further to travel; at the authored rate it would still be in transit when
-            // the 1.4s phase ends. Size the rate to the distance and budget 60% of the phase
-            // for travel, which lands the crossing at roughly the same point in the phase as
-            // the authored 480 does (0.80s of 1.4s), leaving the rest as idle time with the
-            // door parked clear to the player's left. Never go below the authored rate, so at
-            // 480/1024 the train arrives as early as it always did and the legacy feel is
-            // untouched.
+            // The phase was a flat 1.4s: the sweep finished in about 0.84s and the train then
+            // sat there with the box still live. Reported from play as the door "still
+            // hitting Tim after he jumped over it" - the jump cleared the crossing, the box
+            // parked a few points to his left, and it caught him again on the way down.
+            //
+            // The box now retires at the crossing (see update:), and the phase itself is cut
+            // to DOOR_ATTACK_SWEEP_SECONDS so the train does not linger either. That takes
+            // the whole door attack - 1B open, 1C sweep, 1D close - from 2.2s to 1.2s, the
+            // one second the play-test asked for.
+            //
+            // The rate is sized to cover the distance in that window. The authored rate is
+            // kept only as a lower bound - the shorter phase means the sweep is faster than
+            // it shipped at every width, which is the point: the old one lingered. Where the
+            // anti-skip cap below cannot cover the distance in time, the phase stretches to
+            // match rather than leaving the door in transit when it ends.
             {
-                const CGFloat travelFraction = 0.6f;    //40% of the phase left as dwell
                 CGFloat legacyRate = IS_IPAD ? 1.30f : 0.65f;
                 CGFloat distance = _trainPosition.x - _destinationX;
                 //moveLeft: covers 500pt per unit of its argument
-                CGFloat travelTime = _waitToSwitch * travelFraction;
-                CGFloat neededRate = (distance > 0.0f) ? (distance / (travelTime * 500.0f)) : 0.0f;
-                _doorLungeRate = MAX(legacyRate, neededRate);
+                // Finish the sweep a little inside the phase. Sized to land exactly on the
+                // phase boundary, the crossing fell on the final frame before 1D disabled the
+                // box - a one-frame hit window. The trailing time costs nothing now that the
+                // box retires as soon as it is past him.
+                const CGFloat travelFraction = 0.85f;
+                CGFloat travelTime = DOOR_ATTACK_SWEEP_SECONDS * travelFraction;
+                CGFloat neededRate = (distance > 0.0f)
+                    ? (distance / (travelTime * 500.0f)) : 0.0f;
+
+                // A step longer than the combined width of the two boxes could skip the
+                // player between frames and land no hit at all. Cap it so an overlapping
+                // frame is guaranteed. No realistic screen width reaches this cap; it is here
+                // so the invariant survives future retuning.
+                CGRect playerRect = GameCollisionRectForObject(_player);
+                CGFloat span = playerRect.size.width + [_door getBoundingBox].size.width;
+                CGFloat maxRate = (span * 60.0f) / 500.0f;      //one span per frame at 60fps
+
+                _doorLungeRate = MAX(legacyRate, MIN(neededRate, maxRate));
+                _waitToSwitch = (_doorLungeRate > 0.0f)
+                    ? MAX(DOOR_ATTACK_SWEEP_SECONDS, distance / (_doorLungeRate * 500.0f))
+                    : DOOR_ATTACK_SWEEP_SECONDS;
             }
             _phase = phase;
             [_door reset];
@@ -605,7 +637,16 @@ static CGFloat FinalBossStageX(CGFloat legacyStageX)
                                      FinalBossDoorScreenY(_door));
     [_door setPosition:[[Camera sharedCamera] convertToWorldXY:doorScreen]];
     if ([_door getActive]) {
-        [self testCollisions:_door];        
+        // The hit IS the crossing. Once the sweep has carried the box past him there is
+        // nothing left to strike with, and leaving it live is what let the box catch him a
+        // second time: it finishes a few points to his left, and the player's screen x drifts
+        // back as the camera converges, sliding his box onto a door that was still armed.
+        if (CGRectGetMaxX(GameCollisionRectForObject(_door))
+            < CGRectGetMinX(GameCollisionRectForObject(_player))) {
+            [_door disable];
+        } else {
+            [self testCollisions:_door];
+        }
     }
     
     [self updatePosition:_trainPosition];
