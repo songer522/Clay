@@ -24,15 +24,20 @@ CGRect GameCollisionRectForObject(id<Collidable> object)
     
     // Some very low legacy phone-era obstacles need a little extra overlap on
     // modern phones so the player's feet still enter the intended effect area.
+    //
+    // The hurdles used to be padded here: smallHurdle's 15x15 box was widened by 42pt and
+    // raised by 10. That made its box roughly four times the width of the art - the player
+    // collided well before reaching it - and lifted its top to exactly the medium hurdle's,
+    // so the yellow and blue hurdles demanded the same jump. Both are now sized in
+    // objects.plist instead, where the three hurdles read as the progression they look like:
+    // heights 25 / 35 / 45, i.e. box tops 74 / 84 / 94 against a grounded player box bottom
+    // of 65 and a single-jump apex of 104. The pad's phone-only guard also meant smallHurdle
+    // never connected at all on iPad; sizing it in the plist fixes that too.
     if (!IS_IPAD && [object isKindOfClass:[GameObject class]]) {
         GameObject *gameObject = (GameObject *)object;
         NSString *spriteName = [[gameObject getSprite] name];
 
-        if (gameObject.isHurdle && boundingBox.size.height <= 15.0f && boundingBox.size.width <= 15.0f) {
-            rect.origin.x -= 36.0f;
-            rect.size.width += 42.0f;
-            rect.size.height += 10.0f;
-        } else if ([spriteName isEqualToString:@"Track_Sandpit_1.png"]
+        if ([spriteName isEqualToString:@"Track_Sandpit_1.png"]
                    || [spriteName isEqualToString:@"Barn_Poop_1.png"]) {
             // Low slow-pads (sandpit / Level 2 manure): tiny legacy 15pt box misses
             // modern foot height — expand modestly (too tall forces double-jump).

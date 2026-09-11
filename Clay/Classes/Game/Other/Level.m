@@ -99,7 +99,7 @@
         
         _scale = [GameSettings currentRenderScale] / _divide;
         
-        [self precalculateDrawnWorldRightEdge];
+        [self precalculateCameraRightLimit];
         [self scanThroughMapAndAddObjects];
                 
         [self loadLayers:layerList Player:player Name:levelName];
@@ -301,40 +301,103 @@
     return CGRectMake(0, 0, width, height);
 }
 
-// World x of the right-hand edge of the last column main0 actually draws.
+// How far right the camera may scroll before the level runs out of art, expressed relative
+// to the camera's centre x so the caller can apply its own live centre.
 //
-// The maps are wider than their art: level 4 is 950 columns but its floor stops at column
-// 864, only 800pt past the nextlevelNE trigger. That was ample on the authored 480-wide
-// phone, where the end-of-level camera (frozen by the comic's BARS_IN) reached 26805+480 =
-// 27285; on a 956-wide phone it reaches 27761 and the last 81pt of the frame fall past the
-// art, showing bare background where the floor should be. Report the real extent so the
-// camera can stop there instead.
--(float)drawnWorldRightEdge
+// The maps are wider than their art, and the end-of-level camera freezes wherever the finish
+// trigger left it, so on a phone wider than the authored 480 the right of the frame can sit
+// past the last drawn column and show bare background where the floor should be. Level 4's
+// floor stops 85 columns short of the map edge; on levels 2/3/5/7/8 and the DLC pair it is
+// the foreground band, which parallaxes at 1.05-1.1 and therefore runs out sooner than the
+// map layer does.
+//
+// Measured against the live scene: CCParallaxNode places each child at
+// `nodePosition * ratio` in absolute terms, and Level.setPositionAtX feeds it
+// `(-cameraX + centreX)`. So a layer's drawn content ends at screen x
+// `(-cameraX + centreX) * ratio + drawnWidth`, and requiring that to reach the right edge
+// gives `cameraX <= centreX - (winWidth - drawnWidth) / ratio`.
+#define LEVEL_MAX_RAGGED_EDGE_COLUMNS 4
+
+-(float)cameraMaxXRelativeToCenter
 {
-    return _drawnWorldRightEdge;
+    return _cameraMaxXRelativeToCenter;
 }
 
-// Must run while main0 is still a child of _map: loadLayers re-parents every tile layer into
-// its own CCParallaxNode, after which -layerNamed: no longer finds it.
--(void)precalculateDrawnWorldRightEdge
+-(bool)hasCameraRightLimit
 {
-    _drawnWorldRightEdge = 0.0f;
+    return _hasCameraRightLimit;
+}
 
-    CCTMXLayer *worldLayer = [_map layerNamed:@"main0"];
-    if (worldLayer == nil) { return; }
+// Must run while the tile layers are still children of _map: loadLayers re-parents each one
+// into its own CCParallaxNode, after which -layerNamed: no longer finds it.
+-(void)precalculateCameraRightLimit
+{
+    _cameraMaxXRelativeToCenter = 0.0f;
+    _hasCameraRightLimit = false;
 
-    int lastColumn = -1;
-    for (int i = _map.mapSize.width - 1; i >= 0 && lastColumn < 0; i--) {
-        for (int j = 0; j < _map.mapSize.height; j++) {
-            if ([worldLayer tileGIDAt:ccp(i, j)]) {
-                lastColumn = i;
-                break;
+    CGFloat winWidth = [[CCDirector sharedDirector] winSize].width;
+    CGFloat pointsPerTile = _map.tileSize.width / _divide;
+    int width = _map.mapSize.width;
+    int height = _map.mapSize.height;
+
+    for (CCNode *child in [_map children]) {
+        if (![child isKindOfClass:[CCTMXLayer class]]) { continue; }
+        CCTMXLayer *tmxLayer = (CCTMXLayer *)child;
+
+        //meta and the obstacle layer are markers, never drawn
+        NSString *name = tmxLayer.layerName;
+        if ([name isEqualToString:@"meta"]) { continue; }
+        if (_obstacles != nil && [name isEqualToString:_obstacles.layerName]) { continue; }
+
+        CGFloat ratio = [[tmxLayer propertyNamed:@"speedx"] floatValue] * _scale;
+        if (ratio <= 0.0f) { continue; }
+
+        int lastColumn = -1;
+        int filledColumns = 0;
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                if ([tmxLayer tileGIDAt:ccp(i, j)]) {
+                    filledColumns++;
+                    lastColumn = i;
+                    break;
+                }
             }
         }
-    }
-    if (lastColumn < 0) { return; }
+        if (lastColumn < 0) { continue; }
 
-    _drawnWorldRightEdge = (lastColumn + 1) * (_map.tileSize.width / _divide);
+        // Only a continuous layer can leave a visible hole. A sparse decorative layer -
+        // level 2's `front3` is 86 tiles over 950 columns - legitimately stops early, and
+        // would otherwise clamp the camera hundreds of points before the finish line.
+        CGFloat coverage = (CGFloat)filledColumns / (CGFloat)(lastColumn + 1);
+        if (coverage < 0.9f) { continue; }
+
+        // Trim a ragged last edge: level 2's foreground band has its bottom row ending two
+        // columns short of the row above it, which left a notch in the bottom corner even
+        // once the layer as a whole reached the screen edge. Only a *small* overhang counts
+        // as raggedness - a row that stops far short is a shorter band by design (story_easy
+        // level 4's is 82 columns shorter), and honouring it would freeze the camera
+        // thousands of points before the finish line.
+        int raggedColumn = lastColumn;
+        for (int j = 0; j < height; j++) {
+            int rowLast = -1;
+            int rowFilled = 0;
+            for (int i = 0; i < width; i++) {
+                if ([tmxLayer tileGIDAt:ccp(i, j)]) { rowFilled++; rowLast = i; }
+            }
+            if (rowLast < 0) { continue; }
+            if ((CGFloat)rowFilled / (CGFloat)(rowLast + 1) < 0.9f) { continue; }  //sparse row
+            if (rowLast < raggedColumn && (lastColumn - rowLast) <= LEVEL_MAX_RAGGED_EDGE_COLUMNS) {
+                raggedColumn = rowLast;
+            }
+        }
+
+        CGFloat drawnWidth = (raggedColumn + 1) * pointsPerTile;
+        CGFloat limit = -(winWidth - drawnWidth) / ratio;
+        if (!_hasCameraRightLimit || limit < _cameraMaxXRelativeToCenter) {
+            _cameraMaxXRelativeToCenter = limit;
+            _hasCameraRightLimit = true;
+        }
+    }
 }
 
 -(CGPoint)checkCollisionForObject:(GameObject*)object

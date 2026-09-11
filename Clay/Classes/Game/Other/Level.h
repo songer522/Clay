@@ -100,7 +100,8 @@ typedef enum {
     float _y;
     float _scale;
     float _divide;
-    float _drawnWorldRightEdge;
+    float _cameraMaxXRelativeToCenter;
+    bool _hasCameraRightLimit;
 }
 
 @property (nonatomic,retain) NSString *name;
@@ -123,8 +124,9 @@ typedef enum {
 -(CGPoint)checkCollisionForObject:(GameObject*)object;
 -(void)update:(float)dt Velocity:(float)vx;
 -(CGRect)getLevelBoundaries;
--(float)drawnWorldRightEdge;
--(void)precalculateDrawnWorldRightEdge;
+-(float)cameraMaxXRelativeToCenter;
+-(bool)hasCameraRightLimit;
+-(void)precalculateCameraRightLimit;
 -(CGPoint)getXYPositionForCoordinates:(CGPoint)coords;
 -(void)loadLayers:(NSString*)layerList Player:(Player*)player Name:(NSString*)levelName;
 -(NSString*)getPropertyForTileCoords:(CGPoint)coords forKey:(NSString*)key;

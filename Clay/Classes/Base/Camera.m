@@ -101,7 +101,8 @@ static Camera *_sharedCamera = nil;
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     _precalculateWinsizeHeight = winSize.height;
     _precalculateWinsizeWidth = winSize.width;
-    _drawnWorldRightEdge = [level drawnWorldRightEdge];
+    _hasHorizontalLimit = [level hasCameraRightLimit];
+    _cameraMaxXRelativeToCenter = [level cameraMaxXRelativeToCenter];
     _precalculateBoundaryY = _boundary.origin.y;
     _precalculateBoundaryYplusBoundaryHeight = _boundary.origin.y + _boundary.size.height;
     
@@ -128,13 +129,14 @@ static Camera *_sharedCamera = nil;
 // The maps run out of art before they run out of columns, and the end-of-level camera is
 // frozen wherever the finish trigger left it - so on a phone wider than the authored 480 the
 // right of the frame can sit past the last drawn column and show bare background where the
-// floor should be. Never scroll the right edge past the art. No-op on every level whose art
-// reaches the map edge, and at the authored widths.
+// floor should be. Never scroll the right edge past the art. Level works out which layer
+// binds (see -precalculateCameraRightLimit); the centre is applied live here because the kick
+// shift and the boss stages move it. No-op at the authored widths.
 -(void)keepWithinHorizontalBoundary
 {
-    if (_drawnWorldRightEdge <= 0.0f) { return; }
+    if (!_hasHorizontalLimit) { return; }
 
-    float maxX = _drawnWorldRightEdge - _precalculateWinsizeWidth + _center.x;
+    float maxX = _center.x + _cameraMaxXRelativeToCenter;
     if (maxX < 0.0f) { return; }        //map narrower than the screen: nothing sensible to clamp to
     if (_x > maxX) { _x = maxX; }
 }

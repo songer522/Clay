@@ -748,6 +748,12 @@ static CGFloat GameObjectWidthScale(void)
                     _vy = 200.0f;
                     _fadeout = true;
                     _alpha = 1.0f;
+                    // ...and stop knocking cows over. The fall and fade take about half a
+                    // second, and at the kick's width-scaled speed that is another ~750pt of
+                    // flight - all of it past the right edge, where the player cannot see the
+                    // chain he is being credited with. The cow row is the on-screen part of
+                    // the trick; once the hen has left the frame it is scenery.
+                    _isAggressive = false;
                 } else if (_hasGravity) {
                     _vy += 500.0f * dt;
                 }

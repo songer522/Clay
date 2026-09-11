@@ -40,7 +40,8 @@
     float _precalculateBoundaryY;
     float _precalculateWinsizeHeight;
     float _precalculateWinsizeWidth;
-    float _drawnWorldRightEdge;  //0 when unknown; see keepWithinHorizontalBoundary
+    float _cameraMaxXRelativeToCenter;  //see keepWithinHorizontalBoundary
+    bool _hasHorizontalLimit;
     float _precalculateBottomBound;
     float _precalculateTopBound;
     
